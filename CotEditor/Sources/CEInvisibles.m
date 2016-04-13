@@ -50,6 +50,37 @@ static unichar const kReplacementChar = 0xFFFD;  // symbol for "Other Invisibles
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+/// returns substitute character as NSString
++ (nonnull NSString *)stringWithType:(CEInvisibleType)type Index:(NSUInteger)index
+// ------------------------------------------------------
+{
+    unichar character;
+    switch (type) {
+        case CEInvisibleSpace:
+            character = [self spaceCharWithIndex:index];
+            break;
+        case CEInvisibleTab:
+            character = [self tabCharWithIndex:index];
+            break;
+        case CEInvisibleNewLine:
+            character = [self newLineCharWithIndex:index];
+            break;
+        case CEInvisibleFullWidthSpace:
+            character = [self fullwidthSpaceCharWithIndex:index];
+            break;
+        case CEInvisibleVerticalTab:
+            character = [self verticalTabChar];
+            break;
+        case CEInvisibleReplacement:
+            character = [self replacementChar];
+            break;
+    }
+    
+    return [NSString stringWithCharacters:&character length:1];
+}
+
+
+// ------------------------------------------------------
 /// returns substitute character for invisible space
 + (unichar)spaceCharWithIndex:(NSUInteger)index
 // ------------------------------------------------------

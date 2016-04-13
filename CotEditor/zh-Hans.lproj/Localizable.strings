@@ -96,7 +96,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "在“%@”中没有找到字符串。";
 "Found one string in “%@”." = "在“%@”中找到一个字符串。";
-"Found %li strings in “%@”." = "%li 个字符串在“%@”中被找到。";
+"Found %@ strings in “%@”." = "%@ 个字符串在“%@”中被找到。";
 
 
 
@@ -221,7 +221,7 @@
 "Move Line" = "移动行";
 "Sort Lines" = "排序行";
 "Reverse Lines" = "逆序行";
-"Remove Duplicate Lines" = "移除重复行";
+"Delete Duplicate Lines" = "移除重复行";
 "Duplicate Line" = "复制行";
 "Delete Line" = "删除行";
 "Trim Trailing Whitespace" = "移除行尾空白";
@@ -233,6 +233,7 @@
 // Contextual menu items
 "Font" = "字体";
 "Text" = "文本";
+"Copy as Rich Text" = "以富文本拷贝";
 "Select All" = "全部选择";
 
 
@@ -320,7 +321,7 @@
 
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
-" (on Mavericks and later)" = "（Mavericks 及以后）";
+"Only on Mavericks and later" = "Mavericks 及以后";
 
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "补全可以通过 %@ 或 %@ 手动完成";
@@ -500,3 +501,10 @@
 "The script file “%@” couldn’t be opened." = "无法打开脚本文件“%@”。";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "由于没有执行权限，无法执行脚本“%@”。\n\n请确认脚本文件的权限。";
 "The script “%@” couldn’t be read." = "无法读取脚本“%@”。";
+
+
+
+/* NSString Categories */
+// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+// No need to be tranlated since "UTF-8 with BOM" is acceptable in zh-Hans.
+"%@ with BOM" = "%@ with BOM";

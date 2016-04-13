@@ -63,7 +63,7 @@ typedef NS_ENUM(NSInteger, CEToolbarItemTag) {
 
 // Public method
 - (void)toggleItemWithTag:(CEToolbarItemTag)tag setOn:(BOOL)setOn;
-- (void)setSelectedEncoding:(NSStringEncoding)encoding;
+- (void)setSelectedEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM;
 - (void)setSelectedLineEnding:(CENewLineType)lineEnding;
 - (void)setSelectedSyntaxWithName:(nonnull NSString *)name;
 

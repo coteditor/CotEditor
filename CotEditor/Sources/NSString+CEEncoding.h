@@ -28,15 +28,14 @@
 @import Foundation;
 
 
-// byte order marks
-extern char const kUTF8Bom[];
-extern char const kUTF16BEBom[];
-extern char const kUTF16LEBom[];
-extern char const kUTF32BEBom[];
-extern char const kUTF32LEBom[];
+/// check IANA charset compatibility considering SHIFT_JIS
+BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding);
 
 
 @interface NSString (CEEncoding)
+
++ (nonnull NSString *)localizedNameOfStringEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withBOM;
++ (nonnull NSString *)localizedNameOfUTF8EncodingWithBOM;
 
 /// obtain string from NSData with intelligent encoding detection
 - (nullable instancetype)initWithData:(nonnull NSData *)data suggestedCFEncodings:(nonnull NSArray<NSNumber *> *)suggestedCFEncodings usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
@@ -44,7 +43,13 @@ extern char const kUTF32LEBom[];
 /// scan encoding declaration in string
 - (NSStringEncoding)scanEncodingDeclarationForTags:(nonnull NSArray<NSString *> *)tags upToIndex:(NSUInteger)maxLength suggestedCFEncodings:(nonnull NSArray<NSNumber *> *)suggestedCFEncodings;
 
-/// check IANA charset compatibility considering SHIFT_JIS
-BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding);
+@end
+
+
+
+@interface NSData (UTF8BOM)
+
+- (nonnull NSData *)dataByAddingUTF8BOM;
+- (BOOL)hasUTF8BOM;
 
 @end

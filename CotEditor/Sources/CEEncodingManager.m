@@ -30,6 +30,8 @@
 #import "CEDefaults.h"
 #import "CEEncodings.h"
 
+#import "NSString+CEEncoding.h"
+
 
 NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 
@@ -158,6 +160,30 @@ NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDid
 //------------------------------------------------------
 {
     return [[NSArray alloc] initWithArray:_encodingMenuItems copyItems:YES];
+}
+
+
+//------------------------------------------------------
+/// set available encoding menu items with action to passed-in menu
+- (void)updateChangeEncodingMenu:(nonnull NSMenu *)menu
+//------------------------------------------------------
+{
+    [menu removeAllItems];
+    
+    for (NSMenuItem *item in [self encodingMenuItems]) {
+        [item setAction:@selector(changeEncoding:)];
+        [item setTarget:nil];
+        [menu addItem:item];
+        
+        // add "UTF-8 with BOM" item just after the normal UTF-8
+        if ([item tag] == NSUTF8StringEncoding) {
+            NSMenuItem *bomItem = [[NSMenuItem alloc] initWithTitle:[NSString localizedNameOfUTF8EncodingWithBOM]
+                                                             action:@selector(changeEncoding:)
+                                                      keyEquivalent:@""];
+            [bomItem setTag:-NSUTF8StringEncoding];  // negative value is sign for "with BOM"
+            [menu addItem:bomItem];
+        }
+    }
 }
 
 

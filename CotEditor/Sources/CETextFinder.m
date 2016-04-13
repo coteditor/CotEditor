@@ -41,6 +41,10 @@ NSString * _Nonnull const CEFindResultLineNumber = @"lineNumber";
 NSString * _Nonnull const CEFindResultAttributedLineString = @"attributedLineString";
 NSString * _Nonnull const CEFindResultLineRange = @"lineRange";
 
+// keys for highlight
+static NSString * _Nonnull const CEFindHighlightRange = @"range";
+static NSString * _Nonnull const CEFindHighlightColor = @"color";
+
 static NSString * _Nonnull const kEscapeCharacter = OgreBackslashCharacter;
 static const NSUInteger kMaxHistorySize = 20;
 //static const NSUInteger kMinLengthShowIndicator = 5000;  // not in use
@@ -226,6 +230,8 @@ static const NSUInteger kMaxHistorySize = 20;
         action == @selector(findPrevious:) ||
         action == @selector(findSelectedText:) ||
         action == @selector(findAll:) ||
+        action == @selector(highlight:) ||
+        action == @selector(unhighlight:) ||
         action == @selector(replace:) ||
         action == @selector(replaceAndFind:) ||
         action == @selector(replaceAll:) ||
@@ -359,6 +365,7 @@ static const NSUInteger kMaxHistorySize = 20;
     NSString *string = [textView string];
     
     // setup progress sheet
+    NSAssert([textView window], @"The find target text view must be embedded in a window.");
     __block BOOL isCancelled = NO;
     CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
     [indicator setIndetermine:YES];
@@ -367,8 +374,6 @@ static const NSUInteger kMaxHistorySize = 20;
             isCancelled = YES;
         }
     }];
-
-    [[textView layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [string length])];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -376,6 +381,7 @@ static const NSUInteger kMaxHistorySize = 20;
         if (!self) { return; }
         
         NSMutableArray<NSDictionary *> *result = [NSMutableArray array];
+        NSMutableArray<NSDictionary *> *highlights = [NSMutableArray array];
         for (NSValue *rangeValue in scopeRanges) {
             NSRange scopeRange = [rangeValue rangeValue];
             NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
@@ -404,10 +410,9 @@ static const NSUInteger kMaxHistorySize = 20;
                 NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
                 
                 [lineAttrString addAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject] range:inlineRange];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject]
-                                                  forCharacterRange:matchedRange];
-                });
+                
+                [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
+                                        CEFindHighlightColor: [highlightColors firstObject]}];
                 
                 for (NSUInteger i = 0; i < numberOfGroups; i++) {
                     NSRange range = [match rangeOfSubstringAtIndex:i];
@@ -418,11 +423,8 @@ static const NSUInteger kMaxHistorySize = 20;
                     
                     [lineAttrString addAttribute:NSBackgroundColorAttributeName value:color
                                            range:NSMakeRange(range.location - lineRange.location, range.length)];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:color
-                                                      forCharacterRange:range];
-                    });
+                    [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
+                                            CEFindHighlightColor: color}];
                 }
                 
                 [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
@@ -430,15 +432,23 @@ static const NSUInteger kMaxHistorySize = 20;
                                     CEFindResultAttributedLineString: lineAttrString,
                                     CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
                 
-                NSString *informative = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
-                NSString *countStr = [integerFormatter stringFromNumber:@([result count])];
+                NSString *informativeFormat = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
+                NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                         [integerFormatter stringFromNumber:@([result count])]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
+                    [indicator setInformativeText:informative];
                 });
             }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            // highlight
+            [[textView layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [string length])];
+            for (NSDictionary<NSString *, id> *highlight in highlights) {
+                [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:highlight[CEFindHighlightColor]
+                                              forCharacterRange:[highlight[CEFindHighlightRange] rangeValue]];
+            }
+            
             [indicator doneWithButtonTitle:nil];
             
             if ([result count] > 0) {
@@ -458,6 +468,117 @@ static const NSUInteger kMaxHistorySize = 20;
     });
     
     [self appendFindHistory:[self findString]];
+}
+
+
+// ------------------------------------------------------
+/// highlight all matched strings
+- (IBAction)highlight:(nullable id)sender
+// ------------------------------------------------------
+{
+    if (![self checkIsReadyToFind]) { return; }
+    
+    NSNumberFormatter *integerFormatter = [self integerFormatter];
+    NSTextView *textView = [self client];
+    OGRegularExpression *regex = [self regex];
+    NSArray<NSValue *> *scopeRanges = [self scopeRanges];
+    
+    // -> [caution] numberOfGroups becomes 0 if non-regex + non-delimit-by-spaces
+    NSUInteger numberOfGroups = [self usesRegularExpression] ? [regex numberOfGroups] + 1 : [regex numberOfGroups];
+    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups ?: 1];
+    if (![self usesRegularExpression]) {
+        highlightColors = [[highlightColors reverseObjectEnumerator] allObjects];
+    }
+    
+    NSString *string = [textView string];
+    
+    // setup progress sheet
+    NSAssert([textView window], @"The find target text view must be embedded in a window.");
+    __block BOOL isCancelled = NO;
+    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
+    [indicator setIndetermine:YES];
+    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSCancelButton) {
+            isCancelled = YES;
+        }
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        typeof(self) self = weakSelf;
+        if (!self) { return; }
+        
+        NSMutableArray<NSDictionary *> *highlights = [NSMutableArray array];
+        for (NSValue *rangeValue in scopeRanges) {
+            NSRange scopeRange = [rangeValue rangeValue];
+            NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
+            
+            OGRegularExpressionMatch *match;
+            while ((match = [enumerator nextObject])) {
+                if (isCancelled) {
+                    [indicator close:self];
+                    return;
+                }
+                
+                NSRange matchedRange = [match rangeOfMatchedString];
+                
+                [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
+                                        CEFindHighlightColor: [highlightColors firstObject]}];
+                
+                for (NSUInteger i = 0; i < numberOfGroups; i++) {
+                    NSRange range = [match rangeOfSubstringAtIndex:i];
+                    
+                    if (range.length == 0) { continue; }
+                    
+                    NSColor *color = highlightColors[i];
+                    [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
+                                            CEFindHighlightColor: color}];
+                }
+                
+                NSString *informativeFormat = ([highlights count] == 1) ? @"%@ string found." : @"%@ strings found.";
+                NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                         [integerFormatter stringFromNumber:@([highlights count])]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [indicator setInformativeText:informative];
+                });
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // highlight
+            [[textView layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:NSMakeRange(0, [string length])];
+            for (NSDictionary<NSString *, id> *highlight in highlights) {
+                [[textView layoutManager] addTemporaryAttribute:NSBackgroundColorAttributeName value:highlight[CEFindHighlightColor]
+                                              forCharacterRange:[highlight[CEFindHighlightRange] rangeValue]];
+            }
+            
+            [indicator doneWithButtonTitle:nil];
+            
+            if ([highlights count] > 0) {
+                [indicator close:self];
+                
+            } else {
+                NSBeep();
+                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
+                if ([self closesIndicatorWhenDone]) {
+                    [indicator close:self];
+                }
+            }
+        });
+    });
+    
+    [self appendFindHistory:[self findString]];
+}
+
+
+// ------------------------------------------------------
+/// remove all of current highlights in the frontmost textView
+- (IBAction)unhighlight:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self client];
+    [[textView layoutManager] removeTemporaryAttribute:NSBackgroundColorAttributeName
+                                     forCharacterRange:NSMakeRange(0, [[textView string] length])];
 }
 
 
@@ -508,6 +629,7 @@ static const NSUInteger kMaxHistorySize = 20;
     NSString *string = [textView string];
     
     // setup progress sheet
+    NSAssert([textView window], @"The find target text view must be embedded in a window.");
     __block BOOL isCancelled = NO;
     CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Replace All", nil)];
     [indicator setIndetermine:YES];
@@ -550,10 +672,11 @@ static const NSUInteger kMaxHistorySize = 20;
                 selectedRange.length -= (NSInteger)replacementRange.length - [replacedString length];
                 count++;
                 
-                NSString *informative = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
-                NSString *countStr = [integerFormatter stringFromNumber:@(count)];
+                NSString *informativeFormat = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
+                NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                         [integerFormatter stringFromNumber:@(count)]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(informative, nil), countStr]];
+                    [indicator setInformativeText:informative];
                 });
             }
             
@@ -1014,9 +1137,9 @@ static const NSUInteger kMaxHistorySize = 20;
     CGFloat hue, saturation, brightness, alpha;
     [[self highlightColor] getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
     
-    for (CGFloat i = 0.0; i < numberOfGroups; i++) {
+    for (NSUInteger i = 0; i < numberOfGroups; i++) {
         double dummy;
-        [highlightColors addObject:[NSColor colorWithCalibratedHue:modf(hue + i / numberOfGroups, &dummy)
+        [highlightColors addObject:[NSColor colorWithCalibratedHue:modf(hue + (CGFloat)i / numberOfGroups, &dummy)
                                                         saturation:saturation brightness:brightness alpha:alpha]];
     }
     

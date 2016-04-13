@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -492,12 +492,12 @@
                                         </menuItem>
                                         <menuItem title="Bigger" tag="3" keyEquivalent="+" id="405">
                                             <connections>
-                                                <action selector="modifyFont:" target="432" id="449"/>
+                                                <action selector="biggerFont:" target="-1" id="UGG-uK-kSZ"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Smaller" tag="4" keyEquivalent="-" id="404">
                                             <connections>
-                                                <action selector="modifyFont:" target="432" id="439"/>
+                                                <action selector="smallerFont:" target="-1" id="hsI-0T-1iJ"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="576">
@@ -779,8 +779,8 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Unicode Normalization" id="599">
-                                <menu key="submenu" title="Unicode Normalization" id="600">
+                            <menuItem title="Unicode Normalizations" id="599">
+                                <menu key="submenu" title="Unicode Normalizations" id="600">
                                     <items>
                                         <menuItem title="NFD" id="601">
                                             <connections>
@@ -929,6 +929,20 @@ CA
                             <menuItem isSeparatorItem="YES" id="vue-8R-4Kg">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="Highlight" tag="10" keyEquivalent="H" id="JAO-3o-fRo">
+                                <connections>
+                                    <action selector="highlight:" target="-1" id="XrP-Hn-WWD"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Unhighlight" tag="11" keyEquivalent="H" id="5is-7G-OVT">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                <connections>
+                                    <action selector="unhighlight:" target="-1" id="yrv-qq-CxM"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Z9B-Wz-WiE">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
                             <menuItem title="Select Previous Outline Item" keyEquivalent="" id="9Lf-39-x5S">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
@@ -1050,7 +1064,7 @@ CA
                                     <action selector="openHelpAnchor:" target="290" id="ooo-Mu-EKH"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="What’s New in CotEditor 2.4" tag="9" id="DCW-Ij-540">
+                            <menuItem title="What’s New in CotEditor 2.5" tag="9" id="DCW-Ij-540">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="openHelpAnchor:" target="290" id="jUU-Pz-dYo"/>

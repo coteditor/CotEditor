@@ -699,12 +699,13 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 + (nonnull NSArray<NSString *> *)selectorStringsToIgnore
 //------------------------------------------------------
 {
-    return @[@"modifyFont:",
-             @"changeEncoding:",
+    return @[@"changeEncoding:",
              @"changeSyntaxStyle:",
              @"changeTheme:",
              @"changeTabWidth:",
              @"changeLineHeight:",
+             @"biggerFont:",
+             @"smallerFont:",
              @"makeKeyAndOrderFront:",
              @"launchScript:",
              @"_openRecentDocument:",  // = 10.3 の「最近開いた書類」

@@ -47,6 +47,8 @@ static NSString * _Nonnull const DraggingIndexKey = @"index";
 
 @interface CELineNumberView ()
 
+@property (nonatomic) NSUInteger totalNumberOfLines;
+@property (nonatomic) BOOL needsRecountTotalNumberOfLines;
 @property (nonatomic, nullable, weak) NSTimer *draggingTimer;
 
 @end
@@ -95,6 +97,15 @@ static CGFontRef BoldLineNumberFont;
 
 
 // ------------------------------------------------------
+/// cleanup
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+// ------------------------------------------------------
 /// setup initial size
 - (void)viewDidMoveToSuperview
 // ------------------------------------------------------
@@ -111,8 +122,8 @@ static CGFontRef BoldLineNumberFont;
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
-    NSColor *counterColor = [[[self textView] theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
-    NSColor *textColor = [[[self textView] theme] weakTextColor];
+    NSColor *counterColor = [[self theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
+    NSColor *textColor = [[self theme] weakTextColor];
     
     // fill background
     [[counterColor colorWithAlphaComponent:0.08] set];
@@ -142,22 +153,23 @@ static CGFontRef BoldLineNumberFont;
 // ------------------------------------------------------
 {
     NSString *string = [[self textView] string];
+    NSUInteger length = [string length];
     
-    if ([string length] == 0) { return; }
+    if (length == 0) { return; }
     
-    NSLayoutManager *layoutManager = [[self textView] layoutManager];
-    NSColor *textColor = [[[self textView] theme] weakTextColor];
+    NSTextView *textView = [self textView];
+    NSLayoutManager *layoutManager = [textView layoutManager];
+    NSColor *textColor = [[self theme] weakTextColor];
+    CGFloat scale = [textView convertSize:NSMakeSize(1.0, 1.0) toView:nil].width;
     
     // set graphics context
     CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
     CGContextSaveGState(context);
 
     // setup font
-    CGFloat masterFontSize = [[[self textView] font] pointSize];
+    CGFloat masterFontSize = scale * [[[self textView] font] pointSize];
     CGFloat fontSize = MIN(round(kFontSizeFactor * masterFontSize), masterFontSize);
     CTFontRef font = CTFontCreateWithGraphicsFont(LineNumberFont, fontSize, nil, nil);
-    
-    CGFloat tickLength = ceil(fontSize / 3);
     
     CGContextSetFont(context, LineNumberFont);
     CGContextSetFontSize(context, fontSize);
@@ -176,61 +188,47 @@ static CGFontRef BoldLineNumberFont;
     CGSize advance;
     CTFontGetAdvancesForGlyphs(font, kCTFontOrientationHorizontal, &digitGlyphs[8], &advance, 1);  // use '8' to get width
     CGFloat charWidth = advance.width;
+    CFRelease(font);
     
     // prepare frame width
     CGFloat ruleThickness = [self ruleThickness];
     
+    BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
+    CGFloat tickLength = ceil(fontSize / 3);
+    
     // adjust text drawing coordinate
-    NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:[self textView]];
-    NSPoint inset = [[self textView] textContainerOrigin];
-    CGFloat diff = masterFontSize - fontSize;
-    CGFloat ascent = CTFontGetAscent(font);
-    CGAffineTransform transform = CGAffineTransformIdentity;
-    transform = CGAffineTransformScale(transform, 1.0, -1.0);  // flip
-    transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - diff - ascent);
+    NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:textView];
+    NSPoint inset = [textView textContainerOrigin];
+    CGFloat ascent = scale * [[textView font] ascender];
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);  // flip
+    if (isVerticalText) {
+        transform = CGAffineTransformTranslate(transform, round(relativePoint.x - inset.y - ascent / 2), -ruleThickness);
+    } else {
+        transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - ascent);
+    }
     CGContextSetTextMatrix(context, transform);
-    CFRelease(font);
     
     // add enough buffer to avoid broken drawing on Mountain Lion (10.8) with scroller (2015-07)
     NSRect visibleRect = [[self scrollView] documentVisibleRect];
     visibleRect.size.height += fontSize;
     
-    // get glyph range which line number should be drawn
-    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:visibleRect
-                                                         inTextContainer:[[self textView] textContainer]];
-    
-    BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
-    NSUInteger tailGlyphIndex = [layoutManager glyphIndexForCharacterAtIndex:[string length]];
-    
-    // get multiple selection
-    NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[[self textView] selectedRanges] count]];
-    for (NSValue *rangeValue in [[self textView] selectedRanges]) {
+    // get multiple selections
+    NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[textView selectedRanges] count]];
+    for (NSValue *rangeValue in [textView selectedRanges]) {
         NSRange selectedLineRange = [string lineRangeForRange:[rangeValue rangeValue]];
         [selectedLineRanges addObject:[NSValue valueWithRange:selectedLineRange]];
     }
     
     // draw line number block
     CGGlyph *digitGlyphsPtr = digitGlyphs;
-    void (^draw_number)(NSUInteger, NSUInteger, CGFloat, BOOL, BOOL) = ^(NSUInteger lineNumber, NSUInteger lastLineNumber, CGFloat y, BOOL drawsNumber, BOOL isBold)
+    void (^draw_number)(NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, CGFloat y, BOOL isBold)
     {
-        if (isVerticalText) {
-            // translate y position to horizontal axis
-            y += relativePoint.x - masterFontSize / 2 - inset.y;
-            
-            // draw ticks on vertical text
-            CGFloat x = round(y) - 0.5;
-            CGContextMoveToPoint(context, x, ruleThickness);
-            CGContextAddLineToPoint(context, x, ruleThickness - tickLength);
-        }
-        
-        if (!drawsNumber) { return; }
-        
         NSUInteger digit = numberOfDigits(lineNumber);
         
         // calculate base position
         CGPoint position;
         if (isVerticalText) {
-            position = CGPointMake(ceil(y + charWidth * (digit + 1) / 2), ruleThickness + tickLength - 2);
+            position = CGPointMake(ceil(y + charWidth * digit / 2), 2 * tickLength);
         } else {
             position = CGPointMake(ruleThickness, y);
         }
@@ -258,17 +256,33 @@ static CGFontRef BoldLineNumberFont;
         }
     };
     
+    // draw ticks block for vertical text
+    void (^draw_tick)(CGFloat) = ^(CGFloat y)
+    {
+        CGFloat x = round(y) + 0.5;
+        
+        CGMutablePathRef tick = CGPathCreateMutable();
+        CGPathMoveToPoint(tick, &transform, x, 0);
+        CGPathAddLineToPoint(tick, &transform, x, tickLength);
+        CGContextAddPath(context, tick);
+        CFRelease(tick);
+    };
+    
+    // get glyph range of which line number should be drawn
+    NSRange glyphRangeToDraw = [layoutManager glyphRangeForBoundingRectWithoutAdditionalLayout:visibleRect
+                                                                               inTextContainer:[textView textContainer]];
+    
     // counters
-    NSUInteger glyphCount = visibleGlyphRange.location;
-    NSUInteger lineNumber = 0;
+    NSUInteger glyphCount = glyphRangeToDraw.location;
+    NSUInteger lineNumber = 1;
     NSUInteger lastLineNumber = 0;
     
     // count lines until visible
-    lineNumber = [string numberOfLinesInRange:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:visibleGlyphRange.location])
+    lineNumber = [string numberOfLinesInRange:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:glyphRangeToDraw.location])
                          includingLastNewLine:YES] ?: 1;  // start with 1
     
     // draw visible line numbers
-    for (NSUInteger glyphIndex = visibleGlyphRange.location; glyphIndex < NSMaxRange(visibleGlyphRange); lineNumber++) { // count "real" lines
+    for (NSUInteger glyphIndex = glyphRangeToDraw.location; glyphIndex < NSMaxRange(glyphRangeToDraw); lineNumber++) { // count "real" lines
         NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
         NSRange lineRange = [string lineRangeForRange:NSMakeRange(charIndex, 0)];
         glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL]);
@@ -276,7 +290,12 @@ static CGFontRef BoldLineNumberFont;
         // check if line is selected
         BOOL isSelected = NO;
         for (NSValue *selectedLineValue in selectedLineRanges) {
-            if (NSLocationInRange(lineRange.location, [selectedLineValue rangeValue])) {
+            NSRange selectedRange = [selectedLineValue rangeValue];
+            
+            if (NSLocationInRange(lineRange.location, selectedRange) &&
+                (isVerticalText && ((lineRange.location == selectedRange.location) ||
+                                    (NSMaxRange(lineRange) == NSMaxRange(selectedRange)))))
+            {
                 isSelected = YES;
                 break;
             }
@@ -285,32 +304,28 @@ static CGFontRef BoldLineNumberFont;
         while (glyphCount < glyphIndex) { // handle wrapped lines
             NSRange range;
             NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
-            CGFloat y = -NSMinY(lineRect);
-            
-            if (lastLineNumber == lineNumber) {  // wrapped line
-                if (!isVerticalText) {
-                    CGPoint position = CGPointMake(ruleThickness - charWidth, y);
-                    CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
-                }
-                
-            } else {  // new line
-                BOOL drawsNumber = (isSelected || !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1);
-                draw_number(lineNumber, lastLineNumber, y, drawsNumber, isSelected);
-            }
-            
+            BOOL isWrappedLine = (lastLineNumber == lineNumber);
+            lastLineNumber = lineNumber;
             glyphCount = NSMaxRange(range);
             
-            // draw last line number on vertical text anyway
-            if (isVerticalText &&  // vertical text
-                lastLineNumber != lineNumber &&  // new line
-                isVerticalText && lineNumber != 1 && lineNumber % 5 != 0 &&  // not yet drawn
-                tailGlyphIndex == glyphIndex &&  // last line
-                ![layoutManager extraLineFragmentTextContainer])  // no extra number
-            {
-                draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
-            }
+            if (isVerticalText && isWrappedLine) { continue; }
             
-            lastLineNumber = lineNumber;
+            CGFloat y = scale * -NSMinY(lineRect);
+            
+            if (isWrappedLine) {
+                CGPoint position = CGPointMake(ruleThickness - charWidth, y);
+                CGContextShowGlyphsAtPositions(context, &wrappedMarkGlyph, &position, 1);  // draw wrapped mark
+                
+            } else {  // new line
+                if (isVerticalText) {
+                    draw_tick(y);
+                }
+                if (!isVerticalText || lineNumber % 5 == 0 || lineNumber == 1 || isSelected ||
+                    (NSMaxRange(lineRange) == length && ![layoutManager extraLineFragmentTextContainer]))  // last line for vertical text
+                {
+                    draw_number(lineNumber, y, isSelected);
+                }
+            }
         }
     }
     
@@ -318,10 +333,13 @@ static CGFontRef BoldLineNumberFont;
     if ([layoutManager extraLineFragmentTextContainer]) {
         NSRect lineRect = [layoutManager extraLineFragmentUsedRect];
         NSRange lastSelectedRange = [[selectedLineRanges lastObject] rangeValue];
-        BOOL isSelected = (lastSelectedRange.length == 0) && ([string length] == NSMaxRange(lastSelectedRange));
-        CGFloat y = -NSMinY(lineRect);
+        BOOL isSelected = (lastSelectedRange.length == 0) && (length == NSMaxRange(lastSelectedRange));
+        CGFloat y = scale * -NSMinY(lineRect);
         
-        draw_number(lineNumber, lastLineNumber, y, YES, isSelected);
+        if (isVerticalText) {
+            draw_tick(y);
+        }
+        draw_number(lineNumber, y, isSelected);
     }
     
     // draw vertical text tics
@@ -335,19 +353,20 @@ static CGFontRef BoldLineNumberFont;
     // adjust thickness
     CGFloat requiredThickness;
     if (isVerticalText) {
-        requiredThickness = MAX(fontSize + tickLength + 2 * kLineNumberPadding, kMinHorizontalThickness);
+        requiredThickness = MAX(fontSize + 2.5 * tickLength, kMinHorizontalThickness);
+        
     } else {
-        // count rest invisible lines
-        // -> The view width depends on the number of digits of the total line numbers.
-        //    As it's quite dengerous to change width of line number view on scrolling dynamically.
-        NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:NSMaxRange(visibleGlyphRange)];
-        if ([string length] > charIndex) {
-            lineNumber += [string numberOfLinesInRange:NSMakeRange(charIndex, [string length] - charIndex)
-                                  includingLastNewLine:NO];
+        if ([self needsRecountTotalNumberOfLines]) {
+            // -> count only if really needed since the line counting is high workload, especially by large document
+            [self setTotalNumberOfLines:[string numberOfLinesInRange:NSMakeRange(0, length) includingLastNewLine:YES]];
+            [self setNeedsRecountTotalNumberOfLines:NO];
         }
         
-        NSUInteger length = MAX(numberOfDigits(lineNumber), kMinNumberOfDigits);
-        requiredThickness = MAX(length * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
+        // use the line number of whole string, namely the possible largest line number
+        // -> The view width depends on the number of digits of the total line numbers.
+        //    It's quite dengerous to change width of line number view on scrolling dynamically.
+        NSUInteger digits = MAX(numberOfDigits([self totalNumberOfLines]), kMinNumberOfDigits);
+        requiredThickness = MAX(digits * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
     }
     [self setRuleThickness:ceil(requiredThickness)];
 }
@@ -374,15 +393,58 @@ static CGFontRef BoldLineNumberFont;
 }
 
 
+// ------------------------------------------------------
+/// setter of client view
+- (void)setClientView:(NSView *)clientView
+// ------------------------------------------------------
+{
+    // stop observing current textStorage
+    if ([[self clientView] isKindOfClass:[NSTextView class]]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSTextDidChangeNotification
+                                                      object:(NSTextView *)[self clientView]];
+    }
+    
+    // observe new textStorage change
+    if ([clientView isKindOfClass:[NSTextView class]]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textDidChange:)
+                                                     name:NSTextDidChangeNotification
+                                                   object:(NSTextView *)clientView];
+        [self setNeedsRecountTotalNumberOfLines:YES];
+    }
+    
+    [super setClientView:clientView];
+}
+
+
 
 #pragma mark Private Methods
 
 // ------------------------------------------------------
 /// return client view casting to textView
-- (nullable NSTextView<CETextViewProtocol> *)textView
+- (nullable NSTextView *)textView
 // ------------------------------------------------------
 {
-    return (NSTextView<CETextViewProtocol> *)[self clientView];
+    return (NSTextView *)[self clientView];
+}
+
+
+// ------------------------------------------------------
+/// return coloring theme
+- (nullable CETheme *)theme
+// ------------------------------------------------------
+{
+    return [(NSTextView<CETextViewProtocol> *)[self clientView] theme];
+}
+
+
+// ------------------------------------------------------
+/// update total number of lines determining view thickness on holizontal text layout
+- (void)textDidChange:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    [self setNeedsRecountTotalNumberOfLines:YES];
 }
 
 

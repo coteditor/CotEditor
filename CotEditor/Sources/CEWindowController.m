@@ -155,15 +155,11 @@ static NSTimeInterval infoUpdateInterval;
     // set document instance to incompatible chars view
     [[self incompatibleCharsViewController] setDocument:[self document]];
     
-    // set CEEditorWrapper to document instance
-    [[self document] setEditor:[self editor]];
-    [[self document] applyContentToEditor];
-    
     // setup status bar
     [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
     
-    [self updateFileInfo];
-    [self updateModeInfoIfNeeded];
+    // apply document state to UI
+    [[self document] applyContentToWindow];
     
     // move focus to text view
     [[self window] makeFirstResponder:[[self editor] focusedTextView]];

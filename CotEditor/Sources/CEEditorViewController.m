@@ -269,7 +269,7 @@
     //
     // # Methods Standardizing Line Endings on Text Editing
     //   - File Open:
-    //       - CEDocument > applyContentToEditor
+    //       - CEDocument > applyContentToWindow
     //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
     //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
     
@@ -491,7 +491,7 @@
 // ------------------------------------------------------
 {
     if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
-        CETheme *theme = [CETheme themeWithName:[notification userInfo][CENewNameKey]];
+        CETheme *theme = [[CEThemeManager sharedManager] themeWithName:[notification userInfo][CENewNameKey]];
         
         if (!theme) { return; }
         

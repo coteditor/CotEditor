@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,33 +31,12 @@
 // extension for theme file
 extern NSString *_Nonnull const CEThemeExtension;
 
-// keys for theme dict
-extern NSString *_Nonnull const CEThemeTextKey;
-extern NSString *_Nonnull const CEThemeBackgroundKey;
-extern NSString *_Nonnull const CEThemeInvisiblesKey;
-extern NSString *_Nonnull const CEThemeSelectionKey;
-extern NSString *_Nonnull const CEThemeInsertionPointKey;
-extern NSString *_Nonnull const CEThemeLineHighlightKey;
-
-extern NSString *_Nonnull const CEThemeKeywordsKey;
-extern NSString *_Nonnull const CEThemeCommandsKey;
-extern NSString *_Nonnull const CEThemeTypesKey;
-extern NSString *_Nonnull const CEThemeAttributesKey;
-extern NSString *_Nonnull const CEThemeVariablesKey;
-extern NSString *_Nonnull const CEThemeValuesKey;
-extern NSString *_Nonnull const CEThemeNumbersKey;
-extern NSString *_Nonnull const CEThemeStringsKey;
-extern NSString *_Nonnull const CEThemeCharactersKey;
-extern NSString *_Nonnull const CEThemeCommentsKey;
-
-extern NSString *_Nonnull const CEThemeColorKey;
-extern NSString *_Nonnull const CEThemeUsesSystemSettingKey;
-
-
 // notifications
 extern NSString *_Nonnull const CEThemeListDidUpdateNotification;
 extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 
+
+@class CETheme;
 
 
 @interface CEThemeManager : NSObject
@@ -70,6 +49,9 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 
 
 // public methods
+
+- (nullable CETheme *)themeWithName:(nonnull NSString *)themeName;
+
 /// Theme dict in which objects are property list ready.
 - (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedTheme:(nonnull NSString *)themeName isBundled:(nullable BOOL *)isBundled;
 

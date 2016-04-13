@@ -29,6 +29,8 @@
 #import "CEDocument.h"
 #import "CEDefaults.h"
 
+#import "NSAlert+BlockMethods.h"
+
 #ifndef APPSTORE
 #import "CEUpdaterManager.h"
 #endif
@@ -112,41 +114,32 @@
     [alert addButtonWithTitle:NSLocalizedString(@"Later", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(autosaveSettingAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:NULL];
+    [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+     {
+         switch (returnCode) {
+             case NSAlertFirstButtonReturn:  // Restart Now
+                 relaunchApplication();
+                 break;
+                 
+             case NSAlertSecondButtonReturn:  // Later
+                 // do nothing
+                 break;
+                 
+             case NSAlertThirdButtonReturn:  // Cancel
+                 [[NSUserDefaults standardUserDefaults] setBool:![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesAutosaveInPlaceKey]
+                                                         forKey:CEDefaultEnablesAutosaveInPlaceKey];
+                 break;
+         }
+     }];
 }
 
 
 
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// autosaving alart did end
-- (void)autosaveSettingAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    switch (returnCode) {
-        case NSAlertFirstButtonReturn:  // Restart Now
-            [self relaunchApplication];
-            break;
-            
-        case NSAlertSecondButtonReturn:  // Later
-            // do nothing
-            break;
-            
-        case NSAlertThirdButtonReturn:  // Cancel
-            [[NSUserDefaults standardUserDefaults] setBool:![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesAutosaveInPlaceKey]
-                                                    forKey:CEDefaultEnablesAutosaveInPlaceKey];
-            break;
-    }
-}
-
+#pragma mark Private Functions
 
 // ------------------------------------------------------
 /// relaunch application itself with delay
-- (void)relaunchApplication
+void relaunchApplication()
 // ------------------------------------------------------
 {
     static const float delay = 3.0;  // in seconds
@@ -157,7 +150,7 @@
     [task setArguments:@[@"-c", command]];
     [task launch];
     
-    [NSApp terminate:self];
+    [NSApp terminate:nil];
 }
 
 @end

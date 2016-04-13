@@ -37,10 +37,14 @@
 #import "CEEncodings.h"
 #import "Constants.h"
 
+#import "NSString+CEEncoding.h"
+#import "NSAlert+BlockMethods.h"
+
 
 // constants
 NSString *_Nonnull const StyleNameKey = @"name";
 NSString *_Nonnull const StyleStateKey = @"state";
+NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 
 @interface CEFormatPaneController () <NSTableViewDelegate>
@@ -97,8 +101,6 @@ NSString *_Nonnull const StyleStateKey = @"state";
     [[self syntaxTableView] setTarget:self];
     
     [self setupEncodingMenus];
-    [[self encodingMenuInOpen] setAction:@selector(checkSelectedItemOfEncodingMenuInOpen:)];
-    [[self encodingMenuInOpen] setTarget:self];
     
     // シンタックススタイルリスト更新の通知依頼
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -142,8 +144,14 @@ NSString *_Nonnull const StyleStateKey = @"state";
         } else {
             representedStyleName = [[self stylesController] arrangedObjects][clickedrow][StyleNameKey];
         }
+        [menuItem setRepresentedObject:representedStyleName];
     }
-    [menuItem setRepresentedObject:representedStyleName];
+    
+    BOOL isCustomized = NO;
+    BOOL isBundled = NO;
+    if (representedStyleName) {
+        isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:nil];
+    }
     
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
     if ([menuItem action] == @selector(exportSyntaxStyle:)) {
@@ -160,18 +168,15 @@ NSString *_Nonnull const StyleStateKey = @"state";
         if (!isContextualMenu) {
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Reveal “%@” in Finder", nil), representedStyleName]];
         }
-        return ([[CESyntaxManager sharedManager] URLForUserStyle:representedStyleName] != nil);
+        return representedStyleName ? ([[CESyntaxManager sharedManager] URLForUserStyle:representedStyleName] != nil) : NO;
         
     } else if ([menuItem action] == @selector(deleteSyntaxStyle:)) {
-        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:nil];
         [menuItem setHidden:(isBundled || !representedStyleName)];
         
     } else if ([menuItem action] == @selector(restoreSyntaxStyle:)) {
         if (!isContextualMenu) {
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Restore “%@”", nil), representedStyleName]];
         }
-        BOOL isCustomized;
-        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:&isCustomized];
         [menuItem setHidden:(!isBundled || !representedStyleName)];
         return isCustomized;
     }
@@ -237,6 +242,17 @@ NSString *_Nonnull const StyleStateKey = @"state";
 
 
 #pragma mark Action Messages
+
+// ------------------------------------------------------
+/// save also availability of UTF-8 BOM
+- (IBAction)changeEncodingInNewDocument:(nullable id)sender
+// ------------------------------------------------------
+{
+    BOOL withUTF8BOM = [[[[self encodingMenuInNew] selectedItem] representedObject] isEqualToString:IsUTF8WithBOM];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:withUTF8BOM forKey:CEDefaultSaveUTF8BOMKey];
+}
+
 
 // ------------------------------------------------------
 /// エンコーディングリスト編集シートを開き、閉じる
@@ -341,9 +357,17 @@ NSString *_Nonnull const StyleStateKey = @"state";
             [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
             // 現行シート値を設定し、確認のためにセカンダリシートを開く
             NSBeep();
-            [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self
-                             didEndSelector:@selector(secondarySheetDidEnd:returnCode:contextInfo:)
-                                contextInfo:(__bridge_retained void *)(URL)];
+            
+            __weak typeof(self) weakSelf = self;
+            [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+             {
+                 typeof(self) self = weakSelf;  // strong self
+                 
+                 if (returnCode == NSAlertSecondButtonReturn) { // = Replace
+                     [self doImport:URL withCurrentSheetWindow:[alert window]];
+                 }
+             }];
+            
         } else {
             // 重複するファイル名がないとき、インポート実行
             [self doImport:URL withCurrentSheetWindow:openPanel];
@@ -424,10 +448,13 @@ NSString *_Nonnull const StyleStateKey = @"state";
     [alert addButtonWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Change to “%@”", nil), newTitle]];
     
     NSBeep();
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(autoDetectAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:NULL];
+    [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+     {
+         if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
+             [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncoding)
+                                                       forKey:CEDefaultEncodingInOpenKey];
+         }
+     }];
 }
 
 
@@ -453,12 +480,35 @@ NSString *_Nonnull const StyleStateKey = @"state";
     for (NSMenuItem *item in menuItems) {
         [[[self encodingMenuInOpen] menu] addItem:[item copy]];
         [[[self encodingMenuInNew] menu] addItem:[item copy]];
+        
+        // add "UTF-8 with BOM" item only to "In New" menu
+        if ([item tag] == NSUTF8StringEncoding) {
+            NSMenuItem *bomItem = [[NSMenuItem alloc] initWithTitle:[NSString localizedNameOfUTF8EncodingWithBOM]
+                                                             action:NULL
+                                                      keyEquivalent:@""];
+            [bomItem setTag:NSUTF8StringEncoding];
+            [bomItem setRepresentedObject:IsUTF8WithBOM];
+            [[[self encodingMenuInNew] menu] addItem:bomItem];
+        }
     }
     
     // (エンコーディング設定メニューはバインディングを使っているが、タグの選択がバインディングで行われた後に
     // メニューが追加／削除されるため、結果的に選択がうまく動かない。しかたないので、コードから選択している)
     [[self encodingMenuInOpen] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInOpenKey]];
-    [[self encodingMenuInNew] selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey]];
+    
+    NSStringEncoding encodingInNew = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
+    if (encodingInNew == NSUTF8StringEncoding) {
+        NSUInteger index = [[self encodingMenuInNew] indexOfItemWithRepresentedObject:IsUTF8WithBOM];
+        
+        // -> The normal "UTF-8" is just above "UTF-8 with BOM".
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey]) {
+            index--;
+        }
+        [[self encodingMenuInNew] selectItemAtIndex:index];
+        
+    } else {
+        [[self encodingMenuInNew] selectItemWithTag:encodingInNew];
+    }
 }
 
 
@@ -532,10 +582,25 @@ NSString *_Nonnull const StyleStateKey = @"state";
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
-    [alert beginSheetModalForWindow:[[self view] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(deleteStyleAlertDidEnd:returnCode:contextInfo:)
-                        contextInfo:(__bridge_retained void *)styleName];
+    NSWindow *window = [[self view] window];
+    [alert compatibleBeginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
+     {
+         if (returnCode != NSAlertSecondButtonReturn) { return; }  // != Delete
+         
+         if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:styleName]) {
+             AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
+             
+         } else {
+             // 削除できなければ、その旨をユーザに通知
+             [[alert window] orderOut:nil];
+             [window makeKeyAndOrderFront:nil];
+             NSAlert *alert = [[NSAlert alloc] init];
+             [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
+             [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be deleted.", nil), styleName]];
+             NSBeep();
+             [alert beginSheetModalForWindow:window completionHandler:nil];
+         }
+     }];
 }
 
 
@@ -547,18 +612,6 @@ NSString *_Nonnull const StyleStateKey = @"state";
     if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
     
     [[CESyntaxManager sharedManager] restoreStyleFileWithStyleName:styleName];
-}
-
-
-// ------------------------------------------------------
-/// 既存ファイルを開くときのエンコーディングメニューで自動認識以外が選択されたときの警告シートが閉じる直前
-- (void)autoDetectAlertDidEnd:(nonnull NSAlert *)sheet returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
-        [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncoding)
-                                                  forKey:CEDefaultEncodingInOpenKey];
-    }
 }
 
 
@@ -576,44 +629,7 @@ NSString *_Nonnull const StyleStateKey = @"state";
         [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be imported.", nil), [fileURL lastPathComponent]]];
         
         NSBeep();
-        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    }
-}
-
-
-// ------------------------------------------------------
-/// style削除確認シートが閉じる直前
-- (void)deleteStyleAlertDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode != NSAlertSecondButtonReturn) {  // != Delete
-        return;
-    }
-    
-    NSString *styleName = (__bridge_transfer NSString *)contextInfo;
-    
-    if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:styleName]) {
-        AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
-    } else {
-        // 削除できなければ、その旨をユーザに通知
-        [[alert window] orderOut:self];
-        [[[self view] window] makeKeyAndOrderFront:self];
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be deleted.", nil), styleName]];
-        NSBeep();
-        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    }
-}
-
-
-// ------------------------------------------------------
-/// セカンダリシートが閉じる直前
-- (void)secondarySheetDidEnd:(nonnull NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (returnCode == NSAlertSecondButtonReturn) { // = Replace
-        [self doImport:CFBridgingRelease(contextInfo) withCurrentSheetWindow:[alert window]];
+        [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:nil];
     }
 }
 

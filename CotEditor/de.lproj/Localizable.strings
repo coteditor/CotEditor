@@ -96,7 +96,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Keine Zeichenketten in „%@“ gefunden.";
 "Found one string in “%@”." = "Eine Zeichenkette in „%@“ gefunden.";
-"Found %li strings in “%@”." = "%li Zeichenketten “%@” in gefunden.";
+"Found %@ strings in “%@”." = "%@ Zeichenketten “%@” in gefunden.";
 
 
 
@@ -222,7 +222,7 @@
 "Move Line" = "Zeile verschieben";
 "Sort Lines" = "Zeilen sortieren";
 "Reverse Lines" = "Zeilen umdrehen";
-"Remove Duplicate Lines" = "Doppelte Zeilen löschen";
+"Delete Duplicate Lines" = "Doppelte Zeilen löschen";
 "Duplicate Line" = "Zeile duplizieren";
 "Delete Line" = "Zeile löschen";
 "Trim Trailing Whitespace" = "Nachfolgende Leerzeichen entfernen";
@@ -234,6 +234,7 @@
 // Contextual menu items
 "Font" = "Schrift";
 "Text" = "Text";
+"Copy as Rich Text" = "Als formatierten Text Kopieren";
 "Select All" = "Alles auswählen";
 
 
@@ -320,7 +321,7 @@
 
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
-" (on Mavericks and later)" = "(auf Mavericks und später)";
+"Only on Mavericks and later" = "Nur auf Mavericks und später";
 
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "Vervollständigung manuell durchführen mit: %@ oder %@";
@@ -500,3 +501,9 @@
 "The script file “%@” couldn’t be opened." = "Die Skriptdatei „%@“ konnte nicht geöffnet werden.";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "Das Skript „%@“ kann nicht ausgeführt werden, da Sie nicht den Ausführrecht haben.\n\nPrüfen Sie die Zugriffsrechte der Skriptdatei.";
 "The script “%@” couldn’t be read." = "Das Skript „%@“ konnte nicht gelesen werden.";
+
+
+
+/* NSString Categories */
+// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+"%@ with BOM" = "%@ mit BOM";

@@ -165,11 +165,14 @@
 - (IBAction)convertIndentationToSpaces:(nullable id)sender
 // ------------------------------------------------------
 {
-    if ([self selectedRange].length == 0) { return; }
+    NSArray<NSValue *> *ranges;
+    if ([self selectedRange].length == 0) {
+        ranges = @[[NSValue valueWithRange:NSMakeRange(0, [[self string] length])]];
+    } else {
+        ranges = [self selectedRanges];
+    }
     
-    [self convertIndentation:CEIndentStyleSpace inRanges:[self selectedRanges]];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Convert Indentation", @"action name")];
+    [self convertIndentation:CEIndentStyleSpace inRanges:ranges];
 }
 
 
@@ -178,11 +181,14 @@
 - (IBAction)convertIndentationToTabs:(nullable id)sender
 // ------------------------------------------------------
 {
-    if ([self selectedRange].length == 0) { return; }
+    NSArray<NSValue *> *ranges;
+    if ([self selectedRange].length == 0) {
+        ranges = @[[NSValue valueWithRange:NSMakeRange(0, [[self string] length])]];
+    } else {
+        ranges = [self selectedRanges];
+    }
     
-    [self convertIndentation:CEIndentStyleTab inRanges:[self selectedRanges]];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Convert Indentation", @"action name")];
+    [self convertIndentation:CEIndentStyleTab inRanges:ranges];
 }
 
 
@@ -191,28 +197,40 @@
 
 // ------------------------------------------------------
 /// standardize inentation of given ranges
-- (void)convertIndentation:(CEIndentStyle)indentStyle inRanges:(NSArray<NSValue *> *)ranges
+- (void)convertIndentation:(CEIndentStyle)indentStyle inRanges:(nonnull NSArray<NSValue *> *)ranges
 // ------------------------------------------------------
 {
+    if ([[self string] length] == 0) { return; }
+    
+    NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray arrayWithCapacity:[ranges count]];
     NSMutableArray<NSString *> *replacementStrings = [NSMutableArray arrayWithCapacity:[ranges count]];
     
     for (NSValue *rangeValue in ranges) {
         NSRange range = [rangeValue rangeValue];
         NSString *selectedString = [[self string] substringWithRange:range];
+        NSString *convertedString = [selectedString stringByStandardizingIndentStyleTo:indentStyle
+                                                                              tabWidth:[self tabWidth]];
         
+        if ([convertedString isEqualToString:selectedString]) { continue; }  // no need to convert
+        
+        [replacementRanges addObject:rangeValue];
         [replacementStrings addObject:[selectedString stringByStandardizingIndentStyleTo:indentStyle
                                                                                 tabWidth:[self tabWidth]]];
     }
-    if (![self shouldChangeTextInRanges:ranges replacementStrings:replacementStrings]) { return; }
+    
+    if ([replacementRanges count] == 0) { return; }
+    if (![self shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) { return; }
     
     NSTextStorage *textStorage = [self textStorage];
     [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
                                          usingBlock:^(NSString *_Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
      {
-         NSRange replacementRange = [ranges[idx] rangeValue];
+         NSRange replacementRange = [replacementRanges[idx] rangeValue];
          [textStorage replaceCharactersInRange:replacementRange withString:replacementString];
      }];
     [self didChangeText];
+    
+    [[self undoManager] setActionName:NSLocalizedString(@"Convert Indentation", @"action name")];
 }
 
 @end

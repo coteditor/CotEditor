@@ -366,9 +366,9 @@
 /* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
 "594.title" = "カタカナをひらがなにする";
 
-/* Class = "NSMenu"; title = "Unicode Normalization"; ObjectID = "600"; */
+/* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
 "600.title" = "Unicode 正規化";
-/* Class = "NSMenuItem"; title = "Unicode Normalization"; ObjectID = "599"; */
+/* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
 "599.title" = "Unicode 正規化";
 
 /* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
@@ -434,6 +434,10 @@
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
 "5HV-xo-NTK.title" = "すべて置換";
 
+/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
+"JAO-3o-fRo.title" = "ハイライト";
+/* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
+"5is-7G-OVT.title" = "ハイライトを解除";
 
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "前のアウトライン項目を選択";
@@ -505,8 +509,8 @@
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "リリースノート";
-/* Class = "NSMenuItem"; title = "What’s New in CotEditor 2.4"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor 2.4 の新機能";
+/* Class = "NSMenuItem"; title = "What’s New in CotEditor 2.5"; ObjectID = "DCW-Ij-540"; */
+"DCW-Ij-540.title" = "CotEditor 2.5 の新機能";
 /* Class = "NSMenuItem"; title = "Acknowledgements"; ObjectID = "824"; */
 "824.title" = "謝辞";
 

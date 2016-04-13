@@ -2,12 +2,62 @@
 Change Log
 ==========================
 
-develop
+2.5.0-beta (113)
 --------------------------
 
 ### New Features
 
+- Add independent “Unicode (UTF-8) with BOM” encoding to encoding list.
+    - Respect the existence of the UTF-8 BOM in opened files.
+    - Enable switching the document encoding between with and without BOM from the toolbar popup button and the “Format” menu. 
+        - The “Unicode (UTF-8) with BOM” item will be automatically added to just after the normal “Unicode (UTF-8)”.
 - Now, the execute permission can be given to the file to save from the save panel.
+- Add spelling auto correction option (in “Edit” pane).
+- Add a new theme “Lakritz”.
+
+
+### Improvements
+
+- Update `cot` command-line tool:
+    - Create a new file if a non-existent file path is passed in with `--new` option.
+- Revert “Highlight” and “Unhighlight” actions in “Find” menu.
+- Improve font-size changing behavior:
+    - Smoother pinch-zoom.
+    - Now font-size change applies only to the focused editor.
+    - Enable pinch-zoom to make font smaller than default font size.
+    - Font size changing doesn't affect the actual font anymore but just scale characters visibly.
+    - Fix an issue where font-size changing could remove hanging indent. 
+    - Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
+- Separate the “Enable smart quotes and dashes” into “Enable smart quotes” and “Enable smart dashes” (in “Edit” pane).
+- Apply the following text actions to whole document if no text is selected:
+    - Indentation > Convert Indentation to Tab / Spaces
+    - Lines > Sort
+    - Lines > Reverse
+    - Lines > Delete Duplicates
+- Optimize document opening performance with large file.
+- Add “Copy as Rich Text” action to the contextual menu.
+- Improve recovering status of unsaved documents on window resume.
+- Improve line number view drawing with selection on vertical text mode.
+- Improve invisibles drawing:
+    - Optimize drawing performance (ca. 2x).
+    - Better drawing if anti-aliasing is off.
+- Display the following dialogs as a document-modal sheet:
+    - The dialog asking encoding compatibility on saving.
+    - The print progress panel.
+- Avoid registering indentation conversion action to the undo history if no text was changed.
+- Suppress trimming whitespace at the editing point on auto-saving when “Trim trailing whitespace on save” is on.
+
+
+### Fixes
+
+- Fix an issue where printing area could be cropped.
+- Fix an issue where the background of navigation/status bars were not drawn under a specific condition.
+- Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwrapped.
+- Fix an issue where document could not be drawn until the end of the file on legacy OS if the file contains control characters.
+- Fix an issue on Mavericks and earlier where the application hung up if tried to print line numbers by vertical text layout on printing.
+- Fix an issue where line numbers could be drawn at a bit shifted position or even cropped on printing.
+- Fix XML document icon.
+- Fix some unlocalized text.
 
 
 

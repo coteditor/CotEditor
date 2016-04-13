@@ -119,6 +119,36 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
+    func testEncodingDeclarationScan() {
+        let string = "<meta charset=\"Shift_JIS\"/>" as NSString
+        let tags = ["encoding=", "charset="]
+        let utf8Number = NSNumber(unsignedInt: UInt32(CFStringBuiltInEncodings.UTF8.rawValue))
+        let shiftJISNumber = NSNumber(unsignedInt: UInt32(CFStringEncodings.ShiftJIS.rawValue))
+        let shiftJISX0213Number = NSNumber(unsignedInt: UInt32(CFStringEncodings.ShiftJIS_X0213.rawValue))
+        
+        XCTAssertEqual(Int(string.scanEncodingDeclarationForTags(tags, upToIndex: 16,
+            suggestedCFEncodings: [utf8Number, shiftJISNumber, shiftJISX0213Number])),
+            NSNotFound)
+        
+        XCTAssertEqual(string.scanEncodingDeclarationForTags(tags, upToIndex: 128,
+            suggestedCFEncodings: [utf8Number, shiftJISNumber, shiftJISX0213Number]),
+            toNSEncoding(.ShiftJIS))
+        
+        XCTAssertEqual(string.scanEncodingDeclarationForTags(tags, upToIndex: 128,
+            suggestedCFEncodings: [utf8Number, shiftJISX0213Number, shiftJISNumber]),
+            toNSEncoding(.ShiftJIS_X0213))
+    }
+    
+    
+    func testIANACharSetEncodingCompatibility() {
+        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(NSUTF8StringEncoding, NSUTF8StringEncoding));
+        XCTAssertFalse(CEIsCompatibleIANACharSetEncoding(NSUTF8StringEncoding, NSUTF16StringEncoding));
+        
+        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(toNSEncoding(.ShiftJIS), toNSEncoding(.ShiftJIS)))
+        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(toNSEncoding(.ShiftJIS), toNSEncoding(.ShiftJIS_X0213)))
+        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(toNSEncoding(.ShiftJIS_X0213), toNSEncoding(.ShiftJIS)))
+    }
+    
     
     // MARK: Private Methods
     
@@ -136,6 +166,11 @@ class EncodingDetectionTests: XCTestCase {
         XCTAssertNotNil(data)
         
         return data!
+    }
+    
+    
+    func toNSEncoding(cfEncodings: CFStringEncodings) -> NSStringEncoding {
+        return CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue));
     }
 
 }

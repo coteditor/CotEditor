@@ -29,16 +29,20 @@
 #import "CEPrintView.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CELayoutManager.h"
+#import "CEThemeManager.h"
+#import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
-#import "NSString+Sandboxing.h"
 #import "CEDefaults.h"
+
+#import "NSString+Sandboxing.h"
+#import "NSString+CECounting.h"
 
 
 // constants
 CGFloat const kVerticalPrintMargin = 56.0;    // default 90.0
 CGFloat const kHorizontalPrintMargin = 24.0;  // default 72.0
 
-static CGFloat const kHorizontalHeaderFooterMargin = 20.0;
+static CGFloat const kLineFragmentPadding = 20.0;
 static CGFloat const kLineNumberPadding = 10.0;
 static CGFloat const kHeaderFooterFontSize = 9.0;
 
@@ -76,13 +80,13 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         [_dateFormatter setDateFormat:dateFormat];
         
         // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
-        [[self textContainer] setLineFragmentPadding:kHorizontalHeaderFooterMargin];
+        [[self textContainer] setLineFragmentPadding:kLineFragmentPadding];
         
         // replace layoutManager
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [layoutManager setDelegate:self];
+        [layoutManager setUsesScreenFonts:NO];
         [layoutManager setFixesLineHeight:NO];
-        [layoutManager setPrinting:YES];
         [[self textContainer] replaceLayoutManager:layoutManager];
     }
     return self;
@@ -105,20 +109,24 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 {
     [self loadPrintSettings];
     
+    // store graphics state to keep line number area drawable
+    //   -> Otherwise, line numbers can be cropped. (2016-03 by 1024jp)
+    [NSGraphicsContext saveGraphicsState];
+    
     [super drawRect:dirtyRect];
-
+    
+    [NSGraphicsContext restoreGraphicsState];
+    
     // draw line numbers if needed
     if ([self printsLineNum]) {
         // prepare text attributes for line numbers
-        CGFloat masterFontSize = [[self font] pointSize];
-        CGFloat fontSize = round(0.9 * masterFontSize);
-        NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey] size:fontSize] ? :
-                       [NSFont userFixedPitchFontOfSize:fontSize];
-        NSDictionary *attrs = @{NSFontAttributeName: font,
-                                NSForegroundColorAttributeName: [NSColor textColor]};
+        CGFloat fontSize = round(0.9 * [[self font] pointSize]);
+        NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey];
+        NSFont *font = [NSFont fontWithName:fontName size:fontSize] ? : [NSFont userFixedPitchFontOfSize:fontSize];
+        NSDictionary<NSString *, id> *attrs = @{NSFontAttributeName: font,
+                                                NSForegroundColorAttributeName: [NSColor textColor]};
         
-        // calculate character width as mono-space font
-        //いずれにしても等幅じゃないと奇麗に揃わないので等幅だということにしておく (hetima)
+        // calculate character width by treating the font as a mono-space font
         NSSize charSize = [@"8" sizeWithAttributes:attrs];
         
         // setup the variables we need for the loop
@@ -126,46 +134,52 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         NSLayoutManager *layoutManager = [self layoutManager];
         
         // adjust values for line number drawing
-        CGFloat xAdj = [self textContainerOrigin].x + kHorizontalHeaderFooterMargin - kLineNumberPadding;
-        CGFloat yAdj = (fontSize - masterFontSize);
+        CGFloat horizontalOrigin = [self textContainerOrigin].x + kLineFragmentPadding - kLineNumberPadding;
         
         // vertical text
-        BOOL isVertical = [self layoutOrientation] == NSTextLayoutOrientationVertical;
-        CGContextRef context;
-        if (isVertical) {
+        BOOL isVerticalText = [self layoutOrientation] == NSTextLayoutOrientationVertical;
+        if (isVerticalText) {
             // rotate axis
-            context = [[NSGraphicsContext currentContext] CGContext];
-            CGContextSaveGState(context);
+            [NSGraphicsContext saveGraphicsState];
+            CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
             CGContextConcatCTM(context, CGAffineTransformMakeRotation(-M_PI_2));
         }
         
-        // counters
-        NSUInteger lastLineNumber = 0;
-        NSUInteger lineNumber = 1;
-        NSUInteger glyphCount = 0;
-        NSUInteger numberOfGlyphs = [layoutManager numberOfGlyphs];
+        // get glyph range of which line number should be drawn
+        NSRange glyphRangeToDraw = [layoutManager glyphRangeForBoundingRectWithoutAdditionalLayout:dirtyRect
+                                                                                   inTextContainer:[self textContainer]];
         
-        for (NSUInteger glyphIndex = 0; glyphIndex < numberOfGlyphs; lineNumber++) {  // count "REAL" lines
+        // counters
+        NSUInteger glyphCount = glyphRangeToDraw.location;
+        NSUInteger lineNumber = 1;
+        NSUInteger lastLineNumber = 0;
+        
+        // count lines until visible
+        lineNumber = [string numberOfLinesInRange:NSMakeRange(0, [layoutManager characterIndexForGlyphAtIndex:glyphRangeToDraw.location])
+                             includingLastNewLine:YES] ?: 1;  // start with 1
+        
+        for (NSUInteger glyphIndex = glyphRangeToDraw.location; glyphIndex < NSMaxRange(glyphRangeToDraw); lineNumber++) {  // count "real" lines
             NSUInteger charIndex = [layoutManager characterIndexForGlyphAtIndex:glyphIndex];
-            glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:[string lineRangeForRange:NSMakeRange(charIndex, 0)]
-                                                          actualCharacterRange:NULL]);
-            while (glyphCount < glyphIndex) {  // handle "DRAWN" (wrapped) lines
+            NSRange lineRange = [string lineRangeForRange:NSMakeRange(charIndex, 0)];
+            glyphIndex = NSMaxRange([layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL]);
+            
+            while (glyphCount < glyphIndex) {  // handle wrapped lines
                 NSRange range;
-                NSRect numRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range];
+                NSRect lineRect = [layoutManager lineFragmentRectForGlyphAtIndex:glyphCount effectiveRange:&range withoutAdditionalLayout:YES];
+                BOOL isWrappedLine = (lastLineNumber == lineNumber);
+                lastLineNumber = lineNumber;
                 glyphCount = NSMaxRange(range);
                 
-                if (!NSPointInRect(numRect.origin, dirtyRect)) { continue; }
+                if (isVerticalText && isWrappedLine) { continue; }
                 
-                NSString *numStr = (lastLineNumber != lineNumber) ? [NSString stringWithFormat:@"%tu", lineNumber] : @"-";
-                NSPoint point = NSMakePoint(dirtyRect.origin.x + xAdj,
-                                            numRect.origin.y + yAdj);
+                NSString *numStr = isWrappedLine ? @"-" : [NSString stringWithFormat:@"%tu", lineNumber];
                 
                 // adjust position to draw
-                if (isVertical) {
-                    if (lastLineNumber == lineNumber) { continue; }
+                NSPoint point = NSMakePoint(horizontalOrigin, NSMaxY(lineRect) - charSize.height);
+                if (isVerticalText) {
                     numStr = (lineNumber == 1 || lineNumber % 5 == 0) ? numStr : @"·";  // draw real number only in every 5 times
                     
-                    point = CGPointMake(-point.y - (charSize.width * [numStr length] + charSize.height) / 2,
+                    point = NSMakePoint(-point.y - (charSize.width * [numStr length] + charSize.height) / 2,
                                         point.x - charSize.height);
                 } else {
                     point.x -= charSize.width * [numStr length];  // align right
@@ -173,13 +187,11 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
                 
                 // draw number
                 [numStr drawAtPoint:point withAttributes:attrs];
-                
-                lastLineNumber = lineNumber;
             }
         }
         
-        if (isVertical) {
-            CGContextRestoreGState(context);
+        if (isVerticalText) {
+            [NSGraphicsContext restoreGraphicsState];
         }
     }
 }
@@ -259,17 +271,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 -(BOOL)knowsPageRange:(NSRangePointer)aRange
 // ------------------------------------------------------
 {
-    // update text view size considering text orientation
-    NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    NSSize frameSize = [printInfo paperSize];
-    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
-        frameSize.height -= [printInfo leftMargin] + [printInfo rightMargin];
-        frameSize.height /= [printInfo scalingFactor];
-    } else {
-        frameSize.width -= [printInfo leftMargin] + [printInfo rightMargin];
-        frameSize.width /= [printInfo scalingFactor];
-    }
-    [self setFrameSize:frameSize];
+    [self setupPrintSize];
     
     return [super knowsPageRange:aRange];
 }
@@ -312,9 +314,9 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     // apply syntax highlighting
     if ([attrs dictionaryWithValuesForKeys:@[NSForegroundColorAttributeName]]) {
         return attrs;
-    } else {
-        return nil;
     }
+    
+    return nil;
 }
 
 
@@ -358,12 +360,12 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     
     // adjust paddings considering the line numbers
     if ([self printsLineNum]) {
-        [self setXOffset:kHorizontalHeaderFooterMargin];
+        [self setXOffset:kLineFragmentPadding];
     } else {
         [self setXOffset:0];
     }
     
-    // check wheter print invisibles
+    // check whether print invisibles
     BOOL showsInvisibles;
     switch ((CEInvisibleCharsPrintMode)[settings[CEPrintInvisiblesKey] unsignedIntegerValue]) {
         case CEInvisibleCharsPrintNo:
@@ -378,21 +380,23 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     }
     [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
     
-    // setup syntax highlighting with set theme
+    // setup syntax highlighting with theme
     if ([settings[CEPrintThemeKey] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
         [[self layoutManager] removeTemporaryAttribute:NSForegroundColorAttributeName
                                      forCharacterRange:NSMakeRange(0, [[self textStorage] length])];
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
+        [(CELayoutManager *)[self layoutManager] setInvisiblesColor:[NSColor grayColor]];
         
     } else {
-        [self setTheme:[CETheme themeWithName:settings[CEPrintThemeKey]]];
+        [self setTheme:[[CEThemeManager sharedManager] themeWithName:settings[CEPrintThemeKey]]];
         [self setTextColor:[[self theme] textColor]];
         [self setBackgroundColor:[[self theme] backgroundColor]];
+        [(CELayoutManager *)[self layoutManager] setInvisiblesColor:[[self theme] invisiblesColor]];
         
         // perform coloring
         if (![self syntaxStyle]) {
-            [self setSyntaxStyle:[[CESyntaxStyle alloc] initWithStyleName:[self syntaxName]]];
+            [self setSyntaxStyle:[[CESyntaxManager sharedManager] styleWithName:[self syntaxName]]];
         }
         CEPrintPanelAccessoryController *controller = [[[[NSPrintOperation currentOperation] printPanel] accessoryControllers] firstObject];
         [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:^ {
@@ -472,7 +476,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// return attributes for header/footer string
-- (nonnull NSDictionary *)headerFooterAttributesForAlignment:(CEAlignmentType)alignmentType
+- (nonnull NSDictionary<NSString *, id> *)headerFooterAttributesForAlignment:(CEAlignmentType)alignmentType
 // ------------------------------------------------------
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -544,6 +548,27 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     }
     
     return nil;
+}
+
+
+// ------------------------------------------------------
+/// update text view size considering text orientation
+- (void)setupPrintSize
+// ------------------------------------------------------
+{
+    NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
+    
+    NSSize frameSize = [printInfo paperSize];
+    if ([self layoutOrientation] == NSTextLayoutOrientationVertical) {
+        frameSize.height -= [printInfo leftMargin] + [printInfo rightMargin];
+        frameSize.height /= [printInfo scalingFactor];
+    } else {
+        frameSize.width -= [printInfo leftMargin] + [printInfo rightMargin];
+        frameSize.width /= [printInfo scalingFactor];
+    }
+    
+    [self setFrameSize:frameSize];
+    [self sizeToFit];
 }
 
 @end

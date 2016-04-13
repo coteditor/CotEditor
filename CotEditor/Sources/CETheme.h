@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@
  
  */
 
-@import AppKit;
+@import Foundation;
+@import AppKit.NSColor;
 
 
 @interface CETheme : NSObject
@@ -60,13 +61,18 @@
 /// Is background color dark?
 @property (readonly, nonatomic, getter=isDarkTheme) BOOL darkTheme;
 
+/// Is created from a valid theme dict? (Theme itself can be used even invalid since NSColor.grayColor() are substituted for invalid colors.)
+@property (readonly, nonatomic, getter=isValid) BOOL valid;
+
 
 /// return CETheme instance initialized with theme name
-+ (nullable CETheme *)themeWithName:(nonnull NSString *)themeName;
++ (nullable instancetype)themeWithDictinonary:(nonnull NSDictionary<NSString *, NSDictionary *> *)dictionary name:(nonnull NSString *)themeName;
 
 
 /// designated initializer
-- (nullable instancetype)initWithName:(nonnull NSString *)themeName NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithDictinonary:(nonnull NSDictionary<NSString *, NSDictionary *> *)dictionary name:(nonnull NSString *)themeName NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
+
+- (nullable NSColor *)syntaxColorForType:(nonnull NSString *)syntaxType;
 
 @end

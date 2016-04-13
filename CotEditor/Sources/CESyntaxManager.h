@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,6 +43,9 @@ extern NSString *_Nonnull const CESyntaxValidationStringKey;
 extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 
 
+@class CESyntaxStyle;
+
+
 @interface CESyntaxManager : NSObject
 
 // readonly
@@ -57,12 +60,14 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 
 
 // public methods
+- (nullable CESyntaxStyle *)styleWithName:(nullable NSString *)styleName;
+
 - (nullable NSString *)styleNameFromFileName:(nullable NSString *)fileName;
 - (nullable NSString *)styleNameFromContent:(nonnull NSString *)contentString;
 - (nonnull NSArray<NSString *> *)extensionsForStyleName:(nonnull NSString *)styleName;
-- (nonnull NSDictionary<NSString *, id> *)styleWithStyleName:(nonnull NSString *)styleName;
-- (nullable NSDictionary<NSString *, id> *)bundledStyleWithStyleName:(nonnull NSString *)styleName;
-- (nonnull NSDictionary<NSString *, id> *)emptyStyle;
+- (nonnull NSDictionary<NSString *, id> *)styleDictionaryWithStyleName:(nonnull NSString *)styleName;
+- (nullable NSDictionary<NSString *, id> *)bundledStyleDictionaryWithStyleName:(nonnull NSString *)styleName;
+- (nonnull NSDictionary<NSString *, id> *)emptyStyleDictionary;
 - (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName;  // returns nil if file is not available
 - (BOOL)isBundledStyle:(nonnull NSString *)styleName cutomized:(nullable BOOL *)isCustomized;;  // check only the name
 - (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName;

@@ -32,14 +32,13 @@
 @interface CELayoutManager : NSLayoutManager
 
 @property (nonatomic) BOOL showsInvisibles;
-@property (nonatomic) BOOL fixesLineHeight;  // 行高を固定するか
-@property (nonatomic) BOOL usesAntialias;  // アンチエイリアスを適用するかどうか
-@property (nonatomic, getter=isPrinting) BOOL printing;  // プリンタ中かどうかを（[NSGraphicsContext currentContextDrawingToScreen] は真を返す時があるため、専用フラグを使う）
+@property (nonatomic) BOOL fixesLineHeight;
+@property (nonatomic) BOOL usesAntialias;
 @property (nonatomic, nullable) NSFont *textFont;
+@property (nonatomic, nonnull) NSColor *invisiblesColor;
 
-@property (readonly, nonatomic) CGFloat defaultLineHeightForTextFont;  // 表示フォントでの行高
+@property (readonly, nonatomic) CGFloat defaultLineHeightForTextFont;  // defaultLineHeight for textFont
 @property (readonly, nonatomic) BOOL showsOtherInvisibles;
-
 
 - (CGFloat)lineHeight;
 - (void)invalidateIndentInRange:(NSRange)range;

@@ -30,25 +30,71 @@
 
 
 // byte order marks
-const char kUTF8Bom[3] = {0xEF, 0xBB, 0xBF};
-const char kUTF16BEBom[2] = {0xFE, 0xFF};
-const char kUTF16LEBom[2] = {0xFF, 0xFE};
-const char kUTF32BEBom[4] = {0x00, 0x00, 0xFE, 0xFF};
-const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
+static const char kUTF8Bom[3] = {0xEF, 0xBB, 0xBF};
+static const char kUTF16BEBom[2] = {0xFE, 0xFF};
+static const char kUTF16LEBom[2] = {0xFF, 0xFE};
+static const char kUTF32BEBom[4] = {0x00, 0x00, 0xFE, 0xFF};
+static const char kUTF32LEBom[4] = {0xFF, 0xFE, 0x00, 0x00};
 
 static const NSUInteger kMaxDetectionLength = 1024 * 8;
 
+
+
+#pragma mark Public Functions
+
+//------------------------------------------------------
+/// check IANA charset compatibility considering SHIFT_JIS
+BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding)
+//------------------------------------------------------
+{
+    if (IANACharsetEncoding == encoding) { return YES; }
+    
+    // -> Caution needed on Shift-JIS. See `scanEncodingDeclarationForTags:` for details.
+    const NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
+    const NSStringEncoding ShiftJIS_X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
+    
+    return ((encoding == ShiftJIS && IANACharsetEncoding == ShiftJIS_X0213) ||
+            (encoding == ShiftJIS_X0213 && IANACharsetEncoding == ShiftJIS));
+}
+
+
+
+
+#pragma mark -
 
 @implementation NSString (CEEncoding)
 
 #pragma mark Public Methods
 
 //------------------------------------------------------
+/// human-readable encoding name considering UTF-8 BOM
++ (nonnull NSString *)localizedNameOfStringEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withBOM
+//------------------------------------------------------
+{
+    if (encoding == NSUTF8StringEncoding && withBOM) {
+        return [self localizedNameOfUTF8EncodingWithBOM];
+    }
+    
+    return [NSString localizedNameOfStringEncoding:encoding];
+}
+
+
+//------------------------------------------------------
+/// human-readable encoding name for UTF-8 with BOM
++ (nonnull NSString *)localizedNameOfUTF8EncodingWithBOM
+//------------------------------------------------------
+{
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ with BOM", @"Unicode (UTF-8) with BOM"),
+            [NSString localizedNameOfStringEncoding:NSUTF8StringEncoding]];
+}
+
+
+//------------------------------------------------------
 /// obtain string from NSData with intelligent encoding detection
 - (nullable instancetype)initWithData:(nonnull NSData *)data suggestedCFEncodings:(NSArray<NSNumber *> *)suggestedCFEncodings usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    // detect enoding from so-called "magic numbers"
+    // detect encoding from so-called "magic numbers"
     NSStringEncoding triedEncoding = NSNotFound;
     if ([data length] > 1) {
         char miniBytes[4] = {0};
@@ -203,20 +249,35 @@ static const NSUInteger kMaxDetectionLength = 1024 * 8;
     return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
 }
 
+@end
+
+
+
+
+#pragma mark -
+
+@implementation NSData (UTF8BOM)
+
+#pragma mark Public Methods
 
 //------------------------------------------------------
-/// check IANA charset compatibility considering SHIFT_JIS
-BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding)
+/// return NSData by adding UTF-8 BOM
+- (nonnull NSData *)dataByAddingUTF8BOM
 //------------------------------------------------------
 {
-    if (IANACharsetEncoding == encoding) { return YES; }
+    NSMutableData *mutableData = [NSMutableData dataWithBytes:kUTF8Bom length:3];
+    [mutableData appendData:self];
     
-    // -> Caution needed on Shift-JIS. See `scanEncodingDeclarationForTags:` for details.
-    const NSStringEncoding ShiftJIS = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS);
-    const NSStringEncoding ShiftJIS_X0213 = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingShiftJIS_X0213);
-    
-    return ((encoding == ShiftJIS && IANACharsetEncoding == ShiftJIS_X0213) ||
-            (encoding == ShiftJIS_X0213 && IANACharsetEncoding == ShiftJIS));
+    return [NSData dataWithData:mutableData];
+}
+
+
+//------------------------------------------------------
+/// check if data starts with UTF-8 BOM
+- (BOOL)hasUTF8BOM
+//------------------------------------------------------
+{
+    return !memcmp([self bytes], kUTF8Bom, 3);
 }
 
 @end

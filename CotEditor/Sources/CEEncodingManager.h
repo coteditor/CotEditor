@@ -48,4 +48,7 @@ extern NSString *_Nonnull const CEEncodingListDidUpdateNotification;
 /// whether Yen sign (U+00A5) can be converted to the given encoding
 + (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding;
 
+
+- (void)updateChangeEncodingMenu:(nonnull NSMenu *)menu;
+
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEEncodingListSheetController">
@@ -24,13 +24,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38">
-                        <rect key="frame" x="20" y="61" width="244" height="228"/>
+                        <rect key="frame" x="20" y="97" width="244" height="192"/>
                         <clipView key="contentView" id="aNc-UC-u91">
-                            <rect key="frame" x="1" y="1" width="255" height="209"/>
+                            <rect key="frame" x="1" y="1" width="242" height="190"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="39">
-                                    <rect key="frame" x="0.0" y="0.0" width="242" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="242" height="190"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -180,6 +180,14 @@ Auto-Detect tries these encodings from the top of the list.</string>
                             <binding destination="47" name="enabled" keyPath="canRestore" id="Dzd-6R-0kZ"/>
                         </connections>
                     </button>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhP-zg-tBc">
+                        <rect key="frame" x="18" y="61" width="364" height="28"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”." id="jXZ-7k-86F">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="56" firstAttribute="top" secondItem="62" secondAttribute="bottom" constant="8" symbolic="YES" id="0LZ-QG-oir"/>
@@ -192,19 +200,22 @@ Auto-Detect tries these encodings from the top of the list.</string>
                     <constraint firstItem="54" firstAttribute="leading" secondItem="38" secondAttribute="trailing" constant="8" symbolic="YES" id="8nX-ho-0wW"/>
                     <constraint firstItem="62" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="F8d-xT-wcD"/>
                     <constraint firstItem="56" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="J98-aR-gdw"/>
+                    <constraint firstAttribute="trailing" secondItem="yhP-zg-tBc" secondAttribute="trailing" constant="20" symbolic="YES" id="LOS-u4-EbQ"/>
                     <constraint firstItem="54" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="LzJ-7I-MxY"/>
                     <constraint firstItem="62" firstAttribute="top" secondItem="37" secondAttribute="top" constant="20" symbolic="YES" id="N7H-D8-BSH"/>
                     <constraint firstItem="43" firstAttribute="leading" secondItem="42" secondAttribute="trailing" constant="12" symbolic="YES" id="Nt9-gb-shF"/>
                     <constraint firstItem="55" firstAttribute="top" secondItem="54" secondAttribute="bottom" constant="10" symbolic="YES" id="QDo-Jt-bsV"/>
                     <constraint firstAttribute="bottom" secondItem="42" secondAttribute="bottom" constant="20" symbolic="YES" id="RUg-QY-MXl"/>
                     <constraint firstItem="38" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="Syx-Wi-LNT"/>
-                    <constraint firstItem="42" firstAttribute="top" secondItem="38" secondAttribute="bottom" constant="20" symbolic="YES" id="UsJ-hk-9IV"/>
+                    <constraint firstItem="700" firstAttribute="top" secondItem="yhP-zg-tBc" secondAttribute="bottom" constant="20" symbolic="YES" id="U9t-AY-A15"/>
+                    <constraint firstItem="yhP-zg-tBc" firstAttribute="top" secondItem="38" secondAttribute="bottom" constant="8" symbolic="YES" id="Yus-lX-4eS"/>
                     <constraint firstItem="42" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="700" secondAttribute="trailing" constant="12" symbolic="YES" id="ZWT-Y8-hTY"/>
                     <constraint firstItem="38" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="a28-Q1-dxx"/>
                     <constraint firstAttribute="trailing" secondItem="55" secondAttribute="trailing" constant="20" symbolic="YES" id="aMR-De-Syy"/>
                     <constraint firstItem="700" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="dyn-hT-SiN"/>
                     <constraint firstItem="55" firstAttribute="leading" secondItem="38" secondAttribute="trailing" constant="8" symbolic="YES" id="elU-g8-NQF"/>
                     <constraint firstAttribute="trailing" secondItem="62" secondAttribute="trailing" constant="20" symbolic="YES" id="lH1-Xj-Qid"/>
+                    <constraint firstItem="yhP-zg-tBc" firstAttribute="leading" secondItem="37" secondAttribute="leading" constant="20" symbolic="YES" id="oXl-7m-K9H"/>
                     <constraint firstItem="700" firstAttribute="top" secondItem="42" secondAttribute="top" id="s5v-Cs-JaZ"/>
                 </constraints>
             </view>

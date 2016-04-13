@@ -31,6 +31,7 @@
 #import "CEDefaults.h"
 #import "CEEncodings.h"
 #import "CEErrors.h"
+#import "Constants.h"
 
 
 // define UTIs for legacy system
@@ -114,6 +115,8 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
 - (nullable id)makeDocumentWithContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
+    // [caution] This method may be called from a background thread due to concurrent-opening.
+    
     NSError *error = nil;
     
     // display alert if file may an image, video or other kind of binary file.
@@ -160,8 +163,13 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
     
     // ask user for opening file
     if (error) {
+        __block BOOL wantsOpen = NO;
+        __weak typeof(self) weakSelf = self;
+        dispatch_sync_on_main_thread(^{
+            wantsOpen = [weakSelf presentError:error];
+        });
         // cancel operation
-        if (![self presentError:error]) {
+        if (!wantsOpen) {
             if (outError) {
                 *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil];
             }

@@ -123,7 +123,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         // run dummy AppleScript once for quick script launch
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultRunAppleScriptInLaunchingKey]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSString *source = @"tell application \"CotEditor\" to number of documents";
+                NSString *source = @"tell application \"CotEditor\" to name";
                 NSAppleScript *AppleScript = [[NSAppleScript alloc] initWithSource:source];
                 [AppleScript executeAndReturnError:nil];
             });

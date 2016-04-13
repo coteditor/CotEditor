@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -37,8 +37,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "エンコーディング：";
-/* Class = "NSButtonCell"; title = "Save UTF-8 files with a BOM  (not recommended)"; ObjectID = "3281"; */
-"3281.title" = "UTF-8 のとき BOM も保存（非推奨）";
 
 /* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
 "3277.title" = "ファイルを開くとき：";

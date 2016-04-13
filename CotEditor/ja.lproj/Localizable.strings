@@ -97,7 +97,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に 1 件見つかりました。";
-"Found %li strings in “%@”." = "“%2$@”内に %1$li 件見つかりました。";
+"Found %@ strings in “%@”." = "“%2$@”内に %1$@ 件見つかりました。";
 
 
 
@@ -224,7 +224,7 @@
 "Move Line" = "行を移動";
 "Sort Lines" = "行をソート";
 "Reverse Lines" = "行を反転";
-"Remove Duplicate Lines" = "重複行を削除";
+"Delete Duplicate Lines" = "重複行を削除";
 "Duplicate Line" = "行を複製";
 "Delete Line" = "行を削除";
 "Trim Trailing Whitespace" = "行末の空白を削除";
@@ -236,6 +236,7 @@
 // Contextual menu items
 "Font" = "フォント";
 "Text" = "テキスト";
+"Copy as Rich Text" = "リッチテキストとしてコピー";
 "Select All" = "すべてを選択";
 
 
@@ -322,7 +323,7 @@
 
 /* MARK: CEPreferencesWindowController */
 // Smart quotes/dashes
-" (on Mavericks and later)" = "（Mavericks 以上）";
+"Only on Mavericks and later" = "Mavericks 以上のみ";
 
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "入力補完候補リストの表示： %@ もしくは %@";
@@ -502,3 +503,9 @@
 "The script file “%@” couldn’t be opened." = "スクリプトファイル“%@”を開けませんでした。";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "実行権がないため、スクリプト„%@“を実行できません。\n\nスクリプトファイルのアクセス権を確認してください。";
 "The script “%@” couldn’t be read." = "スクリプト“%@”を読み込めませんでした。";
+
+
+
+/* NSString Categories */
+// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+"%@ with BOM" = "%@BOM 付き";

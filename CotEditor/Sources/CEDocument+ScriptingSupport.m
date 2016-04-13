@@ -285,7 +285,7 @@
     NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil),
                             [NSString localizedNameOfStringEncoding:encoding]];
     
-    BOOL success = [self doSetEncoding:encoding updateDocument:YES askLossy:NO lossy:lossy asActionName:actionName];
+    BOOL success = [self doSetEncoding:encoding withUTF8BOM:NO updateDocument:YES askLossy:NO lossy:lossy asActionName:actionName];
     
     return @(success);
 }

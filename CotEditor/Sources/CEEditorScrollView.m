@@ -62,7 +62,7 @@
 // ------------------------------------------------------
 {
     if ([[self documentView] isKindOfClass:[NSTextView class]]) {
-        [(NSTextView *)[self documentView] removeObserver:self forKeyPath:@"layoutOrientation"];
+        [(NSTextView *)[self documentView] removeObserver:self forKeyPath:NSStringFromSelector(@selector(layoutOrientation))];
     }
 }
 
@@ -73,7 +73,7 @@
 // ------------------------------------------------------
 {
     if ([documentView isKindOfClass:[NSTextView class]]) {
-        [(NSTextView *)documentView addObserver:self forKeyPath:@"layoutOrientation" options:NSKeyValueObservingOptionNew context:nil];
+        [(NSTextView *)documentView addObserver:self forKeyPath:NSStringFromSelector(@selector(layoutOrientation)) options:NSKeyValueObservingOptionNew context:nil];
     }
     
     [super setDocumentView:documentView];
@@ -85,7 +85,7 @@
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
-    if ([keyPath isEqual:@"layoutOrientation"]) {
+    if ([keyPath isEqualToString:NSStringFromSelector(@selector(layoutOrientation))]) {
         switch ([self layoutOrientation]) {
             case NSTextLayoutOrientationHorizontal:
                 [self setHasVerticalRuler:YES];

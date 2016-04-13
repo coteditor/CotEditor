@@ -165,6 +165,8 @@
                                                CEDefaultBalancesBracketsKey: @NO,
                                                CEDefaultSmartInsertAndDeleteKey: @NO,
                                                CEDefaultEnableSmartQuotesKey: @NO,
+                                               CEDefaultEnableSmartDashesKey: @NO,
+                                               CEDefaultEnableAutoSpellingCorrectionKey: @NO,
                                                CEDefaultEnableSmartIndentKey: @YES,
                                                CEDefaultAutoLinkDetectionKey: @NO,
                                                CEDefaultAppendsCommentSpacerKey: @YES,
@@ -637,14 +639,8 @@
 //------------------------------------------------------
 {
     NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEFileEncodingMenuItemTag] submenu];
-    [menu removeAllItems];
     
-    NSArray<NSMenuItem *> *items = [[CEEncodingManager sharedManager] encodingMenuItems];
-    for (NSMenuItem *item in items) {
-        [item setAction:@selector(changeEncoding:)];
-        [item setTarget:nil];
-        [menu addItem:item];
-    }
+    [[CEEncodingManager sharedManager] updateChangeEncodingMenu:menu];
 }
 
 

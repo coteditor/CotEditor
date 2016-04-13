@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,10 +26,11 @@
  */
 
 #import "CETheme.h"
-#import "CEThemeManager.h"
+#import "CEThemeDictionaryKeys.h"
 #import "NSColor+WFColorCode.h"
 
 
+// private constants
 static const CGFloat kDarkThemeThreshold = 0.5;
 
 
@@ -66,6 +67,8 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 /// Is background color dark?
 @property (readwrite, nonatomic, getter=isDarkTheme) BOOL darkTheme;
 
+/// Is the source theme dict valid?
+@property (readwrite, nonatomic, getter=isValid) BOOL valid;
 
 // other options
 @property (nonatomic) BOOL usesSystemSelectionColor;
@@ -95,33 +98,38 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 //------------------------------------------------------
 /// convenience constractor
-+ (nullable CETheme *)themeWithName:(nonnull NSString *)themeName
++ (nullable instancetype)themeWithDictinonary:(NSDictionary<NSString *, NSDictionary *> *)themeDict name:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
-    return [[CETheme alloc] initWithName:themeName];
+    return [[self alloc] initWithDictinonary:themeDict name:themeName];
 }
 
 
 //------------------------------------------------------
 /// designated initializer
-- (nullable instancetype)initWithName:(nonnull NSString *)themeName
+- (nullable instancetype)initWithDictinonary:(NSDictionary<NSString *, NSDictionary *> *)themeDict name:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
+    if ([themeName length] == 0) { return nil; }
+    
     self = [super init];
     if (self) {
-        NSDictionary<NSString *, NSDictionary<NSString *, NSString *> *> *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:NULL];
+        NSMutableDictionary<NSString *, NSColor *> *colorDict = [NSMutableDictionary dictionary];
         
-        if (!themeDict) { return nil; }
-        
-        NSMutableDictionary *colorDict = [NSMutableDictionary dictionary];
         // カラーを解凍
-        for (NSString *key in [CETheme colorKeys]) {
+        _valid = YES;
+        for (NSString *key in [[self class] colorKeys]) {
             NSString *colorCode = themeDict[key][CEThemeColorKey];
-            WFColorCodeType type = nil;
-            NSColor *color = [NSColor colorWithColorCode:colorCode codeType:&type];
+            
+            WFColorCodeType type = WFColorCodeInvalid;
+            NSColor *color;
+            if (colorCode) {
+                color = [NSColor colorWithColorCode:colorCode codeType:&type];
+            }
             
             if (!color || !(type == WFColorCodeHex || type == WFColorCodeShortHex)) {
                 color = [NSColor grayColor];  // color for invalid color code
+                _valid = NO;
             }
             colorDict[key] = color;
         }
@@ -192,6 +200,37 @@ static const CGFloat kDarkThemeThreshold = 0.5;
         return [NSColor selectedTextBackgroundColor];
     }
     return _selectionColor;
+}
+
+
+//------------------------------------------------------
+/// color for syntax type defined in theme
+- (nullable NSColor *)syntaxColorForType:(nonnull NSString *)syntaxType
+//------------------------------------------------------
+{
+    if ([syntaxType isEqualToString:CEThemeKeywordsKey]) {
+        return [self keywordsColor];
+    } else if ([syntaxType isEqualToString:CEThemeCommandsKey]) {
+        return [self commandsColor];
+    } else if ([syntaxType isEqualToString:CEThemeTypesKey]) {
+        return [self typesColor];
+    } else if ([syntaxType isEqualToString:CEThemeAttributesKey]) {
+        return [self attributesColor];
+    } else if ([syntaxType isEqualToString:CEThemeVariablesKey]) {
+        return [self variablesColor];
+    } else if ([syntaxType isEqualToString:CEThemeValuesKey]) {
+        return [self valuesColor];
+    } else if ([syntaxType isEqualToString:CEThemeNumbersKey]) {
+        return [self numbersColor];
+    } else if ([syntaxType isEqualToString:CEThemeStringsKey]) {
+        return [self stringsColor];
+    } else if ([syntaxType isEqualToString:CEThemeCharactersKey]) {
+        return [self charactersColor];
+    } else if ([syntaxType isEqualToString:CEThemeCommentsKey]) {
+        return [self commentsColor];
+    }
+    
+    return nil;
 }
 
 

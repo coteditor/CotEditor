@@ -97,7 +97,7 @@
     } else {
         [NSApp beginSheet:[self window] modalForWindow:window
             modalDelegate:self didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
-              contextInfo:(__bridge_retained void * _Null_unspecified)(handler)];
+              contextInfo:(__bridge_retained void * _Null_unspecified)handler];
     }
     
     [[self indicator] startAnimation:self];
@@ -145,13 +145,14 @@
 - (IBAction)close:(nullable id)sender
 // ------------------------------------------------------
 {
+    [self setMe:nil];
+    
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
         
     } else {
         [NSApp endSheet:[self window] returnCode:NSOKButton];
     }
-    [self setMe:nil];
 }
 
 // ------------------------------------------------------
@@ -159,13 +160,14 @@
 - (IBAction)cancel:(nullable id)sender
 // ------------------------------------------------------
 {
+    [self setMe:nil];
+    
     if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
         [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
         
     } else {
         [NSApp endSheet:[self window] returnCode:NSCancelButton];
     }
-    [self setMe:nil];
 }
 
 

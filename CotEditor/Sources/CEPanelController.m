@@ -69,7 +69,7 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
 
 // ------------------------------------------------------
 /// allocate
-+ (nonnull instancetype)allocWithZone:(nonnull NSZone *)zone
++ (nullable instancetype)allocWithZone:(nonnull NSZone *)zone
 // ------------------------------------------------------
 {
     // This method is based on the following article:

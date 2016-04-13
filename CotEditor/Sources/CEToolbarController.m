@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -111,15 +111,11 @@
 
 // ------------------------------------------------------
 /// select item in the encoding popup menu
-- (void)setSelectedEncoding:(NSStringEncoding)encoding
+- (void)setSelectedEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM
 // ------------------------------------------------------
 {
-    for (NSMenuItem *menuItem in [[self encodingPopupButton] itemArray]) {
-        if ([menuItem tag] == encoding) {
-            [[self encodingPopupButton] selectItem:menuItem];
-            break;
-        }
-    }
+    NSInteger tag = withUTF8BOM ? -encoding : encoding;
+    [[self encodingPopupButton] selectItemWithTag:tag];
 }
 
 
@@ -246,17 +242,13 @@
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    NSArray<NSMenuItem *> *items = [[CEEncodingManager sharedManager] encodingMenuItems];
-    NSStringEncoding encoding = [[[self encodingPopupButton] selectedItem] tag];
+    // store current selection
+    NSInteger tag = [[self encodingPopupButton] selectedTag];
     
-    [[self encodingPopupButton] removeAllItems];
-    for (NSMenuItem *item in items) {
-        [item setAction:@selector(changeEncoding:)];
-        [item setTarget:nil];
-        [[[self encodingPopupButton] menu] addItem:item];
-    }
+    [[CEEncodingManager sharedManager] updateChangeEncodingMenu:[[self encodingPopupButton] menu]];
     
-    [self setSelectedEncoding:encoding];
+    // reapply to the menu
+    [[self encodingPopupButton] selectItemWithTag:tag];
 }
 
 
