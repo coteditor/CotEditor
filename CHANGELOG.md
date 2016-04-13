@@ -8,6 +8,7 @@ develop
 ### Improvements
 
 - Better error message on file opening.
+- Teak Japanese localization in preferences.
 
 
 ### Fixes

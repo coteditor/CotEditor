@@ -48,7 +48,7 @@
 /* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
 "3285.title" = "自動インデント";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
-"3283.title" = "タブを空白に自動的に展開";
+"3283.title" = "タブをスペースに自動的に展開";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
 "3287.title" = "インデント幅：";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
