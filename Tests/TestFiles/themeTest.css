@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+/* syntax coloring */
+Keyword    font-family
+Command    @font-face
+Type       !important
+Attribute  [foo=bar]
+Variable   #variable
+Value      transparent
+Number     360deg
+String     "string"
+Character  format()
+Comment    /* comment */
+
+
+/* web font */
+@font-face {
+	font-family: 'HuiFont';
+	src: local('HuiFont'),
+	     url('../_font/HuiFont109.ttf') format('truetype');
+}
+
+/* header */
+body > header {
+	font: 200 18px/1.0 'Helvetica Neue', sans-serif;
+	color: hsl(0, 0%, 33%);
+	background: transparent !important;
+}
+body > header > a:first-child:hover::before {
+	transform: rotate(-360deg);
+	transition: transform 0.67s ease;
+}
+aside.sns li a[href*=twitter] {
+	color: hsl(198, 40%, 45%) !important;
+	display: inline-block;
+	max-width: 90px;
+}
