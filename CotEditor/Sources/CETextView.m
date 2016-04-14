@@ -1891,7 +1891,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // hold a bit at scale 1.0
     if (([self initialMagnificationScale] > 1.0 && scale < 1.0) ||  // zoom-out
-        ([self initialMagnificationScale] < 1.0 && scale > 1.0))    // zoom-in
+        ([self initialMagnificationScale] <= 1.0 && scale >= 1.0))    // zoom-in
     {
         self.deferredMagnification += [event magnification];
         if (fabs([self deferredMagnification]) > 0.4) {
