@@ -199,7 +199,7 @@ static CGFontRef BoldLineNumberFont;
     // adjust text drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:textView];
     NSPoint inset = [textView textContainerOrigin];
-    CGFloat ascent = scale * [[textView font] ascender];
+    CGFloat ascent = CTFontGetAscent(font);
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);  // flip
     if (isVerticalText) {
         transform = CGAffineTransformTranslate(transform, round(relativePoint.x - inset.y - ascent / 2), -ruleThickness);
