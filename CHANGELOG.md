@@ -14,6 +14,7 @@ develop
 
 ### Fixes
 
+- [beta] Fix an issue where wrapping text by scaled text size wrapped text at a wrong width.
 - [beta] Fix an issue where actions of the action (gear) menu in the syntax setting could be failed.
 - [beta] Fix an issue where line numbers were shifted a bit if the first character is not drawn with the specified font.
 
