@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- [beta] On pinch-zoom, hold a bit at the actual scale.
 - Better error message on file opening.
 - Tweak some label text in preferences.
 

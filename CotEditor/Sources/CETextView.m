@@ -70,6 +70,9 @@ static const NSUInteger kMaxPageGuideColumn = 1000;
 
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
 
+@property (nonatomic) CGFloat initialMagnificationScale;
+@property (nonatomic) CGFloat deferredMagnification;
+
 @end
 
 
@@ -1879,8 +1882,33 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)magnifyWithEvent:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
+    if ([event phase] & NSEventPhaseBegan) {
+        [self setInitialMagnificationScale:[self scale]];
+    }
+    
     CGFloat scale = [self scale] + [event magnification];
     CGPoint center = [self convertPoint:[event locationInWindow] fromView:nil];
+    
+    // hold a bit at scale 1.0
+    if (([self initialMagnificationScale] > 1.0 && scale < 1.0) ||  // zoom-out
+        ([self initialMagnificationScale] < 1.0 && scale > 1.0))    // zoom-in
+    {
+        self.deferredMagnification += [event magnification];
+        if (fabs([self deferredMagnification]) > 0.4) {
+            scale = [self scale] + [self deferredMagnification] / 2;
+            self.deferredMagnification = 0;
+            [self setInitialMagnificationScale:scale];
+        } else {
+            scale = 1.0;
+        }
+    }
+    
+    // sanitize final scale
+    if ([event phase] & NSEventPhaseEnded) {
+        if (fabs(scale - 1.0) < 0.05) {
+            scale = 1.0;
+        }
+    }
     
     [self setScale:scale centeredAtPoint:center];
 }
@@ -1979,6 +2007,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setScale:(CGFloat)scale centeredAtPoint:(NSPoint)point
 // ------------------------------------------------------
 {
+    if (scale == [self scale]) { return; }
+    
     // store current coordinate
     NSUInteger centerGlyphIndex = [[self layoutManager] glyphIndexForPoint:point inTextContainer:[self textContainer]];
     CGFloat currentScale = [self scale];
