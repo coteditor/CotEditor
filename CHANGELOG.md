@@ -8,6 +8,7 @@ develop
 ### Improvements
 
 - [beta] On pinch-zoom, hold a bit at the actual scale.
+- [beta] More optimize document opening performance with large file.
 - Better error message on file opening.
 - Tweak some label text in preferences.
 
