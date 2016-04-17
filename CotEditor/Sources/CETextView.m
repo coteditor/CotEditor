@@ -689,6 +689,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setFont:(nullable NSFont *)font
 // ------------------------------------------------------
 {
+    // make sure font is screen font for hanging indent calcration
+    font = [font screenFont] ?: font;
+    
     // 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく。
     // （CELayoutManager で [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
     // 日本語フォント名を返してくることがあるため、CELayoutManager からは [textView font] を使わない）

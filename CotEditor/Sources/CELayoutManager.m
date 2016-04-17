@@ -358,38 +358,33 @@ static NSString *HiraginoSansName;
     }
     
     CGFloat hangingIndent = [self spaceWidth] * [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey];
-    CGFloat linePadding = [[[self firstTextView] textContainer] lineFragmentPadding];
     NSTextStorage *textStorage = [self textStorage];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[ \\t]+(?!$)" options:0 error:nil];
     
     NSMutableArray<NSDictionary<NSString *, id> *> *newIndents = [NSMutableArray array];
     
+    // get dummy attributes to make calcuration of indent width the same as CElayoutManager's calcuration (2016-04)
+    NSMutableDictionary *indentAttributes = [[[self firstTextView] typingAttributes] mutableCopy];
+    NSMutableParagraphStyle *typingParagraphStyle = [indentAttributes[NSParagraphStyleAttributeName] mutableCopy];
+    [typingParagraphStyle setHeadIndent:1.0];  // dummy indent value for size calcuration (2016-04)
+    indentAttributes[NSParagraphStyleAttributeName] = [typingParagraphStyle copy];
+    
     // invalidate line by line
     NSRange lineRange = [[textStorage string] lineRangeForRange:range];
-    __weak typeof(self) weakSelf = self;
     [[textStorage string] enumerateSubstringsInRange:lineRange
-                                             options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
+                                             options:NSStringEnumerationByLines
                                           usingBlock:^(NSString *substring,
                                                        NSRange substringRange,
                                                        NSRange enclosingRange,
                                                        BOOL *stop)
      {
-         typeof(weakSelf) self = weakSelf;
-         if (!self) {
-             *stop = YES;
-             return;
-         }
-         
          CGFloat indent = hangingIndent;
          
          // add base indent
-         NSRange baseIndentRange = [regex rangeOfFirstMatchInString:[textStorage string] options:0 range:substringRange];
+         NSRange baseIndentRange = [regex rangeOfFirstMatchInString:substring options:0 range:NSMakeRange(0, substring.length)];
          if (baseIndentRange.location != NSNotFound) {
-             // getting the start line of the character jsut after the last indent character
-             //   -> This is actually better in terms of performance than getting whole bounding rect using `boundingRectForGlyphRange:inTextContainer:`
-             NSUInteger firstGlyphIndex = [self glyphIndexForCharacterAtIndex:NSMaxRange(baseIndentRange)];
-             NSPoint firstGlyphLocation = [self locationForGlyphAtIndex:firstGlyphIndex];  // !!!: performance critical
-             indent += firstGlyphLocation.x - linePadding;
+             NSString *indentString = [substring substringWithRange:baseIndentRange];
+             indent += [indentString sizeWithAttributes:indentAttributes].width;
          }
          
          // apply new indent only if needed
