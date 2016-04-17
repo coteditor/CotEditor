@@ -359,9 +359,8 @@ static NSString *HiraginoSansName;
     
     CGFloat hangingIndent = [self spaceWidth] * [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey];
     NSTextStorage *textStorage = [self textStorage];
+    NSRange lineRange = [[textStorage string] lineRangeForRange:range];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[ \\t]+(?!$)" options:0 error:nil];
-    
-    NSMutableArray<NSDictionary<NSString *, id> *> *newIndents = [NSMutableArray array];
     
     // get dummy attributes to make calcuration of indent width the same as CElayoutManager's calcuration (2016-04)
     NSMutableDictionary *indentAttributes = [[[self firstTextView] typingAttributes] mutableCopy];
@@ -369,8 +368,8 @@ static NSString *HiraginoSansName;
     [typingParagraphStyle setHeadIndent:1.0];  // dummy indent value for size calcuration (2016-04)
     indentAttributes[NSParagraphStyleAttributeName] = [typingParagraphStyle copy];
     
-    // invalidate line by line
-    NSRange lineRange = [[textStorage string] lineRangeForRange:range];
+    // process line by line
+    [textStorage beginEditing];
     [[textStorage string] enumerateSubstringsInRange:lineRange
                                              options:NSStringEnumerationByLines
                                           usingBlock:^(NSString *substring,
@@ -384,7 +383,7 @@ static NSString *HiraginoSansName;
          NSRange baseIndentRange = [regex rangeOfFirstMatchInString:substring options:0 range:NSMakeRange(0, substring.length)];
          if (baseIndentRange.location != NSNotFound) {
              NSString *indentString = [substring substringWithRange:baseIndentRange];
-             indent += [indentString sizeWithAttributes:indentAttributes].width;
+             indent += ceil([indentString sizeWithAttributes:indentAttributes].width);
          }
          
          // apply new indent only if needed
@@ -395,24 +394,9 @@ static NSString *HiraginoSansName;
              NSMutableParagraphStyle *mutableParagraphStyle = [paragraphStyle mutableCopy];
              [mutableParagraphStyle setHeadIndent:indent];
              
-             // store the result
-             //   -> Don't apply to the textStorage at this moment.
-             [newIndents addObject:@{@"paragraphStyle": [mutableParagraphStyle copy],
-                                     @"range": [NSValue valueWithRange:substringRange]}];
+             [textStorage addAttribute:NSParagraphStyleAttributeName value:mutableParagraphStyle range:substringRange];
          }
      }];
-    
-    if ([newIndents count] == 0) { return; }
-    
-    // apply new paragraph styles at once
-    //   -> This avoids letting layoutManager calculate glyph location each time.
-    [textStorage beginEditing];
-    for (NSDictionary<NSString *, id> *indent in newIndents) {
-        NSRange range = [indent[@"range"] rangeValue];
-        NSParagraphStyle *paragraphStyle = indent[@"paragraphStyle"];
-        
-        [textStorage addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
-    }
     [textStorage endEditing];
 }
 
