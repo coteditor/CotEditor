@@ -7,6 +7,17 @@ develop
 
 ### Improvements
 
+- Update “JavaScript” syntax style:
+    - Improve outline definitions to support the class syntax sugar introduced in  ECMAScript 6.
+    - Better coloring for “get” and “set”.
+
+
+
+2.5.0 (117)
+--------------------------
+
+### Improvements
+
 - [beta] On pinch-zoom, hold a bit at the actual scale.
 - [beta] More optimize document opening performance with large file.
 - Better error message on file opening.
