@@ -173,7 +173,7 @@ static const NSTimeInterval kDuration = 0.12;
         attrs[NSFontAttributeName] = font;
         
         if ([outlineItem[CEOutlineItemStyleUnderlineKey] boolValue]) {
-            attrs[NSUnderlineStyleAttributeName] = @(NSUnderlineByWordMask | NSUnderlinePatternSolid | NSUnderlineStyleThick);
+            attrs[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
         }
         
         NSAttributedString *title = [[NSAttributedString alloc] initWithString:outlineItem[CEOutlineItemTitleKey]

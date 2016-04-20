@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Change underline style of outline items.
 - Update “JavaScript” syntax style:
     - Improve outline definitions to support the class syntax sugar introduced in  ECMAScript 6.
     - Better coloring for “get” and “set”.
