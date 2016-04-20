@@ -31,7 +31,6 @@
 #import "Constants.h"
 
 
-static NSString *_Nonnull const kNavigationBarFontName = @"Helvetica";
 static const CGFloat kDefaultHeight = 16.0;
 static const NSTimeInterval kDuration = 0.12;
 
@@ -134,17 +133,21 @@ static const NSTimeInterval kDuration = 0.12;
     
     [[self outlineMenu] removeAllItems];
     
-    if ([outlineItems count] == 0) {
-        [[self outlineMenu] setHidden:YES];
-        [[self prevButton] setHidden:YES];
-        [[self nextButton] setHidden:YES];
-        
-        return;
-    }
+    BOOL hasOutlineItems = [outlineItems count];
+    // set buttons status here to avoid flicking (2008-05-17)
+    [[self outlineMenu] setHidden:!hasOutlineItems];
+    [[self prevButton] setHidden:!hasOutlineItems];
+    [[self nextButton] setHidden:!hasOutlineItems];
+    
+    if (!hasOutlineItems) { return; }
     
     NSMenu *menu = [[self outlineMenu] menu];
-    NSFont *defaultFont = [NSFont fontWithName:kNavigationBarFontName
-                                          size:[NSFont smallSystemFontSize]];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
+    [paragraphStyle setTighteningFactorForTruncation:0];  // don't tighten
+    NSDictionary<NSString *, id> *baseAttributes = @{NSFontAttributeName: [menu font],
+                                                     NSParagraphStyleAttributeName: paragraphStyle};
     
     // add headding item
     [menu addItemWithTitle:NSLocalizedString(@"<Outline Menu>", nil)
@@ -160,27 +163,22 @@ static const NSTimeInterval kDuration = 0.12;
             continue;
         }
         
-        NSMutableDictionary<NSString *, id> *attrs = [NSMutableDictionary dictionary];
+        NSString *title = outlineItem[CEOutlineItemTitleKey];
+        NSRange titleRange = NSMakeRange(0, [title length]);
+        NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:title
+                                                                                      attributes:baseAttributes];
         
-        NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
-        [paragraphStyle setTighteningFactorForTruncation:0];  // don't tighten
-        attrs[NSParagraphStyleAttributeName] = paragraphStyle;
-        
-        NSFontTraitMask fontTrait = [outlineItem[CEOutlineItemStyleBoldKey] boolValue] ? NSBoldFontMask : 0;
+        NSFontTraitMask fontTrait;
+        fontTrait = [outlineItem[CEOutlineItemStyleBoldKey] boolValue] ? NSBoldFontMask : 0;
         fontTrait |= [outlineItem[CEOutlineItemStyleItalicKey] boolValue] ? NSItalicFontMask : 0;
-        NSFont *font = [[NSFontManager sharedFontManager] convertFont:defaultFont toHaveTrait:fontTrait];
-        attrs[NSFontAttributeName] = font;
+        [attrTitle applyFontTraits:fontTrait range:titleRange];
         
         if ([outlineItem[CEOutlineItemStyleUnderlineKey] boolValue]) {
-            attrs[NSUnderlineStyleAttributeName] = @(NSUnderlineStyleSingle);
+            [attrTitle addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:titleRange];
         }
         
-        NSAttributedString *title = [[NSAttributedString alloc] initWithString:outlineItem[CEOutlineItemTitleKey]
-                                                                    attributes:attrs];
-        
         NSMenuItem *menuItem = [[NSMenuItem alloc] init];
-        [menuItem setAttributedTitle:title];
+        [menuItem setAttributedTitle:attrTitle];
         [menuItem setAction:@selector(setSelectedRangeWithNSValue:)];
         [menuItem setTarget:[self textView]];
         [menuItem setRepresentedObject:outlineItem[CEOutlineItemRangeKey]];
@@ -188,12 +186,7 @@ static const NSTimeInterval kDuration = 0.12;
         [menu addItem:menuItem];
     }
     
-    // set buttons status here to avoid flicking (2008-05-17)
     [self selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
-    [[self outlineMenu] setMenu:menu];
-    [[self outlineMenu] setHidden:NO];
-    [[self prevButton] setHidden:NO];
-    [[self nextButton] setHidden:NO];
 }
 
 
