@@ -78,7 +78,7 @@ if IS_SANDBOXED then
 			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
 			<sparkle:shortVersionString>#{version}</sparkle:shortVersionString>
 			<sparkle:version>#{build_number}</sparkle:version>
-            <link>https://coteditor.com/</link>
+			<link>https://coteditor.com/</link>
 		</item>
 	APPCAST_ITEM
 else

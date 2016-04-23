@@ -29,8 +29,8 @@
 "SqI-BC-ar9.title" = "Ersetzung:";
 /* Class = "NSButtonCell"; title = "Enable smart copy/paste"; ObjectID = "3302"; */
 "3302.title" = "Intelligente Kopieren/Ersetzen aktivieren";
-/* Class = "NSButtonCell"; title = "Balance brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
-"GRh-V2-hmW.title" = "Klammern und Anführungszeichen balancieren";
+/* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "Klammern und Anführungszeichen automatisch schließen";  // Schließende Klammern und Anführungszeichen automatisch hinzufügen
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "„¥“ und „\\“ Tasten tauschen";
 /* Class = "NSTextFieldCell"; title = "Auto correction:"; ObjectID = "6I3-dM-2QV"; */

@@ -29,8 +29,8 @@
 "SqI-BC-ar9.title" = "自動置換：";
 /* Class = "NSButtonCell"; title = "Enable smart copy/paste"; ObjectID = "3302"; */
 "3302.title" = "スマートコピー／ペーストを有効にする";
-/* Class = "NSButtonCell"; title = "Balance brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
-"GRh-V2-hmW.title" = "対応する括弧と引用符を自動挿入";
+/* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "括弧と引用符を自動的に閉じる";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "“¥”と“\\”のキーを入れ替える";
 /* Class = "NSTextFieldCell"; title = "Auto correction:"; ObjectID = "6I3-dM-2QV"; */
@@ -48,7 +48,7 @@
 /* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
 "3285.title" = "自動インデント";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
-"3283.title" = "タブを空白に自動的に展開";
+"3283.title" = "タブをスペースに自動的に展開";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
 "3287.title" = "インデント幅：";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */

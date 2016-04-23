@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+2.5.0 (117)
+--------------------------
+
+### Improvements
+
+- [beta] On pinch-zoom, hold a bit at the actual scale.
+- [beta] More optimize document opening performance with large file.
+- Better error message on file opening.
+- Tweak some label text in preferences.
+
+
+### Fixes
+
+- [beta] Fix an issue where wrapping text by scaled text size wrapped text at a wrong width.
+- [beta] Fix an issue where actions of the action (gear) menu in the syntax setting could be failed.
+- [beta] Fix an issue where line numbers were shifted a bit if the first character is not drawn with the specified font.
+
+
+
 2.5.0-beta (113)
 --------------------------
 

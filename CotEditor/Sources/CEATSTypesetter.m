@@ -123,20 +123,18 @@
 {
     if (charIndex == 0) { return YES; }
     
-    NSTextStorage *textStorage = [[self layoutManager] textStorage];
-    NSUInteger lastLineBreakIndex = [textStorage lineBreakBeforeIndex:charIndex withinRange:NSMakeRange(0, charIndex)]; // !!!: performance critical
-    
-    if (lastLineBreakIndex != NSNotFound) {
-        NSString *beforeBreakCandidate = [[textStorage string] substringWithRange:NSMakeRange(lastLineBreakIndex,
-                                                                                              charIndex - lastLineBreakIndex)];
+    // check if the character is the first non-whitespace character after indent
+    NSString *string = [[self attributedString] string];
+    while (charIndex > 0) {
+        unichar character = [string characterAtIndex:charIndex];
         
-        // check if beforeBreakCandidate consists only of indent chars
-        if ([[beforeBreakCandidate stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
-            return NO;
-        }
+        if (character != ' ' && character != '\t') { return YES; }  // hit to non-indent character
+        if (character == '\n') { return NO; }  // the line ended
+        
+        charIndex--;
     }
     
-    return YES;
+    return NO;
 }
 
 @end

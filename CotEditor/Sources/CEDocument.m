@@ -246,8 +246,15 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
     [self setShouldSaveXattr:(xattrEncoding != NSNotFound) || ([data length] == 0)];
     
+    NSString *string;
     NSStringEncoding usedEncoding;
-    NSString *string = [self stringFromData:data encoding:[self readingEncoding] xattrEncoding:xattrEncoding usedEncoding:&usedEncoding error:outError];
+    
+    if ([self readingEncoding] == CEAutoDetectEncoding) {
+        string = [self stringFromData:data xattrEncoding:xattrEncoding usedEncoding:&usedEncoding error:outError];
+    } else {  // interpret with specific encoding
+        usedEncoding = [self readingEncoding];
+        string = ([data length] > 0) ? [NSString stringWithContentsOfURL:url encoding:[self readingEncoding] error:outError] : @"";
+    }
     BOOL hasUTF8BOM = (usedEncoding == NSUTF8StringEncoding) ? [data hasUTF8BOM] : NO;
     
     if (!string) { return NO; }
@@ -985,7 +992,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         *outError = [NSError errorWithDomain:CEErrorDomain
                                         code:CEReinterpretationFailedError
                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret.", nil),
-                                               NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] path], encodingName],
+                                               NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] lastPathComponent], encodingName],
                                                NSStringEncodingErrorKey: @(encoding),
                                                NSURLErrorKey: [self fileURL],
                                                }];
@@ -1255,7 +1262,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
         if ([self isDocumentEdited]) {
             NSAlert *alert = [[NSAlert alloc] init];
-            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] path]]];
+            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] lastPathComponent]]];
              [alert setInformativeText:NSLocalizedString(@"Do you want to discard the changes and reset the file encoding?", nil)];
              [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
              [alert addButtonWithTitle:NSLocalizedString(@"Discard Changes", nil)];
@@ -1379,16 +1386,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 //------------------------------------------------------
-/// データから指定エンコードで文字列を読み込み返す
-- (nullable NSString *)stringFromData:(nonnull NSData *)data encoding:(NSStringEncoding)encoding xattrEncoding:(NSStringEncoding)xattrEncoding usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+/// データから指定エンコードで文字列を読み込み返す (auto detection)
+- (nullable NSString *)stringFromData:(nonnull NSData *)data xattrEncoding:(NSStringEncoding)xattrEncoding usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    if (encoding != CEAutoDetectEncoding) {  // interpret with specific encoding
-        *usedEncoding = encoding;
-        return ([data length] > 0) ? [[NSString alloc] initWithData:data encoding:encoding] : @"";
-    }
-    
-    // Auto-Detection
     NSString *string;
     
     // try interpreting with xattr encoding
@@ -1411,13 +1412,17 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (string) {
         // "charset=" や "encoding=" を読んでみて適正なエンコーディングが得られたら、そちらを優先
         NSStringEncoding scannedEncoding = [self scanEncodingDeclarationInString:string];
-        if (scannedEncoding != NSNotFound && scannedEncoding != encoding) {
+        if (scannedEncoding != NSNotFound && scannedEncoding != *usedEncoding) {
             NSString *tmpString = [[NSString alloc] initWithData:data encoding:scannedEncoding];
             if (tmpString) {
                 *usedEncoding = scannedEncoding;
                 return tmpString;
             }
         }
+    } else if (outError) {
+        *outError = [NSError errorWithDomain:NSCocoaErrorDomain
+                                        code:NSFileReadUnknownStringEncodingError
+                                    userInfo:nil];
     }
     
     return string;
