@@ -15,6 +15,7 @@ develop
 ### Fixes
 
 - Fix an issue where application could crash on opening empty file.
+- Fix an issue where `cot` command could fail creating new empty file.
 
 
 
