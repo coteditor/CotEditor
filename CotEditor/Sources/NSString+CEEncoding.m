@@ -277,6 +277,8 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
 - (BOOL)hasUTF8BOM
 //------------------------------------------------------
 {
+    if ([self length] < 3) { return NO; }
+    
     return !memcmp([self bytes], kUTF8Bom, 3);
 }
 
