@@ -292,9 +292,9 @@ static CGFontRef BoldLineNumberFont;
         for (NSValue *selectedLineValue in selectedLineRanges) {
             NSRange selectedRange = [selectedLineValue rangeValue];
             
-            if (NSLocationInRange(lineRange.location, selectedRange) &&
-                (isVerticalText && ((lineRange.location == selectedRange.location) ||
-                                    (NSMaxRange(lineRange) == NSMaxRange(selectedRange)))))
+            if ((!isVerticalText && NSLocationInRange(lineRange.location, selectedRange)) ||
+                (isVerticalText && (lineRange.location == selectedRange.location ||
+                                    NSMaxRange(lineRange) == NSMaxRange(selectedRange))))
             {
                 isSelected = YES;
                 break;
