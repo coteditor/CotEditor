@@ -792,7 +792,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
          NSDictionary<NSString *, id> *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
          fileModificationDate = [fileAttrs fileModificationDate];
      }];
-    if ([fileModificationDate isEqualTo:[self fileModificationDate]]) { return; }
+    if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
     
     // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
     __block NSData *MD5;
