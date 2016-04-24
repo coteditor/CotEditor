@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-2.5.1 (119)
+2.5.1 (120)
 --------------------------
 
 ### Improvements
@@ -16,6 +16,7 @@ Change Log
 
 - Fix an issue where application could crash on opening empty file.
 - Fix an issue where `cot` command could fail creating new empty file.
+- Fix an issue where selected line numbers were not drawn in bold font.
 
 
 
