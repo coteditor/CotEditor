@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A6F0D4E1B5500E100C2D03C"
                BuildableName = "CotEditor.app"
-               BlueprintName = "CotEditor (AppStore)"
+               BlueprintName = "CotEditor -AppStore"
                ReferencedContainer = "container:CotEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -58,7 +58,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A6F0D4E1B5500E100C2D03C"
             BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor (AppStore)"
+            BlueprintName = "CotEditor -AppStore"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -81,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A6F0D4E1B5500E100C2D03C"
             BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor (AppStore)"
+            BlueprintName = "CotEditor -AppStore"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -100,7 +100,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A6F0D4E1B5500E100C2D03C"
             BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor (AppStore)"
+            BlueprintName = "CotEditor -AppStore"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
