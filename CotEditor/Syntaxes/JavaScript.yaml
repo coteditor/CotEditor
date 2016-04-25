@@ -4,14 +4,26 @@ filenames: []
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "2.0.3"
+  version: "2.1.0"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2016-04-19"
 completions: []
 outlineMenu:
 - beginString: "^([\\t ]*)(function)([^{]*)\\{"
-  description: "function"
   keyString: "$1$2 : $3"
+  description: "function"
+- beginString: "^([\\t ]*)(static +)(\\w+\\(.*\\))[\\t ]*(?=\\{)"
+  keyString: "$1$3"
+  description: "method"
+- beginString: "^([\\t ]*)class +(\\w+)[\\t ]*(?=\\{)"
+  bold: true
+  description: "class"
+  keyString: "$1$2"
+- beginString: "^([\\t ]*)class +(\\w+)[\\t ]+extends[\\t ]+(\\w+)"
+  bold: true
+  description: "extended class"
+  italic: true
+  keyString: "$1$2 extends $3"
 commands:
 - beginString: "\\babord(?=\\()"
   regularExpression: true
@@ -51,6 +63,8 @@ commands:
   regularExpression: true
 - beginString: "\\bfrom(?=\\()"
   regularExpression: true
+- beginString: "\\bget(?=\\()"
+  regularExpression: true
 - beginString: "\\bgo(?=\\()"
   regularExpression: true
 - beginString: "\\bgroup(?=\\()"
@@ -80,6 +94,8 @@ commands:
 - beginString: "\\bof(?=\\()"
   regularExpression: true
 - beginString: "\\bprofile(?=\\()"
+  regularExpression: true
+- beginString: "\\bset(?=\\()"
   regularExpression: true
 - beginString: "\\bsmall(?=\\()"
   regularExpression: true
@@ -207,7 +223,6 @@ commands:
 - beginString: "frontFace"
 - beginString: "fround"
 - beginString: "generateMipmap"
-- beginString: "get"
 - beginString: "getActiveAttrib"
 - beginString: "getActiveUniform"
 - beginString: "getAdDataURL"
@@ -420,7 +435,6 @@ commands:
 - beginString: "scrollTo"
 - beginString: "seal"
 - beginString: "search"
-- beginString: "set"
 - beginString: "setAttribute"
 - beginString: "setAttributeNode"
 - beginString: "setAttributeNodeNS"
@@ -1010,7 +1024,7 @@ attributes:
 - beginString: "xmlStandalone"
 - beginString: "xmlVersion"
 characters:
-- beginString: "/\\S+/[gimy]*"
+- beginString: "/\\S+/[gimy]*\\b"
   regularExpression: true
 comments:
 - beginString: "^#\\!/.*"
@@ -1186,6 +1200,8 @@ strings:
   endString: "\""
 - beginString: "'"
   endString: "'"
+- beginString: "`"
+  endString: "`"
 keywords:
 - beginString: "break"
 - beginString: "case"
@@ -1205,6 +1221,7 @@ keywords:
 - beginString: "finally"
 - beginString: "for"
 - beginString: "function"
+- beginString: "get"
 - beginString: "if"
 - beginString: "implements"
 - beginString: "import"
@@ -1220,6 +1237,7 @@ keywords:
 - beginString: "protected"
 - beginString: "public"
 - beginString: "return"
+- beginString: "set"
 - beginString: "static"
 - beginString: "super"
 - beginString: "switch"
