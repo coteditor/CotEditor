@@ -12,6 +12,7 @@ Change Log
     - Improve outline definitions to support the class syntax sugar introduced in ECMAScript 6.
     - Better coloring for “get” and “set”.
 
+
 ### Fixes
 
 - Fix an issue where application could crash on opening empty file.
