@@ -179,7 +179,7 @@ static NSString *HiraginoSansName;
     }
     
     // draw invisibles
-    if ([self showsInvisibles] || [[self invisibleLines] count] > 0) {
+    if ([self showsInvisibles] && [[self invisibleLines] count] > 0) {
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         NSString *completeString = [[self textStorage] string];
         CGFloat baselineOffset = [self defaultBaselineOffsetForFont:[self textFont]];

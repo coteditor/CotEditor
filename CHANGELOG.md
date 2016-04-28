@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Fix an issue where invisible characters could not be hide.
+
+
+
 2.5.1 (120)
 --------------------------
 
