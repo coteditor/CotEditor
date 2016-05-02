@@ -8,6 +8,7 @@ develop
 ### Fixes
 
 - Fix an issue where invisible characters could not be hide.
+- Fix line-wrapping behavior when the line contains a long unbreakable word.
 
 
 
