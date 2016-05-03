@@ -8,6 +8,7 @@ develop
 ### Fixes
 
 - Fix an issue where invisible characters could not be hide.
+- Fix an issue where application could crash if the “Replace All” button was clicked continuous.
 - Fix an issue where application crashed on closing default window size setting window.
 - Fix line-wrapping behavior when the line contains a long unbreakable word.
 
