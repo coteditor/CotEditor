@@ -55,6 +55,7 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (nonatomic, nonnull) CEFindPanelController *findPanelController;
 @property (nonatomic, nonnull) NSNumberFormatter *integerFormatter;
 @property (nonatomic, nonnull) NSColor *highlightColor;
+@property (nonatomic, nonnull) NSMutableSet<NSTextView *> *busyTextViews;
 
 #pragma mark Settings
 @property (readonly, nonatomic) BOOL usesRegularExpression;
@@ -173,6 +174,7 @@ static const NSUInteger kMaxHistorySize = 20;
         _findString = @"";
         _replacementString = @"";
         _findPanelController = [[CEFindPanelController alloc] init];
+        _busyTextViews = [NSMutableSet set];
         _integerFormatter = [[NSNumberFormatter alloc] init];
         [_integerFormatter setUsesGroupingSeparator:YES];
         [_integerFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -354,6 +356,8 @@ static const NSUInteger kMaxHistorySize = 20;
     OGRegularExpression *regex = [self regex];
     NSArray<NSValue *> *scopeRanges = [self scopeRanges];
     
+    [[self busyTextViews] addObject:textView];
+    
     // -> [caution] numberOfGroups becomes 0 if non-regex + non-delimit-by-spaces
     NSUInteger numberOfGroups = [self usesRegularExpression] ? [regex numberOfGroups] + 1 : [regex numberOfGroups];
     NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups ?: 1];
@@ -392,6 +396,7 @@ static const NSUInteger kMaxHistorySize = 20;
             while ((match = [enumerator nextObject])) {
                 if (isCancelled) {
                     [indicator close:self];
+                    [[self busyTextViews] removeObject:textView];
                     return;
                 }
                 
@@ -464,6 +469,8 @@ static const NSUInteger kMaxHistorySize = 20;
                     [indicator close:self];
                 }
             }
+            
+            [[self busyTextViews] removeObject:textView];
         });
     });
     
@@ -482,6 +489,8 @@ static const NSUInteger kMaxHistorySize = 20;
     NSTextView *textView = [self client];
     OGRegularExpression *regex = [self regex];
     NSArray<NSValue *> *scopeRanges = [self scopeRanges];
+    
+    [[self busyTextViews] addObject:textView];
     
     // -> [caution] numberOfGroups becomes 0 if non-regex + non-delimit-by-spaces
     NSUInteger numberOfGroups = [self usesRegularExpression] ? [regex numberOfGroups] + 1 : [regex numberOfGroups];
@@ -517,6 +526,7 @@ static const NSUInteger kMaxHistorySize = 20;
             while ((match = [enumerator nextObject])) {
                 if (isCancelled) {
                     [indicator close:self];
+                    [[self busyTextViews] removeObject:textView];
                     return;
                 }
                 
@@ -564,6 +574,8 @@ static const NSUInteger kMaxHistorySize = 20;
                     [indicator close:self];
                 }
             }
+            
+            [[self busyTextViews] removeObject:textView];
         });
     });
     
@@ -628,6 +640,8 @@ static const NSUInteger kMaxHistorySize = 20;
     BOOL inSelection = [self inSelection];
     NSString *string = [textView string];
     
+    [[self busyTextViews] addObject:textView];
+    
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
     __block BOOL isCancelled = NO;
@@ -661,6 +675,7 @@ static const NSUInteger kMaxHistorySize = 20;
             while ((match = [enumerator nextObject])) {
                 if (isCancelled) {
                     [indicator close:self];
+                    [[self busyTextViews] removeObject:textView];
                     return;
                 }
                 
@@ -701,6 +716,8 @@ static const NSUInteger kMaxHistorySize = 20;
             if ([self closesIndicatorWhenDone]) {
                 [indicator close:self];
             }
+            
+            [[self busyTextViews] removeObject:textView];
         });
     });
     
@@ -924,6 +941,11 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     if (![self client]) {
+        NSBeep();
+        return NO;
+    }
+    
+    if ([[self busyTextViews] containsObject:[self client]]) {
         NSBeep();
         return NO;
     }
