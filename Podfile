@@ -23,6 +23,6 @@ pod 'Sparkle'
 
 # AppStore target
 target :appstore, :exclusive => true do
-    link_with 'CotEditor (AppStore)'
+    link_with 'CotEditor -AppStore'
     shared_pods
 end

@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -133,37 +133,44 @@ const CGFloat kFontSize = 11;
 
 
 
-#pragma mark -
+/// Map find actions to NSTextFinder, since find action key bindings are configured for CETextFinder.
+@implementation CEConsolePanelController (TextFinderSupport)
 
-@implementation CEConsoleTextView
+#pragma mark Action Messages
 
 // ------------------------------------------------------
-/// catch shortcut input
-- (BOOL)performKeyEquivalent:(nonnull NSEvent *)theEvent
+/// bridge find action to NSTextFinder
+- (IBAction)showFindPanel:(nullable id)sender
 // ------------------------------------------------------
 {
-    // Since the Find menu is overridden by OgreKit framework, we need catch shortcut input manually for find actions.
-    NSTextFinder *textFinder = [(CEConsolePanelController *)[[self window] windowController] textFinder];
-    
-    if ([[theEvent characters] isEqualToString:@"f"]) {
-        [textFinder performAction:NSTextFinderActionShowFindInterface];
-        return YES;
-        
-    } else if ([[theEvent characters] isEqualToString:@"g"] && [theEvent modifierFlags] & NSShiftKeyMask) {
-        [textFinder performAction:NSTextFinderActionPreviousMatch];
-        return YES;
-        
-    } else if ([[theEvent characters] isEqualToString:@"g"]) {
-        [textFinder performAction:NSTextFinderActionNextMatch];
-        return YES;
-        
-    } else if ([[theEvent characters] isEqualToString:@"e"]) {
-        [textFinder performAction:NSTextFinderActionSetSearchString];
-        return YES;
-        
-    }
-    
-    return NO;
+    [[self textFinder] performAction:NSTextFinderActionShowFindInterface];
+}
+
+
+// ------------------------------------------------------
+/// bridge find action to NSTextFinder
+- (IBAction)findNext:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self textFinder] performAction:NSTextFinderActionNextMatch];
+}
+
+
+// ------------------------------------------------------
+/// bridge find action to NSTextFinder
+- (IBAction)findPrevious:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self textFinder] performAction:NSTextFinderActionPreviousMatch];
+}
+
+
+// ------------------------------------------------------
+/// bridge find action to NSTextFinder
+- (IBAction)useSelectionForFind:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self textFinder] performAction:NSTextFinderActionSetSearchString];
 }
 
 @end

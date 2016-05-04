@@ -2,6 +2,18 @@
 Change Log
 ==========================
 
+2.5.2 (123)
+--------------------------
+
+### Fixes
+
+- Fix an issue where invisible characters could not be hide.
+- Fix an issue where application could crash if the “Replace All” button was clicked continuous.
+- Fix an issue where application crashed on closing default window size setting window.
+- Fix line-wrapping behavior when the line contains a long unbreakable word.
+
+
+
 2.5.1 (120)
 --------------------------
 
@@ -11,6 +23,7 @@ Change Log
 - Update “JavaScript” syntax style:
     - Improve outline definitions to support the class syntax sugar introduced in ECMAScript 6.
     - Better coloring for “get” and “set”.
+
 
 ### Fixes
 

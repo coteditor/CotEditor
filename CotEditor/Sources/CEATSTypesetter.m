@@ -128,8 +128,8 @@
     while (charIndex > 0) {
         unichar character = [string characterAtIndex:charIndex];
         
-        if (character != ' ' && character != '\t') { return YES; }  // hit to non-indent character
         if (character == '\n') { return NO; }  // the line ended
+        if (character != ' ' && character != '\t') { return NO; }  // hit to non-indent character
         
         charIndex--;
     }

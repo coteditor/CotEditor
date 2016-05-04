@@ -116,6 +116,17 @@ class EncodingDetectionTests: XCTestCase {
         XCTAssertTrue(didCatchError, "NSString+CEEncoding didn't throw error.")
         XCTAssertNil(string)
         XCTAssertEqual(Int(encoding), NSNotFound)
+        XCTAssertFalse(data.hasUTF8BOM())
+    }
+    
+    
+    func testUTF8BOMData() {
+        let withBOMData = self.dataForFileName("UTF-8 BOM")
+        XCTAssertTrue(withBOMData.hasUTF8BOM())
+        
+        let data = self.dataForFileName("UTF-8")
+        XCTAssertFalse(data.hasUTF8BOM())
+        XCTAssertTrue(data.dataByAddingUTF8BOM().hasUTF8BOM())
     }
     
     
