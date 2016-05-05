@@ -65,11 +65,6 @@
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
 
 
-#ifndef APPSTORE
-@property (nonatomic, nullable) CEUpdaterManager *updaterDelegate;
-#endif
-
-
 // readonly
 @property (readwrite, nonatomic, nonnull) NSURL *supportDirectoryURL;
 
