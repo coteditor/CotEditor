@@ -48,7 +48,7 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSCharacterSet *> *simpleWordsCharacterSets;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
 
-@property (nonatomic, nullable, copy) NSDictionary *cachedHighlights;  // extracted results cache of the last whole string highlighs
+@property (nonatomic, nullable, copy) NSDictionary<NSString *, NSArray *> *cachedHighlights;  // extracted results cache of the last whole string highlighs
 @property (nonatomic, nullable, copy) NSString *cachedHash;  // MD5 hash
 
 
@@ -442,7 +442,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     }
     
     __weak typeof(self) weakSelf = self;
-    [parser parseRange:highlightRange completionHandler:^(NSDictionary<NSString *,NSArray<NSValue *> *> * _Nonnull highlights)
+    [parser parseRange:highlightRange completionHandler:^(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull highlights)
      {
          typeof(self) self = weakSelf;  // strong self
          if (!self) {  // This block can be passed if the syntax style is already discarded.
@@ -503,18 +503,14 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 - (void)applyHighlights:(NSDictionary<NSString *, NSArray<NSValue *> *> *)highlights range:(NSRange)highlightRange layoutManager:(nonnull NSLayoutManager *)layoutManager
 // ------------------------------------------------------
 {
-    // 現在あるカラーリングを削除
+    // remove current highlights
     [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
                           forCharacterRange:highlightRange];
     
-    // カラーリング実行
+    // apply color to layoutManager
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
     for (NSString *syntaxType in kSyntaxDictKeys) {
         NSArray<NSValue *> *ranges = highlights[syntaxType];
-        
-        if ([ranges count] == 0) { continue; }
-        
-        // get color from theme
         NSColor *color = [theme syntaxColorForType:syntaxType] ?: [theme textColor];
         
         for (NSValue *rangeValue in ranges) {

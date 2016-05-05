@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Optimize performance to apply syntax highlight to document significantly.
 - Enable move between input fields in syntax style editor with Tab key.
 
 
