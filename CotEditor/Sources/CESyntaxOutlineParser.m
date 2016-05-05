@@ -167,7 +167,6 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
                  
                  // replace whitespaces
                  title = [title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-                 title = [title stringByReplacingOccurrencesOfString:@"\t" withString:@"    "];
                  
                  // font styles (unwrap once to avoid setting nil to dict)
                  BOOL isBold = [definition[CESyntaxBoldKey] boolValue];
