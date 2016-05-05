@@ -125,13 +125,11 @@
     
     // check if the character is the first non-whitespace character after indent
     NSString *string = [[self attributedString] string];
-    while (charIndex > 0) {
-        unichar character = [string characterAtIndex:charIndex];
+    for (NSInteger index = charIndex - 1; index >= 0; index--) {
+        unichar character = [string characterAtIndex:index];
         
-        if (character == '\n') { return NO; }  // the line ended
-        if (character != ' ' && character != '\t') { return NO; }  // hit to non-indent character
-        
-        charIndex--;
+        if (character == '\n') { return NO; }  // the line ended before hitting indent chars
+        if (character != ' ' && character != '\t') { return YES; }  // hit to non-indent character
     }
     
     return NO;

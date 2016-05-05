@@ -7,6 +7,15 @@ develop
 
 ### Fixes
 
+- Fix an issue where wordwrap broke mid-word when a line is indented. 
+
+
+
+2.5.2 (123)
+--------------------------
+
+### Fixes
+
 - Fix an issue where invisible characters could not be hide.
 - Fix an issue where application could crash if the “Replace All” button was clicked continuous.
 - Fix an issue where application crashed on closing default window size setting window.
