@@ -132,7 +132,7 @@
         if (character != ' ' && character != '\t') { return YES; }  // hit to non-indent character
     }
     
-    return NO;
+    return NO;  // didn't hit to line-break (= first line)
 }
 
 @end
