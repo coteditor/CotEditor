@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Enable move between input fields in syntax style editor with Tab key.
+
+
 ### Fixes
 
 - Fix an issue where wordwrap broke mid-word when a line is indented. 
