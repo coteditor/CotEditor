@@ -458,7 +458,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
              }
              
              // apply color (or give up if the editor's string is changed from the analized string)
-             if ([[textStorage string] isEqualToString:wholeString]) {
+             if ([[textStorage string] length] == [wholeString length]) {
                  // update indicator message
                  if (indicator) {
                      [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
