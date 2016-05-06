@@ -179,7 +179,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [self applyTypingAttributes];
         
         // observe change of defaults
-        for (NSString *key in [CETextView observedDefaultKeys]) {
+        for (NSString *key in [[self class] observedDefaultKeys]) {
             [[NSUserDefaults standardUserDefaults] addObserver:self
                                                     forKeyPath:key
                                                        options:NSKeyValueObservingOptionNew
@@ -196,7 +196,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)dealloc
 // ------------------------------------------------------
 {
-    for (NSString *key in [CETextView observedDefaultKeys]) {
+    for (NSString *key in [[self class] observedDefaultKeys]) {
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -680,6 +680,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setFont:(nullable NSFont *)font
 // ------------------------------------------------------
 {
+    if (!font) { return; }
+    
     // make sure font is screen font for hanging indent calcration
     font = [font screenFont] ?: font;
     
@@ -1015,7 +1017,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 //=======================================================
 
 // ------------------------------------------------------
-/// ユーザ設定の変更を反映する
+/// apply change of user setting
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
 // ------------------------------------------------------
 {
@@ -1032,6 +1034,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         
     } else if ([keyPath isEqualToString:CEDefaultPageGuideColumnKey]) {
         [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+        
+    } else if ([keyPath isEqualToString:CEDefaultTabWidthKey]) {
+        [self setTabWidth:[newValue unsignedIntegerValue]];
         
     } else if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] ||
                [keyPath isEqualToString:CEDefaultHangingIndentWidthKey])
@@ -1067,6 +1072,24 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             // remove current links
             [[self textStorage] removeAttribute:NSLinkAttributeName range:NSMakeRange(0, [[self string] length])];
         }
+    
+    } else if ([keyPath isEqualToString:CEDefaultFontNameKey] || [keyPath isEqualToString:CEDefaultFontSizeKey]) {
+        NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey]
+                                       size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey]];
+        font = [font screenFont] ?: font;
+        [self setFont:font];
+        
+    } else if ([keyPath isEqualToString:CEDefaultShouldAntialiasKey]) {
+        [(CELayoutManager *)[self layoutManager] setUsesAntialias:[newValue boolValue]];
+        [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+        
+    } else if ([keyPath isEqualToString:CEDefaultLineSpacingKey]) {
+        [self setLineSpacingAndUpdate:(CGFloat)[newValue doubleValue]];
+        
+    } else if ([keyPath isEqualToString:CEDefaultFixLineHeightKey]) {
+        CELayoutManager *layoutManager = (CELayoutManager *)[self layoutManager];
+        [layoutManager setFixesLineHeight:[newValue boolValue]];
+        [layoutManager invalidateLayoutForCharacterRange:NSMakeRange(0, [[self string] length]) actualCharacterRange:NULL];
     }
 }
 
@@ -1368,7 +1391,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// 変更を監視するデフォルトキー
+/// default keys to observe update
 + (nonnull NSArray<NSString *> *)observedDefaultKeys
 // ------------------------------------------------------
 {
@@ -1379,9 +1402,16 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
              CEDefaultEnableSmartQuotesKey,
              CEDefaultEnableSmartDashesKey,
              CEDefaultEnableAutoSpellingCorrectionKey,
+             CEDefaultTabWidthKey,
              CEDefaultHangingIndentWidthKey,
              CEDefaultEnablesHangingIndentKey,
-             CEDefaultAutoLinkDetectionKey];
+             CEDefaultAutoLinkDetectionKey,
+             CEDefaultFontNameKey,
+             CEDefaultFontSizeKey,
+             CEDefaultShouldAntialiasKey,
+             CEDefaultLineSpacingKey,
+             CEDefaultFixLineHeightKey,
+             ];
 }
 
 

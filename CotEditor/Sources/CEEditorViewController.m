@@ -83,6 +83,9 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
+    for (NSString *key in [[self class] observedDefaultKeys]) {
+        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_textStorage removeLayoutManager:[_textView layoutManager]];
@@ -125,6 +128,14 @@
                                                  name:CEThemeDidUpdateNotification
                                                object:nil];
     
+    // observe change of defaults
+    for (NSString *key in [[self class] observedDefaultKeys]) {
+        [[NSUserDefaults standardUserDefaults] addObserver:self
+                                                forKeyPath:key
+                                                   options:NSKeyValueObservingOptionNew
+                                                   context:NULL];
+    }
+    
     // リサイズに現在行ハイライトを追従
     if (_highlightsCurrentLine) {
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -138,6 +149,26 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf highlightCurrentLine];
     });
+}
+
+
+// ------------------------------------------------------
+/// apply change of user setting
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
+// ------------------------------------------------------
+{
+    id newValue = change[NSKeyValueChangeNewKey];
+    
+    if ([keyPath isEqualToString:CEDefaultHighlightCurrentLineKey]) {
+        [self setHighlightsCurrentLine:[newValue boolValue]];
+        if ([self highlightsCurrentLine]) {
+            [self highlightCurrentLine];
+        } else {
+            NSRect rect = [[self textView] highlightLineRect];
+            [[self textView] setHighlightLineRect:NSZeroRect];
+            [[self textView] setNeedsDisplayInRect:rect avoidAdditionalLayout:YES];
+        }
+    }
 }
 
 
@@ -505,6 +536,15 @@
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// default keys to observe update
++ (nonnull NSArray<NSString *> *)observedDefaultKeys
+// ------------------------------------------------------
+{
+    return @[CEDefaultHighlightCurrentLineKey,
+             ];
+}
 
 // ------------------------------------------------------
 /// return shared sytnax style
