@@ -121,10 +121,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
         [[self textContainer] replaceLayoutManager:layoutManager];
         
-        // This method is partly based on Smultron's SMLTextView by Peter Borg. (2006-09-09)
-        // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
-        // Copyright (c) 2004-2006 Peter Borg
-        
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
         _tabWidth = [defaults integerForKey:CEDefaultTabWidthKey];
         
