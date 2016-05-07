@@ -23,48 +23,25 @@
 <p>The General preferences control various overall behaviors of CotEditor.</p>
 
 <dl>
-	<dt>Application</dt>
-	<dd>You can set the general application behavior.</dd>
-	<dd><dl>
-		<dt>Share find text with other applications</dt>
-		<dd>With this option selected, the Find panel automatically retrieves the latest Find string searched in another Cocoa application.</dd>
-		
-		<dt>Inline script menu items into contextual menu</dt>
-		<dd>With this option selected, the contents of the Script menu items, which are in the Script submenu by default, appear inlined in the contextual menu.</dd>
-		
-		<dt>Count each line ending as one character</dt>
-		<dd>With this option selected, the character count displayed in the document inspector and the status bar includes line endings.</dd>
-		
-		<dt>Link URL in document</dt>
-		<dd>With this option selected, automatically link to the URL found in the document.</dd>
-		
-		<dt>Check spelling as you type</dt>
-		<dd>This option allows you to automatically check your spelling as you type.</dd>
-		
-		<dt>Highlight matching braces “( )” “[ ]” “{ }”</dt>
-		<dd>When this option turned on, CotEditor briefly highlights the corresponding opening brace when you write a closing brace.</dd>
-		<dd><dl>
-			<dt>Highlight &quot;&lt; &gt;&quot;</dt>
-			<dd>If this is on, highlighting will apply to angle brackets “&lt; &gt;” as well.</dd>
-		</dl></dd>
-	</dl></dd>
-	
 	<dt>Open a new document</dt>
 	<dd>You can set the timing to create a new document automatically.</dd>
 	<dd><dl>
 		
 		<dt>On launch</dt>
-		<dd>When this option is selected, a new blank document will be opened when you launch CotEditor.</dd>
+		<dd>With this option turned on, a new blank document will be opened when you launch CotEditor.</dd>
 		
 		<dt>When CotEditor becomes active</dt>
-		<dd>With this option selected, a new blank document will be opened when you click CotEditor's icon in the Dock and you had no window already open.</dd>
+		<dd>With this option turned on, a new blank document will be opened when you click CotEditor's icon in the Dock and you had no window already open.</dd>
 	</dl></dd>
 	
-	<dt>Auto Save documents</dt>
+	<dt>Document save</dt>
 	<dd>You can set the way to make document backup.</dd>
 	<dd><dl>
 		<dt>Enable Auto Save with Versions</dt>
 		<dd>With this option turned on, document automatically saves changes to your file constantly while editing. This option also enables Versions, the modern system feature allowing you to go back to previous versions, as well as modifying document name or location from the window title bar.<br/>Even if it turned off, CotEditor creates backup covertly for unexpected crash.</dd>
+		
+		<dt>Trim trailing whitespace on save</dt>
+		<dd>With this option turned on, whitespaces at the end of lines are removed automatically every time when document will be saved.</dd>
 	</dl></dd>
 	
 	<dt>When document is modified by another application:</dt>
@@ -80,14 +57,40 @@
 		<dd>Update editor's text to the latest version silently when the file was modified by another application. Take notice that the undo history will also be cleared after updating.</dd>
 	</dl></dd>
 	
+	<dt>Application</dt>
+	<dd>You can set the general application behavior.</dd>
+	<dd><dl>
+		<dt>Share find text with other applications</dt>
+		<dd>With this option turned on, the Find panel automatically retrieves the latest Find string searched in another Cocoa application.</dd>
+		
+		<dt>Inline script menu items into contextual menu</dt>
+		<dd>With this option turned on, the contents of the Script menu items, which are in the Script submenu by default, appear inlined in the contextual menu.</dd>
+		
+		<dt>Count each line ending as one character</dt>
+		<dd>With this option turned on, the character count displayed in the document inspector and the status bar includes line endings.</dd>
+		
+		<dt>Link URL in document</dt>
+		<dd>With this option turned on, automatically link to the URL found in the document.</dd>
+		
+		<dt>Check spelling as you type</dt>
+		<dd>This option allows you to automatically check your spelling as you type.</dd>
+		
+		<dt>Highlight matching braces “( )” “[ ]” “{ }”</dt>
+		<dd>When this option turned on, CotEditor briefly highlights the corresponding opening brace when you write a closing brace.</dd>
+		<dd><dl>
+			<dt>Highlight &quot;&lt; &gt;&quot;</dt>
+			<dd>If this is on, highlighting will apply to angle brackets “&lt; &gt;” as well.</dd>
+		</dl></dd>
+	</dl></dd>
+	
 	<dt>Software Update <span class="note">(only on non-AppStore ver.)</span></dt>
 	<dd>You can set software updater behavior.</dd>
 	<dd><dl>
 		<dt>Automatically check for updates</dt>
-		<dd>When this option is selected, CotEditor checks the existence of the new version via internet automatically on launch.  Then if the new one has been released, CotEditor notifies the information on a panel.</dd>
+		<dd>With this option turned on, CotEditor checks the existence of the new version via internet automatically on launch.  Then if the new one has been released, CotEditor notifies the information on a panel.</dd>
 		
 		<dt>Include pre-releases</dt>
-		<dd>When this option is selected, the updater also check about release of pre-release versions (beta versions). Take notice that they could be unstable.</dd>
+		<dd>With this option turned on, the updater also check about release of pre-release versions (beta versions). Take notice that they could be unstable.</dd>
 	</dl></dd>
 </dl>
 
