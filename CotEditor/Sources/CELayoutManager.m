@@ -35,7 +35,6 @@
 
 
 // constants
-static CGFloat const kDefaultLineHeightMultiple = 1.19;
 static NSString * _Nonnull const HiraginoSans = @"HiraginoSans-W3";  // since OS X 10.11 (El Capitan)
 static NSString * _Nonnull const HiraKakuProN = @"HiraKakuProN-W3";
 
@@ -301,7 +300,7 @@ static NSString *HiraginoSansName;
     
     // cache default line height
     CGFloat defaultLineHeight = textFont ? [self defaultLineHeightForFont:textFont] : 0.0;
-    [self setDefaultLineHeightForTextFont:defaultLineHeight * kDefaultLineHeightMultiple];
+    [self setDefaultLineHeightForTextFont:defaultLineHeight];
     
     // store width of space char for hanging indent width calculation
     NSFont *screenFont = [textFont screenFont] ? : textFont;
@@ -349,8 +348,7 @@ static NSString *HiraginoSansName;
 {
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[self firstTextView] lineSpacing];
 
-    // 小数点以下を返すと選択範囲が分離することがあるため、丸める
-    return round([self defaultLineHeightForTextFont] + lineSpacing * [[self textFont] pointSize]);
+    return ([self defaultLineHeightForTextFont] + lineSpacing * [[self textFont] pointSize]);
 }
 
 

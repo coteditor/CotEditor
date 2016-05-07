@@ -51,25 +51,25 @@
 {
     CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[[self currentTextContainer] textView] lineSpacing];
-
+    CGFloat spacing;
+    NSFont *font;
+    
     if (![manager fixesLineHeight]) {
-        CGFloat spacing = [super lineSpacingAfterGlyphAtIndex:glyphIndex withProposedLineFragmentRect:rect];
-        CGFloat fontSize = [[[[self currentTextContainer] textView] font] pointSize];
-
-        return (spacing + lineSpacing * fontSize);
+        spacing = [super lineSpacingAfterGlyphAtIndex:glyphIndex withProposedLineFragmentRect:rect];
+        font = [[[self currentTextContainer] textView] font];
+        
+    } else {
+        // 複合フォントで行の高さがばらつくのを防止する
+        // （CELayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
+        // 通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない）
+        // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
+        // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
+        // 挿入すると行間がズレる」問題が生じる）
+        spacing = [manager defaultLineHeightForTextFont] - rect.size.height;
+        font = [manager textFont];
     }
     
-    // 複合フォントで行の高さがばらつくのを防止する
-    // （CELayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
-    // 通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない）
-    // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
-    // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-    // 挿入すると行間がズレる」問題が生じる）
-    CGFloat defaultLineHeight = [manager defaultLineHeightForTextFont];
-    CGFloat fontSize = [[manager textFont] pointSize];
-
-    // 小数点以下を返すと選択範囲が分離することがあるため、丸める
-    return round(defaultLineHeight - rect.size.height + lineSpacing * fontSize);
+    return (lineSpacing * [font pointSize] + spacing);
 }
 
 
