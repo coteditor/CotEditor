@@ -8,7 +8,7 @@ develop
 ### Improvements
 
 - Optimize performance to apply syntax highlight to document significantly.
-- Now, the setting changes of status bar, appearance and tab are applied to documents immediately.
+- Now, the setting changes of status bar, appearance tab and invisible chars are applied to documents immediately.
 - Enable move between input fields in syntax style editor with Tab key.
 
 

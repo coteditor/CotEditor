@@ -105,24 +105,9 @@ static NSString *HiraginoSansName;
 {
     self = [super init];
     if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
         _invisiblesColor = [NSColor disabledControlTextColor];
         
-        _invisibles = @[[CEInvisibles stringWithType:CEInvisibleSpace Index:[defaults integerForKey:CEDefaultInvisibleSpaceKey]],
-                        [CEInvisibles stringWithType:CEInvisibleTab Index:[defaults integerForKey:CEDefaultInvisibleTabKey]],
-                        [CEInvisibles stringWithType:CEInvisibleNewLine Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]],
-                        [CEInvisibles stringWithType:CEInvisibleFullWidthSpace Index:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]],
-                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:NULL],
-                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:NULL],
-                        ];
-        
-        // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）
-        _showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
-        _showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
-        _showsNewLine = [defaults boolForKey:CEDefaultShowInvisibleNewLineKey];
-        _showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
-        _showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
+        [self applyDefaultInvisiblesSetting];
         
         // Since NSLayoutManager's showsControlCharacters flag is totally buggy (at least on El Capitan),
         // we stopped using it since CotEditor 2.3.3 released in 2016-01.
@@ -133,8 +118,37 @@ static NSString *HiraginoSansName;
         
         [self setUsesScreenFonts:YES];
         [self setTypesetter:[[CEATSTypesetter alloc] init]];
+        
+        // observe change of defaults
+        for (NSString *key in [[self class] observedDefaultKeys]) {
+            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:key options:0 context:NULL];
+        }
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    for (NSString *key in [[self class] observedDefaultKeys]) {
+        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
+    }
+}
+
+
+// ------------------------------------------------------
+/// apply change of user setting
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
+// ------------------------------------------------------
+{
+    if ([[[self class] observedDefaultKeys] containsObject:keyPath]) {
+        [self applyDefaultInvisiblesSetting];
+        [self invalidateInvisiblesStyle];
+        [self invalidateLayoutForCharacterRange:NSMakeRange(0, [[self textStorage] length]) actualCharacterRange:NULL];
+    }
 }
 
 
@@ -403,6 +417,48 @@ static NSString *HiraginoSansName;
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// default keys to observe update
++ (nonnull NSArray<NSString *> *)observedDefaultKeys
+// ------------------------------------------------------
+{
+    return @[CEDefaultInvisibleSpaceKey,
+             CEDefaultInvisibleTabKey,
+             CEDefaultInvisibleNewLineKey,
+             CEDefaultInvisibleFullwidthSpaceKey,
+             
+             CEDefaultShowInvisibleSpaceKey,
+             CEDefaultShowInvisibleTabKey,
+             CEDefaultShowInvisibleNewLineKey,
+             CEDefaultShowInvisibleFullwidthSpaceKey,
+             ];
+}
+
+
+// ------------------------------------------------------
+/// apply invisible settings
+- (void)applyDefaultInvisiblesSetting
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.invisibles = @[[CEInvisibles stringWithType:CEInvisibleSpace Index:[defaults integerForKey:CEDefaultInvisibleSpaceKey]],
+                        [CEInvisibles stringWithType:CEInvisibleTab Index:[defaults integerForKey:CEDefaultInvisibleTabKey]],
+                        [CEInvisibles stringWithType:CEInvisibleNewLine Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]],
+                        [CEInvisibles stringWithType:CEInvisibleFullWidthSpace Index:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]],
+                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:NULL],
+                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:NULL],
+                        ];
+    
+    // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）
+    self.showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
+    self.showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
+    self.showsNewLine = [defaults boolForKey:CEDefaultShowInvisibleNewLineKey];
+    self.showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
+    self.showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
+}
+
 
 // ------------------------------------------------------
 /// cache CTLineRefs for invisible characters drawing
