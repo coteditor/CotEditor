@@ -30,6 +30,7 @@
 #import "CEAppearancePaneController.h"
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
+#import "CEInvisibles.h"
 #import "CEErrors.h"
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -43,6 +44,11 @@
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *themeTableView;
 @property (nonatomic, nullable, weak) IBOutlet NSBox *box;
 @property (nonatomic, nullable, weak) IBOutlet NSMenu *themeTableMenu;
+
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleSpaces;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleTabs;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleNewLines;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleFullWidthSpaces;
 
 @property (nonatomic, nullable) CEThemeViewController *themeViewController;
 @property (nonatomic, nullable, copy) NSArray<NSString *> *themeNames;
@@ -58,6 +64,23 @@
 @implementation CEAppearancePaneController
 
 #pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// initialize
+- (nullable instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
+// ------------------------------------------------------
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // setup popup menu items for invisible characters
+        _invisibleSpaces = [CEInvisibles spaceStrings];
+        _invisibleTabs = [CEInvisibles tabStrings];
+        _invisibleNewLines = [CEInvisibles newLineStrings];
+        _invisibleFullWidthSpaces = [CEInvisibles fullwidthSpaceStrings];
+    }
+    return self;
+}
+
 
 // ------------------------------------------------------
 /// clean up

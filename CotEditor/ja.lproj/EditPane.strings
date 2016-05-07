@@ -75,22 +75,6 @@
 "P9V-pV-PAX.title" = "スペース";
 
 
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
-"pjW-HE-ngH.title" = "不可視文字：";
-/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "CyH-q4-SWY"; */
-"CyH-q4-SWY.title" = "不可視文字を表示";
-/* Class = "NSButtonCell"; title = "Space"; ObjectID = "3257"; */
-"3257.title" = "スペース";
-/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "3260"; */
-"3260.title" = "タブ";
-/* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "3255"; */
-"3255.title" = "改行コード";
-/* Class = "NSButtonCell"; title = "Fullwidth-Space"; ObjectID = "3262"; */
-"3262.title" = "全角スペース";
-/* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "3263"; */
-"3263.title" = "ほかの不可視文字";
-
-
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
 "gDN-SU-sZH.title" = "入力補完：";
 

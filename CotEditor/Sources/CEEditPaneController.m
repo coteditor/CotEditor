@@ -27,7 +27,6 @@
  */
 
 #import "CEEditPaneController.h"
-#import "CEInvisibles.h"
 #import "CEDefaults.h"
 
 
@@ -36,10 +35,6 @@
 @property (nonatomic, nullable, weak) IBOutlet NSButton *smartQuoteCheckButton;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *smartDashCheckButton;
 
-@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleSpaces;
-@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleTabs;
-@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleNewLines;
-@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleFullWidthSpaces;
 @property (nonatomic, nonnull, copy) NSString *completionHintMessage;
 
 @end
@@ -54,31 +49,12 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initialize
-- (nullable instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
-// ------------------------------------------------------
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // setup popup menu items for invisible characters
-        _invisibleSpaces = [CEInvisibles spaceStrings];
-        _invisibleTabs = [CEInvisibles tabStrings];
-        _invisibleNewLines = [CEInvisibles newLineStrings];
-        _invisibleFullWidthSpaces = [CEInvisibles fullwidthSpaceStrings];
-        
-        [self updateCompletionHintMessage];
-    }
-    return self;
-}
-
-// ------------------------------------------------------
 /// nib name
 - (nullable NSString *)nibName
 // ------------------------------------------------------
 {
     return @"EditPane";
 }
-
 
 
 // ------------------------------------------------------
@@ -98,6 +74,8 @@
         [[self smartDashCheckButton] setState:NSOffState];
         [[self smartDashCheckButton] setToolTip:NSLocalizedString(@"Only on Mavericks and later", nil)];
     }
+    
+    [self updateCompletionHintMessage];
 }
 
 

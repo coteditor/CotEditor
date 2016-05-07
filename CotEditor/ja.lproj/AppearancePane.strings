@@ -43,6 +43,22 @@
 "ba7-dE-zXz.title" = "背景カラーを変更";
 
 
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
+"oAZ-6U-Ba8.title" = "不可視文字：";
+/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "gqy-Io-eUU"; */
+"gqy-Io-eUU.title" = "不可視文字を表示";
+/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
+"gcF-OM-SV0.title" = "スペース";
+/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
+"XSb-uU-5QP.title" = "タブ";
+/* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "Ont-7L-Uf5"; */
+"Ont-7L-Uf5.title" = "改行コード";
+/* Class = "NSButtonCell"; title = "Fullwidth-Space"; ObjectID = "Bf2-rS-2zu"; */
+"Bf2-rS-2zu.title" = "全角スペース";
+/* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "sxg-F3-ely"; */
+"sxg-F3-ely.title" = "ほかの不可視文字";
+
+
 /* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
 "Avf-y8-wXG.headerCell.title" = "テーマ";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */

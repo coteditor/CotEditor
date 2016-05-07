@@ -76,22 +76,6 @@
 "P9V-pV-PAX.title" = "个空格";
 
 
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
-"pjW-HE-ngH.title" = "不可见字符：";
-/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "CyH-q4-SWY"; */
-"CyH-q4-SWY.title" = "显示不可见文字";
-/* Class = "NSButtonCell"; title = "Space"; ObjectID = "3257"; */
-"3257.title" = "空格";
-/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "3260"; */
-"3260.title" = "Tab";
-/* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "3255"; */
-"3255.title" = "行尾";
-/* Class = "NSButtonCell"; title = "Fullwidth-Space"; ObjectID = "3262"; */
-"3262.title" = "全角空格";
-/* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "3263"; */
-"3263.title" = "其他不可见字符";
-
-
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
 "gDN-SU-sZH.title" = "补全：";
 

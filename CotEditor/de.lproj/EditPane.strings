@@ -75,22 +75,6 @@
 "P9V-pV-PAX.title" = "Leerraum";
 
 
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
-"pjW-HE-ngH.title" = "Unsichtbaren:";
-/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "CyH-q4-SWY"; */
-"CyH-q4-SWY.title" = "Unsichtbare Zeichen anzeigen";
-/* Class = "NSButtonCell"; title = "Space"; ObjectID = "3257"; */
-"3257.title" = "Leerzeichen";
-/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "3260"; */
-"3260.title" = "Tabulator";
-/* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "3255"; */
-"3255.title" = "Zeilenumbruch";
-/* Class = "NSButtonCell"; title = "Fullwidth-Space"; ObjectID = "3262"; */
-"3262.title" = "Vollbreite-Leerz.";  // Vollbreite-Leerzeichen
-/* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "3263"; */
-"3263.title" = "Andere Unsichtbare Zeichen";
-
-
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
 "gDN-SU-sZH.title" = "Vervollständigung:";
 
