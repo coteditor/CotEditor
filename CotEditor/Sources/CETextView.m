@@ -667,11 +667,21 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)changeFont:(nullable id)sender
 // ------------------------------------------------------
 {
-    // (引数"sender"はNSFontManegerのインスタンス)
+    if (![sender isKindOfClass:[NSFontManager class]]) { return; }
+    
     NSFont *newFont = [sender convertFont:[self font]];
 
     [self setFont:newFont];
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
+}
+
+
+// ------------------------------------------------------
+/// make sure to return by user defined font
+- (nullable NSFont *)font
+// ------------------------------------------------------
+{
+    return [(CELayoutManager *)[self layoutManager] textFont] ?: [super font];
 }
 
 
@@ -688,15 +698,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     // 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく。
     // （CELayoutManager で [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
     // 日本語フォント名を返してくることがあるため、CELayoutManager からは [textView font] を使わない）
-    
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
-    
-    // apply font change to all of layoutManagers in the other split editors (2016-03)
-    for (CELayoutManager *layoutManager in [[self textStorage] layoutManagers]) {
-        if (layoutManager == [self layoutManager]) { continue; }
-        [layoutManager setTextFont:font];
-        [layoutManager ensureLayoutForCharacterRange:NSMakeRange(0, [[layoutManager textStorage] length])];
-    }
     [super setFont:font];
     
     NSMutableParagraphStyle *paragraphStyle = [[self defaultParagraphStyle] mutableCopy];
@@ -761,10 +763,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             return;
         }
         
-        NSFont *font = [(CELayoutManager *)[self layoutManager] textFont];
-        font = [font screenFont] ? : font;
-        CGFloat charWidth = [font advancementForGlyph:(NSGlyph)' '].width;
-        
+        CGFloat charWidth = [[self font] advancementForGlyph:(NSGlyph)' '].width;
         CGFloat inset = [self textContainerOrigin].x;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for adjustment
@@ -1022,6 +1021,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 // ------------------------------------------------------
 {
     id newValue = change[NSKeyValueChangeNewKey];
+    NSRange wholeRange = NSMakeRange(0, [[self textStorage] length]);
     
     if ([keyPath isEqualToString:CEDefaultAutoExpandTabKey]) {
         [self setAutoTabExpandEnabled:[newValue boolValue]];
@@ -1041,12 +1041,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     } else if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] ||
                [keyPath isEqualToString:CEDefaultHangingIndentWidthKey])
     {
-        NSRange wholeRange = NSMakeRange(0, [[self string] length]);
         if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] && ![newValue boolValue]) {
-            // reset all headIndent
-            NSMutableParagraphStyle *paragraphStyle = [[self typingAttributes][NSParagraphStyleAttributeName] mutableCopy];
-            [paragraphStyle setHeadIndent:0];
-            [[self textStorage] addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:wholeRange];
+            [[self textStorage] addAttribute:NSParagraphStyleAttributeName value:[self defaultParagraphStyle] range:wholeRange];
         } else {
             [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:wholeRange];
         }
@@ -1070,7 +1066,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             [self detectLinkIfNeeded];
         } else {
             // remove current links
-            [[self textStorage] removeAttribute:NSLinkAttributeName range:NSMakeRange(0, [[self string] length])];
+            [[self textStorage] removeAttribute:NSLinkAttributeName range:wholeRange];
         }
     
     } else if ([keyPath isEqualToString:CEDefaultFontNameKey] || [keyPath isEqualToString:CEDefaultFontSizeKey]) {
@@ -1089,7 +1085,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     } else if ([keyPath isEqualToString:CEDefaultFixLineHeightKey]) {
         CELayoutManager *layoutManager = (CELayoutManager *)[self layoutManager];
         [layoutManager setFixesLineHeight:[newValue boolValue]];
-        [layoutManager invalidateLayoutForCharacterRange:NSMakeRange(0, [[self string] length]) actualCharacterRange:NULL];
+        [layoutManager invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:NULL];
     }
 }
 
@@ -1165,8 +1161,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setLineSpacing:lineSpacing];
     
     // redraw
-    NSRange range = NSMakeRange(0, [[self string] length]);
-    [[self layoutManager] invalidateLayoutForCharacterRange:range actualCharacterRange:nil];
+    NSRange wholeRange = NSMakeRange(0, [[self string] length]);
+    [[self layoutManager] invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:nil];
     
     // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
     [self updateRuler];
@@ -1457,11 +1453,12 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self defaultParagraphStyle],
                                 NSFontAttributeName: [self font],
-                                NSForegroundColorAttributeName: [[self theme] textColor]}];
+                                NSForegroundColorAttributeName: [self textColor]}];
     
     // update current text
-    [[self textStorage] setAttributes:[self typingAttributes]
-                                range:NSMakeRange(0, [[self textStorage] length])];
+    NSRange range = NSMakeRange(0, [[self textStorage] length]);
+    [[self textStorage] setAttributes:[self typingAttributes] range:range];
+    [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
 }
 
 
