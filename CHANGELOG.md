@@ -7,7 +7,9 @@ develop
 
 ### Improvements
 
-- Avoid changing base line height when “Fix line height with composite font” option is enabled.
+- Improve line-height handling with composite font:
+    - Remove “Fix line height with composite font” option, and now, the height of lines is always uniform.
+    - Update line-height calculation to fix that the line height by “Fix line height with composite font” option was a bit higher than actual line height of the used font.
 - Optimize performance to apply syntax highlight to document significantly.
 - Now, the setting changes of status bar, appearance tab and invisible chars are applied to documents immediately.
 - Enable move between input fields in syntax style editor with Tab key.

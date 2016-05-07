@@ -102,7 +102,6 @@ extern NSString *_Nonnull const CEDefaultShowPageGuideKey;
 extern NSString *_Nonnull const CEDefaultPageGuideColumnKey;
 extern NSString *_Nonnull const CEDefaultLineSpacingKey;
 extern NSString *_Nonnull const CEDefaultSwapYenAndBackSlashKey;
-extern NSString *_Nonnull const CEDefaultFixLineHeightKey;
 extern NSString *_Nonnull const CEDefaultHighlightBracesKey;
 extern NSString *_Nonnull const CEDefaultHighlightLtGtKey;
 extern NSString *_Nonnull const CEDefaultSaveUTF8BOMKey;

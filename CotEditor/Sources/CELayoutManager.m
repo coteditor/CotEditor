@@ -156,15 +156,13 @@ static NSString *HiraginoSansName;
 - (void)setLineFragmentRect:(NSRect)fragmentRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
 // ------------------------------------------------------
 {
-    if ([self fixesLineHeight]) {
-        // 複合フォントで行の高さがばらつくのを防止する
-        // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
-        // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-        // 挿入すると行間がズレる」問題が生じる））
-        fragmentRect.size.height = [self lineHeight];
-        usedRect.size.height = [self lineHeight];
-    }
-
+    // 複合フォントで行の高さがばらつくのを防止する
+    //   -> CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
+    //     「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
+    //     挿入すると行間がズレる」問題が生じる。
+    fragmentRect.size.height = [self lineHeight];
+    usedRect.size.height = [self lineHeight];
+    
     [super setLineFragmentRect:fragmentRect forGlyphRange:glyphRange usedRect:usedRect];
 }
 
@@ -293,8 +291,8 @@ static NSString *HiraginoSansName;
 // ------------------------------------------------------
 {
     // 複合フォントで行間が等間隔でなくなる問題を回避するため、自前でフォントを持っておく。
-    // （[[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
-    // 日本語フォント名を返してくることがあるため、使わない）
+    //   -> [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
+    //      日本語フォント名を返してくることがあるため、使わない
 
     _textFont = textFont;
     

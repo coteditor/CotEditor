@@ -36,11 +36,13 @@
 #pragma mark ATSTypesetter Methods
 
 // ------------------------------------------------------
-/// フォントの leading 値を反映させるかどうかを返す
+/// avoid using font leading
 - (BOOL)usesFontLeading
 // ------------------------------------------------------
 {
-    return ![(CELayoutManager *)[self layoutManager] fixesLineHeight];
+    // avoid using font leading to calculate line hight by itself.
+    // -> Font leading might be different if composite font is used.
+    return NO;
 }
 
 
@@ -51,23 +53,15 @@
 {
     CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[[self currentTextContainer] textView] lineSpacing];
-    CGFloat spacing;
-    NSFont *font;
     
-    if (![manager fixesLineHeight]) {
-        spacing = [super lineSpacingAfterGlyphAtIndex:glyphIndex withProposedLineFragmentRect:rect];
-        font = [[[self currentTextContainer] textView] font];
-        
-    } else {
-        // 複合フォントで行の高さがばらつくのを防止する
-        // （CELayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
-        // 通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない）
-        // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
-        // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-        // 挿入すると行間がズレる」問題が生じる）
-        spacing = [manager defaultLineHeightForTextFont] - rect.size.height;
-        font = [manager textFont];
-    }
+    // 複合フォントで行の高さがばらつくのを防止する
+    //   -> CELayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
+    //      通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない。
+    //   -> CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
+    //      「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
+    //      挿入すると行間がズレる」問題が生じる。
+    NSFont *font = [manager textFont];
+    CGFloat spacing = [manager defaultLineHeightForTextFont] - rect.size.height;
     
     return (lineSpacing * [font pointSize] + spacing);
 }

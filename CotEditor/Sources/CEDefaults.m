@@ -102,7 +102,6 @@ NSString *_Nonnull const CEDefaultShowPageGuideKey = @"showPageGuide";
 NSString *_Nonnull const CEDefaultPageGuideColumnKey = @"pageGuideColumn";
 NSString *_Nonnull const CEDefaultLineSpacingKey = @"lineSpacing";
 NSString *_Nonnull const CEDefaultSwapYenAndBackSlashKey = @"swapYenAndBackSlashKey";
-NSString *_Nonnull const CEDefaultFixLineHeightKey = @"fixLineHeight";
 NSString *_Nonnull const CEDefaultHighlightBracesKey = @"highlightBraces";
 NSString *_Nonnull const CEDefaultHighlightLtGtKey = @"highlightLtGt";
 NSString *_Nonnull const CEDefaultSaveUTF8BOMKey = @"saveUTF8BOM";

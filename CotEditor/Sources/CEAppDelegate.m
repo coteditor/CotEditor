@@ -175,7 +175,6 @@
                                                CEDefaultPageGuideColumnKey: @80,
                                                CEDefaultLineSpacingKey: @0.3f,
                                                CEDefaultSwapYenAndBackSlashKey: @NO,
-                                               CEDefaultFixLineHeightKey: @YES,
                                                CEDefaultHighlightBracesKey: @YES,
                                                CEDefaultHighlightLtGtKey: @NO,
                                                CEDefaultSaveUTF8BOMKey: @NO,

@@ -118,7 +118,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         // setup layoutManager and textContainer
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
-        [layoutManager setFixesLineHeight:[defaults boolForKey:CEDefaultFixLineHeightKey]];
         [[self textContainer] replaceLayoutManager:layoutManager];
         
         // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
@@ -1081,11 +1080,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         
     } else if ([keyPath isEqualToString:CEDefaultLineSpacingKey]) {
         [self setLineSpacingAndUpdate:(CGFloat)[newValue doubleValue]];
-        
-    } else if ([keyPath isEqualToString:CEDefaultFixLineHeightKey]) {
-        CELayoutManager *layoutManager = (CELayoutManager *)[self layoutManager];
-        [layoutManager setFixesLineHeight:[newValue boolValue]];
-        [layoutManager invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:NULL];
     }
 }
 
@@ -1406,7 +1400,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
              CEDefaultFontSizeKey,
              CEDefaultShouldAntialiasKey,
              CEDefaultLineSpacingKey,
-             CEDefaultFixLineHeightKey,
              ];
 }
 

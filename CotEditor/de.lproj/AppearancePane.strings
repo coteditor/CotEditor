@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,8 +36,6 @@
 "r1c-v3-qW1.title" = "Zeilenhöhe";
 /* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
 "VLD-jj-zzl.title" = "-fach";
-/* Class = "NSButtonCell"; title = "Fix line height with composite font"; ObjectID = "3296"; */
-"3296.title" = "Zeilenhöhe beim Composite-Schrift festsetzen";
 
 /* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
 "oKu-Fu-hRU.title" = "Aktuelle Zeile:";

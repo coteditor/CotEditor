@@ -32,7 +32,6 @@
 @interface CELayoutManager : NSLayoutManager
 
 @property (nonatomic) BOOL showsInvisibles;
-@property (nonatomic) BOOL fixesLineHeight;
 @property (nonatomic) BOOL usesAntialias;
 @property (nonatomic, nullable) NSFont *textFont;
 @property (nonatomic, nonnull) NSColor *invisiblesColor;

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,9 +25,6 @@
  limitations under the License.
  
  */
-
-/* Class = "NSTextFieldCell"; title = "Basic"; ObjectID = "Bb9-qh-gwK"; */
-"Bb9-qh-gwK.title" = "基本";
 
 /* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "kvy-vf-yva"; */
 "kvy-vf-yva.title" = "文本：";

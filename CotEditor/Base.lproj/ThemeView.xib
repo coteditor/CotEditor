@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEThemeViewController">
@@ -19,11 +19,11 @@
             </connections>
         </objectController>
         <customView id="8Mv-NZ-wYH" userLabel="Theme View">
-            <rect key="frame" x="0.0" y="0.0" width="342" height="310"/>
+            <rect key="frame" x="0.0" y="0.0" width="342" height="295"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="X1h-s1-vOe">
-                    <rect key="frame" x="24" y="141" width="67" height="17"/>
+                    <rect key="frame" x="24" y="142" width="67" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Keywords:" id="IU8-bd-gBv">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -31,7 +31,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-Sx-bRs">
-                    <rect key="frame" x="23" y="60" width="68" height="17"/>
+                    <rect key="frame" x="23" y="61" width="68" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Attributes:" id="RQL-fz-3aq">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -39,7 +39,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="5M7-jw-5vd">
-                    <rect key="frame" x="27" y="33" width="64" height="17"/>
+                    <rect key="frame" x="27" y="34" width="64" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Variables:" id="ZIr-1E-qZJ">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -47,7 +47,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="751" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="FHd-6m-dWf">
-                    <rect key="frame" x="14" y="114" width="77" height="17"/>
+                    <rect key="frame" x="14" y="115" width="77" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Commands:" id="81x-je-JUf">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -55,7 +55,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="Xjv-GT-ZUL">
-                    <rect key="frame" x="213" y="114" width="63" height="17"/>
+                    <rect key="frame" x="213" y="115" width="63" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Numbers:" id="3wF-uc-Tfq">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -63,7 +63,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="8yb-9K-ShW">
-                    <rect key="frame" x="201" y="60" width="75" height="17"/>
+                    <rect key="frame" x="201" y="61" width="75" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Characters:" id="hbk-iX-4VK">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -71,7 +71,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-vs-wd8">
-                    <rect key="frame" x="202" y="33" width="74" height="17"/>
+                    <rect key="frame" x="202" y="34" width="74" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Comments:" id="AIG-rr-79V">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -79,7 +79,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="8JO-9v-VnC">
-                    <rect key="frame" x="42" y="235" width="49" height="17"/>
+                    <rect key="frame" x="42" y="236" width="49" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Cursor:" id="Ljk-ky-fQH">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -87,7 +87,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="lJB-fN-OKp">
-                    <rect key="frame" x="97" y="232" width="44" height="23"/>
+                    <rect key="frame" x="97" y="233" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.insertionPoint.color" id="EQT-og-ZSx">
@@ -97,16 +97,8 @@
                         </binding>
                     </connections>
                 </colorWell>
-                <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eBT-dC-9hy">
-                    <rect key="frame" x="14" y="285" width="40" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Basic" id="Bb9-qh-gwK">
-                        <font key="font" metaFont="systemBold"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="gao-00-mX9">
-                    <rect key="frame" x="27" y="208" width="64" height="17"/>
+                    <rect key="frame" x="27" y="209" width="64" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Invisibles:" id="IGx-p1-FHi">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -114,7 +106,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-Gl-M0L">
-                    <rect key="frame" x="57" y="262" width="34" height="17"/>
+                    <rect key="frame" x="57" y="263" width="34" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Text:" id="kvy-vf-yva">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -122,7 +114,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I5D-KF-7Az">
-                    <rect key="frame" x="97" y="259" width="44" height="23"/>
+                    <rect key="frame" x="97" y="260" width="44" height="23"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="0Pe-cc-8c0"/>
                         <constraint firstAttribute="height" constant="23" id="G8l-4b-vkT"/>
@@ -137,7 +129,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gjr-XD-Cv5">
-                    <rect key="frame" x="97" y="205" width="44" height="23"/>
+                    <rect key="frame" x="97" y="206" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.invisibles.color" id="XkT-T3-v4u">
@@ -148,7 +140,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Mh4-u1-6ML">
-                    <rect key="frame" x="282" y="259" width="44" height="23"/>
+                    <rect key="frame" x="282" y="260" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.background.color" id="VOW-gT-kig">
@@ -159,7 +151,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="u73-Ob-J8v">
-                    <rect key="frame" x="282" y="232" width="44" height="23"/>
+                    <rect key="frame" x="282" y="233" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.lineHighlight.color" id="ICi-MS-957">
@@ -170,7 +162,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Y4q-YH-jrD">
-                    <rect key="frame" x="282" y="205" width="44" height="23"/>
+                    <rect key="frame" x="282" y="206" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.color" id="j0D-XA-Nos">
@@ -186,7 +178,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="BcY-Zf-mza">
-                    <rect key="frame" x="195" y="262" width="81" height="17"/>
+                    <rect key="frame" x="195" y="263" width="81" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Background:" id="tvj-DS-DVt">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -194,7 +186,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="arh-qx-kON">
-                    <rect key="frame" x="193" y="235" width="83" height="17"/>
+                    <rect key="frame" x="193" y="236" width="83" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Current Line:" id="yMW-lO-ILw">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -202,7 +194,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="f4v-zr-M1o">
-                    <rect key="frame" x="211" y="208" width="65" height="17"/>
+                    <rect key="frame" x="211" y="209" width="65" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Selection:" id="PbY-c2-p4V">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -210,7 +202,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="9VW-40-zzi">
-                    <rect key="frame" x="14" y="166" width="49" height="17"/>
+                    <rect key="frame" x="14" y="167" width="49" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Syntax" usesSingleLineMode="YES" id="F64-8o-JYC">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -218,7 +210,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="rn5-5c-jI6">
-                    <rect key="frame" x="282" y="111" width="44" height="23"/>
+                    <rect key="frame" x="282" y="112" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.numbers.color" id="llu-6g-zfy">
@@ -229,7 +221,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="i3Z-85-3qp">
-                    <rect key="frame" x="282" y="57" width="44" height="23"/>
+                    <rect key="frame" x="282" y="58" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.characters.color" id="Q1I-qE-gnE">
@@ -240,7 +232,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="snC-SX-rEl">
-                    <rect key="frame" x="225" y="87" width="51" height="17"/>
+                    <rect key="frame" x="225" y="88" width="51" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Strings:" id="n04-r3-95l">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -248,7 +240,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="joc-k5-xEa">
-                    <rect key="frame" x="282" y="84" width="44" height="23"/>
+                    <rect key="frame" x="282" y="85" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.strings.color" id="jhb-EJ-SsH">
@@ -259,7 +251,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="QGS-SR-oFV">
-                    <rect key="frame" x="282" y="30" width="44" height="23"/>
+                    <rect key="frame" x="282" y="31" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.comments.color" id="K0W-hU-8xJ">
@@ -270,7 +262,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="w0B-KD-9pH">
-                    <rect key="frame" x="97" y="138" width="44" height="23"/>
+                    <rect key="frame" x="97" y="139" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.keywords.color" id="UBj-Aj-Cb2">
@@ -281,7 +273,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I0Y-Yr-Tq6">
-                    <rect key="frame" x="97" y="111" width="44" height="23"/>
+                    <rect key="frame" x="97" y="112" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.commands.color" id="Hff-x0-bdf">
@@ -292,7 +284,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="O1G-QZ-X3X">
-                    <rect key="frame" x="97" y="57" width="44" height="23"/>
+                    <rect key="frame" x="97" y="58" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.attributes.color" id="72O-BS-CDL">
@@ -303,7 +295,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="44n-Y9-D7v">
-                    <rect key="frame" x="46" y="87" width="45" height="17"/>
+                    <rect key="frame" x="46" y="88" width="45" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Types:" id="ILi-Jt-MUc">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -311,7 +303,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Op7-tR-smw">
-                    <rect key="frame" x="97" y="84" width="44" height="23"/>
+                    <rect key="frame" x="97" y="85" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.types.color" id="C0V-b8-VBw">
@@ -322,7 +314,7 @@
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="TVR-mt-U7J">
-                    <rect key="frame" x="97" y="30" width="44" height="23"/>
+                    <rect key="frame" x="97" y="31" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.variables.color" id="8GM-ew-ISU">
@@ -333,7 +325,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="89v-hc-bub">
-                    <rect key="frame" x="228" y="141" width="48" height="17"/>
+                    <rect key="frame" x="228" y="142" width="48" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Values:" id="cVK-ET-QiD">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -341,7 +333,7 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="vgC-hV-Bju">
-                    <rect key="frame" x="282" y="138" width="44" height="23"/>
+                    <rect key="frame" x="282" y="139" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.values.color" id="Y8q-JG-2Ug">
@@ -352,7 +344,7 @@
                     </connections>
                 </colorWell>
                 <button horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="38b-e6-B7J">
-                    <rect key="frame" x="211" y="185" width="113" height="18"/>
+                    <rect key="frame" x="211" y="186" width="113" height="18"/>
                     <buttonCell key="cell" type="check" title="Use system color" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="0ZP-Zp-oBu">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -363,7 +355,7 @@
                     </connections>
                 </button>
                 <button toolTip="Show theme file info" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-bx-K4A">
-                    <rect key="frame" x="306" y="5" width="16" height="16"/>
+                    <rect key="frame" x="310" y="5" width="16" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="Wed-fM-cwd"/>
                         <constraint firstAttribute="width" constant="16" id="iVd-7P-CWd"/>
@@ -384,7 +376,6 @@
                 <constraint firstItem="gnE-Sx-bRs" firstAttribute="centerY" secondItem="O1G-QZ-X3X" secondAttribute="centerY" id="0vh-vx-hpm"/>
                 <constraint firstItem="I0Y-Yr-Tq6" firstAttribute="leading" secondItem="FHd-6m-dWf" secondAttribute="trailing" constant="8" symbolic="YES" id="10r-Gj-wjm"/>
                 <constraint firstItem="BcY-Zf-mza" firstAttribute="centerY" secondItem="Mh4-u1-6ML" secondAttribute="centerY" id="1Om-Sj-lKU"/>
-                <constraint firstItem="2SR-Gl-M0L" firstAttribute="top" secondItem="eBT-dC-9hy" secondAttribute="bottom" constant="6" id="22F-B6-0fC"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="Mh4-u1-6ML" secondAttribute="width" id="2wu-X7-0d1"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="O1G-QZ-X3X" secondAttribute="height" id="3RU-yp-E2T"/>
                 <constraint firstItem="Y4q-YH-jrD" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="3cW-iW-jGG"/>
@@ -392,6 +383,7 @@
                 <constraint firstItem="u73-Ob-J8v" firstAttribute="leading" secondItem="arh-qx-kON" secondAttribute="trailing" constant="8" symbolic="YES" id="4Mc-Yf-bvn"/>
                 <constraint firstItem="Op7-tR-smw" firstAttribute="centerY" secondItem="44n-Y9-D7v" secondAttribute="centerY" id="51i-0W-Ly0"/>
                 <constraint firstItem="joc-k5-xEa" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="5BS-aN-lvG"/>
+                <constraint firstItem="9VW-40-zzi" firstAttribute="leading" secondItem="8Mv-NZ-wYH" secondAttribute="leading" constant="16" id="5Ic-pz-wVb"/>
                 <constraint firstItem="lJB-fN-OKp" firstAttribute="leading" secondItem="8JO-9v-VnC" secondAttribute="trailing" constant="8" symbolic="YES" id="5pJ-qJ-U3R"/>
                 <constraint firstItem="joc-k5-xEa" firstAttribute="top" secondItem="rn5-5c-jI6" secondAttribute="bottom" constant="4" id="6CS-vE-ptj"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="lJB-fN-OKp" secondAttribute="width" id="6pG-L5-b8G"/>
@@ -442,11 +434,11 @@
                 <constraint firstItem="8yb-9K-ShW" firstAttribute="centerY" secondItem="i3Z-85-3qp" secondAttribute="centerY" id="Y3z-zT-iDX"/>
                 <constraint firstItem="QGS-SR-oFV" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="Y4r-gT-wLJ"/>
                 <constraint firstAttribute="bottom" secondItem="Xab-bx-K4A" secondAttribute="bottom" constant="5" id="Z7A-T6-A5k"/>
-                <constraint firstItem="eBT-dC-9hy" firstAttribute="top" secondItem="8Mv-NZ-wYH" secondAttribute="top" constant="8" id="Zf3-Qr-i7o"/>
                 <constraint firstItem="I0Y-Yr-Tq6" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="aQw-nD-CfP"/>
                 <constraint firstItem="Y4q-YH-jrD" firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" id="ayt-JJ-yDY"/>
                 <constraint firstItem="Op7-tR-smw" firstAttribute="top" secondItem="I0Y-Yr-Tq6" secondAttribute="bottom" constant="4" id="bUf-Au-X0b"/>
                 <constraint firstItem="Op7-tR-smw" firstAttribute="leading" secondItem="44n-Y9-D7v" secondAttribute="trailing" constant="8" symbolic="YES" id="bjh-aH-Ajb"/>
+                <constraint firstItem="I5D-KF-7Az" firstAttribute="top" secondItem="8Mv-NZ-wYH" secondAttribute="top" constant="12" id="bv8-r5-JyK"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="w0B-KD-9pH" secondAttribute="leading" id="cAZ-4z-Uky"/>
                 <constraint firstItem="rn5-5c-jI6" firstAttribute="leading" secondItem="Xjv-GT-ZUL" secondAttribute="trailing" constant="8" symbolic="YES" id="cvq-zf-wK0"/>
                 <constraint firstItem="vgC-hV-Bju" firstAttribute="top" secondItem="w0B-KD-9pH" secondAttribute="top" id="dKY-4c-ysF"/>
@@ -463,12 +455,11 @@
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="i3Z-85-3qp" secondAttribute="height" id="hvC-cF-I1K"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="leading" secondItem="lJB-fN-OKp" secondAttribute="leading" id="ieM-eO-Jlf"/>
                 <constraint firstItem="vgC-hV-Bju" firstAttribute="centerY" secondItem="89v-hc-bub" secondAttribute="centerY" id="lVG-cx-eRw"/>
-                <constraint firstItem="eBT-dC-9hy" firstAttribute="leading" secondItem="9VW-40-zzi" secondAttribute="leading" id="ldX-Z7-DuG"/>
                 <constraint firstItem="vgC-hV-Bju" firstAttribute="width" secondItem="I5D-KF-7Az" secondAttribute="width" id="ldl-st-vOn"/>
                 <constraint firstItem="38b-e6-B7J" firstAttribute="top" secondItem="f4v-zr-M1o" secondAttribute="bottom" constant="8" symbolic="YES" id="lv9-dx-VXD"/>
                 <constraint firstItem="u73-Ob-J8v" firstAttribute="top" secondItem="Mh4-u1-6ML" secondAttribute="bottom" constant="4" id="m4P-Yc-VjB"/>
                 <constraint firstItem="rn5-5c-jI6" firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" id="nNy-8Z-7tE"/>
-                <constraint firstAttribute="trailing" secondItem="Xab-bx-K4A" secondAttribute="trailing" constant="20" symbolic="YES" id="o8R-pA-Vkb"/>
+                <constraint firstAttribute="trailing" secondItem="Xab-bx-K4A" secondAttribute="trailing" constant="16" id="o8R-pA-Vkb"/>
                 <constraint firstItem="i3Z-85-3qp" firstAttribute="trailing" secondItem="Mh4-u1-6ML" secondAttribute="trailing" id="o92-kp-kP4"/>
                 <constraint firstItem="lJB-fN-OKp" firstAttribute="top" secondItem="I5D-KF-7Az" secondAttribute="bottom" constant="4" id="ogn-yR-z1C"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="TVR-mt-U7J" secondAttribute="width" id="otD-GB-YJs"/>
@@ -477,7 +468,6 @@
                 <constraint firstItem="i3Z-85-3qp" firstAttribute="top" secondItem="joc-k5-xEa" secondAttribute="bottom" constant="4" id="pVp-Hj-VN8"/>
                 <constraint firstItem="rn5-5c-jI6" firstAttribute="centerY" secondItem="Xjv-GT-ZUL" secondAttribute="centerY" id="q8n-fI-GRL"/>
                 <constraint firstItem="vgC-hV-Bju" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="rgx-C3-FPB"/>
-                <constraint firstItem="eBT-dC-9hy" firstAttribute="leading" secondItem="8Mv-NZ-wYH" secondAttribute="leading" constant="16" id="s2e-Se-DMq"/>
                 <constraint firstItem="w0B-KD-9pH" firstAttribute="centerY" secondItem="X1h-s1-vOe" secondAttribute="centerY" id="sBZ-0e-Hc2"/>
                 <constraint firstItem="arh-qx-kON" firstAttribute="centerY" secondItem="u73-Ob-J8v" secondAttribute="centerY" id="uoT-jw-Gxg"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="height" secondItem="TVR-mt-U7J" secondAttribute="height" id="ur1-p4-YwN"/>
