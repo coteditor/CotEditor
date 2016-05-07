@@ -900,8 +900,6 @@
 {
     [[self coloringTimer] invalidate];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; };
-    
     [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
 

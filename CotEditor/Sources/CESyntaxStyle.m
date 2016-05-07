@@ -291,6 +291,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 - (void)highlightWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler
 // ------------------------------------------------------
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
     if ([textStorage length] == 0) { return; }
     
     NSRange wholeRange = NSMakeRange(0, [textStorage length]);
@@ -323,6 +324,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 - (void)highlightRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
     if ([textStorage length] == 0) { return; }
     
     // make sure that string is immutable (see `highlightWholeStringInTextStorage:completionHandler:` for details)

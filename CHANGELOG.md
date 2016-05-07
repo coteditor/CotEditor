@@ -17,7 +17,8 @@ develop
 ### Fixes
 
 - Fix an issue where wordwrap broke mid-word when a line is indented.
-- Fix an issue where hanging indent reset if font is changed. 
+- Fix an issue where hanging indent reset if font is changed.
+- Fix an issue where syntax was always highlighted even if syntax highlight is disabled.
 
 
 
