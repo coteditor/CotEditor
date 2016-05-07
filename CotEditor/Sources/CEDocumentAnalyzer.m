@@ -205,7 +205,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
                 numberOfWords = [wholeString numberOfWords];
                 if (hasSelection) {
                     numberOfSelectedWords = [selectedString numberOfWords];
-                };
+                }
             }
             
             // count location

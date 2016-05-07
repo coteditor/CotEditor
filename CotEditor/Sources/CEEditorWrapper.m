@@ -911,7 +911,7 @@
 {
     [[self outlineMenuTimer] invalidate];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; };
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
     
     NSString *wholeString = [[self textStorage] string] ? : @"";
     

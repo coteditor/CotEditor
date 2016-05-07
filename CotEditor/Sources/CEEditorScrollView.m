@@ -96,7 +96,7 @@
                 [self setHasVerticalRuler:NO];
                 [self setHasHorizontalRuler:YES];
                 break;
-        };
+        }
     }
 }
 
