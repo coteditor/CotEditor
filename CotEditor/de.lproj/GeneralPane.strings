@@ -35,7 +35,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
-"Ki4-3Y-AZL.title" = "Dokument Sichern:";
+"Ki4-3Y-AZL.title" = "Dokumentensicherung:";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "Automatische Sicherung mit Versionen aktivieren";
