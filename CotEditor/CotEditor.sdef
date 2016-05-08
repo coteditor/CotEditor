@@ -34,6 +34,7 @@
             <enumerator name="NFKC" code="cNkc"/>
             <enumerator name="NFKD" code="cNkd"/>
             <enumerator name="NFKC Casefold" code="cNcf"/>
+            <enumerator name="Modified NFC" code="cNmc"/>
             <enumerator name="Modified NFD" code="cNfm"/>
         </enumeration>
         

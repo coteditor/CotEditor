@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -805,6 +805,11 @@ CA
                                         <menuItem title="NFKC Casefold" tag="4" id="zuR-3K-9fs">
                                             <connections>
                                                 <action selector="normalizeUnicodeWithNFKCCF:" target="-1" id="LyD-Xf-gVC"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Modified NFC (HFS+)" tag="4" id="n6C-Km-BM9">
+                                            <connections>
+                                                <action selector="normalizeUnicodeWithModifiedNFC:" target="-1" id="cLr-T5-E6k"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Modified NFD (HFS+)" tag="4" id="NU7-EI-1Ct">

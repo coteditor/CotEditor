@@ -1102,6 +1102,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         ([menuItem action] == @selector(normalizeUnicodeWithNFKD:)) ||
         ([menuItem action] == @selector(normalizeUnicodeWithNFKC:)) ||
         ([menuItem action] == @selector(normalizeUnicodeWithNFKCCF:)) ||
+        ([menuItem action] == @selector(normalizeUnicodeWithModifiedNFC:)) ||
         ([menuItem action] == @selector(normalizeUnicodeWithModifiedNFD:)))
     {
         return ([self selectedRange].length > 0);
