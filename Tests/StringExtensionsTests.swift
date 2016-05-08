@@ -133,8 +133,17 @@ class StringExtensionsTests: XCTestCase {
     
     
     func testUnicodeNormalization() {
-        XCTAssertEqual("é 神 ㍑".precomposedStringWithCompatibilityMappingWithCasefold(), "é 神 リットル")
-        XCTAssertEqual("é 神 ㍑".decomposedStringWithHFSPlusMapping(), "é 神 ㍑")
+        XCTAssertNotEqual("\u{1f71}".nsString, "\u{03ac}".nsString)  // test nsString itself
+        
+        XCTAssertEqual("é 神 ㍑".precomposedStringWithCompatibilityMappingWithCasefold().nsString, "é 神 リットル".nsString)
+        XCTAssertEqual("\u{1f71}".decomposedStringWithHFSPlusMapping().nsString, "\u{03b1}\u{0301}".nsString)
     }
     
+}
+
+
+extension String {
+    var nsString: NSString {
+        return self as NSString
+    }
 }
