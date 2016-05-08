@@ -36,4 +36,7 @@
 /// return normalized string using HFS+, a.k.a. Apple Modified NFD
 - (nonnull NSString *)decomposedStringWithHFSPlusMapping;
 
+/// return normalized string using HFS+, a.k.a. Apple Modified NFC
+- (nonnull NSString *)precomposedStringWithHFSPlusMapping;
+
 @end

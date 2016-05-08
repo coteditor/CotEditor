@@ -394,6 +394,9 @@
         case CENFKCCF:
             [textView normalizeUnicodeWithNFKCCF:command];
             break;
+        case CEModifiedNFC:
+            [textView normalizeUnicodeWithModifiedNFC:command];
+            break;
         case CEModifiedNFD:
             [textView normalizeUnicodeWithModifiedNFD:command];
             break;
