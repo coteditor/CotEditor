@@ -136,6 +136,8 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertNotEqual("\u{1f71}".nsString, "\u{03ac}".nsString)  // test nsString itself
         
         XCTAssertEqual("é 神 ㍑".precomposedStringWithCompatibilityMappingWithCasefold().nsString, "é 神 リットル".nsString)
+        XCTAssertEqual("\u{1f71} \u{03b1}\u{0301}".precomposedStringWithHFSPlusMapping().nsString, "\u{1f71} \u{03ac}".nsString)
+        XCTAssertEqual("\u{1f71}".precomposedStringWithHFSPlusMapping().nsString, "\u{1f71}".nsString)  // test single char
         XCTAssertEqual("\u{1f71}".decomposedStringWithHFSPlusMapping().nsString, "\u{03b1}\u{0301}".nsString)
     }
     
