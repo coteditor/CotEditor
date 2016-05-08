@@ -150,7 +150,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="i9j-3p-xYF">
-                                <rect key="frame" x="0.0" y="0.0" width="278" height="98"/>
+                                <rect key="frame" x="0.0" y="0.0" width="278" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -265,17 +265,6 @@
                         <binding destination="26" name="selectedValue" keyPath="values.defaultColoringStyleName" id="733"/>
                     </connections>
                 </popUpButton>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="703">
-                    <rect key="frame" x="339" y="190" width="97" height="18"/>
-                    <buttonCell key="cell" type="check" title="Delay coloring" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="3327">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="26" name="value" keyPath="values.delayColoring" id="705"/>
-                        <binding destination="26" name="enabled" keyPath="values.doSyntaxColoring" id="706"/>
-                    </connections>
-                </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="430">
                     <rect key="frame" x="18" y="191" width="181" height="18"/>
                     <buttonCell key="cell" type="check" title="Enable syntax highlighting" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3326">
@@ -439,7 +428,6 @@
                 <constraint firstItem="XBA-8h-9hb" firstAttribute="leading" secondItem="745" secondAttribute="leading" constant="20" id="auc-ch-dSx"/>
                 <constraint firstItem="mI2-B3-2Dr" firstAttribute="leading" secondItem="dI1-Dk-Mce" secondAttribute="trailing" constant="-1" id="eVq-oK-0ma"/>
                 <constraint firstItem="44" firstAttribute="leading" secondItem="76" secondAttribute="trailing" constant="12" id="fkf-DX-XIS"/>
-                <constraint firstItem="703" firstAttribute="leading" secondItem="710" secondAttribute="trailing" constant="8" symbolic="YES" id="h71-40-mVu"/>
                 <constraint firstItem="76" firstAttribute="top" secondItem="80" secondAttribute="bottom" constant="12" id="kZX-KV-FSh"/>
                 <constraint firstItem="727" firstAttribute="leading" secondItem="13" secondAttribute="leading" id="neP-RT-EpQ"/>
                 <constraint firstItem="710" firstAttribute="baseline" secondItem="430" secondAttribute="baseline" id="oAx-4E-BLj"/>
@@ -451,7 +439,6 @@
                 <constraint firstItem="Q0c-oI-um3" firstAttribute="trailing" secondItem="Gmu-7H-gv5" secondAttribute="trailing" id="rPT-EM-bI7"/>
                 <constraint firstAttribute="trailing" secondItem="lnk-dB-keR" secondAttribute="trailing" constant="30" id="sr3-RZ-lke"/>
                 <constraint firstAttribute="trailing" secondItem="eoL-rv-xwG" secondAttribute="trailing" constant="30" id="tDE-tc-SUo"/>
-                <constraint firstItem="430" firstAttribute="baseline" secondItem="703" secondAttribute="baseline" id="tdc-VO-aPr"/>
                 <constraint firstItem="Q0c-oI-um3" firstAttribute="height" secondItem="Hma-8v-2gu" secondAttribute="height" id="txp-xU-QdK"/>
                 <constraint firstItem="727" firstAttribute="width" secondItem="Gmu-7H-gv5" secondAttribute="width" id="urH-iw-Qrk"/>
                 <constraint firstItem="79" firstAttribute="top" secondItem="lnk-dB-keR" secondAttribute="bottom" constant="16" id="y2A-X7-eie"/>

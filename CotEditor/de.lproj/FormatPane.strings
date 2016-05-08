@@ -51,9 +51,6 @@
 /* Class = "NSTextFieldCell"; title = "(Including Outline Menu)"; ObjectID = "3325"; */
 "3325.title" = "(Gliederungsmenü inklusive)";
 
-/* Class = "NSButtonCell"; title = "Delay coloring"; ObjectID = "3327"; */
-"3327.title" = "Färbung verzögern";
-
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "Standard-Syntaxstil";
 

@@ -53,9 +53,6 @@
 /* Class = "NSTextFieldCell"; title = "(Including Outline Menu)"; ObjectID = "3325"; */
 "3325.title" = "（包括大纲菜单）";
 
-/* Class = "NSButtonCell"; title = "Delay coloring"; ObjectID = "3327"; */
-"3327.title" = "延时渲染";
-
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "默认语法样式：";
 
