@@ -20,6 +20,7 @@ develop
 - Remove “Delay coloring” option.
 - Enable move between input fields in syntax style editor with Tab key.
 - Apply font-face to font fields in preferences.
+- Apply document line height on “Copy with Style”.
 - Adjust perefences layout.
 
 

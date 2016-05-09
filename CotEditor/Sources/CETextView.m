@@ -1227,13 +1227,17 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSMutableArray<NSAttributedString *> *selections = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
     NSMutableArray<NSNumber *> *propertyList = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
     NSString *newLine = [NSString newLineStringWithType:[self documentNewLineType]];
-
+    
+    NSMutableDictionary<NSString *, id> *attributes = [[self typingAttributes] mutableCopy];
+    NSMutableParagraphStyle *paragraphStyle = [[self defaultParagraphStyle] mutableCopy];
+    [paragraphStyle setLineSpacing:[self lineSpacing] * [[self font] pointSize]];
+    attributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    
     // substring all selected attributed strings
     for (NSValue *rangeValue in [self selectedRanges]) {
         NSRange selectedRange = [rangeValue rangeValue];
         NSString *plainText = [[self string] substringWithRange:selectedRange];
-        NSMutableAttributedString *styledText = [[NSMutableAttributedString alloc] initWithString:plainText
-                                                                                       attributes:[self typingAttributes]];
+        NSMutableAttributedString *styledText = [[NSMutableAttributedString alloc] initWithString:plainText attributes:attributes];
         
         // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
         for (NSUInteger charIndex = selectedRange.location; charIndex < NSMaxRange(selectedRange); charIndex++) {
