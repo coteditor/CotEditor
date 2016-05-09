@@ -36,7 +36,7 @@
 @property (nonatomic, nullable) NSFont *textFont;
 @property (nonatomic, nonnull) NSColor *invisiblesColor;
 
-@property (readonly, nonatomic) CGFloat defaultLineHeightForTextFont;  // defaultLineHeight for textFont
+@property (readonly, nonatomic) CGFloat defaultBaselineOffset;  // defaultBaselineOffset for textFont
 @property (readonly, nonatomic) BOOL showsOtherInvisibles;
 
 - (CGFloat)lineHeight;
