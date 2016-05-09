@@ -1155,9 +1155,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     [self setLineSpacing:lineSpacing];
     
-    // redraw
+    // re-layout
     NSRange wholeRange = NSMakeRange(0, [[self string] length]);
     [[self layoutManager] invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:nil];
+    [[self layoutManager] ensureLayoutForTextContainer:[self textContainer]];
     
     // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
     [self updateRuler];

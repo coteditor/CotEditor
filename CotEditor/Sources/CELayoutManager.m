@@ -58,9 +58,10 @@ CTLineRef createCTLineRefWithString(NSString *string, NSDictionary *attributes)
 @property (nonatomic, nullable) NSArray<id> *invisibleLines;  // array of CTLineRef
 
 @property (nonatomic) CGFloat spaceWidth;
+@property (nonatomic) CGFloat defaultLineHeight;
 
 // readonly properties
-@property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
+@property (readwrite, nonatomic) CGFloat defaultBaselineOffset;
 @property (readwrite, nonatomic) BOOL showsOtherInvisibles;
 
 @end
@@ -152,23 +153,7 @@ static NSString *HiraginoSansName;
 
 
 // ------------------------------------------------------
-/// 行描画矩形をセット
-- (void)setLineFragmentRect:(NSRect)fragmentRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
-// ------------------------------------------------------
-{
-    // 複合フォントで行の高さがばらつくのを防止する
-    //   -> CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
-    //     「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-    //     挿入すると行間がズレる」問題が生じる。
-    fragmentRect.size.height = [self lineHeight];
-    usedRect.size.height = [self lineHeight];
-    
-    [super setLineFragmentRect:fragmentRect forGlyphRange:glyphRange usedRect:usedRect];
-}
-
-
-// ------------------------------------------------------
-/// 最終行描画矩形をセット
+/// adjust rect of last empty line
 - (void)setExtraLineFragmentRect:(NSRect)aRect usedRect:(NSRect)usedRect textContainer:(nonnull NSTextContainer *)aTextContainer
 // ------------------------------------------------------
 {
@@ -193,7 +178,7 @@ static NSString *HiraginoSansName;
     if ([self showsInvisibles] && [[self invisibleLines] count] > 0) {
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         NSString *completeString = [[self textStorage] string];
-        CGFloat baselineOffset = [self defaultBaselineOffsetForFont:[self textFont]];
+        CGFloat baselineOffset = [self defaultBaselineOffset];
         
         // flip coordinate if needed
         if ([[NSGraphicsContext currentContext] isFlipped]) {
@@ -296,11 +281,13 @@ static NSString *HiraginoSansName;
 
     _textFont = textFont;
     
-    // cache default line height
-    CGFloat defaultLineHeight = textFont ? [self defaultLineHeightForFont:textFont] : 0.0;
-    [self setDefaultLineHeightForTextFont:defaultLineHeight];
+    // cache metric values to fix line height
+    if (textFont) {
+        [self setDefaultLineHeight:[self defaultLineHeightForFont:textFont]];
+        [self setDefaultBaselineOffset:[self defaultBaselineOffsetForFont:textFont]];
+    }
     
-    // store width of space char for hanging indent width calculation
+    // cache width of space char for hanging indent width calculation
     NSFont *screenFont = [textFont screenFont] ? : textFont;
     [self setSpaceWidth:[screenFont advancementForGlyph:(NSGlyph)' '].width];
     
@@ -346,7 +333,7 @@ static NSString *HiraginoSansName;
 {
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[self firstTextView] lineSpacing];
 
-    return ([self defaultLineHeightForTextFont] + lineSpacing * [[self textFont] pointSize]);
+    return ([self defaultLineHeight] + lineSpacing * [[self textFont] pointSize]);
 }
 
 

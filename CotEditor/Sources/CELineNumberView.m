@@ -202,9 +202,9 @@ static CGFontRef BoldLineNumberFont;
     NSPoint inset = [textView textContainerOrigin];
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);  // flip
     if (isVerticalText) {
-        transform = CGAffineTransformTranslate(transform, round(relativePoint.x - inset.y - ascent / 2), -ruleThickness);
+        transform = CGAffineTransformTranslate(transform, round(relativePoint.x - scale * inset.y - ascent), -ruleThickness);
     } else {
-        transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - ascent);
+        transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - scale * inset.y - ascent);
     }
     CGContextSetTextMatrix(context, transform);
     

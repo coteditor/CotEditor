@@ -29,6 +29,7 @@ develop
 - Fix an issue where hanging indent reset if font is changed.
 - Fix an issue where syntax was always highlighted even if syntax highlight is disabled.
 - Fix an issue where application crashed if empty character is input from the Unicode hex panel.
+- Fix line numbers position when text scaled.
 
 
 
