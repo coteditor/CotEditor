@@ -23,3 +23,10 @@ abstract_target 'app' do
 
     target 'CotEditor -AppStore'
 end
+
+
+target 'Tests' do
+    project 'CotEditor/CotEditor'
+
+    pod 'WFColorCode'
+end
