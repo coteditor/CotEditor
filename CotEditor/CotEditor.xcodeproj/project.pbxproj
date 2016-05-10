@@ -412,8 +412,6 @@
 		2AFFB71B18D7F18300118477 /* CEGoToSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToSheetController.m */; };
 		2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB71F18D7F22E00118477 /* GoToSheet.xib */; };
 		2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
-		35C511AE0497AD92FA81BDDD /* libPods-app-CotEditor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3948D0C210777F6D36A36E2 /* libPods-app-CotEditor.a */; };
-		414A77A0028C02DBF84455FC /* libPods-app-CotEditor -AppStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5662B580D206E14859D80A /* libPods-app-CotEditor -AppStore.a */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* GetInfo.tiff */; };
 		8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
@@ -451,6 +449,8 @@
 		8D15AC2E0486D014006FF6A4 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* DocumentWindow.xib */; };
 		8D15AC310486D014006FF6A4 /* CEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		CDB89800207C4CDCD0340532 /* libPods-app-CotEditor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D131BAE8CC167F8E57C6E6FC /* libPods-app-CotEditor.a */; };
+		E7B103CD7924D4C4D8C16E07 /* libPods-app-CotEditor -AppStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D540BBC343DD01D310DFB250 /* libPods-app-CotEditor -AppStore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -491,7 +491,6 @@
 /* Begin PBXFileReference section */
 		0308567B83B6BD91359B28AA /* Pods-abstract-CotEditor -AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-CotEditor -AppStore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-abstract-CotEditor -AppStore/Pods-abstract-CotEditor -AppStore.debug.xcconfig"; sourceTree = "<group>"; };
 		08D5E3C647E129A4BE85477D /* Pods-abstract-CotEditor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-CotEditor.release.xcconfig"; path = "../Pods/Target Support Files/Pods-abstract-CotEditor/Pods-abstract-CotEditor.release.xcconfig"; sourceTree = "<group>"; };
-		18B66E27C1C491DA70E0AD4D /* libPods-CotEditor -Abstract-CotEditor -AppStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CotEditor -Abstract-CotEditor -AppStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		258225FE07794C2A00A0F8D3 /* CESyntaxStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxStyle.h; sourceTree = "<group>"; };
 		258225FF07794C2A00A0F8D3 /* CESyntaxStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxStyle.m; sourceTree = "<group>"; };
 		25859DB1076D65310020F779 /* CEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -517,7 +516,6 @@
 		25B2C24207FA68D100F4EFC7 /* CEBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEBorderView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		25B2C24A07FA6BC400F4EFC7 /* CETextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextView.h; sourceTree = "<group>"; };
 		25B2C24B07FA6BC400F4EFC7 /* CETextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CETextView.m; sourceTree = "<group>"; };
-		28A1465543AE2CE3ECE59B52 /* libPods-CotEditor -Abstract-CotEditor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CotEditor -Abstract-CotEditor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A009AC91A57BA8B00C3D542 /* CETextFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextFinder.h; sourceTree = "<group>"; };
 		2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETextFinder.m; sourceTree = "<group>"; };
 		2A009ACF1A58ED1D00C3D542 /* CEFindResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindResultViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -943,8 +941,6 @@
 		2AFFB71518D7DCC000118477 /* CEPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPanelController.m; sourceTree = "<group>"; };
 		2AFFB71818D7F18200118477 /* CEGoToSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEGoToSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AFFB71918D7F18300118477 /* CEGoToSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEGoToSheetController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3A5662B580D206E14859D80A /* libPods-app-CotEditor -AppStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app-CotEditor -AppStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B436162E78F8FABFC1DB2F6 /* libPods-abstract-CotEditor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-abstract-CotEditor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7727543EB50AC65E9738BE /* Pods-app-CotEditor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor.debug.xcconfig"; sourceTree = "<group>"; };
 		4AEC6947578D0EF73538D6D4 /* Pods-app-CotEditor -AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor -AppStore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore.release.xcconfig"; sourceTree = "<group>"; };
 		4B7998171A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/AppleScript.rtf"; sourceTree = "<group>"; };
@@ -1002,15 +998,13 @@
 		8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENavigationBarController.m; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CotEditor-Info.plist"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3948D0C210777F6D36A36E2 /* libPods-app-CotEditor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app-CotEditor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7CE256A767E301C7E191125 /* libPods-abstract-CotEditor -AppStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-abstract-CotEditor -AppStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB40B5113AE8A498EFF1C91D /* Pods-CotEditor -Abstract-CotEditor -AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CotEditor -Abstract-CotEditor -AppStore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CotEditor -Abstract-CotEditor -AppStore/Pods-CotEditor -Abstract-CotEditor -AppStore.debug.xcconfig"; sourceTree = "<group>"; };
+		D131BAE8CC167F8E57C6E6FC /* libPods-app-CotEditor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app-CotEditor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D540BBC343DD01D310DFB250 /* libPods-app-CotEditor -AppStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app-CotEditor -AppStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A849AA44E5F351B7D93C41 /* Pods-app-CotEditor -AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor -AppStore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore.debug.xcconfig"; sourceTree = "<group>"; };
 		D9ED3812583F75D1A80C4110 /* Pods-abstract-CotEditor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-CotEditor.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-abstract-CotEditor/Pods-abstract-CotEditor.debug.xcconfig"; sourceTree = "<group>"; };
-		DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-appstore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B092DA27D6A054D302A2C7 /* Pods-CotEditor -Abstract-CotEditor -AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CotEditor -Abstract-CotEditor -AppStore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CotEditor -Abstract-CotEditor -AppStore/Pods-CotEditor -Abstract-CotEditor -AppStore.release.xcconfig"; sourceTree = "<group>"; };
 		F1E4F81BCBFB38203BA90772 /* Pods-abstract-CotEditor -AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abstract-CotEditor -AppStore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-abstract-CotEditor -AppStore/Pods-abstract-CotEditor -AppStore.release.xcconfig"; sourceTree = "<group>"; };
-		F3504B3BB02D4DBA8EA50C0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF3BFE5ABB837156B95808E /* Pods-CotEditor -Abstract-CotEditor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CotEditor -Abstract-CotEditor.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CotEditor -Abstract-CotEditor/Pods-CotEditor -Abstract-CotEditor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1020,7 +1014,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */,
-				414A77A0028C02DBF84455FC /* libPods-app-CotEditor -AppStore.a in Frameworks */,
+				E7B103CD7924D4C4D8C16E07 /* libPods-app-CotEditor -AppStore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,7 +1031,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */,
-				35C511AE0497AD92FA81BDDD /* libPods-app-CotEditor.a in Frameworks */,
+				CDB89800207C4CDCD0340532 /* libPods-app-CotEditor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1351,7 +1345,6 @@
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				234A213E93629F3A79324102 /* Pods */,
-				8F5B4321ED9800D957BF1997 /* Frameworks */,
 			);
 			name = CotEditor;
 			sourceTree = "<group>";
@@ -1425,8 +1418,8 @@
 			isa = PBXGroup;
 			children = (
 				2A83E2391BA1E65A0069CDFE /* libicucore.tbd */,
-				F3504B3BB02D4DBA8EA50C0E /* libPods.a */,
-				DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */,
+				D131BAE8CC167F8E57C6E6FC /* libPods-app-CotEditor.a */,
+				D540BBC343DD01D310DFB250 /* libPods-app-CotEditor -AppStore.a */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1808,19 +1801,6 @@
 			);
 			name = "Toolbar Icons";
 			path = ToolbarIcons;
-			sourceTree = "<group>";
-		};
-		8F5B4321ED9800D957BF1997 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				28A1465543AE2CE3ECE59B52 /* libPods-CotEditor -Abstract-CotEditor.a */,
-				18B66E27C1C491DA70E0AD4D /* libPods-CotEditor -Abstract-CotEditor -AppStore.a */,
-				3B436162E78F8FABFC1DB2F6 /* libPods-abstract-CotEditor.a */,
-				B7CE256A767E301C7E191125 /* libPods-abstract-CotEditor -AppStore.a */,
-				B3948D0C210777F6D36A36E2 /* libPods-app-CotEditor.a */,
-				3A5662B580D206E14859D80A /* libPods-app-CotEditor -AppStore.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
