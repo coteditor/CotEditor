@@ -1,11 +1,13 @@
 # ref. http://docs.travis-ci.com/user/languages/objective-c/
 
 language: objective-c
-osx_image: xcode7.2
+osx_image: xcode7.3
 xcode_workspace: CotEditor.xcworkspace
 xcode_scheme:
   - CotEditor
   - CotEditor -AppStore
+before_install:
+  - gem install cocoapods
 script: xctool -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
 # enable container-based infrastructure
