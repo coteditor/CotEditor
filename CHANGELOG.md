@@ -15,8 +15,10 @@ develop
 - Improve line-height handling with composite font:
     - Remove “Fix line height with composite font” option, and now, the height of lines is always uniform.
     - Update line-height calculation to fix that the line height by “Fix line height with composite font” option was a bit higher than actual line height of the used font.
+        - From this change, the line hight will get reduced than the previous versions. Please reset the line-height to your favorite number on the Appearance pane in the preferences.
+    - Improve line-height calcuration.
 - Optimize performance to apply syntax highlight to document significantly.
-- Now, the setting changes of status bar, appearance tab and invisible chars are applied to documents immediately.
+- Now, the setting changes of status bar, appearance, tab and invisible chars are applied to documents immediately.
 - Update “INI” syntax style.
 - Remove “Delay coloring” option.
 - Enable move between input fields in syntax style editor with Tab key.
