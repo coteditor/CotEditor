@@ -7,7 +7,7 @@ develop
 
 ### New Features
 
-- Add new normalization form “Modified NFD” (unofficial normalization form adopted by HFS+) to the Unicode normalization action in Utility menu (Thanks to DoraTeX!).
+- Add new normalization form “Modified NFD” (unofficial normalization form adopted by HFS+) to the Unicode normalization action in Text menu (Thanks to DoraTeX!).
 
 
 ### Improvements
@@ -22,7 +22,7 @@ develop
 - Enable move between input fields in syntax style editor with Tab key.
 - Apply font-face to font fields in preferences.
 - Apply document line height on “Copy with Style”.
-- Adjust perefences layout.
+- Adjust preferences layout.
 
 
 ### Fixes
