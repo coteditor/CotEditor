@@ -1,12 +1,12 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :osx, '10.8'
-xcodeproj 'CotEditor/CotEditor.xcodeproj'
-inhibit_all_warnings!
+workspace 'CotEditor'
 
 
-# shared pods
-def shared_pods
+abstract_target 'app' do
+    project 'CotEditor/CotEditor'
+
     pod 'OgreKit',
         :git => 'https://github.com/coteditor/OgreKit.git',
         :branch => 'coteditor-mod-nofindpanel'
@@ -15,14 +15,11 @@ def shared_pods
         :branch => 'coteditor-mod'
     pod 'NSHash'
     pod 'WFColorCode'
-end
 
-# non-AppStore target
-shared_pods
-pod 'Sparkle'
 
-# AppStore target
-target :appstore, :exclusive => true do
-    link_with 'CotEditor -AppStore'
-    shared_pods
+    target 'CotEditor' do
+        pod 'Sparkle'
+    end
+
+    target 'CotEditor -AppStore'
 end

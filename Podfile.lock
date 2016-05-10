@@ -12,8 +12,7 @@ DEPENDENCIES:
   - OgreKit (from `https://github.com/coteditor/OgreKit.git`, branch `coteditor-mod-nofindpanel`)
   - Sparkle
   - WFColorCode
-  - YAML-Framework (from `https://github.com/coteditor/YAML.framework.git`, branch
-    `coteditor-mod`)
+  - YAML-Framework (from `https://github.com/coteditor/YAML.framework.git`, branch `coteditor-mod`)
 
 EXTERNAL SOURCES:
   OgreKit:
@@ -37,6 +36,8 @@ SPEC CHECKSUMS:
   OgreKit: 180248ee68df4ec326279e056cd70db18ffbd378
   Sparkle: ccd95233b12a3e3d4eeb55ff01dd4c8bb8188b07
   WFColorCode: b9ed09bd1529b3e1aeafbb3e230bc5630151a1e4
-  YAML-Framework: 6fe698e19d39d778829f5937e39d1e6bc12afd7b
+  YAML-Framework: 114604d626d89d33e3a35abaabdd2567601a02ee
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 582b26b8547595a44593d349d5124345029934d9
+
+COCOAPODS: 1.0.0
