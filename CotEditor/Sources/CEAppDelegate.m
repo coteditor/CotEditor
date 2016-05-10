@@ -229,6 +229,7 @@
                                                CEDefaultSavesTextOrientationKey: @YES,
                                                CEDefaultLayoutTextVerticalKey: @NO,
                                                CEDefaultEnableSmartIndentKey: @YES,
+                                               CEDefaultRecentlyUsedStylesLimitKey: @6U,
                                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     

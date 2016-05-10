@@ -30,6 +30,7 @@
 #import "CESyntaxStyle.h"
 #import "CEAppDelegate.h"
 #import "CESyntaxDictionaryKeys.h"
+#import "CEDefaults.h"
 #import "Constants.h"
 
 #import <YAML-Framework/YAMLSerialization.h>
@@ -38,6 +39,7 @@
 // notifications
 NSString *_Nonnull const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUpdateNotification";
 NSString *_Nonnull const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification";
+NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification = @"CESyntaxHistoryDidUpdateNotification";
 
 // keys for validation result
 NSString *_Nonnull const CESyntaxValidationTypeKey = @"SyntaxTypeKey";
@@ -48,6 +50,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 @interface CESyntaxManager ()
 
+@property (nonatomic, nonnull, copy) NSMutableOrderedSet<NSString *> *recentlyUsedStyleNameSet;
 @property (nonatomic, nonnull) NSMutableDictionary<NSString *, NSMutableDictionary *> *styleCaches;  // カラーリング定義のキャッシュ
 @property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSDictionary<NSString *, NSArray *> *> *map;  // style名と拡張子/ファイル名の対応テーブル
 
@@ -101,6 +104,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 {
     self = [super init];
     if (self) {
+        _recentlyUsedStyleNameSet = [NSMutableOrderedSet orderedSetWithArray:[[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultRecentlyUsedStyleNamesKey]];
         _styleCaches = [NSMutableDictionary dictionary];
         
         // バンドルされているstyle定義の一覧を読み込んでおく
@@ -123,19 +127,39 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+/// return recently used style history as an array
+- (nonnull NSArray<NSString *> *)recentlyUsedStyleNames
+// ------------------------------------------------------
+{
+    NSUInteger itemNumber = MIN([[self recentlyUsedStyleNameSet] count], [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultRecentlyUsedStylesLimitKey]);
+    
+    return [[[self recentlyUsedStyleNameSet] array] subarrayWithRange:NSMakeRange(0, itemNumber)];
+}
+
+
+// ------------------------------------------------------
 /// create new CESyntaxStyle instance
 - (nullable CESyntaxStyle *)styleWithName:(NSString *)styleName
 // ------------------------------------------------------
 {
+    CESyntaxStyle *style = nil;
     if (!styleName || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        return [[CESyntaxStyle alloc] initWithDictionary:nil name:NSLocalizedString(@"None", nil)];
+        style = [[CESyntaxStyle alloc] initWithDictionary:nil name:NSLocalizedString(@"None", nil)];
         
     } else if ([[self styleNames] containsObject:styleName]) {
         NSDictionary<NSString *, id> *highlightDictionary = [self styleDictionaryWithStyleName:styleName];
-        return [[CESyntaxStyle alloc] initWithDictionary:highlightDictionary name:styleName];
+        style = [[CESyntaxStyle alloc] initWithDictionary:highlightDictionary name:styleName];
     }
     
-    return nil;
+    if (style) {
+        [[self recentlyUsedStyleNameSet] removeObject:styleName];
+        [[self recentlyUsedStyleNameSet] insertObject:styleName atIndex:0];
+        [[NSUserDefaults standardUserDefaults] setObject:[self recentlyUsedStyleNames] forKey:CEDefaultRecentlyUsedStyleNamesKey];
+        [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxHistoryDidUpdateNotification
+                                                            object:self];
+    }
+    
+    return style;
 }
 
 
@@ -788,6 +812,11 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     NSMutableArray<NSString *> *styleNames = [[map allKeys] mutableCopy];
     [styleNames sortUsingSelector:@selector(caseInsensitiveCompare:)];
     [self setStyleNames:styleNames];
+    
+    // remove deleted styles
+    // -> don't care about style name change just for laziness
+    [[self recentlyUsedStyleNameSet] intersectSet:[NSSet setWithArray:styleNames]];
+    [[NSUserDefaults standardUserDefaults] setObject:[self recentlyUsedStyleNames] forKey:CEDefaultRecentlyUsedStyleNamesKey];
 }
 
 

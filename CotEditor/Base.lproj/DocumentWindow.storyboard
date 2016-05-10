@@ -67,10 +67,10 @@
                                     <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="RTF-Xf-Dgz">
                                         <rect key="frame" x="0.0" y="14" width="120" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="hb4-gd-uwc">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" id="hb4-gd-uwc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
-                                            <menu key="menu" id="plp-5x-eBz"/>
+                                            <menu key="menu" autoenablesItems="NO" id="plp-5x-eBz"/>
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>

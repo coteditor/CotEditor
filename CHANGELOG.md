@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Display recent used syntax styles at the top of the toolbar syntax style popup list. 
+
+
 ### Improvements
 
 - Drop support for __OS X Mountain Lion__ and __Mavericks__.

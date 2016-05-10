@@ -47,6 +47,7 @@
 "Auto-Detect" = "自动检测";
 // Format - Syntax coloring menu item title
 "None" = "无";
+"Recently Used" = "最近使用";
 "Re-Color All" = "全部重新着色";
 
 // Importing theme

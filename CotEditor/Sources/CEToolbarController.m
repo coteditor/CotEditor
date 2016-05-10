@@ -89,6 +89,11 @@
                                              selector:@selector(buildSyntaxPopupButton)
                                                  name:CESyntaxListDidUpdateNotification
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(buildSyntaxPopupButton)
+                                                 name:CESyntaxHistoryDidUpdateNotification
+                                               object:nil];
 }
 
 
@@ -217,12 +222,29 @@
 // ------------------------------------------------------
 {
     NSArray<NSString *> *styleNames = [[CESyntaxManager sharedManager] styleNames];
+    NSArray<NSString *> *recentlyUsedStyleNames = [[CESyntaxManager sharedManager] recentlyUsedStyleNames];
     
     [[self syntaxPopupButton] removeAllItems];
+    
     [[[self syntaxPopupButton] menu] addItemWithTitle:NSLocalizedString(@"None", nil)
                                                action:@selector(changeSyntaxStyle:)
                                         keyEquivalent:@""];
     [[[self syntaxPopupButton] menu] addItem:[NSMenuItem separatorItem]];
+    
+    if ([recentlyUsedStyleNames count] > 0) {
+        NSMenuItem *titleItem = [[NSMenuItem alloc] init];
+        [titleItem setTitle:NSLocalizedString(@"Recently Used", @"menu heading in syntax style list on toolbar popup")];
+        [titleItem setEnabled:NO];
+        [[[self syntaxPopupButton] menu] addItem:titleItem];
+        
+        for (NSString *styleName in recentlyUsedStyleNames) {
+            [[[self syntaxPopupButton] menu] addItemWithTitle:styleName
+                                                       action:@selector(changeSyntaxStyle:)
+                                                keyEquivalent:@""];
+        }
+        [[[self syntaxPopupButton] menu] addItem:[NSMenuItem separatorItem]];
+    }
+    
     for (NSString *styleName in styleNames) {
         [[[self syntaxPopupButton] menu] addItemWithTitle:styleName
                                                    action:@selector(changeSyntaxStyle:)
