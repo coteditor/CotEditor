@@ -612,7 +612,15 @@ static CGFloat kPerCompoIncrement;
     if ([self beginParsingBlock]) {
         [self beginParsingBlock](NSLocalizedString(@"comments and quoted texts", nil));
     }
-    [highlights addEntriesFromDictionary:[self extractCommentsWithQuotesFromString:string range:parseRange]];
+    NSDictionary<NSString *, NSArray *> *commentAndQuoteRanges = [self extractCommentsWithQuotesFromString:string range:parseRange];
+    for (NSString *key in commentAndQuoteRanges) {
+        if (highlights[key]) {
+            highlights[key] = [highlights[key] arrayByAddingObjectsFromArray:commentAndQuoteRanges[key]];
+        } else {
+            highlights[key] = commentAndQuoteRanges[key];
+        }
+    }
+    
     if ([self didProgress]) {
         [self didProgress](kPerCompoIncrement);
     }
