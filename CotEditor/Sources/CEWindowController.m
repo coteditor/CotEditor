@@ -157,9 +157,6 @@ static NSTimeInterval infoUpdateInterval;
     // apply document state to UI
     [[self document] applyContentToWindow];
     
-    // move focus to text view
-    [[self window] makeFirstResponder:[[self editor] focusedTextView]];
-    
     // notify finish of the document open process (Here is probably the final point.)
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
