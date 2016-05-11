@@ -275,9 +275,16 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// parse outline
-- (void)parseOutlineItemsInString:(nonnull NSString *)string completionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull))completionHandler
+- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull))completionHandler
 // ------------------------------------------------------
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
+    if ([[self textStorage] length] == 0) { return; }
+    
+    // make sure the string is immutable
+    //   -> NSTextStorage's `string` property retruns a mutable string.
+    NSString *string = [NSString stringWithString:[[self textStorage] string]];
+    
     CESyntaxOutlineParser *parser = [[CESyntaxOutlineParser alloc] initWithString:string definitions:[self outlineDefinitions]];
     [parser parseWithCompletionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems) {
         completionHandler(outlineItems);
@@ -297,12 +304,13 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 全体をカラーリング
-- (void)highlightWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler
+- (void)highlightWholeStringWithCompletionHandler:(nullable void (^)())completionHandler
 // ------------------------------------------------------
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
-    if ([textStorage length] == 0) { return; }
+    if ([[self textStorage] length] == 0) { return; }
     
+    NSTextStorage *textStorage = [self textStorage];
     NSRange wholeRange = NSMakeRange(0, [textStorage length]);
     
     // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
@@ -330,11 +338,13 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)highlightRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage
+- (void)highlightRange:(NSRange)range
 // ------------------------------------------------------
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
-    if ([textStorage length] == 0) { return; }
+    if ([[self textStorage] length] == 0) { return; }
+    
+    NSTextStorage *textStorage = [self textStorage];
     
     // make sure that string is immutable (see `highlightWholeStringInTextStorage:completionHandler:` for details)
     NSString *string = [NSString stringWithString:[textStorage string]];

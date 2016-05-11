@@ -1104,6 +1104,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([syntaxStyle isEqualToSyntaxStyle:[self syntaxStyle]]) { return; }
     
     // update
+    [syntaxStyle setTextStorage:[self textStorage]];
     [self setSyntaxStyle:syntaxStyle];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentSyntaxStyleDidChangeNotification

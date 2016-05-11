@@ -74,10 +74,7 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
 {
     self = [super init];
     if (self) {
-        // make sure the string is immutable
-        //   -> [note] NSTextStorage's `string` property retruns mutable string
-        _string = [NSString stringWithString:string];
-        
+        _string = string;
         _definitions = definitions;
     }
     return self;

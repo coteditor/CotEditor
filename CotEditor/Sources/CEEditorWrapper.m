@@ -490,7 +490,7 @@
         [[viewController textView] setTheme:theme];
     }];
     
-    [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
+    [[self syntaxStyle] highlightWholeStringWithCompletionHandler:nil];
 }
 
 
@@ -876,7 +876,7 @@
 {
     [[self syntaxHighlightTimer] invalidate];
     
-    [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
+    [[self syntaxStyle] highlightWholeStringWithCompletionHandler:nil];
 }
 
 
@@ -902,7 +902,7 @@
     
     // extract outline and pass result to navigationBar
     CESplitViewController *splitViewController = [self splitViewController];
-    [[self syntaxStyle] parseOutlineItemsInString:wholeString completionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems)
+    [[self syntaxStyle] parseOutlineWithCompletionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems)
      {
          [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
              [[viewController navigationBarController] setOutlineItems:outlineItems];
@@ -1006,7 +1006,7 @@
         updateRange = NSMakeRange(location, length);
     }
     
-    [[self syntaxStyle] highlightRange:updateRange textStorage:[textView textStorage]];
+    [[self syntaxStyle] highlightRange:updateRange];
 }
 
 

@@ -31,6 +31,8 @@
 
 @interface CESyntaxStyle : NSObject
 
+@property (nonatomic, nullable) NSTextStorage *textStorage;
+
 // readonly
 @property (readonly, nonatomic, nonnull, copy) NSString *styleName;
 @property (readonly, nonatomic, nullable, copy) NSArray<NSString *> *completionWords;  // 入力補完文字列配列
@@ -52,7 +54,7 @@
 
 @interface CESyntaxStyle (Outline)
 
-- (void)parseOutlineItemsInString:(nonnull NSString *)string completionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems))completionHandler;
+- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems))completionHandler;
 
 @end
 
@@ -60,7 +62,7 @@
 
 @interface CESyntaxStyle (Highlighting)
 
-- (void)highlightWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler;
-- (void)highlightRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage;
+- (void)highlightWholeStringWithCompletionHandler:(nullable void (^)())completionHandler;
+- (void)highlightRange:(NSRange)range;
 
 @end
