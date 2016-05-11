@@ -20,6 +20,7 @@ develop
 - Optimize performance to apply syntax highlight to document significantly.
 - Now, the setting changes of status bar, appearance, tab and invisible chars are applied to documents immediately.
 - Update “INI” syntax style.
+- Remove spelling auto correction option.
 - Remove “Delay coloring” option.
 - Enable move between input fields in syntax style editor with Tab key.
 - Apply font-face to font fields in preferences.

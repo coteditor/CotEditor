@@ -16,11 +16,11 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="s6I-DY-Ii0" userLabel="Edit Pane">
-            <rect key="frame" x="0.0" y="0.0" width="550" height="540"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="518"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="844">
-                    <rect key="frame" x="115" y="458" width="156" height="18"/>
+                    <rect key="frame" x="115" y="436" width="156" height="18"/>
                     <buttonCell key="cell" type="check" title="Swap “¥” and “\” keys" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -30,7 +30,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mWb-Dy-J7g">
-                    <rect key="frame" x="115" y="480" width="317" height="18"/>
+                    <rect key="frame" x="115" y="458" width="317" height="18"/>
                     <buttonCell key="cell" type="check" title="Automatically insert closing brackets and quotes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="GRh-V2-hmW">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -40,7 +40,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                    <rect key="frame" x="115" y="502" width="129" height="18"/>
+                    <rect key="frame" x="115" y="480" width="129" height="18"/>
                     <buttonCell key="cell" type="check" title="Smart copy/paste" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -58,7 +58,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="IXD-kJ-dvh">
-                    <rect key="frame" x="30" y="503" width="81" height="17"/>
+                    <rect key="frame" x="30" y="481" width="81" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Substitution:" usesSingleLineMode="YES" id="SqI-BC-ar9">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -303,44 +303,14 @@
                         <binding destination="26" name="value" keyPath="values.detectsIndentStyle" id="dPX-B0-1FV"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="3e2-dM-agj">
-                    <rect key="frame" x="205" y="411" width="67" height="18"/>
-                    <buttonCell key="cell" type="check" title="Dashes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nr1-0X-aBY">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="26" name="value" keyPath="values.enableSmartDashes" id="tqz-Vl-E5h"/>
-                    </connections>
-                </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="f5Z-SR-Ac5">
-                    <rect key="frame" x="276" y="411" width="71" height="18"/>
-                    <buttonCell key="cell" type="check" title="Spelling" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VFh-cz-tT7">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="26" name="value" keyPath="values.enableAutoSpellingCorrection" id="EfE-R7-jyJ"/>
-                    </connections>
-                </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9F-Q4K">
-                    <rect key="frame" x="115" y="435" width="110" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Smart correction:" id="6I3-dM-2QV">
+                    <rect key="frame" x="115" y="413" width="41" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Smart" id="6I3-dM-2QV">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="S9y-ho-0e9">
-                    <rect key="frame" x="135" y="411" width="66" height="18"/>
-                    <buttonCell key="cell" type="check" title="Quotes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Abx-fM-gyc">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="26" name="value" keyPath="values.enableSmartQuotes" id="yWg-yp-nfz"/>
-                    </connections>
-                </button>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="z5v-7l-1C4">
                     <rect key="frame" x="507" y="17" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cmk-AI-Nel">
@@ -351,8 +321,29 @@
                         <action selector="openHelpAnchor:" target="-1" id="hyu-2z-avq"/>
                     </connections>
                 </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="3e2-dM-agj">
+                    <rect key="frame" x="230" y="412" width="67" height="18"/>
+                    <buttonCell key="cell" type="check" title="Dashes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nr1-0X-aBY">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.enableSmartDashes" id="tqz-Vl-E5h"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="S9y-ho-0e9">
+                    <rect key="frame" x="160" y="412" width="66" height="18"/>
+                    <buttonCell key="cell" type="check" title="Quotes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Abx-fM-gyc">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="26" name="value" keyPath="values.enableSmartQuotes" id="yWg-yp-nfz"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
+                <constraint firstItem="S9y-ho-0e9" firstAttribute="leading" secondItem="cjn-9F-Q4K" secondAttribute="trailing" constant="8" symbolic="YES" id="097-Gz-7if"/>
                 <constraint firstAttribute="bottom" secondItem="z5v-7l-1C4" secondAttribute="bottom" constant="20" symbolic="YES" id="0Ke-Pr-SYk"/>
                 <constraint firstItem="Vf0-M7-9ji" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="0n7-K8-sdI"/>
                 <constraint firstItem="mWb-Dy-J7g" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="1gk-l0-W8e"/>
@@ -361,7 +352,7 @@
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
                 <constraint firstItem="3e2-dM-agj" firstAttribute="bottom" secondItem="S9y-ho-0e9" secondAttribute="bottom" id="2jS-LF-YXG"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="3eN-aj-0ZB"/>
-                <constraint firstItem="f5Z-SR-Ac5" firstAttribute="leading" secondItem="3e2-dM-agj" secondAttribute="trailing" constant="8" symbolic="YES" id="3fc-Br-pDS"/>
+                <constraint firstItem="S9y-ho-0e9" firstAttribute="baseline" secondItem="cjn-9F-Q4K" secondAttribute="baseline" id="4qQ-re-z8C"/>
                 <constraint firstItem="t0Y-p1-xOb" firstAttribute="leading" secondItem="lO2-uf-OLD" secondAttribute="leading" id="5d4-UU-RBZ"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="top" secondItem="btC-lZ-pQ7" secondAttribute="bottom" constant="8" id="72F-Be-lUx"/>
                 <constraint firstItem="MUG-vA-30T" firstAttribute="leading" secondItem="W1V-E2-PcB" secondAttribute="trailing" constant="8" symbolic="YES" id="9fM-Zn-Ko0"/>
@@ -389,7 +380,6 @@
                 <constraint firstItem="209" firstAttribute="leading" secondItem="4B0-Kj-mzX" secondAttribute="trailing" constant="8" symbolic="YES" id="UcK-lH-Or0"/>
                 <constraint firstItem="160" firstAttribute="leading" secondItem="283" secondAttribute="leading" id="VwP-1c-FdO"/>
                 <constraint firstItem="4B0-Kj-mzX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="Wny-Wk-nNJ"/>
-                <constraint firstItem="f5Z-SR-Ac5" firstAttribute="bottom" secondItem="S9y-ho-0e9" secondAttribute="bottom" id="XuS-c0-u2w"/>
                 <constraint firstItem="mWb-Dy-J7g" firstAttribute="top" secondItem="644" secondAttribute="bottom" constant="8" id="Z6X-B5-ROj"/>
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="Zgo-o6-Vjl"/>
                 <constraint firstItem="3e2-dM-agj" firstAttribute="leading" secondItem="S9y-ho-0e9" secondAttribute="trailing" constant="8" symbolic="YES" id="bAb-KD-VNK"/>
@@ -399,7 +389,6 @@
                 <constraint firstItem="w2P-Vr-ZDY" firstAttribute="top" secondItem="t0Y-p1-xOb" secondAttribute="bottom" constant="8" id="e1S-pc-Nus"/>
                 <constraint firstItem="N9e-hF-BPy" firstAttribute="leading" secondItem="iub-4d-NyY" secondAttribute="trailing" constant="8" symbolic="YES" id="eJ7-3F-ASx"/>
                 <constraint firstItem="69" firstAttribute="top" secondItem="Vf0-M7-9ji" secondAttribute="bottom" constant="20" id="fgf-3E-dzG"/>
-                <constraint firstItem="S9y-ho-0e9" firstAttribute="leading" secondItem="cjn-9F-Q4K" secondAttribute="leading" constant="20" id="fyC-Ii-Z60"/>
                 <constraint firstItem="IXD-kJ-dvh" firstAttribute="top" secondItem="s6I-DY-Ii0" secondAttribute="top" constant="20" symbolic="YES" id="gJQ-Aw-eFi"/>
                 <constraint firstItem="R0e-j3-ADv" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="8" id="hXV-CY-6PA"/>
                 <constraint firstItem="282" firstAttribute="leading" secondItem="283" secondAttribute="trailing" constant="8" symbolic="YES" id="iOw-EV-67G"/>
@@ -409,12 +398,11 @@
                 <constraint firstItem="R0e-j3-ADv" firstAttribute="leading" secondItem="69" secondAttribute="leading" id="ku4-F3-TtI"/>
                 <constraint firstItem="Vf0-M7-9ji" firstAttribute="top" secondItem="aZf-lI-jGQ" secondAttribute="bottom" constant="8" id="kvd-fS-ZRv"/>
                 <constraint firstItem="fR5-Ie-WnP" firstAttribute="leading" secondItem="s6I-DY-Ii0" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="kxb-eQ-bj4"/>
-                <constraint firstItem="S9y-ho-0e9" firstAttribute="top" secondItem="cjn-9F-Q4K" secondAttribute="bottom" constant="8" symbolic="YES" id="l1D-cU-D6g"/>
-                <constraint firstItem="209" firstAttribute="top" secondItem="S9y-ho-0e9" secondAttribute="bottom" constant="20" id="lQI-dD-Tub"/>
                 <constraint firstAttribute="trailing" secondItem="z5v-7l-1C4" secondAttribute="trailing" constant="20" symbolic="YES" id="mrm-H0-0da"/>
                 <constraint firstItem="VBo-Ii-1PR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="o2w-sC-kkc"/>
                 <constraint firstItem="IXD-kJ-dvh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="ofc-c0-fEp"/>
                 <constraint firstItem="Dte-ly-fKQ" firstAttribute="leading" secondItem="lO2-uf-OLD" secondAttribute="leading" constant="-20" id="q9d-qo-vO1"/>
+                <constraint firstItem="209" firstAttribute="top" secondItem="cjn-9F-Q4K" secondAttribute="bottom" constant="20" id="qA3-h2-ASI"/>
                 <constraint firstItem="t0Y-p1-xOb" firstAttribute="top" secondItem="lO2-uf-OLD" secondAttribute="bottom" constant="8" id="rHi-wD-6T9"/>
                 <constraint firstItem="Dte-ly-fKQ" firstAttribute="top" secondItem="R0e-j3-ADv" secondAttribute="bottom" constant="20" id="sDm-03-Oar"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="844" secondAttribute="leading" id="sce-Ba-PNP"/>

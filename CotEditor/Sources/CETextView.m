@@ -157,7 +157,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
             [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartDashesKey]];
         }
-        [self setAutomaticSpellingCorrectionEnabled:[defaults boolForKey:CEDefaultEnableAutoSpellingCorrectionKey]];
         [self setFont:font];
         [self setMinSize:[self frame].size];
         [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
@@ -1056,9 +1055,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
         }
         
-    } else if ([keyPath isEqualToString:CEDefaultEnableAutoSpellingCorrectionKey]) {
-        [self setAutomaticSpellingCorrectionEnabled:[newValue boolValue]];
-        
     } else if ([keyPath isEqualToString:CEDefaultAutoLinkDetectionKey]) {
         [self setAutomaticLinkDetectionEnabled:[newValue boolValue]];
         if ([self isAutomaticLinkDetectionEnabled]) {
@@ -1397,7 +1393,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
              CEDefaultPageGuideColumnKey,
              CEDefaultEnableSmartQuotesKey,
              CEDefaultEnableSmartDashesKey,
-             CEDefaultEnableAutoSpellingCorrectionKey,
              CEDefaultTabWidthKey,
              CEDefaultHangingIndentWidthKey,
              CEDefaultEnablesHangingIndentKey,

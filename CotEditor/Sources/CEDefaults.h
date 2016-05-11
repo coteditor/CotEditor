@@ -107,7 +107,6 @@ extern NSString *_Nonnull const CEDefaultSaveUTF8BOMKey;
 extern NSString *_Nonnull const CEDefaultBalancesBracketsKey;
 extern NSString *_Nonnull const CEDefaultEnableSmartQuotesKey;
 extern NSString *_Nonnull const CEDefaultEnableSmartDashesKey;
-extern NSString *_Nonnull const CEDefaultEnableAutoSpellingCorrectionKey;
 extern NSString *_Nonnull const CEDefaultEnableSmartIndentKey;
 extern NSString *_Nonnull const CEDefaultAutoLinkDetectionKey;
 extern NSString *_Nonnull const CEDefaultAppendsCommentSpacerKey;

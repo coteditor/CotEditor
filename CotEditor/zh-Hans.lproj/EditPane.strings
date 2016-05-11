@@ -34,14 +34,12 @@
 "GRh-V2-hmW.title" = "补全括号和引号";  // FIXME: updated
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "转换“¥”和“\\”按键";
-/* Class = "NSTextFieldCell"; title = "Smart correction:"; ObjectID = "6I3-dM-2QV"; */
-"6I3-dM-2QV.title" = "智能纠正：";
+/* Class = "NSTextFieldCell"; title = "Smart"; ObjectID = "6I3-dM-2QV"; */
+"6I3-dM-2QV.title" = "智能";
 /* Class = "NSButtonCell"; title = "Quotes"; ObjectID = "Abx-fM-gyc"; */
 "Abx-fM-gyc.title" = "引号";
 /* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
 "nr1-0X-aBY.title" = "破折号";
-/* Class = "NSButtonCell"; title = "Spelling"; ObjectID = "VFh-cz-tT7"; */
-"VFh-cz-tT7.title" = "拼写";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
