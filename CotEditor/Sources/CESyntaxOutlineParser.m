@@ -40,8 +40,6 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
 
 @interface CESyntaxOutlineParser ()
 
-@property (nonatomic, nonnull) NSString *string;
-
 @property (nonatomic, nullable) NSArray<NSDictionary *> *definitions;
 
 @end
@@ -69,12 +67,11 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithString:(nonnull NSString *)string definitions:(nonnull NSArray<NSDictionary *> *)definitions
+- (nonnull instancetype)initWithDefinitions:(nonnull NSArray<NSDictionary *> *)definitions
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        _string = string;
         _definitions = definitions;
     }
     return self;
@@ -83,10 +80,9 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
 
 // ------------------------------------------------------
 /// parse string in background and return extracted outline items
-- (void)parseWithCompletionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull))completionHandler
+- (void)parseString:(nonnull NSString *)string range:(NSRange)range completionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull))completionHandler
 // ------------------------------------------------------
 {
-    NSString *string = [self string];
     NSArray<NSDictionary *> *definitions = [self definitions];
     
     if ([string length] == 0 || [definitions count] == 0) {
@@ -118,8 +114,8 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
             NSString *template = definition[CESyntaxKeyStringKey];
             
             [regex enumerateMatchesInString:string
-                                    options:0
-                                      range:NSMakeRange(0, [string length])
+                                    options:NSMatchingWithTransparentBounds | NSMatchingWithoutAnchoringBounds
+                                      range:range
                                  usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
              {
                  NSRange range = [result range];

@@ -51,8 +51,6 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 @interface CESyntaxHighlightParser ()
 
-@property (nonatomic, nonnull) NSString *string;
-
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, id> *highlightDictionary;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSCharacterSet *> *simpleWordsCharacterSets;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
@@ -107,20 +105,15 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithString:(nonnull NSString *)string
-                            dictionary:(nonnull NSDictionary *)dictionary
-              simpleWordsCharacterSets:(nullable NSDictionary<NSString *, NSCharacterSet *> *)simpleWordsCharacterSets
-                      pairedQuoteTypes:(nullable NSDictionary<NSString *, NSString *> *)pairedQuoteTypes
-                inlineCommentDelimiter:(nullable NSString *)inlineCommentDelimiter
-                blockCommentDelimiters:(nullable NSDictionary<NSString *, NSString *> *)blockCommentDelimiters
+- (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary
+                  simpleWordsCharacterSets:(nullable NSDictionary<NSString *, NSCharacterSet *> *)simpleWordsCharacterSets
+                          pairedQuoteTypes:(nullable NSDictionary<NSString *, NSString *> *)pairedQuoteTypes
+                    inlineCommentDelimiter:(nullable NSString *)inlineCommentDelimiter
+                    blockCommentDelimiters:(nullable NSDictionary<NSString *, NSString *> *)blockCommentDelimiters
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        // make sure the string is immutable
-        //   -> [note] NSTextStorage's `string` property retruns mutable string
-        _string = [NSString stringWithString:string];
-        
         _highlightDictionary = dictionary;
         _simpleWordsCharacterSets = simpleWordsCharacterSets;
         _pairedQuoteTypes = pairedQuoteTypes;
@@ -133,7 +126,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// parse string in background and return extracted highlight ranges per syntax types
-- (void)parseRange:(NSRange)range completionHandler:(void (^)(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull))completionHandler
+- (void)parseString:(nonnull NSString *)string range:(NSRange)range completionHandler:(void (^)(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull))completionHandler
 // ------------------------------------------------------
 {
     __weak typeof(self) weakSelf = self;
@@ -141,7 +134,7 @@ static CGFloat kPerCompoIncrement;
         typeof(self) self = weakSelf;  // strong self
         if (!self) { return; }
         
-        NSDictionary<NSString *, NSArray<NSValue *> *> *highlights = [self extractAllHighlightsFromString:[self string] range:range];
+        NSDictionary<NSString *, NSArray<NSValue *> *> *highlights = [self extractAllHighlightsFromString:string range:range];
         if (completionHandler) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 completionHandler(highlights);

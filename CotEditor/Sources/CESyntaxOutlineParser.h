@@ -38,9 +38,9 @@ extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
 
 @interface CESyntaxOutlineParser : NSObject
 
-- (nonnull instancetype)initWithString:(nonnull NSString *)string definitions:(nonnull NSArray<NSDictionary *> *)definitions NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithDefinitions:(nonnull NSArray<NSDictionary *> *)definitions NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
 
-- (void)parseWithCompletionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *, id> *> * _Nonnull outlineItems))completionHandler;
+- (void)parseString:(nonnull NSString *)string range:(NSRange)range completionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *, id> *> * _Nonnull outlineItems))completionHandler;
 
 @end

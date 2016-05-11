@@ -284,9 +284,10 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     // make sure the string is immutable
     //   -> NSTextStorage's `string` property retruns a mutable string.
     NSString *string = [NSString stringWithString:[[self textStorage] string]];
+    NSRange range = NSMakeRange(0, [string length]);
     
-    CESyntaxOutlineParser *parser = [[CESyntaxOutlineParser alloc] initWithString:string definitions:[self outlineDefinitions]];
-    [parser parseWithCompletionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems) {
+    CESyntaxOutlineParser *parser = [[CESyntaxOutlineParser alloc] initWithDefinitions:[self outlineDefinitions]];
+    [parser parseString:string range:range completionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems) {
         completionHandler(outlineItems);
     }];
 }
@@ -412,12 +413,11 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     }
     
     __block BOOL isCompleted = NO;
-    __block CESyntaxHighlightParser *parser = [[CESyntaxHighlightParser alloc] initWithString:wholeString
-                                                                                   dictionary:[self highlightDictionary]
-                                                                     simpleWordsCharacterSets:[self simpleWordsCharacterSets]
-                                                                             pairedQuoteTypes:[self pairedQuoteTypes]
-                                                                       inlineCommentDelimiter:[self inlineCommentDelimiter]
-                                                                       blockCommentDelimiters:[self blockCommentDelimiters]];
+    __block CESyntaxHighlightParser *parser = [[CESyntaxHighlightParser alloc] initWithDictionary:[self highlightDictionary]
+                                                                         simpleWordsCharacterSets:[self simpleWordsCharacterSets]
+                                                                                 pairedQuoteTypes:[self pairedQuoteTypes]
+                                                                           inlineCommentDelimiter:[self inlineCommentDelimiter]
+                                                                           blockCommentDelimiters:[self blockCommentDelimiters]];
     
     // show highlighting indicator for large string
     CEProgressSheetController *indicator = nil;
@@ -455,7 +455,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     }
     
     __weak typeof(self) weakSelf = self;
-    [parser parseRange:highlightRange completionHandler:^(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull highlights)
+    [parser parseString:wholeString range:highlightRange completionHandler:^(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull highlights)
      {
          typeof(self) self = weakSelf;  // strong self
          if (!self) {  // This block can be passed if the syntax style is already discarded.
