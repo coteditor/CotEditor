@@ -8,7 +8,7 @@ xcode_scheme:
   - CotEditor -AppStore
 before_install:
   - gem install cocoapods
-script: xctool -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+script: xcodebuild -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
 # enable container-based infrastructure
 sudo: false
