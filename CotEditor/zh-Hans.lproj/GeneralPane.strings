@@ -69,7 +69,7 @@
 /* Class = "NSButtonCell"; title = "Link URLs"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "链接文档中的 URL";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "输入时检查拼写";
+"3300.title" = "键入时检查拼写";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "高亮配对括号“( )” “[ ]” “{ }”";
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */

@@ -40,8 +40,8 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="644">
-                    <rect key="frame" x="115" y="502" width="172" height="18"/>
-                    <buttonCell key="cell" type="check" title="Enable smart copy/paste" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
+                    <rect key="frame" x="115" y="502" width="129" height="18"/>
+                    <buttonCell key="cell" type="check" title="Smart copy/paste" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -304,8 +304,8 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="3e2-dM-agj">
-                    <rect key="frame" x="243" y="411" width="106" height="18"/>
-                    <buttonCell key="cell" type="check" title="Smart dashes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nr1-0X-aBY">
+                    <rect key="frame" x="205" y="411" width="67" height="18"/>
+                    <buttonCell key="cell" type="check" title="Dashes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nr1-0X-aBY">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -314,7 +314,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="f5Z-SR-Ac5">
-                    <rect key="frame" x="353" y="411" width="71" height="18"/>
+                    <rect key="frame" x="276" y="411" width="71" height="18"/>
                     <buttonCell key="cell" type="check" title="Spelling" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VFh-cz-tT7">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -324,16 +324,16 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cjn-9F-Q4K">
-                    <rect key="frame" x="115" y="435" width="102" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Auto correction:" id="6I3-dM-2QV">
+                    <rect key="frame" x="115" y="435" width="110" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Smart correction:" id="6I3-dM-2QV">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="S9y-ho-0e9">
-                    <rect key="frame" x="135" y="411" width="104" height="18"/>
-                    <buttonCell key="cell" type="check" title="Smart quotes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Abx-fM-gyc">
+                    <rect key="frame" x="135" y="411" width="66" height="18"/>
+                    <buttonCell key="cell" type="check" title="Quotes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Abx-fM-gyc">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
