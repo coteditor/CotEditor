@@ -36,7 +36,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
-"Ki4-3Y-AZL.title" = "Document save：";  // FIXME: changed
+"Ki4-3Y-AZL.title" = "文档保存：";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "开启带有版本的自动保存";
