@@ -53,6 +53,7 @@
 #import "CEErrors.h"
 #import "CEDefaults.h"
 #import "CEEncodings.h"
+#import "Constants.h"
 
 
 // constants
@@ -166,6 +167,12 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(documentDidFinishOpen:)
                                                      name:CEDocumentDidFinishOpenNotification object:nil];
+        
+        // observe sytnax style update
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(syntaxDidUpdate:)
+                                                     name:CESyntaxDidUpdateNotification
+                                                   object:nil];
         
         // alert about file modification by an external process when application becomes active
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -1126,6 +1133,26 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // 書き込み禁止アラートを表示
         [self showNotWritableAlert];
     }
+}
+
+
+//=======================================================
+// Notification  <- CESyntaxManager
+//=======================================================
+
+// ------------------------------------------------------
+/// set a flag of syntax highlight update if corresponded style has been updated
+- (void)syntaxDidUpdate:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    NSString *oldName = [notification userInfo][CEOldNameKey];
+    NSString *newName = [notification userInfo][CENewNameKey];
+    
+    if (![oldName isEqualToString:[[self syntaxStyle] styleName]]) { return; }
+    
+    [self setSyntaxStyleWithName:newName];
+    [[self editor] invalidateSyntaxColoring];
+    [[self editor] invalidateOutlineMenu];
 }
 
 

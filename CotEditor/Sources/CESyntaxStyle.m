@@ -249,10 +249,15 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 - (BOOL)isEqualToSyntaxStyle:(CESyntaxStyle *)syntaxStyle
 // ------------------------------------------------------
 {
-    if (![[syntaxStyle styleName] isEqualToString:[self styleName]]) { return NO; }
-    if (![[syntaxStyle highlightDictionary] isEqualToDictionary:[self highlightDictionary]]) { return NO; }
+    if ([[syntaxStyle styleName] isEqualToString:[self styleName]] &&
+        [[syntaxStyle highlightDictionary] isEqualToDictionary:[self highlightDictionary]] &&
+        [[syntaxStyle inlineCommentDelimiter] isEqualToString:[self inlineCommentDelimiter]] &&
+        [[syntaxStyle blockCommentDelimiters] isEqualToDictionary:[self blockCommentDelimiters]])
+    {
+        return YES;
+    }
     
-    return YES;
+    return NO;
 }
 
 @end

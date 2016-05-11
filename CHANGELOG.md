@@ -36,6 +36,7 @@ develop
 - Fix an issue where some highlight definitions in Comments, Strings or Characters types were ignored.
 - Fix an issue where syntax was always highlighted even if syntax highlight is disabled.
 - Fix an issue where application crashed if empty character is input from the Unicode hex panel.
+- Fix an issue where syntax highlight was rarely not updated when style definition is modified.
 - Fix line numbers position when text scaled.
 
 
