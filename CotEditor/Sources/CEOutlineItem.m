@@ -1,11 +1,11 @@
 /*
  
- CESyntaxOutlineParser.h
+ CEOutlineItem.m
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2016-01-06.
+ Created by 1024jp on 2016-05-12.
  
  ------------------------------------------------------------------------------
  
@@ -25,17 +25,9 @@
  
  */
 
-@import Foundation;
+#import "CEOutlineItem.h"
 
 
-@class CEOutlineItem;
-
-
-@interface CESyntaxOutlineParser : NSObject
-
-- (nonnull instancetype)initWithDefinitions:(nonnull NSArray<NSDictionary *> *)definitions NS_DESIGNATED_INITIALIZER;
-- (nullable instancetype)init NS_UNAVAILABLE;
-
-- (void)parseString:(nonnull NSString *)string range:(NSRange)range completionHandler:(nullable void (^)(NSArray<CEOutlineItem *> * _Nonnull outlineItems))completionHandler;
+@implementation CEOutlineItem
 
 @end

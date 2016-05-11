@@ -29,6 +29,9 @@
 @import Cocoa;
 
 
+@class CEOutlineItem;
+
+
 @interface CESyntaxStyle : NSObject
 
 @property (nonatomic, nullable) NSTextStorage *textStorage;
@@ -54,7 +57,7 @@
 
 @interface CESyntaxStyle (Outline)
 
-- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems))completionHandler;
+- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<CEOutlineItem *> * _Nonnull outlineItems))completionHandler;
 
 @end
 

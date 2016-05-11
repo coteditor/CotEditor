@@ -891,7 +891,7 @@
     
     // extract outline and pass result to navigationBar
     CESplitViewController *splitViewController = [self splitViewController];
-    [[self syntaxStyle] parseOutlineWithCompletionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems)
+    [[self syntaxStyle] parseOutlineWithCompletionHandler:^(NSArray<CEOutlineItem *> * _Nonnull outlineItems)
      {
          [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
              [[viewController navigationBarController] setOutlineItems:outlineItems];

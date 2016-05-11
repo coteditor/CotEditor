@@ -275,7 +275,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// parse outline
-- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull))completionHandler
+- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<CEOutlineItem *> * _Nonnull))completionHandler
 // ------------------------------------------------------
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
@@ -287,7 +287,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     NSRange range = NSMakeRange(0, [string length]);
     
     CESyntaxOutlineParser *parser = [[CESyntaxOutlineParser alloc] initWithDefinitions:[self outlineDefinitions]];
-    [parser parseString:string range:range completionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems) {
+    [parser parseString:string range:range completionHandler:^(NSArray<CEOutlineItem *> * _Nonnull outlineItems) {
         completionHandler(outlineItems);
     }];
 }

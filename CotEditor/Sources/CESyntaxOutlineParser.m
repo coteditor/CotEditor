@@ -27,15 +27,8 @@
  */
 
 #import "CESyntaxOutlineParser.h"
+#import "CEOutlineItem.h"
 #import "Constants.h"
-
-
-// Outline item dict keys
-NSString *_Nonnull const CEOutlineItemTitleKey = @"outlineItemTitle";
-NSString *_Nonnull const CEOutlineItemRangeKey = @"outlineItemRange";
-NSString *_Nonnull const CEOutlineItemStyleBoldKey = @"outlineItemStyleBold";
-NSString *_Nonnull const CEOutlineItemStyleItalicKey = @"outlineItemStyleItalic";
-NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnderline";
 
 
 @interface CESyntaxOutlineParser ()
@@ -80,7 +73,7 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
 
 // ------------------------------------------------------
 /// parse string in background and return extracted outline items
-- (void)parseString:(nonnull NSString *)string range:(NSRange)range completionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull))completionHandler
+- (void)parseString:(nonnull NSString *)string range:(NSRange)range completionHandler:(nullable void (^)(NSArray<CEOutlineItem *> * _Nonnull))completionHandler
 // ------------------------------------------------------
 {
     NSArray<NSDictionary *> *definitions = [self definitions];
@@ -94,7 +87,7 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        NSMutableArray<NSDictionary<NSString *, id> *> *outlineItems = [NSMutableArray array];
+        NSMutableArray<CEOutlineItem *> *outlineItems = [NSMutableArray array];
         
         for (NSDictionary<NSString *, id> *definition in definitions) {
             NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
@@ -119,11 +112,13 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
                                  usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop)
              {
                  NSRange range = [result range];
+                 CEOutlineItem *item = [[CEOutlineItem alloc] init];
                  
                  // separator item
                  if ([template isEqualToString:CESeparatorString]) {
-                     [outlineItems addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
-                                               CEOutlineItemTitleKey: CESeparatorString}];
+                     [item setTitle:CESeparatorString];
+                     [item setRange:range];
+                     [outlineItems addObject:item];
                      return;
                  }
                  
@@ -161,28 +156,22 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
                  // replace whitespaces
                  title = [title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
                  
-                 // font styles (unwrap once to avoid setting nil to dict)
-                 BOOL isBold = [definition[CESyntaxBoldKey] boolValue];
-                 BOOL isItalic = [definition[CESyntaxItalicKey] boolValue];
-                 BOOL isUnderline = [definition[CESyntaxUnderlineKey] boolValue];
+                 [item setRange:range];
+                 [item setTitle:title];
+                 [item setBold:[definition[CESyntaxBoldKey] boolValue]];
+                 [item setItalic:[definition[CESyntaxItalicKey] boolValue]];;
+                 [item setHasUnderline:[definition[CESyntaxUnderlineKey] boolValue]];;
                  
                  // append outline item
-                 [outlineItems addObject:@{CEOutlineItemRangeKey: [NSValue valueWithRange:range],
-                                           CEOutlineItemTitleKey: title,
-                                           CEOutlineItemStyleBoldKey: @(isBold),
-                                           CEOutlineItemStyleItalicKey: @(isItalic),
-                                           CEOutlineItemStyleUnderlineKey: @(isUnderline)}];
+                 [outlineItems addObject:item];
              }];
         }
         
         // sort by location
-        [outlineItems sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSRange range1 = [obj1[CEOutlineItemRangeKey] rangeValue];
-            NSRange range2 = [obj2[CEOutlineItemRangeKey] rangeValue];
-            
-            if (range1.location > range2.location) {
+        [outlineItems sortUsingComparator:^NSComparisonResult(CEOutlineItem *item1, CEOutlineItem *item2) {
+            if ([item1 range].location > [item2 range].location) {
                 return NSOrderedDescending;
-            } else if (range1.location < range2.location) {
+            } else if ([item1 range].location < [item2 range].location) {
                 return NSOrderedAscending;
             } else {
                 return NSOrderedSame;
