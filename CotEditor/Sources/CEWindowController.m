@@ -238,12 +238,12 @@ static NSTimeInterval infoUpdateInterval;
 - (void)updateEditorInfoIfNeeded
 // ------------------------------------------------------
 {
-    BOOL updatesStatusBar = [[self statusBarController] isShown];
-    BOOL updatesDrawer = [self isDocumentInspectorShown];
+    BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
+    BOOL shouldUpdateInspector = [self isDocumentInspectorShown];
     
-    if (!updatesStatusBar && !updatesDrawer) { return; }
+    if (!shouldUpdateStatusBar && !shouldUpdateInspector) { return; }
     
-    [[self documentAnalyzer] updateEditorInfo:updatesDrawer];
+    [[self documentAnalyzer] updateEditorInfo:shouldUpdateInspector];
 }
 
 
@@ -252,10 +252,10 @@ static NSTimeInterval infoUpdateInterval;
 - (void)updateModeInfoIfNeeded
 // ------------------------------------------------------
 {
-    BOOL updatesStatusBar = [[self statusBarController] isShown];
-    BOOL updatesDrawer = [self isDocumentInspectorShown];
+    BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
+    BOOL shouldUpdateInspector = [self isDocumentInspectorShown];
     
-    if (!updatesStatusBar && !updatesDrawer) { return; }
+    if (!shouldUpdateStatusBar && !shouldUpdateInspector) { return; }
     
     [[self documentAnalyzer] updateModeInfo];
 }
