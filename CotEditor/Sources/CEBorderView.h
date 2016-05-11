@@ -31,7 +31,6 @@
 @interface CEBorderView : NSView
 
 @property (nonatomic, nullable) IBInspectable NSColor *fillColor;
-@property (nonatomic, nullable) IBInspectable NSColor *borderColor;
 @property (nonatomic) IBInspectable BOOL drawsTopBorder;
 @property (nonatomic) IBInspectable BOOL drawsBottomBorder;
 

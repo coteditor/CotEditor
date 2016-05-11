@@ -204,6 +204,18 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 
 
 //------------------------------------------------------
+/// return weak text color considering current accesibility setting
+- (nonnull NSColor *)weakTextColor
+//------------------------------------------------------
+{
+    if ([[NSWorkspace sharedWorkspace] accessibilityDisplayShouldIncreaseContrast]) {
+        return [self textColor];
+    }
+    return _weakTextColor;
+}
+
+
+//------------------------------------------------------
 /// color for syntax type defined in theme
 - (nullable NSColor *)syntaxColorForType:(nonnull NSString *)syntaxType
 //------------------------------------------------------

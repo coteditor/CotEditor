@@ -24,6 +24,7 @@ develop
 - Enable move between input fields in syntax style editor with Tab key.
 - Apply font-face to font fields in preferences.
 - Apply document line height on “Copy with Style”.
+- Reflect the state of “Increase contrast” option in system Accessibility setting to custom UI.
 - Adjust preferences layout.
 
 
