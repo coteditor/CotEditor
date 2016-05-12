@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Optimize text rendering a bit.
+
+
 ### Fixes
 
 - Fix an issue where the current line highlight didn't update under the specific condition.

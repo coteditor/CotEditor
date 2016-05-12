@@ -256,11 +256,7 @@ static NSString *HiraginoSansName;
     if (editedMask & NSTextStorageEditedCharacters &&
         [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesHangingIndentKey])
     {
-        // invoke after processEditing so that textStorage can be modified safety
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf invalidateIndentInRange:newCharRange];
-        });
+        [self invalidateIndentInRange:newCharRange];
     }
     
     [super textStorage:str edited:editedMask range:newCharRange changeInLength:delta invalidatedRange:invalidatedCharRange];
@@ -342,21 +338,12 @@ static NSString *HiraginoSansName;
 - (void)invalidateIndentInRange:(NSRange)range
 // ------------------------------------------------------
 {
-    // !!!: quick fix avoiding crash on typing Japanese text (2015-10)
-    //  -> text length can be changed while passing run-loop
-    if (NSMaxRange(range) > [[self textStorage] length]) {
-        NSUInteger overflow = NSMaxRange(range) - [[self textStorage] length];
-        if (range.length >= overflow) {
-            range.length -= overflow;
-        } else {
-            // nothing to do about hanging indentation if changed range has already been completely removed
-            return;
-        }
-    }
-    
-    CGFloat hangingIndent = [self spaceWidth] * [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey];
     NSTextStorage *textStorage = [self textStorage];
     NSRange lineRange = [[textStorage string] lineRangeForRange:range];
+    
+    if (lineRange.length == 0) { return; }
+    
+    CGFloat hangingIndent = [self spaceWidth] * [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[ \\t]+(?!$)" options:0 error:nil];
     
     // get dummy attributes to make calcuration of indent width the same as CElayoutManager's calcuration (2016-04)
@@ -364,6 +351,8 @@ static NSString *HiraginoSansName;
     NSMutableParagraphStyle *typingParagraphStyle = [indentAttributes[NSParagraphStyleAttributeName] mutableCopy];
     [typingParagraphStyle setHeadIndent:1.0];  // dummy indent value for size calcuration (2016-04)
     indentAttributes[NSParagraphStyleAttributeName] = [typingParagraphStyle copy];
+    
+    NSMutableDictionary<NSString *, NSNumber *> *cache = [NSMutableDictionary dictionary];
     
     // process line by line
     [textStorage beginEditing];
@@ -380,7 +369,13 @@ static NSString *HiraginoSansName;
          NSRange baseIndentRange = [regex rangeOfFirstMatchInString:substring options:0 range:NSMakeRange(0, substring.length)];
          if (baseIndentRange.location != NSNotFound) {
              NSString *indentString = [substring substringWithRange:baseIndentRange];
-             indent += ceil([indentString sizeWithAttributes:indentAttributes].width);
+             if (cache[indentString]) {
+                 indent += [cache[indentString] doubleValue];
+             } else {
+                 CGFloat width = ceil([indentString sizeWithAttributes:indentAttributes].width);
+                 indent += width;
+                 cache[indentString] = @(width);
+             }
          }
          
          // apply new indent only if needed
