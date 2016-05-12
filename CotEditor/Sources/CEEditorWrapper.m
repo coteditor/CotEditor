@@ -900,8 +900,6 @@
 {
     [[self coloringTimer] invalidate];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; };
-    
     [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
 
@@ -913,7 +911,7 @@
 {
     [[self outlineMenuTimer] invalidate];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; };
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
     
     NSString *wholeString = [[self textStorage] string] ? : @"";
     
@@ -945,15 +943,12 @@
 {
     if ([[self syntaxStyle] isNone]) { return; }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL delay = [defaults boolForKey:CEDefaultDelayColoringKey];
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultBasicColoringDelayKey];
     
     if ([[self coloringTimer] isValid]) {
-        NSTimeInterval interval = delay ? [defaults doubleForKey:CEDefaultSecondColoringDelayKey] : [defaults doubleForKey:CEDefaultBasicColoringDelayKey];
         [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
         
     } else {
-        NSTimeInterval interval = delay ? [defaults doubleForKey:CEDefaultFirstColoringDelayKey] : [defaults doubleForKey:CEDefaultBasicColoringDelayKey];
         [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:interval
                                                                 target:self
                                                               selector:@selector(doColoringWithTimer:)

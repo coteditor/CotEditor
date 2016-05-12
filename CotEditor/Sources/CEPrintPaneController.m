@@ -141,8 +141,10 @@
     CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPrintFontSizeKey];
     NSFont *font = [NSFont fontWithName:name size:size];
     NSString *localizedName = [font displayName];
+    NSFont *displayFont = [NSFont fontWithName:name size:MIN(size, 13.0)];
     
     [[self fontField] setStringValue:[NSString stringWithFormat:@"%@ %g", localizedName, size]];
+    [[self fontField] setFont:displayFont];
 }
 
 

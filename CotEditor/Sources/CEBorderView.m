@@ -86,4 +86,17 @@
     CGContextStrokePath(ctx);
 }
 
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// return border color considering current accesibility setting
+- (nonnull NSColor *)borderColor
+// ------------------------------------------------------
+{
+    BOOL increasesContrast = [[NSWorkspace sharedWorkspace] accessibilityDisplayShouldIncreaseContrast];
+    
+    return increasesContrast ? [NSColor gridColor] : [NSColor windowFrameColor];
+}
+
 @end

@@ -34,13 +34,15 @@
 "3299.title" = "CotEditor がアクティブになるとき";
 
 
-/* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
-"Ki4-3Y-AZL.title" = "書類のオートセーブ：";
+/* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
+"Ki4-3Y-AZL.title" = "書類の保存：";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "オートセーブとバージョンを有効にする";
 /* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "書類の編集中に自動でファイルを上書きする OS X の機能です。この機能を無効にした場合も、CotEditor は予期しないクラッシュに備えて裏でバックアップを作成します。";
+/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "保存時に行末の空白を削除";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
@@ -71,8 +73,6 @@
 "RrC-LL-hid.title" = "対応する括弧“( )” “[ ]” “{ }”をハイライト表示";
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "“< >”をハイライト表示";
-/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "保存時に行末の空白を削除";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */

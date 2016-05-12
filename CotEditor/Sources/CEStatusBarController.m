@@ -78,6 +78,10 @@ static NSColor *kLabelColor;
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    for (NSString *key in [[self class] observedDefaultKeys]) {
+        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
+    }
 }
 
 
@@ -100,6 +104,23 @@ static NSColor *kLabelColor;
                                              selector:@selector(updateDocumentStatus)
                                                  name:CEAnalyzerDidUpdateModeInfoNotification
                                                object:[self documentAnalyzer]];
+    
+    // observe change of defaults
+    for (NSString *key in [[self class] observedDefaultKeys]) {
+        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:key options:0 context:NULL];
+    }
+}
+
+
+// ------------------------------------------------------
+/// apply change of user setting
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
+// ------------------------------------------------------
+{
+    if ([[[self class] observedDefaultKeys] containsObject:keyPath]) {
+        [self updateEditorStatus];
+        [self updateDocumentStatus];
+    }
 }
 
 
@@ -135,6 +156,26 @@ static NSColor *kLabelColor;
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// default keys to observe update
++ (nonnull NSArray<NSString *> *)observedDefaultKeys
+// ------------------------------------------------------
+{
+    return @[CEDefaultShowStatusBarLinesKey,
+             CEDefaultShowStatusBarCharsKey,
+             CEDefaultShowStatusBarLengthKey,
+             CEDefaultShowStatusBarWordsKey,
+             CEDefaultShowStatusBarLocationKey,
+             CEDefaultShowStatusBarLineKey,
+             CEDefaultShowStatusBarColumnKey,
+             
+             CEDefaultShowStatusBarEncodingKey,
+             CEDefaultShowStatusBarLineEndingsKey,
+             CEDefaultShowStatusBarFileSizeKey,
+             ];
+}
+
 
 // ------------------------------------------------------
 /// update left side text

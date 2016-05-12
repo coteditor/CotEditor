@@ -156,7 +156,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列をそのまま検索し、位置を返す
-- (nonnull NSArray<NSValue *> *)rangesOfSimpleWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)wordsDict ignoreCaseWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nullable NSArray<NSValue *> *)rangesOfSimpleWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)wordsDict ignoreCaseWords:(nonnull NSDictionary<NSNumber *, NSArray *> *)icWordsDict charSet:(nonnull NSCharacterSet *)charSet string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
@@ -166,7 +166,7 @@ static CGFloat kPerCompoIncrement;
     [scanner setScanLocation:parseRange.location];
     
     while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
-        if ([self isCancelled]) { return @[]; }
+        if ([self isCancelled]) { return nil; }
         
         @autoreleasepool {
             NSString *scannedString = nil;
@@ -197,10 +197,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を検索し、位置を返す
-- (nonnull NSArray<NSValue *> *)rangesOfString:(nonnull NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nullable NSArray<NSValue *> *)rangesOfString:(nonnull NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
-    if ([searchString length] == 0) { return @[]; }
+    if ([searchString length] == 0) { return nil; }
     
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     NSUInteger length = [searchString length];
@@ -211,7 +211,7 @@ static CGFloat kPerCompoIncrement;
     [scanner setScanLocation:parseRange.location];
     
     while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
-        if ([self isCancelled]) { return @[]; }
+        if ([self isCancelled]) { return nil; }
         
         @autoreleasepool {
             [scanner scanUpToString:searchString intoString:nil];
@@ -232,10 +232,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了ペアの文字列を検索し、位置を返す
-- (nonnull NSArray<NSValue *> *)rangesOfBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nullable NSArray<NSValue *> *)rangesOfBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
-    if ([beginString length] == 0) { return @[]; }
+    if ([beginString length] == 0) { return nil; }
     
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     NSUInteger endLength = [endString length];
@@ -246,7 +246,7 @@ static CGFloat kPerCompoIncrement;
     [scanner setScanLocation:parseRange.location];
     
     while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
-        if ([self isCancelled]) { return @[]; }
+        if ([self isCancelled]) { return nil; }
         
         @autoreleasepool {
             [scanner scanUpToString:beginString intoString:nil];
@@ -280,10 +280,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された文字列を正規表現として検索し、位置を返す
-- (nonnull NSArray<NSValue *> *)rangesOfRegularExpressionString:(nonnull NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nullable NSArray<NSValue *> *)rangesOfRegularExpressionString:(nonnull NSString *)regexStr ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
-    if ([regexStr length] == 0) { return @[]; }
+    if ([regexStr length] == 0) { return nil; }
     
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
@@ -295,7 +295,7 @@ static CGFloat kPerCompoIncrement;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:options error:&error];
     if (error) {
         NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
-        return @[];
+        return nil;
     }
     
     __weak typeof(self) weakSelf = self;
@@ -318,7 +318,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// 指定された開始／終了文字列を正規表現として検索し、位置を返す
-- (nonnull NSArray<NSValue *> *)rangesOfRegularExpressionBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nullable NSArray<NSValue *> *)rangesOfRegularExpressionBeginString:(nonnull NSString *)beginString endString:(nonnull NSString *)endString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
@@ -333,7 +333,7 @@ static CGFloat kPerCompoIncrement;
     
     if (error) {
         NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
-        return @[];
+        return nil;
     }
     
     __weak typeof(self) weakSelf = self;
@@ -393,8 +393,8 @@ static CGFloat kPerCompoIncrement;
                                    QCLocationKey: @(range.location),
                                    QCLengthKey: @([endDelimiter length])}];
         }
-        
     }
+    
     if ([self inlineCommentDelimiter]) {
         NSString *delimiter = [self inlineCommentDelimiter];
         NSArray<NSValue *> *ranges = [self rangesOfString:delimiter ignoreCase:NO string:string range:parseRange];
@@ -410,9 +410,7 @@ static CGFloat kPerCompoIncrement;
                                    QCStartEndKey: @(QCEnd),
                                    QCLocationKey: @(NSMaxRange(lineRange)),
                                    QCLengthKey: @0U}];
-            
         }
-        
     }
     
     // クォート定義があれば位置配列を生成、マージ
@@ -539,7 +537,7 @@ static CGFloat kPerCompoIncrement;
                 
                 if ([beginStr length] == 0) { return; }  // continue
                 
-                NSArray<NSValue *> *extractedRanges = @[];
+                NSArray<NSValue *> *extractedRanges = nil;
                 
                 if ([strDict[CESyntaxRegularExpressionKey] boolValue]) {
                     if ([endStr length] > 0) {
@@ -566,17 +564,19 @@ static CGFloat kPerCompoIncrement;
                         @synchronized(simpleWordsDict) {
                             NSMutableDictionary<NSNumber *, NSMutableArray<NSString *> *> *dict = ignoresCase ? simpleICWordsDict : simpleWordsDict;
                             NSString *word = ignoresCase ? [beginStr lowercaseString] : beginStr;
-                            NSMutableArray<NSString *> *wordsArray = dict[len];
-                            if (wordsArray) {
-                                [wordsArray addObject:word];
+                            NSMutableArray<NSString *> *words = dict[len];
+                            if (words) {
+                                [words addObject:word];
                                 
                             } else {
-                                wordsArray = [NSMutableArray arrayWithObject:word];
-                                dict[len] = wordsArray;
+                                words = [NSMutableArray arrayWithObject:word];
+                                dict[len] = words;
                             }
                         }
                     }
                 }
+                
+                if (!extractedRanges) { return; }  // continue
                 
                 @synchronized(ranges) {
                     [ranges addObjectsFromArray:extractedRanges];
@@ -592,11 +592,14 @@ static CGFloat kPerCompoIncrement;
         if ([self isCancelled]) { return @{}; }
         
         if ([simpleWordsDict count] > 0 || [simpleICWordsDict count] > 0) {
-            [ranges addObjectsFromArray:[self rangesOfSimpleWords:simpleWordsDict
-                                                  ignoreCaseWords:simpleICWordsDict
-                                                          charSet:[self simpleWordsCharacterSets][syntaxKey]
-                                                           string:string
-                                                            range:parseRange]];
+            NSArray<NSValue *> *extractedRanges = [self rangesOfSimpleWords:simpleWordsDict
+                                                            ignoreCaseWords:simpleICWordsDict
+                                                                    charSet:[self simpleWordsCharacterSets][syntaxKey]
+                                                                     string:string
+                                                                      range:parseRange];
+            if (extractedRanges) {
+                [ranges addObjectsFromArray:extractedRanges];
+            }
         }
         // store range array
         highlights[syntaxKey] = ranges;
@@ -609,19 +612,61 @@ static CGFloat kPerCompoIncrement;
     if ([self beginParsingBlock]) {
         [self beginParsingBlock](NSLocalizedString(@"comments and quoted texts", nil));
     }
-    [highlights addEntriesFromDictionary:[self extractCommentsWithQuotesFromString:string range:parseRange]];
+    NSDictionary<NSString *, NSArray *> *commentAndQuoteRanges = [self extractCommentsWithQuotesFromString:string range:parseRange];
+    for (NSString *key in commentAndQuoteRanges) {
+        if (highlights[key]) {
+            highlights[key] = [highlights[key] arrayByAddingObjectsFromArray:commentAndQuoteRanges[key]];
+        } else {
+            highlights[key] = commentAndQuoteRanges[key];
+        }
+    }
+    
     if ([self didProgress]) {
         [self didProgress](kPerCompoIncrement);
     }
     
     if ([self isCancelled]) { return @{}; }
     
-    return [highlights copy];
+    return sanitizeHighlights(highlights);
 }
 
 
 
 #pragma mark Private Functions
+
+// ------------------------------------------------------
+/// remove duplicated coloring ranges
+NSDictionary<NSString *, NSArray<NSValue *> *> *sanitizeHighlights(NSDictionary<NSString *, NSArray<NSValue *> *> *highlights)
+// ------------------------------------------------------
+{
+    // This sanitization will reduce performance time of `applyHighlights:highlights:layoutManager:` significantly.
+    // Adding temporary attribute to a layoutManager is quite sluggish,
+    // so we want to remove useless highlighting ranges as many as possible beforehand.
+    
+    NSMutableDictionary *sanitizedHighlights = [NSMutableDictionary dictionaryWithCapacity:[highlights count]];
+    NSMutableIndexSet *highlightedIndexes = [NSMutableIndexSet indexSet];
+    
+    for (NSString *syntaxType in [kSyntaxDictKeys reverseObjectEnumerator]) {
+        NSArray<NSValue *> *ranges = highlights[syntaxType];
+        NSMutableArray<NSValue *> *sanitizedRanges = [NSMutableArray array];
+        
+        for (NSValue *rangeValue in ranges) {
+            NSRange range = [rangeValue rangeValue];
+            
+            if (![highlightedIndexes containsIndexesInRange:range]) {
+                [sanitizedRanges addObject:rangeValue];
+                [highlightedIndexes addIndexesInRange:range];
+            }
+        }
+        
+        if ([sanitizedRanges count] > 0) {
+            sanitizedHighlights[syntaxType] = [sanitizedRanges copy];
+        }
+    }
+    
+    return [sanitizedHighlights copy];
+}
+
 
 // ------------------------------------------------------
 /// 与えられた位置の文字がバックスラッシュでエスケープされているかを返す

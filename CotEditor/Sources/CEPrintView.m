@@ -86,7 +86,6 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [layoutManager setDelegate:self];
         [layoutManager setUsesScreenFonts:NO];
-        [layoutManager setFixesLineHeight:NO];
         [[self textContainer] replaceLayoutManager:layoutManager];
     }
     return self;

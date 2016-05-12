@@ -1,37 +1,59 @@
 extensions:
 - keyString: "ini"
 - keyString: "url"
+filenames:
+- keyString: ".editorconfig"
 metadata:
   author: "1024jp"
   distributionURL: "http://coteditor.com"
-  version: "1.3.1"
+  version: "1.4.0"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2016-05-10"
 outlineMenu:
-- beginString: "^\\[(.+)\\]"
-  keyString: "$1"
+- beginString: "^([ \\t]*)\\[(.+)\\]"
+  keyString: "$1$2"
   description: "section"
-  bold: true
 completions: []
+keywords:
+- beginString: "^[ \\t]*\\w[^=:\\n]*(?=[=:])"
+  regularExpression: true
 commands: []
-characters: []
-comments:
-- beginString: ";.*"
+types:
+- beginString: "^[ \\t]*\\["
+  endString: "\\]"
   regularExpression: true
 values:
-- beginString: "^\\w[^=]*(?=[=:])"
+- beginString: "(?<=[:=])\\s*false\\b"
   regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*no\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*none\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*off\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*on\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*true\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*yes\\b"
+  regularExpression: true
+  ignoreCase: true
 numbers:
-- beginString: "(?<![0-9a-z$])[0-9.][0-9.]*(e-?[0-9.]+)?\\b"
+- beginString: "(?<![-0-9a-z$])-?[0-9.][0-9.]*(e-?[0-9.]+)?\\b"
+  ignoreCase: true
   regularExpression: true
 strings:
 - beginString: "\""
   endString: "\""
-- beginString: "'"
-  endString: "'"
-keywords:
-- beginString: "^\\["
-  endString: "\\]"
+characters: []
+comments:
+- beginString: ";.*"
   regularExpression: true
 commentDelimiters:
   inlineDelimiter: "#"

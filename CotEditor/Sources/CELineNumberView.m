@@ -200,11 +200,12 @@ static CGFontRef BoldLineNumberFont;
     // adjust text drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:textView];
     NSPoint inset = [textView textContainerOrigin];
+    CGFloat lineNumberPadding = round(scale * kLineNumberPadding);
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);  // flip
     if (isVerticalText) {
-        transform = CGAffineTransformTranslate(transform, round(relativePoint.x - inset.y - ascent / 2), -ruleThickness);
+        transform = CGAffineTransformTranslate(transform, round(relativePoint.x - scale * inset.y - ascent), -ruleThickness);
     } else {
-        transform = CGAffineTransformTranslate(transform, -kLineNumberPadding, -relativePoint.y - inset.y - ascent);
+        transform = CGAffineTransformTranslate(transform, -lineNumberPadding, -relativePoint.y - scale * inset.y - ascent);
     }
     CGContextSetTextMatrix(context, transform);
     
@@ -366,7 +367,7 @@ static CGFontRef BoldLineNumberFont;
         // -> The view width depends on the number of digits of the total line numbers.
         //    It's quite dengerous to change width of line number view on scrolling dynamically.
         NSUInteger digits = MAX(numberOfDigits([self totalNumberOfLines]), kMinNumberOfDigits);
-        requiredThickness = MAX(digits * charWidth + 3 * kLineNumberPadding, kMinVerticalThickness);
+        requiredThickness = MAX(digits * charWidth + 3 * lineNumberPadding, kMinVerticalThickness);
     }
     [self setRuleThickness:ceil(requiredThickness)];
 }

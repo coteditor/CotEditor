@@ -35,7 +35,6 @@
 
 
 // constants
-static CGFloat const kDefaultLineHeightMultiple = 1.19;
 static NSString * _Nonnull const HiraginoSans = @"HiraginoSans-W3";  // since OS X 10.11 (El Capitan)
 static NSString * _Nonnull const HiraKakuProN = @"HiraKakuProN-W3";
 
@@ -59,9 +58,10 @@ CTLineRef createCTLineRefWithString(NSString *string, NSDictionary *attributes)
 @property (nonatomic, nullable) NSArray<id> *invisibleLines;  // array of CTLineRef
 
 @property (nonatomic) CGFloat spaceWidth;
+@property (nonatomic) CGFloat defaultLineHeight;
 
 // readonly properties
-@property (readwrite, nonatomic) CGFloat defaultLineHeightForTextFont;
+@property (readwrite, nonatomic) CGFloat defaultBaselineOffset;
 @property (readwrite, nonatomic) BOOL showsOtherInvisibles;
 
 @end
@@ -105,24 +105,9 @@ static NSString *HiraginoSansName;
 {
     self = [super init];
     if (self) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
         _invisiblesColor = [NSColor disabledControlTextColor];
         
-        _invisibles = @[[CEInvisibles stringWithType:CEInvisibleSpace Index:[defaults integerForKey:CEDefaultInvisibleSpaceKey]],
-                        [CEInvisibles stringWithType:CEInvisibleTab Index:[defaults integerForKey:CEDefaultInvisibleTabKey]],
-                        [CEInvisibles stringWithType:CEInvisibleNewLine Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]],
-                        [CEInvisibles stringWithType:CEInvisibleFullWidthSpace Index:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]],
-                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:NULL],
-                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:NULL],
-                        ];
-        
-        // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）
-        _showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
-        _showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
-        _showsNewLine = [defaults boolForKey:CEDefaultShowInvisibleNewLineKey];
-        _showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
-        _showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
+        [self applyDefaultInvisiblesSetting];
         
         // Since NSLayoutManager's showsControlCharacters flag is totally buggy (at least on El Capitan),
         // we stopped using it since CotEditor 2.3.3 released in 2016-01.
@@ -133,31 +118,42 @@ static NSString *HiraginoSansName;
         
         [self setUsesScreenFonts:YES];
         [self setTypesetter:[[CEATSTypesetter alloc] init]];
+        
+        // observe change of defaults
+        for (NSString *key in [[self class] observedDefaultKeys]) {
+            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:key options:0 context:NULL];
+        }
     }
     return self;
 }
 
 
 // ------------------------------------------------------
-/// 行描画矩形をセット
-- (void)setLineFragmentRect:(NSRect)fragmentRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
+/// clean up
+- (void)dealloc
 // ------------------------------------------------------
 {
-    if ([self fixesLineHeight]) {
-        // 複合フォントで行の高さがばらつくのを防止する
-        // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
-        // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-        // 挿入すると行間がズレる」問題が生じる））
-        fragmentRect.size.height = [self lineHeight];
-        usedRect.size.height = [self lineHeight];
+    for (NSString *key in [[self class] observedDefaultKeys]) {
+        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:key];
     }
-
-    [super setLineFragmentRect:fragmentRect forGlyphRange:glyphRange usedRect:usedRect];
 }
 
 
 // ------------------------------------------------------
-/// 最終行描画矩形をセット
+/// apply change of user setting
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
+// ------------------------------------------------------
+{
+    if ([[[self class] observedDefaultKeys] containsObject:keyPath]) {
+        [self applyDefaultInvisiblesSetting];
+        [self invalidateInvisiblesStyle];
+        [self invalidateLayoutForCharacterRange:NSMakeRange(0, [[self textStorage] length]) actualCharacterRange:NULL];
+    }
+}
+
+
+// ------------------------------------------------------
+/// adjust rect of last empty line
 - (void)setExtraLineFragmentRect:(NSRect)aRect usedRect:(NSRect)usedRect textContainer:(nonnull NSTextContainer *)aTextContainer
 // ------------------------------------------------------
 {
@@ -182,7 +178,7 @@ static NSString *HiraginoSansName;
     if ([self showsInvisibles] && [[self invisibleLines] count] > 0) {
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         NSString *completeString = [[self textStorage] string];
-        CGFloat baselineOffset = [self defaultBaselineOffsetForFont:[self textFont]];
+        CGFloat baselineOffset = [self defaultBaselineOffset];
         
         // flip coordinate if needed
         if ([[NSGraphicsContext currentContext] isFlipped]) {
@@ -280,16 +276,18 @@ static NSString *HiraginoSansName;
 // ------------------------------------------------------
 {
     // 複合フォントで行間が等間隔でなくなる問題を回避するため、自前でフォントを持っておく。
-    // （[[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
-    // 日本語フォント名を返してくることがあるため、使わない）
+    //   -> [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
+    //      日本語フォント名を返してくることがあるため、使わない
 
     _textFont = textFont;
     
-    // cache default line height
-    CGFloat defaultLineHeight = textFont ? [self defaultLineHeightForFont:textFont] : 0.0;
-    [self setDefaultLineHeightForTextFont:defaultLineHeight * kDefaultLineHeightMultiple];
+    // cache metric values to fix line height
+    if (textFont) {
+        [self setDefaultLineHeight:[self defaultLineHeightForFont:textFont]];
+        [self setDefaultBaselineOffset:[self defaultBaselineOffsetForFont:textFont]];
+    }
     
-    // store width of space char for hanging indent width calculation
+    // cache width of space char for hanging indent width calculation
     NSFont *screenFont = [textFont screenFont] ? : textFont;
     [self setSpaceWidth:[screenFont advancementForGlyph:(NSGlyph)' '].width];
     
@@ -335,8 +333,7 @@ static NSString *HiraginoSansName;
 {
     CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[self firstTextView] lineSpacing];
 
-    // 小数点以下を返すと選択範囲が分離することがあるため、丸める
-    return round([self defaultLineHeightForTextFont] + lineSpacing * [[self textFont] pointSize]);
+    return ([self defaultLineHeight] + lineSpacing * [[self textFont] pointSize]);
 }
 
 
@@ -403,6 +400,48 @@ static NSString *HiraginoSansName;
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// default keys to observe update
++ (nonnull NSArray<NSString *> *)observedDefaultKeys
+// ------------------------------------------------------
+{
+    return @[CEDefaultInvisibleSpaceKey,
+             CEDefaultInvisibleTabKey,
+             CEDefaultInvisibleNewLineKey,
+             CEDefaultInvisibleFullwidthSpaceKey,
+             
+             CEDefaultShowInvisibleSpaceKey,
+             CEDefaultShowInvisibleTabKey,
+             CEDefaultShowInvisibleNewLineKey,
+             CEDefaultShowInvisibleFullwidthSpaceKey,
+             ];
+}
+
+
+// ------------------------------------------------------
+/// apply invisible settings
+- (void)applyDefaultInvisiblesSetting
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.invisibles = @[[CEInvisibles stringWithType:CEInvisibleSpace Index:[defaults integerForKey:CEDefaultInvisibleSpaceKey]],
+                        [CEInvisibles stringWithType:CEInvisibleTab Index:[defaults integerForKey:CEDefaultInvisibleTabKey]],
+                        [CEInvisibles stringWithType:CEInvisibleNewLine Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]],
+                        [CEInvisibles stringWithType:CEInvisibleFullWidthSpace Index:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]],
+                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:NULL],
+                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:NULL],
+                        ];
+    
+    // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）
+    self.showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
+    self.showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
+    self.showsNewLine = [defaults boolForKey:CEDefaultShowInvisibleNewLineKey];
+    self.showsFullwidthSpace = [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey];
+    self.showsOtherInvisibles = [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey];
+}
+
 
 // ------------------------------------------------------
 /// cache CTLineRefs for invisible characters drawing

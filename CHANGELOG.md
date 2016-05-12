@@ -2,6 +2,45 @@
 Change Log
 ==========================
 
+2.5.3 (125)
+--------------------------
+
+### New Features
+
+- Add new normalization form “Modified NFD” (unofficial normalization form adopted by HFS+) to the Unicode normalization action in Text menu (Thanks to DoraTeX!).
+
+
+### Improvements
+
+- Improve line-height handling with composite font:
+    - Remove “Fix line height with composite font” option, and now, the height of lines is always uniform.
+    - Update line-height calculation to fix that the line height by “Fix line height with composite font” option was a bit higher than actual line height of the used font.
+        - From this change, the line hight will get reduced than the previous versions. Please reset the line-height to your favorite number on the Appearance pane in the preferences.
+    - Improve line-height calcuration.
+- Optimize performance to apply syntax highlight to document significantly.
+- Now, the setting changes of status bar, appearance, tab and invisible chars are applied to documents immediately.
+- Update “INI” syntax style.
+- Remove spelling auto correction option.
+- Remove “Delay coloring” option.
+- Enable move between input fields in syntax style editor with Tab key.
+- Apply font-face to font fields in preferences.
+- Apply document line height on “Copy with Style”.
+- Reflect the state of “Increase contrast” option in system Accessibility setting to custom UI.
+- Adjust preferences layout.
+
+
+### Fixes
+
+- Fix an issue where wordwrap broke mid-word when a line is indented.
+- Fix an issue where hanging indent reset if font is changed.
+- Fix an issue where some highlight definitions in Comments, Strings or Characters types were ignored.
+- Fix an issue where syntax was always highlighted even if syntax highlight is disabled.
+- Fix an issue where application crashed if empty character is input from the Unicode hex panel.
+- Fix an issue where syntax highlight was rarely not updated when style definition is modified.
+- Fix line numbers position when text scaled.
+
+
+
 2.5.2 (123)
 --------------------------
 

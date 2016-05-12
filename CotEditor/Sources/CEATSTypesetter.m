@@ -36,40 +36,22 @@
 #pragma mark ATSTypesetter Methods
 
 // ------------------------------------------------------
-/// フォントの leading 値を反映させるかどうかを返す
-- (BOOL)usesFontLeading
+/// adjust vertical position to keep line height even with composed font
+- (void)willSetLineFragmentRect:(NSRectPointer)lineRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRectPointer)usedRect baselineOffset:(nonnull CGFloat *)baselineOffset
 // ------------------------------------------------------
 {
-    return ![(CELayoutManager *)[self layoutManager] fixesLineHeight];
-}
-
-
-// ------------------------------------------------------
-/// 行間ピクセル数を返す
-- (CGFloat)lineSpacingAfterGlyphAtIndex:(NSUInteger)glyphIndex withProposedLineFragmentRect:(NSRect)rect
-// ------------------------------------------------------
-{
-    CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
-    CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[[self currentTextContainer] textView] lineSpacing];
-
-    if (![manager fixesLineHeight]) {
-        CGFloat spacing = [super lineSpacingAfterGlyphAtIndex:glyphIndex withProposedLineFragmentRect:rect];
-        CGFloat fontSize = [[[[self currentTextContainer] textView] font] pointSize];
-
-        return (spacing + lineSpacing * fontSize);
-    }
-    
     // 複合フォントで行の高さがばらつくのを防止する
-    // （CELayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
-    // 通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない）
-    // （CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
-    // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-    // 挿入すると行間がズレる」問題が生じる）
-    CGFloat defaultLineHeight = [manager defaultLineHeightForTextFont];
-    CGFloat fontSize = [[manager textFont] pointSize];
-
-    // 小数点以下を返すと選択範囲が分離することがあるため、丸める
-    return round(defaultLineHeight - rect.size.height + lineSpacing * fontSize);
+    //   -> CELayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
+    //      通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない。
+    //   -> CETextView で、NSParagraphStyle の lineSpacing を設定しても行間は制御できるが、
+    //      「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
+    //      挿入すると行間がズレる」問題が生じる。
+    
+    CELayoutManager *manager = (CELayoutManager *)[self layoutManager];
+    
+    lineRect->size.height = [manager lineHeight];
+    usedRect->size.height = [manager lineHeight];
+    *baselineOffset = [manager defaultBaselineOffset];
 }
 
 
@@ -125,16 +107,14 @@
     
     // check if the character is the first non-whitespace character after indent
     NSString *string = [[self attributedString] string];
-    while (charIndex > 0) {
-        unichar character = [string characterAtIndex:charIndex];
+    for (NSInteger index = charIndex - 1; index >= 0; index--) {
+        unichar character = [string characterAtIndex:index];
         
-        if (character == '\n') { return NO; }  // the line ended
-        if (character != ' ' && character != '\t') { return NO; }  // hit to non-indent character
-        
-        charIndex--;
+        if (character == '\n') { return NO; }  // the line ended before hitting indent chars
+        if (character != ' ' && character != '\t') { return YES; }  // hit to non-indent character
     }
     
-    return NO;
+    return NO;  // didn't hit to line-break (= first line)
 }
 
 @end

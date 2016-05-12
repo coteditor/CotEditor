@@ -1,15 +1,15 @@
 /*
  
- CEBorderView.h
+ CEAntialiasingTextField.m
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2015-01-09.
+ Created by 1024jp on 2016-05-08.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,13 +25,21 @@
  
  */
 
-@import Cocoa;
+#import "CEAntialiasingTextField.h"
 
 
-@interface CEBorderView : NSView
+@implementation CEAntialiasingTextField
 
-@property (nonatomic, nullable) IBInspectable NSColor *fillColor;
-@property (nonatomic) IBInspectable BOOL drawsTopBorder;
-@property (nonatomic) IBInspectable BOOL drawsBottomBorder;
+// ------------------------------------------------------
+/// control antialiasing of text
+- (void)drawRect:(NSRect)dirtyRect
+// ------------------------------------------------------
+{
+    if ([self disablesAntialiasing]) {
+        [[NSGraphicsContext currentContext] setShouldAntialias:NO];
+    }
+    
+    [super drawRect:dirtyRect];
+}
 
 @end

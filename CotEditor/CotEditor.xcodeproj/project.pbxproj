@@ -134,6 +134,8 @@
 		2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
 		2A68F93518F9995500673440 /* CEThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93418F9995500673440 /* CEThemeManager.m */; };
 		2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93718FB04F300673440 /* CEMenuItemCell.m */; };
+		2A6CE3A71CDEF9A00032A2A7 /* CEAntialiasingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6CE3A61CDEF9A00032A2A7 /* CEAntialiasingTextField.m */; };
+		2A6CE3A81CDEF9A00032A2A7 /* CEAntialiasingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6CE3A61CDEF9A00032A2A7 /* CEAntialiasingTextField.m */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
 		2A6F0D551B5500E100C2D03C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
@@ -368,7 +370,6 @@
 		2ACC65291C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65271C97FEAA000574DC /* CEThemeDictionaryKeys.m */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
 		2ACC65391C980D55000574DC /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2ACC65381C980D55000574DC /* Themes */; };
-		2ACC653B1C9844D2000574DC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
 		2ACC653C1C9844ED000574DC /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
 		2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
@@ -411,6 +412,7 @@
 		2AFFB71B18D7F18300118477 /* CEGoToSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToSheetController.m */; };
 		2AFFB71D18D7F22E00118477 /* GoToSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB71F18D7F22E00118477 /* GoToSheet.xib */; };
 		2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
+		2E99EEA0924F366FF76E5F91 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD3DA9878BE30BB0DF9CE52 /* libPods-Tests.a */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* GetInfo.tiff */; };
 		8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
@@ -448,8 +450,8 @@
 		8D15AC2E0486D014006FF6A4 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* DocumentWindow.xib */; };
 		8D15AC310486D014006FF6A4 /* CEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		BED9FB377321352F7A748759 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3504B3BB02D4DBA8EA50C0E /* libPods.a */; };
-		D3F0D0D055B0931687B33C98 /* libPods-appstore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */; };
+		9EA5A949CE2156DE4CB0E10F /* libPods-app-CotEditor -AppStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D6B6F2FBCDF9C1B74A5570 /* libPods-app-CotEditor -AppStore.a */; };
+		FC2C7C68214BAB4E05DE36FC /* libPods-app-CotEditor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EC76D9D46B903A069A4966 /* libPods-app-CotEditor.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -686,6 +688,8 @@
 		2A69077E1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = de; path = de.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A69077F1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		2A6A29681B9751CB002F434C /* icu */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icu; path = Sources/icu; sourceTree = "<group>"; };
+		2A6CE3A51CDEF9A00032A2A7 /* CEAntialiasingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAntialiasingTextField.h; sourceTree = "<group>"; };
+		2A6CE3A61CDEF9A00032A2A7 /* CEAntialiasingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEAntialiasingTextField.m; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E081B5500E100C2D03C /* CotEditor -AppStore-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CotEditor -AppStore-Info.plist"; sourceTree = "<group>"; };
@@ -799,7 +803,7 @@
 		2ABD9F701A3E0A3900BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCommentsEditView.xib; sourceTree = "<group>"; };
 		2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = VerticalOrientation_Off.tiff; sourceTree = "<group>"; };
 		2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = VerticalOrientation_On.tiff; sourceTree = "<group>"; };
-		2AC71DDF1BF0BDBC002E1434 /* CotEditor Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CotEditor Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		2AC71DE31BF0BDBC002E1434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AC71DE91BF0C57A002E1434 /* CotEditorTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CotEditorTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -925,10 +929,6 @@
 		2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarController.m; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		2AFB50511B556B2C00DE5FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		2AFB50521B556B2C00DE5FE1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		2AFB50551B556BD500DE5FE1 /* Pods-appstore.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-appstore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-appstore/Pods-appstore.debug.xcconfig"; sourceTree = "<group>"; };
-		2AFB50561B556BD500DE5FE1 /* Pods-appstore.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-appstore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-appstore/Pods-appstore.release.xcconfig"; sourceTree = "<group>"; };
 		2AFEA0CC1C2D2FC6009001F6 /* NSString+CERange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CERange.h"; sourceTree = "<group>"; };
 		2AFEA0CD1C2D2FC6009001F6 /* NSString+CERange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CERange.m"; sourceTree = "<group>"; };
 		2AFF21801BA9F69A008A41CD /* CESwitcherSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESwitcherSegmentedCell.h; sourceTree = "<group>"; };
@@ -937,6 +937,8 @@
 		2AFFB71518D7DCC000118477 /* CEPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPanelController.m; sourceTree = "<group>"; };
 		2AFFB71818D7F18200118477 /* CEGoToSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEGoToSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AFFB71918D7F18300118477 /* CEGoToSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEGoToSheetController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3E7727543EB50AC65E9738BE /* Pods-app-CotEditor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor.debug.xcconfig"; sourceTree = "<group>"; };
+		4AEC6947578D0EF73538D6D4 /* Pods-app-CotEditor -AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor -AppStore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore.release.xcconfig"; sourceTree = "<group>"; };
 		4B7998171A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/AppleScript.rtf"; sourceTree = "<group>"; };
 		4B7998181A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ShellScript.rtf"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -944,8 +946,11 @@
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
 		4B79983B1A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgements.rtf"; sourceTree = "<group>"; };
 		4B79983C1A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
+		60077770CABE2BF4FFA92915 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		7CD3DA9878BE30BB0DF9CE52 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81DF558CB239313DB3176921 /* Pods-app-CotEditor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor.release.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor.release.xcconfig"; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* GetInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = GetInfo.tiff; sourceTree = "<group>"; };
 		8C3E2D480808E203009894D1 /* LineNumber_Hide.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LineNumber_Hide.tiff; sourceTree = "<group>"; };
 		8C3E2D490808E203009894D1 /* LineNumber_Show.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LineNumber_Show.tiff; sourceTree = "<group>"; };
@@ -990,8 +995,10 @@
 		8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENavigationBarController.m; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CotEditor-Info.plist"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-appstore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F3504B3BB02D4DBA8EA50C0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E822AA586F63297D0FAD719 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		B2D6B6F2FBCDF9C1B74A5570 /* libPods-app-CotEditor -AppStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app-CotEditor -AppStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3EC76D9D46B903A069A4966 /* libPods-app-CotEditor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app-CotEditor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5A849AA44E5F351B7D93C41 /* Pods-app-CotEditor -AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor -AppStore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1000,7 +1007,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */,
-				D3F0D0D055B0931687B33C98 /* libPods-appstore.a in Frameworks */,
+				9EA5A949CE2156DE4CB0E10F /* libPods-app-CotEditor -AppStore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,7 +1016,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */,
-				2ACC653B1C9844D2000574DC /* libPods.a in Frameworks */,
+				2E99EEA0924F366FF76E5F91 /* libPods-Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,7 +1025,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */,
-				BED9FB377321352F7A748759 /* libPods.a in Frameworks */,
+				FC2C7C68214BAB4E05DE36FC /* libPods-app-CotEditor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1030,7 +1037,7 @@
 			children = (
 				8D15AC370486D014006FF6A4 /* CotEditor.app */,
 				2A6F0E071B5500E100C2D03C /* CotEditor.app */,
-				2AC71DDF1BF0BDBC002E1434 /* CotEditor Tests.xctest */,
+				2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1038,10 +1045,12 @@
 		234A213E93629F3A79324102 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2AFB50511B556B2C00DE5FE1 /* Pods.debug.xcconfig */,
-				2AFB50521B556B2C00DE5FE1 /* Pods.release.xcconfig */,
-				2AFB50551B556BD500DE5FE1 /* Pods-appstore.debug.xcconfig */,
-				2AFB50561B556BD500DE5FE1 /* Pods-appstore.release.xcconfig */,
+				3E7727543EB50AC65E9738BE /* Pods-app-CotEditor.debug.xcconfig */,
+				81DF558CB239313DB3176921 /* Pods-app-CotEditor.release.xcconfig */,
+				D5A849AA44E5F351B7D93C41 /* Pods-app-CotEditor -AppStore.debug.xcconfig */,
+				4AEC6947578D0EF73538D6D4 /* Pods-app-CotEditor -AppStore.release.xcconfig */,
+				8E822AA586F63297D0FAD719 /* Pods-Tests.debug.xcconfig */,
+				60077770CABE2BF4FFA92915 /* Pods-Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1229,6 +1238,8 @@
 				2A3A1D831C17463E000243D8 /* CEDotView.m */,
 				2AAD91841C29B2A300C70AEF /* CEPaddingTextFieldCell.h */,
 				2AAD91851C29B2A300C70AEF /* CEPaddingTextFieldCell.m */,
+				2A6CE3A51CDEF9A00032A2A7 /* CEAntialiasingTextField.h */,
+				2A6CE3A61CDEF9A00032A2A7 /* CEAntialiasingTextField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1315,8 +1326,9 @@
 				2A37F4ABFDCFA73011CA2CEA /* Sources */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
-				2A37F4C3FDCFA73011CA2CEA /* Libraries */,
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
+				2A37F4C3FDCFA73011CA2CEA /* Libraries */,
+				BEED9F89D1E364DD05CA42CB /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				234A213E93629F3A79324102 /* Pods */,
 			);
@@ -1392,8 +1404,6 @@
 			isa = PBXGroup;
 			children = (
 				2A83E2391BA1E65A0069CDFE /* libicucore.tbd */,
-				F3504B3BB02D4DBA8EA50C0E /* libPods.a */,
-				DD42F3AFDE3081DC5D669D51 /* libPods-appstore.a */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1777,6 +1787,16 @@
 			path = ToolbarIcons;
 			sourceTree = "<group>";
 		};
+		BEED9F89D1E364DD05CA42CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3EC76D9D46B903A069A4966 /* libPods-app-CotEditor.a */,
+				B2D6B6F2FBCDF9C1B74A5570 /* libPods-app-CotEditor -AppStore.a */,
+				7CD3DA9878BE30BB0DF9CE52 /* libPods-Tests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1784,13 +1804,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor -AppStore" */;
 			buildPhases = (
-				2A6F0D531B5500E100C2D03C /* Check Pods Manifest.lock */,
+				2A6F0D531B5500E100C2D03C /* 📦 Check Pods Manifest.lock */,
 				2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
-				DCACFAE3957B360DC925F673 /* Embed Pods Frameworks */,
+				DCACFAE3957B360DC925F673 /* 📦 Embed Pods Frameworks */,
+				196995175ECE5E61C4E1785D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1802,35 +1823,39 @@
 			productReference = 2A6F0E071B5500E100C2D03C /* CotEditor.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2AC71DDE1BF0BDBC002E1434 /* CotEditor Tests */ = {
+		2AC71DDE1BF0BDBC002E1434 /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "CotEditor Tests" */;
+			buildConfigurationList = 2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
+				3B5A15231D48331DCBFF8C22 /* 📦 Check Pods Manifest.lock */,
 				2AC71DDB1BF0BDBC002E1434 /* Sources */,
 				2AC71DDC1BF0BDBC002E1434 /* Frameworks */,
 				2AC71DDD1BF0BDBC002E1434 /* Resources */,
+				463BFB5D467C1DC1494706FC /* 📦 Embed Pods Frameworks */,
+				DE26E0CDA733B371672D265A /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				2AC71DE51BF0BDBC002E1434 /* PBXTargetDependency */,
 			);
-			name = "CotEditor Tests";
+			name = Tests;
 			productName = CotEditorTests;
-			productReference = 2AC71DDF1BF0BDBC002E1434 /* CotEditor Tests.xctest */;
+			productReference = 2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		8D15AC270486D014006FF6A4 /* CotEditor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */;
 			buildPhases = (
-				360866EE86A144AF8F8698E8 /* Check Pods Manifest.lock */,
+				360866EE86A144AF8F8698E8 /* 📦 Check Pods Manifest.lock */,
 				2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-				C40FF196FC931BDEC94F689E /* Embed Pods Frameworks */,
+				C40FF196FC931BDEC94F689E /* 📦 Embed Pods Frameworks */,
+				22663AC3ADB1560165C6C02E /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1884,7 +1909,7 @@
 			targets = (
 				8D15AC270486D014006FF6A4 /* CotEditor */,
 				2A6F0D4E1B5500E100C2D03C /* CotEditor -AppStore */,
-				2AC71DDE1BF0BDBC002E1434 /* CotEditor Tests */,
+				2AC71DDE1BF0BDBC002E1434 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -2097,6 +2122,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		196995175ECE5E61C4E1785D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		22663AC3ADB1560165C6C02E /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2125,14 +2180,14 @@
 			shellPath = /bin/sh;
 			shellScript = "ruby makeSyntaxMap.rb";
 		};
-		2A6F0D531B5500E100C2D03C /* Check Pods Manifest.lock */ = {
+		2A6F0D531B5500E100C2D03C /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2140,14 +2195,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		360866EE86A144AF8F8698E8 /* Check Pods Manifest.lock */ = {
+		360866EE86A144AF8F8698E8 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2155,34 +2210,79 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C40FF196FC931BDEC94F689E /* Embed Pods Frameworks */ = {
+		3B5A15231D48331DCBFF8C22 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		DCACFAE3957B360DC925F673 /* Embed Pods Frameworks */ = {
+		463BFB5D467C1DC1494706FC /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-appstore/Pods-appstore-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C40FF196FC931BDEC94F689E /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCACFAE3957B360DC925F673 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE26E0CDA733B371672D265A /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2305,6 +2405,7 @@
 				2A6F0DF61B5500E100C2D03C /* NSString+CECounting.m in Sources */,
 				2A88A7911B8B899F0055B9AE /* NSString+Normalization.m in Sources */,
 				2A6F0DF71B5500E100C2D03C /* NSString+JapaneseTransform.m in Sources */,
+				2A6CE3A81CDEF9A00032A2A7 /* CEAntialiasingTextField.m in Sources */,
 				2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */,
 				2A6F0DFB1B5500E100C2D03C /* NSURL+Xattr.m in Sources */,
 			);
@@ -2360,6 +2461,7 @@
 				2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */,
 				2A7314EE1A0326D300C0EDA9 /* CEWindow.m in Sources */,
 				2AB0C59C1C4A18830019411A /* NSString+CEEncoding.m in Sources */,
+				2A6CE3A71CDEF9A00032A2A7 /* CEAntialiasingTextField.m in Sources */,
 				2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */,
 				2582260107794C2A00A0F8D3 /* CESyntaxStyle.m in Sources */,
 				2A3A1E7A1C45233D00641CE0 /* CEHUDController.m in Sources */,
@@ -3078,7 +3180,7 @@
 /* Begin XCBuildConfiguration section */
 		2A6F0E051B5500E100C2D03C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AFB50551B556BD500DE5FE1 /* Pods-appstore.debug.xcconfig */;
+			baseConfigurationReference = D5A849AA44E5F351B7D93C41 /* Pods-app-CotEditor -AppStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
@@ -3098,7 +3200,7 @@
 		};
 		2A6F0E061B5500E100C2D03C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AFB50561B556BD500DE5FE1 /* Pods-appstore.release.xcconfig */;
+			baseConfigurationReference = 4AEC6947578D0EF73538D6D4 /* Pods-app-CotEditor -AppStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
@@ -3118,7 +3220,7 @@
 		};
 		2AC71DE61BF0BDBC002E1434 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AFB50511B556B2C00DE5FE1 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 8E822AA586F63297D0FAD719 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -3162,6 +3264,7 @@
 		};
 		2AC71DE71BF0BDBC002E1434 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60077770CABE2BF4FFA92915 /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -3202,7 +3305,7 @@
 		};
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AFB50511B556B2C00DE5FE1 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 3E7727543EB50AC65E9738BE /* Pods-app-CotEditor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
@@ -3216,7 +3319,7 @@
 		};
 		8C71D95508640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AFB50521B556B2C00DE5FE1 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 81DF558CB239313DB3176921 /* Pods-app-CotEditor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
@@ -3292,7 +3395,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "CotEditor Tests" */ = {
+		2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2AC71DE61BF0BDBC002E1434 /* Debug */,

@@ -48,11 +48,8 @@
 
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
 "3326.title" = "シンタックスカラーリングを有効にする";
-/* Class = "NSTextFieldCell"; title = "(Including Outline Menu)"; ObjectID = "3325"; */
+/* Class = "NSTextFieldCell"; title = "(Including outline menu)"; ObjectID = "3325"; */
 "3325.title" = "（アウトラインを含む）";
-
-/* Class = "NSButtonCell"; title = "Delay coloring"; ObjectID = "3327"; */
-"3327.title" = "遅延カラーリング";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "デフォルトスタイル：";

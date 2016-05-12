@@ -24,8 +24,66 @@
 
 <article>
 <header>
-	<h1>CotEditor 2.5.2</h1>
+	<h1>CotEditor 2.5.3</h1>
 	<p>release: <time>2016-05</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Add new normalization form “Modified NFD” (unofficial normalization form adopted by HFS+) to the Unicode normalization action in Text menu (Thanks to DoraTeX!).</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Improve line-height handling with composite font:
+	<ul>
+		<li>Remove “Fix line height with composite font” option, and now, the height of lines is always uniform.</li>
+		<li>Update line-height calculation to fix that the line height by “Fix line height with composite font” option was a bit higher than actual line height of the used font.<ul>
+			<li>From this change, the line hight will get reduced than the previous versions. Please reset the line-height to your favorite number on the Appearance pane in the preferences.</li>
+		</ul></li>
+		<li>Improve line-height calcuration.</li>
+	</ul></li>
+	<li>Optimize performance to apply syntax highlight to document significantly.</li>
+	<li>Now, the setting changes of status bar, appearance, tab and invisible chars are applied to documents immediately.</li>
+	<li>Update “INI” syntax style.</li>
+	<li>Remove spelling auto correction option.</li>
+	<li>Remove “Delay coloring” option.</li>
+	<li>Enable move between input fields in syntax style editor with Tab key.</li>
+	<li>Apply font-face to font fields in preferences.</li>
+	<li>Apply document line height on “Copy with Style”.</li>
+	<li>Reflect the state of “Increase contrast” option in system Accessibility setting to custom UI.</li>
+	<li>Adjust preferences layout.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where wordwrap broke mid-word when a line is indented.</li>
+	<li>Fix an issue where hanging indent reset if font is changed.</li>
+	<li>Fix an issue where some highlight definitions in Comments, Strings or Characters types were ignored.</li>
+	<li>Fix an issue where syntax was always highlighted even if syntax highlight is disabled.</li>
+	<li>Fix an issue where application crashed if empty character is input from the Unicode hex panel.</li>
+	<li>Fix an issue where syntax highlight was rarely not updated when style definition is modified.</li>
+	<li>Fix line numbers position when text scaled.</li>
+</ul>
+</section>
+</article>
+
+
+<article>
+<header>
+	<h1>CotEditor 2.5.2</h1>
+	<p>release: <time>2016-05-04</time></p>
 </header>
 
 

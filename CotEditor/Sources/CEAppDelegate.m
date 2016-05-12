@@ -65,11 +65,6 @@
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
 
 
-#ifndef APPSTORE
-@property (nonatomic, nullable) CEUpdaterManager *updaterDelegate;
-#endif
-
-
 // readonly
 @property (readwrite, nonatomic, nonnull) NSURL *supportDirectoryURL;
 
@@ -159,14 +154,12 @@
                                                CEDefaultThemeKey: @"Dendrobates",
                                                CEDefaultEnableSyntaxHighlightKey: @YES,
                                                CEDefaultSyntaxStyleKey: @"Plain Text",
-                                               CEDefaultDelayColoringKey: @NO,
                                                CEDefaultFileDropArrayKey: @[@{CEFileDropExtensionsKey: @"jpg, jpeg, gif, png",
                                                                               CEFileDropFormatStringKey: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
                                                CEDefaultBalancesBracketsKey: @NO,
                                                CEDefaultSmartInsertAndDeleteKey: @NO,
                                                CEDefaultEnableSmartQuotesKey: @NO,
                                                CEDefaultEnableSmartDashesKey: @NO,
-                                               CEDefaultEnableAutoSpellingCorrectionKey: @NO,
                                                CEDefaultEnableSmartIndentKey: @YES,
                                                CEDefaultAutoLinkDetectionKey: @NO,
                                                CEDefaultAppendsCommentSpacerKey: @YES,
@@ -178,9 +171,8 @@
                                                CEDefaultCompletesStandartWordsKey: @NO,
                                                CEDefaultShowPageGuideKey: @NO,
                                                CEDefaultPageGuideColumnKey: @80,
-                                               CEDefaultLineSpacingKey: @0.1f,
+                                               CEDefaultLineSpacingKey: @0.3f,
                                                CEDefaultSwapYenAndBackSlashKey: @NO,
-                                               CEDefaultFixLineHeightKey: @YES,
                                                CEDefaultHighlightBracesKey: @YES,
                                                CEDefaultHighlightLtGtKey: @NO,
                                                CEDefaultSaveUTF8BOMKey: @NO,
@@ -215,8 +207,6 @@
                                                CEDefaultUsesTextFontForInvisiblesKey: @NO,
                                                CEDefaultLineNumFontNameKey: @"AvenirNextCondensed-Regular",
                                                CEDefaultBasicColoringDelayKey: @0.01f,
-                                               CEDefaultFirstColoringDelayKey: @0.3f, 
-                                               CEDefaultSecondColoringDelayKey: @0.7f,
                                                CEDefaultAutoCompletionDelayKey: @0.25,
                                                CEDefaultInfoUpdateIntervalKey: @0.2f, 
                                                CEDefaultIncompatibleCharIntervalKey: @0.42f, 

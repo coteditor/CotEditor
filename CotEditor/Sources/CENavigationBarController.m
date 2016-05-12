@@ -144,6 +144,8 @@ static const NSTimeInterval kDuration = 0.12;
     NSMenu *menu = [[self outlineMenu] menu];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [paragraphStyle setTabStops:@[]];
+    [paragraphStyle setDefaultTabInterval:floor(2 * [[menu font] advancementForGlyph:(NSGlyph)' '].width)];
     [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
     [paragraphStyle setTighteningFactorForTruncation:0];  // don't tighten
     NSDictionary<NSString *, id> *baseAttributes = @{NSFontAttributeName: [menu font],

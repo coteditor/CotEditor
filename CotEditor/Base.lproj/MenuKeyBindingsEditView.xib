@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEKeyBindingsViewController">
@@ -26,13 +26,13 @@
                     </textFieldCell>
                 </textField>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                    <rect key="frame" x="20" y="53" width="464" height="244"/>
+                    <rect key="frame" x="20" y="43" width="464" height="254"/>
                     <clipView key="contentView" id="rHm-fV-vMg">
-                        <rect key="frame" x="1" y="0.0" width="462" height="243"/>
+                        <rect key="frame" x="1" y="0.0" width="462" height="253"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="162" viewBased="YES" indentationPerLevel="16" outlineTableColumn="9" id="8">
-                                <rect key="frame" x="0.0" y="0.0" width="462" height="220"/>
+                                <rect key="frame" x="0.0" y="0.0" width="462" height="230"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -146,7 +146,7 @@
                     </tableHeaderView>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="11">
-                    <rect key="frame" x="348" y="13" width="142" height="32"/>
+                    <rect key="frame" x="348" y="3" width="142" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="wbL-0W-iPk"/>
                     </constraints>
@@ -184,7 +184,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25">
-                    <rect key="frame" x="18" y="17" width="330" height="28"/>
+                    <rect key="frame" x="18" y="7" width="330" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' doesn’t include Command Key. Please choose another key." id="145">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" red="0.86335355043411255" green="0.0" blue="0.021221207454800606" alpha="1" colorSpace="calibratedRGB"/>
@@ -202,7 +202,7 @@
                 <constraint firstAttribute="trailing" secondItem="V63-NK-7WQ" secondAttribute="trailing" constant="20" symbolic="YES" id="Bt1-zU-nXc"/>
                 <constraint firstItem="7" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="C6v-lb-LBE"/>
                 <constraint firstItem="25" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="8" symbolic="YES" id="DM3-qC-VJs"/>
-                <constraint firstAttribute="bottom" secondItem="11" secondAttribute="bottom" constant="20" symbolic="YES" id="JRH-6W-niS"/>
+                <constraint firstAttribute="bottom" secondItem="11" secondAttribute="bottom" constant="10" id="JRH-6W-niS"/>
                 <constraint firstItem="7" firstAttribute="top" secondItem="V63-NK-7WQ" secondAttribute="bottom" constant="8" symbolic="YES" id="Kql-oM-OTU"/>
                 <constraint firstItem="11" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="12" id="Oav-Z5-v4R"/>
                 <constraint firstAttribute="trailing" secondItem="15" secondAttribute="trailing" constant="20" symbolic="YES" id="SNC-ft-kwI"/>

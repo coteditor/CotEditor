@@ -33,11 +33,8 @@
 #import "CEStatusBarController.h"
 #import "CEIncompatibleCharsViewController.h"
 #import "CEEditorWrapper.h"
-#import "CESyntaxManager.h"
 #import "CEDocumentAnalyzer.h"
-#import "CESyntaxStyle.h"
 #import "CEDefaults.h"
-#import "Constants.h"
 
 
 // sidebar mode
@@ -50,7 +47,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 @interface CEWindowController () <NSSplitViewDelegate, NSSharingServicePickerDelegate>
 
 @property (nonatomic) CESidebarTag selectedSidebarTag;
-@property (nonatomic) BOOL needsRecolorWithBecomeKey;  // flag to update sytnax highlight when window becomes key window
 @property (nonatomic, nullable, weak) NSTimer *editorInfoUpdateTimer;
 @property (nonatomic) CGFloat sidebarWidth;
 
@@ -161,21 +157,12 @@ static NSTimeInterval infoUpdateInterval;
     // apply document state to UI
     [[self document] applyContentToWindow];
     
-    // move focus to text view
-    [[self window] makeFirstResponder:[[self editor] focusedTextView]];
-    
     // notify finish of the document open process (Here is probably the final point.)
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
                                                             object:weakSelf];
     });
-    
-    // observe sytnax style update
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(syntaxDidUpdate:)
-                                                 name:CESyntaxDidUpdateNotification
-                                               object:nil];
     
     // observe opacity setting change
     [[NSUserDefaults standardUserDefaults] addObserver:self
@@ -248,12 +235,12 @@ static NSTimeInterval infoUpdateInterval;
 - (void)updateEditorInfoIfNeeded
 // ------------------------------------------------------
 {
-    BOOL updatesStatusBar = [[self statusBarController] isShown];
-    BOOL updatesDrawer = [self isDocumentInspectorShown];
+    BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
+    BOOL shouldUpdateInspector = [self isDocumentInspectorShown];
     
-    if (!updatesStatusBar && !updatesDrawer) { return; }
+    if (!shouldUpdateStatusBar && !shouldUpdateInspector) { return; }
     
-    [[self documentAnalyzer] updateEditorInfo:updatesDrawer];
+    [[self documentAnalyzer] updateEditorInfo:shouldUpdateInspector];
 }
 
 
@@ -262,10 +249,10 @@ static NSTimeInterval infoUpdateInterval;
 - (void)updateModeInfoIfNeeded
 // ------------------------------------------------------
 {
-    BOOL updatesStatusBar = [[self statusBarController] isShown];
-    BOOL updatesDrawer = [self isDocumentInspectorShown];
+    BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
+    BOOL shouldUpdateInspector = [self isDocumentInspectorShown];
     
-    if (!updatesStatusBar && !updatesDrawer) { return; }
+    if (!shouldUpdateStatusBar && !shouldUpdateInspector) { return; }
     
     [[self documentAnalyzer] updateModeInfo];
 }
@@ -334,23 +321,6 @@ static NSTimeInterval infoUpdateInterval;
 //=======================================================
 // NSWindowDelegate  < window
 //=======================================================
-
-// ------------------------------------------------------
-/// window becomes key window
-- (void)windowDidBecomeKey:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    // do nothing if any sheet is attached
-    if ([[self window] attachedSheet]) { return; }
-    
-    // update and style name and highlight if recolor flag is set
-    if ([self needsRecolorWithBecomeKey]) {
-        [self setNeedsRecolorWithBecomeKey:NO];
-        [[self editor] invalidateSyntaxColoring];
-        [[self editor] invalidateOutlineMenu];
-    }
-}
-
 
 // ------------------------------------------------------
 /// save window state
@@ -573,29 +543,6 @@ static NSTimeInterval infoUpdateInterval;
     NSDictionary<NSString *, id> *views = NSDictionaryOfVariableBindings(newView);
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newView]|" options:0 metrics:nil views:views]];
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newView]|" options:0 metrics:nil views:views]];
-}
-
-
-// ------------------------------------------------------
-/// set a flag of syntax highlight update if corresponded style has been updated
-- (void)syntaxDidUpdate:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    NSString *currentName = [[(CEDocument *)[self document] syntaxStyle] styleName];
-    NSString *oldName = [notification userInfo][CEOldNameKey];
-    NSString *newName = [notification userInfo][CENewNameKey];
-    
-    if (![oldName isEqualToString:currentName]) { return; }
-    
-    if ([oldName isEqualToString:newName]) {
-        [[self document] setSyntaxStyleWithName:newName];
-    }
-    
-    if ([[self window] isKeyWindow]) {
-        [[self document] setSyntaxStyleWithName:newName];
-    } else {
-        [self setNeedsRecolorWithBecomeKey:YES];
-    }
 }
 
 

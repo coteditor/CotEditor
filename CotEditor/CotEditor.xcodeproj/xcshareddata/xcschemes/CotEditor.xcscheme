@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2AC71DDE1BF0BDBC002E1434"
-               BuildableName = "CotEditor Tests.xctest"
-               BlueprintName = "CotEditor Tests"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
                ReferencedContainer = "container:CotEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,8 +48,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2AC71DDE1BF0BDBC002E1434"
-               BuildableName = "CotEditor Tests.xctest"
-               BlueprintName = "CotEditor Tests"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
                ReferencedContainer = "container:CotEditor.xcodeproj">
             </BuildableReference>
          </TestableReference>

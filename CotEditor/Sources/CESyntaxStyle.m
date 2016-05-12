@@ -48,7 +48,7 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSCharacterSet *> *simpleWordsCharacterSets;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
 
-@property (nonatomic, nullable, copy) NSDictionary *cachedHighlights;  // extracted results cache of the last whole string highlighs
+@property (nonatomic, nullable, copy) NSDictionary<NSString *, NSArray *> *cachedHighlights;  // extracted results cache of the last whole string highlighs
 @property (nonatomic, nullable, copy) NSString *cachedHash;  // MD5 hash
 
 
@@ -249,10 +249,15 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 - (BOOL)isEqualToSyntaxStyle:(CESyntaxStyle *)syntaxStyle
 // ------------------------------------------------------
 {
-    if (![[syntaxStyle styleName] isEqualToString:[self styleName]]) { return NO; }
-    if (![[syntaxStyle highlightDictionary] isEqualToDictionary:[self highlightDictionary]]) { return NO; }
+    if ([[syntaxStyle styleName] isEqualToString:[self styleName]] &&
+        [[syntaxStyle highlightDictionary] isEqualToDictionary:[self highlightDictionary]] &&
+        [[syntaxStyle inlineCommentDelimiter] isEqualToString:[self inlineCommentDelimiter]] &&
+        [[syntaxStyle blockCommentDelimiters] isEqualToDictionary:[self blockCommentDelimiters]])
+    {
+        return YES;
+    }
     
-    return YES;
+    return NO;
 }
 
 @end
@@ -291,6 +296,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 - (void)highlightWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler
 // ------------------------------------------------------
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
     if ([textStorage length] == 0) { return; }
     
     NSRange wholeRange = NSMakeRange(0, [textStorage length]);
@@ -323,6 +329,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 - (void)highlightRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
     if ([textStorage length] == 0) { return; }
     
     // make sure that string is immutable (see `highlightWholeStringInTextStorage:completionHandler:` for details)
@@ -442,7 +449,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     }
     
     __weak typeof(self) weakSelf = self;
-    [parser parseRange:highlightRange completionHandler:^(NSDictionary<NSString *,NSArray<NSValue *> *> * _Nonnull highlights)
+    [parser parseRange:highlightRange completionHandler:^(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull highlights)
      {
          typeof(self) self = weakSelf;  // strong self
          if (!self) {  // This block can be passed if the syntax style is already discarded.
@@ -458,7 +465,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
              }
              
              // apply color (or give up if the editor's string is changed from the analized string)
-             if ([[textStorage string] isEqualToString:wholeString]) {
+             if ([[textStorage string] length] == [wholeString length]) {
                  // update indicator message
                  if (indicator) {
                      [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
@@ -503,18 +510,14 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 - (void)applyHighlights:(NSDictionary<NSString *, NSArray<NSValue *> *> *)highlights range:(NSRange)highlightRange layoutManager:(nonnull NSLayoutManager *)layoutManager
 // ------------------------------------------------------
 {
-    // 現在あるカラーリングを削除
+    // remove current highlights
     [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
                           forCharacterRange:highlightRange];
     
-    // カラーリング実行
+    // apply color to layoutManager
     CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
     for (NSString *syntaxType in kSyntaxDictKeys) {
         NSArray<NSValue *> *ranges = highlights[syntaxType];
-        
-        if ([ranges count] == 0) { continue; }
-        
-        // get color from theme
         NSColor *color = [theme syntaxColorForType:syntaxType] ?: [theme textColor];
         
         for (NSValue *rangeValue in ranges) {

@@ -27,20 +27,18 @@
 
 /* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
 "SqI-BC-ar9.title" = "Ersetzung:";
-/* Class = "NSButtonCell"; title = "Enable smart copy/paste"; ObjectID = "3302"; */
-"3302.title" = "Intelligente Kopieren/Ersetzen aktivieren";
+/* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
+"3302.title" = "Intelligentes Kopieren/Ersetzen";
 /* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
 "GRh-V2-hmW.title" = "Klammern und Anführungszeichen automatisch schließen";  // Schließende Klammern und Anführungszeichen automatisch hinzufügen
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "„¥“ und „\\“ Tasten tauschen";
-/* Class = "NSTextFieldCell"; title = "Auto correction:"; ObjectID = "6I3-dM-2QV"; */
-"6I3-dM-2QV.title" = "Autokorrektur:";
-/* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
-"Abx-fM-gyc.title" = "Anführungszeichen";  // no enough space for "Intelligente Anführungszeichen"
-/* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
-"nr1-0X-aBY.title" = "Bindestriche";  // no enough space for "Intelligente Bindestriche"
-/* Class = "NSButtonCell"; title = "Spelling"; ObjectID = "VFh-cz-tT7"; */
-"VFh-cz-tT7.title" = "Rechtschreibung";
+/* Class = "NSTextFieldCell"; title = "Smart"; ObjectID = "6I3-dM-2QV"; */
+"6I3-dM-2QV.title" = "Intelligente";
+/* Class = "NSButtonCell"; title = " Quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Anführungszeichen";
+/* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
+"nr1-0X-aBY.title" = "Bindestriche";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
@@ -73,22 +71,6 @@
 "mCq-92-2sT.title" = " Umgebrochene Zeilen einrücken um:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
 "P9V-pV-PAX.title" = "Leerraum";
-
-
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "pjW-HE-ngH"; */
-"pjW-HE-ngH.title" = "Unsichtbaren:";
-/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "CyH-q4-SWY"; */
-"CyH-q4-SWY.title" = "Unsichtbare Zeichen anzeigen";
-/* Class = "NSButtonCell"; title = "Space"; ObjectID = "3257"; */
-"3257.title" = "Leerzeichen";
-/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "3260"; */
-"3260.title" = "Tabulator";
-/* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "3255"; */
-"3255.title" = "Zeilenumbruch";
-/* Class = "NSButtonCell"; title = "Fullwidth-Space"; ObjectID = "3262"; */
-"3262.title" = "Vollbreite-Leerz.";  // Vollbreite-Leerzeichen
-/* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "3263"; */
-"3263.title" = "Andere Unsichtbare Zeichen";
 
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */

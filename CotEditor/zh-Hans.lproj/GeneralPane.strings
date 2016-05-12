@@ -35,13 +35,15 @@
 "3299.title" = "当 CotEditor 被激活时";
 
 
-/* Class = "NSTextFieldCell"; title = "Auto Save documents:"; ObjectID = "Ki4-3Y-AZL"; */
-"Ki4-3Y-AZL.title" = "自动保存文档：";
+/* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
+"Ki4-3Y-AZL.title" = "文档保存：";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "开启带有版本的自动保存";
 /* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "在您编辑文件时自动覆盖保存文件的系统特性。即使被禁用，CotEditor 也会在程序崩溃时为您自动保存备份。";
+/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "保存时移除行尾空白";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
@@ -67,13 +69,11 @@
 /* Class = "NSButtonCell"; title = "Link URLs"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "链接文档中的 URL";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "输入时检查拼写";
+"3300.title" = "键入时检查拼写";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "高亮配对括号“( )” “[ ]” “{ }”";
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "高亮“< >”";
-/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "保存时移除行尾空白";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */

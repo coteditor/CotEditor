@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf130
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf460
 \readonlydoc1\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset128 HiraKakuProN-W3;
 \f3\fmodern\fcharset0 Courier;\f4\fmodern\fcharset0 Courier-Bold;}
 {\colortbl;\red255\green255\blue255;\red26\green32\blue255;\red217\green11\blue0;\red128\green128\blue128;
@@ -12,9 +12,22 @@
 \
 - - - - - - - - - - - - - - - - - - - - -\
 
+\b The terminology change on CotEditor 2.5.3:
+\b0 \
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 \ul \ulc0 \
+Unicode normalization\ulnone \
+A new value `
+\f1 Modified NFC
+\f0 ` was added to the \'91normalize unicode\'92 command.\
+\
+\
+- - - - - - - - - - - - - - - - - - - - -\
+\pard\tx565\tx1133\tx1700\partightenfactor0
+
 \b \cf0 The terminology change on CotEditor 2.3.0:
 \b0 \
-\cf0 \ul \ulc0 \
+\ul \ulc0 \
 Selected line editing\ulnone \
 The following new commands were added to the \'91selection\'92 object.\
 - 
@@ -33,12 +46,12 @@ The following new commands were added to the \'91selection\'92 object.\
 \f1 delete duplicate line
 \f0 \
 \
-\cf0 \
+\
 - - - - - - - - - - - - - - - - - - - - -\
 
-\b \cf0 The terminology change on CotEditor 2.2.2:
+\b The terminology change on CotEditor 2.2.2:
 \b0 \
-\cf0 \ul \ulc0 \
+\ul \
 Unicode normalization\ulnone \
 A new value `
 \f1 Modified NFD
@@ -47,9 +60,9 @@ A new value `
 \
 - - - - - - - - - - - - - - - - - - - - -\
 
-\b \cf0 The terminology change on CotEditor 2.2.0:
+\b The terminology change on CotEditor 2.2.0:
 \b0 \
-\cf0 \ul \
+\ul \
 Unicode normalization\ulnone \
 A new value `
 \f1 NFCK Casefold
@@ -58,9 +71,9 @@ A new value `
 \
 - - - - - - - - - - - - - - - - - - - - -\
 
-\b \cf0 The terminology change on CotEditor 2.1.0:
+\b The terminology change on CotEditor 2.1.0:
 \b0 \
-\cf0 \ul \
+\ul \
 Tab width\ulnone \
 A new property `
 \f1 tab width
@@ -69,9 +82,9 @@ A new property `
 \
 - - - - - - - - - - - - - - - - - - - - -\
 
-\b \cf0 The terminology change on CotEditor 2.0.1:
+\b The terminology change on CotEditor 2.0.1:
 \b0 \
-\cf0 \ul \
+\ul \
 Comment handling\ulnone \
 New commands `
 \f1 comment out
@@ -82,9 +95,9 @@ New commands `
 \
 - - - - - - - - - - - - - - - - - - - - -\
 
-\b \cf0 The terminology change on CotEditor 2.0.0:
+\b The terminology change on CotEditor 2.0.0:
 \b0 \
-\cf0 \ul \
+\ul \
 Unicode normalization\ulnone \
 The command `
 \f1 unicode normalization
@@ -129,7 +142,7 @@ The internal code for `
 \b0  AppleScripts (.scpt) which were written previously might need some update for this change.\
 \
 
-\b \cf0 How to fix
+\b How to fix
 \b0 :\
 	Open your .scpt files on AppleScript Editor (or Script Editor), the words that was `
 \f1 range
@@ -146,7 +159,7 @@ This issue doesn\'92t occur with plain-text AppleScript (.applescript). \
 
 \b The terminology change on CotEditor 1.5.0:
 \b0 \
-\cf0 \ul \
+\ul \
 Window Transparency\ulnone \
 According to the changing of the mechanism to make window transparent on CotEditor 1.5, the terms about window opacity for AppleScripting was also changed. The 
 \b document
@@ -172,7 +185,7 @@ In version 0.6, the initial release of CotEditor, if you didn't specify the \'91
 On CotEditor 1.5, it is formally removed.  Specify the target as below (example 2), when you get the \'91selection\'92 object.\
 \
 
-\i \cf0 example 1.
+\i example 1.
 \i0 \
 
 \f3 \cf2 tell application "CotEditor"\
@@ -183,7 +196,7 @@ end tell
 \f0 \
 \cf0 \
 
-\i \cf0 example 2.
+\i example 2.
 \i0 \
 
 \f3 \cf2 tell application "CotEditor"\
@@ -202,11 +215,11 @@ end tell
 \
 \
 
-\fs28 \cf0 \ul \ulc0 Class\
+\fs28 \ul \ulc0 Class\
 
-\fs24 \cf0 \ulnone \
+\fs24 \ulnone \
 
-\b \cf0 Application
+\b Application
 \b0  = The CotEditor application.\
 \
 
@@ -232,21 +245,21 @@ end tell
 	alpha only textView = Whether the transparency setting affects only the TextView or not. (boolean) \cf5 Deprecated on CotEditor 1.5\cf0 \
 	\
 
-\b \cf0 Selection-object
+\b Selection-object
 \b0  = The current selection.\
 	contents = The contents of the selection.\
 	range = The range of characters in the selection. The format is "\{location, length\}".\
 	line range = The range of lines in the selection. The format is "\{location, length\}". (\'91length\'92 can be omitted, one line will be selected even if it were \'910\'92 or \'911\'92)\
 \
 
-\i \cf0 example code:
+\i example code:
 \i0 \
 
 \f3 \cf2 contents of selection of document 1
 \f0 \cf0 \
 	Returns the selected string in the frontmost document.\
 
-\i \cf0 # The \'91selection\'92 property doesn't work by itself. Use this property with others such as \'91contents.\'92
+\i # The \'91selection\'92 property doesn't work by itself. Use this property with others such as \'91contents.\'92
 \i0 \
 
 \f3 \cf6 set contents of selection of front document to "Apple"
@@ -269,7 +282,7 @@ end tell
 \f0 \cf0 \
 	Select from the 15th last character to the last but one (no scrolling).\
 
-\i \cf0 # When \'91location\'92 is a negative value, the selection range starts from the \'91location\'92-th last character.\
+\i # When \'91location\'92 is a negative value, the selection range starts from the \'91location\'92-th last character.\
 When \'91length\'92 is a positive value, the selection range becomes the \'91length\'92 characters starting from \'91location.\'92 If \'91length\'92 is larger than the number of the rest characters in the document, the range will be from \'91location\'92 to the end.\
 When \'91length\'92 is a negative value, the selection range ends at the \'91length\'92-th last character. If the absolute value of \'91length\'92 is smaller than \'91location\'92 (i.e. the selection's end point is before \'91location\'92), the caret just moves to \'91location\'92 (same as when \{location, 0\} was input).\
 # This specifying method is modelled after that of PHP's \'91substr.\'92\
@@ -279,10 +292,10 @@ When \'91length\'92 is a negative value, the selection range ends at the \'91len
 \
 \
 
-\fs28 \cf0 \ul Command
+\fs28 \ul Command
 \fs24  (properties surrounded by [ ] are options)\ulnone \
 
-\b \cf0 \
+\b \
 find
 \b0  = Searches a string, selects the string and returns true, if any, otherwise returns false.\
 	
@@ -302,18 +315,18 @@ find
 \b0  (boolean)] = Perform backwards search or not.\
 return value = boolean\
 
-\i \cf0 # The search starts from the current selection (caret position).\
+\i # The search starts from the current selection (caret position).\
 For example, when not using the \'91wrap\'92 or \'91backwards\'92 options and when there are no matching string after the current selection, then false is returned.\
 # The regular expression search cannot search backwards. If both options were specified at the same time, \'91RE\'92 takes precedence and \'91backwards\'92 is ignored.\
 
-\i0 \cf0 \
+\i0 \
 
 \f3 \cf7 find front document for "Apple" with ignore case
 \f0 \cf0 \
 	Searches \'93Apple\'94 with ignoring case, starting from the current selection to the end of the frontmost document, and returns the result.\
 \
 
-\b \cf0 \
+\b \
 replace
 \b0  = Searches a string, replaces the string and returns the number of replacements, if any, otherwise returns 0.\
 	
@@ -339,7 +352,7 @@ replace
 \b0  (boolean)] = Perform backwards search or not.\
 return value = int\
 
-\i \cf0 # As in the case of the \'91find\'92 command, the search starts from the current selection (caret position). Use the \'91all\'92 option for searching the whole document.\
+\i # As in the case of the \'91find\'92 command, the search starts from the current selection (caret position). Use the \'91all\'92 option for searching the whole document.\
 # After replacing the whole document using the \'91all\'92 option, the caret moves to the head of the document. If there were no matching string, the caret doesn't move.\
 # The regular expression search cannot search backwards. If both options were specified at the same time, the \'91backwards\'92 option is ignored.
 \i0 \
@@ -350,7 +363,7 @@ return value = int\
 	Searches \'93Apple\'94 with ignoring case in the frontmost document, replaces the matching strings with \'93Orange\'94 and returns the number of replacements.\
 \
 
-\b \cf0 \
+\b \
 scroll to caret
 \b0  = Scrolls the window so that the caret or the selection can be seen.\
 \
@@ -360,7 +373,7 @@ scroll to caret
 	Scrolls the frontmost window so that the caret or the selection can be seen.\
 \
 
-\b \cf0 \
+\b \
 convert
 \b0  = Converts the character encoding of the document.\
 	
@@ -378,14 +391,14 @@ return value = boolean\
 \
 \
 
-\b \cf0 reinterpret
+\b reinterpret
 \b0  = Reinterpret the document with the specified encoding.\
 	
 \b as
 \b0  (Unicode text) = The encoding for reinterpreting.\
 return value = boolean\
 
-\i \cf0 # Returns false if the file has never been saved.\
+\i # Returns false if the file has never been saved.\
 # Changes that are not yet saved will be lost.
 \i0 \
 \
@@ -396,7 +409,7 @@ return value = boolean\
 \
 \
 
-\b \cf0 shift left
+\b shift left
 \b0  = Shifts the current line left.\
 
 \b shift right
@@ -409,13 +422,13 @@ return value = boolean\
 \
 \
 
-\b \cf0 comment out
+\b comment out
 \b0  = Append comment delimiters to selected text if possible.\
 
 \b uncomment
 \b0  = Remove comment delimiters from selected text if possible.\
 
-\i \cf0 # These commands do nothing if not possible for example in cases where no delimiters are set in the current syntax style or no comment delimiters to remove are available.
+\i # These commands do nothing if not possible for example in cases where no delimiters are set in the current syntax style or no comment delimiters to remove are available.
 \i0 \
 \
 
@@ -425,14 +438,14 @@ return value = boolean\
 \
 \
 
-\b \cf0 string
+\b string
 \b0  = Returns the string in the specified range regardless of the current selection.\
 	
 \b in
 \b0  (list) = The range.\
 return value = Unicode text\
 
-\i \cf0 # Returns an empty string if the specified range was invalid.\
+\i # Returns an empty string if the specified range was invalid.\
 # This command does not change the specified range.
 \i0 \
 \
@@ -443,11 +456,11 @@ return value = Unicode text\
 \
 \
 
-\b \cf0 change case
+\b change case
 \b0  = Uppercases/Lowercases/Capitalizes words.\
 	to upper/lower/capitalized\
 
-\i \cf0 # Works only for \'91selection\'92 objects.
+\i # Works only for \'91selection\'92 objects.
 \i0 \
 \
 
@@ -457,11 +470,11 @@ return value = Unicode text\
 \
 \
 
-\b \cf0 change roman width
+\b change roman width
 \b0  = Converts between halfwidth and full-width characters.\
 	to half/full\
 
-\i \cf0 # Works only for \'91selection\'92 objects.
+\i # Works only for \'91selection\'92 objects.
 \i0 \
 \
 
@@ -471,11 +484,11 @@ return value = Unicode text\
 \
 \
 
-\b \cf0 change kana
+\b change kana
 \b0  = Converts between Japanese Hiragana and Katakana.\
 	to hiragana/katakana\
 
-\i \cf0 # Works only for \'91selection\'92 objects.
+\i # Works only for \'91selection\'92 objects.
 \i0 \
 \
 
@@ -485,11 +498,11 @@ return value = Unicode text\
 \
 \
 
-\b \cf0 normalize unicode
+\b normalize unicode
 \b0  = Performs Unicode normalization.\
-	to  NFKC/NFD/NFC/NFKD/NFKD Casefold/Modified NFD\
+	to  NFKC/NFD/NFC/NFKD/NFKD Casefold/Modified NFC/Modified NFD\
 
-\i \cf0 # Works only for \'91selection\'92 objects.
+\i # Works only for \'91selection\'92 objects.
 \i0 \
 \
 
@@ -499,40 +512,40 @@ return value = Unicode text\
 \
 \
 
-\b \cf0 move line up
+\b move line up
 \b0  = Swap selected lines with the line just above. \cf3 new on CotEditor 2.3.0\cf0 \
 
-\i \cf0 # Works only for \'91selection\'92 objects.
+\i # Works only for \'91selection\'92 objects.
 \i0 \
 \
 \
 
-\b \cf0 move line down
+\b move line down
 \b0  = Swap selected lines with the line just below. \cf3 new on CotEditor 2.3.0\cf0 \
 
-\i \cf0 # Works only for \'91selection\'92 objects.
+\i # Works only for \'91selection\'92 objects.
 \i0 \
 \
 \
 
-\b \cf0 sort lines
+\b sort lines
 \b0  = Sort selected lines ascending. \cf3 new on CotEditor 2.3.0\cf0 \
 
-\i \cf0 # Works only for \'91selection\'92 objects.
+\i # Works only for \'91selection\'92 objects.
 \i0 \
 \
 
-\b \cf0 reverse lines
+\b reverse lines
 \b0  = Reverse selected lines. \cf3 new on CotEditor 2.3.0\cf0 \
 
-\i \cf0 # Works only for \'91selection\'92 objects.
+\i # Works only for \'91selection\'92 objects.
 \i0 \
 \
 \
 
-\b \cf0 delete duplicate line
+\b delete duplicate line
 \b0  = Delete duplicate lines in selection. \cf3 new on CotEditor 2.3.0\cf0 \
 
-\i \cf0 # Works only for \'91selection\'92 objects.
+\i # Works only for \'91selection\'92 objects.
 \i0 \
 }

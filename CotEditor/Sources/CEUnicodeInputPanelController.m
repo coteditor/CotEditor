@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -124,6 +124,9 @@ static const NSRegularExpression *unicodeRegex;
 // ------------------------------------------------------
 {
     NSString *character = [[self character] string];
+    
+    if ([character length] == 0) { return; }
+    
     NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
     
     if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:character]) {
@@ -132,6 +135,7 @@ static const NSRegularExpression *unicodeRegex;
         
         [self setUnicode:@""];
         [self setCharacter:nil];
+        [self setValid:NO];
     } else {
         NSBeep();
     }

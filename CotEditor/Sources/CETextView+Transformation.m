@@ -149,6 +149,20 @@
      }];
 }
 
+
+// ------------------------------------------------------
+/// Unicode normalization (Modified NFC)
+- (IBAction)normalizeUnicodeWithModifiedNFC:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self transformSelectionWithActionName:NSLocalizedString(@"Modified NFC", @"name of an Uniocode normalization type")
+                          operationHandler:^NSString *(NSString * _Nonnull substring)
+     {
+         return [substring precomposedStringWithHFSPlusMapping];
+     }];
+}
+
+
 // ------------------------------------------------------
 /// Unicode normalization (Modified NFD)
 - (IBAction)normalizeUnicodeWithModifiedNFD:(nullable id)sender

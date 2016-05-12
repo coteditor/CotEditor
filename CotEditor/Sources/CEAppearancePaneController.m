@@ -30,6 +30,8 @@
 #import "CEAppearancePaneController.h"
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
+#import "CEAntialiasingTextField.h"
+#import "CEInvisibles.h"
 #import "CEErrors.h"
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -39,10 +41,15 @@
 
 @interface CEAppearancePaneController () <NSTableViewDelegate, NSTableViewDataSource, CEThemeViewControllerDelegate>
 
-@property (nonatomic, nullable, weak) IBOutlet NSTextField *fontField;
+@property (nonatomic, nullable, weak) IBOutlet CEAntialiasingTextField *fontField;
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *themeTableView;
 @property (nonatomic, nullable, weak) IBOutlet NSBox *box;
 @property (nonatomic, nullable, weak) IBOutlet NSMenu *themeTableMenu;
+
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleSpaces;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleTabs;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleNewLines;
+@property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibleFullWidthSpaces;
 
 @property (nonatomic, nullable) CEThemeViewController *themeViewController;
 @property (nonatomic, nullable, copy) NSArray<NSString *> *themeNames;
@@ -58,6 +65,23 @@
 @implementation CEAppearancePaneController
 
 #pragma mark Superclass Methods
+
+// ------------------------------------------------------
+/// initialize
+- (nullable instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil
+// ------------------------------------------------------
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // setup popup menu items for invisible characters
+        _invisibleSpaces = [CEInvisibles spaceStrings];
+        _invisibleTabs = [CEInvisibles tabStrings];
+        _invisibleNewLines = [CEInvisibles newLineStrings];
+        _invisibleFullWidthSpaces = [CEInvisibles fullwidthSpaceStrings];
+    }
+    return self;
+}
+
 
 // ------------------------------------------------------
 /// clean up
@@ -417,6 +441,15 @@
 }
 
 
+// ------------------------------------------------------
+/// update font name field with new setting
+- (IBAction)updateFontField:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self setFontFamilyNameAndSize];
+}
+
+
 //------------------------------------------------------
 /// テーマを追加
 - (IBAction)addTheme:(nullable id)sender
@@ -546,10 +579,14 @@
 {
     NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
     CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
+    BOOL shouldAntiAilias = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultShouldAntialiasKey];
     NSFont *font = [NSFont fontWithName:name size:size];
     NSString *localizedName = [font displayName];
+    NSFont *displayFont = [NSFont fontWithName:name size:MIN(size, 13.0)];
     
     [[self fontField] setStringValue:[NSString stringWithFormat:@"%@ %g", localizedName, size]];
+    [[self fontField] setFont:displayFont];
+    [[self fontField] setDisablesAntialiasing:!shouldAntiAilias];
 }
 
 
