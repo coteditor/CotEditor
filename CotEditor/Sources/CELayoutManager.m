@@ -253,9 +253,7 @@ static NSString *HiraginoSansName;
 // ------------------------------------------------------
 {
     // invalidate wrapping line indent in editRange if needed
-    if (editedMask & NSTextStorageEditedCharacters &&
-        [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesHangingIndentKey])
-    {
+    if (editedMask & NSTextStorageEditedCharacters) {
         [self invalidateIndentInRange:newCharRange];
     }
     
@@ -338,6 +336,8 @@ static NSString *HiraginoSansName;
 - (void)invalidateIndentInRange:(NSRange)range
 // ------------------------------------------------------
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnablesHangingIndentKey]) { return; }
+    
     NSTextStorage *textStorage = [self textStorage];
     NSRange lineRange = [[textStorage string] lineRangeForRange:range];
     

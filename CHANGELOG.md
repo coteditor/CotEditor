@@ -12,6 +12,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where hanging indent was applied when document style is changed even it is turned off.
 - Fix an issue where the current line highlight didn't update under the specific condition.
 
 
