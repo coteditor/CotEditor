@@ -1,6 +1,6 @@
 /*
  
- CESyntaxHighlightParser.h
+ CESyntaxHighlightParseOperation.h
  
  CotEditor
  http://coteditor.com
@@ -28,9 +28,12 @@
 @import Foundation;
 
 
-@interface CESyntaxHighlightParser : NSObject
+@interface CESyntaxHighlightParseOperation : NSOperation
 
-@property (nonatomic, getter=isCancelled) BOOL cancelled;
+@property (nonatomic, nullable, copy) NSString *string;
+@property (nonatomic) NSRange parseRange;
+
+@property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, NSArray<NSValue *> *> *results;
 
 // callbacks (can be invoked on non-main thread)
 @property (nonatomic, nullable, copy) void (^beginParsingBlock)(NSString * _Nonnull localizedBlockName);
@@ -43,8 +46,5 @@
                     inlineCommentDelimiter:(nullable NSString *)inlineCommentDelimiter
                     blockCommentDelimiters:(nullable NSDictionary<NSString *, NSString *> *)blockCommentDelimiters NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
-
-
-- (void)parseString:(nonnull NSString *)string range:(NSRange)range completionHandler:(nullable void (^)(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull highlights))completionHandler;
 
 @end

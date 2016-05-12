@@ -30,7 +30,7 @@
 
 #import "CESyntaxStyle.h"
 #import "CEOutlineParseOperation.h"
-#import "CESyntaxHighlightParser.h"
+#import "CESyntaxHighlightParseOperation.h"
 #import "CETextViewProtocol.h"
 #import "CEProgressSheetController.h"
 #import "CEDefaults.h"
@@ -52,6 +52,7 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (nonatomic, nullable, copy) NSString *cachedHash;  // MD5 hash
 
 @property (nonatomic, nonnull) NSOperationQueue *outlineParseOperationQueue;
+@property (nonatomic, nonnull) NSOperationQueue *syntaxHighlightParseOperationQueue;
 
 
 // readonly
@@ -109,6 +110,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 //------------------------------------------------------
 {
     [_outlineParseOperationQueue cancelAllOperations];
+    [_syntaxHighlightParseOperationQueue cancelAllOperations];
 }
 
 
@@ -125,6 +127,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         _styleName = styleName;
         
         _outlineParseOperationQueue = [[NSOperationQueue alloc] init];
+        _syntaxHighlightParseOperationQueue = [[NSOperationQueue alloc] init];
         
         if (!dictionary) {
             _none = YES;
@@ -435,12 +438,13 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         return;
     }
     
-    __block BOOL isCompleted = NO;
-    __block CESyntaxHighlightParser *parser = [[CESyntaxHighlightParser alloc] initWithDictionary:[self highlightDictionary]
-                                                                         simpleWordsCharacterSets:[self simpleWordsCharacterSets]
-                                                                                 pairedQuoteTypes:[self pairedQuoteTypes]
-                                                                           inlineCommentDelimiter:[self inlineCommentDelimiter]
-                                                                           blockCommentDelimiters:[self blockCommentDelimiters]];
+    CESyntaxHighlightParseOperation *operation = [[CESyntaxHighlightParseOperation alloc] initWithDictionary:[self highlightDictionary]
+                                                                                    simpleWordsCharacterSets:[self simpleWordsCharacterSets]
+                                                                                            pairedQuoteTypes:[self pairedQuoteTypes]
+                                                                                      inlineCommentDelimiter:[self inlineCommentDelimiter]
+                                                                                      blockCommentDelimiters:[self blockCommentDelimiters]];
+    [operation setString:wholeString];
+    [operation setParseRange:highlightRange];
     
     // show highlighting indicator for large string
     CEProgressSheetController *indicator = nil;
@@ -448,10 +452,10 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         NSWindow *documentWindow = [[[[textStorage layoutManagers] firstObject] firstTextView] window];
         indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
         // set handlers
-        [parser setDidProgress:^(CGFloat delta) {
+        [operation setDidProgress:^(CGFloat delta) {
             [indicator progressIndicator:delta];
         }];
-        [parser setBeginParsingBlock:^(NSString * _Nonnull blockName) {
+        [operation setBeginParsingBlock:^(NSString * _Nonnull blockName) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil), blockName]];
             });
@@ -466,11 +470,11 @@ static NSArray<NSString *> *kSyntaxDictKeys;
             // attach the indicator as a sheet
             dispatch_sync(dispatch_get_main_queue(), ^{
                 // do nothing if highlighting is already finished
-                if (isCompleted) { return; }
+                if ([operation isFinished]) { return; }
                 
                 [indicator beginSheetForWindow:documentWindow completionHandler:^(NSModalResponse returnCode) {
                     if (returnCode == NSCancelButton) {
-                        [parser setCancelled:YES];
+                        [operation cancel];
                     }
                 }];
             });
@@ -478,47 +482,42 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     }
     
     __weak typeof(self) weakSelf = self;
-    [parser parseString:wholeString range:highlightRange completionHandler:^(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull highlights)
-     {
-         typeof(self) self = weakSelf;  // strong self
-         if (!self) {  // This block can be passed if the syntax style is already discarded.
-             isCompleted = YES;
-             return;
-         }
-         
-         if ([highlights count] > 0) {
-             // cache result if whole text was parsed
-             if (highlightRange.length == [wholeString length]) {
-                 [self setCachedHighlights:highlights];
-                 [self setCachedHash:[wholeString MD5]];
-             }
-             
-             // apply color (or give up if the editor's string is changed from the analized string)
-             if ([[textStorage string] length] == [wholeString length]) {
-                 // update indicator message
-                 if (indicator) {
-                     [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
-                 }
-                 for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
-                     [self applyHighlights:highlights range:highlightRange layoutManager:layoutManager];
-                 }
-             }
-         }
-         
-         isCompleted = YES;
-         
-         // clean up indicator sheet
-         if (indicator) {
-             [indicator close:self];
-         }
-         
-         // do the rest things
-         if (completionHandler) {
-             completionHandler();
-         }
-         
-         parser = nil;  // keep parser until end
-     }];
+    __weak typeof(operation) weakOperation = operation;
+    [operation setCompletionBlock:^{
+        NSDictionary<NSString *, NSArray<NSValue *> *> *highlights = [weakOperation results];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (![weakOperation isCancelled]) {
+                // cache result if whole text was parsed
+                if (highlightRange.length == [wholeString length]) {
+                    [self setCachedHighlights:highlights];
+                    [self setCachedHash:[wholeString MD5]];
+                }
+                
+                // apply color (or give up if the editor's string is changed from the analized string)
+                if ([[textStorage string] length] == [wholeString length]) {
+                    // update indicator message
+                    if (indicator) {
+                        [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+                    }
+                    for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
+                        [self applyHighlights:highlights range:highlightRange layoutManager:layoutManager];
+                    }
+                }
+            }
+            
+            // clean up indicator sheet
+            if (indicator) {
+                [indicator close:self];
+            }
+            
+            // do the rest things
+            if (completionHandler) {
+                completionHandler();
+            }
+        });
+    }];
+    
+    [[self syntaxHighlightParseOperationQueue] addOperation:operation];
 }
 
 

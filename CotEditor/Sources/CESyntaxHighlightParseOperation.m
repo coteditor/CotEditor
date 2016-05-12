@@ -1,6 +1,6 @@
 /*
  
- CESyntaxHighlightParser.m
+ CESyntaxHighlightParseOperation.m
  
  CotEditor
  http://coteditor.com
@@ -26,7 +26,7 @@
  
  */
 
-#import "CESyntaxHighlightParser.h"
+#import "CESyntaxHighlightParseOperation.h"
 #import "Constants.h"
 
 
@@ -49,13 +49,16 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 };
 
 
-@interface CESyntaxHighlightParser ()
+@interface CESyntaxHighlightParseOperation ()
 
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, id> *highlightDictionary;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSCharacterSet *> *simpleWordsCharacterSets;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
 @property (nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
+
+// readonly
+@property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, NSArray<NSValue *> *> *results;
 
 @end
 
@@ -64,7 +67,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 #pragma mark -
 
-@implementation CESyntaxHighlightParser
+@implementation CESyntaxHighlightParseOperation
 
 static NSArray<NSString *> *kSyntaxDictKeys;
 static CGFloat kPerCompoIncrement;
@@ -100,6 +103,24 @@ static CGFloat kPerCompoIncrement;
 }
 
 
+//------------------------------------------------------
+/// runs asynchronous
+- (BOOL)isAsynchronous
+//------------------------------------------------------
+{
+    return YES;
+}
+
+
+//------------------------------------------------------
+/// priority of operation
+- (NSOperationQueuePriority)queuePriority
+//------------------------------------------------------
+{
+    return NSOperationQueuePriorityHigh;
+}
+
+
 
 #pragma mark Public Methods
 
@@ -126,21 +147,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// parse string in background and return extracted highlight ranges per syntax types
-- (void)parseString:(nonnull NSString *)string range:(NSRange)range completionHandler:(void (^)(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull))completionHandler
+- (void)main
 // ------------------------------------------------------
 {
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) self = weakSelf;  // strong self
-        if (!self) { return; }
-        
-        NSDictionary<NSString *, NSArray<NSValue *> *> *highlights = [self extractAllHighlightsFromString:string range:range];
-        if (completionHandler) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                completionHandler(highlights);
-            });
-        }
-    });
+    [self setResults:[self extractAllHighlightsFromString:[self string] range:[self parseRange]]];
 }
 
 
