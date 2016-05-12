@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Fix an issue where the current line highlight didn't update under the specific condition.
+
+
+
 2.5.4 (127)
 --------------------------
 

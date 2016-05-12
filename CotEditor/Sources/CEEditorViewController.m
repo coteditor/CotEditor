@@ -45,7 +45,6 @@
 @property (nonatomic, nullable, weak) IBOutlet CEEditorScrollView *scrollView;
 @property (nonatomic, nonnull) NSTextStorage *textStorage;
 
-@property (nonatomic) BOOL highlightsCurrentLine;
 @property (nonatomic) NSUInteger lastCursorLocation;
 
 
@@ -72,7 +71,6 @@
     self = [super init];
     if (self) {
         _textStorage = textStorage;
-        _highlightsCurrentLine = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightCurrentLineKey];
     }
     return self;
 }
@@ -137,12 +135,10 @@
     }
     
     // リサイズに現在行ハイライトを追従
-    if (_highlightsCurrentLine) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(highlightCurrentLine)
-                                                     name:NSViewFrameDidChangeNotification
-                                                   object:[[self scrollView] contentView]];
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(highlightCurrentLine)
+                                                 name:NSViewFrameDidChangeNotification
+                                               object:[[self scrollView] contentView]];
     
     // initial highlight (What a dirty workaround...)
     __weak typeof(self) weakSelf = self;
@@ -160,8 +156,7 @@
     id newValue = change[NSKeyValueChangeNewKey];
     
     if ([keyPath isEqualToString:CEDefaultHighlightCurrentLineKey]) {
-        [self setHighlightsCurrentLine:[newValue boolValue]];
-        if ([self highlightsCurrentLine]) {
+        if ([newValue boolValue]) {
             [self highlightCurrentLine];
         } else {
             NSRect rect = [[self textView] highlightLineRect];
@@ -574,7 +569,7 @@
 - (void)highlightCurrentLine
 // ------------------------------------------------------
 {
-    if (![self highlightsCurrentLine]) { return; }
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightCurrentLineKey]) { return; }
     
     // 最初に（表示前に） TextView にテキストをセットした際にムダに演算が実行されるのを避ける (2014-07 by 1024jp)
     if (![[[self view] window] isVisible]) { return; }
