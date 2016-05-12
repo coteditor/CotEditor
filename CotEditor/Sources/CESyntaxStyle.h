@@ -51,6 +51,8 @@
 /// check equality of the content
 - (BOOL)isEqualToSyntaxStyle:(nullable CESyntaxStyle *)syntaxStyle;
 
+- (void)cancelAllParses;
+
 @end
 
 

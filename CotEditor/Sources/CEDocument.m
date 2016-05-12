@@ -555,6 +555,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)close
 // ------------------------------------------------------
 {
+    [[self syntaxStyle] cancelAllParses];
+    
     // send file close notification for the external editor protocol (ODB Editor Suite)
     if ([self fileURL]) {
         [[self ODBEventSender] sendCloseEventWithURL:[self fileURL]];
@@ -1102,6 +1104,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     CESyntaxStyle *syntaxStyle = [[CESyntaxManager sharedManager] styleWithName:styleName];
     
     if ([syntaxStyle isEqualToSyntaxStyle:[self syntaxStyle]]) { return; }
+    
+    [[self syntaxStyle] cancelAllParses];
     
     // update
     [syntaxStyle setTextStorage:[self textStorage]];

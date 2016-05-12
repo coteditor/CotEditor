@@ -278,6 +278,16 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     return NO;
 }
 
+
+// ------------------------------------------------------
+/// cancel all syntax parse
+- (void)cancelAllParses
+// ------------------------------------------------------
+{
+    [[self outlineParseOperationQueue] cancelAllOperations];
+    [[self syntaxHighlightParseOperationQueue] cancelAllOperations];
+}
+
 @end
 
 
