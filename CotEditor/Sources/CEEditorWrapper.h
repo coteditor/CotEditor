@@ -113,9 +113,9 @@
 
 - (IBAction)recolorAll:(nullable id)sender;
 
-- (void)invalidateSyntaxColoring;
+- (void)invalidateSyntaxHighlight;
 - (void)invalidateOutlineMenu;
-- (void)setupColoringTimer;
+- (void)setupSyntaxHighlightTimer;
 - (void)setupOutlineMenuUpdateTimer;
 
 @end

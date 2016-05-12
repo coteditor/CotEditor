@@ -898,7 +898,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // update syntax highlights and outline menu
-    [editor invalidateSyntaxColoring];
+    [editor invalidateSyntaxHighlight];
     [editor invalidateOutlineMenu];
     [[[self windowController] toolbarController] setSelectedSyntaxWithName:[[self syntaxStyle] styleName]];
     
@@ -1151,7 +1151,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (![oldName isEqualToString:[[self syntaxStyle] styleName]]) { return; }
     
     [self setSyntaxStyleWithName:newName];
-    [[self editor] invalidateSyntaxColoring];
+    [[self editor] invalidateSyntaxHighlight];
     [[self editor] invalidateOutlineMenu];
 }
 

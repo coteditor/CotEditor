@@ -280,7 +280,7 @@
     if (![actionName isEqualToString:NSLocalizedString(@"Replace All", nil)]) { return; }
     
     // 全テキストを再カラーリング
-    [[self editorWrapper] setupColoringTimer];
+    [[self editorWrapper] setupSyntaxHighlightTimer];
 }
 
 
@@ -395,7 +395,7 @@
     [[[[self view] window] windowController] setupEditorInfoUpdateTimer];
     
     // 全テキストを再カラーリング
-    [[self editorWrapper] setupColoringTimer];
+    [[self editorWrapper] setupSyntaxHighlightTimer];
 
     // アウトラインメニュー項目更新
     [[self editorWrapper] setupOutlineMenuUpdateTimer];
@@ -529,7 +529,7 @@
         
         [[self textView] setTheme:theme];
         [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
-        [[self editorWrapper] invalidateSyntaxColoring];
+        [[self editorWrapper] invalidateSyntaxHighlight];
     }
 }
 

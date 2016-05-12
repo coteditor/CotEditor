@@ -44,7 +44,7 @@
 
 @interface CEEditorWrapper () <CETextFinderClientProvider>
 
-@property (nonatomic, nullable, weak) NSTimer *coloringTimer;
+@property (nonatomic, nullable, weak) NSTimer *syntaxHighlightTimer;
 @property (nonatomic, nullable, weak) NSTimer *outlineMenuTimer;
 
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
@@ -95,7 +95,7 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [_coloringTimer invalidate];
+    [_syntaxHighlightTimer invalidate];
     [_outlineMenuTimer invalidate];
     
     _focusedTextView = nil;
@@ -666,7 +666,7 @@
     [self setupEditorViewController:newEditorViewController baseView:currentEditorViewController];
     
     [newEditorViewController applySyntax:[self syntaxStyle]];
-    [self invalidateSyntaxColoring];
+    [self invalidateSyntaxHighlight];
     [self invalidateOutlineMenu];
     
     // move focus to the new editor
@@ -895,10 +895,10 @@
 
 // ------------------------------------------------------
 /// 全テキストを再カラーリング
-- (void)invalidateSyntaxColoring
+- (void)invalidateSyntaxHighlight
 // ------------------------------------------------------
 {
-    [[self coloringTimer] invalidate];
+    [[self syntaxHighlightTimer] invalidate];
     
     [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
@@ -937,37 +937,37 @@
 
 
 // ------------------------------------------------------
-/// カラーリングタイマーのファイヤーデイトを設定時間後にセット
-- (void)setupColoringTimer
+/// let parse syntax highlight after a delay
+- (void)setupSyntaxHighlightTimer
 // ------------------------------------------------------
 {
-    if ([[self syntaxStyle] isNone]) { return; }
+    if (![self canHighlight]) { return; }
     
     NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultBasicColoringDelayKey];
-    
-    if ([[self coloringTimer] isValid]) {
-        [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-        
+    if ([[self syntaxHighlightTimer] isValid]) {
+        [[self syntaxHighlightTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
     } else {
-        [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                target:self
-                                                              selector:@selector(doColoringWithTimer:)
-                                                              userInfo:nil repeats:NO]];
+        [self setSyntaxHighlightTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                       target:self
+                                                                     selector:@selector(updateSyntaxHighlightWithTimer:)
+                                                                     userInfo:nil
+                                                                      repeats:NO]];
     }
 }
 
 
 // ------------------------------------------------------
-/// アウトラインメニュー項目を更新
+/// let parse outline after a delay
 - (void)setupOutlineMenuUpdateTimer
 // ------------------------------------------------------
 {
-    // アウトラインメニュー項目更新
-    NSTimeInterval outlineMenuInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
+    if (![self canHighlight]) { return; }
+    
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
     if ([[self outlineMenuTimer] isValid]) {
-        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
     } else {
-        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:interval
                                                                    target:self
                                                                  selector:@selector(updateOutlineMenuWithTimer:)
                                                                  userInfo:nil
@@ -983,7 +983,7 @@
 - (IBAction)recolorAll:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self invalidateSyntaxColoring];
+    [self invalidateSyntaxHighlight];
 }
 
 
@@ -1001,17 +1001,17 @@
     
     [[[self windowController] toolbarController] setSelectedSyntaxWithName:[syntaxStyle styleName]];
     
-    [self invalidateSyntaxColoring];
+    [self invalidateSyntaxHighlight];
     [self invalidateOutlineMenu];
 }
 
 
 // ------------------------------------------------------
-/// カラーリング実行
-- (void)doColoringNow
+/// update syntax highlight around edited area
+- (void)invalidateSyntaxHighlightPartly
 // ------------------------------------------------------
 {
-    if ([[self coloringTimer] isValid]) { return; }
+    if ([[self syntaxHighlightTimer] isValid]) { return; }
     
     NSTextView *textView = [self focusedTextView];
     NSRange glyphRange = [[textView layoutManager] glyphRangeForBoundingRectWithoutAdditionalLayout:[textView visibleRect]
@@ -1030,18 +1030,17 @@
         updateRange = NSMakeRange(location, length);
     }
     
-    [[self syntaxStyle] highlightRange:updateRange
-                           textStorage:[textView textStorage]];
+    [[self syntaxStyle] highlightRange:updateRange textStorage:[textView textStorage]];
 }
 
 
 // ------------------------------------------------------
 /// タイマーの設定時刻に到達、カラーリング実行
-- (void)doColoringWithTimer:(nonnull NSTimer *)timer
+- (void)updateSyntaxHighlightWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [[self coloringTimer] invalidate];
-    [self doColoringNow];
+    [[self syntaxHighlightTimer] invalidate];
+    [self invalidateSyntaxHighlightPartly];
 }
 
 
