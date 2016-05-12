@@ -49,7 +49,10 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
 
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSArray *> *cachedHighlights;  // extracted results cache of the last whole string highlighs
-@property (nonatomic, nullable, copy) NSString *cachedHash;  // MD5 hash
+@property (nonatomic, nullable, copy) NSString *highlightCacheHash;  // MD5 hash
+
+@property (nonatomic, nullable, copy) NSArray<CEOutlineItem *> *cachedOutlineItems;
+@property (nonatomic, nullable, copy) NSString *outlineCacheHash;  // MD5 hash
 
 @property (nonatomic, nonnull) NSOperationQueue *outlineParseOperationQueue;
 @property (nonatomic, nonnull) NSOperationQueue *syntaxHighlightParseOperationQueue;
@@ -307,6 +310,12 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
     if ([[self textStorage] length] == 0) { return; }
     
+    // use cache if exist
+    if ([self outlineCacheHash] && [[self outlineCacheHash] isEqualToString:[[[self textStorage] string] MD5]]) {
+        completionHandler([self cachedOutlineItems]);
+        return;
+    }
+    
     // make sure the string is immutable
     //   -> NSTextStorage's `string` property retruns a mutable string.
     NSString *string = [NSString stringWithString:[[self textStorage] string]];
@@ -317,8 +326,14 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     [operation setParseRange:range];
     
     __weak typeof(operation) weakOperation = operation;
+    __weak typeof(self) weakSelf = self;
     [operation setCompletionBlock:^{
         if ([weakOperation isCancelled]) { return; }
+        
+        if (weakSelf && [weakOperation results]) {
+            [weakSelf setCachedOutlineItems:[weakOperation results]];
+            [weakSelf setOutlineCacheHash:[string MD5]];
+        }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             completionHandler([weakOperation results] ?: @[]);
@@ -351,7 +366,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     NSRange wholeRange = NSMakeRange(0, [textStorage length]);
     
     // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
-    if ([[[textStorage string] MD5] isEqualToString:[self cachedHash]]) {
+    if ([self highlightCacheHash] && [[self highlightCacheHash] isEqualToString:[[textStorage string] MD5]]) {
         for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
             [self applyHighlights:[self cachedHighlights] range:wholeRange layoutManager:layoutManager];
         }
@@ -500,7 +515,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 // cache result if whole text was parsed
                 if (highlightRange.length == [wholeString length]) {
                     [self setCachedHighlights:highlights];
-                    [self setCachedHash:[wholeString MD5]];
+                    [self setHighlightCacheHash:[wholeString MD5]];
                 }
                 
                 // apply color (or give up if the editor's string is changed from the analized string)
