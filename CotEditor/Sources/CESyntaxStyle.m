@@ -29,7 +29,7 @@
 #import <NSHash/NSString+NSHash.h>
 
 #import "CESyntaxStyle.h"
-#import "CESyntaxOutlineParser.h"
+#import "CEOutlineParseOperation.h"
 #import "CESyntaxHighlightParser.h"
 #import "CETextViewProtocol.h"
 #import "CEProgressSheetController.h"
@@ -50,6 +50,8 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSArray *> *cachedHighlights;  // extracted results cache of the last whole string highlighs
 @property (nonatomic, nullable, copy) NSString *cachedHash;  // MD5 hash
+
+@property (nonatomic, nonnull) NSOperationQueue *outlineParseOperationQueue;
 
 
 // readonly
@@ -101,6 +103,15 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 }
 
 
+//------------------------------------------------------
+/// clean up
+- (void)dealloc
+//------------------------------------------------------
+{
+    [_outlineParseOperationQueue cancelAllOperations];
+}
+
+
 
 #pragma mark Public Methods
 
@@ -112,6 +123,8 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     self = [super init];
     if (self) {
         _styleName = styleName;
+        
+        _outlineParseOperationQueue = [[NSOperationQueue alloc] init];
         
         if (!dictionary) {
             _none = YES;
@@ -286,10 +299,20 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     NSString *string = [NSString stringWithString:[[self textStorage] string]];
     NSRange range = NSMakeRange(0, [string length]);
     
-    CESyntaxOutlineParser *parser = [[CESyntaxOutlineParser alloc] initWithDefinitions:[self outlineDefinitions]];
-    [parser parseString:string range:range completionHandler:^(NSArray<CEOutlineItem *> * _Nonnull outlineItems) {
-        completionHandler(outlineItems);
+    CEOutlineParseOperation *operation = [[CEOutlineParseOperation alloc] initWithDefinitions:[self outlineDefinitions]];
+    [operation setString:string];
+    [operation setParseRange:range];
+    
+    __weak typeof(operation) weakOperation = operation;
+    [operation setCompletionBlock:^{
+        if ([weakOperation isCancelled]) { return; }
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            completionHandler([weakOperation results] ?: @[]);
+        });
     }];
+    
+    [[self outlineParseOperationQueue] addOperation:operation];
 }
 
 @end

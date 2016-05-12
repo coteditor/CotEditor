@@ -1,6 +1,6 @@
 /*
  
- CESyntaxOutlineParser.h
+ CEOutlineParseOperation.h
  
  CotEditor
  http://coteditor.com
@@ -31,11 +31,15 @@
 @class CEOutlineItem;
 
 
-@interface CESyntaxOutlineParser : NSObject
+@interface CEOutlineParseOperation : NSOperation
+
+@property (nonatomic, nullable, copy) NSString *string;
+@property (nonatomic) NSRange parseRange;
+
+@property (readonly, nonatomic, nullable, copy) NSArray<CEOutlineItem *> *results;
+
 
 - (nonnull instancetype)initWithDefinitions:(nonnull NSArray<NSDictionary *> *)definitions NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
-
-- (void)parseString:(nonnull NSString *)string range:(NSRange)range completionHandler:(nullable void (^)(NSArray<CEOutlineItem *> * _Nonnull outlineItems))completionHandler;
 
 @end

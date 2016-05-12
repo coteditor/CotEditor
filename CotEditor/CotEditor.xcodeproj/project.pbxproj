@@ -318,8 +318,8 @@
 		2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
 		2A88A7911B8B899F0055B9AE /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
-		2A89847F1C3CE201006290FF /* CESyntaxOutlineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89847E1C3CE201006290FF /* CESyntaxOutlineParser.m */; };
-		2A8984801C3CE201006290FF /* CESyntaxOutlineParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89847E1C3CE201006290FF /* CESyntaxOutlineParser.m */; };
+		2A89847F1C3CE201006290FF /* CEOutlineParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89847E1C3CE201006290FF /* CEOutlineParseOperation.m */; };
+		2A8984801C3CE201006290FF /* CEOutlineParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89847E1C3CE201006290FF /* CEOutlineParseOperation.m */; };
 		2A89848F1C3CFD80006290FF /* CESyntaxHighlightParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89848E1C3CFD80006290FF /* CESyntaxHighlightParser.m */; };
 		2A8984901C3CFD80006290FF /* CESyntaxHighlightParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89848E1C3CFD80006290FF /* CESyntaxHighlightParser.m */; };
 		2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */; };
@@ -726,8 +726,8 @@
 		2A83E2391BA1E65A0069CDFE /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		2A88A78E1B8B87C90055B9AE /* NSString+Normalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Normalization.h"; sourceTree = "<group>"; };
 		2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Normalization.m"; sourceTree = "<group>"; };
-		2A89847D1C3CE201006290FF /* CESyntaxOutlineParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxOutlineParser.h; sourceTree = "<group>"; };
-		2A89847E1C3CE201006290FF /* CESyntaxOutlineParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxOutlineParser.m; sourceTree = "<group>"; };
+		2A89847D1C3CE201006290FF /* CEOutlineParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOutlineParseOperation.h; sourceTree = "<group>"; };
+		2A89847E1C3CE201006290FF /* CEOutlineParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOutlineParseOperation.m; sourceTree = "<group>"; };
 		2A89848D1C3CFD80006290FF /* CESyntaxHighlightParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxHighlightParser.h; sourceTree = "<group>"; };
 		2A89848E1C3CFD80006290FF /* CESyntaxHighlightParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxHighlightParser.m; sourceTree = "<group>"; };
 		2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+ScriptingSupport.h"; sourceTree = "<group>"; };
@@ -1608,8 +1608,8 @@
 			children = (
 				258225FE07794C2A00A0F8D3 /* CESyntaxStyle.h */,
 				258225FF07794C2A00A0F8D3 /* CESyntaxStyle.m */,
-				2A89847D1C3CE201006290FF /* CESyntaxOutlineParser.h */,
-				2A89847E1C3CE201006290FF /* CESyntaxOutlineParser.m */,
+				2A89847D1C3CE201006290FF /* CEOutlineParseOperation.h */,
+				2A89847E1C3CE201006290FF /* CEOutlineParseOperation.m */,
 				2A89848D1C3CFD80006290FF /* CESyntaxHighlightParser.h */,
 				2A89848E1C3CFD80006290FF /* CESyntaxHighlightParser.m */,
 				2AEA27DD1CE3D4C1006CDB80 /* CEOutlineItem.h */,
@@ -2390,7 +2390,7 @@
 				2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */,
 				2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */,
 				2A7FD35B1C551C9700CE8566 /* CETableCellView.m in Sources */,
-				2A8984801C3CE201006290FF /* CESyntaxOutlineParser.m in Sources */,
+				2A8984801C3CE201006290FF /* CEOutlineParseOperation.m in Sources */,
 				2A6F0DE31B5500E100C2D03C /* CEStatusBarController.m in Sources */,
 				2A6F0DE41B5500E100C2D03C /* CEEncodingManager.m in Sources */,
 				2AE0C0A01C42330000E52E04 /* CETextView+Indentation.m in Sources */,
@@ -2520,7 +2520,7 @@
 				2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */,
 				2A89848F1C3CFD80006290FF /* CESyntaxHighlightParser.m in Sources */,
 				2A41CB401C39167500F9122B /* CEDefaults.m in Sources */,
-				2A89847F1C3CE201006290FF /* CESyntaxOutlineParser.m in Sources */,
+				2A89847F1C3CE201006290FF /* CEOutlineParseOperation.m in Sources */,
 				2A68F93818FB04F400673440 /* CEMenuItemCell.m in Sources */,
 				2AB432711912AF7200835004 /* CECharacterPopoverController.m in Sources */,
 				2A3A1D841C17463E000243D8 /* CEDotView.m in Sources */,
