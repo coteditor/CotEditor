@@ -251,8 +251,10 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 {
     if ([[syntaxStyle styleName] isEqualToString:[self styleName]] &&
         [[syntaxStyle highlightDictionary] isEqualToDictionary:[self highlightDictionary]] &&
-        [[syntaxStyle inlineCommentDelimiter] isEqualToString:[self inlineCommentDelimiter]] &&
-        [[syntaxStyle blockCommentDelimiters] isEqualToDictionary:[self blockCommentDelimiters]])
+        ((![syntaxStyle inlineCommentDelimiter] && ![self inlineCommentDelimiter]) ||
+         [[syntaxStyle inlineCommentDelimiter] isEqualToString:[self inlineCommentDelimiter]]) &&
+        ((![syntaxStyle blockCommentDelimiters] && ![self blockCommentDelimiters]) ||
+         [[syntaxStyle blockCommentDelimiters] isEqualToDictionary:[self blockCommentDelimiters]]))
     {
         return YES;
     }
