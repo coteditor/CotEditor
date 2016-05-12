@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+2.5.4 (126)
+--------------------------
+
+### Fixes
+
+- Fix an issue where application didn't work on Mavericks and earlier.
+
+
+
 2.5.3 (125)
 --------------------------
 
