@@ -124,13 +124,6 @@
     // focus text view
     [[self window] makeFirstResponder:[editorViewController textView]];
     
-    // TODO: Refactoring
-    // -> This is probably not the best position to apply sytnax style to the text view.
-    //    However as a quick fix, I put it here tentatively. It works. But should be refactored later. (2016-01 1024jp)
-    [editorViewController applySyntax:[self syntaxStyle]];
-    
-    [self invalidateStyleInTextStorage];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangeSyntaxStyle:)
                                                  name:CEDocumentSyntaxStyleDidChangeNotification
@@ -665,7 +658,6 @@
     // apply current status to the new editorView
     [self setupEditorViewController:newEditorViewController baseView:currentEditorViewController];
     
-    [newEditorViewController applySyntax:[self syntaxStyle]];
     [self invalidateSyntaxHighlight];
     [self invalidateOutlineMenu];
     
@@ -747,16 +739,11 @@
 
 
 // ------------------------------------------------------
-///
+/// apply text styles from text view
 - (void)invalidateStyleInTextStorage
 // ------------------------------------------------------
 {
-    // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
-    // 設定されたフォントでないもので表示されることがあるため、リセットする
-    [[self textStorage] setAttributes:[[self focusedTextView] typingAttributes]
-                                range:NSMakeRange(0, [[self textStorage] length])];
-    
-    [[self focusedTextView] detectLinkIfNeeded];
+    [[self focusedTextView] invalidateStyle];
 }
 
 
@@ -773,6 +760,8 @@
     [self setWrapsLines:[self wrapsLines]];
     [self setVerticalLayoutOrientation:[self isVerticalLayoutOrientation]];
     [self setShowsPageGuide:[self showsPageGuide]];
+    
+    [editorViewController applySyntax:[self syntaxStyle]];
     
     // copy textView states
     if (baseViewController) {

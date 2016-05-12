@@ -704,6 +704,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setDefaultParagraphStyle:paragraphStyle];
     
     [self applyTypingAttributes];
+    
+    // update current text
+    [self invalidateStyle];
 }
 
 
@@ -1192,22 +1195,20 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// make link-like text clickable
-- (void)detectLinkIfNeeded
+/// invalidate string attributes
+- (void)invalidateStyle
 // ------------------------------------------------------
 {
-    if (![self isAutomaticLinkDetectionEnabled]) { return; }
+    NSRange range = NSMakeRange(0, [[self textStorage] length]);
     
-    // The following code looks suitable, but actually doesn't work. (2015-12)
-//    NSRange range = NSMakeRange(0, [[self string] length]);
-//    [self checkTextInRange:range types:NSTextCheckingTypeLink options:@{}];
+    if (range.length == 0) { return; }
     
-    [[self undoManager] disableUndoRegistration];
-    NSTextCheckingTypes currentCheckingType = [self enabledTextCheckingTypes];
-    [self setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
-    [self checkTextInDocument:nil];
-    [self setEnabledTextCheckingTypes:currentCheckingType];
-    [[self undoManager] enableUndoRegistration];
+    // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
+    // 設定されたフォントでないもので表示されることがあるため、リセットする
+    [[self textStorage] setAttributes:[self typingAttributes] range:range];
+    
+    [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
+    [self detectLinkIfNeeded];
 }
 
 
@@ -1449,12 +1450,26 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self defaultParagraphStyle],
                                 NSFontAttributeName: [self font],
                                 NSForegroundColorAttributeName: [self textColor]}];
+}
+
+
+// ------------------------------------------------------
+/// make link-like text clickable
+- (void)detectLinkIfNeeded
+// ------------------------------------------------------
+{
+    if (![self isAutomaticLinkDetectionEnabled]) { return; }
     
-    // update current text
-    NSRange range = NSMakeRange(0, [[self textStorage] length]);
-    [[self textStorage] setAttributes:[self typingAttributes] range:range];
-    [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
-    [self detectLinkIfNeeded];
+    // The following code looks suitable, but actually doesn't work. (2015-12)
+//    NSRange range = NSMakeRange(0, [[self string] length]);
+//    [self checkTextInRange:range types:NSTextCheckingTypeLink options:@{}];
+    
+    [[self undoManager] disableUndoRegistration];
+    NSTextCheckingTypes currentCheckingType = [self enabledTextCheckingTypes];
+    [self setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
+    [self checkTextInDocument:nil];
+    [self setEnabledTextCheckingTypes:currentCheckingType];
+    [[self undoManager] enableUndoRegistration];
 }
 
 
