@@ -130,7 +130,9 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         _styleName = styleName;
         
         _outlineParseOperationQueue = [[NSOperationQueue alloc] init];
+        [_outlineParseOperationQueue setName:@"com.coteditor.CotEditor.outlineParseOperationQueue"];
         _syntaxHighlightParseOperationQueue = [[NSOperationQueue alloc] init];
+        [_syntaxHighlightParseOperationQueue setName:@"com.coteditor.CotEditor.syntaxHighlightParseOperationQueue"];
         
         if (!dictionary) {
             _none = YES;
