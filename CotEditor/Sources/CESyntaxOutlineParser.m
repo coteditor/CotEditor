@@ -182,21 +182,19 @@ NSString *_Nonnull const CEOutlineItemStyleUnderlineKey = @"outlineItemStyleUnde
              }];
         }
         
-        if ([outlineItems count] > 0) {
-            // sort by location
-            [outlineItems sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                NSRange range1 = [obj1[CEOutlineItemRangeKey] rangeValue];
-                NSRange range2 = [obj2[CEOutlineItemRangeKey] rangeValue];
-                
-                if (range1.location > range2.location) {
-                    return NSOrderedDescending;
-                } else if (range1.location < range2.location) {
-                    return NSOrderedAscending;
-                } else {
-                    return NSOrderedSame;
-                }
-            }];
-        }
+        // sort by location
+        [outlineItems sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSRange range1 = [obj1[CEOutlineItemRangeKey] rangeValue];
+            NSRange range2 = [obj2[CEOutlineItemRangeKey] rangeValue];
+            
+            if (range1.location > range2.location) {
+                return NSOrderedDescending;
+            } else if (range1.location < range2.location) {
+                return NSOrderedAscending;
+            } else {
+                return NSOrderedSame;
+            }
+        }];
         
         if (completionHandler) {
             dispatch_sync(dispatch_get_main_queue(), ^{

@@ -208,6 +208,10 @@ static const CGFloat kDarkThemeThreshold = 0.5;
 - (nonnull NSColor *)weakTextColor
 //------------------------------------------------------
 {
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
+        return _weakTextColor;
+    }
+    
     if ([[NSWorkspace sharedWorkspace] accessibilityDisplayShouldIncreaseContrast]) {
         return [self textColor];
     }

@@ -109,10 +109,10 @@ static CGFloat kPerCompoIncrement;
 /// initialize instance
 - (nonnull instancetype)initWithString:(nonnull NSString *)string
                             dictionary:(nonnull NSDictionary *)dictionary
-              simpleWordsCharacterSets:(nullable NSDictionary<NSString *,NSCharacterSet *> *)simpleWordsCharacterSets
-                      pairedQuoteTypes:(nullable NSDictionary<NSString *,NSString *> *)pairedQuoteTypes
+              simpleWordsCharacterSets:(nullable NSDictionary<NSString *, NSCharacterSet *> *)simpleWordsCharacterSets
+                      pairedQuoteTypes:(nullable NSDictionary<NSString *, NSString *> *)pairedQuoteTypes
                 inlineCommentDelimiter:(nullable NSString *)inlineCommentDelimiter
-                blockCommentDelimiters:(nullable NSDictionary<NSString *,NSString *> *)blockCommentDelimiters
+                blockCommentDelimiters:(nullable NSDictionary<NSString *, NSString *> *)blockCommentDelimiters
 // ------------------------------------------------------
 {
     self = [super init];
@@ -133,7 +133,7 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// parse string in background and return extracted highlight ranges per syntax types
-- (void)parseRange:(NSRange)range completionHandler:(void (^)(NSDictionary<NSString *,NSArray<NSValue *> *> * _Nonnull))completionHandler
+- (void)parseRange:(NSRange)range completionHandler:(void (^)(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull))completionHandler
 // ------------------------------------------------------
 {
     __weak typeof(self) weakSelf = self;
@@ -141,7 +141,7 @@ static CGFloat kPerCompoIncrement;
         typeof(self) self = weakSelf;  // strong self
         if (!self) { return; }
         
-        NSDictionary<NSString *,NSArray<NSValue *> *> *highlights = [self extractAllHighlightsFromString:[self string] range:range];
+        NSDictionary<NSString *, NSArray<NSValue *> *> *highlights = [self extractAllHighlightsFromString:[self string] range:range];
         if (completionHandler) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 completionHandler(highlights);

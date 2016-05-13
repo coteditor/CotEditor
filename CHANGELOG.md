@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+2.5.4 (127)
+--------------------------
+
+### Fixes
+
+- Fix an issue where application didn't work on Mavericks and earlier.
+- Fix an issue where syntax was occasionally parsed wtice on window restoration.
+
+
+
 2.5.3 (125)
 --------------------------
 
