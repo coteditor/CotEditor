@@ -1453,6 +1453,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSRange range = NSMakeRange(0, [[self textStorage] length]);
     [[self textStorage] setAttributes:[self typingAttributes] range:range];
     [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
+    [self detectLinkIfNeeded];
 }
 
 
