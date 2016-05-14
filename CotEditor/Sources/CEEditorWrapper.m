@@ -44,7 +44,7 @@
 #import "NSString+CERange.h"
 
 
-@interface CEEditorWrapper () <CETextFinderClientProvider>
+@interface CEEditorWrapper () <CETextFinderClientProvider, NSTextStorageDelegate>
 
 @property (nonatomic, nullable, weak) NSTimer *syntaxHighlightTimer;
 @property (nonatomic, nullable, weak) NSTimer *outlineMenuTimer;
@@ -123,6 +123,8 @@
     
     // focus text view
     [[self window] makeFirstResponder:[editorViewController textView]];
+    
+    [[self textStorage] setDelegate:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangeSyntaxStyle:)
@@ -217,6 +219,31 @@
     }
     
     return YES;
+}
+
+
+
+#pragma mark Delegate
+
+//=======================================================
+// NSTextStorageDelegate Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// text did edit
+- (void)textStorageDidProcessEditing:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
+    [[[self window] windowController] setupEditorInfoUpdateTimer];
+    
+    // parse syntax
+    [self setupSyntaxHighlightTimer];
+    [self setupOutlineMenuUpdateTimer];
+    
+    // update incompatible chars list
+    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
+    
 }
 
 
@@ -483,7 +510,7 @@
         [[viewController textView] setTheme:theme];
     }];
     
-    [[self syntaxStyle] highlightWholeStringWithCompletionHandler:nil];
+    [self invalidateSyntaxHighlight];
 }
 
 

@@ -268,7 +268,7 @@
     if (![actionName isEqualToString:NSLocalizedString(@"Replace All", nil)]) { return; }
     
     // 全テキストを再カラーリング
-    [[self editorWrapper] setupSyntaxHighlightTimer];
+    [[self editorWrapper] invalidateSyntaxHighlight];
 }
 
 
@@ -379,18 +379,6 @@
 - (void)textDidChange:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
-    // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
-    [[[[self view] window] windowController] setupEditorInfoUpdateTimer];
-    
-    // 全テキストを再カラーリング
-    [[self editorWrapper] setupSyntaxHighlightTimer];
-
-    // アウトラインメニュー項目更新
-    [[self editorWrapper] setupOutlineMenuUpdateTimer];
-    
-    // 非互換文字リスト更新
-    [[[[self view] window] windowController] updateIncompatibleCharsIfNeeded];
-
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
     if ([[self textView] needsRecompletion]) {
