@@ -61,7 +61,7 @@
                                 <action selector="selectNextItem:" target="PFx-av-PuZ" id="PBS-fG-s7G"/>
                             </connections>
                         </button>
-                        <button toolTip="Split view" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
+                        <button toolTip="Split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
                             <rect key="frame" x="544" y="-1" width="17" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="17" id="e7y-hz-Kt5"/>
@@ -74,7 +74,7 @@
                                 <action selector="openSplitTextView:" target="-1" id="ZwK-oA-S7Q"/>
                             </connections>
                         </button>
-                        <button hidden="YES" toolTip="Close split view" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
+                        <button hidden="YES" toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
                             <rect key="frame" x="528" y="-1" width="17" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="17" id="5Tr-XS-blf"/>
