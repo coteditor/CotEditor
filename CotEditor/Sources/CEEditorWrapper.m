@@ -38,8 +38,10 @@
 #import "CESyntaxStyle.h"
 #import "CEGoToSheetController.h"
 #import "CETextFinder.h"
-#import "NSString+CERange.h"
 #import "CEDefaults.h"
+
+#import "NSString+CENewLine.h"
+#import "NSString+CERange.h"
 
 
 @interface CEEditorWrapper () <CETextFinderClientProvider>
@@ -309,7 +311,11 @@
 - (NSRange)selectedRange
 // ------------------------------------------------------
 {
-    return [self documentRangeFromRange:[[self focusedTextView] selectedRange]];
+    NSTextView *textView = [self focusedTextView];
+    
+    return [[textView string] convertRange:[textView selectedRange]
+                           fromNewLineType:CENewLineLF
+                             toNewLineType:[[self document] lineEnding]];
 }
 
 
@@ -318,7 +324,12 @@
 - (void)setSelectedRange:(NSRange)charRange
 // ------------------------------------------------------
 {
-    [[self focusedTextView] setSelectedRange:[self rangeFromDocumentRange:charRange]];
+    NSTextView *textView = [self focusedTextView];
+    NSRange range = [[textView string] convertRange:charRange
+                                    fromNewLineType:[[self document] lineEnding]
+                                      toNewLineType:CENewLineLF];
+    
+    [textView setSelectedRange:range];
 }
 
 
@@ -332,7 +343,9 @@
     
     for (NSValue *rangeValue in ranges) {
         NSRange documentRange = [rangeValue rangeValue];
-        NSRange range = [self rangeFromDocumentRange:documentRange];
+        NSRange range = [[[self textStorage] string] convertRange:documentRange
+                                                  fromNewLineType:[[self document] lineEnding]
+                                                    toNewLineType:CENewLineLF];
         
         for (NSLayoutManager *manager in layoutManagers) {
             [manager addTemporaryAttribute:NSBackgroundColorAttributeName value:color
@@ -821,44 +834,6 @@
 // ------------------------------------------------------
 {
     return [(CEEditorViewController *)[[self focusedTextView] delegate] navigationBarController];
-}
-
-
-// ------------------------------------------------------
-/// sanitized range for text view
-- (NSRange)rangeFromDocumentRange:(NSRange)range
-// ------------------------------------------------------
-{
-    if ([[self document] lineEnding] != CENewLineCRLF) {
-        return range;
-    }
-    
-    // sanitize for CR/LF
-    NSString *tmpLocStr = [[[self document] string] substringToIndex:range.location];
-    NSString *tmpLenStr = [[[self document] string] substringWithRange:range];
-    NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:CENewLineLF];
-    NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:CENewLineLF];
-    
-    return NSMakeRange([locStr length], [lenStr length]);
-}
-
-
-// ------------------------------------------------------
-/// sanitized range for document
-- (NSRange)documentRangeFromRange:(NSRange)range
-// ------------------------------------------------------
-{
-    if ([[self document] lineEnding] != CENewLineCRLF) {
-        return range;
-    }
-    
-    // sanitize for CR/LF
-    NSString *tmpLocStr = [[self string] substringToIndex:range.location];
-    NSString *tmpLenStr = [[self string] substringWithRange:range];
-    NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
-    NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
-    
-    return NSMakeRange([locStr length], [lenStr length]);
 }
 
 @end

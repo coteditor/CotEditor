@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -46,5 +46,7 @@ typedef NS_ENUM(NSInteger, CENewLineType) {
 - (CENewLineType)detectNewLineType;
 - (nonnull NSString *)stringByReplacingNewLineCharacersWith:(CENewLineType)type;
 - (nonnull NSString *)stringByDeletingNewLineCharacters;
+
+- (NSRange)convertRange:(NSRange)range fromNewLineType:(CENewLineType)fromType toNewLineType:(CENewLineType)toType;
 
 @end
