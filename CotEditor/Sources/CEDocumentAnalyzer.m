@@ -30,9 +30,10 @@
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
 #import "CECharacterInfo.h"
+#import "CEDefaults.h"
+
 #import "NSString+CECounting.h"
 #import "NSString+CEEncoding.h"
-#import "CEDefaults.h"
 
 
 // notifications
@@ -156,7 +157,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     if (![editor string]) { return; }
     
     BOOL hasMarked = [[editor focusedTextView] hasMarkedText];
-    NSString *wholeString = ([document lineEnding] == CENewLineCRLF) ? [document string] : [NSString stringWithString:[editor string]];
+    NSString *wholeString = [document string];
     NSString *selectedString = hasMarked ? nil : [editor substringWithSelection];
     NSStringEncoding encoding = [document encoding];
     __block NSRange selectedRange = [editor selectedRange];
@@ -246,7 +247,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
         }
         
         // apply to UI
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
             self.lines = [self formatCount:numberOfLines selected:numberOfSelectedLines];
             self.length = [self formatCount:length selected:selectedRange.length];
             self.chars = [self formatCount:numberOfChars selected:numberOfSelectedChars];

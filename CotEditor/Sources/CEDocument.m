@@ -844,7 +844,16 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nonnull NSString *)string
 // ------------------------------------------------------
 {
-    return [[[self editor] string] stringByReplacingNewLineCharacersWith:[self lineEnding]] ?: @"";
+    NSString *editorString = [[self editor] string];  // line endings are always LF
+    
+    if (!editorString) {
+        return @"";
+    }
+    if ([self lineEnding] == CENewLineLF) {
+        return [NSString stringWithString:editorString];
+    }
+    
+    return [editorString stringByReplacingNewLineCharacersWith:[self lineEnding]];
 }
 
 
