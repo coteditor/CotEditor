@@ -240,7 +240,7 @@ static NSColor *kLabelColor;
     if ([[[[[self view] window] windowController] document] isInViewingMode]) {  // on Versions browsing mode
         [self setShowsReadOnly:NO];
     } else {
-        [self setShowsReadOnly:![info isWritable]];
+        [self setShowsReadOnly:[info isReadOnly]];
     }
 }
 

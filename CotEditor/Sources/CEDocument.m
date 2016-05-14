@@ -97,7 +97,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (readwrite, nonatomic) BOOL hasUTF8BOM;
 @property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
-@property (readwrite, nonatomic, getter=isWritable) BOOL writable;
+@property (readwrite, nonatomic, getter=isReadOnly) BOOL readOnly;
 @property (readwrite, nonatomic, nonnull) CESyntaxStyle *syntaxStyle;
 
 @end
@@ -153,7 +153,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         }
         _syntaxStyle = [[CESyntaxManager sharedManager] styleWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
         _selection = [[CETextSelection alloc] initWithDocument:self];
-        _writable = YES;
         _shouldSaveXattr = YES;
         _autosaveIdentifier = [[[NSUUID UUID] UUIDString] substringToIndex:CEUniqueFileIDLength];
         
@@ -193,7 +192,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // check writability
         NSNumber *isWritable = nil;
         [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
-        _writable = [isWritable boolValue];
+        _readOnly = ![isWritable boolValue];
         
         // check file meta data for text orientation
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
@@ -653,7 +652,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
 {
-    [coder encodeBool:[self isWritable] forKey:CEWritablilityKey];
+    [coder encodeBool:![self isReadOnly] forKey:CEWritablilityKey];
     [coder encodeInteger:[self encoding] forKey:CEReadingEncodingKey];
     [coder encodeObject:[self autosaveIdentifier] forKey:CEAutosaveIdentierKey];
     [coder encodeObject:[[self syntaxStyle] styleName] forKey:CESyntaxStyleKey];
@@ -670,7 +669,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [super restoreStateWithCoder:coder];
     
     if ([coder containsValueForKey:CEWritablilityKey]) {
-        [self setWritable:[coder decodeBoolForKey:CEWritablilityKey]];
+        [self setReadOnly:![coder decodeBoolForKey:CEWritablilityKey]];
     }
     if ([coder containsValueForKey:CEReadingEncodingKey]) {
         [self setReadingEncoding:[coder decodeIntegerForKey:CEReadingEncodingKey]];

@@ -55,7 +55,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 @property (readwrite, nonatomic, nullable) NSString *filePath;
 @property (readwrite, nonatomic, nullable) NSString *owner;
 @property (readwrite, nonatomic, nullable) NSString *permission;
-@property (readwrite, nonatomic, getter=isWritable) BOOL writable;
+@property (readwrite, nonatomic, getter=isReadOnly) BOOL readOnly;
 
 // mode infos
 @property (readwrite, nonatomic, nullable) NSString *encoding;
@@ -123,7 +123,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%lo (%@)",
                                                       (unsigned long)[attrs filePosixPermissions],
                                                       humanReadablePermission([attrs filePosixPermissions])] : nil;
-    self.writable = [document isWritable];
+    self.readOnly = [document isReadOnly];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateFileInfoNotification
                                                         object:self];

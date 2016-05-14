@@ -48,7 +48,7 @@ extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic, nullable, copy) NSString *filePath;
 @property (readonly, nonatomic, nullable, copy) NSString *owner;
 @property (readonly, nonatomic, nullable, copy) NSString *permission;
-@property (readonly, nonatomic, getter=isWritable) BOOL writable;
+@property (readonly, nonatomic, getter=isReadOnly) BOOL readOnly;
 
 // mode info
 @property (readonly, nonatomic, nullable, copy) NSString *encoding;
