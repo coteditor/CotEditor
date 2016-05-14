@@ -58,6 +58,17 @@
 @end
 
 
+@interface CEEditorWrapper (PrivateSyntaxParsing)
+
+@property (readonly, nonatomic) BOOL canHighlight;
+
+
+- (void)setupSyntaxHighlightTimer;
+- (void)setupOutlineMenuUpdateTimer;
+
+@end
+
+
 
 
 #pragma -
@@ -874,18 +885,6 @@
 
 
 // ------------------------------------------------------
-/// return if sytnax highlight works
-- (BOOL)canHighlight
-// ------------------------------------------------------
-{
-    BOOL isHighlightEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey];
-    BOOL isHighlightable = ([self syntaxStyle] != nil) && ![[self syntaxStyle] isNone];
-    
-    return isHighlightEnabled && isHighlightable;
-}
-
-
-// ------------------------------------------------------
 /// 全テキストを再カラーリング
 - (void)invalidateSyntaxHighlight
 // ------------------------------------------------------
@@ -925,46 +924,6 @@
              // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
          }];
     }];
-}
-
-
-// ------------------------------------------------------
-/// let parse syntax highlight after a delay
-- (void)setupSyntaxHighlightTimer
-// ------------------------------------------------------
-{
-    if (![self canHighlight]) { return; }
-    
-    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultBasicColoringDelayKey];
-    if ([[self syntaxHighlightTimer] isValid]) {
-        [[self syntaxHighlightTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-    } else {
-        [self setSyntaxHighlightTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                       target:self
-                                                                     selector:@selector(updateSyntaxHighlightWithTimer:)
-                                                                     userInfo:nil
-                                                                      repeats:NO]];
-    }
-}
-
-
-// ------------------------------------------------------
-/// let parse outline after a delay
-- (void)setupOutlineMenuUpdateTimer
-// ------------------------------------------------------
-{
-    if (![self canHighlight]) { return; }
-    
-    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
-    if ([[self outlineMenuTimer] isValid]) {
-        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-    } else {
-        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                   target:self
-                                                                 selector:@selector(updateOutlineMenuWithTimer:)
-                                                                 userInfo:nil
-                                                                  repeats:NO]];
-    }
 }
 
 
@@ -1042,6 +1001,62 @@
 // ------------------------------------------------------
 {
     [self invalidateOutlineMenu];  // (The outlineMenuTimer will be invalidated in this invalidateOutlineMenu method.)
+}
+
+@end
+
+
+@implementation CEEditorWrapper (PrivateSyntaxParsing)
+
+// ------------------------------------------------------
+/// return if sytnax highlight works
+- (BOOL)canHighlight
+// ------------------------------------------------------
+{
+    BOOL isHighlightEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey];
+    BOOL isHighlightable = ([self syntaxStyle] != nil) && ![[self syntaxStyle] isNone];
+    
+    return isHighlightEnabled && isHighlightable;
+}
+
+
+// ------------------------------------------------------
+/// let parse syntax highlight after a delay
+- (void)setupSyntaxHighlightTimer
+// ------------------------------------------------------
+{
+    if (![self canHighlight]) { return; }
+    
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultBasicColoringDelayKey];
+    if ([[self syntaxHighlightTimer] isValid]) {
+        [[self syntaxHighlightTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
+    } else {
+        [self setSyntaxHighlightTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                       target:self
+                                                                     selector:@selector(updateSyntaxHighlightWithTimer:)
+                                                                     userInfo:nil
+                                                                      repeats:NO]];
+    }
+}
+
+
+// ------------------------------------------------------
+/// let parse outline after a delay
+- (void)setupOutlineMenuUpdateTimer
+// ------------------------------------------------------
+{
+    if (![self canHighlight]) { return; }
+    
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
+    if ([[self outlineMenuTimer] isValid]) {
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
+    } else {
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                   target:self
+                                                                 selector:@selector(updateOutlineMenuWithTimer:)
+                                                                 userInfo:nil
+                                                                  repeats:NO]];
+    }
 }
 
 @end

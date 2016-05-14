@@ -109,15 +109,12 @@
 @interface CEEditorWrapper (SyntaxParsing)
 
 @property (readonly, nonatomic, nullable) CESyntaxStyle *syntaxStyle;
-@property (readonly, nonatomic) BOOL canHighlight;
 
 
 - (IBAction)recolorAll:(nullable id)sender;
 
 - (void)invalidateSyntaxHighlight;
 - (void)invalidateOutlineMenu;
-- (void)setupSyntaxHighlightTimer;
-- (void)setupOutlineMenuUpdateTimer;
 
 @end
 
