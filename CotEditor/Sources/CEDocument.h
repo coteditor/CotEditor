@@ -37,7 +37,6 @@
 
 
 // Notifications
-extern NSString *_Nonnull const CEDocumentDidFinishOpenNotification;
 extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 
 // Incompatible chars listController key

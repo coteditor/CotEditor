@@ -64,7 +64,6 @@ static NSString *_Nonnull const CESyntaxStyleKey = @"syntaxStyle";
 static NSString *_Nonnull const CEAutosaveIdentierKey = @"autosaveIdentifier";
 
 // notifications
-NSString *_Nonnull const CEDocumentDidFinishOpenNotification = @"CEDocumentDidFinishOpenNotification";
 NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocumentSyntaxStyleDidChangeNotification";
 
 // incompatible chars dictionary keys
@@ -82,7 +81,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic) NSStringEncoding readingEncoding;  // encoding to read document file
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
 @property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
-@property (nonatomic) BOOL didAlertNotWritable;  // 文書が読み込み専用のときにその警告を表示したかどうか
 @property (nonatomic, nullable, copy) NSData *fileMD5;
 @property (nonatomic, nullable, copy) NSString *fileContentString;  // string that is read from the document file
 @property (nonatomic, getter=isVerticalText) BOOL verticalText;
@@ -163,10 +161,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // -> The value is either user setting or selection of open panel.
         // -> This must be set before `readFromData:ofType:error:` is called.
         _readingEncoding = [[CEDocumentController sharedDocumentController] accessorySelectedEncoding];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(documentDidFinishOpen:)
-                                                     name:CEDocumentDidFinishOpenNotification object:nil];
         
         // observe sytnax style update
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -687,9 +681,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if ([coder containsValueForKey:CESyntaxStyleKey]) {
         [self setSyntaxStyleWithName:[coder decodeObjectForKey:CESyntaxStyleKey]];
     }
-    
-    // not need to show unwritable alert on resume
-    [self setDidAlertNotWritable:YES];
 }
 
 
@@ -735,11 +726,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     NSInteger state = NSOffState;
     
-    if ([menuItem action] == @selector(saveDocument:)) {
-        // 書き込み不可の時は、アラートが表示され「OK」されるまで保存メニューを無効化する
-        return ([self isWritable] || [self didAlertNotWritable]);
-        
-    } else if ([menuItem action] == @selector(changeEncoding:)) {
+    if ([menuItem action] == @selector(changeEncoding:)) {
         NSInteger encodingTag = [self hasUTF8BOM] ? -[self encoding] : [self encoding];
         state = ([menuItem tag] == encodingTag) ? NSOnState : NSOffState;
         
@@ -1141,22 +1128,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 #pragma mark Notifications
-
-//=======================================================
-// Notification  <- CEWindowController
-//=======================================================
-
-// ------------------------------------------------------
-/// 書類オープン処理が完了した
-- (void)documentDidFinishOpen:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    if ([notification object] == [self windowController] && ![self isInViewingMode]) {
-        // 書き込み禁止アラートを表示
-        [self showNotWritableAlert];
-    }
-}
-
 
 //=======================================================
 // Notification  <- CESyntaxManager
@@ -1635,29 +1606,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     [[[self undoManager] prepareWithInvocationTarget:self] doSetLineEnding:lineEnding];
-}
-
-
-// ------------------------------------------------------
-/// 書き込み禁止アラートを表示
-- (void)showNotWritableAlert
-// ------------------------------------------------------
-{
-    if ([self isWritable] || [self didAlertNotWritable]) { return; }
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowAlertForNotWritableKey]) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"The file is not writable.", nil)];
-        [alert setInformativeText:NSLocalizedString(@"You may not be able to save your changes, but you will be able to save a copy somewhere else.", nil)];
-        [alert setShowsSuppressionButton:YES];
-        
-        [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger returnCode) {
-            if ([[alert suppressionButton] state] == NSOnState) {
-                [[NSUserDefaults standardUserDefaults] setBool:NO forKey:CEDefaultShowAlertForNotWritableKey];
-            }
-        }];
-    }
-    [self setDidAlertNotWritable:YES];
 }
 
 

@@ -261,10 +261,6 @@
 "Show or hide invisible characters in document" = "Unsichtbare Zeichen im Text ein-/ausblenden";
 "To show invisible characters, set them in Preferences and re-open the document" = "Um unsichtbare Zeichen anzuzeigen, setzen Sie sie in den Einstellungen und öffnen Sie das Dokument wieder";
 
-// Alert strings
-"The file is not writable." = "Die Datei ist nicht schreibbar.";
-"You may not be able to save your changes, but you will be able to save a copy somewhere else." = "Sie können möglicherweise die Änderungen nicht speichern doch eine Kopie an anderer Stelle speichern.";
-
 
 
 /* MARK: CESplitView */

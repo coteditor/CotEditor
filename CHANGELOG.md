@@ -2,6 +2,14 @@
 Change Log
 ==========================
 
+2.6.0
+--------------------------
+
+### Improvements
+
+- Remove “Not writable” alert which displayed on file opening.
+
+
 develop
 --------------------------
 

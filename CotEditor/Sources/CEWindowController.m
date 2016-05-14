@@ -140,13 +140,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     // apply document state to UI
     [[self document] applyContentToWindow];
     
-    // notify finish of the document open process (Here is probably the final point.)
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentDidFinishOpenNotification
-                                                            object:weakSelf];
-    });
-    
     // observe opacity setting change
     [[NSUserDefaults standardUserDefaults] addObserver:self
                                             forKeyPath:CEDefaultWindowAlphaKey
