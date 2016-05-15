@@ -47,7 +47,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 @interface CEWindowController () <NSSplitViewDelegate, NSSharingServicePickerDelegate>
 
 @property (nonatomic) CESidebarTag selectedSidebarTag;
-@property (nonatomic, nullable, weak) NSTimer *editorInfoUpdateTimer;
 @property (nonatomic) CGFloat sidebarWidth;
 
 
@@ -58,7 +57,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
 @property (nonatomic, nullable, weak) IBOutlet NSView *sidebar;
 @property (nonatomic, nullable, weak) IBOutlet NSView *sidebarPlaceholderView;
-@property (nonatomic, nullable) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 
 // IBOutlets (readonly)
 @property (readwrite, nonatomic, nullable, weak) IBOutlet CEToolbarController *toolbarController;
@@ -86,8 +84,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     // Need to set nil to NSSplitView's delegate manually since it is not weak but just assign,
     //     and may crash when closing split fullscreen window on El Capitan (2015-07)
     [_sidebarSplitView setDelegate:nil];
-    
-    [_editorInfoUpdateTimer invalidate];
 }
 
 
@@ -115,10 +111,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     // setup background
     [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
     
-    // setup document analyzer
-    [[self documentAnalyzer] setDocument:[self document]];
-    [[self documentInspectorViewController] setRepresentedObject:[self documentAnalyzer]];
-    
     // ???: needs to set contentView's layer to mask rounded window corners
     if (floor(NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max)) {
         [[[self window] contentView] setWantsLayer:YES];
@@ -135,6 +127,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     [[self incompatibleCharsViewController] setDocument:[self document]];
     
     // setup status bar
+    [[self statusBarController] setDocumentAnalyzer:[[self document] analyzer]];
     [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
     
     // apply document state to UI
@@ -206,62 +199,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 }
 
 
-// ------------------------------------------------------
-/// update information about the content text in document inspector and status bar
-- (void)updateEditorInfoIfNeeded
-// ------------------------------------------------------
-{
-    BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
-    BOOL shouldUpdateInspector = [self isDocumentInspectorShown];
-    
-    if (!shouldUpdateStatusBar && !shouldUpdateInspector) { return; }
-    
-    [[self documentAnalyzer] updateEditorInfo:shouldUpdateInspector];
-}
-
-
-// ------------------------------------------------------
-/// update information about file encoding and line endings in document inspector and status bar
-- (void)updateModeInfoIfNeeded
-// ------------------------------------------------------
-{
-    BOOL shouldUpdateStatusBar = [[self statusBarController] isShown];
-    BOOL shouldUpdateInspector = [self isDocumentInspectorShown];
-    
-    if (!shouldUpdateStatusBar && !shouldUpdateInspector) { return; }
-    
-    [[self documentAnalyzer] updateModeInfo];
-}
-
-
-// ------------------------------------------------------
-/// update information about file in document inspector and status bar
-- (void)updateFileInfo
-// ------------------------------------------------------
-{
-    [[self documentAnalyzer] updateFileInfo];
-}
-
-
-// ------------------------------------------------------
-/// set update timer for information about the content text
-- (void)setupEditorInfoUpdateTimer
-// ------------------------------------------------------
-{
-    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultInfoUpdateIntervalKey];
-    
-    if ([[self editorInfoUpdateTimer] isValid]) {
-        [[self editorInfoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-    } else {
-        [self setEditorInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                        target:self
-                                                                      selector:@selector(updateEditorInfoWithTimer:)
-                                                                      userInfo:nil
-                                                                       repeats:NO]];
-    }
-}
-
-
 
 #pragma mark Public Accessors
 
@@ -285,10 +222,9 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     [[self toolbarController] toggleItemWithTag:CEToolbarShowStatusBarItemTag
                                           setOn:showsStatusBar];
     
+    [[[self document] analyzer] setNeedsUpdateStatusEditorInfo:showsStatusBar];
     if (showsStatusBar) {
-        [[self documentAnalyzer] updateEditorInfo:NO];
-        [[self documentAnalyzer] updateFileInfo];
-        [[self documentAnalyzer] updateModeInfo];
+        [[[self document] analyzer] invalidateEditorInfo];
     }
 }
 
@@ -463,6 +399,8 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
         // clear incompatible chars markup
         [[self editor] clearAllMarkup];
     }
+    
+    [[[self document] analyzer] setNeedsUpdateEditorInfo:shown];
 }
 
 
@@ -493,9 +431,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     switch (tag) {
         case CEDocumentInspectorTag:
             viewController = [self documentInspectorViewController];
-            [[self documentAnalyzer] updateEditorInfo:YES];
-            [[self documentAnalyzer] updateFileInfo];
-            [[self documentAnalyzer] updateModeInfo];
+            [[[self document] analyzer] invalidateEditorInfo];
             break;
             
         case CEIncompatibleCharsTag:
@@ -521,16 +457,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     NSDictionary<NSString *, id> *views = NSDictionaryOfVariableBindings(newView);
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newView]|" options:0 metrics:nil views:views]];
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newView]|" options:0 metrics:nil views:views]];
-}
-
-
-// ------------------------------------------------------
-/// editor info update timer is fired
-- (void)updateEditorInfoWithTimer:(nonnull NSTimer *)timer
-// ------------------------------------------------------
-{
-    [[self editorInfoUpdateTimer] invalidate];
-    [self updateEditorInfoIfNeeded];
 }
 
 @end

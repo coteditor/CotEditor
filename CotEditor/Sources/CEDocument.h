@@ -34,6 +34,7 @@
 @class CEWindowController;
 @class CETextSelection;
 @class CESyntaxStyle;
+@class CEDocumentAnalyzer;
 
 
 // Notifications
@@ -50,6 +51,7 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 
 // readonly properties
 @property (readonly, nonatomic, nonnull) NSTextStorage *textStorage;
+@property (readonly, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
 @property (readonly, nonatomic, nullable) CEWindowController *windowController;
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 @property (readonly, nonatomic, nonnull) CETextSelection *selection;

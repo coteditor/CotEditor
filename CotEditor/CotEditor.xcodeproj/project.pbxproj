@@ -1516,6 +1516,8 @@
 				2A77C9341B416C950033D4AB /* CEDocument+Authopen.m */,
 				8CC1925407E2D84500B54AE4 /* CEDocument+ScriptingSupport.h */,
 				8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */,
+				2A436DDD1A4288AC00275FD4 /* CEDocumentAnalyzer.h */,
+				2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */,
 				258D708707D456DF0062A3E5 /* CETextSelection.h */,
 				258D708807D456DF0062A3E5 /* CETextSelection.m */,
 				2AD84CA81966314100DE49BD /* CEODBEventSender.h */,
@@ -1543,8 +1545,6 @@
 				2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */,
 				2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */,
 				2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */,
-				2A436DDD1A4288AC00275FD4 /* CEDocumentAnalyzer.h */,
-				2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */,
 				2AACC9571942A82900E3FF63 /* CEProgressSheetController.h */,
 				2AACC9581942A82900E3FF63 /* CEProgressSheetController.m */,
 			);

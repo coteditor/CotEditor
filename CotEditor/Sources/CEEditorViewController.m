@@ -27,7 +27,8 @@
  */
 
 #import "CEEditorViewController.h"
-#import "CEWindowController.h"
+#import "CEDocument.h"
+#import "CEDocumentAnalyzer.h"
 #import "CENavigationBarController.h"
 #import "CEEditorWrapper.h"
 #import "CEEditorScrollView.h"
@@ -397,7 +398,7 @@
     [self highlightCurrentLine];
 
     // update document information
-    [[[[self view] window] windowController] setupEditorInfoUpdateTimer];
+    [[[[[[self view] window] windowController] document] analyzer] invalidateEditorInfo];
 
     // update selected item of the outline menu
     [self updateOutlineMenuSelection];

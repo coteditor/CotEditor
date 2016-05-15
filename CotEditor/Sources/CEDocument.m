@@ -33,6 +33,7 @@
 
 #import "CEDocument.h"
 #import "CEDocumentController.h"
+#import "CEDocumentAnalyzer.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEPrintView.h"
 #import "CETextSelection.h"
@@ -90,6 +91,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // readonly
 @property (readwrite, nonatomic, nonnull) NSTextStorage *textStorage;
+@property (readwrite, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
 @property (readwrite, nonatomic, nullable) CEWindowController *windowController;
 @property (readwrite, nonatomic, nonnull) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
@@ -154,6 +156,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         _selection = [[CETextSelection alloc] initWithDocument:self];
         _shouldSaveXattr = YES;
         _autosaveIdentifier = [[[NSUUID UUID] UUIDString] substringToIndex:CEUniqueFileIDLength];
+        _analyzer = [[CEDocumentAnalyzer alloc] initWithDocument:self];
         
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
@@ -431,7 +434,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                  [self setFileAttributes:attributes];
                  
                  // update file information
-                 [[self windowController] updateFileInfo];
+                 [[self analyzer] invalidateFileInfo];
                  
                  // send file update notification for the external editor protocol (ODB Editor Suite)
                  [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
@@ -772,7 +775,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         //    However, we don't know when exactly, therefore update it manually before update documentAnalyzer. (2016-05-19 / OS X 10.11.5)
         [self setFileURL:newURL];
         
-        [[self windowController] updateFileInfo];
+        [[self analyzer] invalidateFileInfo];
     });
 }
 
@@ -906,7 +909,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // update encoding menu selection in toolbar, status bar and document inspector
     [self updateEncodingInToolbarAndInfo];
-    [[self windowController] updateFileInfo];
+    [[self analyzer] invalidateFileInfo];
     
     // show incompatible chars if needed
     [[self windowController] updateIncompatibleCharsIfNeeded];
@@ -1370,7 +1373,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [[[self windowController] toolbarController] setSelectedEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]];
     
     // ステータスバー、インスペクタを更新
-    [[self windowController] updateModeInfoIfNeeded];
+    [[self analyzer] invalidateModeInfo];
 }
 
 
@@ -1379,8 +1382,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)applyLineEndingToView
 // ------------------------------------------------------
 {
-    [[self windowController] updateModeInfoIfNeeded];
-    [[self windowController] updateEditorInfoIfNeeded];
+    [[self analyzer] invalidateModeInfo];
+    [[self analyzer] invalidateEditorInfo];
     [[[self windowController] toolbarController] setSelectedLineEnding:[self lineEnding]];
 }
 

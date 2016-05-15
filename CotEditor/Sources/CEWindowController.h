@@ -43,10 +43,6 @@
 // Public Methods
 - (void)showIncompatibleCharList;
 - (void)updateIncompatibleCharsIfNeeded;
-- (void)updateEditorInfoIfNeeded;
-- (void)updateModeInfoIfNeeded;
-- (void)updateFileInfo;
-- (void)setupEditorInfoUpdateTimer;
 
 // Action Messages
 - (IBAction)getInfo:(nullable id)sender;

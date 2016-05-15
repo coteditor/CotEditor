@@ -28,6 +28,7 @@
 
 #import "CEEditorWrapper.h"
 #import "CEDocument.h"
+#import "CEDocumentAnalyzer.h"
 #import "CEEditorViewController.h"
 #import "CELayoutManager.h"
 #import "CEWindowController.h"
@@ -246,7 +247,7 @@
 // ------------------------------------------------------
 {
     // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
-    [[[self window] windowController] setupEditorInfoUpdateTimer];
+    [[[self document] analyzer] invalidateEditorInfo];
     
     // parse syntax
     [self setupSyntaxHighlightTimer];

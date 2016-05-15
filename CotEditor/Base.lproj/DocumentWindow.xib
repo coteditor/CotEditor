@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" customClass="CEWindowController">
             <connections>
-                <outlet property="documentAnalyzer" destination="GxG-Ha-2we" id="SAg-2c-ORY"/>
                 <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="oPb-Zq-odI"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
@@ -410,10 +409,8 @@
                 <outlet property="splitViewController" destination="cfo-zY-w3h" id="ZU8-hM-dOd"/>
             </connections>
         </customObject>
-        <customObject id="GxG-Ha-2we" customClass="CEDocumentAnalyzer"/>
         <viewController id="ZaC-Gi-qyq" customClass="CEStatusBarController">
             <connections>
-                <outlet property="documentAnalyzer" destination="GxG-Ha-2we" id="InE-dm-D25"/>
                 <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="diE-OL-1Uw"/>
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
             </connections>
