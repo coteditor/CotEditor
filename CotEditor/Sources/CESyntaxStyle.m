@@ -424,22 +424,14 @@ static NSArray<NSString *> *kSyntaxDictKeys;
             });
         }];
         
-        // wait for window becomes visible
+        // wait for window becomes visible and sheet-attachable
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            while (![documentWindow isVisible]) {
+            while (![documentWindow isVisible] || [documentWindow attachedSheet]) {
                 [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
             }
             
-            // progress the main thread run-loop in order to give a chance to show more important sheet
-            dispatch_sync(dispatch_get_main_queue(), ^{});
-            
-            // wait until attached window closes
-            while ([documentWindow attachedSheet]) {
-                [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
-            }
-            
-            // otherwise, attach the indicator as a sheet
-            dispatch_async(dispatch_get_main_queue(), ^{
+            // attach the indicator as a sheet
+            dispatch_sync(dispatch_get_main_queue(), ^{
                 // do nothing if highlighting is already finished
                 if (isCompleted) { return; }
                 
