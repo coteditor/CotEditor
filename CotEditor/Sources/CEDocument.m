@@ -1324,11 +1324,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     if (!string) { return; }
     
-    NSTextView *textView = [[self editor] focusedTextView];
-    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:string]) {
-        [textView replaceCharactersInRange:[textView selectedRange] withString:string];
-        [textView didChangeText];
-    }
+    [[self editor] insertTextViewString:string];
 }
 
 
@@ -1342,11 +1338,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (!string) { return; }
     
     NSString *insertionString = [NSString stringWithFormat:@"charset=\"%@\"", string];
-    NSTextView *textView = [[self editor] focusedTextView];
-    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:insertionString]) {
-        [textView replaceCharactersInRange:[textView selectedRange] withString:insertionString];
-        [textView didChangeText];
-    }
+    
+    [[self editor] insertTextViewString:insertionString];
 }
 
 
@@ -1360,11 +1353,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (!string) { return; }
     
     NSString *insertionString = [NSString stringWithFormat:@"encoding=\"%@\"", string];
-    NSTextView *textView = [[self editor] focusedTextView];
-    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:insertionString]) {
-        [textView replaceCharactersInRange:[textView selectedRange] withString:insertionString];
-        [textView didChangeText];
-    }
+    
+    [[self editor] insertTextViewString:insertionString];
 }
 
 
