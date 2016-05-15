@@ -56,7 +56,6 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 @property (readonly, nonatomic) BOOL hasUTF8BOM;
 @property (readonly, nonatomic) CENewLineType lineEnding;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
-@property (readonly, nonatomic, getter=isReadOnly) BOOL readOnly;
 @property (readonly, nonatomic, nullable) CESyntaxStyle *syntaxStyle;
 
 

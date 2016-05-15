@@ -58,7 +58,6 @@
 
 // constants
 static NSUInteger const CEUniqueFileIDLength = 8;
-static NSString *_Nonnull const CEWritablilityKey = @"writability";
 static NSString *_Nonnull const CEReadingEncodingKey = @"readingEncoding";
 static NSString *_Nonnull const CESyntaxStyleKey = @"syntaxStyle";
 static NSString *_Nonnull const CEAutosaveIdentierKey = @"autosaveIdentifier";
@@ -97,7 +96,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (readwrite, nonatomic) BOOL hasUTF8BOM;
 @property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
-@property (readwrite, nonatomic, getter=isReadOnly) BOOL readOnly;
 @property (readwrite, nonatomic, nonnull) CESyntaxStyle *syntaxStyle;
 
 @end
@@ -188,11 +186,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (self) {
         // set sender of external editor protocol (ODB Editor Suite)
         _ODBEventSender = [[CEODBEventSender alloc] init];
-        
-        // check writability
-        NSNumber *isWritable = nil;
-        [url getResourceValue:&isWritable forKey:NSURLIsWritableKey error:nil];
-        _readOnly = ![isWritable boolValue];
         
         // check file meta data for text orientation
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
@@ -652,7 +645,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
 {
-    [coder encodeBool:![self isReadOnly] forKey:CEWritablilityKey];
     [coder encodeInteger:[self encoding] forKey:CEReadingEncodingKey];
     [coder encodeObject:[self autosaveIdentifier] forKey:CEAutosaveIdentierKey];
     [coder encodeObject:[[self syntaxStyle] styleName] forKey:CESyntaxStyleKey];
@@ -668,9 +660,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     [super restoreStateWithCoder:coder];
     
-    if ([coder containsValueForKey:CEWritablilityKey]) {
-        [self setReadOnly:![coder decodeBoolForKey:CEWritablilityKey]];
-    }
     if ([coder containsValueForKey:CEReadingEncodingKey]) {
         [self setReadingEncoding:[coder decodeIntegerForKey:CEReadingEncodingKey]];
     }

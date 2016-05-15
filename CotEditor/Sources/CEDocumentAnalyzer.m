@@ -123,7 +123,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%lo (%@)",
                                                       (unsigned long)[attrs filePosixPermissions],
                                                       humanReadablePermission([attrs filePosixPermissions])] : nil;
-    self.readOnly = [document isReadOnly];
+    self.readOnly = [attrs fileIsImmutable];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateFileInfoNotification
                                                         object:self];
