@@ -1,6 +1,4 @@
 extensions:
-- keyString: "c"
-- keyString: "h"
 - keyString: "m"
 - keyString: "mm"
 - keyString: "cpp"

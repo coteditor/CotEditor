@@ -5,9 +5,15 @@ Change Log
 2.6.0
 --------------------------
 
+### New Features
+
+- Add new syntax style only for “C” language.
+
+
 ### Improvements
 
 - Remove “Not writable” alert which displayed on file opening.
+
 
 
 develop
