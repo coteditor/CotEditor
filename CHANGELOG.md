@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add new syntax style only for “C” language.
+
+
 ### Improvements
 
 - Update “Markdown” syntax style:

@@ -55,14 +55,24 @@
       "csharp"
     ]
   },
-  "C, C++, Objective-C": {
+  "C++, Objective-C": {
     "extensions": [
-      "c",
-      "h",
       "m",
       "mm",
       "cpp",
       "cc"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
+  "C": {
+    "extensions": [
+      "c",
+      "h"
     ],
     "filenames": [
 
