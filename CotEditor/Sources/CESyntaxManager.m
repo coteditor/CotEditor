@@ -132,12 +132,11 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     } else if ([[self styleNames] containsObject:styleName]) {
         NSDictionary<NSString *, id> *highlightDictionary = [self styleDictionaryWithStyleName:styleName];
         return [[CESyntaxStyle alloc] initWithDictionary:highlightDictionary name:styleName];
-        
-    } else {
-        return nil;
     }
     
+    return nil;
 }
+
 
 // ------------------------------------------------------
 /// ファイル名に応じたstyle名を返す

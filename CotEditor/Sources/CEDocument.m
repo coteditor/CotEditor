@@ -132,7 +132,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// can read document on a background thread?
-+ (BOOL)canConcurrentlyReadDocumentsOfType:(NSString *)typeName
++ (BOOL)canConcurrentlyReadDocumentsOfType:(nonnull NSString *)typeName
 // ------------------------------------------------------
 {
     return YES;

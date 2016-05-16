@@ -92,7 +92,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];

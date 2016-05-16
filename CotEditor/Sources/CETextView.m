@@ -105,7 +105,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// initialize instance
-- (nullable instancetype)initWithCoder:(NSCoder *)coder
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
 {
     self = [super initWithCoder:(NSCoder *)coder];
@@ -184,7 +184,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
                                                        context:NULL];
         }
     }
-
     return self;
 }
 
@@ -610,9 +609,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     // add "Inspect Character" menu item if single character is selected
     if ([[[self string] substringWithRange:[self selectedRange]] numberOfComposedCharacters] == 1) {
         [menu insertItemWithTitle:NSLocalizedString(@"Inspect Character", nil)
-                              action:@selector(showSelectionInfo:)
-                       keyEquivalent:@""
-                             atIndex:1];
+                           action:@selector(showSelectionInfo:)
+                    keyEquivalent:@""
+                          atIndex:1];
     }
     
     // add "Copy as Rich Text" menu item
@@ -1541,7 +1540,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// インデントレベルを算出
-- (NSUInteger)indentLevelOfString:(NSString *)string
+- (NSUInteger)indentLevelOfString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSRange indentRange = [string rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];

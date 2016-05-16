@@ -52,7 +52,7 @@
 
 // ------------------------------------------------------
 /// init with fixed nib
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
