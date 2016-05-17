@@ -245,7 +245,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 {
     NSURL *URL = [self URLForUserTheme:themeName available:YES];
     
-    if (!URL) { return NO; }
+    if (!URL) { return YES; }  // already removed
     
     BOOL success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
     

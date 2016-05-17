@@ -20,6 +20,7 @@ develop
 - Fix an issue where hanging indent was applied when document style is changed even it is turned off.
 - Fix an issue where the current line highlight didn't update under the specific condition.
 - Fix an issue where editor area was not focused when document opens.
+- Fix an issue where custom syntax style/theme couldn't be removed from the style list if the definition file is already deleted.
 - Fix an issue where URL links were removed when editor is split.
 
 
