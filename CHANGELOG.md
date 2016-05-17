@@ -7,7 +7,8 @@ develop
 
 ### New Features
 
-- Add new syntax style only for “C” language.
+- Add newly rewrited syntax styles for “C” and “++”.
+    - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
 
 
 ### Improvements
