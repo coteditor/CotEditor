@@ -87,6 +87,7 @@
 		2A3A75B319E77F32001DAB88 /* CESyntaxValidationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A75B219E77F32001DAB88 /* CESyntaxValidationViewController.m */; };
 		2A3CC1F71C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
 		2A3CC1F81C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
+		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A41CB3D1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
 		2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
@@ -369,7 +370,6 @@
 		2ACC65281C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65271C97FEAA000574DC /* CEThemeDictionaryKeys.m */; };
 		2ACC65291C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65271C97FEAA000574DC /* CEThemeDictionaryKeys.m */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
-		2ACC65391C980D55000574DC /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2ACC65381C980D55000574DC /* Themes */; };
 		2ACC653C1C9844ED000574DC /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
 		2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
@@ -831,7 +831,6 @@
 		2ACC65271C97FEAA000574DC /* CEThemeDictionaryKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeDictionaryKeys.m; sourceTree = "<group>"; };
 		2ACC652A1C97FEC0000574DC /* CEThemeDictionaryKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEThemeDictionaryKeys.h; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
-		2ACC65381C980D55000574DC /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = SOURCE_ROOT; };
 		2AD318BF1A462A10001B8112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPane.xib; sourceTree = "<group>"; };
 		2AD318C11A462C30001B8112 /* CEIntegrationPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEIntegrationPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEIntegrationPaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1688,7 +1687,6 @@
 			isa = PBXGroup;
 			children = (
 				2A18A5BE1C4A746A00BAD817 /* Encodings */,
-				2ACC65381C980D55000574DC /* Themes */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2016,8 +2014,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ACC65391C980D55000574DC /* Themes in Resources */,
 				2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */,
+				2A3DEAF21CEB23F0007B7621 /* Themes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
