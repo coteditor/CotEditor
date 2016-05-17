@@ -569,7 +569,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // create printView
     CEPrintView *printView = [[CEPrintView alloc] init];
-    [printView setString:[[self editor] string]];
     [printView setLayoutOrientation:[[[self editor] focusedTextView] layoutOrientation]];
     [printView setTheme:[[self editor] theme]];
     [printView setDocumentName:[self displayName]];
@@ -588,6 +587,9 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         font = [[self editor] font];
     }
     [printView setFont:font];
+    
+    // [caution] need to set string after setting other properties
+    [printView setString:[[self editor] string]];
     
     // create print operation
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:[self printInfo]];

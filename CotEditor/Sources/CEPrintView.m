@@ -320,21 +320,6 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 
 
-#pragma mark Public Accessors
-
-// ------------------------------------------------------
-/// set-accessor for invisibles setting on the real document
-- (void)setDocumentShowsInvisibles:(BOOL)showsInvisibles
-// ------------------------------------------------------
-{
-    // set also to layoutManager
-    [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
-    
-    _documentShowsInvisibles = showsInvisibles;
-}
-
-
-
 #pragma mark Private Methods
 
 // ------------------------------------------------------
