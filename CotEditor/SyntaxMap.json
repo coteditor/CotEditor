@@ -55,12 +55,13 @@
       "csharp"
     ]
   },
-  "C++, Objective-C": {
+  "C++": {
     "extensions": [
-      "m",
-      "mm",
+      "c++",
       "cpp",
-      "cc"
+      "cc",
+      "hpp",
+      "h++"
     ],
     "filenames": [
 
