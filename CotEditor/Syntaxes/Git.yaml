@@ -1,0 +1,31 @@
+extensions: []
+filenames:
+- keyString: "git-rebase-todo"
+- keyString: "COMMIT_EDITMSG"
+comments: []
+outlineMenu: []
+completions: []
+metadata:
+  distributionURL: "http://coteditor.com"
+  lastModified: "2016-05-17"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  version: "1.0.0"
+numbers:
+- beginString: "\\b[0-9a-f]+\\b"
+  description: "hex"
+  regularExpression: true
+commands:
+- beginString: "^(pick|reword|edit|squash|fixup|exec|drop)\\b"
+  regularExpression: true
+  description: "rebase commands"
+values: []
+keywords: []
+attributes: []
+strings: []
+variables: []
+commentDelimiters:
+  inlineDelimiter: "#"
+interpreters: []
+types: []
+characters: []

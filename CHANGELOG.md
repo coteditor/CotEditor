@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add syntax style for “Git”.
+
+
 ### Improvements
 
 - Optimize text rendering a bit.
