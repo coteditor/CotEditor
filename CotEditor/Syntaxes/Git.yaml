@@ -7,12 +7,12 @@ outlineMenu: []
 completions: []
 metadata:
   distributionURL: "http://coteditor.com"
-  lastModified: "2016-05-17"
+  lastModified: "2016-05-18"
   author: "1024jp"
   license: "Same as CotEditor"
   version: "1.0.0"
 numbers:
-- beginString: "\\b[0-9a-f]+\\b"
+- beginString: "\\b[0-9a-f]{6,10}\\b"
   description: "hex"
   regularExpression: true
 commands:
