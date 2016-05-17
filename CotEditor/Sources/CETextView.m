@@ -1088,7 +1088,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if (([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
+    if (([menuItem action] == @selector(copyWithStyle:)) ||
+        ([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
         ([menuItem action] == @selector(exchangeHalfwidthRoman:)) ||
         ([menuItem action] == @selector(exchangeKatakana:)) ||
         ([menuItem action] == @selector(exchangeHiragana:)) ||
