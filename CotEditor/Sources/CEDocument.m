@@ -192,7 +192,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         // check file meta data for text orientation
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
-            NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:outError];
+            NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:outError];  // FILE_READ
             _verticalText = attributes[CEFileExtendedAttributes][CEXattrVerticalTextName];
         }
     }
@@ -226,7 +226,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // [caution] This method may be called from a background thread due to concurrent-opening.
     
-    NSData *data = [NSData dataWithContentsOfURL:url options:0 error:outError];
+    NSData *data = [NSData dataWithContentsOfURL:url options:0 error:outError];  // FILE_READ
     if (!data) { return NO; }
     
     // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
@@ -236,7 +236,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // -> The passed-in `url` in this method can point to a file that isn't the real document file,
     //    for example on resuming of an unsaved document.
     if ([self fileURL]) {
-        NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];
+        NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];  // FILE_READ
         [self setFileAttributes:attributes];
         [self setExecutable:([attributes filePosixPermissions] & S_IXUSR) != 0];
     }
@@ -255,7 +255,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         string = [self stringFromData:data xattrEncoding:xattrEncoding usedEncoding:&usedEncoding error:outError];
     } else {  // interpret with specific encoding
         usedEncoding = [self readingEncoding];
-        string = ([data length] > 0) ? [NSString stringWithContentsOfURL:url encoding:[self readingEncoding] error:outError] : @"";
+        string = ([data length] > 0) ? [NSString stringWithContentsOfURL:url encoding:[self readingEncoding] error:outError] : @"";  // FILE_READ
     }
     BOOL hasUTF8BOM = (usedEncoding == NSUTF8StringEncoding) ? [data hasUTF8BOM] : NO;
     
@@ -418,7 +418,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
              
              if (saveOperation != NSAutosaveElsewhereOperation) {
                  // get the latest file attributes
-                 NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];
+                 NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:nil];  // FILE_READ
                  [self setFileAttributes:attributes];
                  
                  // update file information
@@ -450,7 +450,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (success) {
         if (saveOperation != NSAutosaveElsewhereOperation) {
             // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
-            NSData *data = [NSData dataWithContentsOfURL:url];
+            NSData *data = [NSData dataWithContentsOfURL:url];  // FILE_READ
             [self setFileMD5:[data MD5]];
             
             // store file encoding for revert
@@ -491,7 +491,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         NSUInteger permissions = [attributes filePosixPermissions];
         if (permissions == 0) {
             if (absoluteOriginalContentsURL) {  // read from old one if not exists
-                permissions = [[[NSFileManager defaultManager] attributesOfItemAtPath:[absoluteOriginalContentsURL path] error:outError] filePosixPermissions];
+                permissions = [[[NSFileManager defaultManager] attributesOfItemAtPath:[absoluteOriginalContentsURL path] error:outError] filePosixPermissions];  // FILE_READ
             } else {
                 permissions = 0644;  // ???: Is the default permission really always 644?
             }
@@ -807,7 +807,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         NSDictionary<NSString *, id> *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];
+         NSDictionary<NSString *, id> *fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[newURL path] error:nil];  // FILE_READ
          fileModificationDate = [fileAttrs fileModificationDate];
      }];
     if ([fileModificationDate isEqualToDate:[self fileModificationDate]]) { return; }
@@ -817,7 +817,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [coordinator coordinateReadingItemAtURL:[self fileURL] options:NSFileCoordinatorReadingWithoutChanges
                                       error:nil byAccessor:^(NSURL *newURL)
      {
-         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];
+         MD5 = [[NSData dataWithContentsOfURL:newURL] MD5];  // FILE_READ
      }];
     if ([MD5 isEqualToData:[self fileMD5]]) {
         // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
