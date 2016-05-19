@@ -770,9 +770,16 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     [super presentedItemDidMoveToURL:newURL];
     
-    CEWindowController *windowController = [self windowController];
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [windowController updateFileInfo];
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
+        
+        // -> `fileURL` property will be updated automatically after this `presentedItemDidMoveToURL:`.
+        //    However, we don't know when exactly, therefore update it manually before update documentAnalyzer. (2016-05-19 / OS X 10.11.5)
+        [self setFileURL:newURL];
+        
+        [[self windowController] updateFileInfo];
     });
 }
 

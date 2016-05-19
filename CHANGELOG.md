@@ -22,6 +22,7 @@ develop
 - Fix an issue where editor area was not focused when document opens.
 - Fix an issue where custom syntax style/theme couldn't be removed from the style list if the definition file is already deleted.
 - Fix an issue where “Copy as Rich Text” was enabled even if no text is selected.
+- Fix an issue where file path display in inspector was not updated when document file is moved.
 - Fix an issue where URL links were removed when editor is split.
 
 
