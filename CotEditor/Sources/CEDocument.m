@@ -636,16 +636,16 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (__kindof NSDocument *)duplicateAndReturnError:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
-    CEDocument *document = (CEDocument *)[super duplicateAndReturnError:outError];
+    CEDocument *document = [super duplicateAndReturnError:outError];
     
     [document setSyntaxStyleWithName:[[self syntaxStyle] styleName]];
     [document doSetLineEnding:[self lineEnding]];
     [document doSetEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM] updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
     
     // apply text orientation
-    CEEditorWrapper *editor = [self editor];
+    BOOL isVerticalLayout = [[self editor] isVerticalLayoutOrientation];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[document editor] setVerticalLayoutOrientation:[editor isVerticalLayoutOrientation]];
+        [[document editor] setVerticalLayoutOrientation:isVerticalLayout];
     });
     
     return document;
@@ -903,7 +903,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [editor setVerticalLayoutOrientation:[self isVerticalText]];
     
     // update encoding menu selection in toolbar, status bar and document inspector
-    [self updateEncodingInToolbarAndInfo];
+    [self applyEncodingToView];
     [[self analyzer] invalidateFileInfo];
     
     // show incompatible chars if needed
@@ -1047,7 +1047,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         if (shouldShowList) {
             [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
         }
-        [[undoManager prepareWithInvocationTarget:self] updateEncodingInToolbarAndInfo];
+        [[undoManager prepareWithInvocationTarget:self] applyEncodingToView];
         [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]];  // エンコード値設定
         [[undoManager prepareWithInvocationTarget:self] setHasUTF8BOM:[self hasUTF8BOM]];  // エンコード値設定
         
@@ -1058,7 +1058,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     [self setEncoding:encoding];
     [self setHasUTF8BOM:withUTF8BOM];
-    [self updateEncodingInToolbarAndInfo];  // ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
+    [self applyEncodingToView];  // ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
     
     if (shouldShowList) {
         [[self windowController] showIncompatibleCharList];
@@ -1361,14 +1361,11 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
-- (void)updateEncodingInToolbarAndInfo
+- (void)applyEncodingToView
 // ------------------------------------------------------
 {
-    // ツールバーのエンコーディングメニューを更新
-    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]];
-    
-    // ステータスバー、インスペクタを更新
     [[self analyzer] invalidateModeInfo];
+    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]];
 }
 
 
