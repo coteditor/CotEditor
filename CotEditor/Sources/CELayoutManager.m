@@ -350,6 +350,7 @@ static NSString *HiraginoSansName;
     
     // get dummy attributes to make calcuration of indent width the same as CElayoutManager's calcuration (2016-04)
     NSMutableDictionary *indentAttributes = [[[self firstTextView] typingAttributes] mutableCopy];
+    NSParagraphStyle *defaultParagraphStyle = [[self firstTextView] defaultParagraphStyle];
     NSMutableParagraphStyle *typingParagraphStyle = [indentAttributes[NSParagraphStyleAttributeName] mutableCopy];
     [typingParagraphStyle setHeadIndent:1.0];  // dummy indent value for size calcuration (2016-04)
     indentAttributes[NSParagraphStyleAttributeName] = [typingParagraphStyle copy];
@@ -385,6 +386,7 @@ static NSString *HiraginoSansName;
                                                            atIndex:substringRange.location
                                                     effectiveRange:NULL];
          if (indent != [paragraphStyle headIndent]) {
+             paragraphStyle = paragraphStyle ?: defaultParagraphStyle;
              NSMutableParagraphStyle *mutableParagraphStyle = [paragraphStyle mutableCopy];
              [mutableParagraphStyle setHeadIndent:indent];
              
