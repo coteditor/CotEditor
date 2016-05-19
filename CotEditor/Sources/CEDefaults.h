@@ -165,7 +165,6 @@ extern NSString *_Nonnull const CEDefaultTextContainerInsetHeightTopKey;
 extern NSString *_Nonnull const CEDefaultTextContainerInsetHeightBottomKey;
 extern NSString *_Nonnull const CEDefaultShowColoringIndicatorTextLengthKey;
 extern NSString *_Nonnull const CEDefaultRunAppleScriptInLaunchingKey;
-extern NSString *_Nonnull const CEDefaultNotifyEditByAnotherKey;
 extern NSString *_Nonnull const CEDefaultColoringRangeBufferLengthKey;
 extern NSString *_Nonnull const CEDefaultLargeFileAlertThresholdKey;
 extern NSString *_Nonnull const CEDefaultAutosavingDelayKey;

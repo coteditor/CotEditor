@@ -80,7 +80,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 @property (nonatomic) NSStringEncoding readingEncoding;  // encoding to read document file
 @property (nonatomic) BOOL needsShowUpdateAlertWithBecomeKey;
-@property (nonatomic, getter=isRevertingForExternalFileUpdate) BOOL revertingForExternalFileUpdate;
+@property (nonatomic, getter=isExternalUpdateAlertShown) BOOL externalUpdateAlertShown;
 @property (nonatomic, nullable, copy) NSData *fileMD5;
 @property (nonatomic, getter=isVerticalText) BOOL verticalText;
 @property (nonatomic, nullable) CEODBEventSender *ODBEventSender;
@@ -168,11 +168,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                  selector:@selector(syntaxDidUpdate:)
                                                      name:CESyntaxDidUpdateNotification
                                                    object:nil];
-        
-        // alert about file modification by an external process when application becomes active
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(showUpdatedByExternalProcessAlert)
-                                                     name:NSApplicationDidBecomeActiveNotification object:nil];
     }
     return self;
 }
@@ -1601,10 +1596,15 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [self setNeedsShowUpdateAlertWithBecomeKey:YES];
     
     if ([NSApp isActive]) {
-        // display dialog
+        // display dialog immediately
         [self showUpdatedByExternalProcessAlert];
         
-    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultNotifyEditByAnotherKey]) {
+    } else {
+        // alert first when application becomes active
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(showUpdatedByExternalProcessAlert)
+                                                     name:NSApplicationDidBecomeActiveNotification object:nil];
+        
         // let application icon in Dock jump
         [NSApp requestUserAttention:NSInformationalRequest];
     }
@@ -1612,18 +1612,20 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 // ------------------------------------------------------
-/// 外部プロセスによって更新されたことをシート／ダイアログで通知
+/// display alert about file modification by an external process
 - (void)showUpdatedByExternalProcessAlert
 // ------------------------------------------------------
 {
-    if (![self needsShowUpdateAlertWithBecomeKey]) { return; } // 表示フラグが立っていなければ、もどる
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidBecomeActiveNotification object:nil];
+    
+    if (![self needsShowUpdateAlertWithBecomeKey]) { return; }
+    if ([self isExternalUpdateAlertShown]) { return; }  // do nothing if alert is already shown
     
     NSString *messageText;
     if ([self isDocumentEdited]) {
         messageText = @"The file has been modified by another application. There are also unsaved changes in CotEditor.";
     } else {
         messageText = @"The file has been modified by another application.";
-        [self updateChangeCount:NSChangeDone]; // ダーティーフラグを立てる
     }
     
     NSAlert *alert = [[NSAlert alloc] init];
@@ -1640,27 +1642,20 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         if (returnCode == NSAlertSecondButtonReturn) { // == Revert
             [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil];
         }
-        [self setRevertingForExternalFileUpdate:NO];
+        [self setExternalUpdateAlertShown:NO];
         [self setNeedsShowUpdateAlertWithBecomeKey:NO];
     };
     
-    // シートが表示中でなければ、表示
-    if ([[self windowForSheet] attachedSheet] == nil) {
-        [self setRevertingForExternalFileUpdate:YES];
-        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        
-        [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:did_close_alert];
-        
-    } else if ([self isRevertingForExternalFileUpdate]) {
-        // （同じ外部プロセスによる変更通知アラートシートを表示中の時は、なにもしない）
-        
-        // 既にシートが出ている時はダイアログで表示
-    } else {
-        [self setRevertingForExternalFileUpdate:YES];
-        [[self windowForSheet] orderFront:nil]; // 後ろにあるウィンドウにシートを表示させると不安定になることへの対策
-        NSInteger result = [alert runModal]; // アラート表示
-        
+    [self setExternalUpdateAlertShown:YES];
+    [[self windowForSheet] orderFront:nil];
+    
+    // display alert
+    if ([[self windowForSheet] attachedSheet]) {  // show alert as a normal dialog if any of sheet is already attached
+        NSInteger result = [alert runModal];
         did_close_alert(result);
+        
+    } else {
+        [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:did_close_alert];
     }
 }
 
