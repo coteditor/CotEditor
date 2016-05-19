@@ -12,7 +12,7 @@ develop
 
 ### Improvements
 
-- Update “Julia” syntax style.
+- Update “Julia” and “Swift” syntax styles.
 - Optimize text rendering a bit.
 
 
