@@ -12,6 +12,7 @@ develop
 
 ### Improvements
 
+- Update “Julia” syntax style.
 - Optimize text rendering a bit.
 
 
