@@ -31,6 +31,10 @@
 /// check IANA charset compatibility considering SHIFT_JIS
 BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding);
 
+// encode/decode `com.apple.TextEncoding` file extended attribute
+NSStringEncoding decodeXattrEncoding(NSData * _Nullable data);
+NSData * _Nullable encodeXattrEncoding(NSStringEncoding encoding);
+
 
 @interface NSString (CEEncoding)
 

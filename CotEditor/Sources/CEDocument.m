@@ -47,7 +47,6 @@
 
 #import "NSString+CEEncoding.h"
 #import "NSString+CECounting.h"
-#import "NSURL+Xattr.h"
 #import "NSString+Indentation.h"
 #import "NSAlert+BlockMethods.h"
 
@@ -62,6 +61,11 @@ static NSUInteger const CEUniqueFileIDLength = 8;
 static NSString *_Nonnull const CEReadingEncodingKey = @"readingEncoding";
 static NSString *_Nonnull const CESyntaxStyleKey = @"syntaxStyle";
 static NSString *_Nonnull const CEAutosaveIdentierKey = @"autosaveIdentifier";
+
+// file extended attributes
+static NSString *_Nonnull const CEFileExtendedAttributes = @"NSFileExtendedAttributes";
+static NSString *_Nonnull const CEXattrEncodingName = @"com.apple.TextEncoding";
+static NSString *_Nonnull const CEXattrVerticalTextName = @"com.coteditor.VerticalText";
 
 // notifications
 NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocumentSyntaxStyleDidChangeNotification";
@@ -188,7 +192,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         
         // check file meta data for text orientation
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
-            _verticalText = [url getXattrBoolForName:XATTR_VERTICAL_TEXT_NAME];
+            NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:outError];
+            _verticalText = attributes[CEFileExtendedAttributes][CEXattrVerticalTextName];
         }
     }
     return self;
@@ -237,7 +242,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // try reading the `com.apple.TextEncoding` extended attribute
-    NSStringEncoding xattrEncoding = [url getXattrEncoding];
+    NSDictionary<NSString *, id> *extendedAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:outError][CEFileExtendedAttributes];  // FILE_READ
+    NSStringEncoding xattrEncoding = decodeXattrEncoding(extendedAttributes[CEXattrEncodingName]);
     
     // don't save xattr if file doesn't have it in order to avoid saving wrong encoding (2015-01 by 1024jp).
     [self setShouldSaveXattr:(xattrEncoding != NSNotFound) || ([data length] == 0)];
@@ -394,10 +400,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         url = [[autosaveDirectoryURL URLByAppendingPathComponent:fileName] URLByAppendingPathExtension:[baseFileName pathExtension]];
     }
     
-    // store current state here, since the main thread will already be unblocked after `dataOfType:error:`
-    NSStringEncoding encoding = [self encoding];
-    BOOL isVerticalText = [[self editor] isVerticalLayoutOrientation];
-    
     __weak typeof(self) weakSelf = self;
     [super saveToURL:url ofType:typeName forSaveOperation:saveOperation completionHandler:^(NSError *error)
      {
@@ -406,15 +408,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
          typeof(self) self = weakSelf;  // strong self
          
          if (!error) {
-             // write encoding to the external file attributes (com.apple.TextEncoding)
-             if (saveOperation == NSAutosaveElsewhereOperation || [self shouldSaveXattr]) {
-                 [url setXattrEncoding:encoding];
-             }
-             // save text orientation state
-             if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
-                 [url setXattrBool:isVerticalText forName:XATTR_VERTICAL_TEXT_NAME];
-             }
-             
              // apply syntax style that is inferred from the file name
              if (saveOperation == NSSaveAsOperation) {
                  NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[url lastPathComponent]];
@@ -450,6 +443,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // store current state here, since the main thread will already be unblocked after `dataOfType:error:`
     NSStringEncoding encoding = [self encoding];
+    [self setVerticalText:[[self editor] isVerticalLayoutOrientation]];
     
     BOOL success = [super writeToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError];
 
@@ -473,7 +467,24 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nullable NSDictionary<NSString *, id> *)fileAttributesToWriteToURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(nullable NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable __autoreleasing *)outError
 // ------------------------------------------------------
 {
-    NSMutableDictionary<NSString *, id> *attributes = [[super fileAttributesToWriteToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError] ?: @{} mutableCopy];
+    NSMutableDictionary<NSString *, id> *attributes = [[super fileAttributesToWriteToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError] mutableCopy];
+    
+    if (!attributes) { return nil; }  // super failed
+    
+    // save encoding to the external file attributes (com.apple.TextEncoding)
+    if (saveOperation == NSAutosaveElsewhereOperation || [self shouldSaveXattr]) {
+        if (!attributes[CEFileExtendedAttributes]) {
+            attributes[CEFileExtendedAttributes] = [NSMutableDictionary dictionary];
+        }
+        attributes[CEFileExtendedAttributes][CEXattrEncodingName] = encodeXattrEncoding([self encoding]);
+    }
+    // save text orientation state to the external file attributes (com.coteditor.VerticalText)
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
+        if (!attributes[CEFileExtendedAttributes] && [self isVerticalText]) {
+            attributes[CEFileExtendedAttributes] = [NSMutableDictionary dictionary];
+        }
+        attributes[CEFileExtendedAttributes][CEXattrVerticalTextName] = [self isVerticalText] ? [NSData dataWithBytes:"1" length:1] : nil;
+    }
     
     // give the execute permission if user requested
     if ([self isExecutable] && saveOperation != NSAutosaveElsewhereOperation) {
@@ -488,7 +499,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         attributes[NSFilePosixPermissions] = @(permissions | S_IXUSR);
     }
     
-    return [attributes copy];
+    return attributes;
 }
 
 

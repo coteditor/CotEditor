@@ -161,6 +161,22 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
+    func testXattrEncoding() {
+        let utf8Data = "utf-8;134217984".dataUsingEncoding(NSUTF8StringEncoding)
+        
+        XCTAssertEqual(encodeXattrEncoding(NSUTF8StringEncoding), utf8Data)
+        XCTAssertEqual(decodeXattrEncoding(utf8Data), NSUTF8StringEncoding)
+        XCTAssertEqual(decodeXattrEncoding("utf-8".dataUsingEncoding(NSUTF8StringEncoding)), NSUTF8StringEncoding)
+        
+        
+        let eucJPData = "euc-jp;2336".dataUsingEncoding(NSUTF8StringEncoding)
+        
+        XCTAssertEqual(encodeXattrEncoding(NSJapaneseEUCStringEncoding), eucJPData)
+        XCTAssertEqual(decodeXattrEncoding(eucJPData), NSJapaneseEUCStringEncoding)
+        XCTAssertEqual(decodeXattrEncoding("euc-jp".dataUsingEncoding(NSUTF8StringEncoding)), NSJapaneseEUCStringEncoding)
+    }
+    
+    
     // MARK: Private Methods
     
     func encodedStringForFileName(fileName: String, usedEncoding: UnsafeMutablePointer<UInt>) -> NSString? {
