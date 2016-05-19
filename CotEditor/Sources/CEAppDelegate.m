@@ -43,6 +43,7 @@
 #import "CEColorCodePanelController.h"
 #import "CEConsolePanelController.h"
 #import "CEUnicodeInputPanelController.h"
+#import "CEWebDocumentWindowController.h"
 #import "CEMigrationWindowController.h"
 
 #import "CEDocument.h"
@@ -62,6 +63,7 @@
 
 @property (nonatomic) BOOL didFinishLaunching;
 
+@property (nonatomic, nullable) CEWebDocumentWindowController *acknowledgementsWindowController;
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
 
 
@@ -534,6 +536,19 @@
 // ------------------------------------------------------
 {
     [[CEUnicodeInputPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// show acknowlegements
+- (IBAction)showAcknowledgements:(nullable id)sender
+// ------------------------------------------------------
+{
+    if (![self acknowledgementsWindowController]) {
+        [self setAcknowledgementsWindowController:[[CEWebDocumentWindowController alloc] initWithDocumentName:@"Acknowledgements"]];
+    }
+    
+    [[self acknowledgementsWindowController] showWindow:sender];
 }
 
 

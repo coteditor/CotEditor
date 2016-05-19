@@ -14,6 +14,7 @@ Change Log
 ### Improvements
 
 - Remove “Not writable” alert which displayed on file opening.
+- New acknowledgements window.
 
 
 

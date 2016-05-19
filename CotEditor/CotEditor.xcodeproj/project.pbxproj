@@ -94,7 +94,6 @@
 		2A41CB411C39167500F9122B /* CEDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3F1C39167500F9122B /* CEDefaults.m */; };
 		2A41CB461C391B7400F9122B /* CEErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB451C391B7400F9122B /* CEErrors.m */; };
 		2A41CB471C391B7400F9122B /* CEErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB451C391B7400F9122B /* CEErrors.m */; };
-		2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A436DDB1A425AE500275FD4 /* CEIncompatibleCharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDA1A425AE500275FD4 /* CEIncompatibleCharsViewController.m */; };
@@ -187,7 +186,6 @@
 		2A6F0D851B5500E100C2D03C /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
 		2A6F0D861B5500E100C2D03C /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
 		2A6F0D871B5500E100C2D03C /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
-		2A6F0D881B5500E100C2D03C /* Acknowledgements.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4518FC699E002076B6 /* Acknowledgements.rtf */; };
 		2A6F0D891B5500E100C2D03C /* GetInfo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C081B4A07D0A85A0060191A /* GetInfo.tiff */; };
 		2A6F0D8A1B5500E100C2D03C /* IncompatibleChars.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C98366608C0211D00746F92 /* IncompatibleChars.tiff */; };
 		2A6F0D8B1B5500E100C2D03C /* BiggerFont.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CA71BCC07D2A79100C146B0 /* BiggerFont.tiff */; };
@@ -312,6 +310,12 @@
 		2A7FD35B1C551C9700CE8566 /* CETableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FD3591C551C9700CE8566 /* CETableCellView.m */; };
 		2A80C65E1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C65F1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
+		2A80C6681CEE540F00AA664D /* Acknowledgements.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgements.html */; };
+		2A80C6691CEE540F00AA664D /* Acknowledgements.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgements.html */; };
+		2A80C66E1CEE556600AA664D /* WebDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */; };
+		2A80C66F1CEE556600AA664D /* WebDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */; };
+		2A80C6721CEE570B00AA664D /* CEWebDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A80C6711CEE570B00AA664D /* CEWebDocumentWindowController.m */; };
+		2A80C6731CEE570B00AA664D /* CEWebDocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A80C6711CEE570B00AA664D /* CEWebDocumentWindowController.m */; };
 		2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */; };
@@ -719,6 +723,12 @@
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6601CEE351200AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6611CEE351400AA664D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/Credits.html; sourceTree = "<group>"; };
+		2A80C6671CEE540F00AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Acknowledgements.html; sourceTree = "<group>"; };
+		2A80C66A1CEE541400AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Acknowledgements.html; sourceTree = "<group>"; };
+		2A80C66B1CEE541600AA664D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgements.html"; sourceTree = "<group>"; };
+		2A80C66D1CEE556600AA664D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WebDocumentWindow.xib; sourceTree = "<group>"; };
+		2A80C6701CEE570B00AA664D /* CEWebDocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWebDocumentWindowController.h; sourceTree = "<group>"; };
+		2A80C6711CEE570B00AA664D /* CEWebDocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWebDocumentWindowController.m; sourceTree = "<group>"; };
 		2A83E2391BA1E65A0069CDFE /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		2A88A78E1B8B87C90055B9AE /* NSString+Normalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Normalization.h"; sourceTree = "<group>"; };
 		2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Normalization.m"; sourceTree = "<group>"; };
@@ -731,11 +741,9 @@
 		2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOpacityPanelController.h; sourceTree = "<group>"; };
 		2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOpacityPanelController.m; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = ../cot/cot; sourceTree = SOURCE_ROOT; };
-		2A961C4618FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Acknowledgements.rtf; sourceTree = "<group>"; };
 		2A961C4818FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/AppleScript.rtf; sourceTree = "<group>"; };
 		2A961C4C18FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = "en.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
 		2A961C4E18FC699E002076B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/ShellScript.rtf; sourceTree = "<group>"; };
-		2A961C5918FC69CC002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/Acknowledgements.rtf; sourceTree = "<group>"; };
 		2A961C5A18FC69D0002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "ja.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
 		2A961C5B18FC69D4002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/AppleScript.rtf; sourceTree = "<group>"; };
 		2A961C5C18FC69D9002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ShellScript.rtf; sourceTree = "<group>"; };
@@ -944,7 +952,6 @@
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4B79981B1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text; name = "zh-Hans"; path = "zh-Hans.lproj/FileDropGlossary.txt"; sourceTree = "<group>"; };
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
-		4B79983B1A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgements.rtf"; sourceTree = "<group>"; };
 		4B79983C1A1F1BCE0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
 		60077770CABE2BF4FFA92915 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1174,6 +1181,7 @@
 			isa = PBXGroup;
 			children = (
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */,
+				2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */,
 				2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */,
 				2A2D6C1A1A602D7E002451FF /* Text Finder */,
 				2A436DDC1A426EAE00275FD4 /* Document Window */,
@@ -1269,6 +1277,8 @@
 				2A162FE91AF395A400E97285 /* CEUpdaterManager.m */,
 				2A3A759219E77D66001DAB88 /* CEMigrationWindowController.h */,
 				2A3A759319E77D66001DAB88 /* CEMigrationWindowController.m */,
+				2A80C6701CEE570B00AA664D /* CEWebDocumentWindowController.h */,
+				2A80C6711CEE570B00AA664D /* CEWebDocumentWindowController.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -1612,7 +1622,7 @@
 		2A961C4418FC6979002076B6 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				2A961C4518FC699E002076B6 /* Acknowledgements.rtf */,
+				2A80C6661CEE540F00AA664D /* Acknowledgements.html */,
 				2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */,
 				2A961C4718FC699E002076B6 /* AppleScript.rtf */,
 				2A961C4D18FC699E002076B6 /* ShellScript.rtf */,
@@ -1928,6 +1938,7 @@
 				2A6F0D981B5500E100C2D03C /* container-migration.plist in Resources */,
 				2A3A1E771C45219800641CE0 /* HUDView.xib in Resources */,
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
+				2A80C6691CEE540F00AA664D /* Acknowledgements.html in Resources */,
 				2A80C65F1CEE33C100AA664D /* Credits.html in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A6F0D841B5500E100C2D03C /* FileDropGlossary.txt in Resources */,
@@ -1964,6 +1975,7 @@
 				2A6F0D7B1B5500E100C2D03C /* DocumentInspectorView.xib in Resources */,
 				2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */,
 				2A6F0D7D1B5500E100C2D03C /* TextKeyBindingsEditView.xib in Resources */,
+				2A80C66F1CEE556600AA664D /* WebDocumentWindow.xib in Resources */,
 				2A5DBE5C1B5D2DBD00F8CB13 /* SyntaxInfoEditView.xib in Resources */,
 				2A6F0D7E1B5500E100C2D03C /* EncodingListSheet.xib in Resources */,
 				2A6F0D7F1B5500E100C2D03C /* GoToSheet.xib in Resources */,
@@ -1978,7 +1990,6 @@
 				2A6F0D851B5500E100C2D03C /* ShellScript.rtf in Resources */,
 				2A6F0D861B5500E100C2D03C /* ScriptMenu Folder.rtf in Resources */,
 				2A6F0D871B5500E100C2D03C /* AppleScript.rtf in Resources */,
-				2A6F0D881B5500E100C2D03C /* Acknowledgements.rtf in Resources */,
 				2A6F0D891B5500E100C2D03C /* GetInfo.tiff in Resources */,
 				2A6F0D8A1B5500E100C2D03C /* IncompatibleChars.tiff in Resources */,
 				2A6F0D8B1B5500E100C2D03C /* BiggerFont.tiff in Resources */,
@@ -2035,6 +2046,7 @@
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2A80C65E1CEE33C100AA664D /* Credits.html in Resources */,
+				2A80C6681CEE540F00AA664D /* Acknowledgements.html in Resources */,
 				2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */,
 				2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */,
@@ -2074,6 +2086,7 @@
 				2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */,
 				2A149DA819016ABB00A9D6EF /* FileDropPane.xib in Resources */,
 				2A149DA919016ABB00A9D6EF /* FormatPane.xib in Resources */,
+				2A80C66E1CEE556600AA664D /* WebDocumentWindow.xib in Resources */,
 				2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */,
@@ -2088,7 +2101,6 @@
 				2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */,
 				2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */,
 				2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */,
-				2A42825518FCD47B00386899 /* Acknowledgements.rtf in Resources */,
 				2A3CC1F71C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */,
 				8C081B4B07D0A85A0060191A /* GetInfo.tiff in Resources */,
 				8C98366708C0211D00746F92 /* IncompatibleChars.tiff in Resources */,
@@ -2299,6 +2311,7 @@
 				2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */,
 				2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */,
 				2A6F0DA91B5500E100C2D03C /* CEEditPaneController.m in Sources */,
+				2A80C6731CEE570B00AA664D /* CEWebDocumentWindowController.m in Sources */,
 				2A6F0DAA1B5500E100C2D03C /* CEAppDelegate.m in Sources */,
 				2A6F0DAB1B5500E100C2D03C /* CEWindowController.m in Sources */,
 				2A6F0DAC1B5500E100C2D03C /* CEDocumentAnalyzer.m in Sources */,
@@ -2472,6 +2485,7 @@
 				8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */,
 				2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */,
 				2A4DB13D19A265BA005A4F7C /* CEDraggableArrayController.m in Sources */,
+				2A80C6721CEE570B00AA664D /* CEWebDocumentWindowController.m in Sources */,
 				8CB0122E07CA0EFA00221EDC /* CEToolbarController.m in Sources */,
 				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
 				8CC1925707E2D84500B54AE4 /* CEDocument+ScriptingSupport.m in Sources */,
@@ -3030,14 +3044,22 @@
 			name = Credits.html;
 			sourceTree = "<group>";
 		};
-		2A961C4518FC699E002076B6 /* Acknowledgements.rtf */ = {
+		2A80C6661CEE540F00AA664D /* Acknowledgements.html */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A961C4618FC699E002076B6 /* en */,
-				2A961C5918FC69CC002076B6 /* ja */,
-				4B79983B1A1F1BCE0088D167 /* zh-Hans */,
+				2A80C6671CEE540F00AA664D /* en */,
+				2A80C66A1CEE541400AA664D /* ja */,
+				2A80C66B1CEE541600AA664D /* zh-Hans */,
 			);
-			name = Acknowledgements.rtf;
+			name = Acknowledgements.html;
+			sourceTree = "<group>";
+		};
+		2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A80C66D1CEE556600AA664D /* Base */,
+			);
+			name = WebDocumentWindow.xib;
 			sourceTree = "<group>";
 		};
 		2A961C4718FC699E002076B6 /* AppleScript.rtf */ = {
