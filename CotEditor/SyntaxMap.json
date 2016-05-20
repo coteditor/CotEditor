@@ -331,6 +331,17 @@
 
     ]
   },
+  "MATLAB": {
+    "extensions": [
+      "m"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
   "METAFONT": {
     "extensions": [
       "mf"
