@@ -7,8 +7,9 @@ Change Log
 
 ### New Features
 
-- Add newly rewrited syntax styles for “C” and “++”.
+- Add newly rewrited syntax styles for “C” and “C++”.
     - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
+- Add syntax style for “MATLAB”.
 
 
 ### Improvements
