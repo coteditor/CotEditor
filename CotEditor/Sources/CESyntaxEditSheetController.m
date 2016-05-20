@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -59,6 +59,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 @property (nonatomic, nonnull) NSMutableDictionary<NSString *, id> *style;
 @property (nonatomic) CESyntaxEditSheetMode mode;
 @property (nonatomic, nonnull, copy) NSString *originalStyleName;   // シートを生成した際に指定したスタイル名
+@property (nonatomic, nullable, copy) NSString *message;
 @property (nonatomic, getter=isStyleNameValid) BOOL styleNameValid;
 @property (nonatomic, getter=isBundledStyle) BOOL bundledStyle;
 
@@ -67,7 +68,6 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 @property (nonatomic, nullable, weak) IBOutlet NSBox *box;
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *menuTableView;
 @property (nonatomic, nullable, weak) IBOutlet NSTextField *styleNameField;
-@property (nonatomic, nullable, weak) IBOutlet NSTextField *messageField;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *restoreButton;
 
 @end
@@ -115,6 +115,10 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         _style = [style mutableCopy];
         _styleNameValid = YES;
         _bundledStyle = [syntaxManager isBundledStyle:name cutomized:nil];
+        
+        if (_bundledStyle) {
+            _message = NSLocalizedString(@"Bundled styles can’t be renamed.", nil);
+        }
     }
     return self;
 }
@@ -148,11 +152,9 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         [[self styleNameField] setSelectable:NO];
         [[self styleNameField] setEditable:NO];
         [[self styleNameField] setBordered:YES];
-        [[self messageField] setStringValue:NSLocalizedString(@"Bundled styles can’t be renamed.", nil)];
         [[self restoreButton] setEnabled:!isEqual];
         
     } else {
-        [[self messageField] setStringValue:@""];
         [[self restoreButton] setEnabled:NO];
     }
     
@@ -377,12 +379,12 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 
 
 // ------------------------------------------------------
-/// 有効なスタイル名かチェックしてエラーメッセージを返す
-- (nullable NSString *)validateStyleName:(nonnull NSString *)styleName;
+/// validate passed-in style name and return if valid
+- (BOOL)validateStyleName:(nonnull NSString *)styleName;
 // ------------------------------------------------------
 {
     if (([self mode] == CESyntaxEdit) && [self isBundledStyle]) {
-        return nil;
+        return YES;
     }
     
     NSString *message = nil;
@@ -410,9 +412,9 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     }
     
     [self setStyleNameValid:(!message)];
-    [[self messageField] setStringValue:message ? : @""];
+    [self setMessage:message ? [NSString stringWithFormat:@"⚠️ %@", message] : nil];
     
-    return message;
+    return [self isStyleNameValid];
 }
 
 @end
