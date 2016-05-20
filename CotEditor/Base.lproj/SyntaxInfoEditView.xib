@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
@@ -148,8 +148,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField translatesAutoresizingMaskIntoConstraints="NO" id="sNf-iG-xYO">
-                    <rect key="frame" x="123" y="12" width="315" height="156"/>
+                <textField verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="sNf-iG-xYO">
+                    <rect key="frame" x="123" y="41" width="315" height="127"/>
                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="bnJ-UO-5HV">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -179,10 +179,21 @@
                         </binding>
                     </connections>
                 </button>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="22" translatesAutoresizingMaskIntoConstraints="NO" id="b2C-7a-fvm">
+                    <rect key="frame" x="415" y="9" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GUS-g2-a9v">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-1" id="Xq8-aF-DC4"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="KlI-NS-4x6" firstAttribute="trailing" secondItem="BI9-H4-gcs" secondAttribute="trailing" constant="-4" id="1Al-pU-njp"/>
                 <constraint firstItem="o0U-5A-8FS" firstAttribute="leading" secondItem="QlB-f2-NG3" secondAttribute="trailing" constant="8" symbolic="YES" id="1Iu-9e-7IF"/>
+                <constraint firstAttribute="bottom" secondItem="b2C-7a-fvm" secondAttribute="bottom" constant="12" id="2G1-dI-XUE"/>
                 <constraint firstItem="teT-gX-wAf" firstAttribute="baseline" secondItem="7aU-lg-CUg" secondAttribute="baseline" id="3Gq-DA-yD3"/>
                 <constraint firstItem="7aU-lg-CUg" firstAttribute="leading" secondItem="teT-gX-wAf" secondAttribute="trailing" constant="8" symbolic="YES" id="3yT-IY-OTm"/>
                 <constraint firstItem="OBM-Yh-gb9" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" priority="750" constant="12" id="57h-Kp-1HK"/>
@@ -203,11 +214,12 @@
                 <constraint firstItem="93A-h6-vCG" firstAttribute="baseline" secondItem="2Ku-D2-K5S" secondAttribute="baseline" id="WMZ-6U-bmb"/>
                 <constraint firstItem="o0U-5A-8FS" firstAttribute="trailing" secondItem="BI9-H4-gcs" secondAttribute="trailing" id="XFS-xe-Z69"/>
                 <constraint firstItem="o0U-5A-8FS" firstAttribute="trailing" secondItem="93A-h6-vCG" secondAttribute="trailing" id="bcm-Iw-LV5"/>
-                <constraint firstAttribute="bottom" secondItem="sNf-iG-xYO" secondAttribute="bottom" constant="12" id="hOr-kU-2Ef"/>
+                <constraint firstItem="b2C-7a-fvm" firstAttribute="top" secondItem="sNf-iG-xYO" secondAttribute="bottom" constant="8" symbolic="YES" id="iub-hv-UoM"/>
                 <constraint firstItem="KlI-NS-4x6" firstAttribute="centerY" secondItem="BI9-H4-gcs" secondAttribute="centerY" id="l6Z-q1-2U3"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="BI9-H4-gcs" secondAttribute="leading" id="liP-fN-LlT"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="2Ku-D2-K5S" secondAttribute="trailing" constant="8" symbolic="YES" id="qJe-XJ-alt"/>
                 <constraint firstItem="sNf-iG-xYO" firstAttribute="leading" secondItem="lhp-Zr-mnv" secondAttribute="trailing" constant="8" symbolic="YES" id="rdO-nX-37a"/>
+                <constraint firstAttribute="trailing" secondItem="b2C-7a-fvm" secondAttribute="trailing" constant="12" id="rnf-8u-Rx9"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="7aU-lg-CUg" secondAttribute="leading" id="tgq-Gp-9xZ"/>
                 <constraint firstItem="yqJ-k5-0CH" firstAttribute="leading" secondItem="LkV-qO-uNb" secondAttribute="trailing" constant="8" symbolic="YES" id="uPe-V6-Fbe"/>
                 <constraint firstItem="QlB-f2-NG3" firstAttribute="baseline" secondItem="o0U-5A-8FS" secondAttribute="baseline" id="x5I-Ql-4Xz"/>

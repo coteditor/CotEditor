@@ -15,6 +15,7 @@ Change Log
 
 - Remove “Not writable” alert which displayed on file opening.
 - New acknowledgements window.
+- Add help buttons to syntax style editor.
 
 
 

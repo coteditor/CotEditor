@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Extensions"; ObjectID = "E1f-Zh-9Ne"; */
 "E1f-Zh-9Ne.title" = "扩展名";
-/* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "7eZ-XF-dxf"; */
-"7eZ-XF-dxf.title" = "（不包括点）";
+/* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "QjK-XG-E4X"; */
+"QjK-XG-E4X.title" = "（不包括点）";
 
 /* Class = "NSTextFieldCell"; title = "Filenames"; ObjectID = "IAe-3F-qcV"; */
 "IAe-3F-qcV.title" = "文件名";

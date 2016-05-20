@@ -38,8 +38,10 @@
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
 "6hB-wJ-niI.headerCell.title" = "説明";
 
-/* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "メニュータイトルパターン（空白はマッチした全文字列）";
+/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "メニュータイトルパターン";
+/* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
+"rqP-22-G2u.title" = "（空白はマッチした全文字列）";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "eX8-7L-AYT"; */
 "eX8-7L-AYT.ibShadowedToolTip" = "ボールド";

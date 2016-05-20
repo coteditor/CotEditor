@@ -39,8 +39,10 @@
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
 "6hB-wJ-niI.headerCell.title" = "Beschreibung";
 
-/* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "Muster des Menütitles (Leer passt die ganze Zeichenkette)";
+/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "Muster des Menütitles";
+/* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
+"rqP-22-G2u.title" = "(Leer passt die ganze Zeichenkette)";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "eX8-7L-AYT"; */
 "eX8-7L-AYT.ibShadowedToolTip" = "Fett";

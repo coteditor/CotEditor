@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -360,6 +360,16 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="21" translatesAutoresizingMaskIntoConstraints="NO" id="iih-Rl-QSe">
+                    <rect key="frame" x="415" y="9" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aW1-zI-Foe">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-1" id="Wt9-Ci-18N"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="HZ3-ju-Ncb" firstAttribute="top" secondItem="O23-4c-28w" secondAttribute="bottom" constant="8" symbolic="YES" id="0Hs-3X-h8w"/>
@@ -388,7 +398,9 @@
                 <constraint firstItem="XyR-V7-rSB" firstAttribute="trailing" secondItem="O23-4c-28w" secondAttribute="trailing" id="Tp5-dx-SmQ"/>
                 <constraint firstItem="VLS-ei-tHV" firstAttribute="leading" secondItem="6Z1-wd-M5s" secondAttribute="trailing" constant="-1" id="WLF-Be-guz"/>
                 <constraint firstItem="A85-6P-taZ" firstAttribute="leading" secondItem="HZ3-ju-Ncb" secondAttribute="trailing" constant="-1" id="X9t-F3-uVh"/>
+                <constraint firstAttribute="bottom" secondItem="iih-Rl-QSe" secondAttribute="bottom" constant="12" id="cNN-KL-kDh"/>
                 <constraint firstItem="VLS-ei-tHV" firstAttribute="width" secondItem="y6D-zC-QG4" secondAttribute="width" id="ctp-U0-Xbb"/>
+                <constraint firstAttribute="trailing" secondItem="iih-Rl-QSe" secondAttribute="trailing" constant="12" id="ev7-1u-EKF"/>
                 <constraint firstItem="XyR-V7-rSB" firstAttribute="top" secondItem="I7p-Lu-lyM" secondAttribute="bottom" constant="8" symbolic="YES" id="fhT-c6-DQG"/>
                 <constraint firstItem="y6D-zC-QG4" firstAttribute="leading" secondItem="XyR-V7-rSB" secondAttribute="leading" id="gqo-Sn-Zjc"/>
                 <constraint firstItem="y6D-zC-QG4" firstAttribute="centerY" secondItem="1zA-Gt-YkJ" secondAttribute="centerY" id="gst-ci-nNA"/>
