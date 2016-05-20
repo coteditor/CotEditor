@@ -119,7 +119,6 @@
     NSArray<NSString *> *themeNames = [[self themeNames] copy];
     NSInteger row = [themeNames indexOfObject:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey]];
     [[self themeTableView] selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
-    [[self themeTableView] setAllowsEmptySelection:NO];
     
     // テーマのラインナップが変更されたらテーブルビューを更新
     [[NSNotificationCenter defaultCenter] addObserver:self
