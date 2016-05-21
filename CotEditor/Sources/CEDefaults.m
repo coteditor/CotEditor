@@ -164,7 +164,6 @@ NSString *_Nonnull const CEDefaultTextContainerInsetWidthKey = @"textContainerIn
 NSString *_Nonnull const CEDefaultTextContainerInsetHeightTopKey = @"textContainerInsetHeightTop";
 NSString *_Nonnull const CEDefaultTextContainerInsetHeightBottomKey = @"textContainerInsetHeightBottom";
 NSString *_Nonnull const CEDefaultShowColoringIndicatorTextLengthKey = @"showColoringIndicatorTextLength";
-NSString *_Nonnull const CEDefaultRunAppleScriptInLaunchingKey = @"runAppleScriptInLaunching";
 NSString *_Nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
 NSString *_Nonnull const CEDefaultLargeFileAlertThresholdKey = @"largeFileAlertThreshold";
 NSString *_Nonnull const CEDefaultAutosavingDelayKey = @"autosavingDelay";

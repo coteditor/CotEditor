@@ -219,7 +219,6 @@
                                                CEDefaultTextContainerInsetHeightTopKey: @4.0f, 
                                                CEDefaultTextContainerInsetHeightBottomKey: @16.0f, 
                                                CEDefaultShowColoringIndicatorTextLengthKey: @75000U,
-                                               CEDefaultRunAppleScriptInLaunchingKey: @YES,
                                                CEDefaultColoringRangeBufferLengthKey: @5000,
                                                CEDefaultLargeFileAlertThresholdKey: @(50 * pow(1024, 2)),  // 50 MB
                                                CEDefaultAutosavingDelayKey: @5.0,
