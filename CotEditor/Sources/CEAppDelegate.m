@@ -47,7 +47,6 @@
 #import "CEMigrationWindowController.h"
 
 #import "CEDocument.h"
-#import "CEEditorWrapper.h"
 
 #import "CEErrors.h"
 #import "CEDefaults.h"
@@ -633,9 +632,9 @@
     CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:NO error:nil];
     [document setDisplayName:NSLocalizedString(@"Bug Report", nil)];
     [[document textStorage] replaceCharactersInRange:NSMakeRange(0, 0) withString:template];
+    [document setSyntaxStyleWithName:@"Markdown"];
     [document makeWindowControllers];
     [document showWindows];
-    [document setSyntaxStyleWithName:@"Markdown"];
 }
 
 
@@ -728,9 +727,9 @@
     CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:NO error:&err];
     
     if (document) {
+        [[document textStorage] replaceCharactersInRange:NSMakeRange(0, 0) withString:selection];
         [document makeWindowControllers];
         [document showWindows];
-        [[document editor] setString:selection];
     } else {
         [[NSAlert alertWithError:err] runModal];
     }
