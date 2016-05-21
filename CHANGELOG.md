@@ -27,6 +27,7 @@ develop
 - Fix an issue where custom syntax style/theme couldn't be removed from the style list if the definition file is already deleted.
 - Fix an issue where “Copy as Rich Text” was enabled even if no text is selected.
 - Fix an issue where URL links were removed when editor is split.
+- Fix an issue where the first insertion was registered to the undo history on opening document with the selection in another application via Services.
 
 
 
