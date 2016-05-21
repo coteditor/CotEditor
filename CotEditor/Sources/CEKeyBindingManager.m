@@ -97,16 +97,11 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 {
     self = [super init];
     if (self) {
-        // read default key bindings
-        NSURL *menuURL = [[NSBundle mainBundle] URLForResource:@"MenuKeyBindings"
-                                                 withExtension:@"plist"
-                                                  subdirectory:@"KeyBindings"];
-        _defaultMenuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:menuURL];
+        NSAssert([NSApp mainMenu], @"%@ should be initialized after MainMenu.xib is loaded.", [self className]);
         
-        NSURL *textURL = [[NSBundle mainBundle] URLForResource:@"TextKeyBindings"
-                                                 withExtension:@"plist"
-                                                  subdirectory:@"KeyBindings"];
-        _defaultTextKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:textURL];
+        // set default key bindings
+        _defaultMenuKeyBindingDict = [self scanMenuKeyBindingRecurrently:[NSApp mainMenu]];
+        _defaultTextKeyBindingDict = @{@"$\n": @"insertCustomText_00:"};
         
         // read user key bindins if available
         _menuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self menuKeyBindingSettingFileURL]] ?
@@ -165,6 +160,16 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
     [keySpecChars appendString:(isShiftPressed ? [keyEquivalent uppercaseString] : keyEquivalent)];
     
     return keySpecChars;
+}
+
+
+//------------------------------------------------------
+/// scan key bindings in main menu and store them as default values
+- (void)scanDefaultMenuKeyBindings
+//------------------------------------------------------
+{
+    // do nothing
+    // -> Actually, `defaultMenuKeyBindings` is already scanned in `init`.
 }
 
 
@@ -440,6 +445,36 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
     }
     
     return NO;
+}
+
+
+//------------------------------------------------------
+/// scan all key bindings as well as selector name in passed-in menu
+- (nonnull NSDictionary<NSString *, NSString *> *)scanMenuKeyBindingRecurrently:(nonnull NSMenu *)menu
+//------------------------------------------------------
+{
+    NSMutableDictionary<NSString *, NSString *> *dictionary = [NSMutableDictionary dictionary];
+    
+    for (NSMenuItem *item in [menu itemArray]) {
+        if ([self shouldIgnoreItem:item]) { continue; }
+        
+        if ([item hasSubmenu]) {
+            [dictionary addEntriesFromDictionary:[self scanMenuKeyBindingRecurrently:[item submenu]]];
+            
+        } else {
+            if ([[item keyEquivalent] length] == 0) { continue; }
+            
+            NSString *selector = NSStringFromSelector([item action]);
+            NSString *key = [[self class] keySpecCharsFromKeyEquivalent:[item keyEquivalent]
+                                                          modifierFrags:[item keyEquivalentModifierMask]];
+            
+            if ([selector length] > 0 && [key length] > 0) {
+                dictionary[key] = selector;
+            }
+        }
+    }
+    
+    return dictionary;
 }
 
 

@@ -283,6 +283,9 @@
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
+    // store key bindings in MainMenu.xib before menu is modified
+    [[CEKeyBindingManager sharedManager] scanDefaultMenuKeyBindings];
+    
     // build menus
     [self buildEncodingMenu];
     [self buildSyntaxMenu];
@@ -379,9 +382,6 @@
 - (void)applicationDidFinishLaunching:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    // keyboard shortcuts will be overridden by CEKeyBindingManager
-    //   - to apply shortcuts, write them in MenuKeyBindings.plist (2007-05-19)
-    
     // setup KeyBindingManager
     [[CEKeyBindingManager sharedManager] applyKeyBindingsToMainMenu];
     

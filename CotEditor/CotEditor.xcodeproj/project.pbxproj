@@ -139,7 +139,6 @@
 		2A6F0D551B5500E100C2D03C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A6F0D571B5500E100C2D03C /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
-		2A6F0D581B5500E100C2D03C /* KeyBindings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9871A819AEABDB0081BADB /* KeyBindings */; };
 		2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
 		2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
 		2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
@@ -331,7 +330,6 @@
 		2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
 		2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
-		2A9871A919AEABDB0081BADB /* KeyBindings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9871A819AEABDB0081BADB /* KeyBindings */; };
 		2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
 		2AA2E00B1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
 		2AA2E00C1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
@@ -747,7 +745,6 @@
 		2A961C5A18FC69D0002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = "ja.lproj/ScriptMenu Folder.rtf"; sourceTree = "<group>"; };
 		2A961C5B18FC69D4002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/AppleScript.rtf; sourceTree = "<group>"; };
 		2A961C5C18FC69D9002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ShellScript.rtf; sourceTree = "<group>"; };
-		2A9871A819AEABDB0081BADB /* KeyBindings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeyBindings; sourceTree = "<group>"; };
 		2A9966971A5C245F0086689E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		2A9966991A5C29F40086689E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPanel.strings"; sourceTree = "<group>"; };
 		2AA0AC5A1A28765E0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
@@ -1403,7 +1400,6 @@
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
 				2A94FC781BE2256F00B454A8 /* cot */,
-				2A9871A819AEABDB0081BADB /* KeyBindings */,
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
 			);
@@ -1932,7 +1928,6 @@
 				2A6F0D551B5500E100C2D03C /* Images.xcassets in Resources */,
 				2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */,
 				2A6F0D571B5500E100C2D03C /* Themes in Resources */,
-				2A6F0D581B5500E100C2D03C /* KeyBindings in Resources */,
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
 				2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */,
 				2A6F0D981B5500E100C2D03C /* container-migration.plist in Resources */,
@@ -2039,7 +2034,6 @@
 				2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */,
 				2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */,
 				2ABC76241909BF5200D2B592 /* Themes in Resources */,
-				2A9871A919AEABDB0081BADB /* KeyBindings in Resources */,
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
 				2A61B7FE1B52D14400CE3AFB /* container-migration.plist in Resources */,
