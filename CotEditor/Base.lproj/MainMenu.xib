@@ -472,7 +472,13 @@
                             <menuItem title="Syntax Style" id="302">
                                 <menu key="submenu" title="Syntax Style" id="304">
                                     <items>
-                                        <menuItem title="Item" id="458"/>
+                                        <menuItem isSeparatorItem="YES" id="kdb-Ik-s27"/>
+                                        <menuItem title="Re-Color All" keyEquivalent="r" id="458">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="recolorAll:" target="-1" id="zKI-tq-EYr"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
