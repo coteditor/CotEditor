@@ -462,14 +462,14 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="File Encoding" tag="4001" id="299">
+                            <menuItem title="File Encoding" id="299">
                                 <menu key="submenu" title="File Encoding" id="300">
                                     <items>
                                         <menuItem title="Item" id="301"/>
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Syntax Style" tag="4002" id="302">
+                            <menuItem title="Syntax Style" id="302">
                                 <menu key="submenu" title="Syntax Style" id="304">
                                     <items>
                                         <menuItem title="Item" id="458"/>
@@ -611,7 +611,7 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Theme" tag="4003" id="8z7-Jc-agP">
+                            <menuItem title="Theme" id="8z7-Jc-agP">
                                 <menu key="submenu" title="Theme" id="165-HJ-Xty">
                                     <items>
                                         <menuItem title="Item" id="J2y-fx-OEm"/>
@@ -1122,7 +1122,13 @@ CA
             </items>
             <point key="canvasLocation" x="667" y="895.5"/>
         </menu>
-        <customObject id="290" customClass="CEAppDelegate"/>
+        <customObject id="290" customClass="CEAppDelegate">
+            <connections>
+                <outlet property="encodingsMenu" destination="300" id="eEa-WW-vAQ"/>
+                <outlet property="syntaxStylesMenu" destination="304" id="YjZ-n4-b6f"/>
+                <outlet property="themesMenu" destination="165-HJ-Xty" id="0gf-6L-bfk"/>
+            </connections>
+        </customObject>
         <customObject id="289" customClass="CETextFinder"/>
         <customObject id="329" customClass="CEDocumentController"/>
         <customObject id="432" customClass="NSFontManager"/>

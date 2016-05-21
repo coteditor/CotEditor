@@ -65,6 +65,10 @@
 @property (nonatomic, nullable) CEWebDocumentWindowController *acknowledgementsWindowController;
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
 
+@property (nonatomic, nullable) IBOutlet NSMenu *encodingsMenu;
+@property (nonatomic, nullable) IBOutlet NSMenu *syntaxStylesMenu;
+@property (nonatomic, nullable) IBOutlet NSMenu *themesMenu;
+
 
 // readonly
 @property (readwrite, nonatomic, nonnull) NSURL *supportDirectoryURL;
@@ -646,7 +650,7 @@
 - (void)buildEncodingMenu
 //------------------------------------------------------
 {
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEFileEncodingMenuItemTag] submenu];
+    NSMenu *menu = [self encodingsMenu];
     
     [[CEEncodingManager sharedManager] updateChangeEncodingMenu:menu];
 }
@@ -657,7 +661,7 @@
 - (void)buildSyntaxMenu
 //------------------------------------------------------
 {
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CESyntaxMenuItemTag] submenu];
+    NSMenu *menu = [self syntaxStylesMenu];
     [menu removeAllItems];
     
     // add None
@@ -694,7 +698,7 @@
 - (void)buildThemeMenu
 //------------------------------------------------------
 {
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEThemeMenuItemTag] submenu];
+    NSMenu *menu = [self themesMenu];
     [menu removeAllItems];
     
     NSArray<NSString *> *themeNames = [[CEThemeManager sharedManager] themeNames];
