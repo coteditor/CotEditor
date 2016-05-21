@@ -33,6 +33,8 @@
 #import "CEInvisibles.h"
 #import "CEDefaults.h"
 
+#import "NSFont+CESize.h"
+
 
 // constants
 static NSString * _Nonnull const HiraginoSans = @"HiraginoSans-W3";  // since OS X 10.11 (El Capitan)
@@ -57,10 +59,10 @@ CTLineRef createCTLineRefWithString(NSString *string, NSDictionary *attributes)
 @property (nonatomic, nonnull, copy) NSArray<NSString *> *invisibles;
 @property (nonatomic, nullable) NSArray<id> *invisibleLines;  // array of CTLineRef
 
-@property (nonatomic) CGFloat spaceWidth;
 @property (nonatomic) CGFloat defaultLineHeight;
 
 // readonly properties
+@property (readwrite, nonatomic) CGFloat spaceWidth;
 @property (readwrite, nonatomic) CGFloat defaultBaselineOffset;
 @property (readwrite, nonatomic) BOOL showsOtherInvisibles;
 
@@ -283,7 +285,7 @@ static NSString *HiraginoSansName;
     
     // cache width of space char for hanging indent width calculation
     NSFont *screenFont = [textFont screenFont] ? : textFont;
-    [self setSpaceWidth:[screenFont advancementForGlyph:(NSGlyph)' '].width];
+    [self setSpaceWidth:[screenFont advancementForCharacter:' ']];
     
     [self invalidateInvisiblesStyle];
 }

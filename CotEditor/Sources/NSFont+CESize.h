@@ -1,16 +1,15 @@
 /*
  
- CELayoutManager.h
+ NSFont+CESize.h
  
  CotEditor
  http://coteditor.com
  
- Created by nakamuxu on 2005-01-10.
-
+ Created by 1024jp on 2016-05-22.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,18 +28,16 @@
 @import Cocoa;
 
 
-@interface CELayoutManager : NSLayoutManager
+@interface NSFont (CESize)
 
-@property (nonatomic) BOOL showsInvisibles;
-@property (nonatomic) BOOL usesAntialias;
-@property (nonatomic, nullable) NSFont *textFont;
-@property (nonatomic, nonnull) NSColor *invisiblesColor;
-
-@property (readonly, nonatomic) CGFloat spaceWidth;
-@property (readonly, nonatomic) CGFloat defaultBaselineOffset;  // defaultBaselineOffset for textFont
-@property (readonly, nonatomic) BOOL showsOtherInvisibles;
-
-- (CGFloat)lineHeight;
-- (void)invalidateIndentInRange:(NSRange)range;
+/**
+ Calculate advancement of a space character using NSLayoutManager.
+ @param range     Character to calculate advancement.
+ 
+ @return Advancement of passed-in character.
+ 
+ @note This method is not light-weigt. You should store the value somewhere to use this repeatedly.
+ */
+- (CGFloat)advancementForCharacter:(unichar)character;
 
 @end

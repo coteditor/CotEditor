@@ -371,6 +371,8 @@
 		2ACC65291C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65271C97FEAA000574DC /* CEThemeDictionaryKeys.m */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
 		2ACC653C1C9844ED000574DC /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
+		2AD172FB1CF0B807007314B3 /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
+		2AD172FC1CF0B807007314B3 /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
 		2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
 		2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
@@ -831,6 +833,8 @@
 		2ACC65271C97FEAA000574DC /* CEThemeDictionaryKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeDictionaryKeys.m; sourceTree = "<group>"; };
 		2ACC652A1C97FEC0000574DC /* CEThemeDictionaryKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEThemeDictionaryKeys.h; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
+		2AD172F91CF0B807007314B3 /* NSFont+CESize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFont+CESize.h"; sourceTree = "<group>"; };
+		2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFont+CESize.m"; sourceTree = "<group>"; };
 		2AD318BF1A462A10001B8112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPane.xib; sourceTree = "<group>"; };
 		2AD318C11A462C30001B8112 /* CEIntegrationPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEIntegrationPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEIntegrationPaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1441,6 +1445,8 @@
 				2A6415931BD10EF30080358E /* NSString+Indentation.m */,
 				2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */,
 				2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */,
+				2AD172F91CF0B807007314B3 /* NSFont+CESize.h */,
+				2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */,
 				2A1068C11A745FCE001DB9AA /* NSURL+Xattr.h */,
 				2A1068C21A745FCE001DB9AA /* NSURL+Xattr.m */,
 				2ACC650E1C96E295000574DC /* NSAlert+BlockMethods.h */,
@@ -2313,6 +2319,7 @@
 				2A6F0DB41B5500E100C2D03C /* CESyntaxStyle.m in Sources */,
 				2A6F0DB51B5500E100C2D03C /* CEIncompatibleCharsViewController.m in Sources */,
 				2A6F0DB61B5500E100C2D03C /* CESyntaxManager.m in Sources */,
+				2AD172FC1CF0B807007314B3 /* NSFont+CESize.m in Sources */,
 				2AE0C0941C422DFA00E52E04 /* CETextView+Commenting.m in Sources */,
 				2AE0C09C1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
 				2AB0C59D1C4A18830019411A /* NSString+CEEncoding.m in Sources */,
@@ -2523,6 +2530,7 @@
 				2A149DB61901760300A9D6EF /* CEAppearancePaneController.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEBorderView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */,
+				2AD172FB1CF0B807007314B3 /* NSFont+CESize.m in Sources */,
 				2A63122A19C25CF80088C5C6 /* CEHexColorTransformer.m in Sources */,
 				2A5D2B9118E1EC790020AA1F /* CESyntaxMappingConflictsSheetController.m in Sources */,
 				8CF02E1608B9B9F8004044EB /* CENavigationBarController.m in Sources */,

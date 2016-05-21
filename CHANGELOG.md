@@ -19,6 +19,7 @@ develop
 ### Fixes
 
 - Fix an issue where editor area was not focused when document opens.
+- Fix an issue where width of tab character could be wrong with specific fonts.
 - Fix an issue where selection highlight remained between lines under specific conditions.
 - Fix an issue where the current line highlight didn't update under the specific condition.
 - Fix an issue where unwanted dirt was drawn if use the Google Japanese Input.

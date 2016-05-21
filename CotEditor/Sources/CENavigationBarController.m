@@ -30,6 +30,8 @@
 #import "CESyntaxOutlineParser.h"
 #import "Constants.h"
 
+#import "NSFont+CESize.h"
+
 
 static const CGFloat kDefaultHeight = 16.0;
 static const NSTimeInterval kDuration = 0.12;
@@ -143,11 +145,15 @@ static const NSTimeInterval kDuration = 0.12;
     
     NSMenu *menu = [[self outlineMenu] menu];
     
-    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [paragraphStyle setTabStops:@[]];
-    [paragraphStyle setDefaultTabInterval:floor(2 * [[menu font] advancementForGlyph:(NSGlyph)' '].width)];
-    [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
-    [paragraphStyle setTighteningFactorForTruncation:0];  // don't tighten
+    static NSMutableParagraphStyle *paragraphStyle;
+    if (!paragraphStyle) {
+        // generate paragraphStyle only once to avoid calling `spaceAdvancement` every time
+        paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        [paragraphStyle setTabStops:@[]];
+        [paragraphStyle setDefaultTabInterval:2 * [[menu font] advancementForCharacter:' ']];
+        [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingMiddle];
+        [paragraphStyle setTighteningFactorForTruncation:0];  // don't tighten
+    }
     NSDictionary<NSString *, id> *baseAttributes = @{NSFontAttributeName: [menu font],
                                                      NSParagraphStyleAttributeName: paragraphStyle};
     

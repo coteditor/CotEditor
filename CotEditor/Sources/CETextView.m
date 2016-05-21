@@ -44,6 +44,7 @@
 #import "Constants.h"
 
 #import "CEGeometry.h"
+#import "NSFont+CESize.h"
 
 
 // constant
@@ -760,7 +761,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             return;
         }
         
-        CGFloat charWidth = [[self font] advancementForGlyph:(NSGlyph)' '].width;
+        CGFloat charWidth = [(CELayoutManager *)[self layoutManager] spaceWidth];
         CGFloat inset = [self textContainerOrigin].x;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for adjustment
@@ -1514,9 +1515,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 // ------------------------------------------------------
 {
     NSFont *screenFont = [font screenFont] ? : font;
-    CGFloat spaceWidth = [screenFont advancementForGlyph:(NSGlyph)' '].width;
     
-    return [self tabWidth] * spaceWidth;
+    return [self tabWidth] * [screenFont advancementForCharacter:' '];
 }
 
 
