@@ -52,7 +52,7 @@ extern NSUInteger const kSizeOfUnprintableKeyList;
 @interface CEKeyBindingUtils : NSObject
 
 /// returns string form keyEquivalent (keyboard shortcut) for menu item
-+ (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSUInteger *)modifierMask
++ (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSEventModifierFlags *)modifierMask
                                         fromString:(nonnull NSString *)string
                                includingCommandKey:(BOOL)needsIncludingCommandKey;
 

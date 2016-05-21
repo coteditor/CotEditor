@@ -660,10 +660,13 @@
     [menu addItem:[NSMenuItem separatorItem]];
     
     // add item to recolor
+    SEL recolorAction = @selector(recolorAll:);
+    NSEventModifierFlags modifierMask;
+    NSString *keyEquivalent = [[CEKeyBindingManager sharedManager] keyEquivalentForAction:recolorAction modifierMask:&modifierMask];
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
-                                                  action:@selector(recolorAll:)
-                                           keyEquivalent:@"r"];
-    [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
+                                                  action:recolorAction
+                                           keyEquivalent:keyEquivalent];
+    [item setKeyEquivalentModifierMask:modifierMask]; // = Cmd + Opt + R
     [menu addItem:item];
 }
 

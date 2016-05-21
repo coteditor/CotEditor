@@ -86,7 +86,7 @@ NSUInteger const kSizeOfUnprintableKeyList = sizeof(kUnprintableKeyList) / sizeo
 
 // ------------------------------------------------------
 /// returns string form keyEquivalent (keyboard shortcut) for menu item
-+ (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSUInteger *)modifierMask fromString:(nonnull NSString *)string includingCommandKey:(BOOL)needsIncludingCommandKey
++ (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSEventModifierFlags *)modifierMask fromString:(nonnull NSString *)string includingCommandKey:(BOOL)needsIncludingCommandKey
 //------------------------------------------------------
 {
     *modifierMask = 0;
