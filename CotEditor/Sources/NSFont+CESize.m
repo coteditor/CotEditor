@@ -31,7 +31,7 @@
 @implementation NSFont (CESize)
 
 // ------------------------------------------------------
-/// calculate advancement of a space character using NSLayoutManager.
+/// calculate advancement of a character using NSLayoutManager.
 - (CGFloat)advancementForCharacter:(unichar)character
 // ------------------------------------------------------
 {

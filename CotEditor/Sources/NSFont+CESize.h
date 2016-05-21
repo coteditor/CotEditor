@@ -31,7 +31,7 @@
 @interface NSFont (CESize)
 
 /**
- Calculate advancement of a space character using NSLayoutManager.
+ Calculate advancement of a character using NSLayoutManager.
  @param range     Character to calculate advancement.
  
  @return Advancement of passed-in character.
