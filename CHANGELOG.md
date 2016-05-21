@@ -23,6 +23,7 @@ develop
 - Fix an issue where the current line highlight didn't update under the specific condition.
 - Fix an issue where unwanted dirt was drawn if use the Google Japanese Input.
 - Fix an issue where file path display in inspector was not updated when document file is moved.
+- Fix an issue where wrong data were displayed in document inspector when a window of an unsaved document is resumed.
 - Fix an issue where hanging indent was applied when document style is changed even it is turned off.
 - Fix an issue where custom syntax style/theme couldn't be removed from the style list if the definition file is already deleted.
 - Fix an issue where “Copy as Rich Text” was enabled even if no text is selected.

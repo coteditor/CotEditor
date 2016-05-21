@@ -242,10 +242,14 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
     [self setFileMD5:[data MD5]];
     
-    // read file attributes
-    NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:outError];
-    [self setFileAttributes:attributes];
-    [self setExecutable:([attributes filePosixPermissions] & S_IXUSR) != 0];
+    // read file attributes only if `fileURL` exists
+    // -> The passed-in `url` in this method can point to a file that isn't the real document file,
+    //    for example on resuming of an unsaved document.
+    if ([self fileURL]) {
+        NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];
+        [self setFileAttributes:attributes];
+        [self setExecutable:([attributes filePosixPermissions] & S_IXUSR) != 0];
+    }
     
     // try reading the `com.apple.TextEncoding` extended attribute
     NSStringEncoding xattrEncoding = [url getXattrEncoding];
