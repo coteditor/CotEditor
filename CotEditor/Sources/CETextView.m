@@ -668,9 +668,14 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if (![sender isKindOfClass:[NSFontManager class]]) { return; }
     
     NSFont *newFont = [sender convertFont:[self font]];
-
-    [self setFont:newFont];
-    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
+    
+    // apply to all text views sharing textStorage
+    for (NSLayoutManager *layoutManager in [[self textStorage] layoutManagers]) {
+        NSTextView *textView = [layoutManager firstTextView];
+        
+        [textView setFont:newFont];
+        [textView setNeedsDisplayInRect:[textView visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
+    }
 }
 
 
