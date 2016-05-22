@@ -13,8 +13,8 @@ develop
 ### Improvements
 
 - Update “Julia” and “Swift” syntax styles.
-- Optimize text rendering performance a bit.
 - Apply the change of line height/tab width to all split editors so that split editors not focused also can layout text correctly after the change.
+- Optimize text rendering performance a bit.
 
 
 ### Fixes
