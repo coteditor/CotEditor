@@ -31,7 +31,7 @@ develop
 ### Improvements
 
 - Update “Julia” and “Swift” syntax styles.
-- Optimize text rendering preformance a bit.
+- Optimize text rendering performance a bit.
 
 
 ### Fixes
@@ -48,7 +48,7 @@ develop
 - Fix an issue where “Copy as Rich Text” was enabled even if no text is selected.
 - Fix an issue where URL links were removed when editor is split.
 - Fix an issue where the first insertion was registered to the undo history on opening document with the selection in another application via Services.
-- Fix an issue where the key binding for “Re-Color All” was forced to reset to the default `⌘⌥R` if sytnax style list is updated.
+- Fix an issue where the key binding for “Re-Color All” was forced to reset to the default `⌥⌘R` if syntax style list is updated.
 
 
 
