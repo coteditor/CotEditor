@@ -282,7 +282,7 @@
     BOOL isEnabled = ([[[self view] subviews] count] > 1);
     
     [self enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull editorView) {
-        [editorView updateCloseSplitViewButton:isEnabled];
+        [[editorView navigationBarController] setCloseSplitButtonEnabled:isEnabled];
     }];
 }
 
