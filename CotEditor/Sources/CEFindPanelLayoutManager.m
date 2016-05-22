@@ -80,10 +80,9 @@
         }
         
         NSFont *font = [[self firstTextView] font];
-        font = [font screenFont] ? : font;
         NSDictionary<NSString *, id> *attributes = @{NSFontAttributeName: font,
                                                      NSForegroundColorAttributeName: color};
-        NSFont *fullwidthFont = [[NSFont fontWithName:@"HiraKakuProN-W3" size:[font pointSize]] screenFont] ? : font;
+        NSFont *fullwidthFont = [NSFont fontWithName:@"HiraKakuProN-W3" size:[font pointSize]] ?: font;
         NSDictionary<NSString *, id> *fullwidthAttributes = @{NSFontAttributeName: fullwidthFont,
                                                               NSForegroundColorAttributeName: color};
         NSFont *replaceFont;

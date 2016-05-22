@@ -118,7 +118,6 @@ static NSString *HiraginoSansName;
         // this flag is actually not so necessary as I thougth. Thus, treat carefully this.
         [self setShowsControlCharacters:NO];
         
-        [self setUsesScreenFonts:YES];
         [self setTypesetter:[[CEATSTypesetter alloc] init]];
         
         // observe change of defaults
@@ -284,8 +283,11 @@ static NSString *HiraginoSansName;
     }
     
     // cache width of space char for hanging indent width calculation
-    NSFont *screenFont = [textFont screenFont] ? : textFont;
-    [self setSpaceWidth:[screenFont advancementForCharacter:' ']];
+    NSFont *drawingFont = textFont;
+    if ([self usesScreenFonts]) {
+        drawingFont = [textFont screenFont] ? : textFont;
+    }
+    [self setSpaceWidth:[drawingFont advancementForCharacter:' ']];
     
     [self invalidateInvisiblesStyle];
 }
@@ -452,9 +454,9 @@ static NSString *HiraginoSansName;
         font = [self textFont];
     } else {
         CGFloat fontSize = [[self textFont] pointSize];
-        font = [[NSFont fontWithName:@"LucidaGrande" size:fontSize] screenFont] ?: [NSFont systemFontOfSize:fontSize];
+        font = [NSFont fontWithName:@"LucidaGrande" size:fontSize] ?: [NSFont systemFontOfSize:fontSize];
     }
-    NSFont *fullWidthFont = [[NSFont fontWithName:HiraginoSansName size:[font pointSize]] screenFont];
+    NSFont *fullWidthFont = [NSFont fontWithName:HiraginoSansName size:[font pointSize]];
     
     NSDictionary<NSString *, id> *attributes = @{NSForegroundColorAttributeName: [self invisiblesColor],
                                                  NSFontAttributeName: font};
