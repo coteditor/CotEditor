@@ -38,7 +38,9 @@
 #import "CESyntaxStyle.h"
 #import "CEGoToSheetController.h"
 #import "CETextFinder.h"
+
 #import "CEDefaults.h"
+#import "Constants.h"
 
 #import "NSString+CENewLine.h"
 #import "NSString+CERange.h"
@@ -182,6 +184,13 @@
         
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         state = [[self focusedTextView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
+        
+    } else if ([menuItem action] == @selector(changeLineHeight:)) {
+        CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
+        [menuItem setState:(CEIsAlmostEqualCGFloats([[self focusedTextView] lineSpacing], lineSpacing) ? NSOnState : NSOffState)];
+        
+    } else if ([menuItem action] == @selector(changeTabWidth:)) {
+        [menuItem setState:(([[self focusedTextView] tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
         
     } else if ([menuItem action] == @selector(selectPrevItemOftimerMenu:)) {
         return ([[self navigationBarController] canSelectPrevItem]);
@@ -628,6 +637,32 @@
 // ------------------------------------------------------
 {
     [self setShowsPageGuide:![self showsPageGuide]];
+}
+
+
+// ------------------------------------------------------
+/// change tab width from the main menu
+- (IBAction)changeTabWidth:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSUInteger tabWidth = [sender tag];
+    
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+        [[viewController textView] setTabWidth:tabWidth];
+    }];
+}
+
+
+// ------------------------------------------------------
+/// change line height from the main menu
+- (IBAction)changeLineHeight:(nullable id)sender
+// ------------------------------------------------------
+{
+    CGFloat lineSpacing = (CGFloat)[[sender title] doubleValue] - 1.0;  // title is line height
+    
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+        [[viewController textView] setLineSpacingAndUpdate:lineSpacing];
+    }];
 }
 
 
