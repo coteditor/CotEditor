@@ -32,11 +32,12 @@
 
 /**
  Calculate advancement of a character using NSLayoutManager.
- @param range     Character to calculate advancement.
+ 
+ @param character     Character to calculate advancement.
  
  @return Advancement of passed-in character.
  
- @note This method is not light-weigt. You should store the value somewhere to use this repeatedly.
+ @note This method is not light-weigt since it creates new NSTextStorage and NSLayoutManager every time it's called. You should store the value somewhere to use this repeatedly.
  */
 - (CGFloat)advancementForCharacter:(unichar)character;
 

@@ -668,9 +668,14 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if (![sender isKindOfClass:[NSFontManager class]]) { return; }
     
     NSFont *newFont = [sender convertFont:[self font]];
-
-    [self setFont:newFont];
-    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
+    
+    // apply to all text views sharing textStorage
+    for (NSLayoutManager *layoutManager in [[self textStorage] layoutManagers]) {
+        NSTextView *textView = [layoutManager firstTextView];
+        
+        [textView setFont:newFont];
+        [textView setNeedsDisplayInRect:[textView visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
+    }
 }
 
 
@@ -1105,14 +1110,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
         
-    } else if ([menuItem action] == @selector(changeLineHeight:)) {
-        CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
-        [menuItem setState:(CEIsAlmostEqualCGFloats([self lineSpacing], lineSpacing) ? NSOnState : NSOffState)];
-    } else if ([menuItem action] == @selector(changeTabWidth:)) {
-        [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(showSelectionInfo:)) {
         NSString *selection = [[self string] substringWithRange:[self selectedRange]];
         return ([selection numberOfComposedCharacters] == 1);
+        
     } else if ([menuItem action] == @selector(toggleComment:)) {
         NSString *title = [self canUncommentRange:[self selectedRange]] ? @"Uncomment Selection" : @"Comment Selection";
         [menuItem setTitle:NSLocalizedString(title, nil)];
@@ -1302,15 +1303,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// タブ幅を変更する
-- (IBAction)changeTabWidth:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self setTabWidth:[sender tag]];
-}
-
-
-// ------------------------------------------------------
 /// 半角円マークを入力
 - (IBAction)inputYenMark:(nullable id)sender
 // ------------------------------------------------------
@@ -1344,15 +1336,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setSelectedRange:range];
     [self centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:self];
-}
-
-
-// ------------------------------------------------------
-/// 行間設定を変更
-- (IBAction)changeLineHeight:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self setLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue] - 1.0];  // title is line height
 }
 
 

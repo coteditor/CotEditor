@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -92,6 +92,9 @@
 - (IBAction)toggleInvisibleChars:(nullable id)sender;
 - (IBAction)togglePageGuide:(nullable id)sender;
 - (IBAction)toggleAutoTabExpand:(nullable id)sender;
+- (IBAction)changeTabWidth:(nullable id)sender;
+- (IBAction)changeLineHeight:(nullable id)sender;
+
 - (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender;
 - (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender;
 - (IBAction)openSplitTextView:(nullable id)sender;
