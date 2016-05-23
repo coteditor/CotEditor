@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-2.6.0
+develop
 --------------------------
 
 ### New Features
@@ -18,10 +18,6 @@ Change Log
 - New acknowledgements window.
 - Add help buttons to syntax style editor.
 
-
-
-develop
---------------------------
 
 ### Fixes
 
