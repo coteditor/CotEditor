@@ -5,6 +5,12 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Update “Markdown” syntax style:
+    - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
+
+
 ### Fixes
 
 - Fix an issue where the selected marks of line height / tab width in the Format menu disappeared.
