@@ -289,7 +289,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     [[self styleNameField] setStringValue:styleName];
     
     // style名のチェック
-    if ([self validateStyleName:styleName]) {
+    if (![self validateStyleName:styleName]) {
         [[self window] makeFirstResponder:[self styleNameField]];
         NSBeep();
         return;
