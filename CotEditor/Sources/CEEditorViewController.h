@@ -55,4 +55,8 @@
 - (void)setUsesAntialias:(BOOL)usesAntialias;
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle;
 
+// action messages
+- (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender;
+- (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender;
+
 @end

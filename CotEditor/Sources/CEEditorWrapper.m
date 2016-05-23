@@ -199,11 +199,6 @@
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
         state = ([[self focusedTextView] tabWidth] == [menuItem tag]) ? NSOnState : NSOffState;
         
-    } else if ([menuItem action] == @selector(selectPrevItemOftimerMenu:)) {
-        return ([[self navigationBarController] canSelectPrevItem]);
-    } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
-        return ([[self navigationBarController] canSelectNextItem]);
-        
     } else if ([menuItem action] == @selector(closeSplitTextView:)) {
         return ([[[[self splitViewController] view] subviews] count] > 1);
         
@@ -692,24 +687,6 @@
 
 
 // ------------------------------------------------------
-/// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
-- (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[self navigationBarController] selectPrevItem:sender];
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニューの次の項目を選択（メニューバーからのアクションを中継）
-- (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[self navigationBarController] selectNextItem:sender];
-}
-
-
-// ------------------------------------------------------
 /// テキストビュー分割を行う
 - (IBAction)openSplitTextView:(nullable id)sender
 // ------------------------------------------------------
@@ -896,15 +873,6 @@
 // ------------------------------------------------------
 {
     return [[self windowController] document];
-}
-
-
-// ------------------------------------------------------
-/// navigationBarを返す
-- (CENavigationBarController *)navigationBarController
-// ------------------------------------------------------
-{
-    return [[[self splitViewController] focusedSubviewController] navigationBarController];
 }
 
 @end

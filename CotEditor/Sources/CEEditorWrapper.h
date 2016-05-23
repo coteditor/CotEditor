@@ -96,8 +96,6 @@
 - (IBAction)changeTabWidth:(nullable id)sender;
 - (IBAction)changeLineHeight:(nullable id)sender;
 
-- (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender;
-- (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender;
 - (IBAction)openSplitTextView:(nullable id)sender;
 - (IBAction)closeSplitTextView:(nullable id)sender;
 - (IBAction)changeTheme:(nullable id)sender;

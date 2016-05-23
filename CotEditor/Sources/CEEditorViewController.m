@@ -111,6 +111,15 @@
     // set textStorage to textView
     [[[self textView] layoutManager] replaceTextStorage:[self textStorage]];
     
+    // intercept responder chain manually on Mavericks or lower
+    //   -> This will be automatically done on Yesemtie and higher
+    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
+        [self setNextResponder:[self view]];
+        for (NSView *subview in [[self view] subviews]) {
+            [subview setNextResponder:self];
+        }
+    }
+    
     // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(recolorAfterUndoAndRedo:)
@@ -165,6 +174,21 @@
             [[self textView] setNeedsDisplayInRect:rect avoidAdditionalLayout:YES];
         }
     }
+}
+
+
+// ------------------------------------------------------
+/// validate actions
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+// ------------------------------------------------------
+{
+    if ([menuItem action] == @selector(selectPrevItemOfOutlineMenu:)) {
+        return [[self navigationBarController] canSelectPrevItem];
+    } else if ([menuItem action] == @selector(selectNextItemOfOutlineMenu:)) {
+        return [[self navigationBarController] canSelectNextItem];
+    }
+    
+    return YES;
 }
 
 
@@ -508,6 +532,24 @@
         [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
         [[self editorWrapper] invalidateSyntaxHighlight];
     }
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
+- (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self navigationBarController] selectPrevItem:sender];
+}
+
+
+// ------------------------------------------------------
+/// アウトラインメニューの次の項目を選択（メニューバーからのアクションを中継）
+- (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[self navigationBarController] selectNextItem:sender];
 }
 
 
