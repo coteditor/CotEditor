@@ -53,7 +53,6 @@
 - (void)setWrapsLines:(BOOL)wrapsLines;
 - (void)setShowsInvisibles:(BOOL)showsInvisibles;
 - (void)setUsesAntialias:(BOOL)usesAntialias;
-- (void)updateCloseSplitViewButton:(BOOL)isEnabled;
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle;
 
 @end

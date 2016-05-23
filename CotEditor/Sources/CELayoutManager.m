@@ -118,7 +118,6 @@ static NSString *HiraginoSansName;
         // this flag is actually not so necessary as I thougth. Thus, treat carefully this.
         [self setShowsControlCharacters:NO];
         
-        [self setUsesScreenFonts:YES];
         [self setTypesetter:[[CEATSTypesetter alloc] init]];
         
         // observe change of defaults
@@ -284,8 +283,11 @@ static NSString *HiraginoSansName;
     }
     
     // cache width of space char for hanging indent width calculation
-    NSFont *screenFont = [textFont screenFont] ? : textFont;
-    [self setSpaceWidth:[screenFont advancementForCharacter:' ']];
+    NSFont *drawingFont = textFont;
+    if ([self usesScreenFonts]) {
+        drawingFont = [textFont screenFont] ? : textFont;
+    }
+    [self setSpaceWidth:[drawingFont advancementForCharacter:' ']];
     
     [self invalidateInvisiblesStyle];
 }
@@ -350,6 +352,7 @@ static NSString *HiraginoSansName;
     
     // get dummy attributes to make calcuration of indent width the same as CElayoutManager's calcuration (2016-04)
     NSMutableDictionary *indentAttributes = [[[self firstTextView] typingAttributes] mutableCopy];
+    NSParagraphStyle *defaultParagraphStyle = [[self firstTextView] defaultParagraphStyle];
     NSMutableParagraphStyle *typingParagraphStyle = [indentAttributes[NSParagraphStyleAttributeName] mutableCopy];
     [typingParagraphStyle setHeadIndent:1.0];  // dummy indent value for size calcuration (2016-04)
     indentAttributes[NSParagraphStyleAttributeName] = [typingParagraphStyle copy];
@@ -385,6 +388,7 @@ static NSString *HiraginoSansName;
                                                            atIndex:substringRange.location
                                                     effectiveRange:NULL];
          if (indent != [paragraphStyle headIndent]) {
+             paragraphStyle = paragraphStyle ?: defaultParagraphStyle;
              NSMutableParagraphStyle *mutableParagraphStyle = [paragraphStyle mutableCopy];
              [mutableParagraphStyle setHeadIndent:indent];
              
@@ -450,9 +454,9 @@ static NSString *HiraginoSansName;
         font = [self textFont];
     } else {
         CGFloat fontSize = [[self textFont] pointSize];
-        font = [[NSFont fontWithName:@"LucidaGrande" size:fontSize] screenFont] ?: [NSFont systemFontOfSize:fontSize];
+        font = [NSFont fontWithName:@"LucidaGrande" size:fontSize] ?: [NSFont systemFontOfSize:fontSize];
     }
-    NSFont *fullWidthFont = [[NSFont fontWithName:HiraginoSansName size:[font pointSize]] screenFont];
+    NSFont *fullWidthFont = [NSFont fontWithName:HiraginoSansName size:[font pointSize]];
     
     NSDictionary<NSString *, id> *attributes = @{NSForegroundColorAttributeName: [self invisiblesColor],
                                                  NSFontAttributeName: font};

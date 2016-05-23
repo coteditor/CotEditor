@@ -49,7 +49,7 @@
 
 // Public method
 - (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
-- (void)detectLinkIfNeeded;
+- (void)invalidateStyle;
 
 // Action Message
 - (IBAction)copyWithStyle:(nullable id)sender;

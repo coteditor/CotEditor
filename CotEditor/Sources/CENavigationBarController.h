@@ -29,6 +29,9 @@
 @import AppKit;
 
 
+@class CEOutlineItem;
+
+
 @interface CENavigationBarController : NSViewController
 
 @property (readonly, nonatomic, getter=isShown) BOOL shown;
@@ -37,7 +40,7 @@
 // Public method
 - (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
 
-- (void)setOutlineItems:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineItems;
+- (void)setOutlineItems:(nonnull NSArray<CEOutlineItem *> *)outlineItems;
 - (void)selectOutlineMenuItemWithRange:(NSRange)range;
 - (void)updatePrevNextButtonEnabled;
 - (BOOL)canSelectPrevItem;

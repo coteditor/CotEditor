@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxTermsEditViewController">
@@ -277,14 +277,26 @@
                         <binding destination="SKZ-Xe-n9z" name="enabled" keyPath="canAdd" id="mCe-bR-I1B"/>
                     </connections>
                 </button>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="17" translatesAutoresizingMaskIntoConstraints="NO" id="SH5-Cb-LuZ">
+                    <rect key="frame" x="415" y="9" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nmc-rH-V3q">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-1" id="6wA-9O-JXn"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="oZh-sg-zo9" firstAttribute="width" secondItem="eHG-a0-KyL" secondAttribute="width" id="AB5-FA-2c4"/>
                 <constraint firstItem="dcn-Yp-ouz" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="Hd3-2e-9ZI"/>
+                <constraint firstAttribute="trailing" secondItem="SH5-Cb-LuZ" secondAttribute="trailing" constant="12" id="Iz8-pU-Bwi"/>
                 <constraint firstItem="oZh-sg-zo9" firstAttribute="centerY" secondItem="eHG-a0-KyL" secondAttribute="centerY" id="PK5-Lj-2mC"/>
                 <constraint firstItem="dcn-Yp-ouz" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="ZD6-Rl-hsj"/>
                 <constraint firstItem="eHG-a0-KyL" firstAttribute="top" secondItem="dcn-Yp-ouz" secondAttribute="bottom" constant="8" symbolic="YES" id="ngI-zU-GLc"/>
                 <constraint firstItem="oZh-sg-zo9" firstAttribute="leading" secondItem="eHG-a0-KyL" secondAttribute="trailing" constant="-1" id="nje-fR-bXN"/>
+                <constraint firstAttribute="bottom" secondItem="SH5-Cb-LuZ" secondAttribute="bottom" constant="12" id="tIu-6b-xkI"/>
                 <constraint firstItem="eHG-a0-KyL" firstAttribute="leading" secondItem="dcn-Yp-ouz" secondAttribute="leading" id="vve-9L-3qr"/>
                 <constraint firstItem="oZh-sg-zo9" firstAttribute="height" secondItem="eHG-a0-KyL" secondAttribute="height" id="wgL-EQ-pd4"/>
                 <constraint firstAttribute="trailing" secondItem="dcn-Yp-ouz" secondAttribute="trailing" constant="12" id="zO7-ne-ktc"/>

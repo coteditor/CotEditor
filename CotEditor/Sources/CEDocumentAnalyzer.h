@@ -39,7 +39,8 @@ extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 
 @interface CEDocumentAnalyzer : NSObject
 
-@property (nonatomic, nullable, weak) CEDocument *document;
+@property (nonatomic) BOOL needsUpdateEditorInfo;  // need to update all editor info
+@property (nonatomic) BOOL needsUpdateStatusEditorInfo; // need only to update editor info in satus bar
 
 // file info
 @property (readonly, nonatomic, nullable, copy) NSString *creationDate;
@@ -48,7 +49,7 @@ extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic, nullable, copy) NSString *filePath;
 @property (readonly, nonatomic, nullable, copy) NSString *owner;
 @property (readonly, nonatomic, nullable, copy) NSString *permission;
-@property (readonly, nonatomic, getter=isWritable) BOOL writable;
+@property (readonly, nonatomic, getter=isReadOnly) BOOL readOnly;
 
 // mode info
 @property (readonly, nonatomic, nullable, copy) NSString *encoding;
@@ -67,9 +68,13 @@ extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic, nullable, copy) NSString *unicode;   // Unicode of selected single character (or surrogate-pair)
 
 
+// initializer
+- (nonnull instancetype)initWithDocument:(nonnull CEDocument *)document;
+
 // Public Methods
-- (void)updateFileInfo;
-- (void)updateModeInfo;
-- (void)updateEditorInfo:(BOOL)needsAll;
+- (void)invalidateFileInfo;
+- (void)invalidateModeInfo;
+
+- (void)invalidateEditorInfo;
 
 @end

@@ -2,6 +2,24 @@
 Change Log
 ==========================
 
+2.6.0
+--------------------------
+
+### New Features
+
+- Add newly rewrited syntax styles for “C” and “C++”.
+    - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
+- Add syntax style for “MATLAB”.
+
+
+### Improvements
+
+- Remove “Not writable” alert which displayed on file opening.
+- New acknowledgements window.
+- Add help buttons to syntax style editor.
+
+
+
 develop
 --------------------------
 

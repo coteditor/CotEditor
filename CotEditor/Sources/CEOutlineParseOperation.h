@@ -1,6 +1,6 @@
 /*
  
- CESyntaxOutlineParser.h
+ CEOutlineParseOperation.h
  
  CotEditor
  http://coteditor.com
@@ -28,19 +28,18 @@
 @import Foundation;
 
 
-// Outline item dict keys
-extern NSString *_Nonnull const CEOutlineItemTitleKey;
-extern NSString *_Nonnull const CEOutlineItemRangeKey;
-extern NSString *_Nonnull const CEOutlineItemStyleBoldKey;
-extern NSString *_Nonnull const CEOutlineItemStyleItalicKey;
-extern NSString *_Nonnull const CEOutlineItemStyleUnderlineKey;
+@class CEOutlineItem;
 
 
-@interface CESyntaxOutlineParser : NSObject
+@interface CEOutlineParseOperation : NSOperation
 
-- (nonnull instancetype)initWithString:(nonnull NSString *)string definitions:(nonnull NSArray<NSDictionary *> *)definitions NS_DESIGNATED_INITIALIZER;
+@property (nonatomic, nullable, copy) NSString *string;
+@property (nonatomic) NSRange parseRange;
+
+@property (readonly, nonatomic, nullable, copy) NSArray<CEOutlineItem *> *results;
+
+
+- (nonnull instancetype)initWithDefinitions:(nonnull NSArray<NSDictionary *> *)definitions NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
-
-- (void)parseWithCompletionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *, id> *> * _Nonnull outlineItems))completionHandler;
 
 @end

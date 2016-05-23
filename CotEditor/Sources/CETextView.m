@@ -38,12 +38,13 @@
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEWindow.h"
-#import "NSString+CECounting.h"
+
 #import "CEDefaults.h"
 #import "CEEncodings.h"
 #import "Constants.h"
 
 #import "CEGeometry.h"
+#import "NSString+CECounting.h"
 #import "NSFont+CESize.h"
 
 
@@ -118,63 +119,57 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         
         // setup layoutManager and textContainer
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
+        [layoutManager setUsesScreenFonts:YES];
         [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
         [[self textContainer] replaceLayoutManager:layoutManager];
-        
-        // set the width of every tab by first checking the size of the tab in spaces in the current font and then remove all tabs that sets automatically and then set the default tab stop distance
-        _tabWidth = [defaults integerForKey:CEDefaultTabWidthKey];
-        
-        CGFloat fontSize = (CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey];
-        NSFont *font = [NSFont fontWithName:[defaults stringForKey:CEDefaultFontNameKey] size:fontSize];
-        if (!font) {
-            font = [NSFont userFontOfSize:fontSize];
-        }
-
-        NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        [paragraphStyle setTabStops:@[]];  // clear default tab stops
-        [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
-        [self setDefaultParagraphStyle:paragraphStyle];
-        // （NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
-        // 「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-        // 挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している）
-
-        // setup theme
-        [self setTheme:[[CEThemeManager sharedManager] themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
         // set layer drawing policies
         [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
         [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
         
-        // set link detection
-        [self setAutomaticLinkDetectionEnabled:[defaults boolForKey:CEDefaultAutoLinkDetectionKey]];
-        [self setLinkTextAttributes:@{NSCursorAttributeName: [NSCursor pointingHandCursor],
-                                      NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
+        // set layout values
+        [self setMinSize:[self frame].size];
+        [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
+        [self setHorizontallyResizable:YES];
+        [self setVerticallyResizable:YES];
+        [self setTextContainerInset:NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
+                                               (CGFloat)([defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey] +
+                                                         [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
+        _lineSpacing = (CGFloat)[defaults doubleForKey:CEDefaultLineSpacingKey];
+        _tabWidth = [defaults integerForKey:CEDefaultTabWidthKey];
         
-        // set values
-        _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
+        // setup behaviors
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
         if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
             [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
             [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartDashesKey]];
         }
-        [self setFont:font];
-        [self setMinSize:[self frame].size];
-        [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [self setAllowsDocumentBackgroundColorChange:NO];
         [self setAllowsUndo:YES];
         [self setRichText:NO];
         [self setImportsGraphics:NO];
         [self setUsesFindPanel:YES];
-        [self setHorizontallyResizable:YES];
-        [self setVerticallyResizable:YES];
         [self setAcceptsGlyphInfo:YES];
-        [self setTextContainerInset:NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
-                                               (CGFloat)([defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey] +
-                                                         [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
-        [self setLineSpacing:(CGFloat)[defaults doubleForKey:CEDefaultLineSpacingKey]];
-        _needsUpdateOutlineMenuItemSelection = YES;
+        _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
+        _needsUpdateOutlineMenuItemSelection = YES;  // reise flag to let outline menu select current item
         
+        // set link detection
+        [self setAutomaticLinkDetectionEnabled:[defaults boolForKey:CEDefaultAutoLinkDetectionKey]];
+        [self setLinkTextAttributes:@{NSCursorAttributeName: [NSCursor pointingHandCursor],
+                                      NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
+        
+        // setup theme
+        [self setTheme:[[CEThemeManager sharedManager] themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
+        
+        // set font
+        CGFloat fontSize = (CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey];
+        NSString *fontName = [defaults stringForKey:CEDefaultFontNameKey];
+        NSFont *font = [NSFont fontWithName:fontName size:fontSize] ?: [NSFont userFontOfSize:fontSize];
+        [super setFont:font];
+        [layoutManager setTextFont:font];
+        
+        [self invalidateDefaultParagraphStyle];
         [self applyTypingAttributes];
         
         // observe change of defaults
@@ -695,20 +690,17 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     if (!font) { return; }
     
-    // make sure font is screen font for hanging indent calcration
-    font = [font screenFont] ?: font;
-    
-    // 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく。
-    // （CELayoutManager で [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
-    // 日本語フォント名を返してくることがあるため、CELayoutManager からは [textView font] を使わない）
+    // 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく
+    // -> [NSTextView font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
+    //    日本語フォントを返してくることがあるため、CELayoutManager からは [textView font] を使わない
     [(CELayoutManager *)[self layoutManager] setTextFont:font];
     [super setFont:font];
     
-    NSMutableParagraphStyle *paragraphStyle = [[self defaultParagraphStyle] mutableCopy];
-    [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
-    [self setDefaultParagraphStyle:paragraphStyle];
-    
+    [self invalidateDefaultParagraphStyle];
     [self applyTypingAttributes];
+    
+    // update current text
+    [self invalidateStyle];
 }
 
 
@@ -718,7 +710,12 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 // ------------------------------------------------------
 {
     _tabWidth = tabWidth;
-    [self setFont:[self font]];  // force re-layout with new width
+    
+    [self invalidateDefaultParagraphStyle];
+    [self applyTypingAttributes];
+    
+    // update current text
+    [self invalidateStyle];
 }
 
 
@@ -761,11 +758,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     // draw page guide
     if ([self showsPageGuide]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPageGuideColumnKey];
-        
-        if ((column < kMinPageGuideColumn) || (column > kMaxPageGuideColumn)) {
-            return;
-        }
-        
         CGFloat charWidth = [(CELayoutManager *)[self layoutManager] spaceWidth];
         CGFloat inset = [self textContainerOrigin].x;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
@@ -1072,7 +1064,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     } else if ([keyPath isEqualToString:CEDefaultFontNameKey] || [keyPath isEqualToString:CEDefaultFontSizeKey]) {
         NSFont *font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey]
                                        size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey]];
-        font = [font screenFont] ?: font;
         [self setFont:font];
         
     } else if ([keyPath isEqualToString:CEDefaultShouldAntialiasKey]) {
@@ -1193,22 +1184,20 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// make link-like text clickable
-- (void)detectLinkIfNeeded
+/// invalidate string attributes
+- (void)invalidateStyle
 // ------------------------------------------------------
 {
-    if (![self isAutomaticLinkDetectionEnabled]) { return; }
+    NSRange range = NSMakeRange(0, [[self textStorage] length]);
     
-    // The following code looks suitable, but actually doesn't work. (2015-12)
-//    NSRange range = NSMakeRange(0, [[self string] length]);
-//    [self checkTextInRange:range types:NSTextCheckingTypeLink options:@{}];
+    if (range.length == 0) { return; }
     
-    [[self undoManager] disableUndoRegistration];
-    NSTextCheckingTypes currentCheckingType = [self enabledTextCheckingTypes];
-    [self setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
-    [self checkTextInDocument:nil];
-    [self setEnabledTextCheckingTypes:currentCheckingType];
-    [[self undoManager] enableUndoRegistration];
+    // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
+    // 設定されたフォントでないもので表示されることがあるため、リセットする
+    [[self textStorage] setAttributes:[self typingAttributes] range:range];
+    
+    [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
+    [self detectLinkIfNeeded];
 }
 
 
@@ -1425,6 +1414,26 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
+/// set defaultParagraphStyle based on font and tabWidth
+- (void)invalidateDefaultParagraphStyle
+// ------------------------------------------------------
+{
+    // calculate tab interval
+    NSFont *font = [[self font] screenFont] ?: [self font];
+    CGFloat tabInterval = [self tabWidth] * [font advancementForCharacter:' '];
+    
+    // -> NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
+    //    「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
+    //    挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [paragraphStyle setTabStops:@[]];  // clear default tab stops
+    [paragraphStyle setDefaultTabInterval:tabInterval];
+    
+    [self setDefaultParagraphStyle:paragraphStyle];
+}
+
+
+// ------------------------------------------------------
 /// キー入力時の文字修飾辞書をセット
 - (void)applyTypingAttributes
 // ------------------------------------------------------
@@ -1432,12 +1441,26 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self defaultParagraphStyle],
                                 NSFontAttributeName: [self font],
                                 NSForegroundColorAttributeName: [self textColor]}];
+}
+
+
+// ------------------------------------------------------
+/// make link-like text clickable
+- (void)detectLinkIfNeeded
+// ------------------------------------------------------
+{
+    if (![self isAutomaticLinkDetectionEnabled]) { return; }
     
-    // update current text
-    NSRange range = NSMakeRange(0, [[self textStorage] length]);
-    [[self textStorage] setAttributes:[self typingAttributes] range:range];
-    [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
-    [self detectLinkIfNeeded];
+    // The following code looks suitable, but actually doesn't work. (2015-12)
+//    NSRange range = NSMakeRange(0, [[self string] length]);
+//    [self checkTextInRange:range types:NSTextCheckingTypeLink options:@{}];
+    
+    [[self undoManager] disableUndoRegistration];
+    NSTextCheckingTypes currentCheckingType = [self enabledTextCheckingTypes];
+    [self setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
+    [self checkTextInDocument:nil];
+    [self setEnabledTextCheckingTypes:currentCheckingType];
+    [[self undoManager] enableUndoRegistration];
 }
 
 
@@ -1489,17 +1512,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             NSBeep();
         }
     }
-}
-
-
-// ------------------------------------------------------
-/// フォントからタブ幅を計算して返す
-- (CGFloat)tabIntervalFromFont:(NSFont *)font
-// ------------------------------------------------------
-{
-    NSFont *screenFont = [font screenFont] ? : font;
-    
-    return [self tabWidth] * [screenFont advancementForCharacter:' '];
 }
 
 

@@ -27,7 +27,8 @@
  */
 
 #import "CEEditorViewController.h"
-#import "CEWindowController.h"
+#import "CEDocument.h"
+#import "CEDocumentAnalyzer.h"
 #import "CENavigationBarController.h"
 #import "CEEditorWrapper.h"
 #import "CEEditorScrollView.h"
@@ -197,7 +198,9 @@
     BOOL isVertical = ([textView layoutOrientation] == NSTextLayoutOrientationVertical);
     
     // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
-    [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
+    if (isVertical) {
+        [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
+    }
     
     [[textView enclosingScrollView] setHasHorizontalScroller:!wrapsLines];
     [[textView textContainer] setWidthTracksTextView:wrapsLines];
@@ -205,7 +208,7 @@
         NSSize contentSize = [[textView enclosingScrollView] contentSize];
         CGFloat scale = [textView convertSize:NSMakeSize(1.0, 1.0) toView:nil].width;
         [[textView textContainer] setContainerSize:NSMakeSize(contentSize.width / scale, CGFLOAT_MAX)];
-        [textView sizeToFit];
+        [textView setConstrainedFrameSize:contentSize];
     } else {
         [[textView textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
     }
@@ -266,7 +269,7 @@
     if (![actionName isEqualToString:NSLocalizedString(@"Replace All", nil)]) { return; }
     
     // 全テキストを再カラーリング
-    [[self editorWrapper] setupSyntaxHighlightTimer];
+    [[self editorWrapper] invalidateSyntaxHighlight];
 }
 
 
@@ -287,7 +290,7 @@
     //
     // # Methods Standardizing Line Endings on Text Editing
     //   - File Open:
-    //       - CEDocument > applyContentToWindow
+    //       - CEDocument > readFromURL:ofType:error:
     //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
     //       - CEEditorViewController > textView:shouldChangeTextInRange:replacementString:
     
@@ -377,18 +380,6 @@
 - (void)textDidChange:(nonnull NSNotification *)aNotification
 // ------------------------------------------------------
 {
-    // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
-    [[[[self view] window] windowController] setupEditorInfoUpdateTimer];
-    
-    // 全テキストを再カラーリング
-    [[self editorWrapper] setupSyntaxHighlightTimer];
-
-    // アウトラインメニュー項目更新
-    [[self editorWrapper] setupOutlineMenuUpdateTimer];
-    
-    // 非互換文字リスト更新
-    [[[[self view] window] windowController] updateIncompatibleCharsIfNeeded];
-
     // フラグが立っていたら、入力補完を再度実行する
     // （フラグは CETextView > insertCompletion:forPartialWordRange:movement:isFinal: で立てている）
     if ([[self textView] needsRecompletion]) {
@@ -407,7 +398,7 @@
     [self highlightCurrentLine];
 
     // update document information
-    [[[[self view] window] windowController] setupEditorInfoUpdateTimer];
+    [[[[[[self view] window] windowController] document] analyzer] invalidateEditorInfo];
 
     // update selected item of the outline menu
     [self updateOutlineMenuSelection];
@@ -552,15 +543,6 @@
         [[self textView] setNeedsUpdateOutlineMenuItemSelection:YES];
         [[self navigationBarController] updatePrevNextButtonEnabled];
     }
-}
-
-
-// ------------------------------------------------------
-/// テキストビュー分割削除ボタンの有効化／無効化を制御
-- (void)updateCloseSplitViewButton:(BOOL)isEnabled
-// ------------------------------------------------------
-{
-    [[self navigationBarController] setCloseSplitButtonEnabled:isEnabled];
 }
 
 

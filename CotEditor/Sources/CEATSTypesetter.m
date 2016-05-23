@@ -28,7 +28,6 @@
 
 #import "CEATSTypesetter.h"
 #import "CELayoutManager.h"
-#import "CETextViewProtocol.h"
 
 
 @implementation CEATSTypesetter

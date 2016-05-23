@@ -28,6 +28,7 @@
 
 #import "CEEditorWrapper.h"
 #import "CEDocument.h"
+#import "CEDocumentAnalyzer.h"
 #import "CEEditorViewController.h"
 #import "CELayoutManager.h"
 #import "CEWindowController.h"
@@ -46,7 +47,7 @@
 #import "NSString+CERange.h"
 
 
-@interface CEEditorWrapper () <CETextFinderClientProvider>
+@interface CEEditorWrapper () <CETextFinderClientProvider, NSTextStorageDelegate>
 
 @property (nonatomic, nullable, weak) NSTimer *syntaxHighlightTimer;
 @property (nonatomic, nullable, weak) NSTimer *outlineMenuTimer;
@@ -56,6 +57,17 @@
 
 // readonly
 @property (readwrite, nonatomic) BOOL canActivateShowInvisibles;
+
+@end
+
+
+@interface CEEditorWrapper (PrivateSyntaxParsing)
+
+@property (readonly, nonatomic) BOOL canHighlight;
+
+
+- (void)setupSyntaxHighlightTimer;
+- (void)setupOutlineMenuUpdateTimer;
 
 @end
 
@@ -119,17 +131,14 @@
         [self setNextResponder:[self splitViewController]];
     }
     
-    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[NSTextStorage alloc] init]];
+    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[self document] textStorage]];
     [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:nil];
     [self setupEditorViewController:editorViewController baseView:nil];
     
     // focus text view
     [[self window] makeFirstResponder:[editorViewController textView]];
     
-    // TODO: Refactoring
-    // -> This is probably not the best position to apply sytnax style to the text view.
-    //    However as a quick fix, I put it here tentatively. It works. But should be refactored later. (2016-01 1024jp)
-    [editorViewController applySyntax:[self syntaxStyle]];
+    [[self textStorage] setDelegate:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangeSyntaxStyle:)
@@ -235,6 +244,31 @@
 
 
 
+#pragma mark Delegate
+
+//=======================================================
+// NSTextStorageDelegate Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// text did edit
+- (void)textStorageDidProcessEditing:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
+    [[[self document] analyzer] invalidateEditorInfo];
+    
+    // parse syntax
+    [self setupSyntaxHighlightTimer];
+    [self setupOutlineMenuUpdateTimer];
+    
+    // update incompatible chars list
+    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
+    
+}
+
+
+
 #pragma mark Public Methods
 
 // ------------------------------------------------------
@@ -261,22 +295,6 @@
 // ------------------------------------------------------
 {
     return [[self string] substringWithRange:[[self focusedTextView] selectedRange]];
-}
-
-
-// ------------------------------------------------------
-/// メインtextViewに文字列をセット
-- (void)setString:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
-    // 設定されたフォントでないもので表示されることがあるため、リセットする
-    NSDictionary<NSString *, id> *attributes = [[self focusedTextView] typingAttributes];
-    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attributes];
-    
-    [[self textStorage] setAttributedString:attrString];
-    [[self focusedTextView] setSelectedRange:NSMakeRange(0, 0)];
-    [[self focusedTextView] detectLinkIfNeeded];
 }
 
 
@@ -513,7 +531,7 @@
         [[viewController textView] setTheme:theme];
     }];
     
-    [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
+    [self invalidateSyntaxHighlight];
 }
 
 
@@ -714,7 +732,6 @@
     // apply current status to the new editorView
     [self setupEditorViewController:newEditorViewController baseView:currentEditorViewController];
     
-    [newEditorViewController applySyntax:[self syntaxStyle]];
     [self invalidateSyntaxHighlight];
     [self invalidateOutlineMenu];
     
@@ -796,6 +813,15 @@
 
 
 // ------------------------------------------------------
+/// apply text styles from text view
+- (void)invalidateStyleInTextStorage
+// ------------------------------------------------------
+{
+    [[self focusedTextView] invalidateStyle];
+}
+
+
+// ------------------------------------------------------
 /// サブビューに初期値を設定
 - (void)setupEditorViewController:(nonnull CEEditorViewController *)editorViewController baseView:(nullable CEEditorViewController *)baseViewController
 // ------------------------------------------------------
@@ -808,6 +834,8 @@
     [self setWrapsLines:[self wrapsLines]];
     [self setVerticalLayoutOrientation:[self isVerticalLayoutOrientation]];
     [self setShowsPageGuide:[self showsPageGuide]];
+    
+    [editorViewController applySyntax:[self syntaxStyle]];
     
     // copy textView states
     if (baseViewController) {
@@ -833,7 +861,7 @@
 - (NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
-    return [[self focusedTextView] textStorage];
+    return [[self document] textStorage];
 }
 
 
@@ -851,7 +879,7 @@
 - (NSArray<NSLayoutManager *> *)layoutManagers
 // ------------------------------------------------------
 {
-    return [[[self focusedTextView] textStorage] layoutManagers];
+    return [[[self document] textStorage] layoutManagers];
 }
 
 
@@ -893,25 +921,13 @@
 
 
 // ------------------------------------------------------
-/// return if sytnax highlight works
-- (BOOL)canHighlight
-// ------------------------------------------------------
-{
-    BOOL isHighlightEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey];
-    BOOL isHighlightable = ([self syntaxStyle] != nil) && ![[self syntaxStyle] isNone];
-    
-    return isHighlightEnabled && isHighlightable;
-}
-
-
-// ------------------------------------------------------
 /// 全テキストを再カラーリング
 - (void)invalidateSyntaxHighlight
 // ------------------------------------------------------
 {
     [[self syntaxHighlightTimer] invalidate];
     
-    [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
+    [[self syntaxStyle] highlightWholeStringWithCompletionHandler:nil];
 }
 
 
@@ -937,53 +953,13 @@
     
     // extract outline and pass result to navigationBar
     CESplitViewController *splitViewController = [self splitViewController];
-    [[self syntaxStyle] parseOutlineItemsInString:wholeString completionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems)
+    [[self syntaxStyle] parseOutlineWithCompletionHandler:^(NSArray<CEOutlineItem *> * _Nonnull outlineItems)
      {
          [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
              [[viewController navigationBarController] setOutlineItems:outlineItems];
              // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
          }];
     }];
-}
-
-
-// ------------------------------------------------------
-/// let parse syntax highlight after a delay
-- (void)setupSyntaxHighlightTimer
-// ------------------------------------------------------
-{
-    if (![self canHighlight]) { return; }
-    
-    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultBasicColoringDelayKey];
-    if ([[self syntaxHighlightTimer] isValid]) {
-        [[self syntaxHighlightTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-    } else {
-        [self setSyntaxHighlightTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                       target:self
-                                                                     selector:@selector(updateSyntaxHighlightWithTimer:)
-                                                                     userInfo:nil
-                                                                      repeats:NO]];
-    }
-}
-
-
-// ------------------------------------------------------
-/// let parse outline after a delay
-- (void)setupOutlineMenuUpdateTimer
-// ------------------------------------------------------
-{
-    if (![self canHighlight]) { return; }
-    
-    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
-    if ([[self outlineMenuTimer] isValid]) {
-        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-    } else {
-        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                   target:self
-                                                                 selector:@selector(updateOutlineMenuWithTimer:)
-                                                                 userInfo:nil
-                                                                  repeats:NO]];
-    }
 }
 
 
@@ -1041,7 +1017,7 @@
         updateRange = NSMakeRange(location, length);
     }
     
-    [[self syntaxStyle] highlightRange:updateRange textStorage:[textView textStorage]];
+    [[self syntaxStyle] highlightRange:updateRange];
 }
 
 
@@ -1061,6 +1037,62 @@
 // ------------------------------------------------------
 {
     [self invalidateOutlineMenu];  // (The outlineMenuTimer will be invalidated in this invalidateOutlineMenu method.)
+}
+
+@end
+
+
+@implementation CEEditorWrapper (PrivateSyntaxParsing)
+
+// ------------------------------------------------------
+/// return if sytnax highlight works
+- (BOOL)canHighlight
+// ------------------------------------------------------
+{
+    BOOL isHighlightEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey];
+    BOOL isHighlightable = ([self syntaxStyle] != nil) && ![[self syntaxStyle] isNone];
+    
+    return isHighlightEnabled && isHighlightable;
+}
+
+
+// ------------------------------------------------------
+/// let parse syntax highlight after a delay
+- (void)setupSyntaxHighlightTimer
+// ------------------------------------------------------
+{
+    if (![self canHighlight]) { return; }
+    
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultBasicColoringDelayKey];
+    if ([[self syntaxHighlightTimer] isValid]) {
+        [[self syntaxHighlightTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
+    } else {
+        [self setSyntaxHighlightTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                       target:self
+                                                                     selector:@selector(updateSyntaxHighlightWithTimer:)
+                                                                     userInfo:nil
+                                                                      repeats:NO]];
+    }
+}
+
+
+// ------------------------------------------------------
+/// let parse outline after a delay
+- (void)setupOutlineMenuUpdateTimer
+// ------------------------------------------------------
+{
+    if (![self canHighlight]) { return; }
+    
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
+    if ([[self outlineMenuTimer] isValid]) {
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
+    } else {
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                   target:self
+                                                                 selector:@selector(updateOutlineMenuWithTimer:)
+                                                                 userInfo:nil
+                                                                  repeats:NO]];
+    }
 }
 
 @end

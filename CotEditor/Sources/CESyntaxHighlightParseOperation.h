@@ -1,6 +1,6 @@
 /*
  
- CESyntaxHighlightParser.h
+ CESyntaxHighlightParseOperation.h
  
  CotEditor
  http://coteditor.com
@@ -28,24 +28,23 @@
 @import Foundation;
 
 
-@interface CESyntaxHighlightParser : NSObject
+@interface CESyntaxHighlightParseOperation : NSOperation
 
-@property (nonatomic, getter=isCancelled) BOOL cancelled;
+@property (nonatomic, nullable, copy) NSString *string;
+@property (nonatomic) NSRange parseRange;
+
+@property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, NSArray<NSValue *> *> *results;
 
 // callbacks (can be invoked on non-main thread)
 @property (nonatomic, nullable, copy) void (^beginParsingBlock)(NSString * _Nonnull localizedBlockName);
 @property (nonatomic, nullable, copy) void (^didProgress)(CGFloat delta);
 
 
-- (nonnull instancetype)initWithString:(nonnull NSString *)string
-                            dictionary:(nonnull NSDictionary *)dictionary
-              simpleWordsCharacterSets:(nullable NSDictionary<NSString *, NSCharacterSet *> *)simpleWordsCharacterSets
-                      pairedQuoteTypes:(nullable NSDictionary<NSString *, NSString *> *)pairedQuoteTypes
-                inlineCommentDelimiter:(nullable NSString *)inlineCommentDelimiter
-                blockCommentDelimiters:(nullable NSDictionary<NSString *, NSString *> *)blockCommentDelimiters NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary
+                  simpleWordsCharacterSets:(nullable NSDictionary<NSString *, NSCharacterSet *> *)simpleWordsCharacterSets
+                          pairedQuoteTypes:(nullable NSDictionary<NSString *, NSString *> *)pairedQuoteTypes
+                    inlineCommentDelimiter:(nullable NSString *)inlineCommentDelimiter
+                    blockCommentDelimiters:(nullable NSDictionary<NSString *, NSString *> *)blockCommentDelimiters NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
-
-
-- (void)parseRange:(NSRange)range completionHandler:(nullable void (^)(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull highlights))completionHandler;
 
 @end

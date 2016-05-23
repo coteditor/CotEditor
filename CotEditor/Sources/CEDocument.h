@@ -34,10 +34,10 @@
 @class CEWindowController;
 @class CETextSelection;
 @class CESyntaxStyle;
+@class CEDocumentAnalyzer;
 
 
 // Notifications
-extern NSString *_Nonnull const CEDocumentDidFinishOpenNotification;
 extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 
 // Incompatible chars listController key
@@ -50,6 +50,8 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 @interface CEDocument : NSDocument
 
 // readonly properties
+@property (readonly, nonatomic, nonnull) NSTextStorage *textStorage;
+@property (readonly, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
 @property (readonly, nonatomic, nullable) CEWindowController *windowController;
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 @property (readonly, nonatomic, nonnull) CETextSelection *selection;
@@ -57,13 +59,12 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 @property (readonly, nonatomic) BOOL hasUTF8BOM;
 @property (readonly, nonatomic) CENewLineType lineEnding;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
-@property (readonly, nonatomic, getter=isWritable) BOOL writable;
 @property (readonly, nonatomic, nullable) CESyntaxStyle *syntaxStyle;
 
 
 #pragma mark - Public Methods
 
-/// Return whole string in the current text view which document's line endings are already applied to.  (Note: The internal string (e.g. in text storage) has always LF for its line ending.)
+/// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal string has always LF for its line ending.)
 - (nonnull NSString *)string;
 
 - (void)applyContentToWindow;

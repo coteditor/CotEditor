@@ -55,14 +55,25 @@
       "csharp"
     ]
   },
-  "C, C++, Objective-C": {
+  "C++": {
+    "extensions": [
+      "c++",
+      "cpp",
+      "cc",
+      "hpp",
+      "h++"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
+  "C": {
     "extensions": [
       "c",
-      "h",
-      "m",
-      "mm",
-      "cpp",
-      "cc"
+      "h"
     ],
     "filenames": [
 
@@ -312,6 +323,17 @@
   "Lua": {
     "extensions": [
       "lua"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
+  "MATLAB": {
+    "extensions": [
+      "m"
     ],
     "filenames": [
 

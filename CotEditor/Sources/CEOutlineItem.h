@@ -1,15 +1,15 @@
 /*
  
- NSURL+Xattr.h
+ CEOutlineItem.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2015-01-25.
+ Created by 1024jp on 2016-05-12.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,18 +28,12 @@
 @import Foundation;
 
 
-// xattr names
-extern char const XATTR_VERTICAL_TEXT_NAME[];
+@interface CEOutlineItem : NSObject
 
-
-@interface NSURL (Xattr)
-
-// for com.apple.TextEncoding
-- (NSStringEncoding)getXattrEncoding;
-- (BOOL)setXattrEncoding:(NSStringEncoding)encoding;
-
-// for general bool values
-- (BOOL)getXattrBoolForName:(const char * _Nonnull)name;
-- (BOOL)setXattrBool:(BOOL)value forName:(const char * _Nonnull)name;
+@property (nonatomic, nullable, copy) NSString *title;
+@property (nonatomic) NSRange range;
+@property (nonatomic, getter=isBold) BOOL bold;
+@property (nonatomic, getter=isItalic) BOOL italic;
+@property (nonatomic) BOOL hasUnderline;
 
 @end

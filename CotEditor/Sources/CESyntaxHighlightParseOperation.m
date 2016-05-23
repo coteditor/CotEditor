@@ -1,6 +1,6 @@
 /*
  
- CESyntaxHighlightParser.m
+ CESyntaxHighlightParseOperation.m
  
  CotEditor
  http://coteditor.com
@@ -26,7 +26,7 @@
  
  */
 
-#import "CESyntaxHighlightParser.h"
+#import "CESyntaxHighlightParseOperation.h"
 #import "Constants.h"
 
 
@@ -49,15 +49,16 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 };
 
 
-@interface CESyntaxHighlightParser ()
-
-@property (nonatomic, nonnull) NSString *string;
+@interface CESyntaxHighlightParseOperation ()
 
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, id> *highlightDictionary;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSCharacterSet *> *simpleWordsCharacterSets;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
 @property (nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
+
+// readonly
+@property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, NSArray<NSValue *> *> *results;
 
 @end
 
@@ -66,7 +67,7 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 
 #pragma mark -
 
-@implementation CESyntaxHighlightParser
+@implementation CESyntaxHighlightParseOperation
 
 static NSArray<NSString *> *kSyntaxDictKeys;
 static CGFloat kPerCompoIncrement;
@@ -102,25 +103,38 @@ static CGFloat kPerCompoIncrement;
 }
 
 
+//------------------------------------------------------
+/// runs asynchronous
+- (BOOL)isAsynchronous
+//------------------------------------------------------
+{
+    return YES;
+}
+
+
+//------------------------------------------------------
+/// priority of operation
+- (NSOperationQueuePriority)queuePriority
+//------------------------------------------------------
+{
+    return NSOperationQueuePriorityHigh;
+}
+
+
 
 #pragma mark Public Methods
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithString:(nonnull NSString *)string
-                            dictionary:(nonnull NSDictionary *)dictionary
-              simpleWordsCharacterSets:(nullable NSDictionary<NSString *, NSCharacterSet *> *)simpleWordsCharacterSets
-                      pairedQuoteTypes:(nullable NSDictionary<NSString *, NSString *> *)pairedQuoteTypes
-                inlineCommentDelimiter:(nullable NSString *)inlineCommentDelimiter
-                blockCommentDelimiters:(nullable NSDictionary<NSString *, NSString *> *)blockCommentDelimiters
+- (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary
+                  simpleWordsCharacterSets:(nullable NSDictionary<NSString *, NSCharacterSet *> *)simpleWordsCharacterSets
+                          pairedQuoteTypes:(nullable NSDictionary<NSString *, NSString *> *)pairedQuoteTypes
+                    inlineCommentDelimiter:(nullable NSString *)inlineCommentDelimiter
+                    blockCommentDelimiters:(nullable NSDictionary<NSString *, NSString *> *)blockCommentDelimiters
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        // make sure the string is immutable
-        //   -> [note] NSTextStorage's `string` property retruns mutable string
-        _string = [NSString stringWithString:string];
-        
         _highlightDictionary = dictionary;
         _simpleWordsCharacterSets = simpleWordsCharacterSets;
         _pairedQuoteTypes = pairedQuoteTypes;
@@ -133,21 +147,10 @@ static CGFloat kPerCompoIncrement;
 
 // ------------------------------------------------------
 /// parse string in background and return extracted highlight ranges per syntax types
-- (void)parseRange:(NSRange)range completionHandler:(void (^)(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull))completionHandler
+- (void)main
 // ------------------------------------------------------
 {
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        typeof(self) self = weakSelf;  // strong self
-        if (!self) { return; }
-        
-        NSDictionary<NSString *, NSArray<NSValue *> *> *highlights = [self extractAllHighlightsFromString:[self string] range:range];
-        if (completionHandler) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                completionHandler(highlights);
-            });
-        }
-    });
+    [self setResults:[self extractAllHighlightsFromString:[self string] range:[self parseRange]]];
 }
 
 

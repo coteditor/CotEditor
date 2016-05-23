@@ -60,18 +60,25 @@ NSString *_Nonnull const kHelpAnchors[] = {
     @"pref_window",
     @"pref_appearance",
     @"pref_edit",
-    @"pref_format",
+    @"pref_format",  // 5
     @"pref_filedrop",
     @"pref_keybindings",
     @"pref_print",
     @"whats_new",
-    @"specification_changes",
+    @"specification_changes",  // 10
     @"about_script_name",
     @"about_applescript",
     @"about_unixscript",
     @"pref_integration",
-    @"about_file_mapping",
+    @"about_file_mapping",  // 15
     @"about_cot",
+    
+    @"about_syntaxstyle",
+    @"about_comment_settings",
+    @"about_outlinemenu_settings",
+    @"about_complist_settings",  // 20
+    @"about_file_mapping",
+    @"about_styleinfo_settings",
 };
 
 

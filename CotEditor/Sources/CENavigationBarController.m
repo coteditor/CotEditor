@@ -27,7 +27,7 @@
  */
 
 #import "CENavigationBarController.h"
-#import "CESyntaxOutlineParser.h"
+#import "CEOutlineItem.h"
 #import "Constants.h"
 
 #import "NSFont+CESize.h"
@@ -126,7 +126,7 @@ static const NSTimeInterval kDuration = 0.12;
 
 // ------------------------------------------------------
 /// build outline menu from given array
-- (void)setOutlineItems:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineItems
+- (void)setOutlineItems:(nonnull NSArray<CEOutlineItem *> *)outlineItems
 // ------------------------------------------------------
 {
     // stop outline extracting indicator
@@ -165,23 +165,22 @@ static const NSTimeInterval kDuration = 0.12;
     [[menu itemAtIndex:0] setRepresentedObject:[NSValue valueWithRange:NSMakeRange(0, 0)]];
     
     // add outline items
-    for (NSDictionary<NSString *, id> *outlineItem in outlineItems) {
-        if ([outlineItem[CEOutlineItemTitleKey] isEqualToString:CESeparatorString]) {
+    for (CEOutlineItem *outlineItem in outlineItems) {
+        if ([[outlineItem title] isEqualToString:CESeparatorString]) {
             [menu addItem:[NSMenuItem separatorItem]];
             continue;
         }
         
-        NSString *title = outlineItem[CEOutlineItemTitleKey];
-        NSRange titleRange = NSMakeRange(0, [title length]);
-        NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:title
+        NSRange titleRange = NSMakeRange(0, [[outlineItem title] length]);
+        NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:[outlineItem title]
                                                                                       attributes:baseAttributes];
         
-        NSFontTraitMask fontTrait;
-        fontTrait = [outlineItem[CEOutlineItemStyleBoldKey] boolValue] ? NSBoldFontMask : 0;
-        fontTrait |= [outlineItem[CEOutlineItemStyleItalicKey] boolValue] ? NSItalicFontMask : 0;
+        NSFontTraitMask fontTrait = 0;
+        fontTrait |= [outlineItem isBold] ? NSBoldFontMask : 0;
+        fontTrait |= [outlineItem isItalic] ? NSItalicFontMask : 0;
         [attrTitle applyFontTraits:fontTrait range:titleRange];
         
-        if ([outlineItem[CEOutlineItemStyleUnderlineKey] boolValue]) {
+        if ([outlineItem hasUnderline]) {
             [attrTitle addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:titleRange];
         }
         
@@ -189,7 +188,7 @@ static const NSTimeInterval kDuration = 0.12;
         [menuItem setAttributedTitle:attrTitle];
         [menuItem setAction:@selector(setSelectedRangeWithNSValue:)];
         [menuItem setTarget:[self textView]];
-        [menuItem setRepresentedObject:outlineItem[CEOutlineItemRangeKey]];
+        [menuItem setRepresentedObject:[NSValue valueWithRange:[outlineItem range]]];
         
         [menu addItem:menuItem];
     }

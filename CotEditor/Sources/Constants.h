@@ -164,9 +164,6 @@ typedef NS_ENUM(NSUInteger, CEMainMenuIndex) {
 // Menu item tags
 typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     // in main menu
-    CEFileEncodingMenuItemTag   = 4001,
-    CESyntaxMenuItemTag         = 4002,
-    CEThemeMenuItemTag          = 4003,
     CEServicesMenuItemTag       =  999,  // const to not list up in "Menu Key Bindings" setting
     CESharingServiceMenuItemTag = 1999,
     CEScriptMenuDirectoryTag    = 8999,  // const to not list up in "Menu Key Bindings" setting
@@ -175,7 +172,6 @@ typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     CEDefaultScriptMenuItemTag  = 8001,  // const to not list up in context menu
     
     // in contextual menu
-    CEUtilityMenuItemTag        =  600,
     CEScriptMenuItemTag         =  800,
 };
 

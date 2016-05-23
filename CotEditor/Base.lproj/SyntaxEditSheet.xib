@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -10,7 +10,6 @@
             <connections>
                 <outlet property="box" destination="DIK-L4-eWJ" id="DlP-Wm-5LB"/>
                 <outlet property="menuTableView" destination="YN4-Eb-iD3" id="I8s-jI-ELe"/>
-                <outlet property="messageField" destination="265" id="CWe-kL-hZ7"/>
                 <outlet property="restoreButton" destination="670" id="xLF-g7-Ua9"/>
                 <outlet property="styleNameField" destination="215" id="vzT-U7-bfQ"/>
                 <outlet property="window" destination="6" id="91B-pH-jDW"/>
@@ -59,18 +58,21 @@
                             <binding destination="-2" name="hidden" keyPath="styleNameValid" id="X7p-Nb-Hr7"/>
                         </connections>
                     </imageView>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="46" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="265">
-                        <rect key="frame" x="166" y="392" width="466" height="14"/>
-                        <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="message" id="989">
+                    <textField horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="265" customClass="CEWrappingTextField">
+                        <rect key="frame" x="166" y="390" width="466" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="message" id="989">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="message" id="rSd-Fq-9L8"/>
+                        </connections>
                     </textField>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WT6-a5-cVO" userLabel="Menu View">
-                        <rect key="frame" x="20" y="53" width="140" height="327"/>
+                    <scrollView verticalCompressionResistancePriority="250" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WT6-a5-cVO" userLabel="Menu View">
+                        <rect key="frame" x="20" y="53" width="140" height="329"/>
                         <clipView key="contentView" id="Cq4-TF-1Wo">
-                            <rect key="frame" x="1" y="1" width="138" height="315"/>
+                            <rect key="frame" x="1" y="1" width="138" height="327"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="YN4-Eb-iD3">
@@ -135,10 +137,10 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <box autoresizesSubviews="NO" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="DIK-L4-eWJ">
-                        <rect key="frame" x="165" y="49" width="468" height="333"/>
+                    <box autoresizesSubviews="NO" verticalCompressionResistancePriority="250" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="DIK-L4-eWJ">
+                        <rect key="frame" x="165" y="49" width="468" height="335"/>
                         <view key="contentView" id="HO9-B7-8ih">
-                            <rect key="frame" x="1" y="1" width="466" height="331"/>
+                            <rect key="frame" x="1" y="1" width="466" height="333"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -187,6 +189,7 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="saveEdit:" target="-2" id="rli-FP-Z2f"/>
+                            <binding destination="-2" name="enabled" keyPath="styleNameValid" id="aWb-0v-6vT"/>
                         </connections>
                     </button>
                 </subviews>
@@ -206,10 +209,10 @@ DQ
                     <constraint firstItem="215" firstAttribute="centerY" secondItem="WE1-JL-ncy" secondAttribute="centerY" id="Qbv-b8-kdh"/>
                     <constraint firstItem="DIK-L4-eWJ" firstAttribute="leading" secondItem="215" secondAttribute="leading" id="SHQ-8K-znj"/>
                     <constraint firstItem="WE1-JL-ncy" firstAttribute="leading" secondItem="215" secondAttribute="trailing" constant="8" symbolic="YES" id="Ybl-u5-n7y"/>
-                    <constraint firstItem="265" firstAttribute="top" secondItem="215" secondAttribute="bottom" constant="2" id="ZSQ-qE-vcp"/>
+                    <constraint firstItem="265" firstAttribute="top" secondItem="215" secondAttribute="bottom" constant="4" id="ZSQ-qE-vcp"/>
                     <constraint firstAttribute="trailing" secondItem="265" secondAttribute="trailing" constant="20" symbolic="YES" id="ZSz-Sf-Rzl"/>
-                    <constraint firstItem="DIK-L4-eWJ" firstAttribute="top" secondItem="215" secondAttribute="bottom" constant="28" id="bAx-1r-KCx"/>
                     <constraint firstItem="WT6-a5-cVO" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="20" symbolic="YES" id="d9M-Vw-Thb"/>
+                    <constraint firstItem="DIK-L4-eWJ" firstAttribute="top" secondItem="265" secondAttribute="bottom" constant="8" symbolic="YES" id="k9M-ss-mSZ"/>
                     <constraint firstAttribute="bottom" secondItem="91" secondAttribute="bottom" constant="20" symbolic="YES" id="kgh-UB-LHQ"/>
                     <constraint firstItem="670" firstAttribute="top" secondItem="91" secondAttribute="top" id="kum-2W-D5e"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WE1-JL-ncy" secondAttribute="trailing" constant="20" symbolic="YES" id="m1j-CE-N5V"/>

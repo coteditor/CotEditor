@@ -26,6 +26,7 @@
  */
 
 #import "CEStatusBarController.h"
+#import "CEDocument.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEDefaults.h"
 
@@ -36,7 +37,6 @@ static const NSTimeInterval kDuration = 0.12;
 
 @interface CEStatusBarController ()
 
-@property (nonatomic, nullable, weak) IBOutlet CEDocumentAnalyzer *documentAnalyzer;
 @property (nonatomic, nullable, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @property (nonatomic) BOOL showsReadOnly;
@@ -126,6 +126,16 @@ static NSColor *kLabelColor;
 
 
 #pragma mark Public Methods
+
+// ------------------------------------------------------
+///
+- (void)setShown:(BOOL)shown
+// ------------------------------------------------------
+{
+    [[self documentAnalyzer] setNeedsUpdateStatusEditorInfo:shown];
+    
+    _shown = shown;
+}
 
 // ------------------------------------------------------
 /// update visibility
@@ -240,7 +250,7 @@ static NSColor *kLabelColor;
     if ([[[[[self view] window] windowController] document] isInViewingMode]) {  // on Versions browsing mode
         [self setShowsReadOnly:NO];
     } else {
-        [self setShowsReadOnly:![info isWritable]];
+        [self setShowsReadOnly:[info isReadOnly]];
     }
 }
 

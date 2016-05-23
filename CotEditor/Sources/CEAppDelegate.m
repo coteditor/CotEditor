@@ -43,10 +43,10 @@
 #import "CEColorCodePanelController.h"
 #import "CEConsolePanelController.h"
 #import "CEUnicodeInputPanelController.h"
+#import "CEWebDocumentWindowController.h"
 #import "CEMigrationWindowController.h"
 
 #import "CEDocument.h"
-#import "CEEditorWrapper.h"
 
 #import "CEErrors.h"
 #import "CEDefaults.h"
@@ -62,7 +62,12 @@
 
 @property (nonatomic) BOOL didFinishLaunching;
 
+@property (nonatomic, nullable) CEWebDocumentWindowController *acknowledgementsWindowController;
 @property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
+
+@property (nonatomic, nullable) IBOutlet NSMenu *encodingsMenu;
+@property (nonatomic, nullable) IBOutlet NSMenu *syntaxStylesMenu;
+@property (nonatomic, nullable) IBOutlet NSMenu *themesMenu;
 
 
 // readonly
@@ -98,17 +103,29 @@
         [encodings addObject:@(kCFStringEncodingList[i])];
     }
     
-    NSDictionary<NSString *, id> *defaults = @{CEDefaultEnablesAutosaveInPlaceKey: @NO,
+    NSDictionary<NSString *, id> *defaults = @{CEDefaultCreateNewAtStartupKey: @YES,
+                                               CEDefaultReopenBlankWindowKey: @YES,
+                                               CEDefaultEnablesAutosaveInPlaceKey: @NO,
+                                               CEDefaultTrimsTrailingWhitespaceOnSaveKey: @NO,
                                                CEDefaultDocumentConflictOptionKey: @(CEDocumentConflictRevert),
+                                               CEDefaultSyncFindPboardKey: @NO,
+                                               CEDefaultInlineContextualScriptMenuKey: @NO,
+                                               CEDefaultCountLineEndingAsCharKey: @YES,
+                                               CEDefaultAutoLinkDetectionKey: @NO,
+                                               CEDefaultCheckSpellingAsTypeKey: @NO,
+                                               CEDefaultHighlightBracesKey: @YES,
+                                               CEDefaultHighlightLtGtKey: @NO,
                                                CEDefaultChecksUpdatesForBetaKey: @NO,
-                                               CEDefaultLayoutTextVerticalKey: @NO,
-                                               CEDefaultSplitViewVerticalKey: @NO,
-                                               CEDefaultShowLineNumbersKey: @YES,
+                                               
+                                               CEDefaultShowNavigationBarKey: @YES,
                                                CEDefaultShowDocumentInspectorKey: @NO,
                                                CEDefaultShowStatusBarKey: @YES,
+                                               CEDefaultShowLineNumbersKey: @YES,
+                                               CEDefaultShowPageGuideKey: @NO,
+                                               CEDefaultPageGuideColumnKey: @80,
                                                CEDefaultShowStatusBarLinesKey: @YES,
-                                               CEDefaultShowStatusBarLengthKey: @NO,
                                                CEDefaultShowStatusBarCharsKey: @YES,
+                                               CEDefaultShowStatusBarLengthKey: @NO,
                                                CEDefaultShowStatusBarWordsKey: @NO,
                                                CEDefaultShowStatusBarLocationKey: @YES,
                                                CEDefaultShowStatusBarLineKey: @YES,
@@ -116,30 +133,16 @@
                                                CEDefaultShowStatusBarEncodingKey: @NO,
                                                CEDefaultShowStatusBarLineEndingsKey: @NO,
                                                CEDefaultShowStatusBarFileSizeKey: @YES,
-                                               CEDefaultShowNavigationBarKey: @YES,
-                                               CEDefaultCountLineEndingAsCharKey: @YES,
-                                               CEDefaultSyncFindPboardKey: @NO,
-                                               CEDefaultInlineContextualScriptMenuKey: @NO,
-                                               CEDefaultWrapLinesKey: @YES,
-                                               CEDefaultLineEndCharCodeKey: @0,
-                                               CEDefaultEncodingListKey: encodings,
-                                               CEDefaultFontNameKey: [[NSFont userFontOfSize:0] fontName],
-                                               CEDefaultFontSizeKey: @([NSFont systemFontSize]),
-                                               CEDefaultEncodingInOpenKey: @(CEAutoDetectEncoding),
-                                               CEDefaultEncodingInNewKey: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)),
-                                               CEDefaultReferToEncodingTagKey: @YES,
-                                               CEDefaultCreateNewAtStartupKey: @YES,
-                                               CEDefaultReopenBlankWindowKey: @YES,
-                                               CEDefaultCheckSpellingAsTypeKey: @NO,
+                                               CEDefaultSplitViewVerticalKey: @NO,
                                                CEDefaultWindowWidthKey: @600.0f,
                                                CEDefaultWindowHeightKey: @620.0f,
                                                CEDefaultWindowAlphaKey: @1.0f,
-                                               CEDefaultAutoExpandTabKey: @NO,
-                                               CEDefaultTabWidthKey: @4U,
-                                               CEDefaultAutoIndentKey: @YES,
-                                               CEDefaultEnablesHangingIndentKey: @YES,
-                                               CEDefaultHangingIndentWidthKey: @0U,
-                                               CEDefaultDetectsIndentStyleKey: @YES,
+                                               
+                                               CEDefaultFontNameKey: [[NSFont userFontOfSize:0] fontName],
+                                               CEDefaultFontSizeKey: @([NSFont systemFontSize]),
+                                               CEDefaultShouldAntialiasKey: @YES,
+                                               CEDefaultLineSpacingKey: @0.3f,
+                                               CEDefaultHighlightCurrentLineKey: @NO,
                                                CEDefaultShowInvisiblesKey: @YES,
                                                CEDefaultShowInvisibleSpaceKey: @NO,
                                                CEDefaultInvisibleSpaceKey: @0U,
@@ -150,35 +153,49 @@
                                                CEDefaultShowInvisibleFullwidthSpaceKey: @NO,
                                                CEDefaultInvisibleFullwidthSpaceKey: @0U,
                                                CEDefaultShowOtherInvisibleCharsKey: @NO,
-                                               CEDefaultHighlightCurrentLineKey: @NO,
                                                CEDefaultThemeKey: @"Dendrobates",
-                                               CEDefaultEnableSyntaxHighlightKey: @YES,
-                                               CEDefaultSyntaxStyleKey: @"Plain Text",
-                                               CEDefaultFileDropArrayKey: @[@{CEFileDropExtensionsKey: @"jpg, jpeg, gif, png",
-                                                                              CEFileDropFormatStringKey: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
-                                               CEDefaultBalancesBracketsKey: @NO,
+                                               
                                                CEDefaultSmartInsertAndDeleteKey: @NO,
+                                               CEDefaultBalancesBracketsKey: @NO,
+                                               CEDefaultSwapYenAndBackSlashKey: @NO,
                                                CEDefaultEnableSmartQuotesKey: @NO,
                                                CEDefaultEnableSmartDashesKey: @NO,
-                                               CEDefaultEnableSmartIndentKey: @YES,
-                                               CEDefaultAutoLinkDetectionKey: @NO,
+                                               CEDefaultAutoIndentKey: @YES,
+                                               CEDefaultTabWidthKey: @4U,
+                                               CEDefaultAutoExpandTabKey: @NO,
+                                               CEDefaultDetectsIndentStyleKey: @YES,
                                                CEDefaultAppendsCommentSpacerKey: @YES,
                                                CEDefaultCommentsAtLineHeadKey: @YES,
-                                               CEDefaultShouldAntialiasKey: @YES,
-                                               CEDefaultAutoCompleteKey: @NO,
+                                               CEDefaultWrapLinesKey: @YES,
+                                               CEDefaultEnablesHangingIndentKey: @YES,
+                                               CEDefaultHangingIndentWidthKey: @0U,
                                                CEDefaultCompletesDocumentWordsKey: @YES,
                                                CEDefaultCompletesSyntaxWordsKey: @YES,
                                                CEDefaultCompletesStandartWordsKey: @NO,
-                                               CEDefaultShowPageGuideKey: @NO,
-                                               CEDefaultPageGuideColumnKey: @80,
-                                               CEDefaultLineSpacingKey: @0.3f,
-                                               CEDefaultSwapYenAndBackSlashKey: @NO,
-                                               CEDefaultHighlightBracesKey: @YES,
-                                               CEDefaultHighlightLtGtKey: @NO,
+                                               CEDefaultAutoCompleteKey: @NO,
+                                               
+                                               CEDefaultLineEndCharCodeKey: @0,
+                                               CEDefaultEncodingListKey: encodings,
+                                               CEDefaultEncodingInNewKey: @(CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8)),
+                                               CEDefaultEncodingInOpenKey: @(CEAutoDetectEncoding),
                                                CEDefaultSaveUTF8BOMKey: @NO,
+                                               CEDefaultReferToEncodingTagKey: @YES,
+                                               CEDefaultEnableSyntaxHighlightKey: @YES,
+                                               CEDefaultSyntaxStyleKey: @"Plain Text",
+                                               
+                                               CEDefaultFileDropArrayKey: @[@{CEFileDropExtensionsKey: @"jpg, jpeg, gif, png",
+                                                                              CEFileDropFormatStringKey: @"<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"}],
+                                               
+                                               CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
+                                                                                    @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
+                                                                                    @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
+                                               
                                                CEDefaultSetPrintFontKey: @0,
                                                CEDefaultPrintFontNameKey: [[NSFont userFontOfSize:0] fontName],
                                                CEDefaultPrintFontSizeKey: @([NSFont systemFontSize]),
+                                               CEDefaultPrintColorIndexKey: @(CEPrintColorBlackWhite),
+                                               CEDefaultPrintLineNumIndexKey: @(CELinePrintNo),
+                                               CEDefaultPrintInvisibleCharIndexKey: @(CEInvisibleCharsPrintNo),
                                                CEDefaultPrintHeaderKey: @YES,
                                                CEDefaultPrimaryHeaderContentKey: @(CEPrintInfoFilePath),
                                                CEDefaultPrimaryHeaderAlignmentKey: @(CEAlignLeft),
@@ -189,41 +206,33 @@
                                                CEDefaultPrimaryFooterAlignmentKey: @(CEAlignLeft),
                                                CEDefaultSecondaryFooterContentKey: @(CEPrintInfoPageNumber),
                                                CEDefaultSecondaryFooterAlignmentKey: @(CEAlignCenter),
-                                               CEDefaultPrintLineNumIndexKey: @(CELinePrintNo),
-                                               CEDefaultPrintInvisibleCharIndexKey: @(CEInvisibleCharsPrintNo),
-                                               CEDefaultPrintColorIndexKey: @(CEPrintColorBlackWhite),
-                                               CEDefaultTrimsTrailingWhitespaceOnSaveKey: @NO,
                                                
-                                               /* -------- settings not in preferences window -------- */
-                                               CEDefaultInsertCustomTextArrayKey: @[@"<br />\n", @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
-                                                                                    @"", @"", @"", @"", @"", @"", @"", @"", @"", @"",
-                                                                                    @"", @"", @"", @"", @"", @"", @"", @"", @"", @""],
+                                               // ------ settings not in preferences window ------
                                                CEDefaultColorCodeTypeKey: @1,
                                                CEDefaultSidebarWidthKey: @220,
                                                
                                                // settings for find panel are register in CETextFinder
                                                
-                                               /* -------- hidden settings -------- */
-                                               CEDefaultUsesTextFontForInvisiblesKey: @NO,
+                                               // ------ hidden settings ------
                                                CEDefaultLineNumFontNameKey: @"AvenirNextCondensed-Regular",
+                                               CEDefaultUsesTextFontForInvisiblesKey: @NO,
+                                               CEDefaultHeaderFooterDateFormatKey: @"YYYY-MM-dd HH:mm",
+                                               CEDefaultHeaderFooterPathAbbreviatingWithTildeKey: @YES,
+                                               CEDefaultTextContainerInsetWidthKey: @0.0f,
+                                               CEDefaultTextContainerInsetHeightTopKey: @4.0f,
+                                               CEDefaultTextContainerInsetHeightBottomKey: @16.0f,
                                                CEDefaultBasicColoringDelayKey: @0.01f,
-                                               CEDefaultAutoCompletionDelayKey: @0.25,
+                                               CEDefaultAutoCompletionDelayKey: @0.25f,
                                                CEDefaultInfoUpdateIntervalKey: @0.2f, 
                                                CEDefaultIncompatibleCharIntervalKey: @0.42f, 
                                                CEDefaultOutlineMenuIntervalKey: @0.37f,
-                                               CEDefaultHeaderFooterDateFormatKey: @"YYYY-MM-dd HH:mm",
-                                               CEDefaultHeaderFooterPathAbbreviatingWithTildeKey: @YES, 
-                                               CEDefaultTextContainerInsetWidthKey: @0.0f, 
-                                               CEDefaultTextContainerInsetHeightTopKey: @4.0f, 
-                                               CEDefaultTextContainerInsetHeightBottomKey: @16.0f, 
                                                CEDefaultShowColoringIndicatorTextLengthKey: @75000U,
-                                               CEDefaultRunAppleScriptInLaunchingKey: @YES,
-                                               CEDefaultShowAlertForNotWritableKey: @YES, 
-                                               CEDefaultNotifyEditByAnotherKey: @YES,
-                                               CEDefaultColoringRangeBufferLengthKey: @5000,
+                                               CEDefaultColoringRangeBufferLengthKey: @5000U,
                                                CEDefaultLargeFileAlertThresholdKey: @(50 * pow(1024, 2)),  // 50 MB
-                                               CEDefaultAutosavingDelayKey: @5.0,
+                                               CEDefaultAutosavingDelayKey: @5.0f,
                                                CEDefaultSavesTextOrientationKey: @YES,
+                                               CEDefaultLayoutTextVerticalKey: @NO,
+                                               CEDefaultEnableSmartIndentKey: @YES,
                                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
@@ -274,6 +283,9 @@
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
+    // store key bindings in MainMenu.xib before menu is modified
+    [[CEKeyBindingManager sharedManager] scanDefaultMenuKeyBindings];
+    
     // build menus
     [self buildEncodingMenu];
     [self buildSyntaxMenu];
@@ -370,9 +382,6 @@
 - (void)applicationDidFinishLaunching:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    // keyboard shortcuts will be overridden by CEKeyBindingManager
-    //   - to apply shortcuts, write them in MenuKeyBindings.plist (2007-05-19)
-    
     // setup KeyBindingManager
     [[CEKeyBindingManager sharedManager] applyKeyBindingsToMainMenu];
     
@@ -540,6 +549,19 @@
 
 
 // ------------------------------------------------------
+/// show acknowlegements
+- (IBAction)showAcknowledgements:(nullable id)sender
+// ------------------------------------------------------
+{
+    if (![self acknowledgementsWindowController]) {
+        [self setAcknowledgementsWindowController:[[CEWebDocumentWindowController alloc] initWithDocumentName:@"Acknowledgements"]];
+    }
+    
+    [[self acknowledgementsWindowController] showWindow:sender];
+}
+
+
+// ------------------------------------------------------
 /// open OSAScript dictionary in Script Editor
 - (IBAction)openAppleScriptDictionary:(nullable id)sender
 // ------------------------------------------------------
@@ -613,10 +635,10 @@
     
     CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:NO error:nil];
     [document setDisplayName:NSLocalizedString(@"Bug Report", nil)];
+    [[document textStorage] replaceCharactersInRange:NSMakeRange(0, 0) withString:template];
+    [document setSyntaxStyleWithName:@"Markdown"];
     [document makeWindowControllers];
     [document showWindows];
-    [[document editor] setString:template];
-    [document setSyntaxStyleWithName:@"Markdown"];
 }
 
 
@@ -628,7 +650,7 @@
 - (void)buildEncodingMenu
 //------------------------------------------------------
 {
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEFileEncodingMenuItemTag] submenu];
+    NSMenu *menu = [self encodingsMenu];
     
     [[CEEncodingManager sharedManager] updateChangeEncodingMenu:menu];
 }
@@ -639,7 +661,7 @@
 - (void)buildSyntaxMenu
 //------------------------------------------------------
 {
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CESyntaxMenuItemTag] submenu];
+    NSMenu *menu = [self syntaxStylesMenu];
     [menu removeAllItems];
     
     // add None
@@ -676,7 +698,7 @@
 - (void)buildThemeMenu
 //------------------------------------------------------
 {
-    NSMenu *menu = [[[[[NSApp mainMenu] itemAtIndex:CEFormatMenuIndex] submenu] itemWithTag:CEThemeMenuItemTag] submenu];
+    NSMenu *menu = [self themesMenu];
     [menu removeAllItems];
     
     NSArray<NSString *> *themeNames = [[CEThemeManager sharedManager] themeNames];
@@ -709,9 +731,9 @@
     CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:NO error:&err];
     
     if (document) {
+        [[document textStorage] replaceCharactersInRange:NSMakeRange(0, 0) withString:selection];
         [document makeWindowControllers];
         [document showWindows];
-        [[document editor] setString:selection];
     } else {
         [[NSAlert alertWithError:err] runModal];
     }

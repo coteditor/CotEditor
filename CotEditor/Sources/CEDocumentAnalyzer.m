@@ -44,6 +44,10 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 
 @interface CEDocumentAnalyzer ()
 
+@property (nonatomic, nullable, weak) CEDocument *document;  // weak to avoid cycle retain
+
+@property (nonatomic, nullable, weak) NSTimer *editorInfoUpdateTimer;
+
 // formatters
 @property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
 @property (nonatomic, nonnull) NSByteCountFormatter *byteCountFormatter;
@@ -55,7 +59,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 @property (readwrite, nonatomic, nullable) NSString *filePath;
 @property (readwrite, nonatomic, nullable) NSString *owner;
 @property (readwrite, nonatomic, nullable) NSString *permission;
-@property (readwrite, nonatomic, getter=isWritable) BOOL writable;
+@property (readwrite, nonatomic, getter=isReadOnly) BOOL readOnly;
 
 // mode infos
 @property (readwrite, nonatomic, nullable) NSString *encoding;
@@ -85,12 +89,26 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 #pragma mark Superclass methods
 
 // ------------------------------------------------------
-/// setup
-- (instancetype)init
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [_editorInfoUpdateTimer invalidate];
+}
+
+
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// initialize instance
+- (nonnull instancetype)initWithDocument:(nonnull CEDocument *)document
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
+        _document = document;
+        
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [_dateFormatter setTimeStyle:NSDateFormatterShortStyle];
@@ -102,12 +120,9 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 }
 
 
-
-#pragma mark Public Methods
-
 // ------------------------------------------------------
 /// update file info
-- (void)updateFileInfo
+- (void)invalidateFileInfo
 // ------------------------------------------------------
 {
     CEDocument *document = [self document];
@@ -123,7 +138,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%lo (%@)",
                                                       (unsigned long)[attrs filePosixPermissions],
                                                       humanReadablePermission([attrs filePosixPermissions])] : nil;
-    self.writable = [document isWritable];
+    self.readOnly = [attrs fileIsImmutable];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateFileInfoNotification
                                                         object:self];
@@ -132,7 +147,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 
 // ------------------------------------------------------
 /// update current encoding and line endings
-- (void)updateModeInfo
+- (void)invalidateModeInfo
 // ------------------------------------------------------
 {
     CEDocument *document = [self document];
@@ -147,14 +162,25 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 
 
 // ------------------------------------------------------
-/// update current editor string info
-- (void)updateEditorInfo:(BOOL)needsAll
+/// update editor info (only if really needed)
+- (void)invalidateEditorInfo
 // ------------------------------------------------------
 {
+    if (![self needsUpdateEditorInfo] && ![self needsUpdateStatusEditorInfo]) { return; }
+    
+    [self setupEditorInfoUpdateTimer];
+}
+
+
+// ------------------------------------------------------
+/// update current editor string info
+- (void)updateEditorInfo
+// ------------------------------------------------------
+{
+    BOOL needsAll = [self needsUpdateEditorInfo];
+    
     CEDocument *document = [self document];
     CEEditorWrapper *editor = [document editor];
-    
-    if (![editor string]) { return; }
     
     BOOL hasMarked = [[editor focusedTextView] hasMarkedText];
     NSString *wholeString = [document string];
@@ -296,6 +322,35 @@ NSString *humanReadablePermission(NSUInteger permission)
     }
     
     return [result copy];
+}
+
+
+// ------------------------------------------------------
+/// set update timer for information about the content text
+- (void)setupEditorInfoUpdateTimer
+// ------------------------------------------------------
+{
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultInfoUpdateIntervalKey];
+    
+    if ([[self editorInfoUpdateTimer] isValid]) {
+        [[self editorInfoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
+    } else {
+        [self setEditorInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                        target:self
+                                                                      selector:@selector(updateEditorInfoWithTimer:)
+                                                                      userInfo:nil
+                                                                       repeats:NO]];
+    }
+}
+
+
+// ------------------------------------------------------
+/// editor info update timer is fired
+- (void)updateEditorInfoWithTimer:(nonnull NSTimer *)timer
+// ------------------------------------------------------
+{
+    [[self editorInfoUpdateTimer] invalidate];
+    [self updateEditorInfo];
 }
 
 @end

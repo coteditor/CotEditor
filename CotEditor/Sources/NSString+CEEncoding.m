@@ -58,6 +58,47 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
 }
 
 
+//------------------------------------------------------
+/// decode `com.apple.TextEncoding` extended file attribute to encoding
+NSStringEncoding decodeXattrEncoding(NSData * _Nullable data)
+//------------------------------------------------------
+{
+    if (!data) { return NSNotFound; }
+    
+    // parse value
+    CFStringEncoding cfEncoding = kCFStringEncodingInvalidId;
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSArray<NSString *> *strings = [string componentsSeparatedByString:@";"];
+    
+    if ([strings count] >= 2) {
+        cfEncoding = (CFStringEncoding)[strings[1] integerValue];
+    } else if ([strings firstObject]) {
+        NSString *IANACharSetName = [strings firstObject];
+        cfEncoding = CFStringConvertIANACharSetNameToEncoding((CFStringRef)IANACharSetName);
+    }
+    
+    if (cfEncoding == kCFStringEncodingInvalidId) { return NSNotFound; }
+    
+    return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+}
+
+
+//------------------------------------------------------
+/// encode encoding to data for `com.apple.TextEncoding` extended file attribute
+NSData * _Nullable encodeXattrEncoding(NSStringEncoding encoding)
+//------------------------------------------------------
+{
+    CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding(encoding);
+    
+    if (cfEncoding == kCFStringEncodingInvalidId) { return nil; }
+    
+    NSString *IANACharSetName = (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
+    NSString *string = [NSString stringWithFormat:@"%@;%u", IANACharSetName, cfEncoding];
+    
+    return [string dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+
 
 
 #pragma mark -

@@ -29,8 +29,8 @@
 #import <NSHash/NSString+NSHash.h>
 
 #import "CESyntaxStyle.h"
-#import "CESyntaxOutlineParser.h"
-#import "CESyntaxHighlightParser.h"
+#import "CEOutlineParseOperation.h"
+#import "CESyntaxHighlightParseOperation.h"
 #import "CETextViewProtocol.h"
 #import "CEProgressSheetController.h"
 #import "CEDefaults.h"
@@ -49,7 +49,13 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
 
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSArray *> *cachedHighlights;  // extracted results cache of the last whole string highlighs
-@property (nonatomic, nullable, copy) NSString *cachedHash;  // MD5 hash
+@property (nonatomic, nullable, copy) NSString *highlightCacheHash;  // MD5 hash
+
+@property (nonatomic, nullable, copy) NSArray<CEOutlineItem *> *cachedOutlineItems;
+@property (nonatomic, nullable, copy) NSString *outlineCacheHash;  // MD5 hash
+
+@property (nonatomic, nonnull) NSOperationQueue *outlineParseOperationQueue;
+@property (nonatomic, nonnull) NSOperationQueue *syntaxHighlightParseOperationQueue;
 
 
 // readonly
@@ -101,6 +107,16 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 }
 
 
+//------------------------------------------------------
+/// clean up
+- (void)dealloc
+//------------------------------------------------------
+{
+    [_outlineParseOperationQueue cancelAllOperations];
+    [_syntaxHighlightParseOperationQueue cancelAllOperations];
+}
+
+
 
 #pragma mark Public Methods
 
@@ -112,6 +128,11 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     self = [super init];
     if (self) {
         _styleName = styleName;
+        
+        _outlineParseOperationQueue = [[NSOperationQueue alloc] init];
+        [_outlineParseOperationQueue setName:@"com.coteditor.CotEditor.outlineParseOperationQueue"];
+        _syntaxHighlightParseOperationQueue = [[NSOperationQueue alloc] init];
+        [_syntaxHighlightParseOperationQueue setName:@"com.coteditor.CotEditor.syntaxHighlightParseOperationQueue"];
         
         if (!dictionary) {
             _none = YES;
@@ -262,6 +283,16 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     return NO;
 }
 
+
+// ------------------------------------------------------
+/// cancel all syntax parse
+- (void)cancelAllParses
+// ------------------------------------------------------
+{
+    [[self outlineParseOperationQueue] cancelAllOperations];
+    [[self syntaxHighlightParseOperationQueue] cancelAllOperations];
+}
+
 @end
 
 
@@ -275,13 +306,43 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// parse outline
-- (void)parseOutlineItemsInString:(nonnull NSString *)string completionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull))completionHandler
+- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<CEOutlineItem *> * _Nonnull))completionHandler
 // ------------------------------------------------------
 {
-    CESyntaxOutlineParser *parser = [[CESyntaxOutlineParser alloc] initWithString:string definitions:[self outlineDefinitions]];
-    [parser parseWithCompletionHandler:^(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems) {
-        completionHandler(outlineItems);
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
+    if ([[self textStorage] length] == 0) { return; }
+    
+    // use cache if exist
+    if ([self outlineCacheHash] && [[self outlineCacheHash] isEqualToString:[[[self textStorage] string] MD5]]) {
+        completionHandler([self cachedOutlineItems]);
+        return;
+    }
+    
+    // make sure the string is immutable
+    //   -> NSTextStorage's `string` property retruns a mutable string.
+    NSString *string = [NSString stringWithString:[[self textStorage] string]];
+    NSRange range = NSMakeRange(0, [string length]);
+    
+    CEOutlineParseOperation *operation = [[CEOutlineParseOperation alloc] initWithDefinitions:[self outlineDefinitions]];
+    [operation setString:string];
+    [operation setParseRange:range];
+    
+    __weak typeof(operation) weakOperation = operation;
+    __weak typeof(self) weakSelf = self;
+    [operation setCompletionBlock:^{
+        if ([weakOperation isCancelled]) { return; }
+        
+        if (weakSelf && [weakOperation results]) {
+            [weakSelf setCachedOutlineItems:[weakOperation results]];
+            [weakSelf setOutlineCacheHash:[string MD5]];
+        }
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            completionHandler([weakOperation results] ?: @[]);
+        });
     }];
+    
+    [[self outlineParseOperationQueue] addOperation:operation];
 }
 
 @end
@@ -297,16 +358,17 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 全体をカラーリング
-- (void)highlightWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler
+- (void)highlightWholeStringWithCompletionHandler:(nullable void (^)())completionHandler
 // ------------------------------------------------------
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
-    if ([textStorage length] == 0) { return; }
+    if ([[self textStorage] length] == 0) { return; }
     
+    NSTextStorage *textStorage = [self textStorage];
     NSRange wholeRange = NSMakeRange(0, [textStorage length]);
     
     // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
-    if ([[[textStorage string] MD5] isEqualToString:[self cachedHash]]) {
+    if ([self highlightCacheHash] && [[self highlightCacheHash] isEqualToString:[[textStorage string] MD5]]) {
         for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
             [self applyHighlights:[self cachedHighlights] range:wholeRange layoutManager:layoutManager];
         }
@@ -330,11 +392,13 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)highlightRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage
+- (void)highlightRange:(NSRange)range
 // ------------------------------------------------------
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
-    if ([textStorage length] == 0) { return; }
+    if ([[self textStorage] length] == 0) { return; }
+    
+    NSTextStorage *textStorage = [self textStorage];
     
     // make sure that string is immutable (see `highlightWholeStringInTextStorage:completionHandler:` for details)
     NSString *string = [NSString stringWithString:[textStorage string]];
@@ -401,13 +465,13 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         return;
     }
     
-    __block BOOL isCompleted = NO;
-    __block CESyntaxHighlightParser *parser = [[CESyntaxHighlightParser alloc] initWithString:wholeString
-                                                                                   dictionary:[self highlightDictionary]
-                                                                     simpleWordsCharacterSets:[self simpleWordsCharacterSets]
-                                                                             pairedQuoteTypes:[self pairedQuoteTypes]
-                                                                       inlineCommentDelimiter:[self inlineCommentDelimiter]
-                                                                       blockCommentDelimiters:[self blockCommentDelimiters]];
+    CESyntaxHighlightParseOperation *operation = [[CESyntaxHighlightParseOperation alloc] initWithDictionary:[self highlightDictionary]
+                                                                                    simpleWordsCharacterSets:[self simpleWordsCharacterSets]
+                                                                                            pairedQuoteTypes:[self pairedQuoteTypes]
+                                                                                      inlineCommentDelimiter:[self inlineCommentDelimiter]
+                                                                                      blockCommentDelimiters:[self blockCommentDelimiters]];
+    [operation setString:wholeString];
+    [operation setParseRange:highlightRange];
     
     // show highlighting indicator for large string
     CEProgressSheetController *indicator = nil;
@@ -415,37 +479,29 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         NSWindow *documentWindow = [[[[textStorage layoutManagers] firstObject] firstTextView] window];
         indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
         // set handlers
-        [parser setDidProgress:^(CGFloat delta) {
+        [operation setDidProgress:^(CGFloat delta) {
             [indicator progressIndicator:delta];
         }];
-        [parser setBeginParsingBlock:^(NSString * _Nonnull blockName) {
+        [operation setBeginParsingBlock:^(NSString * _Nonnull blockName) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil), blockName]];
             });
         }];
         
-        // wait for window becomes visible
+        // wait for window becomes visible and sheet-attachable
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            while (![documentWindow isVisible]) {
+            while (![documentWindow isVisible] || [documentWindow attachedSheet]) {
                 [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
             }
             
-            // progress the main thread run-loop in order to give a chance to show more important sheet
-            dispatch_sync(dispatch_get_main_queue(), ^{});
-            
-            // wait until attached window closes
-            while ([documentWindow attachedSheet]) {
-                [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
-            }
-            
-            // otherwise, attach the indicator as a sheet
-            dispatch_async(dispatch_get_main_queue(), ^{
+            // attach the indicator as a sheet
+            dispatch_sync(dispatch_get_main_queue(), ^{
                 // do nothing if highlighting is already finished
-                if (isCompleted) { return; }
+                if ([operation isFinished]) { return; }
                 
                 [indicator beginSheetForWindow:documentWindow completionHandler:^(NSModalResponse returnCode) {
                     if (returnCode == NSCancelButton) {
-                        [parser setCancelled:YES];
+                        [operation cancel];
                     }
                 }];
             });
@@ -453,47 +509,42 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     }
     
     __weak typeof(self) weakSelf = self;
-    [parser parseRange:highlightRange completionHandler:^(NSDictionary<NSString *, NSArray<NSValue *> *> * _Nonnull highlights)
-     {
-         typeof(self) self = weakSelf;  // strong self
-         if (!self) {  // This block can be passed if the syntax style is already discarded.
-             isCompleted = YES;
-             return;
-         }
-         
-         if ([highlights count] > 0) {
-             // cache result if whole text was parsed
-             if (highlightRange.length == [wholeString length]) {
-                 [self setCachedHighlights:highlights];
-                 [self setCachedHash:[wholeString MD5]];
-             }
-             
-             // apply color (or give up if the editor's string is changed from the analized string)
-             if ([[textStorage string] length] == [wholeString length]) {
-                 // update indicator message
-                 if (indicator) {
-                     [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
-                 }
-                 for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
-                     [self applyHighlights:highlights range:highlightRange layoutManager:layoutManager];
-                 }
-             }
-         }
-         
-         isCompleted = YES;
-         
-         // clean up indicator sheet
-         if (indicator) {
-             [indicator close:self];
-         }
-         
-         // do the rest things
-         if (completionHandler) {
-             completionHandler();
-         }
-         
-         parser = nil;  // keep parser until end
-     }];
+    __weak typeof(operation) weakOperation = operation;
+    [operation setCompletionBlock:^{
+        NSDictionary<NSString *, NSArray<NSValue *> *> *highlights = [weakOperation results];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (![weakOperation isCancelled]) {
+                // cache result if whole text was parsed
+                if (highlightRange.length == [wholeString length]) {
+                    [self setCachedHighlights:highlights];
+                    [self setHighlightCacheHash:[wholeString MD5]];
+                }
+                
+                // apply color (or give up if the editor's string is changed from the analized string)
+                if ([[textStorage string] length] == [wholeString length]) {
+                    // update indicator message
+                    if (indicator) {
+                        [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
+                    }
+                    for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
+                        [self applyHighlights:highlights range:highlightRange layoutManager:layoutManager];
+                    }
+                }
+            }
+            
+            // clean up indicator sheet
+            if (indicator) {
+                [indicator close:self];
+            }
+            
+            // do the rest things
+            if (completionHandler) {
+                completionHandler();
+            }
+        });
+    }];
+    
+    [[self syntaxHighlightParseOperationQueue] addOperation:operation];
 }
 
 

@@ -54,7 +54,6 @@
 - (nonnull NSString *)string;
 - (nonnull NSString *)substringWithRange:(NSRange)range;
 - (nonnull NSString *)substringWithSelection;
-- (void)setString:(nonnull NSString *)string;
 
 - (void)insertTextViewString:(nonnull NSString *)inString;
 - (void)insertTextViewStringAfterSelection:(nonnull NSString *)string;
@@ -80,6 +79,8 @@
 // theme
 - (void)setThemeWithName:(nonnull NSString *)themeName;
 - (nullable CETheme *)theme;
+
+- (void)invalidateStyleInTextStorage;
 
 
 #pragma mark Action Messages
@@ -111,15 +112,12 @@
 @interface CEEditorWrapper (SyntaxParsing)
 
 @property (readonly, nonatomic, nullable) CESyntaxStyle *syntaxStyle;
-@property (readonly, nonatomic) BOOL canHighlight;
 
 
 - (IBAction)recolorAll:(nullable id)sender;
 
 - (void)invalidateSyntaxHighlight;
 - (void)invalidateOutlineMenu;
-- (void)setupSyntaxHighlightTimer;
-- (void)setupOutlineMenuUpdateTimer;
 
 @end
 

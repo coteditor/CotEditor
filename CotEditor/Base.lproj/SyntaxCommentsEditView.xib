@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
@@ -366,6 +366,16 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="18" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-Nb-6yw">
+                    <rect key="frame" x="415" y="9" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Bb-53-IpP">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-1" id="gzk-Yg-sh2"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="WDn-Vx-yAe" firstAttribute="trailing" secondItem="gGr-AE-CgQ" secondAttribute="trailing" id="0tb-6I-e0p"/>
@@ -384,8 +394,10 @@
                 <constraint firstItem="1xs-RY-0ID" firstAttribute="leading" secondItem="SEW-h4-aL1" secondAttribute="trailing" constant="8" symbolic="YES" id="Zhq-Z2-UgO"/>
                 <constraint firstItem="teO-CT-cDt" firstAttribute="top" secondItem="ska-c0-sx2" secondAttribute="bottom" constant="10" symbolic="YES" id="awZ-Q2-1ZC"/>
                 <constraint firstItem="teO-CT-cDt" firstAttribute="centerY" secondItem="gGr-AE-CgQ" secondAttribute="centerY" id="csN-Ix-KIL"/>
+                <constraint firstAttribute="bottom" secondItem="g4a-Nb-6yw" secondAttribute="bottom" constant="12" id="diF-KP-Kyw"/>
                 <constraint firstItem="SEW-h4-aL1" firstAttribute="centerY" secondItem="1xs-RY-0ID" secondAttribute="centerY" id="g2u-Dr-HbS"/>
                 <constraint firstItem="3Fq-66-Myr" firstAttribute="height" secondItem="DyC-OT-P9k" secondAttribute="height" id="hYY-XT-46d"/>
+                <constraint firstAttribute="trailing" secondItem="g4a-Nb-6yw" secondAttribute="trailing" constant="12" id="i4y-WN-A79"/>
                 <constraint firstItem="teO-CT-cDt" firstAttribute="width" secondItem="ska-c0-sx2" secondAttribute="width" id="iHM-Sl-Pc2"/>
                 <constraint firstItem="fMh-IW-C4T" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="jMG-qC-N5F"/>
                 <constraint firstAttribute="trailing" secondItem="szY-Yp-KrM" secondAttribute="trailing" constant="12" id="oUl-sL-kQ4"/>

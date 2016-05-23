@@ -29,7 +29,12 @@
 @import Cocoa;
 
 
+@class CEOutlineItem;
+
+
 @interface CESyntaxStyle : NSObject
+
+@property (nonatomic, nullable) NSTextStorage *textStorage;
 
 // readonly
 @property (readonly, nonatomic, nonnull, copy) NSString *styleName;
@@ -46,13 +51,15 @@
 /// check equality of the content
 - (BOOL)isEqualToSyntaxStyle:(nullable CESyntaxStyle *)syntaxStyle;
 
+- (void)cancelAllParses;
+
 @end
 
 
 
 @interface CESyntaxStyle (Outline)
 
-- (void)parseOutlineItemsInString:(nonnull NSString *)string completionHandler:(nullable void (^)(NSArray<NSDictionary<NSString *,id> *> * _Nonnull outlineItems))completionHandler;
+- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<CEOutlineItem *> * _Nonnull outlineItems))completionHandler;
 
 @end
 
@@ -60,7 +67,7 @@
 
 @interface CESyntaxStyle (Highlighting)
 
-- (void)highlightWholeStringInTextStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler;
-- (void)highlightRange:(NSRange)range textStorage:(nonnull NSTextStorage *)textStorage;
+- (void)highlightWholeStringWithCompletionHandler:(nullable void (^)())completionHandler;
+- (void)highlightRange:(NSRange)range;
 
 @end
