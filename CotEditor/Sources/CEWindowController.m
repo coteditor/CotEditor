@@ -123,8 +123,9 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     [[self sidebarSplitView] layoutSubtreeIfNeeded];
     [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
-    // set document instance to incompatible chars view
+    // set document instance to sidebar views
     [[self incompatibleCharsViewController] setDocument:[self document]];
+    [[self documentInspectorViewController] setRepresentedObject:[[self document] analyzer]];
     
     // setup status bar
     [[self statusBarController] setDocumentAnalyzer:[[self document] analyzer]];
