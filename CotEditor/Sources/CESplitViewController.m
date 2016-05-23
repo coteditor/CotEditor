@@ -37,6 +37,9 @@
 
 @property (nonatomic, nonnull) NSMutableArray<CEEditorViewController *> *editorViewControllers;
 
+// readonly
+@property (readwrite, nonatomic, nullable) CEEditorViewController *focusedSubviewController;
+
 @end
 
 
@@ -56,6 +59,10 @@
     self = [super initWithCoder:coder];
     if (self) {
         _editorViewControllers = [NSMutableArray array];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textViewDidBecomeFirstResponder:)
+                                                     name:CETextViewDidBecomeFirstResponderNotification object:nil];
     }
     return self;
 }
@@ -81,6 +88,8 @@
     // Need to set nil to NSSplitView's delegate manually since it is not weak but just assign,
     //     and may crash when closing split fullscreen window on El Capitan (2015-07)
     [[self splitView] setDelegate:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -222,11 +231,18 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// 現在フォーカスのある分割ビューを返す
-- (nullable CEEditorViewController *)currentSubviewController
+/// editor's focus did change
+- (void)textViewDidBecomeFirstResponder:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    return (CEEditorViewController *)[(NSTextView *)[[[self view] window] firstResponder] delegate];
+    NSAssert([[notification object] isKindOfClass:[CETextView class]], @"");
+    
+    __weak typeof(self) weakSelf = self;
+    [self enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+        if ([viewController textView] == [notification object]) {
+            [weakSelf setFocusedSubviewController:viewController];
+        }
+    }];
 }
 
 
@@ -240,7 +256,7 @@
     if (count < 2) { return; }
     
     NSArray<__kindof CEEditorViewController *> *subviewControllers = [self editorViewControllers];
-    NSInteger index = [subviewControllers indexOfObject:[self currentSubviewController]];
+    NSInteger index = [subviewControllers indexOfObject:[self focusedSubviewController]];
     
     if (onNext) {
         index++;

@@ -113,8 +113,6 @@
     
     [_syntaxHighlightTimer invalidate];
     [_outlineMenuTimer invalidate];
-    
-    _focusedTextView = nil;
 }
 
 
@@ -270,6 +268,15 @@
 
 
 #pragma mark Public Methods
+
+// ------------------------------------------------------
+/// return textView focused on
+- (nullable CETextView *)focusedTextView
+// ------------------------------------------------------
+{
+    return [[[self splitViewController] focusedSubviewController] textView];
+}
+
 
 // ------------------------------------------------------
 /// textView の文字列を返す（改行コードはLF固定）
@@ -897,7 +904,7 @@
 - (CENavigationBarController *)navigationBarController
 // ------------------------------------------------------
 {
-    return [(CEEditorViewController *)[[self focusedTextView] delegate] navigationBarController];
+    return [[[self splitViewController] focusedSubviewController] navigationBarController];
 }
 
 @end

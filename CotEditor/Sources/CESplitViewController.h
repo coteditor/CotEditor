@@ -30,11 +30,13 @@
 
 
 @class CEEditorViewController;
+@class CETextView;
 
 
 @interface CESplitViewController : NSViewController <NSSplitViewDelegate>
 
 @property (readonly, nonatomic, nonnull) NSSplitView *splitView;
+@property (readonly, nonatomic, nullable) CEEditorViewController *focusedSubviewController;
 
 
 - (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorViewController * _Nonnull viewController))block;

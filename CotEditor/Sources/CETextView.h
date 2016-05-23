@@ -31,6 +31,10 @@
 #import "CETextViewProtocol.h"
 
 
+// notifications
+extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
+
+
 @interface CETextView : NSTextView <CETextViewProtocol>
 
 @property (nonatomic) BOOL showsPageGuide;

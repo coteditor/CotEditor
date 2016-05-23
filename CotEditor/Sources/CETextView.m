@@ -28,8 +28,6 @@
 
 #import "CETextView.h"
 #import "CELayoutManager.h"
-#import "CEWindowController.h"
-#import "CEEditorWrapper.h"
 #import "CEColorCodePanelController.h"
 #import "CECharacterPopoverController.h"
 #import "CEEditorScrollView.h"
@@ -46,6 +44,10 @@
 #import "CEGeometry.h"
 #import "NSString+CECounting.h"
 #import "NSFont+CESize.h"
+
+
+// notifications
+NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification = @"CETextViewDidBecomeFirstResponderNotification";
 
 
 // constant
@@ -252,7 +254,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (BOOL)becomeFirstResponder
 // ------------------------------------------------------
 {
-    [[(CEWindowController *)[[self window] windowController] editor] setFocusedTextView:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CETextViewDidBecomeFirstResponderNotification
+                                                        object:self];
     
     return [super becomeFirstResponder];
 }
