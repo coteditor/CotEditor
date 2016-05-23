@@ -73,24 +73,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 
 @implementation CEWindowController
 
-static NSTimeInterval infoUpdateInterval;
-
-
 #pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// initialize class
-+ (void)initialize
-// ------------------------------------------------------
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        infoUpdateInterval = [defaults doubleForKey:CEDefaultInfoUpdateIntervalKey];
-    });
-}
-
 
 // ------------------------------------------------------
 /// clean up
@@ -272,10 +255,12 @@ static NSTimeInterval infoUpdateInterval;
 - (void)setupEditorInfoUpdateTimer
 // ------------------------------------------------------
 {
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultInfoUpdateIntervalKey];
+    
     if ([[self editorInfoUpdateTimer] isValid]) {
-        [[self editorInfoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:infoUpdateInterval]];
+        [[self editorInfoUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
     } else {
-        [self setEditorInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:infoUpdateInterval
+        [self setEditorInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:interval
                                                                         target:self
                                                                       selector:@selector(updateEditorInfoWithTimer:)
                                                                       userInfo:nil

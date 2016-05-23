@@ -577,8 +577,6 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 - (void)deleteSyntaxStyleWithName:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
-    
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Are you sure you want to delete “%@” syntax style?", nil), styleName]];
     [alert setInformativeText:NSLocalizedString(@"This action cannot be undone.", nil)];

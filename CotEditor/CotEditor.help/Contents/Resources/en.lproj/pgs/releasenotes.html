@@ -24,7 +24,57 @@
 
 <article>
 <header>
-	<h1>CotEditor 2.5.3</h1>
+	<h1>CotEditor 2.5.5</h1>
+	<p>release: <time>2016-05</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Add syntax style for “Git”.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Update “Julia” and “Swift” syntax styles.</li>
+	<li>Apply the change of line height/tab width to all split editors so that split editors not focused also can layout text correctly after the change.</li>
+	<li>Optimize text rendering performance a bit.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where editor area was not focused when document opens.</li>
+	<li>Fix an issue where width of tab character could be wrong with specific fonts.</li>
+	<li>Fix an issue where selection highlight remained between lines under specific conditions.</li>
+	<li>Fix an issue where the current line highlight didn't update under the specific condition.</li>
+	<li>Fix an issue where unwanted dirt was drawn if use the Google Japanese Input.</li>
+	<li>Fix an issue where file path display in inspector was not updated when document file is moved.</li>
+	<li>Fix an issue where wrong data were displayed in document inspector when a window of an unsaved document is resumed.</li>
+	<li>Fix an issue where hanging indent was applied when document style is changed even it is turned off.</li>
+	<li>Fix an issue where custom syntax style/theme couldn't be removed from the style list if the definition file is already deleted.</li>
+	<li>Fix an issue where “Copy as Rich Text” was enabled even if no text is selected.</li>
+	<li>Fix an issue where URL links were removed when editor is split.</li>
+	<li>Fix an issue where line height broke if font whose editor is split is changed via font panel.</li>
+	<li>Fix an issue where the first insertion was registered to the undo history on opening document with the selection in another application via Services.</li>
+	<li>Fix an issue where the key binding for “Re-Color All” was forced to reset to the default <code>⌥⌘R</code> if syntax style list is updated.</li>
+</ul>
+</section>
+</article>
+
+
+<article>
+<header>
+	<h1>CotEditor 2.5.4</h1>
 	<p>release: <time>2016-05-13</time></p>
 </header>
 

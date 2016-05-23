@@ -660,10 +660,13 @@
     [menu addItem:[NSMenuItem separatorItem]];
     
     // add item to recolor
+    SEL recolorAction = @selector(recolorAll:);
+    NSEventModifierFlags modifierMask;
+    NSString *keyEquivalent = [[CEKeyBindingManager sharedManager] keyEquivalentForAction:recolorAction modifierMask:&modifierMask];
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
-                                                  action:@selector(recolorAll:)
-                                           keyEquivalent:@"r"];
-    [item setKeyEquivalentModifierMask:(NSCommandKeyMask | NSAlternateKeyMask)]; // = Cmd + Opt + R
+                                                  action:recolorAction
+                                           keyEquivalent:keyEquivalent];
+    [item setKeyEquivalentModifierMask:modifierMask]; // = Cmd + Opt + R
     [menu addItem:item];
 }
 
@@ -698,12 +701,17 @@
 - (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error
 // ------------------------------------------------------
 {
-    NSError *err = nil;
-    CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:YES error:&err];
     NSString *selection = [pboard stringForType:NSPasteboardTypeString];
     
-    if (document && selection) {
-        [[document editor] insertTextViewString:selection];
+    if (!selection) { return; }
+    
+    NSError *err = nil;
+    CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:NO error:&err];
+    
+    if (document) {
+        [document makeWindowControllers];
+        [document showWindows];
+        [[document editor] setString:selection];
     } else {
         [[NSAlert alertWithError:err] runModal];
     }
@@ -739,9 +747,9 @@
         // open file
         [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL
                                                                                display:YES
-                                                                     completionHandler:^(NSDocument *document,
+                                                                     completionHandler:^(NSDocument * _Nullable document,
                                                                                          BOOL documentWasAlreadyOpen,
-                                                                                         NSError *error)
+                                                                                         NSError * _Nullable error)
          {
              if (error) {
                  [[NSAlert alertWithError:error] runModal];

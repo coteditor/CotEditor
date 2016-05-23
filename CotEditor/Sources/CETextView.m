@@ -44,6 +44,7 @@
 #import "Constants.h"
 
 #import "CEGeometry.h"
+#import "NSFont+CESize.h"
 
 
 // constant
@@ -105,7 +106,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// initialize instance
-- (nullable instancetype)initWithCoder:(NSCoder *)coder
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
 {
     self = [super initWithCoder:(NSCoder *)coder];
@@ -184,7 +185,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
                                                        context:NULL];
         }
     }
-
     return self;
 }
 
@@ -610,9 +610,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     // add "Inspect Character" menu item if single character is selected
     if ([[[self string] substringWithRange:[self selectedRange]] numberOfComposedCharacters] == 1) {
         [menu insertItemWithTitle:NSLocalizedString(@"Inspect Character", nil)
-                              action:@selector(showSelectionInfo:)
-                       keyEquivalent:@""
-                             atIndex:1];
+                           action:@selector(showSelectionInfo:)
+                    keyEquivalent:@""
+                          atIndex:1];
     }
     
     // add "Copy as Rich Text" menu item
@@ -668,9 +668,14 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if (![sender isKindOfClass:[NSFontManager class]]) { return; }
     
     NSFont *newFont = [sender convertFont:[self font]];
-
-    [self setFont:newFont];
-    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
+    
+    // apply to all text views sharing textStorage
+    for (NSLayoutManager *layoutManager in [[self textStorage] layoutManagers]) {
+        NSTextView *textView = [layoutManager firstTextView];
+        
+        [textView setFont:newFont];
+        [textView setNeedsDisplayInRect:[textView visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
+    }
 }
 
 
@@ -761,7 +766,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             return;
         }
         
-        CGFloat charWidth = [[self font] advancementForGlyph:(NSGlyph)' '].width;
+        CGFloat charWidth = [(CELayoutManager *)[self layoutManager] spaceWidth];
         CGFloat inset = [self textContainerOrigin].x;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for adjustment
@@ -1089,7 +1094,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if (([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
+    if (([menuItem action] == @selector(copyWithStyle:)) ||
+        ([menuItem action] == @selector(exchangeFullwidthRoman:)) ||
         ([menuItem action] == @selector(exchangeHalfwidthRoman:)) ||
         ([menuItem action] == @selector(exchangeKatakana:)) ||
         ([menuItem action] == @selector(exchangeHiragana:)) ||
@@ -1104,14 +1110,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         return ([self selectedRange].length > 0);
         // （カラーコード編集メニューは常に有効）
         
-    } else if ([menuItem action] == @selector(changeLineHeight:)) {
-        CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
-        [menuItem setState:(CEIsAlmostEqualCGFloats([self lineSpacing], lineSpacing) ? NSOnState : NSOffState)];
-    } else if ([menuItem action] == @selector(changeTabWidth:)) {
-        [menuItem setState:(([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
     } else if ([menuItem action] == @selector(showSelectionInfo:)) {
         NSString *selection = [[self string] substringWithRange:[self selectedRange]];
         return ([selection numberOfComposedCharacters] == 1);
+        
     } else if ([menuItem action] == @selector(toggleComment:)) {
         NSString *title = [self canUncommentRange:[self selectedRange]] ? @"Uncomment Selection" : @"Comment Selection";
         [menuItem setTitle:NSLocalizedString(title, nil)];
@@ -1301,15 +1303,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// タブ幅を変更する
-- (IBAction)changeTabWidth:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self setTabWidth:[sender tag]];
-}
-
-
-// ------------------------------------------------------
 /// 半角円マークを入力
 - (IBAction)inputYenMark:(nullable id)sender
 // ------------------------------------------------------
@@ -1343,15 +1336,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setSelectedRange:range];
     [self centerSelectionInVisibleArea:self];
     [[self window] makeFirstResponder:self];
-}
-
-
-// ------------------------------------------------------
-/// 行間設定を変更
-- (IBAction)changeLineHeight:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self setLineSpacingAndUpdate:(CGFloat)[[sender title] doubleValue] - 1.0];  // title is line height
 }
 
 
@@ -1453,6 +1437,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSRange range = NSMakeRange(0, [[self textStorage] length]);
     [[self textStorage] setAttributes:[self typingAttributes] range:range];
     [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
+    [self detectLinkIfNeeded];
 }
 
 
@@ -1513,9 +1498,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 // ------------------------------------------------------
 {
     NSFont *screenFont = [font screenFont] ? : font;
-    CGFloat spaceWidth = [screenFont advancementForGlyph:(NSGlyph)' '].width;
     
-    return [self tabWidth] * spaceWidth;
+    return [self tabWidth] * [screenFont advancementForCharacter:' '];
 }
 
 
@@ -1540,7 +1524,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// インデントレベルを算出
-- (NSUInteger)indentLevelOfString:(NSString *)string
+- (NSUInteger)indentLevelOfString:(nonnull NSString *)string
 // ------------------------------------------------------
 {
     NSRange indentRange = [string rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];

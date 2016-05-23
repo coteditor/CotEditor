@@ -37,7 +37,7 @@
 
 // ------------------------------------------------------
 /// adjust vertical position to keep line height even with composed font
-- (void)willSetLineFragmentRect:(NSRectPointer)lineRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRectPointer)usedRect baselineOffset:(nonnull CGFloat *)baselineOffset
+- (void)willSetLineFragmentRect:(nonnull NSRectPointer)lineRect forGlyphRange:(NSRange)glyphRange usedRect:(nonnull NSRectPointer)usedRect baselineOffset:(nonnull CGFloat *)baselineOffset
 // ------------------------------------------------------
 {
     // 複合フォントで行の高さがばらつくのを防止する

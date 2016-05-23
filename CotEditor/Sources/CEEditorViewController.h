@@ -54,7 +54,6 @@
 - (void)setShowsInvisibles:(BOOL)showsInvisibles;
 - (void)setUsesAntialias:(BOOL)usesAntialias;
 - (void)updateCloseSplitViewButton:(BOOL)isEnabled;
-- (void)setCaretToBeginning;
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle;
 
 @end

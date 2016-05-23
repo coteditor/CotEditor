@@ -146,4 +146,29 @@ unichar const kNewLineChars[] = {
     return [self stringByReplacingNewLineCharacersWith:CENewLineNone];
 }
 
+
+// ------------------------------------------------------
+/// convert passed-in range as if line endings are changed from fromType to toType
+- (NSRange)convertRange:(NSRange)range fromNewLineType:(CENewLineType)fromType toNewLineType:(CENewLineType)toType
+// ------------------------------------------------------
+{
+    if (fromType == CENewLineNone) {
+        fromType = [self detectNewLineType];
+    }
+    
+    if (fromType == toType ||
+        (fromType != CENewLineCRLF && toType != CENewLineCRLF))
+    {
+        return range;
+    }
+    
+    // sanitize for CR/LF
+    NSString *tmpLocStr = [self substringToIndex:range.location];
+    NSString *tmpLenStr = [self substringWithRange:range];
+    NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:toType];
+    NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:toType];
+    
+    return NSMakeRange([locStr length], [lenStr length]);
+}
+
 @end

@@ -92,7 +92,7 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 // ------------------------------------------------------
 /// initialize instance
-- (instancetype)init
+- (nonnull instancetype)init
 // ------------------------------------------------------
 {
     self = [super init];
@@ -165,6 +165,18 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
     [keySpecChars appendString:(isShiftPressed ? [keyEquivalent uppercaseString] : keyEquivalent)];
     
     return keySpecChars;
+}
+
+
+// ------------------------------------------------------
+/// keyEquivalent and modifierMask for passed-in selector
+- (nonnull NSString *)keyEquivalentForAction:(nonnull SEL)action modifierMask:(nonnull NSEventModifierFlags *)modifierMask
+// ------------------------------------------------------
+{
+    NSString *keySpecChars = [self keySpecCharsForSelector:action factoryDefaults:NO];
+    return [CEKeyBindingUtils keyEquivalentAndModifierMask:modifierMask
+                                                fromString:keySpecChars
+                                       includingCommandKey:YES];
 }
 
 
@@ -463,13 +475,10 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
             
         } else {
             NSUInteger modifierMask = 0;
-            NSString *keySpecChars = [self keySpecCharsForSelector:[item action] factoryDefaults:NO];
-            NSString *keyEquivalent = [CEKeyBindingUtils keyEquivalentAndModifierMask:&modifierMask
-                                                                           fromString:keySpecChars
-                                                                  includingCommandKey:YES];
+            NSString *keyEquivalent = [self keyEquivalentForAction:[item action] modifierMask:&modifierMask];
 
-            // keySpecChars があり Cmd が設定されている場合だけ、反映させる
-            if (([keySpecChars length] > 0) && (modifierMask & NSCommandKeyMask)) {
+            // keyEquivalent があり Cmd が設定されている場合だけ、反映させる
+            if (([keyEquivalent length] > 0) && (modifierMask & NSCommandKeyMask)) {
                 [item setKeyEquivalent:keyEquivalent];
                 [item setKeyEquivalentModifierMask:modifierMask];
             }

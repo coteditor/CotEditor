@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@
 - (void)keyDocumentDidChange
 // ------------------------------------------------------
 {
-    [self setLineSpacing:[[self textView] lineSpacing]];
+    [self setLineSpacing:[[[self editor] focusedTextView] lineSpacing]];
 }
 
 
@@ -80,7 +80,10 @@
 - (IBAction)apply:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self textView] setLineSpacingAndUpdate:[self lineSpacing]];
+    NSMenuItem *dummySender = [[NSMenuItem alloc] init];
+    [dummySender setTitle:[NSString stringWithFormat:@"%g", [self lineSpacing] + 1.0]];
+    
+    [[self editor] changeLineHeight:dummySender];
     [[self window] close];
 }
 
@@ -90,10 +93,10 @@
 
 // ------------------------------------------------------
 /// return text view to apply
-- (nullable CETextView *)textView
+- (nullable CEEditorWrapper *)editor
 // ------------------------------------------------------
 {
-    return [[[self documentWindowController] editor] focusedTextView];
+    return [[self documentWindowController] editor];
 }
 
 @end

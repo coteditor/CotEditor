@@ -132,7 +132,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// can read document on a background thread?
-+ (BOOL)canConcurrentlyReadDocumentsOfType:(NSString *)typeName
++ (BOOL)canConcurrentlyReadDocumentsOfType:(nonnull NSString *)typeName
 // ------------------------------------------------------
 {
     return YES;
@@ -242,10 +242,14 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
     [self setFileMD5:[data MD5]];
     
-    // read file attributes
-    NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:outError];
-    [self setFileAttributes:attributes];
-    [self setExecutable:([attributes filePosixPermissions] & S_IXUSR) != 0];
+    // read file attributes only if `fileURL` exists
+    // -> The passed-in `url` in this method can point to a file that isn't the real document file,
+    //    for example on resuming of an unsaved document.
+    if ([self fileURL]) {
+        NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[[self fileURL] path] error:outError];
+        [self setFileAttributes:attributes];
+        [self setExecutable:([attributes filePosixPermissions] & S_IXUSR) != 0];
+    }
     
     // try reading the `com.apple.TextEncoding` extended attribute
     NSStringEncoding xattrEncoding = [url getXattrEncoding];
@@ -569,7 +573,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     // create printView
     CEPrintView *printView = [[CEPrintView alloc] init];
-    [printView setString:[[self editor] string]];
     [printView setLayoutOrientation:[[[self editor] focusedTextView] layoutOrientation]];
     [printView setTheme:[[self editor] theme]];
     [printView setDocumentName:[self displayName]];
@@ -588,6 +591,9 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         font = [[self editor] font];
     }
     [printView setFont:font];
+    
+    // [caution] need to set string after setting other properties
+    [printView setString:[[self editor] string]];
     
     // create print operation
     NSPrintOperation *printOperation = [NSPrintOperation printOperationWithView:printView printInfo:[self printInfo]];
@@ -768,9 +774,16 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     [super presentedItemDidMoveToURL:newURL];
     
-    CEWindowController *windowController = [self windowController];
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [windowController updateFileInfo];
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
+        
+        // -> `fileURL` property will be updated automatically after this `presentedItemDidMoveToURL:`.
+        //    However, we don't know when exactly, therefore update it manually before update documentAnalyzer. (2016-05-19 / OS X 10.11.5)
+        [self setFileURL:newURL];
+        
+        [[self windowController] updateFileInfo];
     });
 }
 
@@ -844,7 +857,16 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 - (nonnull NSString *)string
 // ------------------------------------------------------
 {
-    return [[[self editor] string] stringByReplacingNewLineCharacersWith:[self lineEnding]] ?: @"";
+    NSString *editorString = [[self editor] string];  // line endings are always LF
+    
+    if (!editorString) {
+        return @"";
+    }
+    if ([self lineEnding] == CENewLineLF) {
+        return [NSString stringWithString:editorString];
+    }
+    
+    return [editorString stringByReplacingNewLineCharacersWith:[self lineEnding]];
 }
 
 
@@ -898,7 +920,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     }
     
     // update syntax highlights and outline menu
-    [editor invalidateSyntaxColoring];
+    [editor invalidateSyntaxHighlight];
     [editor invalidateOutlineMenu];
     [[[self windowController] toolbarController] setSelectedSyntaxWithName:[[self syntaxStyle] styleName]];
     
@@ -1151,7 +1173,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (![oldName isEqualToString:[[self syntaxStyle] styleName]]) { return; }
     
     [self setSyntaxStyleWithName:newName];
-    [[self editor] invalidateSyntaxColoring];
+    [[self editor] invalidateSyntaxHighlight];
     [[self editor] invalidateOutlineMenu];
 }
 

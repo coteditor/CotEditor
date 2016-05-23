@@ -54,11 +54,9 @@
 // Action Message
 - (IBAction)copyWithStyle:(nullable id)sender;
 - (IBAction)selectLines:(nullable id)sender;
-- (IBAction)changeTabWidth:(nullable id)sender;
 - (IBAction)inputYenMark:(nullable id)sender;
 - (IBAction)inputBackSlash:(nullable id)sender;
 - (IBAction)setSelectedRangeWithNSValue:(nullable id)sender;
-- (IBAction)changeLineHeight:(nullable id)sender;
 - (IBAction)showSelectionInfo:(nullable id)sender;
 
 @end

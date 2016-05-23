@@ -38,13 +38,17 @@
 #import "CESyntaxStyle.h"
 #import "CEGoToSheetController.h"
 #import "CETextFinder.h"
-#import "NSString+CERange.h"
+
 #import "CEDefaults.h"
+#import "Constants.h"
+
+#import "NSString+CENewLine.h"
+#import "NSString+CERange.h"
 
 
 @interface CEEditorWrapper () <CETextFinderClientProvider>
 
-@property (nonatomic, nullable, weak) NSTimer *coloringTimer;
+@property (nonatomic, nullable, weak) NSTimer *syntaxHighlightTimer;
 @property (nonatomic, nullable, weak) NSTimer *outlineMenuTimer;
 
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
@@ -95,7 +99,7 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [_coloringTimer invalidate];
+    [_syntaxHighlightTimer invalidate];
     [_outlineMenuTimer invalidate];
     
     _focusedTextView = nil;
@@ -119,12 +123,13 @@
     [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:nil];
     [self setupEditorViewController:editorViewController baseView:nil];
     
+    // focus text view
+    [[self window] makeFirstResponder:[editorViewController textView]];
+    
     // TODO: Refactoring
     // -> This is probably not the best position to apply sytnax style to the text view.
     //    However as a quick fix, I put it here tentatively. It works. But should be refactored later. (2016-01 1024jp)
     [editorViewController applySyntax:[self syntaxStyle]];
-    
-    [self setFocusedTextView:[editorViewController textView]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangeSyntaxStyle:)
@@ -179,6 +184,13 @@
         
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         state = [[self focusedTextView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
+        
+    } else if ([menuItem action] == @selector(changeLineHeight:)) {
+        CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
+        [menuItem setState:(CEIsAlmostEqualCGFloats([[self focusedTextView] lineSpacing], lineSpacing) ? NSOnState : NSOffState)];
+        
+    } else if ([menuItem action] == @selector(changeTabWidth:)) {
+        [menuItem setState:(([[self focusedTextView] tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
         
     } else if ([menuItem action] == @selector(selectPrevItemOftimerMenu:)) {
         return ([[self navigationBarController] canSelectPrevItem]);
@@ -309,7 +321,11 @@
 - (NSRange)selectedRange
 // ------------------------------------------------------
 {
-    return [self documentRangeFromRange:[[self focusedTextView] selectedRange]];
+    NSTextView *textView = [self focusedTextView];
+    
+    return [[textView string] convertRange:[textView selectedRange]
+                           fromNewLineType:CENewLineLF
+                             toNewLineType:[[self document] lineEnding]];
 }
 
 
@@ -318,7 +334,12 @@
 - (void)setSelectedRange:(NSRange)charRange
 // ------------------------------------------------------
 {
-    [[self focusedTextView] setSelectedRange:[self rangeFromDocumentRange:charRange]];
+    NSTextView *textView = [self focusedTextView];
+    NSRange range = [[textView string] convertRange:charRange
+                                    fromNewLineType:[[self document] lineEnding]
+                                      toNewLineType:CENewLineLF];
+    
+    [textView setSelectedRange:range];
 }
 
 
@@ -332,7 +353,9 @@
     
     for (NSValue *rangeValue in ranges) {
         NSRange documentRange = [rangeValue rangeValue];
-        NSRange range = [self rangeFromDocumentRange:documentRange];
+        NSRange range = [[[self textStorage] string] convertRange:documentRange
+                                                  fromNewLineType:[[self document] lineEnding]
+                                                    toNewLineType:CENewLineLF];
         
         for (NSLayoutManager *manager in layoutManagers) {
             [manager addTemporaryAttribute:NSBackgroundColorAttributeName value:color
@@ -618,6 +641,32 @@
 
 
 // ------------------------------------------------------
+/// change tab width from the main menu
+- (IBAction)changeTabWidth:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSUInteger tabWidth = [sender tag];
+    
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+        [[viewController textView] setTabWidth:tabWidth];
+    }];
+}
+
+
+// ------------------------------------------------------
+/// change line height from the main menu
+- (IBAction)changeLineHeight:(nullable id)sender
+// ------------------------------------------------------
+{
+    CGFloat lineSpacing = (CGFloat)[[sender title] doubleValue] - 1.0;  // title is line height
+    
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+        [[viewController textView] setLineSpacingAndUpdate:lineSpacing];
+    }];
+}
+
+
+// ------------------------------------------------------
 /// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
 - (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
@@ -666,7 +715,7 @@
     [self setupEditorViewController:newEditorViewController baseView:currentEditorViewController];
     
     [newEditorViewController applySyntax:[self syntaxStyle]];
-    [self invalidateSyntaxColoring];
+    [self invalidateSyntaxHighlight];
     [self invalidateOutlineMenu];
     
     // move focus to the new editor
@@ -823,44 +872,6 @@
     return [(CEEditorViewController *)[[self focusedTextView] delegate] navigationBarController];
 }
 
-
-// ------------------------------------------------------
-/// sanitized range for text view
-- (NSRange)rangeFromDocumentRange:(NSRange)range
-// ------------------------------------------------------
-{
-    if ([[self document] lineEnding] != CENewLineCRLF) {
-        return range;
-    }
-    
-    // sanitize for CR/LF
-    NSString *tmpLocStr = [[[self document] string] substringToIndex:range.location];
-    NSString *tmpLenStr = [[[self document] string] substringWithRange:range];
-    NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:CENewLineLF];
-    NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:CENewLineLF];
-    
-    return NSMakeRange([locStr length], [lenStr length]);
-}
-
-
-// ------------------------------------------------------
-/// sanitized range for document
-- (NSRange)documentRangeFromRange:(NSRange)range
-// ------------------------------------------------------
-{
-    if ([[self document] lineEnding] != CENewLineCRLF) {
-        return range;
-    }
-    
-    // sanitize for CR/LF
-    NSString *tmpLocStr = [[self string] substringToIndex:range.location];
-    NSString *tmpLenStr = [[self string] substringWithRange:range];
-    NSString *locStr = [tmpLocStr stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
-    NSString *lenStr = [tmpLenStr stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
-    
-    return NSMakeRange([locStr length], [lenStr length]);
-}
-
 @end
 
 
@@ -895,10 +906,10 @@
 
 // ------------------------------------------------------
 /// 全テキストを再カラーリング
-- (void)invalidateSyntaxColoring
+- (void)invalidateSyntaxHighlight
 // ------------------------------------------------------
 {
-    [[self coloringTimer] invalidate];
+    [[self syntaxHighlightTimer] invalidate];
     
     [[self syntaxStyle] highlightWholeStringInTextStorage:[self textStorage] completionHandler:nil];
 }
@@ -937,37 +948,37 @@
 
 
 // ------------------------------------------------------
-/// カラーリングタイマーのファイヤーデイトを設定時間後にセット
-- (void)setupColoringTimer
+/// let parse syntax highlight after a delay
+- (void)setupSyntaxHighlightTimer
 // ------------------------------------------------------
 {
-    if ([[self syntaxStyle] isNone]) { return; }
+    if (![self canHighlight]) { return; }
     
     NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultBasicColoringDelayKey];
-    
-    if ([[self coloringTimer] isValid]) {
-        [[self coloringTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-        
+    if ([[self syntaxHighlightTimer] isValid]) {
+        [[self syntaxHighlightTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
     } else {
-        [self setColoringTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                target:self
-                                                              selector:@selector(doColoringWithTimer:)
-                                                              userInfo:nil repeats:NO]];
+        [self setSyntaxHighlightTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                       target:self
+                                                                     selector:@selector(updateSyntaxHighlightWithTimer:)
+                                                                     userInfo:nil
+                                                                      repeats:NO]];
     }
 }
 
 
 // ------------------------------------------------------
-/// アウトラインメニュー項目を更新
+/// let parse outline after a delay
 - (void)setupOutlineMenuUpdateTimer
 // ------------------------------------------------------
 {
-    // アウトラインメニュー項目更新
-    NSTimeInterval outlineMenuInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
+    if (![self canHighlight]) { return; }
+    
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
     if ([[self outlineMenuTimer] isValid]) {
-        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:outlineMenuInterval]];
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
     } else {
-        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:outlineMenuInterval
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:interval
                                                                    target:self
                                                                  selector:@selector(updateOutlineMenuWithTimer:)
                                                                  userInfo:nil
@@ -983,7 +994,7 @@
 - (IBAction)recolorAll:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self invalidateSyntaxColoring];
+    [self invalidateSyntaxHighlight];
 }
 
 
@@ -1001,17 +1012,17 @@
     
     [[[self windowController] toolbarController] setSelectedSyntaxWithName:[syntaxStyle styleName]];
     
-    [self invalidateSyntaxColoring];
+    [self invalidateSyntaxHighlight];
     [self invalidateOutlineMenu];
 }
 
 
 // ------------------------------------------------------
-/// カラーリング実行
-- (void)doColoringNow
+/// update syntax highlight around edited area
+- (void)invalidateSyntaxHighlightPartly
 // ------------------------------------------------------
 {
-    if ([[self coloringTimer] isValid]) { return; }
+    if ([[self syntaxHighlightTimer] isValid]) { return; }
     
     NSTextView *textView = [self focusedTextView];
     NSRange glyphRange = [[textView layoutManager] glyphRangeForBoundingRectWithoutAdditionalLayout:[textView visibleRect]
@@ -1030,18 +1041,17 @@
         updateRange = NSMakeRange(location, length);
     }
     
-    [[self syntaxStyle] highlightRange:updateRange
-                           textStorage:[textView textStorage]];
+    [[self syntaxStyle] highlightRange:updateRange textStorage:[textView textStorage]];
 }
 
 
 // ------------------------------------------------------
 /// タイマーの設定時刻に到達、カラーリング実行
-- (void)doColoringWithTimer:(nonnull NSTimer *)timer
+- (void)updateSyntaxHighlightWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
-    [[self coloringTimer] invalidate];
-    [self doColoringNow];
+    [[self syntaxHighlightTimer] invalidate];
+    [self invalidateSyntaxHighlightPartly];
 }
 
 

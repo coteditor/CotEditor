@@ -132,12 +132,11 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     } else if ([[self styleNames] containsObject:styleName]) {
         NSDictionary<NSString *, id> *highlightDictionary = [self styleDictionaryWithStyleName:styleName];
         return [[CESyntaxStyle alloc] initWithDictionary:highlightDictionary name:styleName];
-        
-    } else {
-        return nil;
     }
     
+    return nil;
 }
+
 
 // ------------------------------------------------------
 /// ファイル名に応じたstyle名を返す
@@ -329,25 +328,28 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
-        
-        if (success) {
-            // 内部で持っているキャッシュ用データを更新
-            [[self styleCaches] removeObjectForKey:styleName];
-            __weak typeof(self) weakSelf = self;
-            [self updateCacheWithCompletionHandler:^{
-                typeof(self) self = weakSelf;  // strong self
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
-                                                                    object:self
-                                                                  userInfo:@{CEOldNameKey: styleName,
-                                                                             CENewNameKey: NSLocalizedString(@"None", nil)}];
-            }];
-        } else {
-            NSLog(@"Error. Could not remove \"%@\".", URL);
-        }
     } else {
-        NSLog(@"Error. Could not be found \"%@\" for remove.", URL);
+        // already removed.
+        success = YES;
     }
+    
+    if (!success) {
+        NSLog(@"Error. Could not remove \"%@\".", URL);
+        return NO;
+    }
+    
+    // 内部で持っているキャッシュ用データを更新
+    [[self styleCaches] removeObjectForKey:styleName];
+    __weak typeof(self) weakSelf = self;
+    [self updateCacheWithCompletionHandler:^{
+        typeof(self) self = weakSelf;  // strong self
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
+                                                            object:self
+                                                          userInfo:@{CEOldNameKey: styleName,
+                                                                     CENewNameKey: NSLocalizedString(@"None", nil)}];
+    }];
+    
     return success;
 }
 
@@ -362,25 +364,28 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     
     if ([URL checkResourceIsReachableAndReturnError:nil]) {
         success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
-        
-        if (success) {
-            // 内部で持っているキャッシュ用データを更新
-            [self styleCaches][styleName] = [[self bundledStyleDictionaryWithStyleName:styleName] mutableCopy];
-            __weak typeof(self) weakSelf = self;
-            [self updateCacheWithCompletionHandler:^{
-                typeof(self) self = weakSelf;  // strong self
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
-                                                                    object:self
-                                                                  userInfo:@{CEOldNameKey: styleName,
-                                                                             CENewNameKey: styleName}];
-            }];
-        } else {
-            NSLog(@"Error. Could not restore \"%@\".", URL);
-        }
     } else {
-        NSLog(@"Error. Could not be restore \"%@\" for restore.", URL);
+        // already removed.
+        success = YES;
     }
+    
+    if (!success) {
+        NSLog(@"Error. Could not restore \"%@\".", URL);
+        return NO;
+    }
+    
+    // 内部で持っているキャッシュ用データを更新
+    [self styleCaches][styleName] = [[self bundledStyleDictionaryWithStyleName:styleName] mutableCopy];
+    __weak typeof(self) weakSelf = self;
+    [self updateCacheWithCompletionHandler:^{
+        typeof(self) self = weakSelf;  // strong self
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
+                                                            object:self
+                                                          userInfo:@{CEOldNameKey: styleName,
+                                                                     CENewNameKey: styleName}];
+    }];
+    
     return success;
 }
 

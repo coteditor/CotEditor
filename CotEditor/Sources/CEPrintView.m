@@ -36,6 +36,7 @@
 
 #import "NSString+Sandboxing.h"
 #import "NSString+CECounting.h"
+#import "NSFont+CESize.h"
 
 
 // constants
@@ -284,10 +285,9 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     // set tab width
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     NSUInteger tabWidth = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultTabWidthKey];
-    CGFloat spaceWidth = [font advancementForGlyph:(NSGlyph)' '].width;
     
     [paragraphStyle setTabStops:@[]];
-    [paragraphStyle setDefaultTabInterval:tabWidth * spaceWidth];
+    [paragraphStyle setDefaultTabInterval:tabWidth * [font advancementForCharacter:' ']];
     [self setDefaultParagraphStyle:paragraphStyle];
     
     // apply to current string
@@ -316,21 +316,6 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     }
     
     return nil;
-}
-
-
-
-#pragma mark Public Accessors
-
-// ------------------------------------------------------
-/// set-accessor for invisibles setting on the real document
-- (void)setDocumentShowsInvisibles:(BOOL)showsInvisibles
-// ------------------------------------------------------
-{
-    // set also to layoutManager
-    [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
-    
-    _documentShowsInvisibles = showsInvisibles;
 }
 
 

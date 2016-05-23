@@ -34,7 +34,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithCoder:(NSCoder *)coder
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 // ------------------------------------------------------
 {
     self = [super initWithCoder:coder];

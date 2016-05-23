@@ -104,6 +104,10 @@ class StringExtensionsTests: XCTestCase {
         // new line replacement
         XCTAssertEqual("foo\nbar".stringByDeletingNewLineCharacters(), "foobar")
         XCTAssertEqual("foo\r\nbar".stringByReplacingNewLineCharacersWith(.CR), "foo\rbar")
+        
+        // range conversion
+        XCTAssertTrue(NSEqualRanges("a\nb\nc".convertRange(NSMakeRange(2, 2), fromNewLineType:.LF, toNewLineType:.CRLF), NSMakeRange(3, 3)))
+        XCTAssertTrue(NSEqualRanges("a\r\nb\r\nc".convertRange(NSMakeRange(3, 3), fromNewLineType:.None, toNewLineType:.LF), NSMakeRange(2, 2)))
     }
     
     
