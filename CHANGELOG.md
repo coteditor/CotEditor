@@ -17,6 +17,8 @@ develop
 - Remove “Not writable” alert which displayed on file opening.
 - New acknowledgements window.
 - Add help buttons to syntax style editor.
+- Update “Markdown” syntax style:
+    - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
 
 
 ### Fixes

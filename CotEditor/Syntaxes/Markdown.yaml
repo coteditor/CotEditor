@@ -5,10 +5,10 @@ extensions:
 - keyString: "mdown"
 - keyString: "mkdn"
 metadata:
-  version: "1.2.2"
+  version: "1.3.0"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2016-05-24"
   distributionURL: "http://coteditor.com"
 keywords:
 - beginString: "(?<![\\\\*])\\*[^ \\t*](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])\\*"
@@ -22,6 +22,9 @@ keywords:
   description: "strong"
 - beginString: "(?<!\\\\)__(?![ \\t])(?:\\n[^\\n]|[^\\n])*?(?<![\\\\\\t ])__"
   description: "strong"
+- beginString: "(?<!\\\\)~~(?![ \\t])(?:\\n[^\\n]|[^\\n])*?(?<![\\\\\\t ])~~"
+  description: "[github] strikethrough"
+  regularExpression: true
   regularExpression: true
 - beginString: "\\n[\\t ]*\\n(?:\\- *){3,}$"
   description: "hr"
