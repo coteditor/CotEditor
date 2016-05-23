@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- Fix an issue where the selected marks of line height / tab width in the Format menu disappeared.
+
+
+
+2.5.5 (130)
+--------------------------
+
 ### New Features
 
 - Add syntax style for “Git”.
