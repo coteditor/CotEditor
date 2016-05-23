@@ -19,6 +19,7 @@ develop
 - Add help buttons to syntax style editor.
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
+    - Support emphasis with tiriple `*` and `_`.
 
 
 ### Fixes
