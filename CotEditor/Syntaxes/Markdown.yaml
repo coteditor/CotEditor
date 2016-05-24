@@ -18,7 +18,7 @@ keywords:
   regularExpression: true
   description: "em, strong"
 - beginString: "(?<[!\\\\~])~~(?![ \\t])(?:\\n[^\\n]|[^\\n])*?(?<![\\\\\\t ])~~"
-  regularExpression: false
+  regularExpression: true
   description: "[github] strikethrough"
 - beginString: "\\n[\\t ]*\\n(?:\\- *){3,}$"
   regularExpression: true
