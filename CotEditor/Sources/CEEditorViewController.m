@@ -120,16 +120,6 @@
         }
     }
     
-    // 置換の Undo/Redo 後に再カラーリングできるように Undo/Redo アクションをキャッチ
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(recolorAfterUndoAndRedo:)
-                                                 name:NSUndoManagerDidRedoChangeNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(recolorAfterUndoAndRedo:)
-                                                 name:NSUndoManagerDidUndoChangeNotification
-                                               object:nil];
-    
     // テーマの変更をキャッチ
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(themeDidUpdate:)
@@ -275,25 +265,6 @@
     [[self textView] setInlineCommentDelimiter:[syntaxStyle inlineCommentDelimiter]];
     [[self textView] setBlockCommentDelimiters:[syntaxStyle blockCommentDelimiters]];
     [[self textView] setFirstCompletionCharacterSet:[syntaxStyle firstCompletionCharacterSet]];
-}
-
-
-// ------------------------------------------------------
-/// Undo/Redo の後に全てを再カラーリング
-- (void)recolorAfterUndoAndRedo:(nonnull NSNotification *)aNotification
-// ------------------------------------------------------
-{
-    NSUndoManager *undoManager = [aNotification object];
-    
-    if (undoManager != [[self textView] undoManager]) { return; }
-    
-    // invalidate syntax highlighting only after Undo/Redo of "Replace All" action
-    // To determine Undo/Redo type, use actionName that was set in CETextFinder (2014-04 by 1024jp)
-    NSString *actionName = [undoManager isUndoing] ? [undoManager redoActionName] : [undoManager undoActionName];
-    if (![actionName isEqualToString:NSLocalizedString(@"Replace All", nil)]) { return; }
-    
-    // 全テキストを再カラーリング
-    [[self editorWrapper] invalidateSyntaxHighlight];
 }
 
 

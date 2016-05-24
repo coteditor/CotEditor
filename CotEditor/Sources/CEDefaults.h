@@ -160,7 +160,6 @@ extern NSString *_Nonnull const CEDefaultHeaderFooterPathAbbreviatingWithTildeKe
 extern NSString *_Nonnull const CEDefaultTextContainerInsetWidthKey;
 extern NSString *_Nonnull const CEDefaultTextContainerInsetHeightTopKey;
 extern NSString *_Nonnull const CEDefaultTextContainerInsetHeightBottomKey;
-extern NSString *_Nonnull const CEDefaultBasicColoringDelayKey;
 extern NSString *_Nonnull const CEDefaultAutoCompletionDelayKey;
 extern NSString *_Nonnull const CEDefaultInfoUpdateIntervalKey;
 extern NSString *_Nonnull const CEDefaultIncompatibleCharIntervalKey;

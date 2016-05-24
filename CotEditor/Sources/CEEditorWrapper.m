@@ -49,7 +49,6 @@
 
 @interface CEEditorWrapper () <CETextFinderClientProvider, NSTextStorageDelegate>
 
-@property (nonatomic, nullable, weak) NSTimer *syntaxHighlightTimer;
 @property (nonatomic, nullable, weak) NSTimer *outlineMenuTimer;
 
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
@@ -66,7 +65,6 @@
 @property (readonly, nonatomic) BOOL canHighlight;
 
 
-- (void)setupSyntaxHighlightTimer;
 - (void)setupOutlineMenuUpdateTimer;
 
 @end
@@ -111,8 +109,8 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [_syntaxHighlightTimer invalidate];
     [_outlineMenuTimer invalidate];
+    [[self textStorage] setDelegate:nil];
 }
 
 
@@ -248,16 +246,25 @@
 - (void)textStorageDidProcessEditing:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    // 文書情報更新（選択範囲・キャレット位置が変更されないまま全置換が実行された場合への対応）
+    NSTextStorage *textStorage = [notification object];
+    
+    // ignore if only attributes did change
+    if (([textStorage editedMask] & NSTextStorageEditedCharacters) == 0) { return; }
+    
+    // update editor information
+    // -> In case, if "Replace All" performed without moving caret.
     [[[self document] analyzer] invalidateEditorInfo];
     
     // parse syntax
-    [self setupSyntaxHighlightTimer];
     [self setupOutlineMenuUpdateTimer];
+    if ([self canHighlight]) {
+        // invalidate only edited lines
+        NSRange updateRange = [[textStorage string] lineRangeForRange:[textStorage editedRange]];
+        [[self syntaxStyle] highlightRange:updateRange];
+    }
     
     // update incompatible chars list
     [[[self window] windowController] updateIncompatibleCharsIfNeeded];
-    
 }
 
 
@@ -893,8 +900,6 @@
 - (void)invalidateSyntaxHighlight
 // ------------------------------------------------------
 {
-    [[self syntaxHighlightTimer] invalidate];
-    
     [[self syntaxStyle] highlightWholeStringWithCompletionHandler:nil];
 }
 
@@ -960,44 +965,6 @@
 
 
 // ------------------------------------------------------
-/// update syntax highlight around edited area
-- (void)invalidateSyntaxHighlightPartly
-// ------------------------------------------------------
-{
-    if ([[self syntaxHighlightTimer] isValid]) { return; }
-    
-    NSTextView *textView = [self focusedTextView];
-    NSRange glyphRange = [[textView layoutManager] glyphRangeForBoundingRectWithoutAdditionalLayout:[textView visibleRect]
-                                                                                    inTextContainer:[textView textContainer]];
-    NSRange visibleRange = [[textView layoutManager] characterRangeForGlyphRange:glyphRange
-                                                                actualGlyphRange:NULL];
-    NSRange selectedRange = [textView selectedRange];
-    NSRange updateRange = visibleRange;
-    
-    // 選択領域（編集場所）が見えないときは編集場所周辺を更新
-    if (!NSLocationInRange(selectedRange.location, visibleRange)) {
-        NSUInteger location = MAX((NSInteger)(selectedRange.location - visibleRange.length), 0);
-        NSInteger maxLength = [[textView string] length] - location;
-        NSUInteger length = MIN(selectedRange.length + visibleRange.length, maxLength);
-        
-        updateRange = NSMakeRange(location, length);
-    }
-    
-    [[self syntaxStyle] highlightRange:updateRange];
-}
-
-
-// ------------------------------------------------------
-/// タイマーの設定時刻に到達、カラーリング実行
-- (void)updateSyntaxHighlightWithTimer:(nonnull NSTimer *)timer
-// ------------------------------------------------------
-{
-    [[self syntaxHighlightTimer] invalidate];
-    [self invalidateSyntaxHighlightPartly];
-}
-
-
-// ------------------------------------------------------
 /// アウトラインメニュー更新
 - (void)updateOutlineMenuWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
@@ -1019,26 +986,6 @@
     BOOL isHighlightable = ([self syntaxStyle] != nil) && ![[self syntaxStyle] isNone];
     
     return isHighlightEnabled && isHighlightable;
-}
-
-
-// ------------------------------------------------------
-/// let parse syntax highlight after a delay
-- (void)setupSyntaxHighlightTimer
-// ------------------------------------------------------
-{
-    if (![self canHighlight]) { return; }
-    
-    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultBasicColoringDelayKey];
-    if ([[self syntaxHighlightTimer] isValid]) {
-        [[self syntaxHighlightTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-    } else {
-        [self setSyntaxHighlightTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                       target:self
-                                                                     selector:@selector(updateSyntaxHighlightWithTimer:)
-                                                                     userInfo:nil
-                                                                      repeats:NO]];
-    }
 }
 
 

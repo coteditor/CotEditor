@@ -160,7 +160,6 @@ NSString *_Nonnull const CEDefaultHeaderFooterPathAbbreviatingWithTildeKey = @"h
 NSString *_Nonnull const CEDefaultTextContainerInsetWidthKey = @"textContainerInsetWidth";
 NSString *_Nonnull const CEDefaultTextContainerInsetHeightTopKey = @"textContainerInsetHeightTop";
 NSString *_Nonnull const CEDefaultTextContainerInsetHeightBottomKey = @"textContainerInsetHeightBottom";
-NSString *_Nonnull const CEDefaultBasicColoringDelayKey = @"basicColoringDelay";
 NSString *_Nonnull const CEDefaultAutoCompletionDelayKey = @"autoCompletionDelay";
 NSString *_Nonnull const CEDefaultInfoUpdateIntervalKey = @"infoUpdateInterval";
 NSString *_Nonnull const CEDefaultIncompatibleCharIntervalKey = @"incompatibleCharInterval";

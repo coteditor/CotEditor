@@ -20,6 +20,7 @@ develop
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with tiriple `*` and `_`.
+- Better syntax highlighting while editing.
 
 
 ### Fixes

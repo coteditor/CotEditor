@@ -221,7 +221,6 @@
                                                CEDefaultTextContainerInsetWidthKey: @0.0f,
                                                CEDefaultTextContainerInsetHeightTopKey: @4.0f,
                                                CEDefaultTextContainerInsetHeightBottomKey: @16.0f,
-                                               CEDefaultBasicColoringDelayKey: @0.01f,
                                                CEDefaultAutoCompletionDelayKey: @0.25f,
                                                CEDefaultInfoUpdateIntervalKey: @0.2f, 
                                                CEDefaultIncompatibleCharIntervalKey: @0.42f, 
