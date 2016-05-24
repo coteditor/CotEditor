@@ -1120,6 +1120,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [syntaxStyle setTextStorage:[self textStorage]];
     [self setSyntaxStyle:syntaxStyle];
     
+    [[[self windowController] toolbarController] setSelectedSyntaxWithName:[syntaxStyle styleName]];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentSyntaxStyleDidChangeNotification
                                                         object:self];
 }

@@ -422,8 +422,7 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [[viewController textView] setAutoTabExpandEnabled:enabled];
     }];
-    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarAutoTabExpandItemTag
-                                                             setOn:enabled];
+    [[self toolbarController] toggleItemWithTag:CEToolbarAutoTabExpandItemTag setOn:enabled];
 }
 
 
@@ -437,8 +436,7 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [viewController setShowsNavigationBar:showsNavigationBar animate:performAnimation];
     }];
-    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag
-                                                             setOn:showsNavigationBar];
+    [[self toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag setOn:showsNavigationBar];
     
     if (showsNavigationBar && ![[self outlineMenuTimer] isValid]) {
         [self invalidateOutlineMenu];
@@ -456,8 +454,7 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [viewController setShowsLineNum:showsLineNum];
     }];
-    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowLineNumItemTag
-                                                             setOn:showsLineNum];
+    [[self toolbarController] toggleItemWithTag:CEToolbarShowLineNumItemTag setOn:showsLineNum];
 }
 
 
@@ -471,8 +468,7 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [viewController setWrapsLines:wrapsLines];
     }];
-    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarWrapLinesItemTag
-                                                             setOn:wrapsLines];
+    [[self toolbarController] toggleItemWithTag:CEToolbarWrapLinesItemTag setOn:wrapsLines];
 }
 
 
@@ -488,8 +484,7 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [[viewController textView] setLayoutOrientation:orientation];
     }];
-    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarTextOrientationItemTag
-                                                             setOn:isVerticalLayoutOrientation];
+    [[self toolbarController] toggleItemWithTag:CEToolbarTextOrientationItemTag setOn:isVerticalLayoutOrientation];
 }
 
 
@@ -557,8 +552,7 @@
         [[viewController textView] setShowsPageGuide:showsPageGuide];
         [[viewController textView] setNeedsDisplayInRect:[[viewController textView] visibleRect] avoidAdditionalLayout:YES];
     }];
-    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowPageGuideItemTag
-                                                             setOn:showsPageGuide];
+    [[self toolbarController] toggleItemWithTag:CEToolbarShowPageGuideItemTag setOn:showsPageGuide];
 }
 
 
@@ -635,8 +629,7 @@
     BOOL showsInvisibles = ![self showsInvisibles];
     [self setShowsInvisibles:showsInvisibles];
     
-    [[[self windowController] toolbarController] toggleItemWithTag:CEToolbarShowInvisibleCharsItemTag
-                                                             setOn:showsInvisibles];
+    [[self toolbarController] toggleItemWithTag:CEToolbarShowInvisibleCharsItemTag setOn:showsInvisibles];
 }
 
 
@@ -851,10 +844,10 @@
 
 // ------------------------------------------------------
 /// windowControllerを返す
-- (CEWindowController *)windowController
+- (CEToolbarController *)toolbarController
 // ------------------------------------------------------
 {
-    return [[self window] windowController];
+    return [(CEWindowController *)[[self window] windowController] toolbarController];
 }
 
 
@@ -872,7 +865,7 @@
 - (CEDocument *)document
 // ------------------------------------------------------
 {
-    return [[self windowController] document];
+    return [[[self window] windowController] document];
 }
 
 @end
@@ -953,15 +946,13 @@
 
 // ------------------------------------------------------
 /// シンタックススタイル名をセット
-- (void)didChangeSyntaxStyle:(NSNotification *)notification
+- (void)didChangeSyntaxStyle:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     CESyntaxStyle *syntaxStyle = [[self document] syntaxStyle];
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [viewController applySyntax:syntaxStyle];
     }];
-    
-    [[[self windowController] toolbarController] setSelectedSyntaxWithName:[syntaxStyle styleName]];
     
     [self invalidateSyntaxHighlight];
     [self invalidateOutlineMenu];
