@@ -578,9 +578,7 @@
         rect = [layoutManager extraLineFragmentRect];
         
     } else {
-        NSRange lineRange = [[textView string] lineRangeForRange:[textView selectedRange]];
-        lineRange.length -= (lineRange.length > 0) ? 1 : 0;  // remove line ending
-        NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL];
+        NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:[textView selectedRange] actualCharacterRange:NULL];
         
         rect = [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:[textView textContainer]];
         rect.size.width = [[textView textContainer] containerSize].width;
