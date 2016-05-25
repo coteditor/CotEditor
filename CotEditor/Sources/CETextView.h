@@ -39,7 +39,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL needsRecompletion;  // 再度入力補完をするか
-@property (nonatomic) BOOL needsUpdateOutlineMenuItemSelection;  // アウトラインメニュー項目の更新をすべきか
 @property (nonatomic) CGFloat lineSpacing;
 @property (nonatomic) NSUInteger tabWidth;  // タブ幅
 @property (nonatomic) NSRect highlightLineRect;  // ハイライト行の矩形
@@ -60,7 +59,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 - (IBAction)selectLines:(nullable id)sender;
 - (IBAction)inputYenMark:(nullable id)sender;
 - (IBAction)inputBackSlash:(nullable id)sender;
-- (IBAction)setSelectedRangeWithNSValue:(nullable id)sender;
 - (IBAction)showSelectionInfo:(nullable id)sender;
 
 @end

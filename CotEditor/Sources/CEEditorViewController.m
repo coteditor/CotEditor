@@ -396,7 +396,7 @@
     [[[[[[self view] window] windowController] document] analyzer] invalidateEditorInfo];
 
     // update selected item of the outline menu
-    [self updateOutlineMenuSelection];
+    [[self navigationBarController] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
 
     // highlight matching brace
     
@@ -542,20 +542,6 @@
 // ------------------------------------------------------
 {
     return [[self editorWrapper] syntaxStyle];
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニューの選択項目を更新
-- (void)updateOutlineMenuSelection
-// ------------------------------------------------------
-{
-    if ([[self textView] needsUpdateOutlineMenuItemSelection]) {
-        [[self navigationBarController] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
-    } else {
-        [[self textView] setNeedsUpdateOutlineMenuItemSelection:YES];
-        [[self navigationBarController] updatePrevNextButtonEnabled];
-    }
 }
 
 

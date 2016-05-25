@@ -154,7 +154,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [self setUsesFindPanel:YES];
         [self setAcceptsGlyphInfo:YES];
         _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
-        _needsUpdateOutlineMenuItemSelection = YES;  // reise flag to let outline menu select current item
         
         // set link detection
         [self setAutomaticLinkDetectionEnabled:[defaults boolForKey:CEDefaultAutoLinkDetectionKey]];
@@ -1310,24 +1309,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 // ------------------------------------------------------
 {
     [super insertText:@"\\" replacementRange:[self selectedRange]];
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニュー選択によるテキスト選択を実行
-- (IBAction)setSelectedRangeWithNSValue:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSValue *value = [sender representedObject];
-    
-    if (!value) { return; }
-    
-    NSRange range = [value rangeValue];
-    
-    [self setNeedsUpdateOutlineMenuItemSelection:NO]; // 選択範囲変更後にメニュー選択項目が再選択されるオーバーヘッドを省く
-    [self setSelectedRange:range];
-    [self centerSelectionInVisibleArea:self];
-    [[self window] makeFirstResponder:self];
 }
 
 

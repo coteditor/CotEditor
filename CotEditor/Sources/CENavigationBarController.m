@@ -75,15 +75,6 @@ static const NSTimeInterval kDuration = 0.12;
 
 
 // ------------------------------------------------------
-/// nib name
-- (nullable NSString *)nibName
-// ------------------------------------------------------
-{
-    return @"NavigationBar";
-}
-
-
-// ------------------------------------------------------
 /// view is loaded
 - (void)awakeFromNib
 // ------------------------------------------------------
@@ -159,9 +150,9 @@ static const NSTimeInterval kDuration = 0.12;
     
     // add headding item
     [menu addItemWithTitle:NSLocalizedString(@"<Outline Menu>", nil)
-                    action:@selector(setSelectedRangeWithNSValue:)
+                    action:@selector(selectOutlineMenuItem:)
              keyEquivalent:@""];
-    [[menu itemAtIndex:0] setTarget:[self textView]];
+    [[menu itemAtIndex:0] setTarget:self];
     [[menu itemAtIndex:0] setRepresentedObject:[NSValue valueWithRange:NSMakeRange(0, 0)]];
     
     // add outline items
@@ -186,8 +177,8 @@ static const NSTimeInterval kDuration = 0.12;
         
         NSMenuItem *menuItem = [[NSMenuItem alloc] init];
         [menuItem setAttributedTitle:attrTitle];
-        [menuItem setAction:@selector(setSelectedRangeWithNSValue:)];
-        [menuItem setTarget:[self textView]];
+        [menuItem setAction:@selector(selectOutlineMenuItem:)];
+        [menuItem setTarget:self];
         [menuItem setRepresentedObject:[NSValue valueWithRange:[outlineItem range]]];
         
         [menu addItem:menuItem];
@@ -203,32 +194,24 @@ static const NSTimeInterval kDuration = 0.12;
 // ------------------------------------------------------
 {
     if (![[self outlineMenu] isEnabled]) { return; }
+    if ([[[self outlineMenu] menu] numberOfItems] == 0) { return; }
     
-    NSMenu *menu = [[self outlineMenu] menu];
-    NSInteger count = [menu numberOfItems];
-    if (count < 1) { return; }
-    NSInteger index;
-
-    if (NSEqualRanges(range, NSMakeRange(0, 0))) {
-        index = 1;
-    } else {
-        for (index = 1; index < count; index++) {
-            NSMenuItem *menuItem = [menu itemAtIndex:index];
-            NSRange itemRange = [[menuItem representedObject] rangeValue];
-            if (itemRange.location > range.location) {
-                break;
-            }
+    __block NSInteger index = 0;
+    [[[[self outlineMenu] menu] itemArray] enumerateObjectsWithOptions:NSEnumerationReverse
+                                                            usingBlock:^(NSMenuItem * _Nonnull menuItem,
+                                                                         NSUInteger idx,
+                                                                         BOOL * _Nonnull stop)
+    {
+        if ([menuItem isSeparatorItem]) { return; }
+        
+        NSRange itemRange = [[menuItem representedObject] rangeValue];
+        
+        if (itemRange.location <= range.location) {
+            index = idx;
+            *stop = YES;
         }
-    }
-    // ループを抜けた時点で「次のアイテムインデックス」になっているので、減ずる
-    index--;
-    // skip separators
-    while ([[[self outlineMenu] itemAtIndex:index] isSeparatorItem]) {
-        index--;
-        if (index < 0) {
-            break;
-        }
-    }
+    }];
+    
     [[self outlineMenu] selectItemAtIndex:index];
     [self updatePrevNextButtonEnabled];
 }
@@ -303,7 +286,25 @@ static const NSTimeInterval kDuration = 0.12;
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// set select prev item of outline menu.
+/// select outline menu item via pupup menu
+- (IBAction)selectOutlineMenuItem:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSValue *value = [sender representedObject];
+    
+    if (!value) { return; }
+    
+    NSRange range = [value rangeValue];
+    NSTextView *textView = [self textView];
+    
+    [textView setSelectedRange:range];
+    [textView centerSelectionInVisibleArea:textView];
+    [[textView window] makeFirstResponder:textView];
+}
+
+
+// ------------------------------------------------------
+/// set select prev item of outline menu
 - (IBAction)selectPrevItem:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -322,7 +323,7 @@ static const NSTimeInterval kDuration = 0.12;
 
 
 // ------------------------------------------------------
-/// set select next item of outline menu.
+/// set select next item of outline menu
 - (IBAction)selectNextItem:(nullable id)sender
 // ------------------------------------------------------
 {
