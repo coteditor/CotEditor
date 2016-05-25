@@ -401,7 +401,7 @@
     
     for (NSLayoutManager *manager in managers) {
         [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
-                        forCharacterRange:NSMakeRange(0, [[self string] length])];
+                        forCharacterRange:NSMakeRange(0, [[manager attributedString] length])];
     }
 }
 
@@ -706,7 +706,7 @@
     if (!currentEditorViewController) { return; }
     
     // end current editing
-    [[self class] endCurrentEditing];
+    [[[NSTextInputContext currentInputContext] client] unmarkText];
     
     CEEditorViewController *newEditorViewController = [[CEEditorViewController alloc] initWithTextStorage:[self textStorage]];
     
@@ -748,7 +748,7 @@
     if (!editorViewControllerToClose) { return; }
     
     // end current editing
-    [[self class] endCurrentEditing];
+    [[[NSTextInputContext currentInputContext] client] unmarkText];
     
     // move focus to the next text view if the view to close has a focus
     if ([[self window] firstResponder] == [editorViewControllerToClose textView]) {
@@ -783,18 +783,6 @@
 
 
 #pragma mark Private Methods
-
-// ------------------------------------------------------
-/// fix current marked text
-+ (void)endCurrentEditing
-// ------------------------------------------------------
-{
-    id<NSTextInputClient> client = [[NSTextInputContext currentInputContext] client];
-    if ([client hasMarkedText]) {
-        [client doCommandBySelector:@selector(insertNewline:)];
-    }
-}
-
 
 // ------------------------------------------------------
 /// apply text styles from text view
