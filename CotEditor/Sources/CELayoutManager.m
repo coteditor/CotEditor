@@ -180,7 +180,7 @@ static NSString *HiraginoSansName;
     if ([self showsInvisibles] && [[self invisibleLines] count] > 0) {
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         NSString *completeString = [[self textStorage] string];
-        CGFloat baselineOffset = [self defaultBaselineOffset];
+        BOOL isVertical = ([[self firstTextView] layoutOrientation] == NSTextLayoutOrientationVertical);
         
         // flip coordinate if needed
         if ([[NSGraphicsContext currentContext] isFlipped]) {
@@ -236,8 +236,13 @@ static NSString *HiraginoSansName;
             // calcurate position to draw glyph
             NSPoint point = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL withoutAdditionalLayout:YES].origin;
             NSPoint glyphLocation = [self locationForGlyphAtIndex:glyphIndex];
-            point.x += glyphLocation.x + origin.x;
-            point.y += baselineOffset + origin.y;
+            point.x += origin.x + glyphLocation.x;
+            point.y += origin.y + [self defaultBaselineOffset];
+            if (isVertical) {
+                // [note] Probably not a good solution but better than not (2016-05-25).
+                CGRect pathBounds = CTLineGetBoundsWithOptions(line, kCTLineBoundsUseGlyphPathBounds);
+                point.y += CGRectGetHeight(pathBounds)/ 2;
+            }
             
             // draw character
             CGContextSetTextPosition(context, point.x, point.y);
