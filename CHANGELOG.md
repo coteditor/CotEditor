@@ -21,6 +21,7 @@ develop
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with tiriple `*` and `_`.
 - Better syntax highlighting while editing.
+- Adjust height of the last empty line.
 
 
 ### Fixes

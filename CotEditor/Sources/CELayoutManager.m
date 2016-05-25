@@ -160,6 +160,7 @@ static NSString *HiraginoSansName;
 {
     // 複合フォントで行の高さがばらつくのを防止するために一般の行の高さを変更しているので、それにあわせる
     aRect.size.height = [self lineHeight];
+    usedRect.size.height = [self lineHeight];
 
     [super setExtraLineFragmentRect:aRect usedRect:usedRect textContainer:aTextContainer];
 }
