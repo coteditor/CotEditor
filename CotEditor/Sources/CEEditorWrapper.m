@@ -45,6 +45,7 @@
 
 #import "NSString+CENewLine.h"
 #import "NSString+CERange.h"
+#import "NSString+Indentation.h"
 
 
 @interface CEEditorWrapper () <CETextFinderClientProvider, NSTextStorageDelegate>
@@ -125,6 +126,20 @@
     // （Yosemite 以降は自動的に追加されるためか以下の一行が入るとハングしてしまう）
     if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
         [self setNextResponder:[self splitViewController]];
+    }
+    
+    // detect indent style
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey]) {
+        switch ([[[self textStorage] string] detectIndentStyle]) {
+            case CEIndentStyleTab:
+                [self setAutoTabExpandEnabled:NO];
+                break;
+            case CEIndentStyleSpace:
+                [self setAutoTabExpandEnabled:YES];
+                break;
+            case CEIndentStyleNotFound:
+                break;
+        }
     }
     
     CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[self document] textStorage]];

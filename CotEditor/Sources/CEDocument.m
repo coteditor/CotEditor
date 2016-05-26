@@ -47,7 +47,6 @@
 
 #import "NSString+CEEncoding.h"
 #import "NSString+CECounting.h"
-#import "NSString+Indentation.h"
 #import "NSAlert+BlockMethods.h"
 
 #import "CEErrors.h"
@@ -883,22 +882,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     CEEditorWrapper *editor = [self editor];
-    
-    if ([[self textStorage] length] > 0) {
-        // detect indent style
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey]) {
-            switch ([[[self textStorage] string] detectIndentStyle]) {
-                case CEIndentStyleTab:
-                    [editor setAutoTabExpandEnabled:NO];
-                    break;
-                case CEIndentStyleSpace:
-                    [editor setAutoTabExpandEnabled:YES];
-                    break;
-                case CEIndentStyleNotFound:
-                    break;
-            }
-        }
-    }
     
     [editor invalidateStyleInTextStorage];
     

@@ -29,6 +29,7 @@ develop
 - Fix an issue where the selected marks of line height / tab width in the Format menu disappeared.
 - Fix an issue where unselected last line number could be highlighted if the text orientation is vertical.
 - Fix an issue where invisible characters were drawn off to the side if the text orientation is vertical.
+- Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted. 
 
 
 
