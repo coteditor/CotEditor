@@ -369,9 +369,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     
     // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
     if ([self highlightCacheHash] && [[self highlightCacheHash] isEqualToString:[[textStorage string] MD5]]) {
-        for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
-            [self applyHighlights:[self cachedHighlights] range:wholeRange layoutManager:layoutManager];
-        }
+        [self applyHighlights:[self cachedHighlights] range:wholeRange textStorage:textStorage];
         if (completionHandler) {
             completionHandler();
         }
@@ -407,7 +405,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     NSRange wholeRange = NSMakeRange(0, [string length]);
     NSRange highlightRange;
     
-    // 文字列が十分小さい時は全文カラーリングをする
+    // highlight whole if string is enough short
     if (wholeRange.length <= bufferLength) {
         highlightRange = wholeRange;
         
@@ -460,9 +458,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     
     // カラーリング不要なら現在のカラーリングをクリアして戻る
     if (![self hasSyntaxHighlighting]) {
-        for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
-            [self applyHighlights:@{} range:highlightRange layoutManager:layoutManager];
-        }
+        [self applyHighlights:@{} range:highlightRange textStorage:textStorage];
         if (completionHandler) {
             completionHandler();
         }
@@ -530,9 +526,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                     if (indicator) {
                         [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
                     }
-                    for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
-                        [self applyHighlights:highlights range:highlightRange layoutManager:layoutManager];
-                    }
+                    [self applyHighlights:highlights range:highlightRange textStorage:textStorage];
                 }
             }
             
@@ -566,22 +560,24 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 抽出したカラー範囲配列を書類に適用する
-- (void)applyHighlights:(NSDictionary<NSString *, NSArray<NSValue *> *> *)highlights range:(NSRange)highlightRange layoutManager:(nonnull NSLayoutManager *)layoutManager
+- (void)applyHighlights:(NSDictionary<NSString *, NSArray<NSValue *> *> *)highlights range:(NSRange)highlightRange textStorage:(nonnull NSTextStorage *)textStorage
 // ------------------------------------------------------
 {
-    // remove current highlights
-    [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
-                          forCharacterRange:highlightRange];
-    
-    // apply color to layoutManager
-    CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
-    for (NSString *syntaxType in kSyntaxDictKeys) {
-        NSArray<NSValue *> *ranges = highlights[syntaxType];
-        NSColor *color = [theme syntaxColorForType:syntaxType] ?: [theme textColor];
+    for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
+        // remove current highlights
+        [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
+                              forCharacterRange:highlightRange];
         
-        for (NSValue *rangeValue in ranges) {
-            [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
-                                           value:color forCharacterRange:[rangeValue rangeValue]];
+        // apply color to layoutManager
+        CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
+        for (NSString *syntaxType in kSyntaxDictKeys) {
+            NSArray<NSValue *> *ranges = highlights[syntaxType];
+            NSColor *color = [theme syntaxColorForType:syntaxType] ?: [theme textColor];
+            
+            for (NSValue *rangeValue in ranges) {
+                [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName
+                                               value:color forCharacterRange:[rangeValue rangeValue]];
+            }
         }
     }
 }
