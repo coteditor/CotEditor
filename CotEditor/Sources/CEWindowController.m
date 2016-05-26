@@ -123,13 +123,10 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     [[self sidebarSplitView] layoutSubtreeIfNeeded];
     [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
-    // set document instance to sidebar views
-    [[self incompatibleCharsViewController] setDocument:[self document]];
-    [[self documentInspectorViewController] setRepresentedObject:[[self document] analyzer]];
-    
     // setup status bar
-    [[self statusBarController] setDocumentAnalyzer:[[self document] analyzer]];
     [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
+    
+    [self applyDocument:[self document]];
     
     // apply document state to UI
     [[self document] applyContentToWindow];
@@ -362,6 +359,19 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// apply passed-in document instance to window
+- (void)applyDocument:(nonnull CEDocument *)document
+// ------------------------------------------------------
+{
+    // set document instance to sidebar views
+    [[self incompatibleCharsViewController] setDocument:document];
+    [[self documentInspectorViewController] setRepresentedObject:[document analyzer]];
+    
+    [[self statusBarController] setDocumentAnalyzer:[[self document] analyzer]];
+}
+
 
 // ------------------------------------------------------
 /// set sidebar visibility
