@@ -310,7 +310,11 @@
     if ([self canHighlight]) {
         // invalidate only edited lines
         NSRange updateRange = [[textStorage string] lineRangeForRange:[textStorage editedRange]];
-        [[self syntaxStyle] highlightRange:updateRange];
+        // perform highlight in the next run loop to give layoutManager time to update temporary attribute
+        CESyntaxStyle *syntaxStyle = [self syntaxStyle];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [syntaxStyle highlightRange:updateRange];
+        });
     }
     
     // update incompatible chars list

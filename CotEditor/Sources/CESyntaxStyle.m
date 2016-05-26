@@ -423,18 +423,22 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         if (start <= bufferLength) {
             start = 0;
         } else {
-            [layoutManager temporaryAttribute:NSForegroundColorAttributeName
-                             atCharacterIndex:start
-                        longestEffectiveRange:&effectiveRange
-                                      inRange:wholeRange];
-            start = effectiveRange.location;
+            if ([layoutManager temporaryAttribute:NSForegroundColorAttributeName
+                                 atCharacterIndex:start
+                            longestEffectiveRange:&effectiveRange
+                                          inRange:wholeRange])
+            {
+                start = effectiveRange.location;
+            }
         }
         
-        [layoutManager temporaryAttribute:NSForegroundColorAttributeName
-                         atCharacterIndex:end
-                    longestEffectiveRange:&effectiveRange
-                                  inRange:wholeRange];
-        end = NSMaxRange(effectiveRange);
+        if ([layoutManager temporaryAttribute:NSForegroundColorAttributeName
+                             atCharacterIndex:end
+                        longestEffectiveRange:&effectiveRange
+                                      inRange:wholeRange])
+        {
+            end = NSMaxRange(effectiveRange) - 1;
+        }
         
         highlightRange = NSMakeRange(start, end - start);
     }
