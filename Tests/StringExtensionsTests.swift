@@ -30,6 +30,15 @@ import XCTest
 
 class StringExtensionsTests: XCTestCase {
     
+    func testCharacterEscape() {
+        let string = "a\\a\\\\aa"
+        
+        XCTAssertFalse(string.isCharacterEscapedAt(0))
+        XCTAssertTrue(string.isCharacterEscapedAt(2))
+        XCTAssertFalse(string.isCharacterEscapedAt(5))
+    }
+    
+    
     func testComposedCharactersCount() {
         XCTAssertEqual("foo".numberOfComposedCharacters(), 3)
         XCTAssertEqual("😀🇯🇵a".numberOfComposedCharacters(), 3)

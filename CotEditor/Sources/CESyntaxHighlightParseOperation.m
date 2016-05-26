@@ -29,9 +29,8 @@
 #import "CESyntaxHighlightParseOperation.h"
 #import "Constants.h"
 
+#import "NSString+CEAdditions.h"
 
-// parsing constants
-static NSUInteger const kMaxEscapesCheckLength = 16;
 
 // key constants (QC might abbr of Quotes/Comment)
 static NSString *_Nonnull const QCLocationKey = @"QCLocationKey";
@@ -222,7 +221,7 @@ static CGFloat kPerCompoIncrement;
             
             if (![scanner scanString:searchString intoString:nil]) { break; }
             
-            if (isCharacterEscaped(string, startLocation)) { continue; }
+            if ([string isCharacterEscapedAt:startLocation]) { continue; }
             
             NSRange range = NSMakeRange(startLocation, length);
             [ranges addObject:[NSValue valueWithRange:range]];
@@ -257,7 +256,7 @@ static CGFloat kPerCompoIncrement;
             
             if (![scanner scanString:beginString intoString:nil]) { break; }
             
-            if (isCharacterEscaped(string, startLocation)) { continue; }
+            if ([string isCharacterEscapedAt:startLocation]) { continue; }
             
             // find end string
             while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
@@ -267,7 +266,7 @@ static CGFloat kPerCompoIncrement;
                 
                 NSUInteger endLocation = [scanner scanLocation];
                 
-                if (isCharacterEscaped(string, (endLocation - endLength))) { continue; }
+                if ([string isCharacterEscapedAt:endLocation - endLength]) { continue; }
                 
                 NSRange range = NSMakeRange(startLocation, endLocation - startLocation);
                 [ranges addObject:[NSValue valueWithRange:range]];
@@ -668,27 +667,6 @@ NSDictionary<NSString *, NSArray<NSValue *> *> *sanitizeHighlights(NSDictionary<
     }
     
     return [sanitizedHighlights copy];
-}
-
-
-// ------------------------------------------------------
-/// 与えられた位置の文字がバックスラッシュでエスケープされているかを返す
-BOOL isCharacterEscaped(NSString *string, NSUInteger location)
-// ------------------------------------------------------
-{
-    NSUInteger numberOfEscapes = 0;
-    NSUInteger escapesCheckLength = MIN(location, kMaxEscapesCheckLength);
-    
-    location--;
-    for (NSUInteger i = 0; i < escapesCheckLength; i++) {
-        if ([string characterAtIndex:location - i] == '\\') {
-            numberOfEscapes++;
-        } else {
-            break;
-        }
-    }
-    
-    return (numberOfEscapes % 2 == 1);
 }
 
 @end
