@@ -924,6 +924,7 @@
 }
 
 
+
 #pragma mark Action Messages
 
 // ------------------------------------------------------
@@ -933,6 +934,7 @@
 {
     [self invalidateSyntaxHighlight];
 }
+
 
 
 #pragma mark Private Methods

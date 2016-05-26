@@ -149,6 +149,7 @@ static NSMutableDictionary<NSString *, __kindof CEPanelController *> *instances;
     [self keyDocumentDidChange];
 }
 
+
 // ------------------------------------------------------
 /// notification about main window resign
 - (void)mainWindowDidResign:(nonnull NSNotification *)notification

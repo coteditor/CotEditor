@@ -379,7 +379,6 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 }
 
 
-
 // ------------------------------------------------------
 /// シンタックスカラーリングスタイルエクスポートボタンが押された
 - (IBAction)exportSyntaxStyle:(nullable id)sender

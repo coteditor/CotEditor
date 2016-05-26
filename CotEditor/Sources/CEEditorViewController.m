@@ -536,6 +536,7 @@
              ];
 }
 
+
 // ------------------------------------------------------
 /// return shared sytnax style
 - (nullable CESyntaxStyle *)syntaxStyle

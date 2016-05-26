@@ -59,6 +59,7 @@
     return self;
 }
 
+
 // ------------------------------------------------------
 /// show invisible characters
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin

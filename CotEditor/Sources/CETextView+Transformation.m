@@ -137,6 +137,7 @@
      }];
 }
 
+
 // ------------------------------------------------------
 /// Unicode normalization (NFKC_Casefold)
 - (IBAction)normalizeUnicodeWithNFKCCF:(nullable id)sender

@@ -74,6 +74,7 @@
     return @"MigrationWindow";
 }
 
+
 // ------------------------------------------------------
 /// initialize window
 - (void)windowDidLoad
@@ -143,6 +144,7 @@
     [[self button] setAction:@selector(orderOut:)];
     [[self button] setTitle:NSLocalizedString(@"Close", nil)];
 }
+
 
 // ------------------------------------------------------
 /// open a specific help page with anchor

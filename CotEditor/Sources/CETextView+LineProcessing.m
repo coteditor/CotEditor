@@ -336,7 +336,6 @@
 }
 
 
-
 // ------------------------------------------------------
 /// duplicate selected lines below
 - (IBAction)duplicateLine:(nullable id)sender
@@ -364,7 +363,6 @@
     [self replaceWithStrings:replacementStrings ranges:replacementRanges selectedRanges:nil
                   actionName:NSLocalizedString(@"Duplicate Line", @"action name")];
 }
-
 
 
 // ------------------------------------------------------

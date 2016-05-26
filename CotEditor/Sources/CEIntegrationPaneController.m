@@ -73,6 +73,7 @@ static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/co
     return self;
 }
 
+
 // ------------------------------------------------------
 /// nib name
 - (nullable NSString *)nibName
@@ -80,7 +81,6 @@ static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/co
 {
     return @"IntegrationPane";
 }
-
 
 
 // ------------------------------------------------------

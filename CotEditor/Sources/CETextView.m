@@ -103,7 +103,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         kMatchingOpeningBracketsSet = [NSCharacterSet characterSetWithCharactersInString:@"[{(\""];
         kMatchingClosingBracketsSet = [NSCharacterSet characterSetWithCharactersInString:@"]})"];  // ignore "
     });
-    
 }
 
 
@@ -1337,6 +1336,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 }
 
 
+
 #pragma mark Private Methods
 
 // ------------------------------------------------------
@@ -1582,7 +1582,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     }
     return NSMakeRange(begin, NSMaxRange(range) - begin);
 }
-
 
 
 // ------------------------------------------------------

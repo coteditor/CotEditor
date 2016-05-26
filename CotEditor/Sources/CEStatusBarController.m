@@ -137,6 +137,7 @@ static NSColor *kLabelColor;
     _shown = shown;
 }
 
+
 // ------------------------------------------------------
 /// update visibility
 - (void)setShown:(BOOL)isShown animate:(BOOL)performAnimation

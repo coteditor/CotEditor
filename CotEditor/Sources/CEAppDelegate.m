@@ -582,7 +582,6 @@
     
     [[NSHelpManager sharedHelpManager] openHelpAnchor:kHelpAnchors[[sender tag]]
                                                inBook:bookName];
-    
 }
 
 
