@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
@@ -320,42 +319,42 @@
                             <action selector="toggleComment:" target="-1" id="NOk-Gb-s42"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="41C8148D-0754-4566-894B-7622CA52F8E5" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Auto Tab Expand" toolTip="Toggle auto tab expand" tag="13" image="AutoTabExpand_On" id="zry-bG-j2J">
+                    <toolbarItem implicitItemIdentifier="41C8148D-0754-4566-894B-7622CA52F8E5" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Auto Tab Expand" toolTip="Toggle auto tab expand" tag="13" image="AutoTabExpand_On" id="zry-bG-j2J" customClass="CEToggleToolbarItem">
                         <connections>
                             <action selector="toggleAutoTabExpand:" target="-1" id="FhV-mw-Thf"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="DBAEC99C-61AB-42BC-8316-2C57F9799F9E" explicitItemIdentifier="showNavigationBarItemID" label="Navigation Bar" paletteLabel="Show / Hide Navigation Bar" toolTip="Show or hide navigation bar of window" tag="14" image="NaviBar_Show" id="KpZ-NH-xEh">
+                    <toolbarItem implicitItemIdentifier="DBAEC99C-61AB-42BC-8316-2C57F9799F9E" explicitItemIdentifier="showNavigationBarItemID" label="Navigation Bar" paletteLabel="Show / Hide Navigation Bar" toolTip="Show or hide navigation bar of window" tag="14" image="NaviBar_On" id="KpZ-NH-xEh" customClass="CEToggleToolbarItem">
                         <connections>
                             <action selector="toggleNavigationBar:" target="-1" id="UsQ-17-wB6"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="6ED57D08-75C6-4859-808D-2F7A1F7E0927" explicitItemIdentifier="showLineNumItemID" label="Line Number" paletteLabel="Show / Hide Line Number" toolTip="Show or hide line number of text" tag="15" image="LineNumber_Show" id="kfX-UD-siE">
+                    <toolbarItem implicitItemIdentifier="6ED57D08-75C6-4859-808D-2F7A1F7E0927" explicitItemIdentifier="showLineNumItemID" label="Line Number" paletteLabel="Show / Hide Line Number" toolTip="Show or hide line number of text" tag="15" image="LineNumber_On" id="kfX-UD-siE" customClass="CEToggleToolbarItem">
                         <connections>
                             <action selector="toggleLineNumber:" target="-1" id="c8k-WU-JRa"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="AE2616A0-F7C5-46D5-AE16-29E19B830E0E" explicitItemIdentifier="showStatusAreaItemID" label="Status Bar" paletteLabel="Show / Hide Status Bar" toolTip="Show or hide status bar of window" tag="16" image="StatusBar_Show" id="moq-h9-h7t">
+                    <toolbarItem implicitItemIdentifier="AE2616A0-F7C5-46D5-AE16-29E19B830E0E" explicitItemIdentifier="showStatusAreaItemID" label="Status Bar" paletteLabel="Show / Hide Status Bar" toolTip="Show or hide status bar of window" tag="16" image="StatusBar_On" id="moq-h9-h7t" customClass="CEToggleToolbarItem">
                         <connections>
                             <action selector="toggleStatusBar:" target="-1" id="tS6-Q0-2LV"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="2A62FA57-3D80-4478-92B6-98F43E9B666D" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_Show" id="KtS-FH-3Py">
+                    <toolbarItem implicitItemIdentifier="2A62FA57-3D80-4478-92B6-98F43E9B666D" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="KtS-FH-3Py" customClass="CEToggleToolbarItem">
                         <connections>
                             <action selector="toggleInvisibleChars:" target="-1" id="2l7-uU-Sgy"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="08C1E5C8-B3B4-4DDB-86FE-816BAB5DF962" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show / Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_Show" id="PES-f4-CAc">
+                    <toolbarItem implicitItemIdentifier="08C1E5C8-B3B4-4DDB-86FE-816BAB5DF962" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show / Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_On" id="PES-f4-CAc" customClass="CEToggleToolbarItem">
                         <connections>
                             <action selector="togglePageGuide:" target="-1" id="rBw-il-Jhr"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="B555FE33-8865-480B-AB5F-3F1B8B761821" explicitItemIdentifier="wrapLinesItemID" label="Wrap Lines" paletteLabel="Toggle Wrap Lines" toolTip="Toggle wrap lines" tag="19" image="WrapLines_On" id="oJm-2d-4Yl">
+                    <toolbarItem implicitItemIdentifier="B555FE33-8865-480B-AB5F-3F1B8B761821" explicitItemIdentifier="wrapLinesItemID" label="Wrap Lines" paletteLabel="Toggle Wrap Lines" toolTip="Toggle wrap lines" tag="19" image="WrapLines_On" id="oJm-2d-4Yl" customClass="CEToggleToolbarItem">
                         <connections>
                             <action selector="toggleLineWrap:" target="-1" id="K9r-do-Tyv"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="82F862DC-E426-431F-9876-D169C92CDC11" explicitItemIdentifier="textOrientationItemID" label="Orientation" paletteLabel="Toggle Text Orientation" toolTip="Toggle text orientation" tag="20" image="VerticalOrientation_On" id="OJR-Lr-Joc">
+                    <toolbarItem implicitItemIdentifier="82F862DC-E426-431F-9876-D169C92CDC11" explicitItemIdentifier="textOrientationItemID" label="Orientation" paletteLabel="Toggle Text Orientation" toolTip="Toggle text orientation" tag="20" image="VerticalOrientation_On" id="OJR-Lr-Joc" customClass="CEToggleToolbarItem">
                         <connections>
                             <action selector="toggleLayoutOrientation:" target="-1" id="7Tf-cM-6rK"/>
                         </connections>
@@ -385,9 +384,6 @@
                     <toolbarItem reference="W1p-7F-VC5"/>
                     <toolbarItem reference="ogy-SR-Vqr"/>
                 </defaultToolbarItems>
-                <connections>
-                    <outlet property="delegate" destination="71" id="3nC-cf-jdv"/>
-                </connections>
             </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
@@ -400,8 +396,6 @@
                 <outlet property="lineEndingPopupButton" destination="77" id="ypf-VV-99N"/>
                 <outlet property="shareButton" destination="b09-OH-vIj" id="JsB-8c-gRV"/>
                 <outlet property="syntaxPopupButton" destination="96" id="44A-ih-NrH"/>
-                <outlet property="toolbar" destination="olV-v9-4mJ" id="pNJ-aC-2RI"/>
-                <outlet property="windowController" destination="-2" id="OVy-AU-0VE"/>
             </connections>
         </customObject>
         <customObject id="Asc-bK-hKW" customClass="CEEditorWrapper">
@@ -432,18 +426,18 @@
         <image name="EditColorCode" width="32" height="32"/>
         <image name="GetInfo" width="32" height="32"/>
         <image name="IncompatibleChars" width="32" height="32"/>
-        <image name="InvisibleChars_Show" width="32" height="32"/>
-        <image name="LineNumber_Show" width="32" height="32"/>
+        <image name="InvisibleChars_On" width="32" height="32"/>
+        <image name="LineNumber_On" width="32" height="32"/>
         <image name="LockedTemplate" width="16" height="16"/>
         <image name="NSShareTemplate" width="11" height="16"/>
-        <image name="NaviBar_Show" width="32" height="32"/>
-        <image name="PageGuide_Show" width="32" height="32"/>
+        <image name="NaviBar_On" width="32" height="32"/>
+        <image name="PageGuide_On" width="32" height="32"/>
         <image name="RecolorAll" width="32" height="32"/>
         <image name="ShiftLeft" width="32" height="32"/>
         <image name="ShiftRight" width="32" height="32"/>
         <image name="SmallerFont" width="32" height="32"/>
         <image name="SpellCheck" width="32" height="32"/>
-        <image name="StatusBar_Show" width="32" height="32"/>
+        <image name="StatusBar_On" width="32" height="32"/>
         <image name="VerticalOrientation_On" width="32" height="32"/>
         <image name="WrapLines_On" width="32" height="32"/>
     </resources>

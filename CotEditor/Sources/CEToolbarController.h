@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,44 +27,13 @@
  */
 
 @import Cocoa;
-#import "NSString+CENewLine.h"
 
 
-// Toolbar item tag
-typedef NS_ENUM(NSInteger, CEToolbarItemTag) {
-    CEToolbarLineEndingsItemTag = 1,
-    CEToolbarFileEncodingsItemTag,
-    CEToolbarSyntaxItemTag,
-    CEToolbarGetInfoItemTag,
-    CEToolbarShowIncompatibleCharItemTag,
-    CEToolbarPrintItemTag,
-    CEToolbarFontItemTag,
-    CEToolbarBiggerFontItemTag,
-    CEToolbarSmallerFontItemTag,
-    CEToolbarShiftLeftItemTag,
-    CEToolbarShiftRightItemTag,
-    CEToolbarToggleCommentItemTag,
-    CEToolbarAutoTabExpandItemTag,
-    CEToolbarShowNavigationBarItemTag,
-    CEToolbarShowLineNumItemTag,
-    CEToolbarShowStatusBarItemTag,
-    CEToolbarShowInvisibleCharsItemTag,
-    CEToolbarShowPageGuideItemTag,
-    CEToolbarWrapLinesItemTag,
-    CEToolbarTextOrientationItemTag,
-    CEToolbarEditColorCodeItemTag,
-    CEToolbarSyntaxReColorAllItemTag,
-    CEToolbarShareItemTag,
-    CEToolbarSpellCheckItemTag,
-};
+@class CEDocument;
 
 
-@interface CEToolbarController : NSObject <NSToolbarDelegate>
+@interface CEToolbarController : NSObject
 
-// Public method
-- (void)toggleItemWithTag:(CEToolbarItemTag)tag setOn:(BOOL)setOn;
-- (void)setSelectedEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM;
-- (void)setSelectedLineEnding:(CENewLineType)lineEnding;
-- (void)setSelectedSyntaxWithName:(nonnull NSString *)name;
+@property (nonatomic, nullable) CEDocument *document;
 
 @end

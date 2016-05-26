@@ -1,16 +1,15 @@
 /*
  
- CEWindowController.h
+ CEToggleToolbarItem.h
  
  CotEditor
  http://coteditor.com
  
- Created by nakamuxu on 2004-12-13.
-
+ Created by 1024jp on 2016-05-26.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,21 +28,8 @@
 @import Cocoa;
 
 
-@class CEEditorWrapper;
+@interface CEToggleToolbarItem : NSToolbarItem
 
-
-@interface CEWindowController : NSWindowController <NSWindowDelegate>
-
-@property (readonly, nonatomic, nullable, weak) CEEditorWrapper *editor;
-
-
-// Public Methods
-- (void)showIncompatibleCharList;
-- (void)updateIncompatibleCharsIfNeeded;
-
-// Action Messages
-- (IBAction)getInfo:(nullable id)sender;
-- (IBAction)toggleIncompatibleCharList:(nullable id)sender;
-- (IBAction)toggleStatusBar:(nullable id)sender;
+@property (nonatomic) NSInteger state;
 
 @end

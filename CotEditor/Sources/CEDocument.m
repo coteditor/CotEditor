@@ -41,7 +41,6 @@
 #import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
 #import "CEWindowController.h"
-#import "CEToolbarController.h"
 #import "CEEditorWrapper.h"
 #import "CEEncodingManager.h"
 
@@ -888,7 +887,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // update syntax highlights and outline menu
     [editor invalidateSyntaxHighlight];
     [editor invalidateOutlineMenu];
-    [[[self windowController] toolbarController] setSelectedSyntaxWithName:[[self syntaxStyle] styleName]];
     
     // update line endings menu selection in toolbar
     [self applyLineEndingToView];
@@ -1052,7 +1050,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     [self setEncoding:encoding];
     [self setHasUTF8BOM:withUTF8BOM];
-    [self applyEncodingToView];  // ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
+    [self applyEncodingToView];  // ステータスバー、インスペクタを更新
     
     if (shouldShowList) {
         [[self windowController] showIncompatibleCharList];
@@ -1102,8 +1100,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     // update
     [syntaxStyle setTextStorage:[self textStorage]];
     [self setSyntaxStyle:syntaxStyle];
-    
-    [[[self windowController] toolbarController] setSelectedSyntaxWithName:[syntaxStyle styleName]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEDocumentSyntaxStyleDidChangeNotification
                                                         object:self];
@@ -1273,8 +1269,8 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
             NSInteger secondResult = [alert runModal];
             if (secondResult != NSAlertSecondButtonReturn) { // = Cancel
-                // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-                [[[self windowController] toolbarController] setSelectedEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]];
+                // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+                [self setEncoding:[self encoding]];
                 return;
             }
         }
@@ -1289,10 +1285,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
             NSBeep();
             [alert runModal];
         }
+    } else {  // = Cancel
+        // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+        [self setEncoding:[self encoding]];
     }
-    
-    // ツールバーから変更された場合のため、ツールバーアイテムの選択状態をリセット
-    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]];
 }
 
 
@@ -1361,7 +1357,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 // ------------------------------------------------------
 {
     [[self analyzer] invalidateModeInfo];
-    [[[self windowController] toolbarController] setSelectedEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM]];
 }
 
 
@@ -1372,7 +1367,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 {
     [[self analyzer] invalidateModeInfo];
     [[self analyzer] invalidateEditorInfo];
-    [[[self windowController] toolbarController] setSelectedLineEnding:[self lineEnding]];
 }
 
 

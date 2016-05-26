@@ -27,17 +27,17 @@
  */
 
 #import "CEToolbarController.h"
-#import "CEEditorWrapper.h"
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
-#import "CEWindowController.h"
+#import "CESyntaxStyle.h"
+#import "CEDocument.h"
 #import "Constants.h"
+
+#import "NSString+CENewLine.h"
 
 
 @interface CEToolbarController ()
 
-@property (nonatomic, nullable, weak) IBOutlet NSToolbar *toolbar;
-@property (nonatomic, nullable, weak) IBOutlet CEWindowController *windowController;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingPopupButton;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
@@ -60,6 +60,10 @@
 // ------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    for (NSString *keyPath in [self observedDocumentKeys]) {
+        [_document removeObserver:self forKeyPath:keyPath];
+    }
 }
 
 
@@ -81,6 +85,7 @@
     [self buildEncodingPopupButton];
     [self buildSyntaxPopupButton];
     
+    // observe popup menu line-up change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(buildEncodingPopupButton)
                                                  name:CEEncodingListDidUpdateNotification
@@ -93,103 +98,55 @@
 }
 
 
-
-#pragma mark Public Method
-
 // ------------------------------------------------------
-/// update state of item which can be toggled
-- (void)toggleItemWithTag:(CEToolbarItemTag)tag setOn:(BOOL)setOn
+/// update popup button selection
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 // ------------------------------------------------------
 {
-    for (NSToolbarItem *item in [[self toolbar] items]) {
-        if ([item tag] == tag) {
-            [self toggleItem:item setOn:setOn];
-        }
-    }
-}
-
-
-// ------------------------------------------------------
-/// select item in the encoding popup menu
-- (void)setSelectedEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM
-// ------------------------------------------------------
-{
-    NSInteger tag = withUTF8BOM ? -encoding : encoding;
-    [[self encodingPopupButton] selectItemWithTag:tag];
-}
-
-
-// ------------------------------------------------------
-/// select item in the line ending menu
-- (void)setSelectedLineEnding:(CENewLineType)lineEnding
-// ------------------------------------------------------
-{
-    if (lineEnding >= [[self lineEndingPopupButton] numberOfItems]) { return; }
-
-    [[self lineEndingPopupButton] selectItemAtIndex:lineEnding];
-}
-
-
-// ------------------------------------------------------
-/// select item in the syntax style menu
-- (void)setSelectedSyntaxWithName:(nonnull NSString *)name
-// ------------------------------------------------------
-{
-    [[self syntaxPopupButton] selectItemWithTitle:name];
-    if (![[self syntaxPopupButton] selectedItem]) {
-        [[self syntaxPopupButton] selectItemAtIndex:0];  // select "None"
+    if ([keyPath isEqualToString:NSStringFromSelector(@selector(lineEnding))]) {
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf invalidateLineEndingSelection];
+        });
+        
+    } else if ([keyPath isEqualToString:NSStringFromSelector(@selector(encoding))] ||
+               [keyPath isEqualToString:NSStringFromSelector(@selector(hasUTF8BOM))])
+    {
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf invalidateEncodingSelection];
+        });
+        
+    } else if ([keyPath isEqualToString:NSStringFromSelector(@selector(syntaxStyle))]) {
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf invalidateSyntaxStyleSelection];
+        });
     }
 }
 
 
 
-#pragma mark Delegate
-
-//=======================================================
-// NSToolbarDelegate  < toolbar
-//=======================================================
+#pragma mark Public Accessors
 
 // ------------------------------------------------------
-/// set state of toolbar item when it will be added
-- (void)toolbarWillAddItem:(nonnull NSNotification *)notification
+/// set document to apply status
+- (void)setDocument:(nullable CEDocument *)document
 // ------------------------------------------------------
 {
-    NSToolbarItem *item = [notification userInfo][@"item"];
-    CEEditorWrapper *editor = [[self windowController] editor];
+    for (NSString *keyPath in [self observedDocumentKeys]) {
+        [[self document] removeObserver:self forKeyPath:keyPath];
+    }
     
-    switch ([item tag]) {
-        case CEToolbarShowInvisibleCharsItemTag:
-            [self toggleItem:item setOn:[editor showsInvisibles]];
-            
-            // disable button if item cannot be enable
-            if ([editor canActivateShowInvisibles]) {
-                [item setAction:@selector(toggleInvisibleChars:)];
-                [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
-            } else {
-                [item setAction:nil];
-                [item setToolTip:NSLocalizedString(@"To display invisible characters, set them in Preferences and re-open the document.", nil)];
-            }
-            break;
-        case CEToolbarAutoTabExpandItemTag:
-            [self toggleItem:item setOn:[editor isAutoTabExpandEnabled]];
-            break;
-        case CEToolbarShowNavigationBarItemTag:
-            [self toggleItem:item setOn:[editor showsNavigationBar]];
-            break;
-        case CEToolbarShowLineNumItemTag:
-            [self toggleItem:item setOn:[editor showsLineNum]];
-            break;
-        case CEToolbarShowStatusBarItemTag:
-            [self toggleItem:item setOn:[[self windowController] showsStatusBar]];
-            break;
-        case CEToolbarShowPageGuideItemTag:
-            [self toggleItem:item setOn:[editor showsPageGuide]];
-            break;
-        case CEToolbarWrapLinesItemTag:
-            [self toggleItem:item setOn:[editor wrapsLines]];
-            break;
-        default:
-            break;
+    _document = document;
+    
+    [self invalidateLineEndingSelection];
+    [self invalidateEncodingSelection];
+    [self invalidateSyntaxStyleSelection];
+    
+    // observe document status change
+    for (NSString *keyPath in [self observedDocumentKeys]) {
+        [document addObserver:self forKeyPath:keyPath options:0 context:NULL];
     }
 }
 
@@ -198,42 +155,53 @@
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// update item which can be toggled
-- (void)toggleItem:(nonnull NSToolbarItem *)item setOn:(BOOL)setOn
+/// document's key paths to observe
+- (nonnull NSArray<NSString *> *)observedDocumentKeys
 // ------------------------------------------------------
 {
-    NSString *imageName;
+    return @[NSStringFromSelector(@selector(lineEnding)),
+             NSStringFromSelector(@selector(encoding)),
+             NSStringFromSelector(@selector(hasUTF8BOM)),
+             NSStringFromSelector(@selector(syntaxStyle))];
+}
+
+
+// ------------------------------------------------------
+/// select item in the encoding popup menu
+- (void)invalidateLineEndingSelection
+// ------------------------------------------------------
+{
+    CENewLineType lineEnding = [[self document] lineEnding];
     
-    switch ([item tag]) {
-        case CEToolbarShowNavigationBarItemTag:
-            imageName = setOn ? @"NaviBar_Show" : @"NaviBar_Hide";
-            break;
-        case CEToolbarShowLineNumItemTag:
-            imageName = setOn ? @"LineNumber_Show" : @"LineNumber_Hide";
-            break;
-        case CEToolbarShowStatusBarItemTag:
-            imageName = setOn ? @"StatusBar_Show" : @"StatusBar_Hide";
-            break;
-        case CEToolbarShowInvisibleCharsItemTag:
-            imageName = setOn ? @"InvisibleChars_Show" : @"InvisibleChars_Hide";
-            break;
-        case CEToolbarShowPageGuideItemTag:
-            imageName = setOn ? @"PageGuide_Show" : @"PageGuide_Hide";
-            break;
-        case CEToolbarWrapLinesItemTag:
-            imageName = setOn ? @"WrapLines_On" : @"WrapLines_Off";
-            break;
-        case CEToolbarTextOrientationItemTag:
-            imageName = setOn ? @"VerticalOrientation_On" : @"VerticalOrientation_Off";
-            break;
-        case CEToolbarAutoTabExpandItemTag:
-            imageName = setOn ? @"AutoTabExpand_On" : @"AutoTabExpand_Off";
-            break;
-        default:
-            return;
+    [[self lineEndingPopupButton] selectItemAtIndex:lineEnding];
+}
+
+
+// ------------------------------------------------------
+/// select item in the line ending menu
+- (void)invalidateEncodingSelection
+// ------------------------------------------------------
+{
+    NSInteger tag = [[self document] encoding];
+    if ([[self document] hasUTF8BOM]) {
+        tag *= -1;
     }
     
-    [item setImage:[NSImage imageNamed:imageName]];
+    [[self encodingPopupButton] selectItemWithTag:tag];
+}
+
+
+// ------------------------------------------------------
+/// select item in the syntax style menu
+- (void)invalidateSyntaxStyleSelection
+// ------------------------------------------------------
+{
+    NSString *styleName = [[[self document] syntaxStyle] styleName];
+    
+    [[self syntaxPopupButton] selectItemWithTitle:styleName];
+    if (![[self syntaxPopupButton] selectedItem]) {
+        [[self syntaxPopupButton] selectItemAtIndex:0];  // select "None"
+    }
 }
 
 
@@ -242,13 +210,9 @@
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    // store current selection
-    NSInteger tag = [[self encodingPopupButton] selectedTag];
-    
     [[CEEncodingManager sharedManager] updateChangeEncodingMenu:[[self encodingPopupButton] menu]];
     
-    // reapply to the menu
-    [[self encodingPopupButton] selectItemWithTag:tag];
+    [self invalidateEncodingSelection];
 }
 
 
@@ -258,7 +222,6 @@
 // ------------------------------------------------------
 {
     NSArray<NSString *> *styleNames = [[CESyntaxManager sharedManager] styleNames];
-    NSString *title = [[self syntaxPopupButton] titleOfSelectedItem];
     
     [[self syntaxPopupButton] removeAllItems];
     [[[self syntaxPopupButton] menu] addItemWithTitle:NSLocalizedString(@"None", nil)
@@ -271,7 +234,7 @@
                                             keyEquivalent:@""];
     }
     
-    [self setSelectedSyntaxWithName:title];
+    [self invalidateSyntaxStyleSelection];
 }
 
 @end

@@ -30,6 +30,7 @@
 #import "CEWindow.h"
 #import "CEDocument.h"
 #import "CEToolbarController.h"
+#import "CEToggleToolbarItem.h"
 #import "CEStatusBarController.h"
 #import "CEIncompatibleCharsViewController.h"
 #import "CEEditorWrapper.h"
@@ -51,6 +52,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 
 
 // IBOutlets
+@property (nonatomic, nullable) IBOutlet CEToolbarController *toolbarController;
 @property (nonatomic, nullable) IBOutlet CEStatusBarController *statusBarController;
 @property (nonatomic, nullable) IBOutlet NSViewController *documentInspectorViewController;
 @property (nonatomic, nullable) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
@@ -59,7 +61,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 @property (nonatomic, nullable, weak) IBOutlet NSView *sidebarPlaceholderView;
 
 // IBOutlets (readonly)
-@property (readwrite, nonatomic, nullable, weak) IBOutlet CEToolbarController *toolbarController;
 @property (readwrite, nonatomic, nullable, weak) IBOutlet CEEditorWrapper *editor;
 
 @end
@@ -160,6 +161,24 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 }
 
 
+// ------------------------------------------------------
+/// ツールバー項目の有効・無効を制御
+- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
+// ------------------------------------------------------
+{
+    // validate button image state
+    if ([theItem isKindOfClass:[CEToggleToolbarItem class]]) {
+        CEToggleToolbarItem *imageItem = (CEToggleToolbarItem *)theItem;
+        
+        if ([theItem action] == @selector(toggleStatusBar:)) {
+            [imageItem setState:[self showsStatusBar] ? NSOnState : NSOffState];
+        }
+    }
+    
+    return YES;
+}
+
+
 //=======================================================
 // NSKeyValueObserving Protocol
 //=======================================================
@@ -217,8 +236,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     if (![self statusBarController]) { return; }
     
     [[self statusBarController] setShown:showsStatusBar animate:YES];
-    [[self toolbarController] toggleItemWithTag:CEToolbarShowStatusBarItemTag
-                                          setOn:showsStatusBar];
     
     [[[self document] analyzer] setNeedsUpdateStatusEditorInfo:showsStatusBar];
     if (showsStatusBar) {
@@ -365,11 +382,14 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 - (void)applyDocument:(nonnull CEDocument *)document
 // ------------------------------------------------------
 {
+    [[self toolbarController] setDocument:document];
+    [[[self window] toolbar] validateVisibleItems];
+    
     // set document instance to sidebar views
     [[self incompatibleCharsViewController] setDocument:document];
     [[self documentInspectorViewController] setRepresentedObject:[document analyzer]];
     
-    [[self statusBarController] setDocumentAnalyzer:[[self document] analyzer]];
+    [[self statusBarController] setDocumentAnalyzer:[document analyzer]];
 }
 
 

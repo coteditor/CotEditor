@@ -32,12 +32,12 @@
 #import "CEEditorViewController.h"
 #import "CELayoutManager.h"
 #import "CEWindowController.h"
-#import "CEToolbarController.h"
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
 #import "CEThemeManager.h"
 #import "CESyntaxStyle.h"
 #import "CEGoToSheetController.h"
+#import "CEToggleToolbarItem.h"
 #import "CETextFinder.h"
 
 #import "CEDefaults.h"
@@ -245,6 +245,41 @@
         return [self canHighlight];
     }
     
+    // validate button image state
+    if ([theItem isKindOfClass:[CEToggleToolbarItem class]]) {
+        CEToggleToolbarItem *imageItem = (CEToggleToolbarItem *)theItem;
+        
+        if ([theItem action] == @selector(toggleLineNumber:)) {
+            [imageItem setState:[self showsLineNum] ? NSOnState : NSOffState];
+            
+        } else if ([theItem action] == @selector(toggleNavigationBar:)) {
+            [imageItem setState:[self showsNavigationBar] ? NSOnState : NSOffState];
+            
+        } else if ([theItem action] == @selector(toggleLineWrap:)) {
+            [imageItem setState:[self wrapsLines] ? NSOnState : NSOffState];
+            
+        } else if ([theItem action] == @selector(toggleLayoutOrientation:)) {
+            [imageItem setState:[self isVerticalLayoutOrientation] ? NSOnState : NSOffState];
+            
+        } else if ([theItem action] == @selector(togglePageGuide:)) {
+            [imageItem setState:[self showsPageGuide] ? NSOnState : NSOffState];
+            
+        } else if ([theItem action] == @selector(toggleInvisibleChars:)) {
+            [imageItem setState:[self showsInvisibles] ? NSOnState : NSOffState];
+            
+            // disable button if item cannot be enable
+            if ([self canActivateShowInvisibles]) {
+                [theItem setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
+            } else {
+                [theItem setToolTip:NSLocalizedString(@"To display invisible characters, set them in Preferences and re-open the document.", nil)];
+                return NO;
+            }
+            
+        } else if ([theItem action] == @selector(toggleAutoTabExpand:)) {
+            [imageItem setState:[self isAutoTabExpandEnabled] ? NSOnState : NSOffState];
+        }
+    }
+    
     return YES;
 }
 
@@ -444,7 +479,6 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [[viewController textView] setAutoTabExpandEnabled:enabled];
     }];
-    [[self toolbarController] toggleItemWithTag:CEToolbarAutoTabExpandItemTag setOn:enabled];
 }
 
 
@@ -458,7 +492,6 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [viewController setShowsNavigationBar:showsNavigationBar animate:performAnimation];
     }];
-    [[self toolbarController] toggleItemWithTag:CEToolbarShowNavigationBarItemTag setOn:showsNavigationBar];
     
     if (showsNavigationBar && ![[self outlineMenuTimer] isValid]) {
         [self invalidateOutlineMenu];
@@ -476,7 +509,6 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [viewController setShowsLineNum:showsLineNum];
     }];
-    [[self toolbarController] toggleItemWithTag:CEToolbarShowLineNumItemTag setOn:showsLineNum];
 }
 
 
@@ -490,7 +522,6 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [viewController setWrapsLines:wrapsLines];
     }];
-    [[self toolbarController] toggleItemWithTag:CEToolbarWrapLinesItemTag setOn:wrapsLines];
 }
 
 
@@ -506,7 +537,6 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [[viewController textView] setLayoutOrientation:orientation];
     }];
-    [[self toolbarController] toggleItemWithTag:CEToolbarTextOrientationItemTag setOn:isVerticalLayoutOrientation];
 }
 
 
@@ -574,7 +604,6 @@
         [[viewController textView] setShowsPageGuide:showsPageGuide];
         [[viewController textView] setNeedsDisplayInRect:[[viewController textView] visibleRect] avoidAdditionalLayout:YES];
     }];
-    [[self toolbarController] toggleItemWithTag:CEToolbarShowPageGuideItemTag setOn:showsPageGuide];
 }
 
 
@@ -650,8 +679,6 @@
 {
     BOOL showsInvisibles = ![self showsInvisibles];
     [self setShowsInvisibles:showsInvisibles];
-    
-    [[self toolbarController] toggleItemWithTag:CEToolbarShowInvisibleCharsItemTag setOn:showsInvisibles];
 }
 
 
@@ -849,15 +876,6 @@
 // ------------------------------------------------------
 {
     return [[self document] textStorage];
-}
-
-
-// ------------------------------------------------------
-/// windowControllerを返す
-- (CEToolbarController *)toolbarController
-// ------------------------------------------------------
-{
-    return [(CEWindowController *)[[self window] windowController] toolbarController];
 }
 
 
