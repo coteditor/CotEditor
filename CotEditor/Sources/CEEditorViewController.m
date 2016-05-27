@@ -27,18 +27,16 @@
  */
 
 #import "CEEditorViewController.h"
-#import "CEDocument.h"
-#import "CEDocumentAnalyzer.h"
 #import "CENavigationBarController.h"
-#import "CEEditorWrapper.h"
 #import "CEEditorScrollView.h"
 #import "CETextView.h"
-#import "CESyntaxStyle.h"
-#import "CEThemeManager.h"
 #import "CELayoutManager.h"
-#import "NSString+CENewLine.h"
+#import "CESyntaxStyle.h"
+
 #import "CEDefaults.h"
 #import "Constants.h"
+
+#import "NSString+CENewLine.h"
 
 
 @interface CEEditorViewController ()
@@ -119,12 +117,6 @@
             [subview setNextResponder:self];
         }
     }
-    
-    // テーマの変更をキャッチ
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(themeDidUpdate:)
-                                                 name:CEThemeDidUpdateNotification
-                                               object:nil];
     
     // observe change of defaults
     for (NSString *key in [[self class] observedDefaultKeys]) {
@@ -264,7 +256,8 @@
 {
     [[self textView] setInlineCommentDelimiter:[syntaxStyle inlineCommentDelimiter]];
     [[self textView] setBlockCommentDelimiters:[syntaxStyle blockCommentDelimiters]];
-    [[self textView] setFirstCompletionCharacterSet:[syntaxStyle firstCompletionCharacterSet]];
+    [[self textView] setSyntaxCompletionWords:[syntaxStyle completionWords]];
+    [[self textView] setFirstSyntaxCompletionCharacterSet:[syntaxStyle firstCompletionCharacterSet]];
 }
 
 
@@ -348,7 +341,7 @@
     
     // copy words defined in syntax style
     if ([defaults boolForKey:CEDefaultCompletesSyntaxWordsKey]) {
-        NSArray<NSString *> *syntaxWords = [[self syntaxStyle] completionWords];
+        NSArray<NSString *> *syntaxWords = [(CETextView *)textView syntaxCompletionWords];
         for (NSString *word in syntaxWords) {
             if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
                 [candidateWords addObject:word];
@@ -391,9 +384,6 @@
 {
     // highlight the current line
     [self highlightCurrentLine];
-
-    // update document information
-    [[[[[[self view] window] windowController] document] analyzer] invalidateEditorInfo];
 
     // update selected item of the outline menu
     [[self navigationBarController] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
@@ -483,28 +473,7 @@
 
 
 
-#pragma mark Notifications
-
-//=======================================================
-// Notification  < CEThemeManager
-//=======================================================
-
-// ------------------------------------------------------
-/// テーマが更新された
-- (void)themeDidUpdate:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    if ([[notification userInfo][CEOldNameKey] isEqualToString:[[[self textView] theme] name]]) {
-        CETheme *theme = [[CEThemeManager sharedManager] themeWithName:[notification userInfo][CENewNameKey]];
-        
-        if (!theme) { return; }
-        
-        [[self textView] setTheme:theme];
-        [[self textView] setSelectedRanges:[[self textView] selectedRanges]];  // 現在行のハイライトカラーの更新するために選択し直す
-        [[self editorWrapper] invalidateSyntaxHighlight];
-    }
-}
-
+#pragma mark Action Messages
 
 // ------------------------------------------------------
 /// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
@@ -534,15 +503,6 @@
 {
     return @[CEDefaultHighlightCurrentLineKey,
              ];
-}
-
-
-// ------------------------------------------------------
-/// return shared sytnax style
-- (nullable CESyntaxStyle *)syntaxStyle
-// ------------------------------------------------------
-{
-    return [[self editorWrapper] syntaxStyle];
 }
 
 

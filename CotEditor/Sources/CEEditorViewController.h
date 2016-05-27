@@ -31,13 +31,10 @@
 
 @class CETextView;
 @class CENavigationBarController;
-@class CEEditorWrapper;
 @class CESyntaxStyle;
 
 
 @interface CEEditorViewController : NSViewController <NSTextViewDelegate>
-
-@property (nonatomic, nullable, weak) CEEditorWrapper *editorWrapper;
 
 // readonly
 @property (readonly, nonatomic, nullable) CETextView *textView;

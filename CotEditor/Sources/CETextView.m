@@ -882,7 +882,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if ([type isEqualToString:NSFilenamesPboardType]) {
         NSArray<NSDictionary<NSString *, NSString *> *> *fileDropDefs = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultFileDropArrayKey];
         NSArray<NSString *> *files = [pboard propertyListForType:NSFilenamesPboardType];
-        NSURL *documentURL = [[[[self window] windowController] document] fileURL];
+        NSURL *documentURL = [[self document] fileURL];
         NSMutableString *replacementString = [NSMutableString string];
         
         for (NSString *path in files) {
@@ -1393,7 +1393,16 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (CENewLineType)documentNewLineType
 // ------------------------------------------------------
 {
-    return [[[[self window] windowController] document] lineEnding];
+    return [[self document] lineEnding];
+}
+
+
+// ------------------------------------------------------
+/// document object representing the text view contents
+- (nullable __kindof NSDocument *)document
+// ------------------------------------------------------
+{
+    return [[[self window] windowController] document];
 }
 
 
@@ -1567,7 +1576,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     NSString *string = [self string];
     NSRange range = [super rangeForUserCompletion];
-    NSCharacterSet *charSet = [self firstCompletionCharacterSet];
+    NSCharacterSet *charSet = [self firstSyntaxCompletionCharacterSet];
     
     if (!charSet || [string length] == 0) { return range; }
     

@@ -142,19 +142,23 @@
         }
     }
     
-    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[self document] textStorage]];
-    [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:nil];
-    [self setupEditorViewController:editorViewController baseView:nil];
+    [[self textStorage] setDelegate:self];
+    
+    CEEditorViewController *editorViewController = [self createEditorBasedViewController:nil];
     
     // focus text view
     [[self window] makeFirstResponder:[editorViewController textView]];
     
-    [[self textStorage] setDelegate:self];
-    
+    // observe syntax/theme change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangeSyntaxStyle:)
                                                  name:CEDocumentSyntaxStyleDidChangeNotification
                                                object:[self document]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didUpdateTheme:)
+                                                 name:CEThemeDidUpdateNotification
+                                               object:nil];
 }
 
 
@@ -319,6 +323,32 @@
     
     // update incompatible chars list
     [[[self window] windowController] updateIncompatibleCharsIfNeeded];
+}
+
+
+#pragma mark Notification
+
+- (void)textViewDidChangeSelection:(nonnull NSNotification *)notification
+{
+    // update document information
+    [[[self document] analyzer] invalidateEditorInfo];
+}
+
+//=======================================================
+// Notification  < CEThemeManager
+//=======================================================
+
+// ------------------------------------------------------
+/// テーマが更新された
+- (void)didUpdateTheme:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    NSString *oldThemeName = [notification userInfo][CEOldNameKey];
+    NSString *newThemeName = [notification userInfo][CENewNameKey];
+    
+    if ([oldThemeName isEqualToString:[[self theme] name]]) {
+        [self setThemeWithName:newThemeName];
+    }
 }
 
 
@@ -490,8 +520,13 @@
 {
     CETheme *theme = [[CEThemeManager sharedManager] themeWithName:themeName];
     
+    if (!theme) { return; }
+    
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [[viewController textView] setTheme:theme];
+        
+        // re-select to update current line highlight
+        [[viewController textView] setSelectedRanges:[[viewController textView] selectedRanges]];
     }];
     
     [self invalidateSyntaxHighlight];
@@ -662,7 +697,7 @@
 {
     CEEditorViewController *currentEditorViewController;
     
-    // find CEEditorViewController to base
+    // find target CEEditorViewController
     id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
     while (view) {
         if ([[view identifier] isEqualToString:@"EditorView"]) {
@@ -677,23 +712,18 @@
     // end current editing
     [[[NSTextInputContext currentInputContext] client] unmarkText];
     
-    CEEditorViewController *newEditorViewController = [[CEEditorViewController alloc] initWithTextStorage:[self textStorage]];
-    
-    // instert new editorView just below the editorView that the pressed button belongs to or has focus
-    [[self splitViewController] addSubviewForViewController:newEditorViewController relativeTo:[currentEditorViewController view]];
-    
-    // apply current status to the new editorView
-    [self setupEditorViewController:newEditorViewController baseView:currentEditorViewController];
+    CEEditorViewController *newEditorViewController = [self createEditorBasedViewController:currentEditorViewController];
     
     [self invalidateSyntaxHighlight];
     [self invalidateOutlineMenu];
     
-    // move focus to the new editor
-    [[self window] makeFirstResponder:[newEditorViewController textView]];
-    
     // adjust visible areas
+    [[newEditorViewController textView] setSelectedRange:[[currentEditorViewController textView] selectedRange]];
     [[currentEditorViewController textView] centerSelectionInVisibleArea:self];
     [[newEditorViewController textView] centerSelectionInVisibleArea:self];
+    
+    // move focus to the new editor
+    [[self window] makeFirstResponder:[newEditorViewController textView]];
 }
 
 
@@ -702,28 +732,28 @@
 - (IBAction)closeSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
-    CEEditorViewController *editorViewControllerToClose;
+    CEEditorViewController *currentEditorViewController;
     
-    // find CEEditorViewController to close
+    // find target CEEditorViewController
     id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
     while (view) {
         if ([[view identifier] isEqualToString:@"EditorView"]) {
-            editorViewControllerToClose = [[self splitViewController] viewControllerForSubview:view];
+            currentEditorViewController = [[self splitViewController] viewControllerForSubview:view];
             break;
         }
         view = [view superview];
     }
     
-    if (!editorViewControllerToClose) { return; }
+    if (!currentEditorViewController) { return; }
     
     // end current editing
     [[[NSTextInputContext currentInputContext] client] unmarkText];
     
     // move focus to the next text view if the view to close has a focus
-    if ([[self window] firstResponder] == [editorViewControllerToClose textView]) {
+    if ([[self window] firstResponder] == [currentEditorViewController textView]) {
         NSArray<__kindof NSView *> *subViews = [[[self splitViewController] view] subviews];
         NSUInteger count = [subViews count];
-        NSUInteger deleteIndex = [subViews indexOfObject:[editorViewControllerToClose view]];
+        NSUInteger deleteIndex = [subViews indexOfObject:[currentEditorViewController view]];
         NSUInteger index = deleteIndex + 1;
         if (index >= count) {
             index = count - 2;
@@ -733,7 +763,7 @@
     }
     
     // close
-    [[self splitViewController] removeSubviewForViewController:editorViewControllerToClose];
+    [[self splitViewController] removeSubviewForViewController:currentEditorViewController];
 }
 
 
@@ -751,17 +781,21 @@
 
 // ------------------------------------------------------
 /// サブビューに初期値を設定
-- (void)setupEditorViewController:(nonnull CEEditorViewController *)editorViewController baseView:(nullable CEEditorViewController *)baseViewController
+- (nonnull CEEditorViewController *)createEditorBasedViewController:(nullable CEEditorViewController *)baseViewController
 // ------------------------------------------------------
 {
-    [editorViewController setEditorWrapper:self];
+    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[self document] textStorage]];
     
-    [self setShowsInvisibles:[self showsInvisibles]];
-    [self setShowsLineNum:[self showsLineNum]];
-    [self setShowsNavigationBar:[self showsNavigationBar] animate:NO];
-    [self setWrapsLines:[self wrapsLines]];
-    [self setVerticalLayoutOrientation:[self isVerticalLayoutOrientation]];
-    [self setShowsPageGuide:[self showsPageGuide]];
+    // instert new editorView just below the editorView that the pressed button belongs to or has focus
+    [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:[baseViewController view]];
+    
+    [editorViewController setShowsInvisibles:[self showsInvisibles]];
+    [editorViewController setShowsLineNum:[self showsLineNum]];
+    [editorViewController setShowsNavigationBar:[self showsNavigationBar] animate:NO];
+    [editorViewController setWrapsLines:[self wrapsLines]];
+    [[editorViewController textView] setLayoutOrientation:([self isVerticalLayoutOrientation] ?
+                                                           NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal)];
+    [[editorViewController textView] setShowsPageGuide:[self showsPageGuide]];
     
     [editorViewController applySyntax:[self syntaxStyle]];
     
@@ -770,8 +804,14 @@
         [[editorViewController textView] setFont:[[baseViewController textView] font]];
         [[editorViewController textView] setTheme:[[baseViewController textView] theme]];
         [[editorViewController textView] setLineSpacing:[[baseViewController textView] lineSpacing]];
-        [[editorViewController textView] setSelectedRange:[[baseViewController textView] selectedRange]];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textViewDidChangeSelection:)
+                                                 name:NSTextViewDidChangeSelectionNotification
+                                               object:[editorViewController textView]];
+    
+    return editorViewController;
 }
 
 
