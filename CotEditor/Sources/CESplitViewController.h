@@ -30,7 +30,6 @@
 
 
 @class CEEditorViewController;
-@class CETextView;
 
 
 @interface CESplitViewController : NSViewController <NSSplitViewDelegate>

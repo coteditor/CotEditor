@@ -30,7 +30,6 @@
 #import "CENavigationBarController.h"
 #import "CEEditorScrollView.h"
 #import "CETextView.h"
-#import "CELayoutManager.h"
 #import "CESyntaxStyle.h"
 
 #import "CEDefaults.h"
@@ -225,27 +224,6 @@
     if (isVertical) {
         [textView setLayoutOrientation:NSTextLayoutOrientationVertical];
     }
-}
-
-
-// ------------------------------------------------------
-/// 不可視文字の表示／非表示を切り替える
-- (void)setShowsInvisibles:(BOOL)showsInvisibles
-// ------------------------------------------------------
-{
-    [(CELayoutManager *)[[self textView] layoutManager] setShowsInvisibles:showsInvisibles];
-}
-
-
-// ------------------------------------------------------
-/// アンチエイリアス適用を切り替える
-- (void)setUsesAntialias:(BOOL)usesAntialias
-// ------------------------------------------------------
-{
-    CELayoutManager *manager = (CELayoutManager *)[[self textView] layoutManager];
-
-    [manager setUsesAntialias:usesAntialias];
-    [[self textView] setNeedsDisplayInRect:[[self textView] visibleRect]];
 }
 
 

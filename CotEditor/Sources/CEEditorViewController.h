@@ -48,8 +48,6 @@
 - (void)setShowsLineNum:(BOOL)showsLineNum;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 - (void)setWrapsLines:(BOOL)wrapsLines;
-- (void)setShowsInvisibles:(BOOL)showsInvisibles;
-- (void)setUsesAntialias:(BOOL)usesAntialias;
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle;
 
 // action messages

@@ -30,7 +30,6 @@
 #import "CEDocument.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEEditorViewController.h"
-#import "CELayoutManager.h"
 #import "CEWindowController.h"
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
@@ -50,11 +49,9 @@
 
 @interface CEEditorWrapper () <CETextFinderClientProvider, CESyntaxStyleDelegate, NSTextStorageDelegate>
 
+@property (nonatomic) BOOL canActivateShowInvisibles;
+
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
-
-
-// readonly
-@property (readwrite, nonatomic) BOOL canActivateShowInvisibles;
 
 @end
 
@@ -186,7 +183,7 @@
         [menuItem setTitle:NSLocalizedString(title, nil)];
         
     } else if ([menuItem action] == @selector(toggleAntialias:)) {
-        state = [self usesAntialias] ? NSOnState : NSOffState;
+        state = [[self focusedTextView] usesAntialias] ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(togglePageGuide:)) {
         title = [self showsPageGuide] ? @"Hide Page Guide" : @"Show Page Guide";
@@ -446,32 +443,6 @@
 
 
 // ------------------------------------------------------
-/// ソフトタブの有効／無効を返す
-- (BOOL)isAutoTabExpandEnabled
-// ------------------------------------------------------
-{
-    CETextView *textView = [self focusedTextView];
-    
-    if (textView) {
-        return [textView isAutoTabExpandEnabled];
-    } else {
-        return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoExpandTabKey];
-    }
-}
-
-
-// ------------------------------------------------------
-/// ソフトタブの有効／無効をセット
-- (void)setAutoTabExpandEnabled:(BOOL)enabled
-// ------------------------------------------------------
-{
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [[viewController textView] setAutoTabExpandEnabled:enabled];
-    }];
-}
-
-
-// ------------------------------------------------------
 /// ナビゲーションバーを表示する／しないをセット
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation
 // ------------------------------------------------------
@@ -535,46 +506,6 @@
 
 
 // ------------------------------------------------------
-/// フォントをセット
-- (void)setFont:(NSFont *)font
-// ------------------------------------------------------
-{
-    [[self focusedTextView] setFont:font];
-}
-
-
-// ------------------------------------------------------
-/// アンチエイリアスでの描画の許可を得る
-- (BOOL)usesAntialias
-// ------------------------------------------------------
-{
-    CELayoutManager *manager = (CELayoutManager *)[[self focusedTextView] layoutManager];
-    
-    return [manager usesAntialias];
-}
-
-
-// ------------------------------------------------------
-/// テーマを適用する
-- (void)setThemeWithName:(nonnull NSString *)themeName
-// ------------------------------------------------------
-{
-    CETheme *theme = [[CEThemeManager sharedManager] themeWithName:themeName];
-    
-    if (!theme) { return; }
-    
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [[viewController textView] setTheme:theme];
-        
-        // re-select to update current line highlight
-        [[viewController textView] setSelectedRanges:[[viewController textView] selectedRanges]];
-    }];
-    
-    [self invalidateSyntaxHighlight];
-}
-
-
-// ------------------------------------------------------
 /// 現在のテーマを返す
 - (nullable CETheme *)theme
 // ------------------------------------------------------
@@ -605,7 +536,7 @@
     _showsInvisibles = showsInvisibles;
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [viewController setShowsInvisibles:showsInvisibles];
+        [[viewController textView] setShowsInvisibles:showsInvisibles];
     }];
 }
 
@@ -654,10 +585,10 @@
 - (IBAction)toggleAntialias:(nullable id)sender
 // ------------------------------------------------------
 {
-    BOOL usesAntialias = ![(CELayoutManager *)[[self focusedTextView] layoutManager] usesAntialias];
+    BOOL usesAntialias = ![[self focusedTextView] usesAntialias];
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [viewController setUsesAntialias:usesAntialias];
+        [[viewController textView] setUsesAntialias:usesAntialias];
     }];
 }
 
@@ -830,6 +761,15 @@
 
 
 // ------------------------------------------------------
+/// 全テキストを再カラーリング
+- (void)invalidateSyntaxHighlight
+// ------------------------------------------------------
+{
+    [[self syntaxStyle] highlightWholeStringWithCompletionHandler:nil];
+}
+
+
+// ------------------------------------------------------
 /// サブビューに初期値を設定
 - (nonnull CEEditorViewController *)createEditorBasedViewController:(nullable CEEditorViewController *)baseViewController
 // ------------------------------------------------------
@@ -839,10 +779,10 @@
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
     [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:[baseViewController view]];
     
-    [editorViewController setShowsInvisibles:[self showsInvisibles]];
     [editorViewController setShowsLineNum:[self showsLineNum]];
     [editorViewController setShowsNavigationBar:[self showsNavigationBar] animate:NO];
     [editorViewController setWrapsLines:[self wrapsLines]];
+    [[editorViewController textView] setShowsInvisibles:[self showsInvisibles]];
     [[editorViewController textView] setLayoutOrientation:([self isVerticalLayoutOrientation] ?
                                                            NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal)];
     [[editorViewController textView] setShowsPageGuide:[self showsPageGuide]];
@@ -911,11 +851,48 @@
 
 
 // ------------------------------------------------------
-/// 全テキストを再カラーリング
-- (void)invalidateSyntaxHighlight
+/// ソフトタブの有効／無効を返す
+- (BOOL)isAutoTabExpandEnabled
 // ------------------------------------------------------
 {
-    [[self syntaxStyle] highlightWholeStringWithCompletionHandler:nil];
+    CETextView *textView = [self focusedTextView];
+    
+    if (textView) {
+        return [textView isAutoTabExpandEnabled];
+    } else {
+        return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultAutoExpandTabKey];
+    }
+}
+
+
+// ------------------------------------------------------
+/// ソフトタブの有効／無効をセット
+- (void)setAutoTabExpandEnabled:(BOOL)enabled
+// ------------------------------------------------------
+{
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+        [[viewController textView] setAutoTabExpandEnabled:enabled];
+    }];
+}
+
+
+// ------------------------------------------------------
+/// テーマを適用する
+- (void)setThemeWithName:(nonnull NSString *)themeName
+// ------------------------------------------------------
+{
+    CETheme *theme = [[CEThemeManager sharedManager] themeWithName:themeName];
+    
+    if (!theme) { return; }
+    
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+        [[viewController textView] setTheme:theme];
+        
+        // re-select to update current line highlight
+        [[viewController textView] setSelectedRanges:[[viewController textView] selectedRanges]];
+    }];
+    
+    [self invalidateSyntaxHighlight];
 }
 
 @end

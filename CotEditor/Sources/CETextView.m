@@ -706,21 +706,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// タブ幅を変更
-- (void)setTabWidth:(NSUInteger)tabWidth
-// ------------------------------------------------------
-{
-    _tabWidth = tabWidth;
-    
-    [self invalidateDefaultParagraphStyle];
-    [self applyTypingAttributes];
-    
-    // update current text
-    [self invalidateStyle];
-}
-
-
-// ------------------------------------------------------
 /// テキストコンテナの原点（左上）座標を返す
 - (NSPoint)textContainerOrigin
 // ------------------------------------------------------
@@ -1068,8 +1053,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [self setFont:font];
         
     } else if ([keyPath isEqualToString:CEDefaultShouldAntialiasKey]) {
-        [(CELayoutManager *)[self layoutManager] setUsesAntialias:[newValue boolValue]];
-        [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+        [self setUsesAntialias:[newValue boolValue]];
         
     } else if ([keyPath isEqualToString:CEDefaultLineSpacingKey]) {
         [self setLineSpacingAndUpdate:(CGFloat)[newValue doubleValue]];
@@ -1134,29 +1118,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 
-#pragma mark Public Methods
-
-// ------------------------------------------------------
-/// 行間値をセットし、テキストと行番号を再描画
-- (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing
-// ------------------------------------------------------
-{
-    if (lineSpacing == [self lineSpacing]) { return; }
-    
-    [self setLineSpacing:lineSpacing];
-    
-    // re-layout
-    NSRange wholeRange = NSMakeRange(0, [[self string] length]);
-    [[self layoutManager] invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:nil];
-    [[self layoutManager] ensureLayoutForTextContainer:[self textContainer]];
-    
-    // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
-    [self updateRuler];
-    
-    // キャレット／選択範囲が見えるようにスクロール位置を調整
-    [self scrollRangeToVisible:[self selectedRange]];
-}
-
+#pragma mark Public Accessors
 
 // ------------------------------------------------------
 /// カラーリング設定を更新する
@@ -1181,6 +1143,83 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // redraw selection
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+}
+
+
+// ------------------------------------------------------
+/// タブ幅を変更
+- (void)setTabWidth:(NSUInteger)tabWidth
+// ------------------------------------------------------
+{
+    _tabWidth = tabWidth;
+    
+    [self invalidateDefaultParagraphStyle];
+    [self applyTypingAttributes];
+    
+    // update current text
+    [self invalidateStyle];
+}
+
+
+// ------------------------------------------------------
+/// アンチエイリアス適用を切り替える
+- (void)setUsesAntialias:(BOOL)usesAntialias
+// ------------------------------------------------------
+{
+    [(CELayoutManager *)[self layoutManager] setUsesAntialias:usesAntialias];
+    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
+}
+
+
+// ------------------------------------------------------
+/// アンチエイリアスを適用しているか
+- (BOOL)usesAntialias
+// ------------------------------------------------------
+{
+    return [(CELayoutManager *)[self layoutManager] usesAntialias];
+}
+
+
+// ------------------------------------------------------
+/// 不可視文字の表示／非表示を切り替える
+- (void)setShowsInvisibles:(BOOL)showsInvisibles
+// ------------------------------------------------------
+{
+    [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
+}
+
+
+// ------------------------------------------------------
+/// 不可視文字を表示しているか
+- (BOOL)showsInvisibles
+// ------------------------------------------------------
+{
+    return [(CELayoutManager *)[self layoutManager] showsInvisibles];
+}
+
+
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// 行間値をセットし、テキストと行番号を再描画
+- (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing
+// ------------------------------------------------------
+{
+    if (lineSpacing == [self lineSpacing]) { return; }
+    
+    [self setLineSpacing:lineSpacing];
+    
+    // re-layout
+    NSRange wholeRange = NSMakeRange(0, [[self string] length]);
+    [[self layoutManager] invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:nil];
+    [[self layoutManager] ensureLayoutForTextContainer:[self textContainer]];
+    
+    // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
+    [self updateRuler];
+    
+    // キャレット／選択範囲が見えるようにスクロール位置を調整
+    [self scrollRangeToVisible:[self selectedRange]];
 }
 
 

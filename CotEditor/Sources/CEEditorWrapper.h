@@ -32,7 +32,6 @@
 
 @class CETextView;
 @class CETheme;
-@class CESyntaxStyle;
 
 
 @interface CEEditorWrapper : NSResponder
@@ -46,7 +45,6 @@
 // readonly
 @property (readonly, nonatomic, nullable) CETextView *focusedTextView;
 @property (readonly, nonatomic) BOOL showsNavigationBar;
-@property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
 
 #pragma mark Public Methods
@@ -54,18 +52,11 @@
 - (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges;
 - (void)clearAllMarkup;
 
-- (BOOL)isAutoTabExpandEnabled;
-- (void)setAutoTabExpandEnabled:(BOOL)autoTabExpandEnabled;
-
 // navigation bar
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 
-// font
+// style
 - (nullable NSFont *)font;
-- (BOOL)usesAntialias;
-
-// theme
-- (void)setThemeWithName:(nonnull NSString *)themeName;
 - (nullable CETheme *)theme;
 
 - (void)invalidateStyleInTextStorage;
