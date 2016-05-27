@@ -47,6 +47,7 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, id> *highlightDictionary;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSCharacterSet *> *simpleWordsCharacterSets;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
+@property (nonatomic, nullable, copy) NSArray<NSDictionary *> *outlineDefinitions;
 
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSArray *> *cachedHighlights;  // extracted results cache of the last whole string highlighs
 @property (nonatomic, nullable, copy) NSString *highlightCacheHash;  // MD5 hash
@@ -65,8 +66,6 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (readwrite, nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
 @property (readwrite, nonatomic, getter=isNone) BOOL none;
-
-@property (readwrite, nonatomic, nullable) NSArray<NSDictionary *> *outlineDefinitions;
 
 @end
 
@@ -369,7 +368,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     
     // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
     if ([self highlightCacheHash] && [[self highlightCacheHash] isEqualToString:[[textStorage string] MD5]]) {
-        [self applyHighlights:[self cachedHighlights] range:wholeRange textStorage:textStorage];
+        [self applyHighlights:[self cachedHighlights] range:wholeRange];
         if (completionHandler) {
             completionHandler();
         }
@@ -383,8 +382,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     //           (2015-08, with OS X 10.10 SDK)
     NSString *string = [NSString stringWithString:[textStorage string]];
     
-    [self highlightString:string range:wholeRange
-              textStorage:textStorage completionHandler:completionHandler];
+    [self highlightString:string range:wholeRange completionHandler:completionHandler];
 }
 
 
@@ -441,8 +439,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         highlightRange = NSMakeRange(start, end - start);
     }
     
-    [self highlightString:string range:highlightRange
-              textStorage:textStorage completionHandler:nil];
+    [self highlightString:string range:highlightRange completionHandler:nil];
 }
 
 
@@ -451,14 +448,14 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// カラーリングを実行
-- (void)highlightString:(nonnull NSString *)wholeString range:(NSRange)highlightRange textStorage:(nonnull NSTextStorage *)textStorage completionHandler:(nullable void (^)())completionHandler
+- (void)highlightString:(nonnull NSString *)wholeString range:(NSRange)highlightRange completionHandler:(nullable void (^)())completionHandler
 // ------------------------------------------------------
 {
     if (highlightRange.length == 0) { return; }
     
     // カラーリング不要なら現在のカラーリングをクリアして戻る
     if (![self hasSyntaxHighlighting]) {
-        [self applyHighlights:@{} range:highlightRange textStorage:textStorage];
+        [self applyHighlights:@{} range:highlightRange];
         if (completionHandler) {
             completionHandler();
         }
@@ -476,7 +473,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     // show highlighting indicator for large string
     CEProgressSheetController *indicator = nil;
     if ([self shouldShowIndicatorForHighlightLength:highlightRange.length]) {
-        NSWindow *documentWindow = [[[[textStorage layoutManagers] firstObject] firstTextView] window];
+        NSWindow *documentWindow = [[[[[self textStorage] layoutManagers] firstObject] firstTextView] window];
         indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
         // set handlers
         [operation setDidProgress:^(CGFloat delta) {
@@ -513,6 +510,8 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     [operation setCompletionBlock:^{
         NSDictionary<NSString *, NSArray<NSValue *> *> *highlights = [weakOperation results];
         dispatch_async(dispatch_get_main_queue(), ^{
+            typeof(self) self = weakSelf;
+            
             if (![weakOperation isCancelled]) {
                 // cache result if whole text was parsed
                 if (highlightRange.length == [wholeString length]) {
@@ -521,12 +520,12 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 }
                 
                 // apply color (or give up if the editor's string is changed from the analized string)
-                if ([[textStorage string] length] == [wholeString length]) {
+                if ([[[self textStorage] string] length] == [wholeString length]) {
                     // update indicator message
                     if (indicator) {
                         [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
                     }
-                    [self applyHighlights:highlights range:highlightRange textStorage:textStorage];
+                    [self applyHighlights:highlights range:highlightRange];
                 }
             }
             
@@ -560,10 +559,10 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 抽出したカラー範囲配列を書類に適用する
-- (void)applyHighlights:(NSDictionary<NSString *, NSArray<NSValue *> *> *)highlights range:(NSRange)highlightRange textStorage:(nonnull NSTextStorage *)textStorage
+- (void)applyHighlights:(NSDictionary<NSString *, NSArray<NSValue *> *> *)highlights range:(NSRange)highlightRange
 // ------------------------------------------------------
 {
-    for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
+    for (NSLayoutManager *layoutManager in [[self textStorage] layoutManagers]) {
         // remove current highlights
         [layoutManager removeTemporaryAttribute:NSForegroundColorAttributeName
                               forCharacterRange:highlightRange];
