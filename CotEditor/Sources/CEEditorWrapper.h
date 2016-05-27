@@ -43,25 +43,13 @@
 @property (nonatomic) BOOL showsInvisibles;
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
 
+// readonly
 @property (readonly, nonatomic, nullable) CETextView *focusedTextView;
 @property (readonly, nonatomic) BOOL showsNavigationBar;
 @property (readonly, nonatomic) BOOL canActivateShowInvisibles;
 
 
 #pragma mark Public Methods
-
-// text processing
-- (nonnull NSString *)string;
-- (nonnull NSString *)substringWithRange:(NSRange)range;
-- (nonnull NSString *)substringWithSelection;
-
-- (void)insertTextViewString:(nonnull NSString *)inString;
-- (void)insertTextViewStringAfterSelection:(nonnull NSString *)string;
-- (void)replaceTextViewAllStringWithString:(nonnull NSString *)string;
-- (void)appendTextViewString:(nonnull NSString *)string;
-
-- (NSRange)selectedRange;  // line ending applied
-- (void)setSelectedRange:(NSRange)charRange;  // line ending applied
 
 - (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges;
 - (void)clearAllMarkup;
@@ -95,10 +83,10 @@
 - (IBAction)toggleAutoTabExpand:(nullable id)sender;
 - (IBAction)changeTabWidth:(nullable id)sender;
 - (IBAction)changeLineHeight:(nullable id)sender;
+- (IBAction)changeTheme:(nullable id)sender;
 
 - (IBAction)openSplitTextView:(nullable id)sender;
 - (IBAction)closeSplitTextView:(nullable id)sender;
-- (IBAction)changeTheme:(nullable id)sender;
 
 @end
 
@@ -116,6 +104,28 @@
 
 - (void)invalidateSyntaxHighlight;
 - (void)invalidateOutlineMenu;
+
+@end
+
+
+
+
+#pragma mark -
+
+@interface CEEditorWrapper (TextEditing)
+
+// text processing
+- (nonnull NSString *)string;
+- (nonnull NSString *)substringWithRange:(NSRange)range;
+- (nonnull NSString *)substringWithSelection;
+
+- (void)insertTextViewString:(nonnull NSString *)inString;
+- (void)insertTextViewStringAfterSelection:(nonnull NSString *)string;
+- (void)replaceTextViewAllStringWithString:(nonnull NSString *)string;
+- (void)appendTextViewString:(nonnull NSString *)string;
+
+- (NSRange)selectedRange;  // line ending applied
+- (void)setSelectedRange:(NSRange)charRange;  // line ending applied
 
 @end
 

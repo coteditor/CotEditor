@@ -335,96 +335,6 @@
 
 
 // ------------------------------------------------------
-/// textView の文字列を返す（改行コードはLF固定）
-- (nonnull NSString *)string
-// ------------------------------------------------------
-{
-    return [[self textStorage] string] ?: @"";
-}
-
-
-// ------------------------------------------------------
-/// 指定された範囲の textView の文字列を返す
-- (nonnull NSString *)substringWithRange:(NSRange)range
-// ------------------------------------------------------
-{
-    return [[self string] substringWithRange:range];
-}
-
-
-// ------------------------------------------------------
-/// メイン textView で選択された文字列を返す
-- (nonnull NSString *)substringWithSelection
-// ------------------------------------------------------
-{
-    return [[self string] substringWithRange:[[self focusedTextView] selectedRange]];
-}
-
-
-// ------------------------------------------------------
-/// 選択文字列を置換する
-- (void)insertTextViewString:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    [[self focusedTextView] insertString:string];
-}
-
-
-// ------------------------------------------------------
-/// 選択範囲の直後に文字列を挿入
-- (void)insertTextViewStringAfterSelection:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    [[self focusedTextView] insertStringAfterSelection:string];
-}
-
-
-// ------------------------------------------------------
-/// 全文字列を置換
-- (void)replaceTextViewAllStringWithString:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    [[self focusedTextView] replaceAllStringWithString:string];
-}
-
-
-// ------------------------------------------------------
-/// 文字列の最後に新たな文字列を追加
-- (void)appendTextViewString:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    [[self focusedTextView] appendString:string];
-}
-
-
-// ------------------------------------------------------
-/// 選択範囲を返す
-- (NSRange)selectedRange
-// ------------------------------------------------------
-{
-    NSTextView *textView = [self focusedTextView];
-    
-    return [[textView string] convertRange:[textView selectedRange]
-                           fromNewLineType:CENewLineLF
-                             toNewLineType:[[self document] lineEnding]];
-}
-
-
-// ------------------------------------------------------
-/// 選択範囲を変更
-- (void)setSelectedRange:(NSRange)charRange
-// ------------------------------------------------------
-{
-    NSTextView *textView = [self focusedTextView];
-    NSRange range = [[textView string] convertRange:charRange
-                                    fromNewLineType:[[self document] lineEnding]
-                                      toNewLineType:CENewLineLF];
-    
-    [textView setSelectedRange:range];
-}
-
-
-// ------------------------------------------------------
 /// 現在のエンコードにコンバートできない文字列をマークアップ
 - (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges
 // ------------------------------------------------------
@@ -733,6 +643,19 @@
 
 
 // ------------------------------------------------------
+/// 新しいテーマを適用
+- (IBAction)changeTheme:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSString *name = [sender title];
+    
+    if ([name length] > 0) {
+        [self setThemeWithName:name];
+    }
+}
+
+
+// ------------------------------------------------------
 /// テキストビュー分割を行う
 - (IBAction)openSplitTextView:(nullable id)sender
 // ------------------------------------------------------
@@ -811,19 +734,6 @@
     
     // close
     [[self splitViewController] removeSubviewForViewController:editorViewControllerToClose];
-}
-
-
-// ------------------------------------------------------
-/// 新しいテーマを適用
-- (IBAction)changeTheme:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *name = [sender title];
-    
-    if ([name length] > 0) {
-        [self setThemeWithName:name];
-    }
 }
 
 
@@ -1033,6 +943,106 @@
                                                                  userInfo:nil
                                                                   repeats:NO]];
     }
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CEEditorWrapper (TextEditing)
+
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// textView の文字列を返す（改行コードはLF固定）
+- (nonnull NSString *)string
+// ------------------------------------------------------
+{
+    return [[self focusedTextView] string] ?: @"";
+}
+
+
+// ------------------------------------------------------
+/// 指定された範囲の textView の文字列を返す
+- (nonnull NSString *)substringWithRange:(NSRange)range
+// ------------------------------------------------------
+{
+    return [[self string] substringWithRange:range];
+}
+
+
+// ------------------------------------------------------
+/// メイン textView で選択された文字列を返す
+- (nonnull NSString *)substringWithSelection
+// ------------------------------------------------------
+{
+    return [[self string] substringWithRange:[[self focusedTextView] selectedRange]];
+}
+
+
+// ------------------------------------------------------
+/// 選択文字列を置換する
+- (void)insertTextViewString:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    [[self focusedTextView] insertString:string];
+}
+
+
+// ------------------------------------------------------
+/// 選択範囲の直後に文字列を挿入
+- (void)insertTextViewStringAfterSelection:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    [[self focusedTextView] insertStringAfterSelection:string];
+}
+
+
+// ------------------------------------------------------
+/// 全文字列を置換
+- (void)replaceTextViewAllStringWithString:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    [[self focusedTextView] replaceAllStringWithString:string];
+}
+
+
+// ------------------------------------------------------
+/// 文字列の最後に新たな文字列を追加
+- (void)appendTextViewString:(nonnull NSString *)string
+// ------------------------------------------------------
+{
+    [[self focusedTextView] appendString:string];
+}
+
+
+// ------------------------------------------------------
+/// 選択範囲を返す
+- (NSRange)selectedRange
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self focusedTextView];
+    
+    return [[textView string] convertRange:[textView selectedRange]
+                           fromNewLineType:CENewLineLF
+                             toNewLineType:[[self document] lineEnding]];
+}
+
+
+// ------------------------------------------------------
+/// 選択範囲を変更
+- (void)setSelectedRange:(NSRange)charRange
+// ------------------------------------------------------
+{
+    NSTextView *textView = [self focusedTextView];
+    NSRange range = [[textView string] convertRange:charRange
+                                    fromNewLineType:[[self document] lineEnding]
+                                      toNewLineType:CENewLineLF];
+    
+    [textView setSelectedRange:range];
 }
 
 @end
