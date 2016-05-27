@@ -884,22 +884,16 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     [editor invalidateStyleInTextStorage];
     
-    // update syntax highlights and outline menu
-    [editor invalidateSyntaxHighlight];
-    [editor invalidateOutlineMenu];
-    
-    // update line endings menu selection in toolbar
-    [self applyLineEndingToView];
-    
-    // apply text orientation
-    [editor setVerticalLayoutOrientation:[self isVerticalText]];
-    
-    // update encoding menu selection in toolbar, status bar and document inspector
-    [self applyEncodingToView];
+    // update status bar and document inspector
     [[self analyzer] invalidateFileInfo];
+    [[self analyzer] invalidateModeInfo];
+    [[self analyzer] invalidateEditorInfo];
     
     // show incompatible chars if needed
     [[self windowController] updateIncompatibleCharsIfNeeded];
+    
+    // apply text orientation
+    [editor setVerticalLayoutOrientation:[self isVerticalText]];
 }
 
 
@@ -1124,8 +1118,6 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     if (![oldName isEqualToString:[[self syntaxStyle] styleName]]) { return; }
     
     [self setSyntaxStyleWithName:newName];
-    [[self editor] invalidateSyntaxHighlight];
-    [[self editor] invalidateOutlineMenu];
 }
 
 

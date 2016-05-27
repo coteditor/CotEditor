@@ -32,9 +32,13 @@
 @class CEOutlineItem;
 
 
+@protocol CESyntaxStyleDelegate;
+
+
 @interface CESyntaxStyle : NSObject
 
 @property (nonatomic, nullable) NSTextStorage *textStorage;
+@property (nonatomic, nullable, weak) id<CESyntaxStyleDelegate> delegate;
 
 // readonly
 @property (readonly, nonatomic, nonnull, copy) NSString *styleName;
@@ -52,6 +56,7 @@
 - (BOOL)isEqualToSyntaxStyle:(nullable CESyntaxStyle *)syntaxStyle;
 
 - (void)cancelAllParses;
+- (BOOL)canParse;
 
 @end
 
@@ -59,7 +64,10 @@
 
 @interface CESyntaxStyle (Outline)
 
-- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<CEOutlineItem *> * _Nonnull outlineItems))completionHandler;
+@property (readonly, nonatomic, nullable, copy) NSArray<CEOutlineItem *> *outlineItems;
+
+
+- (void)invalidateOutline;
 
 @end
 
@@ -69,5 +77,13 @@
 
 - (void)highlightWholeStringWithCompletionHandler:(nullable void (^)())completionHandler;
 - (void)highlightRange:(NSRange)range;
+
+@end
+
+
+@protocol CESyntaxStyleDelegate <NSObject>
+
+@optional
+- (void)syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle didParseOutline:(nullable NSArray<CEOutlineItem *> *)outlineItems;
 
 @end

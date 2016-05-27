@@ -85,25 +85,10 @@
 - (IBAction)changeLineHeight:(nullable id)sender;
 - (IBAction)changeTheme:(nullable id)sender;
 
-- (IBAction)openSplitTextView:(nullable id)sender;
-- (IBAction)closeSplitTextView:(nullable id)sender;
-
-@end
-
-
-
-
-#pragma mark -
-
-@interface CEEditorWrapper (SyntaxParsing)
-
-@property (readonly, nonatomic, nullable) CESyntaxStyle *syntaxStyle;
-
-
 - (IBAction)recolorAll:(nullable id)sender;
 
-- (void)invalidateSyntaxHighlight;
-- (void)invalidateOutlineMenu;
+- (IBAction)openSplitTextView:(nullable id)sender;
+- (IBAction)closeSplitTextView:(nullable id)sender;
 
 @end
 

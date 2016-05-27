@@ -48,25 +48,13 @@
 #import "NSString+Indentation.h"
 
 
-@interface CEEditorWrapper () <CETextFinderClientProvider, NSTextStorageDelegate>
-
-@property (nonatomic, nullable, weak) NSTimer *outlineMenuTimer;
+@interface CEEditorWrapper () <CETextFinderClientProvider, CESyntaxStyleDelegate, NSTextStorageDelegate>
 
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
 
 
 // readonly
 @property (readwrite, nonatomic) BOOL canActivateShowInvisibles;
-
-@end
-
-
-@interface CEEditorWrapper (PrivateSyntaxParsing)
-
-@property (readonly, nonatomic) BOOL canHighlight;
-
-
-- (void)setupOutlineMenuUpdateTimer;
 
 @end
 
@@ -110,7 +98,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [_outlineMenuTimer invalidate];
     [[self textStorage] setDelegate:nil];
 }
 
@@ -143,8 +130,16 @@
     }
     
     [[self textStorage] setDelegate:self];
+    [[self syntaxStyle] setDelegate:self];
     
     CEEditorViewController *editorViewController = [self createEditorBasedViewController:nil];
+    
+    // start parcing syntax highlights and outline menu
+    if ([[self syntaxStyle] canParse]) {
+        [[editorViewController navigationBarController] showOutlineIndicator];
+    }
+    [[self syntaxStyle] invalidateOutline];
+    [self invalidateSyntaxHighlight];
     
     // focus text view
     [[self window] makeFirstResponder:[editorViewController textView]];
@@ -223,7 +218,7 @@
         state = [[[self theme] name] isEqualToString:[menuItem title]] ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(recolorAll:)) {
-        return [self canHighlight];
+        return [[self syntaxStyle] canParse];
     }
     
     if (title) {
@@ -246,7 +241,7 @@
 // ------------------------------------------------------
 {
     if ([theItem action] == @selector(recolorAll:)) {
-        return [self canHighlight];
+        return [[self syntaxStyle] canParse];
     }
     
     // validate button image state
@@ -310,8 +305,8 @@
     [[[self document] analyzer] invalidateEditorInfo];
     
     // parse syntax
-    [self setupOutlineMenuUpdateTimer];
-    if ([self canHighlight]) {
+    [[self syntaxStyle] invalidateOutline];
+    if ([[self syntaxStyle] canParse]) {
         // invalidate only edited lines
         NSRange updateRange = [[textStorage string] lineRangeForRange:[textStorage editedRange]];
         // perform highlight in the next run loop to give layoutManager time to update temporary attribute
@@ -326,13 +321,63 @@
 }
 
 
+//=======================================================
+// CESyntaxStyleDelegate Protocol
+//=======================================================
+
+// ------------------------------------------------------
+/// update outline menu in navigation bar
+- (void)syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle didParseOutline:(nullable NSArray<CEOutlineItem *> *)outlineItems
+// ------------------------------------------------------
+{
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+        [[viewController navigationBarController] setOutlineItems:outlineItems];
+        // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
+    }];
+    
+}
+
+
+
 #pragma mark Notification
 
+//=======================================================
+// NSTextView
+//=======================================================
+
+// ------------------------------------------------------
+/// selection did change
 - (void)textViewDidChangeSelection:(nonnull NSNotification *)notification
+// ------------------------------------------------------
 {
     // update document information
     [[[self document] analyzer] invalidateEditorInfo];
 }
+
+
+//=======================================================
+// CEDocument
+//=======================================================
+
+// ------------------------------------------------------
+/// document updated syntax style
+- (void)didChangeSyntaxStyle:(nonnull NSNotification *)notification
+// ------------------------------------------------------
+{
+    CESyntaxStyle *syntaxStyle = [self syntaxStyle];
+    
+    [syntaxStyle setDelegate:self];
+    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+        [viewController applySyntax:syntaxStyle];
+        if ([syntaxStyle canParse]) {
+            [[viewController navigationBarController] showOutlineIndicator];
+        }
+    }];
+    
+    [syntaxStyle invalidateOutline];
+    [self invalidateSyntaxHighlight];
+}
+
 
 //=======================================================
 // Notification  < CEThemeManager
@@ -436,10 +481,6 @@
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
         [viewController setShowsNavigationBar:showsNavigationBar animate:performAnimation];
     }];
-    
-    if (showsNavigationBar && ![[self outlineMenuTimer] isValid]) {
-        [self invalidateOutlineMenu];
-    }
 }
 
 
@@ -691,6 +732,15 @@
 
 
 // ------------------------------------------------------
+/// ドキュメント全体を再カラーリング
+- (IBAction)recolorAll:(nullable id)sender
+// ------------------------------------------------------
+{
+    [self invalidateSyntaxHighlight];
+}
+
+
+// ------------------------------------------------------
 /// テキストビュー分割を行う
 - (IBAction)openSplitTextView:(nullable id)sender
 // ------------------------------------------------------
@@ -714,8 +764,8 @@
     
     CEEditorViewController *newEditorViewController = [self createEditorBasedViewController:currentEditorViewController];
     
+    [[newEditorViewController navigationBarController] setOutlineItems:[[self syntaxStyle] outlineItems]];
     [self invalidateSyntaxHighlight];
-    [self invalidateOutlineMenu];
     
     // adjust visible areas
     [[newEditorViewController textView] setSelectedRange:[[currentEditorViewController textView] selectedRange]];
@@ -850,16 +900,6 @@
     return [[[self window] windowController] document];
 }
 
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CEEditorWrapper (SyntaxParsing)
-
-#pragma mark Public Methods
 
 // ------------------------------------------------------
 /// シンタックススタイル名を返す
@@ -876,113 +916,6 @@
 // ------------------------------------------------------
 {
     [[self syntaxStyle] highlightWholeStringWithCompletionHandler:nil];
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニューを更新
-- (void)invalidateOutlineMenu
-// ------------------------------------------------------
-{
-    [[self outlineMenuTimer] invalidate];
-    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
-    
-    NSString *wholeString = [[self textStorage] string] ? : @"";
-    
-    // 規定の文字数以上の場合にはインジケータを表示
-    // （ただし、CEDefaultShowColoringIndicatorTextLengthKey が「0」の時は表示しない）
-    NSUInteger indicatorThreshold = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultShowColoringIndicatorTextLengthKey];
-    if (indicatorThreshold > 0 && indicatorThreshold < [wholeString length]) {
-        [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-            [[viewController navigationBarController] showOutlineIndicator];
-        }];
-    }
-    
-    // extract outline and pass result to navigationBar
-    CESplitViewController *splitViewController = [self splitViewController];
-    [[self syntaxStyle] parseOutlineWithCompletionHandler:^(NSArray<CEOutlineItem *> * _Nonnull outlineItems)
-     {
-         [splitViewController enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-             [[viewController navigationBarController] setOutlineItems:outlineItems];
-             // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
-         }];
-    }];
-}
-
-
-
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-/// ドキュメント全体を再カラーリング
-- (IBAction)recolorAll:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self invalidateSyntaxHighlight];
-}
-
-
-
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// シンタックススタイル名をセット
-- (void)didChangeSyntaxStyle:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    CESyntaxStyle *syntaxStyle = [[self document] syntaxStyle];
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [viewController applySyntax:syntaxStyle];
-    }];
-    
-    [self invalidateSyntaxHighlight];
-    [self invalidateOutlineMenu];
-}
-
-
-// ------------------------------------------------------
-/// アウトラインメニュー更新
-- (void)updateOutlineMenuWithTimer:(nonnull NSTimer *)timer
-// ------------------------------------------------------
-{
-    [self invalidateOutlineMenu];  // (The outlineMenuTimer will be invalidated in this invalidateOutlineMenu method.)
-}
-
-@end
-
-
-@implementation CEEditorWrapper (PrivateSyntaxParsing)
-
-// ------------------------------------------------------
-/// return if sytnax highlight works
-- (BOOL)canHighlight
-// ------------------------------------------------------
-{
-    BOOL isHighlightEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey];
-    BOOL isHighlightable = ([self syntaxStyle] != nil) && ![[self syntaxStyle] isNone];
-    
-    return isHighlightEnabled && isHighlightable;
-}
-
-
-// ------------------------------------------------------
-/// let parse outline after a delay
-- (void)setupOutlineMenuUpdateTimer
-// ------------------------------------------------------
-{
-    if (![self canHighlight]) { return; }
-    
-    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
-    if ([[self outlineMenuTimer] isValid]) {
-        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-    } else {
-        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                                   target:self
-                                                                 selector:@selector(updateOutlineMenuWithTimer:)
-                                                                 userInfo:nil
-                                                                  repeats:NO]];
-    }
 }
 
 @end

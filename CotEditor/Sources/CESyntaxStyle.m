@@ -51,9 +51,7 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSArray *> *cachedHighlights;  // extracted results cache of the last whole string highlighs
 @property (nonatomic, nullable, copy) NSString *highlightCacheHash;  // MD5 hash
-
-@property (nonatomic, nullable, copy) NSArray<CEOutlineItem *> *cachedOutlineItems;
-@property (nonatomic, nullable, copy) NSString *outlineCacheHash;  // MD5 hash
+@property (nonatomic, nullable, weak) NSTimer *outlineMenuTimer;
 
 @property (nonatomic, nonnull) NSOperationQueue *outlineParseOperationQueue;
 @property (nonatomic, nonnull) NSOperationQueue *syntaxHighlightParseOperationQueue;
@@ -66,6 +64,8 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (readwrite, nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
 @property (readwrite, nonatomic, getter=isNone) BOOL none;
+
+@property (readwrite, nonatomic, nullable, copy) NSArray<CEOutlineItem *> *outlineItems;
 
 @end
 
@@ -113,6 +113,8 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 {
     [_outlineParseOperationQueue cancelAllOperations];
     [_syntaxHighlightParseOperationQueue cancelAllOperations];
+    
+    [_outlineMenuTimer invalidate];
 }
 
 
@@ -292,6 +294,38 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     [[self syntaxHighlightParseOperationQueue] cancelAllOperations];
 }
 
+
+// ------------------------------------------------------
+/// whether enable parsing syntax
+- (BOOL)canParse
+// ------------------------------------------------------
+{
+    BOOL isHighlightEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey];
+    
+    return isHighlightEnabled && ![self isNone];
+}
+
+
+
+#pragma mark Private Accessors
+
+// ------------------------------------------------------
+/// inform delegate about outline items update
+- (void)setOutlineItems:(NSArray<CEOutlineItem *> *)outlineItems
+// ------------------------------------------------------
+{
+    _outlineItems = [outlineItems copy];
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        typeof(self) self = weakSelf;
+        
+        if ([[self delegate] respondsToSelector:@selector(syntaxStyle:didParseOutline:)]) {
+            [[self delegate] syntaxStyle:self didParseOutline:outlineItems];
+        }
+    });
+}
+
 @end
 
 
@@ -304,16 +338,33 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// parse outline
-- (void)parseOutlineWithCompletionHandler:(nullable void (^)(NSArray<CEOutlineItem *> * _Nonnull))completionHandler
+/// parse outline with delay
+- (void)invalidateOutline
 // ------------------------------------------------------
 {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
-    if ([[self textStorage] length] == 0) { return; }
+    if (![self canParse]) {
+        if (![self outlineItems]) {
+            [self setOutlineItems:@[]];
+        }
+        return;
+    }
     
-    // use cache if exist
-    if ([self outlineCacheHash] && [[self outlineCacheHash] isEqualToString:[[[self textStorage] string] MD5]]) {
-        completionHandler([self cachedOutlineItems]);
+    [self setupOutlineMenuUpdateTimer];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// parse outline
+- (void)parseOutline
+// ------------------------------------------------------
+{
+    [[self outlineMenuTimer] invalidate];
+    
+    if ([[self textStorage] length] == 0) {
+        [self setOutlineItems:@[]];
         return;
     }
     
@@ -329,19 +380,32 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     __weak typeof(operation) weakOperation = operation;
     __weak typeof(self) weakSelf = self;
     [operation setCompletionBlock:^{
+        
         if ([weakOperation isCancelled]) { return; }
         
-        if (weakSelf && [weakOperation results]) {
-            [weakSelf setCachedOutlineItems:[weakOperation results]];
-            [weakSelf setOutlineCacheHash:[string MD5]];
-        }
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            completionHandler([weakOperation results] ?: @[]);
-        });
+        [weakSelf setOutlineItems:[weakOperation results]];
     }];
     
     [[self outlineParseOperationQueue] addOperation:operation];
+}
+
+
+// ------------------------------------------------------
+/// let parse outline after a delay
+- (void)setupOutlineMenuUpdateTimer
+// ------------------------------------------------------
+{
+    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultOutlineMenuIntervalKey];
+    
+    if ([[self outlineMenuTimer] isValid]) {
+        [[self outlineMenuTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
+    } else {
+        [self setOutlineMenuTimer:[NSTimer scheduledTimerWithTimeInterval:interval
+                                                                   target:self
+                                                                 selector:@selector(parseOutline)
+                                                                 userInfo:nil
+                                                                  repeats:NO]];
+    }
 }
 
 @end
