@@ -75,6 +75,11 @@
         _wrapsLines = [defaults boolForKey:CEDefaultWrapLinesKey];
         _verticalLayoutOrientation = [defaults boolForKey:CEDefaultLayoutTextVerticalKey];
         _showsPageGuide = [defaults boolForKey:CEDefaultShowPageGuideKey];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didUpdateTheme:)
+                                                     name:CEThemeDidUpdateNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -103,46 +108,6 @@
     if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
         [self setNextResponder:[self splitViewController]];
     }
-    
-    // detect indent style
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey]) {
-        switch ([[[self textStorage] string] detectIndentStyle]) {
-            case CEIndentStyleTab:
-                [self setAutoTabExpandEnabled:NO];
-                break;
-            case CEIndentStyleSpace:
-                [self setAutoTabExpandEnabled:YES];
-                break;
-            case CEIndentStyleNotFound:
-                break;
-        }
-    }
-    
-    [[self textStorage] setDelegate:self];
-    [[self syntaxStyle] setDelegate:self];
-    
-    CEEditorViewController *editorViewController = [self createEditorBasedViewController:nil];
-    
-    // start parcing syntax highlights and outline menu
-    if ([[self syntaxStyle] canParse]) {
-        [[editorViewController navigationBarController] showOutlineIndicator];
-    }
-    [[self syntaxStyle] invalidateOutline];
-    [self invalidateSyntaxHighlight];
-    
-    // focus text view
-    [[self window] makeFirstResponder:[editorViewController textView]];
-    
-    // observe syntax/theme change
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didChangeSyntaxStyle:)
-                                                 name:CEDocumentSyntaxStyleDidChangeNotification
-                                               object:[self document]];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didUpdateTheme:)
-                                                 name:CEThemeDidUpdateNotification
-                                               object:nil];
 }
 
 
@@ -391,6 +356,50 @@
 
 
 #pragma mark Public Methods
+
+// ------------------------------------------------------
+///
+- (void)setDocument:(CEDocument *)document
+// ------------------------------------------------------
+{
+    _document = document;
+    
+    // detect indent style
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey]) {
+        switch ([[[document textStorage] string] detectIndentStyle]) {
+            case CEIndentStyleTab:
+                [self setAutoTabExpandEnabled:NO];
+                break;
+            case CEIndentStyleSpace:
+                [self setAutoTabExpandEnabled:YES];
+                break;
+            case CEIndentStyleNotFound:
+                break;
+        }
+    }
+    
+    [[document textStorage] setDelegate:self];
+    [[document syntaxStyle] setDelegate:self];
+    
+    CEEditorViewController *editorViewController = [self createEditorBasedViewController:nil];
+    
+    // start parcing syntax highlights and outline menu
+    if ([[document syntaxStyle] canParse]) {
+        [[editorViewController navigationBarController] showOutlineIndicator];
+    }
+    [[document syntaxStyle] invalidateOutline];
+    [self invalidateSyntaxHighlight];
+    
+    // focus text view
+    [[self window] makeFirstResponder:[editorViewController textView]];
+    
+    // observe syntax/theme change
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangeSyntaxStyle:)
+                                                 name:CEDocumentSyntaxStyleDidChangeNotification
+                                               object:document];
+}
+
 
 // ------------------------------------------------------
 /// return textView focused on
@@ -820,7 +829,7 @@
 - (NSWindow *)window
 // ------------------------------------------------------
 {
-    return [[[self splitViewController] view] window];
+    return [[[self document] windowController] window];
 }
 
 
@@ -839,15 +848,6 @@
 // ------------------------------------------------------
 {
     return [[[self document] textStorage] layoutManagers];
-}
-
-
-// ------------------------------------------------------
-/// documentを返す
-- (CEDocument *)document
-// ------------------------------------------------------
-{
-    return [[[self window] windowController] document];
 }
 
 

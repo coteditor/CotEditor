@@ -382,6 +382,8 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 - (void)applyDocument:(nonnull CEDocument *)document
 // ------------------------------------------------------
 {
+    [[self editor] setDocument:document];
+    
     [[self toolbarController] setDocument:document];
     [[[self window] toolbar] validateVisibleItems];
     

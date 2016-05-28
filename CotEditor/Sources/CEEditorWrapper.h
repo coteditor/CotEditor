@@ -30,11 +30,14 @@
 #import "CETextView.h"
 
 
+@class CEDocument;
 @class CETextView;
 @class CETheme;
 
 
 @interface CEEditorWrapper : NSResponder
+
+@property (nonatomic, nullable) CEDocument *document;
 
 @property (nonatomic) BOOL showsLineNum;
 @property (nonatomic) BOOL wrapsLines;
