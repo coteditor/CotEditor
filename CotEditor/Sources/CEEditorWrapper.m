@@ -829,7 +829,7 @@
 - (NSWindow *)window
 // ------------------------------------------------------
 {
-    return [[[self document] windowControllers][0] window];
+    return [[[self splitViewController] view] window];
 }
 
 
