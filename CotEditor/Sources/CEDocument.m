@@ -586,7 +586,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     
     // set font for printing
     NSFont *font;
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultSetPrintFontKey] == 1) { // == プリンタ専用フォントで印字
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultSetPrintFontKey] == 1) { // == use printing font
         font = [NSFont fontWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultPrintFontNameKey]
                                size:(CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPrintFontSizeKey]];
     } else {
@@ -927,7 +927,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
         if (character == convertedCharacter) { continue; }
         
         if (!canConvertYenSign && character == kYenCharacter) {
-            convertedCharacter = '\\';
+            convertedCharacter = kYenSubstitutionCharacter;
         }
         
         [incompatibles addObject:[[CEIncompatibleCharacter alloc] initWithCharacter:character
