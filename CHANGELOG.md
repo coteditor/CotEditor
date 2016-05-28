@@ -31,6 +31,7 @@ develop
 - Fix an issue where unselected last line number could be highlighted if the text orientation is vertical.
 - Fix an issue where invisible characters were drawn off to the side if the text orientation is vertical.
 - Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted. 
+- Fix an issue where documents were marked as “Edited” just after document duplication if line ending is not the default one.
 
 
 
