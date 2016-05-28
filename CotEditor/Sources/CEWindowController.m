@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 };
 
 
-@interface CEWindowController () <NSSplitViewDelegate, NSSharingServicePickerDelegate>
+@interface CEWindowController () <NSSplitViewDelegate>
 
 @property (nonatomic) CESidebarTag selectedSidebarTag;
 @property (nonatomic) CGFloat sidebarWidth;
