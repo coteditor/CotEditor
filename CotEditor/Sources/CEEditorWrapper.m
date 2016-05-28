@@ -49,8 +49,6 @@
 
 @interface CEEditorWrapper () <CETextFinderClientProvider, CESyntaxStyleDelegate, NSTextStorageDelegate>
 
-@property (nonatomic) BOOL canActivateShowInvisibles;
-
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
 
 @end
@@ -70,12 +68,6 @@
     self = [super init];
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        _canActivateShowInvisibles = ([defaults boolForKey:CEDefaultShowInvisibleSpaceKey] ||
-                                      [defaults boolForKey:CEDefaultShowInvisibleTabKey] ||
-                                      [defaults boolForKey:CEDefaultShowInvisibleNewLineKey] ||
-                                      [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey] ||
-                                      [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey]);
         
         _showsInvisibles = [defaults boolForKey:CEDefaultShowInvisiblesKey];
         _showsLineNum = [defaults boolForKey:CEDefaultShowLineNumbersKey];
@@ -166,6 +158,10 @@
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
+    if ([menuItem action] == @selector(recolorAll:)) {
+        return [[self syntaxStyle] canParse];
+    }
+    
     NSInteger state = NSOffState;
     NSString *title;
     
@@ -182,9 +178,6 @@
         NSString *title = [self isVerticalLayoutOrientation] ? @"Use Horizontal Orientation" :  @"Use Vertical Orientation";
         [menuItem setTitle:NSLocalizedString(title, nil)];
         
-    } else if ([menuItem action] == @selector(toggleAntialias:)) {
-        state = [[self focusedTextView] usesAntialias] ? NSOnState : NSOffState;
-        
     } else if ([menuItem action] == @selector(togglePageGuide:)) {
         title = [self showsPageGuide] ? @"Hide Page Guide" : @"Show Page Guide";
         
@@ -192,14 +185,19 @@
         title = [self showsInvisibles] ? @"Hide Invisible Characters" : @"Show Invisible Characters";
         [menuItem setTitle:NSLocalizedString(title, nil)];
         
-        if (![self canActivateShowInvisibles]) {
-            [menuItem setToolTip:NSLocalizedString(@"To show invisible characters, set them in Preferences and re-open the document.", nil)];
+        // disable button if item cannot be enable
+        if ([[self class] canActivateShowInvisibles]) {
+            [menuItem setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
+        } else {
+            [menuItem setToolTip:NSLocalizedString(@"To show invisible characters, set them in Preferences", nil)];
+            return NO;
         }
-        
-        return [self canActivateShowInvisibles];
         
     } else if ([menuItem action] == @selector(toggleAutoTabExpand:)) {
         state = [[self focusedTextView] isAutoTabExpandEnabled] ? NSOnState : NSOffState;
+        
+    } else if ([menuItem action] == @selector(toggleAntialias:)) {
+        state = [[self focusedTextView] usesAntialias] ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(changeLineHeight:)) {
         CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
@@ -213,9 +211,6 @@
         
     } else if ([menuItem action] == @selector(changeTheme:)) {
         state = [[[self theme] name] isEqualToString:[menuItem title]] ? NSOnState : NSOffState;
-        
-    } else if ([menuItem action] == @selector(recolorAll:)) {
-        return [[self syntaxStyle] canParse];
     }
     
     if (title) {
@@ -264,10 +259,10 @@
             [imageItem setState:[self showsInvisibles] ? NSOnState : NSOffState];
             
             // disable button if item cannot be enable
-            if ([self canActivateShowInvisibles]) {
+            if ([[self class] canActivateShowInvisibles]) {
                 [theItem setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
             } else {
-                [theItem setToolTip:NSLocalizedString(@"To display invisible characters, set them in Preferences and re-open the document.", nil)];
+                [theItem setToolTip:NSLocalizedString(@"To show invisible characters, set them in Preferences", nil)];
                 return NO;
             }
             
@@ -750,6 +745,21 @@
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// whether at least one of invisible characters is enabled in the preferences currently
++ (BOOL)canActivateShowInvisibles
+// ------------------------------------------------------
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    return ([defaults boolForKey:CEDefaultShowInvisibleSpaceKey] ||
+            [defaults boolForKey:CEDefaultShowInvisibleTabKey] ||
+            [defaults boolForKey:CEDefaultShowInvisibleNewLineKey] ||
+            [defaults boolForKey:CEDefaultShowInvisibleFullwidthSpaceKey] ||
+            [defaults boolForKey:CEDefaultShowOtherInvisibleCharsKey]);
+}
+
 
 // ------------------------------------------------------
 /// apply text styles from text view

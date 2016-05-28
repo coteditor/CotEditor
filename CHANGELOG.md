@@ -22,6 +22,7 @@ develop
     - Support emphasis with tiriple `*` and `_`.
 - Better syntax highlighting while editing.
 - Adjust height of the last empty line.
+- Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
 
 
 ### Fixes

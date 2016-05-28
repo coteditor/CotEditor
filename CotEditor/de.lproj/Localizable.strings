@@ -258,8 +258,8 @@
 "Use Horizontal Orientation" = "Horizontal Orientierung verwenden";
 
 // Show invisible char menu item tooltip
-"Show or hide invisible characters in document" = "Unsichtbare Zeichen im Text ein-/ausblenden";
-"To show invisible characters, set them in Preferences and re-open the document" = "Um unsichtbare Zeichen anzuzeigen, setzen Sie sie in den Einstellungen und öffnen Sie das Dokument wieder";
+"Show or hide invisible characters in document" = "Unsichtbare Zeichen im Text ein-/ausblenden.";
+"To show invisible characters, set them in Preferences" = "Um unsichtbare Zeichen anzuzeigen, setzen Sie sie in den Einstellungen.";
 
 
 
