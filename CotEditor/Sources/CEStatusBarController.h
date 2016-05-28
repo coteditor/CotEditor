@@ -33,8 +33,10 @@
 
 @interface CEStatusBarController : NSViewController
 
-@property (readonly, nonatomic, getter=isShown) BOOL shown;
 @property (nonatomic, nullable, weak) CEDocumentAnalyzer *documentAnalyzer;
+
+// readonly
+@property (readonly, nonatomic, getter=isShown) BOOL shown;
 
 
 // Public Method

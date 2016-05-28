@@ -26,7 +26,6 @@
  */
 
 #import "CEStatusBarController.h"
-#import "CEDocument.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEDefaults.h"
 
@@ -92,19 +91,6 @@ static NSColor *kLabelColor;
 {
     [super awakeFromNib];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateEditorStatus)
-                                                 name:CEAnalyzerDidUpdateEditorInfoNotification
-                                               object:[self documentAnalyzer]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateDocumentStatus)
-                                                 name:CEAnalyzerDidUpdateFileInfoNotification
-                                               object:[self documentAnalyzer]];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateDocumentStatus)
-                                                 name:CEAnalyzerDidUpdateModeInfoNotification
-                                               object:[self documentAnalyzer]];
-    
     // observe change of defaults
     for (NSString *key in [[self class] observedDefaultKeys]) {
         [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:key options:0 context:NULL];
@@ -128,13 +114,47 @@ static NSColor *kLabelColor;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+/// set analyzer
+- (void)setDocumentAnalyzer:(CEDocumentAnalyzer *)documentAnalyzer
+// ------------------------------------------------------
+{
+    [[self documentAnalyzer] setNeedsUpdateStatusEditorInfo:NO];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    _documentAnalyzer = documentAnalyzer;
+    
+    [documentAnalyzer setNeedsUpdateStatusEditorInfo:[self isShown]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateEditorStatus)
+                                                 name:CEAnalyzerDidUpdateEditorInfoNotification
+                                               object:documentAnalyzer];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateDocumentStatus)
+                                                 name:CEAnalyzerDidUpdateFileInfoNotification
+                                               object:documentAnalyzer];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateDocumentStatus)
+                                                 name:CEAnalyzerDidUpdateModeInfoNotification
+                                               object:documentAnalyzer];
+    
+    [self updateEditorStatus];
+    [self updateDocumentStatus];
+}
+
+
+// ------------------------------------------------------
 ///
 - (void)setShown:(BOOL)shown
 // ------------------------------------------------------
 {
-    [[self documentAnalyzer] setNeedsUpdateStatusEditorInfo:shown];
-    
     _shown = shown;
+    
+    [[self documentAnalyzer] setNeedsUpdateStatusEditorInfo:shown];
+    if (shown) {
+        [[self documentAnalyzer] invalidateEditorInfo];
+    }
 }
 
 

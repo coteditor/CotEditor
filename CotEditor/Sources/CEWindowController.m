@@ -209,34 +209,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 
 
 
-#pragma mark Public Accessors
-
-// ------------------------------------------------------
-/// return whether status bar is shown
-- (BOOL)showsStatusBar
-// ------------------------------------------------------
-{
-    return [[self statusBarController] isShown];
-}
-
-
-// ------------------------------------------------------
-/// set visibility of status bar
-- (void)setShowsStatusBar:(BOOL)showsStatusBar
-// ------------------------------------------------------
-{
-    if (![self statusBarController]) { return; }
-    
-    [[self statusBarController] setShown:showsStatusBar animate:YES];
-    
-    [[[self document] analyzer] setNeedsUpdateStatusEditorInfo:showsStatusBar];
-    if (showsStatusBar) {
-        [[[self document] analyzer] invalidateEditorInfo];
-    }
-}
-
-
-
 #pragma mark Delegate
 
 //=======================================================
@@ -482,6 +454,24 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     NSDictionary<NSString *, id> *views = NSDictionaryOfVariableBindings(newView);
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newView]|" options:0 metrics:nil views:views]];
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newView]|" options:0 metrics:nil views:views]];
+}
+
+
+// ------------------------------------------------------
+/// return whether status bar is shown
+- (BOOL)showsStatusBar
+// ------------------------------------------------------
+{
+    return [[self statusBarController] isShown];
+}
+
+
+// ------------------------------------------------------
+/// set visibility of status bar
+- (void)setShowsStatusBar:(BOOL)showsStatusBar
+// ------------------------------------------------------
+{
+    [[self statusBarController] setShown:showsStatusBar animate:YES];
 }
 
 @end
