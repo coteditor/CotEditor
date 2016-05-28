@@ -38,11 +38,11 @@
 #import "CEWindow.h"
 
 #import "CEDefaults.h"
-#import "CEEncodings.h"
 #import "Constants.h"
 
 #import "CEGeometry.h"
 #import "NSString+CECounting.h"
+#import "NSString+CEEncoding.h"
 #import "NSFont+CESize.h"
 
 
@@ -322,7 +322,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // swap '¥' with '\' if needed
     if ([defaults boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
-        NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
+        NSString *yen = [NSString stringWithCharacters:&kYenCharacter length:1];
         
         if ([string isEqualToString:@"\\"]) {
             [super insertText:yen replacementRange:replacementRange];
@@ -1336,7 +1336,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (IBAction)inputYenMark:(nullable id)sender
 // ------------------------------------------------------
 {
-    [super insertText:[NSString stringWithCharacters:&kYenMark length:1]
+    [super insertText:[NSString stringWithCharacters:&kYenCharacter length:1]
      replacementRange:[self selectedRange]];
 }
 

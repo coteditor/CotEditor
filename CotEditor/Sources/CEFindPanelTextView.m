@@ -29,7 +29,8 @@
 #import "CEFindPanelLayoutManager.h"
 #import "CETextFinder.h"
 #import "CEDefaults.h"
-#import "CEEncodings.h"
+
+#import "NSString+CEEncoding.h"
 
 
 @interface CEFindPanelTextView ()
@@ -115,7 +116,7 @@
     
     // swap '¥' with '\' if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSwapYenAndBackSlashKey] && ([string length] == 1)) {
-        NSString *yen = [NSString stringWithCharacters:&kYenMark length:1];
+        NSString *yen = [NSString stringWithCharacters:&kYenCharacter length:1];
         
         if ([string isEqualToString:@"\\"]) {
             string = yen;

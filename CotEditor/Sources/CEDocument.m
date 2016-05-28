@@ -328,7 +328,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     BOOL hasUTF8BOM = [self hasUTF8BOM];
     
     // convert Yen sign in consideration of the current encoding
-    NSString *string = [self convertCharacterString:[self string] encoding:encoding];
+    NSString *string = [[self string] stringByConvertingYenSignForEncoding:encoding];
     
     // unblock the user interface, since fetching current document state has been done here
     [self unblockUserInteraction];
@@ -918,7 +918,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     
     // 削除／変換される文字をリストアップ
     NSMutableArray<CEIncompatibleCharacter *> *incompatibles = [NSMutableArray array];
-    BOOL canConvertYenMark = CEEncodingCanConvertYenSign(encoding);
+    BOOL canConvertYenSign = CEEncodingCanConvertYenSign(encoding);
     
     for (NSUInteger i = 0; i < [string length]; i++) {
         unichar character = [string characterAtIndex:i];
@@ -926,7 +926,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
         
         if (character == convertedCharacter) { continue; }
         
-        if (!canConvertYenMark && character == kYenMark) {
+        if (!canConvertYenSign && character == kYenCharacter) {
             convertedCharacter = '\\';
         }
         
@@ -1498,7 +1498,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 // ------------------------------------------------------
 {
     // エンコーディングを見て、半角円マークを変換しておく
-    NSString *newString = [self convertCharacterString:string encoding:encoding];
+    NSString *newString = [string stringByConvertingYenSignForEncoding:encoding];
     
     if (![newString canBeConvertedToEncoding:encoding]) {
         if (outError) {
@@ -1520,20 +1520,6 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     }
     
     return YES;
-}
-
-
-// ------------------------------------------------------
-/// 半角円マークを使えないエンコードの時はバックスラッシュに変換した文字列を返す
-- (nonnull NSString *)convertCharacterString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding
-// ------------------------------------------------------
-{
-    if (([string length] > 0) && !CEEncodingCanConvertYenSign(encoding)) {
-        return [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&kYenMark length:1]
-                                                 withString:@"\\"];
-    }
-    
-    return string;
 }
 
 

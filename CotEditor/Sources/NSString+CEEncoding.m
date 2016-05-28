@@ -29,7 +29,8 @@
 #import "NSString+CEEncoding.h"
 
 
-const static unichar kYen = 0x00A5;
+const unichar kYenCharacter = 0x00A5;
+const unichar kYenSubstitutionCharacter = '\\';
 
 // byte order marks
 static const char kUTF8Bom[3] = {0xEF, 0xBB, 0xBF};
@@ -65,7 +66,7 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
 BOOL CEEncodingCanConvertYenSign(NSStringEncoding encoding)
 //------------------------------------------------------
 {
-    NSString *yen = [NSString stringWithCharacters:&kYen length:1];
+    NSString *yen = [NSString stringWithCharacters:&kYenCharacter length:1];
     return [yen canBeConvertedToEncoding:encoding];
 }
 
@@ -300,6 +301,21 @@ NSData * _Nullable encodeXattrEncoding(NSStringEncoding encoding)
     if (cfEncoding == kCFStringEncodingInvalidId) { return NSNotFound; }
     
     return CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+}
+
+
+// ------------------------------------------------------
+/// convert Yen sign in consideration of the encoding
+- (nonnull NSString *)stringByConvertingYenSignForEncoding:(NSStringEncoding)encoding
+// ------------------------------------------------------
+{
+    if (([self length] > 0) && !CEEncodingCanConvertYenSign(encoding)) {
+        // replace Yen signs to backslashs if encoding cannot convert Yen sign
+        return [self stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&kYenCharacter length:1]
+                                               withString:[NSString stringWithCharacters:&kYenSubstitutionCharacter length:1]];
+    }
+    
+    return [self copy];
 }
 
 @end

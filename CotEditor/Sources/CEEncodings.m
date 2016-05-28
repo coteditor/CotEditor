@@ -110,6 +110,3 @@ CFStringEncoding kCFStringEncodingList[] = {
     kCFStringEncodingUTF32LE, // Unicode (UTF-16LE)
 };
 const NSUInteger kSizeOfCFStringEncodingList = sizeof(kCFStringEncodingList)/sizeof(CFStringEncoding);
-
-// Yen mark char
-const unichar kYenMark = 0x00A5;

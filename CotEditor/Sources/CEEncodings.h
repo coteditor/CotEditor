@@ -38,6 +38,3 @@ extern NSUInteger const kMaxEncodingScanLength;
 // Encodings list
 extern CFStringEncoding kCFStringEncodingList[];
 extern NSUInteger const kSizeOfCFStringEncodingList;
-
-// Yen mark char
-extern unichar const kYenMark;

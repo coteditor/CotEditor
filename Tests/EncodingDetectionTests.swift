@@ -182,6 +182,10 @@ class EncodingDetectionTests: XCTestCase {
         XCTAssertTrue(CEEncodingCanConvertYenSign(toNSEncoding(.ShiftJIS)))
         XCTAssertFalse(CEEncodingCanConvertYenSign(NSJapaneseEUCStringEncoding))  // ? (U+003F)
         XCTAssertFalse(CEEncodingCanConvertYenSign(NSASCIIStringEncoding))  // Y (U+0059)
+        
+        let string = "yen \\ ¥ yen" as NSString
+        XCTAssertEqual(string.stringByConvertingYenSignForEncoding(NSUTF8StringEncoding), "yen \\ ¥ yen")
+        XCTAssertEqual(string.stringByConvertingYenSignForEncoding(NSASCIIStringEncoding), "yen \\ \\ yen")
     }
     
     

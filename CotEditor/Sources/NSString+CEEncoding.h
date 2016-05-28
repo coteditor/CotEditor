@@ -28,6 +28,11 @@
 @import Foundation;
 
 
+// Yen mark char
+extern unichar const kYenCharacter;
+extern unichar const kYenSubstitutionCharacter;
+
+
 /// check IANA charset compatibility considering SHIFT_JIS
 BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding);
 
@@ -49,6 +54,9 @@ NSData * _Nullable encodeXattrEncoding(NSStringEncoding encoding);
 
 /// scan encoding declaration in string
 - (NSStringEncoding)scanEncodingDeclarationForTags:(nonnull NSArray<NSString *> *)tags upToIndex:(NSUInteger)maxLength suggestedCFEncodings:(nonnull NSArray<NSNumber *> *)suggestedCFEncodings;
+
+/// convert Yen sign in consideration of the encoding
+- (nonnull NSString *)stringByConvertingYenSignForEncoding:(NSStringEncoding)encoding;
 
 @end
 
