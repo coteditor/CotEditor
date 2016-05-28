@@ -29,6 +29,8 @@
 #import "NSString+CEEncoding.h"
 
 
+const static unichar kYen = 0x00A5;
+
 // byte order marks
 static const char kUTF8Bom[3] = {0xEF, 0xBB, 0xBF};
 static const char kUTF16BEBom[2] = {0xFE, 0xFF};
@@ -55,6 +57,16 @@ BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSS
     
     return ((encoding == ShiftJIS && IANACharsetEncoding == ShiftJIS_X0213) ||
             (encoding == ShiftJIS_X0213 && IANACharsetEncoding == ShiftJIS));
+}
+
+
+//------------------------------------------------------
+/// whether Yen sign (U+00A5) can be converted to the given encoding
+BOOL CEEncodingCanConvertYenSign(NSStringEncoding encoding)
+//------------------------------------------------------
+{
+    NSString *yen = [NSString stringWithCharacters:&kYen length:1];
+    return [yen canBeConvertedToEncoding:encoding];
 }
 
 

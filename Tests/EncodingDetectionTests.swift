@@ -177,6 +177,14 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
+    func testYenConvertion() {
+        XCTAssertTrue(CEEncodingCanConvertYenSign(NSUTF8StringEncoding))
+        XCTAssertTrue(CEEncodingCanConvertYenSign(toNSEncoding(.ShiftJIS)))
+        XCTAssertFalse(CEEncodingCanConvertYenSign(NSJapaneseEUCStringEncoding))  // ? (U+003F)
+        XCTAssertFalse(CEEncodingCanConvertYenSign(NSASCIIStringEncoding))  // Y (U+0059)
+    }
+    
+    
     // MARK: Private Methods
     
     func encodedStringForFileName(fileName: String, usedEncoding: UnsafeMutablePointer<UInt>) -> NSString? {

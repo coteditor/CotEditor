@@ -132,28 +132,6 @@ NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDid
 }
 
 
-// ------------------------------------------------------
-/// whether Yen sign (U+00A5) can be converted to the given encoding
-+ (BOOL)isInvalidYenEncoding:(NSStringEncoding)encoding
-// ------------------------------------------------------
-{
-    static NSArray<NSNumber *> *invalidYenEncodings;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSMutableArray<NSNumber *> *encodings = [NSMutableArray arrayWithCapacity:kSizeOfCFStringEncodingInvalidYenList];
-        for (NSUInteger i = 0; i < kSizeOfCFStringEncodingInvalidYenList; i++) {
-            NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingInvalidYenList[i]);
-            [encodings addObject:@(encoding)];
-        }
-        
-        invalidYenEncodings = [encodings copy];
-    });
-    
-    return [invalidYenEncodings containsObject:@(encoding)];
-}
-
-
 //------------------------------------------------------
 /// return copied menu items
 - (nonnull NSArray<NSMenuItem *> *)encodingMenuItems

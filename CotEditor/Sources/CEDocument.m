@@ -42,7 +42,6 @@
 #import "CESyntaxStyle.h"
 #import "CEWindowController.h"
 #import "CEEditorWrapper.h"
-#import "CEEncodingManager.h"
 
 #import "CEIncompatibleCharacter.h"
 
@@ -919,7 +918,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     
     // 削除／変換される文字をリストアップ
     NSMutableArray<CEIncompatibleCharacter *> *incompatibles = [NSMutableArray array];
-    BOOL isInvalidYenEncoding = [CEEncodingManager isInvalidYenEncoding:encoding];
+    BOOL canConvertYenMark = CEEncodingCanConvertYenSign(encoding);
     
     for (NSUInteger i = 0; i < [string length]; i++) {
         unichar character = [string characterAtIndex:i];
@@ -927,7 +926,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
         
         if (character == convertedCharacter) { continue; }
         
-        if (isInvalidYenEncoding && character == kYenMark) {
+        if (!canConvertYenMark && character == kYenMark) {
             convertedCharacter = '\\';
         }
         
@@ -1529,7 +1528,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (nonnull NSString *)convertCharacterString:(nonnull NSString *)string encoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    if (([string length] > 0) && [CEEncodingManager isInvalidYenEncoding:encoding]) {
+    if (([string length] > 0) && !CEEncodingCanConvertYenSign(encoding)) {
         return [string stringByReplacingOccurrencesOfString:[NSString stringWithCharacters:&kYenMark length:1]
                                                  withString:@"\\"];
     }

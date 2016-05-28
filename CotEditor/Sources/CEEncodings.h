@@ -39,9 +39,5 @@ extern NSUInteger const kMaxEncodingScanLength;
 extern CFStringEncoding kCFStringEncodingList[];
 extern NSUInteger const kSizeOfCFStringEncodingList;
 
-// Encodings that need convert Yen mark to back-slash
-extern CFStringEncoding kCFStringEncodingInvalidYenList[];
-extern NSUInteger const kSizeOfCFStringEncodingInvalidYenList;
-
 // Yen mark char
 extern unichar const kYenMark;

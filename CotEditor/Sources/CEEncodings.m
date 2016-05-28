@@ -111,36 +111,5 @@ CFStringEncoding kCFStringEncodingList[] = {
 };
 const NSUInteger kSizeOfCFStringEncodingList = sizeof(kCFStringEncodingList)/sizeof(CFStringEncoding);
 
-// Encodings that need convert Yen mark to back-slash
-CFStringEncoding kCFStringEncodingInvalidYenList[] = {
-    // ? (U+003F)
-    kCFStringEncodingDOSJapanese, // Japanese (Windows, DOS)
-    kCFStringEncodingEUC_JP,  // Japanese (EUC)
-    kCFStringEncodingEUC_TW,  // Traditional Chinese (EUC)
-    kCFStringEncodingEUC_CN,  // Simplified Chinese (EUC)
-    kCFStringEncodingEUC_KR,  // Korean (EUC)
-    kCFStringEncodingDOSKorean,  // Korean (Windows, DOS)
-    kCFStringEncodingMacArabic, // Arabic (Mac OS)
-    kCFStringEncodingMacHebrew, // Hebrew (Mac OS)
-    kCFStringEncodingISOLatinCyrillic, // Cyrillic (ISO 8859-5)
-    kCFStringEncodingISOLatinArabic, // Arabic (ISO 8859-6)
-    kCFStringEncodingISOLatinGreek, // Greek (ISO 8859-7)
-    kCFStringEncodingMacCyrillic, // Cyrillic (Mac OS)
-    kCFStringEncodingWindowsCyrillic, // Cyrillic (Windows)
-    kCFStringEncodingMacCentralEurRoman, // Central European (Mac OS)
-    kCFStringEncodingISOLatin2, // Central European (ISO Latin 2)
-    kCFStringEncodingISOLatin3, // Western (ISO Latin 3)
-    kCFStringEncodingISOLatin4, // Central European (ISO Latin 4)
-    kCFStringEncodingISOLatin6, // Nordic (ISO Latin 6)
-    kCFStringEncodingISOLatin7, // Baltic (ISO Latin 7)
-    kCFStringEncodingISOLatin8, // Celtic (ISO Latin 8)
-    kCFStringEncodingISOLatin10, // Romanian (ISO Latin 10)
-    kCFStringEncodingWindowsLatin2, // Central European (Windows Latin 2)
-    
-    // Y (U+0059)
-    kCFStringEncodingASCII,  // Western (ASCII)
-};
-const NSUInteger kSizeOfCFStringEncodingInvalidYenList = sizeof(kCFStringEncodingInvalidYenList) / sizeof(CFStringEncoding);
-
 // Yen mark char
 const unichar kYenMark = 0x00A5;

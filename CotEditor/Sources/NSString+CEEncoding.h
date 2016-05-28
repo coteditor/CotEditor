@@ -31,6 +31,9 @@
 /// check IANA charset compatibility considering SHIFT_JIS
 BOOL CEIsCompatibleIANACharSetEncoding(NSStringEncoding IANACharsetEncoding, NSStringEncoding encoding);
 
+/// whether Yen sign (U+00A5) can be converted with the encoding
+BOOL CEEncodingCanConvertYenSign(NSStringEncoding encoding);
+
 // encode/decode `com.apple.TextEncoding` file extended attribute
 NSStringEncoding decodeXattrEncoding(NSData * _Nullable data);
 NSData * _Nullable encodeXattrEncoding(NSStringEncoding encoding);

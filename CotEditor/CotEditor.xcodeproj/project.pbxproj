@@ -57,7 +57,6 @@
 		2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */; };
 		2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */ = {isa = PBXBuildFile; fileRef = 2A18A5BE1C4A746A00BAD817 /* Encodings */; };
 		2A18A5C21C4AA41400BAD817 /* CEEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C5971C49FB260019411A /* CEEncodings.m */; };
-		2A18A5C41C4AA49900BAD817 /* EncodigCoverageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5C31C4AA49900BAD817 /* EncodigCoverageTests.m */; };
 		2A1A1E341C2422D200DBA09F /* CEShareMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A1E331C2422D200DBA09F /* CEShareMenu.m */; };
 		2A1A1E351C2422D200DBA09F /* CEShareMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A1E331C2422D200DBA09F /* CEShareMenu.m */; };
 		2A1A3E4F1C099A21007FEA7A /* CESyntaxTermsEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */; };
@@ -559,7 +558,6 @@
 		2A162FE91AF395A400E97285 /* CEUpdaterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUpdaterManager.m; sourceTree = "<group>"; };
 		2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingDetectionTests.swift; sourceTree = "<group>"; };
 		2A18A5BE1C4A746A00BAD817 /* Encodings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Encodings; path = TestFiles/Encodings; sourceTree = "<group>"; };
-		2A18A5C31C4AA49900BAD817 /* EncodigCoverageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncodigCoverageTests.m; sourceTree = "<group>"; };
 		2A1A1E321C2422D200DBA09F /* CEShareMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEShareMenu.h; sourceTree = "<group>"; };
 		2A1A1E331C2422D200DBA09F /* CEShareMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEShareMenu.m; sourceTree = "<group>"; };
 		2A1A3E4C1C099A21007FEA7A /* CESyntaxTermsEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxTermsEditViewController.h; sourceTree = "<group>"; };
@@ -1704,7 +1702,6 @@
 				2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */,
 				2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */,
 				2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */,
-				2A18A5C31C4AA49900BAD817 /* EncodigCoverageTests.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2459,7 +2456,6 @@
 				2AF587411CF7713B009D44A2 /* NSString+CEAdditions.m in Sources */,
 				2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */,
 				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
-				2A18A5C41C4AA49900BAD817 /* EncodigCoverageTests.m in Sources */,
 				2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */,
 				2AFEA0D01C2D3D8F009001F6 /* NSString+CERange.m in Sources */,
 				2A18A5BB1C4A72BF00BAD817 /* NSString+CEEncoding.m in Sources */,
