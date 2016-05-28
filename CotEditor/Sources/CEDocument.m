@@ -641,7 +641,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     CEDocument *document = (CEDocument *)[super duplicateAndReturnError:outError];
     
     [document setSyntaxStyleWithName:[[self syntaxStyle] styleName]];
-    [document doSetLineEnding:[self lineEnding]];
+    [document setLineEnding:[self lineEnding]];
     [document doSetEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM] updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
     
     // apply text orientation
