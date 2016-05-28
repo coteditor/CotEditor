@@ -35,6 +35,7 @@
 #import "CEIncompatibleCharsViewController.h"
 #import "CEEditorWrapper.h"
 #import "CEDocumentAnalyzer.h"
+#import "CEIncompatibleCharacterScanner.h"
 #import "CEDefaults.h"
 
 
@@ -204,15 +205,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 {
     [self setSelectedSidebarTag:CEIncompatibleCharsTag];
     [self setSidebarShown:YES];
-}
-
-
-// ------------------------------------------------------
-/// update incompatible char list if it is currently shown
-- (void)updateIncompatibleCharsIfNeeded
-// ------------------------------------------------------
-{
-    [[self incompatibleCharsViewController] updateIfNeeded];
 }
 
 
@@ -388,7 +380,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     [[[self window] toolbar] validateVisibleItems];
     
     // set document instance to sidebar views
-    [[self incompatibleCharsViewController] setDocument:document];
+    [[self incompatibleCharsViewController] setScanner:[document incompatibleCharacterScanner]];
     [[self documentInspectorViewController] setRepresentedObject:[document analyzer]];
     
     [[self statusBarController] setDocumentAnalyzer:[document analyzer]];
@@ -469,7 +461,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
             
         case CEIncompatibleCharsTag:
             viewController = [self incompatibleCharsViewController];
-            [[self incompatibleCharsViewController] update];
+            [[[self document] incompatibleCharacterScanner] invalidate];
             break;
     }
     

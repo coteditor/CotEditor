@@ -162,7 +162,6 @@ extern NSString *_Nonnull const CEDefaultTextContainerInsetHeightTopKey;
 extern NSString *_Nonnull const CEDefaultTextContainerInsetHeightBottomKey;
 extern NSString *_Nonnull const CEDefaultAutoCompletionDelayKey;
 extern NSString *_Nonnull const CEDefaultInfoUpdateIntervalKey;
-extern NSString *_Nonnull const CEDefaultIncompatibleCharIntervalKey;
 extern NSString *_Nonnull const CEDefaultOutlineMenuIntervalKey;
 extern NSString *_Nonnull const CEDefaultShowColoringIndicatorTextLengthKey;
 extern NSString *_Nonnull const CEDefaultColoringRangeBufferLengthKey;

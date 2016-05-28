@@ -27,6 +27,7 @@
  */
 
 #import "CEIncompatibleCharsViewController.h"
+#import "CEIncompatibleCharacterScanner.h"
 #import "CEIncompatibleCharacter.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
@@ -34,9 +35,8 @@
 #import "CEDefaults.h"
 
 
-@interface CEIncompatibleCharsViewController () <NSTableViewDelegate>
+@interface CEIncompatibleCharsViewController () <CEIncompatibleCharacterScannerDelegate, NSTableViewDelegate>
 
-@property (nonatomic, nullable, weak) NSTimer *updateTimer;
 @property (nonatomic, getter=isCharAvailable) BOOL charAvailable;
 
 @property (nonatomic, nullable) IBOutlet NSArrayController *incompatibleCharsController;
@@ -50,63 +50,57 @@
 
 @implementation CEIncompatibleCharsViewController
 
-#pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [_updateTimer invalidate];
-}
-
-
-
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// force scan incompatible chars and update immediately
-- (void)update
+/// set delegate
+- (void)setScanner:(CEIncompatibleCharacterScanner *)scanner
 // ------------------------------------------------------
 {
-    NSArray<CEIncompatibleCharacter *> *incompatibles = [[self document] scanIncompatibleCharacters];
-    ;
+    [[self scanner] setDelegate:nil];
     
-    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
-    for (CEIncompatibleCharacter *incompatible in incompatibles) {
-        [ranges addObject:[NSValue valueWithRange:[incompatible range]]];
-    }
-    [[[self document] editor] clearAllMarkup];
-    [[[self document] editor] markupRanges:ranges];
+    _scanner = scanner;
     
-    [[self incompatibleCharsController] setContent:incompatibles];
-    [self setCharAvailable:([incompatibles count] > 0)];
-}
-
-
-// ------------------------------------------------------
-/// set update timer only if needed
-- (void)updateIfNeeded
-// ------------------------------------------------------
-{
-    if (![[self view] superview]) { return; }
-    
-    NSTimeInterval interval = 0.42;
-    
-    if ([[self updateTimer] isValid]) {
-        [[self updateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
-    } else {
-        [self setUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:interval
-                                                              target:self
-                                                            selector:@selector(updateWithTimer:)
-                                                            userInfo:nil
-                                                             repeats:NO]];
-    }
+    [scanner setDelegate:self];
+    [scanner invalidate];
 }
 
 
 
 #pragma mark Delegate
+
+//=======================================================
+// Incompatible Character Scanner Delegate
+//=======================================================
+
+// ------------------------------------------------------
+/// update list constantly only if the table is visible
+- (BOOL)documentNeedsUpdateIncompatibleCharacter:(__kindof NSDocument *)document
+// ------------------------------------------------------
+{
+    return ![[self view] isHidden];
+}
+
+
+// ------------------------------------------------------
+- (void)document:(__kindof NSDocument *)document didUpdateIncompatibleCharacters:(NSArray<CEIncompatibleCharacter *> *)incompatibleCharacers
+// ------------------------------------------------------
+{
+    [[self incompatibleCharsController] setContent:incompatibleCharacers];
+    [self setCharAvailable:([incompatibleCharacers count] > 0)];
+    
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
+    for (CEIncompatibleCharacter *incompatible in incompatibleCharacers) {
+        [ranges addObject:[NSValue valueWithRange:[incompatible range]]];
+    }
+    [[document editor] clearAllMarkup];
+    [[document editor] markupRanges:ranges];
+}
+
+
+//=======================================================
+// Table View Delegate
+//=======================================================
 
 // ------------------------------------------------------
 /// select correspondent char in text view
@@ -118,7 +112,7 @@
     if (!selectedIncompatible) { return; }
     
     NSRange range = [selectedIncompatible range];
-    CEEditorWrapper *editor = [[self document] editor];
+    CEEditorWrapper *editor = [[[self scanner] document] editor];
     
     [editor setSelectedRange:range];
     
@@ -127,19 +121,6 @@
     NSTextView *textView = [editor focusedTextView];
     [textView scrollRangeToVisible:[textView selectedRange]];
     [textView showFindIndicatorForRange:[textView selectedRange]];
-}
-
-
-
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// update incompatible chars afer interval
-- (void)updateWithTimer:(nonnull NSTimer *)timer
-// ------------------------------------------------------
-{
-    [[self updateTimer] invalidate];
-    [self update];
 }
 
 @end

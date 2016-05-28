@@ -35,7 +35,7 @@
 @class CETextSelection;
 @class CESyntaxStyle;
 @class CEDocumentAnalyzer;
-@class CEIncompatibleCharacter;
+@class CEIncompatibleCharacterScanner;
 
 
 // Notifications
@@ -47,6 +47,7 @@ extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 // readonly properties
 @property (readonly, nonatomic, nonnull) NSTextStorage *textStorage;
 @property (readonly, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
+@property (readonly, nonatomic, nonnull) CEIncompatibleCharacterScanner *incompatibleCharacterScanner;
 @property (readonly, nonatomic, nullable) CEWindowController *windowController;
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 @property (readonly, nonatomic, nonnull) CETextSelection *selection;
@@ -66,7 +67,6 @@ extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 
 // string encoding
 - (nullable NSString *)IANACharSetName;
-- (nullable NSArray<CEIncompatibleCharacter *> *)scanIncompatibleCharacters;
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName;
 

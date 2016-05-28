@@ -29,8 +29,8 @@
 #import "CEEditorWrapper.h"
 #import "CEDocument.h"
 #import "CEDocumentAnalyzer.h"
+#import "CEIncompatibleCharacterScanner.h"
 #import "CEEditorViewController.h"
-#import "CEWindowController.h"
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
 #import "CEThemeManager.h"
@@ -274,7 +274,7 @@
     }
     
     // update incompatible chars list
-    [[[self window] windowController] updateIncompatibleCharsIfNeeded];
+    [[[self document] incompatibleCharacterScanner] invalidate];
 }
 
 
@@ -829,7 +829,7 @@
 - (NSWindow *)window
 // ------------------------------------------------------
 {
-    return [[[self document] windowController] window];
+    return [[[self document] windowControllers][0] window];
 }
 
 

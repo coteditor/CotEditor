@@ -34,6 +34,7 @@
 #import "CEDocument.h"
 #import "CEDocumentController.h"
 #import "CEDocumentAnalyzer.h"
+#import "CEIncompatibleCharacterScanner.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEPrintView.h"
 #import "CETextSelection.h"
@@ -42,8 +43,6 @@
 #import "CESyntaxStyle.h"
 #import "CEWindowController.h"
 #import "CEEditorWrapper.h"
-
-#import "CEIncompatibleCharacter.h"
 
 #import "NSString+CEEncoding.h"
 #import "NSAlert+BlockMethods.h"
@@ -88,6 +87,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 // readonly
 @property (readwrite, nonatomic, nonnull) NSTextStorage *textStorage;
 @property (readwrite, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
+@property (readwrite, nonatomic, nonnull) CEIncompatibleCharacterScanner *incompatibleCharacterScanner;
 @property (readwrite, nonatomic, nullable) CEWindowController *windowController;
 @property (readwrite, nonatomic, nonnull) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
@@ -153,6 +153,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
         _shouldSaveXattr = YES;
         _autosaveIdentifier = [[[NSUUID UUID] UUIDString] substringToIndex:CEUniqueFileIDLength];
         _analyzer = [[CEDocumentAnalyzer alloc] initWithDocument:self];
+        _incompatibleCharacterScanner = [[CEIncompatibleCharacterScanner alloc] initWithDocument:self];
         
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
@@ -883,8 +884,8 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     [[self analyzer] invalidateModeInfo];
     [[self analyzer] invalidateEditorInfo];
     
-    // show incompatible chars if needed
-    [[self windowController] updateIncompatibleCharsIfNeeded];
+    // update incompatible characters if pane is visible
+    [[self incompatibleCharacterScanner] invalidate];
     
     // apply text orientation
     [editor setVerticalLayoutOrientation:[self isVerticalText]];
@@ -899,15 +900,6 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
     
     return (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
-}
-
-
-// ------------------------------------------------------
-/// 指定されたエンコードにコンバートできない文字列をリストアップし配列を返す
-- (nullable NSArray<CEIncompatibleCharacter *> *)scanIncompatibleCharacters
-// ------------------------------------------------------
-{
-    return [[self string] scanIncompatibleCharactersForEncoding:[self encoding]];
 }
 
 
@@ -1007,10 +999,9 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     [self setHasUTF8BOM:withUTF8BOM];
     [self applyEncodingToView];  // ステータスバー、インスペクタを更新
     
+    [[self incompatibleCharacterScanner] invalidate];
     if (shouldShowList) {
         [[self windowController] showIncompatibleCharList];
-    } else {
-        [[self windowController] updateIncompatibleCharsIfNeeded];
     }
     
     return YES;

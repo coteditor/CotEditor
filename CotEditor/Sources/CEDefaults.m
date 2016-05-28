@@ -162,7 +162,6 @@ NSString *_Nonnull const CEDefaultTextContainerInsetHeightTopKey = @"textContain
 NSString *_Nonnull const CEDefaultTextContainerInsetHeightBottomKey = @"textContainerInsetHeightBottom";
 NSString *_Nonnull const CEDefaultAutoCompletionDelayKey = @"autoCompletionDelay";
 NSString *_Nonnull const CEDefaultInfoUpdateIntervalKey = @"infoUpdateInterval";
-NSString *_Nonnull const CEDefaultIncompatibleCharIntervalKey = @"incompatibleCharInterval";
 NSString *_Nonnull const CEDefaultOutlineMenuIntervalKey = @"outlineMenuInterval";
 NSString *_Nonnull const CEDefaultShowColoringIndicatorTextLengthKey = @"showColoringIndicatorTextLength";
 NSString *_Nonnull const CEDefaultColoringRangeBufferLengthKey = @"coloringRangeBufferLength";
