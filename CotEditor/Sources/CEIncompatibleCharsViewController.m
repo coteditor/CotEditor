@@ -27,8 +27,10 @@
  */
 
 #import "CEIncompatibleCharsViewController.h"
+#import "CEIncompatibleCharacter.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
+
 #import "CEDefaults.h"
 
 
@@ -67,17 +69,17 @@
 - (void)update
 // ------------------------------------------------------
 {
-    NSArray<NSDictionary<NSString *, id> *> *contents = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
+    NSArray<CEIncompatibleCharacter *> *incompatibles = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
     
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
-    for (NSDictionary<NSString *, id> *incompatible in contents) {
-        [ranges addObject:incompatible[CEIncompatibleRangeKey]];
+    for (CEIncompatibleCharacter *incompatible in incompatibles) {
+        [ranges addObject:[NSValue valueWithRange:[incompatible range]]];
     }
     [[[self document] editor] clearAllMarkup];
     [[[self document] editor] markupRanges:ranges];
     
-    [[self incompatibleCharsController] setContent:contents];
-    [self setCharAvailable:([contents count] > 0)];
+    [[self incompatibleCharsController] setContent:incompatibles];
+    [self setCharAvailable:([incompatibles count] > 0)];
 }
 
 
@@ -88,7 +90,7 @@
 {
     if (![[self view] superview]) { return; }
     
-    NSTimeInterval interval = [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultIncompatibleCharIntervalKey];
+    NSTimeInterval interval = 0.42;
     
     if ([[self updateTimer] isValid]) {
         [[self updateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
@@ -110,11 +112,11 @@
 - (void)tableViewSelectionDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSDictionary<NSString *, id> *selectedIncompatible = [[[self incompatibleCharsController] selectedObjects] firstObject];
+    CEIncompatibleCharacter *selectedIncompatible = [[[self incompatibleCharsController] selectedObjects] firstObject];
     
     if (!selectedIncompatible) { return; }
     
-    NSRange range = [selectedIncompatible[CEIncompatibleRangeKey] rangeValue];
+    NSRange range = [selectedIncompatible range];
     CEEditorWrapper *editor = [[self document] editor];
     
     [editor setSelectedRange:range];

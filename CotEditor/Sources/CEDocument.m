@@ -44,6 +44,8 @@
 #import "CEEditorWrapper.h"
 #import "CEEncodingManager.h"
 
+#import "CEIncompatibleCharacter.h"
+
 #import "NSString+CEEncoding.h"
 #import "NSString+CECounting.h"
 #import "NSAlert+BlockMethods.h"
@@ -67,12 +69,6 @@ static NSString *_Nonnull const CEXattrVerticalTextName = @"com.coteditor.Vertic
 
 // notifications
 NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocumentSyntaxStyleDidChangeNotification";
-
-// incompatible chars dictionary keys
-NSString *_Nonnull const CEIncompatibleLineNumberKey = @"lineNumber";
-NSString *_Nonnull const CEIncompatibleRangeKey = @"incompatibleRange";
-NSString *_Nonnull const CEIncompatibleCharKey = @"incompatibleChar";
-NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 
 @interface CEDocument ()
@@ -910,43 +906,38 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 
 // ------------------------------------------------------
 /// 指定されたエンコードにコンバートできない文字列をリストアップし配列を返す
-- (nullable NSArray<NSDictionary<NSString *, id> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
+- (nullable NSArray<CEIncompatibleCharacter *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
 // ------------------------------------------------------
 {
-    NSMutableArray<NSDictionary<NSString *, id> *> *incompatibleChars = [NSMutableArray array];
-    NSString *currentString = [self string];
-    NSUInteger currentLength = [currentString length];
-    NSData *data = [currentString dataUsingEncoding:encoding allowLossyConversion:YES];
+    NSString *string = [self string];
+    NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:YES];
     NSString *convertedString = [[NSString alloc] initWithData:data encoding:encoding];
     
-    if (!convertedString || ([convertedString length] != currentLength)) { // 正しいリストが取得できない時
+    if (!convertedString || ([convertedString length] != [string length])) { // 正しいリストが取得できない時
         return nil;
     }
     
     // 削除／変換される文字をリストアップ
+    NSMutableArray<CEIncompatibleCharacter *> *incompatibles = [NSMutableArray array];
     BOOL isInvalidYenEncoding = [CEEncodingManager isInvalidYenEncoding:encoding];
     
-    for (NSUInteger i = 0; i < currentLength; i++) {
-        unichar currentUnichar = [currentString characterAtIndex:i];
-        unichar convertedUnichar = [convertedString characterAtIndex:i];
+    for (NSUInteger i = 0; i < [string length]; i++) {
+        unichar character = [string characterAtIndex:i];
+        unichar convertedCharacter = [convertedString characterAtIndex:i];
         
-        if (currentUnichar == convertedUnichar) { continue; }
+        if (character == convertedCharacter) { continue; }
         
-        if (isInvalidYenEncoding && currentUnichar == kYenMark) {
-            convertedUnichar = '\\';
+        if (isInvalidYenEncoding && character == kYenMark) {
+            convertedCharacter = '\\';
         }
         
-        NSString *currentChar = [NSString stringWithCharacters:&currentUnichar length:1];
-        NSString *convertedChar = [NSString stringWithCharacters:&convertedUnichar length:1];
-        NSUInteger lineNumber = [currentString lineNumberAtIndex:i];
-        
-        [incompatibleChars addObject:@{CEIncompatibleLineNumberKey: @(lineNumber),
-                                       CEIncompatibleRangeKey: [NSValue valueWithRange:NSMakeRange(i, 1)],
-                                       CEIncompatibleCharKey: currentChar,
-                                       CEIncompatibleConvertedCharKey: convertedChar}];
+        [incompatibles addObject:[[CEIncompatibleCharacter alloc] initWithCharacter:character
+                                                                  convertedCharacer:convertedCharacter
+                                                                              range:NSMakeRange(i, 1)
+                                                                         lineNumber:[string lineNumberAtIndex:i]]];
     }
     
-    return [incompatibleChars copy];
+    return [incompatibles copy];
 }
 
 

@@ -35,16 +35,11 @@
 @class CETextSelection;
 @class CESyntaxStyle;
 @class CEDocumentAnalyzer;
+@class CEIncompatibleCharacter;
 
 
 // Notifications
 extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
-
-// Incompatible chars listController key
-extern NSString *_Nonnull const CEIncompatibleLineNumberKey;
-extern NSString *_Nonnull const CEIncompatibleRangeKey;
-extern NSString *_Nonnull const CEIncompatibleCharKey;
-extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 
 
 @interface CEDocument : NSDocument
@@ -71,7 +66,7 @@ extern NSString *_Nonnull const CEIncompatibleConvertedCharKey;
 
 // string encoding
 - (nullable NSString *)IANACharSetName;
-- (nullable NSArray<NSDictionary<NSString *, id> *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
+- (nullable NSArray<CEIncompatibleCharacter *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName;
 

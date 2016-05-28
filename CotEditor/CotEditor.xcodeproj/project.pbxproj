@@ -332,6 +332,8 @@
 		2A961C5218FC699E002076B6 /* AppleScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4718FC699E002076B6 /* AppleScript.rtf */; };
 		2A961C5418FC699E002076B6 /* ScriptMenu Folder.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4B18FC699E002076B6 /* ScriptMenu Folder.rtf */; };
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
+		2A9C07521CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C07511CF9A3C7006D672D /* CEIncompatibleCharacter.m */; };
+		2A9C07531CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C07511CF9A3C7006D672D /* CEIncompatibleCharacter.m */; };
 		2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
 		2AA2E00B1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
 		2AA2E00C1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
@@ -754,6 +756,8 @@
 		2A961C5C18FC69D9002076B6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = ja.lproj/ShellScript.rtf; sourceTree = "<group>"; };
 		2A9966971A5C245F0086689E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		2A9966991A5C29F40086689E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPanel.strings"; sourceTree = "<group>"; };
+		2A9C07501CF9A3C7006D672D /* CEIncompatibleCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIncompatibleCharacter.h; sourceTree = "<group>"; };
+		2A9C07511CF9A3C7006D672D /* CEIncompatibleCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIncompatibleCharacter.m; sourceTree = "<group>"; };
 		2AA0AC5A1A28765E0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
 		2AA0AC5B1A28766A0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MigrationWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC5C1A2876740063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
@@ -1526,6 +1530,8 @@
 				8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */,
 				2A436DDD1A4288AC00275FD4 /* CEDocumentAnalyzer.h */,
 				2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */,
+				2A9C07501CF9A3C7006D672D /* CEIncompatibleCharacter.h */,
+				2A9C07511CF9A3C7006D672D /* CEIncompatibleCharacter.m */,
 				258D708707D456DF0062A3E5 /* CETextSelection.h */,
 				258D708807D456DF0062A3E5 /* CETextSelection.m */,
 				2AD84CA81966314100DE49BD /* CEODBEventSender.h */,
@@ -2426,6 +2432,7 @@
 				2A6F0DED1B5500E100C2D03C /* CEEditorViewController.m in Sources */,
 				2A6F0DEE1B5500E100C2D03C /* CEFileDropPaneController.m in Sources */,
 				2AB0C5991C49FB260019411A /* CEEncodings.m in Sources */,
+				2A9C07531CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2A6F0DEF1B5500E100C2D03C /* CEWrappingTextField.m in Sources */,
 				2A6F0DF01B5500E100C2D03C /* CEPopUpToolbarItem.m in Sources */,
 				2A6F0DF11B5500E100C2D03C /* CESplitView.m in Sources */,
@@ -2496,6 +2503,7 @@
 				2582260107794C2A00A0F8D3 /* CESyntaxStyle.m in Sources */,
 				2A3A1E7A1C45233D00641CE0 /* CEHUDController.m in Sources */,
 				2AE0C09B1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
+				2A9C07521CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2A436DDB1A425AE500275FD4 /* CEIncompatibleCharsViewController.m in Sources */,
 				2A7FD34D1C54A6F300CE8566 /* CEFindPreferencesViewController.m in Sources */,
 				258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */,
