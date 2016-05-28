@@ -333,6 +333,8 @@
 		2A961C5518FC699E002076B6 /* ShellScript.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A961C4D18FC699E002076B6 /* ShellScript.rtf */; };
 		2A9C07521CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C07511CF9A3C7006D672D /* CEIncompatibleCharacter.m */; };
 		2A9C07531CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C07511CF9A3C7006D672D /* CEIncompatibleCharacter.m */; };
+		2A9C07541CF9F958006D672D /* CEIncompatibleCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C07511CF9A3C7006D672D /* CEIncompatibleCharacter.m */; };
+		2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */; };
 		2AA0AC7A1A29D8CB0063ED1B /* CEPopUpToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA0AC791A29D8CB0063ED1B /* CEPopUpToolbarItem.m */; };
 		2AA2E00B1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
 		2AA2E00C1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00A1BFDD3A60087BDD6 /* CECharacterInfo.m */; };
@@ -756,6 +758,7 @@
 		2A9966991A5C29F40086689E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPanel.strings"; sourceTree = "<group>"; };
 		2A9C07501CF9A3C7006D672D /* CEIncompatibleCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIncompatibleCharacter.h; sourceTree = "<group>"; };
 		2A9C07511CF9A3C7006D672D /* CEIncompatibleCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIncompatibleCharacter.m; sourceTree = "<group>"; };
+		2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterTests.swift; sourceTree = "<group>"; };
 		2AA0AC5A1A28765E0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
 		2AA0AC5B1A28766A0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MigrationWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC5C1A2876740063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
@@ -1711,6 +1714,7 @@
 			children = (
 				2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */,
 				2ACC65311C98033D000574DC /* ThemeTests.swift */,
+				2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2452,6 +2456,7 @@
 			files = (
 				2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
+				2A9C07541CF9F958006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
 				2AF587411CF7713B009D44A2 /* NSString+CEAdditions.m in Sources */,
 				2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */,
@@ -2465,6 +2470,7 @@
 				2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */,
 				2ACC653C1C9844ED000574DC /* CETheme.m in Sources */,
 				2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */,
+				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
 				2AA2E00E1BFDDFEA0087BDD6 /* CECharacterInfo.m in Sources */,
 				2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */,
 				2A18A5C21C4AA41400BAD817 /* CEEncodings.m in Sources */,

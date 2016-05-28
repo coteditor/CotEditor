@@ -46,7 +46,6 @@
 #import "CEIncompatibleCharacter.h"
 
 #import "NSString+CEEncoding.h"
-#import "NSString+CECounting.h"
 #import "NSAlert+BlockMethods.h"
 
 #import "CEErrors.h"
@@ -905,38 +904,10 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 // ------------------------------------------------------
 /// 指定されたエンコードにコンバートできない文字列をリストアップし配列を返す
-- (nullable NSArray<CEIncompatibleCharacter *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding
+- (nullable NSArray<CEIncompatibleCharacter *> *)scanIncompatibleCharacters
 // ------------------------------------------------------
 {
-    NSString *string = [self string];
-    NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:YES];
-    NSString *convertedString = [[NSString alloc] initWithData:data encoding:encoding];
-    
-    if (!convertedString || ([convertedString length] != [string length])) { // 正しいリストが取得できない時
-        return nil;
-    }
-    
-    // 削除／変換される文字をリストアップ
-    NSMutableArray<CEIncompatibleCharacter *> *incompatibles = [NSMutableArray array];
-    BOOL canConvertYenSign = CEEncodingCanConvertYenSign(encoding);
-    
-    for (NSUInteger i = 0; i < [string length]; i++) {
-        unichar character = [string characterAtIndex:i];
-        unichar convertedCharacter = [convertedString characterAtIndex:i];
-        
-        if (character == convertedCharacter) { continue; }
-        
-        if (!canConvertYenSign && character == kYenCharacter) {
-            convertedCharacter = kYenSubstitutionCharacter;
-        }
-        
-        [incompatibles addObject:[[CEIncompatibleCharacter alloc] initWithCharacter:character
-                                                                  convertedCharacer:convertedCharacter
-                                                                              range:NSMakeRange(i, 1)
-                                                                         lineNumber:[string lineNumberAtIndex:i]]];
-    }
-    
-    return [incompatibles copy];
+    return [[self string] scanIncompatibleCharactersForEncoding:[self encoding]];
 }
 
 

@@ -10,6 +10,11 @@
 #import "CETheme.h"
 #import "CEThemeDictionaryKeys.h"
 
+// Incompatible Character Tests
+#import "CEIncompatibleCharacter.h"
+#import "NSString+CEEncoding.h"
+#import "NSString+CECounting.h"
+
 
 // String Extensions Tests
 #import "NSString+CEAdditions.h"

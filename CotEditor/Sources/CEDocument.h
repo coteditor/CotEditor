@@ -66,7 +66,7 @@ extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 
 // string encoding
 - (nullable NSString *)IANACharSetName;
-- (nullable NSArray<CEIncompatibleCharacter *> *)findCharsIncompatibleWithEncoding:(NSStringEncoding)encoding;
+- (nullable NSArray<CEIncompatibleCharacter *> *)scanIncompatibleCharacters;
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName;
 

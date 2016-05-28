@@ -69,7 +69,8 @@
 - (void)update
 // ------------------------------------------------------
 {
-    NSArray<CEIncompatibleCharacter *> *incompatibles = [[self document] findCharsIncompatibleWithEncoding:[[self document] encoding]];
+    NSArray<CEIncompatibleCharacter *> *incompatibles = [[self document] scanIncompatibleCharacters];
+    ;
     
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
     for (CEIncompatibleCharacter *incompatible in incompatibles) {

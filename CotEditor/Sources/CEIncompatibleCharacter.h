@@ -32,14 +32,27 @@
 
 @property (readonly, nonatomic, nonnull) NSString *character;
 @property (readonly, nonatomic, nonnull) NSString *convertedCharacter;
-@property (readonly, nonatomic) NSRange range;
+@property (readonly, nonatomic) NSUInteger location;
 @property (readonly, nonatomic) NSUInteger lineNumber;
+@property (readonly, nonatomic) NSRange range;
 
 
 - (nonnull instancetype)initWithCharacter:(unichar)character
                         convertedCharacer:(unichar)convertedCharacter
-                                    range:(NSRange)range
+                                 location:(NSUInteger)location
                                lineNumber:(NSUInteger)lineNumber NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
+
+@end
+
+
+
+
+#pragma mark -
+
+@interface NSString (IncompatibleCharacter)
+
+/// list-up characters cannot be converted to the passed-in encoding
+- (nullable NSArray<CEIncompatibleCharacter *> *)scanIncompatibleCharactersForEncoding:(NSStringEncoding)encoding;
 
 @end
