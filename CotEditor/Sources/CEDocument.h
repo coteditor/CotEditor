@@ -46,21 +46,23 @@ extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 
 // readonly properties
 @property (readonly, nonatomic, nonnull) NSTextStorage *textStorage;
-@property (readonly, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
-@property (readonly, nonatomic, nonnull) CEIncompatibleCharacterScanner *incompatibleCharacterScanner;
-@property (readonly, nonatomic, nullable) CEWindowController *windowController;
-@property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
-@property (readonly, nonatomic, nonnull) CETextSelection *selection;
 @property (readonly, nonatomic) NSStringEncoding encoding;
 @property (readonly, nonatomic) BOOL hasUTF8BOM;
 @property (readonly, nonatomic) CENewLineType lineEnding;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
-@property (readonly, nonatomic, nullable) CESyntaxStyle *syntaxStyle;
+@property (readonly, nonatomic, nonnull) CESyntaxStyle *syntaxStyle;
+
+@property (readonly, nonatomic, nonnull) CETextSelection *selection;
+@property (readonly, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
+@property (readonly, nonatomic, nonnull) CEIncompatibleCharacterScanner *incompatibleCharacterScanner;
+
+@property (readonly, nonatomic, nullable) CEWindowController *windowController;
+@property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 
 
 #pragma mark - Public Methods
 
-/// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal string has always LF for its line ending.)
+/// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal text storage has always LF for its line ending.)
 - (nonnull NSString *)string;
 
 - (void)applyContentToWindow;

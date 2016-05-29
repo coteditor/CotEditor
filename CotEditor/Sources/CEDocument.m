@@ -86,15 +86,16 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 // readonly
 @property (readwrite, nonatomic, nonnull) NSTextStorage *textStorage;
-@property (readwrite, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
-@property (readwrite, nonatomic, nonnull) CEIncompatibleCharacterScanner *incompatibleCharacterScanner;
-@property (readwrite, nonatomic, nullable) CEWindowController *windowController;
-@property (readwrite, nonatomic, nonnull) CETextSelection *selection;
 @property (readwrite, nonatomic) NSStringEncoding encoding;
 @property (readwrite, nonatomic) BOOL hasUTF8BOM;
 @property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
 @property (readwrite, nonatomic, nonnull) CESyntaxStyle *syntaxStyle;
+
+@property (readwrite, nonatomic, nonnull) CETextSelection *selection;
+@property (readwrite, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
+@property (readwrite, nonatomic, nonnull) CEIncompatibleCharacterScanner *incompatibleCharacterScanner;
+@property (readwrite, nonatomic, nullable) CEWindowController *windowController;
 
 @end
 
@@ -142,16 +143,18 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     if (self) {
         [self setHasUndoManager:YES];
         
+        _shouldSaveXattr = YES;
+        _autosaveIdentifier = [[[NSUUID UUID] UUIDString] substringToIndex:CEUniqueFileIDLength];
+        
         _textStorage = [[NSTextStorage alloc] init];
         _encoding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultEncodingInNewKey];
-        _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
         if (_encoding == NSUTF8StringEncoding) {
             _hasUTF8BOM = [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSaveUTF8BOMKey];
         }
+        _lineEnding = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultLineEndCharCodeKey];
         _syntaxStyle = [[CESyntaxManager sharedManager] styleWithName:[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey]];
+        
         _selection = [[CETextSelection alloc] initWithDocument:self];
-        _shouldSaveXattr = YES;
-        _autosaveIdentifier = [[[NSUUID UUID] UUIDString] substringToIndex:CEUniqueFileIDLength];
         _analyzer = [[CEDocumentAnalyzer alloc] initWithDocument:self];
         _incompatibleCharacterScanner = [[CEIncompatibleCharacterScanner alloc] initWithDocument:self];
         
