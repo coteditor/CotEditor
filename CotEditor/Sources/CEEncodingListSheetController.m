@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
 
 @interface CEEncodingListSheetController ()
 
-@property (nonatomic, nullable, weak) IBOutlet CEPrefEncodingDataSource *dataSource;
+@property (nonatomic, nullable) IBOutlet CEPrefEncodingDataSource *dataSource;
 
 @end
 
@@ -64,7 +64,7 @@
     [[self dataSource] writeToUserDefaults];  // save current setting
     
     [NSApp stopModal];
-    [NSApp endSheet:[self window] returnCode:NSOKButton];
+    [NSApp endSheet:[self window] returnCode:NSModalResponseOK];
     [self close];
 }
 
@@ -75,7 +75,7 @@
 // ------------------------------------------------------
 {
     [NSApp stopModal];
-    [NSApp endSheet:[self window] returnCode:NSCancelButton];
+    [NSApp endSheet:[self window] returnCode:NSModalResponseCancel];
     [self close];
 }
 

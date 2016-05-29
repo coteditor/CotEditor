@@ -36,8 +36,6 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
-#import "NSAlert+BlockMethods.h"
-
 
 @interface CEAppearancePaneController () <NSTableViewDelegate, NSTableViewDataSource, CEThemeViewControllerDelegate>
 
@@ -363,7 +361,7 @@
         [fieldEditor setString:oldName];
         // show alert
         NSAlert *alert = [NSAlert alertWithError:error];
-        [alert beginSheetModalForWindow:[[self view] window] modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+        [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
     }
     
     return success;
@@ -610,7 +608,7 @@
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
     NSWindow *window = [[self view] window];
-    [alert compatibleBeginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
+    [alert beginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
      {
          if (returnCode != NSAlertSecondButtonReturn) { return; } // != Delete
          
@@ -625,7 +623,7 @@
              [window makeKeyAndOrderFront:nil];
              NSAlert *errorAlert = [NSAlert alertWithError:error];
              NSBeep();
-             [errorAlert beginSheetModalForWindow:window modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+             [errorAlert beginSheetModalForWindow:window completionHandler:nil];
          }
          
      }];
@@ -668,7 +666,7 @@
         // ask for overwriting if a theme with the same name already exists
         if ([error code] == CEThemeFileDuplicationError) {
             NSWindow *window = [[self view] window];
-            [alert compatibleBeginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
+            [alert beginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
              {
                  if (returnCode != NSAlertSecondButtonReturn) { return; }  // Cancel
                  
@@ -677,12 +675,12 @@
                  
                  if (error) {
                      NSAlert *alert = [NSAlert alertWithError:error];
-                     [alert beginSheetModalForWindow:window modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+                     [alert beginSheetModalForWindow:window completionHandler:nil];
                  }
              }];
             
         } else {
-            [alert beginSheetModalForWindow:window modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
+            [alert beginSheetModalForWindow:window completionHandler:nil];
         }
     }
 }

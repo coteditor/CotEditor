@@ -91,14 +91,7 @@
 - (void)beginSheetForWindow:(nonnull NSWindow *)window completionHandler:(nullable void (^)(NSModalResponse))handler
 // ------------------------------------------------------
 {
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [window beginSheet:[self window] completionHandler:handler];
-        
-    } else {
-        [NSApp beginSheet:[self window] modalForWindow:window
-            modalDelegate:self didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
-              contextInfo:(__bridge_retained void * _Null_unspecified)handler];
-    }
+    [window beginSheet:[self window] completionHandler:handler];
     
     [[self indicator] startAnimation:self];
     
@@ -147,12 +140,7 @@
 {
     [self setMe:nil];
     
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
-        
-    } else {
-        [NSApp endSheet:[self window] returnCode:NSOKButton];
-    }
+    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
 }
 
 
@@ -163,29 +151,7 @@
 {
     [self setMe:nil];
     
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
-        
-    } else {
-        [NSApp endSheet:[self window] returnCode:NSCancelButton];
-    }
-}
-
-
-
-#pragma mark Private Method
-
-// ------------------------------------------------------
-/// did sheet closed
-- (void)sheetDidEnd:(nonnull NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(nullable void *)contextInfo
-// ------------------------------------------------------
-{
-    if (contextInfo) {
-        void(^completionHandler)(NSInteger) = (__bridge_transfer void(^)(NSInteger)) contextInfo;
-        completionHandler(returnCode);
-    }
-    
-    [[self window] orderOut:self];
+    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
 }
 
 @end

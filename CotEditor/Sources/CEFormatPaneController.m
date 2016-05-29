@@ -38,7 +38,6 @@
 #import "Constants.h"
 
 #import "NSString+CEEncoding.h"
-#import "NSAlert+BlockMethods.h"
 
 
 // constants
@@ -280,24 +279,12 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
     
     CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:styleName
                                                                                                  mode:[sender tag]];
-    if (!sheetController) {
-        return;
-    }
+    if (!sheetController) { return; }
     
-    // シートウィンドウを表示
-    // (閉じる命令は CESyntaxEditSheetController の endSheetWithReturnCode: で)
-    NSWindow *sheet = [sheetController window];
-    
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [[[self view] window] beginSheet:sheet completionHandler:^(NSModalResponse returnCode) {
-            [sheetController close];
-        }];
-        
-    } else {
-        // Mountain Lion 以下ではモーダルループに入る
-        [NSApp beginSheet:sheet modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-        [NSApp runModalForWindow:sheet];
-    }
+    // show editor as sheet
+    [[[self view] window] beginSheet:[sheetController window] completionHandler:^(NSModalResponse returnCode) {
+        [sheetController close];
+    }];
 }
 
 
@@ -362,7 +349,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
             NSBeep();
             
             __weak typeof(self) weakSelf = self;
-            [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+            [alert beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
              {
                  typeof(self) self = weakSelf;  // strong self
                  
@@ -424,12 +411,11 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 // ------------------------------------------------------
 {
     CESyntaxMappingConflictsSheetController *sheetController = [[CESyntaxMappingConflictsSheetController alloc] init];
-    NSWindow *sheet = [sheetController window];
     
     // シートウィンドウを表示してモーダルループに入る
     // (閉じる命令は CESyntaxMappingConflictsSheetController の closeSheet: で)
-    [NSApp beginSheet:sheet modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    [NSApp runModalForWindow:sheet];
+    [NSApp beginSheet:[sheetController window] modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
+    [NSApp runModalForWindow:[sheetController window]];
 }
 
 
@@ -450,7 +436,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
     [alert addButtonWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Change to “%@”", nil), newTitle]];
     
     NSBeep();
-    [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+    [alert beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
      {
          if (returnCode == NSAlertFirstButtonReturn) { // = revert to Auto-Detect
              [[NSUserDefaults standardUserDefaults] setObject:@(CEAutoDetectEncoding)
@@ -583,7 +569,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
     NSWindow *window = [[self view] window];
-    [alert compatibleBeginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
+    [alert beginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
      {
          if (returnCode != NSAlertSecondButtonReturn) { return; }  // != Delete
          
@@ -629,7 +615,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
         [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be imported.", nil), [fileURL lastPathComponent]]];
         
         NSBeep();
-        [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:nil];
+        [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
     }
 }
 

@@ -46,7 +46,6 @@
 #import "CETextView.h"
 
 #import "NSString+CEEncoding.h"
-#import "NSAlert+BlockMethods.h"
 
 #import "CEErrors.h"
 #import "CEDefaults.h"
@@ -1206,7 +1205,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     
     __weak typeof(self) weakSelf = self;
-    [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger returnCode)
+    [alert beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger returnCode)
      {
          typeof(self) self = weakSelf;
          
@@ -1224,7 +1223,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
                      [alert addButtonWithTitle:NSLocalizedString(@"Discard Changes", nil)];
                      
                      [[[self windowForSheet] attachedSheet] orderOut:self];  // close previous sheet
-                     [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger returnCode) {
+                     [alert beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger returnCode) {
                          switch (returnCode) {
                              case NSAlertFirstButtonReturn:  // = Cancel
                                  // reset toolbar selection for in case if the operation was invoked from the toolbar popup
@@ -1584,7 +1583,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
         did_close_alert(result);
         
     } else {
-        [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:did_close_alert];
+        [alert beginSheetModalForWindow:[self windowForSheet] completionHandler:did_close_alert];
     }
 }
 

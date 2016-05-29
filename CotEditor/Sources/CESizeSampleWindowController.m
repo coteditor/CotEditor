@@ -72,7 +72,7 @@
 {
     [[self userDefaultsController] revert:sender];
     
-    [NSApp stopModalWithCode:NSCancelButton];
+    [NSApp stopModalWithCode:NSModalResponseCancel];
     [[self window] orderOut:self];
 }
 
@@ -84,7 +84,7 @@
 {
     [[self userDefaultsController] save:sender];
     
-    [NSApp stopModalWithCode:NSOKButton];
+    [NSApp stopModalWithCode:NSModalResponseOK];
     [[self window] orderOut:self];
 }
 

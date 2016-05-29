@@ -30,8 +30,6 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
-#import "NSAlert+BlockMethods.h"
-
 
 @interface CEFileDropPaneController () <NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>
 
@@ -307,7 +305,7 @@
     [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
     
     __weak typeof(self) weakSelf = self;
-    [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+    [alert beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
      {
          typeof(self) self = weakSelf;  // strong self
          

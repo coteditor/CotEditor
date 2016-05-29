@@ -374,7 +374,7 @@ static const NSUInteger kMaxHistorySize = 20;
     CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
     [indicator setIndetermine:YES];
     [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSCancelButton) {
+        if (returnCode == NSModalResponseCancel) {
             isCancelled = YES;
         }
     }];
@@ -507,7 +507,7 @@ static const NSUInteger kMaxHistorySize = 20;
     CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
     [indicator setIndetermine:YES];
     [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSCancelButton) {
+        if (returnCode == NSModalResponseCancel) {
             isCancelled = YES;
         }
     }];
@@ -648,7 +648,7 @@ static const NSUInteger kMaxHistorySize = 20;
     CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Replace All", nil)];
     [indicator setIndetermine:YES];
     [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSCancelButton) {
+        if (returnCode == NSModalResponseCancel) {
             isCancelled = YES;
         }
     }];

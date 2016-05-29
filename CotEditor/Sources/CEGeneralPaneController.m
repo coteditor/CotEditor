@@ -29,8 +29,6 @@
 #import "CEDocument.h"
 #import "CEDefaults.h"
 
-#import "NSAlert+BlockMethods.h"
-
 #ifndef APPSTORE
 #import "CEUpdaterManager.h"
 #endif
@@ -114,7 +112,7 @@
     [alert addButtonWithTitle:NSLocalizedString(@"Later", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
     
-    [alert compatibleBeginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
+    [alert beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
      {
          switch (returnCode) {
              case NSAlertFirstButtonReturn:  // Restart Now

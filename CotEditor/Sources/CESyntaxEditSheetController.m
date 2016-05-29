@@ -309,7 +309,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
                                           name:styleName
                                        oldName:[self originalStyleName]];
     
-    [self endSheetWithReturnCode:NSOKButton];
+    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
 }
 
 
@@ -318,7 +318,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 - (IBAction)cancelEdit:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self endSheetWithReturnCode:NSCancelButton];
+    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
 }
 
 
@@ -360,21 +360,6 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     
     // swap view
     [[self box] setContentView:[[self viewControllers][index] view]];
-}
-
-
-// ------------------------------------------------------
-/// シートを終わる
-- (void)endSheetWithReturnCode:(NSInteger)returnCode
-// ------------------------------------------------------
-{
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) { // on Mavericks or later
-        [[[self window] sheetParent] endSheet:[self window] returnCode:returnCode];
-    } else {
-        [NSApp stopModal];
-        [NSApp endSheet:[self window] returnCode:returnCode];
-    }
-    [self close];
 }
 
 

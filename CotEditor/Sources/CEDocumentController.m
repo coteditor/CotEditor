@@ -221,7 +221,7 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
         typeof(self) self = weakSelf;  // strong self
         
         // reset encoding menu if cancelled
-        if (result == NSCancelButton) {
+        if (result == NSModalResponseCancel) {
             [self resetAccessorySelectedEncoding];
         }
         

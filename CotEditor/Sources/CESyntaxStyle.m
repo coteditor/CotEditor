@@ -561,7 +561,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 if ([operation isFinished]) { return; }
                 
                 [indicator beginSheetForWindow:documentWindow completionHandler:^(NSModalResponse returnCode) {
-                    if (returnCode == NSCancelButton) {
+                    if (returnCode == NSModalResponseCancel) {
                         [operation cancel];
                     }
                 }];
