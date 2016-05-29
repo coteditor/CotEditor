@@ -1072,9 +1072,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                          updateDocument:updateDocument
                                                                askLossy:NO lossy:allowsLossy
                                                            asActionName:actionName];  // redo in undo
-        if (shouldShowList) {
-            [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
-        }
+        [[undoManager prepareWithInvocationTarget:[self windowController]] updateIncompatibleCharsIfNeeded];
         [[undoManager prepareWithInvocationTarget:self] updateEncodingInToolbarAndInfo];
         [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]];  // エンコード値設定
         [[undoManager prepareWithInvocationTarget:self] setHasUTF8BOM:[self hasUTF8BOM]];  // エンコード値設定
@@ -1087,11 +1085,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [self setEncoding:encoding];
     [self setHasUTF8BOM:withUTF8BOM];
     [self updateEncodingInToolbarAndInfo];  // ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
+    [[self windowController] updateIncompatibleCharsIfNeeded];
     
     if (shouldShowList) {
         [[self windowController] showIncompatibleCharList];
-    } else {
-        [[self windowController] updateIncompatibleCharsIfNeeded];
     }
     
     return YES;
