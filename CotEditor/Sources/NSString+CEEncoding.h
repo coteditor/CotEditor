@@ -49,6 +49,9 @@ NSData * _Nullable encodeXattrEncoding(NSStringEncoding encoding);
 + (nonnull NSString *)localizedNameOfStringEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withBOM;
 + (nonnull NSString *)localizedNameOfUTF8EncodingWithBOM;
 
+/// IANA CharSet Name for the given encoding
++ (nullable NSString *)IANACharSetNameOfStringEncoding:(NSStringEncoding)encoding;
+
 /// obtain string from NSData with intelligent encoding detection
 - (nullable instancetype)initWithData:(nonnull NSData *)data suggestedCFEncodings:(nonnull NSArray<NSNumber *> *)suggestedCFEncodings usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 

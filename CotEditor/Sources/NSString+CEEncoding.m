@@ -144,6 +144,17 @@ NSData * _Nullable encodeXattrEncoding(NSStringEncoding encoding)
 
 
 //------------------------------------------------------
+/// IANA charset name for the given encoding
++ (nullable NSString *)IANACharSetNameOfStringEncoding:(NSStringEncoding)encoding
+//------------------------------------------------------
+{
+    CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding(encoding);
+    
+    return (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding) ?: nil;
+}
+
+
+//------------------------------------------------------
 /// obtain string from NSData with intelligent encoding detection
 - (nullable instancetype)initWithData:(nonnull NSData *)data suggestedCFEncodings:(NSArray<NSNumber *> *)suggestedCFEncodings usedEncoding:(nonnull NSStringEncoding *)usedEncoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------

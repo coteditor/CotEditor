@@ -189,6 +189,12 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
+    func textIANACharsetName() {
+        XCTAssertEqual(NSString.IANACharSetNameOfStringEncoding(NSUTF8StringEncoding), "utf-8")
+        XCTAssertEqual(NSString.IANACharSetNameOfStringEncoding(NSISOLatin1StringEncoding), "iso-8859-1")
+    }
+    
+    
     // MARK: Private Methods
     
     func encodedStringForFileName(fileName: String, usedEncoding: UnsafeMutablePointer<UInt>) -> NSString? {

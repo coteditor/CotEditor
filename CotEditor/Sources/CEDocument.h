@@ -68,7 +68,6 @@ extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 - (void)applyContentToWindow;
 
 // string encoding
-- (nullable NSString *)IANACharSetName;
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)doSetEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName;
 

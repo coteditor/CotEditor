@@ -896,17 +896,6 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 
 // ------------------------------------------------------
-/// return IANA charset string of the current encoding
-- (nullable NSString *)IANACharSetName
-// ------------------------------------------------------
-{
-    CFStringEncoding cfEncoding = CFStringConvertNSStringEncodingToEncoding([self encoding]);
-    
-    return (NSString *)CFStringConvertEncodingToIANACharSetName(cfEncoding);
-}
-
-
-// ------------------------------------------------------
 /// 指定されたエンコーディングでファイルを再解釈する
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
@@ -1257,7 +1246,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (IBAction)insertIANACharSetName:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *string = [self IANACharSetName];
+    NSString *string = [NSString IANACharSetNameOfStringEncoding:[self encoding]];
     
     if (!string) { return; }
     
@@ -1270,7 +1259,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (IBAction)insertIANACharSetNameWithCharset:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *string = [self IANACharSetName];
+    NSString *string = [NSString IANACharSetNameOfStringEncoding:[self encoding]];
     
     if (!string) { return; }
     
@@ -1285,7 +1274,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (IBAction)insertIANACharSetNameWithEncoding:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *string = [self IANACharSetName];
+    NSString *string = [NSString IANACharSetNameOfStringEncoding:[self encoding]];
     
     if (!string) { return; }
     
