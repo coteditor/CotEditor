@@ -11,6 +11,9 @@ develop
 - Remove “Not writable” alert which displayed on file opening.
 - New acknowledgements window.
 - Add help buttons to syntax style editor.
+- Remove less important text actions:
+    - Insert Encoding Name with “charset=”
+    - Insert Encoding Name with “encoding=”
 - Display dialogs while changing file enocoding as a document-modal sheet.
 - Better syntax highlighting while editing.
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.

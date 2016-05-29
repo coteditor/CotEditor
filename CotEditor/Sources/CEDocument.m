@@ -1274,36 +1274,6 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 }
 
 
-// ------------------------------------------------------
-/// IANA文字コード名を挿入する
-- (IBAction)insertIANACharSetNameWithCharset:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *string = [NSString IANACharSetNameOfStringEncoding:[self encoding]];
-    
-    if (!string) { return; }
-    
-    NSString *insertionString = [NSString stringWithFormat:@"charset=\"%@\"", string];
-    
-    [[self editor] insertTextViewString:insertionString];
-}
-
-
-// ------------------------------------------------------
-/// IANA文字コード名を挿入する
-- (IBAction)insertIANACharSetNameWithEncoding:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *string = [NSString IANACharSetNameOfStringEncoding:[self encoding]];
-    
-    if (!string) { return; }
-    
-    NSString *insertionString = [NSString stringWithFormat:@"encoding=\"%@\"", string];
-    
-    [[self editor] insertTextViewString:insertionString];
-}
-
-
 
 #pragma mark Private Methods
 

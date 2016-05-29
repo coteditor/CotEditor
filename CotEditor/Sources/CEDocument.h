@@ -86,7 +86,5 @@ extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 - (IBAction)changeEncoding:(nullable id)sender;
 - (IBAction)changeSyntaxStyle:(nullable id)sender;
 - (IBAction)insertIANACharSetName:(nullable id)sender;
-- (IBAction)insertIANACharSetNameWithCharset:(nullable id)sender;
-- (IBAction)insertIANACharSetNameWithEncoding:(nullable id)sender;
 
 @end
