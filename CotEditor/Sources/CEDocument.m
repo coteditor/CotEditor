@@ -65,6 +65,9 @@ static NSString *_Nonnull const CEFileExtendedAttributes = @"NSFileExtendedAttri
 static NSString *_Nonnull const CEXattrEncodingName = @"com.apple.TextEncoding";
 static NSString *_Nonnull const CEXattrVerticalTextName = @"com.coteditor.VerticalText";
 
+// error key
+static NSString *_Nonnull const CEStringEncodingUTF8BOMErrorKey = @"CEStringEncodingUTF8BOMErrorKey";
+
 // notifications
 NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocumentSyntaxStyleDidChangeNotification";
 
@@ -713,11 +716,29 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
                         break;
                 }
                 break;
+                
+            case CELossyEncodingConversionError:
+                switch (recoveryOptionIndex) {
+                    case 0:  // == Cancel
+                        [self setEncoding:[self encoding]];  // reset to force reverting toolbar selection
+                        break;
+                    case 1:  // == Change Encoding
+                        [self changeEncoding:[[error userInfo][NSStringEncodingErrorKey] unsignedIntegerValue]
+                                 withUTF8BOM:[[error userInfo][CEStringEncodingUTF8BOMErrorKey] boolValue]
+                                    askLossy:NO lossy:YES];
+                        [[[self undoManager] prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
+                        [[self windowController] showIncompatibleCharList];
+                        didRecover = YES;
+                        break;
+                }
+                break;
         }
     }
     
     // call the delegate's didRecoverSelector
-    ((void (*)(id, SEL, BOOL, void *))objc_msgSend)(delegate, didRecoverSelector, didRecover, contextInfo);
+    if (delegate) {
+        ((void (*)(id, SEL, BOOL, void *))objc_msgSend)(delegate, didRecoverSelector, didRecover, contextInfo);
+    }
 }
 
 
@@ -946,41 +967,30 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     }
     
     NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding withUTF8BOM:withUTF8BOM];
-    BOOL shouldShowList = NO;
-    BOOL allowsLossy = NO;
     
     if (askLossy) {
         if (![[self string] canBeConvertedToEncoding:encoding]) {
-            NSError *error = [NSError errorWithDomain:CEErrorDomain code:CELossyEncodingConversionError
+            NSError *error = [NSError errorWithDomain:CEErrorDomain
+                                                 code:CELossyEncodingConversionError
                                              userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"Some characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
                                                         NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to change encoding and show incompatible characters?", nil),
                                                         NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
                                                                                               NSLocalizedString(@"Change Encoding", nil)],
                                                         NSRecoveryAttempterErrorKey: self,
                                                         NSStringEncodingErrorKey: @(encoding),
+                                                        CEStringEncodingUTF8BOMErrorKey: @(withUTF8BOM),
                                                         }];
             
-            NSAlert *alert = [NSAlert alertWithError:error];
-            NSInteger returnCode = [alert runModal];
-            if (returnCode == NSAlertFirstButtonReturn) { // == Cancel
-                [self setEncoding:[self encoding]];  // reset to force reverting toolbar selection
-                return NO;
-            }
-            shouldShowList = YES;
-            allowsLossy = YES;
+            [self presentError:error modalForWindow:[self windowForSheet] delegate:nil didPresentSelector:NULL contextInfo:NULL];
+            return NO;
         }
-    } else {
-        allowsLossy = lossy;
     }
     
     // register undo
     NSUndoManager *undoManager = [self undoManager];
-    [[undoManager prepareWithInvocationTarget:self] redoChangeEncoding:encoding withUTF8BOM:withUTF8BOM
-                                                              askLossy:NO lossy:allowsLossy];  // redo in undo
-    if (shouldShowList) {
-        [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
-    }
+    [[undoManager prepareWithInvocationTarget:self] redoChangeEncoding:encoding withUTF8BOM:withUTF8BOM askLossy:NO lossy:lossy];  // redo in undo
     [[undoManager prepareWithInvocationTarget:self] applyEncodingToView];
+    [[undoManager prepareWithInvocationTarget:[self incompatibleCharacterScanner]] scan];
     [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]];
     [[undoManager prepareWithInvocationTarget:self] setHasUTF8BOM:[self hasUTF8BOM]];
     [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil), encodingName]];
@@ -988,12 +998,8 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     // update encoding
     [self setEncoding:encoding];
     [self setHasUTF8BOM:withUTF8BOM];
+    [[self incompatibleCharacterScanner] scan];
     [self applyEncodingToView];  // update UI
-    
-    [[self incompatibleCharacterScanner] invalidate];
-    if (shouldShowList) {
-        [[self windowController] showIncompatibleCharList];
-    }
     
     return YES;
 }

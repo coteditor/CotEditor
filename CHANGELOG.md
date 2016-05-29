@@ -20,6 +20,7 @@ develop
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with tiriple `*` and `_`.
+- Display lossy encoding change warning as a document-modal sheet.
 - Better syntax highlighting while editing.
 - Adjust height of the last empty line.
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
@@ -32,6 +33,7 @@ develop
 - Fix an issue where invisible characters were drawn off to the side if the text orientation is vertical.
 - Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted. 
 - Fix an issue where documents were marked as “Edited” just after document duplication if line ending is not the default one.
+- Fix an issue where incompatible character markup could broken if undo/redo lossy encoding change continuously.
 
 
 
