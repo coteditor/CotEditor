@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Drop support for __OS X Mountain Lion__ and __Mavericks__.
 - Remove “Not writable” alert which displayed on file opening.
 - New acknowledgements window.
 - Add help buttons to syntax style editor.
