@@ -231,7 +231,7 @@
 - (void)handleShiftRightScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] focusedTextView] shiftRight:command];
+    [[self textView] shiftRight:command];
 }
 
 
@@ -240,7 +240,7 @@
 - (void)handleShiftLeftScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] focusedTextView] shiftLeft:command];
+    [[self textView] shiftLeft:command];
 }
 
 
@@ -249,7 +249,7 @@
 - (void)handleMoveLineUpScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] focusedTextView] moveLineUp:command];
+    [[self textView] moveLineUp:command];
 }
 
 
@@ -258,7 +258,7 @@
 - (void)handleMoveLineDownScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] focusedTextView] moveLineDown:command];
+    [[self textView] moveLineDown:command];
 }
 
 
@@ -267,7 +267,7 @@
 - (void)handleSortLinesAscendingScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] focusedTextView] sortLinesAscending:command];
+    [[self textView] sortLinesAscending:command];
 }
 
 
@@ -276,7 +276,7 @@
 - (void)handleReverseLinesScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] focusedTextView] reverseLines:command];
+    [[self textView] reverseLines:command];
 }
 
 
@@ -285,7 +285,7 @@
 - (void)handleDeleteDuplicateLineScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] focusedTextView] deleteDuplicateLine:command];
+    [[self textView] deleteDuplicateLine:command];
 }
 
 
@@ -294,7 +294,7 @@
 - (void)handleCommentOutScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] focusedTextView] commentOut:command];
+    [[self textView] commentOut:command];
 }
 
 
@@ -303,7 +303,7 @@
 - (void)handleUncommentScriptCommand:(NSScriptCommand *)command
 // ------------------------------------------------------
 {
-    [[[[self document] editor] focusedTextView] uncomment:command];
+    [[self textView] uncomment:command];
 }
 
 
@@ -314,17 +314,16 @@
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     CECaseType caseType = [arguments[@"caseType"] unsignedIntegerValue];
-    NSTextView *textView = [[[self document] editor] focusedTextView];
 
     switch (caseType) {
         case CELowerCase:
-            [textView lowercaseWord:command];
+            [[self textView] lowercaseWord:command];
             break;
         case CEUpperCase:
-            [textView uppercaseWord:command];
+            [[self textView] uppercaseWord:command];
             break;
         case CECapitalized:
-            [textView capitalizeWord:command];
+            [[self textView] capitalizeWord:command];
             break;
     }
 }
@@ -337,14 +336,13 @@
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     CEWidthType widthType = [arguments[@"widthType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] focusedTextView];
 
     switch (widthType) {
         case CEFullwidth:
-            [textView exchangeFullwidthRoman:command];
+            [[self textView] exchangeFullwidthRoman:command];
             break;
         case CEHalfwidth:
-            [textView exchangeHalfwidthRoman:command];
+            [[self textView] exchangeHalfwidthRoman:command];
             break;
     }
 }
@@ -357,14 +355,13 @@
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     CEChangeKanaType changeKanaType = [arguments[@"kanaType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] focusedTextView];
     
     switch (changeKanaType) {
         case CEHiragana:
-            [textView exchangeHiragana:command];
+            [[self textView] exchangeHiragana:command];
             break;
         case CEKatakana:
-            [textView exchangeKatakana:command];
+            [[self textView] exchangeKatakana:command];
             break;
     }
 }
@@ -377,31 +374,42 @@
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     CEUNFType UNFType = [arguments[@"unfType"] unsignedIntegerValue];
-    CETextView *textView = [[[self document] editor] focusedTextView];
     
     switch (UNFType) {
         case CENFC:
-            [textView normalizeUnicodeWithNFC:command];
+            [[self textView] normalizeUnicodeWithNFC:command];
             break;
         case CENFD:
-            [textView normalizeUnicodeWithNFD:command];
+            [[self textView] normalizeUnicodeWithNFD:command];
             break;
         case CENFKC:
-            [textView normalizeUnicodeWithNFKC:command];
+            [[self textView] normalizeUnicodeWithNFKC:command];
             break;
         case CENFKD:
-            [textView normalizeUnicodeWithNFKD:command];
+            [[self textView] normalizeUnicodeWithNFKD:command];
             break;
         case CENFKCCF:
-            [textView normalizeUnicodeWithNFKCCF:command];
+            [[self textView] normalizeUnicodeWithNFKCCF:command];
             break;
         case CEModifiedNFC:
-            [textView normalizeUnicodeWithModifiedNFC:command];
+            [[self textView] normalizeUnicodeWithModifiedNFC:command];
             break;
         case CEModifiedNFD:
-            [textView normalizeUnicodeWithModifiedNFD:command];
+            [[self textView] normalizeUnicodeWithModifiedNFD:command];
             break;
     }
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// return current text view
+- (nullable CETextView *)textView
+// ------------------------------------------------------
+{
+    return [[[self document] editor] focusedTextView];
 }
 
 @end
