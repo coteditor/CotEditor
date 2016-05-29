@@ -1290,7 +1290,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // 変換するか再解釈するかの選択ダイアログを表示
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"File encoding", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using “%@”?", nil), encodingName]];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret this document using “%@”?", nil), encodingName]];
         [alert addButtonWithTitle:NSLocalizedString(@"Convert", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Reinterpret", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
