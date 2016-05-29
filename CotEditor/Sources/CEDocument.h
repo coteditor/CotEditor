@@ -31,7 +31,6 @@
 
 
 @class CEEditorWrapper;
-@class CEWindowController;
 @class CETextSelection;
 @class CESyntaxStyle;
 @class CEDocumentAnalyzer;
@@ -56,7 +55,6 @@ extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 @property (readonly, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
 @property (readonly, nonatomic, nonnull) CEIncompatibleCharacterScanner *incompatibleCharacterScanner;
 
-@property (readonly, nonatomic, nullable) CEWindowController *windowController;
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 
 

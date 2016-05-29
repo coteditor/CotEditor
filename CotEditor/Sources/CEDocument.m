@@ -70,6 +70,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 @interface CEDocument ()
 
+@property (nonatomic, nullable) CEWindowController *windowController;
 @property (nonatomic, nullable) CEPrintPanelAccessoryController *printPanelAccessoryController;
 @property (nonatomic, nullable) IBOutlet NSView *savePanelAccessoryView;
 
@@ -95,7 +96,6 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 @property (readwrite, nonatomic, nonnull) CETextSelection *selection;
 @property (readwrite, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
 @property (readwrite, nonatomic, nonnull) CEIncompatibleCharacterScanner *incompatibleCharacterScanner;
-@property (readwrite, nonatomic, nullable) CEWindowController *windowController;
 
 @end
 
