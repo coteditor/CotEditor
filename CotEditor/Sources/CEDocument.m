@@ -919,6 +919,21 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 
 // ------------------------------------------------------
+/// reinterpret file with the desired encoding and show error dialog if failed
+- (void)reinterpretWithEncoding:(NSStringEncoding)encoding
+// ------------------------------------------------------
+{
+    NSError *error = nil;
+    [self reinterpretWithEncoding:encoding error:&error];
+    
+    if (error) {
+        NSBeep();
+        [self presentError:error modalForWindow:[self windowForSheet] delegate:nil didPresentSelector:NULL contextInfo:NULL];
+    }
+}
+
+
+// ------------------------------------------------------
 /// 指定されたエンコーディングでファイルを再解釈する
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
@@ -981,6 +996,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
                                                         CEStringEncodingUTF8BOMErrorKey: @(withUTF8BOM),
                                                         }];
             
+            [[[self windowForSheet] attachedSheet] orderOut:self];  // close previous sheet
             [self presentError:error modalForWindow:[self windowForSheet] delegate:nil didPresentSelector:NULL contextInfo:NULL];
             return NO;
         }
@@ -1171,62 +1187,65 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
     if ((encoding == [self encoding]) && (withUTF8BOM == [self hasUTF8BOM])) { return; }
     
-    NSInteger result;
-    NSString *encodingName = [sender title];
-
-    // 文字列がないまたは未保存の時は直ちに変換プロセスへ
+    // change encoding immediately if there is nothing to worry about
     if (([[self textStorage] length] < 1) ||  // no content yet
         ![self fileURL] ||  // not yet saved
        (encoding == NSUTF8StringEncoding  && encoding == [self encoding])) // toggle only BOM existance
     {
-        result = NSAlertFirstButtonReturn;
-        
-    } else {
-        // 変換するか再解釈するかの選択ダイアログを表示
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"File encoding", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using “%@”?", nil), encodingName]];
-        [alert addButtonWithTitle:NSLocalizedString(@"Convert", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Reinterpret", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-
-        result = [alert runModal];
+        [self changeEncoding:encoding withUTF8BOM:withUTF8BOM askLossy:YES lossy:NO];
+        return;
     }
     
-    if (result == NSAlertFirstButtonReturn) {  // = Convert 変換
-        [self changeEncoding:encoding withUTF8BOM:withUTF8BOM askLossy:YES lossy:NO];
-
-    } else if (result == NSAlertSecondButtonReturn) {  // = Reinterpret 再解釈
-        if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
-        if ([self isDocumentEdited]) {
-            NSAlert *alert = [[NSAlert alloc] init];
-            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] lastPathComponent]]];
-             [alert setInformativeText:NSLocalizedString(@"Do you want to discard the changes and reset the file encoding?", nil)];
-             [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-             [alert addButtonWithTitle:NSLocalizedString(@"Discard Changes", nil)];
-
-            NSInteger secondResult = [alert runModal];
-            if (secondResult != NSAlertSecondButtonReturn) { // = Cancel
-                // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                [self setEncoding:[self encoding]];
-                return;
-            }
-        }
-        
-        NSError *error = nil;
-        [self reinterpretWithEncoding:encoding error:&error];
-        
-        if (error) {
-            NSAlert *alert = [NSAlert alertWithError:error];
-            [alert setAlertStyle:NSCriticalAlertStyle];
-            
-            NSBeep();
-            [alert runModal];
-        }
-    } else {  // = Cancel
-        // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-        [self setEncoding:[self encoding]];
-    }
+    // ask whether just change the encoding or reinterpret docuemnt file
+    NSString *encodingName = [sender title];
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:NSLocalizedString(@"File encoding", nil)];
+    [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using “%@”?", nil), encodingName]];
+    [alert addButtonWithTitle:NSLocalizedString(@"Convert", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Reinterpret", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    
+    __weak typeof(self) weakSelf = self;
+    [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger returnCode)
+     {
+         typeof(self) self = weakSelf;
+         
+         switch (returnCode) {
+             case NSAlertFirstButtonReturn:  // = Convert
+                 [self changeEncoding:encoding withUTF8BOM:withUTF8BOM askLossy:YES lossy:NO];
+                 break;
+                 
+             case NSAlertSecondButtonReturn:  // = Reinterpret
+                 if ([self isDocumentEdited]) {
+                     NSAlert *alert = [[NSAlert alloc] init];
+                     [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The file “%@” has unsaved changes.", nil), [[self fileURL] lastPathComponent]]];
+                     [alert setInformativeText:NSLocalizedString(@"Do you want to discard the changes and reset the file encoding?", nil)];
+                     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                     [alert addButtonWithTitle:NSLocalizedString(@"Discard Changes", nil)];
+                     
+                     [[[self windowForSheet] attachedSheet] orderOut:self];  // close previous sheet
+                     [alert compatibleBeginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger returnCode) {
+                         switch (returnCode) {
+                             case NSAlertFirstButtonReturn:  // = Cancel
+                                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+                                 [self setEncoding:[self encoding]];
+                                 break;
+                                 
+                             default:  // = Discard Changes
+                                 [self reinterpretWithEncoding:encoding];
+                                 break;
+                         }
+                     }];
+                 } else {
+                     [self reinterpretWithEncoding:encoding];
+                 }
+                 break;
+                 
+             default:  // = Cancel
+                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+                 [self setEncoding:[self encoding]];
+         }
+     }];
 }
 
 
@@ -1484,8 +1503,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (void)redoChangeEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM askLossy:(BOOL)askLossy lossy:(BOOL)lossy
 // ------------------------------------------------------
 {
-    [[[self undoManager] prepareWithInvocationTarget:self] changeEncoding:encoding withUTF8BOM:withUTF8BOM
-                                                                 askLossy:askLossy lossy:lossy];
+    [[[self undoManager] prepareWithInvocationTarget:self] changeEncoding:encoding withUTF8BOM:withUTF8BOM askLossy:askLossy lossy:lossy];
 }
 
 

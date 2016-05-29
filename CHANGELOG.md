@@ -20,7 +20,7 @@ develop
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with tiriple `*` and `_`.
-- Display lossy encoding change warning as a document-modal sheet.
+- Display dialogs while changing file enocoding as a document-modal sheet.
 - Better syntax highlighting while editing.
 - Adjust height of the last empty line.
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
