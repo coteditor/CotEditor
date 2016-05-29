@@ -5,25 +5,38 @@ Change Log
 develop
 --------------------------
 
-### New Features
-
-- Add newly rewrited syntax styles for “C” and “C++”.
-    - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
-- Add syntax style for “MATLAB”.
-
-
 ### Improvements
 
 - Remove “Not writable” alert which displayed on file opening.
 - New acknowledgements window.
 - Add help buttons to syntax style editor.
+- Display dialogs while changing file enocoding as a document-modal sheet.
+- Better syntax highlighting while editing.
+- Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
+
+
+### Fixes
+
+- Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted.
+
+
+
+2.5.6-alpha (132)
+--------------------------
+
+### New Features
+
+- Add newly rewrited syntax styles for “C” and “C++”.
+- From this change, previous  “C, C++, Objective-C” syntax style is deleted.
+- Add syntax style for “MATLAB”.
+
+
+### Improvements
+
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with tiriple `*` and `_`.
-- Display dialogs while changing file enocoding as a document-modal sheet.
-- Better syntax highlighting while editing.
 - Adjust height of the last empty line.
-- Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
 
 
 ### Fixes
@@ -31,7 +44,6 @@ develop
 - Fix an issue where the selected marks of line height / tab width in the Format menu disappeared.
 - Fix an issue where unselected last line number could be highlighted if the text orientation is vertical.
 - Fix an issue where invisible characters were drawn off to the side if the text orientation is vertical.
-- Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted. 
 - Fix an issue where documents were marked as “Edited” just after document duplication if line ending is not the default one.
 - Fix an issue where incompatible character markup could broken if undo/redo lossy encoding change continuously.
 
