@@ -648,7 +648,8 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     
     [document setSyntaxStyleWithName:[[self syntaxStyle] styleName]];
     [document setLineEnding:[self lineEnding]];
-    [document doSetEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM] updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
+    [document setEncoding:[self encoding]];
+    [document setHasUTF8BOM:[self hasUTF8BOM]];
     
     // apply text orientation
     BOOL isVerticalLayout = [[self editor] isVerticalLayoutOrientation];
@@ -936,61 +937,58 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 
 // ------------------------------------------------------
-/// 新規エンコーディングをセット
-- (BOOL)doSetEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName
+/// change string encoding registering process to the undo manager
+- (BOOL)changeEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM askLossy:(BOOL)askLossy lossy:(BOOL)lossy
 // ------------------------------------------------------
 {
     if (encoding == [self encoding] && withUTF8BOM == [self hasUTF8BOM]) {
         return YES;
     }
     
+    NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding withUTF8BOM:withUTF8BOM];
     BOOL shouldShowList = NO;
+    BOOL allowsLossy = NO;
     
-    if (updateDocument) {
-        NSString *curString = [self string];
-        BOOL allowsLossy = NO;
-
-        if (askLossy) {
-            if (![curString canBeConvertedToEncoding:encoding]) {
-                NSString *encodingNameStr = [NSString localizedNameOfStringEncoding:encoding];
-                NSAlert *alert = [[NSAlert alloc] init];
-                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Some characters would have to be changed or deleted in saving as “%@”.", nil), encodingNameStr]];
-                [alert setInformativeText:NSLocalizedString(@"Do you want to change encoding and show incompatible characters?", nil)];
-                [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-                [alert addButtonWithTitle:NSLocalizedString(@"Change Encoding", nil)];
-
-                NSInteger returnCode = [alert runModal];
-                if (returnCode == NSAlertFirstButtonReturn) { // == Cancel
-                    return NO;
-                }
-                shouldShowList = YES;
-                allowsLossy = YES;
+    if (askLossy) {
+        if (![[self string] canBeConvertedToEncoding:encoding]) {
+            NSError *error = [NSError errorWithDomain:CEErrorDomain code:CELossyEncodingConversionError
+                                             userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"Some characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
+                                                        NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to change encoding and show incompatible characters?", nil),
+                                                        NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
+                                                                                              NSLocalizedString(@"Change Encoding", nil)],
+                                                        NSRecoveryAttempterErrorKey: self,
+                                                        NSStringEncodingErrorKey: @(encoding),
+                                                        }];
+            
+            NSAlert *alert = [NSAlert alertWithError:error];
+            NSInteger returnCode = [alert runModal];
+            if (returnCode == NSAlertFirstButtonReturn) { // == Cancel
+                [self setEncoding:[self encoding]];  // reset to force reverting toolbar selection
+                return NO;
             }
-        } else {
-            allowsLossy = lossy;
+            shouldShowList = YES;
+            allowsLossy = YES;
         }
-        
-        // register undo
-        NSUndoManager *undoManager = [self undoManager];
-        [[undoManager prepareWithInvocationTarget:self] redoSetEncoding:encoding withUTF8BOM:withUTF8BOM
-                                                         updateDocument:updateDocument
-                                                               askLossy:NO lossy:allowsLossy
-                                                           asActionName:actionName];  // redo in undo
-        if (shouldShowList) {
-            [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
-        }
-        [[undoManager prepareWithInvocationTarget:self] applyEncodingToView];
-        [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]];  // エンコード値設定
-        [[undoManager prepareWithInvocationTarget:self] setHasUTF8BOM:[self hasUTF8BOM]];  // エンコード値設定
-        
-        if (actionName) {
-            [undoManager setActionName:actionName];
-        }
+    } else {
+        allowsLossy = lossy;
     }
     
+    // register undo
+    NSUndoManager *undoManager = [self undoManager];
+    [[undoManager prepareWithInvocationTarget:self] redoChangeEncoding:encoding withUTF8BOM:withUTF8BOM
+                                                              askLossy:NO lossy:allowsLossy];  // redo in undo
+    if (shouldShowList) {
+        [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
+    }
+    [[undoManager prepareWithInvocationTarget:self] applyEncodingToView];
+    [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]];
+    [[undoManager prepareWithInvocationTarget:self] setHasUTF8BOM:[self hasUTF8BOM]];
+    [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil), encodingName]];
+    
+    // update encoding
     [self setEncoding:encoding];
     [self setHasUTF8BOM:withUTF8BOM];
-    [self applyEncodingToView];  // ステータスバー、インスペクタを更新
+    [self applyEncodingToView];  // update UI
     
     [[self incompatibleCharacterScanner] invalidate];
     if (shouldShowList) {
@@ -1002,7 +1000,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 
 // ------------------------------------------------------
-/// 改行コードを変更する
+/// change line endings registering process to the undo manager
 - (void)doSetLineEnding:(CENewLineType)lineEnding
 // ------------------------------------------------------
 {
@@ -1019,7 +1017,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
                                 [NSString newLineNameWithType:lineEnding]]];
 
     [self setLineEnding:lineEnding];
-    [self applyLineEndingToView];
+    [self applyLineEndingToView];  // update UI
 }
 
 
@@ -1190,10 +1188,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     }
     
     if (result == NSAlertFirstButtonReturn) {  // = Convert 変換
-        NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil),
-                                [NSString localizedNameOfStringEncoding:encoding withUTF8BOM:withUTF8BOM]];
-
-        [self doSetEncoding:encoding withUTF8BOM:withUTF8BOM updateDocument:YES askLossy:YES lossy:NO asActionName:actionName];
+        [self changeEncoding:encoding withUTF8BOM:withUTF8BOM askLossy:YES lossy:NO];
 
     } else if (result == NSAlertSecondButtonReturn) {  // = Reinterpret 再解釈
         if (![self fileURL]) { return; } // まだファイル保存されていない時（ファイルがない時）は、戻る
@@ -1480,11 +1475,11 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 // ------------------------------------------------------
 /// エンコードを変更するアクションのRedo登録
-- (void)redoSetEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM updateDocument:(BOOL)updateDocument askLossy:(BOOL)askLossy lossy:(BOOL)lossy asActionName:(nullable NSString *)actionName
+- (void)redoChangeEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM askLossy:(BOOL)askLossy lossy:(BOOL)lossy
 // ------------------------------------------------------
 {
-    [[[self undoManager] prepareWithInvocationTarget:self] doSetEncoding:encoding withUTF8BOM:withUTF8BOM updateDocument:updateDocument
-                                                                askLossy:askLossy lossy:lossy asActionName:actionName];
+    [[[self undoManager] prepareWithInvocationTarget:self] changeEncoding:encoding withUTF8BOM:withUTF8BOM
+                                                                 askLossy:askLossy lossy:lossy];
 }
 
 

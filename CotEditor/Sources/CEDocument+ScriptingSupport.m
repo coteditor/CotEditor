@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -283,10 +283,8 @@
     }
     
     BOOL lossy = [arguments[@"Lossy"] boolValue];
-    NSString *actionName = [NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil),
-                            [NSString localizedNameOfStringEncoding:encoding]];
     
-    BOOL success = [self doSetEncoding:encoding withUTF8BOM:NO updateDocument:YES askLossy:NO lossy:lossy asActionName:actionName];
+    BOOL success = [self changeEncoding:encoding withUTF8BOM:NO askLossy:NO lossy:lossy];
     
     return @(success);
 }

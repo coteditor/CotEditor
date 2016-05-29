@@ -42,6 +42,7 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEIANACharsetNameConflictError = 1100,
     CEUnconvertibleCharactersError,
     CEReinterpretationFailedError,
+    CELossyEncodingConversionError,
     
     // text finder
     CERegularExpressionError = 1200,
