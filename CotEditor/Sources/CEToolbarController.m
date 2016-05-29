@@ -72,13 +72,6 @@
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
-    // modify popup buttons style on Mavericks and earlier
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
-        [[self lineEndingPopupButton] setBezelStyle:NSRoundedBezelStyle];
-        [[self encodingPopupButton] setBezelStyle:NSRoundedBezelStyle];
-        [[self syntaxPopupButton] setBezelStyle:NSRoundedBezelStyle];
-    }
-    
     // setup share button
     [[self shareButton] sendActionOn:NSLeftMouseDownMask];
     

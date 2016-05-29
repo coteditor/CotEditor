@@ -209,10 +209,6 @@ static CGFontRef BoldLineNumberFont;
     }
     CGContextSetTextMatrix(context, transform);
     
-    // add enough buffer to avoid broken drawing on Mountain Lion (10.8) with scroller (2015-07)
-    NSRect visibleRect = [[self scrollView] documentVisibleRect];
-    visibleRect.size.height += fontSize;
-    
     // get multiple selections
     NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[textView selectedRanges] count]];
     for (NSValue *rangeValue in [textView selectedRanges]) {
@@ -270,7 +266,7 @@ static CGFontRef BoldLineNumberFont;
     };
     
     // get glyph range of which line number should be drawn
-    NSRange glyphRangeToDraw = [layoutManager glyphRangeForBoundingRectWithoutAdditionalLayout:visibleRect
+    NSRange glyphRangeToDraw = [layoutManager glyphRangeForBoundingRectWithoutAdditionalLayout:[[self scrollView] documentVisibleRect]
                                                                                inTextContainer:[textView textContainer]];
     
     // counters

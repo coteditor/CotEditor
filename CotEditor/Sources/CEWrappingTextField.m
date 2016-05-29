@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -37,10 +37,7 @@
 - (void)setFrameSize:(NSSize)newSize;
 // ------------------------------------------------------
 {
-    // Setting preferredMaxLayoutWidth on 10.8 makes application hang up on document with specific file names (2015-02 by 1024jp).
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) {
-        [self setPreferredMaxLayoutWidth:newSize.width - 4];  // 4 for 2 * inset
-    }
+    [self setPreferredMaxLayoutWidth:newSize.width - 4];  // 4 for 2 * inset
     
     [super setFrameSize:newSize];
 }

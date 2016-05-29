@@ -317,9 +317,6 @@
 
 
 /* MARK: CEPreferencesWindowController */
-// Smart quotes/dashes
-"Only on Mavericks and later" = "Nur auf Mavericks und später";
-
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "Vervollständigung manuell durchführen mit: %@ oder %@";
 "Select at least one item to enable completion." = "Wählen Sie mindestens ein Element die Vervollständigung zu aktivieren.";

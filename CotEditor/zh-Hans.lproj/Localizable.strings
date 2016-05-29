@@ -316,9 +316,6 @@
 
 
 /* MARK: CEPreferencesWindowController */
-// Smart quotes/dashes
-"Only on Mavericks and later" = "Mavericks 及以后";
-
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "补全可以通过 %@ 或 %@ 手动完成";
 "Select at least one item to enable completion." = "至少选择一个条目来激活补全。";

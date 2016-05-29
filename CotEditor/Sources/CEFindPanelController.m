@@ -37,7 +37,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 
 @interface CEFindPanelController () <CETextFinderDelegate, NSWindowDelegate, NSSplitViewDelegate, NSTextViewDelegate, NSPopoverDelegate>
 
-@property (nonatomic, nullable) NSLayoutConstraint *resultHeightConstraint;  // for autolayout on OS X 10.8
 @property (nonatomic, nullable, copy) NSString *resultMessage;  // binding
 @property (nonatomic, nullable, weak) NSLayoutManager *currentResultMessageTarget;  // grab layoutManager instead of NSTextView to use weak reference on OS X 10.8
 
@@ -319,7 +318,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 //=======================================================
 
 // ------------------------------------------------------
-/// make popover detachable (on Yosemite and later)
+/// make popover detachable
 - (BOOL)popoverShouldDetach:(nonnull NSPopover *)popover
 // ------------------------------------------------------
 {
@@ -470,13 +469,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
         [[self disclosureButton] setState:NSOnState];
     }
     
-    // remove height constraint on 10.8 (see the last lines in `collapseResultViewIfNeeded`)
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9) {
-        if (shown) {
-            [resultView removeConstraint:[self resultHeightConstraint]];
-        }
-    }
-    
     NSWindow *panel = [self window];
     NSRect panelFrame = [panel frame];
     CGFloat diff = shown ? kDefaultResultViewHeight - height : -height;
@@ -519,22 +511,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     frame.size.height -= thickness;
     frame.origin.y += thickness;
     [[self window] setFrame:frame display:YES animate:NO];
-    
-    // have a layout constraint to avoid opening result view by resizing window on OS X 10.8.
-    // (This constraint is probably not needed on 10.9 and later.)
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9) {
-        if (![self resultHeightConstraint]) {
-            NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:resultView
-                                                                          attribute:NSLayoutAttributeHeight
-                                                                          relatedBy:NSLayoutRelationEqual
-                                                                             toItem:nil
-                                                                          attribute:NSLayoutAttributeHeight
-                                                                         multiplier:1.0
-                                                                           constant:0];
-            [self setResultHeightConstraint:constraint];
-        }
-        [resultView addConstraint:[self resultHeightConstraint]];
-    }
 }
 
 

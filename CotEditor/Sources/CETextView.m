@@ -142,10 +142,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         // setup behaviors
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
-        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
-            [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
-            [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartDashesKey]];
-        }
+        [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
+        [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartDashesKey]];
         [self setAllowsDocumentBackgroundColorChange:NO];
         [self setAllowsUndo:YES];
         [self setRichText:NO];
@@ -726,11 +724,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [[self highlightLineColor] set];
         [NSBezierPath fillRect:[self highlightLineRect]];
     }
-    
-    // avoid rimaining dropshadow from letters on Mountain Lion (2015-02 by 1024jp)
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9 && ![[self window] isOpaque]) {
-        [[self window] invalidateShadow];
-    }
 }
 
 
@@ -776,40 +769,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     }
     
     [super scrollRangeToVisible:range];
-    
-    if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) { return; }
-    // The following additional scroll adjustment might be no more required thanks to the changing on Yosemite.
-    // cf.: NSScrollView section in AppKit Release Notes for OS X v10.10
-    
-    // 完全にスクロールさせる
-    // （setTextContainerInset で上下に空白領域を挿入している関係で、ちゃんとスクロールしない場合があることへの対策）
-    NSUInteger length = [[self string] length];
-    NSRect rect = NSZeroRect;
-    
-    if (length == range.location) {
-        rect = [[self layoutManager] extraLineFragmentRect];
-    } else if (length > range.location) {
-        NSString *tailStr = [[self string] substringFromIndex:range.location];
-        if ([tailStr detectNewLineType] != CENewLineNone) {
-            return;
-        }
-    }
-    
-    if (NSEqualRects(rect, NSZeroRect)) {
-        NSRange targetRange = [[self string] lineRangeForRange:range];
-        NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:targetRange actualCharacterRange:nil];
-        rect = [[self layoutManager] lineFragmentRectForGlyphAtIndex:(NSMaxRange(glyphRange) - 1)
-                                                      effectiveRange:nil
-                                             withoutAdditionalLayout:YES];
-    }
-    if (NSEqualRects(rect, NSZeroRect)) { return; }
-    
-    NSRect convertedRect = [self convertRect:rect toView:[[self enclosingScrollView] superview]]; //editorView
-    if ((convertedRect.origin.y >= 0) &&
-        (convertedRect.origin.y < [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]))
-    {
-        [self scrollPoint:NSMakePoint(NSMinX(rect), NSMaxY(rect))];
-    }
 }
 
 
@@ -1029,14 +988,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         }
         
     } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
-        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
-            [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
-        }
+        [self setAutomaticQuoteSubstitutionEnabled:[newValue boolValue]];
         
     } else if ([keyPath isEqualToString:CEDefaultEnableSmartDashesKey]) {
-        if ([self respondsToSelector:@selector(setAutomaticDashSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
-            [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
-        }
+        [self setAutomaticDashSubstitutionEnabled:[newValue boolValue]];
         
     } else if ([keyPath isEqualToString:CEDefaultAutoLinkDetectionKey]) {
         [self setAutomaticLinkDetectionEnabled:[newValue boolValue]];
@@ -1510,12 +1465,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     // -> Better not using layer-backed view to avoid ugly text rendering and performance issue (1024jp on 2015-01)
     //    cf. Responsive Scrolling section in the Release Notes for OS X 10.9
     [[[self enclosingScrollView] contentView] setCopiesOnScroll:isOpaque];
-    
-    // Make view layer-backed in order to disable dropshadow from letters on Mavericks (1024jp on 2015-02)
-    // -> This makes scrolling laggy on huge file.
-    if (floor(NSAppKitVersionNumber) == NSAppKitVersionNumber10_9) {
-        [[self enclosingScrollView] setWantsLayer:!isOpaque];
-    }
     
     // redraw visible area
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];

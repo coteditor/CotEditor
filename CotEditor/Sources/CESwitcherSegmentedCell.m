@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -61,8 +61,7 @@
         imageRect.size = [selectedIcon size];
         
         // draw icon template
-        // (On Mavericks and later, you can use simply `drawInRect:`)
-        [selectedIcon drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:@{}];
+        [selectedIcon drawInRect:imageRect];
         
         // tint drawn icon template
         [[NSColor alternateSelectedControlColor] set];

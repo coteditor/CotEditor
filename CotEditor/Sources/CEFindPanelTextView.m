@@ -68,10 +68,8 @@
         [self setHorizontallyResizable:YES];
         
         // disable automatic text substitutions
-        if ([self respondsToSelector:@selector(setAutomaticQuoteSubstitutionEnabled:)]) {  // only on OS X 10.9 and later
-            [self setAutomaticQuoteSubstitutionEnabled:NO];
-            [self setAutomaticDashSubstitutionEnabled:NO];
-        }
+        [self setAutomaticQuoteSubstitutionEnabled:NO];
+        [self setAutomaticDashSubstitutionEnabled:NO];
         [self setAutomaticTextReplacementEnabled:NO];
         [self setAutomaticSpellingCorrectionEnabled:NO];
         [self setSmartInsertDeleteEnabled:NO];

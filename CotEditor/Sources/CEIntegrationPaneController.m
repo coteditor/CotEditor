@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -84,18 +84,7 @@ static NSString *_Nonnull const kPreferredSymbolicLinkPath = @"/usr/local/bin/co
 
 
 // ------------------------------------------------------
-/// setup UI
-- (void)loadView
-// ------------------------------------------------------
-{
-    [super loadView];
-    
-    [self setInstalled:[self validateSymlink]];
-}
-
-
-// ------------------------------------------------------
-/// update warnings before view appears (only on OS X 10.10 and later)
+/// update warnings before view appears
 - (void)viewWillAppear
 // ------------------------------------------------------
 {

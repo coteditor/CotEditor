@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -157,7 +157,7 @@
 //=======================================================
 
 // ------------------------------------------------------
-/// make popover detachable (on Yosemite and later)
+/// make popover detachable
 - (BOOL)popoverShouldDetach:(NSPopover *)popover
 // ------------------------------------------------------
 {

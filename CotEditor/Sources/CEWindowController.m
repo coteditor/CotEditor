@@ -120,9 +120,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     
     // setup sidebar
     [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
-    // The following line is required for NSSplitView with Autolayout on OS X 10.8 (2015-02-10 by 1024jp)
-    // Otherwise, visibility of splitView's subviews can not be initialized.
-    [[self sidebarSplitView] layoutSubtreeIfNeeded];
     [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
     // setup status bar

@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,22 +42,6 @@
     }
         
     return [super dividerThickness];
-}
-
-
-// ------------------------------------------------------
-/// hide divider completely when the second view (Find All result) is collapsed on OS X 10.8
-- (NSColor *)dividerColor
-// ------------------------------------------------------
-{
-    // -> This override is not important on Mavericks and later.
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_9) {
-        if ([self isSubviewCollapsed:[self subviews][1]]) {
-            return [NSColor clearColor];
-        }
-    }
-    
-    return [super dividerColor];
 }
 
 @end

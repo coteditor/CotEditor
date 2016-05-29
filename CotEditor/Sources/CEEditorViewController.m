@@ -108,15 +108,6 @@
     // set textStorage to textView
     [[[self textView] layoutManager] replaceTextStorage:[self textStorage]];
     
-    // intercept responder chain manually on Mavericks or lower
-    //   -> This will be automatically done on Yesemtie and higher
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
-        [self setNextResponder:[self view]];
-        for (NSView *subview in [[self view] subviews]) {
-            [subview setNextResponder:self];
-        }
-    }
-    
     // observe change of defaults
     for (NSString *key in [[self class] observedDefaultKeys]) {
         [[NSUserDefaults standardUserDefaults] addObserver:self

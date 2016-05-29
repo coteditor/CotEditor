@@ -34,14 +34,6 @@
 #import "Constants.h"
 
 
-// define UTIs for legacy system
-//   -> They were defined first on OS X 10.10.
-static const CFStringRef CEUTTypeScalableVectorGraphics = CFSTR("public.svg-image");
-static const CFStringRef CEUTTypeGNUZipArchive = CFSTR("org.gnu.gnu-zip-archive");
-static const CFStringRef CEUTTypeBzip2Archive = CFSTR("public.bzip2-archive");
-static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
-
-
 @interface CEDocumentController ()
 
 @property (nonatomic) BOOL showsHiddenFiles;  // binding
@@ -121,11 +113,11 @@ static const CFStringRef CEUTTypeZipArchive = CFSTR("public.zip-archive");
     
     // display alert if file may an image, video or other kind of binary file.
     CFStringRef typeNameRef = (__bridge CFStringRef)typeName;
-    if ((UTTypeConformsTo(typeNameRef, kUTTypeImage) && !UTTypeEqual(typeNameRef, CEUTTypeScalableVectorGraphics)) ||  // SVG is plain-text (except SVGZ)
+    if ((UTTypeConformsTo(typeNameRef, kUTTypeImage) && !UTTypeEqual(typeNameRef, kUTTypeScalableVectorGraphics)) ||  // SVG is plain-text (except SVGZ)
         UTTypeConformsTo(typeNameRef, kUTTypeAudiovisualContent) ||
-        UTTypeConformsTo(typeNameRef, CEUTTypeGNUZipArchive) ||
-        UTTypeConformsTo(typeNameRef, CEUTTypeZipArchive) ||
-        UTTypeConformsTo(typeNameRef, CEUTTypeBzip2Archive))
+        UTTypeConformsTo(typeNameRef, kUTTypeGNUZipArchive) ||
+        UTTypeConformsTo(typeNameRef, kUTTypeZipArchive) ||
+        UTTypeConformsTo(typeNameRef, kUTTypeBzip2Archive))
     {
         NSString *localizedTypeName = (__bridge_transfer NSString *)UTTypeCopyDescription(typeNameRef);
         
