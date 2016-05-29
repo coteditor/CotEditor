@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -67,10 +67,7 @@
 {
     [self setEditor:editor];
     
-    [NSApp beginSheet:[self window]
-       modalForWindow:[[editor focusedTextView] window]
-        modalDelegate:nil didEndSelector:NULL contextInfo:NULL];
-    [NSApp runModalForWindow:[self window]];
+    [[[editor focusedTextView] window] beginSheet:[self window] completionHandler:nil];
 }
 
 
@@ -90,7 +87,8 @@
         
         [[self editor] gotoLocation:location length:length type:[self gotoType]];
     }
-    [self close:sender];
+    
+    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
 }
 
 
@@ -99,9 +97,7 @@
 - (IBAction)close:(nullable id)sender
 // ------------------------------------------------------
 {
-    [NSApp stopModal];
-    [NSApp endSheet:[self window]];
-    [self close];
+    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
 }
 
 @end

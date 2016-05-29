@@ -76,9 +76,7 @@
 - (IBAction)closeSheet:(nullable id)sender
 // ------------------------------------------------------
 {
-    [NSApp stopModal];
-    [NSApp endSheet:[self window]];
-    [self close];
+    [[[self window] sheetParent] endSheet:[self window]];
 }
 
 

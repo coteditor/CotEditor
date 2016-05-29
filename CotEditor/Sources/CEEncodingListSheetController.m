@@ -63,9 +63,7 @@
 {
     [[self dataSource] writeToUserDefaults];  // save current setting
     
-    [NSApp stopModal];
-    [NSApp endSheet:[self window] returnCode:NSModalResponseOK];
-    [self close];
+    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
 }
 
 
@@ -74,9 +72,7 @@
 - (IBAction)cancel:(nullable id)sender
 // ------------------------------------------------------
 {
-    [NSApp stopModal];
-    [NSApp endSheet:[self window] returnCode:NSModalResponseCancel];
-    [self close];
+    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
 }
 
 @end

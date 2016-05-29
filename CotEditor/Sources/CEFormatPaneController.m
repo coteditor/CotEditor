@@ -48,6 +48,8 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 @interface CEFormatPaneController () <NSTableViewDelegate>
 
+@property (nonatomic, nullable) NSWindowController *currentSheetController;
+
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
 
@@ -88,10 +90,10 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 // ------------------------------------------------------
 /// setup UI
-- (void)loadView
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super viewDidLoad];
     
     [self setupSyntaxStyleMenus];
     
@@ -264,9 +266,9 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
     CEEncodingListSheetController *sheetController = [[CEEncodingListSheetController alloc] init];
     NSWindow *sheet = [sheetController window];
     
-    // シートを表示してモーダルループに入る(閉じる命令は CEEncodingListSheetController内 で)
-    [NSApp beginSheet:sheet modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    [NSApp runModalForWindow:sheet];
+    // show editor as sheet
+    [self setCurrentSheetController:sheetController];
+    [[[self view] window] beginSheet:[sheetController window] completionHandler:nil];
 }
 
 
@@ -277,14 +279,12 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 {
     NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
     
-    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:styleName
-                                                                                                 mode:[sender tag]];
+    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:styleName mode:[sender tag]];
     if (!sheetController) { return; }
     
     // show editor as sheet
-    [[[self view] window] beginSheet:[sheetController window] completionHandler:^(NSModalResponse returnCode) {
-        [sheetController close];
-    }];
+    [self setCurrentSheetController:sheetController];
+    [[[self view] window] beginSheet:[sheetController window] completionHandler:nil];
 }
 
 
@@ -412,10 +412,9 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 {
     CESyntaxMappingConflictsSheetController *sheetController = [[CESyntaxMappingConflictsSheetController alloc] init];
     
-    // シートウィンドウを表示してモーダルループに入る
-    // (閉じる命令は CESyntaxMappingConflictsSheetController の closeSheet: で)
-    [NSApp beginSheet:[sheetController window] modalForWindow:[[self view] window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-    [NSApp runModalForWindow:[sheetController window]];
+    // show editor as sheet
+    [self setCurrentSheetController:sheetController];
+    [[[self view] window] beginSheet:[sheetController window] completionHandler:nil];
 }
 
 

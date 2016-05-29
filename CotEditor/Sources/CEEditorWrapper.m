@@ -50,6 +50,8 @@
 
 @interface CEEditorWrapper () <CETextFinderClientProvider, CESyntaxStyleDelegate, NSTextStorageDelegate>
 
+@property (nonatomic, nullable) NSWindowController *currentSheetController;
+
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
 
 @end
@@ -1011,6 +1013,8 @@
 // ------------------------------------------------------
 {
     CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
+    
+    [self setCurrentSheetController:sheetController];
     [sheetController beginSheetForEditor:self];
 }
 
