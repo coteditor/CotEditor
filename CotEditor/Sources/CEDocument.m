@@ -1200,7 +1200,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     NSString *encodingName = [sender title];
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:NSLocalizedString(@"File encoding", nil)];
-    [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using “%@”?", nil), encodingName]];
+    [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret this document using “%@”?", nil), encodingName]];
     [alert addButtonWithTitle:NSLocalizedString(@"Convert", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Reinterpret", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];

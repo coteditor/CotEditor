@@ -120,7 +120,7 @@
 
 // Convert or reinterpret encoding alert
 "File encoding" = "エンコーディング";
-"Do you want to convert or reinterpret it using “%@”?" = "“%@”を使って変換または再解釈しますか？";
+"Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って変換または再解釈しますか？";
 "Convert" = "変換";
 "Reinterpret" = "再解釈";
 
