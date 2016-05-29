@@ -33,11 +33,8 @@
 @property (nonatomic, nullable, copy) NSString *string;
 @property (nonatomic) NSRange parseRange;
 
+@property (readonly, nonatomic, nonnull) NSProgress *progress;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, NSArray<NSValue *> *> *results;
-
-// callbacks (can be invoked on non-main thread)
-@property (nonatomic, nullable, copy) void (^beginParsingBlock)(NSString * _Nonnull localizedBlockName);
-@property (nonatomic, nullable, copy) void (^didProgress)(CGFloat delta);
 
 
 - (nonnull instancetype)initWithDictionary:(nonnull NSDictionary *)dictionary

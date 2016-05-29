@@ -30,12 +30,11 @@
 
 @interface CEProgressSheetController ()
 
+@property (nonatomic, nonnull) NSProgress *progress;
+@property (nonatomic, nonnull, copy) NSString *message;
+
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *button;
-@property (nonatomic) CEProgressSheetController *me;
-
-@property (atomic) double progress;
-@property (nonatomic, nonnull, copy) NSString *message;
 
 @end
 
@@ -50,13 +49,13 @@
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithMessage:(nonnull NSString *)message
+- (nonnull instancetype)initWithProgress:(nonnull NSProgress *)progress message:(nonnull NSString *)message
 // ------------------------------------------------------
 {
     self = [super init];
     if (self) {
+        _progress = progress;
         _message = message;
-        _informativeText = NSLocalizedString(@"Please wait for a while.", nil);
     }
     return self;
 }
@@ -88,28 +87,10 @@
 
 // ------------------------------------------------------
 /// show as sheet
-- (void)beginSheetForWindow:(nonnull NSWindow *)window completionHandler:(nullable void (^)(NSModalResponse))handler
+- (void)beginSheetForWindow:(nonnull NSWindow *)window
 // ------------------------------------------------------
 {
-    [window beginSheet:[self window] completionHandler:handler];
-    
-    [[self indicator] startAnimation:self];
-    
-    // retain itself to avoid dismiss controller while sheet is attached to a window
-    [self setMe:self];
-}
-
-
-// ------------------------------------------------------
-/// increase indicator
-- (void)progressIndicator:(CGFloat)delta
-// ------------------------------------------------------
-{
-    // set always on the main thread
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        weakSelf.progress += delta;
-    });
+    [window beginSheet:[self window] completionHandler:nil];
 }
 
 
@@ -124,9 +105,6 @@
     [[self button] setAction:@selector(close:)];
     [[self button] setTarget:self];
     [[self button] setKeyEquivalent:@"\r"];
-    
-    [self setProgress:1.0];  // complete
-    [[self indicator] stopAnimation:self];
 }
 
 
@@ -138,8 +116,6 @@
 - (IBAction)close:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setMe:nil];
-    
     [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
 }
 
@@ -149,7 +125,7 @@
 - (IBAction)cancel:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setMe:nil];
+    [[self progress] cancel];
     
     [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
 }

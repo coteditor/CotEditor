@@ -69,7 +69,6 @@ typedef NS_ENUM(NSUInteger, QCStartEndType) {
 @implementation CESyntaxHighlightParseOperation
 
 static NSArray<NSString *> *kSyntaxDictKeys;
-static CGFloat kPerCompoIncrement;
 
 
 #pragma mark Superclass Methods
@@ -86,9 +85,6 @@ static CGFloat kPerCompoIncrement;
             [syntaxDictKeys addObject:kAllSyntaxKeys[i]];
         }
         kSyntaxDictKeys = [syntaxDictKeys copy];
-        
-        // カラーリングインジケータの上昇幅を決定する（+0.01 はコメント＋引用符抽出用）
-        kPerCompoIncrement = 0.98 / (kSizeOfAllSyntaxKeys + 0.01);
     });
 }
 
@@ -139,6 +135,12 @@ static CGFloat kPerCompoIncrement;
         _pairedQuoteTypes = pairedQuoteTypes;
         _inlineCommentDelimiter = inlineCommentDelimiter;
         _blockCommentDelimiters = blockCommentDelimiters;
+        
+        _progress = [NSProgress progressWithTotalUnitCount:[kSyntaxDictKeys count] + 2];
+        __weak typeof(self) weakSelf = self;
+        [_progress setCancellationHandler:^{
+            [weakSelf cancel];
+        }];
     }
     return self;
 }
@@ -504,23 +506,23 @@ static CGFloat kPerCompoIncrement;
 // ------------------------------------------------------
 {
     NSMutableDictionary<NSString *, NSArray<NSValue *> *> *highlights = [NSMutableDictionary dictionary];  // key: highlight type
+    NSProgress *totalProgress = [self progress];
     
     // Keywords > Commands > Types > Attributes > Variables > Values > Numbers > Strings > Characters > Comments
     for (NSString *syntaxKey in kSyntaxDictKeys) {
         // update indicator sheet message
-        if ([self beginParsingBlock]) {
-            [self beginParsingBlock](NSLocalizedString(syntaxKey, nil));
-        }
+        [totalProgress becomeCurrentWithPendingUnitCount:1];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [totalProgress setLocalizedDescription:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil), NSLocalizedString(syntaxKey, nil)]];
+        });
         
         NSArray<NSDictionary<NSString *, id> *> *strDicts = [self highlightDictionary][syntaxKey];
         if ([strDicts count] == 0) {
-            if ([self didProgress]) {
-                [self didProgress](kPerCompoIncrement);
-            }
+            [totalProgress resignCurrent];
             continue;
         }
         
-        CGFloat indicatorDelta = kPerCompoIncrement / [strDicts count];
+        NSProgress *childProgress = [NSProgress progressWithTotalUnitCount:[strDicts count] + 10];  // + 10 for simple words
         
         NSMutableDictionary<NSNumber *, NSMutableArray<NSString *> *> *simpleWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
         NSMutableDictionary<NSNumber *, NSMutableArray<NSString *> *> *simpleICWordsDict = [NSMutableDictionary dictionaryWithCapacity:40];
@@ -586,13 +588,14 @@ static CGFloat kPerCompoIncrement;
             }
             
             // progress indicator
-            if ([self didProgress]) {
-                [self didProgress](indicatorDelta);
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                childProgress.completedUnitCount++;
+            });
         });
         
         if ([self isCancelled]) { return @{}; }
         
+        // extract simple words
         if ([simpleWordsDict count] > 0 || [simpleICWordsDict count] > 0) {
             NSArray<NSValue *> *extractedRanges = [self rangesOfSimpleWords:simpleWordsDict
                                                             ignoreCaseWords:simpleICWordsDict
@@ -606,14 +609,19 @@ static CGFloat kPerCompoIncrement;
         // store range array
         highlights[syntaxKey] = ranges;
         
+        // progress indicator
+        childProgress.completedUnitCount = childProgress.totalUnitCount;
+        [totalProgress resignCurrent];
+        
     } // end-for (syntaxKey)
     
     if ([self isCancelled]) { return @{}; }
     
     // comments and quoted text
-    if ([self beginParsingBlock]) {
-        [self beginParsingBlock](NSLocalizedString(@"comments and quoted texts", nil));
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [totalProgress setLocalizedDescription:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil),
+                                                NSLocalizedString(@"comments and quoted texts", nil)]];
+    });
     NSDictionary<NSString *, NSArray *> *commentAndQuoteRanges = [self extractCommentsWithQuotesFromString:string range:parseRange];
     for (NSString *key in commentAndQuoteRanges) {
         if (highlights[key]) {
@@ -623,13 +631,13 @@ static CGFloat kPerCompoIncrement;
         }
     }
     
-    if ([self didProgress]) {
-        [self didProgress](kPerCompoIncrement);
-    }
-    
     if ([self isCancelled]) { return @{}; }
     
-    return sanitizeHighlights(highlights);
+    NSDictionary<NSString *, NSArray<NSValue *> *> *sanitized = sanitizeHighlights(highlights);
+    
+    totalProgress.completedUnitCount++;  // = total - 1
+    
+    return sanitized;
 }
 
 

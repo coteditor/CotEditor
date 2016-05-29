@@ -36,6 +36,7 @@
 @property (nonatomic, nonnull) NSArray<NSDictionary *> *definitions;
 
 // readonly
+@property (readwrite, nonatomic, nonnull) NSProgress *progress;
 @property (readwrite, nonatomic, nullable, copy) NSArray<CEOutlineItem *> *results;
 
 @end
@@ -88,6 +89,12 @@
     self = [super init];
     if (self) {
         _definitions = definitions;
+        
+        _progress = [NSProgress progressWithTotalUnitCount:[definitions count]];
+        __weak typeof(self) weakSelf = self;
+        [_progress setCancellationHandler:^{
+            [weakSelf cancel];
+        }];
     }
     return self;
 }
@@ -105,6 +112,8 @@
     NSMutableArray<CEOutlineItem *> *outlineItems = [NSMutableArray array];
     
     for (NSDictionary<NSString *, id> *definition in [self definitions]) {
+        [self progress].completedUnitCount += 1;
+        
         NSRegularExpressionOptions options = NSRegularExpressionAnchorsMatchLines;
         if ([definition[CESyntaxIgnoreCaseKey] boolValue]) {
             options |= NSRegularExpressionCaseInsensitive;

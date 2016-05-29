@@ -370,14 +370,9 @@ static const NSUInteger kMaxHistorySize = 20;
     
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
-    __block BOOL isCancelled = NO;
-    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
-    [indicator setIndetermine:YES];
-    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSModalResponseCancel) {
-            isCancelled = YES;
-        }
-    }];
+    NSProgress *progress = [NSProgress progressWithTotalUnitCount:-1];
+    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithProgress:progress message:NSLocalizedString(@"Find All", nil)];
+    [indicator beginSheetForWindow:[textView window]];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -394,7 +389,7 @@ static const NSUInteger kMaxHistorySize = 20;
             
             OGRegularExpressionMatch *match;
             while ((match = [enumerator nextObject])) {
-                if (isCancelled) {
+                if ([progress isCancelled]) {
                     [indicator close:self];
                     [[self busyTextViews] removeObject:textView];
                     return;
@@ -441,7 +436,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
                                          [integerFormatter stringFromNumber:@([result count])]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [indicator setInformativeText:informative];
+                    [progress setLocalizedDescription:informative];
                 });
             }
         }
@@ -464,7 +459,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 
             } else {
                 NSBeep();
-                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
+                [progress setLocalizedDescription:NSLocalizedString(@"Not Found.", nil)];
                 if ([self closesIndicatorWhenDone]) {
                     [indicator close:self];
                 }
@@ -503,14 +498,9 @@ static const NSUInteger kMaxHistorySize = 20;
     
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
-    __block BOOL isCancelled = NO;
-    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Find All", nil)];
-    [indicator setIndetermine:YES];
-    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSModalResponseCancel) {
-            isCancelled = YES;
-        }
-    }];
+    NSProgress *progress = [NSProgress progressWithTotalUnitCount:-1];
+    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithProgress:progress message:NSLocalizedString(@"Highlight", nil)];
+    [indicator beginSheetForWindow:[textView window]];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -524,7 +514,7 @@ static const NSUInteger kMaxHistorySize = 20;
             
             OGRegularExpressionMatch *match;
             while ((match = [enumerator nextObject])) {
-                if (isCancelled) {
+                if ([progress isCancelled]) {
                     [indicator close:self];
                     [[self busyTextViews] removeObject:textView];
                     return;
@@ -549,7 +539,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
                                          [integerFormatter stringFromNumber:@([highlights count])]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [indicator setInformativeText:informative];
+                    [progress setLocalizedDescription:informative];
                 });
             }
         }
@@ -569,7 +559,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 
             } else {
                 NSBeep();
-                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
+                [progress setLocalizedDescription:NSLocalizedString(@"Not Found.", nil)];
                 if ([self closesIndicatorWhenDone]) {
                     [indicator close:self];
                 }
@@ -644,14 +634,9 @@ static const NSUInteger kMaxHistorySize = 20;
     
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
-    __block BOOL isCancelled = NO;
-    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Replace All", nil)];
-    [indicator setIndetermine:YES];
-    [indicator beginSheetForWindow:[textView window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSModalResponseCancel) {
-            isCancelled = YES;
-        }
-    }];
+    NSProgress *progress = [NSProgress progressWithTotalUnitCount:-1];
+    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithProgress:progress message:NSLocalizedString(@"Replace All", nil)];
+    [indicator beginSheetForWindow:[textView window]];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -673,7 +658,7 @@ static const NSUInteger kMaxHistorySize = 20;
             
             OGRegularExpressionMatch *match;
             while ((match = [enumerator nextObject])) {
-                if (isCancelled) {
+                if ([progress isCancelled]) {
                     [indicator close:self];
                     [[self busyTextViews] removeObject:textView];
                     return;
@@ -691,7 +676,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
                                          [integerFormatter stringFromNumber:@(count)]];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [indicator setInformativeText:informative];
+                    [progress setLocalizedDescription:informative];
                 });
             }
             
@@ -710,7 +695,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 
             } else {
                 NSBeep();
-                [indicator setInformativeText:NSLocalizedString(@"Not Found.", nil)];
+                [progress setLocalizedDescription:NSLocalizedString(@"Not Found.", nil)];
             }
             
             if ([self closesIndicatorWhenDone]) {

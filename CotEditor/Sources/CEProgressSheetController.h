@@ -30,14 +30,10 @@
 
 @interface CEProgressSheetController : NSWindowController <NSWindowDelegate>
 
-@property (nonatomic, nonnull, copy) NSString *informativeText;
-@property (nonatomic, getter=isIndetermine) BOOL indetermine;
+- (nonnull instancetype)initWithProgress:(nonnull NSProgress *)progress message:(nonnull NSString *)message;
 
 
-- (nonnull instancetype)initWithMessage:(nonnull NSString *)message;
-
-- (void)beginSheetForWindow:(nonnull NSWindow *)window completionHandler:(nullable void (^)(NSModalResponse returnCode))handler;
-- (void)progressIndicator:(CGFloat)delta;  // max = 1.0
+- (void)beginSheetForWindow:(nonnull NSWindow *)window;
 
 // change button to done
 - (void)doneWithButtonTitle:(nullable NSString *)title;

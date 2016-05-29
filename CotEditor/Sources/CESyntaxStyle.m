@@ -535,19 +535,9 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     [operation setParseRange:highlightRange];
     
     // show highlighting indicator for large string
-    CEProgressSheetController *indicator = nil;
+    __block CEProgressSheetController *indicator = nil;
     if ([self shouldShowIndicatorForHighlightLength:highlightRange.length]) {
         NSWindow *documentWindow = [[[[[self textStorage] layoutManagers] firstObject] firstTextView] window];
-        indicator = [[CEProgressSheetController alloc] initWithMessage:NSLocalizedString(@"Coloring text…", nil)];
-        // set handlers
-        [operation setDidProgress:^(CGFloat delta) {
-            [indicator progressIndicator:delta];
-        }];
-        [operation setBeginParsingBlock:^(NSString * _Nonnull blockName) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [indicator setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Extracting %@…", nil), blockName]];
-            });
-        }];
         
         // wait for window becomes visible and sheet-attachable
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -560,11 +550,8 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 // do nothing if highlighting is already finished
                 if ([operation isFinished]) { return; }
                 
-                [indicator beginSheetForWindow:documentWindow completionHandler:^(NSModalResponse returnCode) {
-                    if (returnCode == NSModalResponseCancel) {
-                        [operation cancel];
-                    }
-                }];
+                indicator = [[CEProgressSheetController alloc] initWithProgress:[operation progress] message:NSLocalizedString(@"Coloring text…", nil)];
+                [indicator beginSheetForWindow:documentWindow];
             });
         });
     }
@@ -586,9 +573,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 // apply color (or give up if the editor's string is changed from the analized string)
                 if ([[[self textStorage] string] length] == [wholeString length]) {
                     // update indicator message
-                    if (indicator) {
-                        [indicator setInformativeText:NSLocalizedString(@"Applying colors to text", nil)];
-                    }
+                    [[weakOperation progress] setLocalizedDescription:NSLocalizedString(@"Applying colors to text", nil)];
                     [self applyHighlights:highlights range:highlightRange];
                 }
             }

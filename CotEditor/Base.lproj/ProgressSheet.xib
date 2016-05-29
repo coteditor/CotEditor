@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEProgressSheetController">
@@ -26,8 +25,9 @@
                     <progressIndicator verticalHuggingPriority="750" maxValue="1" bezeled="NO" indeterminate="YES" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="47">
                         <rect key="frame" x="20" y="49" width="380" height="12"/>
                         <connections>
-                            <binding destination="-2" name="isIndeterminate" keyPath="indetermine" id="jZT-fg-E0f"/>
-                            <binding destination="-2" name="value" keyPath="progress" id="UPr-2m-scv"/>
+                            <binding destination="-2" name="isIndeterminate" keyPath="progress.indeterminate" id="mAx-je-nMI"/>
+                            <binding destination="-2" name="maxValue" keyPath="progress.totalUnitCount" id="bbo-5D-gdt"/>
+                            <binding destination="-2" name="value" keyPath="progress.completedUnitCount" previousBinding="bbo-5D-gdt" id="4su-JV-S4a"/>
                         </connections>
                     </progressIndicator>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="17" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="50">
@@ -49,7 +49,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="-2" name="value" keyPath="informativeText" id="BsF-sc-8zS"/>
+                            <binding destination="-2" name="value" keyPath="progress.localizedDescription" id="aVM-9Q-O4J"/>
                         </connections>
                     </textField>
                     <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="58">

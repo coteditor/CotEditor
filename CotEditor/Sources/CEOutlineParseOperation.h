@@ -36,6 +36,7 @@
 @property (nonatomic, nullable, copy) NSString *string;
 @property (nonatomic) NSRange parseRange;
 
+@property (readonly, nonatomic, nonnull) NSProgress *progress;
 @property (readonly, nonatomic, nullable, copy) NSArray<CEOutlineItem *> *results;
 
 
