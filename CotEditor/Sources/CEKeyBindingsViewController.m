@@ -384,7 +384,7 @@
         
     } else {
         // command key existance check
-        BOOL containsCmd = ([keySpec rangeOfString:@"@"].location != NSNotFound);
+        BOOL containsCmd = [keySpec containsString:@"@"];
         
         // command key and mode matching check
         if (([self mode] == CEMenuKeyBindingsType) && !containsCmd) {

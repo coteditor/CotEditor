@@ -49,6 +49,18 @@
 
 @implementation CEIncompatibleCharsViewController
 
+// ------------------------------------------------------
+/// update content before display
+- (void)viewWillAppear
+// ------------------------------------------------------
+{
+    [[self scanner] scan];
+    
+    [super viewWillAppear];
+}
+
+
+
 #pragma mark Public Methods
 
 // ------------------------------------------------------
@@ -82,6 +94,7 @@
 
 
 // ------------------------------------------------------
+///
 - (void)document:(__kindof NSDocument *)document didUpdateIncompatibleCharacters:(NSArray<CEIncompatibleCharacter *> *)incompatibleCharacers
 // ------------------------------------------------------
 {

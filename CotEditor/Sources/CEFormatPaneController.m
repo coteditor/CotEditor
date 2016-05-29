@@ -145,7 +145,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
         }
     }
     // set style name as representedObject to menu items whose action is related to syntax style
-    if ([NSStringFromSelector([menuItem action]) rangeOfString:@"Syntax"].location != NSNotFound) {
+    if ([NSStringFromSelector([menuItem action]) containsString:@"Syntax"]) {
         [menuItem setRepresentedObject:representedStyleName];
     }
     

@@ -616,7 +616,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
     
     if ([themeName length] < 1) {  // 空は不可
         description = NSLocalizedString(@"Theme name can’t be empty.", nil);
-    } else if ([themeName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
+    } else if ([themeName containsString:@"/"]) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
         description = NSLocalizedString(@"You can’t use a theme name that contains “/”.", nil);
     } else if ([themeName hasPrefix:@"."]) {  // ファイル名としても使われるので、"." から始まる名前は不可
         description = NSLocalizedString(@"You can’t use a theme name that begins with a dot “.”.", nil);

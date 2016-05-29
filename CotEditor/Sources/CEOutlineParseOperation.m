@@ -158,7 +158,7 @@
                                                   template:template];
                  
                  // replace line number ($LN)
-                 if ([title rangeOfString:@"$LN"].location != NSNotFound) {
+                 if ([title containsString:@"$LN"]) {
                      // count line number of the beginning of the matched range
                      NSUInteger lineCount = 0, index = 0;
                      while (index <= range.location) {

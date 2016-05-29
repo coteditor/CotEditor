@@ -178,7 +178,7 @@ static NSString *HiraginoSansName;
     
     // draw invisibles
     if ([self showsInvisibles] && [[self invisibleLines] count] > 0) {
-        CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+        CGContextRef context = [[NSGraphicsContext currentContext] CGContext];
         NSString *completeString = [[self textStorage] string];
         BOOL isVertical = ([[self firstTextView] layoutOrientation] == NSTextLayoutOrientationVertical);
         

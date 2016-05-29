@@ -163,7 +163,7 @@ static CGFontRef BoldLineNumberFont;
     CGFloat scale = [textView convertSize:NSMakeSize(1.0, 1.0) toView:nil].width;
     
     // set graphics context
-    CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+    CGContextRef context = [[NSGraphicsContext currentContext] CGContext];
     CGContextSaveGState(context);
 
     // setup font

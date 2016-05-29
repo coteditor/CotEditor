@@ -387,7 +387,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         
         if ([styleName length] < 1) {  // 空は不可
             message = NSLocalizedString(@"Input style name.", nil);
-        } else if ([styleName rangeOfString:@"/"].location != NSNotFound) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
+        } else if ([styleName containsString:@"/"]) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
             message = NSLocalizedString(@"You can’t use a style name that contains “/”. Please choose another name.", nil);
         } else if ([styleName hasPrefix:@"."]) {  // ファイル名としても使われるので、"." から始まる名前は不可
             message = NSLocalizedString(@"You can’t use a style name that begins with a dot “.”. Please choose another name.", nil);

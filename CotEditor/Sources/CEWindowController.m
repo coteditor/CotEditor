@@ -430,7 +430,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
             
         case CEIncompatibleCharsTag:
             viewController = [self incompatibleCharsViewController];
-            [[[self document] incompatibleCharacterScanner] invalidate];
             break;
     }
     
