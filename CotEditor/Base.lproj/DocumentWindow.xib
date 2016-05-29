@@ -324,21 +324,6 @@
                             <action selector="toggleAutoTabExpand:" target="-1" id="FhV-mw-Thf"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="DBAEC99C-61AB-42BC-8316-2C57F9799F9E" explicitItemIdentifier="showNavigationBarItemID" label="Navigation Bar" paletteLabel="Show / Hide Navigation Bar" toolTip="Show or hide navigation bar of window" tag="14" image="NaviBar_On" id="KpZ-NH-xEh" customClass="CEToggleToolbarItem">
-                        <connections>
-                            <action selector="toggleNavigationBar:" target="-1" id="UsQ-17-wB6"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="6ED57D08-75C6-4859-808D-2F7A1F7E0927" explicitItemIdentifier="showLineNumItemID" label="Line Number" paletteLabel="Show / Hide Line Number" toolTip="Show or hide line number of text" tag="15" image="LineNumber_On" id="kfX-UD-siE" customClass="CEToggleToolbarItem">
-                        <connections>
-                            <action selector="toggleLineNumber:" target="-1" id="c8k-WU-JRa"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="AE2616A0-F7C5-46D5-AE16-29E19B830E0E" explicitItemIdentifier="showStatusAreaItemID" label="Status Bar" paletteLabel="Show / Hide Status Bar" toolTip="Show or hide status bar of window" tag="16" image="StatusBar_On" id="moq-h9-h7t" customClass="CEToggleToolbarItem">
-                        <connections>
-                            <action selector="toggleStatusBar:" target="-1" id="tS6-Q0-2LV"/>
-                        </connections>
-                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="2A62FA57-3D80-4478-92B6-98F43E9B666D" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="KtS-FH-3Py" customClass="CEToggleToolbarItem">
                         <connections>
                             <action selector="toggleInvisibleChars:" target="-1" id="2l7-uU-Sgy"/>
@@ -427,17 +412,14 @@
         <image name="GetInfo" width="32" height="32"/>
         <image name="IncompatibleChars" width="32" height="32"/>
         <image name="InvisibleChars_On" width="32" height="32"/>
-        <image name="LineNumber_On" width="32" height="32"/>
         <image name="LockedTemplate" width="16" height="16"/>
         <image name="NSShareTemplate" width="11" height="16"/>
-        <image name="NaviBar_On" width="32" height="32"/>
         <image name="PageGuide_On" width="32" height="32"/>
         <image name="RecolorAll" width="32" height="32"/>
         <image name="ShiftLeft" width="32" height="32"/>
         <image name="ShiftRight" width="32" height="32"/>
         <image name="SmallerFont" width="32" height="32"/>
         <image name="SpellCheck" width="32" height="32"/>
-        <image name="StatusBar_On" width="32" height="32"/>
         <image name="VerticalOrientation_On" width="32" height="32"/>
         <image name="WrapLines_On" width="32" height="32"/>
     </resources>

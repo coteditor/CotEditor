@@ -14,6 +14,10 @@ develop
 - Remove less important text actions:
     - Insert Encoding Name with “charset=”
     - Insert Encoding Name with “encoding=”
+- Remove less important toolbar items:
+    - Show / Hide Navigation Bar
+    - Show / Hide Line Numbers
+    - Show / Hide Status Bar
 - Display dialogs while changing file enocoding as a document-modal sheet.
 - Better syntax highlighting while editing.
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.

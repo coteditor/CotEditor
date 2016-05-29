@@ -200,13 +200,7 @@
     if ([theItem isKindOfClass:[CEToggleToolbarItem class]]) {
         CEToggleToolbarItem *imageItem = (CEToggleToolbarItem *)theItem;
         
-        if ([theItem action] == @selector(toggleLineNumber:)) {
-            [imageItem setState:[self showsLineNum] ? NSOnState : NSOffState];
-            
-        } else if ([theItem action] == @selector(toggleNavigationBar:)) {
-            [imageItem setState:[self showsNavigationBar] ? NSOnState : NSOffState];
-            
-        } else if ([theItem action] == @selector(toggleLineWrap:)) {
+        if ([theItem action] == @selector(toggleLineWrap:)) {
             [imageItem setState:[self wrapsLines] ? NSOnState : NSOffState];
             
         } else if ([theItem action] == @selector(toggleLayoutOrientation:)) {

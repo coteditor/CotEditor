@@ -30,7 +30,6 @@
 #import "CEWindow.h"
 #import "CEDocument.h"
 #import "CEToolbarController.h"
-#import "CEToggleToolbarItem.h"
 #import "CEStatusBarController.h"
 #import "CEIncompatibleCharsViewController.h"
 #import "CEEditorWrapper.h"
@@ -153,24 +152,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     if ([menuItem action] == @selector(toggleStatusBar:)) {
         NSString *title = [self showsStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
         [menuItem setTitle:NSLocalizedString(title, nil)];
-    }
-    
-    return YES;
-}
-
-
-// ------------------------------------------------------
-/// ツールバー項目の有効・無効を制御
-- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
-// ------------------------------------------------------
-{
-    // validate button image state
-    if ([theItem isKindOfClass:[CEToggleToolbarItem class]]) {
-        CEToggleToolbarItem *imageItem = (CEToggleToolbarItem *)theItem;
-        
-        if ([theItem action] == @selector(toggleStatusBar:)) {
-            [imageItem setState:[self showsStatusBar] ? NSOnState : NSOffState];
-        }
     }
     
     return YES;
