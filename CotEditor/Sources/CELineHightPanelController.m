@@ -28,6 +28,7 @@
 #import "CELineHightPanelController.h"
 #import "CEWindowController.h"
 #import "CEEditorWrapper.h"
+#import "CETextView.h"
 
 
 @interface CELineHightPanelController ()

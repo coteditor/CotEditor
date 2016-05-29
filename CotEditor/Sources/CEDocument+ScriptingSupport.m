@@ -29,6 +29,7 @@
 #import "CEDocument+ScriptingSupport.h"
 #import "CETextSelection.h"
 #import "CEEditorWrapper.h"
+#import "CETextView.h"
 #import "CESyntaxStyle.h"
 #import "CEEncodingManager.h"
 

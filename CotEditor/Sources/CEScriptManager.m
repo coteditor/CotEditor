@@ -30,6 +30,7 @@
 #import "CEConsolePanelController.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
+#import "CETextView.h"
 #import "CEKeyBindingUtils.h"
 #import "NSString+Sandboxing.h"
 

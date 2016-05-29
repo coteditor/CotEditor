@@ -27,7 +27,6 @@
  */
 
 @import Cocoa;
-#import "CETextView.h"
 
 
 @class CEDocument;

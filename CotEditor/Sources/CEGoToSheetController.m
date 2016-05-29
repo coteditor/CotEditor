@@ -27,6 +27,7 @@
 
 #import "CEGoToSheetController.h"
 #import "CEEditorWrapper.h"
+#import "CETextView.h"
 
 
 @interface CEGoToSheetController ()

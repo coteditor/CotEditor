@@ -33,6 +33,7 @@
 #import "CEEditorViewController.h"
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
+#import "CETextView.h"
 #import "CEThemeManager.h"
 #import "CESyntaxStyle.h"
 #import "CEGoToSheetController.h"

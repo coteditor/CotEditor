@@ -29,6 +29,7 @@
 #import "CEUnicodeCharacter.h"
 #import "CEWindowController.h"
 #import "CEEditorWrapper.h"
+#import "CETextView.h"
 
 
 @interface CEUnicodeInputPanelController () <NSTextFieldDelegate>

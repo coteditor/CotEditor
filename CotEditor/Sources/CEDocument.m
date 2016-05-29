@@ -43,6 +43,7 @@
 #import "CESyntaxStyle.h"
 #import "CEWindowController.h"
 #import "CEEditorWrapper.h"
+#import "CETextView.h"
 
 #import "NSString+CEEncoding.h"
 #import "NSAlert+BlockMethods.h"

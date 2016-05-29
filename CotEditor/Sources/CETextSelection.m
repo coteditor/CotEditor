@@ -29,6 +29,7 @@
 #import "CETextSelection.h"
 #import "CEDocument+ScriptingSupport.h"
 #import "CEEditorWrapper.h"
+#import "CETextView.h"
 
 
 @interface CETextSelection ()

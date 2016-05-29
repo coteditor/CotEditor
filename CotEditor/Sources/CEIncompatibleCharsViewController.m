@@ -31,6 +31,7 @@
 #import "CEIncompatibleCharacter.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
+#import "CETextView.h"
 
 
 @interface CEIncompatibleCharsViewController () <CEIncompatibleCharacterScannerDelegate, NSTableViewDelegate>
