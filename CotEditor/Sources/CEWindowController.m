@@ -118,7 +118,10 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
     // setup sidebar
     NSTabViewItem *inspectorTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self documentInspectorViewController]];
     NSTabViewItem *incompatibleCharactersTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self incompatibleCharsViewController]];
-    
+    [inspectorTabViewItem setImage:[NSImage imageNamed:@"DocumentTemplate"]];
+    [incompatibleCharactersTabViewItem setImage:[NSImage imageNamed:@"ConflictsTemplate"]];
+    [inspectorTabViewItem setToolTip:NSLocalizedString(@"Document Inspector", nil)];  // TODO: Localized strings are not yet migrated. See DocumentWindow.strings for the previous one.
+    [incompatibleCharactersTabViewItem setToolTip:NSLocalizedString(@"Incompatible Characters", nil)];
     [[self sidebar] addTabViewItem:inspectorTabViewItem];
     [[self sidebar] addTabViewItem:incompatibleCharactersTabViewItem];
     [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];

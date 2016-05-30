@@ -107,7 +107,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="w1l-W3-u3j"/>
                                 </constraints>
                             </customView>
-                            <tabView fixedFrame="YES" id="M19-Ov-3N4">
+                            <tabView fixedFrame="YES" id="M19-Ov-3N4" customClass="CEInspectorTabView">
                                 <rect key="frame" x="430" y="-6" width="177" height="566"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <font key="font" metaFont="system"/>
