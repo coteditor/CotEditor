@@ -34,7 +34,6 @@
 #import "CEIncompatibleCharsViewController.h"
 #import "CEEditorWrapper.h"
 #import "CEDocumentAnalyzer.h"
-#import "CEIncompatibleCharacterScanner.h"
 #import "CEDefaults.h"
 
 
@@ -150,7 +149,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(toggleStatusBar:)) {
-        NSString *title = [self showsStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
+        NSString *title = [[self statusBarController] isShown] ? @"Hide Status Bar" : @"Show Status Bar";
         [menuItem setTitle:NSLocalizedString(title, nil)];
     }
     
@@ -312,7 +311,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 - (IBAction)toggleStatusBar:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setShowsStatusBar:![self showsStatusBar]];
+    [[self statusBarController] setShown:![[self statusBarController] isShown] animate:YES];
 }
 
 
@@ -370,12 +369,9 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     [[self sidebarSplitView] setPosition:position ofDividerAtIndex:0];
     [[self sidebarSplitView] adjustSubviews];
     
-    if (!shown) {
-        // clear incompatible chars markup
-        [[self editor] clearAllMarkup];
+    if (shown) {
+        [[[self document] analyzer] setNeedsUpdateEditorInfo:shown];
     }
-    
-    [[[self document] analyzer] setNeedsUpdateEditorInfo:shown];
 }
 
 
@@ -431,24 +427,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     NSDictionary<NSString *, id> *views = NSDictionaryOfVariableBindings(newView);
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newView]|" options:0 metrics:nil views:views]];
     [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newView]|" options:0 metrics:nil views:views]];
-}
-
-
-// ------------------------------------------------------
-/// return whether status bar is shown
-- (BOOL)showsStatusBar
-// ------------------------------------------------------
-{
-    return [[self statusBarController] isShown];
-}
-
-
-// ------------------------------------------------------
-/// set visibility of status bar
-- (void)setShowsStatusBar:(BOOL)showsStatusBar
-// ------------------------------------------------------
-{
-    [[self statusBarController] setShown:showsStatusBar animate:YES];
 }
 
 @end

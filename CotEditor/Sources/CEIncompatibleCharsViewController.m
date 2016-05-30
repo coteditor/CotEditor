@@ -60,6 +60,17 @@
 }
 
 
+// ------------------------------------------------------
+/// clear incompatible chars markup
+- (void)viewDidDisappear
+// ------------------------------------------------------
+{
+    [[[[self scanner] document] editor] clearAllMarkup];
+    
+    [super viewDidDisappear];
+}
+
+
 
 #pragma mark Public Methods
 
@@ -73,7 +84,7 @@
     _scanner = scanner;
     
     [scanner setDelegate:self];
-    [scanner invalidate];
+    [scanner scan];
 }
 
 
@@ -94,7 +105,7 @@
 
 
 // ------------------------------------------------------
-///
+/// incompatible characters list was updated
 - (void)document:(__kindof NSDocument *)document didUpdateIncompatibleCharacters:(NSArray<CEIncompatibleCharacter *> *)incompatibleCharacers
 // ------------------------------------------------------
 {
