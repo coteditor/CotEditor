@@ -654,10 +654,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     [document setHasUTF8BOM:[self hasUTF8BOM]];
     
     // apply text orientation
-    BOOL isVerticalLayout = [[self editor] isVerticalLayoutOrientation];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[document editor] setVerticalLayoutOrientation:isVerticalLayout];
-    });
+    [[document editor] setVerticalLayoutOrientation:[[self editor] isVerticalLayoutOrientation]];
     
     return document;
 }
