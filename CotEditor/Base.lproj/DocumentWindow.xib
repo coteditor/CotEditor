@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="CEWindowController">
@@ -10,8 +9,7 @@
                 <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="oPb-Zq-odI"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
-                <outlet property="sidebar" destination="34" id="2IU-Vj-94v"/>
-                <outlet property="sidebarPlaceholderView" destination="XSO-vY-vMP" id="9fk-c5-hjU"/>
+                <outlet property="sidebar" destination="M19-Ov-3N4" id="pL7-ir-dq5"/>
                 <outlet property="sidebarSplitView" destination="jhv-dr-CH4" id="CIg-jJ-bnp"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
                 <outlet property="window" destination="5" id="31"/>
@@ -34,17 +32,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                         <subviews>
                             <customView id="iXJ-7c-EQT" userLabel="Document View">
-                                <rect key="frame" x="0.0" y="0.0" width="369" height="550"/>
+                                <rect key="frame" x="0.0" y="0.0" width="436" height="550"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="Ezm-P5-z5i" userLabel="Editor Split View" customClass="CESplitView">
-                                        <rect key="frame" x="0.0" y="20" width="369" height="530"/>
+                                        <rect key="frame" x="0.0" y="20" width="436" height="530"/>
                                         <connections>
                                             <outlet property="delegate" destination="cfo-zY-w3h" id="ZBq-Sz-8et"/>
                                         </connections>
                                     </splitView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-Sf-4Mf" customClass="CEBorderView">
-                                        <rect key="frame" x="0.0" y="0.0" width="369" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="436" height="20"/>
                                         <subviews>
                                             <imageView hidden="YES" toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-My-tQo">
                                                 <rect key="frame" x="8" y="2" width="16" height="16"/>
@@ -69,7 +67,7 @@
                                                 </connections>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QO1-yr-imY">
-                                                <rect key="frame" x="328" y="3" width="33" height="14"/>
+                                                <rect key="frame" x="395" y="3" width="33" height="14"/>
                                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="W4S-dh-6hG">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -109,78 +107,12 @@
                                     <constraint firstAttribute="trailing" secondItem="Rjm-Sf-4Mf" secondAttribute="trailing" id="w1l-W3-u3j"/>
                                 </constraints>
                             </customView>
-                            <customView wantsLayer="YES" id="34" userLabel="Sidebar View">
-                                <rect key="frame" x="370" y="0.0" width="230" height="550"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Gu-Ck-2Ro">
-                                        <rect key="frame" x="0.0" y="522" width="230" height="28"/>
-                                        <subviews>
-                                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t7l-ac-OCh">
-                                                <rect key="frame" x="82" y="1" width="65" height="25"/>
-                                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="TPz-kb-PBa" customClass="CESwitcherSegmentedCell">
-                                                    <font key="font" metaFont="system"/>
-                                                    <segments>
-                                                        <segment toolTip="Document Inspector" image="DocumentTemplate" selected="YES" tag="1">
-                                                            <nil key="label"/>
-                                                        </segment>
-                                                        <segment toolTip="Incompatible Characters" image="ConflictsTemplate" tag="2">
-                                                            <nil key="label"/>
-                                                        </segment>
-                                                    </segments>
-                                                </segmentedCell>
-                                                <connections>
-                                                    <binding destination="-2" name="selectedTag" keyPath="selectedSidebarTag" id="DUp-me-UHO"/>
-                                                </connections>
-                                            </segmentedControl>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="t7l-ac-OCh" firstAttribute="centerX" secondItem="0Gu-Ck-2Ro" secondAttribute="centerX" id="DtN-Sj-2PD"/>
-                                            <constraint firstAttribute="height" constant="28" id="Zoq-vk-07I"/>
-                                            <constraint firstItem="t7l-ac-OCh" firstAttribute="centerY" secondItem="0Gu-Ck-2Ro" secondAttribute="centerY" id="dGb-Rv-BoW"/>
-                                        </constraints>
-                                    </customView>
-                                    <box title="Horizontal Line" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="m6c-JX-V3M">
-                                        <rect key="frame" x="0.0" y="521" width="230" height="1"/>
-                                        <view key="contentView" id="JLD-1e-nAg">
-                                            <rect key="frame" x="0.0" y="0.0" width="230" height="1"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="wVU-gc-0zA"/>
-                                        </constraints>
-                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                        <color key="fillColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                    </box>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="XSO-vY-vMP" userLabel="Placeholder View">
-                                        <rect key="frame" x="0.0" y="0.0" width="230" height="521"/>
-                                        <subviews>
-                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="hnD-ep-tH0" userLabel="Dummy View">
-                                                <rect key="frame" x="0.0" y="0.0" width="230" height="521"/>
-                                            </customView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="hnD-ep-tH0" firstAttribute="leading" secondItem="XSO-vY-vMP" secondAttribute="leading" id="7C0-11-V5B"/>
-                                            <constraint firstItem="hnD-ep-tH0" firstAttribute="top" secondItem="XSO-vY-vMP" secondAttribute="top" id="DfD-f9-iaK"/>
-                                            <constraint firstAttribute="trailing" secondItem="hnD-ep-tH0" secondAttribute="trailing" id="Liy-Fp-KMM"/>
-                                            <constraint firstAttribute="bottom" secondItem="hnD-ep-tH0" secondAttribute="bottom" id="ln0-dD-YX5"/>
-                                        </constraints>
-                                    </customView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="XSO-vY-vMP" secondAttribute="bottom" id="0Ar-5d-3z3"/>
-                                    <constraint firstAttribute="trailing" secondItem="0Gu-Ck-2Ro" secondAttribute="trailing" id="0l0-MR-Szl"/>
-                                    <constraint firstItem="XSO-vY-vMP" firstAttribute="top" secondItem="m6c-JX-V3M" secondAttribute="bottom" id="C1w-yf-Sb2"/>
-                                    <constraint firstItem="0Gu-Ck-2Ro" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="KWU-bY-KG8"/>
-                                    <constraint firstAttribute="trailing" secondItem="XSO-vY-vMP" secondAttribute="trailing" id="WJj-1f-h9z"/>
-                                    <constraint firstItem="XSO-vY-vMP" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="agM-Pc-Qcz"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="aly-Ib-BsD"/>
-                                    <constraint firstItem="m6c-JX-V3M" firstAttribute="top" secondItem="0Gu-Ck-2Ro" secondAttribute="bottom" id="b9u-0F-fwz"/>
-                                    <constraint firstAttribute="trailing" secondItem="m6c-JX-V3M" secondAttribute="trailing" id="jQu-zp-Fip"/>
-                                    <constraint firstItem="m6c-JX-V3M" firstAttribute="leading" secondItem="34" secondAttribute="leading" id="lY8-fD-aZA"/>
-                                    <constraint firstItem="0Gu-Ck-2Ro" firstAttribute="top" secondItem="34" secondAttribute="top" id="mrt-ia-dn3"/>
-                                </constraints>
-                            </customView>
+                            <tabView fixedFrame="YES" id="M19-Ov-3N4">
+                                <rect key="frame" x="430" y="-6" width="177" height="566"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems/>
+                            </tabView>
                         </subviews>
                         <holdingPriorities>
                             <real value="250"/>
@@ -405,7 +337,7 @@
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
             </connections>
         </viewController>
-        <viewController title="Document Inspector" nibName="DocumentInspectorView" id="zfS-u8-roN" userLabel="Document Inspector View Controller"/>
+        <viewController title="Document Inspector" nibName="DocumentInspectorView" id="zfS-u8-roN" userLabel="Document Inspector View Controller" customClass="CEDocumentInspectorViewController"/>
         <viewController title="Incompatible Chars" nibName="IncompatibleCharsView" id="PNV-ic-0G4" userLabel="Incompatible Chars View Controller" customClass="CEIncompatibleCharsViewController"/>
         <viewController id="cfo-zY-w3h" customClass="CESplitViewController">
             <connections>
@@ -417,8 +349,6 @@
         <image name="AutoTabExpand_On" width="32" height="32"/>
         <image name="BiggerFont" width="32" height="32"/>
         <image name="Comment" width="32" height="32"/>
-        <image name="ConflictsTemplate" width="15" height="15"/>
-        <image name="DocumentTemplate" width="15" height="15"/>
         <image name="EditColorCode" width="32" height="32"/>
         <image name="GetInfo" width="32" height="32"/>
         <image name="IncompatibleChars" width="32" height="32"/>
