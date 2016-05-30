@@ -32,7 +32,6 @@
 #import "CEToolbarController.h"
 #import "CEIncompatibleCharsViewController.h"
 #import "CEEditorWrapper.h"
-#import "CEDocumentAnalyzer.h"
 #import "CEDefaults.h"
 
 
@@ -41,21 +40,23 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     CEDocumentInspectorTag = 1,
     CEIncompatibleCharsTag,
 };
+typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
+    CESidebarTabIndexDocumentInspector = 0,
+    CESidebarTabIndexIncompatibleChararacters,
+};
 
 
 @interface CEWindowController () <NSSplitViewDelegate>
 
-@property (nonatomic) CESidebarTag selectedSidebarTag;
 @property (nonatomic) CGFloat sidebarWidth;
 
 
 // IBOutlets
 @property (nonatomic, nullable) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, nullable) IBOutlet NSViewController *documentInspectorViewController;
+@property (nonatomic, nullable) IBOutlet __kindof NSViewController *documentInspectorViewController;
 @property (nonatomic, nullable) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
-@property (nonatomic, nullable, weak) IBOutlet NSView *sidebar;
-@property (nonatomic, nullable, weak) IBOutlet NSView *sidebarPlaceholderView;
+@property (nonatomic, nullable, weak) IBOutlet NSTabView *sidebar;
 
 // IBOutlets (readonly)
 @property (readwrite, nonatomic, nullable, weak) IBOutlet CEEditorWrapper *editor;
@@ -115,6 +116,14 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     }
     
     // setup sidebar
+    NSTabViewItem *inspectorTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self documentInspectorViewController]];
+    NSTabViewItem *incompatibleCharactersTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self incompatibleCharsViewController]];
+    [inspectorTabViewItem setImage:[NSImage imageNamed:@"DocumentTemplate"]];
+    [incompatibleCharactersTabViewItem setImage:[NSImage imageNamed:@"ConflictsTemplate"]];
+    [inspectorTabViewItem setToolTip:NSLocalizedString(@"Document Inspector", nil)];  // TODO: Localized strings are not yet migrated. See DocumentWindow.strings for the previous one.
+    [incompatibleCharactersTabViewItem setToolTip:NSLocalizedString(@"Incompatible Characters", nil)];
+    [[self sidebar] addTabViewItem:inspectorTabViewItem];
+    [[self sidebar] addTabViewItem:incompatibleCharactersTabViewItem];
     [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
     [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
@@ -154,7 +163,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 - (void)showIncompatibleCharList
 // ------------------------------------------------------
 {
-    [self setSelectedSidebarTag:CEIncompatibleCharsTag];
+    [[self sidebar] selectTabViewItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
     [self setSidebarShown:YES];
 }
 
@@ -257,10 +266,12 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 - (IBAction)getInfo:(nullable id)sender
 // ------------------------------------------------------
 {
-    if ([self isSidebarShown] && [self selectedSidebarTag] == CEDocumentInspectorTag) {
+    NSUInteger currentIndex = [[self sidebar] indexOfTabViewItem:[[self sidebar] selectedTabViewItem]];
+    
+    if ([self isSidebarShown] && currentIndex == CESidebarTabIndexDocumentInspector) {
         [self setSidebarShown:NO];
     } else {
-        [self setSelectedSidebarTag:CEDocumentInspectorTag];
+        [[self sidebar] selectTabViewItemAtIndex:CESidebarTabIndexDocumentInspector];
         [self setSidebarShown:YES];
     }
 }
@@ -271,10 +282,12 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 - (IBAction)toggleIncompatibleCharList:(nullable id)sender
 // ------------------------------------------------------
 {
-    if ([self isSidebarShown] && [self selectedSidebarTag] == CEIncompatibleCharsTag) {
+    NSUInteger currentIndex = [[self sidebar] indexOfTabViewItem:[[self sidebar] selectedTabViewItem]];
+    
+    if ([self isSidebarShown] && currentIndex == CESidebarTabIndexIncompatibleChararacters) {
         [self setSidebarShown:NO];
     } else {
-        [self setSelectedSidebarTag:CEIncompatibleCharsTag];
+        [[self sidebar] selectTabViewItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
         [self setSidebarShown:YES];
     }
 }
@@ -313,9 +326,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 - (void)setSidebarShown:(BOOL)shown
 // ------------------------------------------------------
 {
-    if ([self selectedSidebarTag] == 0) {
-        [self setSelectedSidebarTag:CEDocumentInspectorTag];
-    }
     if ([self isSidebarShown] == shown) { return; }
     
     BOOL isInitial = ![[self window] isVisible];  // on `windowDidLoad` and `window:didDecodeRestorableState:`
@@ -340,47 +350,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     // apply
     [[self sidebarSplitView] setPosition:position ofDividerAtIndex:0];
     [[self sidebarSplitView] adjustSubviews];
-    
-    if (shown) {
-        [[[self document] analyzer] setNeedsUpdateEditorInfo:shown];
-    }
-}
-
-
-// ------------------------------------------------------
-/// switch sidebar view
-- (void)setSelectedSidebarTag:(CESidebarTag)tag
-// ------------------------------------------------------
-{
-    NSViewController *viewController;
-    switch (tag) {
-        case CEDocumentInspectorTag:
-            viewController = [self documentInspectorViewController];
-            [[[self document] analyzer] invalidateEditorInfo];
-            break;
-            
-        case CEIncompatibleCharsTag:
-            viewController = [self incompatibleCharsViewController];
-            break;
-    }
-    
-    if (_selectedSidebarTag == tag) { return; }
-    
-    _selectedSidebarTag = tag;
-    
-    // swap views
-    NSView *placeholder = [self sidebarPlaceholderView];
-    NSView *currentView = [[placeholder subviews] firstObject];
-    NSView *newView = [viewController view];
-    
-    // transit with animation
-    [newView setFrame:[currentView frame]];
-    [[placeholder animator] replaceSubview:currentView with:newView];
-    
-    // update autolayout constrains
-    NSDictionary<NSString *, id> *views = NSDictionaryOfVariableBindings(newView);
-    [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[newView]|" options:0 metrics:nil views:views]];
-    [placeholder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[newView]|" options:0 metrics:nil views:views]];
 }
 
 @end
