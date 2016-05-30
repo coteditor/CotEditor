@@ -354,9 +354,6 @@
     // highlight the current line
     [self highlightCurrentLine];
 
-    // update selected item of the outline menu
-    [[self navigationBarController] selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
-
     // highlight matching brace
     
     // The following part is based on Smultron's SMLTextView.m by Peter Borg. (2006-09-09)

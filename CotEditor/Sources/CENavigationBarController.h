@@ -41,7 +41,6 @@
 - (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
 
 - (void)setOutlineItems:(nonnull NSArray<CEOutlineItem *> *)outlineItems;
-- (void)selectOutlineMenuItemWithRange:(NSRange)range;
 - (void)updatePrevNextButtonEnabled;
 - (BOOL)canSelectPrevItem;
 - (BOOL)canSelectNextItem;

@@ -71,6 +71,8 @@ static const NSTimeInterval kDuration = 0.12;
 // ------------------------------------------------------
 {
     _textView = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -87,6 +89,12 @@ static const NSTimeInterval kDuration = 0.12;
     [[self outlineMenu] setHidden:YES];
     
     [[self outlineIndicator] setUsesThreadedAnimation:YES];
+    
+    // observe text selection change to update outline menu selection
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(invalidateOutlineMenuSelection)
+                                                 name:NSTextViewDidChangeSelectionNotification
+                                               object:[self textView]];
 }
 
 
@@ -184,36 +192,7 @@ static const NSTimeInterval kDuration = 0.12;
         [menu addItem:menuItem];
     }
     
-    [self selectOutlineMenuItemWithRange:[[self textView] selectedRange]];
-}
-
-
-// ------------------------------------------------------
-/// set outline menu selection
-- (void)selectOutlineMenuItemWithRange:(NSRange)range
-// ------------------------------------------------------
-{
-    if (![[self outlineMenu] isEnabled]) { return; }
-    if ([[[self outlineMenu] menu] numberOfItems] == 0) { return; }
-    
-    __block NSInteger index = 0;
-    [[[[self outlineMenu] menu] itemArray] enumerateObjectsWithOptions:NSEnumerationReverse
-                                                            usingBlock:^(NSMenuItem * _Nonnull menuItem,
-                                                                         NSUInteger idx,
-                                                                         BOOL * _Nonnull stop)
-    {
-        if ([menuItem isSeparatorItem]) { return; }
-        
-        NSRange itemRange = [[menuItem representedObject] rangeValue];
-        
-        if (itemRange.location <= range.location) {
-            index = idx;
-            *stop = YES;
-        }
-    }];
-    
-    [[self outlineMenu] selectItemAtIndex:index];
-    [self updatePrevNextButtonEnabled];
+    [self invalidateOutlineMenuSelection];
 }
 
 
@@ -339,6 +318,39 @@ static const NSTimeInterval kDuration = 0.12;
         }
     }
     [[[self outlineMenu] menu] performActionForItemAtIndex:targetIndex];
+}
+
+
+
+#pragma mark Private Methods
+
+// ------------------------------------------------------
+/// set outline menu selection
+- (void)invalidateOutlineMenuSelection
+// ------------------------------------------------------
+{
+    if (![[self outlineMenu] isEnabled]) { return; }
+    if ([[[self outlineMenu] menu] numberOfItems] == 0) { return; }
+    
+    NSRange range = [[self textView] selectedRange];
+    __block NSInteger index = 0;
+    [[[[self outlineMenu] menu] itemArray] enumerateObjectsWithOptions:NSEnumerationReverse
+                                                            usingBlock:^(NSMenuItem * _Nonnull menuItem,
+                                                                         NSUInteger idx,
+                                                                         BOOL * _Nonnull stop)
+     {
+         if ([menuItem isSeparatorItem]) { return; }
+         
+         NSRange itemRange = [[menuItem representedObject] rangeValue];
+         
+         if (itemRange.location <= range.location) {
+             index = idx;
+             *stop = YES;
+         }
+     }];
+    
+    [[self outlineMenu] selectItemAtIndex:index];
+    [self updatePrevNextButtonEnabled];
 }
 
 @end
