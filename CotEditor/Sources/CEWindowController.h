@@ -43,6 +43,5 @@
 // Action Messages
 - (IBAction)getInfo:(nullable id)sender;
 - (IBAction)toggleIncompatibleCharList:(nullable id)sender;
-- (IBAction)toggleStatusBar:(nullable id)sender;
 
 @end

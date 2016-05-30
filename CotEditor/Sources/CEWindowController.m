@@ -30,7 +30,6 @@
 #import "CEWindow.h"
 #import "CEDocument.h"
 #import "CEToolbarController.h"
-#import "CEStatusBarController.h"
 #import "CEIncompatibleCharsViewController.h"
 #import "CEEditorWrapper.h"
 #import "CEDocumentAnalyzer.h"
@@ -52,7 +51,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 
 // IBOutlets
 @property (nonatomic, nullable) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, nullable) IBOutlet CEStatusBarController *statusBarController;
 @property (nonatomic, nullable) IBOutlet NSViewController *documentInspectorViewController;
 @property (nonatomic, nullable) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
@@ -120,9 +118,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
     [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
     
-    // setup status bar
-    [[self statusBarController] setShown:[defaults boolForKey:CEDefaultShowStatusBarKey] animate:NO];
-    
     [self applyDocument:[self document]];
     
     // apply document state to UI
@@ -133,27 +128,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
                                             forKeyPath:CEDefaultWindowAlphaKey
                                                options:NSKeyValueObservingOptionNew
                                                context:nil];
-}
-
-
-
-#pragma mark Protocol
-
-//=======================================================
-// NSMenuValidation Protocol
-//=======================================================
-
-// ------------------------------------------------------
-/// validate menu items
-- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    if ([menuItem action] == @selector(toggleStatusBar:)) {
-        NSString *title = [[self statusBarController] isShown] ? @"Hide Status Bar" : @"Show Status Bar";
-        [menuItem setTitle:NSLocalizedString(title, nil)];
-    }
-    
-    return YES;
 }
 
 
@@ -197,7 +171,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 - (void)window:(nonnull NSWindow *)window willEncodeRestorableState:(nonnull NSCoder *)state
 // ------------------------------------------------------
 {
-    [state encodeBool:[[self statusBarController] isShown] forKey:CEDefaultShowStatusBarKey];
+    [state encodeBool:[[self editor] showsStatusBar] forKey:CEDefaultShowStatusBarKey];
     [state encodeBool:[[self editor] showsNavigationBar] forKey:CEDefaultShowNavigationBarKey];
     [state encodeBool:[[self editor] showsLineNum] forKey:CEDefaultShowLineNumbersKey];
     [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
@@ -214,7 +188,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 // ------------------------------------------------------
 {
     if ([state containsValueForKey:CEDefaultShowStatusBarKey]) {
-        [[self statusBarController] setShown:[state decodeBoolForKey:CEDefaultShowStatusBarKey] animate:NO];
+        [[self editor] setShowsStatusBar:[state decodeBoolForKey:CEDefaultShowStatusBarKey] animate:NO];
     }
     if ([state containsValueForKey:CEDefaultShowNavigationBarKey]) {
         [[self editor] setShowsNavigationBar:[state decodeBoolForKey:CEDefaultShowNavigationBarKey] animate:NO];
@@ -283,7 +257,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 - (IBAction)getInfo:(nullable id)sender
 // ------------------------------------------------------
 {
-    if ([self isDocumentInspectorShown]) {
+    if ([self isSidebarShown] && [self selectedSidebarTag] == CEDocumentInspectorTag) {
         [self setSidebarShown:NO];
     } else {
         [self setSelectedSidebarTag:CEDocumentInspectorTag];
@@ -306,15 +280,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
 }
 
 
-// ------------------------------------------------------
-/// toggle visibility of status bar
-- (IBAction)toggleStatusBar:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[self statusBarController] setShown:![[self statusBarController] isShown] animate:YES];
-}
-
-
 
 #pragma mark Private Methods
 
@@ -331,8 +296,15 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     // set document instance to sidebar views
     [[self incompatibleCharsViewController] setScanner:[document incompatibleCharacterScanner]];
     [[self documentInspectorViewController] setRepresentedObject:[document analyzer]];
-    
-    [[self statusBarController] setDocumentAnalyzer:[document analyzer]];
+}
+
+
+// ------------------------------------------------------
+/// return whether sidebar is opened
+- (BOOL)isSidebarShown
+// ------------------------------------------------------
+{
+    return ![[self sidebarSplitView] isSubviewCollapsed:[self sidebar]];
 }
 
 
@@ -372,24 +344,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTag) {
     if (shown) {
         [[[self document] analyzer] setNeedsUpdateEditorInfo:shown];
     }
-}
-
-
-// ------------------------------------------------------
-/// return whether sidebar is opened
-- (BOOL)isSidebarShown
-// ------------------------------------------------------
-{
-    return ![[self sidebarSplitView] isSubviewCollapsed:[self sidebar]];
-}
-
-
-// ------------------------------------------------------
-/// return whether document inspector is shown
-- (BOOL)isDocumentInspectorShown
-// ------------------------------------------------------
-{
-    return ([self selectedSidebarTag] == CEDocumentInspectorTag && [self isSidebarShown]);
 }
 
 

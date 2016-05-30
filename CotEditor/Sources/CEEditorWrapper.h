@@ -46,6 +46,7 @@
 
 // readonly
 @property (readonly, nonatomic, nullable) CETextView *focusedTextView;
+@property (readonly, nonatomic) BOOL showsStatusBar;
 @property (readonly, nonatomic) BOOL showsNavigationBar;
 
 
@@ -53,6 +54,9 @@
 
 - (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges;
 - (void)clearAllMarkup;
+
+// status bar
+- (void)setShowsStatusBar:(BOOL)showsStatusBar animate:(BOOL)performAnimation;
 
 // navigation bar
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
@@ -66,6 +70,7 @@
 
 #pragma mark Action Messages
 
+- (IBAction)toggleStatusBar:(nullable id)sender;
 - (IBAction)toggleLineNumber:(nullable id)sender;
 - (IBAction)toggleNavigationBar:(nullable id)sender;
 - (IBAction)toggleLineWrap:(nullable id)sender;
