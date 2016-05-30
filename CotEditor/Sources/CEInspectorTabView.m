@@ -60,7 +60,7 @@ static const CGFloat kControlHeight = 28;
         _segmentedControl = [[NSSegmentedControl alloc] init];
         [_segmentedControl setCell:[[CESwitcherSegmentedCell alloc] init]];
         [_segmentedControl setSegmentStyle:NSSegmentStyleTexturedSquare];
-        [_segmentedControl setFrameOrigin:NSMakePoint(0, 2)];
+        [_segmentedControl setFrameOrigin:NSMakePoint(0, floor((kControlHeight - [_segmentedControl intrinsicContentSize].height) / 2))];
         [_segmentedControl setAction:@selector(selectTabViewItemWithSegmentedControl:)];
         [_segmentedControl setTarget:self];
         [self addSubview:_segmentedControl];

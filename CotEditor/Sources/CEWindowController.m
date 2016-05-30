@@ -36,10 +36,6 @@
 
 
 // sidebar mode
-typedef NS_ENUM(NSUInteger, CESidebarTag) {
-    CEDocumentInspectorTag = 1,
-    CEIncompatibleCharsTag,
-};
 typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
     CESidebarTabIndexDocumentInspector = 0,
     CESidebarTabIndexIncompatibleChararacters,
@@ -266,14 +262,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 - (IBAction)getInfo:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSUInteger currentIndex = [[self sidebar] indexOfTabViewItem:[[self sidebar] selectedTabViewItem]];
-    
-    if ([self isSidebarShown] && currentIndex == CESidebarTabIndexDocumentInspector) {
-        [self setSidebarShown:NO];
-    } else {
-        [[self sidebar] selectTabViewItemAtIndex:CESidebarTabIndexDocumentInspector];
-        [self setSidebarShown:YES];
-    }
+    [self toggleVisibilityOfSidebarTabItemAtIndex:CESidebarTabIndexDocumentInspector];
 }
 
 
@@ -282,14 +271,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 - (IBAction)toggleIncompatibleCharList:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSUInteger currentIndex = [[self sidebar] indexOfTabViewItem:[[self sidebar] selectedTabViewItem]];
-    
-    if ([self isSidebarShown] && currentIndex == CESidebarTabIndexIncompatibleChararacters) {
-        [self setSidebarShown:NO];
-    } else {
-        [[self sidebar] selectTabViewItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
-        [self setSidebarShown:YES];
-    }
+    [self toggleVisibilityOfSidebarTabItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
 }
 
 
@@ -350,6 +332,22 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
     // apply
     [[self sidebarSplitView] setPosition:position ofDividerAtIndex:0];
     [[self sidebarSplitView] adjustSubviews];
+}
+
+
+// ------------------------------------------------------
+/// toggle visibility of pane in sidebar
+- (void)toggleVisibilityOfSidebarTabItemAtIndex:(CESidebarTabIndex)index
+// ------------------------------------------------------
+{
+    NSUInteger currentIndex = [[self sidebar] indexOfTabViewItem:[[self sidebar] selectedTabViewItem]];
+    
+    if ([self isSidebarShown] && currentIndex == index) {
+        [self setSidebarShown:NO];
+    } else {
+        [[self sidebar] selectTabViewItemAtIndex:index];
+        [self setSidebarShown:YES];
+    }
 }
 
 @end
