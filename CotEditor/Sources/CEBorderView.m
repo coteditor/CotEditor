@@ -95,10 +95,6 @@
 - (nonnull NSColor *)borderColor
 // ------------------------------------------------------
 {
-    if (NSAppKitVersionNumber < NSAppKitVersionNumber10_10) {
-        return [NSColor windowFrameColor];
-    }
-    
     BOOL increasesContrast = [[NSWorkspace sharedWorkspace] accessibilityDisplayShouldIncreaseContrast];
     
     return increasesContrast ? [NSColor gridColor] : [NSColor windowFrameColor];

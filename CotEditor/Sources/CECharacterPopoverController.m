@@ -85,14 +85,7 @@
             }
         }
         _unicode = [unicode copy];
-        
-        static NSColor *labelColor;
-        if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
-            labelColor = [NSColor labelColor];
-        } else {
-            labelColor = [NSColor colorWithCalibratedWhite:0.0 alpha:0.85];
-        }
-        _characterColor = [characterInfo pictureString] ? [NSColor colorWithWhite:0.0 alpha:0.1] : labelColor;
+        _characterColor = [characterInfo pictureString] ? [NSColor colorWithWhite:0.0 alpha:0.1] : [NSColor labelColor];
     }
     return self;
 }

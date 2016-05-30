@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -59,10 +59,8 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
         // make sure window title bar (incl. toolbar) is opaque
         //   -> It's actucally a bit dirty way but practically works well.
         //      Without this tweak, the title bar will be dyed in the background color on El Capitan. (2016-01 by 1024p)
-        if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
-            NSView *windowTitleView = [[self standardWindowButton:NSWindowCloseButton] superview];
-            [[windowTitleView layer] setBackgroundColor:[[NSColor windowBackgroundColor] CGColor]];
-        }
+        NSView *windowTitleView = [[self standardWindowButton:NSWindowCloseButton] superview];
+        [[windowTitleView layer] setBackgroundColor:[[NSColor windowBackgroundColor] CGColor]];
         
         // observe toggling fullscreen
         [[NSNotificationCenter defaultCenter] addObserver:self

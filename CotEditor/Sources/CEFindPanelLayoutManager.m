@@ -73,13 +73,7 @@
         NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
         NSSize inset = [textView textContainerInset];
         
-        NSColor *color;
-        if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
-            color = [NSColor tertiaryLabelColor];
-        } else {
-            color = [NSColor colorWithCalibratedWhite:0.0 alpha:0.25];
-        }
-        
+        NSColor *color = [NSColor tertiaryLabelColor];
         NSFont *font = [[self firstTextView] font];
         NSDictionary<NSString *, id> *attributes = @{NSFontAttributeName: font,
                                                      NSForegroundColorAttributeName: color};

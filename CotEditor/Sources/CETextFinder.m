@@ -879,11 +879,9 @@ static const NSUInteger kMaxHistorySize = 20;
         [textView showFindIndicatorForRange:foundRange];
         
         if (isWrapped) {
-            if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_10) {
-                CEHUDController *HUDController = [[CEHUDController alloc] initWithSymbolName:CEWrapSymbolName];
-                [HUDController setReversed:!forward];
-                [HUDController showInView:[[textView enclosingScrollView] superview]];
-            }
+            CEHUDController *HUDController = [[CEHUDController alloc] initWithSymbolName:CEWrapSymbolName];
+            [HUDController setReversed:!forward];
+            [HUDController showInView:[[textView enclosingScrollView] superview]];
         }
     } else {
         NSBeep();

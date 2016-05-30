@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -134,9 +134,7 @@ NSString *_Nonnull const SharingServiceNameAddToRemainder = @"com.apple.reminder
     for (NSSharingService *service in [NSSharingService sharingServicesForItems:items]) {
         if ([excludingServices containsObject:service]) { continue; }
         
-        if (NSAppKitVersionNumber >= NSAppKitVersionNumber10_9) {
-            [service setSubject:displayName];
-        }
+        [service setSubject:displayName];
         
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:[service title]
                                                       action:@selector(shareFromService:)
