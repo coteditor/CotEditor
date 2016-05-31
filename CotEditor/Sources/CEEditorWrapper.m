@@ -44,6 +44,7 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
+#import "NSTextView+CELayout.h"
 #import "NSString+CENewLine.h"
 #import "NSString+CERange.h"
 #import "NSString+Indentation.h"
@@ -490,7 +491,7 @@
     _wrapsLines = wrapsLines;
     
     [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [viewController setWrapsLines:wrapsLines];
+        [[viewController textView] setWrapsLines:wrapsLines];
     }];
 }
 
@@ -819,7 +820,7 @@
     
     [editorViewController setShowsLineNum:[self showsLineNum]];
     [editorViewController setShowsNavigationBar:[self showsNavigationBar] animate:NO];
-    [editorViewController setWrapsLines:[self wrapsLines]];
+    [[editorViewController textView] setWrapsLines:[self wrapsLines]];
     [[editorViewController textView] setShowsInvisibles:[self showsInvisibles]];
     [[editorViewController textView] setLayoutOrientation:([self isVerticalLayoutOrientation] ?
                                                            NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal)];

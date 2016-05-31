@@ -47,7 +47,6 @@
 // Public method
 - (void)setShowsLineNum:(BOOL)showsLineNum;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
-- (void)setWrapsLines:(BOOL)wrapsLines;
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle;
 
 // action messages

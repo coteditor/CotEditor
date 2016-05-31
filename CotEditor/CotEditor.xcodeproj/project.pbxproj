@@ -389,6 +389,8 @@
 		2ADD36931CFCABA400F3175D /* CEDocumentInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36911CFCABA400F3175D /* CEDocumentInspectorViewController.m */; };
 		2ADD36971CFCAD6B00F3175D /* CEInspectorTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36961CFCAD6B00F3175D /* CEInspectorTabView.m */; };
 		2ADD36981CFCAD6B00F3175D /* CEInspectorTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36961CFCAD6B00F3175D /* CEInspectorTabView.m */; };
+		2ADD36B41CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */; };
+		2ADD36B51CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */; };
 		2AE0C08F1C422A5200E52E04 /* CETextView+Transformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */; };
 		2AE0C0901C422A5200E52E04 /* CETextView+Transformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */; };
 		2AE0C0931C422DFA00E52E04 /* CETextView+Commenting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C0921C422DFA00E52E04 /* CETextView+Commenting.m */; };
@@ -923,6 +925,8 @@
 		2ADD36911CFCABA400F3175D /* CEDocumentInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEDocumentInspectorViewController.m; sourceTree = "<group>"; };
 		2ADD36951CFCAD6B00F3175D /* CEInspectorTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEInspectorTabView.h; sourceTree = "<group>"; };
 		2ADD36961CFCAD6B00F3175D /* CEInspectorTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEInspectorTabView.m; sourceTree = "<group>"; };
+		2ADD36B21CFD6C3C00F3175D /* NSTextView+CELayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+CELayout.h"; sourceTree = "<group>"; };
+		2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+CELayout.m"; sourceTree = "<group>"; };
 		2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CETextView+Transformation.m"; sourceTree = "<group>"; };
 		2AE0C0921C422DFA00E52E04 /* CETextView+Commenting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CETextView+Commenting.m"; sourceTree = "<group>"; };
 		2AE0C0951C422F3300E52E04 /* NSTextView+CETextReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+CETextReplacement.h"; sourceTree = "<group>"; };
@@ -1497,6 +1501,8 @@
 				2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */,
 				2AE0C0951C422F3300E52E04 /* NSTextView+CETextReplacement.h */,
 				2AE0C0961C422F3300E52E04 /* NSTextView+CETextReplacement.m */,
+				2ADD36B21CFD6C3C00F3175D /* NSTextView+CELayout.h */,
+				2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */,
 				8C65C0E507927D0F0028D94A /* CELayoutManager.h */,
 				8C65C0E607927D0F0028D94A /* CELayoutManager.m */,
 				8C83A48009485F27004E48A8 /* CEATSTypesetter.h */,
@@ -2356,6 +2362,7 @@
 				2AF587401CF76FFB009D44A2 /* NSString+CEAdditions.m in Sources */,
 				2A6F0DBA1B5500E100C2D03C /* CEDraggableArrayController.m in Sources */,
 				2A6F0DBB1B5500E100C2D03C /* CEToolbarController.m in Sources */,
+				2ADD36B51CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */,
 				2A6F0DBC1B5500E100C2D03C /* CETextSelection.m in Sources */,
 				2A6F0DBD1B5500E100C2D03C /* CEDocument+ScriptingSupport.m in Sources */,
 				2A6F0DBE1B5500E100C2D03C /* CEFindPanelTextView.m in Sources */,
@@ -2596,6 +2603,7 @@
 				2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */,
 				2AB432741915D6AA00835004 /* NSString+CECounting.m in Sources */,
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,
+				2ADD36B41CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */,
 				2ACC65281C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */,
 				2A41CB3D1C3906BA00F9122B /* CEInvisibles.m in Sources */,
 				2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */,

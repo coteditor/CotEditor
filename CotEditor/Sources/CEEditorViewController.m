@@ -186,39 +186,6 @@
 
 
 // ------------------------------------------------------
-/// ラップする／しないを切り替える
-- (void)setWrapsLines:(BOOL)wrapsLines
-// ------------------------------------------------------
-{
-    NSTextView *textView = [self textView];
-    BOOL isVertical = ([textView layoutOrientation] == NSTextLayoutOrientationVertical);
-    
-    // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
-    if (isVertical) {
-        [textView setLayoutOrientation:NSTextLayoutOrientationHorizontal];
-    }
-    
-    [[textView enclosingScrollView] setHasHorizontalScroller:!wrapsLines];
-    [[textView textContainer] setWidthTracksTextView:wrapsLines];
-    if (wrapsLines) {
-        NSSize contentSize = [[textView enclosingScrollView] contentSize];
-        CGFloat scale = [textView convertSize:NSMakeSize(1.0, 1.0) toView:nil].width;
-        [[textView textContainer] setContainerSize:NSMakeSize(contentSize.width / scale, CGFLOAT_MAX)];
-        [textView setConstrainedFrameSize:contentSize];
-    } else {
-        [[textView textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
-    }
-    [textView setAutoresizingMask:(wrapsLines ? NSViewWidthSizable : NSViewNotSizable)];
-    [textView setHorizontallyResizable:!wrapsLines];
-    
-    // 縦書きモードの際は改めて縦書きにする
-    if (isVertical) {
-        [textView setLayoutOrientation:NSTextLayoutOrientationVertical];
-    }
-}
-
-
-// ------------------------------------------------------
 /// シンタックススタイルを設定
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle
 // ------------------------------------------------------

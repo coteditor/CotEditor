@@ -40,7 +40,7 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
-#import "CEGeometry.h"
+#import "NSTextView+CELayout.h"
 #import "NSString+CECounting.h"
 #import "NSString+CEEncoding.h"
 #import "NSFont+CESize.h"
@@ -1948,88 +1948,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
     
     [self setScaleKeepingVisibleArea:1.0];
-}
-
-
-
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// get current zooming scale
-- (CGFloat)scale
-// ------------------------------------------------------
-{
-    // cf. https://developer.apple.com/library/mac/qa/qa1346/_index.html
-    return [self convertSize:NSMakeSize(1.0, 1.0) toView:nil].width;
-}
-
-
-// ------------------------------------------------------
-/// zoom to the passed-in scale
-- (void)setScale:(CGFloat)scale
-// ------------------------------------------------------
-{
-    // sanitize scale
-    scale = MAX(0.25, MIN(scale, 4.0));
-    
-    // scale
-    [self scaleUnitSquareToSize:[self convertSize:NSMakeSize(1.0, 1.0) fromView:nil]];  // reset
-    [self scaleUnitSquareToSize:NSMakeSize(scale, scale)];
-    
-    // ensure bounds origin is {0, 0} for vertical text orientation
-    [self setNeedsDisplay:YES];
-    [self translateOriginToPoint:[self bounds].origin];
-    
-    // reset minimum size for unwrap mode
-    [self setMinSize:CEScaleSize([[self enclosingScrollView] contentSize], 1.0 / scale)];
-    
-    // ensure text layout
-    [[self layoutManager] ensureLayoutForCharacterRange:NSMakeRange(0, [[self string] length])];
-    [[self layoutManager] ensureLayoutForTextContainer:[self textContainer]];
-    [self sizeToFit];
-    
-    // dummy reselection to force redrawing current line highlight
-    [self setSelectedRanges:[self selectedRanges]];
-}
-
-
-// ------------------------------------------------------
-/// zoom to the scale keeping passed-in point position in scroll view
-- (void)setScale:(CGFloat)scale centeredAtPoint:(NSPoint)point
-// ------------------------------------------------------
-{
-    if (scale == [self scale]) { return; }
-    
-    // store current coordinate
-    NSUInteger centerGlyphIndex = [[self layoutManager] glyphIndexForPoint:point inTextContainer:[self textContainer]];
-    CGFloat currentScale = [self scale];
-    BOOL isVertical = [self layoutOrientation] == NSTextLayoutOrientationVertical;
-    NSRect visibleRect = [[self enclosingScrollView] documentVisibleRect];
-    NSPoint visibleOrigin = NSMakePoint(NSMinX(visibleRect),
-                                        isVertical ? NSMaxY(visibleRect) : NSMinY(visibleRect));
-    NSPoint centerFromClipOrigin = CEScalePoint(NSMakePoint(point.x - visibleOrigin.x,
-                                                            point.y - visibleOrigin.y), currentScale);  // from top-left
-    
-    [self setScale:scale];
-    
-    // adjust scroller to keep position of the glyph at the passed-in center point
-    if ([self scale] != currentScale) {
-        centerFromClipOrigin = CEScalePoint(centerFromClipOrigin, 1.0 / scale);
-        NSRect newCenter = [[self layoutManager] boundingRectForGlyphRange:NSMakeRange(centerGlyphIndex, 1)
-                                                           inTextContainer:[self textContainer]];
-        NSPoint scrollPoint = NSMakePoint(round(point.x - centerFromClipOrigin.x),
-                                          round(NSMidY(newCenter) - centerFromClipOrigin.y));
-        [self scrollPoint:scrollPoint];
-    }
-}
-
-
-// ------------------------------------------------------
-/// zoom to the scale keeping current visible rect position in scroll view
-- (void)setScaleKeepingVisibleArea:(CGFloat)scale
-// ------------------------------------------------------
-{
-    [self setScale:scale centeredAtPoint:CEMidInRect([self visibleRect])];
 }
 
 @end
