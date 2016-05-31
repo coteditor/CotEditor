@@ -34,6 +34,8 @@
 #import "CEErrors.h"
 #import "CEDefaults.h"
 
+#import "NSString+CENewLine.h"
+
 
 // keys for Find All result
 NSString * _Nonnull const CEFindResultRange = @"range";
@@ -796,8 +798,7 @@ static const NSUInteger kMaxHistorySize = 20;
 - (NSString *)sanitizedFindString
 // ------------------------------------------------------
 {
-    return [OGRegularExpression replaceNewlineCharactersInString:[self findString]
-                                                   withCharacter:OgreLfNewlineCharacter];
+    return [[self findString] stringByReplacingNewLineCharacersWith:CENewLineLF];
 }
 
 
