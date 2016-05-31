@@ -33,8 +33,6 @@
 #import "CESyntaxStyle.h"
 #import "CEEncodingManager.h"
 
-#import <OgreKit/OgreKit.h>
-
 
 @implementation CEDocument (ScriptingSupport)
 
@@ -335,20 +333,11 @@
                                   wholeLength - NSMaxRange(selectedRange));
     }
     
-    // set option
-    NSUInteger option = 0;
-    if (ignoresCase) {
-        option |= isRegex ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
-    }
-    if (isBackwards) {
-        option |= NSBackwardsSearch;
-    }
-    
     // perform find
-    BOOL success = [self doFind:searchString range:targetRange option:option withRegularExpression:isRegex];
+    BOOL success = [self find:searchString withRegularExpression:isRegex ignoresCase:ignoresCase backwards:isBackwards range:targetRange];
     if (!success && isWrapSearch) {
         targetRange = NSMakeRange(0, wholeLength);
-        success = [self doFind:searchString range:targetRange option:option withRegularExpression:isRegex];
+        success = [self find:searchString withRegularExpression:isRegex ignoresCase:ignoresCase backwards:isBackwards range:targetRange];
     }
     
     return @(success);
@@ -394,25 +383,21 @@
         }
     }
     
-    // set option
-    NSUInteger option = 0;
-    if (ignoresCase) {
-        option |= isRegex ? OgreIgnoreCaseOption : NSCaseInsensitiveSearch;
-    }
-    if (isBackwards) {
-        option |= NSBackwardsSearch;
-    }
-    
     // perform replacement
     NSInteger numberOfReplacements = 0;
     if (isAll) {
         NSMutableString *newWholeString = [wholeString mutableCopy];
         if (isRegex) {
-            numberOfReplacements = [newWholeString replaceOccurrencesOfRegularExpressionString:searchString
-                                                                                    withString:replacementString options:option range:targetRange];
+            NSRegularExpressionOptions options = (ignoresCase ? NSRegularExpressionCaseInsensitive : 0);
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:searchString options:options error:nil];
+            numberOfReplacements = [regex replaceMatchesInString:newWholeString options:0 range:targetRange withTemplate:replacementString];
+            
         } else {
-            numberOfReplacements = [newWholeString replaceOccurrencesOfString:searchString
-                                                                   withString:replacementString options:option range:targetRange];
+            NSStringCompareOptions options = ((ignoresCase ? NSCaseInsensitiveSearch : 0) |
+                                              (isBackwards ? NSBackwardsSearch : 0));
+            numberOfReplacements = [newWholeString replaceOccurrencesOfString:searchString withString:replacementString
+                                                                      options:options
+                                                                        range:targetRange];
         }
         if (numberOfReplacements > 0) {
             [[self editor] replaceTextViewAllStringWithString:newWholeString];
@@ -420,10 +405,10 @@
         }
         
     } else {
-        BOOL success = [self doFind:searchString range:targetRange option:option withRegularExpression:isRegex];
+        BOOL success = [self find:searchString withRegularExpression:isRegex ignoresCase:ignoresCase backwards:isBackwards range:targetRange];
         if (!success && isWrapSearch) {
             targetRange = NSMakeRange(0, wholeLength);
-            success = [self doFind:searchString range:targetRange option:option withRegularExpression:isRegex];
+            success = [self find:searchString withRegularExpression:isRegex ignoresCase:ignoresCase backwards:isBackwards range:targetRange];
         }
         if (success) {
             [[self selection] setContents:replacementString];  // CETextSelection's `setContents:` accepts also NSString for its argument
@@ -470,22 +455,19 @@
 
 // ------------------------------------------------------
 /// find string, select if found and return whether succeed
-- (BOOL)doFind:(NSString *)searchString range:(NSRange)range option:(unsigned)option withRegularExpression:(BOOL)isRegex
+- (BOOL)find:(NSString *)searchString withRegularExpression:(BOOL)isRegex ignoresCase:(BOOL)ignoresCase backwards:(BOOL)isBackwards range:(NSRange)range
 // ------------------------------------------------------
 {
-    NSString *wholeString = [self string];
-    NSRange searchedRange;
-
-    if (isRegex) {
-        searchedRange = [wholeString rangeOfRegularExpressionString:searchString options:option range:range];
-    } else {
-        searchedRange = [wholeString rangeOfString:searchString options:option range:range];
-    }
-    if (searchedRange.location != NSNotFound) {
-        [[self editor] setSelectedRange:searchedRange];
-        return YES;
-    }
-    return NO;
+    NSRange foundRange = [[self string] rangeOfString:searchString
+                                              options:((isRegex ? NSRegularExpressionSearch : 0) |
+                                                       (ignoresCase ? NSCaseInsensitiveSearch : 0) |
+                                                       (isBackwards ? NSBackwardsSearch : 0))
+                                                range:range];
+    
+    if (foundRange.location == NSNotFound) { return NO; }
+    
+    [[self editor] setSelectedRange:foundRange];
+    return YES;
 }
 
 @end
