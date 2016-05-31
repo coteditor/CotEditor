@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEFindPanelController">
@@ -136,7 +135,7 @@
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
-                                            <binding destination="qZS-yd-wpm" name="value" keyPath="ignoreCaseOption" id="oPb-wi-vgp"/>
+                                            <binding destination="1KP-j4-l6E" name="value" keyPath="values.findIgnoresCase" id="zw6-SF-hib"/>
                                         </connections>
                                     </button>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ybT-sQ-Vn5" userLabel="Recent Searches">
@@ -550,7 +549,7 @@
                 <outlet property="delegate" destination="-2" id="SVT-4d-mbL"/>
             </connections>
         </popover>
-        <viewController nibName="" id="49v-VK-h0w" userLabel="Preferences View Controller" customClass="CEFindPreferencesViewController"/>
+        <viewController nibName="FindPreferencesView" id="49v-VK-h0w" userLabel="Preferences View Controller"/>
         <popover appearance="aqua" behavior="t" id="00C-j6-lNt">
             <connections>
                 <outlet property="contentViewController" destination="49v-VK-h0w" id="12W-Vg-o60"/>

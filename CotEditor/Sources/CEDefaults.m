@@ -140,13 +140,20 @@ NSString *_Nonnull const CEDefaultSecondaryFooterAlignmentKey = @"footerTwoAlign
 // find panel
 NSString *_Nonnull const CEDefaultFindHistoryKey = @"findHistory";
 NSString *_Nonnull const CEDefaultReplaceHistoryKey = @"replaceHistory";
-NSString *_Nonnull const CEDefaultFindRegexSyntaxKey = @"findRegexSynatx";
 NSString *_Nonnull const CEDefaultFindUsesRegularExpressionKey = @"findUsesRegularExpression";
+NSString *_Nonnull const CEDefaultFindIgnoresCaseKey = @"findIgnoresCase";
 NSString *_Nonnull const CEDefaultFindInSelectionKey = @"findInSelection";
 NSString *_Nonnull const CEDefaultFindIsWrapKey = @"findIsWrap";
 NSString *_Nonnull const CEDefaultFindNextAfterReplaceKey = @"findsNextAfterReplace";
-NSString *_Nonnull const CEDefaultFindOptionsKey = @"findOptions";
 NSString *_Nonnull const CEDefaultFindClosesIndicatorWhenDoneKey = @"findClosesIndicatorWhenDone";
+
+NSString *_Nonnull const CEDefaultFindTextDelimitsByWhitespaceKey = @"findTextDelimitsByWhitespace";
+NSString *_Nonnull const CEDefaultFindTextIsLiteralSearchKey = @"findTextIsLiteralSearch";
+NSString *_Nonnull const CEDefaultFindTextIgnoresDiacriticMarksKey = @"findTextIgnoresDiacriticMarks";
+NSString *_Nonnull const CEDefaultFindTextIgnoresWidthKey = @"findTextIgnoresWidth";
+NSString *_Nonnull const CEDefaultFindRegexIsSinglelineKey = @"findRegexIsSingleline";
+NSString *_Nonnull const CEDefaultFindRegexIsMultilineKey = @"findRegexIsMultiline";
+NSString *_Nonnull const CEDefaultFindRegexUsesUnicodeBoundariesKey = @"regexUsesUnicodeBoundaries";
 
 // settings that are not in preferences
 NSString *_Nonnull const CEDefaultColorCodeTypeKey = @"colorCodeType";

@@ -44,6 +44,23 @@
 
 /* Class = "NSButtonCell"; title = "Delimit by whitespace"; ObjectID = "3mQ-og-LXu"; */
 "3mQ-og-LXu.title" = "Mit Leerzeichen trennen";
+/* Class = "NSButton"; ibShadowedToolTip = "Match any of words delimited by whitespaces."; ObjectID = "qNL-l2-IA2"; */
+"qNL-l2-IA2.ibShadowedToolTip" = "Jede von durch Leerzeichen getrennten Wörtern passen.";
+
+/* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "mY4-am-wla"; */
+"mY4-am-wla.title" = "Zeichen streng unterscheiden";
+/* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "KG4-LQ-sen"; */
+"KG4-LQ-sen.ibShadowedToolTip" = "Äquivalenz Zeichen für Zeichen vergleichen.";
+
+/* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "OUc-5d-N7I"; */
+"OUc-5d-N7I.title" = "Diakritische Zeichen ignorieren";
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "YYY-qb-T00"; */
+"YYY-qb-T00.ibShadowedToolTip" = "Suche ignoriert diakritische Zeichen (z.B. ö = o).";
+
+/* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "Jug-Dk-JMZ"; */
+"Jug-Dk-JMZ.title" = "Breiteunterschied ignorieren";
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (ex. ａ = a)."; ObjectID = "A5O-jt-o7T"; */
+"A5O-jt-o7T.ibShadowedToolTip" = "Suche ignoriert den Unterschied der Breite der Zeichenform (z.B. ａ = a).";
 
 
 // Regular Expression
@@ -51,47 +68,17 @@
 /* Class = "NSTextFieldCell"; title = "Regular Expression"; ObjectID = "Xa9-i4-ELR"; */
 "Xa9-i4-ELR.title" = "Regulären Ausdruck";
 
-/* Class = "NSTextFieldCell"; title = "Syntax:"; ObjectID = "MvA-iq-o2S"; */
-"MvA-iq-o2S.title" = "Syntax:";
-/* Class = "NSMenuItem"; title = "Ruby"; ObjectID = "k4a-ql-TV8"; */
-"k4a-ql-TV8.title" = "Ruby";
-/* Class = "NSMenuItem"; title = "POSIX Basic"; ObjectID = "XXk-aG-HmM"; */
-"XXk-aG-HmM.title" = "POSIX Basic";
-/* Class = "NSMenuItem"; title = "POSIX Extended"; ObjectID = "Z5o-Is-Dim"; */
-"Z5o-Is-Dim.title" = "POSIX Erweitert";
-/* Class = "NSMenuItem"; title = "Emacs"; ObjectID = "vHs-3L-t8t"; */
-"vHs-3L-t8t.title" = "Emacs";
-/* Class = "NSMenuItem"; title = "Grep"; ObjectID = "lI9-hA-FUX"; */
-"lI9-hA-FUX.title" = "Grep";
-/* Class = "NSMenuItem"; title = "GNU Regex"; ObjectID = "7Lh-bm-dFh"; */
-"7Lh-bm-dFh.title" = "GNU Regex";
-/* Class = "NSMenuItem"; title = "Perl"; ObjectID = "wpF-X7-PlC"; */
-"wpF-X7-PlC.title" = "Perl";
-/* Class = "NSMenuItem"; title = "Java"; ObjectID = "3oN-JC-4BB"; */
-"3oN-JC-4BB.title" = "Java";
-/* Class = "NSMenuItem"; title = "Python"; ObjectID = "UAl-DN-REU"; */
-"UAl-DN-REU.title" = "Python";
+/* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
+"nqr-AM-oJQ.title" = "Punkt passt auf Zeilenumbruch";
+/* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "c11-J5-UXF"; */
+"c11-J5-UXF.ibShadowedToolTip" = ". auf jedes Zeichen einschließlich Zeilenumbrüchen passen lassen (singleline).";
 
-/* Class = "NSButtonCell"; title = "Single line"; ObjectID = "nqr-AM-oJQ"; */
-"nqr-AM-oJQ.title" = "Eine Zeile";
-/* Class = "NSButtonCell"; title = "Negate single line"; ObjectID = "q8J-xH-8Q3"; */
-"q8J-xH-8Q3.title" = "Eine Zeile ablehnen";
-/* Class = "NSButtonCell"; title = "Multiline"; ObjectID = "YXU-NA-BZb"; */
-"YXU-NA-BZb.title" = "Mehrere Zeilen";
-/* Class = "NSButtonCell"; title = "Extend"; ObjectID = "iMa-K7-Lhy"; */
-"iMa-K7-Lhy.title" = "Erweitern";
-/* Class = "NSButtonCell"; title = "Find longest"; ObjectID = "5oj-ch-YiX"; */
-"5oj-ch-YiX.title" = "Längstes suchen";
-/* Class = "NSButtonCell"; title = "Find not empty"; ObjectID = "uZ1-aS-LUd"; */
-"uZ1-aS-LUd.title" = "Suche nicht leer";
-/* Class = "NSButtonCell"; title = "Capture group"; ObjectID = "GMh-gg-UVh"; */
-"GMh-gg-UVh.title" = "In Gruppe sichern";
-/* Class = "NSButtonCell"; title = "Don’t capture group"; ObjectID = "xqN-fH-Reh"; */
-"xqN-fH-Reh.title" = "Kein Sichern in Gruppe";
+/* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "YXU-NA-BZb"; */
+"YXU-NA-BZb.title" = "Anker passen Zeilen";
+/* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "Lhw-9C-lgB"; */
+"Lhw-9C-lgB.ibShadowedToolTip" = "^ und $ auch auf jeden Zeilenanfang und -ende passen lassen (multiline).";
 
-/* Class = "NSButtonCell"; title = "Not begin of line"; ObjectID = "Kj6-NQ-Gk5"; */
-"Kj6-NQ-Gk5.title" = "Nicht Zeilenanfang";
-/* Class = "NSButtonCell"; title = "Not end of line"; ObjectID = "rj9-Y8-PMO"; */
-"rj9-Y8-PMO.title" = "Nicht Zeilenende";
-/* Class = "NSButtonCell"; title = "Find empty"; ObjectID = "hHc-CR-50Y"; */
-"hHc-CR-50Y.title" = "Leere Suche";
+/* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "5oj-ch-YiX"; */
+"5oj-ch-YiX.title" = "Unicode-Wortgrenzen verwenden";
+/* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "VMh-Tq-bq0"; */
+"VMh-Tq-bq0.ibShadowedToolTip" = "Unicode TR#29 verwenden, um Wortgrenzen zu spezifizieren.";
