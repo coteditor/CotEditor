@@ -192,15 +192,36 @@ static CGFontRef BoldLineNumberFont;
     CFRelease(font);
     
     // prepare frame width
-    CGFloat ruleThickness = [self ruleThickness];
-    
+    CGFloat lineNumberPadding = round(scale * kLineNumberPadding);
     BOOL isVerticalText = [self orientation] == NSHorizontalRuler;
     CGFloat tickLength = ceil(fontSize / 3);
+    
+    // adjust thickness
+    CGFloat ruleThickness = [self ruleThickness];
+    if (isVerticalText) {
+        ruleThickness = MAX(fontSize + 2.5 * tickLength, kMinHorizontalThickness);
+        
+    } else {
+        if ([self needsRecountTotalNumberOfLines]) {
+            // -> count only if really needed since the line counting is high workload, especially by large document
+            [self setTotalNumberOfLines:[string numberOfLinesInRange:NSMakeRange(0, length) includingLastNewLine:YES]];
+            [self setNeedsRecountTotalNumberOfLines:NO];
+        }
+        
+        // use the line number of whole string, namely the possible largest line number
+        // -> The view width depends on the number of digits of the total line numbers.
+        //    It's quite dengerous to change width of line number view on scrolling dynamically.
+        NSUInteger digits = MAX(numberOfDigits([self totalNumberOfLines]), kMinNumberOfDigits);
+        ruleThickness = MAX(digits * charWidth + 3 * lineNumberPadding, kMinVerticalThickness);
+    }
+    ruleThickness = ceil(ruleThickness);
+    if (ruleThickness != [self ruleThickness]) {
+        [self setRuleThickness:ruleThickness];
+    }
     
     // adjust text drawing coordinate
     NSPoint relativePoint = [self convertPoint:NSZeroPoint fromView:textView];
     NSPoint inset = [textView textContainerOrigin];
-    CGFloat lineNumberPadding = round(scale * kLineNumberPadding);
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);  // flip
     if (isVerticalText) {
         transform = CGAffineTransformTranslate(transform, round(relativePoint.x - scale * inset.y - ascent), -ruleThickness);
@@ -345,26 +366,6 @@ static CGFontRef BoldLineNumberFont;
     }
     
     CGContextRestoreGState(context);
-    
-    // adjust thickness
-    CGFloat requiredThickness;
-    if (isVerticalText) {
-        requiredThickness = MAX(fontSize + 2.5 * tickLength, kMinHorizontalThickness);
-        
-    } else {
-        if ([self needsRecountTotalNumberOfLines]) {
-            // -> count only if really needed since the line counting is high workload, especially by large document
-            [self setTotalNumberOfLines:[string numberOfLinesInRange:NSMakeRange(0, length) includingLastNewLine:YES]];
-            [self setNeedsRecountTotalNumberOfLines:NO];
-        }
-        
-        // use the line number of whole string, namely the possible largest line number
-        // -> The view width depends on the number of digits of the total line numbers.
-        //    It's quite dengerous to change width of line number view on scrolling dynamically.
-        NSUInteger digits = MAX(numberOfDigits([self totalNumberOfLines]), kMinNumberOfDigits);
-        requiredThickness = MAX(digits * charWidth + 3 * lineNumberPadding, kMinVerticalThickness);
-    }
-    [self setRuleThickness:ceil(requiredThickness)];
 }
 
 
