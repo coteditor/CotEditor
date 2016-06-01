@@ -95,9 +95,7 @@
 - (nonnull NSColor *)borderColor
 // ------------------------------------------------------
 {
-    BOOL increasesContrast = [[NSWorkspace sharedWorkspace] accessibilityDisplayShouldIncreaseContrast];
-    
-    return increasesContrast ? [NSColor gridColor] : [NSColor windowFrameColor];
+    return [NSColor tertiaryLabelColor];
 }
 
 @end

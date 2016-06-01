@@ -85,7 +85,7 @@
             }
         }
         _unicode = [unicode copy];
-        _characterColor = [characterInfo pictureString] ? [NSColor colorWithWhite:0.0 alpha:0.1] : [NSColor labelColor];
+        _characterColor = [characterInfo pictureString] ? [NSColor tertiaryLabelColor] : [NSColor labelColor];
     }
     return self;
 }

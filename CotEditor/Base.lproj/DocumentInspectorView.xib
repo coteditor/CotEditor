@@ -169,7 +169,7 @@
                                     <constraint firstAttribute="height" constant="1" id="Swy-ge-ygY"/>
                                 </constraints>
                                 <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <color key="fillColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="a1f-lJ-HVO">
                                 <rect key="frame" x="28" y="270" width="53" height="14"/>
@@ -227,7 +227,7 @@
                                     <constraint firstAttribute="height" constant="1" id="QAq-qb-0Po"/>
                                 </constraints>
                                 <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <color key="fillColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <box autoresizesSubviews="NO" borderWidth="0.0" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="G6g-V0-fD4" userLabel="Horizontal Line">
                                 <rect key="frame" x="8" y="46" width="204" height="1"/>
@@ -239,7 +239,7 @@
                                     <constraint firstAttribute="height" constant="1" id="Jrp-2o-7dj"/>
                                 </constraints>
                                 <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <color key="fillColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="alZ-aH-yTj">
                                 <rect key="frame" x="49" y="179" width="32" height="14"/>

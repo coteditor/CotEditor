@@ -54,22 +54,7 @@ static const NSTimeInterval kDuration = 0.12;
 
 @implementation CEStatusBarController
 
-static NSColor *kLabelColor;
-
-
 #pragma mark Sueprclass Methods
-
-// ------------------------------------------------------
-/// initialize class
-+ (void)initialize
-// ------------------------------------------------------
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        kLabelColor = [NSColor colorWithCalibratedWhite:0.35 alpha:1.0];
-    });
-}
-
 
 // ------------------------------------------------------
 /// clean up
@@ -288,7 +273,7 @@ static NSColor *kLabelColor;
     if (label) {
         NSString *localizedLabel = [NSString stringWithFormat:NSLocalizedString(@"%@: ", nil), NSLocalizedString(label, nil)];
         NSAttributedString *attrLabel = [[NSAttributedString alloc] initWithString:localizedLabel
-                                                                        attributes:@{NSForegroundColorAttributeName: kLabelColor}];
+                                                                        attributes:@{NSForegroundColorAttributeName: [NSColor secondaryLabelColor]}];
         [status appendAttributedString:attrLabel];
     }
     

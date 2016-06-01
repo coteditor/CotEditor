@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
-    [[NSColor lightGrayColor] set];
+    [[NSColor tertiaryLabelColor] set];
     [[NSBezierPath bezierPathWithOvalInRect:[self bounds]] fill];
 }
 
