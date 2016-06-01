@@ -298,8 +298,6 @@
 		2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF2401A573CEB00D09249 /* FindPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF23E1A573CEB00D09249 /* FindPanel.xib */; };
 		2A7CF2431A5747EC00D09249 /* CEFindPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */; };
-		2A7FD34D1C54A6F300CE8566 /* CEFindPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FD34C1C54A6F300CE8566 /* CEFindPreferencesViewController.m */; };
-		2A7FD34E1C54A6F300CE8566 /* CEFindPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FD34C1C54A6F300CE8566 /* CEFindPreferencesViewController.m */; };
 		2A7FD35A1C551C9700CE8566 /* CETableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FD3591C551C9700CE8566 /* CETableCellView.m */; };
 		2A7FD35B1C551C9700CE8566 /* CETableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FD3591C551C9700CE8566 /* CETableCellView.m */; };
 		2A80C65E1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
@@ -716,8 +714,6 @@
 		2A7CF23F1A573CEB00D09249 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FindPanel.xib; sourceTree = "<group>"; };
 		2A7CF2411A5747EC00D09249 /* CEFindPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindPanelController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindPanelController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		2A7FD34B1C54A6F300CE8566 /* CEFindPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEFindPreferencesViewController.h; sourceTree = "<group>"; };
-		2A7FD34C1C54A6F300CE8566 /* CEFindPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFindPreferencesViewController.m; sourceTree = "<group>"; };
 		2A7FD3501C54B1AF00CE8566 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2A7FD3541C54B1B400CE8566 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPreferencesView.strings"; sourceTree = "<group>"; };
 		2A7FD3551C54B87A00CE8566 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
@@ -1606,8 +1602,6 @@
 				2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */,
 				2A009ACF1A58ED1D00C3D542 /* CEFindResultViewController.h */,
 				2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */,
-				2A7FD34B1C54A6F300CE8566 /* CEFindPreferencesViewController.h */,
-				2A7FD34C1C54A6F300CE8566 /* CEFindPreferencesViewController.m */,
 				2AD67C221AA7285F0078BB95 /* CEFindPanelTextView.h */,
 				2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */,
 				2AD67C2D1AA7651B0078BB95 /* CEFindPanelLayoutManager.h */,
@@ -2386,7 +2380,6 @@
 				2A6F0DCB1B5500E100C2D03C /* CEKeyBindingsViewController.m in Sources */,
 				2A9C074F1CF99F12006D672D /* CEIncompatibleCharacterScanner.m in Sources */,
 				2AA2E0201C007C690087BDD6 /* CECharacterField.m in Sources */,
-				2A7FD34E1C54A6F300CE8566 /* CEFindPreferencesViewController.m in Sources */,
 				2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */,
 				2AEA27E01CE3D4C1006CDB80 /* CEOutlineItem.m in Sources */,
 				2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */,
@@ -2515,7 +2508,6 @@
 				2AE0C09B1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
 				2A9C07521CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2A436DDB1A425AE500275FD4 /* CEIncompatibleCharsViewController.m in Sources */,
-				2A7FD34D1C54A6F300CE8566 /* CEFindPreferencesViewController.m in Sources */,
 				258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */,
 				2A149DC51901885A00A9D6EF /* CEKeyBindingsPaneController.m in Sources */,
 				8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */,

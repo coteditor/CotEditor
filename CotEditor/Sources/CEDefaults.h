@@ -140,13 +140,19 @@ extern NSString *_Nonnull const CEDefaultSecondaryFooterAlignmentKey;
 // find panel
 extern NSString *_Nonnull const CEDefaultFindHistoryKey;
 extern NSString *_Nonnull const CEDefaultReplaceHistoryKey;
-extern NSString *_Nonnull const CEDefaultFindRegexSyntaxKey;
 extern NSString *_Nonnull const CEDefaultFindUsesRegularExpressionKey;
+extern NSString *_Nonnull const CEDefaultFindIgnoresCaseKey;
 extern NSString *_Nonnull const CEDefaultFindInSelectionKey;
 extern NSString *_Nonnull const CEDefaultFindIsWrapKey;
 extern NSString *_Nonnull const CEDefaultFindNextAfterReplaceKey;
-extern NSString *_Nonnull const CEDefaultFindOptionsKey;
 extern NSString *_Nonnull const CEDefaultFindClosesIndicatorWhenDoneKey;
+
+extern NSString *_Nonnull const CEDefaultFindTextIsLiteralSearchKey;
+extern NSString *_Nonnull const CEDefaultFindTextIgnoresDiacriticMarksKey;
+extern NSString *_Nonnull const CEDefaultFindTextIgnoresWidthKey;
+extern NSString *_Nonnull const CEDefaultFindRegexIsSinglelineKey;
+extern NSString *_Nonnull const CEDefaultFindRegexIsMultilineKey;
+extern NSString *_Nonnull const CEDefaultFindRegexUsesUnicodeBoundariesKey;
 
 // settings that are not in preferences
 extern NSString *_Nonnull const CEDefaultColorCodeTypeKey;

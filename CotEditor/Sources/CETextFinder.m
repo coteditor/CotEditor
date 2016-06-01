@@ -25,15 +25,15 @@
  
  */
 
-#import <OgreKit/OgreKit.h>
 #import "CETextFinder.h"
 #import "CEFindPanelController.h"
 #import "CEProgressSheetController.h"
 #import "CEHUDController.h"
-#import "NSTextView+CETextReplacement.h"
+
 #import "CEErrors.h"
 #import "CEDefaults.h"
 
+#import "NSTextView+CETextReplacement.h"
 #import "NSString+CENewLine.h"
 
 
@@ -47,9 +47,7 @@ NSString * _Nonnull const CEFindResultLineRange = @"lineRange";
 static NSString * _Nonnull const CEFindHighlightRange = @"range";
 static NSString * _Nonnull const CEFindHighlightColor = @"color";
 
-static NSString * _Nonnull const kEscapeCharacter = OgreBackslashCharacter;
 static const NSUInteger kMaxHistorySize = 20;
-//static const NSUInteger kMinLengthShowIndicator = 5000;  // not in use
 
 
 @interface CETextFinder ()
@@ -63,8 +61,8 @@ static const NSUInteger kMaxHistorySize = 20;
 @property (readonly, nonatomic) BOOL usesRegularExpression;
 @property (readonly, nonatomic) BOOL isWrap;
 @property (readonly, nonatomic) BOOL inSelection;
-@property (readonly, nonatomic) OgreSyntax syntax;
-@property (readonly, nonatomic) unsigned options;
+@property (readonly, nonatomic) NSStringCompareOptions textualOptions;
+@property (readonly, nonatomic) NSRegularExpressionOptions regexOptions;
 @property (readonly, nonatomic) BOOL closesIndicatorWhenDone;
 
 @end
@@ -153,13 +151,20 @@ static const NSUInteger kMaxHistorySize = 20;
     // sicne CEFindPanelController can be initialized before registering user defaults in CEAppDelegate. (2015-01 by 1024jp)
     NSDictionary<NSString *, id> *defaults = @{CEDefaultFindHistoryKey: @[],
                                                CEDefaultReplaceHistoryKey: @[],
-                                               CEDefaultFindRegexSyntaxKey: @([OGRegularExpression defaultSyntax]),
-                                               CEDefaultFindOptionsKey: @(OgreCaptureGroupOption),
                                                CEDefaultFindUsesRegularExpressionKey: @NO,
                                                CEDefaultFindInSelectionKey: @NO,
                                                CEDefaultFindIsWrapKey: @YES,
                                                CEDefaultFindNextAfterReplaceKey: @YES,
                                                CEDefaultFindClosesIndicatorWhenDoneKey: @YES,
+                                               CEDefaultFindIgnoresCaseKey: @NO,
+                                               
+                                               CEDefaultFindTextIsLiteralSearchKey: @NO,
+                                               CEDefaultFindTextIgnoresDiacriticMarksKey: @NO,
+                                               CEDefaultFindTextIgnoresWidthKey: @NO,
+                                               
+                                               CEDefaultFindRegexIsSinglelineKey: @NO,
+                                               CEDefaultFindRegexIsMultilineKey: @YES,
+                                               CEDefaultFindRegexUsesUnicodeBoundariesKey: @NO,
                                                };
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
@@ -186,12 +191,6 @@ static const NSUInteger kMaxHistorySize = 20;
         // It might better when it can be set in theme also for incompatible chars highlight.
         // Just because I'm lazy.
         
-        // deserialize options setting from defaults
-        [self loadOptions];
-        for (NSString *optionPropertyName in [[self class] optionPropertyNames]) {
-            [self addObserver:self forKeyPath:optionPropertyName options:0 context:nil];
-        }
-        
         // add to responder chain
         [NSApp setNextResponder:self];
         
@@ -215,10 +214,6 @@ static const NSUInteger kMaxHistorySize = 20;
 - (void)dealloc
 // ------------------------------------------------------
 {
-    for (NSString *optionPropertyName in [[self class] optionPropertyNames]) {
-        [self removeObserver:self forKeyPath:optionPropertyName];
-    }
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -251,24 +246,6 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     return YES;
-}
-
-
-
-#pragma mark Protocol
-
-//=======================================================
-// NSKeyValueObserving Protocol
-//=======================================================
-
-// ------------------------------------------------------
-/// ユーザ設定の変更を反映する
-- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(nullable void *)context
-// ------------------------------------------------------
-{
-    if ([[[self class] optionPropertyNames] containsObject:keyPath]) {
-        [self saveOptions];
-    }
 }
 
 
@@ -355,20 +332,20 @@ static const NSUInteger kMaxHistorySize = 20;
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self client];
     NSString *findString = [self sanitizedFindString];
-    OGRegularExpression *regex = [self regex];
+    NSRegularExpression *regex = [self regex];
     NSArray<NSValue *> *scopeRanges = [self scopeRanges];
     
     [[self busyTextViews] addObject:textView];
     
     // -> [caution] numberOfGroups becomes 0 if non-regex + non-delimit-by-spaces
-    NSUInteger numberOfGroups = [self usesRegularExpression] ? [regex numberOfGroups] + 1 : [regex numberOfGroups];
-    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups ?: 1];
+    NSUInteger numberOfGroups = [regex numberOfCaptureGroups] + 1;  // TODO: usesRegularExpression
+    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups];
     if (![self usesRegularExpression]) {
         highlightColors = [[highlightColors reverseObjectEnumerator] allObjects];
     }
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
-    NSString *string = [textView string];
+    NSString *string = [NSString stringWithString:[textView string]];
     
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
@@ -383,65 +360,67 @@ static const NSUInteger kMaxHistorySize = 20;
         
         NSMutableArray<NSDictionary *> *result = [NSMutableArray array];
         NSMutableArray<NSDictionary *> *highlights = [NSMutableArray array];
-        for (NSValue *rangeValue in scopeRanges) {
-            NSRange scopeRange = [rangeValue rangeValue];
-            NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
-            NSUInteger lineNumber = 1;
-            NSUInteger lineCountedLocation = 0;
-            
-            OGRegularExpressionMatch *match;
-            while ((match = [enumerator nextObject])) {
-                if ([progress isCancelled]) {
-                    [indicator close:self];
-                    [[self busyTextViews] removeObject:textView];
-                    return;
-                }
-                
-                NSRange matchedRange = [match rangeOfMatchedString];
-                
-                // calc line number
-                NSRange diffRange = NSMakeRange(lineCountedLocation, matchedRange.location - lineCountedLocation);
-                lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
-                lineCountedLocation = matchedRange.location;
-                
-                // highlight both string in textView and line string for result table
-                NSRange lineRange = [string lineRangeForRange:matchedRange];
-                NSRange inlineRange = matchedRange;
-                inlineRange.location -= lineRange.location;
-                NSString *lineString = [string substringWithRange:lineRange];
-                NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
-                
-                [lineAttrString addAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject] range:inlineRange];
-                
-                [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
-                                        CEFindHighlightColor: [highlightColors firstObject]}];
-                
-                for (NSUInteger i = 0; i < numberOfGroups; i++) {
-                    NSRange range = [match rangeOfSubstringAtIndex:i];
-                    
-                    if (range.length == 0) { continue; }
-                    
-                    NSColor *color = highlightColors[i];
-                    
-                    [lineAttrString addAttribute:NSBackgroundColorAttributeName value:color
-                                           range:NSMakeRange(range.location - lineRange.location, range.length)];
-                    [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
-                                            CEFindHighlightColor: color}];
-                }
-                
-                [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
-                                    CEFindResultLineNumber: @(lineNumber),
-                                    CEFindResultAttributedLineString: lineAttrString,
-                                    CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
-                
-                NSString *informativeFormat = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
-                NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
-                                         [integerFormatter stringFromNumber:@([result count])]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [progress setLocalizedDescription:informative];
-                });
-            }
-        }
+        
+        __block NSUInteger lineNumber = 1;
+        __block NSUInteger lineCountedLocation = 0;
+        [self enumerateMatchsInString:string ranges:scopeRanges
+                           usingBlock:^(NSRange matchedRange,
+                                        NSTextCheckingResult * _Nullable match,
+                                        BOOL * _Nonnull stop)
+         {
+             if ([progress isCancelled]) {
+                 [indicator close:self];
+                 [[self busyTextViews] removeObject:textView];
+                 *stop = YES;
+                 return;
+             }
+             
+             // calc line number
+             NSRange diffRange = NSMakeRange(lineCountedLocation, matchedRange.location - lineCountedLocation);
+             lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
+             lineCountedLocation = matchedRange.location;
+             
+             // highlight both string in textView and line string for result table
+             NSRange lineRange = [string lineRangeForRange:matchedRange];
+             NSRange inlineRange = matchedRange;
+             inlineRange.location -= lineRange.location;
+             NSString *lineString = [string substringWithRange:lineRange];
+             NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
+             
+             [lineAttrString addAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject] range:inlineRange];
+             
+             [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
+                                     CEFindHighlightColor: [highlightColors firstObject]}];
+             
+             if (match) {
+                 for (NSUInteger i = 0; i < numberOfGroups; i++) {
+                     NSRange range = [match rangeAtIndex:i];
+                     
+                     if (range.length == 0) { continue; }
+                     
+                     NSColor *color = highlightColors[i];
+                     
+                     [lineAttrString addAttribute:NSBackgroundColorAttributeName value:color
+                                            range:NSMakeRange(range.location - lineRange.location, range.length)];
+                     [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
+                                             CEFindHighlightColor: color}];
+                 }
+             }
+             
+             [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
+                                 CEFindResultLineNumber: @(lineNumber),
+                                 CEFindResultAttributedLineString: lineAttrString,
+                                 CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
+             
+             NSString *informativeFormat = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
+             NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                      [integerFormatter stringFromNumber:@([result count])]];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [progress setLocalizedDescription:informative];
+             });
+         } scopeCompletionHandler:nil];
+        
+        if ([progress isCancelled]) { return; }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // highlight
@@ -484,19 +463,18 @@ static const NSUInteger kMaxHistorySize = 20;
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self client];
-    OGRegularExpression *regex = [self regex];
+    NSRegularExpression *regex = [self regex];
     NSArray<NSValue *> *scopeRanges = [self scopeRanges];
     
     [[self busyTextViews] addObject:textView];
     
-    // -> [caution] numberOfGroups becomes 0 if non-regex + non-delimit-by-spaces
-    NSUInteger numberOfGroups = [self usesRegularExpression] ? [regex numberOfGroups] + 1 : [regex numberOfGroups];
-    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups ?: 1];
+    NSUInteger numberOfGroups = [regex numberOfCaptureGroups] + 1;
+    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups];
     if (![self usesRegularExpression]) {
         highlightColors = [[highlightColors reverseObjectEnumerator] allObjects];
     }
     
-    NSString *string = [textView string];
+    NSString *string = [NSString stringWithString:[textView string]];
     
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
@@ -510,41 +488,40 @@ static const NSUInteger kMaxHistorySize = 20;
         if (!self) { return; }
         
         NSMutableArray<NSDictionary *> *highlights = [NSMutableArray array];
-        for (NSValue *rangeValue in scopeRanges) {
-            NSRange scopeRange = [rangeValue rangeValue];
-            NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
-            
-            OGRegularExpressionMatch *match;
-            while ((match = [enumerator nextObject])) {
-                if ([progress isCancelled]) {
-                    [indicator close:self];
-                    [[self busyTextViews] removeObject:textView];
-                    return;
-                }
-                
-                NSRange matchedRange = [match rangeOfMatchedString];
-                
-                [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
-                                        CEFindHighlightColor: [highlightColors firstObject]}];
-                
-                for (NSUInteger i = 0; i < numberOfGroups; i++) {
-                    NSRange range = [match rangeOfSubstringAtIndex:i];
-                    
-                    if (range.length == 0) { continue; }
-                    
-                    NSColor *color = highlightColors[i];
-                    [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
-                                            CEFindHighlightColor: color}];
-                }
-                
-                NSString *informativeFormat = ([highlights count] == 1) ? @"%@ string found." : @"%@ strings found.";
-                NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
-                                         [integerFormatter stringFromNumber:@([highlights count])]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [progress setLocalizedDescription:informative];
-                });
-            }
-        }
+        [self enumerateMatchsInString:string ranges:scopeRanges
+                           usingBlock:^(NSRange matchedRange,
+                                        NSTextCheckingResult * _Nullable match,
+                                        BOOL * _Nonnull stop)
+         {
+             if ([progress isCancelled]) {
+                 [indicator close:self];
+                 [[self busyTextViews] removeObject:textView];
+                 *stop = YES;
+                 return;
+             }
+             
+             [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
+                                     CEFindHighlightColor: [highlightColors firstObject]}];
+             
+             for (NSUInteger i = 0; i < numberOfGroups; i++) {
+                 NSRange range = [match rangeAtIndex:i];
+                 
+                 if (range.length == 0) { continue; }
+                 
+                 NSColor *color = highlightColors[i];
+                 [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
+                                         CEFindHighlightColor: color}];
+             }
+             
+             NSString *informativeFormat = ([highlights count] == 1) ? @"%@ string found." : @"%@ strings found.";
+             NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                      [integerFormatter stringFromNumber:@([highlights count])]];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [progress setLocalizedDescription:informative];
+             });
+         } scopeCompletionHandler:nil];
+        
+        if ([progress isCancelled]) { return; }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // highlight
@@ -626,13 +603,14 @@ static const NSUInteger kMaxHistorySize = 20;
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self client];
-    OGRegularExpression *regex = [self regex];
-    OGReplaceExpression *repex = [self repex];
+    NSString *replacementString = [self replacementString];
+    NSString *template = [self replacementString] ?: @"";
     NSArray<NSValue *> *scopeRanges = [self scopeRanges];
     BOOL inSelection = [self inSelection];
-    NSString *string = [textView string];
     
     [[self busyTextViews] addObject:textView];
+    
+    NSString *string = [NSString stringWithString:[textView string]];
     
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
@@ -648,43 +626,53 @@ static const NSUInteger kMaxHistorySize = 20;
         NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
         NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
         NSMutableArray<NSValue *> *selectedRanges = [NSMutableArray array];
-        NSUInteger count = 0;
-        NSInteger delta = 0;
+        __block NSUInteger count = 0;
         
-        for (NSValue *rangeValue in scopeRanges) {
-            NSRange scopeRange = [rangeValue rangeValue];
-            NSEnumerator<OGRegularExpressionMatch *> *enumerator = [regex matchEnumeratorInString:string range:scopeRange];
-            
-            NSRange selectedRange = scopeRange;
-            selectedRange.location += delta;
-            
-            OGRegularExpressionMatch *match;
-            while ((match = [enumerator nextObject])) {
-                if ([progress isCancelled]) {
-                    [indicator close:self];
-                    [[self busyTextViews] removeObject:textView];
-                    return;
-                }
-                
-                NSString *replacedString = [repex replaceMatchedStringOf:match];
-                NSRange replacementRange = [match rangeOfMatchedString];
-                
-                [replacementStrings addObject:replacedString];
-                [replacementRanges addObject:[NSValue valueWithRange:replacementRange]];
-                selectedRange.length -= (NSInteger)replacementRange.length - [replacedString length];
-                count++;
-                
-                NSString *informativeFormat = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
-                NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
-                                         [integerFormatter stringFromNumber:@(count)]];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [progress setLocalizedDescription:informative];
-                });
-            }
-            
-            delta += (NSInteger)selectedRange.length - scopeRange.length;
-            [selectedRanges addObject:[NSValue valueWithRange:selectedRange]];
-        }
+        // variables to calcurate new selection ranges
+        __block NSInteger locationDelta = 0;
+        __block NSInteger lengthDelta = 0;
+        
+        [self enumerateMatchsInString:string ranges:scopeRanges
+                           usingBlock:^(NSRange matchedRange,
+                                        NSTextCheckingResult * _Nullable match,
+                                        BOOL * _Nonnull stop)
+         {
+             if ([progress isCancelled]) {
+                 [indicator close:self];
+                 [[self busyTextViews] removeObject:textView];
+                 *stop = YES;
+                 return;
+             }
+             
+             NSString *replacedString;
+             if (match) {
+                 replacedString = [[match regularExpression] replacementStringForResult:match inString:string offset:0 template:template];
+             } else {
+                 replacedString = replacementString;
+             }
+             
+             [replacementStrings addObject:replacedString];
+             [replacementRanges addObject:[NSValue valueWithRange:matchedRange]];
+             count++;
+             
+             lengthDelta -= (NSInteger)matchedRange.length - [replacedString length];
+             
+             NSString *informativeFormat = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
+             NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                      [integerFormatter stringFromNumber:@(count)]];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [progress setLocalizedDescription:informative];
+             });
+             
+         } scopeCompletionHandler:^(NSRange scopeRange) {
+             NSRange selectedRange = NSMakeRange(scopeRange.location + locationDelta,
+                                                 scopeRange.length + lengthDelta);
+             locationDelta += (NSInteger)selectedRange.length - scopeRange.length;
+             lengthDelta = 0;
+             [selectedRanges addObject:[NSValue valueWithRange:selectedRange]];
+         }];
+        
+        if ([progress isCancelled]) { NSLog(@"cancel"); return; }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [indicator doneWithButtonTitle:nil];
@@ -803,34 +791,13 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// syntax (and regex enability) setting in textFinder
-- (OgreSyntax)textFinderSyntax
+/// regex object with current settings
+- (nullable NSRegularExpression *)regex
 // ------------------------------------------------------
 {
-    return [self usesRegularExpression] ? [self syntax] : OgreSimpleMatchingSyntax;
-}
-
-
-// ------------------------------------------------------
-/// OgreKit regex object with current settings
-- (nullable OGRegularExpression *)regex
-// ------------------------------------------------------
-{
-    return [OGRegularExpression regularExpressionWithString:[self sanitizedFindString]
-                                                    options:[self options]
-                                                     syntax:[self textFinderSyntax]
-                                            escapeCharacter:kEscapeCharacter];
-}
-
-
-// ------------------------------------------------------
-/// OgreKit replacement object with current settings
-- (nullable OGReplaceExpression *)repex
-// ------------------------------------------------------
-{
-    return [OGReplaceExpression replaceExpressionWithString:[self replacementString] ?: @""
-                                                     syntax:[self textFinderSyntax]
-                                            escapeCharacter:kEscapeCharacter];
+    return [NSRegularExpression regularExpressionWithPattern:[self sanitizedFindString]
+                                                     options:[self regexOptions]
+                                                       error:nil];
 }
 
 
@@ -842,39 +809,47 @@ static const NSUInteger kMaxHistorySize = 20;
     if (![self checkIsReadyToFind]) { return 0; }
     
     NSTextView *textView = [self client];
+    NSString *string = [textView string];
     NSUInteger startLocation = forward ? NSMaxRange([textView selectedRange]) : [textView selectedRange].location;
     
-    NSEnumerator<OGRegularExpressionMatch *> *enumerator = [[self regex] matchEnumeratorInString:[textView string] options:[self options]];
-    NSArray<OGRegularExpressionMatch *> *matches = [enumerator allObjects];
-    OGRegularExpressionMatch *foundMatch = nil;
+    NSRange range = NSMakeRange(0, [string length]);
     
-    if (forward) {  // forward
-        for (OGRegularExpressionMatch *match in matches) {
-            if ([match rangeOfMatchedString].location >= startLocation) {
-                foundMatch = match;
-                break;
-            }
+    if (range.length == 0) { return 0; }
+    
+    NSMutableArray *matches = [NSMutableArray array];
+    [self enumerateMatchsInString:string ranges:@[[NSValue valueWithRange:range]]
+                       usingBlock:^(NSRange matchedRange,
+                                    NSTextCheckingResult * _Nullable match,
+                                    BOOL * _Nonnull stop)
+     {
+         [matches addObject:[NSValue valueWithRange:matchedRange]];
+     } scopeCompletionHandler:nil];
+    
+    NSRange foundRange = NSMakeRange(NSNotFound, 0);
+    
+    if ([matches count] == 0) { return 0; }
+    
+    NSRange lastMatchedRange = NSMakeRange(NSNotFound, 0);
+    for (NSValue *match in matches) {
+        NSRange matchedRange = [match rangeValue];
+        
+        if (matchedRange.location >= startLocation) {
+            foundRange = forward ? matchedRange : lastMatchedRange;
+            break;
         }
-    } else {  // backward
-        for (OGRegularExpressionMatch *match in [matches reverseObjectEnumerator]) {
-            if ([match rangeOfMatchedString].location < startLocation) {
-                foundMatch = match;
-                break;
-            }
-        }
+        
+        lastMatchedRange = matchedRange;
     }
     
     // wrap search
     BOOL isWrapped = NO;
-    if (!foundMatch && [self isWrap]) {
-        if ((foundMatch = forward ? [matches firstObject] : [matches lastObject])) {
-            isWrapped = YES;
-        }
+    if (foundRange.location == NSNotFound && [self isWrap]) {
+        foundRange = forward ? [[matches firstObject] rangeValue] : [[matches lastObject] rangeValue];
+        isWrapped = YES;
     }
     
     // found feedback
-    if (foundMatch) {
-        NSRange foundRange = [foundMatch rangeOfMatchedString];
+    if (foundRange.location != NSNotFound) {
         [textView setSelectedRange:foundRange];
         [textView scrollRangeToVisible:foundRange];
         [textView showFindIndicatorForRange:foundRange];
@@ -903,19 +878,114 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     NSTextView *textView = [self client];
+    NSString *string = [textView string];
     
-    unsigned options = [self options] & ~(OgreNotBOLOption | OgreNotEOLOption);  // see OgreReplaceAndFindThread.m
-    OGRegularExpressionMatch *match = [[self regex] matchInString:[textView string] options:options range:[textView selectedRange]];
+    if ([string length] == 0) { return NO; }
     
-    if (!match) { return NO; }
-    
-    NSRange replacementRange = [match rangeOfMatchedString];
-    NSString *replacedString = [[self repex] replaceMatchedStringOf:match];
+    NSRange matchedRange;
+    NSString *replacedString;
+    if ([self usesRegularExpression]) {
+        NSRegularExpression *regex = [self regex];
+        NSTextCheckingResult *match = [regex firstMatchInString:string
+                                                        options:[self regexOptions]
+                                                          range:[textView selectedRange]];
+        
+        if (!match) { return NO; }
+        
+        matchedRange = [match range];
+        replacedString = [regex replacementStringForResult:match
+                                                  inString:string
+                                                    offset:0
+                                                  template:[self replacementString] ?: @""];
+        
+    } else {
+        matchedRange = [[textView string] rangeOfString:[self sanitizedFindString]
+                                                options:[self textualOptions]
+                                                  range:[textView selectedRange]];
+        
+        if (matchedRange.location == NSNotFound) { return NO; }
+        
+        replacedString = [self replacementString] ?: @"";
+    }
     
     // apply replacement to text view
-    return [textView replaceWithString:replacedString range:replacementRange
-                         selectedRange:NSMakeRange(replacementRange.location, [replacedString length])
+    return [textView replaceWithString:replacedString range:matchedRange
+                         selectedRange:NSMakeRange(matchedRange.location, [replacedString length])
                             actionName:NSLocalizedString(@"Replace", nil)];
+}
+
+
+// ------------------------------------------------------
+/// enumerate matchs in string using current settings
+- (void)enumerateMatchsInString:(nullable NSString *)string ranges:(NSArray<NSValue *> *)ranges usingBlock:(nonnull void (^)(NSRange matchedRange, NSTextCheckingResult * _Nullable match, BOOL * _Nonnull stop))block scopeCompletionHandler:(nullable void (^)(NSRange scopeRange))scopeCompletionHandler
+// ------------------------------------------------------
+{
+    if ([self usesRegularExpression]) {
+        [self enumerateRegularExpressionMatchsInString:string ranges:ranges usingBlock:block scopeCompletionHandler:scopeCompletionHandler];
+    } else {
+        [self enumerateTextualMatchsInString:string ranges:ranges usingBlock:block scopeCompletionHandler:scopeCompletionHandler];
+    }
+}
+
+
+// ------------------------------------------------------
+/// enumerate matchs in string using textual search
+- (void)enumerateTextualMatchsInString:(nullable NSString *)string ranges:(NSArray<NSValue *> *)ranges usingBlock:(nonnull void (^)(NSRange matchedRange, NSTextCheckingResult * _Nullable match, BOOL * _Nonnull stop))block scopeCompletionHandler:(nullable void (^)(NSRange scopeRange))scopeCompletionHandler
+// ------------------------------------------------------
+{
+    if ([string length] == 0) { return; }
+    
+    NSString *findString = [self sanitizedFindString];
+    NSStringCompareOptions options = [self textualOptions];
+    
+    for (NSValue *rangeValue in ranges) {
+        NSRange scopeRange = [rangeValue rangeValue];
+        
+        NSRange searchRange = scopeRange;
+        while (searchRange.location != NSNotFound) {
+            searchRange.length = string.length - searchRange.location;
+            NSRange foundRange = [string rangeOfString:findString options:options range:searchRange];
+            
+            if (NSMaxRange(foundRange) > NSMaxRange(scopeRange)) { break; }
+            
+            BOOL stop = NO;
+            block(foundRange, nil, &stop);
+            
+            if (stop) { return; }
+            
+            searchRange.location = NSMaxRange(foundRange);
+        }
+        
+        if (scopeCompletionHandler) {
+            scopeCompletionHandler(scopeRange);
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+/// enumerate matchs in string using regular expression
+- (void)enumerateRegularExpressionMatchsInString:(nullable NSString *)string ranges:(NSArray<NSValue *> *)ranges usingBlock:(nonnull void (^)(NSRange matchedRange, NSTextCheckingResult * _Nullable match, BOOL * _Nonnull stop))block scopeCompletionHandler:(nullable void (^)(NSRange scopeRange))scopeCompletionHandler
+// ------------------------------------------------------
+{
+    if ([string length] == 0) { return; }
+    
+    NSRegularExpression *regex = [self regex];
+    
+    for (NSValue *rangeValue in ranges) {
+        NSRange scopeRange = [rangeValue rangeValue];
+        [regex enumerateMatchesInString:string options:0 range:scopeRange
+                             usingBlock:^(NSTextCheckingResult * _Nullable result,
+                                          NSMatchingFlags flags,
+                                          BOOL * _Nonnull stop)
+         {
+             block([result range], result, stop);
+         }];
+        
+        if (scopeCompletionHandler) {
+            scopeCompletionHandler(scopeRange);
+        }
+    }
 }
 
 
@@ -948,33 +1018,19 @@ static const NSUInteger kMaxHistorySize = 20;
     
     // check regular expression syntax
     if ([self usesRegularExpression]) {
-        NSDictionary<NSString *, id> *userInfo = nil;
-        
-        // check option combination
-        if (([self options] & (OgreDontCaptureGroupOption|OgreCaptureGroupOption)) == (OgreDontCaptureGroupOption|OgreCaptureGroupOption)) {
-            // -> ONIGERR_INVALID_COMBINATION_OF_OPTIONS
-            userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid combination of regular expression options", nil),
-                         NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"“%@” option and “%@” option cannot be activated at the same time.", nil),
-                                                                 NSLocalizedString(@"Capture croup", nil),
-                                                                 NSLocalizedString(@"Don’t capture group", nil)]};
-        } else {
-            
-            // try compile regex
-            @try {
-                [self regex];  // compile oniguruma regular expression
-                
-            } @catch (NSException *exception) {
-                if ([[exception name] isEqualToString:OgreException]) {
-                    userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid regular expression", nil),
-                                 NSLocalizedRecoverySuggestionErrorKey: [exception reason]};
-                } else {
-                    [exception raise];
-                }
-            }
-        }
+        // try compile regex
+        NSError *error;
+        [NSRegularExpression regularExpressionWithPattern:[self sanitizedFindString]
+                                                  options:[self regexOptions]
+                                                    error:&error];
         
         // show error alert if invalid
-        if (userInfo) {
+        if (error) {
+            NSDictionary<NSString *, id> *userInfo = nil;
+            userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Invalid regular expression", nil),
+                         NSLocalizedRecoverySuggestionErrorKey: [error localizedFailureReason],
+                         NSUnderlyingErrorKey: error};
+
             NSError *error = [NSError errorWithDomain:CEErrorDomain code:CERegularExpressionError userInfo:userInfo];
             [[self findPanelController] showWindow:self];
             [self presentError:error modalForWindow:[[self findPanelController] window] delegate:nil didPresentSelector:NULL contextInfo:NULL];
@@ -1064,76 +1120,6 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 // ------------------------------------------------------
-/// serialize bit option value from instance booleans
-- (void)saveOptions
-// ------------------------------------------------------
-{
-    unsigned options = OgreNoneOption;
-    
-    if ([self singleLineOption])          { options |= OgreSingleLineOption; }
-    if ([self multilineOption])           { options |= OgreMultilineOption; }
-    if ([self ignoreCaseOption])          { options |= OgreIgnoreCaseOption; }
-    if ([self extendOption])              { options |= OgreExtendOption; }
-    if ([self findLongestOption])         { options |= OgreFindLongestOption; }
-    if ([self findNotEmptyOption])        { options |= OgreFindNotEmptyOption; }
-    if ([self findEmptyOption])           { options |= OgreFindEmptyOption; }
-    if ([self negateSingleLineOption])    { options |= OgreNegateSingleLineOption; }
-    if ([self captureGroupOption])        { options |= OgreCaptureGroupOption; }
-    if ([self dontCaptureGroupOption])    { options |= OgreDontCaptureGroupOption; }
-    if ([self delimitByWhitespaceOption]) { options |= OgreDelimitByWhitespaceOption; }
-    if ([self notBeginOfLineOption])      { options |= OgreNotBOLOption; }
-    if ([self notEndOfLineOption])        { options |= OgreNotEOLOption; }
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:options forKey:CEDefaultFindOptionsKey];
-}
-
-
-// ------------------------------------------------------
-/// deserialize bit option value to instance booleans
-- (void)loadOptions
-// ------------------------------------------------------
-{
-    unsigned options = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey];
-    
-    [self setSingleLineOption:((options & OgreSingleLineOption) != 0)];
-    [self setMultilineOption:((options & OgreMultilineOption) != 0)];
-    [self setIgnoreCaseOption:((options & OgreIgnoreCaseOption) != 0)];
-    [self setExtendOption:((options & OgreExtendOption) != 0)];
-    [self setFindLongestOption:((options & OgreFindLongestOption) != 0)];
-    [self setFindNotEmptyOption:((options & OgreFindNotEmptyOption) != 0)];
-    [self setFindEmptyOption:((options & OgreFindEmptyOption) != 0)];
-    [self setNegateSingleLineOption:((options & OgreNegateSingleLineOption) != 0)];
-    [self setCaptureGroupOption:((options & OgreCaptureGroupOption) != 0)];
-    [self setDontCaptureGroupOption:((options & OgreDontCaptureGroupOption) != 0)];
-    [self setDelimitByWhitespaceOption:((options & OgreDelimitByWhitespaceOption) != 0)];
-    [self setNotBeginOfLineOption:((options & OgreNotBOLOption) != 0)];
-    [self setNotEndOfLineOption:((options & OgreNotEOLOption) != 0)];
-}
-
-
-// ------------------------------------------------------
-/// array of OgreKit option property names to observe
-+ (nonnull NSArray<NSString *> *)optionPropertyNames
-// ------------------------------------------------------
-{
-    return @[NSStringFromSelector(@selector(singleLineOption)),
-             NSStringFromSelector(@selector(multilineOption)),
-             NSStringFromSelector(@selector(ignoreCaseOption)),
-             NSStringFromSelector(@selector(extendOption)),
-             NSStringFromSelector(@selector(findLongestOption)),
-             NSStringFromSelector(@selector(findNotEmptyOption)),
-             NSStringFromSelector(@selector(findEmptyOption)),
-             NSStringFromSelector(@selector(negateSingleLineOption)),
-             NSStringFromSelector(@selector(captureGroupOption)),
-             NSStringFromSelector(@selector(dontCaptureGroupOption)),
-             NSStringFromSelector(@selector(delimitByWhitespaceOption)),
-             NSStringFromSelector(@selector(notBeginOfLineOption)),
-             NSStringFromSelector(@selector(notEndOfLineOption)),
-             ];
-}
-
-
-// ------------------------------------------------------
 /// create desired number of highlight colors from base highlight color
 - (nonnull NSArray<NSColor *> *)decomposeHighlightColorsInto:(NSUInteger)numberOfGroups
 // ------------------------------------------------------
@@ -1185,19 +1171,37 @@ static const NSUInteger kMaxHistorySize = 20;
 
 // ------------------------------------------------------
 /// return value from user defaults
-- (OgreSyntax)syntax
+- (NSStringCompareOptions)textualOptions
 // ------------------------------------------------------
 {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindRegexSyntaxKey];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSStringCompareOptions options = 0;
+    
+    if ([defaults boolForKey:CEDefaultFindIgnoresCaseKey])               { options |= NSCaseInsensitiveSearch; }
+    if ([defaults boolForKey:CEDefaultFindTextIsLiteralSearchKey])       { options |= NSLiteralSearch; }
+    if ([defaults boolForKey:CEDefaultFindTextIgnoresDiacriticMarksKey]) { options |= NSDiacriticInsensitiveSearch; }
+    if ([defaults boolForKey:CEDefaultFindTextIgnoresWidthKey])          { options |= NSWidthInsensitiveSearch; }
+    
+    return options;
 }
 
 
 // ------------------------------------------------------
 /// return value from user defaults
-- (unsigned)options
+- (NSRegularExpressionOptions)regexOptions
 // ------------------------------------------------------
 {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultFindOptionsKey];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSRegularExpressionOptions options = 0;
+    
+    if ([defaults boolForKey:CEDefaultFindIgnoresCaseKey])                { options |= NSRegularExpressionCaseInsensitive; }
+    if ([defaults boolForKey:CEDefaultFindRegexIsSinglelineKey])          { options |= NSRegularExpressionDotMatchesLineSeparators; }
+    if ([defaults boolForKey:CEDefaultFindRegexIsMultilineKey])           { options |= NSRegularExpressionAnchorsMatchLines; }
+    if ([defaults boolForKey:CEDefaultFindRegexUsesUnicodeBoundariesKey]) { options |= NSRegularExpressionUseUnicodeWordBoundaries; }
+    
+    return options;
 }
 
 

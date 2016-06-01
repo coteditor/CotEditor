@@ -51,21 +51,6 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 @property (nonatomic, nonnull, copy) NSString *findString;
 @property (nonatomic, nonnull, copy) NSString *replacementString;
 
-// Options
-@property (nonatomic) BOOL ignoreCaseOption;
-@property (nonatomic) BOOL singleLineOption;
-@property (nonatomic) BOOL multilineOption;
-@property (nonatomic) BOOL extendOption;
-@property (nonatomic) BOOL findLongestOption;
-@property (nonatomic) BOOL findNotEmptyOption;
-@property (nonatomic) BOOL findEmptyOption;
-@property (nonatomic) BOOL negateSingleLineOption;
-@property (nonatomic) BOOL captureGroupOption;
-@property (nonatomic) BOOL dontCaptureGroupOption;
-@property (nonatomic) BOOL delimitByWhitespaceOption;
-@property (nonatomic) BOOL notBeginOfLineOption;
-@property (nonatomic) BOOL notEndOfLineOption;
-
 
 + (nonnull CETextFinder *)sharedTextFinder;
 

@@ -78,12 +78,6 @@
 "%@ strings replaced." = "%@ Zeichenketten ersetzt.";
 "Invalid regular expression" =  "Ungültiger regulärer Ausdruck";
 
-// ONIGERR_INVALID_COMBINATION_OF_OPTIONS
-"Invalid combination of regular expression options" = "Ungültige Kombination der Optionen für den regulären Ausdruck";
-"“%@” option and “%@” option cannot be activated at the same time." = "“%@”-Option und “%@”-Option können nicht gleichzeitig aktiviert werden.";
-"Capture croup" = "In Gruppe sichern";  // must be the same name as the option name in FindPreferencesView
-"Don’t capture group" = "Kein Sichern in Gruppe";  // must be the same name as the option name in FindPreferencesView
-
 
 /* MARK: CEFindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen.";
