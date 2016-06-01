@@ -537,11 +537,11 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     // show highlighting indicator for large string
     __block CEProgressSheetController *indicator = nil;
     if ([self shouldShowIndicatorForHighlightLength:highlightRange.length]) {
-        NSWindow *documentWindow = [[[[[self textStorage] layoutManagers] firstObject] firstTextView] window];
+        NSTextStorage *textStorage = [self textStorage];
         
         // wait for window becomes visible and sheet-attachable
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            while (![documentWindow isVisible] || [documentWindow attachedSheet]) {
+            while (![[[[[textStorage layoutManagers] firstObject] firstTextView] window] isVisible]) {
                 [[NSRunLoop currentRunLoop] limitDateForMode:NSDefaultRunLoopMode];
             }
             
@@ -550,6 +550,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 // do nothing if highlighting is already finished
                 if ([operation isFinished]) { return; }
                 
+                NSWindow *documentWindow = [[[[textStorage layoutManagers] firstObject] firstTextView] window];
                 indicator = [[CEProgressSheetController alloc] initWithProgress:[operation progress] message:NSLocalizedString(@"Coloring text…", nil)];
                 [indicator beginSheetForWindow:documentWindow];
             });
