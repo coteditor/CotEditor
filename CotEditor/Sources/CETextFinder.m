@@ -337,12 +337,8 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [[self busyTextViews] addObject:textView];
     
-    // -> [caution] numberOfGroups becomes 0 if non-regex + non-delimit-by-spaces
-    NSUInteger numberOfGroups = [regex numberOfCaptureGroups] + 1;  // TODO: usesRegularExpression
-    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups];
-    if (![self usesRegularExpression]) {
-        highlightColors = [[highlightColors reverseObjectEnumerator] allObjects];
-    }
+    NSUInteger numberOfGroups = [regex numberOfCaptureGroups];
+    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups + 1];
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
     NSString *string = [NSString stringWithString:[textView string]];
@@ -393,7 +389,7 @@ static const NSUInteger kMaxHistorySize = 20;
                                      CEFindHighlightColor: [highlightColors firstObject]}];
              
              if (match) {
-                 for (NSUInteger i = 0; i < numberOfGroups; i++) {
+                 for (NSUInteger i = 1; i < numberOfGroups + 1; i++) {
                      NSRange range = [match rangeAtIndex:i];
                      
                      if (range.length == 0) { continue; }
@@ -468,11 +464,8 @@ static const NSUInteger kMaxHistorySize = 20;
     
     [[self busyTextViews] addObject:textView];
     
-    NSUInteger numberOfGroups = [regex numberOfCaptureGroups] + 1;
-    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups];
-    if (![self usesRegularExpression]) {
-        highlightColors = [[highlightColors reverseObjectEnumerator] allObjects];
-    }
+    NSUInteger numberOfGroups = [regex numberOfCaptureGroups];
+    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups + 1];
     
     NSString *string = [NSString stringWithString:[textView string]];
     
@@ -503,7 +496,7 @@ static const NSUInteger kMaxHistorySize = 20;
              [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
                                      CEFindHighlightColor: [highlightColors firstObject]}];
              
-             for (NSUInteger i = 0; i < numberOfGroups; i++) {
+             for (NSUInteger i = 1; i < numberOfGroups + 1; i++) {
                  NSRange range = [match rangeAtIndex:i];
                  
                  if (range.length == 0) { continue; }
