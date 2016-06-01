@@ -346,7 +346,7 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
-    NSString *string = [textView string];
+    NSString *string = [NSString stringWithString:[textView string]];
     
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
@@ -361,41 +361,39 @@ static const NSUInteger kMaxHistorySize = 20;
         
         NSMutableArray<NSDictionary *> *result = [NSMutableArray array];
         NSMutableArray<NSDictionary *> *highlights = [NSMutableArray array];
-        for (NSValue *rangeValue in scopeRanges) {
-            NSRange scopeRange = [rangeValue rangeValue];
-            __block NSUInteger lineNumber = 1;
-            __block NSUInteger lineCountedLocation = 0;
-            
-            [regex enumerateMatchesInString:string options:0 range:scopeRange
-                                 usingBlock:^(NSTextCheckingResult * _Nullable match,
-                                              NSMatchingFlags flags,
-                                              BOOL * _Nonnull stop)
-             {
-                 if ([progress isCancelled]) {
-                     [indicator close:self];
-                     [[self busyTextViews] removeObject:textView];
-                     return;
-                 }
-                 
-                 NSRange matchedRange = [match range];
-                 
-                 // calc line number
-                 NSRange diffRange = NSMakeRange(lineCountedLocation, matchedRange.location - lineCountedLocation);
-                 lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
-                 lineCountedLocation = matchedRange.location;
-                 
-                 // highlight both string in textView and line string for result table
-                 NSRange lineRange = [string lineRangeForRange:matchedRange];
-                 NSRange inlineRange = matchedRange;
-                 inlineRange.location -= lineRange.location;
-                 NSString *lineString = [string substringWithRange:lineRange];
-                 NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
-                 
-                 [lineAttrString addAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject] range:inlineRange];
-                 
-                 [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
-                                         CEFindHighlightColor: [highlightColors firstObject]}];
-                 
+        
+        __block NSUInteger lineNumber = 1;
+        __block NSUInteger lineCountedLocation = 0;
+        [self enumerateMatchsInString:string ranges:scopeRanges
+                           usingBlock:^(NSRange matchedRange,
+                                        NSTextCheckingResult * _Nullable match,
+                                        BOOL * _Nonnull stop)
+         {
+             if ([progress isCancelled]) {
+                 [indicator close:self];
+                 [[self busyTextViews] removeObject:textView];
+                 *stop = YES;
+                 return;
+             }
+             
+             // calc line number
+             NSRange diffRange = NSMakeRange(lineCountedLocation, matchedRange.location - lineCountedLocation);
+             lineNumber += [lineRegex numberOfMatchesInString:string options:0 range:diffRange];
+             lineCountedLocation = matchedRange.location;
+             
+             // highlight both string in textView and line string for result table
+             NSRange lineRange = [string lineRangeForRange:matchedRange];
+             NSRange inlineRange = matchedRange;
+             inlineRange.location -= lineRange.location;
+             NSString *lineString = [string substringWithRange:lineRange];
+             NSMutableAttributedString *lineAttrString = [[NSMutableAttributedString alloc] initWithString:lineString];
+             
+             [lineAttrString addAttribute:NSBackgroundColorAttributeName value:[highlightColors firstObject] range:inlineRange];
+             
+             [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
+                                     CEFindHighlightColor: [highlightColors firstObject]}];
+             
+             if (match) {
                  for (NSUInteger i = 0; i < numberOfGroups; i++) {
                      NSRange range = [match rangeAtIndex:i];
                      
@@ -408,20 +406,22 @@ static const NSUInteger kMaxHistorySize = 20;
                      [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
                                              CEFindHighlightColor: color}];
                  }
-                 
-                 [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
-                                     CEFindResultLineNumber: @(lineNumber),
-                                     CEFindResultAttributedLineString: lineAttrString,
-                                     CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
-                 
-                 NSString *informativeFormat = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
-                 NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
-                                          [integerFormatter stringFromNumber:@([result count])]];
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     [progress setLocalizedDescription:informative];
-                 });
-            }];
-        }
+             }
+             
+             [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
+                                 CEFindResultLineNumber: @(lineNumber),
+                                 CEFindResultAttributedLineString: lineAttrString,
+                                 CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
+             
+             NSString *informativeFormat = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
+             NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                      [integerFormatter stringFromNumber:@([result count])]];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [progress setLocalizedDescription:informative];
+             });
+         } scopeCompletionHandler:nil];
+        
+        if ([progress isCancelled]) { return; }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // highlight
@@ -475,7 +475,7 @@ static const NSUInteger kMaxHistorySize = 20;
         highlightColors = [[highlightColors reverseObjectEnumerator] allObjects];
     }
     
-    NSString *string = [textView string];
+    NSString *string = [NSString stringWithString:[textView string]];
     
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
@@ -489,43 +489,40 @@ static const NSUInteger kMaxHistorySize = 20;
         if (!self) { return; }
         
         NSMutableArray<NSDictionary *> *highlights = [NSMutableArray array];
-        for (NSValue *rangeValue in scopeRanges) {
-            NSRange scopeRange = [rangeValue rangeValue];
-            
-            [regex enumerateMatchesInString:string options:0 range:scopeRange
-                                 usingBlock:^(NSTextCheckingResult * _Nullable match,
-                                              NSMatchingFlags flags,
-                                              BOOL * _Nonnull stop)
-             {
-                 if ([progress isCancelled]) {
-                     [indicator close:self];
-                     [[self busyTextViews] removeObject:textView];
-                     return;
-                 }
+        [self enumerateMatchsInString:string ranges:scopeRanges
+                           usingBlock:^(NSRange matchedRange,
+                                        NSTextCheckingResult * _Nullable match,
+                                        BOOL * _Nonnull stop)
+         {
+             if ([progress isCancelled]) {
+                 [indicator close:self];
+                 [[self busyTextViews] removeObject:textView];
+                 *stop = YES;
+                 return;
+             }
+             
+             [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
+                                     CEFindHighlightColor: [highlightColors firstObject]}];
+             
+             for (NSUInteger i = 0; i < numberOfGroups; i++) {
+                 NSRange range = [match rangeAtIndex:i];
                  
-                 NSRange matchedRange = [match range];
+                 if (range.length == 0) { continue; }
                  
-                 [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:matchedRange],
-                                         CEFindHighlightColor: [highlightColors firstObject]}];
-                 
-                 for (NSUInteger i = 0; i < numberOfGroups; i++) {
-                     NSRange range = [match rangeAtIndex:i];
-                     
-                     if (range.length == 0) { continue; }
-                     
-                     NSColor *color = highlightColors[i];
-                     [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
-                                             CEFindHighlightColor: color}];
-                 }
-                 
-                 NSString *informativeFormat = ([highlights count] == 1) ? @"%@ string found." : @"%@ strings found.";
-                 NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
-                                          [integerFormatter stringFromNumber:@([highlights count])]];
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     [progress setLocalizedDescription:informative];
-                 });
-             }];
-        }
+                 NSColor *color = highlightColors[i];
+                 [highlights addObject:@{CEFindHighlightRange: [NSValue valueWithRange:range],
+                                         CEFindHighlightColor: color}];
+             }
+             
+             NSString *informativeFormat = ([highlights count] == 1) ? @"%@ string found." : @"%@ strings found.";
+             NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                      [integerFormatter stringFromNumber:@([highlights count])]];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [progress setLocalizedDescription:informative];
+             });
+         } scopeCompletionHandler:nil];
+        
+        if ([progress isCancelled]) { return; }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // highlight
@@ -607,13 +604,14 @@ static const NSUInteger kMaxHistorySize = 20;
     
     NSNumberFormatter *integerFormatter = [self integerFormatter];
     NSTextView *textView = [self client];
-    NSRegularExpression *regex = [self regex];
+    NSString *replacementString = [self replacementString];
     NSString *template = [self replacementString] ?: @"";
     NSArray<NSValue *> *scopeRanges = [self scopeRanges];
     BOOL inSelection = [self inSelection];
-    NSString *string = [textView string];
     
     [[self busyTextViews] addObject:textView];
+    
+    NSString *string = [NSString stringWithString:[textView string]];
     
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
@@ -629,48 +627,53 @@ static const NSUInteger kMaxHistorySize = 20;
         NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
         NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
         NSMutableArray<NSValue *> *selectedRanges = [NSMutableArray array];
-        NSInteger delta = 0;
         __block NSUInteger count = 0;
         
-        for (NSValue *rangeValue in scopeRanges) {
-            NSRange scopeRange = [rangeValue rangeValue];
-            
-            __block NSRange selectedRange = scopeRange;
-            selectedRange.location += delta;
-            
-            [regex enumerateMatchesInString:string options:0 range:scopeRange
-                                 usingBlock:^(NSTextCheckingResult * _Nullable match,
-                                              NSMatchingFlags flags,
-                                              BOOL * _Nonnull stop)
-             {
-                 if ([progress isCancelled]) {
-                     [indicator close:self];
-                     [[self busyTextViews] removeObject:textView];
-                     return;
-                 }
-                 
-                 NSRange replacementRange = [match range];
-                 NSString *replacedString = [regex replacementStringForResult:match
-                                                                     inString:string
-                                                                       offset:0
-                                                                     template:template];
-                 
-                 [replacementStrings addObject:replacedString];
-                 [replacementRanges addObject:[NSValue valueWithRange:replacementRange]];
-                 selectedRange.length -= (NSInteger)replacementRange.length - [replacedString length];
-                 count++;
-                 
-                 NSString *informativeFormat = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
-                 NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
-                                          [integerFormatter stringFromNumber:@(count)]];
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     [progress setLocalizedDescription:informative];
-                 });
-             }];
-            
-            delta += (NSInteger)selectedRange.length - scopeRange.length;
-            [selectedRanges addObject:[NSValue valueWithRange:selectedRange]];
-        }
+        // variables to calcurate new selection ranges
+        __block NSInteger locationDelta = 0;
+        __block NSInteger lengthDelta = 0;
+        
+        [self enumerateMatchsInString:string ranges:scopeRanges
+                           usingBlock:^(NSRange matchedRange,
+                                        NSTextCheckingResult * _Nullable match,
+                                        BOOL * _Nonnull stop)
+         {
+             if ([progress isCancelled]) {
+                 [indicator close:self];
+                 [[self busyTextViews] removeObject:textView];
+                 *stop = YES;
+                 return;
+             }
+             
+             NSString *replacedString;
+             if (match) {
+                 replacedString = [[match regularExpression] replacementStringForResult:match inString:string offset:0 template:template];
+             } else {
+                 replacedString = replacementString;
+             }
+             
+             [replacementStrings addObject:replacedString];
+             [replacementRanges addObject:[NSValue valueWithRange:matchedRange]];
+             count++;
+             
+             lengthDelta -= (NSInteger)matchedRange.length - [replacedString length];
+             
+             NSString *informativeFormat = (count == 1) ? @"%@ string replaced." : @"%@ strings replaced.";
+             NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
+                                      [integerFormatter stringFromNumber:@(count)]];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [progress setLocalizedDescription:informative];
+             });
+             
+         } scopeCompletionHandler:^(NSRange scopeRange) {
+             NSRange selectedRange = NSMakeRange(scopeRange.location + locationDelta,
+                                                 scopeRange.length + lengthDelta);
+             locationDelta += (NSInteger)selectedRange.length - scopeRange.length;
+             lengthDelta = 0;
+             [selectedRanges addObject:[NSValue valueWithRange:selectedRange]];
+         }];
+        
+        if ([progress isCancelled]) { NSLog(@"cancel"); return; }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [indicator doneWithButtonTitle:nil];
@@ -810,40 +813,44 @@ static const NSUInteger kMaxHistorySize = 20;
     NSString *string = [textView string];
     NSUInteger startLocation = forward ? NSMaxRange([textView selectedRange]) : [textView selectedRange].location;
     
-    if ([string length] == 0) { return 0; }
+    NSRange range = NSMakeRange(0, [string length]);
     
-    NSArray<NSTextCheckingResult *> *matches = [[self regex] matchesInString:string
-                                                                     options:[self regexOptions]  // TODO: regex/textual
-                                                                       range:NSMakeRange(0, [string length])];
-    NSTextCheckingResult *foundMatch = nil;
+    if (range.length == 0) { return 0; }
     
-    if (forward) {
-        for (NSTextCheckingResult *match in matches) {
-            if ([match range].location >= startLocation) {
-                foundMatch = match;
-                break;
-            }
+    NSMutableArray *matches = [NSMutableArray array];
+    [self enumerateMatchsInString:string ranges:@[[NSValue valueWithRange:range]]
+                       usingBlock:^(NSRange matchedRange,
+                                    NSTextCheckingResult * _Nullable match,
+                                    BOOL * _Nonnull stop)
+     {
+         [matches addObject:[NSValue valueWithRange:matchedRange]];
+     } scopeCompletionHandler:nil];
+    
+    NSRange foundRange = NSMakeRange(NSNotFound, 0);
+    
+    if ([matches count] == 0) { return 0; }
+    
+    NSRange lastMatchedRange = NSMakeRange(NSNotFound, 0);
+    for (NSValue *match in matches) {
+        NSRange matchedRange = [match rangeValue];
+        
+        if (matchedRange.location >= startLocation) {
+            foundRange = forward ? matchedRange : lastMatchedRange;
+            break;
         }
-    } else {  // backward
-        for (NSTextCheckingResult *match in [matches reverseObjectEnumerator]) {
-            if ([match range].location < startLocation) {
-                foundMatch = match;
-                break;
-            }
-        }
+        
+        lastMatchedRange = matchedRange;
     }
     
     // wrap search
     BOOL isWrapped = NO;
-    if (!foundMatch && [self isWrap]) {
-        if ((foundMatch = forward ? [matches firstObject] : [matches lastObject])) {
-            isWrapped = YES;
-        }
+    if (foundRange.location == NSNotFound && [self isWrap]) {
+        foundRange = forward ? [[matches firstObject] rangeValue] : [[matches lastObject] rangeValue];
+        isWrapped = YES;
     }
     
     // found feedback
-    if (foundMatch) {
-        NSRange foundRange = [foundMatch range];
+    if (foundRange.location != NSNotFound) {
         [textView setSelectedRange:foundRange];
         [textView scrollRangeToVisible:foundRange];
         [textView showFindIndicatorForRange:foundRange];
@@ -906,6 +913,90 @@ static const NSUInteger kMaxHistorySize = 20;
     return [textView replaceWithString:replacedString range:matchedRange
                          selectedRange:NSMakeRange(matchedRange.location, [replacedString length])
                             actionName:NSLocalizedString(@"Replace", nil)];
+}
+
+
+// ------------------------------------------------------
+/// enumerate matchs in string using current settings
+- (void)enumerateMatchsInString:(nullable NSString *)string ranges:(NSArray<NSValue *> *)ranges usingBlock:(nonnull void (^)(NSRange matchedRange, NSTextCheckingResult * _Nullable match, BOOL * _Nonnull stop))block scopeCompletionHandler:(nullable void (^)(NSRange scopeRange))scopeCompletionHandler
+// ------------------------------------------------------
+{
+    if ([self usesRegularExpression]) {
+        [self enumerateRegularExpressionMatchsInString:string ranges:ranges usingBlock:block scopeCompletionHandler:scopeCompletionHandler];
+    } else {
+        [self enumerateTextualMatchsInString:string ranges:ranges usingBlock:block scopeCompletionHandler:scopeCompletionHandler];
+    }
+}
+
+
+// ------------------------------------------------------
+/// enumerate matchs in string using textual search
+- (void)enumerateTextualMatchsInString:(nullable NSString *)string ranges:(NSArray<NSValue *> *)ranges usingBlock:(nonnull void (^)(NSRange matchedRange, NSTextCheckingResult * _Nullable match, BOOL * _Nonnull stop))block scopeCompletionHandler:(nullable void (^)(NSRange scopeRange))scopeCompletionHandler
+// ------------------------------------------------------
+{
+    if ([string length] == 0) { return; }
+    
+    NSArray<NSString *> *findStrings;
+    if ([self delimitsByWhitespace]) {
+        findStrings = [[self sanitizedFindString] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    } else {
+        findStrings = @[[self sanitizedFindString]];
+    }
+    NSStringCompareOptions options = [self textualOptions];
+    
+    for (NSValue *rangeValue in ranges) {
+        NSRange scopeRange = [rangeValue rangeValue];
+        
+        NSRange searchRange = scopeRange;
+        while (searchRange.location != NSNotFound) {
+            searchRange.length = string.length - searchRange.location;
+            NSRange foundRange = NSMakeRange(NSNotFound, 0);
+            for (NSString *findString in findStrings) {
+                NSRange tmpRange = [string rangeOfString:findString options:options range:searchRange];
+                if (tmpRange.location < foundRange.location) {
+                    foundRange = tmpRange;
+                }
+            }
+            if (NSMaxRange(foundRange) > NSMaxRange(scopeRange)) { break; }
+            
+            BOOL stop = NO;
+            block(foundRange, nil, &stop);
+            
+            if (stop) { return; }
+            
+            searchRange.location = NSMaxRange(foundRange);
+        }
+        
+        if (scopeCompletionHandler) {
+            scopeCompletionHandler(scopeRange);
+        }
+    }
+}
+
+
+// ------------------------------------------------------
+/// enumerate matchs in string using regular expression
+- (void)enumerateRegularExpressionMatchsInString:(nullable NSString *)string ranges:(NSArray<NSValue *> *)ranges usingBlock:(nonnull void (^)(NSRange matchedRange, NSTextCheckingResult * _Nullable match, BOOL * _Nonnull stop))block scopeCompletionHandler:(nullable void (^)(NSRange scopeRange))scopeCompletionHandler
+// ------------------------------------------------------
+{
+    if ([string length] == 0) { return; }
+    
+    NSRegularExpression *regex = [self regex];
+    
+    for (NSValue *rangeValue in ranges) {
+        NSRange scopeRange = [rangeValue rangeValue];
+        [regex enumerateMatchesInString:string options:0 range:scopeRange
+                             usingBlock:^(NSTextCheckingResult * _Nullable result,
+                                          NSMatchingFlags flags,
+                                          BOOL * _Nonnull stop)
+         {
+             block([result range], result, stop);
+         }];
+        
+        if (scopeCompletionHandler) {
+            scopeCompletionHandler(scopeRange);
+        }
+    }
 }
 
 
