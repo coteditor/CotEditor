@@ -756,27 +756,23 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    NSInteger state = NSOffState;
-    
     if ([menuItem action] == @selector(changeEncoding:)) {
         NSInteger encodingTag = [self hasUTF8BOM] ? -[self encoding] : [self encoding];
-        state = ([menuItem tag] == encodingTag) ? NSOnState : NSOffState;
+        [menuItem setState:([menuItem tag] == encodingTag) ? NSOnState : NSOffState];
         
     } else if (([menuItem action] == @selector(changeLineEndingToLF:)) ||
                ([menuItem action] == @selector(changeLineEndingToCR:)) ||
                ([menuItem action] == @selector(changeLineEndingToCRLF:)) ||
                ([menuItem action] == @selector(changeLineEnding:)))
     {
-        state = ([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState;
+        [menuItem setState:([menuItem tag] == [self lineEnding]) ? NSOnState : NSOffState];
         
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
         NSString *name = [[self syntaxStyle] styleName];
         if (name && [[menuItem title] isEqualToString:name]) {
-            state = NSOnState;
+            [menuItem setState:NSOnState];
         }
-        
     }
-    [menuItem setState:state];
     
     return [super validateMenuItem:menuItem];
 }
@@ -940,8 +936,6 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (BOOL)reinterpretWithEncoding:(NSStringEncoding)encoding error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
-    BOOL success = NO;
-    
     if (encoding == NSNotFound || ![self fileURL]) {
         if (outError) {
             // TODO: add userInfo (The outError under this condition will actually not be used, but better not to pass an empty errer pointer.)
@@ -955,17 +949,19 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     
     // reinterpret
     [self setReadingEncoding:encoding];
-    success = [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:nil];
+    NSError *error;
+    BOOL success = [self revertToContentsOfURL:[self fileURL] ofType:[self fileType] error:&error];
     
     // set outError
     if (!success && outError) {
-        NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding];
-        
         *outError = [NSError errorWithDomain:CEErrorDomain
                                         code:CEReinterpretationFailedError
                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can not reinterpret.", nil),
-                                               NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil), [[self fileURL] lastPathComponent], encodingName],
+                                               NSLocalizedRecoverySuggestionErrorKey: [NSString stringWithFormat:NSLocalizedString(@"The file “%@” could not be reinterpreted using the new encoding “%@”.", nil),
+                                                                                       [[self fileURL] lastPathComponent],
+                                                                                       [NSString localizedNameOfStringEncoding:encoding]],
                                                NSStringEncodingErrorKey: @(encoding),
+                                               NSUnderlyingErrorKey: error ?: [NSNull null],
                                                NSURLErrorKey: [self fileURL],
                                                }];
     }
@@ -979,45 +975,39 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (BOOL)changeEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM askLossy:(BOOL)askLossy lossy:(BOOL)lossy
 // ------------------------------------------------------
 {
-    if (encoding == [self encoding] && withUTF8BOM == [self hasUTF8BOM]) {
-        return YES;
-    }
+    if (encoding == [self encoding] && withUTF8BOM == [self hasUTF8BOM]) { return YES; }
     
     NSString *encodingName = [NSString localizedNameOfStringEncoding:encoding withUTF8BOM:withUTF8BOM];
     
-    if (askLossy) {
-        if (![[self string] canBeConvertedToEncoding:encoding]) {
-            NSError *error = [NSError errorWithDomain:CEErrorDomain
-                                                 code:CELossyEncodingConversionError
-                                             userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"Some characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
-                                                        NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to change encoding and show incompatible characters?", nil),
-                                                        NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
-                                                                                              NSLocalizedString(@"Change Encoding", nil)],
-                                                        NSRecoveryAttempterErrorKey: self,
-                                                        NSStringEncodingErrorKey: @(encoding),
-                                                        CEStringEncodingUTF8BOMErrorKey: @(withUTF8BOM),
-                                                        }];
-            
-            [[[self windowForSheet] attachedSheet] orderOut:self];  // close previous sheet
-            [self presentError:error modalForWindow:[self windowForSheet] delegate:nil didPresentSelector:NULL contextInfo:NULL];
-            return NO;
-        }
+    // ask lossy
+    if (askLossy && ![[self string] canBeConvertedToEncoding:encoding]) {
+        NSError *error = [NSError errorWithDomain:CEErrorDomain
+                                             code:CELossyEncodingConversionError
+                                         userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"Some characters would have to be changed or deleted in saving as “%@”.", nil), encodingName],
+                                                    NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to change encoding and show incompatible characters?", nil),
+                                                    NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
+                                                                                          NSLocalizedString(@"Change Encoding", nil)],
+                                                    NSRecoveryAttempterErrorKey: self,
+                                                    NSStringEncodingErrorKey: @(encoding),
+                                                    CEStringEncodingUTF8BOMErrorKey: @(withUTF8BOM),
+                                                    }];
+        
+        [[[self windowForSheet] attachedSheet] orderOut:self];  // close previous sheet
+        [self presentError:error modalForWindow:[self windowForSheet] delegate:nil didPresentSelector:NULL contextInfo:NULL];
+        return NO;
     }
     
     // register undo
-    NSUndoManager *undoManager = [self undoManager];
-    [[undoManager prepareWithInvocationTarget:self] redoChangeEncoding:encoding withUTF8BOM:withUTF8BOM askLossy:NO lossy:lossy];  // redo in undo
-    [[undoManager prepareWithInvocationTarget:self] applyEncodingToView];
-    [[undoManager prepareWithInvocationTarget:[self incompatibleCharacterScanner]] scan];
-    [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]];
-    [[undoManager prepareWithInvocationTarget:self] setHasUTF8BOM:[self hasUTF8BOM]];
-    [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil), encodingName]];
+    [[[self undoManager] prepareWithInvocationTarget:self] changeEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM] askLossy:NO lossy:lossy];
+    [[self undoManager] setActionName:[NSString stringWithFormat:NSLocalizedString(@"Encoding to “%@”", nil), encodingName]];
     
     // update encoding
     [self setEncoding:encoding];
     [self setHasUTF8BOM:withUTF8BOM];
+    
+    // update UI
     [[self incompatibleCharacterScanner] scan];
-    [self applyEncodingToView];  // update UI
+    [[self analyzer] invalidateModeInfo];
     
     return YES;
 }
@@ -1025,23 +1015,22 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 // ------------------------------------------------------
 /// change line endings registering process to the undo manager
-- (void)doSetLineEnding:(CENewLineType)lineEnding
+- (void)changeLineEndingTo:(CENewLineType)lineEnding
 // ------------------------------------------------------
 {
     if (lineEnding == [self lineEnding]) { return; }
-    
-    CENewLineType currentLineEnding = [self lineEnding];
 
     // register undo
-    NSUndoManager *undoManager = [self undoManager];
-    [[undoManager prepareWithInvocationTarget:self] redoSetLineEnding:lineEnding];  // redo in undo
-    [[undoManager prepareWithInvocationTarget:self] applyLineEndingToView];
-    [[undoManager prepareWithInvocationTarget:self] setLineEnding:currentLineEnding];
-    [undoManager setActionName:[NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", nil),
-                                [NSString newLineNameWithType:lineEnding]]];
-
+    [[[self undoManager] prepareWithInvocationTarget:self] changeLineEndingTo:[self lineEnding]];
+    [[self undoManager] setActionName:[NSString stringWithFormat:NSLocalizedString(@"Line Endings to “%@”", nil),
+                                       [NSString newLineNameWithType:lineEnding]]];
+    
+    // update line ending
     [self setLineEnding:lineEnding];
-    [self applyLineEndingToView];  // update UI
+    
+    // update UI
+    [[self analyzer] invalidateModeInfo];
+    [[self analyzer] invalidateEditorInfo];
 }
 
 
@@ -1082,9 +1071,9 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     NSString *oldName = [notification userInfo][CEOldNameKey];
     NSString *newName = [notification userInfo][CENewNameKey];
     
-    if (![oldName isEqualToString:[[self syntaxStyle] styleName]]) { return; }
-    
-    [self setSyntaxStyleWithName:newName];
+    if ([oldName isEqualToString:[[self syntaxStyle] styleName]]) {
+        [self setSyntaxStyleWithName:newName];
+    }
 }
 
 
@@ -1148,7 +1137,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (IBAction)changeLineEndingToLF:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self doSetLineEnding:CENewLineLF];
+    [self changeLineEndingTo:CENewLineLF];
 }
 
 
@@ -1157,7 +1146,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (IBAction)changeLineEndingToCR:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self doSetLineEnding:CENewLineCR];
+    [self changeLineEndingTo:CENewLineCR];
 }
 
 
@@ -1166,7 +1155,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (IBAction)changeLineEndingToCRLF:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self doSetLineEnding:CENewLineCRLF];
+    [self changeLineEndingTo:CENewLineCRLF];
 }
 
 
@@ -1175,7 +1164,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (IBAction)changeLineEnding:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self doSetLineEnding:[sender tag]];
+    [self changeLineEndingTo:[sender tag]];
 }
 
 
@@ -1279,25 +1268,6 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 
 #pragma mark Private Methods
-
-// ------------------------------------------------------
-/// ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
-- (void)applyEncodingToView
-// ------------------------------------------------------
-{
-    [[self analyzer] invalidateModeInfo];
-}
-
-
-// ------------------------------------------------------
-/// 改行コードをエディタに反映
-- (void)applyLineEndingToView
-// ------------------------------------------------------
-{
-    [[self analyzer] invalidateModeInfo];
-    [[self analyzer] invalidateEditorInfo];
-}
-
 
 //------------------------------------------------------
 /// データから指定エンコードで文字列を読み込み返す (auto detection)
@@ -1467,24 +1437,6 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     }
     
     return YES;
-}
-
-
-// ------------------------------------------------------
-/// エンコードを変更するアクションのRedo登録
-- (void)redoChangeEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM askLossy:(BOOL)askLossy lossy:(BOOL)lossy
-// ------------------------------------------------------
-{
-    [[[self undoManager] prepareWithInvocationTarget:self] changeEncoding:encoding withUTF8BOM:withUTF8BOM askLossy:askLossy lossy:lossy];
-}
-
-
-// ------------------------------------------------------
-/// 改行コードを変更するアクションのRedo登録
-- (void)redoSetLineEnding:(CENewLineType)lineEnding
-// ------------------------------------------------------
-{
-    [[[self undoManager] prepareWithInvocationTarget:self] doSetLineEnding:lineEnding];
 }
 
 

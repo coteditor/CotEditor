@@ -70,7 +70,7 @@ extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 - (BOOL)changeEncoding:(NSStringEncoding)encoding withUTF8BOM:(BOOL)withUTF8BOM askLossy:(BOOL)askLossy lossy:(BOOL)lossy;
 
 // line ending
-- (void)doSetLineEnding:(CENewLineType)lineEnding;
+- (void)changeLineEndingTo:(CENewLineType)lineEnding;
 
 // syntax style
 - (void)setSyntaxStyleWithName:(nullable NSString *)name;

@@ -157,7 +157,7 @@
             type = CENewLineLF;
             break;
     }
-    [self doSetLineEnding:type];
+    [self changeLineEndingTo:type];
 }
 
 
