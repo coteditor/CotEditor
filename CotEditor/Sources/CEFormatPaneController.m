@@ -264,7 +264,6 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 // ------------------------------------------------------
 {
     CEEncodingListSheetController *sheetController = [[CEEncodingListSheetController alloc] init];
-    NSWindow *sheet = [sheetController window];
     
     // show editor as sheet
     [self setCurrentSheetController:sheetController];

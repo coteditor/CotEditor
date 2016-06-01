@@ -197,7 +197,7 @@ static CGFontRef BoldLineNumberFont;
     CGFloat tickLength = ceil(fontSize / 3);
     
     // adjust thickness
-    CGFloat ruleThickness = [self ruleThickness];
+    CGFloat ruleThickness;
     if (isVerticalText) {
         ruleThickness = MAX(fontSize + 2.5 * tickLength, kMinHorizontalThickness);
         
