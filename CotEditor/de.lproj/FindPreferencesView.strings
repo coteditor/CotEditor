@@ -42,11 +42,6 @@
 /* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "d1L-6X-N8c"; */
 "d1L-6X-N8c.title" = "Textuelles Suchen";
 
-/* Class = "NSButtonCell"; title = "Delimit by whitespace"; ObjectID = "3mQ-og-LXu"; */
-"3mQ-og-LXu.title" = "Mit Leerzeichen trennen";
-/* Class = "NSButton"; ibShadowedToolTip = "Match any of words delimited by whitespaces."; ObjectID = "qNL-l2-IA2"; */
-"qNL-l2-IA2.ibShadowedToolTip" = "Jede von durch Leerzeichen getrennten Wörtern passen.";
-
 /* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "mY4-am-wla"; */
 "mY4-am-wla.title" = "Zeichen streng unterscheiden";
 /* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "KG4-LQ-sen"; */

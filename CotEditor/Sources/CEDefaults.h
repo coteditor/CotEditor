@@ -147,7 +147,6 @@ extern NSString *_Nonnull const CEDefaultFindIsWrapKey;
 extern NSString *_Nonnull const CEDefaultFindNextAfterReplaceKey;
 extern NSString *_Nonnull const CEDefaultFindClosesIndicatorWhenDoneKey;
 
-extern NSString *_Nonnull const CEDefaultFindTextDelimitsByWhitespaceKey;
 extern NSString *_Nonnull const CEDefaultFindTextIsLiteralSearchKey;
 extern NSString *_Nonnull const CEDefaultFindTextIgnoresDiacriticMarksKey;
 extern NSString *_Nonnull const CEDefaultFindTextIgnoresWidthKey;

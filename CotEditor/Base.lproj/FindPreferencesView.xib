@@ -12,11 +12,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView horizontalCompressionResistancePriority="249" id="n0x-rs-gOH">
-            <rect key="frame" x="0.0" y="0.0" width="230" height="289"/>
+            <rect key="frame" x="0.0" y="0.0" width="230" height="271"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZxT-dv-zkd">
-                    <rect key="frame" x="18" y="262" width="194" height="17"/>
+                    <rect key="frame" x="18" y="244" width="194" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Advanced Find Options" id="Dl6-kv-hhz">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -41,16 +41,6 @@
                     </buttonCell>
                     <connections>
                         <binding destination="hNo-st-CW5" name="value" keyPath="values.regexUsesUnicodeBoundaries" id="HqE-vG-t5r"/>
-                    </connections>
-                </button>
-                <button toolTip="Match any of words delimited by whitespaces." translatesAutoresizingMaskIntoConstraints="NO" id="qNL-l2-IA2">
-                    <rect key="frame" x="17" y="155" width="138" height="18"/>
-                    <buttonCell key="cell" type="check" title="Delimit by whitespace" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="3mQ-og-LXu">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="hNo-st-CW5" name="value" keyPath="values.findTextDelimitsByWhitespace" id="JQJ-8v-KDe"/>
                     </connections>
                 </button>
                 <button toolTip="Exact character-by-character equivalence." translatesAutoresizingMaskIntoConstraints="NO" id="KG4-LQ-sen">
@@ -92,7 +82,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s9v-U5-5ZM">
-                    <rect key="frame" x="18" y="178" width="87" height="14"/>
+                    <rect key="frame" x="18" y="160" width="87" height="14"/>
                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Textual Search" id="d1L-6X-N8c">
                         <font key="font" metaFont="smallSystemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -100,7 +90,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="rmT-GL-9fJ">
-                    <rect key="frame" x="17" y="203" width="164" height="18"/>
+                    <rect key="frame" x="17" y="185" width="164" height="18"/>
                     <buttonCell key="cell" type="check" title="Auto-close progress dialog" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="KBq-zH-H2M">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -110,7 +100,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="B9b-MW-hnQ">
-                    <rect key="frame" x="17" y="239" width="128" height="18"/>
+                    <rect key="frame" x="17" y="221" width="128" height="18"/>
                     <buttonCell key="cell" type="check" title="Wrap search around" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="o7S-uI-urg">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -120,7 +110,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="vSw-Kt-7km">
-                    <rect key="frame" x="17" y="221" width="187" height="18"/>
+                    <rect key="frame" x="17" y="203" width="187" height="18"/>
                     <buttonCell key="cell" type="check" title="Select next match after replace" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="XBp-LE-3Ry">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -141,13 +131,12 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstItem="qNL-l2-IA2" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="3bK-oU-yc4"/>
                 <constraint firstItem="rmT-GL-9fJ" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="4ff-on-TgQ"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qNL-l2-IA2" secondAttribute="trailing" constant="20" symbolic="YES" id="4fy-mH-ct8"/>
                 <constraint firstItem="B9b-MW-hnQ" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="6Uy-sY-FEu"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KG4-LQ-sen" secondAttribute="trailing" constant="20" symbolic="YES" id="7Dv-5E-qlo"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lhw-9C-lgB" secondAttribute="trailing" constant="20" symbolic="YES" id="9RW-K1-fIx"/>
                 <constraint firstItem="B9b-MW-hnQ" firstAttribute="top" secondItem="ZxT-dv-zkd" secondAttribute="bottom" constant="8" symbolic="YES" id="Db4-KN-MED"/>
+                <constraint firstItem="KG4-LQ-sen" firstAttribute="top" secondItem="s9v-U5-5ZM" secondAttribute="bottom" constant="8" symbolic="YES" id="Eyi-nd-myq"/>
                 <constraint firstItem="YYY-qb-T00" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="F7y-D6-0IY"/>
                 <constraint firstItem="s9v-U5-5ZM" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="FYD-Sf-bxB"/>
                 <constraint firstItem="fev-mC-rKB" firstAttribute="top" secondItem="A5O-jt-o7T" secondAttribute="bottom" constant="14" id="I5d-o1-MtF"/>
@@ -163,7 +152,6 @@
                 <constraint firstItem="Lhw-9C-lgB" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="WKp-4g-V9f"/>
                 <constraint firstItem="rmT-GL-9fJ" firstAttribute="top" secondItem="vSw-Kt-7km" secondAttribute="bottom" constant="6" symbolic="YES" id="XEO-se-Rgf"/>
                 <constraint firstItem="vSw-Kt-7km" firstAttribute="top" secondItem="B9b-MW-hnQ" secondAttribute="bottom" constant="6" symbolic="YES" id="YDN-5I-jWH"/>
-                <constraint firstItem="qNL-l2-IA2" firstAttribute="top" secondItem="s9v-U5-5ZM" secondAttribute="bottom" constant="8" symbolic="YES" id="YEw-XV-dst"/>
                 <constraint firstItem="ZxT-dv-zkd" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="YFF-Ym-O7f"/>
                 <constraint firstItem="ZxT-dv-zkd" firstAttribute="top" secondItem="n0x-rs-gOH" secondAttribute="top" constant="10" id="YJ1-gS-f5L"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YYY-qb-T00" secondAttribute="trailing" constant="20" symbolic="YES" id="ZFn-os-rzH"/>
@@ -174,7 +162,6 @@
                 <constraint firstAttribute="bottom" secondItem="VMh-Tq-bq0" secondAttribute="bottom" constant="20" symbolic="YES" id="kbm-Mr-4OS"/>
                 <constraint firstItem="Lhw-9C-lgB" firstAttribute="top" secondItem="c11-J5-UXF" secondAttribute="bottom" constant="6" symbolic="YES" id="kfl-4t-EtN"/>
                 <constraint firstItem="A5O-jt-o7T" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="mJB-47-Okl"/>
-                <constraint firstItem="KG4-LQ-sen" firstAttribute="top" secondItem="qNL-l2-IA2" secondAttribute="bottom" constant="6" symbolic="YES" id="oUx-uT-O7p"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rmT-GL-9fJ" secondAttribute="trailing" constant="20" symbolic="YES" id="pIx-sM-esg"/>
                 <constraint firstItem="VMh-Tq-bq0" firstAttribute="top" secondItem="Lhw-9C-lgB" secondAttribute="bottom" constant="6" symbolic="YES" id="pjs-G0-r7g"/>
                 <constraint firstItem="VMh-Tq-bq0" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="u5s-Z1-TgX"/>

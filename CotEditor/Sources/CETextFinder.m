@@ -158,7 +158,6 @@ static const NSUInteger kMaxHistorySize = 20;
                                                CEDefaultFindClosesIndicatorWhenDoneKey: @YES,
                                                CEDefaultFindIgnoresCaseKey: @NO,
                                                
-                                               CEDefaultFindTextDelimitsByWhitespaceKey: @NO,
                                                CEDefaultFindTextIsLiteralSearchKey: @NO,
                                                CEDefaultFindTextIgnoresDiacriticMarksKey: @NO,
                                                CEDefaultFindTextIgnoresWidthKey: @NO,
@@ -936,12 +935,7 @@ static const NSUInteger kMaxHistorySize = 20;
 {
     if ([string length] == 0) { return; }
     
-    NSArray<NSString *> *findStrings;
-    if ([self delimitsByWhitespace]) {
-        findStrings = [[self sanitizedFindString] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    } else {
-        findStrings = @[[self sanitizedFindString]];
-    }
+    NSString *findString = [self sanitizedFindString];
     NSStringCompareOptions options = [self textualOptions];
     
     for (NSValue *rangeValue in ranges) {
@@ -950,13 +944,8 @@ static const NSUInteger kMaxHistorySize = 20;
         NSRange searchRange = scopeRange;
         while (searchRange.location != NSNotFound) {
             searchRange.length = string.length - searchRange.location;
-            NSRange foundRange = NSMakeRange(NSNotFound, 0);
-            for (NSString *findString in findStrings) {
-                NSRange tmpRange = [string rangeOfString:findString options:options range:searchRange];
-                if (tmpRange.location < foundRange.location) {
-                    foundRange = tmpRange;
-                }
-            }
+            NSRange foundRange = [string rangeOfString:findString options:options range:searchRange];
+            
             if (NSMaxRange(foundRange) > NSMaxRange(scopeRange)) { break; }
             
             BOOL stop = NO;
@@ -1177,15 +1166,6 @@ static const NSUInteger kMaxHistorySize = 20;
 // ------------------------------------------------------
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindInSelectionKey];
-}
-
-
-// ------------------------------------------------------
-/// return value from user defaults
-- (BOOL)delimitsByWhitespace
-// ------------------------------------------------------
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultFindTextDelimitsByWhitespaceKey];
 }
 
 

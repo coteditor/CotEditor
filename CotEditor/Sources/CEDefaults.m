@@ -147,7 +147,6 @@ NSString *_Nonnull const CEDefaultFindIsWrapKey = @"findIsWrap";
 NSString *_Nonnull const CEDefaultFindNextAfterReplaceKey = @"findsNextAfterReplace";
 NSString *_Nonnull const CEDefaultFindClosesIndicatorWhenDoneKey = @"findClosesIndicatorWhenDone";
 
-NSString *_Nonnull const CEDefaultFindTextDelimitsByWhitespaceKey = @"findTextDelimitsByWhitespace";
 NSString *_Nonnull const CEDefaultFindTextIsLiteralSearchKey = @"findTextIsLiteralSearch";
 NSString *_Nonnull const CEDefaultFindTextIgnoresDiacriticMarksKey = @"findTextIgnoresDiacriticMarks";
 NSString *_Nonnull const CEDefaultFindTextIgnoresWidthKey = @"findTextIgnoresWidth";
