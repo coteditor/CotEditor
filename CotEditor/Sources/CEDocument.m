@@ -298,6 +298,12 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (BOOL)revertToContentsOfURL:(nonnull NSURL *)url ofType:(nonnull NSString *)typeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 // ------------------------------------------------------
 {
+    // once force-close all sheets
+    //   -> Presented errors will be displayed again after the revert automatically (since OS X 10.10).
+    for (NSWindow *sheet in [[self windowForSheet] sheets]) {
+        [sheet close];
+    }
+    
     BOOL success = [super revertToContentsOfURL:url ofType:typeName error:outError];
     
     // apply to UI
@@ -1529,9 +1535,17 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     [alert addButtonWithTitle:NSLocalizedString(@"Keep CotEditor’s Edition", nil)];
     [alert addButtonWithTitle:NSLocalizedString(@"Update", nil)];
     
-    // completion handler for alert sheet
+    // mark the alert as critical in order to interpret other sheets already attached
+    if ([[self windowForSheet] attachedSheet]) {
+        [alert setAlertStyle:NSCriticalAlertStyle];
+    }
+    
+    [self setExternalUpdateAlertShown:YES];
+    [[self windowForSheet] orderFront:nil];
+    
+    // display alert
     __weak typeof(self) weakSelf = self;
-    void (^did_close_alert)(NSInteger) = ^(NSInteger returnCode) {
+    [alert beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse returnCode) {
         typeof(self) self = weakSelf;  // strong self
         
         if (returnCode == NSAlertSecondButtonReturn) { // == Revert
@@ -1539,19 +1553,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
         }
         [self setExternalUpdateAlertShown:NO];
         [self setNeedsShowUpdateAlertWithBecomeKey:NO];
-    };
-    
-    [self setExternalUpdateAlertShown:YES];
-    [[self windowForSheet] orderFront:nil];
-    
-    // display alert
-    if ([[self windowForSheet] attachedSheet]) {  // show alert as a normal dialog if any of sheet is already attached
-        NSInteger result = [alert runModal];
-        did_close_alert(result);
-        
-    } else {
-        [alert beginSheetModalForWindow:[self windowForSheet] completionHandler:did_close_alert];
-    }
+    }];
 }
 
 
