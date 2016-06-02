@@ -54,6 +54,10 @@ develop
 
 ### Fixes
 
+- Fix document counting as followings:
+    - “Char Count” counts composite characters as well as CR/LF as single characters and omits counting line endings if “Count each line ending as one character” option is off.
+    - “Length” counts bytes in UTF-8 literally and always counts line endings even if “Count each line ending as one character” option is off.
+    - “Location” and “Column” count characters just like “Char Count”.
 - Fix an issue where the selected marks of line height / tab width in the Format menu disappeared.
 - Fix an issue where unselected last line number could be highlighted if the text orientation is vertical.
 - Fix an issue where invisible characters were drawn off to the side if the text orientation is vertical.
