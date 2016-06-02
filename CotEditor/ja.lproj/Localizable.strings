@@ -73,6 +73,7 @@
 "Replace" = "置換";
 "Find All" = "すべて検索";
 "Replace All" = "すべて置換";
+"Highlight" = "ハイライト";
 "%@ string found." = "%@ 件見つかりました。";
 "%@ strings found." = "%@ 件見つかりました。";
 "%@ string replaced." = "%@ 件置換しました。";
