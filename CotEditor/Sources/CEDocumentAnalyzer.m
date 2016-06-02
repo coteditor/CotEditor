@@ -199,13 +199,26 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
             NSString *selectedString = [wholeString substringWithRange:selectedRange];  // LF
             BOOL hasSelection = (selectedRange.length > 0);
             
-            NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
-            column = selectedRange.location - lineRange.location;  // as length
-            column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
+            // count length
+            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarLengthKey]) {
+                BOOL isSingleLineEnding = ([[NSString newLineStringWithType:lineEnding] length] == 1);
+                NSString *str = isSingleLineEnding ? wholeString : [wholeString stringByReplacingNewLineCharacersWith:lineEnding];
+                length = [str length];
+                
+                if (hasSelection) {
+                    str = isSingleLineEnding ? selectedString : [selectedString stringByReplacingNewLineCharacersWith:lineEnding];
+                    selectedLength = [str length];
+                }
+            }
             
-            // count currentLine
-            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarLineKey]) {
-                currentLine = [wholeString lineNumberAtIndex:selectedRange.location];
+            // count characters
+            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
+                NSString *str = countsLineEnding ? wholeString : [wholeString stringByDeletingNewLineCharacters];
+                numberOfChars = [str numberOfComposedCharacters];
+                if (hasSelection) {
+                    str = countsLineEnding ? selectedString : [selectedString stringByDeletingNewLineCharacters];
+                    numberOfSelectedChars = [str numberOfComposedCharacters];
+                }
             }
             
             // count lines
@@ -224,38 +237,27 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
                 }
             }
             
-            // count location
+            // calculate current location
             if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
                 NSString *locString = [wholeString substringToIndex:selectedRange.location];
                 NSString *str = countsLineEnding ? locString : [locString stringByDeletingNewLineCharacters];
-                
                 location = [str numberOfComposedCharacters];
             }
             
-            // count characters
-            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
-                NSString *str = countsLineEnding ? wholeString : [wholeString stringByDeletingNewLineCharacters];
-                numberOfChars = [str numberOfComposedCharacters];
-                if (hasSelection) {
-                    str = countsLineEnding ? selectedString : [selectedString stringByDeletingNewLineCharacters];
-                    numberOfSelectedChars = [str numberOfComposedCharacters];
-                }
+            // calculate current line
+            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarLineKey]) {
+                currentLine = [wholeString lineNumberAtIndex:selectedRange.location];
             }
             
-            // count length
-            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarLengthKey]) {
-                BOOL isSingleLineEnding = ([[NSString newLineStringWithType:lineEnding] length] == 1);
-                NSString *str = isSingleLineEnding ? wholeString : [wholeString stringByReplacingNewLineCharacersWith:lineEnding];
-                length = [str length];
-                
-                if (hasSelection) {
-                    NSString *str = isSingleLineEnding ? selectedString : [selectedString stringByReplacingNewLineCharacersWith:lineEnding];
-                    selectedLength = [str length];
-                }
+            // calculate current column
+            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarColumnKey]) {
+                NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
+                column = selectedRange.location - lineRange.location;  // as length
+                column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
             }
             
-            if (needsAll) {
-                // unicode
+            // unicode
+            if (needsAll && hasSelection) {
                 CECharacterInfo *characterInfo = [CECharacterInfo characterInfoWithString:selectedString];
                 if ([[characterInfo unicodes] count] == 1) {
                     unicode = [[[characterInfo unicodes] firstObject] unicode];
@@ -265,9 +267,9 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
         
         // apply to UI
         dispatch_sync(dispatch_get_main_queue(), ^{
-            self.lines = [self formatCount:numberOfLines selected:numberOfSelectedLines];
             self.length = [self formatCount:length selected:selectedLength];
             self.chars = [self formatCount:numberOfChars selected:numberOfSelectedChars];
+            self.lines = [self formatCount:numberOfLines selected:numberOfSelectedLines];
             self.words = [self formatCount:numberOfWords selected:numberOfSelectedWords];
             self.location = [NSString localizedStringWithFormat:@"%li", location];
             self.line = [NSString localizedStringWithFormat:@"%li", currentLine];
