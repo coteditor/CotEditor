@@ -1,6 +1,6 @@
 /*
  
- CEDocument+Authopen.h
+ NSData+CEAuthopen.h
  
  CotEditor
  http://coteditor.com
@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
  
  */
 
-#import "CEDocument.h"
+@import Foundation;
 
 
 // ------------------------------------------------------------------------------
@@ -37,12 +37,12 @@
 // You can remove these if you feel it's really needless.
 // ------------------------------------------------------------------------------
 
-@interface CEDocument (Authopen)
+@interface NSData (CEAuthopen)
 
 /// Try reading data at the URL using authopen (Sandobox incompatible)
-- (nullable NSData *)forceReadDataFromURL:(nonnull NSURL *)url __attribute__((unavailable("Sandbox incompatible")));
++ (nullable NSData *)forceReadDataFromURL:(nonnull NSURL *)url __attribute__((unavailable("Sandbox incompatible")));
 
 /// Try writing data to the URL using authopen (Sandobox incompatible)
-- (BOOL)forceWriteData:(nonnull NSData *)data URL:(nonnull NSURL *)url __attribute__((unavailable("Sandbox incompatible")));
+- (BOOL)forceWriteToURL:(nonnull NSURL *)url __attribute__((unavailable("Sandbox incompatible")));
 
 @end

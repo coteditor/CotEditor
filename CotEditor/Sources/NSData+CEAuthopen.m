@@ -1,6 +1,6 @@
 /*
  
- CEDocument+Authopen.m
+ NSData+CEAuthopen.m
  
  CotEditor
  http://coteditor.com
@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,28 +26,29 @@
  
  */
 
-#import "CEDocument+Authopen.h"
+#import "NSData+CEAuthopen.h"
 
 
-@implementation CEDocument (Authopen)
+static NSString *_Nonnull const AuthopenPath = @"/usr/libexec/authopen";
+
+
+@implementation NSData (CEAuthopen)
 
 // ------------------------------------------------------
 /// Try reading data at the URL using authopen (Sandobox incompatible)
-- (nullable NSData *)forceReadDataFromURL:(nonnull NSURL *)url
++ (nullable NSData *)forceReadDataFromURL:(nonnull NSURL *)url
 // ------------------------------------------------------
 {
-    NSData *data = nil;
-    
     // read data using `authopen` command
     NSString *path = @([[url path] fileSystemRepresentation]);
     NSTask *task = [[NSTask alloc] init];
     
-    [task setLaunchPath:@"/usr/libexec/authopen"];
+    [task setLaunchPath:AuthopenPath];
     [task setArguments:@[path]];
     [task setStandardOutput:[NSPipe pipe]];
     
     [task launch];
-    data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
+    NSData *data = [NSData dataWithData:[[[task standardOutput] fileHandleForReading] readDataToEndOfFile]];
     
     while ([task isRunning]) {
         usleep(200);
@@ -62,19 +63,19 @@
 
 // ------------------------------------------------------
 /// Try writing data to the URL using authopen (Sandobox incompatible)
-- (BOOL)forceWriteData:(nonnull NSData *)data URL:(nonnull NSURL *)url
+- (BOOL)forceWriteToURL:(nonnull NSURL *)url
 // ------------------------------------------------------
 {
     // save data using `authopen` command
     NSString *path = @([[url path] fileSystemRepresentation]);
     NSTask *task = [[NSTask alloc] init];
     
-    [task setLaunchPath:@"/usr/libexec/authopen"];
+    [task setLaunchPath:AuthopenPath];
     [task setArguments:@[@"-c", @"-w", path]];
     [task setStandardInput:[NSPipe pipe]];
     
     [task launch];
-    [[[task standardInput] fileHandleForWriting] writeData:data];
+    [[[task standardInput] fileHandleForWriting] writeData:self];
     [[[task standardInput] fileHandleForWriting] closeFile];
     
     // [caution] Do not use `[task waitUntilExit]` here,
