@@ -20,6 +20,7 @@ develop
     - Show / Hide Navigation Bar
     - Show / Hide Line Numbers
     - Show / Hide Status Bar
+- Remove byte count display in document inspector.
 - Display dialogs while changing file enocoding as a document-modal sheet.
 - Display also an accurete file size in document inspector.
 - Avoid expanding status bar into side inspector.

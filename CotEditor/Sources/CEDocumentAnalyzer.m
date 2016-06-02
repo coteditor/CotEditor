@@ -68,7 +68,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 @property (readwrite, nonatomic, nullable) NSString *chars;
 @property (readwrite, nonatomic, nullable) NSString *words;
 @property (readwrite, nonatomic, nullable) NSString *length;
-@property (readwrite, nonatomic, nullable) NSString *byteLength;
 @property (readwrite, nonatomic, nullable) NSString *location;
 @property (readwrite, nonatomic, nullable) NSString *line;
 @property (readwrite, nonatomic, nullable) NSString *column;
@@ -172,7 +171,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     BOOL hasMarked = [[editor focusedTextView] hasMarkedText];
     NSString *wholeString = [document string];
     NSString *selectedString = hasMarked ? nil : [editor substringWithSelection];
-    NSStringEncoding encoding = [document encoding];
     __block NSRange selectedRange = [editor selectedRange];
     
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007-05-20)
@@ -192,7 +190,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
         NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
         NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
         NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
-        NSUInteger byteLength = 0, selectedByteLength = 0;
         NSString *unicode;
         
         if (length > 0) {
@@ -252,10 +249,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
                 if ([[characterInfo unicodes] count] == 1) {
                     unicode = [[[characterInfo unicodes] firstObject] unicode];
                 }
-                
-                // count byte length
-                byteLength = [wholeString lengthOfBytesUsingEncoding:encoding];
-                selectedByteLength = [selectedString lengthOfBytesUsingEncoding:encoding];
             }
         }
         
@@ -264,7 +257,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
             self.lines = [self formatCount:numberOfLines selected:numberOfSelectedLines];
             self.length = [self formatCount:length selected:selectedRange.length];
             self.chars = [self formatCount:numberOfChars selected:numberOfSelectedChars];
-            self.byteLength = [self formatCount:byteLength selected:selectedByteLength];
             self.words = [self formatCount:numberOfWords selected:numberOfSelectedWords];
             self.location = [NSString localizedStringWithFormat:@"%li", location];
             self.line = [NSString localizedStringWithFormat:@"%li", currentLine];

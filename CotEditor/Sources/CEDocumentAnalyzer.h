@@ -61,7 +61,6 @@ extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (readonly, nonatomic, nullable, copy) NSString *chars;
 @property (readonly, nonatomic, nullable, copy) NSString *words;
 @property (readonly, nonatomic, nullable, copy) NSString *length;
-@property (readonly, nonatomic, nullable, copy) NSString *byteLength;
 @property (readonly, nonatomic, nullable, copy) NSString *location;  // caret location from the beginning of document
 @property (readonly, nonatomic, nullable, copy) NSString *line;      // current line
 @property (readonly, nonatomic, nullable, copy) NSString *column;    // caret location from the beginning of line
