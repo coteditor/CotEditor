@@ -594,7 +594,6 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     [printView setSyntaxName:[[self syntaxStyle] styleName]];
     [printView setDocumentShowsInvisibles:[[self editor] showsInvisibles]];
     [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
-    [printView setLineSpacing:[[[self editor] focusedTextView] lineSpacing]];
     
     // set font for printing
     NSFont *font;

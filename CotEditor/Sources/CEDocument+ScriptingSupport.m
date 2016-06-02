@@ -227,24 +227,6 @@
 
 
 // ------------------------------------------------------
-/// return line spacing
-- (NSNumber *)lineSpacing
-// ------------------------------------------------------
-{
-    return @([[[self editor] focusedTextView] lineSpacing]);
-}
-
-
-// ------------------------------------------------------
-/// set line spacing
-- (void)setLineSpacing:(NSNumber *)lineSpacing
-// ------------------------------------------------------
-{
-    [[[self editor] focusedTextView] setLineSpacing:(CGFloat)[lineSpacing doubleValue]];
-}
-
-
-// ------------------------------------------------------
 /// returns tab width (integer type)
 - (NSNumber *)tabWidth
 // ------------------------------------------------------

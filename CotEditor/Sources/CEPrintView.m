@@ -80,6 +80,8 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateFormat:dateFormat];
         
+        _lineSpacing = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultLineSpacingKey];
+        
         // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
         [[self textContainer] setLineFragmentPadding:kLineFragmentPadding];
         

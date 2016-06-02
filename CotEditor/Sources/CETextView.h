@@ -54,7 +54,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 @property (nonatomic, nullable) CETheme *theme;
 
 // Public method
-- (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing;
 - (void)invalidateStyle;
 
 // Action Message

@@ -1,8 +1,8 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf460
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
 \readonlydoc1\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset128 HiraKakuProN-W3;
 \f3\fmodern\fcharset0 Courier;\f4\fmodern\fcharset0 Courier-Bold;}
 {\colortbl;\red255\green255\blue255;\red26\green32\blue255;\red217\green11\blue0;\red128\green128\blue128;
-\red149\green105\blue0;\red34\green34\blue255;\red22\green22\blue255;}
+\red128\green128\blue128;\red149\green105\blue0;\red34\green34\blue255;\red22\green22\blue255;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww13640\viewh13060\viewkind0
 \pard\tx565\tx1133\tx1700\partightenfactor0
 
@@ -11,6 +11,22 @@
 \
 \
 - - - - - - - - - - - - - - - - - - - - -\
+
+\b The terminology change on CotEditor 2.6.0:
+\b0 \
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 \ul \ulc0 \
+line spacing property\ulnone \
+`
+\f1 line spacing
+\f0 ` property was deprecated on CotEditor 2.6.0.\
+Please note that, \ul there is no backward
+\f2  compatibility\ulnone  with this changing.
+\f0 \
+\
+\
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 - - - - - - - - - - - - - - - - - - - - -\
 
 \b The terminology change on CotEditor 2.5.3:
 \b0 \
@@ -27,7 +43,8 @@ A new value `
 
 \b \cf0 The terminology change on CotEditor 2.3.0:
 \b0 \
-\ul \ulc0 \
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 \ul \
 Selected line editing\ulnone \
 The following new commands were added to the \'91selection\'92 object.\
 - 
@@ -48,10 +65,12 @@ The following new commands were added to the \'91selection\'92 object.\
 \
 \
 - - - - - - - - - - - - - - - - - - - - -\
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\b The terminology change on CotEditor 2.2.2:
+\b \cf0 The terminology change on CotEditor 2.2.2:
 \b0 \
-\ul \
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 \ul \
 Unicode normalization\ulnone \
 A new value `
 \f1 Modified NFD
@@ -59,10 +78,12 @@ A new value `
 \
 \
 - - - - - - - - - - - - - - - - - - - - -\
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\b The terminology change on CotEditor 2.2.0:
+\b \cf0 The terminology change on CotEditor 2.2.0:
 \b0 \
-\ul \
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 \ul \
 Unicode normalization\ulnone \
 A new value `
 \f1 NFCK Casefold
@@ -70,10 +91,12 @@ A new value `
 \
 \
 - - - - - - - - - - - - - - - - - - - - -\
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\b The terminology change on CotEditor 2.1.0:
+\b \cf0 The terminology change on CotEditor 2.1.0:
 \b0 \
-\ul \
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 \ul \
 Tab width\ulnone \
 A new property `
 \f1 tab width
@@ -81,10 +104,12 @@ A new property `
 \
 \
 - - - - - - - - - - - - - - - - - - - - -\
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\b The terminology change on CotEditor 2.0.1:
+\b \cf0 The terminology change on CotEditor 2.0.1:
 \b0 \
-\ul \
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 \ul \
 Comment handling\ulnone \
 New commands `
 \f1 comment out
@@ -94,10 +119,12 @@ New commands `
 \
 \
 - - - - - - - - - - - - - - - - - - - - -\
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\b The terminology change on CotEditor 2.0.0:
+\b \cf0 The terminology change on CotEditor 2.0.0:
 \b0 \
-\ul \
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 \ul \
 Unicode normalization\ulnone \
 The command `
 \f1 unicode normalization
@@ -141,8 +168,9 @@ The internal code for `
 \b compiled
 \b0  AppleScripts (.scpt) which were written previously might need some update for this change.\
 \
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\b How to fix
+\b \cf0 How to fix
 \b0 :\
 	Open your .scpt files on AppleScript Editor (or Script Editor), the words that was `
 \f1 range
@@ -159,7 +187,8 @@ This issue doesn\'92t occur with plain-text AppleScript (.applescript). \
 
 \b The terminology change on CotEditor 1.5.0:
 \b0 \
-\ul \
+\pard\tx565\tx1133\tx1700\partightenfactor0
+\cf0 \ul \
 Window Transparency\ulnone \
 According to the changing of the mechanism to make window transparent on CotEditor 1.5, the terms about window opacity for AppleScripting was also changed. The 
 \b document
@@ -184,8 +213,9 @@ Please note that, \ul there is no backward
 In version 0.6, the initial release of CotEditor, if you didn't specify the \'91selection\'92 object, the frontmost window's contents will be selected (example 1). But it was actually didn't work correctly and therefore deprecated.  This method was kept valid however to maintain backwards compatibility.\
 On CotEditor 1.5, it is formally removed.  Specify the target as below (example 2), when you get the \'91selection\'92 object.\
 \
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\i example 1.
+\i \cf0 example 1.
 \i0 \
 
 \f3 \cf2 tell application "CotEditor"\
@@ -216,10 +246,12 @@ end tell
 \
 
 \fs28 \ul \ulc0 Class\
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\fs24 \ulnone \
+\fs24 \cf0 \ulnone \
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\b Application
+\b \cf0 Application
 \b0  = The CotEditor application.\
 \
 
@@ -237,12 +269,12 @@ end tell
 	encoding = The encoding name of the document. (Unicode text)\
 	IANA charset = The IANA charset name of the document. (Unicode text, e.g. Shift_JIS, EUC-JP)\
 	line ending = The line ending code of the document. (CR/LF/CRLF)\
-	line spacing = The spacing between lines. (real, from \'910.0\'92 to \'9110.0\'92)\
+	\cf4 line spacing = The spacing between lines. (real, from \'910.0\'92 to \'9110.0\'92)\cf5  \cf6 Deprecated on CotEditor 2.6\cf0 \
 	tab width = The width of a tab character in space equivalents. (int)  \cf3 new on CotEditor 2.1\cf0 \
 	wrap lines = Whether to wrap lines or not. (boolean)\
 	coloring style = The syntax coloring style name of the document. (Unicode text)\
-\cf4 	transparency = The transparency of Window or TextView. (real, from \'910.2\'92 to \'911.0\'92) \cf5 Deprecated on CotEditor 1.5\cf4 \
-	alpha only textView = Whether the transparency setting affects only the TextView or not. (boolean) \cf5 Deprecated on CotEditor 1.5\cf0 \
+\cf5 	transparency = The transparency of Window or TextView. (real, from \'910.2\'92 to \'911.0\'92) \cf6 Deprecated on CotEditor 1.5\cf5 \
+	alpha only textView = Whether the transparency setting affects only the TextView or not. (boolean) \cf6 Deprecated on CotEditor 1.5\cf0 \
 	\
 
 \b Selection-object
@@ -262,23 +294,23 @@ end tell
 \i # The \'91selection\'92 property doesn't work by itself. Use this property with others such as \'91contents.\'92
 \i0 \
 
-\f3 \cf6 set contents of selection of front document to "Apple"
+\f3 \cf7 set contents of selection of front document to "Apple"
 \f0 \cf0 \
 	Replaces the selection with \'93Apple.\'94\
 
-\f3 \cf7 range of selection\cf6  of front document
+\f3 \cf8 range of selection\cf7  of front document
 \f0 \cf0 \
 	Returns the selection range with \{location, length\}.\
 
-\f3 \cf7 set range of selection\cf6  of front document\cf7  to \{1,12\}
+\f3 \cf8 set range of selection\cf7  of front document\cf8  to \{1,12\}
 \f0 \cf0 \
 	Select from the 1st character to the 12th character.\
 
-\f3 \cf7 set line range of selection\cf6  of front document\cf7  to 10
+\f3 \cf8 set line range of selection\cf7  of front document\cf8  to 10
 \f0 \cf0 \
 	Select the 10th line (no scrolling).\
 
-\f3 \cf7 set range of selection\cf6  of front document\cf7  to \{-15,-1\}
+\f3 \cf8 set range of selection\cf7  of front document\cf8  to \{-15,-1\}
 \f0 \cf0 \
 	Select from the 15th last character to the last but one (no scrolling).\
 
@@ -318,10 +350,12 @@ return value = boolean\
 \i # The search starts from the current selection (caret position).\
 For example, when not using the \'91wrap\'92 or \'91backwards\'92 options and when there are no matching string after the current selection, then false is returned.\
 # The regular expression search cannot search backwards. If both options were specified at the same time, \'91RE\'92 takes precedence and \'91backwards\'92 is ignored.\
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\i0 \
+\i0 \cf0 \
+\pard\tx565\tx1133\tx1700\partightenfactor0
 
-\f3 \cf7 find front document for "Apple" with ignore case
+\f3 \cf8 find front document for "Apple" with ignore case
 \f0 \cf0 \
 	Searches \'93Apple\'94 with ignoring case, starting from the current selection to the end of the frontmost document, and returns the result.\
 \
@@ -358,7 +392,7 @@ return value = int\
 \i0 \
 \
 
-\f3 \cf7 replace front document for "Apple" to "Orange" with all and ignore case
+\f3 \cf8 replace front document for "Apple" to "Orange" with all and ignore case
 \f0 \cf0 \
 	Searches \'93Apple\'94 with ignoring case in the frontmost document, replaces the matching strings with \'93Orange\'94 and returns the number of replacements.\
 \
@@ -368,7 +402,7 @@ scroll to caret
 \b0  = Scrolls the window so that the caret or the selection can be seen.\
 \
 
-\f3 \cf7 scroll to caret front document
+\f3 \cf8 scroll to caret front document
 \f0 \cf0 \
 	Scrolls the frontmost window so that the caret or the selection can be seen.\
 \
@@ -385,7 +419,7 @@ convert
 return value = boolean\
 \
 
-\f3 \cf7 convert front document to "Unicode (UTF-8)" without lossy
+\f3 \cf8 convert front document to "Unicode (UTF-8)" without lossy
 \f0 \cf0 \
 	Converts the character encoding of the frontmost window to UTF-8, returns the result.\
 \
@@ -403,7 +437,7 @@ return value = boolean\
 \i0 \
 \
 
-\f3 \cf7 reinterpret front document as "Japanese (EUC)"
+\f3 \cf8 reinterpret front document as "Japanese (EUC)"
 \f0 \cf0 \
 	Reinterprets the document with EUC-JP, returns the result.\
 \
@@ -416,7 +450,7 @@ return value = boolean\
 \b0  = Shifts the current line right.\
 \
 
-\f3 \cf7 shift right selection of front document
+\f3 \cf8 shift right selection of front document
 \f0 \cf0 \
 	Shifts the line where the selection/caret is positioned right.\
 \
@@ -432,7 +466,7 @@ return value = boolean\
 \i0 \
 \
 
-\f3 \cf7 comment out selection of front document
+\f3 \cf8 comment out selection of front document
 \f0 \cf0 \
 	Comment out the selected text.\
 \
@@ -450,7 +484,7 @@ return value = Unicode text\
 \i0 \
 \
 
-\f3 \cf7 string front document in \{0, 10\}
+\f3 \cf8 string front document in \{0, 10\}
 \f0 \cf0 \
 	Returns the first ten letters of the document.\
 \
@@ -464,7 +498,7 @@ return value = Unicode text\
 \i0 \
 \
 
-\f3 \cf7 change case selection of front document to upper
+\f3 \cf8 change case selection of front document to upper
 \f0 \cf0 \
 	Uppercases alphabetic words in the selection.\
 \
@@ -478,7 +512,7 @@ return value = Unicode text\
 \i0 \
 \
 
-\f3 \cf7 change roman width selection of front document to full
+\f3 \cf8 change roman width selection of front document to full
 \f0 \cf0 \
 	Converts ascii characters in the selection to their full-width equivalents.\
 \
@@ -492,7 +526,7 @@ return value = Unicode text\
 \i0 \
 \
 
-\f3 \cf7 change kana selection of front document to katakana
+\f3 \cf8 change kana selection of front document to katakana
 \f0 \cf0 \
 	Converts Hiragana in the selection to Katakana.\
 \
@@ -506,7 +540,7 @@ return value = Unicode text\
 \i0 \
 \
 
-\f3 \cf7 normalize unicode selection of front document to NFC
+\f3 \cf8 normalize unicode selection of front document to NFC
 \f0 \cf0 \
 	Perform Unicode normalization on the selection using normalization form C (NFC).\
 \

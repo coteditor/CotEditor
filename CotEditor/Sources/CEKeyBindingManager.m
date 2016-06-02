@@ -747,7 +747,6 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
              @"changeSyntaxStyle:",
              @"changeTheme:",
              @"changeTabWidth:",
-             @"changeLineHeight:",
              @"biggerFont:",
              @"smallerFont:",
              @"makeKeyAndOrderFront:",

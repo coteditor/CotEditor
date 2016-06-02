@@ -278,13 +278,6 @@
 /* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
 "745.title" = "Text glätten";
 
-/* Class = "NSMenuItem"; title = "Line Height"; ObjectID = "751"; */
-"751.title" = "Zeilenhöhe";
-/* Class = "NSMenu"; title = "Line Height"; ObjectID = "752"; */
-"752.title" = "Zeilenhöhe";
-/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "772"; */
-"772.title" = "Anpassen …";
-
 /* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "djM-fI-MkN"; */
 "djM-fI-MkN.title" = "Tabulatorbreite";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */

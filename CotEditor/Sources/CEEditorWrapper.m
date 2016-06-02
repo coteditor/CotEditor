@@ -170,10 +170,6 @@
     } else if ([menuItem action] == @selector(toggleAntialias:)) {
         state = [[self focusedTextView] usesAntialias] ? NSOnState : NSOffState;
         
-    } else if ([menuItem action] == @selector(changeLineHeight:)) {
-        CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
-        state = CEIsAlmostEqualCGFloats([[self focusedTextView] lineSpacing], lineSpacing) ? NSOnState : NSOffState;
-        
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
         state = ([[self focusedTextView] tabWidth] == [menuItem tag]) ? NSOnState : NSOffState;
         
@@ -670,19 +666,6 @@
 
 
 // ------------------------------------------------------
-/// change line height from the main menu
-- (IBAction)changeLineHeight:(nullable id)sender
-// ------------------------------------------------------
-{
-    CGFloat lineSpacing = (CGFloat)[[sender title] doubleValue] - 1.0;  // title is line height
-    
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [[viewController textView] setLineSpacingAndUpdate:lineSpacing];
-    }];
-}
-
-
-// ------------------------------------------------------
 /// 新しいテーマを適用
 - (IBAction)changeTheme:(nullable id)sender
 // ------------------------------------------------------
@@ -841,7 +824,6 @@
     if (baseViewController) {
         [[editorViewController textView] setFont:[[baseViewController textView] font]];
         [[editorViewController textView] setTheme:[[baseViewController textView] theme]];
-        [[editorViewController textView] setLineSpacing:[[baseViewController textView] lineSpacing]];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self

@@ -1157,28 +1157,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// 行間値をセットし、テキストと行番号を再描画
-- (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing
-// ------------------------------------------------------
-{
-    if (lineSpacing == [self lineSpacing]) { return; }
-    
-    [self setLineSpacing:lineSpacing];
-    
-    // re-layout
-    NSRange wholeRange = NSMakeRange(0, [[self string] length]);
-    [[self layoutManager] invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:nil];
-    [[self layoutManager] ensureLayoutForTextContainer:[self textContainer]];
-    
-    // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
-    [self updateRuler];
-    
-    // キャレット／選択範囲が見えるようにスクロール位置を調整
-    [self scrollRangeToVisible:[self selectedRange]];
-}
-
-
-// ------------------------------------------------------
 /// invalidate string attributes
 - (void)invalidateStyle
 // ------------------------------------------------------
@@ -1448,6 +1426,28 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self checkTextInDocument:nil];
     [self setEnabledTextCheckingTypes:currentCheckingType];
     [[self undoManager] enableUndoRegistration];
+}
+
+
+// ------------------------------------------------------
+/// 行間値をセットし、テキストと行番号を再描画
+- (void)setLineSpacingAndUpdate:(CGFloat)lineSpacing
+// ------------------------------------------------------
+{
+    if (lineSpacing == [self lineSpacing]) { return; }
+    
+    [self setLineSpacing:lineSpacing];
+    
+    // re-layout
+    NSRange wholeRange = NSMakeRange(0, [[self string] length]);
+    [[self layoutManager] invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:nil];
+    [[self layoutManager] ensureLayoutForTextContainer:[self textContainer]];
+    
+    // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
+    [self updateRuler];
+    
+    // キャレット／選択範囲が見えるようにスクロール位置を調整
+    [self scrollRangeToVisible:[self selectedRange]];
 }
 
 

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,8 +53,6 @@ typedef NS_ENUM(NSUInteger, CEOSALineEnding) {
 - (void)setSelectionObject:(id)object;
 - (NSNumber *)wrapsLines;
 - (void)setWrapsLines:(NSNumber *)wrapsLines;
-- (NSNumber *)lineSpacing;
-- (void)setLineSpacing:(NSNumber *)lineSpacing;
 - (NSNumber *)tabWidth;
 - (void)setTabWidth:(NSNumber *)tabWidth;
 

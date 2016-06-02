@@ -80,7 +80,6 @@
 - (IBAction)togglePageGuide:(nullable id)sender;
 - (IBAction)toggleAutoTabExpand:(nullable id)sender;
 - (IBAction)changeTabWidth:(nullable id)sender;
-- (IBAction)changeLineHeight:(nullable id)sender;
 - (IBAction)changeTheme:(nullable id)sender;
 
 - (IBAction)recolorAll:(nullable id)sender;

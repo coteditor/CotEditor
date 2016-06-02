@@ -39,7 +39,6 @@
 
 #import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
-#import "CELineHightPanelController.h"
 #import "CEColorCodePanelController.h"
 #import "CEConsolePanelController.h"
 #import "CEUnicodeInputPanelController.h"
@@ -320,9 +319,7 @@
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
-    if (([menuItem action] == @selector(showLineHeightPanel:)) ||
-        ([menuItem action] == @selector(showUnicodeInputPanel:)))
-    {
+    if (([menuItem action] == @selector(showUnicodeInputPanel:))) {
         return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
     }
     
@@ -525,15 +522,6 @@
 // ------------------------------------------------------
 {
     [[CEOpacityPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// show line hight panel
-- (IBAction)showLineHeightPanel:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[CELineHightPanelController sharedController] showWindow:self];
 }
 
 
