@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,12 +43,12 @@ extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 @property (nonatomic) BOOL needsUpdateStatusEditorInfo; // need only to update editor info in satus bar
 
 // file info
-@property (readonly, nonatomic, nullable, copy) NSString *creationDate;
-@property (readonly, nonatomic, nullable, copy) NSString *modificationDate;
-@property (readonly, nonatomic, nullable, copy) NSString *fileSize;
+@property (readonly, nonatomic, nullable, copy) NSDate *creationDate;
+@property (readonly, nonatomic, nullable, copy) NSDate *modificationDate;
+@property (readonly, nonatomic, nullable, copy) NSNumber *fileSize;
 @property (readonly, nonatomic, nullable, copy) NSString *filePath;
 @property (readonly, nonatomic, nullable, copy) NSString *owner;
-@property (readonly, nonatomic, nullable, copy) NSString *permission;
+@property (readonly, nonatomic, nullable, copy) NSNumber *permission;
 @property (readonly, nonatomic, getter=isReadOnly) BOOL readOnly;
 
 // mode info

@@ -38,6 +38,8 @@ static const NSTimeInterval kDuration = 0.12;
 
 @property (nonatomic, nullable, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 
+@property (nonatomic, nonnull) NSByteCountFormatter *byteCountFormatter;
+
 @property (nonatomic) BOOL showsReadOnly;
 @property (nonatomic, nullable, copy) NSAttributedString *editorStatus;
 @property (nonatomic, nullable, copy) NSAttributedString *documentStatus;
@@ -75,6 +77,9 @@ static const NSTimeInterval kDuration = 0.12;
 // ------------------------------------------------------
 {
     [super awakeFromNib];
+    
+    [self setByteCountFormatter:[[NSByteCountFormatter alloc] init]];
+    [[self byteCountFormatter] setAdaptive:NO];
     
     // observe change of defaults
     for (NSString *key in [[self class] observedDefaultKeys]) {
@@ -248,7 +253,8 @@ static const NSTimeInterval kDuration = 0.12;
         [self appendFormattedState:[info lineEndings] label:nil toStatusLine:status];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarFileSizeKey]) {
-        [self appendFormattedState:[info fileSize] label:nil toStatusLine:status];
+        NSString *fileSize = [[self byteCountFormatter] stringForObjectValue:[info fileSize]];
+        [self appendFormattedState:fileSize label:nil toStatusLine:status];
     }
     
     [self setDocumentStatus:status];

@@ -49,17 +49,13 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 
 @property (nonatomic, nullable, weak) NSTimer *editorInfoUpdateTimer;
 
-// formatters
-@property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
-@property (nonatomic, nonnull) NSByteCountFormatter *byteCountFormatter;
-
 // file infos
-@property (readwrite, nonatomic, nullable) NSString *creationDate;
-@property (readwrite, nonatomic, nullable) NSString *modificationDate;
-@property (readwrite, nonatomic, nullable) NSString *fileSize;
+@property (readwrite, nonatomic, nullable) NSDate *creationDate;
+@property (readwrite, nonatomic, nullable) NSDate *modificationDate;
+@property (readwrite, nonatomic, nullable) NSNumber *fileSize;
 @property (readwrite, nonatomic, nullable) NSString *filePath;
 @property (readwrite, nonatomic, nullable) NSString *owner;
-@property (readwrite, nonatomic, nullable) NSString *permission;
+@property (readwrite, nonatomic, nullable) NSNumber *permission;
 @property (readwrite, nonatomic, getter=isReadOnly) BOOL readOnly;
 
 // mode infos
@@ -109,13 +105,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     self = [super init];
     if (self) {
         _document = document;
-        
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        [_dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        
-        _byteCountFormatter = [[NSByteCountFormatter alloc] init];
-        [_byteCountFormatter setAdaptive:NO];
     }
     return self;
 }
@@ -128,17 +117,14 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 {
     CEDocument *document = [self document];
     NSDictionary<NSString *, id> *attrs = [document fileAttributes];
-    NSDateFormatter *dateFormatter = [self dateFormatter];
-    NSByteCountFormatter *byteFormatter = [self byteCountFormatter];
     
-    self.creationDate = [attrs fileCreationDate] ? [dateFormatter stringFromDate:[attrs fileCreationDate]] : nil;
-    self.modificationDate = [attrs fileModificationDate] ? [dateFormatter stringFromDate:[attrs fileModificationDate]] : nil;
-    self.fileSize = [attrs fileSize] ? [byteFormatter stringFromByteCount:[attrs fileSize]] : nil;
+    self.creationDate = [attrs fileCreationDate];
+    self.modificationDate = [attrs fileModificationDate];
+    self.fileSize = attrs[NSFileSize];
     self.filePath = [[document fileURL] path];
     self.owner = [attrs fileOwnerAccountName];
-    self.permission = [attrs filePosixPermissions] ? [NSString stringWithFormat:@"%lo (%@)",
-                                                      (unsigned long)[attrs filePosixPermissions],
-                                                      humanReadablePermission([attrs filePosixPermissions])] : nil;
+    self.permission = attrs[NSFilePosixPermissions];
+    
     self.readOnly = [attrs fileIsImmutable];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateFileInfoNotification
@@ -305,24 +291,6 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     } else {
         return [NSString localizedStringWithFormat:@"%li", count];
     }
-}
-
-
-// ------------------------------------------------------
-/// create human-readable permission expression from integer
-NSString *humanReadablePermission(NSUInteger permission)
-// ------------------------------------------------------
-{
-    NSArray<NSString *> *units = @[@"---", @"--x", @"-w-", @"-wx", @"r--", @"r-x", @"rw-", @"rwx"];
-    NSMutableString *result = [NSMutableString stringWithString:@"-"];  // Document is always file.
-    
-    for (NSInteger i = 2; i >= 0; i--) {
-        NSUInteger digit = (permission >> (i * 3)) & 0x7;
-        
-        [result appendString:units[digit]];
-    }
-    
-    return [result copy];
 }
 
 

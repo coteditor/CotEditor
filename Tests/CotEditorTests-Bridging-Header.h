@@ -10,6 +10,9 @@
 #import "CETheme.h"
 #import "CEThemeDictionaryKeys.h"
 
+// Formatter Tests
+#import "CEFilePermissionsFormatter.h"
+
 // Incompatible Character Tests
 #import "CEIncompatibleCharacter.h"
 #import "NSString+CEEncoding.h"

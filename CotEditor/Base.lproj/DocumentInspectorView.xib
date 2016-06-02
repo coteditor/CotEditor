@@ -80,6 +80,23 @@
                                             <string key="NSNullPlaceholder"> - </string>
                                         </dictionary>
                                     </binding>
+                                    <outlet property="formatter" destination="hpp-US-VpP" id="kse-Wz-I2p"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="26O-Xv-RC8">
+                                <rect key="frame" x="85" y="415" width="102" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="2014-03-19 00:00" usesSingleLineMode="YES" id="5rK-Wy-sED">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="b8V-it-sgR" name="value" keyPath="selection.modificationDate" id="r35-IJ-rWG">
+                                        <dictionary key="options">
+                                            <string key="NSNullPlaceholder"> - </string>
+                                        </dictionary>
+                                    </binding>
+                                    <outlet property="formatter" destination="hpp-US-VpP" id="lU6-SG-00V"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="wTX-Dy-Att">
@@ -122,8 +139,8 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xne-Da-H6h">
-                                <rect key="frame" x="85" y="395" width="35" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="7.1 KB" id="4dM-eN-12n">
+                                <rect key="frame" x="85" y="395" width="105" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="7.1 KB (7,128 bytes)" id="4dM-eN-12n">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -134,6 +151,7 @@
                                             <string key="NSNullPlaceholder"> - </string>
                                         </dictionary>
                                     </binding>
+                                    <outlet property="formatter" destination="STS-xN-bnE" id="qGa-zA-B7g"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="l0D-jC-n40">
@@ -157,6 +175,7 @@
                                             <string key="NSNullPlaceholder"> - </string>
                                         </dictionary>
                                     </binding>
+                                    <outlet property="formatter" destination="2pC-OH-bXK" id="ry8-H5-g5E"/>
                                 </connections>
                             </textField>
                             <box autoresizesSubviews="NO" borderWidth="0.0" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-5X-1Cm" userLabel="Horizontal Line">
@@ -420,21 +439,6 @@
                                     <binding destination="b8V-it-sgR" name="value" keyPath="selection.column" id="jsa-g7-y2U"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="26O-Xv-RC8">
-                                <rect key="frame" x="85" y="415" width="102" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="2014-03-19 00:00" usesSingleLineMode="YES" id="5rK-Wy-sED">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="b8V-it-sgR" name="value" keyPath="selection.modificationDate" id="r35-IJ-rWG">
-                                        <dictionary key="options">
-                                            <string key="NSNullPlaceholder"> - </string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="WuM-BH-qGJ">
                                 <rect key="frame" x="31" y="335" width="50" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Full Path" usesSingleLineMode="YES" id="zwU-xo-iZu">
@@ -586,5 +590,8 @@
             </scroller>
             <point key="canvasLocation" x="372" y="237.5"/>
         </scrollView>
+        <dateFormatter dateStyle="medium" timeStyle="short" id="hpp-US-VpP"/>
+        <byteCountFormatter includesActualByteCount="YES" adaptive="NO" id="STS-xN-bnE"/>
+        <customFormatter id="2pC-OH-bXK" customClass="CEFilePermissionsFormatter"/>
     </objects>
 </document>
