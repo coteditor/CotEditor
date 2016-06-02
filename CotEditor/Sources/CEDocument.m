@@ -1417,6 +1417,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // ステータスバー、インスペクタを更新
     [[self windowController] updateModeInfoIfNeeded];
+    [[self windowController] updateEditorInfoIfNeeded];
 }
 
 
