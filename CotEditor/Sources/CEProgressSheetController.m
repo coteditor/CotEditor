@@ -33,6 +33,8 @@
 @property (nonatomic, nonnull) NSProgress *progress;
 @property (nonatomic, nonnull, copy) NSString *message;
 
+@property (nonatomic) CEProgressSheetController *me;
+
 @property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *button;
 
@@ -91,6 +93,9 @@
 // ------------------------------------------------------
 {
     [window beginSheet:[self window] completionHandler:nil];
+    
+    // retain itself to avoid dismiss controller while sheet is attached to a window
+    [self setMe:self];
 }
 
 
@@ -103,7 +108,6 @@
     
     [[self button] setTitle:title];
     [[self button] setAction:@selector(close:)];
-    [[self button] setTarget:self];
     [[self button] setKeyEquivalent:@"\r"];
 }
 
@@ -116,6 +120,8 @@
 - (IBAction)close:(nullable id)sender
 // ------------------------------------------------------
 {
+    [self setMe:nil];
+    
     [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
 }
 
@@ -125,6 +131,8 @@
 - (IBAction)cancel:(nullable id)sender
 // ------------------------------------------------------
 {
+    [self setMe:nil];
+    
     [[self progress] cancel];
     
     [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
