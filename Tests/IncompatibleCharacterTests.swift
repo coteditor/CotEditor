@@ -30,19 +30,6 @@ import XCTest
 
 class IncompatibleCharacterTests: XCTestCase {
     
-    func testIncompatibleCharacterCreation() {
-        let tildaChar = CEIncompatibleCharacter(character: ("¥" as NSString).characterAtIndex(0),
-                                                convertedCharacer: ("\\" as NSString).characterAtIndex(0),
-                                                location: 5,
-                                                lineNumber: 1)
-        
-        XCTAssertEqual(tildaChar.character, "¥")
-        XCTAssertEqual(tildaChar.convertedCharacter, "\\")
-        XCTAssertEqual(tildaChar.location, 5)
-        XCTAssertEqual(tildaChar.lineNumber, 1)
-    }
-    
-    
     func testIncompatibleCharacterScan() {
         let string = "abc\\ \n ¥ \n ~" as NSString
         let encoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.ShiftJIS.rawValue));
