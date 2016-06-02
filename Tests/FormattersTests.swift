@@ -33,9 +33,9 @@ class FormattersTests: XCTestCase {
     func testFilePermissionsFormatter() {
         let formatter = CEFilePermissionsFormatter()
         
-        XCTAssertEqual(formatter.stringForObjectValue(NSNumber(integer: 777)),
+        XCTAssertEqual(formatter.stringForObjectValue(NSNumber(integer: 0o777)),
                        "777 (-rwxrwxrwx)")
-        XCTAssertEqual(formatter.stringForObjectValue(NSNumber(integer: 643)),
+        XCTAssertEqual(formatter.stringForObjectValue(NSNumber(integer: 0o643)),
                        "643 (-rw-r---wx)")
     }
 
