@@ -39,6 +39,12 @@
 @property (readwrite, nonatomic) NSUInteger location;
 @property (readwrite, nonatomic) NSUInteger lineNumber;
 
+
+- (nonnull instancetype)initWithCharacter:(unichar)character
+                        convertedCharacer:(unichar)convertedCharacter
+                                 location:(NSUInteger)location
+                               lineNumber:(NSUInteger)lineNumber NS_DESIGNATED_INITIALIZER;
+
 @end
 
 

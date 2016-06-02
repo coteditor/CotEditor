@@ -36,11 +36,6 @@
 @property (readonly, nonatomic) NSUInteger lineNumber;
 @property (readonly, nonatomic) NSRange range;
 
-
-- (nonnull instancetype)initWithCharacter:(unichar)character
-                        convertedCharacer:(unichar)convertedCharacter
-                                 location:(NSUInteger)location
-                               lineNumber:(NSUInteger)lineNumber NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)init NS_UNAVAILABLE;
 
 @end
