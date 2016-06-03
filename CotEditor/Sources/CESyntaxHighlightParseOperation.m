@@ -27,7 +27,7 @@
  */
 
 #import "CESyntaxHighlightParseOperation.h"
-#import "Constants.h"
+#import "CESyntaxDictionaryKeys.h"
 
 #import "NSString+CEAdditions.h"
 

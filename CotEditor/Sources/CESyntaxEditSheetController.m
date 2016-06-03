@@ -30,6 +30,7 @@
 #import "CESyntaxTermsEditViewController.h"
 #import "CESyntaxValidationViewController.h"
 #import "CESyntaxManager.h"
+#import "CESyntaxDictionaryKeys.h"
 #import "Constants.h"
 
 

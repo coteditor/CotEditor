@@ -103,64 +103,6 @@ void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block)
 
 
 
-#pragma mark Syntax
-
-// ------------------------------------------------------
-// Syntax
-// ------------------------------------------------------
-
-// syntax style keys
-NSString *_Nonnull const CESyntaxMetadataKey = @"metadata";
-NSString *_Nonnull const CESyntaxExtensionsKey = @"extensions";
-NSString *_Nonnull const CESyntaxFileNamesKey = @"filenames";
-NSString *_Nonnull const CESyntaxInterpretersKey = @"interpreters";
-NSString *_Nonnull const CESyntaxKeywordsKey = @"keywords";
-NSString *_Nonnull const CESyntaxCommandsKey = @"commands";
-NSString *_Nonnull const CESyntaxTypesKey = @"types";
-NSString *_Nonnull const CESyntaxAttributesKey = @"attributes";
-NSString *_Nonnull const CESyntaxVariablesKey = @"variables";
-NSString *_Nonnull const CESyntaxValuesKey = @"values";
-NSString *_Nonnull const CESyntaxNumbersKey = @"numbers";
-NSString *_Nonnull const CESyntaxStringsKey = @"strings";
-NSString *_Nonnull const CESyntaxCharactersKey = @"characters";
-NSString *_Nonnull const CESyntaxCommentsKey = @"comments";
-NSString *_Nonnull const CESyntaxCommentDelimitersKey = @"commentDelimiters";
-NSString *_Nonnull const CESyntaxOutlineMenuKey = @"outlineMenu";
-NSString *_Nonnull const CESyntaxCompletionsKey = @"completions";
-NSString *_Nonnull const kAllSyntaxKeys[] = {
-    @"keywords",
-    @"commands",
-    @"types",
-    @"attributes",
-    @"variables",
-    @"values",
-    @"numbers",
-    @"strings",
-    @"characters",
-    @"comments"
-};
-NSUInteger const kSizeOfAllSyntaxKeys = sizeof(kAllSyntaxKeys)/sizeof(kAllSyntaxKeys[0]);
-
-NSString *_Nonnull const CESyntaxKeyStringKey = @"keyString";
-NSString *_Nonnull const CESyntaxBeginStringKey = @"beginString";
-NSString *_Nonnull const CESyntaxEndStringKey = @"endString";
-NSString *_Nonnull const CESyntaxIgnoreCaseKey = @"ignoreCase";
-NSString *_Nonnull const CESyntaxRegularExpressionKey = @"regularExpression";
-
-NSString *_Nonnull const CESyntaxInlineCommentKey = @"inlineDelimiter";
-NSString *_Nonnull const CESyntaxBeginCommentKey = @"beginDelimiter";
-NSString *_Nonnull const CESyntaxEndCommentKey = @"endDelimiter";
-
-NSString *_Nonnull const CESyntaxBoldKey = @"bold";
-NSString *_Nonnull const CESyntaxUnderlineKey = @"underline";
-NSString *_Nonnull const CESyntaxItalicKey = @"italic";
-
-// comment delimiter keys
-NSString *_Nonnull const CEBeginDelimiterKey = @"beginDelimiter";
-NSString *_Nonnull const CEEndDelimiterKey = @"endDelimiter";
-
-
-
 #pragma mark File Drop
 
 // ------------------------------------------------------

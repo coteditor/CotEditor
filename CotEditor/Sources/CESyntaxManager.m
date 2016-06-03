@@ -29,6 +29,7 @@
 #import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
 #import "CEAppDelegate.h"
+#import "CESyntaxDictionaryKeys.h"
 #import "Constants.h"
 
 #import <YAML-Framework/YAMLSerialization.h>

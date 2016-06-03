@@ -71,53 +71,6 @@ extern void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block);
 
 
 
-#pragma mark Syntax
-
-// ------------------------------------------------------
-// Syntax
-// ------------------------------------------------------
-
-// syntax style keys
-extern NSString *_Nonnull const CESyntaxMetadataKey;
-extern NSString *_Nonnull const CESyntaxExtensionsKey;
-extern NSString *_Nonnull const CESyntaxFileNamesKey;
-extern NSString *_Nonnull const CESyntaxInterpretersKey;
-extern NSString *_Nonnull const CESyntaxKeywordsKey;
-extern NSString *_Nonnull const CESyntaxCommandsKey;
-extern NSString *_Nonnull const CESyntaxTypesKey;
-extern NSString *_Nonnull const CESyntaxAttributesKey;
-extern NSString *_Nonnull const CESyntaxVariablesKey;
-extern NSString *_Nonnull const CESyntaxValuesKey;
-extern NSString *_Nonnull const CESyntaxNumbersKey;
-extern NSString *_Nonnull const CESyntaxStringsKey;
-extern NSString *_Nonnull const CESyntaxCharactersKey;
-extern NSString *_Nonnull const CESyntaxCommentsKey;
-extern NSString *_Nonnull const CESyntaxCommentDelimitersKey;
-extern NSString *_Nonnull const CESyntaxOutlineMenuKey;
-extern NSString *_Nonnull const CESyntaxCompletionsKey;
-extern NSString *_Nonnull const kAllSyntaxKeys[];
-extern NSUInteger const kSizeOfAllSyntaxKeys;
-
-extern NSString *_Nonnull const CESyntaxKeyStringKey;
-extern NSString *_Nonnull const CESyntaxBeginStringKey;
-extern NSString *_Nonnull const CESyntaxEndStringKey;
-extern NSString *_Nonnull const CESyntaxIgnoreCaseKey;
-extern NSString *_Nonnull const CESyntaxRegularExpressionKey;
-
-extern NSString *_Nonnull const CESyntaxInlineCommentKey;
-extern NSString *_Nonnull const CESyntaxBeginCommentKey;
-extern NSString *_Nonnull const CESyntaxEndCommentKey;
-
-extern NSString *_Nonnull const CESyntaxBoldKey;
-extern NSString *_Nonnull const CESyntaxUnderlineKey;
-extern NSString *_Nonnull const CESyntaxItalicKey;
-
-// comment delimiter keys
-extern NSString *_Nonnull const CEBeginDelimiterKey;
-extern NSString *_Nonnull const CEEndDelimiterKey;
-
-
-
 #pragma mark File Drop
 
 // ------------------------------------------------------

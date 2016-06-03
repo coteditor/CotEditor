@@ -28,6 +28,7 @@
 
 #import "CEOutlineParseOperation.h"
 #import "CEOutlineItem.h"
+#import "CESyntaxDictionaryKeys.h"
 #import "Constants.h"
 
 

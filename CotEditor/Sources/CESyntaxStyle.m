@@ -31,10 +31,10 @@
 #import "CESyntaxStyle.h"
 #import "CEOutlineParseOperation.h"
 #import "CESyntaxHighlightParseOperation.h"
+#import "CESyntaxDictionaryKeys.h"
 #import "CETextViewProtocol.h"
 #import "CEProgressSheetController.h"
 #import "CEDefaults.h"
-#import "Constants.h"
 
 
 // parsing constants
@@ -380,7 +380,6 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     __weak typeof(operation) weakOperation = operation;
     __weak typeof(self) weakSelf = self;
     [operation setCompletionBlock:^{
-        
         if ([weakOperation isCancelled]) { return; }
         
         [weakSelf setOutlineItems:[weakOperation results]];

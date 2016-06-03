@@ -27,7 +27,7 @@
 
 #import "CETextView.h"
 #import "CEDefaults.h"
-#import "Constants.h"
+#import "CESyntaxDictionaryKeys.h"
 
 
 @implementation CETextView (Commenting)
