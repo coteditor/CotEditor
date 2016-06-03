@@ -28,6 +28,3 @@
 
 /* Class = "NSPanel"; title = "Editor Opacity"; ObjectID = "jtp-g5-bGX"; */
 "jtp-g5-bGX.title" = "编辑器透明度";
-
-/* Class = "NSButtonCell"; title = "Set as Default"; ObjectID = "QFp-iC-k4v"; */
-"QFp-iC-k4v.title" = "设置为默认";

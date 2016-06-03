@@ -27,8 +27,6 @@
 
 #import "CEOpacityPanelController.h"
 #import "CEWindow.h"
-#import "CEWindowController.h"
-#import "CEDefaults.h"
 
 
 @interface CEOpacityPanelController ()
@@ -70,20 +68,6 @@
 // ------------------------------------------------------
 {
     return YES;
-}
-
-
-
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-/// set current value as default and apply it to all document windows
-- (IBAction)applyAsDefault:(nullable id)sender
-// ------------------------------------------------------
-{
-    // set as default
-    //   -> The new value will automatically be applied to all windows as they observe userDefault value.
-    [[NSUserDefaults standardUserDefaults] setValue:@([self opacity]) forKey:CEDefaultWindowAlphaKey];
 }
 
 

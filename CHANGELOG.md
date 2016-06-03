@@ -22,6 +22,7 @@ develop
     - Show / Hide Status Bar
 - Remove feature that changes the line height of current document from the “Format” menu.
     - From this, `line spacing` property on AppleScript is also deprecated.
+- Remove  “Set as Default” button in the editor pacity panel.
 - Remove byte count display in document inspector.
 - Display dialogs while changing file enocoding as a document-modal sheet.
 - Display also an accurete file size in document inspector.
