@@ -95,14 +95,12 @@
     id newValue = change[NSKeyValueChangeNewKey];
     
     if ([keyPath isEqualToString:CEDefaultHighlightCurrentLineKey]) {
-        CETextView *textView = object;
-        
         if ([newValue boolValue]) {
             [self invalidateCurrentLineRect];
         } else {
-            NSRect rect = [textView highlightLineRect];
-            [textView setHighlightLineRect:NSZeroRect];
-            [textView setNeedsDisplayInRect:rect avoidAdditionalLayout:YES];
+            NSRect rect = [[self textView] highlightLineRect];
+            [[self textView] setHighlightLineRect:NSZeroRect];
+            [[self textView] setNeedsDisplayInRect:rect avoidAdditionalLayout:YES];
         }
     }
 }
