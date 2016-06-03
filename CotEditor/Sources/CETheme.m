@@ -162,7 +162,7 @@
         // 背景の色を加味した、淡い文字色を生成
         _weakTextColor = [NSColor colorWithCalibratedHue:[textColor hueComponent]
                                               saturation:0.6 * [textColor hslSaturationComponent]
-                                               lightness:0.75 * [textColor lightnessComponent] + 0.25 * [backgroundColor lightnessComponent]
+                                               lightness:0.7 * [textColor lightnessComponent] + 0.3 * [backgroundColor lightnessComponent]
                                                    alpha:1.0];
         
         // 文字カラーと背景カラーの中間色であるマークアップカラーを生成
