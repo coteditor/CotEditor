@@ -433,6 +433,9 @@ static const NSUInteger kMaxHistorySize = 20;
                     [[self delegate] textFinder:self didFinishFindingAll:findString results:result textView:textView];
                 }
                 [indicator close:self];
+                if ([[[self findPanelController] window] isVisible]) {
+                    [[[self findPanelController] window] makeKeyWindow];
+                }
                 
             } else {
                 NSBeep();
@@ -534,6 +537,9 @@ static const NSUInteger kMaxHistorySize = 20;
                 [progress setLocalizedDescription:NSLocalizedString(@"Not Found.", nil)];
                 if ([self closesIndicatorWhenDone]) {
                     [indicator close:self];
+                    if ([[[self findPanelController] window] isVisible]) {
+                        [[[self findPanelController] window] makeKeyWindow];
+                    }
                 }
             }
             
@@ -683,6 +689,9 @@ static const NSUInteger kMaxHistorySize = 20;
             
             if ([self closesIndicatorWhenDone]) {
                 [indicator close:self];
+                if ([[[self findPanelController] window] isVisible]) {
+                    [[[self findPanelController] window] makeKeyWindow];
+                }
             }
             
             [[self busyTextViews] removeObject:textView];

@@ -52,6 +52,7 @@ develop
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with tiriple `*` and `_`.
 - Adjust height of the last empty line.
+- Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.
 
 
 ### Fixes
