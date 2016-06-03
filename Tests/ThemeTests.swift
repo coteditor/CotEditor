@@ -66,7 +66,7 @@ class ThemeTests: XCTestCase {
         XCTAssertGreaterThan(theme.charactersColor.hueComponent, 0)
         XCTAssertGreaterThan(theme.commandsColor.hueComponent, 0)
         
-        XCTAssertEqualWithAccuracy(theme.weakTextColor.brightnessComponent, 0.3, accuracy: 0.01)
+        XCTAssertEqualWithAccuracy(theme.weakTextColor.brightnessComponent, 0.25, accuracy: 0.01)
         XCTAssertEqualWithAccuracy(theme.markupColor.brightnessComponent, 0.5, accuracy: 0.01)
         
         XCTAssertEqual(theme.syntaxColorForType(CEThemeKeywordsKey), theme.keywordsColor)
