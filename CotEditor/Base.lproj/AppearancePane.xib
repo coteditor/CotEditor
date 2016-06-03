@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
@@ -254,9 +253,9 @@
                 </box>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XpC-pt-aaH">
                     <rect key="frame" x="152" y="489" width="19" height="27"/>
-                    <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="10" doubleValue="1" id="mv9-Cu-Cfr"/>
+                    <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" minValue="0.10000000000000001" maxValue="10" doubleValue="1" id="mv9-Cu-Cfr"/>
                     <connections>
-                        <binding destination="26" name="value" keyPath="values.lineSpacing" id="kPV-Sp-fwX"/>
+                        <binding destination="26" name="value" keyPath="values.lineHeight" id="JoA-Tl-z8T"/>
                     </connections>
                 </stepper>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nOa-Ha-LsB">
@@ -266,7 +265,7 @@
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="1.2" drawsBackground="YES" usesSingleLineMode="YES" id="aoR-VK-BH0">
                         <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2" minimumFractionDigits="1" maximumFractionDigits="2" id="Ti0-Sh-Wj8">
-                            <real key="minimum" value="0.0"/>
+                            <real key="minimum" value="0.10000000000000001"/>
                             <real key="maximum" value="10"/>
                         </numberFormatter>
                         <font key="font" metaFont="system"/>
@@ -277,11 +276,7 @@
                         </allowedInputSourceLocales>
                     </textFieldCell>
                     <connections>
-                        <binding destination="26" name="value" keyPath="values.lineSpacing" id="KNy-EW-UTe">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">CELineHeightTransformer</string>
-                            </dictionary>
-                        </binding>
+                        <binding destination="26" name="value" keyPath="values.lineHeight" id="hos-Bf-0yB"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-mR-rbr">

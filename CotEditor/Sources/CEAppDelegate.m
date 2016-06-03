@@ -35,7 +35,6 @@
 #import "CEThemeManager.h"
 
 #import "CEHexColorTransformer.h"
-#import "CELineHeightTransformer.h"
 
 #import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
@@ -140,7 +139,7 @@
                                                CEDefaultFontNameKey: [[NSFont userFontOfSize:0] fontName],
                                                CEDefaultFontSizeKey: @([NSFont systemFontSize]),
                                                CEDefaultShouldAntialiasKey: @YES,
-                                               CEDefaultLineSpacingKey: @0.3f,
+                                               CEDefaultLineHeightKey: @1.2f,
                                                CEDefaultHighlightCurrentLineKey: @NO,
                                                CEDefaultShowInvisiblesKey: @YES,
                                                CEDefaultShowInvisibleSpaceKey: @NO,
@@ -243,8 +242,6 @@
     // register transformers
     [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
                                     forName:@"CEHexColorTransformer"];
-    [NSValueTransformer setValueTransformer:[[CELineHeightTransformer alloc] init]
-                                    forName:@"CELineHeightTransformer"];
 }
 
 

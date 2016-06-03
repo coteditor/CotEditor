@@ -72,7 +72,7 @@ extern NSString *_Nonnull const CEDefaultWindowAlphaKey;
 extern NSString *_Nonnull const CEDefaultFontNameKey;
 extern NSString *_Nonnull const CEDefaultFontSizeKey;
 extern NSString *_Nonnull const CEDefaultShouldAntialiasKey;
-extern NSString *_Nonnull const CEDefaultLineSpacingKey;
+extern NSString *_Nonnull const CEDefaultLineHeightKey;
 extern NSString *_Nonnull const CEDefaultHighlightCurrentLineKey;
 extern NSString *_Nonnull const CEDefaultShowInvisiblesKey;
 extern NSString *_Nonnull const CEDefaultShowInvisibleSpaceKey;

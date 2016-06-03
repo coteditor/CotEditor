@@ -67,6 +67,7 @@ static const NSUInteger kMaxPageGuideColumn = 1000;
 @property (nonatomic, weak) NSTimer *completionTimer;
 @property (nonatomic, copy) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
 
+@property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
 
 @property (nonatomic) CGFloat initialMagnificationScale;
@@ -136,8 +137,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [self setTextContainerInset:NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
                                                (CGFloat)([defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey] +
                                                          [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
-        _lineSpacing = (CGFloat)[defaults doubleForKey:CEDefaultLineSpacingKey];
-        _tabWidth = [defaults integerForKey:CEDefaultTabWidthKey];
         
         // setup behaviors
         [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
@@ -167,8 +166,11 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [super setFont:font];
         [layoutManager setTextFont:font];
         
+        // set paragraph style values
+        _lineHeight = (CGFloat)[defaults doubleForKey:CEDefaultLineHeightKey];
+        _tabWidth = [defaults integerForKey:CEDefaultTabWidthKey];
+        
         [self invalidateDefaultParagraphStyle];
-        [self applyTypingAttributes];
         
         // observe change of defaults
         for (NSString *key in [[self class] observedDefaultKeys]) {
@@ -696,7 +698,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [super setFont:font];
     
     [self invalidateDefaultParagraphStyle];
-    [self applyTypingAttributes];
     
     // update current text
     [self invalidateStyle];
@@ -1010,8 +1011,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     } else if ([keyPath isEqualToString:CEDefaultShouldAntialiasKey]) {
         [self setUsesAntialias:[newValue boolValue]];
         
-    } else if ([keyPath isEqualToString:CEDefaultLineSpacingKey]) {
-        [self setLineSpacing:(CGFloat)[newValue doubleValue]];
+    } else if ([keyPath isEqualToString:CEDefaultLineHeightKey]) {
+        [self setLineHeight:(CGFloat)[newValue doubleValue]];
     }
 }
 
@@ -1106,10 +1107,11 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setTabWidth:(NSUInteger)tabWidth
 // ------------------------------------------------------
 {
+    if (tabWidth == [self tabWidth]) { return; }
+    
     _tabWidth = tabWidth;
     
     [self invalidateDefaultParagraphStyle];
-    [self applyTypingAttributes];
     
     // update current text
     [self invalidateStyle];
@@ -1118,20 +1120,17 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// 行間値をセットし、テキストと行番号を再描画
-- (void)setLineSpacing:(CGFloat)lineSpacing
+- (void)setLineHeight:(CGFloat)lineHeight
 // ------------------------------------------------------
 {
-    if (lineSpacing == [self lineSpacing]) { return; }
+    if (lineHeight == [self lineHeight]) { return; }
     
-    _lineSpacing = lineSpacing;
+    _lineHeight = lineHeight;
     
-    // re-layout
-    NSRange wholeRange = NSMakeRange(0, [[self string] length]);
-    [[self layoutManager] invalidateLayoutForCharacterRange:wholeRange actualCharacterRange:nil];
-    [[self layoutManager] ensureLayoutForTextContainer:[self textContainer]];
+    [self invalidateDefaultParagraphStyle];
     
-    // 行番号を強制的に更新（スクロール位置が調整されない時は再描画が行われないため）
-    [self updateRuler];
+    // update current text
+    [self invalidateStyle];
     
     // キャレット／選択範囲が見えるようにスクロール位置を調整
     [self scrollRangeToVisible:[self selectedRange]];
@@ -1210,16 +1209,11 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSMutableArray<NSNumber *> *propertyList = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
     NSString *newLine = [NSString newLineStringWithType:[self documentNewLineType]];
     
-    NSMutableDictionary<NSString *, id> *attributes = [[self typingAttributes] mutableCopy];
-    NSMutableParagraphStyle *paragraphStyle = [[self defaultParagraphStyle] mutableCopy];
-    [paragraphStyle setLineSpacing:[self lineSpacing] * [[self font] pointSize]];
-    attributes[NSParagraphStyleAttributeName] = paragraphStyle;
-    
     // substring all selected attributed strings
     for (NSValue *rangeValue in [self selectedRanges]) {
         NSRange selectedRange = [rangeValue rangeValue];
         NSString *plainText = [[self string] substringWithRange:selectedRange];
-        NSMutableAttributedString *styledText = [[NSMutableAttributedString alloc] initWithString:plainText attributes:attributes];
+        NSMutableAttributedString *styledText = [[NSMutableAttributedString alloc] initWithString:plainText attributes:[self typingAttributes]];
         
         // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
         for (NSUInteger charIndex = selectedRange.location; charIndex < NSMaxRange(selectedRange); charIndex++) {
@@ -1351,7 +1345,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
              CEDefaultFontNameKey,
              CEDefaultFontSizeKey,
              CEDefaultShouldAntialiasKey,
-             CEDefaultLineSpacingKey,
+             CEDefaultLineHeightKey,
              ];
 }
 
@@ -1401,10 +1395,14 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// set defaultParagraphStyle based on font and tabWidth
+/// set defaultParagraphStyle based on font and tabWidth, and line height
 - (void)invalidateDefaultParagraphStyle
 // ------------------------------------------------------
 {
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    
+    [paragraphStyle setLineHeightMultiple:[self lineHeight]];
+    
     // calculate tab interval
     NSFont *font = [[self font] screenFont] ?: [self font];
     CGFloat tabInterval = [self tabWidth] * [font advancementForCharacter:' '];
@@ -1412,17 +1410,18 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     // -> NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
     //    「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
     //    挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している
-    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [paragraphStyle setTabStops:@[]];  // clear default tab stops
     [paragraphStyle setDefaultTabInterval:tabInterval];
     
     [self setDefaultParagraphStyle:paragraphStyle];
+    
+    [self invalidateTypingAttributes];
 }
 
 
 // ------------------------------------------------------
 /// キー入力時の文字修飾辞書をセット
-- (void)applyTypingAttributes
+- (void)invalidateTypingAttributes
 // ------------------------------------------------------
 {
     [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self defaultParagraphStyle],

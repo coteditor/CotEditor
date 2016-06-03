@@ -52,6 +52,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 @interface CEPrintView () <NSLayoutManagerDelegate>
 
+@property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) BOOL printsLineNum;
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, nullable) CESyntaxStyle *syntaxStyle;
@@ -80,7 +81,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateFormat:dateFormat];
         
-        _lineSpacing = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultLineSpacingKey];
+        _lineHeight = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultLineHeightKey];
         
         // プリントビューのテキストコンテナのパディングを固定する（印刷中に変動させるとラップの関連で末尾が印字されないことがある）
         [[self textContainer] setLineFragmentPadding:kLineFragmentPadding];
@@ -290,6 +291,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     
     [paragraphStyle setTabStops:@[]];
     [paragraphStyle setDefaultTabInterval:tabWidth * [font advancementForCharacter:' ']];
+    [paragraphStyle setLineHeightMultiple:[self lineHeight]];
     [self setDefaultParagraphStyle:paragraphStyle];
     
     // apply to current string

@@ -256,7 +256,6 @@
 		2A6F0DD61B5500E100C2D03C /* CEGoToSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71918D7F18300118477 /* CEGoToSheetController.m */; };
 		2A6F0DD71B5500E100C2D03C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
 		2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumberView.m */; };
-		2A6F0DD91B5500E100C2D03C /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
 		2A6F0DDA1B5500E100C2D03C /* CEPrintPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB81901788000A9D6EF /* CEPrintPaneController.m */; };
 		2A6F0DDB1B5500E100C2D03C /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
 		2A6F0DDC1B5500E100C2D03C /* CEAppearancePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB51901760300A9D6EF /* CEAppearancePaneController.m */; };
@@ -374,7 +373,6 @@
 		2AD172FC1CF0B807007314B3 /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
 		2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
-		2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD5322919779FD000A925CA /* CELineHeightTransformer.m */; };
 		2AD67C241AA7285F0078BB95 /* CEFindPanelTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */; };
 		2AD67C2A1AA75E7F0078BB95 /* CEFindPanelTextClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */; };
 		2AD67C2F1AA7651B0078BB95 /* CEFindPanelLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */; };
@@ -905,8 +903,6 @@
 		2AD488701A082E5D00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FormatPane.strings; sourceTree = "<group>"; };
 		2AD488711A0832EB00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		2AD488721A085D8B00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxEditSheet.strings; sourceTree = "<group>"; };
-		2AD5322819779FD000A925CA /* CELineHeightTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELineHeightTransformer.h; sourceTree = "<group>"; };
-		2AD5322919779FD000A925CA /* CELineHeightTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELineHeightTransformer.m; sourceTree = "<group>"; };
 		2AD67C221AA7285F0078BB95 /* CEFindPanelTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindPanelTextView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindPanelTextView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2AD67C281AA75E7F0078BB95 /* CEFindPanelTextClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindPanelTextClipView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1472,8 +1468,6 @@
 				2A5928841CFF869400A9E0F7 /* CEFilePermissionsFormatter.m */,
 				2A63122819C25CF80088C5C6 /* CEHexColorTransformer.h */,
 				2A63122919C25CF80088C5C6 /* CEHexColorTransformer.m */,
-				2AD5322819779FD000A925CA /* CELineHeightTransformer.h */,
-				2AD5322919779FD000A925CA /* CELineHeightTransformer.m */,
 			);
 			name = "Value Transformers";
 			sourceTree = "<group>";
@@ -2405,7 +2399,6 @@
 				2A6F0DD71B5500E100C2D03C /* CESyntaxEditSheetController.m in Sources */,
 				2ACC65291C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */,
 				2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */,
-				2A6F0DD91B5500E100C2D03C /* CELineHeightTransformer.m in Sources */,
 				2ADD36931CFCABA400F3175D /* CEDocumentInspectorViewController.m in Sources */,
 				2A6F0DDA1B5500E100C2D03C /* CEPrintPaneController.m in Sources */,
 				2A55335E1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */,
@@ -2566,7 +2559,6 @@
 				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */,
 				2A6415941BD10EF40080358E /* NSString+Indentation.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */,
-				2AD5322A19779FD000A925CA /* CELineHeightTransformer.m in Sources */,
 				2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */,
 				2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */,
 				2AE0C08F1C422A5200E52E04 /* CETextView+Transformation.m in Sources */,

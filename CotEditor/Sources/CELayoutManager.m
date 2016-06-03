@@ -335,9 +335,9 @@ static NSString *HiraginoSansName;
 - (CGFloat)lineHeight
 // ------------------------------------------------------
 {
-    CGFloat lineSpacing = [(NSTextView<CETextViewProtocol> *)[self firstTextView] lineSpacing];
+    CGFloat lineHeightMultiple = [[[self firstTextView] defaultParagraphStyle] lineHeightMultiple];
 
-    return round([self defaultLineHeight] + lineSpacing * [[self textFont] pointSize]);
+    return round(lineHeightMultiple * [self defaultLineHeight]);
 }
 
 

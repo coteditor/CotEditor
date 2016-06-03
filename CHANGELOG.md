@@ -27,6 +27,7 @@ develop
 - Display dialogs while changing file enocoding as a document-modal sheet.
 - Display also an accurete file size in document inspector.
 - Avoid expanding status bar into side inspector.
+- Improve line height calcuration.
 - Better syntax highlighting while editing.
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
 
