@@ -76,6 +76,7 @@
         
         // set subclassed layout manager for invisible characters
         CEFindPanelLayoutManager *layoutManager = [[CEFindPanelLayoutManager alloc] init];
+        [layoutManager setUsesScreenFonts:YES];
         [[self textContainer] replaceLayoutManager:layoutManager];
     }
     return self;

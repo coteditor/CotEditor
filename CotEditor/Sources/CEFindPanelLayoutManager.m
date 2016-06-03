@@ -32,7 +32,7 @@
 
 @interface CEFindPanelLayoutManager ()
 
-@property (nonatomic) CGFloat fontSize;
+@property (nonatomic, nonnull) NSFont *font;
 
 @end
 
@@ -43,7 +43,6 @@
 
 @implementation CEFindPanelLayoutManager
 
-
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
@@ -53,10 +52,23 @@
 {
     self = [super init];
     if (self) {
-        _fontSize = [NSFont systemFontSize];
-        [self setUsesScreenFonts:YES];
+        _font = [NSFont systemFontOfSize:0];
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// fix line height for mixed font
+- (void)setLineFragmentRect:(NSRect)fragmentRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
+// ------------------------------------------------------
+{
+    CGFloat lineHeight = [self defaultLineHeightForFont:[self font]];
+    
+    fragmentRect.size.height = lineHeight;
+    usedRect.size.height = lineHeight;
+    
+    [super setLineFragmentRect:fragmentRect forGlyphRange:glyphRange usedRect:usedRect];
 }
 
 
@@ -68,10 +80,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if ([defaults boolForKey:CEDefaultShowInvisiblesKey]) {
-        NSTextView *textView = [self firstTextView];
         NSString *completeString = [NSString stringWithString:[[self textStorage] string]];
-        NSUInteger lengthToRedraw = NSMaxRange(glyphsToShow);
-        NSSize inset = [textView textContainerInset];
         
         NSColor *color = [NSColor tertiaryLabelColor];
         NSFont *font = [[self firstTextView] font];
@@ -105,7 +114,8 @@
                                                                                                             Index:NULL]
                                                                           attributes:attributes];
         
-        for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
+        // draw invisibles glyph by glyph
+        for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < NSMaxRange(glyphsToShow); glyphIndex++) {
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
             unichar character = [completeString characterAtIndex:charIndex];
             
@@ -162,57 +172,18 @@
                     continue;
             }
             
-            NSPoint pointToDraw = [self pointToDrawGlyphAtIndex:glyphIndex adjust:inset];
-            [glyphString drawAtPoint:pointToDraw];
+            // calcurate position to draw glyph
+            NSPoint point = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL withoutAdditionalLayout:YES].origin;
+            NSPoint glyphLocation = [self locationForGlyphAtIndex:glyphIndex];
+            point.x += origin.x + glyphLocation.x;
+            point.y += origin.y;
+            
+            // draw character
+            [glyphString drawAtPoint:point];
         }
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
-}
-
-
-// ------------------------------------------------------
-/// fix vertical glyph location for mixed font
-- (NSPoint)locationForGlyphAtIndex:(NSUInteger)glyphIndex
-// ------------------------------------------------------
-{
-    NSPoint point = [super locationForGlyphAtIndex:glyphIndex];
-    point.y = [[NSFont systemFontOfSize:[self fontSize]] ascender];
-    
-    return point;
-}
-
-
-// ------------------------------------------------------
-/// fix line height for mixed font
-- (void)setLineFragmentRect:(NSRect)fragmentRect forGlyphRange:(NSRange)glyphRange usedRect:(NSRect)usedRect
-// ------------------------------------------------------
-{
-    static const CGFloat kLineSpacing = 4.0;
-    CGFloat lineHeight = [self fontSize] + kLineSpacing;
-    
-    fragmentRect.size.height = lineHeight;
-    usedRect.size.height = lineHeight;
-    
-    [super setLineFragmentRect:fragmentRect forGlyphRange:glyphRange usedRect:usedRect];
-}
-
-
-
-#pragma mark Private Methods
-
-//------------------------------------------------------
-/// calculate point to draw invisible character
-- (NSPoint)pointToDrawGlyphAtIndex:(NSUInteger)glyphIndex adjust:(NSSize)size
-//------------------------------------------------------
-{
-    NSPoint drawPoint = [self locationForGlyphAtIndex:glyphIndex];
-    NSPoint lineOrigin = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL].origin;
-    
-    drawPoint.x += size.width;
-    drawPoint.y = lineOrigin.y + size.height;
-    
-    return drawPoint;
 }
 
 @end
