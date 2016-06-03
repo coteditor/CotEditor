@@ -432,16 +432,17 @@ static const NSUInteger kMaxHistorySize = 20;
                 if ([[self delegate] respondsToSelector:@selector(textFinder:didFinishFindingAll:results:textView:)]) {
                     [[self delegate] textFinder:self didFinishFindingAll:findString results:result textView:textView];
                 }
-                [indicator close:self];
-                if ([[[self findPanelController] window] isVisible]) {
-                    [[[self findPanelController] window] makeKeyWindow];
-                }
                 
             } else {
                 NSBeep();
                 [progress setLocalizedDescription:NSLocalizedString(@"Not Found.", nil)];
-                if ([self closesIndicatorWhenDone]) {
-                    [indicator close:self];
+            }
+            
+            // -> close also if matched since result view will be shown when succeed
+            if ([result count] > 0 || [self closesIndicatorWhenDone]) {
+                [indicator close:self];
+                if ([[[self findPanelController] window] isVisible]) {
+                    [[[self findPanelController] window] makeKeyWindow];
                 }
             }
             
@@ -529,17 +530,15 @@ static const NSUInteger kMaxHistorySize = 20;
             
             [indicator doneWithButtonTitle:nil];
             
-            if ([highlights count] > 0) {
-                [indicator close:self];
-                
-            } else {
+            if ([highlights count] == 0) {
                 NSBeep();
                 [progress setLocalizedDescription:NSLocalizedString(@"Not Found.", nil)];
-                if ([self closesIndicatorWhenDone]) {
-                    [indicator close:self];
-                    if ([[[self findPanelController] window] isVisible]) {
-                        [[[self findPanelController] window] makeKeyWindow];
-                    }
+            }
+            
+            if ([self closesIndicatorWhenDone]) {
+                [indicator close:self];
+                if ([[[self findPanelController] window] isVisible]) {
+                    [[[self findPanelController] window] makeKeyWindow];
                 }
             }
             
