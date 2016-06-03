@@ -35,8 +35,8 @@
 
 @property (nonatomic, nullable) IBOutlet NSArrayController *fileDropController;
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *extensionTableView;
-@property (nonatomic, nullable, strong) IBOutlet NSTextView *formatTextView;  // on 10.8 NSTextView cannot be weak
-@property (nonatomic, nullable, strong) IBOutlet NSTextView *glossaryTextView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, nullable, strong) IBOutlet NSTextView *formatTextView;  // NSTextView cannot be weak
+@property (nonatomic, nullable, strong) IBOutlet NSTextView *glossaryTextView;  // NSTextView cannot be weak
 
 @property (nonatomic, getter=isDeletingFileDrop) BOOL deletingFileDrop;
 

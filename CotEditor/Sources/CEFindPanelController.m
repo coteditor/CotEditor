@@ -38,7 +38,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 @interface CEFindPanelController () <CETextFinderDelegate, NSWindowDelegate, NSSplitViewDelegate, NSTextViewDelegate, NSPopoverDelegate>
 
 @property (nonatomic, nullable, copy) NSString *resultMessage;  // binding
-@property (nonatomic, nullable, weak) NSLayoutManager *currentResultMessageTarget;  // grab layoutManager instead of NSTextView to use weak reference on OS X 10.8
+@property (nonatomic, nullable, weak) NSLayoutManager *currentResultMessageTarget;  // grab layoutManager instead of NSTextView to use weak reference
 
 #pragma mark Outlets
 @property (nonatomic, nullable, weak) IBOutlet CETextFinder *textFinder;

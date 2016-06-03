@@ -36,7 +36,7 @@ const CGFloat kFontSize = 11;
 @property (nonatomic, nonnull, copy) NSParagraphStyle *messageParagraphStyle;
 @property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
 
-@property (nonatomic, nullable, strong) IBOutlet NSTextView *textView;  // on 10.8 NSTextView cannot be weak
+@property (nonatomic, nullable, strong) IBOutlet NSTextView *textView;  // NSTextView cannot be weak
 @property (nonatomic, nullable) IBOutlet NSTextFinder *textFinder;
 
 @end
