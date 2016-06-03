@@ -201,33 +201,23 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 指定された文字列を検索し、位置を返す
-- (nullable NSArray<NSValue *> *)rangesOfString:(nonnull NSString *)searchString ignoreCase:(BOOL)ignoreCase string:(nonnull NSString *)string range:(NSRange)parseRange
+- (nullable NSArray<NSValue *> *)rangesOfString:(nonnull NSString *)searchString string:(nonnull NSString *)string range:(NSRange)parseRange
 // ------------------------------------------------------
 {
     if ([searchString length] == 0) { return nil; }
     
     NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
-    NSUInteger length = [searchString length];
     
-    NSScanner *scanner = [NSScanner scannerWithString:string];
-    [scanner setCharactersToBeSkipped:nil];
-    [scanner setCaseSensitive:!ignoreCase];
-    [scanner setScanLocation:parseRange.location];
-    
-    while(![scanner isAtEnd] && ([scanner scanLocation] < NSMaxRange(parseRange))) {
-        if ([self isCancelled]) { return nil; }
+    NSUInteger location = parseRange.location;
+    while (location != NSNotFound) {
+        NSRange range = [string rangeOfString:searchString options:NSLiteralSearch
+                                        range:NSMakeRange(location, NSMaxRange(parseRange) - location)];
+        location = NSMaxRange(range);
         
-        @autoreleasepool {
-            [scanner scanUpToString:searchString intoString:nil];
-            NSUInteger startLocation = [scanner scanLocation];
-            
-            if (![scanner scanString:searchString intoString:nil]) { break; }
-            
-            if ([string isCharacterEscapedAt:startLocation]) { continue; }
-            
-            NSRange range = NSMakeRange(startLocation, length);
-            [ranges addObject:[NSValue valueWithRange:range]];
-        }
+        if (range.location == NSNotFound) { break; }
+        if ([string isCharacterEscapedAt:range.location]) { continue; }
+        
+        [ranges addObject:[NSValue valueWithRange:range]];
     }
     
     return ranges;
@@ -377,7 +367,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     // コメント定義の位置配列を生成
     if ([self blockCommentDelimiters]) {
         NSString *beginDelimiter = [self blockCommentDelimiters][CEBeginDelimiterKey];
-        NSArray<NSValue *> *beginRanges = [self rangesOfString:beginDelimiter ignoreCase:NO string:string range:parseRange];
+        NSArray<NSValue *> *beginRanges = [self rangesOfString:beginDelimiter string:string range:parseRange];
         for (NSValue *rangeValue in beginRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -388,7 +378,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         }
         
         NSString *endDelimiter = [self blockCommentDelimiters][CEEndDelimiterKey];
-        NSArray<NSValue *> *endRanges = [self rangesOfString:endDelimiter ignoreCase:NO string:string range:parseRange];
+        NSArray<NSValue *> *endRanges = [self rangesOfString:endDelimiter string:string range:parseRange];
         for (NSValue *rangeValue in endRanges) {
             NSRange range = [rangeValue rangeValue];
             
@@ -401,7 +391,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     
     if ([self inlineCommentDelimiter]) {
         NSString *delimiter = [self inlineCommentDelimiter];
-        NSArray<NSValue *> *ranges = [self rangesOfString:delimiter ignoreCase:NO string:string range:parseRange];
+        NSArray<NSValue *> *ranges = [self rangesOfString:delimiter string:string range:parseRange];
         for (NSValue *rangeValue in ranges) {
             NSRange range = [rangeValue rangeValue];
             NSRange lineRange = [string lineRangeForRange:range];
@@ -419,7 +409,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     
     // クォート定義があれば位置配列を生成、マージ
     for (NSString *quote in quoteTypes) {
-        NSArray<NSValue *> *ranges = [self rangesOfString:quote ignoreCase:NO string:string range:parseRange];
+        NSArray<NSValue *> *ranges = [self rangesOfString:quote string:string range:parseRange];
         for (NSValue *rangeValue in ranges) {
             NSRange range = [rangeValue rangeValue];
             
