@@ -667,10 +667,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // apply to all text views sharing textStorage
     for (NSLayoutManager *layoutManager in [[self textStorage] layoutManagers]) {
-        NSTextView *textView = [layoutManager firstTextView];
-        
-        [textView setFont:newFont];
-        [textView setNeedsDisplayInRect:[textView visibleRect] avoidAdditionalLayout:YES];  // 最下行以下のページガイドの描画が残るための措置 (2009-02-14)
+        [[layoutManager firstTextView] setFont:newFont];
     }
 }
 
@@ -1013,6 +1010,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         
     } else if ([keyPath isEqualToString:CEDefaultLineHeightKey]) {
         [self setLineHeight:(CGFloat)[newValue doubleValue]];
+        
+        // reset visible area
+        [self scrollRangeToVisible:[self selectedRange]];
     }
 }
 
@@ -1131,9 +1131,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // update current text
     [self invalidateStyle];
-    
-    // キャレット／選択範囲が見えるようにスクロール位置を調整
-    [self scrollRangeToVisible:[self selectedRange]];
 }
 
 
@@ -1475,22 +1472,20 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)insertCustomTextWithPatternNumber:(NSInteger)patternNumber
 // ------------------------------------------------------
 {
-    if (patternNumber < 0) { return; }
-    
     NSArray<NSString *> *texts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
     
-    if (patternNumber < [texts count]) {
-        NSString *string = texts[patternNumber];
+    if (patternNumber < 0 || patternNumber >= [texts count]) { return; }
+    
+    NSString *string = texts[patternNumber];
+    
+    if ([self shouldChangeTextInRange:[self selectedRange] replacementString:string]) {
+        [self replaceCharactersInRange:[self selectedRange] withString:string];
+        [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
+        [self didChangeText];
+        [self scrollRangeToVisible:[self selectedRange]];
         
-        if ([self shouldChangeTextInRange:[self selectedRange] replacementString:string]) {
-            [self replaceCharactersInRange:[self selectedRange] withString:string];
-            [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
-            [self didChangeText];
-            [self scrollRangeToVisible:[self selectedRange]];
-            
-        } else {
-            NSBeep();
-        }
+    } else {
+        NSBeep();
     }
 }
 
