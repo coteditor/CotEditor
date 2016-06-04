@@ -210,11 +210,17 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 // ------------------------------------------------------
-/// style名に応じたユーザ領域のスタイルファイルURLを返す（ない場合はnil）
-- (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName
+/// スタイルがバンドル版スタイルと同じ内容かどうかを返す
+- (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    return [self URLForUserStyle:styleName available:YES];
+    if (![self isBundledStyle:styleName cutomized:nil]) { return NO; }
+    
+    // numOfObjInArray などが混入しないようにスタイル定義部分だけを比較する
+    NSArray<NSString *> *keys = [[self emptyStyleDictionary] allKeys];
+    NSDictionary<NSString *, id> *bundledStyle = [[self bundledStyleDictionaryWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
+    
+    return [[style dictionaryWithValuesForKeys:keys] isEqualToDictionary:bundledStyle];
 }
 
 
@@ -233,17 +239,11 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 // ------------------------------------------------------
-/// スタイルがバンドル版スタイルと同じ内容かどうかを返す
-- (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName
+/// style名に応じたユーザ領域のスタイルファイルURLを返す（ない場合はnil）
+- (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    if (![self isBundledStyle:styleName cutomized:nil]) { return NO; }
-    
-    // numOfObjInArray などが混入しないようにスタイル定義部分だけを比較する
-    NSArray<NSString *> *keys = [[self emptyStyleDictionary] allKeys];
-    NSDictionary<NSString *, id> *bundledStyle = [[self bundledStyleDictionaryWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
-    
-    return [[style dictionaryWithValuesForKeys:keys] isEqualToDictionary:bundledStyle];
+    return [self URLForUserStyle:styleName available:YES];
 }
 
 

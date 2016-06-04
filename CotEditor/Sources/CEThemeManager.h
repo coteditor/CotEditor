@@ -25,7 +25,8 @@
  
  */
 
-@import AppKit;
+@import Foundation;
+@import AppKit.NSColor;
 
 
 // extension for theme file
@@ -49,7 +50,6 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 
 
 // public methods
-
 - (nullable CETheme *)themeWithName:(nonnull NSString *)themeName;
 
 /// Theme dict in which objects are property list ready.

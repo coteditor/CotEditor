@@ -1203,12 +1203,12 @@
 				2AE2E9D419D2CF00000D66A9 /* CEEncodingManager.m */,
 				258700E3077BAD2200E541BB /* CESyntaxManager.h */,
 				258700E4077BAD2200E541BB /* CESyntaxManager.m */,
+				2A68F93318F9995500673440 /* CEThemeManager.h */,
+				2A68F93418F9995500673440 /* CEThemeManager.m */,
 				8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */,
 				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
 				8CC1961A07E2E54E00B54AE4 /* CEScriptManager.h */,
 				8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */,
-				2A68F93318F9995500673440 /* CEThemeManager.h */,
-				2A68F93418F9995500673440 /* CEThemeManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
