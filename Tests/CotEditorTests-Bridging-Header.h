@@ -18,6 +18,8 @@
 #import "NSString+CEEncoding.h"
 #import "NSString+CECounting.h"
 
+// Key Bindings Tests
+#import "CEKeyBindingUtils.h"
 
 // String Extensions Tests
 #import "NSString+CEAdditions.h"

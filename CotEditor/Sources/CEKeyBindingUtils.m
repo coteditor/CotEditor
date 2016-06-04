@@ -37,7 +37,7 @@ NSEventModifierFlags const kModifierKeyMaskList[] = {
     NSCommandKeyMask
 };
 unichar const kModifierKeySymbolCharList[] = {0x005E, 0x2325, 0x21E7, 0x2318};
-unichar const kKeySpecCharList[] = {0x005E, 0x007E, 0x0024, 0x0040};  // == "^~$@"
+unichar const kKeySpecCharList[] = {'^', '~', '$', '@'};
 
 NSUInteger const kSizeOfModifierKeys = sizeof(kModifierKeyMaskList) / sizeof(NSEventModifierFlags);
 

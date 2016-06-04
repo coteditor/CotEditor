@@ -607,8 +607,8 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 {
     if ([keyEquivalent length] < 1) { return @""; }
     
-    unichar theChar = [keyEquivalent characterAtIndex:0];
-    if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:theChar]) {
+    unichar character = [keyEquivalent characterAtIndex:0];
+    if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:character]) {
         return [keyEquivalent uppercaseString];
     } else {
         return [self printableCharFromIgnoringModChar:keyEquivalent];

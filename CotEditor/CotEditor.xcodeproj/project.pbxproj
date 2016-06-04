@@ -356,6 +356,8 @@
 		2AB432711912AF7200835004 /* CECharacterPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CECharacterPopoverController.m */; };
 		2AB432741915D6AA00835004 /* NSString+CECounting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+CECounting.m */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
+		2ABFF6D71D02856A00BE2795 /* KeyBindingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABFF6D61D02856A00BE2795 /* KeyBindingsTests.swift */; };
+		2ABFF6D81D02858800BE2795 /* CEKeyBindingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD419032CC900A9D6EF /* CEKeyBindingUtils.m */; };
 		2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */; };
 		2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
 		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
@@ -813,6 +815,7 @@
 		2ABD9F6E1A3E0A2000BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxFileMappingEditView.xib; sourceTree = "<group>"; };
 		2ABD9F6F1A3E0A2D00BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCompletionsEditView.xib; sourceTree = "<group>"; };
 		2ABD9F701A3E0A3900BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCommentsEditView.xib; sourceTree = "<group>"; };
+		2ABFF6D61D02856A00BE2795 /* KeyBindingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsTests.swift; sourceTree = "<group>"; };
 		2AC2C1D619881543007968CB /* VerticalOrientation_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = VerticalOrientation_Off.tiff; sourceTree = "<group>"; };
 		2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = VerticalOrientation_On.tiff; sourceTree = "<group>"; };
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1667,11 +1670,21 @@
 			name = "Document Accessories";
 			sourceTree = "<group>";
 		};
+		2ABFF6D51D02853E00BE2795 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2A7135821CFFDC6600ADA555 /* FormattersTests.swift */,
+				2ABFF6D61D02856A00BE2795 /* KeyBindingsTests.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				2AC71DE91BF0C57A002E1434 /* CotEditorTests-Bridging-Header.h */,
 				2ACC65301C9802D4000574DC /* Models */,
+				2ABFF6D51D02853E00BE2795 /* Utils */,
 				2ACC652F1C9802CB000574DC /* Extensions */,
 				2ACC65331C98055E000574DC /* Resources */,
 				2AC71DE31BF0BDBC002E1434 /* Info.plist */,
@@ -1707,7 +1720,6 @@
 				2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */,
 				2ACC65311C98033D000574DC /* ThemeTests.swift */,
 				2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */,
-				2A7135821CFFDC6600ADA555 /* FormattersTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2453,6 +2465,7 @@
 				2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2A9C07541CF9F958006D672D /* CEIncompatibleCharacter.m in Sources */,
+				2ABFF6D71D02856A00BE2795 /* KeyBindingsTests.swift in Sources */,
 				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
 				2AF587411CF7713B009D44A2 /* NSString+CEAdditions.m in Sources */,
 				2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */,
@@ -2468,6 +2481,7 @@
 				2ACC653C1C9844ED000574DC /* CETheme.m in Sources */,
 				2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */,
 				2A7135811CFFDBF300ADA555 /* CEFilePermissionsFormatter.m in Sources */,
+				2ABFF6D81D02858800BE2795 /* CEKeyBindingUtils.m in Sources */,
 				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
 				2AA2E00E1BFDDFEA0087BDD6 /* CECharacterInfo.m in Sources */,
 				2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */,
