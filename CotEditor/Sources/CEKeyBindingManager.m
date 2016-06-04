@@ -27,8 +27,8 @@
  */
 
 #import "CEKeyBindingManager.h"
-#import "CEAppDelegate.h"
 #import "CEKeyBindingUtils.h"
+#import "CEAppDelegate.h"
 #import "CEDefaults.h"
 #import "Constants.h"
 
@@ -56,9 +56,6 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 
 @implementation CEKeyBindingManager
 
-static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
-
-
 #pragma mark Singleton
 
 // ------------------------------------------------------
@@ -79,16 +76,6 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 
 #pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// initialize class
-+ (void)initialize
-// ------------------------------------------------------
-{
-    // set statics
-    kUnprintableKeyTable = [self unprintableKeyDictionary];
-}
-
 
 // ------------------------------------------------------
 /// initialize instance
@@ -117,53 +104,6 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 #pragma mark Public Methods
 
 //------------------------------------------------------
-/// キーバインディング定義文字列から表示用文字列を生成し、返す
-+ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nonnull NSString *)keySpecChars
-//------------------------------------------------------
-{
-    NSInteger length = [keySpecChars length];
-    
-    if (length < 2) { return @""; }
-    
-    NSString *keyEquivalent = [keySpecChars substringFromIndex:(length - 1)];
-    NSString *keyStr = [self printableKeyStringFromKeyEquivalent:keyEquivalent];
-    BOOL drawsShift = (isupper([keyEquivalent characterAtIndex:0]) == 1);
-    NSString *modKeyStr = [self printableKeyStringFromModKeySpecChars:[keySpecChars substringToIndex:(length - 1)]
-                                                         withShiftKey:drawsShift];
-    
-    return [NSString stringWithFormat:@"%@%@", modKeyStr, keyStr];
-}
-
-
-//------------------------------------------------------
-/// メニューのキーボードショートカットからキーバインディング定義文字列を返す
-+ (nonnull NSString *)keySpecCharsFromKeyEquivalent:(nonnull NSString *)keyEquivalent modifierFrags:(NSEventModifierFlags)modifierFlags
-//------------------------------------------------------
-{
-    if ([keyEquivalent length] < 1) { return @""; }
-    
-    NSMutableString *keySpecChars = [NSMutableString string];
-    unichar theChar = [keyEquivalent characterAtIndex:0];
-    BOOL isShiftPressed = NO;
-    
-    for (NSInteger i = 0; i < kSizeOfModifierKeys; i++) {
-        if ((modifierFlags & kModifierKeyMaskList[i]) ||
-            ((i == CEShiftKeyIndex) && (isupper(theChar) == 1)))
-        {
-            // （メニューから定義値を取得した時、アルファベット+シフトの場合にシフトの定義が欠落するための回避処置）
-            [keySpecChars appendFormat:@"%C", kKeySpecCharList[i]];
-            if ((i == CEShiftKeyIndex) && (isupper(theChar) == 1)) {
-                isShiftPressed = YES;
-            }
-        }
-    }
-    [keySpecChars appendString:(isShiftPressed ? [keyEquivalent uppercaseString] : keyEquivalent)];
-    
-    return keySpecChars;
-}
-
-
-//------------------------------------------------------
 /// scan key bindings in main menu and store them as default values
 - (void)scanDefaultMenuKeyBindings
 //------------------------------------------------------
@@ -179,9 +119,8 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 // ------------------------------------------------------
 {
     NSString *keySpecChars = [self keySpecCharsForSelector:action factoryDefaults:NO];
-    return [CEKeyBindingUtils keyEquivalentAndModifierMask:modifierMask
-                                                fromString:keySpecChars
-                                       includingCommandKey:YES];
+    
+    return [CEKeyBindingUtils keyEquivalentAndModifierMask:modifierMask fromKeySpecChars:keySpecChars requiresCommandKey:YES];
 }
 
 
@@ -222,10 +161,10 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
 
 // ------------------------------------------------------
 /// キー入力に応じたセレクタ文字列を返す
-- (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierFrags:(NSEventModifierFlags)modifierFlags
+- (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask
 // ------------------------------------------------------
 {
-    NSString *keySpecChars = [[self class] keySpecCharsFromKeyEquivalent:keyEquivalent modifierFrags:modifierFlags];
+    NSString *keySpecChars = [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:keyEquivalent modifierMask:modifierMask];
 
     return [self textKeyBindingDict][keySpecChars];
 }
@@ -465,8 +404,8 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
             if ([[item keyEquivalent] length] == 0) { continue; }
             
             NSString *selector = NSStringFromSelector([item action]);
-            NSString *key = [[self class] keySpecCharsFromKeyEquivalent:[item keyEquivalent]
-                                                          modifierFrags:[item keyEquivalentModifierMask]];
+            NSString *key = [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:[item keyEquivalent]
+                                                                modifierMask:[item keyEquivalentModifierMask]];
             
             if ([selector length] > 0 && [key length] > 0) {
                 dictionary[key] = selector;
@@ -546,8 +485,8 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
             if (![item action]) { continue; }
             
             NSString *keySpecChars = usesFactoryDefaults ? [self keySpecCharsForSelector:[item action] factoryDefaults:YES] :
-                                                           [[self class] keySpecCharsFromKeyEquivalent:[item keyEquivalent]
-                                                                                         modifierFrags:[item keyEquivalentModifierMask]];
+                                                           [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:[item keyEquivalent]
+                                                                                               modifierMask:[item keyEquivalentModifierMask]];
             
             row = @{CEKeyBindingTitleKey: [item title],
                     CEKeyBindingKeySpecCharsKey: keySpecChars,
@@ -597,105 +536,6 @@ static NSDictionary<NSString *, NSString *> *kUnprintableKeyTable;
     NSArray<NSString *> *keys = [dict allKeysForObject:selectorString];
     
     return [keys firstObject] ? : @"";
-}
-
-
-//------------------------------------------------------
-/// メニューのキーボードショートカットから表示用文字列を返す
-+ (nonnull NSString *)printableKeyStringFromKeyEquivalent:(nonnull NSString *)keyEquivalent
-//------------------------------------------------------
-{
-    if ([keyEquivalent length] < 1) { return @""; }
-    
-    unichar character = [keyEquivalent characterAtIndex:0];
-    if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:character]) {
-        return [keyEquivalent uppercaseString];
-    } else {
-        return [self printableCharFromIgnoringModChar:keyEquivalent];
-    }
-}
-
-
-//------------------------------------------------------
-/// キーバインディング定義文字列から表示用モディファイアキー文字列を生成し、返す
-+ (nonnull NSString *)printableKeyStringFromModKeySpecChars:(nonnull NSString *)modKeySpecChars withShiftKey:(BOOL)drawsShiftKey
-//------------------------------------------------------
-{
-    NSCharacterSet *modStringSet = [NSCharacterSet characterSetWithCharactersInString:modKeySpecChars];
-    NSMutableString *keyString = [NSMutableString string];
-    
-    for (NSUInteger i = 0; i < kSizeOfModifierKeys; i++) {
-        unichar theChar = kKeySpecCharList[i];
-        if ([modStringSet characterIsMember:theChar] || ((i == CEShiftKeyIndex) && drawsShiftKey)) {
-            [keyString appendFormat:@"%C", kModifierKeySymbolCharList[i]];
-        }
-    }
-    
-    return keyString;
-}
-
-
-//------------------------------------------------------
-/// キーバインディング定義文字列またはキーボードショートカットキーからキー表示用文字列を生成し、返す
-+ (nonnull NSString *)printableCharFromIgnoringModChar:(nonnull NSString *)modCharString
-//------------------------------------------------------
-{
-    return kUnprintableKeyTable[modCharString] ? : modCharString;
-}
-
-
-//------------------------------------------------------
-/// そのまま表示できないキーバインディング定義文字列の変換辞書を返す
-+ (nonnull NSDictionary<NSString *, NSString *> *)unprintableKeyDictionary
-//------------------------------------------------------
-{
-    // 下記の情報を参考にさせていただきました (2005.09.05)
-    // http://www.cocoabuilder.com/archive/message/2004/3/19/102023
-    NSArray<NSString *> *printableChars = @[[NSString stringWithFormat:@"%C", (unichar)0x2191], // "↑" NSUpArrowFunctionKey,
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2193], // "↓" NSDownArrowFunctionKey,
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2190], // "←" NSLeftArrowFunctionKey,
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2192], // "→" NSRightArrowFunctionKey,
-                                            @"F1",  // NSF1FunctionKey,
-                                            @"F2",  // NSF2FunctionKey,
-                                            @"F3",  // NSF3FunctionKey,
-                                            @"F4",  // NSF4FunctionKey,
-                                            @"F5",  // NSF5FunctionKey,
-                                            @"F6",  // NSF6FunctionKey,
-                                            @"F7",  // NSF7FunctionKey,
-                                            @"F8",  // NSF8FunctionKey,
-                                            @"F9",  // NSF9FunctionKey,
-                                            @"F10", // NSF10FunctionKey,
-                                            @"F11", // NSF11FunctionKey,
-                                            @"F12", // NSF12FunctionKey,
-                                            @"F13", // NSF13FunctionKey,
-                                            @"F14", // NSF14FunctionKey,
-                                            @"F15", // NSF15FunctionKey,
-                                            @"F16", // NSF16FunctionKey,
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2326], // "⌦" NSDeleteCharacter = "Delete forward"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2196], // "↖" NSHomeFunctionKey,
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2198], // "↘" NSEndFunctionKey,
-                                            [NSString stringWithFormat:@"%C", (unichar)0x21DE], // "⇞" NSPageUpFunctionKey,
-                                            [NSString stringWithFormat:@"%C", (unichar)0x21DF], // "⇟" NSPageDownFunctionKey,
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2327], // "⌧" NSClearLineFunctionKey,
-                                            @"Help", // NSHelpFunctionKey,
-                                            NSLocalizedString(@"Space", @"keybord key name"), // "Space"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x21E5], // "⇥" "Tab"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x21A9], // "↩" "Return"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x232B], // "⌫" "Backspace"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x2305], // "⌅" "Enter"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x21E4], // "⇤" "Backtab"
-                                            [NSString stringWithFormat:@"%C", (unichar)0x238B], // "⎋" "Escape"
-                                            ];
-    
-    NSAssert(kSizeOfUnprintableKeyList == [printableChars count],
-             @"Internal data error! Sizes of 'kUnprintableKeyList' and 'printableChars' are different.");
-    
-    NSMutableArray<NSString *> *keys = [NSMutableArray arrayWithCapacity:kSizeOfUnprintableKeyList];
-    for (NSInteger i = 0; i < kSizeOfUnprintableKeyList; i++) {
-        [keys addObject:[NSString stringWithFormat:@"%C", kUnprintableKeyList[i]]];
-    }
-
-    return [NSDictionary dictionaryWithObjects:printableChars forKeys:keys];
 }
 
 

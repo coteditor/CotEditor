@@ -27,7 +27,7 @@
  */
 
 #import "CEShortcutKeyField.h"
-#import "CEKeyBindingManager.h"
+#import "CEKeyBindingUtils.h"
 
 
 @interface CEShortcutKeyField ()
@@ -59,7 +59,7 @@
         if (!self) { return nil; }
         
         NSString *charsIgnoringModifiers = [event charactersIgnoringModifiers];
-        NSEventModifierFlags modifierFlags = [event modifierFlags];
+        NSEventModifierFlags modifierMask = [event modifierFlags];
         
         if ([charsIgnoringModifiers length] == 0) { return event; }
         
@@ -78,14 +78,14 @@
         // remove unwanted Shift
         NSCharacterSet *ignoringShiftSet = [NSCharacterSet characterSetWithCharactersInString:@"`~!@#$%^&()_{}|\":<>?=/*-+.'"];
         if ([ignoringShiftSet characterIsMember:[charsIgnoringModifiers characterAtIndex:0]] &&
-            (modifierFlags & NSShiftKeyMask))
+            (modifierMask & NSShiftKeyMask))
         {
-            modifierFlags ^= NSShiftKeyMask;
+            modifierMask ^= NSShiftKeyMask;
         }
         
         // set input shortcut string to field
-        NSString *keySpecChars = [CEKeyBindingManager keySpecCharsFromKeyEquivalent:charsIgnoringModifiers
-                                                                      modifierFrags:modifierFlags];
+        NSString *keySpecChars = [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:charsIgnoringModifiers
+                                                                     modifierMask:modifierMask];
         keySpecChars = [keySpecChars isEqualToString:@"\b"] ? @"" : keySpecChars;  // single NSDeleteCharacter should be deleted
         [self setStringValue:keySpecChars];
         

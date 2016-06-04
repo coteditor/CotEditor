@@ -43,9 +43,6 @@ extern NSString *_Nonnull const CEKeyBindingChildrenKey;
 
 
 // Public methods
-+ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nonnull NSString *)keySpecChars;
-+ (nonnull NSString *)keySpecCharsFromKeyEquivalent:(nonnull NSString *)keyEquivalent modifierFrags:(NSEventModifierFlags)modifierFlags;
-
 - (void)scanDefaultMenuKeyBindings;  // This method should be called before main menu is modified.
 
 - (void)applyKeyBindingsToMainMenu;
@@ -53,7 +50,7 @@ extern NSString *_Nonnull const CEKeyBindingChildrenKey;
 - (nonnull NSString *)keyEquivalentForAction:(nonnull SEL)action modifierMask:(nonnull NSEventModifierFlags *)modifierMask;
 
 - (nonnull NSMutableArray<NSString *> *)keySpecCharsListFromOutlineData:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData;
-- (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierFrags:(NSEventModifierFlags)modifierFlags;
+- (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask;
 
 - (BOOL)usesDefaultMenuKeyBindings;
 - (BOOL)usesDefaultTextKeyBindings;

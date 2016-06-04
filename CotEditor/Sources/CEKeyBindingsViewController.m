@@ -27,6 +27,7 @@
 
 #import "CEKeyBindingsViewController.h"
 #import "CEKeyBindingManager.h"
+#import "CEKeyBindingUtils.h"
 #import "CEDefaults.h"
 
 
@@ -143,7 +144,7 @@
     NSString *identifier = [tableColumn identifier];
     
     if ([identifier isEqualToString:CEKeyBindingKeySpecCharsKey]) {
-        return [CEKeyBindingManager printableKeyStringFromKeySpecChars:item[identifier]];
+        return [CEKeyBindingUtils printableKeyStringFromKeySpecChars:item[identifier]];
     }
     
     return item[identifier];
@@ -224,7 +225,7 @@
     if ([keySpecChars isEqualToString:@"\e"]) {
         // treat esc key as cancel
         
-    } else if ([keySpecChars isEqualToString:[CEKeyBindingManager printableKeyStringFromKeySpecChars:oldChars]]) {  // not edited
+    } else if ([keySpecChars isEqualToString:[CEKeyBindingUtils printableKeyStringFromKeySpecChars:oldChars]]) {  // not edited
         // do nothing
         
     } else if ([self validateKeySpecChars:keySpecChars oldChars:oldChars]) {
@@ -397,7 +398,7 @@
     
     // show warning and return
     if (warning) {
-        NSString *printableKey = [CEKeyBindingManager printableKeyStringFromKeySpecChars:keySpec];
+        NSString *printableKey = [CEKeyBindingUtils printableKeyStringFromKeySpecChars:keySpec];
         
         [self setWarningMessage:[NSString stringWithFormat:warning, printableKey]];
         

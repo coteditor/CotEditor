@@ -29,31 +29,18 @@
 @import AppKit;
 
 
-// Modifier masks and characters for keybindings
-extern NSEventModifierFlags const kModifierKeyMaskList[];
-extern unichar const kModifierKeySymbolCharList[];
-extern unichar const kKeySpecCharList[];
-
-// size of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
-extern NSUInteger const kSizeOfModifierKeys;
-// indexes of kModifierKeyMaskList, kKeySpecCharList and kModifierKeySymbolCharList
-typedef NS_ENUM(NSUInteger, CEModifierKeyIndex) {
-    CEControlKeyIndex,
-    CEAlternateKeyIndex,
-    CEShiftKeyIndex,
-    CECommandKeyIndex,
-};
-
-// Unprintable key list
-extern unichar const kUnprintableKeyList[];
-extern NSUInteger const kSizeOfUnprintableKeyList;
-
-
 @interface CEKeyBindingUtils : NSObject
 
-/// returns string form keyEquivalent (keyboard shortcut) for menu item
+/// return keySpecChars to store from keyEquivalent and modifierMask
++ (nonnull NSString *)keySpecCharsFromKeyEquivalent:(nonnull NSString *)keyEquivalent
+                                       modifierMask:(NSEventModifierFlags)modifierMask;
+
+/// return keyEquivalent and modifierMask from keySpecChars to store
 + (nonnull NSString *)keyEquivalentAndModifierMask:(nonnull NSEventModifierFlags *)modifierMask
-                                        fromString:(nonnull NSString *)string
-                               includingCommandKey:(BOOL)needsIncludingCommandKey;
+                                  fromKeySpecChars:(nonnull NSString *)keySpecChars
+                                requiresCommandKey:(BOOL)requiresCommandKey;
+
+/// return shortcut string to display from keySpecChars to store
++ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nonnull NSString *)keySpecChars;
 
 @end

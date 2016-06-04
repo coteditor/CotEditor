@@ -291,7 +291,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     BOOL isModifierKeyPressed = ([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask) != 0;  // check just in case
     if (![self hasMarkedText] && charIgnoringMod && isModifierKeyPressed) {
         NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
-                                                                                       modifierFrags:[theEvent modifierFlags]];
+                                                                                        modifierMask:[theEvent modifierFlags]];
         
         if ([selectorStr length] > 0) {
             if (([selectorStr hasPrefix:@"insertCustomText"]) && ([selectorStr length] == 20)) {

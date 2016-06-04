@@ -524,7 +524,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 {
     NSString *keySpec = [[fileName stringByDeletingPathExtension] pathExtension];
 
-    return [CEKeyBindingUtils keyEquivalentAndModifierMask:modifierMask fromString:keySpec includingCommandKey:YES];
+    return [CEKeyBindingUtils keyEquivalentAndModifierMask:modifierMask fromKeySpecChars:keySpec requiresCommandKey:YES];
 }
 
 
