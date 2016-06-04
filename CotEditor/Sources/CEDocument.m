@@ -91,6 +91,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic, nonnull, copy) NSString *autosaveIdentifier;
 @property (nonatomic) BOOL suppressesIANACharsetConflictAlert;
 @property (nonatomic, getter=isExecutable) BOOL executable;
+@property (nonatomic, getter=isFirstLoad) BOOL firstLoad;
 
 // readonly
 @property (readwrite, nonatomic, nullable) CEWindowController *windowController;
@@ -158,6 +159,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         _writable = YES;
         _shouldSaveXattr = YES;
         _autosaveIdentifier = [[[NSUUID UUID] UUIDString] substringToIndex:CEUniqueFileIDLength];
+        _firstLoad = YES;
         
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
@@ -900,7 +902,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         [editor setString:string];  // In this `setString:`, caret will be moved to the beginning.
         
         // detect indent style
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey]) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey] && [self isFirstLoad]) {
             switch ([string detectIndentStyle]) {
                 case CEIndentStyleTab:
                     [editor setAutoTabExpandEnabled:NO];
@@ -918,6 +920,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     } else {
         [editor setString:@""];
     }
+    [self setFirstLoad:NO];
     
     // update syntax highlights and outline menu
     [editor invalidateSyntaxHighlight];
