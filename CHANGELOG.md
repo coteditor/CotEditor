@@ -32,11 +32,6 @@ develop
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
 
 
-### Fixes
-
-- Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted.
-
-
 
 2.5.6-alpha (132)
 --------------------------
@@ -67,6 +62,7 @@ develop
 - Fix an issue where unselected last line number could be highlighted if the text orientation is vertical.
 - Fix an issue where invisible characters were drawn off to the side if the text orientation is vertical.
 - Fix an issue where documents were marked as “Edited” just after document duplication if line ending is not the default one.
+- Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted.
 - Fix an issue where incompatible character markup could broken if undo/redo lossy encoding change continuously.
 - Fix an issue where keybindings of some submenu containers were customizable.
 - Fix an issue where byte length display did not update after changing file encoding.
