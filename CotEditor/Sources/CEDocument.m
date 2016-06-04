@@ -768,9 +768,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
         
     } else if ([menuItem action] == @selector(changeSyntaxStyle:)) {
         NSString *name = [[self syntaxStyle] styleName];
-        if (name && [[menuItem title] isEqualToString:name]) {
-            [menuItem setState:NSOnState];
-        }
+        [menuItem setState:(name && [[menuItem title] isEqualToString:name]) ? NSOnState : NSOffState];
     }
     
     return [super validateMenuItem:menuItem];
