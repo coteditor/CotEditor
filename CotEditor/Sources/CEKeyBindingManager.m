@@ -147,8 +147,7 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
     for (NSDictionary *item in outlineData) {
         NSArray *children = item[CEKeyBindingChildrenKey];
         if (children) {
-            NSArray<NSString *> *childList = [self keySpecCharsListFromOutlineData:children];
-            [keySpecCharsList addObjectsFromArray:childList];
+            [keySpecCharsList addObjectsFromArray:[self keySpecCharsListFromOutlineData:children]];
         }
         NSString *keySpecChars = item[CEKeyBindingKeySpecCharsKey];
         if (([keySpecChars length] > 0) && ![keySpecCharsList containsObject:keySpecChars]) {
@@ -401,8 +400,6 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
             [dictionary addEntriesFromDictionary:[self scanMenuKeyBindingRecurrently:[item submenu]]];
             
         } else {
-            if ([[item keyEquivalent] length] == 0) { continue; }
-            
             NSString *selector = NSStringFromSelector([item action]);
             NSString *key = [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:[item keyEquivalent]
                                                                 modifierMask:[item keyEquivalentModifierMask]];
@@ -425,11 +422,12 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
     for (NSMenuItem *item in [menu itemArray]) {
         if ([self shouldIgnoreItem:item]) { continue; }
         
-        [item setKeyEquivalent:@""];
-        [item setKeyEquivalentModifierMask:0];
-        
         if ([item hasSubmenu]) {
             [self clearMenuKeyBindingRecurrently:[item submenu]];
+            
+        } else {
+            [item setKeyEquivalent:@""];
+            [item setKeyEquivalentModifierMask:0];
         }
     }
 }
