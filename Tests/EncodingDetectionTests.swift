@@ -189,7 +189,7 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func textIANACharsetName() {
+    func testIANACharsetName() {
         XCTAssertEqual(NSString.IANACharSetNameOfStringEncoding(NSUTF8StringEncoding), "utf-8")
         XCTAssertEqual(NSString.IANACharSetNameOfStringEncoding(NSISOLatin1StringEncoding), "iso-8859-1")
     }
