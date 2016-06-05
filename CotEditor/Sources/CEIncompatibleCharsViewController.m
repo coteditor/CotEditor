@@ -71,20 +71,20 @@
 }
 
 
-
-#pragma mark Public Methods
-
 // ------------------------------------------------------
 /// set delegate
-- (void)setScanner:(CEIncompatibleCharacterScanner *)scanner
+- (void)setRepresentedObject:(id)representedObject
 // ------------------------------------------------------
 {
+    NSAssert([representedObject isKindOfClass:[CEIncompatibleCharacterScanner class]],
+             @"representedObject of %@ must be an instance of %@", [self className], [CEIncompatibleCharacterScanner className]);
+    
     [[self scanner] setDelegate:nil];
     
-    _scanner = scanner;
+    [super setRepresentedObject:representedObject];
     
-    [scanner setDelegate:self];
-    [scanner scan];
+    [[self scanner] setDelegate:self];
+    [[self scanner] scan];
 }
 
 
@@ -144,6 +144,18 @@
     NSTextView *textView = [editor focusedTextView];
     [textView scrollRangeToVisible:[textView selectedRange]];
     [textView showFindIndicatorForRange:[textView selectedRange]];
+}
+
+
+
+# pragma Private Medhods
+
+// ------------------------------------------------------
+/// cast representedObject to incompatible character scanner
+- (nullable CEIncompatibleCharacterScanner *)scanner
+// ------------------------------------------------------
+{
+    return [self representedObject];
 }
 
 @end

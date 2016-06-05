@@ -30,16 +30,9 @@
 #import "CEAlphaWindow.h"
 #import "CEDocument.h"
 #import "CEToolbarController.h"
-#import "CEIncompatibleCharsViewController.h"
+#import "CESidebarViewController.h"
 #import "CEEditorWrapper.h"
 #import "CEDefaults.h"
-
-
-// sidebar mode
-typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
-    CESidebarTabIndexDocumentInspector = 0,
-    CESidebarTabIndexIncompatibleChararacters,
-};
 
 
 @interface CEWindowController () <NSSplitViewDelegate>
@@ -49,10 +42,8 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 
 // IBOutlets
 @property (nonatomic, nullable) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, nullable) IBOutlet __kindof NSViewController *documentInspectorViewController;
-@property (nonatomic, nullable) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
+@property (nonatomic, nullable) IBOutlet CESidebarViewController *sidebarViewController;
 @property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
-@property (nonatomic, nullable, weak) IBOutlet NSTabView *sidebar;
 
 // IBOutlets (readonly)
 @property (readwrite, nonatomic, nullable, weak) IBOutlet CEEditorWrapper *editor;
@@ -111,17 +102,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
         [[[self window] contentView] setWantsLayer:YES];
     }
     
-    // setup sidebar
-    NSTabViewItem *inspectorTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self documentInspectorViewController]];
-    NSTabViewItem *incompatibleCharactersTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self incompatibleCharsViewController]];
-    [inspectorTabViewItem setImage:[NSImage imageNamed:@"DocumentTemplate"]];
-    [incompatibleCharactersTabViewItem setImage:[NSImage imageNamed:@"ConflictsTemplate"]];
-    [inspectorTabViewItem setToolTip:NSLocalizedString(@"Document Inspector", nil)];  // TODO: Localized strings are not yet migrated. See DocumentWindow.strings for the previous one.
-    [incompatibleCharactersTabViewItem setToolTip:NSLocalizedString(@"Incompatible Characters", nil)];
-    [[self sidebar] addTabViewItem:inspectorTabViewItem];
-    [[self sidebar] addTabViewItem:incompatibleCharactersTabViewItem];
-    [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
-    [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
+    [self setSidebarShown:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowDocumentInspectorKey]];
     
     [self applyDocument:[self document]];
     
@@ -159,7 +140,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 - (void)showIncompatibleCharList
 // ------------------------------------------------------
 {
-    [[self sidebar] selectTabViewItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
+    [[[self sidebarViewController] tabView] selectTabViewItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
     [self setSidebarShown:YES];
 }
 
@@ -226,7 +207,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 - (BOOL)splitView:(nonnull NSSplitView *)splitView canCollapseSubview:(nonnull NSView *)subview
 // ------------------------------------------------------
 {
-    return (subview == [self sidebar]);
+    return (subview == [[self sidebarViewController] view]);
 }
 
 
@@ -246,7 +227,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 {
     if ([notification userInfo][@"NSSplitViewDividerIndex"]) {  // check wheter the change coused by user's divider dragging
         if ([self isSidebarShown]) {
-            CGFloat currentWidth = NSWidth([[self sidebar] bounds]);
+            CGFloat currentWidth = NSWidth([[[self sidebarViewController] view] bounds]);
             [self setSidebarWidth:currentWidth];
             [[NSUserDefaults standardUserDefaults] setDouble:currentWidth forKey:CEDefaultSidebarWidthKey];
         }
@@ -289,8 +270,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
     [[[self window] toolbar] validateVisibleItems];
     
     // set document instance to sidebar views
-    [[self incompatibleCharsViewController] setScanner:[document incompatibleCharacterScanner]];
-    [[self documentInspectorViewController] setRepresentedObject:[document analyzer]];
+    [[self sidebarViewController] setRepresentedObject:document];
 }
 
 
@@ -299,7 +279,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 - (BOOL)isSidebarShown
 // ------------------------------------------------------
 {
-    return ![[self sidebarSplitView] isSubviewCollapsed:[self sidebar]];
+    return ![[self sidebarSplitView] isSubviewCollapsed:[[self sidebarViewController] view]];
 }
 
 
@@ -340,12 +320,13 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 - (void)toggleVisibilityOfSidebarTabItemAtIndex:(CESidebarTabIndex)index
 // ------------------------------------------------------
 {
-    NSUInteger currentIndex = [[self sidebar] indexOfTabViewItem:[[self sidebar] selectedTabViewItem]];
+    NSTabView *tabView = [[self sidebarViewController] tabView];
+    NSUInteger currentIndex = [tabView indexOfTabViewItem:[tabView selectedTabViewItem]];
     
     if ([self isSidebarShown] && currentIndex == index) {
         [self setSidebarShown:NO];
     } else {
-        [[self sidebar] selectTabViewItemAtIndex:index];
+        [tabView selectTabViewItemAtIndex:index];
         [self setSidebarShown:YES];
     }
 }

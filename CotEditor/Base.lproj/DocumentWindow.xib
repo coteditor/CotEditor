@@ -6,11 +6,9 @@
     <objects>
         <customObject id="-2" customClass="CEWindowController">
             <connections>
-                <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="oPb-Zq-odI"/>
                 <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
-                <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="eFj-Ts-dkB"/>
-                <outlet property="sidebar" destination="M19-Ov-3N4" id="pL7-ir-dq5"/>
                 <outlet property="sidebarSplitView" destination="jhv-dr-CH4" id="CIg-jJ-bnp"/>
+                <outlet property="sidebarViewController" destination="4HD-9E-AjY" id="dep-RL-1zj"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
                 <outlet property="window" destination="5" id="31"/>
             </connections>
@@ -112,6 +110,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems/>
+                                <connections>
+                                    <outlet property="delegate" destination="4HD-9E-AjY" id="Elm-eF-Fay"/>
+                                </connections>
                             </tabView>
                         </subviews>
                         <holdingPriorities>
@@ -335,6 +336,13 @@
             <connections>
                 <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="diE-OL-1Uw"/>
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
+            </connections>
+        </viewController>
+        <viewController id="4HD-9E-AjY" customClass="CESidebarViewController">
+            <connections>
+                <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="cGx-oY-d19"/>
+                <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="JUc-xm-WbO"/>
+                <outlet property="view" destination="M19-Ov-3N4" id="klN-NY-JWT"/>
             </connections>
         </viewController>
         <viewController title="Document Inspector" nibName="DocumentInspectorView" id="zfS-u8-roN" userLabel="Document Inspector View Controller" customClass="CEDocumentInspectorViewController"/>
