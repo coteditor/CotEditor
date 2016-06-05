@@ -154,6 +154,13 @@
 
 
 
+/* MARK: Document Window */
+// sidebar pane switcher tooltips
+"Document Inspector" = "書類情報";
+"Incompatible Characters" = "非互換文字";
+
+
+
 /* MARK: CEPrintTextView */
 // header/footer
 "Printed on %@" = "プリント：%@";

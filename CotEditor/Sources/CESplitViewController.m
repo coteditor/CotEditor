@@ -35,10 +35,8 @@
 
 @interface CESplitViewController ()
 
-@property (nonatomic, nonnull) NSMutableArray<CEEditorViewController *> *editorViewControllers;
-
 // readonly
-@property (readwrite, nonatomic, nullable) CEEditorViewController *focusedSubviewController;
+@property (readwrite, nonatomic, nullable, weak) CEEditorViewController *focusedSubviewController;
 
 @end
 
@@ -49,7 +47,7 @@
 
 @implementation CESplitViewController
 
-#pragma mark Superclass Methods
+#pragma mark Split View Controller Methods
 
 // ------------------------------------------------------
 /// initialize instance
@@ -58,8 +56,7 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        _editorViewControllers = [NSMutableArray array];
-        
+        // observe focus change
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textViewDidBecomeFirstResponder:)
                                                      name:CETextViewDidBecomeFirstResponderNotification object:nil];
@@ -70,13 +67,13 @@
 
 // ------------------------------------------------------
 /// setup view
-- (void)awakeFromNib
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super awakeFromNib];
+    [super viewDidLoad];
     
     [[self splitView] setVertical:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSplitViewVerticalKey]];
-    [self updateOpenSplitViewButtons];
+    [self invalidateOpenSplitEditorButtons];
 }
 
 
@@ -85,44 +82,45 @@
 - (void)dealloc
 // ------------------------------------------------------
 {
-    // Need to set nil to NSSplitView's delegate manually since it is not weak but just assign,
-    //     and may crash when closing split fullscreen window on El Capitan (2015-07)
-    [[self splitView] setDelegate:nil];
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
 // ------------------------------------------------------
-/// return its view as NSSplitView (NSSplitViewController's method)
-- (nonnull NSSplitView *)splitView
+/// update close split view button state after remove
+- (void)removeSplitViewItem:(NSSplitViewItem *)splitViewItem
 // ------------------------------------------------------
 {
-    return (NSSplitView *)[super view];
+    [super removeSplitViewItem:splitViewItem];
+    
+    [self invalidateCloseSplitEditorButtons];
 }
 
 
+// ------------------------------------------------------
+/// adjust divider position
+- (CGFloat)splitView:(nonnull NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
+// ------------------------------------------------------
+{
+    // trim unwanted 0.5 px
+    return floor(proposedPosition);
+}
 
-#pragma mark Protocol
-
-//=======================================================
-// NSMenuValidation Protocol
-//=======================================================
 
 // ------------------------------------------------------
-/// メニューの有効化／無効化を制御
+/// apply current state to related menu items
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(toggleSplitOrientation:)) {
         NSString *title = [[self splitView] isVertical] ? @"Stack Editors Horizontally" : @"Stack Editors Vertically";
         [menuItem setTitle:NSLocalizedString(title, nil)];
-        return ([[[self view] subviews] count] > 1);
+        return ([[self splitViewItems] count] > 1);
         
     } else if (([menuItem action] == @selector(focusNextSplitTextView:)) ||
                ([menuItem action] == @selector(focusPrevSplitTextView:)))
     {
-        return ([[[self view] subviews] count] > 1);
+        return ([[self splitViewItems] count] > 1);
     }
     
     return YES;
@@ -133,37 +131,20 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// enumerate all subview's viewControllers as CEEditorViewController
-- (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorViewController * _Nonnull viewController))block;
-// ------------------------------------------------------
-{
-    for (CEEditorViewController *viewController in [self editorViewControllers]) {
-        block(viewController);
-    }
-}
-
-
-// ------------------------------------------------------
 /// add subview for given viewController at desired position
-- (void)addSubviewForViewController:(nonnull CEEditorViewController *)editorViewController relativeTo:(nullable NSView *)otherEditorView
+- (void)addSubviewForViewController:(nonnull CEEditorViewController *)editorViewController relativeTo:(nullable CEEditorViewController *)otherEditorViewController
 // ------------------------------------------------------
 {
-    [[self editorViewControllers] addObject:editorViewController];
-    [[self splitView] addSubview:[editorViewController view] positioned:NSWindowAbove relativeTo:otherEditorView];
+    NSSplitViewItem *splitViewItem = [NSSplitViewItem splitViewItemWithViewController:editorViewController];
     
-    [self updateCloseSplitViewButton];
-}
-
-
-// ------------------------------------------------------
-/// remove subview of given viewController
-- (void)removeSubviewForViewController:(nonnull CEEditorViewController *)editorViewController
-// ------------------------------------------------------
-{
-    [[editorViewController view] removeFromSuperview];
-    [[self editorViewControllers] removeObject:editorViewController];
+    if (otherEditorViewController) {
+        NSUInteger baseIndex = [[self childViewControllers] indexOfObject:otherEditorViewController] ;
+        [self insertSplitViewItem:splitViewItem atIndex:baseIndex + 1];
+    } else {
+        [self addSplitViewItem:splitViewItem];
+    }
     
-    [self updateCloseSplitViewButton];
+    [self invalidateCloseSplitEditorButtons];
 }
 
 
@@ -172,7 +153,7 @@
 - (nullable CEEditorViewController *)viewControllerForSubview:(nonnull __kindof NSView *)view
 // ------------------------------------------------------
 {
-    for (CEEditorViewController *viewController in [self editorViewControllers]) {
+    for (CEEditorViewController *viewController in [self childViewControllers]) {
         if ([viewController view] == view) {
             return viewController;
         }
@@ -183,34 +164,21 @@
 
 
 
-#pragma mark Delegate
-
-// ------------------------------------------------------
-/// 分割位置を調整
-- (CGFloat)splitView:(nonnull NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
-// ------------------------------------------------------
-{
-    // 0.5pxの端数が出ないようにする
-    return floor(proposedPosition);
-}
-
-
-
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// 分割方向を変更する
+/// toggle divider orientation
 - (IBAction)toggleSplitOrientation:(nullable id)sender
 // ------------------------------------------------------
 {
     [[self splitView] setVertical:![[self splitView] isVertical]];
     
-    [self updateOpenSplitViewButtons];
+    [self invalidateOpenSplitEditorButtons];
 }
 
 
 // ------------------------------------------------------
-/// 次の分割されたテキストビューへフォーカス移動
+/// move focus to next text view
 - (IBAction)focusNextSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -219,7 +187,7 @@
 
 
 // ------------------------------------------------------
-/// 前の分割されたテキストビューへフォーカス移動
+/// move focus to previous text view
 - (IBAction)focusPrevSplitTextView:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -228,7 +196,7 @@
 
 
 
-#pragma mark Private Methods
+#pragma mark Notifications
 
 // ------------------------------------------------------
 /// editor's focus did change
@@ -237,26 +205,27 @@
 {
     NSAssert([[notification object] isKindOfClass:[CETextView class]], @"");
     
-    __weak typeof(self) weakSelf = self;
-    [self enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [self childViewControllers]) {
         if ([viewController textView] == [notification object]) {
-            [weakSelf setFocusedSubviewController:viewController];
+            [self setFocusedSubviewController:viewController];
         }
-    }];
+    }
 }
 
 
+
+#pragma mark Private Methods
+
 // ------------------------------------------------------
-/// 分割された前／後のテキストビューにフォーカス移動
+/// move focus to next/previous text view
 - (void)focusSplitTextViewOnNext:(BOOL)onNext
 // ------------------------------------------------------
 {
-    NSUInteger count = [[[self view] subviews] count];
+    NSUInteger count = [[self splitViewItems] count];
     
     if (count < 2) { return; }
     
-    NSArray<__kindof CEEditorViewController *> *subviewControllers = [self editorViewControllers];
-    NSInteger index = [subviewControllers indexOfObject:[self focusedSubviewController]];
+    NSInteger index = [[self childViewControllers] indexOfObject:[self focusedSubviewController]];
     
     if (onNext) {
         index++;
@@ -264,42 +233,41 @@
         index--;
     }
     
-    CEEditorViewController *nextEditorViewController;
     if (index < 0) {
-        nextEditorViewController = [subviewControllers lastObject];
+        index = count - 1;
     } else if (index >= count) {
-        nextEditorViewController = [subviewControllers firstObject];
-    } else {
-        nextEditorViewController = subviewControllers[index];
+        index = 0;
     }
+    
+    CEEditorViewController *nextEditorViewController = [self childViewControllers][index];
     
     [[[self view] window] makeFirstResponder:[nextEditorViewController textView]];
 }
 
 
 // ------------------------------------------------------
-/// テキストビュー分割ボタンの画像を更新
-- (void)updateOpenSplitViewButtons
+/// update "Split Editor" button state
+- (void)invalidateOpenSplitEditorButtons
 // ------------------------------------------------------
 {
     BOOL isVertical = [[self splitView] isVertical];
     
-    [self enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull editorView) {
-        [[editorView navigationBarController] setSplitOrientationVertical:isVertical];
-    }];
+    for (CEEditorViewController *viewController in [self childViewControllers]) {
+        [[viewController navigationBarController] setSplitOrientationVertical:isVertical];
+    }
 }
 
 
 // ------------------------------------------------------
-/// テキストビュー分割削除ボタンの有効／無効を更新
-- (void)updateCloseSplitViewButton
+/// update "Close Split Editor" button state
+- (void)invalidateCloseSplitEditorButtons
 // ------------------------------------------------------
 {
-    BOOL isEnabled = ([[[self view] subviews] count] > 1);
+    BOOL isEnabled = ([[self splitViewItems] count] > 1);
     
-    [self enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull editorView) {
-        [[editorView navigationBarController] setCloseSplitButtonEnabled:isEnabled];
-    }];
+    for (CEEditorViewController *viewController in [self childViewControllers]) {
+        [[viewController navigationBarController] setCloseSplitButtonEnabled:isEnabled];
+    }
 }
 
 @end

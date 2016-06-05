@@ -28,15 +28,6 @@
 @import Cocoa;
 
 
-// sidebar mode
-typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
-    CESidebarTabIndexDocumentInspector = 0,
-    CESidebarTabIndexIncompatibleChararacters,
-};
-
-
-@interface CESidebarViewController : NSViewController
-
-- (nullable NSTabView *)tabView;
+@interface CESidebarViewController : NSTabViewController
 
 @end

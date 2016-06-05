@@ -31,6 +31,17 @@
 
 @implementation CEDocumentInspectorViewController
 
+#pragma mark View Controller Methods
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"DocumentInspectorView";
+}
+
+
 // ------------------------------------------------------
 /// let documentAnalyzer autoupdate
 - (void)viewWillAppear
@@ -54,8 +65,23 @@
 }
 
 
+// ------------------------------------------------------
+/// set analyzer
+- (void)setRepresentedObject:(id)representedObject
+// ------------------------------------------------------
+{
+    if (![representedObject isKindOfClass:[CEDocumentAnalyzer class]]) { return; }
+    
+    [[self analyzer] setNeedsUpdateStatusEditorInfo:NO];
+    
+    [super setRepresentedObject:representedObject];
+    
+    [[self analyzer] setNeedsUpdateStatusEditorInfo:![[self view] isHidden]];
+}
 
-# pragma Private Medhods
+
+
+# pragma mark Private Medhods
 
 // ------------------------------------------------------
 /// cast representedObject to analyzer

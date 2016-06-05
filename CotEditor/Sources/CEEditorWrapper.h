@@ -46,16 +46,12 @@
 
 // readonly
 @property (readonly, nonatomic, nullable) CETextView *focusedTextView;
-@property (readonly, nonatomic) BOOL showsNavigationBar;
 
 
 #pragma mark Public Methods
 
 - (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges;
 - (void)clearAllMarkup;
-
-// navigation bar
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 
 // style
 - (nullable NSFont *)font;
@@ -117,6 +113,8 @@ typedef NS_ENUM(NSUInteger, CEGoToType) {
 };
 
 @interface CEEditorWrapper (Locating)
+
+- (IBAction)gotoLocation:(nullable id)sender;
 
 - (NSRange)rangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
 - (void)setSelectedCharacterRangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied

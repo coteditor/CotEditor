@@ -38,6 +38,7 @@
 
 @interface CEToolbarController ()
 
+@property (nonatomic, nullable, weak) IBOutlet NSToolbar *toolbar;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *lineEndingPopupButton;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingPopupButton;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *syntaxPopupButton;
@@ -136,6 +137,7 @@
     [self invalidateLineEndingSelection];
     [self invalidateEncodingSelection];
     [self invalidateSyntaxStyleSelection];
+    [[self toolbar] validateVisibleItems];
     
     // observe document status change
     for (NSString *keyPath in [self observedDocumentKeys]) {

@@ -213,7 +213,8 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (void)makeWindowControllers
 // ------------------------------------------------------
 {
-    [self setWindowController:[[CEWindowController alloc] init]];
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"DocumentWindow" bundle:nil];
+    [self setWindowController:[storyboard instantiateInitialController]];
     [self addWindowController:[self windowController]];
 }
 

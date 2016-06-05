@@ -29,13 +29,11 @@
 
 
 @class CEEditorWrapper;
-@class CEStatusBarController;
 
 
-@interface CEMainViewController : NSViewController
+@interface CEMainViewController : NSSplitViewController
 
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
-@property (readonly, nonatomic, nullable) CEStatusBarController *statusBarController;
 
 
 - (IBAction)toggleStatusBar:(nullable id)sender;

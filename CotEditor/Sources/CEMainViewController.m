@@ -34,7 +34,8 @@
 
 @interface CEMainViewController ()
 
-@property (nonatomic, nullable) IBOutlet CEStatusBarController *statusBarController;
+@property (nonatomic, nullable) IBOutlet NSSplitViewItem *statusBarItem;
+
 @property (nonatomic, nullable) IBOutlet CEEditorWrapper *editor;
 
 @end
@@ -45,6 +46,8 @@
 
 @implementation CEMainViewController
 
+#pragma mark Split View Controller Methods
+
 // ------------------------------------------------------
 /// setup view
 - (void)viewDidLoad
@@ -53,47 +56,46 @@
     [super viewDidLoad];
     
     // setup status bar
-    [[self statusBarController] setShown:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowStatusBarKey] animate:NO];
+    [self setShowsStatusBar:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowStatusBarKey]];
 }
 
 
 // ------------------------------------------------------
+/// deliver document to child view controllers
 - (void)setRepresentedObject:(id)representedObject
 // ------------------------------------------------------
 {
-    [[self statusBarController] setDocumentAnalyzer:[representedObject analyzer]];
-    [[self editor] setDocument:representedObject];
-    
     [super setRepresentedObject:representedObject];
+    
+    if (![representedObject isKindOfClass:[CEDocument class]]) { return; }
+    
+    CEDocument *document = representedObject;
+    
+    [(CEStatusBarController *)[[self statusBarItem] viewController] setDocumentAnalyzer:[document analyzer]];
+    [[self editor] setDocument:document];
 }
 
 
 // ------------------------------------------------------
-/// save view state
-- (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
+/// keys to be restored from the last session
++ (nonnull NSArray<NSString *> *)restorableStateKeyPaths
 // ------------------------------------------------------
 {
-    [coder encodeBool:[self showsStatusBar] forKey:CEDefaultShowStatusBarKey];
+    return @[NSStringFromSelector(@selector(showsStatusBar)),
+             ];
 }
 
 
 // ------------------------------------------------------
-/// restore view state from the last session
-- (void)restoreStateWithCoder:(nonnull NSCoder *)coder
+/// avoid showing draggable cursor
+- (NSRect)splitView:(nonnull NSSplitView *)splitView effectiveRect:(NSRect)proposedEffectiveRect forDrawnRect:(NSRect)drawnRect ofDividerAtIndex:(NSInteger)dividerIndex
 // ------------------------------------------------------
 {
-    if ([coder containsValueForKey:CEDefaultShowStatusBarKey]) {
-        [self setShowsStatusBar:[coder decodeBoolForKey:CEDefaultShowStatusBarKey] animate:NO];
-    }
+    proposedEffectiveRect.size = NSZeroSize;
+    
+    return [super splitView:splitView effectiveRect:proposedEffectiveRect forDrawnRect:drawnRect ofDividerAtIndex:dividerIndex];
 }
 
-
-
-#pragma mark Protocol
-
-//=======================================================
-// NSMenuValidation Protocol
-//=======================================================
 
 // ------------------------------------------------------
 /// validate menu items
@@ -101,7 +103,7 @@
 // ------------------------------------------------------
 {
     if ([menuItem action] == @selector(toggleStatusBar:)) {
-        NSString *title = [[self statusBarController] isShown] ? @"Hide Status Bar" : @"Show Status Bar";
+        NSString *title = [self showsStatusBar] ? @"Hide Status Bar" : @"Show Status Bar";
         [menuItem setTitle:NSLocalizedString(title, nil)];
     }
     return YES;
@@ -112,31 +114,32 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// toggle visibility of status bar
+/// toggle visibility of status bar with fancy animation
 - (IBAction)toggleStatusBar:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self statusBarController] setShown:![[self statusBarController] isShown] animate:YES];
+    [[[self statusBarItem] animator] setCollapsed:[self showsStatusBar]];
 }
 
 
 
+#pragma mark Private Methods
+
 // ------------------------------------------------------
-/// ステータスバーを表示する／しない
+/// Whether status bar is visible
 - (BOOL)showsStatusBar
 // ------------------------------------------------------
 {
-    return [[self statusBarController] isShown];
+    return ![[self statusBarItem] isCollapsed];
 }
 
 
 // ------------------------------------------------------
-/// ステータスバーを表示する／しないをセット
-- (void)setShowsStatusBar:(BOOL)showsStatusBar animate:(BOOL)performAnimation
+/// set if status bar is shown
+- (void)setShowsStatusBar:(BOOL)showsStatusBar
 // ------------------------------------------------------
 {
-    [[self statusBarController] setShown:showsStatusBar animate:performAnimation];
+    [[self statusBarItem] setCollapsed:!showsStatusBar];
 }
-
 
 @end

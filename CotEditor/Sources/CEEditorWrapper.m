@@ -52,8 +52,9 @@
 @interface CEEditorWrapper () <CETextFinderClientProvider, CESyntaxStyleDelegate, NSTextStorageDelegate>
 
 @property (nonatomic, nullable) NSWindowController *currentSheetController;
+@property (nonatomic) BOOL showsNavigationBar;
 
-@property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
+@property (nonatomic, nullable) IBOutlet NSSplitViewItem *splitViewItem;
 
 @end
 
@@ -101,7 +102,7 @@
 
 
 // ------------------------------------------------------
-/// setup UI
+/// join to responder chain
 - (void)awakeFromNib
 // ------------------------------------------------------
 {
@@ -109,15 +110,22 @@
 }
 
 
+// ------------------------------------------------------
+/// keys to be restored from the last session
++ (nonnull NSArray<NSString *> *)restorableStateKeyPaths  // TODO: currently does not work
+// ------------------------------------------------------
+{
+    return @[NSStringFromSelector(@selector(showsNavigationBar)),
+             NSStringFromSelector(@selector(showsLineNum)),
+             NSStringFromSelector(@selector(showsPageGuide)),
+             NSStringFromSelector(@selector(showsInvisibles)),
+             NSStringFromSelector(@selector(verticalLayoutOrientation)),
+             ];
+}
 
-#pragma mark Protocol
-
-//=======================================================
-// NSMenuValidation Protocol
-//=======================================================
 
 // ------------------------------------------------------
-/// メニュー項目の有効・無効を制御
+/// apply current state to related menu items
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
@@ -182,12 +190,8 @@
 }
 
 
-//=======================================================
-// NSToolbarItemValidation Protocol
-//=======================================================
-
 // ------------------------------------------------------
-/// ツールバー項目の有効・無効を制御
+/// apply current state to related toolbar items
 - (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
 // ------------------------------------------------------
 {
@@ -275,16 +279,15 @@
 - (void)syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle didParseOutline:(nullable NSArray<CEOutlineItem *> *)outlineItems
 // ------------------------------------------------------
 {
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController navigationBarController] setOutlineItems:outlineItems];
         // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
-    }];
-    
+    }
 }
 
 
 
-#pragma mark Notification
+#pragma mark Notifications
 
 //=======================================================
 // NSTextView
@@ -311,13 +314,12 @@
 {
     CESyntaxStyle *syntaxStyle = [self syntaxStyle];
     
-    [syntaxStyle setDelegate:self];
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [viewController applySyntax:syntaxStyle];
         if ([syntaxStyle canParse]) {
             [[viewController navigationBarController] showOutlineIndicator];
         }
-    }];
+    }
     
     [syntaxStyle invalidateOutline];
     [self invalidateSyntaxHighlight];
@@ -350,6 +352,8 @@
 - (void)setDocument:(CEDocument *)document
 // ------------------------------------------------------
 {
+    if (!document) { return; }
+    
     _document = document;
     
     // detect indent style
@@ -436,14 +440,14 @@
 
 // ------------------------------------------------------
 /// ナビゲーションバーを表示する／しないをセット
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation
+- (void)setShowsNavigationBar:(BOOL)showsNavigationBar
 // ------------------------------------------------------
 {
     _showsNavigationBar = showsNavigationBar;
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
-        [viewController setShowsNavigationBar:showsNavigationBar animate:performAnimation];
-    }];
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
+        [viewController setShowsNavigationBar:showsNavigationBar animate:NO];
+    }
 }
 
 
@@ -454,9 +458,9 @@
 {
     _showsLineNum = showsLineNum;
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [viewController setShowsLineNum:showsLineNum];
-    }];
+    }
 }
 
 
@@ -467,9 +471,9 @@
 {
     _wrapsLines = wrapsLines;
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setWrapsLines:wrapsLines];
-    }];
+    }
 }
 
 
@@ -482,9 +486,9 @@
     
     NSTextLayoutOrientation orientation = isVerticalLayoutOrientation ? NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal;
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setLayoutOrientation:orientation];
-    }];
+    }
 }
 
 
@@ -513,10 +517,10 @@
 {
     _showsPageGuide = showsPageGuide;
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setShowsPageGuide:showsPageGuide];
         [[viewController textView] setNeedsDisplayInRect:[[viewController textView] visibleRect] avoidAdditionalLayout:YES];
-    }];
+    }
 }
 
 
@@ -527,9 +531,9 @@
 {
     _showsInvisibles = showsInvisibles;
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setShowsInvisibles:showsInvisibles];
-    }];
+    }
 }
 
 
@@ -550,7 +554,11 @@
 - (IBAction)toggleNavigationBar:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setShowsNavigationBar:![self showsNavigationBar] animate:YES];
+    BOOL showsNavigationBar = ![self showsNavigationBar];
+    
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
+        [viewController setShowsNavigationBar:showsNavigationBar animate:YES];
+    }
 }
 
 
@@ -579,9 +587,9 @@
 {
     BOOL usesAntialias = ![[self focusedTextView] usesAntialias];
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setUsesAntialias:usesAntialias];
-    }];
+    }
 }
 
 
@@ -622,9 +630,9 @@
 {
     NSUInteger tabWidth = [sender tag];
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setTabWidth:tabWidth];
-    }];
+    }
 }
 
 
@@ -711,19 +719,20 @@
     
     // move focus to the next text view if the view to close has a focus
     if ([[self window] firstResponder] == [currentEditorViewController textView]) {
-        NSArray<__kindof NSView *> *subViews = [[[self splitViewController] view] subviews];
-        NSUInteger count = [subViews count];
-        NSUInteger deleteIndex = [subViews indexOfObject:[currentEditorViewController view]];
+        NSArray<CEEditorViewController *> *childViewControllers = [[self splitViewController] childViewControllers];
+        NSUInteger count = [childViewControllers count];
+        NSUInteger deleteIndex = [childViewControllers indexOfObject:currentEditorViewController];
         NSUInteger index = deleteIndex + 1;
         if (index >= count) {
             index = count - 2;
         }
-        NSTextView *nextTextView = [[[self splitViewController] viewControllerForSubview:subViews[index]] textView];
-        [[self window] makeFirstResponder:nextTextView];
+        
+        [[self window] makeFirstResponder:[childViewControllers[index] textView]];
     }
     
     // close
-    [[self splitViewController] removeSubviewForViewController:currentEditorViewController];
+    NSSplitViewItem *splitViewItem = [[self splitViewController] splitViewItemForViewController:currentEditorViewController];
+    [[self splitViewController] removeSplitViewItem:splitViewItem];
 }
 
 
@@ -771,7 +780,7 @@
     CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[self document] textStorage]];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
-    [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:[baseViewController view]];
+    [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:baseViewController];
     
     [editorViewController setShowsLineNum:[self showsLineNum]];
     [editorViewController setShowsNavigationBar:[self showsNavigationBar] animate:NO];
@@ -795,6 +804,14 @@
                                                object:[editorViewController textView]];
     
     return editorViewController;
+}
+
+
+// ------------------------------------------------------
+- (CESplitViewController *)splitViewController
+// ------------------------------------------------------
+{
+    return (CESplitViewController *)[[self splitViewItem] viewController];
 }
 
 
@@ -854,9 +871,9 @@
 - (void)setAutoTabExpandEnabled:(BOOL)enabled
 // ------------------------------------------------------
 {
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setAutoTabExpandEnabled:enabled];
-    }];
+    }
 }
 
 
@@ -869,12 +886,12 @@
     
     if (!theme) { return; }
     
-    [[self splitViewController] enumerateEditorViewsUsingBlock:^(CEEditorViewController * _Nonnull viewController) {
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setTheme:theme];
         
         // re-select to update current line highlight
         [[viewController textView] setSelectedRanges:[[viewController textView] selectedRanges]];
-    }];
+    }
     
     [self invalidateSyntaxHighlight];
 }

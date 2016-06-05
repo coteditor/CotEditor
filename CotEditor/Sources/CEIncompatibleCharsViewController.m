@@ -49,6 +49,17 @@
 
 @implementation CEIncompatibleCharsViewController
 
+#pragma mark View Controller Methods
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"IncompatibleCharsView";
+}
+
+
 // ------------------------------------------------------
 /// update content before display
 - (void)viewWillAppear
@@ -76,6 +87,8 @@
 - (void)setRepresentedObject:(id)representedObject
 // ------------------------------------------------------
 {
+    if (!representedObject) { return; }
+    
     NSAssert([representedObject isKindOfClass:[CEIncompatibleCharacterScanner class]],
              @"representedObject of %@ must be an instance of %@", [self className], [CEIncompatibleCharacterScanner className]);
     

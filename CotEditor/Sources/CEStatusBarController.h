@@ -35,11 +35,4 @@
 
 @property (nonatomic, nullable, weak) CEDocumentAnalyzer *documentAnalyzer;
 
-// readonly
-@property (readonly, nonatomic, getter=isShown) BOOL shown;
-
-
-// Public Method
-- (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
-
 @end

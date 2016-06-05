@@ -125,7 +125,11 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
     self.owner = [attrs fileOwnerAccountName];
     self.permission = attrs[NSFilePosixPermissions];
     
-    self.readOnly = [attrs fileIsImmutable];
+    if ([document isInViewingMode]) {  // on Versions browsing mode
+        self.readOnly = NO;
+    } else {
+        self.readOnly = [attrs fileIsImmutable];
+    }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateFileInfoNotification
                                                         object:self];

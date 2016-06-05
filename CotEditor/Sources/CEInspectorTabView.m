@@ -174,9 +174,8 @@ static const CGFloat kControlHeight = 28;
 - (void)invalidateControlPosition
 // ------------------------------------------------------
 {
-    [[self segmentedControl] sizeToFit];
     CGRect frame = [[self segmentedControl] frame];
-    frame.origin.x = ([self frame].size.width - frame.size.width) / 2;
+    frame.origin.x = floor(([self frame].size.width - frame.size.width) / 2);
     [[self segmentedControl] setFrame:frame];
 }
 
@@ -192,6 +191,7 @@ static const CGFloat kControlHeight = 28;
         [control setImage:[item image] forSegment:index];
         [(NSSegmentedCell *)[control cell] setToolTip:[item toolTip] forSegment:index];
     }];
+    [control sizeToFit];
     [self invalidateControlPosition];
     [self invalidateControlSelection];
 }

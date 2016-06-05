@@ -31,14 +31,19 @@
 @class CEEditorWrapper;
 
 
-@interface CEWindowContentViewController : NSViewController
+// tab index
+typedef NS_ENUM(NSInteger, CESidebarTabIndex) {
+    CESidebarTabIndexDocumentInspector = 0,
+    CESidebarTabIndexIncompatibleChararacters,
+};
 
-@property (readonly, nonatomic, nullable) __kindof NSViewController *mainViewController;
-@property (readonly, nonatomic, nullable) __kindof NSViewController *sidebarViewController;
+
+@interface CEWindowContentViewController : NSSplitViewController
+
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 
-@property (nonatomic, getter=isSidebarShown) BOOL sidebarShown;
 
+- (void)showSidebarPaneWithIndex:(CESidebarTabIndex)index;
 
 // Action Messages
 - (IBAction)getInfo:(nullable id)sender;

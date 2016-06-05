@@ -93,6 +93,8 @@
 {
     [super loadView];
     
+    [self addChildViewController:[self navigationBarController]];
+    
     // set textStorage to textView
     [[[self textView] layoutManager] replaceTextStorage:[self textStorage]];
 }

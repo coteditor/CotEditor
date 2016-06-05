@@ -23,6 +23,7 @@ develop
 - Remove feature that changes the line height of current document from the “Format” menu.
     - From this, `line spacing` property on AppleScript is also deprecated.
 - Remove  “Set as Default” button in the editor pacity panel.
+- Open sidebar inward on Yosemite.
 - Remove byte count display in document inspector.
 - Display dialogs while changing file enocoding as a document-modal sheet.
 - Display also an accurete file size in document inspector.
@@ -45,7 +46,7 @@ develop
 
 ### Improvements
 
-- Update “Markdown” syntax style:
+- Update “Markdown” syntax style: sp
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with tiriple `*` and `_`.
 - Adjust height of the last empty line.

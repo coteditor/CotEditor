@@ -31,18 +31,12 @@
 #import "CEDocument.h"
 #import "CEToolbarController.h"
 #import "CEWindowContentViewController.h"
-#import "CESidebarViewController.h"
-#import "CEMainViewController.h"
-#import "CEStatusBarController.h"
-#import "CEEditorWrapper.h"
 #import "CEDefaults.h"
 
 
 @interface CEWindowController ()
 
-// IBOutlets
 @property (nonatomic, nullable) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, nullable) IBOutlet CEWindowContentViewController *contentSplitViewController;
 
 @end
 
@@ -53,29 +47,19 @@
 
 @implementation CEWindowController
 
-#pragma mark Superclass Methods
+#pragma mark Window Controller Methods
 
 // ------------------------------------------------------
 /// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
 }
 
 
 // ------------------------------------------------------
-/// nib name
-- (nullable NSString *)windowNibName
-// ------------------------------------------------------
-{
-    return @"DocumentWindow";
-}
-
-
-// ------------------------------------------------------
-/// prepare window and other UI
+/// prepare window
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -83,21 +67,12 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    // set window size
     [[self window] setContentSize:NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultWindowWidthKey],
                                              (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey])];
     
     // setup background
     [(CEAlphaWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
-    
-    // ???: needs to set contentView's layer to mask rounded window corners
-    if (floor(NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max)) {
-        [[[self window] contentView] setWantsLayer:YES];
-    }
-    
-    [self applyDocument:[self document]];
-    
-    // apply document state to UI
-    [[self document] applyContentToWindow];
     
     // observe opacity setting change
     [[NSUserDefaults standardUserDefaults] addObserver:self
@@ -106,10 +81,6 @@
                                                context:nil];
 }
 
-
-//=======================================================
-// NSKeyValueObserving Protocol
-//=======================================================
 
 // ------------------------------------------------------
 /// apply user defaults change
@@ -122,6 +93,21 @@
 }
 
 
+// ------------------------------------------------------
+/// apply passed-in document instance to window
+- (void)setDocument:(nullable id)document
+// ------------------------------------------------------
+{
+    [super setDocument:document];
+    
+    [[self toolbarController] setDocument:document];
+    [[self contentViewController] setRepresentedObject:document];
+    
+    // apply document state to UI
+    [[self document] applyContentToWindow];
+}
+
+
 
 #pragma mark Public Methods
 
@@ -130,73 +116,16 @@
 - (void)showIncompatibleCharList
 // ------------------------------------------------------
 {
-    [[[[self contentSplitViewController] sidebarViewController] tabView] selectTabViewItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
-    [[self contentSplitViewController] setSidebarShown:YES];
+    [(CEWindowContentViewController *)[self contentViewController] showSidebarPaneWithIndex:CESidebarTabIndexIncompatibleChararacters];
 }
 
 
 // ------------------------------------------------------
+/// pass editor instance to document
 - (nullable CEEditorWrapper *)editor
 // ------------------------------------------------------
 {
-    return [[self contentSplitViewController] editor];
-}
-
-
-#pragma mark Delegate
-
-//=======================================================
-// NSWindowDelegate  < window
-//=======================================================
-
-// ------------------------------------------------------
-/// save window state
-- (void)window:(nonnull NSWindow *)window willEncodeRestorableState:(nonnull NSCoder *)state
-// ------------------------------------------------------
-{
-    [state encodeBool:[[self editor] showsNavigationBar] forKey:CEDefaultShowNavigationBarKey];
-    [state encodeBool:[[self editor] showsLineNum] forKey:CEDefaultShowLineNumbersKey];
-    [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
-    [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
-    [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
-}
-
-
-// ------------------------------------------------------
-/// restore window state from the last session
-- (void)window:(nonnull NSWindow *)window didDecodeRestorableState:(nonnull NSCoder *)state
-// ------------------------------------------------------
-{
-    if ([state containsValueForKey:CEDefaultShowNavigationBarKey]) {
-        [[self editor] setShowsNavigationBar:[state decodeBoolForKey:CEDefaultShowNavigationBarKey] animate:NO];
-    }
-    if ([state containsValueForKey:CEDefaultShowLineNumbersKey]) {
-        [[self editor] setShowsLineNum:[state decodeBoolForKey:CEDefaultShowLineNumbersKey]];
-    }
-    if ([state containsValueForKey:CEDefaultShowPageGuideKey]) {
-        [[self editor] setShowsPageGuide:[state decodeBoolForKey:CEDefaultShowPageGuideKey]];
-    }
-    if ([state containsValueForKey:CEDefaultShowInvisiblesKey]) {
-        [[self editor] setShowsInvisibles:[state decodeBoolForKey:CEDefaultShowInvisiblesKey]];
-    }
-    if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
-        [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
-    }
-}
-
-
-
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// apply passed-in document instance to window
-- (void)applyDocument:(nonnull CEDocument *)document
-// ------------------------------------------------------
-{
-    [[self toolbarController] setDocument:document];
-    [[[self window] toolbar] validateVisibleItems];
-    
-    [[self contentSplitViewController] setRepresentedObject:document];
+    return [(CEWindowContentViewController *)[self contentViewController] editor];
 }
 
 @end

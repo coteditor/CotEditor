@@ -26,13 +26,15 @@
  */
 
 #import "CESidebarViewController.h"
+#import "CEDocumentInspectorViewController.h"
+#import "CEIncompatibleCharsViewController.h"
 #import "CEDocument.h"
 
 
-@interface CESidebarViewController () <NSTabViewDelegate>
+@interface CESidebarViewController ()
 
-@property (nonatomic, nullable) IBOutlet NSViewController *documentInspectorViewController;
-@property (nonatomic, nullable) IBOutlet NSViewController *incompatibleCharsViewController;
+@property (nonatomic, nullable) NSViewController *documentInspectorViewController;
+@property (nonatomic, nullable) NSViewController *incompatibleCharsViewController;
 
 @end
 
@@ -52,44 +54,34 @@
 {
     [super viewDidLoad];
     
-    [[[self tabView] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
+    self.documentInspectorViewController = [[CEDocumentInspectorViewController alloc] init];
+    self.incompatibleCharsViewController = [[CEIncompatibleCharsViewController alloc] init];
     
     NSTabViewItem *inspectorTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self documentInspectorViewController]];
     NSTabViewItem *incompatibleCharactersTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self incompatibleCharsViewController]];
     [inspectorTabViewItem setImage:[NSImage imageNamed:@"DocumentTemplate"]];
     [incompatibleCharactersTabViewItem setImage:[NSImage imageNamed:@"ConflictsTemplate"]];
-    [inspectorTabViewItem setToolTip:NSLocalizedString(@"Document Inspector", nil)];  // TODO: Localized strings are not yet migrated. See DocumentWindow.strings for the previous one.
+    [inspectorTabViewItem setToolTip:NSLocalizedString(@"Document Inspector", nil)];
     [incompatibleCharactersTabViewItem setToolTip:NSLocalizedString(@"Incompatible Characters", nil)];
     
-    [[self tabView] addTabViewItem:inspectorTabViewItem];
-    [[self tabView] addTabViewItem:incompatibleCharactersTabViewItem];
-    
-    [self addChildViewController:[self documentInspectorViewController]];
-    [self addChildViewController:[self incompatibleCharsViewController]];
-    
+    [self addTabViewItem:inspectorTabViewItem];
+    [self addTabViewItem:incompatibleCharactersTabViewItem];
 }
 
+
 // ------------------------------------------------------
-/// apply passed-in document instance to window
+/// deliver passed-in document instance to child view controllers
 - (void)setRepresentedObject:(nullable id)representedObject
 // ------------------------------------------------------
 {
+    [super setRepresentedObject:representedObject];
+    
     CEDocument *document = representedObject;
+    
+    if (![document isKindOfClass:[CEDocument class]]) { return; }
+    
     [[self incompatibleCharsViewController] setRepresentedObject:[document incompatibleCharacterScanner]];
     [[self documentInspectorViewController] setRepresentedObject:[document analyzer]];
-}
-
-
-
-
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// cast view to NSTabView
-- (nullable NSTabView *)tabView
-// ------------------------------------------------------
-{
-    return (NSTabView *)[self view];
 }
 
 @end
