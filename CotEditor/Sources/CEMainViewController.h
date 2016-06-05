@@ -1,6 +1,6 @@
 /*
  
- CEWindowContentViewController.h
+ CEMainViewController.h
  
  CotEditor
  http://coteditor.com
@@ -29,19 +29,15 @@
 
 
 @class CEEditorWrapper;
+@class CEStatusBarController;
 
 
-@interface CEWindowContentViewController : NSViewController
+@interface CEMainViewController : NSViewController
 
-@property (readonly, nonatomic, nullable) __kindof NSViewController *mainViewController;
-@property (readonly, nonatomic, nullable) __kindof NSViewController *sidebarViewController;
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
+@property (readonly, nonatomic, nullable) CEStatusBarController *statusBarController;
 
-@property (nonatomic, getter=isSidebarShown) BOOL sidebarShown;
 
-
-// Action Messages
-- (IBAction)getInfo:(nullable id)sender;
-- (IBAction)toggleIncompatibleCharList:(nullable id)sender;
+- (IBAction)toggleStatusBar:(nullable id)sender;
 
 @end

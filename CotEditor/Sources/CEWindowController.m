@@ -32,6 +32,8 @@
 #import "CEToolbarController.h"
 #import "CEWindowContentViewController.h"
 #import "CESidebarViewController.h"
+#import "CEMainViewController.h"
+#import "CEStatusBarController.h"
 #import "CEEditorWrapper.h"
 #import "CEDefaults.h"
 
@@ -133,7 +135,9 @@
 }
 
 
+// ------------------------------------------------------
 - (nullable CEEditorWrapper *)editor
+// ------------------------------------------------------
 {
     return [[self contentSplitViewController] editor];
 }
@@ -150,7 +154,6 @@
 - (void)window:(nonnull NSWindow *)window willEncodeRestorableState:(nonnull NSCoder *)state
 // ------------------------------------------------------
 {
-    [state encodeBool:[[self editor] showsStatusBar] forKey:CEDefaultShowStatusBarKey];
     [state encodeBool:[[self editor] showsNavigationBar] forKey:CEDefaultShowNavigationBarKey];
     [state encodeBool:[[self editor] showsLineNum] forKey:CEDefaultShowLineNumbersKey];
     [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
@@ -164,9 +167,6 @@
 - (void)window:(nonnull NSWindow *)window didDecodeRestorableState:(nonnull NSCoder *)state
 // ------------------------------------------------------
 {
-    if ([state containsValueForKey:CEDefaultShowStatusBarKey]) {
-        [[self editor] setShowsStatusBar:[state decodeBoolForKey:CEDefaultShowStatusBarKey] animate:NO];
-    }
     if ([state containsValueForKey:CEDefaultShowNavigationBarKey]) {
         [[self editor] setShowsNavigationBar:[state decodeBoolForKey:CEDefaultShowNavigationBarKey] animate:NO];
     }
@@ -193,13 +193,10 @@
 - (void)applyDocument:(nonnull CEDocument *)document
 // ------------------------------------------------------
 {
-    [[self editor] setDocument:document];
-    
     [[self toolbarController] setDocument:document];
     [[[self window] toolbar] validateVisibleItems];
     
-    // set document instance to sidebar views
-    [[[self contentSplitViewController] sidebarViewController] setRepresentedObject:document];
+    [[self contentSplitViewController] setRepresentedObject:document];
 }
 
 @end

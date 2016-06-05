@@ -30,7 +30,6 @@
 #import "CEDocument.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEIncompatibleCharacterScanner.h"
-#import "CEStatusBarController.h"
 #import "CEEditorViewController.h"
 #import "CESplitViewController.h"
 #import "CENavigationBarController.h"
@@ -54,7 +53,6 @@
 
 @property (nonatomic, nullable) NSWindowController *currentSheetController;
 
-@property (nonatomic, nullable) IBOutlet CEStatusBarController *statusBarController;
 @property (nonatomic, nullable) IBOutlet CESplitViewController *splitViewController;
 
 @end
@@ -108,9 +106,6 @@
 // ------------------------------------------------------
 {
     [[self window] setNextResponder:self];
-    
-    // setup status bar
-    [[self statusBarController] setShown:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowStatusBarKey] animate:NO];
 }
 
 
@@ -133,10 +128,7 @@
     NSInteger state = NSOffState;
     NSString *title;
     
-    if ([menuItem action] == @selector(toggleStatusBar:)) {
-        title = [[self statusBarController] isShown] ? @"Hide Status Bar" : @"Show Status Bar";
-        
-    } else if ([menuItem action] == @selector(toggleLineNumber:)) {
+    if ([menuItem action] == @selector(toggleLineNumber:)) {
         title = [self showsLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
         
     } else if ([menuItem action] == @selector(toggleNavigationBar:)) {
@@ -374,8 +366,6 @@
         }
     }
     
-    [[self statusBarController] setDocumentAnalyzer:[document analyzer]];
-    
     [[document textStorage] setDelegate:self];
     [[document syntaxStyle] setDelegate:self];
     
@@ -441,24 +431,6 @@
         [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
                         forCharacterRange:NSMakeRange(0, [[manager attributedString] length])];
     }
-}
-
-
-// ------------------------------------------------------
-/// ステータスバーを表示する／しない
-- (BOOL)showsStatusBar
-// ------------------------------------------------------
-{
-    return [[self statusBarController] isShown];
-}
-
-
-// ------------------------------------------------------
-/// ステータスバーを表示する／しないをセット
-- (void)setShowsStatusBar:(BOOL)showsStatusBar animate:(BOOL)performAnimation
-// ------------------------------------------------------
-{
-    [[self statusBarController] setShown:showsStatusBar animate:performAnimation];
 }
 
 
@@ -563,15 +535,6 @@
 
 
 #pragma mark Action Messages
-
-// ------------------------------------------------------
-/// toggle visibility of status bar
-- (IBAction)toggleStatusBar:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[self statusBarController] setShown:![[self statusBarController] isShown] animate:YES];
-}
-
 
 // ------------------------------------------------------
 /// 行番号表示をトグルに切り替える

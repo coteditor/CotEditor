@@ -27,7 +27,7 @@
 
 #import "CEWindowContentViewController.h"
 #import "CESidebarViewController.h"
-#import "CEEditorWrapper.h"
+#import "CEMainViewController.h"
 #import "CEDefaults.h"
 
 
@@ -35,8 +35,8 @@
 
 @property (nonatomic) CGFloat sidebarWidth;
 
+@property (readwrite, nonatomic) IBOutlet CEMainViewController *mainViewController;
 @property (readwrite, nonatomic) IBOutlet CESidebarViewController *sidebarViewController;
-@property (readwrite, nonatomic) IBOutlet CEEditorWrapper *editor;
 
 @end
 
@@ -56,6 +56,7 @@
 {
     [super viewDidLoad];
     
+    [self addChildViewController:[self mainViewController]];
     [self addChildViewController:[self sidebarViewController]];
     
     [self setSidebarShown:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowDocumentInspectorKey]];
@@ -70,6 +71,18 @@
     // Need to set nil to NSSplitView's delegate manually since it is not weak but just assign,
     //     and may crash when closing split fullscreen window on El Capitan (2015-07)
     [[self splitView] setDelegate:nil];
+}
+
+
+// ------------------------------------------------------
+/// pass represented object to child view controllers
+- (void)setRepresentedObject:(id)representedObject
+// ------------------------------------------------------
+{
+    [[self mainViewController] setRepresentedObject:representedObject];
+    [[self sidebarViewController] setRepresentedObject:representedObject];
+    
+    [super setRepresentedObject:representedObject];
 }
 
 
@@ -134,6 +147,11 @@
 
 
 #pragma mark Public Methods
+
+- (nullable CEEditorWrapper *)editor
+{
+    return [[self mainViewController] editor];
+}
 
 // ------------------------------------------------------
 /// return whether sidebar is opened

@@ -27,7 +27,7 @@
                     <splitView identifier="documentSidebar" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhv-dr-CH4" userLabel="Sidebar Split View">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                         <subviews>
-                            <customView id="iXJ-7c-EQT" userLabel="Document View">
+                            <customView id="iXJ-7c-EQT" userLabel="Main View">
                                 <rect key="frame" x="0.0" y="0.0" width="436" height="550"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -327,13 +327,33 @@
         <customObject id="Asc-bK-hKW" customClass="CEEditorWrapper">
             <connections>
                 <outlet property="splitViewController" destination="cfo-zY-w3h" id="ZU8-hM-dOd"/>
-                <outlet property="statusBarController" destination="ZaC-Gi-qyq" id="0Se-J5-XY1"/>
             </connections>
         </customObject>
+        <viewController id="kui-Vi-K7E" customClass="CEWindowContentViewController">
+            <connections>
+                <outlet property="mainViewController" destination="MiX-DG-KqO" id="vfQ-We-CYN"/>
+                <outlet property="sidebarViewController" destination="4HD-9E-AjY" id="SXr-Gu-Rxl"/>
+                <outlet property="view" destination="jhv-dr-CH4" id="hld-L6-NUG"/>
+            </connections>
+        </viewController>
+        <viewController title="Document Inspector" nibName="DocumentInspectorView" id="zfS-u8-roN" userLabel="Document Inspector View Controller" customClass="CEDocumentInspectorViewController"/>
+        <viewController title="Incompatible Chars" nibName="IncompatibleCharsView" id="PNV-ic-0G4" userLabel="Incompatible Chars View Controller" customClass="CEIncompatibleCharsViewController"/>
         <viewController id="ZaC-Gi-qyq" customClass="CEStatusBarController">
             <connections>
                 <outlet property="heightConstraint" destination="rVp-Pk-2Bh" id="diE-OL-1Uw"/>
                 <outlet property="view" destination="Rjm-Sf-4Mf" id="GSM-Z2-IEv"/>
+            </connections>
+        </viewController>
+        <viewController id="MiX-DG-KqO" customClass="CEMainViewController">
+            <connections>
+                <outlet property="editor" destination="Asc-bK-hKW" id="cSI-vj-kmd"/>
+                <outlet property="statusBarController" destination="ZaC-Gi-qyq" id="QaZ-Yr-Ruj"/>
+                <outlet property="view" destination="iXJ-7c-EQT" id="LQV-18-zXh"/>
+            </connections>
+        </viewController>
+        <viewController id="cfo-zY-w3h" customClass="CESplitViewController">
+            <connections>
+                <outlet property="view" destination="Ezm-P5-z5i" id="UCd-p0-0fe"/>
             </connections>
         </viewController>
         <viewController id="4HD-9E-AjY" customClass="CESidebarViewController">
@@ -341,20 +361,6 @@
                 <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="cGx-oY-d19"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="JUc-xm-WbO"/>
                 <outlet property="view" destination="M19-Ov-3N4" id="klN-NY-JWT"/>
-            </connections>
-        </viewController>
-        <viewController id="kui-Vi-K7E" customClass="CEWindowContentViewController">
-            <connections>
-                <outlet property="editor" destination="Asc-bK-hKW" id="ww6-G1-Ap7"/>
-                <outlet property="sidebarViewController" destination="4HD-9E-AjY" id="SXr-Gu-Rxl"/>
-                <outlet property="view" destination="jhv-dr-CH4" id="hld-L6-NUG"/>
-            </connections>
-        </viewController>
-        <viewController title="Document Inspector" nibName="DocumentInspectorView" id="zfS-u8-roN" userLabel="Document Inspector View Controller" customClass="CEDocumentInspectorViewController"/>
-        <viewController title="Incompatible Chars" nibName="IncompatibleCharsView" id="PNV-ic-0G4" userLabel="Incompatible Chars View Controller" customClass="CEIncompatibleCharsViewController"/>
-        <viewController id="cfo-zY-w3h" customClass="CESplitViewController">
-            <connections>
-                <outlet property="view" destination="Ezm-P5-z5i" id="UCd-p0-0fe"/>
             </connections>
         </viewController>
     </objects>
