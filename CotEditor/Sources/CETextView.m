@@ -35,7 +35,7 @@
 #import "CEThemeManager.h"
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
-#import "CEWindow.h"
+#import "CEAlphaWindow.h"
 
 #import "CEDefaults.h"
 #import "Constants.h"

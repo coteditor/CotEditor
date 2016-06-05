@@ -26,7 +26,7 @@
  */
 
 #import "CEOpacityPanelController.h"
-#import "CEWindow.h"
+#import "CEAlphaWindow.h"
 
 
 @interface CEOpacityPanelController ()
@@ -58,7 +58,7 @@
 - (void)keyDocumentDidChange
 // ------------------------------------------------------
 {
-    [self setOpacity:[(CEWindow *)[[self documentWindowController] window] backgroundAlpha]];
+    [self setOpacity:[(CEAlphaWindow *)[[self documentWindowController] window] backgroundAlpha]];
 }
 
 
@@ -82,7 +82,7 @@
     _opacity = opacity;
     
     // apply to the frontmost document window
-    [(CEWindow *)[[self documentWindowController] window] setBackgroundAlpha:opacity];
+    [(CEAlphaWindow *)[[self documentWindowController] window] setBackgroundAlpha:opacity];
 }
 
 @end

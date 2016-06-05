@@ -219,7 +219,7 @@
 		2A6F0DAF1B5500E100C2D03C /* CESyntaxEditTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */; };
 		2A6F0DB01B5500E100C2D03C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
 		2A6F0DB11B5500E100C2D03C /* CEFormatPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */; };
-		2A6F0DB21B5500E100C2D03C /* CEWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7314ED1A0326D300C0EDA9 /* CEWindow.m */; };
+		2A6F0DB21B5500E100C2D03C /* CEAlphaWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7314ED1A0326D300C0EDA9 /* CEAlphaWindow.m */; };
 		2A6F0DB31B5500E100C2D03C /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
 		2A6F0DB41B5500E100C2D03C /* CESyntaxStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntaxStyle.m */; };
 		2A6F0DB51B5500E100C2D03C /* CEIncompatibleCharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDA1A425AE500275FD4 /* CEIncompatibleCharsViewController.m */; };
@@ -290,7 +290,7 @@
 		2A712CA318EFB716001FEC33 /* AutoTabExpand_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */; };
 		2A7135811CFFDBF300ADA555 /* CEFilePermissionsFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5928841CFF869400A9E0F7 /* CEFilePermissionsFormatter.m */; };
 		2A7135831CFFDC6600ADA555 /* FormattersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7135821CFFDC6600ADA555 /* FormattersTests.swift */; };
-		2A7314EE1A0326D300C0EDA9 /* CEWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7314ED1A0326D300C0EDA9 /* CEWindow.m */; };
+		2A7314EE1A0326D300C0EDA9 /* CEAlphaWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7314ED1A0326D300C0EDA9 /* CEAlphaWindow.m */; };
 		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
 		2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
 		2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
@@ -701,8 +701,8 @@
 		2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_Off.tiff; sourceTree = "<group>"; };
 		2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_On.tiff; sourceTree = "<group>"; };
 		2A7135821CFFDC6600ADA555 /* FormattersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattersTests.swift; sourceTree = "<group>"; };
-		2A7314EC1A0326D300C0EDA9 /* CEWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindow.h; sourceTree = "<group>"; };
-		2A7314ED1A0326D300C0EDA9 /* CEWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWindow.m; sourceTree = "<group>"; };
+		2A7314EC1A0326D300C0EDA9 /* CEAlphaWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEAlphaWindow.h; sourceTree = "<group>"; };
+		2A7314ED1A0326D300C0EDA9 /* CEAlphaWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEAlphaWindow.m; sourceTree = "<group>"; };
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
 		2A77C9331B416C950033D4AB /* NSData+CEAuthopen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSData+CEAuthopen.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2A77C9341B416C950033D4AB /* NSData+CEAuthopen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSData+CEAuthopen.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1286,6 +1286,17 @@
 			name = Application;
 			sourceTree = "<group>";
 		};
+		2A2184121D0426E800522EF5 /* Alpha Window */ = {
+			isa = PBXGroup;
+			children = (
+				2A7314EC1A0326D300C0EDA9 /* CEAlphaWindow.h */,
+				2A7314ED1A0326D300C0EDA9 /* CEAlphaWindow.m */,
+				2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */,
+				2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */,
+			);
+			name = "Alpha Window";
+			sourceTree = "<group>";
+		};
 		2A2D6C1A1A602D7E002451FF /* Text Finder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1542,12 +1553,9 @@
 		2A42825418FCC23400386899 /* Window */ = {
 			isa = PBXGroup;
 			children = (
-				2A7314EC1A0326D300C0EDA9 /* CEWindow.h */,
-				2A7314ED1A0326D300C0EDA9 /* CEWindow.m */,
 				25859DEB076D75BC0020F779 /* CEWindowController.h */,
 				25859DEC076D75BC0020F779 /* CEWindowController.m */,
-				2A94A45818D08D51009FA90D /* NSWindow+ScriptingSupport.h */,
-				2A94A45918D08D52009FA90D /* NSWindow+ScriptingSupport.m */,
+				2A2184121D0426E800522EF5 /* Alpha Window */,
 				2A62D48D1CF73693002ADBE1 /* Toolbar */,
 				2ADD36941CFCAD4200F3175D /* Sidebar */,
 				2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */,
@@ -2351,7 +2359,7 @@
 				2A6F0DB01B5500E100C2D03C /* CEPrefEncodingDataSource.m in Sources */,
 				2A6F0DB11B5500E100C2D03C /* CEFormatPaneController.m in Sources */,
 				2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */,
-				2A6F0DB21B5500E100C2D03C /* CEWindow.m in Sources */,
+				2A6F0DB21B5500E100C2D03C /* CEAlphaWindow.m in Sources */,
 				2A6F0DB31B5500E100C2D03C /* CEEncodingListSheetController.m in Sources */,
 				2A6F0DB41B5500E100C2D03C /* CESyntaxStyle.m in Sources */,
 				2A6F0DB51B5500E100C2D03C /* CEIncompatibleCharsViewController.m in Sources */,
@@ -2510,7 +2518,7 @@
 				2A2E034B1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m in Sources */,
 				25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */,
 				2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */,
-				2A7314EE1A0326D300C0EDA9 /* CEWindow.m in Sources */,
+				2A7314EE1A0326D300C0EDA9 /* CEAlphaWindow.m in Sources */,
 				2AB0C59C1C4A18830019411A /* NSString+CEEncoding.m in Sources */,
 				2A6CE3A71CDEF9A00032A2A7 /* CEAntialiasingTextField.m in Sources */,
 				2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */,

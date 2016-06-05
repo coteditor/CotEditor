@@ -1,6 +1,6 @@
 /*
  
- CEWindow.m
+ CEAlphaWindow.m
  
  CotEditor
  http://coteditor.com
@@ -25,14 +25,14 @@
  
  */
 
-#import "CEWindow.h"
+#import "CEAlphaWindow.h"
 
 
 // notifications
 NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacityDidChangeNotification";
 
 
-@interface CEWindow ()
+@interface CEAlphaWindow ()
 
 @property (nonatomic, nullable) NSColor *storedBackgroundColor;
 
@@ -43,13 +43,13 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
 
 #pragma mark -
 
-@implementation CEWindow
+@implementation CEAlphaWindow
 
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
+- (nonnull instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
 // ------------------------------------------------------
 {
     self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
@@ -125,15 +125,12 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
 - (void)setBackgroundAlpha:(CGFloat)backgroundAlpha
 // ------------------------------------------------------
 {
-    CGFloat sanitizedAlpha = backgroundAlpha;
+    CGFloat sanitizedAlpha = MAX(0.2, MIN(backgroundAlpha, 1.0));
     
-    // window should be opaque on version browsing
+    // window must be opaque on version browsing
     if ([[[self windowController] document] isInViewingMode]) {
         sanitizedAlpha = 1.0;
     }
-    
-    sanitizedAlpha = MAX(sanitizedAlpha, 0.2);
-    sanitizedAlpha = MIN(sanitizedAlpha, 1.0);
     
     _backgroundAlpha = sanitizedAlpha;
     

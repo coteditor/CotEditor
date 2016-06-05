@@ -27,7 +27,7 @@
  */
 
 #import "CEWindowController.h"
-#import "CEWindow.h"
+#import "CEAlphaWindow.h"
 #import "CEDocument.h"
 #import "CEToolbarController.h"
 #import "CEIncompatibleCharsViewController.h"
@@ -104,7 +104,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
                                              (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey])];
     
     // setup background
-    [(CEWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
+    [(CEAlphaWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
     
     // ???: needs to set contentView's layer to mask rounded window corners
     if (floor(NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max)) {
@@ -146,7 +146,7 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 // ------------------------------------------------------
 {
     if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
-        [(CEWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
+        [(CEAlphaWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
     }
 }
 
