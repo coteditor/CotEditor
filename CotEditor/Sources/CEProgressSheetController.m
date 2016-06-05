@@ -35,7 +35,7 @@
 
 @property (nonatomic) CEProgressSheetController *me;
 
-@property (nonatomic, weak) IBOutlet NSProgressIndicator *indicator;
+@property (nonatomic, nullable, weak) IBOutlet NSProgressIndicator *indicator;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *button;
 
 @end

@@ -28,7 +28,7 @@
 @import Cocoa;
 
 
-@interface CEProgressSheetController : NSWindowController <NSWindowDelegate>
+@interface CEProgressSheetController : NSWindowController
 
 - (nonnull instancetype)initWithProgress:(nonnull NSProgress *)progress message:(nonnull NSString *)message;
 
