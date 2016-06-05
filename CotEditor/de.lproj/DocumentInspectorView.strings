@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,8 +53,8 @@
 "aId-DL-y8T.title" = "Bytelänge";
 
 
-/* Class = "NSTextFieldCell"; title = "Count and Location"; ObjectID = "cbf-0f-9rd"; */
-"cbf-0f-9rd.title" = "Anzahl und Ort";
+/* Class = "NSTextFieldCell"; title = "Count"; ObjectID = "cbf-0f-9rd"; */
+"cbf-0f-9rd.title" = "Anzahl";
 
 /* Class = "NSTextFieldCell"; title = "Lines"; ObjectID = "yRM-Y0-4Oq"; */
 "yRM-Y0-4Oq.title" = "Zeilen";
@@ -64,6 +64,10 @@
 "H0d-Eg-DcW.title" = "Länge";
 /* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
 "tZ6-05-eKf.title" = "Wörter";
+
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
+"nXT-Oq-0l6.title" = "Ort";
+
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
 "ERr-yA-dIa.title" = "Ort";
 /* Class = "NSTextFieldCell"; title = "Current Line"; ObjectID = "f9g-dQ-g3K"; */
