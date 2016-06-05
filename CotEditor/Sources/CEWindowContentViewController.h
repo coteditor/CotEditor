@@ -1,16 +1,15 @@
 /*
  
- CEWindowController.h
+ CEWindowContentViewController.h
  
  CotEditor
  http://coteditor.com
  
- Created by nakamuxu on 2004-12-13.
-
+ Created by 1024jp on 2016-06-05.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,12 +31,16 @@
 @class CEEditorWrapper;
 
 
-@interface CEWindowController : NSWindowController <NSWindowDelegate>
+@interface CEWindowContentViewController : NSViewController
 
+@property (readonly, nonatomic, nullable) __kindof NSViewController *sidebarViewController;
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 
+@property (nonatomic, getter=isSidebarShown) BOOL sidebarShown;
 
-// Public Methods
-- (void)showIncompatibleCharList;
+
+// Action Messages
+- (IBAction)getInfo:(nullable id)sender;
+- (IBAction)toggleIncompatibleCharList:(nullable id)sender;
 
 @end

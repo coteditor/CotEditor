@@ -30,23 +30,17 @@
 #import "CEAlphaWindow.h"
 #import "CEDocument.h"
 #import "CEToolbarController.h"
+#import "CEWindowContentViewController.h"
 #import "CESidebarViewController.h"
 #import "CEEditorWrapper.h"
 #import "CEDefaults.h"
 
 
-@interface CEWindowController () <NSSplitViewDelegate>
-
-@property (nonatomic) CGFloat sidebarWidth;
-
+@interface CEWindowController ()
 
 // IBOutlets
 @property (nonatomic, nullable) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, nullable) IBOutlet CESidebarViewController *sidebarViewController;
-@property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
-
-// IBOutlets (readonly)
-@property (readwrite, nonatomic, nullable, weak) IBOutlet CEEditorWrapper *editor;
+@property (nonatomic, nullable) IBOutlet CEWindowContentViewController *contentSplitViewController;
 
 @end
 
@@ -66,10 +60,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
-    
-    // Need to set nil to NSSplitView's delegate manually since it is not weak but just assign,
-    //     and may crash when closing split fullscreen window on El Capitan (2015-07)
-    [_sidebarSplitView setDelegate:nil];
 }
 
 
@@ -101,8 +91,6 @@
     if (floor(NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max)) {
         [[[self window] contentView] setWantsLayer:YES];
     }
-    
-    [self setSidebarShown:[[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultShowDocumentInspectorKey]];
     
     [self applyDocument:[self document]];
     
@@ -140,10 +128,15 @@
 - (void)showIncompatibleCharList
 // ------------------------------------------------------
 {
-    [[[self sidebarViewController] tabView] selectTabViewItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
-    [self setSidebarShown:YES];
+    [[[[self contentSplitViewController] sidebarViewController] tabView] selectTabViewItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
+    [[self contentSplitViewController] setSidebarShown:YES];
 }
 
+
+- (nullable CEEditorWrapper *)editor
+{
+    return [[self contentSplitViewController] editor];
+}
 
 
 #pragma mark Delegate
@@ -163,8 +156,6 @@
     [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
     [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
     [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
-    [state encodeBool:[self isSidebarShown] forKey:CEDefaultShowDocumentInspectorKey];
-    [state encodeDouble:[self sidebarWidth] forKey:CEDefaultSidebarWidthKey];
 }
 
 
@@ -191,68 +182,6 @@
     if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
         [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
     }
-    if ([state containsValueForKey:CEDefaultShowDocumentInspectorKey]) {
-        [self setSidebarWidth:[state decodeDoubleForKey:CEDefaultSidebarWidthKey]];
-        [self setSidebarShown:[state decodeBoolForKey:CEDefaultShowDocumentInspectorKey]];
-    }
-}
-
-
-//=======================================================
-// NSSplitViewDelegate  < sidebarSplitView
-//=======================================================
-
-// ------------------------------------------------------
-/// only sidebar can collapse
-- (BOOL)splitView:(nonnull NSSplitView *)splitView canCollapseSubview:(nonnull NSView *)subview
-// ------------------------------------------------------
-{
-    return (subview == [[self sidebarViewController] view]);
-}
-
-
-// ------------------------------------------------------
-/// hide sidebar divider when collapsed
-- (BOOL)splitView:(nonnull NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
-// ------------------------------------------------------
-{
-    return YES;
-}
-
-
-// ------------------------------------------------------
-/// store current sidebar width
-- (void)splitViewDidResizeSubviews:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    if ([notification userInfo][@"NSSplitViewDividerIndex"]) {  // check wheter the change coused by user's divider dragging
-        if ([self isSidebarShown]) {
-            CGFloat currentWidth = NSWidth([[[self sidebarViewController] view] bounds]);
-            [self setSidebarWidth:currentWidth];
-            [[NSUserDefaults standardUserDefaults] setDouble:currentWidth forKey:CEDefaultSidebarWidthKey];
-        }
-    }
-}
-
-
-
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-/// toggle visibility of document inspector
-- (IBAction)getInfo:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self toggleVisibilityOfSidebarTabItemAtIndex:CESidebarTabIndexDocumentInspector];
-}
-
-
-// ------------------------------------------------------
-/// toggle visibility of incompatible chars list view
-- (IBAction)toggleIncompatibleCharList:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self toggleVisibilityOfSidebarTabItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
 }
 
 
@@ -270,65 +199,7 @@
     [[[self window] toolbar] validateVisibleItems];
     
     // set document instance to sidebar views
-    [[self sidebarViewController] setRepresentedObject:document];
-}
-
-
-// ------------------------------------------------------
-/// return whether sidebar is opened
-- (BOOL)isSidebarShown
-// ------------------------------------------------------
-{
-    return ![[self sidebarSplitView] isSubviewCollapsed:[[self sidebarViewController] view]];
-}
-
-
-// ------------------------------------------------------
-/// set sidebar visibility
-- (void)setSidebarShown:(BOOL)shown
-// ------------------------------------------------------
-{
-    if ([self isSidebarShown] == shown) { return; }
-    
-    BOOL isInitial = ![[self window] isVisible];  // on `windowDidLoad` and `window:didDecodeRestorableState:`
-    BOOL isFullscreen = ([[self window] styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask;
-    BOOL changesWindowSize = !isInitial && !isFullscreen;
-    CGFloat sidebarWidth = [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
-    CGFloat dividerThickness = [[self sidebarSplitView] dividerThickness];
-    CGFloat position = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
-    
-    // adjust divider position
-    if ((changesWindowSize && !shown) || (!changesWindowSize && shown)) {
-        position -= sidebarWidth;
-    }
-    
-    // update window width
-    if (changesWindowSize) {
-        NSRect windowFrame = [[self window] frame];
-        windowFrame.size.width += shown ? (sidebarWidth + dividerThickness) : - (sidebarWidth + dividerThickness);
-        [[self window] setFrame:windowFrame display:NO];
-    }
-    
-    // apply
-    [[self sidebarSplitView] setPosition:position ofDividerAtIndex:0];
-    [[self sidebarSplitView] adjustSubviews];
-}
-
-
-// ------------------------------------------------------
-/// toggle visibility of pane in sidebar
-- (void)toggleVisibilityOfSidebarTabItemAtIndex:(CESidebarTabIndex)index
-// ------------------------------------------------------
-{
-    NSTabView *tabView = [[self sidebarViewController] tabView];
-    NSUInteger currentIndex = [tabView indexOfTabViewItem:[tabView selectedTabViewItem]];
-    
-    if ([self isSidebarShown] && currentIndex == index) {
-        [self setSidebarShown:NO];
-    } else {
-        [tabView selectTabViewItemAtIndex:index];
-        [self setSidebarShown:YES];
-    }
+    [[[self contentSplitViewController] sidebarViewController] setRepresentedObject:document];
 }
 
 @end

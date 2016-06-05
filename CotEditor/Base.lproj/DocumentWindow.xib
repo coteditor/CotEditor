@@ -6,9 +6,7 @@
     <objects>
         <customObject id="-2" customClass="CEWindowController">
             <connections>
-                <outlet property="editor" destination="Asc-bK-hKW" id="ihd-lk-fQz"/>
-                <outlet property="sidebarSplitView" destination="jhv-dr-CH4" id="CIg-jJ-bnp"/>
-                <outlet property="sidebarViewController" destination="4HD-9E-AjY" id="dep-RL-1zj"/>
+                <outlet property="contentSplitViewController" destination="kui-Vi-K7E" id="cla-dC-8hQ"/>
                 <outlet property="toolbarController" destination="71" id="Edj-p3-PkH"/>
                 <outlet property="window" destination="5" id="31"/>
             </connections>
@@ -125,7 +123,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <outlet property="delegate" destination="-2" id="30X-7D-JZT"/>
+                            <outlet property="delegate" destination="kui-Vi-K7E" id="8PC-nx-OZA"/>
                         </connections>
                     </splitView>
                 </subviews>
@@ -343,6 +341,13 @@
                 <outlet property="documentInspectorViewController" destination="zfS-u8-roN" id="cGx-oY-d19"/>
                 <outlet property="incompatibleCharsViewController" destination="PNV-ic-0G4" id="JUc-xm-WbO"/>
                 <outlet property="view" destination="M19-Ov-3N4" id="klN-NY-JWT"/>
+            </connections>
+        </viewController>
+        <viewController id="kui-Vi-K7E" customClass="CEWindowContentViewController">
+            <connections>
+                <outlet property="editor" destination="Asc-bK-hKW" id="ww6-G1-Ap7"/>
+                <outlet property="sidebarViewController" destination="4HD-9E-AjY" id="SXr-Gu-Rxl"/>
+                <outlet property="view" destination="jhv-dr-CH4" id="hld-L6-NUG"/>
             </connections>
         </viewController>
         <viewController title="Document Inspector" nibName="DocumentInspectorView" id="zfS-u8-roN" userLabel="Document Inspector View Controller" customClass="CEDocumentInspectorViewController"/>

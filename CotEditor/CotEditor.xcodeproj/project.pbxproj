@@ -65,6 +65,8 @@
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A2184151D0428F200522EF5 /* CESidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2184141D0428F200522EF5 /* CESidebarViewController.m */; };
 		2A2184161D0428F200522EF5 /* CESidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2184141D0428F200522EF5 /* CESidebarViewController.m */; };
+		2A21841A1D04304800522EF5 /* CEWindowContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2184181D04304800522EF5 /* CEWindowContentViewController.m */; };
+		2A21841B1D04304800522EF5 /* CEWindowContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2184181D04304800522EF5 /* CEWindowContentViewController.m */; };
 		2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */; };
 		2A2D6C191A602D2C002451FF /* RegexReferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */; };
 		2A2E034B1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E034A1A4BF842006ABE9F /* CESyntaxEditTableViewDelegate.m */; };
@@ -567,6 +569,8 @@
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A2184131D0428F200522EF5 /* CESidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESidebarViewController.h; sourceTree = "<group>"; };
 		2A2184141D0428F200522EF5 /* CESidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESidebarViewController.m; sourceTree = "<group>"; };
+		2A2184171D04304800522EF5 /* CEWindowContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEWindowContentViewController.h; sourceTree = "<group>"; };
+		2A2184181D04304800522EF5 /* CEWindowContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEWindowContentViewController.m; sourceTree = "<group>"; };
 		2A2BDF0B198A899E0029848B /* NSString+JapaneseTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JapaneseTransform.h"; sourceTree = "<group>"; };
 		2A2BDF0C198A899E0029848B /* NSString+JapaneseTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JapaneseTransform.m"; sourceTree = "<group>"; };
 		2A2D6C181A602D2C002451FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegexReferenceView.xib; sourceTree = "<group>"; };
@@ -1559,6 +1563,8 @@
 			children = (
 				25859DEB076D75BC0020F779 /* CEWindowController.h */,
 				25859DEC076D75BC0020F779 /* CEWindowController.m */,
+				2A2184171D04304800522EF5 /* CEWindowContentViewController.h */,
+				2A2184181D04304800522EF5 /* CEWindowContentViewController.m */,
 				2A2184121D0426E800522EF5 /* Alpha Window */,
 				2A62D48D1CF73693002ADBE1 /* Toolbar */,
 				2ADD36941CFCAD4200F3175D /* Sidebar */,
@@ -2437,6 +2443,7 @@
 				2A6F0DDF1B5500E100C2D03C /* CEHexColorTransformer.m in Sources */,
 				2A6F0DE01B5500E100C2D03C /* CESyntaxMappingConflictsSheetController.m in Sources */,
 				2AFEA0CF1C2D2FC6009001F6 /* NSString+CERange.m in Sources */,
+				2A21841B1D04304800522EF5 /* CEWindowContentViewController.m in Sources */,
 				2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */,
 				2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */,
 				2A7FD35B1C551C9700CE8566 /* CETableCellView.m in Sources */,
@@ -2592,6 +2599,7 @@
 				2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */,
 				2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */,
 				2AE0C08F1C422A5200E52E04 /* CETextView+Transformation.m in Sources */,
+				2A21841A1D04304800522EF5 /* CEWindowContentViewController.m in Sources */,
 				2A149DB61901760300A9D6EF /* CEAppearancePaneController.m in Sources */,
 				25B2C24407FA68D100F4EFC7 /* CEBorderView.m in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */,

@@ -52,15 +52,20 @@
 {
     [super viewDidLoad];
     
+    [[[self tabView] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
+    
     NSTabViewItem *inspectorTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self documentInspectorViewController]];
     NSTabViewItem *incompatibleCharactersTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self incompatibleCharsViewController]];
     [inspectorTabViewItem setImage:[NSImage imageNamed:@"DocumentTemplate"]];
     [incompatibleCharactersTabViewItem setImage:[NSImage imageNamed:@"ConflictsTemplate"]];
     [inspectorTabViewItem setToolTip:NSLocalizedString(@"Document Inspector", nil)];  // TODO: Localized strings are not yet migrated. See DocumentWindow.strings for the previous one.
     [incompatibleCharactersTabViewItem setToolTip:NSLocalizedString(@"Incompatible Characters", nil)];
+    
     [[self tabView] addTabViewItem:inspectorTabViewItem];
     [[self tabView] addTabViewItem:incompatibleCharactersTabViewItem];
-    [[[self tabView] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
+    
+    [self addChildViewController:[self documentInspectorViewController]];
+    [self addChildViewController:[self incompatibleCharsViewController]];
     
 }
 
