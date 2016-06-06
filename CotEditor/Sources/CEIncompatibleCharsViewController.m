@@ -30,7 +30,7 @@
 #import "CEIncompatibleCharacterScanner.h"
 #import "CEIncompatibleCharacter.h"
 #import "CEDocument.h"
-#import "CEEditorWrapper.h"
+#import "CEEditorWrapper+Editor.h"
 #import "CETextView.h"
 
 

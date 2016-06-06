@@ -42,7 +42,7 @@
 #import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
 #import "CEWindowController.h"
-#import "CEEditorWrapper.h"
+#import "CEEditorWrapper+Editor.h"
 #import "CETextView.h"
 
 #import "NSString+CEEncoding.h"

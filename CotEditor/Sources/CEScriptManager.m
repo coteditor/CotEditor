@@ -29,14 +29,15 @@
 #import "CEScriptManager.h"
 #import "CEConsolePanelController.h"
 #import "CEDocument.h"
-#import "CEEditorWrapper.h"
+#import "CEEditorWrapper+Editor.h"
 #import "CETextView.h"
 #import "CEKeyBindingUtils.h"
-#import "NSString+Sandboxing.h"
 
 #import "CEErrors.h"
 #import "CEDefaults.h"
 #import "Constants.h"
+
+#import "NSString+Sandboxing.h"
 
 
 typedef NS_ENUM(NSUInteger, CEScriptOutputType) {
