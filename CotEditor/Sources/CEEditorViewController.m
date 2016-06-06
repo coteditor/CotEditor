@@ -158,9 +158,9 @@
 - (IBAction)gotoLocation:(nullable id)sender
 // ------------------------------------------------------
 {
-    CEGoToLineViewController *sheetController = [[CEGoToLineViewController alloc] initWithTextView:[self textView]];
+    CEGoToLineViewController *viewController = [[CEGoToLineViewController alloc] initWithTextView:[self textView]];
     
-    [self presentViewControllerAsSheet:sheetController];
+    [self presentViewControllerAsSheet:viewController];
 }
 
 

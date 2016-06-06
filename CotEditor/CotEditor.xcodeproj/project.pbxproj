@@ -1191,7 +1191,6 @@
 				8C28CD2C081101A300733DA7 /* ConsolePanel.xib */,
 				2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */,
 				2A5ABE77191861E3009265DF /* UnicodePanel.xib */,
-				2A6602D91D05D7C8003E8D87 /* GoToLineView.xib */,
 			);
 			name = Panels;
 			sourceTree = "<group>";
@@ -1720,6 +1719,7 @@
 				2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */,
 				2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */,
 				2588E9CC07C4851C0060021D /* ProgressSheet.xib */,
+				2A6602D91D05D7C8003E8D87 /* GoToLineView.xib */,
 				2AB4326C1912ADAC00835004 /* CharacterPopover.xib */,
 			);
 			name = "Document Accessories";
