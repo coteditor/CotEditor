@@ -107,18 +107,10 @@
 
 #pragma mark -
 
-typedef NS_ENUM(NSUInteger, CEGoToType) {
-    CEGoToLine,
-    CEGoToCharacter
-};
-
 @interface CEEditorWrapper (Locating)
-
-- (IBAction)gotoLocation:(nullable id)sender;
 
 - (NSRange)rangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
 - (void)setSelectedCharacterRangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
 - (void)setSelectedLineRangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
-- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;  // line ending applied
 
 @end

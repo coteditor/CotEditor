@@ -437,8 +437,8 @@
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
 "PWZ-Om-OhX.title" = "选择下一个大纲项目";
 
-/* Class = "NSMenuItem"; title = "Go To…"; ObjectID = "eIc-Sj-2mO"; */
-"eIc-Sj-2mO.title" = "跳转…";
+/* Class = "NSMenuItem"; title = "Go to Line…"; ObjectID = "eIc-Sj-2mO"; */
+"eIc-Sj-2mO.title" = "跳转…";  // FIXME: tweaked
 
 
 

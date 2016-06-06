@@ -36,7 +36,6 @@
 #import "CETextView.h"
 #import "CEThemeManager.h"
 #import "CESyntaxStyle.h"
-#import "CEGoToSheetController.h"
 #import "CEToggleToolbarItem.h"
 #import "CETextFinder.h"
 
@@ -51,7 +50,6 @@
 
 @interface CEEditorWrapper () <CETextFinderClientProvider, CESyntaxStyleDelegate, NSTextStorageDelegate>
 
-@property (nonatomic, nullable) NSWindowController *currentSheetController;
 @property (nonatomic) BOOL showsNavigationBar;
 
 @property (nonatomic, nullable) IBOutlet NSSplitViewItem *splitViewItem;
@@ -1005,21 +1003,6 @@
 
 @implementation CEEditorWrapper (Locating)
 
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-/// show Go To sheet
-- (IBAction)gotoLocation:(nullable id)sender
-// ------------------------------------------------------
-{
-    CEGoToSheetController *sheetController = [[CEGoToSheetController alloc] init];
-    
-    [self setCurrentSheetController:sheetController];
-    [sheetController beginSheetForEditor:self];
-}
-
-
-
 #pragma mark Public Methods
 
 // ------------------------------------------------------
@@ -1059,27 +1042,6 @@
     if (range.location == NSNotFound) { return; }
     
     [textView setSelectedRange:range];
-}
-
-
-// ------------------------------------------------------
-/// 選択範囲を変更する
-- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type
-// ------------------------------------------------------
-{
-    switch (type) {
-        case CEGoToLine:
-            [self setSelectedLineRangeWithLocation:location length:length];
-            break;
-        case CEGoToCharacter:
-            [self setSelectedCharacterRangeWithLocation:location length:length];
-            break;
-    }
-    
-    NSTextView *textView = [self focusedTextView];
-    [[textView window] makeKeyAndOrderFront:self]; // 対象ウィンドウをキーに
-    [textView scrollRangeToVisible:[textView selectedRange]]; // 選択範囲が見えるようにスクロール
-    [textView showFindIndicatorForRange:[textView selectedRange]];  // 検索結果表示エフェクトを追加
 }
 
 @end

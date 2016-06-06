@@ -435,8 +435,8 @@
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
 "PWZ-Om-OhX.title" = "次のアウトライン項目を選択";
 
-/* Class = "NSMenuItem"; title = "Go To…"; ObjectID = "eIc-Sj-2mO"; */
-"eIc-Sj-2mO.title" = "移動...";
+/* Class = "NSMenuItem"; title = "Go to Line…"; ObjectID = "eIc-Sj-2mO"; */
+"eIc-Sj-2mO.title" = "行に移動...";
 
 
 

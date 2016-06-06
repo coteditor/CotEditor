@@ -13,6 +13,7 @@ develop
 - Remove “Not writable” alert which displayed on file opening.
 - New acknowledgements window.
 - Add help buttons to syntax style editor.
+- New “Go To Line” panel.
 - Remove less important text actions:
     - Insert Encoding Name with “charset=”
     - Insert Encoding Name with “encoding=”

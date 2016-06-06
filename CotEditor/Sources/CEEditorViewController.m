@@ -31,6 +31,8 @@
 #import "CETextView.h"
 #import "CESyntaxStyle.h"
 
+#import "CEGoToLineViewController.h"
+
 
 @interface CEEditorViewController ()
 
@@ -150,6 +152,17 @@
 
 
 #pragma mark Action Messages
+
+// ------------------------------------------------------
+/// show Go To sheet
+- (IBAction)gotoLocation:(nullable id)sender
+// ------------------------------------------------------
+{
+    CEGoToLineViewController *sheetController = [[CEGoToLineViewController alloc] initWithTextView:[self textView]];
+    
+    [self presentViewControllerAsSheet:sheetController];
+}
+
 
 // ------------------------------------------------------
 /// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）

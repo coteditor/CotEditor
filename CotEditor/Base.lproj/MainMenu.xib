@@ -900,7 +900,7 @@ CA
                             <menuItem isSeparatorItem="YES" id="4p1-Xh-XxQ">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Go To…" keyEquivalent="l" id="eIc-Sj-2mO">
+                            <menuItem title="Go to Line…" keyEquivalent="l" id="eIc-Sj-2mO">
                                 <connections>
                                     <action selector="gotoLocation:" target="-1" id="wIK-1A-nKw"/>
                                 </connections>
