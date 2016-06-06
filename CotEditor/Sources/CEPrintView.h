@@ -27,7 +27,7 @@
  */
 
 @import Cocoa;
-#import "CETextViewProtocol.h"
+#import "CEThemableProtocol.h"
 
 
 // constants
@@ -35,7 +35,7 @@ extern CGFloat const kVerticalPrintMargin;    // top/bottom margin
 extern CGFloat const kHorizontalPrintMargin;  // left/light margin
 
 
-@interface CEPrintView : NSTextView <CETextViewProtocol>
+@interface CEPrintView : NSTextView <CEThemable>
 
 @property (nonatomic, nullable, copy) NSString *filePath;
 @property (nonatomic, nullable, copy) NSString *documentName;

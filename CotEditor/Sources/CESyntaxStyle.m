@@ -32,7 +32,7 @@
 #import "CEOutlineParseOperation.h"
 #import "CESyntaxHighlightParseOperation.h"
 #import "CESyntaxDictionaryKeys.h"
-#import "CETextViewProtocol.h"
+#import "CEThemableProtocol.h"
 #import "CEProgressSheetController.h"
 #import "CEDefaults.h"
 
@@ -617,7 +617,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                               forCharacterRange:highlightRange];
         
         // apply color to layoutManager
-        CETheme *theme = [(NSTextView<CETextViewProtocol> *)[layoutManager firstTextView] theme];
+        CETheme *theme = [(NSTextView<CEThemable> *)[layoutManager firstTextView] theme];
         for (NSString *syntaxType in kSyntaxDictKeys) {
             NSArray<NSValue *> *ranges = highlights[syntaxType];
             NSColor *color = [theme syntaxColorForType:syntaxType] ?: [theme textColor];

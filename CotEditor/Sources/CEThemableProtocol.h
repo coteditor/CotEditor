@@ -1,6 +1,6 @@
 /*
  
- CETextViewProtocol.h
+ CEThemableProtocol.h
  
  CotEditor
  http://coteditor.com
@@ -29,7 +29,7 @@
 #import "CETheme.h"
 
 
-@protocol CETextViewProtocol
+@protocol CEThemable
 
 @required
 - (nullable CETheme *)theme;
