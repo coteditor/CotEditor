@@ -28,14 +28,14 @@
 
 @import Cocoa;
 #import "NSTextView+CETextReplacement.h"
-#import "CETextViewProtocol.h"
+#import "CEThemableProtocol.h"
 
 
 // notifications
 extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 
 
-@interface CETextView : NSTextView <CETextViewProtocol>
+@interface CETextView : NSTextView <CEThemable>
 
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL needsRecompletion;  // 再度入力補完をするか

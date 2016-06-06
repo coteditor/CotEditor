@@ -1,16 +1,15 @@
 /*
  
- GoToSheet.strings (Simplified Chinese)
+ CEWindowContentViewController.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-12-12.
- Localized by onevcat
+ Created by 1024jp on 2016-06-05.
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,15 +25,28 @@
  
  */
 
-/* Class = "NSWindow"; title = "Go To"; ObjectID = "3wP-4P-fon"; */
-"3wP-4P-fon.title" = "跳转";
+@import Cocoa;
 
-/* Class = "NSMenuItem"; title = "Line"; ObjectID = "AJY-it-0zy"; */
-"AJY-it-0zy.title" = "行";
-/* Class = "NSMenuItem"; title = "Character"; ObjectID = "8lf-5Q-9KX"; */
-"8lf-5Q-9KX.title" = "字符";
 
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "iQf-7n-OD6"; */
-"iQf-7n-OD6.title" = "取消";
-/* Class = "NSButtonCell"; title = "Go"; ObjectID = "zet-GK-4z4"; */
-"zet-GK-4z4.title" = "跳转";
+@class CEEditorWrapper;
+
+
+// tab index
+typedef NS_ENUM(NSInteger, CESidebarTabIndex) {
+    CESidebarTabIndexDocumentInspector = 0,
+    CESidebarTabIndexIncompatibleChararacters,
+};
+
+
+@interface CEWindowContentViewController : NSSplitViewController
+
+@property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
+
+
+- (void)showSidebarPaneWithIndex:(CESidebarTabIndex)index;
+
+// Action Messages
+- (IBAction)getInfo:(nullable id)sender;
+- (IBAction)toggleIncompatibleCharList:(nullable id)sender;
+
+@end

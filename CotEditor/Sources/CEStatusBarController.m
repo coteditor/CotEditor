@@ -30,13 +30,7 @@
 #import "CEDefaults.h"
 
 
-static const CGFloat kDefaultHeight = 20.0;
-static const NSTimeInterval kDuration = 0.12;
-
-
 @interface CEStatusBarController ()
-
-@property (nonatomic, nullable, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @property (nonatomic, nonnull) NSByteCountFormatter *byteCountFormatter;
 
@@ -44,8 +38,13 @@ static const NSTimeInterval kDuration = 0.12;
 @property (nonatomic, nullable, copy) NSAttributedString *editorStatus;
 @property (nonatomic, nullable, copy) NSAttributedString *documentStatus;
 
-// readonly
-@property (readwrite, nonatomic, getter=isShown) BOOL shown;
+@end
+
+
+
+@interface NSMutableAttributedString (LabelAddition)
+
+- (void)appendFromattedState:(nullable NSString *)value label:(nullable NSString *)label;
 
 @end
 
@@ -56,7 +55,26 @@ static const NSTimeInterval kDuration = 0.12;
 
 @implementation CEStatusBarController
 
-#pragma mark Sueprclass Methods
+#pragma mark View Controller Methods
+
+// ------------------------------------------------------
+/// initialize instance
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
+// ------------------------------------------------------
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _byteCountFormatter = [[NSByteCountFormatter alloc] init];
+        [_byteCountFormatter setAdaptive:NO];
+        
+        // observe change of defaults
+        for (NSString *key in [[self class] observedDefaultKeys]) {
+            [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:key options:0 context:NULL];
+        }
+    }
+    return self;
+}
+
 
 // ------------------------------------------------------
 /// clean up
@@ -72,19 +90,24 @@ static const NSTimeInterval kDuration = 0.12;
 
 
 // ------------------------------------------------------
-/// awake from nib
-- (void)awakeFromNib
+/// request analyzer to update editor info
+- (void)viewWillAppear
 // ------------------------------------------------------
 {
-    [super awakeFromNib];
+    [super viewWillAppear];
     
-    [self setByteCountFormatter:[[NSByteCountFormatter alloc] init]];
-    [[self byteCountFormatter] setAdaptive:NO];
+    [[self documentAnalyzer] setNeedsUpdateStatusEditorInfo:YES];
+}
+
+
+// ------------------------------------------------------
+/// request analyzer to stop updating editor info
+- (void)viewDidDisappear
+// ------------------------------------------------------
+{
+    [super viewDidDisappear];
     
-    // observe change of defaults
-    for (NSString *key in [[self class] observedDefaultKeys]) {
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:key options:0 context:NULL];
-    }
+    [[self documentAnalyzer] setNeedsUpdateStatusEditorInfo:NO];
 }
 
 
@@ -114,7 +137,7 @@ static const NSTimeInterval kDuration = 0.12;
     
     _documentAnalyzer = documentAnalyzer;
     
-    [documentAnalyzer setNeedsUpdateStatusEditorInfo:[self isShown]];
+    [documentAnalyzer setNeedsUpdateStatusEditorInfo:![[self view] isHidden]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateEditorStatus)
@@ -131,47 +154,6 @@ static const NSTimeInterval kDuration = 0.12;
     
     [self updateEditorStatus];
     [self updateDocumentStatus];
-}
-
-
-// ------------------------------------------------------
-///
-- (void)setShown:(BOOL)shown
-// ------------------------------------------------------
-{
-    _shown = shown;
-    
-    [[self documentAnalyzer] setNeedsUpdateStatusEditorInfo:shown];
-    if (shown) {
-        [[self documentAnalyzer] invalidateEditorInfo];
-    }
-}
-
-
-// ------------------------------------------------------
-/// update visibility
-- (void)setShown:(BOOL)isShown animate:(BOOL)performAnimation
-// ------------------------------------------------------
-{
-    [self setShown:isShown];
-    
-    if (isShown) {
-        [self updateEditorStatus];
-        [self updateDocumentStatus];
-    }
-    
-    NSLayoutConstraint *heightConstraint = [self heightConstraint];
-    CGFloat height = isShown ? kDefaultHeight : 0.0;
-    
-    if (performAnimation) {
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-            [context setDuration:kDuration];
-            [[heightConstraint animator] setConstant:height];
-        } completionHandler:nil];
-        
-    } else {
-        [heightConstraint setConstant:height];
-    }
 }
 
 
@@ -203,32 +185,32 @@ static const NSTimeInterval kDuration = 0.12;
 - (void)updateEditorStatus
 // ------------------------------------------------------
 {
-    if (![self isShown]) { return; }
+    if ([[self view] isHidden]) { return; }
     
     NSMutableAttributedString *status = [[NSMutableAttributedString alloc] init];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CEDocumentAnalyzer *info = [self documentAnalyzer];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarLinesKey]) {
-        [self appendFormattedState:[info lines] label:@"Lines" toStatusLine:status];
+        [status appendFromattedState:[info lines] label:@"Lines"];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarCharsKey]) {
-        [self appendFormattedState:[info chars] label:@"Chars" toStatusLine:status];
+        [status appendFromattedState:[info chars] label:@"Chars"];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLengthKey]) {
-        [self appendFormattedState:[info length] label:@"Length" toStatusLine:status];
+        [status appendFromattedState:[info length] label:@"Length"];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarWordsKey]) {
-        [self appendFormattedState:[info words] label:@"Words" toStatusLine:status];
+        [status appendFromattedState:[info words] label:@"Words"];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLocationKey]) {
-        [self appendFormattedState:[info location] label:@"Location" toStatusLine:status];
+        [status appendFromattedState:[info location] label:@"Location"];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLineKey]) {
-        [self appendFormattedState:[info line] label:@"Line" toStatusLine:status];
+        [status appendFromattedState:[info line] label:@"Line"];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarColumnKey]) {
-        [self appendFormattedState:[info column] label:@"Column" toStatusLine:status];
+        [status appendFromattedState:[info column] label:@"Column"];
     }
     
     [self setEditorStatus:status];
@@ -240,47 +222,51 @@ static const NSTimeInterval kDuration = 0.12;
 - (void)updateDocumentStatus
 // ------------------------------------------------------
 {
-    if (![self isShown]) { return; }
+    if ([[self view] isHidden]) { return; }
     
     NSMutableAttributedString *status = [[NSMutableAttributedString alloc] init];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CEDocumentAnalyzer *info = [self documentAnalyzer];
     
     if ([defaults boolForKey:CEDefaultShowStatusBarEncodingKey]) {
-        [self appendFormattedState:[info charsetName] label:nil toStatusLine:status];
+        [status appendFromattedState:[info charsetName] label:nil];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarLineEndingsKey]) {
-        [self appendFormattedState:[info lineEndings] label:nil toStatusLine:status];
+        [status appendFromattedState:[info lineEndings] label:nil];
     }
     if ([defaults boolForKey:CEDefaultShowStatusBarFileSizeKey]) {
         NSString *fileSize = [[self byteCountFormatter] stringForObjectValue:[info fileSize]];
-        [self appendFormattedState:fileSize label:nil toStatusLine:status];
+        [status appendFromattedState:fileSize label:nil];
     }
     
     [self setDocumentStatus:status];
     
-    if ([[[[[self view] window] windowController] document] isInViewingMode]) {  // on Versions browsing mode
-        [self setShowsReadOnly:NO];
-    } else {
-        [self setShowsReadOnly:[info isReadOnly]];
-    }
+    [self setShowsReadOnly:[info isReadOnly]];
 }
 
+@end
+
+
+
+
+#pragma mark -
+
+@implementation NSMutableAttributedString (LabelAddition)
 
 // ------------------------------------------------------
 /// append formatted state
-- (NSAttributedString *)appendFormattedState:(nullable NSString *)value label:(nullable NSString *)label toStatusLine:(nonnull NSMutableAttributedString *)status
+- (void)appendFromattedState:(nullable NSString *)value label:(nullable NSString *)label
 // ------------------------------------------------------
 {
-    if ([status length] > 0) {
-        [status appendAttributedString:[[NSAttributedString alloc] initWithString:@"   "]];
+    if ([self length] > 0) {
+        [self appendAttributedString:[[NSAttributedString alloc] initWithString:@"   "]];
     }
     
     if (label) {
         NSString *localizedLabel = [NSString stringWithFormat:NSLocalizedString(@"%@: ", nil), NSLocalizedString(label, nil)];
         NSAttributedString *attrLabel = [[NSAttributedString alloc] initWithString:localizedLabel
                                                                         attributes:@{NSForegroundColorAttributeName: [NSColor secondaryLabelColor]}];
-        [status appendAttributedString:attrLabel];
+        [self appendAttributedString:attrLabel];
     }
     
     NSAttributedString *attrValue;
@@ -290,9 +276,8 @@ static const NSTimeInterval kDuration = 0.12;
         attrValue = [[NSAttributedString alloc] initWithString:@"-"
                                                     attributes:@{NSForegroundColorAttributeName: [NSColor disabledControlTextColor]}];
     }
-    [status appendAttributedString:attrValue];
-    
-    return status;
+    [self appendAttributedString:attrValue];
 }
+
 
 @end

@@ -28,7 +28,7 @@
 
 @import CoreText;
 #import "CELineNumberView.h"
-#import "CETextViewProtocol.h"
+#import "CEThemableProtocol.h"
 #import "CEDefaults.h"
 
 #import "NSString+CECounting.h"
@@ -432,7 +432,7 @@ static CGFontRef BoldLineNumberFont;
 - (nullable CETheme *)theme
 // ------------------------------------------------------
 {
-    return [(NSTextView<CETextViewProtocol> *)[self clientView] theme];
+    return [(NSTextView<CEThemable> *)[self clientView] theme];
 }
 
 

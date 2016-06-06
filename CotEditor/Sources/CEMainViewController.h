@@ -1,16 +1,15 @@
 /*
  
- CEWindowController.h
+ CEMainViewController.h
  
  CotEditor
  http://coteditor.com
  
- Created by nakamuxu on 2004-12-13.
-
+ Created by 1024jp on 2016-06-05.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,12 +31,11 @@
 @class CEEditorWrapper;
 
 
-@interface CEWindowController : NSWindowController <NSWindowDelegate>
+@interface CEMainViewController : NSSplitViewController
 
 @property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
 
 
-// Public Methods
-- (void)showIncompatibleCharList;
+- (IBAction)toggleStatusBar:(nullable id)sender;
 
 @end

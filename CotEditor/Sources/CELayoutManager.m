@@ -28,7 +28,6 @@
 
 @import CoreText;
 #import "CELayoutManager.h"
-#import "CETextViewProtocol.h"
 #import "CEATSTypesetter.h"
 #import "CEInvisibles.h"
 #import "CEDefaults.h"

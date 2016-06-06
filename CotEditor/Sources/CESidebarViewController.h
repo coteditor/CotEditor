@@ -1,15 +1,15 @@
 /*
  
- CETextViewProtocol.h
+ CESidebarViewController.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-04-21.
-
+ Created by 1024jp on 2016-06-05.
+ 
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,13 +25,9 @@
  
  */
 
-@import Foundation;
-#import "CETheme.h"
+@import Cocoa;
 
 
-@protocol CETextViewProtocol
-
-@required
-- (nullable CETheme *)theme;
+@interface CESidebarViewController : NSTabViewController
 
 @end

@@ -152,6 +152,13 @@
 
 
 
+/* MARK: Document Window */
+// sidebar pane switcher tooltips
+"Document Inspector" = "文稿信息";
+"Incompatible Characters" = "不兼容字符";
+
+
+
 /* MARK: CEPrintTextView */
 // header/footer
 "Printed on %@" = "打印：%@";

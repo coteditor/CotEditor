@@ -1,15 +1,15 @@
 /*
  
- GoToSheet.strings (German)
+ CEGoToLineViewController.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2015-08-19.
+ Created by 1024jp on 2016-06-07.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,15 +25,11 @@
  
  */
 
-/* Class = "NSPanel"; title = "Go To"; ObjectID = "3wP-4P-fon"; */
-"3wP-4P-fon.title" = "Gehe zu";
+@import Cocoa;
 
-/* Class = "NSMenuItem"; title = "Line"; ObjectID = "AJY-it-0zy"; */
-"AJY-it-0zy.title" = "Zeile";
-/* Class = "NSMenuItem"; title = "Character"; ObjectID = "8lf-5Q-9KX"; */
-"8lf-5Q-9KX.title" = "Zeichen";
 
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "iQf-7n-OD6"; */
-"iQf-7n-OD6.title" = "Abbrechen";
-/* Class = "NSButtonCell"; title = "Go"; ObjectID = "zet-GK-4z4"; */
-"zet-GK-4z4.title" = "Gehen";
+@interface CEGoToLineViewController : NSViewController
+
+- (nonnull instancetype)initWithTextView:(nonnull NSTextView *)textView;
+
+@end

@@ -30,7 +30,7 @@
 #import "CEIncompatibleCharacterScanner.h"
 #import "CEIncompatibleCharacter.h"
 #import "CEDocument.h"
-#import "CEEditorWrapper.h"
+#import "CEEditorWrapper+Editor.h"
 #import "CETextView.h"
 
 
@@ -48,6 +48,17 @@
 #pragma mark -
 
 @implementation CEIncompatibleCharsViewController
+
+#pragma mark View Controller Methods
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"IncompatibleCharsView";
+}
+
 
 // ------------------------------------------------------
 /// update content before display
@@ -71,20 +82,22 @@
 }
 
 
-
-#pragma mark Public Methods
-
 // ------------------------------------------------------
 /// set delegate
-- (void)setScanner:(CEIncompatibleCharacterScanner *)scanner
+- (void)setRepresentedObject:(id)representedObject
 // ------------------------------------------------------
 {
+    if (!representedObject) { return; }
+    
+    NSAssert([representedObject isKindOfClass:[CEIncompatibleCharacterScanner class]],
+             @"representedObject of %@ must be an instance of %@", [self className], [CEIncompatibleCharacterScanner className]);
+    
     [[self scanner] setDelegate:nil];
     
-    _scanner = scanner;
+    [super setRepresentedObject:representedObject];
     
-    [scanner setDelegate:self];
-    [scanner scan];
+    [[self scanner] setDelegate:self];
+    [[self scanner] scan];
 }
 
 
@@ -144,6 +157,18 @@
     NSTextView *textView = [editor focusedTextView];
     [textView scrollRangeToVisible:[textView selectedRange]];
     [textView showFindIndicatorForRange:[textView selectedRange]];
+}
+
+
+
+# pragma Private Medhods
+
+// ------------------------------------------------------
+/// cast representedObject to incompatible character scanner
+- (nullable CEIncompatibleCharacterScanner *)scanner
+// ------------------------------------------------------
+{
+    return [self representedObject];
 }
 
 @end

@@ -46,20 +46,12 @@
 
 // readonly
 @property (readonly, nonatomic, nullable) CETextView *focusedTextView;
-@property (readonly, nonatomic) BOOL showsStatusBar;
-@property (readonly, nonatomic) BOOL showsNavigationBar;
 
 
 #pragma mark Public Methods
 
 - (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges;
 - (void)clearAllMarkup;
-
-// status bar
-- (void)setShowsStatusBar:(BOOL)showsStatusBar animate:(BOOL)performAnimation;
-
-// navigation bar
-- (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 
 // style
 - (nullable NSFont *)font;
@@ -70,7 +62,6 @@
 
 #pragma mark Action Messages
 
-- (IBAction)toggleStatusBar:(nullable id)sender;
 - (IBAction)toggleLineNumber:(nullable id)sender;
 - (IBAction)toggleNavigationBar:(nullable id)sender;
 - (IBAction)toggleLineWrap:(nullable id)sender;
@@ -86,46 +77,5 @@
 
 - (IBAction)openSplitTextView:(nullable id)sender;
 - (IBAction)closeSplitTextView:(nullable id)sender;
-
-@end
-
-
-
-
-#pragma mark -
-
-@interface CEEditorWrapper (TextEditing)
-
-// text processing
-- (nonnull NSString *)string;
-- (nonnull NSString *)substringWithRange:(NSRange)range;
-- (nonnull NSString *)substringWithSelection;
-
-- (void)insertTextViewString:(nonnull NSString *)inString;
-- (void)insertTextViewStringAfterSelection:(nonnull NSString *)string;
-- (void)replaceTextViewAllStringWithString:(nonnull NSString *)string;
-- (void)appendTextViewString:(nonnull NSString *)string;
-
-- (NSRange)selectedRange;  // line ending applied
-- (void)setSelectedRange:(NSRange)charRange;  // line ending applied
-
-@end
-
-
-
-
-#pragma mark -
-
-typedef NS_ENUM(NSUInteger, CEGoToType) {
-    CEGoToLine,
-    CEGoToCharacter
-};
-
-@interface CEEditorWrapper (Locating)
-
-- (NSRange)rangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
-- (void)setSelectedCharacterRangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
-- (void)setSelectedLineRangeWithLocation:(NSInteger)location length:(NSInteger)length;  // line ending applied
-- (void)gotoLocation:(NSInteger)location length:(NSInteger)length type:(CEGoToType)type;  // line ending applied
 
 @end

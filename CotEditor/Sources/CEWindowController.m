@@ -30,32 +30,13 @@
 #import "CEAlphaWindow.h"
 #import "CEDocument.h"
 #import "CEToolbarController.h"
-#import "CEIncompatibleCharsViewController.h"
-#import "CEEditorWrapper.h"
+#import "CEWindowContentViewController.h"
 #import "CEDefaults.h"
 
 
-// sidebar mode
-typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
-    CESidebarTabIndexDocumentInspector = 0,
-    CESidebarTabIndexIncompatibleChararacters,
-};
+@interface CEWindowController ()
 
-
-@interface CEWindowController () <NSSplitViewDelegate>
-
-@property (nonatomic) CGFloat sidebarWidth;
-
-
-// IBOutlets
 @property (nonatomic, nullable) IBOutlet CEToolbarController *toolbarController;
-@property (nonatomic, nullable) IBOutlet __kindof NSViewController *documentInspectorViewController;
-@property (nonatomic, nullable) IBOutlet CEIncompatibleCharsViewController *incompatibleCharsViewController;
-@property (nonatomic, nullable, weak) IBOutlet NSSplitView *sidebarSplitView;
-@property (nonatomic, nullable, weak) IBOutlet NSTabView *sidebar;
-
-// IBOutlets (readonly)
-@property (readwrite, nonatomic, nullable, weak) IBOutlet CEEditorWrapper *editor;
 
 @end
 
@@ -66,33 +47,19 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 
 @implementation CEWindowController
 
-#pragma mark Superclass Methods
+#pragma mark Window Controller Methods
 
 // ------------------------------------------------------
 /// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultWindowAlphaKey];
-    
-    // Need to set nil to NSSplitView's delegate manually since it is not weak but just assign,
-    //     and may crash when closing split fullscreen window on El Capitan (2015-07)
-    [_sidebarSplitView setDelegate:nil];
 }
 
 
 // ------------------------------------------------------
-/// nib name
-- (nullable NSString *)windowNibName
-// ------------------------------------------------------
-{
-    return @"DocumentWindow";
-}
-
-
-// ------------------------------------------------------
-/// prepare window and other UI
+/// prepare window
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
@@ -100,33 +67,12 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    // set window size
     [[self window] setContentSize:NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultWindowWidthKey],
                                              (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey])];
     
     // setup background
     [(CEAlphaWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
-    
-    // ???: needs to set contentView's layer to mask rounded window corners
-    if (floor(NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max)) {
-        [[[self window] contentView] setWantsLayer:YES];
-    }
-    
-    // setup sidebar
-    NSTabViewItem *inspectorTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self documentInspectorViewController]];
-    NSTabViewItem *incompatibleCharactersTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self incompatibleCharsViewController]];
-    [inspectorTabViewItem setImage:[NSImage imageNamed:@"DocumentTemplate"]];
-    [incompatibleCharactersTabViewItem setImage:[NSImage imageNamed:@"ConflictsTemplate"]];
-    [inspectorTabViewItem setToolTip:NSLocalizedString(@"Document Inspector", nil)];  // TODO: Localized strings are not yet migrated. See DocumentWindow.strings for the previous one.
-    [incompatibleCharactersTabViewItem setToolTip:NSLocalizedString(@"Incompatible Characters", nil)];
-    [[self sidebar] addTabViewItem:inspectorTabViewItem];
-    [[self sidebar] addTabViewItem:incompatibleCharactersTabViewItem];
-    [[[self sidebar] layer] setBackgroundColor:[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] CGColor]];
-    [self setSidebarShown:[defaults boolForKey:CEDefaultShowDocumentInspectorKey]];
-    
-    [self applyDocument:[self document]];
-    
-    // apply document state to UI
-    [[self document] applyContentToWindow];
     
     // observe opacity setting change
     [[NSUserDefaults standardUserDefaults] addObserver:self
@@ -135,10 +81,6 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
                                                context:nil];
 }
 
-
-//=======================================================
-// NSKeyValueObserving Protocol
-//=======================================================
 
 // ------------------------------------------------------
 /// apply user defaults change
@@ -151,6 +93,21 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 }
 
 
+// ------------------------------------------------------
+/// apply passed-in document instance to window
+- (void)setDocument:(nullable id)document
+// ------------------------------------------------------
+{
+    [super setDocument:document];
+    
+    [[self toolbarController] setDocument:document];
+    [[self contentViewController] setRepresentedObject:document];
+    
+    // apply document state to UI
+    [[self document] applyContentToWindow];
+}
+
+
 
 #pragma mark Public Methods
 
@@ -159,195 +116,16 @@ typedef NS_ENUM(NSUInteger, CESidebarTabIndex) {
 - (void)showIncompatibleCharList
 // ------------------------------------------------------
 {
-    [[self sidebar] selectTabViewItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
-    [self setSidebarShown:YES];
-}
-
-
-
-#pragma mark Delegate
-
-//=======================================================
-// NSWindowDelegate  < window
-//=======================================================
-
-// ------------------------------------------------------
-/// save window state
-- (void)window:(nonnull NSWindow *)window willEncodeRestorableState:(nonnull NSCoder *)state
-// ------------------------------------------------------
-{
-    [state encodeBool:[[self editor] showsStatusBar] forKey:CEDefaultShowStatusBarKey];
-    [state encodeBool:[[self editor] showsNavigationBar] forKey:CEDefaultShowNavigationBarKey];
-    [state encodeBool:[[self editor] showsLineNum] forKey:CEDefaultShowLineNumbersKey];
-    [state encodeBool:[[self editor] showsPageGuide] forKey:CEDefaultShowPageGuideKey];
-    [state encodeBool:[[self editor] showsInvisibles] forKey:CEDefaultShowInvisiblesKey];
-    [state encodeBool:[[self editor] isVerticalLayoutOrientation] forKey:CEDefaultLayoutTextVerticalKey];
-    [state encodeBool:[self isSidebarShown] forKey:CEDefaultShowDocumentInspectorKey];
-    [state encodeDouble:[self sidebarWidth] forKey:CEDefaultSidebarWidthKey];
+    [(CEWindowContentViewController *)[self contentViewController] showSidebarPaneWithIndex:CESidebarTabIndexIncompatibleChararacters];
 }
 
 
 // ------------------------------------------------------
-/// restore window state from the last session
-- (void)window:(nonnull NSWindow *)window didDecodeRestorableState:(nonnull NSCoder *)state
+/// pass editor instance to document
+- (nullable CEEditorWrapper *)editor
 // ------------------------------------------------------
 {
-    if ([state containsValueForKey:CEDefaultShowStatusBarKey]) {
-        [[self editor] setShowsStatusBar:[state decodeBoolForKey:CEDefaultShowStatusBarKey] animate:NO];
-    }
-    if ([state containsValueForKey:CEDefaultShowNavigationBarKey]) {
-        [[self editor] setShowsNavigationBar:[state decodeBoolForKey:CEDefaultShowNavigationBarKey] animate:NO];
-    }
-    if ([state containsValueForKey:CEDefaultShowLineNumbersKey]) {
-        [[self editor] setShowsLineNum:[state decodeBoolForKey:CEDefaultShowLineNumbersKey]];
-    }
-    if ([state containsValueForKey:CEDefaultShowPageGuideKey]) {
-        [[self editor] setShowsPageGuide:[state decodeBoolForKey:CEDefaultShowPageGuideKey]];
-    }
-    if ([state containsValueForKey:CEDefaultShowInvisiblesKey]) {
-        [[self editor] setShowsInvisibles:[state decodeBoolForKey:CEDefaultShowInvisiblesKey]];
-    }
-    if ([state containsValueForKey:CEDefaultLayoutTextVerticalKey]) {
-        [[self editor] setVerticalLayoutOrientation:[state decodeBoolForKey:CEDefaultLayoutTextVerticalKey]];
-    }
-    if ([state containsValueForKey:CEDefaultShowDocumentInspectorKey]) {
-        [self setSidebarWidth:[state decodeDoubleForKey:CEDefaultSidebarWidthKey]];
-        [self setSidebarShown:[state decodeBoolForKey:CEDefaultShowDocumentInspectorKey]];
-    }
-}
-
-
-//=======================================================
-// NSSplitViewDelegate  < sidebarSplitView
-//=======================================================
-
-// ------------------------------------------------------
-/// only sidebar can collapse
-- (BOOL)splitView:(nonnull NSSplitView *)splitView canCollapseSubview:(nonnull NSView *)subview
-// ------------------------------------------------------
-{
-    return (subview == [self sidebar]);
-}
-
-
-// ------------------------------------------------------
-/// hide sidebar divider when collapsed
-- (BOOL)splitView:(nonnull NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
-// ------------------------------------------------------
-{
-    return YES;
-}
-
-
-// ------------------------------------------------------
-/// store current sidebar width
-- (void)splitViewDidResizeSubviews:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    if ([notification userInfo][@"NSSplitViewDividerIndex"]) {  // check wheter the change coused by user's divider dragging
-        if ([self isSidebarShown]) {
-            CGFloat currentWidth = NSWidth([[self sidebar] bounds]);
-            [self setSidebarWidth:currentWidth];
-            [[NSUserDefaults standardUserDefaults] setDouble:currentWidth forKey:CEDefaultSidebarWidthKey];
-        }
-    }
-}
-
-
-
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-/// toggle visibility of document inspector
-- (IBAction)getInfo:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self toggleVisibilityOfSidebarTabItemAtIndex:CESidebarTabIndexDocumentInspector];
-}
-
-
-// ------------------------------------------------------
-/// toggle visibility of incompatible chars list view
-- (IBAction)toggleIncompatibleCharList:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self toggleVisibilityOfSidebarTabItemAtIndex:CESidebarTabIndexIncompatibleChararacters];
-}
-
-
-
-#pragma mark Private Methods
-
-// ------------------------------------------------------
-/// apply passed-in document instance to window
-- (void)applyDocument:(nonnull CEDocument *)document
-// ------------------------------------------------------
-{
-    [[self editor] setDocument:document];
-    
-    [[self toolbarController] setDocument:document];
-    [[[self window] toolbar] validateVisibleItems];
-    
-    // set document instance to sidebar views
-    [[self incompatibleCharsViewController] setScanner:[document incompatibleCharacterScanner]];
-    [[self documentInspectorViewController] setRepresentedObject:[document analyzer]];
-}
-
-
-// ------------------------------------------------------
-/// return whether sidebar is opened
-- (BOOL)isSidebarShown
-// ------------------------------------------------------
-{
-    return ![[self sidebarSplitView] isSubviewCollapsed:[self sidebar]];
-}
-
-
-// ------------------------------------------------------
-/// set sidebar visibility
-- (void)setSidebarShown:(BOOL)shown
-// ------------------------------------------------------
-{
-    if ([self isSidebarShown] == shown) { return; }
-    
-    BOOL isInitial = ![[self window] isVisible];  // on `windowDidLoad` and `window:didDecodeRestorableState:`
-    BOOL isFullscreen = ([[self window] styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask;
-    BOOL changesWindowSize = !isInitial && !isFullscreen;
-    CGFloat sidebarWidth = [self sidebarWidth] ?: [[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultSidebarWidthKey];
-    CGFloat dividerThickness = [[self sidebarSplitView] dividerThickness];
-    CGFloat position = [[self sidebarSplitView] maxPossiblePositionOfDividerAtIndex:0];
-    
-    // adjust divider position
-    if ((changesWindowSize && !shown) || (!changesWindowSize && shown)) {
-        position -= sidebarWidth;
-    }
-    
-    // update window width
-    if (changesWindowSize) {
-        NSRect windowFrame = [[self window] frame];
-        windowFrame.size.width += shown ? (sidebarWidth + dividerThickness) : - (sidebarWidth + dividerThickness);
-        [[self window] setFrame:windowFrame display:NO];
-    }
-    
-    // apply
-    [[self sidebarSplitView] setPosition:position ofDividerAtIndex:0];
-    [[self sidebarSplitView] adjustSubviews];
-}
-
-
-// ------------------------------------------------------
-/// toggle visibility of pane in sidebar
-- (void)toggleVisibilityOfSidebarTabItemAtIndex:(CESidebarTabIndex)index
-// ------------------------------------------------------
-{
-    NSUInteger currentIndex = [[self sidebar] indexOfTabViewItem:[[self sidebar] selectedTabViewItem]];
-    
-    if ([self isSidebarShown] && currentIndex == index) {
-        [self setSidebarShown:NO];
-    } else {
-        [[self sidebar] selectTabViewItemAtIndex:index];
-        [self setSidebarShown:YES];
-    }
+    return [(CEWindowContentViewController *)[self contentViewController] editor];
 }
 
 @end

@@ -42,7 +42,7 @@
 #import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
 #import "CEWindowController.h"
-#import "CEEditorWrapper.h"
+#import "CEEditorWrapper+Editor.h"
 #import "CETextView.h"
 
 #import "NSString+CEEncoding.h"
@@ -213,7 +213,8 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 - (void)makeWindowControllers
 // ------------------------------------------------------
 {
-    [self setWindowController:[[CEWindowController alloc] init]];
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"DocumentWindow" bundle:nil];
+    [self setWindowController:[storyboard instantiateInitialController]];
     [self addWindowController:[self windowController]];
 }
 

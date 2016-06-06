@@ -32,16 +32,12 @@
 @class CEEditorViewController;
 
 
-@interface CESplitViewController : NSViewController <NSSplitViewDelegate>
+@interface CESplitViewController : NSSplitViewController
 
-@property (readonly, nonatomic, nonnull) NSSplitView *splitView;
-@property (readonly, nonatomic, nullable) CEEditorViewController *focusedSubviewController;
+@property (readonly, nonatomic, nullable, weak) CEEditorViewController *focusedSubviewController;
 
 
-- (void)enumerateEditorViewsUsingBlock:(nonnull void (^)(CEEditorViewController * _Nonnull viewController))block;
-
-- (void)addSubviewForViewController:(nonnull CEEditorViewController *)editorViewController relativeTo:(nullable NSView *)otherEditorView;
-- (void)removeSubviewForViewController:(nonnull CEEditorViewController *)editorViewController;
+- (void)addSubviewForViewController:(nonnull CEEditorViewController *)editorViewController relativeTo:(nullable CEEditorViewController *)otherEditorViewController;
 
 - (nullable CEEditorViewController *)viewControllerForSubview:(nonnull __kindof NSView *)view;
 

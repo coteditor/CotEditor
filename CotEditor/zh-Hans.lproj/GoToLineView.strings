@@ -1,15 +1,16 @@
 /*
  
- CEGoToSheetController.h
+ GoToLineView.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-03-16.
-
+ Created by 1024jp on 2016-06-07.
+ Localized by onevcat
+ 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,14 +26,12 @@
  
  */
 
-@import AppKit;
+/* Class = "NSTextFieldCell"; title = "Line:"; ObjectID = "R30-Wf-Rfd"; */
+"R30-Wf-Rfd.title" = "行：";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "IQL-eH-PaH"; */
+"IQL-eH-PaH.ibShadowedIsNilPlaceholder" = "行号";
 
-
-@class CEEditorWrapper;
-
-
-@interface CEGoToSheetController : NSWindowController <NSWindowDelegate>
-
-- (void)beginSheetForEditor:(nonnull CEEditorWrapper *)editor;
-
-@end
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "JUX-sh-0Ej"; */
+"JUX-sh-0Ej.title" = "取消";
+/* Class = "NSButtonCell"; title = "Go"; ObjectID = "cuJ-kD-yiJ"; */
+"cuJ-kD-yiJ.title" = "跳转";

@@ -1,16 +1,15 @@
 /*
  
- CEWindowController.h
+ GoToLineView.strings (German)
  
  CotEditor
  http://coteditor.com
  
- Created by nakamuxu on 2004-12-13.
-
+ Created by 1024jp on 2016-06-07.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,18 +25,12 @@
  
  */
 
-@import Cocoa;
+/* Class = "NSTextFieldCell"; title = "Line:"; ObjectID = "R30-Wf-Rfd"; */
+"R30-Wf-Rfd.title" = "Zeile:";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "IQL-eH-PaH"; */
+"IQL-eH-PaH.ibShadowedIsNilPlaceholder" = "Zeilennummer";
 
-
-@class CEEditorWrapper;
-
-
-@interface CEWindowController : NSWindowController <NSWindowDelegate>
-
-@property (readonly, nonatomic, nullable) CEEditorWrapper *editor;
-
-
-// Public Methods
-- (void)showIncompatibleCharList;
-
-@end
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "JUX-sh-0Ej"; */
+"JUX-sh-0Ej.title" = "Abbrechen";
+/* Class = "NSButtonCell"; title = "Go"; ObjectID = "cuJ-kD-yiJ"; */
+"cuJ-kD-yiJ.title" = "Gehen";

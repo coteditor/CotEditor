@@ -1,15 +1,15 @@
 /*
  
- GoToSheet.strings (Japanese)
+ CEThemableProtocol.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-11-04.
- 
+ Created by 1024jp on 2014-04-21.
+
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,15 +25,13 @@
  
  */
 
-/* Class = "NSPanel"; title = "Go To"; ObjectID = "3wP-4P-fon"; */
-"3wP-4P-fon.title" = "移動";
+@import Foundation;
+#import "CETheme.h"
 
-/* Class = "NSMenuItem"; title = "Line"; ObjectID = "AJY-it-0zy"; */
-"AJY-it-0zy.title" = "行";
-/* Class = "NSMenuItem"; title = "Character"; ObjectID = "8lf-5Q-9KX"; */
-"8lf-5Q-9KX.title" = "文字";
 
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "iQf-7n-OD6"; */
-"iQf-7n-OD6.title" = "キャンセル";
-/* Class = "NSButtonCell"; title = "Go"; ObjectID = "zet-GK-4z4"; */
-"zet-GK-4z4.title" = "移動";
+@protocol CEThemable
+
+@required
+- (nullable CETheme *)theme;
+
+@end

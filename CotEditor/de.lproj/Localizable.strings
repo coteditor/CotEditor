@@ -152,6 +152,13 @@
 
 
 
+/* MARK: Document Window */
+// sidebar pane switcher tooltips
+"Document Inspector" = "Dokument Informationen";
+"Incompatible Characters" = "Inkompatible Zeichen";
+
+
+
 /* MARK: CEPrintTextView */
 // header/footer
 "Printed on %@" = "Gedruckt am %@";
