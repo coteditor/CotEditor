@@ -532,7 +532,7 @@ static const NSUInteger kMaxHistorySize = 20;
             
             if ([highlights count] == 0) {
                 NSBeep();
-                [progress setLocalizedDescription:NSLocalizedString(@"Not Found.", nil)];
+                [progress setLocalizedDescription:NSLocalizedString(@"Not Found", nil)];
             }
             
             if ([self closesIndicatorWhenDone]) {
@@ -683,7 +683,7 @@ static const NSUInteger kMaxHistorySize = 20;
                 
             } else {
                 NSBeep();
-                [progress setLocalizedDescription:NSLocalizedString(@"Not Found.", nil)];
+                [progress setLocalizedDescription:NSLocalizedString(@"Not Found", nil)];
             }
             
             if ([self closesIndicatorWhenDone]) {
