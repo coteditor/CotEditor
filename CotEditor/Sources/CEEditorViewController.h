@@ -34,7 +34,7 @@
 @class CESyntaxStyle;
 
 
-@interface CEEditorViewController : NSViewController <NSTextViewDelegate>
+@interface CEEditorViewController : NSViewController
 
 // readonly
 @property (readonly, nonatomic, nullable) CETextView *textView;
