@@ -29,7 +29,6 @@
 #import "CEWindowController.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
-#import "CETextView.h"
 
 #import "CEDefaults.h"
 

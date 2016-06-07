@@ -46,4 +46,6 @@
 
 - (void)setSelectedRangesWithUndo:(nonnull NSArray<NSValue *> *)ranges;
 
+- (void)trimTrailingWhitespaceKeepingEditingPoint:(BOOL)keepingEditingPoint;
+
 @end

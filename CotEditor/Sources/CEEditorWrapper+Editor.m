@@ -27,9 +27,9 @@
  */
 
 #import "CEEditorWrapper+Editor.h"
-#import "CETextView.h"
 #import "CEDocument.h"
 
+#import "NSTextView+CETextReplacement.h"
 #import "NSString+CENewLine.h"
 #import "NSString+CERange.h"
 

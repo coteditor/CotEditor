@@ -125,8 +125,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 
 @interface CETextView (LineProcessing)
 
-- (void)trimTrailingWhitespaceKeepingEditingPoint:(BOOL)keepingEditingPoint;
-
 - (IBAction)moveLineUp:(nullable id)sender;
 - (IBAction)moveLineDown:(nullable id)sender;
 - (IBAction)sortLinesAscending:(nullable id)sender;

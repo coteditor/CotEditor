@@ -30,7 +30,6 @@
 
 
 @class CEDocument;
-@class CETextView;
 @class CETheme;
 
 
@@ -43,19 +42,18 @@
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL showsInvisibles;
 @property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
+@property (nonatomic) NSUInteger tabWidth;
 
 // readonly
-@property (readonly, nonatomic, nullable) CETextView *focusedTextView;
+@property (readonly, nonatomic, nullable) __kindof NSTextView *focusedTextView;
+@property (readonly, nonatomic, nullable) NSFont *font;
+@property (readonly, nonatomic, nullable) CETheme *theme;
 
 
 #pragma mark Public Methods
 
 - (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges;
 - (void)clearAllMarkup;
-
-// style
-- (nullable NSFont *)font;
-- (nullable CETheme *)theme;
 
 - (void)invalidateStyleInTextStorage;
 

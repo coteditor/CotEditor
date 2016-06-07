@@ -177,4 +177,33 @@
     [[[self undoManager] prepareWithInvocationTarget:self] setSelectedRangesWithUndo:ranges];
 }
 
+
+// ------------------------------------------------------
+/// trim all trailing whitespace with/without keeeping editing point
+- (void)trimTrailingWhitespaceKeepingEditingPoint:(BOOL)keepingEditingPoint
+// ------------------------------------------------------
+{
+    NSMutableArray<NSString *> *replaceStrings = [NSMutableArray array];
+    NSMutableArray<NSValue *> *replaceRanges = [NSMutableArray array];
+    
+    NSUInteger cursorLocation = NSNotFound;
+    if (keepingEditingPoint && [self selectedRange].length == 0) {
+        cursorLocation = [self selectedRange].location;
+    }
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[ \\t]+$" options:NSRegularExpressionAnchorsMatchLines error:nil];
+    [regex enumerateMatchesInString:[self string] options:0
+                              range:NSMakeRange(0, [[self string] length])
+                         usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop)
+     {
+         if (NSMaxRange([result range]) == cursorLocation || NSLocationInRange(cursorLocation, [result range])) { return; }
+         
+         [replaceRanges addObject:[NSValue valueWithRange:[result range]]];
+         [replaceStrings addObject:@""];
+     }];
+    
+    [self replaceWithStrings:replaceStrings ranges:replaceRanges selectedRanges:nil
+                  actionName:NSLocalizedString(@"Trim Trailing Whitespace", nil)];
+}
+
 @end

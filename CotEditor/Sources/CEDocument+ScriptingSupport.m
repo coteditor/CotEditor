@@ -231,7 +231,7 @@
 - (NSNumber *)tabWidth
 // ------------------------------------------------------
 {
-    return @([[[self editor] focusedTextView] tabWidth]);
+    return @([(CETextView *)[[self editor] focusedTextView] tabWidth]);
 }
 
 
@@ -240,7 +240,7 @@
 - (void)setTabWidth:(NSNumber *)tabWidth
 // ------------------------------------------------------
 {
-    [[[self editor] focusedTextView] setTabWidth:[tabWidth unsignedIntegerValue]];
+    [(CETextView *)[[self editor] focusedTextView] setTabWidth:[tabWidth unsignedIntegerValue]];
 }
 
 

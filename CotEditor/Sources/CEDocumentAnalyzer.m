@@ -29,7 +29,6 @@
 #import "CEDocumentAnalyzer.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
-#import "CETextView.h"
 #import "CECharacterInfo.h"
 #import "CEDefaults.h"
 
