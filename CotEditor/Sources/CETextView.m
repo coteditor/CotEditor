@@ -28,14 +28,16 @@
 
 #import "CETextView.h"
 #import "CELayoutManager.h"
+#import "CEEditorScrollView.h"
+
 #import "CEColorCodePanelController.h"
 #import "CECharacterPopoverController.h"
-#import "CEEditorScrollView.h"
 #import "CEDocument.h"
+#import "CEAlphaWindow.h"
+
 #import "CEThemeManager.h"
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
-#import "CEAlphaWindow.h"
 
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -126,7 +128,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [[self textContainer] replaceLayoutManager:layoutManager];
         
         // set layer drawing policies
-        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawBeforeViewResize];
+        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawDuringViewResize];
         [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
         
         // set layout values
