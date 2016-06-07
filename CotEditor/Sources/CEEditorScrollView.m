@@ -31,7 +31,7 @@
 
 @implementation CEEditorScrollView
 
-#pragma mark Superclass Methods
+#pragma mark Scroll View Methods
 
 // ------------------------------------------------------
 /// use custom ruler view
@@ -39,20 +39,6 @@
 // ------------------------------------------------------
 {
     return [CELineNumberView class];
-}
-
-
-// ------------------------------------------------------
-/// initialize instance
-- (nonnull instancetype)initWithFrame:(NSRect)frameRect
-// ------------------------------------------------------
-{
-    self = [super initWithFrame:frameRect];
-    if (self) {
-        [self setHasVerticalRuler:YES];
-        [self setHasHorizontalRuler:NO];
-    }
-    return self;
 }
 
 
@@ -121,7 +107,9 @@
 - (NSTextLayoutOrientation)layoutOrientation
 // ------------------------------------------------------
 {
-    if (![self documentView] || ![[self documentView] isKindOfClass:[NSTextView class]]) { return NSTextLayoutOrientationHorizontal; }  // documentView is "unsafe"
+    if (![self documentView] || ![[self documentView] isKindOfClass:[NSTextView class]]) {  // documentView is "unsafe"
+        return NSTextLayoutOrientationHorizontal;
+    }
     
     return [(NSTextView *)[self documentView] layoutOrientation];
 }
