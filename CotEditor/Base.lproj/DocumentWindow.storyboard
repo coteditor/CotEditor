@@ -260,7 +260,7 @@
                 <splitViewController showSeguePresentationStyle="single" id="2gA-dj-5gh" customClass="CEMainViewController" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="tZe-bg-feG"/>
-                        <splitViewItem holdingPriority="750" id="lfq-9K-fZM"/>
+                        <splitViewItem holdingPriority="260" id="lfq-9K-fZM"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" id="0PU-mC-e2a">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="300"/>

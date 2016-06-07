@@ -552,6 +552,8 @@
 {
     BOOL showsNavigationBar = ![self showsNavigationBar];
     
+    _showsNavigationBar = showsNavigationBar;
+    
     for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [viewController setShowsNavigationBar:showsNavigationBar animate:YES];
     }
