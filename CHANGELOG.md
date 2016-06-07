@@ -23,13 +23,13 @@ develop
     - Show / Hide Status Bar
 - Remove feature that changes the line height of current document from the “Format” menu.
     - From this, `line spacing` property on AppleScript is also deprecated.
-- Remove  “Set as Default” button in the editor pacity panel.
+- Remove  “Set as Default” button in the editor opacity panel.
 - Open sidebar inward on Yosemite.
 - Remove byte count display in document inspector.
-- Display dialogs while changing file enocoding as a document-modal sheet.
-- Display also an accurete file size in document inspector.
+- Display dialogs while changing file encoding as a document-modal sheet.
+- Display also an accurate file size in document inspector.
 - Avoid expanding status bar into side inspector.
-- Improve line height calcuration.
+- Improve line height calculation.
 - Better syntax highlighting while editing.
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
 
@@ -41,13 +41,13 @@ develop
 ### New Features
 
 - Add newly rewrited syntax styles for “C” and “C++”.
-- From this change, previous  “C, C++, Objective-C” syntax style is deleted.
+    - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
 - Add syntax style for “MATLAB”.
 
 
 ### Improvements
 
-- Update “Markdown” syntax style: sp
+- Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with tiriple `*` and `_`.
 - Adjust height of the last empty line.
