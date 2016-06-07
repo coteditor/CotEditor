@@ -34,6 +34,11 @@ develop
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
 
 
+# Fixes
+
+- Fix an issue where tab width changing via AppleScript changes only the tab width in the focused editor rather than all split editors.
+
+
 
 2.5.6-alpha (132)
 --------------------------

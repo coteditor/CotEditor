@@ -29,7 +29,6 @@
 #import "CEDocument+ScriptingSupport.h"
 #import "CETextSelection.h"
 #import "CEEditorWrapper+Editor.h"
-#import "CETextView.h"
 #import "CESyntaxStyle.h"
 #import "CEEncodingManager.h"
 
@@ -231,7 +230,7 @@
 - (NSNumber *)tabWidth
 // ------------------------------------------------------
 {
-    return @([(CETextView *)[[self editor] focusedTextView] tabWidth]);
+    return @([[self editor] tabWidth]);
 }
 
 
@@ -240,7 +239,7 @@
 - (void)setTabWidth:(NSNumber *)tabWidth
 // ------------------------------------------------------
 {
-    [(CETextView *)[[self editor] focusedTextView] setTabWidth:[tabWidth unsignedIntegerValue]];
+    [[self editor] setTabWidth:[tabWidth unsignedIntegerValue]];
 }
 
 
@@ -420,7 +419,7 @@
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSArray<NSNumber *> *rangeArray = arguments[@"range"];
     
-    if ([rangeArray count] == 0) { return [NSString string]; }
+    if ([rangeArray count] == 0) { return @""; }
     
     NSInteger location = [rangeArray[0] integerValue];
     NSInteger length = ([rangeArray count] > 1) ? [rangeArray[1] integerValue] : 1;
@@ -428,7 +427,7 @@
     
     if (NSEqualRanges(NSMakeRange(0, 0), range)) { return @""; }
     
-    return [[[[self editor] focusedTextView] string] substringWithRange:range];
+    return [[[self editor] string] substringWithRange:range];
 }
 
 

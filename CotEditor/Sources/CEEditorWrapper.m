@@ -167,10 +167,10 @@
         state = [[self focusedTextView] usesAntialias] ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
-        state = ([[self focusedTextView] tabWidth] == [menuItem tag]) ? NSOnState : NSOffState;
+        state = ([self tabWidth] == [menuItem tag]) ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(closeSplitTextView:)) {
-        return ([[[[self splitViewController] view] subviews] count] > 1);
+        return ([[[self splitViewController] splitViewItems] count] > 1);
         
     } else if ([menuItem action] == @selector(changeTheme:)) {
         state = [[[self theme] name] isEqualToString:[menuItem title]] ? NSOnState : NSOffState;
@@ -490,6 +490,25 @@
 
 
 // ------------------------------------------------------
+/// textView's tab width
+- (NSUInteger)tabWidth
+// ------------------------------------------------------
+{
+    return [[self focusedTextView] tabWidth];
+}
+
+// ------------------------------------------------------
+/// change textView's tab width
+- (void)setTabWidth:(NSUInteger)tabWidth
+// ------------------------------------------------------
+{
+    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
+        [[viewController textView] setTabWidth:tabWidth];
+    }
+}
+
+
+// ------------------------------------------------------
 /// フォントを返す
 - (nullable NSFont *)font
 // ------------------------------------------------------
@@ -627,11 +646,7 @@
 - (IBAction)changeTabWidth:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSUInteger tabWidth = [sender tag];
-    
-    for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
-        [[viewController textView] setTabWidth:tabWidth];
-    }
+    [self setTabWidth:[sender tag]];
 }
 
 
