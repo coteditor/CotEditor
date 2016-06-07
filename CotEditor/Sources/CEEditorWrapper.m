@@ -810,6 +810,7 @@
     if (baseViewController) {
         [[editorViewController textView] setFont:[[baseViewController textView] font]];
         [[editorViewController textView] setTheme:[[baseViewController textView] theme]];
+        [[editorViewController textView] setTabWidth:[[baseViewController textView] tabWidth]];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
