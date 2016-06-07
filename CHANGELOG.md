@@ -40,7 +40,7 @@ develop
 
 ### New Features
 
-- Add newly rewrited syntax styles for “C” and “C++”.
+- Add newly rewritten syntax styles for “C” and “C++”.
     - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
 - Add syntax style for “MATLAB”.
 
@@ -49,7 +49,7 @@ develop
 
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
-    - Support emphasis with tiriple `*` and `_`.
+    - Support emphasis with triple `*` and `_`.
 - Adjust height of the last empty line.
 - Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.
 
