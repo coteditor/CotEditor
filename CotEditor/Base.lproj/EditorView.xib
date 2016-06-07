@@ -24,7 +24,6 @@
                 <outlet property="outlineLoadingMessage" destination="aUE-uy-XLQ" id="znm-Tz-Y1Y"/>
                 <outlet property="outlineMenu" destination="DpS-Kt-hzm" id="dAh-F5-hhe"/>
                 <outlet property="prevButton" destination="MlW-Dz-FOk" id="toA-oi-Zcg"/>
-                <outlet property="textView" destination="2qg-2N-p90" id="yvz-09-RQx"/>
                 <outlet property="view" destination="c22-O7-iKe" id="eMB-W2-wnL"/>
             </connections>
         </viewController>

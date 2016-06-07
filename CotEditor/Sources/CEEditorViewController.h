@@ -36,15 +36,14 @@
 
 @interface CEEditorViewController : NSViewController
 
+@property (nonatomic, nullable) NSTextStorage *textStorage;
+
 // readonly
 @property (readonly, nonatomic, nullable) CETextView *textView;
 @property (readonly, nonatomic, nullable) CENavigationBarController *navigationBarController;
 
 
-// initializer
-- (nonnull instancetype)initWithTextStorage:(nonnull NSTextStorage *)textStorage;
-
-// Public method
+// public method
 - (void)setShowsLineNum:(BOOL)showsLineNum;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle;

@@ -39,8 +39,6 @@ static const NSTimeInterval kDuration = 0.12;
 
 @interface CENavigationBarController ()
 
-@property (nonatomic, nullable, strong) IBOutlet NSTextView *textView;  // NSTextView cannot be weak
-
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *outlineMenu;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *prevButton;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *nextButton;
@@ -70,8 +68,6 @@ static const NSTimeInterval kDuration = 0.12;
 - (void)dealloc
 // ------------------------------------------------------
 {
-    _textView = nil;
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

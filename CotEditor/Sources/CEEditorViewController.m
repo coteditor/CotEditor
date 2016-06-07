@@ -37,7 +37,6 @@
 @interface CEEditorViewController ()
 
 @property (nonatomic, nullable, weak) IBOutlet __kindof NSScrollView *scrollView;
-@property (nonatomic, nonnull) NSTextStorage *textStorage;
 
 
 // readonly
@@ -56,26 +55,11 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// initialize instance
-- (nonnull instancetype)initWithTextStorage:(nonnull NSTextStorage *)textStorage
-// ------------------------------------------------------
-{
-    self = [super init];
-    if (self) {
-        _textStorage = textStorage;
-    }
-    return self;
-}
-
-
-// ------------------------------------------------------
 /// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
     [_textStorage removeLayoutManager:[_textView layoutManager]];
-    
-    _textView = nil;
 }
 
 
@@ -94,6 +78,8 @@
 // ------------------------------------------------------
 {
     [super viewDidLoad];
+    
+    [[self navigationBarController] setTextView:[self textView]];
     
     [self addChildViewController:[self navigationBarController]];
     

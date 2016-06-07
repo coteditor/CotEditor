@@ -791,7 +791,8 @@
 - (nonnull CEEditorViewController *)createEditorBasedViewController:(nullable CEEditorViewController *)baseViewController
 // ------------------------------------------------------
 {
-    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] initWithTextStorage:[[self document] textStorage]];
+    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] init];
+    [editorViewController setTextStorage:[[self document] textStorage]];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
     [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:baseViewController];

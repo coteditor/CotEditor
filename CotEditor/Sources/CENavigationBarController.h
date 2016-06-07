@@ -34,10 +34,13 @@
 
 @interface CENavigationBarController : NSViewController
 
+@property (nonatomic, nullable, strong) NSTextView *textView;  // NSTextView cannot be weak
+
+// readonly
 @property (readonly, nonatomic, getter=isShown) BOOL shown;
 
 
-// Public method
+// public method
 - (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
 
 - (void)setOutlineItems:(nonnull NSArray<CEOutlineItem *> *)outlineItems;

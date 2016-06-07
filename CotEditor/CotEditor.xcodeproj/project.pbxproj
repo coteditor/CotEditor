@@ -1611,7 +1611,6 @@
 				2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */,
 				2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */,
 				2A5411C119852C1C008B43DA /* EditorView.xib */,
-				2A3A1E741C45219800641CE0 /* HUDView.xib */,
 			);
 			name = "Document Window";
 			sourceTree = "<group>";
@@ -1736,6 +1735,7 @@
 				2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */,
 				2588E9CC07C4851C0060021D /* ProgressSheet.xib */,
 				2A6602D91D05D7C8003E8D87 /* GoToLineView.xib */,
+				2A3A1E741C45219800641CE0 /* HUDView.xib */,
 				2AB4326C1912ADAC00835004 /* CharacterPopover.xib */,
 			);
 			name = "Document Accessories";
@@ -3552,6 +3552,7 @@
 				2A3E847F1D07296200070A54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor -AppStore" */ = {
 			isa = XCConfigurationList;
