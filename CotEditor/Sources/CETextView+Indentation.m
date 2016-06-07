@@ -214,23 +214,11 @@
         if ([convertedString isEqualToString:selectedString]) { continue; }  // no need to convert
         
         [replacementRanges addObject:rangeValue];
-        [replacementStrings addObject:[selectedString stringByStandardizingIndentStyleTo:indentStyle
-                                                                                tabWidth:[self tabWidth]]];
+        [replacementStrings addObject:convertedString];
     }
     
-    if ([replacementRanges count] == 0) { return; }
-    if (![self shouldChangeTextInRanges:replacementRanges replacementStrings:replacementStrings]) { return; }
-    
-    NSTextStorage *textStorage = [self textStorage];
-    [replacementStrings enumerateObjectsWithOptions:NSEnumerationReverse
-                                         usingBlock:^(NSString *_Nonnull replacementString, NSUInteger idx, BOOL * _Nonnull stop)
-     {
-         NSRange replacementRange = [replacementRanges[idx] rangeValue];
-         [textStorage replaceCharactersInRange:replacementRange withString:replacementString];
-     }];
-    [self didChangeText];
-    
-    [[self undoManager] setActionName:NSLocalizedString(@"Convert Indentation", @"action name")];
+    [self replaceWithStrings:replacementStrings ranges:replacementRanges selectedRanges:nil
+                  actionName:NSLocalizedString(@"Convert Indentation", @"action name")];
 }
 
 @end

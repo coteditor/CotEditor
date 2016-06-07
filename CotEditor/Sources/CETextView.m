@@ -59,10 +59,6 @@ static NSString *_Nonnull const CEAutoBalancedClosingBracketAttributeName = @"au
 
 static const NSInteger kNoMenuItem = -1;
 
-// Page guide column
-static const NSUInteger kMinPageGuideColumn = 1;
-static const NSUInteger kMaxPageGuideColumn = 1000;
-
 
 @interface CETextView ()
 
