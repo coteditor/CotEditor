@@ -62,10 +62,10 @@
 
 // ------------------------------------------------------
 /// setup UI
-- (void)loadView
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super viewDidLoad];
     
     // remove updater option on AppStore ver.
 #ifdef APPSTORE

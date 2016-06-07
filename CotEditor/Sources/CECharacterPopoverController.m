@@ -102,10 +102,10 @@
 
 // ------------------------------------------------------
 /// modify xib items
-- (void)loadView
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super viewDidLoad];
     
     // remove group name field if not exists
     if (![self unicodeBlockName]) {

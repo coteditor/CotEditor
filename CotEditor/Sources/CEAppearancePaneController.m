@@ -101,10 +101,10 @@
 
 // ------------------------------------------------------
 /// setup UI
-- (void)loadView
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super viewDidLoad];
     
     [self setFontFamilyNameAndSize];
     

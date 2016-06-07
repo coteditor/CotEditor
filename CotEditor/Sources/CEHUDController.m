@@ -82,10 +82,10 @@ static NSTimeInterval const kFadeDuration = 0.5;
 
 // ------------------------------------------------------
 /// setup UI
-- (void)loadView
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super viewDidLoad];
     
     [[self view] setIdentifier:HUDIdentifier];
     [[[self view] layer] setCornerRadius:kCornerRadius];

@@ -71,10 +71,10 @@
 
 // ------------------------------------------------------
 /// setup UI
-- (void)loadView
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super loadView];
+    [super viewDidLoad];
     
     // 設定を読み込む
     [self loadSetting];
