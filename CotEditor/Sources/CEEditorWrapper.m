@@ -403,16 +403,17 @@
 - (void)markupRanges:(nonnull NSArray<NSValue *> *)ranges
 // ------------------------------------------------------
 {
-    NSColor *color = [[[self focusedTextView] theme] markupColor];
-    NSArray<NSLayoutManager *> *layoutManagers = [self layoutManagers];
+    NSTextStorage *textStorage = [self textStorage];
+    CENewLineType documentLineEnding = [[self document] lineEnding];
+    NSColor *color = [[[[[textStorage layoutManagers] firstObject] firstTextView] textColor] colorWithAlphaComponent:0.2];
     
     for (NSValue *rangeValue in ranges) {
         NSRange documentRange = [rangeValue rangeValue];
-        NSRange range = [[[self textStorage] string] convertRange:documentRange
-                                                  fromNewLineType:[[self document] lineEnding]
-                                                    toNewLineType:CENewLineLF];
+        NSRange range = [[textStorage string] convertRange:documentRange
+                                           fromNewLineType:documentLineEnding
+                                             toNewLineType:CENewLineLF];
         
-        for (NSLayoutManager *manager in layoutManagers) {
+        for (NSLayoutManager *manager in [textStorage layoutManagers]) {
             [manager addTemporaryAttribute:NSBackgroundColorAttributeName value:color
                          forCharacterRange:range];
         }
@@ -425,9 +426,9 @@
 - (void)clearAllMarkup
 // ------------------------------------------------------
 {
-    NSArray<NSLayoutManager *> *managers = [self layoutManagers];
+    NSTextStorage *textStorage = [self textStorage];
     
-    for (NSLayoutManager *manager in managers) {
+    for (NSLayoutManager *manager in [textStorage layoutManagers]) {
         [manager removeTemporaryAttribute:NSBackgroundColorAttributeName
                         forCharacterRange:NSMakeRange(0, [[manager attributedString] length])];
     }
@@ -828,15 +829,6 @@
 // ------------------------------------------------------
 {
     return [[self document] textStorage];
-}
-
-
-// ------------------------------------------------------
-/// return all layoutManagers
-- (NSArray<NSLayoutManager *> *)layoutManagers
-// ------------------------------------------------------
-{
-    return [[[self document] textStorage] layoutManagers];
 }
 
 

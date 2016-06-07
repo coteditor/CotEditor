@@ -44,7 +44,6 @@
 
 // auto genereted colors
 @property (readonly, nonatomic, nonnull) NSColor *weakTextColor;
-@property (readonly, nonatomic, nonnull) NSColor *markupColor;
 
 // syntax colors
 @property (readonly, nonatomic, nonnull) NSColor *keywordsColor;

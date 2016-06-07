@@ -46,7 +46,6 @@
 
 // auto genereted colors
 @property (readwrite, nonatomic, nonnull) NSColor *weakTextColor;
-@property (readwrite, nonatomic, nonnull) NSColor *markupColor;
 
 // syntax colors
 @property (readwrite, nonatomic, nonnull) NSColor *keywordsColor;
@@ -164,15 +163,6 @@
                                               saturation:0.6 * [textColor hslSaturationComponent]
                                                lightness:0.75 * [textColor lightnessComponent] + 0.25 * [backgroundColor lightnessComponent]
                                                    alpha:1.0];
-        
-        // 文字カラーと背景カラーの中間色であるマークアップカラーを生成
-        CGFloat bgR, bgG, bgB, fgR, fgG, fgB;
-        [textColor getRed:&fgR green:&fgG blue:&fgB alpha:NULL];
-        [backgroundColor getRed:&bgR green:&bgG blue:&bgB alpha:NULL];
-        _markupColor = [NSColor colorWithCalibratedRed:0.5 * (bgR + fgR)
-                                                 green:0.5 * (bgG + fgG)
-                                                  blue:0.5 * (bgB + fgB)
-                                                 alpha:0.5];
         
     }
     return self;
