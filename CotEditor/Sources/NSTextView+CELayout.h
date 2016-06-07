@@ -30,6 +30,7 @@
 
 @interface NSTextView (CETextWrapping)
 
+- (BOOL)wrapsLines;
 - (void)setWrapsLines:(BOOL)wrapsLines;
 
 @end

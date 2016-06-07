@@ -773,11 +773,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setLayoutOrientation:(NSTextLayoutOrientation)theOrientation
 // ------------------------------------------------------
 {
-    if (theOrientation != [self layoutOrientation]) {
-        // 折り返しを再セット
-        if ([[self textContainer] containerSize].width != CGFLOAT_MAX) {
-            [[self textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];
-        }
+    // reset text wrapping
+    if (theOrientation != [self layoutOrientation] && [self wrapsLines]) {
+        [[self textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];
     }
     
     [super setLayoutOrientation:theOrientation];

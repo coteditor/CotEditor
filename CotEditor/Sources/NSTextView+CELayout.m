@@ -33,6 +33,15 @@
 @implementation NSTextView (CETextWrapping)
 
 // ------------------------------------------------------
+/// if soft wrap lines
+- (BOOL)wrapsLines
+// ------------------------------------------------------
+{
+    return [[self textContainer] containerSize].width != CGFLOAT_MAX;
+}
+
+
+// ------------------------------------------------------
 /// set if soft wrap lines
 - (void)setWrapsLines:(BOOL)wrapsLines
 // ------------------------------------------------------
