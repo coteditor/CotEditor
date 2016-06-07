@@ -334,9 +334,9 @@ static NSString *HiraginoSansName;
 - (CGFloat)lineHeight
 // ------------------------------------------------------
 {
-    CGFloat lineHeightMultiple = [[[self firstTextView] defaultParagraphStyle] lineHeightMultiple];
+    CGFloat multiple = [[[self firstTextView] defaultParagraphStyle] lineHeightMultiple];
 
-    return round(lineHeightMultiple * [self defaultLineHeight]);
+    return round(multiple * [self defaultLineHeight]);
 }
 
 

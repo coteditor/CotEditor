@@ -32,7 +32,7 @@
 
 @implementation CEATSTypesetter
 
-#pragma mark ATSTypesetter Methods
+#pragma mark ATS Typesetter Methods
 
 // ------------------------------------------------------
 /// adjust vertical position to keep line height even with composed font
@@ -109,7 +109,7 @@
     for (NSInteger index = charIndex - 1; index >= 0; index--) {
         unichar character = [string characterAtIndex:index];
         
-        if (character == '\n') { return NO; }  // the line ended before hitting indent chars
+        if (character == '\n') { return NO; }  // the line ended before hitting to any indent characters
         if (character != ' ' && character != '\t') { return YES; }  // hit to non-indent character
     }
     
