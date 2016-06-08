@@ -266,6 +266,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // テーマ背景色を反映させる
     [[self window] setBackgroundColor:[[self theme] backgroundColor]];
+    [self setDrawsBackground:[[self window] isOpaque]];
     
     // 背景色に合わせたスクローラのスタイルをセット
     NSInteger knobStyle = [[self theme] isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
@@ -731,7 +732,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [super drawRect:dirtyRect];
     
     // draw page guide
-    if ([self showsPageGuide]) {
+    if ([self showsPageGuide] && [self textColor]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPageGuideColumnKey];
         CGFloat charWidth = [(CELayoutManager *)[self layoutManager] spaceWidth];
         CGFloat inset = [self textContainerOrigin].x;
