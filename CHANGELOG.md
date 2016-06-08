@@ -34,6 +34,7 @@ develop
 - Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted.
 - Fix an issue where incompatible character markup could broken if undo/redo lossy encoding change continuously.
 - Fix an issue where keybindings of some submenu containers were customizable.
+- Fix an issue where tab width could be set as `0`.
 - Fix an issue where byte length display did not update after changing file encoding.
 
 
