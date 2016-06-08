@@ -34,8 +34,12 @@
 #import "NSString+CENewLine.h"
 
 
+static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
+
+
 @interface CETextViewDelegate ()
 
+@property (nonatomic, nullable, weak) NSTimer *currentLineUpdateTimer;
 @property (nonatomic) NSUInteger lastCursorLocation;
 
 @property (nonatomic, nullable) IBOutlet CETextView *textView;
@@ -64,9 +68,9 @@
                                                    options:NSKeyValueObservingOptionNew
                                                    context:NULL];
         
-        // update current line highlight on changing frame size
+        // update current line highlight on changing frame size with a delay
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(invalidateCurrentLineRect)
+                                                 selector:@selector(setupCurrentLineUpdateTimer)
                                                      name:NSViewFrameDidChangeNotification
                                                    object:[self textView]];
     }
@@ -83,6 +87,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     _textView = nil;
+    [_currentLineUpdateTimer invalidate];
     
 }
 
@@ -96,7 +101,7 @@
     
     if ([keyPath isEqualToString:CEDefaultHighlightCurrentLineKey]) {
         if ([newValue boolValue]) {
-            [self invalidateCurrentLineRect];
+            [self setupCurrentLineUpdateTimer];
         } else {
             NSRect rect = [[self textView] highlightLineRect];
             [[self textView] setHighlightLineRect:NSZeroRect];
@@ -232,7 +237,9 @@
     if (![textView isKindOfClass:[NSTextView class]]) { return; }
     
     // highlight the current line
-    [self invalidateCurrentLineRect];
+    // -> For the selection change, call `updateCurrentLineRect` directly rather than setting currentLineUpdateTimer
+    //    in order to provide a quick feedback of change to users.
+    [self updateCurrentLineRect];
     
     // highlight matching brace
     [self highlightMatchingBraceInTextView:textView];
@@ -244,7 +251,7 @@
 - (void)textViewDidChangeTypingAttributes:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    [self invalidateCurrentLineRect];
+    [self setupCurrentLineUpdateTimer];
 }
 
 
@@ -329,25 +336,41 @@
 
 
 // ------------------------------------------------------
-/// update current line highlight area
-- (void)invalidateCurrentLineRect
+/// set update timer for current line highlight calculation
+- (void)setupCurrentLineUpdateTimer
 // ------------------------------------------------------
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightCurrentLineKey]) { return; }
     
+    if ([[self currentLineUpdateTimer] isValid]) {
+        [[self currentLineUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:kCurrentLineUpdateInterval]];
+    } else {
+        [self setCurrentLineUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:kCurrentLineUpdateInterval
+                                                                   target:self
+                                                                 selector:@selector(updateCurrentLineRect)
+                                                                 userInfo:nil
+                                                                  repeats:NO]];
+    }
+}
+
+
+// ------------------------------------------------------
+/// update current line highlight area
+- (void)updateCurrentLineRect
+// ------------------------------------------------------
+{
+    // [note] Don't invoke this method too often but with a currentLineUpdateTimer because this is a heavy task.
+    
+    [[self currentLineUpdateTimer] invalidate];
+    
     CETextView *textView = [self textView];
-    
-    // avoid useless calcuration before textView is initialized.  (2014-07 by 1024jp)
-    if (![[textView window] isVisible]) { return; }
-    
     NSLayoutManager *layoutManager = [textView layoutManager];
     
     // calcurate current line rect
-    NSRange lineRange = [[textView string] lineRangeForRange:[textView selectedRange]];
-    lineRange.length -= (lineRange.length > 0) ? 1 : 0;  // remove line ending
-    NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL];
+    NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:[textView selectedRange] actualCharacterRange:NULL];
     NSRect rect = [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:[textView textContainer]];
-    rect.size.width = [[textView textContainer] containerSize].width - 2 * [[textView textContainer] lineFragmentPadding];
+    rect.origin.x = [[textView textContainer] lineFragmentPadding];
+    rect.size.width = [[textView textContainer] containerSize].width - 2 * rect.origin.x;
     rect = NSOffsetRect(rect, [textView textContainerOrigin].x, [textView textContainerOrigin].y);
     
     // let textView draw the rect to highlight

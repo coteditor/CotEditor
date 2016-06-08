@@ -57,7 +57,7 @@
     [[self textContainer] setWidthTracksTextView:wrapsLines];
     if (wrapsLines) {
         NSSize contentSize = [[self enclosingScrollView] contentSize];
-        [[self textContainer] setContainerSize:NSMakeSize(contentSize.width / [self scale], CGFLOAT_MAX)];
+        [[self textContainer] setContainerSize:NSMakeSize(round(contentSize.width / [self scale]), CGFLOAT_MAX)];
         [self setConstrainedFrameSize:contentSize];
     } else {
         [[self textContainer] setContainerSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
