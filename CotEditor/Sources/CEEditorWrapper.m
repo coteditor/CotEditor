@@ -895,9 +895,6 @@
     
     for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setTheme:theme];
-        
-        // re-select to update current line highlight
-        [[viewController textView] setSelectedRanges:[[viewController textView] selectedRanges]];
     }
     
     [self invalidateSyntaxHighlight];
