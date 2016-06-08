@@ -45,6 +45,7 @@
 #import "NSTextView+CELayout.h"
 #import "NSString+CECounting.h"
 #import "NSString+CEEncoding.h"
+#import "NSString+Indentation.h"
 #import "NSFont+CESize.h"
 
 
@@ -412,13 +413,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         NSString *wholeString = [self string];
         NSUInteger insretionLocation = NSMaxRange([self selectedRange]);
         NSRange lineRange = [wholeString lineRangeForRange:NSMakeRange(insretionLocation, 0)];
-        NSString *lineStr = [wholeString substringWithRange:lineRange];
         
         // decrease indent level if the line is consists of only whitespaces
-        if ([lineStr rangeOfString:@"^[ \\t　]+\\n?$"
-                           options:NSRegularExpressionSearch
-                             range:NSMakeRange(0, [lineStr length])].location != NSNotFound)
-        {
+        if ([wholeString rangeOfString:@"^[ \\t]+\\n?$" options:NSRegularExpressionSearch range:lineRange].location != NSNotFound) {
             // find correspondent opening-brace
             NSInteger precedingLocation = insretionLocation - 1;
             NSUInteger skipMatchingBrace = 0;
@@ -438,10 +435,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
             
             // outdent
             if (precedingLocation >= 0) {
-                NSRange precedingLineRange = [wholeString lineRangeForRange:NSMakeRange(precedingLocation, 0)];
-                NSString *precedingLineStr = [wholeString substringWithRange:precedingLineRange];
-                NSUInteger desiredLevel = [self indentLevelOfString:precedingLineStr];
-                NSUInteger currentLevel = [self indentLevelOfString:lineStr];
+                NSUInteger desiredLevel = [wholeString indentLevelAtLocation:precedingLocation tabWidth:[self tabWidth]];
+                NSUInteger currentLevel = [wholeString indentLevelAtLocation:insretionLocation tabWidth:[self tabWidth]];
                 NSUInteger levelToReduce = currentLevel - desiredLevel;
                 
                 while (levelToReduce--) {
@@ -495,7 +490,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
     NSString *lineStr = [[self string] substringWithRange:NSMakeRange(lineRange.location,
                                                                       NSMaxRange(selectedRange) - lineRange.location)];
-    NSRange indentRange = [lineStr rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
+    NSRange indentRange = [lineStr rangeOfString:@"^[ \\t]+" options:NSRegularExpressionSearch];
     
     // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008-12-13
     if (NSMaxRange(selectedRange) >= (selectedRange.location + NSMaxRange(indentRange))) {
@@ -1280,7 +1275,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 // ------------------------------------------------------
 {
     [super insertText:[NSString stringWithCharacters:&kYenCharacter length:1]
-     replacementRange:[self selectedRange]];
+     replacementRange:[self rangeForUserTextChange]];
 }
 
 
@@ -1496,22 +1491,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     }
     
     return column;
-}
-
-
-// ------------------------------------------------------
-/// インデントレベルを算出
-- (NSUInteger)indentLevelOfString:(nonnull NSString *)string
-// ------------------------------------------------------
-{
-    NSRange indentRange = [string rangeOfString:@"^[ \\t　]+" options:NSRegularExpressionSearch];
-    
-    if (indentRange.location == NSNotFound) { return 0; }
-    
-    NSString *indent = [string substringWithRange:indentRange];
-    NSUInteger numberOfTabChars = [[indent componentsSeparatedByString:@"\t"] count] - 1;
-    
-    return numberOfTabChars + (([indent length] - numberOfTabChars) / [self tabWidth]);
 }
 
 

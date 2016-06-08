@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,5 +42,8 @@ typedef NS_ENUM(NSUInteger, CEIndentStyle) {
 
 /// standardize indent style
 - (nonnull NSString *)stringByStandardizingIndentStyleTo:(CEIndentStyle)indentStyle tabWidth:(NSUInteger)tabWidth;
+
+/// detect indent level of line at the location
+- (NSUInteger)indentLevelAtLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth;
 
 @end

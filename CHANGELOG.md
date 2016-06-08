@@ -24,6 +24,7 @@ develop
 - Remove feature that changes the line height of current document from the “Format” menu.
     - From this, `line spacing` property on AppleScript is also deprecated.
 - Remove  “Set as Default” button in the editor opacity panel.
+- Change specification not to treat full-width spaces as indent.
 - Open sidebar inward on Yosemite.
 - Remove byte count display in document inspector.
 - Display dialogs while changing file encoding as a document-modal sheet.

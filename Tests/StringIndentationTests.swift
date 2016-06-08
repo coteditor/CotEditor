@@ -59,5 +59,19 @@ class StringIndentationTests: XCTestCase {
         XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Space, tabWidth: 2), "    foo\tbar")
         XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Tab, tabWidth: 2), string)
     }
+    
+    
+    func testIndentLevelDetection() {
+        XCTAssertEqual("    foo".indentLevelAtLocation(0, tabWidth:0), 0)
+        
+        XCTAssertEqual("    foo".indentLevelAtLocation(0, tabWidth:4), 1)
+        XCTAssertEqual("    foo".indentLevelAtLocation(4, tabWidth:2), 2)
+        XCTAssertEqual("\tfoo".indentLevelAtLocation(4, tabWidth:2), 1)
+        
+        XCTAssertEqual("  \t foo".indentLevelAtLocation(4, tabWidth:2), 2)
+        XCTAssertEqual("   \t foo".indentLevelAtLocation(4, tabWidth:2), 3)
+        
+        XCTAssertEqual("    foo\n  bar".indentLevelAtLocation(10, tabWidth:2), 1)
+    }
 
 }

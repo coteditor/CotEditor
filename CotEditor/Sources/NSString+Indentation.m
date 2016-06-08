@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -110,6 +110,33 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
     return [regex stringByReplacingMatchesInString:self options:0
                                              range:NSMakeRange(0, [self length])
                                       withTemplate:template];
+}
+
+
+// ------------------------------------------------------
+/// detect indent level of line at the location
+- (NSUInteger)indentLevelAtLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth
+// ------------------------------------------------------
+{
+    NSAssert(tabWidth > 0, @"Tab width must be 1 or higher.");
+    
+    NSRange indentRange = [self indentRangeAtIndex:location];
+    
+    if (indentRange.location == NSNotFound) { return 0; }
+    
+    NSString *indent = [self substringWithRange:indentRange];
+    NSUInteger numberOfTabChars = [[indent componentsSeparatedByString:@"\t"] count] - 1;
+    
+    return numberOfTabChars + (([indent length] - numberOfTabChars) / tabWidth);
+}
+
+
+// ------------------------------------------------------
+- (NSRange)indentRangeAtIndex:(NSUInteger)location
+// ------------------------------------------------------
+{
+    NSRange lineRange = [self lineRangeForRange:NSMakeRange(location, 0)];
+    return [self rangeOfString:@"^[ \\t]+" options:NSRegularExpressionSearch range:lineRange];
 }
 
 @end
