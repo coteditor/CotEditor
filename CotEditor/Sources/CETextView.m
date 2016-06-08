@@ -1388,38 +1388,31 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// set defaultParagraphStyle based on font and tabWidth, and line height
+/// set defaultParagraphStyle based on font, tabWidth, and line height
 - (void)invalidateDefaultParagraphStyle
 // ------------------------------------------------------
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     
+    // set line height
+    //   -> The actual line height will be calculated in CELayoutManager and CEATSTypesetter based on this line height multiple.
+    //      Because the default Cocoa Text System calculate line height differently
+    //      if the first character of the document is drawn with another font (typically by a composite font).
     [paragraphStyle setLineHeightMultiple:[self lineHeight]];
     
     // calculate tab interval
     NSFont *font = [[self font] screenFont] ?: [self font];
     CGFloat tabInterval = [self tabWidth] * [font advancementForCharacter:' '];
-    
-    // -> NSParagraphStyle の lineSpacing を設定すればテキスト描画時の行間は制御できるが、
-    //    「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-    //    挿入すると行間がズレる」問題が生じるため、CELayoutManager および CEATSTypesetter で制御している
     [paragraphStyle setTabStops:@[]];  // clear default tab stops
     [paragraphStyle setDefaultTabInterval:tabInterval];
     
     [self setDefaultParagraphStyle:paragraphStyle];
     
-    [self invalidateTypingAttributes];
-}
-
-
-// ------------------------------------------------------
-/// キー入力時の文字修飾辞書をセット
-- (void)invalidateTypingAttributes
-// ------------------------------------------------------
-{
-    [self setTypingAttributes:@{NSParagraphStyleAttributeName: [self defaultParagraphStyle],
-                                NSFontAttributeName: [self font],
-                                NSForegroundColorAttributeName: [self textColor]}];
+    // add paragraph style also to the typing attributes
+    //   -> textColor and font are added automatically.
+    NSMutableDictionary *typingAttributes = [[self typingAttributes] mutableCopy];
+    typingAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    [self setTypingAttributes:typingAttributes];
 }
 
 
