@@ -355,11 +355,11 @@ static NSString *HiraginoSansName;
     CGFloat hangingIndent = [self spaceWidth] * [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultHangingIndentWidthKey];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[ \\t]+(?!$)" options:0 error:nil];
     
-    // get dummy attributes to make calcuration of indent width the same as CElayoutManager's calcuration (2016-04)
+    // get dummy attributes to make calculation of indent width the same as CElayoutManager's calculation (2016-04)
     NSMutableDictionary *indentAttributes = [[[self firstTextView] typingAttributes] mutableCopy];
     NSParagraphStyle *defaultParagraphStyle = [[self firstTextView] defaultParagraphStyle];
     NSMutableParagraphStyle *typingParagraphStyle = [indentAttributes[NSParagraphStyleAttributeName] mutableCopy];
-    [typingParagraphStyle setHeadIndent:1.0];  // dummy indent value for size calcuration (2016-04)
+    [typingParagraphStyle setHeadIndent:1.0];  // dummy indent value for size calculation (2016-04)
     indentAttributes[NSParagraphStyleAttributeName] = [typingParagraphStyle copy];
     
     NSMutableDictionary<NSString *, NSNumber *> *cache = [NSMutableDictionary dictionary];
