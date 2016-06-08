@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -68,9 +68,11 @@ class StringIndentationTests: XCTestCase {
         XCTAssertEqual("    foo".indentLevelAtLocation(4, tabWidth:2), 2)
         XCTAssertEqual("\tfoo".indentLevelAtLocation(4, tabWidth:2), 1)
         
+        // tab-space mix
         XCTAssertEqual("  \t foo".indentLevelAtLocation(4, tabWidth:2), 2)
         XCTAssertEqual("   \t foo".indentLevelAtLocation(4, tabWidth:2), 3)
         
+        // multiline
         XCTAssertEqual("    foo\n  bar".indentLevelAtLocation(10, tabWidth:2), 1)
     }
 

@@ -118,7 +118,7 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
 - (NSUInteger)indentLevelAtLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth
 // ------------------------------------------------------
 {
-    NSAssert(tabWidth > 0, @"Tab width must be 1 or higher.");
+    if (tabWidth == 0) { return 0; }  // avoid to divide with zero
     
     NSRange indentRange = [self indentRangeAtIndex:location];
     
@@ -131,7 +131,11 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
 }
 
 
+
+#pragma mark Private Methodss
+
 // ------------------------------------------------------
+/// return range of indent characters
 - (NSRange)indentRangeAtIndex:(NSUInteger)location
 // ------------------------------------------------------
 {
