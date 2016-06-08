@@ -122,15 +122,16 @@ static CGFontRef BoldLineNumberFont;
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
-    NSColor *counterColor = [[self theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
-    NSColor *textColor = [[self theme] weakTextColor];
+    NSColor *counterColor = [self backgroundColor];
+    NSColor *textColor = [self textColor];
+    CGFloat borderAlpha = 0.3 * [textColor alphaComponent];
     
     // fill background
     [[counterColor colorWithAlphaComponent:0.08] set];
     [NSBezierPath fillRect:dirtyRect];
     
     // draw frame border (1px)
-    [[textColor colorWithAlphaComponent:0.3] set];
+    [[textColor colorWithAlphaComponent:borderAlpha] set];
     switch ([self orientation]) {
         case NSVerticalRuler:
             [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
@@ -159,7 +160,7 @@ static CGFontRef BoldLineNumberFont;
     
     NSTextView *textView = [self textView];
     NSLayoutManager *layoutManager = [textView layoutManager];
-    NSColor *textColor = [[self theme] weakTextColor];
+    NSColor *textColor = [self textColor];
     CGFloat scale = [textView convertSize:NSMakeSize(1.0, 1.0) toView:nil].width;
     
     // set graphics context
@@ -427,12 +428,25 @@ static CGFontRef BoldLineNumberFont;
 }
 
 
+//------------------------------------------------------
+/// return text color considering current accesibility setting
+- (nonnull NSColor *)textColor
+//------------------------------------------------------
+{
+    NSColor *textColor = [[self textView] textColor];
+    if ([[NSWorkspace sharedWorkspace] accessibilityDisplayShouldIncreaseContrast]) {
+        return textColor;
+    }
+    return [textColor colorWithAlphaComponent:0.67];
+}
+
+
 // ------------------------------------------------------
 /// return coloring theme
-- (nullable CETheme *)theme
+- (nonnull NSColor *)backgroundColor
 // ------------------------------------------------------
 {
-    return [(NSTextView<CEThemable> *)[self clientView] theme];
+    return [[(NSTextView<CEThemable> *)[self clientView] theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
 }
 
 

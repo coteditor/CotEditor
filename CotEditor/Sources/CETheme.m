@@ -44,9 +44,6 @@
 @property (readwrite, nonatomic, nonnull) NSColor *insertionPointColor;
 @property (readwrite, nonatomic, nonnull) NSColor *lineHighLightColor;
 
-// auto genereted colors
-@property (readwrite, nonatomic, nonnull) NSColor *weakTextColor;
-
 // syntax colors
 @property (readwrite, nonatomic, nonnull) NSColor *keywordsColor;
 @property (readwrite, nonatomic, nonnull) NSColor *commandsColor;
@@ -157,13 +154,6 @@
         
         // 背景が暗いかを判定して属性として保持
         _darkTheme = ([backgroundColor brightnessComponent] < [textColor brightnessComponent]);
-        
-        // 背景の色を加味した、淡い文字色を生成
-        _weakTextColor = [NSColor colorWithCalibratedHue:[textColor hueComponent]
-                                              saturation:0.6 * [textColor hslSaturationComponent]
-                                               lightness:0.75 * [textColor lightnessComponent] + 0.25 * [backgroundColor lightnessComponent]
-                                                   alpha:1.0];
-        
     }
     return self;
 }
@@ -179,18 +169,6 @@
         return [NSColor selectedTextBackgroundColor];
     }
     return _selectionColor;
-}
-
-
-//------------------------------------------------------
-/// return weak text color considering current accesibility setting
-- (nonnull NSColor *)weakTextColor
-//------------------------------------------------------
-{
-    if ([[NSWorkspace sharedWorkspace] accessibilityDisplayShouldIncreaseContrast]) {
-        return [self textColor];
-    }
-    return _weakTextColor;
 }
 
 

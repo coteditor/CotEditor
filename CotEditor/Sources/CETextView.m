@@ -266,7 +266,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [super viewDidMoveToWindow];
     
     // テーマ背景色を反映させる
-    [[self window] setBackgroundColor:[[self theme] backgroundColor]];
+    [[self window] setBackgroundColor:[self backgroundColor]];
     [self setDrawsBackground:[[self window] isOpaque]];
     
     // 背景色に合わせたスクローラのスタイルをセット
