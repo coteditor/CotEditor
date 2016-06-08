@@ -361,14 +361,15 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
 {
     // [note] Don't invoke this method too often but with a currentLineUpdateTimer because this is a heavy task.
     
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultHighlightCurrentLineKey]) { return; }
+    
     [[self currentLineUpdateTimer] invalidate];
     
     CETextView *textView = [self textView];
-    NSLayoutManager *layoutManager = [textView layoutManager];
     
     // calcurate current line rect
-    NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:[textView selectedRange] actualCharacterRange:NULL];
-    NSRect rect = [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:[textView textContainer]];
+    NSRange glyphRange = [[textView layoutManager] glyphRangeForCharacterRange:[textView selectedRange] actualCharacterRange:NULL];
+    NSRect rect = [[textView layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[textView textContainer]];
     rect.origin.x = [[textView textContainer] lineFragmentPadding];
     rect.size.width = [[textView textContainer] containerSize].width - 2 * rect.origin.x;
     rect = NSOffsetRect(rect, [textView textContainerOrigin].x, [textView textContainerOrigin].y);
