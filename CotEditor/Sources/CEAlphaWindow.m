@@ -150,7 +150,7 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
 {
     [self setStoredBackgroundColor:[self backgroundColor]];
     [self setBackgroundColor:nil];  // restore window background to default (affect to the toolbar's background)
-    [self setOpaque:YES];  // set opaque flag　expressly in order to let textView which observes opaque update its background color
+    [self setOpaque:YES];  // set opaque flag expressly in order to let textView which observes opaque update its background color
 }
 
 
