@@ -1177,7 +1177,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
     // 設定されたフォントでないもので表示されることがあるため、リセットする
-    [[self textStorage] setAttributes:[self typingAttributes] range:range];
+    [[self textStorage] addAttributes:[self typingAttributes] range:range];
     
     [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
     [self detectLinkIfNeeded];
