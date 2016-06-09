@@ -36,6 +36,7 @@
 @interface CEIncompatibleCharsViewController () <CEIncompatibleCharacterScannerDelegate, NSTableViewDelegate>
 
 @property (nonatomic, getter=isCharAvailable) BOOL charAvailable;
+@property (nonatomic, getter=isVisible) BOOL visible;
 
 @property (nonatomic, nullable) IBOutlet NSArrayController *incompatibleCharsController;
 
@@ -64,6 +65,7 @@
 - (void)viewWillAppear
 // ------------------------------------------------------
 {
+    [self setVisible:YES];
     [[self scanner] scan];
     
     [super viewWillAppear];
@@ -75,6 +77,7 @@
 - (void)viewDidDisappear
 // ------------------------------------------------------
 {
+    [self setVisible:NO];
     [[[[self scanner] document] editor] clearAllMarkup];
     
     [super viewDidDisappear];
@@ -96,7 +99,7 @@
     [super setRepresentedObject:representedObject];
     
     [[self scanner] setDelegate:self];
-    [[self scanner] scan];
+    [[self scanner] invalidate];
 }
 
 
@@ -112,7 +115,7 @@
 - (BOOL)documentNeedsUpdateIncompatibleCharacter:(__kindof NSDocument *)document
 // ------------------------------------------------------
 {
-    return ![[self view] isHidden];
+    return [self isVisible];
 }
 
 
