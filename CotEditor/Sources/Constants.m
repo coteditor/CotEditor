@@ -114,16 +114,16 @@ NSString *_Nonnull const CEFileDropExtensionsKey = @"extensions";
 NSString *_Nonnull const CEFileDropFormatStringKey = @"formatString";
 
 // tokens
-NSString *_Nonnull const CEFileDropAbsolutePathToken = @"<<<ABSOLUTE-PATH>>>";
-NSString *_Nonnull const CEFileDropRelativePathToken = @"<<<RELATIVE-PATH>>>";
-NSString *_Nonnull const CEFileDropFilenameToken = @"<<<FILENAME>>>";
-NSString *_Nonnull const CEFileDropFilenameNosuffixToken = @"<<<FILENAME-NOSUFFIX>>>";
-NSString *_Nonnull const CEFileDropFileextensionToken = @"<<<FILEEXTENSION>>>";
-NSString *_Nonnull const CEFileDropFileextensionLowerToken = @"<<<FILEEXTENSION-LOWER>>>";
-NSString *_Nonnull const CEFileDropFileextensionUpperToken = @"<<<FILEEXTENSION-UPPER>>>";
-NSString *_Nonnull const CEFileDropDirectoryToken = @"<<<DIRECTORY>>>";
-NSString *_Nonnull const CEFileDropImagewidthToken = @"<<<IMAGEWIDTH>>>";
-NSString *_Nonnull const CEFileDropImagehightToken = @"<<<IMAGEHEIGHT>>>";
+NSString *_Nonnull const CEFileDropTokenAbsolutePath = @"<<<ABSOLUTE-PATH>>>";
+NSString *_Nonnull const CEFileDropTokenRelativePath = @"<<<RELATIVE-PATH>>>";
+NSString *_Nonnull const CEFileDropTokenFilename = @"<<<FILENAME>>>";
+NSString *_Nonnull const CEFileDropTokenFilenameNosuffix = @"<<<FILENAME-NOSUFFIX>>>";
+NSString *_Nonnull const CEFileDropTokenFileextension = @"<<<FILEEXTENSION>>>";
+NSString *_Nonnull const CEFileDropTokenFileextensionLower = @"<<<FILEEXTENSION-LOWER>>>";
+NSString *_Nonnull const CEFileDropTokenFileextensionUpper = @"<<<FILEEXTENSION-UPPER>>>";
+NSString *_Nonnull const CEFileDropTokenDirectory = @"<<<DIRECTORY>>>";
+NSString *_Nonnull const CEFileDropTokenImageWidth = @"<<<IMAGEWIDTH>>>";
+NSString *_Nonnull const CEFileDropTokenImageHeight = @"<<<IMAGEHEIGHT>>>";
 
 
 

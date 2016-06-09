@@ -34,3 +34,6 @@
 
 // Encoding Detection Tests
 #import "NSString+CEEncoding.h"
+
+// URL Extensions Tests
+#import "NSURL+CEAdditions.h"

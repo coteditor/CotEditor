@@ -82,16 +82,16 @@ extern NSString *_Nonnull const CEFileDropExtensionsKey;
 extern NSString *_Nonnull const CEFileDropFormatStringKey;
 
 // tokens
-extern NSString *_Nonnull const CEFileDropAbsolutePathToken;
-extern NSString *_Nonnull const CEFileDropRelativePathToken;
-extern NSString *_Nonnull const CEFileDropFilenameToken;
-extern NSString *_Nonnull const CEFileDropFilenameNosuffixToken;
-extern NSString *_Nonnull const CEFileDropFileextensionToken;
-extern NSString *_Nonnull const CEFileDropFileextensionLowerToken;
-extern NSString *_Nonnull const CEFileDropFileextensionUpperToken;
-extern NSString *_Nonnull const CEFileDropDirectoryToken;
-extern NSString *_Nonnull const CEFileDropImagewidthToken;
-extern NSString *_Nonnull const CEFileDropImagehightToken;
+extern NSString *_Nonnull const CEFileDropTokenAbsolutePath;
+extern NSString *_Nonnull const CEFileDropTokenRelativePath;
+extern NSString *_Nonnull const CEFileDropTokenFilename;
+extern NSString *_Nonnull const CEFileDropTokenFilenameNosuffix;
+extern NSString *_Nonnull const CEFileDropTokenFileextension;
+extern NSString *_Nonnull const CEFileDropTokenFileextensionLower;
+extern NSString *_Nonnull const CEFileDropTokenFileextensionUpper;
+extern NSString *_Nonnull const CEFileDropTokenDirectory;
+extern NSString *_Nonnull const CEFileDropTokenImageWidth;
+extern NSString *_Nonnull const CEFileDropTokenImageHeight;
 
 
 
