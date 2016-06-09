@@ -116,7 +116,7 @@
 
 
 // ------------------------------------------------------
-/// return current line number veiw
+/// return current line number view
 - (nullable NSRulerView *)lineNumberView
 // ------------------------------------------------------
 {
