@@ -384,11 +384,20 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     // trim trailing whitespace if needed
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultTrimsTrailingWhitespaceOnSaveKey]) {
         BOOL keepsEditingPoint = (saveOperation == NSAutosaveInPlaceOperation || saveOperation == NSAutosaveElsewhereOperation);
-        [[[self editor] focusedTextView] trimTrailingWhitespaceKeepingEditingPoint:keepsEditingPoint];
+        
+        for (NSLayoutManager *layoutManager in [[self textStorage] layoutManagers]) {
+            NSTextView *textView = [layoutManager textViewForBeginningOfSelection];
+            if (!keepsEditingPoint || [layoutManager layoutManagerOwnsFirstResponderInWindow:[textView window]]) {
+                [textView trimTrailingWhitespaceKeepingEditingPoint:keepsEditingPoint];
+                break;  // trimming once is enough
+            }
+        }
     }
     
     // break undo grouping
-    [[[self editor] focusedTextView] breakUndoCoalescing];
+    for (NSLayoutManager *layoutManager in [[self textStorage] layoutManagers]) {
+        [[layoutManager textViewForBeginningOfSelection] breakUndoCoalescing];
+    }
     
     // modify place to create backup file
     //   -> save backup file always in `~/Library/Autosaved Information/` directory
