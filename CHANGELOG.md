@@ -26,6 +26,7 @@ develop
 - Remove  “Set as Default” button in the editor opacity panel.
 - Change specification not to treat full-width spaces as indent.
 - Open sidebar inward on Yosemite.
+- Make indent deletion more naturally.
 - Remove byte count display in document inspector.
 - Display dialogs while changing file encoding as a document-modal sheet.
 - Display also an accurate file size in document inspector.

@@ -539,20 +539,18 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // delete tab
     if ((selectedRange.length == 0) && [self isAutoTabExpandEnabled]) {
-        NSUInteger tabWidth = [self tabWidth];
-        NSInteger column = [[self string] columnOfLocation:selectedRange.location tabWidth:tabWidth];
-        NSInteger targetWidth = tabWidth - (column % tabWidth);
+        NSRange indentRange = [[self string] rangeOfIndentAtIndex:selectedRange.location];
         
-        if (selectedRange.location >= targetWidth) {
-            NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
-            BOOL shouldDelete = NO;
-            for(NSUInteger i = targetRange.location; i < NSMaxRange(targetRange); i++ ) {
-                shouldDelete = ([[self string] characterAtIndex:i] == ' ');
-                
-                if (!shouldDelete) { break; }
-            }
-            if (shouldDelete) {
-                [self setSelectedRange:targetRange];
+        if (selectedRange.location <= NSMaxRange(indentRange)) {
+            NSUInteger tabWidth = [self tabWidth];
+            NSInteger column = [[self string] columnOfLocation:selectedRange.location tabWidth:tabWidth];
+            NSInteger targetLength = tabWidth - (column % tabWidth);
+            
+            if (selectedRange.location >= targetLength) {
+                NSRange targetRange = NSMakeRange(selectedRange.location - targetLength, targetLength);
+                if ([[[self string] substringWithRange:targetRange] isEqualToString:[NSString stringWithSpaces:targetLength]]) {
+                    [self setSelectedRange:targetRange];
+                }
             }
         }
     }
