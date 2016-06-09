@@ -122,6 +122,8 @@
 		2A476CAB1D09C6B50088E37A /* NSURL+CEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CA91D09C6B50088E37A /* NSURL+CEAdditions.m */; };
 		2A476CAC1D09C8960088E37A /* NSURL+CEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CA91D09C6B50088E37A /* NSURL+CEAdditions.m */; };
 		2A476CAE1D09C8C80088E37A /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */; };
+		2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CB01D09D0500088E37A /* FontExtensionTests.swift */; };
+		2A476CB21D09D1CD0088E37A /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
 		2A49861F1A67CC7100172797 /* CEEditorScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A49861E1A67CC7100172797 /* CEEditorScrollView.m */; };
 		2A4C9A7F1D099CD900C76F28 /* CEFileDropComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4C9A7E1D099CD900C76F28 /* CEFileDropComposer.m */; };
 		2A4C9A801D099CD900C76F28 /* CEFileDropComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4C9A7E1D099CD900C76F28 /* CEFileDropComposer.m */; };
@@ -652,6 +654,7 @@
 		2A476CA81D09C6B50088E37A /* NSURL+CEAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+CEAdditions.h"; sourceTree = "<group>"; };
 		2A476CA91D09C6B50088E37A /* NSURL+CEAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+CEAdditions.m"; sourceTree = "<group>"; };
 		2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
+		2A476CB01D09D0500088E37A /* FontExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		2A49861D1A67CC7100172797 /* CEEditorScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEEditorScrollView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2A49861E1A67CC7100172797 /* CEEditorScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEEditorScrollView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A4C9A7D1D099CD900C76F28 /* CEFileDropComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEFileDropComposer.h; sourceTree = "<group>"; };
@@ -1805,6 +1808,7 @@
 				2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */,
 				2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */,
 				2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */,
+				2A476CB01D09D0500088E37A /* FontExtensionTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2584,6 +2588,7 @@
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2A9C07541CF9F958006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2ABFF6D71D02856A00BE2795 /* KeyBindingsTests.swift in Sources */,
+				2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */,
 				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
 				2A476CAC1D09C8960088E37A /* NSURL+CEAdditions.m in Sources */,
 				2AF587411CF7713B009D44A2 /* NSString+CEAdditions.m in Sources */,
@@ -2599,6 +2604,7 @@
 				2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */,
 				2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */,
 				2ACC653C1C9844ED000574DC /* CETheme.m in Sources */,
+				2A476CB21D09D1CD0088E37A /* NSFont+CESize.m in Sources */,
 				2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */,
 				2A7135811CFFDBF300ADA555 /* CEFilePermissionsFormatter.m in Sources */,
 				2ABFF6D81D02858800BE2795 /* CEKeyBindingUtils.m in Sources */,
