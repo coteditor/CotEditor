@@ -50,7 +50,7 @@ extern NSString *_Nonnull const CEKeyBindingChildrenKey;
 - (nonnull NSString *)keyEquivalentForAction:(nonnull SEL)action modifierMask:(nonnull NSEventModifierFlags *)modifierMask;
 
 - (nonnull NSMutableArray<NSString *> *)keySpecCharsListFromOutlineData:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData;
-- (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask;
+- (nullable NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask;
 
 - (BOOL)usesDefaultMenuKeyBindings;
 - (BOOL)usesDefaultTextKeyBindings;

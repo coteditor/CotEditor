@@ -280,24 +280,21 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// キー押下を取得
+/// key is pressed
 - (void)keyDown:(nonnull NSEvent *)theEvent
 // ------------------------------------------------------
 {
     NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
-    // IM で日本語入力変換中でないときのみ追加テキストキーバインディングを実行
     BOOL isModifierKeyPressed = ([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask) != 0;  // check just in case
+    
+    // perform snippet insertion if not in the middle of Japanese input
     if (![self hasMarkedText] && charIgnoringMod && isModifierKeyPressed) {
-        NSString *selectorStr = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
-                                                                                        modifierMask:[theEvent modifierFlags]];
+        NSString *selectorString = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
+                                                                                           modifierMask:[theEvent modifierFlags]];
         
-        if ([selectorStr length] > 0) {
-            if (([selectorStr hasPrefix:@"insertCustomText"]) && ([selectorStr length] == 20)) {
-                NSInteger patternNumber = [[selectorStr substringFromIndex:17] integerValue];
-                [self insertCustomTextWithPatternNumber:patternNumber];
-            } else {
-                [self doCommandBySelector:NSSelectorFromString(selectorStr)];
-            }
+        if (([selectorString length] == 20) && [selectorString hasPrefix:@"insertCustomText_"]) {
+            NSInteger patternNumber = [[selectorString substringFromIndex:[@"insertCustomText_" length]] integerValue];
+            [self insertCustomTextWithPatternNumber:patternNumber];
             return;
         }
     }
@@ -1353,16 +1350,14 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     if (patternNumber < 0 || patternNumber >= [texts count]) { return; }
     
+    NSRange range = [self rangeForUserTextChange];
     NSString *string = texts[patternNumber];
     
-    if ([self shouldChangeTextInRange:[self selectedRange] replacementString:string]) {
-        [self replaceCharactersInRange:[self selectedRange] withString:string];
-        [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
+    if ([self shouldChangeTextInRange:range replacementString:string]) {
+        [self replaceCharactersInRange:range withString:string];
         [self didChangeText];
+        [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
         [self scrollRangeToVisible:[self selectedRange]];
-        
-    } else {
-        NSBeep();
     }
 }
 

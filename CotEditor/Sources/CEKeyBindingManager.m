@@ -160,7 +160,7 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 
 // ------------------------------------------------------
 /// キー入力に応じたセレクタ文字列を返す
-- (nonnull NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask
+- (nullable NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask
 // ------------------------------------------------------
 {
     NSString *keySpecChars = [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:keyEquivalent modifierMask:modifierMask];
