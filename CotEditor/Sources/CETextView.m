@@ -456,29 +456,25 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// タブ入力、タブを展開
+/// insert tab & expand tab
 - (void)insertTab:(nullable id)sender
 // ------------------------------------------------------
 {
     if ([self isAutoTabExpandEnabled]) {
         NSInteger tabWidth = [self tabWidth];
-        NSInteger column = [self columnOfLocation:[self selectedRange].location expandsTab:YES];
-        NSInteger length = tabWidth - ((column + tabWidth) % tabWidth);
-        NSMutableString *spaces = [NSMutableString string];
+        NSInteger column = [[self string] columnOfLocation:[self selectedRange].location tabWidth:tabWidth];
+        NSInteger length = tabWidth - (column % tabWidth);
+        NSString *spaces = [NSString stringWithSpaces:length];
 
-        while (length--) {
-            [spaces appendString:@" "];
-        }
-        [super insertText:spaces replacementRange:[self selectedRange]];
-        
-    } else {
-        [super insertTab:sender];
+        return [super insertText:spaces replacementRange:[self selectedRange]];
     }
+    
+    [super insertTab:sender];
 }
 
 
 // ------------------------------------------------------
-/// 改行コード入力、オートインデント実行
+/// insert new line & perform auto-indent
 - (void)insertNewline:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -487,25 +483,22 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     }
     
     NSRange selectedRange = [self selectedRange];
-    NSRange lineRange = [[self string] lineRangeForRange:selectedRange];
-    NSString *lineStr = [[self string] substringWithRange:NSMakeRange(lineRange.location,
-                                                                      NSMaxRange(selectedRange) - lineRange.location)];
-    NSRange indentRange = [lineStr rangeOfString:@"^[ \\t]+" options:NSRegularExpressionSearch];
+    NSRange indentRange = [[self string] rangeOfIndentAtIndex:selectedRange.location];
     
-    // インデントを選択状態で改行入力した時は置換とみなしてオートインデントしない 2008-12-13
-    if (NSMaxRange(selectedRange) >= (selectedRange.location + NSMaxRange(indentRange))) {
+    // don't auto-indent if indent is selected (2008-12-13)
+    if (NSEqualRanges(selectedRange, indentRange)) {
         return [super insertNewline:sender];
     }
     
     NSString *indent = @"";
-    BOOL shouldIncreaseIndentLevel = NO;
-    BOOL shouldExpandBlock = NO;
-    
     if (indentRange.location != NSNotFound) {
-        indent = [lineStr substringWithRange:indentRange];
+        NSRange baseIndentRange = NSIntersectionRange(indentRange, NSMakeRange(0, selectedRange.location));
+        indent = [[self string] substringWithRange:baseIndentRange];
     }
     
     // calculation for smart indent
+    BOOL shouldIncreaseIndentLevel = NO;
+    BOOL shouldExpandBlock = NO;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSmartIndentKey]) {
         unichar lastChar = [self characterBeforeInsertion];
         unichar nextChar = [self characterAfterInsertion];
@@ -538,7 +531,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// デリート、タブを展開しているときのスペースを調整削除
+/// delete & adjust indent
 - (void)deleteBackward:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -547,19 +540,16 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     // delete tab
     if ((selectedRange.length == 0) && [self isAutoTabExpandEnabled]) {
         NSUInteger tabWidth = [self tabWidth];
-        NSInteger column = [self columnOfLocation:selectedRange.location expandsTab:YES];
-        NSInteger length = tabWidth - ((column + tabWidth) % tabWidth);
-        NSInteger targetWidth = (length == 0) ? tabWidth : length;
+        NSInteger column = [[self string] columnOfLocation:selectedRange.location tabWidth:tabWidth];
+        NSInteger targetWidth = tabWidth - (column % tabWidth);
         
         if (selectedRange.location >= targetWidth) {
             NSRange targetRange = NSMakeRange(selectedRange.location - targetWidth, targetWidth);
-            NSString *target = [[self string] substringWithRange:targetRange];
             BOOL shouldDelete = NO;
-            for (NSUInteger i = 0; i < targetWidth; i++) {
-                shouldDelete = ([target characterAtIndex:i] == ' ');
-                if (!shouldDelete) {
-                    break;
-                }
+            for(NSUInteger i = targetRange.location; i < NSMaxRange(targetRange); i++ ) {
+                shouldDelete = ([[self string] characterAtIndex:i] == ' ');
+                
+                if (!shouldDelete) { break; }
             }
             if (shouldDelete) {
                 [self setSelectedRange:targetRange];
@@ -572,13 +562,15 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         (selectedRange.location > 0) && (selectedRange.location < [[self string] length]) &&
         [kMatchingOpeningBracketsSet characterIsMember:[self characterBeforeInsertion]])
     {
-        NSString *surroundingCharacters = [[self string] substringWithRange:NSMakeRange(selectedRange.location - 1, 2)];
+        NSRange targetRange = NSMakeRange(selectedRange.location - 1, 2);
+        NSString *surroundingCharacters = [[self string] substringWithRange:targetRange];
+        
         if ([surroundingCharacters isEqualToString:@"{}"] ||
             [surroundingCharacters isEqualToString:@"[]"] ||
             [surroundingCharacters isEqualToString:@"()"] ||
             [surroundingCharacters isEqualToString:@"\"\""])
         {
-            [self setSelectedRange:NSMakeRange(selectedRange.location - 1, 2)];
+            [self setSelectedRange:targetRange];
         }
         
     }
@@ -1472,25 +1464,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     } else {
         NSBeep();
     }
-}
-
-
-// ------------------------------------------------------
-/// calculate column number at location in the line
-- (NSUInteger)columnOfLocation:(NSUInteger)location expandsTab:(BOOL)expandsTab
-// ------------------------------------------------------
-{
-    NSRange lineRange = [[self string] lineRangeForRange:NSMakeRange(location, 0)];
-    NSInteger column = location - lineRange.location;
-    
-    // count tab width
-    if (expandsTab) {
-        NSString *beforeInsertion = [[self string] substringWithRange:NSMakeRange(lineRange.location, column)];
-        NSUInteger numberOfTabChars = [[beforeInsertion componentsSeparatedByString:@"\t"] count] - 1;
-        column += numberOfTabChars * ([self tabWidth] - 1);
-    }
-    
-    return column;
 }
 
 

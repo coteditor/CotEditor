@@ -61,6 +61,14 @@ class StringIndentationTests: XCTestCase {
     }
     
     
+    // MARK: Other Tests
+    
+    func testIndentCreation() {
+        XCTAssertEqual(NSString(spaces: 1), " ")
+        XCTAssertEqual(NSString(spaces: 4), "    ")
+    }
+    
+    
     func testIndentLevelDetection() {
         XCTAssertEqual("    foo".indentLevelAtLocation(0, tabWidth:0), 0)
         

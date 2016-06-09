@@ -37,6 +37,20 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+/// string repeating spaces desired times
++ (nonnull NSString *)stringWithSpaces:(NSUInteger)numberOfSpaces
+// ------------------------------------------------------
+{
+    NSMutableString *spaces = [NSMutableString string];
+    while (numberOfSpaces--) {
+        [spaces appendString:@" "];
+    }
+    
+    return [NSString stringWithString:spaces];
+}
+
+
+// ------------------------------------------------------
 /// detect indent style
 - (CEIndentStyle)detectIndentStyle
 // ------------------------------------------------------
@@ -120,7 +134,7 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
 {
     if (tabWidth == 0) { return 0; }  // avoid to divide with zero
     
-    NSRange indentRange = [self indentRangeAtIndex:location];
+    NSRange indentRange = [self rangeOfIndentAtIndex:location];
     
     if (indentRange.location == NSNotFound) { return 0; }
     
@@ -131,12 +145,26 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
 }
 
 
+// ------------------------------------------------------
+/// calculate column number at location in the line expanding tab (\t) character
+- (NSUInteger)columnOfLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth
+// ------------------------------------------------------
+{
+    NSRange lineRange = [self lineRangeForRange:NSMakeRange(location, 0)];
+    NSInteger column = location - lineRange.location;
+    
+    // count tab width
+    NSString *beforeInsertion = [self substringWithRange:NSMakeRange(lineRange.location, column)];
+    NSUInteger numberOfTabChars = [[beforeInsertion componentsSeparatedByString:@"\t"] count] - 1;
+    column += numberOfTabChars * (tabWidth - 1);
+    
+    return column;
+}
 
-#pragma mark Private Methodss
 
 // ------------------------------------------------------
-/// return range of indent characters
-- (NSRange)indentRangeAtIndex:(NSUInteger)location
+/// range of indent characters in line at the location
+- (NSRange)rangeOfIndentAtIndex:(NSUInteger)location
 // ------------------------------------------------------
 {
     NSRange lineRange = [self lineRangeForRange:NSMakeRange(location, 0)];

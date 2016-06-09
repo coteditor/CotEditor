@@ -50,15 +50,7 @@
     }
     
     // create indent string to prepend
-    NSMutableString *indent = [NSMutableString string];
-    if ([self isAutoTabExpandEnabled]) {
-        NSUInteger tabWidth = [self tabWidth];
-        while (tabWidth--) {
-            [indent appendString:@" "];
-        }
-    } else {
-        [indent setString:@"\t"];
-    }
+    NSString *indent = [self isAutoTabExpandEnabled] ? [NSString stringWithSpaces:[self tabWidth]] : @"\t";
     
     // create shifted string
     NSMutableString *newString = [NSMutableString stringWithString:[[self string] substringWithRange:lineRange]];

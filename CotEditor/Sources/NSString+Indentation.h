@@ -37,6 +37,9 @@ typedef NS_ENUM(NSUInteger, CEIndentStyle) {
 
 @interface NSString (Indentation)
 
+/// string repeating spaces desired times
++ (nonnull NSString *)stringWithSpaces:(NSUInteger)numberOfSpaces;
+
 /// detect indent style
 - (CEIndentStyle)detectIndentStyle;
 
@@ -45,5 +48,11 @@ typedef NS_ENUM(NSUInteger, CEIndentStyle) {
 
 /// detect indent level of line at the location
 - (NSUInteger)indentLevelAtLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth;
+
+/// calculate column number at location in the line expanding tab (\t) character
+- (NSUInteger)columnOfLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth;
+
+/// range of indent characters in line at the location
+- (NSRange)rangeOfIndentAtIndex:(NSUInteger)location;
 
 @end
