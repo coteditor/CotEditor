@@ -692,7 +692,7 @@
     if (!currentEditorViewController) { return; }
     
     // end current editing
-    [[[NSTextInputContext currentInputContext] client] unmarkText];
+    [[NSTextInputContext currentInputContext] discardMarkedText];
     
     CEEditorViewController *newEditorViewController = [self createEditorBasedViewController:currentEditorViewController];
     
@@ -729,7 +729,7 @@
     if (!currentEditorViewController) { return; }
     
     // end current editing
-    [[[NSTextInputContext currentInputContext] client] unmarkText];
+    [[NSTextInputContext currentInputContext] discardMarkedText];
     
     // move focus to the next text view if the view to close has a focus
     if ([[self window] firstResponder] == [currentEditorViewController textView]) {
