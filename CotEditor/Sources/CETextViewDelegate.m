@@ -368,7 +368,8 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
     CETextView *textView = [self textView];
     
     // calcurate current line rect
-    NSRange glyphRange = [[textView layoutManager] glyphRangeForCharacterRange:[textView selectedRange] actualCharacterRange:NULL];
+    NSRange lineRange = [[textView string] lineRangeForRange:[textView selectedRange]];
+    NSRange glyphRange = [[textView layoutManager] glyphRangeForCharacterRange:lineRange actualCharacterRange:NULL];
     NSRect rect = [[textView layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[textView textContainer]];
     rect.origin.x = [[textView textContainer] lineFragmentPadding];
     rect.size.width = [[textView textContainer] containerSize].width - 2 * rect.origin.x;
