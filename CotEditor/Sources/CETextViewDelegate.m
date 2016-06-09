@@ -29,7 +29,10 @@
 #import "CETextViewDelegate.h"
 #import "CETextView.h"
 
+#import "CEScriptManager.h"
+
 #import "CEDefaults.h"
+#import "Constants.h"
 
 #import "NSString+CENewLine.h"
 
@@ -209,6 +212,38 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
     }
     
     return [candidateWords array];
+}
+
+
+// ------------------------------------------------------
+/// add script menu to context menu
+- (nullable NSMenu *)textView:(nonnull NSTextView *)view menu:(nonnull NSMenu *)menu forEvent:(nonnull NSEvent *)event atIndex:(NSUInteger)charIndex
+// ------------------------------------------------------
+{
+    // append Script menu
+    NSMenu *scriptMenu = [[CEScriptManager sharedManager] contexualMenu];
+    if (scriptMenu) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultInlineContextualScriptMenuKey]) {
+            [menu addItem:[NSMenuItem separatorItem]];
+            [[[menu itemArray] lastObject] setTag:CEScriptMenuItemTag];
+            
+            for (NSMenuItem *item in [scriptMenu itemArray]) {
+                NSMenuItem *addItem = [item copy];
+                [addItem setTag:CEScriptMenuItemTag];
+                [menu addItem:addItem];
+            }
+            [menu addItem:[NSMenuItem separatorItem]];
+            
+        } else {
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
+            [item setImage:[NSImage imageNamed:@"ScriptTemplate"]];
+            [item setTag:CEScriptMenuItemTag];
+            [item setSubmenu:scriptMenu];
+            [menu addItem:item];
+        }
+    }
+    
+    return menu;
 }
 
 

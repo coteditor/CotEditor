@@ -37,7 +37,6 @@
 
 #import "CEThemeManager.h"
 #import "CEKeyBindingManager.h"
-#import "CEScriptManager.h"
 #import "CEFileDropComposer.h"
 
 #import "CEDefaults.h"
@@ -58,8 +57,6 @@ NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification = @"CETex
 static NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
 static NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 static NSString *_Nonnull const CEAutoBalancedClosingBracketAttributeName = @"autoBalancedClosingBracket";
-
-static const NSInteger kNoMenuItem = -1;
 
 
 @interface CETextView ()
@@ -605,36 +602,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // add "Select All" menu item
     NSInteger pasteIndex = [menu indexOfItemWithTarget:nil andAction:@selector(paste:)];
-    if (pasteIndex != kNoMenuItem) {
+    if (pasteIndex >= 0) {  // -1 == not found
         [menu insertItemWithTitle:NSLocalizedString(@"Select All", nil)
                            action:@selector(selectAll:) keyEquivalent:@""
                           atIndex:(pasteIndex + 1)];
-    }
-    
-    // append a separator
-    [menu addItem:[NSMenuItem separatorItem]];
-    
-    // append Script menu
-    NSMenu *scriptMenu = [[CEScriptManager sharedManager] contexualMenu];
-    if (scriptMenu) {
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultInlineContextualScriptMenuKey]) {
-            [menu addItem:[NSMenuItem separatorItem]];
-            [[[menu itemArray] lastObject] setTag:CEScriptMenuItemTag];
-            
-            for (NSMenuItem *item in [scriptMenu itemArray]) {
-                NSMenuItem *addItem = [item copy];
-                [addItem setTag:CEScriptMenuItemTag];
-                [menu addItem:addItem];
-            }
-            [menu addItem:[NSMenuItem separatorItem]];
-            
-        } else {
-            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
-            [item setImage:[NSImage imageNamed:@"ScriptTemplate"]];
-            [item setTag:CEScriptMenuItemTag];
-            [item setSubmenu:scriptMenu];
-            [menu addItem:item];
-        }
     }
     
     return menu;
