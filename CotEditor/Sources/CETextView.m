@@ -53,7 +53,7 @@
 NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification = @"CETextViewDidBecomeFirstResponderNotification";
 
 
-// constant
+// constants
 static NSString *_Nonnull const CEAutoBalancedClosingBracketAttributeName = @"autoBalancedClosingBracket";
 
 static const CGFloat kTextContainerInsetTop = 4.0;
@@ -63,11 +63,11 @@ static const CGFloat kTextContainerInsetLeft = 0.0;
 
 @interface CETextView ()
 
+@property (nonatomic) CGFloat lineHeight;
+@property (nonatomic) NSColor *highlightLineColor;  // current line background color
+
 @property (nonatomic, weak) NSTimer *completionTimer;
 @property (nonatomic, copy) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
-
-@property (nonatomic) CGFloat lineHeight;
-@property (nonatomic) NSColor *highlightLineColor;  // カレント行ハイライト色
 
 @property (nonatomic) CGFloat initialMagnificationScale;
 @property (nonatomic) CGFloat deferredMagnification;
@@ -209,15 +209,16 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     [super viewDidMoveToWindow];
     
-    // テーマ背景色を反映させる
+    // apply theme background color to window
+    //   -> this is important if window is translucent.
     [[self window] setBackgroundColor:[self backgroundColor]];
     [self setDrawsBackground:[[self window] isOpaque]];
     
-    // 背景色に合わせたスクローラのスタイルをセット
+    // set scroller style corresponding to background color
     NSInteger knobStyle = [[self theme] isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
-    // ウインドウの透明フラグを監視する
+    // observe window opacity flag
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didWindowOpacityChange:)
                                                  name:CEWindowOpacityDidChangeNotification
@@ -454,9 +455,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         unichar lastChar = [self characterBeforeInsertion];
         unichar nextChar = [self characterAfterInsertion];
         
-        // `{}` の中で改行した場合はインデントを展開する
+        // expand idnent block if returned inside `{}`
         shouldExpandBlock = ((lastChar == '{') && (nextChar == '}'));
-        // 改行直前の文字が `:` か `{` の場合はインデントレベルを1つ上げる
+        // increace font indent level if the character just before the return is `:` or `{`
         shouldIncreaseIndentLevel = ((lastChar == ':') || (lastChar == '{'));
     }
     
@@ -529,7 +530,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// コンテキストメニューを返す
+/// customize context menu
 - (nullable NSMenu *)menuForEvent:(nonnull NSEvent *)theEvent
 // ------------------------------------------------------
 {
@@ -566,7 +567,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// フォント変更
+/// change font via font panel
 - (void)changeFont:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -591,7 +592,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// フォントを設定
+/// set font
 - (void)setFont:(nullable NSFont *)font
 // ------------------------------------------------------
 {
@@ -611,7 +612,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// ビュー内の背景を描画
+/// draw background
 - (void)drawViewBackgroundInRect:(NSRect)rect
 // ------------------------------------------------------
 {
@@ -626,7 +627,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// ビュー内を描画
+/// draw view
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
@@ -638,7 +639,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         CGFloat charWidth = [(CELayoutManager *)[self layoutManager] spaceWidth];
         CGFloat inset = [self textContainerOrigin].x;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
-        CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for adjustment
+        CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for an esthetic adjustment
         
         [[[self textColor] colorWithAlphaComponent:0.2] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, NSMinY(dirtyRect))
@@ -648,11 +649,11 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// 特定の範囲が見えるようにスクロール
+/// scroll to display specific range
 - (void)scrollRangeToVisible:(NSRange)range
 // ------------------------------------------------------
 {
-    // 矢印キーが押されているときは1行ずつのスクロールにする
+    // scroll line by line if an arrow key is pressed
     if ([NSEvent modifierFlags] & NSNumericPadKeyMask) {
         NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:range actualCharacterRange:nil];
         NSRect glyphRect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];
@@ -671,7 +672,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// 表示方向を変更
+/// change text layout orientation
 - (void)setLayoutOrientation:(NSTextLayoutOrientation)theOrientation
 // ------------------------------------------------------
 {
@@ -685,7 +686,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// Pasetboard内文字列の改行コードを書類に設定されたものに置換する
+/// Pasetboard 内文字列の改行コードを書類に設定されたものに置換する
 - (BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard types:(NSArray<NSString *> *)types
 // ------------------------------------------------------
 {
@@ -754,7 +755,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// フォントパネルを更新
+/// update font panel to set current font
 - (void)updateFontPanel
 // ------------------------------------------------------
 {
@@ -850,7 +851,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 //=======================================================
 
 // ------------------------------------------------------
-/// メニューの有効／無効を制御
+/// apply current state to related menu items
 - (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
 // ------------------------------------------------------
 {
@@ -868,7 +869,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         ([menuItem action] == @selector(normalizeUnicodeWithModifiedNFD:)))
     {
         return ([self selectedRange].length > 0);
-        // （カラーコード編集メニューは常に有効）
+        // -> The color code panel is always valid.
         
     } else if ([menuItem action] == @selector(showSelectionInfo:)) {
         NSString *selection = [[self string] substringWithRange:[self selectedRange]];
@@ -889,7 +890,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 //=======================================================
 
 // ------------------------------------------------------
-/// ツールバーアイコンの有効／無効を制御
+/// apply current state to related toolbar items
 - (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
 // ------------------------------------------------------
 {
@@ -905,7 +906,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 #pragma mark Public Accessors
 
 // ------------------------------------------------------
-/// カラーリング設定を更新する
+/// update coloring settings
 - (void)setTheme:(nullable CETheme *)theme;
 // ------------------------------------------------------
 {
@@ -931,7 +932,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// タブ幅を変更
+/// change tab width and apply to views
 - (void)setTabWidth:(NSUInteger)tabWidth
 // ------------------------------------------------------
 {
@@ -947,7 +948,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// 行間値をセットし、テキストと行番号を再描画
+/// change line height and apply to views
 - (void)setLineHeight:(CGFloat)lineHeight
 // ------------------------------------------------------
 {
@@ -963,7 +964,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// アンチエイリアス適用を切り替える
+/// change whether text is antialiased
 - (void)setUsesAntialias:(BOOL)usesAntialias
 // ------------------------------------------------------
 {
@@ -973,7 +974,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// アンチエイリアスを適用しているか
+/// whether text is antialiased
 - (BOOL)usesAntialias
 // ------------------------------------------------------
 {
@@ -982,7 +983,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// 不可視文字の表示／非表示を切り替える
+/// change whether invisible characters are shown
 - (void)setShowsInvisibles:(BOOL)showsInvisibles
 // ------------------------------------------------------
 {
@@ -991,7 +992,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// 不可視文字を表示しているか
+/// whether invisible characters are shown
 - (BOOL)showsInvisibles
 // ------------------------------------------------------
 {
@@ -1091,7 +1092,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// 選択範囲を含む行全体を選択する
+/// select all lines that include current selections
 - (IBAction)selectLines:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -1106,26 +1107,26 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// 半角円マークを入力
+/// input an Yen sign (¥)
 - (IBAction)inputYenMark:(nullable id)sender
 // ------------------------------------------------------
 {
-    [super insertText:[NSString stringWithCharacters:&kYenCharacter length:1]
-     replacementRange:[self rangeForUserTextChange]];
+    NSString *yen = [NSString stringWithCharacters:&kYenCharacter length:1];
+    [super insertText:yen replacementRange:[self rangeForUserTextChange]];
 }
 
 
 // ------------------------------------------------------
-/// バックスラッシュを入力
+///input a backslash (/)
 - (IBAction)inputBackSlash:(nullable id)sender
 // ------------------------------------------------------
 {
-    [super insertText:@"\\" replacementRange:[self selectedRange]];
+    [super insertText:@"\\" replacementRange:[self rangeForUserTextChange]];
 }
 
 
 // ------------------------------------------------------
-/// グリフ情報をポップオーバーで表示
+/// display character information by popover
 - (IBAction)showSelectionInfo:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -1172,32 +1173,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
              CEDefaultShouldAntialiasKey,
              CEDefaultLineHeightKey,
              ];
-}
-
-
-// ------------------------------------------------------
-/// character just before the insertion or 0
-- (unichar)characterBeforeInsertion
-// ------------------------------------------------------
-{
-    NSUInteger location = [self selectedRange].location;
-    if (location > 0) {
-        return [[self string] characterAtIndex:location - 1];
-    }
-    return NULL;
-}
-
-
-// ------------------------------------------------------
-/// character just after the insertion or 0
-- (unichar)characterAfterInsertion
-// ------------------------------------------------------
-{
-    NSUInteger location = NSMaxRange([self selectedRange]);
-    if (location < [[self string] length]) {
-        return [[self string] characterAtIndex:location];
-    }
-    return NULL;
 }
 
 
@@ -1289,7 +1264,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// カスタムキーバインドで文字列入力
+/// insert snippet via custom key binding
 - (void)insertCustomTextWithPatternNumber:(NSInteger)patternNumber
 // ------------------------------------------------------
 {
@@ -1306,6 +1281,32 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
         [self scrollRangeToVisible:[self selectedRange]];
     }
+}
+
+
+// ------------------------------------------------------
+/// character just before the insertion or 0
+- (unichar)characterBeforeInsertion
+// ------------------------------------------------------
+{
+    NSUInteger location = [self selectedRange].location;
+    if (location > 0) {
+        return [[self string] characterAtIndex:location - 1];
+    }
+    return NULL;
+}
+
+
+// ------------------------------------------------------
+/// character just after the insertion or 0
+- (unichar)characterAfterInsertion
+// ------------------------------------------------------
+{
+    NSUInteger location = NSMaxRange([self selectedRange]);
+    if (location < [[self string] length]) {
+        return [[self string] characterAtIndex:location];
+    }
+    return NULL;
 }
 
 
@@ -1375,10 +1376,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     }
     
     // 補完リストを表示中に通常のキー入力があったら、直後にもう一度入力補完を行うためのフラグを立てる
-    // （フラグは CEEditorViewController > textDidChange: で評価される）
+    // （フラグは CETextViewDelegate > textDidChange: で評価される）
     if (flag && ([event type] == NSKeyDown) && !([event modifierFlags] & NSCommandKeyMask)) {
         NSString *inputChar = [event charactersIgnoringModifiers];
-        unichar theUnichar = [inputChar characterAtIndex:0];
+        unichar character = [inputChar characterAtIndex:0];
         
         if ([inputChar isEqualToString:[event characters]]) { //キーバインディングの入力などを除外
             // アンダースコアが右矢印キーと判断されることの是正
@@ -1387,7 +1388,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
                 flag = NO;
             }
             if ((movement == NSIllegalTextMovement) &&
-                (theUnichar < 0xF700) && (theUnichar != NSDeleteCharacter)) { // 通常のキー入力の判断
+                (character < 0xF700) && (character != NSDeleteCharacter)) { // 通常のキー入力の判断
                 [self setNeedsRecompletion:YES];
             }
         }
@@ -1422,7 +1423,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// ディレイをかけて入力補完リストを表示
+/// display word completion list with a delay
 - (void)completeAfterDelay:(NSTimeInterval)delay
 // ------------------------------------------------------
 {
@@ -1442,7 +1443,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// 入力補完リストの表示
+/// display word completion list
 - (void)completionWithTimer:(nonnull NSTimer *)timer
 // ------------------------------------------------------
 {
