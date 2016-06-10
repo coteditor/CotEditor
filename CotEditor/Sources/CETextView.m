@@ -58,6 +58,10 @@ static NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
 static NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 static NSString *_Nonnull const CEAutoBalancedClosingBracketAttributeName = @"autoBalancedClosingBracket";
 
+static const CGFloat kTextContainerInsetHorizontal = 0.0;
+static const CGFloat kTextContainerInsetTop = 4.0;
+static const CGFloat kTextContainerInsetBottom = 16.0;
+
 
 @interface CETextView ()
 
@@ -79,7 +83,6 @@ static NSString *_Nonnull const CEAutoBalancedClosingBracketAttributeName = @"au
 
 @implementation CETextView
 
-static NSPoint kTextContainerOrigin;
 static NSCharacterSet *kMatchingOpeningBracketsSet;
 static NSCharacterSet *kMatchingClosingBracketsSet;
 
@@ -93,11 +96,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        kTextContainerOrigin = NSMakePoint((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
-                                           (CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey]);
-        
         kMatchingOpeningBracketsSet = [NSCharacterSet characterSetWithCharactersInString:@"[{(\""];
         kMatchingClosingBracketsSet = [NSCharacterSet characterSetWithCharactersInString:@"]})"];  // ignore "
     });
@@ -114,12 +112,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         // set class identifier for window restoration
         [self setIdentifier:@"coreTextView"];
         
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
         // setup layoutManager and textContainer
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [layoutManager setUsesScreenFonts:YES];
-        [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
         [[self textContainer] replaceLayoutManager:layoutManager];
         
         // set layer drawing policies
@@ -131,27 +126,31 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [self setHorizontallyResizable:YES];
         [self setVerticallyResizable:YES];
-        [self setTextContainerInset:NSMakeSize((CGFloat)[defaults doubleForKey:CEDefaultTextContainerInsetWidthKey],
-                                               (CGFloat)([defaults doubleForKey:CEDefaultTextContainerInsetHeightTopKey] +
-                                                         [defaults doubleForKey:CEDefaultTextContainerInsetHeightBottomKey]) / 2)];
+        [self setTextContainerInset:NSMakeSize(kTextContainerInsetHorizontal,
+                                               round((kTextContainerInsetTop + kTextContainerInsetBottom) / 2))];
         
-        // setup behaviors
-        [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
-        [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
-        [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
-        [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartDashesKey]];
+        // set NSTextView behaviors
         [self setAllowsDocumentBackgroundColorChange:NO];
         [self setAllowsUndo:YES];
         [self setRichText:NO];
         [self setImportsGraphics:NO];
         [self setUsesFindPanel:YES];
         [self setAcceptsGlyphInfo:YES];
+        [self setLinkTextAttributes:@{NSCursorAttributeName: [NSCursor pointingHandCursor],
+                                      NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
+        
+        // set user defaults
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        // setup behaviors
+        [self setSmartInsertDeleteEnabled:[defaults boolForKey:CEDefaultSmartInsertAndDeleteKey]];
+        [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
+        [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
+        [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartDashesKey]];
         _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
         
         // set link detection
         [self setAutomaticLinkDetectionEnabled:[defaults boolForKey:CEDefaultAutoLinkDetectionKey]];
-        [self setLinkTextAttributes:@{NSCursorAttributeName: [NSCursor pointingHandCursor],
-                                      NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
         
         // setup theme
         [self setTheme:[[CEThemeManager sharedManager] themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
@@ -162,6 +161,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         NSFont *font = [NSFont fontWithName:fontName size:fontSize] ?: [NSFont userFontOfSize:fontSize];
         [super setFont:font];
         [layoutManager setTextFont:font];
+        [layoutManager setUsesAntialias:[defaults boolForKey:CEDefaultShouldAntialiasKey]];
         
         // set paragraph style values
         _lineHeight = (CGFloat)[defaults doubleForKey:CEDefaultLineHeightKey];
@@ -659,7 +659,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (NSPoint)textContainerOrigin
 // ------------------------------------------------------
 {
-    return kTextContainerOrigin;
+    return NSMakePoint(kTextContainerInsetHorizontal,
+                       kTextContainerInsetTop);
 }
 
 
