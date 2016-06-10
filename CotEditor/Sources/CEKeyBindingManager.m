@@ -88,7 +88,7 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
         
         // set default key bindings
         _defaultMenuKeyBindingDict = [self scanMenuKeyBindingRecurrently:[NSApp mainMenu]];
-        _defaultTextKeyBindingDict = @{@"$\n": @"insertCustomText_00:"};
+        _defaultTextKeyBindingDict = @{@"$\r": @"insertCustomText_00:"};
         
         // read user key bindins if available
         _menuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self menuKeyBindingSettingFileURL]] ?
