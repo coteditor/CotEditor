@@ -2,6 +2,12 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
+// Syntax Tests
+#import <YAML-Framework/YAMLSerialization.h>
+#import "CESyntaxStyle.h"
+#import "CESyntaxHighlightParseOperation.h"
+#import "CEOutlineItem.h"
+
 // Character Info Tests
 #import "CEControlCharacerNames.h"
 #import "CECharacterInfo.h"

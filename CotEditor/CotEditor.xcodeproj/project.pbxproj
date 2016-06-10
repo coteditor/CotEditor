@@ -159,6 +159,13 @@
 		2A63123119C2D3B60088C5C6 /* ThemeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A63122F19C2D3B60088C5C6 /* ThemeView.xib */; };
 		2A63CEC11D0AFE5D00ED8186 /* CETextView+Accessories.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63CEC01D0AFE5D00ED8186 /* CETextView+Accessories.m */; };
 		2A63CEC21D0AFE5D00ED8186 /* CETextView+Accessories.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A63CEC01D0AFE5D00ED8186 /* CETextView+Accessories.m */; };
+		2A63CEC41D0B06D800ED8186 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */; };
+		2A63CEC51D0B072700ED8186 /* CESyntaxStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntaxStyle.m */; };
+		2A63CEC61D0B072A00ED8186 /* CESyntaxHighlightParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89848E1C3CFD80006290FF /* CESyntaxHighlightParseOperation.m */; };
+		2A63CEC91D0B0D4600ED8186 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
+		2A63CECB1D0B0E7800ED8186 /* sample.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A63CECA1D0B0E7800ED8186 /* sample.html */; };
+		2A63CECC1D0B182D00ED8186 /* CEOutlineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEA27DE1CE3D4C1006CDB80 /* CEOutlineItem.m */; };
+		2A63CECD1D0B185F00ED8186 /* CEOutlineParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89847E1C3CE201006290FF /* CEOutlineParseOperation.m */; };
 		2A6415941BD10EF40080358E /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
 		2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
 		2A6602D01D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
@@ -692,6 +699,8 @@
 		2A63122C19C2D30C0088C5C6 /* CEThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEThemeViewController.h; sourceTree = "<group>"; };
 		2A63122D19C2D30C0088C5C6 /* CEThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeViewController.m; sourceTree = "<group>"; };
 		2A63CEC01D0AFE5D00ED8186 /* CETextView+Accessories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CETextView+Accessories.m"; sourceTree = "<group>"; };
+		2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; };
+		2A63CECA1D0B0E7800ED8186 /* sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sample.html; path = TestFiles/sample.html; sourceTree = "<group>"; };
 		2A6415921BD10EF30080358E /* NSString+Indentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Indentation.h"; sourceTree = "<group>"; };
 		2A6415931BD10EF30080358E /* NSString+Indentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indentation.m"; sourceTree = "<group>"; };
 		2A6602CF1D05BD72003E8D87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DocumentWindow.storyboard; sourceTree = "<group>"; };
@@ -1821,6 +1830,7 @@
 			isa = PBXGroup;
 			children = (
 				2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */,
+				2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */,
 				2ACC65311C98033D000574DC /* ThemeTests.swift */,
 				2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */,
 			);
@@ -1830,6 +1840,7 @@
 		2ACC65331C98055E000574DC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2A63CECA1D0B0E7800ED8186 /* sample.html */,
 				2A18A5BE1C4A746A00BAD817 /* Encodings */,
 			);
 			name = Resources;
@@ -2169,8 +2180,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */,
+				2A63CEC91D0B0D4600ED8186 /* Syntaxes in Resources */,
 				2A3DEAF21CEB23F0007B7621 /* Themes in Resources */,
+				2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */,
+				2A63CECB1D0B0E7800ED8186 /* sample.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2591,32 +2604,37 @@
 			files = (
 				2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
-				2A9C07541CF9F958006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2ABFF6D71D02856A00BE2795 /* KeyBindingsTests.swift in Sources */,
 				2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */,
 				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
-				2A476CAC1D09C8960088E37A /* NSURL+CEAdditions.m in Sources */,
-				2AF587411CF7713B009D44A2 /* NSString+CEAdditions.m in Sources */,
 				2A476CAE1D09C8C80088E37A /* URLExtensionsTests.swift in Sources */,
 				2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */,
 				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
-				2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */,
 				2A7135831CFFDC6600ADA555 /* FormattersTests.swift in Sources */,
+				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
+				2A63CEC41D0B06D800ED8186 /* SyntaxTests.swift in Sources */,
+				2A63CECC1D0B182D00ED8186 /* CEOutlineItem.m in Sources */,
+				2A9C07541CF9F958006D672D /* CEIncompatibleCharacter.m in Sources */,
+				2A63CEC51D0B072700ED8186 /* CESyntaxStyle.m in Sources */,
+				2A63CECD1D0B185F00ED8186 /* CEOutlineParseOperation.m in Sources */,
+				2ACC653C1C9844ED000574DC /* CETheme.m in Sources */,
+				2A63CEC61D0B072A00ED8186 /* CESyntaxHighlightParseOperation.m in Sources */,
+				2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */,
+				2A7135811CFFDBF300ADA555 /* CEFilePermissionsFormatter.m in Sources */,
+				2ABFF6D81D02858800BE2795 /* CEKeyBindingUtils.m in Sources */,
+				2AA2E00E1BFDDFEA0087BDD6 /* CECharacterInfo.m in Sources */,
+				2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */,
+				2A18A5C21C4AA41400BAD817 /* CEEncodings.m in Sources */,
+				2AF587411CF7713B009D44A2 /* NSString+CEAdditions.m in Sources */,
+				2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */,
 				2AFEA0D01C2D3D8F009001F6 /* NSString+CERange.m in Sources */,
 				2A18A5BB1C4A72BF00BAD817 /* NSString+CEEncoding.m in Sources */,
 				2AC71DED1BF0C5B5002E1434 /* NSString+CECounting.m in Sources */,
 				2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */,
 				2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */,
 				2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */,
-				2ACC653C1C9844ED000574DC /* CETheme.m in Sources */,
+				2A476CAC1D09C8960088E37A /* NSURL+CEAdditions.m in Sources */,
 				2A476CB21D09D1CD0088E37A /* NSFont+CESize.m in Sources */,
-				2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */,
-				2A7135811CFFDBF300ADA555 /* CEFilePermissionsFormatter.m in Sources */,
-				2ABFF6D81D02858800BE2795 /* CEKeyBindingUtils.m in Sources */,
-				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
-				2AA2E00E1BFDDFEA0087BDD6 /* CECharacterInfo.m in Sources */,
-				2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */,
-				2A18A5C21C4AA41400BAD817 /* CEEncodings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3436,7 +3454,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3479,7 +3497,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

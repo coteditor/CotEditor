@@ -25,5 +25,8 @@ end
 target 'Tests' do
     project 'CotEditor/CotEditor'
 
+    pod 'YAML-Framework',
+        :git => 'https://github.com/coteditor/YAML.framework.git',
+        :branch => 'coteditor-mod'
     pod 'WFColorCode'
 end
