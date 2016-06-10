@@ -54,13 +54,11 @@ NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification = @"CETex
 
 
 // constant
-static NSString *_Nonnull const CESelectedRangesKey = @"selectedRange";
-static NSString *_Nonnull const CEVisibleRectKey = @"visibleRect";
 static NSString *_Nonnull const CEAutoBalancedClosingBracketAttributeName = @"autoBalancedClosingBracket";
 
-static const CGFloat kTextContainerInsetHorizontal = 0.0;
 static const CGFloat kTextContainerInsetTop = 4.0;
 static const CGFloat kTextContainerInsetBottom = 16.0;
+static const CGFloat kTextContainerInsetLeft = 0.0;
 
 
 @interface CETextView ()
@@ -109,9 +107,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     self = [super initWithCoder:(NSCoder *)coder];
     if (self) {
-        // set class identifier for window restoration
-        [self setIdentifier:@"coreTextView"];
-        
         // setup layoutManager and textContainer
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [layoutManager setUsesScreenFonts:YES];
@@ -126,8 +121,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [self setHorizontallyResizable:YES];
         [self setVerticallyResizable:YES];
-        [self setTextContainerInset:NSMakeSize(kTextContainerInsetHorizontal,
-                                               round((kTextContainerInsetTop + kTextContainerInsetBottom) / 2))];
+        [self setTextContainerInset:NSMakeSize(kTextContainerInsetLeft,
+                                               floor((kTextContainerInsetTop + kTextContainerInsetBottom) / 2))];
         
         // set NSTextView behaviors
         [self setAllowsDocumentBackgroundColorChange:NO];
@@ -196,56 +191,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// store UI state for the window restoration
-- (void)encodeRestorableStateWithCoder:(nonnull NSCoder *)coder
-// ------------------------------------------------------
-{
-    [super encodeRestorableStateWithCoder:coder];
-    
-    [coder encodeObject:[self selectedRanges] forKey:CESelectedRangesKey];
-    [coder encodeRect:[self visibleRect] forKey:CEVisibleRectKey];
-}
-
-
-// ------------------------------------------------------
-/// restore UI state on the window restoration
-- (void)restoreStateWithCoder:(nonnull NSCoder *)coder
-// ------------------------------------------------------
-{
-    [super restoreStateWithCoder:coder];
-    
-    if ([coder containsValueForKey:CEVisibleRectKey]) {
-        NSRect visibleRect = [coder decodeRectForKey:CEVisibleRectKey];
-        NSArray<NSValue *> *selectedRanges = [coder decodeObjectForKey:CESelectedRangesKey];
-        
-        // filter to avoid crash if the stored selected range is an invalid range
-        if ([selectedRanges count] > 0) {
-            NSUInteger length = [[self textStorage] length];
-            selectedRanges = [selectedRanges filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-                NSRange range = [evaluatedObject rangeValue];
-                
-                return NSMaxRange(range) <= length;
-            }]];
-            
-            if ([selectedRanges count] > 0) {
-                [self setSelectedRanges:selectedRanges];
-            }
-        }
-        
-        // perform scroll on the next run-loop
-        __unsafe_unretained typeof(self) weakSelf = self;  // NSTextView cannot be weak
-        dispatch_async(dispatch_get_main_queue(), ^{
-            typeof(self) self = weakSelf;  // strong self
-            if (!self) { return; }
-            
-            [self scrollRectToVisible:visibleRect];
-        });
-    }
-}
-
-
-// ------------------------------------------------------
-/// first responder になれるかを返す
+/// post notification about becoming the first responder
 - (BOOL)becomeFirstResponder
 // ------------------------------------------------------
 {
@@ -257,7 +203,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// 自身がウインドウに組み込まれた
+/// textView was attached to a window
 -(void)viewDidMoveToWindow
 // ------------------------------------------------------
 {
@@ -276,6 +222,16 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
                                              selector:@selector(didWindowOpacityChange:)
                                                  name:CEWindowOpacityDidChangeNotification
                                                object:[self window]];
+}
+
+
+// ------------------------------------------------------
+/// coordinate of text container origin (top-left)
+- (NSPoint)textContainerOrigin
+// ------------------------------------------------------
+{
+    return NSMakePoint(kTextContainerInsetLeft,
+                       kTextContainerInsetTop);
 }
 
 
@@ -651,16 +607,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // update current text
     [self invalidateStyle];
-}
-
-
-// ------------------------------------------------------
-/// テキストコンテナの原点（左上）座標を返す
-- (NSPoint)textContainerOrigin
-// ------------------------------------------------------
-{
-    return NSMakePoint(kTextContainerInsetHorizontal,
-                       kTextContainerInsetTop);
 }
 
 

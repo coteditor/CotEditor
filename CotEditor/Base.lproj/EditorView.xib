@@ -147,13 +147,13 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="drawsTopBorder" value="NO"/>
                     </userDefinedRuntimeAttributes>
                 </customView>
-                <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqe-Sy-MHo" customClass="CEEditorScrollView">
+                <scrollView identifier="editorScrollView" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqe-Sy-MHo" customClass="CEEditorScrollView">
                     <rect key="frame" x="0.0" y="0.0" width="560" height="336"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ihz-5C-aa6">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="336"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="2qg-2N-p90" customClass="CETextView">
+                            <textView identifier="coreTextView" importsGraphics="NO" richText="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="2qg-2N-p90" customClass="CETextView">
                                 <rect key="frame" x="0.0" y="0.0" width="560" height="336"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
