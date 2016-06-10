@@ -1012,10 +1012,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     if (range.length == 0) { return; }
     
-    // UTF-16 でないものを UTF-16 で表示した時など当該フォントで表示できない文字が表示されてしまった後だと、
-    // 設定されたフォントでないもので表示されることがあるため、リセットする
     [[self textStorage] addAttributes:[self typingAttributes] range:range];
-    
     [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
     [self detectLinkIfNeeded];
 }
@@ -1229,10 +1226,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 // ------------------------------------------------------
 {
     if (![self isAutomaticLinkDetectionEnabled]) { return; }
-    
-    // The following code looks suitable, but actually doesn't work. (2015-12)
-//    NSRange range = NSMakeRange(0, [[self string] length]);
-//    [self checkTextInRange:range types:NSTextCheckingTypeLink options:@{}];
     
     [[self undoManager] disableUndoRegistration];
     NSTextCheckingTypes currentCheckingType = [self enabledTextCheckingTypes];
