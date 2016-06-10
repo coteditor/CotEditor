@@ -76,6 +76,18 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 @end
 
 
+@interface CETextView (Scaling)
+
+- (IBAction)biggerFont:(nullable id)sender;
+- (IBAction)smallerFont:(nullable id)sender;
+- (IBAction)resetFont:(nullable id)sender;
+
+@end
+
+
+
+#pragma mark - CETextView+Accessories.m
+
 @interface CETextView (UnicodeInput)
 
 - (IBAction)showUnicodeInputPanel:(nullable id)sender;
@@ -86,15 +98,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 @interface CETextView (ColorCode)
 
 - (IBAction)editColorCode:(nullable id)sender;
-
-@end
-
-
-@interface CETextView (Scaling)
-
-- (IBAction)biggerFont:(nullable id)sender;
-- (IBAction)smallerFont:(nullable id)sender;
-- (IBAction)resetFont:(nullable id)sender;
 
 @end
 

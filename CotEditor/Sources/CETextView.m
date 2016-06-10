@@ -30,8 +30,6 @@
 #import "CELayoutManager.h"
 #import "CEEditorScrollView.h"
 
-#import "CEUnicodeInputPanelController.h"
-#import "CEColorCodePanelController.h"
 #import "CECharacterPopoverController.h"
 #import "CEDocument.h"
 #import "CEAlphaWindow.h"
@@ -1714,91 +1712,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
     
     [self setScaleKeepingVisibleArea:1.0];
-}
-
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CETextView (UnicodeInput)
-
-// ------------------------------------------------------
-/// show Unicode input panel
-- (IBAction)showUnicodeInputPanel:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[CEUnicodeInputPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// insert an Unicode character from Unicode input panel
-- (IBAction)insertUnicodeCharacter:(nullable id)sender
-// ------------------------------------------------------
-{
-    if (![sender isKindOfClass:[CEUnicodeInputPanelController class]]) { return; }
-    
-    NSString *character = [sender characterString];
-    NSRange range = [self rangeForUserTextChange];
-    
-    if ([self shouldChangeTextInRange:range replacementString:character]) {
-        [self replaceCharactersInRange:range withString:character];
-        [self didChangeText];
-    }
-}
-
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CETextView (ColorCode)
-
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-/// tell selected string to color code panel
-- (IBAction)editColorCode:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *selectedString = [[self string] substringWithRange:[self selectedRange]];
-    
-    [[CEColorCodePanelController sharedController] showWindow:sender];
-    [[CEColorCodePanelController sharedController] setColorWithCode:selectedString];
-}
-
-
-// ------------------------------------------------------
-/// insert color code from color code panel
-- (IBAction)insertColorCode:(nullable id)sender
-// ------------------------------------------------------
-{
-    if (![sender isKindOfClass:[CEColorCodePanelController class]]) { return; }
-    
-    NSString *colorCode = [sender colorCode];
-    NSRange range = [self rangeForUserTextChange];
-    
-    if ([self shouldChangeTextInRange:range replacementString:colorCode]) {
-        [self replaceCharactersInRange:range withString:colorCode];
-        [[self undoManager] setActionName:NSLocalizedString(@"Insert Color Code", nil)];
-        [self didChangeText];
-        [self setSelectedRange:NSMakeRange(range.location, [colorCode length])];
-        [self scrollRangeToVisible:[self selectedRange]];
-    }
-}
-
-
-// ------------------------------------------------------
-/// avoid changeing text color by color panel
-- (IBAction)changeColor:(nullable id)sender
-// ------------------------------------------------------
-{
-    // do nothing.
 }
 
 @end
