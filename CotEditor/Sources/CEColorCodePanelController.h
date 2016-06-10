@@ -9,7 +9,7 @@
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,11 +25,27 @@
  
  */
 
-#import "CEPanelController.h"
+@import Cocoa;
 
 
-@interface CEColorCodePanelController : CEPanelController
+@interface CEColorCodePanelController : NSViewController
+
+@property (readonly, nonatomic, nullable, copy) NSString *colorCode;
+
+
++ (nonnull CEColorCodePanelController *)sharedController;
 
 - (void)setColorWithCode:(nullable NSString *)colorCode;
+
+- (IBAction)showWindow:(nullable id)sender;
+
+@end
+
+
+
+
+@protocol CEColorCodeReceiver <NSObject>
+
+- (void)insertColorCode:(nullable CEColorCodePanelController *)sender;
 
 @end

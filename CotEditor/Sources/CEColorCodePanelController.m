@@ -26,21 +26,20 @@
  */
 
 #import "CEColorCodePanelController.h"
-#import "CEWindowController.h"
-#import "CEDocument.h"
-#import "CEEditorWrapper.h"
 
 #import "CEDefaults.h"
 
 #import "NSColor+WFColorCode.h"
 
 
-@interface CEColorCodePanelController ()
+@interface CEColorCodePanelController () <NSWindowDelegate>
 
+@property (nonatomic, nullable, weak) NSColorPanel *panel;
 @property (nonatomic, nonnull) NSColorList *stylesheetColorList;
-@property (nonatomic, nullable) IBOutlet NSView *accessoryView;
 @property (nonatomic, nullable) NSColor *color;
-@property (nonatomic, nullable, copy) NSString *colorCode;
+
+// readonly
+@property (readwrite, nonatomic, nullable, copy) NSString *colorCode;
 
 @end
 
@@ -79,8 +78,6 @@
 {
     self = [super init];
     if (self) {
-        [[NSBundle mainBundle] loadNibNamed:@"ColorCodePanelAccessory" owner:self topLevelObjects:nil];
-        
         // setup stylesheet color list
         NSDictionary<NSString *, NSColor *> *keywordColors = [NSColor stylesheetKeywordColors];
         NSColorList *colorList = [[NSColorList alloc] initWithName:NSLocalizedString(@"Stylesheet Keywords", nil)];
@@ -91,6 +88,15 @@
         _stylesheetColorList = colorList;
     }
     return self;
+}
+
+
+// ------------------------------------------------------
+/// nib name
+- (nullable NSString *)nibName
+// ------------------------------------------------------
+{
+    return @"ColorCodePanelAccessory";
 }
 
 
@@ -113,7 +119,7 @@
     
     if (color) {
         [[NSUserDefaults standardUserDefaults] setInteger:codeType forKey:CEDefaultColorCodeTypeKey];
-        [(NSColorPanel *)[self window] setColor:color];
+        [[self panel] setColor:color];
         return;
     }
     NSBeep();
@@ -132,11 +138,10 @@
 - (void)windowWillClose:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSColorPanel *colorPanel = (NSColorPanel *)[self window];
-    [[self window] setDelegate:nil];
-    [colorPanel setAccessoryView:nil];
-    [colorPanel detachColorList:[self stylesheetColorList]];
-    [colorPanel setShowsAlpha:NO];
+    [[self panel] setDelegate:nil];
+    [[self panel] setAccessoryView:nil];
+    [[self panel] detachColorList:[self stylesheetColorList]];
+    [[self panel] setShowsAlpha:NO];
 }
 
 
@@ -150,7 +155,7 @@
 {
     // setup the shared color panel
     NSColorPanel *colorPanel = [NSColorPanel sharedColorPanel];
-    [colorPanel setAccessoryView:[self accessoryView]];
+    [colorPanel setAccessoryView:[self view]];
     [colorPanel setShowsAlpha:YES];
     [colorPanel setRestorable:NO];
     
@@ -166,7 +171,7 @@
     
     [colorPanel attachColorList:[self stylesheetColorList]];
     
-    [self setWindow:colorPanel];
+    [self setPanel:colorPanel];
     [self setColor:[colorPanel color]];
     [self updateCode:self];
     
@@ -181,16 +186,14 @@
 {
     if (![self colorCode]) { return; }
     
-    NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
-    NSRange selectedRange = [textView selectedRange];
+    id<CEColorCodeReceiver> receiver = [NSApp targetForAction:@selector(insertColorCode:)];
     
-    if ([textView shouldChangeTextInRange:selectedRange replacementString:[self colorCode]]) {
-        [textView replaceCharactersInRange:selectedRange withString:[self colorCode]];
-        [[textView undoManager] setActionName:NSLocalizedString(@"Insert Color Code", nil)];
-        [textView didChangeText];
-        [textView setSelectedRange:NSMakeRange(selectedRange.location, [[self colorCode] length])];
-        [textView scrollRangeToVisible:[textView selectedRange]];
+    if (!receiver) {
+        NSBeep();
+        return;
     }
+    
+    [receiver insertColorCode:self];
 }
 
 

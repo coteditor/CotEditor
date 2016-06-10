@@ -1739,6 +1739,26 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
+/// insert color code from color code panel
+- (IBAction)insertColorCode:(nullable id)sender
+// ------------------------------------------------------
+{
+    if (![sender isKindOfClass:[CEColorCodePanelController class]]) { return; }
+    
+    NSString *colorCode = [sender colorCode];
+    NSRange range = [self rangeForUserTextChange];
+    
+    if ([self shouldChangeTextInRange:range replacementString:colorCode]) {
+        [self replaceCharactersInRange:range withString:colorCode];
+        [[self undoManager] setActionName:NSLocalizedString(@"Insert Color Code", nil)];
+        [self didChangeText];
+        [self setSelectedRange:NSMakeRange(range.location, [colorCode length])];
+        [self scrollRangeToVisible:[self selectedRange]];
+    }
+}
+
+
+// ------------------------------------------------------
 /// avoid changeing text color by color panel
 - (IBAction)changeColor:(nullable id)sender
 // ------------------------------------------------------
