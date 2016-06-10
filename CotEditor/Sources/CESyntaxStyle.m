@@ -99,7 +99,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 //------------------------------------------------------
 /// override designated initializer
-- (nullable instancetype)init
+- (nonnull instancetype)init
 //------------------------------------------------------
 {
     return [self initWithDictionary:nil name:NSLocalizedString(@"None", nil)];
@@ -123,7 +123,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// designated initializer
-- (nullable instancetype)initWithDictionary:(nullable NSDictionary<NSString *, id> *)dictionary name:(nonnull NSString *)styleName
+- (nonnull instancetype)initWithDictionary:(nullable NSDictionary<NSString *, id> *)dictionary name:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
     self = [super init];
