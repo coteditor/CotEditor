@@ -40,7 +40,6 @@
 #import "CEOpacityPanelController.h"
 #import "CEColorCodePanelController.h"
 #import "CEConsolePanelController.h"
-#import "CEUnicodeInputPanelController.h"
 #import "CEWebDocumentWindowController.h"
 #import "CEMigrationWindowController.h"
 
@@ -303,26 +302,6 @@
 
 
 
-#pragma mark Protocol
-
-//=======================================================
-// NSMenuValidation Protocol
-//=======================================================
-
-// ------------------------------------------------------
-/// validate menu items
-- (BOOL)validateMenuItem:(nonnull NSMenuItem *)menuItem
-// ------------------------------------------------------
-{
-    if (([menuItem action] == @selector(showUnicodeInputPanel:))) {
-        return ([[NSDocumentController sharedDocumentController] currentDocument] != nil);
-    }
-    
-    return YES;
-}
-
-
-
 #pragma mark Delegate
 
 //=======================================================
@@ -517,15 +496,6 @@
 // ------------------------------------------------------
 {
     [[CEOpacityPanelController sharedController] showWindow:self];
-}
-
-
-// ------------------------------------------------------
-/// show Unicode input panel
-- (IBAction)showUnicodeInputPanel:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[CEUnicodeInputPanelController sharedController] showWindow:self];
 }
 
 

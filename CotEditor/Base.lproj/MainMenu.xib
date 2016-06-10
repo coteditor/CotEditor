@@ -222,7 +222,7 @@
                             <menuItem title="Input Char in Unicode Hex…" id="tWx-pj-3PL">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showUnicodeInputPanel:" target="290" id="tnB-r1-Tfo"/>
+                                    <action selector="showUnicodeInputPanel:" target="-1" id="NrK-4B-04R"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="660">

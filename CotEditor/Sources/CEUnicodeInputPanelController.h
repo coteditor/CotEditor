@@ -30,4 +30,15 @@
 
 @interface CEUnicodeInputPanelController : CEPanelController
 
+@property (readonly, nonatomic, nullable, copy) NSString *characterString;
+
+@end
+
+
+
+
+@protocol CEUnicodeReceiver <NSObject>
+
+- (void)insertUnicodeCharacter:(nullable id)sender;
+
 @end

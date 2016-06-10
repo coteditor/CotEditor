@@ -30,6 +30,7 @@
 #import "CELayoutManager.h"
 #import "CEEditorScrollView.h"
 
+#import "CEUnicodeInputPanelController.h"
 #import "CEColorCodePanelController.h"
 #import "CECharacterPopoverController.h"
 #import "CEDocument.h"
@@ -1713,6 +1714,40 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
     
     [self setScaleKeepingVisibleArea:1.0];
+}
+
+@end
+
+
+
+
+#pragma mark -
+
+@implementation CETextView (UnicodeInput)
+
+// ------------------------------------------------------
+/// show Unicode input panel
+- (IBAction)showUnicodeInputPanel:(nullable id)sender
+// ------------------------------------------------------
+{
+    [[CEUnicodeInputPanelController sharedController] showWindow:self];
+}
+
+
+// ------------------------------------------------------
+/// insert an Unicode character from Unicode input panel
+- (IBAction)insertUnicodeCharacter:(nullable id)sender
+// ------------------------------------------------------
+{
+    if (![sender isKindOfClass:[CEUnicodeInputPanelController class]]) { return; }
+    
+    NSString *character = [sender characterString];
+    NSRange range = [self rangeForUserTextChange];
+    
+    if ([self shouldChangeTextInRange:range replacementString:character]) {
+        [self replaceCharactersInRange:range withString:character];
+        [self didChangeText];
+    }
 }
 
 @end

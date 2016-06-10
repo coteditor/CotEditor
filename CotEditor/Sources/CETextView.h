@@ -76,6 +76,13 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 @end
 
 
+@interface CETextView (UnicodeInput)
+
+- (IBAction)showUnicodeInputPanel:(nullable id)sender;
+
+@end
+
+
 @interface CETextView (ColorCode)
 
 - (IBAction)editColorCode:(nullable id)sender;

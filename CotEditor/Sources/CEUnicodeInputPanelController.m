@@ -26,9 +26,8 @@
  */
 
 #import "CEUnicodeInputPanelController.h"
+
 #import "CEUnicodeCharacter.h"
-#import "CEWindowController.h"
-#import "CEEditorWrapper.h"
 
 
 @interface CEUnicodeInputPanelController () <NSTextFieldDelegate>
@@ -116,6 +115,17 @@ static const NSRegularExpression *unicodeRegex;
 
 
 
+#pragma mark Public Accessor
+
+// ------------------------------------------------------
+- (nullable NSString *)characterString
+// ------------------------------------------------------
+{
+    return [[self character] string];
+}
+
+
+
 #pragma mark Action Messages
 
 // ------------------------------------------------------
@@ -123,22 +133,21 @@ static const NSRegularExpression *unicodeRegex;
 - (IBAction)insertToDocument:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSString *character = [[self character] string];
+    if ([[self characterString] length] == 0) { return; }
     
-    if ([character length] == 0) { return; }
+    id<CEUnicodeReceiver> receiver = [NSApp targetForAction:@selector(insertUnicodeCharacter:)];
     
-    NSTextView *textView = [[[self documentWindowController] editor] focusedTextView];
-    
-    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:character]) {
-        [textView replaceCharactersInRange:[textView selectedRange] withString:character];
-        [textView didChangeText];
-        
-        [self setUnicode:@""];
-        [self setCharacter:nil];
-        [self setValid:NO];
-    } else {
+    if (!receiver) {
         NSBeep();
+        return;
     }
+    
+    [receiver insertUnicodeCharacter:self];
+    
+    [self setUnicode:@""];
+    [self setCharacter:nil];
+    [self setValid:NO];
+    
 }
 
 
