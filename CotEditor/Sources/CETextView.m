@@ -1341,21 +1341,17 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (NSRange)rangeForUserCompletion
 // ------------------------------------------------------
 {
-    NSString *string = [self string];
     NSRange range = [super rangeForUserCompletion];
     NSCharacterSet *charSet = [self firstSyntaxCompletionCharacterSet];
     
-    if (!charSet || [string length] == 0) { return range; }
+    if (!charSet || [[self string] length] == 0) { return range; }
     
     // 入力補完文字列の先頭となりえない文字が出てくるまで補完文字列対象を広げる
-    NSInteger begin = MIN(range.location, [string length] - 1);
-    for (NSInteger i = begin; i >= 0; i--) {
-        if ([charSet characterIsMember:[string characterAtIndex:i]]) {
-            begin = i;
-        } else {
-            break;
-        }
+    NSInteger begin = range.location;
+    while (begin && [charSet characterIsMember:[[self string] characterAtIndex:begin - 1]]) {
+        begin--;
     }
+    
     return NSMakeRange(begin, NSMaxRange(range) - begin);
 }
 
@@ -1449,17 +1445,14 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     [[self completionTimer] invalidate];
     
-    // abord if input is not specified (for Japanese input)
-    if ([self hasMarkedText]) { return; }
-    
-    // abord if selected
-    if ([self selectedRange].length > 0) { return; }
-    
-    // abord if caret is (probably) at the middle of a word
-    if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]]) { return; }
-    
-    // abord if previous character is blank
-    if ([[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:[self characterBeforeInsertion]]) { return; }
+    // abord if:
+    if ([self hasMarkedText] ||  // input is not specified (for Japanese input)
+        [self selectedRange].length > 0 ||  // selected
+        [[NSCharacterSet alphanumericCharacterSet] characterIsMember:[self characterAfterInsertion]] ||  // caret is (probably) at the middle of a word
+        [[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:[self characterBeforeInsertion]])  // previous character is blank
+    {
+        return;
+    }
     
     [self complete:self];
 }
