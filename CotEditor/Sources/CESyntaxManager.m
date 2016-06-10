@@ -151,7 +151,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         style = [[CESyntaxStyle alloc] initWithDictionary:highlightDictionary name:styleName];
     }
     
-    if (style) {
+    if (style && styleName) {
         [[self recentlyUsedStyleNameSet] removeObject:styleName];
         [[self recentlyUsedStyleNameSet] insertObject:styleName atIndex:0];
         [[NSUserDefaults standardUserDefaults] setObject:[self recentlyUsedStyleNames] forKey:CEDefaultRecentlyUsedStyleNamesKey];
