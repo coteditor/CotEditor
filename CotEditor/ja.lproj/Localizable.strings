@@ -48,6 +48,7 @@
 "Auto-Detect" = "自動認識";
 // Format - Syntax coloring menu item title
 "None" = "なし";
+"Recently Used" = "最近使った項目";
 "Re-Color All" = "再カラーリング";
 
 // Importing theme

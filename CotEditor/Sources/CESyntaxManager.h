@@ -33,6 +33,9 @@
 /// Posted when the line-up of syntax styles is updated.  This will be used for syntax style menus.
 extern NSString *_Nonnull const CESyntaxListDidUpdateNotification;
 
+/// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
+extern NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification;
+
 /// Posted when a syntax style is updated.  Information about new/previous style name is in userInfo.
 extern NSString *_Nonnull const CESyntaxDidUpdateNotification;
 
@@ -50,6 +53,7 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 
 // readonly
 @property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *styleNames;
+@property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *recentlyUsedStyleNames;
 /// conflict error dicts
 @property (readonly, nonatomic, nonnull, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *extensionConflicts;
 @property (readonly, nonatomic, nonnull, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *filenameConflicts;

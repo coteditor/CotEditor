@@ -47,6 +47,7 @@
 "Auto-Detect" = "Auto-Erkennung";
 // Format - Syntax coloring menu item title
 "None" = "Ohne";
+"Recently Used" = "Zuletzt Benutzt";
 "Re-Color All" = "Alles umfärben";
 
 // Importing theme
