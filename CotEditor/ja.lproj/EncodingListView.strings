@@ -1,6 +1,6 @@
 /*
  
- EncodingListSheet.strings (Japanese)
+ EncodingListView.strings (Japanese)
  
  CotEditor
  http://coteditor.com
@@ -24,9 +24,6 @@
  limitations under the License.
  
  */
-
-/* Class = "NSWindow"; title = "Encoding List"; ObjectID = "36"; */
-"36.title" = "エンコーディングリスト";
 
 /* Class = "NSTextFieldCell"; title = "Drag encodings to change the order."; ObjectID = "3395"; */
 "3395.title" = "ドラッグしてエンコーディングを並び替えてください。";

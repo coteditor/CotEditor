@@ -1,6 +1,6 @@
 /*
  
- CEEncodingListSheetController.m
+ CEEncodingListViewController.m
  
  CotEditor
  http://coteditor.com
@@ -40,7 +40,7 @@
 
 #pragma mark -
 
-@implementation CEEncodingListSheetController
+@implementation CEEncodingListViewController
 
 #pragma mark Superclass Methods
 
@@ -49,7 +49,7 @@
 - (nullable NSString *)nibName
 // ------------------------------------------------------
 {
-    return @"EncodingListSheet";
+    return @"EncodingListView";
 }
 
 

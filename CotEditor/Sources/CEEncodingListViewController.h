@@ -1,6 +1,6 @@
 /*
  
- CEEncodingListSheetController.h
+ CEEncodingListViewController.h
  
  CotEditor
  http://coteditor.com

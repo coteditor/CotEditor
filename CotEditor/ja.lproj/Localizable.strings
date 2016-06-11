@@ -383,7 +383,7 @@
 
 
 
-/* MARK: CESyntaxEditSheetController */
+/* MARK: CESyntaxEditViewController */
 // Menu items
 "Keywords" = "キーワード";
 "Commands" = "コマンド";

@@ -31,8 +31,8 @@
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
 #import "CESyntaxMappingConflictsViewController.h"
-#import "CESyntaxEditSheetController.h"
-#import "CEEncodingListSheetController.h"
+#import "CESyntaxEditViewController.h"
+#import "CEEncodingListViewController.h"
 #import "CEDefaults.h"
 #import "CEEncodings.h"
 #import "Constants.h"
@@ -47,8 +47,6 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 
 @interface CEFormatPaneController () <NSTableViewDelegate>
-
-@property (nonatomic, nullable) NSWindowController *currentSheetController;
 
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInOpen;
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *encodingMenuInNew;
@@ -259,31 +257,41 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 
 // ------------------------------------------------------
-/// エンコーディングリスト編集シートを開き、閉じる
+/// show encoding list edit sheet
 - (IBAction)openEncodingEditSheet:(nullable id)sender
 // ------------------------------------------------------
 {
-    CEEncodingListSheetController *sheetController = [[CEEncodingListSheetController alloc] init];
+    NSViewController *viewController = [[CEEncodingListViewController alloc] init];
     
-    // show editor as sheet
-    [self setCurrentSheetController:sheetController];
-    [[[self view] window] beginSheet:[sheetController window] completionHandler:nil];
+    // show as sheet
+    [self presentViewControllerAsSheet:viewController];
 }
 
 
 // ------------------------------------------------------
-/// カラーシンタックス編集シートを開き、閉じる
+/// show syntax style edit sheet
 - (IBAction)openSyntaxEditSheet:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
     
-    CESyntaxEditSheetController *sheetController = [[CESyntaxEditSheetController alloc] initWithStyle:styleName mode:[sender tag]];
-    if (!sheetController) { return; }
+    NSViewController *viewController = [[CESyntaxEditViewController alloc] initWithStyle:styleName mode:[sender tag]];
+    if (!viewController) { return; }
     
-    // show editor as sheet
-    [self setCurrentSheetController:sheetController];
-    [[[self view] window] beginSheet:[sheetController window] completionHandler:nil];
+    // show as sheet
+    [self presentViewControllerAsSheet:viewController];
+}
+
+
+// ------------------------------------------------------
+/// show syntax mapping conflict error sheet
+- (IBAction)openSyntaxMappingConflictSheet:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSViewController *viewController = [[CESyntaxMappingConflictsViewController alloc] init];
+    
+    // show as sheet
+    [self presentViewControllerAsSheet:viewController];
 }
 
 
@@ -398,19 +406,6 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
     if (!URL) { return; }
     
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
-    
-}
-
-
-// ------------------------------------------------------
-/// シンタックスマッピング重複エラー表示シートを開き、閉じる
-- (IBAction)openSyntaxMappingConflictSheet:(nullable id)sender
-// ------------------------------------------------------
-{
-    CESyntaxMappingConflictsViewController *viewController = [[CESyntaxMappingConflictsViewController alloc] init];
-    
-    // show as sheet
-    [self presentViewControllerAsSheet:viewController];
 }
 
 

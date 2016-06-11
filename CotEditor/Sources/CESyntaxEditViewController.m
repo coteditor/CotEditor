@@ -1,6 +1,6 @@
 /*
  
- CESyntaxEditSheetController.m
+ CESyntaxEditViewController.m
  
  CotEditor
  http://coteditor.com
@@ -26,7 +26,7 @@
  
  */
 
-#import "CESyntaxEditSheetController.h"
+#import "CESyntaxEditViewController.h"
 #import "CESyntaxTermsEditViewController.h"
 #import "CESyntaxValidationViewController.h"
 #import "CESyntaxManager.h"
@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 };
 
 
-@interface CESyntaxEditSheetController () <NSTextFieldDelegate, NSTableViewDelegate>
+@interface CESyntaxEditViewController () <NSTextFieldDelegate, NSTableViewDelegate>
 
 @property (nonatomic, nonnull) NSMutableDictionary<NSString *, id> *style;
 @property (nonatomic) CESyntaxEditSheetMode mode;
@@ -78,7 +78,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 
 #pragma mark -
 
-@implementation CESyntaxEditSheetController
+@implementation CESyntaxEditViewController
 
 #pragma mark Superclass Methods
 
@@ -127,19 +127,19 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 
 // ------------------------------------------------------
 /// nib name
-- (nullable NSString *)windowNibName
+- (nullable NSString *)nibName
 // ------------------------------------------------------
 {
-    return @"SyntaxEditSheet";
+    return @"SyntaxEditView";
 }
 
 
 // ------------------------------------------------------
 /// setup UI
-- (void)windowDidLoad
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super windowDidLoad];
+    [super viewDidLoad];
     
     // setup style name field and restore button
     [[self styleNameField] setStringValue:[self originalStyleName]];
@@ -291,7 +291,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     
     // style名のチェック
     if (![self validateStyleName:styleName]) {
-        [[self window] makeFirstResponder:[self styleNameField]];
+        [[[self view] window] makeFirstResponder:[self styleNameField]];
         NSBeep();
         return;
     }
@@ -310,7 +310,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
                                           name:styleName
                                        oldName:[self originalStyleName]];
     
-    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
+    [self dismissController:sender];
 }
 
 
@@ -319,7 +319,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 - (IBAction)cancelEdit:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
+    [self dismissController:sender];
 }
 
 
@@ -357,7 +357,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 // ------------------------------------------------------
 {
     // finish current edit
-    [[self window] makeFirstResponder:[self menuTableView]];
+    [[[self view] window] makeFirstResponder:[self menuTableView]];
     
     // swap view
     [[self box] setContentView:[[self viewControllers][index] view]];

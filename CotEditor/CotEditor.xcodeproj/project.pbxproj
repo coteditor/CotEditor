@@ -30,7 +30,7 @@
 		2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */; };
 		2588E9CE07C4851C0060021D /* ProgressSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* ProgressSheet.xib */; };
 		258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
-		258EF2FA077FEDD000011E52 /* SyntaxEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */; };
+		258EF2FA077FEDD000011E52 /* SyntaxEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditView.xib */; };
 		259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */; };
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		25AC091C077190EB00B0C91C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
@@ -59,8 +59,8 @@
 		2A149DC51901885A00A9D6EF /* CEKeyBindingsPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC41901885A00A9D6EF /* CEKeyBindingsPaneController.m */; };
 		2A149DD519032CC900A9D6EF /* CEKeyBindingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD419032CC900A9D6EF /* CEKeyBindingUtils.m */; };
 		2A149DD719033CBB00A9D6EF /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* Constants.m */; };
-		2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
-		2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
+		2A15831718E3688300601026 /* EncodingListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListView.xib */; };
+		2A15831A18E368CE00601026 /* CEEncodingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListViewController.m */; };
 		2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSampleWindow.xib */; };
 		2A15832418E383C300601026 /* CESizeSampleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15832318E383C300601026 /* CESizeSampleWindowController.m */; };
 		2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */; };
@@ -105,7 +105,7 @@
 		2A3CC1F71C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
 		2A3CC1F81C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
-		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
+		2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditViewController.m */; };
 		2A41CB3D1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
 		2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
 		2A41CB401C39167500F9122B /* CEDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3F1C39167500F9122B /* CEDefaults.m */; };
@@ -193,7 +193,7 @@
 		2A6F0D611B5500E100C2D03C /* SizeSampleWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSampleWindow.xib */; };
 		2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
-		2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */; };
+		2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditView.xib */; };
 		2A6F0D651B5500E100C2D03C /* ProgressSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* ProgressSheet.xib */; };
 		2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
 		2A6F0D671B5500E100C2D03C /* MenuKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */; };
@@ -218,7 +218,7 @@
 		2A6F0D7B1B5500E100C2D03C /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A6F0D7D1B5500E100C2D03C /* TextKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */; };
-		2A6F0D7E1B5500E100C2D03C /* EncodingListSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListSheet.xib */; };
+		2A6F0D7E1B5500E100C2D03C /* EncodingListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListView.xib */; };
 		2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */; };
 		2A6F0D821B5500E100C2D03C /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
@@ -262,7 +262,7 @@
 		2A6F0DB01B5500E100C2D03C /* CEPrefEncodingDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */; };
 		2A6F0DB11B5500E100C2D03C /* CEFormatPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */; };
 		2A6F0DB21B5500E100C2D03C /* CEAlphaWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7314ED1A0326D300C0EDA9 /* CEAlphaWindow.m */; };
-		2A6F0DB31B5500E100C2D03C /* CEEncodingListSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListSheetController.m */; };
+		2A6F0DB31B5500E100C2D03C /* CEEncodingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15831918E368CE00601026 /* CEEncodingListViewController.m */; };
 		2A6F0DB41B5500E100C2D03C /* CESyntaxStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 258225FF07794C2A00A0F8D3 /* CESyntaxStyle.m */; };
 		2A6F0DB51B5500E100C2D03C /* CEIncompatibleCharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDA1A425AE500275FD4 /* CEIncompatibleCharsViewController.m */; };
 		2A6F0DB61B5500E100C2D03C /* CESyntaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 258700E4077BAD2200E541BB /* CESyntaxManager.m */; };
@@ -295,7 +295,7 @@
 		2A6F0DD31B5500E100C2D03C /* CEMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93718FB04F300673440 /* CEMenuItemCell.m */; };
 		2A6F0DD41B5500E100C2D03C /* CECharacterPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CECharacterPopoverController.m */; };
 		2A6F0DD51B5500E100C2D03C /* CEClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE356451A86D32500E29FEF /* CEClipView.m */; };
-		2A6F0DD71B5500E100C2D03C /* CESyntaxEditSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */; };
+		2A6F0DD71B5500E100C2D03C /* CESyntaxEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditViewController.m */; };
 		2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumberView.m */; };
 		2A6F0DDA1B5500E100C2D03C /* CEPrintPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB81901788000A9D6EF /* CEPrintPaneController.m */; };
 		2A6F0DDB1B5500E100C2D03C /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
@@ -588,8 +588,8 @@
 		2A149DD319032CC900A9D6EF /* CEKeyBindingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingUtils.h; sourceTree = "<group>"; };
 		2A149DD419032CC900A9D6EF /* CEKeyBindingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingUtils.m; sourceTree = "<group>"; };
 		2A149DD619033CBB00A9D6EF /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		2A15831818E368CE00601026 /* CEEncodingListSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEEncodingListSheetController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2A15831918E368CE00601026 /* CEEncodingListSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEEncodingListSheetController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2A15831818E368CE00601026 /* CEEncodingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEEncodingListViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2A15831918E368CE00601026 /* CEEncodingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEEncodingListViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A15832218E383C300601026 /* CESizeSampleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESizeSampleWindowController.h; sourceTree = "<group>"; };
 		2A15832318E383C300601026 /* CESizeSampleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESizeSampleWindowController.m; sourceTree = "<group>"; };
 		2A15833318E3B83F00601026 /* CEConsolePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEConsolePanelController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -636,8 +636,8 @@
 		2A3CC1FC1C8B59EE00506DB8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SaveDocumentAccessory.strings"; sourceTree = "<group>"; };
 		2A3CC1FE1C8B59F100506DB8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
 		2A3E84821D07331900070A54 /* updateHelpindex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpindex.sh; sourceTree = "<group>"; };
-		2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditSheetController.h; sourceTree = "<group>"; };
-		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditSheetController.m; sourceTree = "<group>"; };
+		2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxEditViewController.h; sourceTree = "<group>"; };
+		2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxEditViewController.m; sourceTree = "<group>"; };
 		2A4063FA1B9DA6080032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxValidationView.strings; sourceTree = "<group>"; };
 		2A4063FC1B9DA6490032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
 		2A4063FE1B9DA6A80032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
@@ -742,9 +742,9 @@
 		2A69076A1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/KeyBindingsPane.strings; sourceTree = "<group>"; };
 		2A69076B1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PrintPane.strings; sourceTree = "<group>"; };
 		2A69076C1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
-		2A69076D1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxEditSheet.strings; sourceTree = "<group>"; };
+		2A69076D1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2A69076E1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxMappingConflictView.strings; sourceTree = "<group>"; };
-		2A69076F1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EncodingListSheet.strings; sourceTree = "<group>"; };
+		2A69076F1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EncodingListView.strings; sourceTree = "<group>"; };
 		2A6907701B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MenuKeyBindingsEditView.strings; sourceTree = "<group>"; };
 		2A6907711B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TextKeyBindingsEditView.strings; sourceTree = "<group>"; };
 		2A6907721B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SizeSampleWindow.strings; sourceTree = "<group>"; };
@@ -838,9 +838,9 @@
 		2AA0AC6A1A2877130063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SizeSampleWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC6B1A28771C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TextKeyBindingsEditView.strings"; sourceTree = "<group>"; };
 		2AA0AC6C1A2877260063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MenuKeyBindingsEditView.strings"; sourceTree = "<group>"; };
-		2AA0AC6D1A2877310063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EncodingListSheet.strings"; sourceTree = "<group>"; };
+		2AA0AC6D1A2877310063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EncodingListView.strings"; sourceTree = "<group>"; };
 		2AA0AC6E1A28773C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxMappingConflictView.strings"; sourceTree = "<group>"; };
-		2AA0AC6F1A28774D0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxEditSheet.strings"; sourceTree = "<group>"; };
+		2AA0AC6F1A28774D0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxEditView.strings"; sourceTree = "<group>"; };
 		2AA0AC701A2877570063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralPane.strings"; sourceTree = "<group>"; };
 		2AA0AC711A2877600063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WindowPane.strings"; sourceTree = "<group>"; };
 		2AA0AC721A2877690063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AppearancePane.strings"; sourceTree = "<group>"; };
@@ -931,9 +931,9 @@
 		2AD488461A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FileDropPane.xib; sourceTree = "<group>"; };
 		2AD488471A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KeyBindingsPane.xib; sourceTree = "<group>"; };
 		2AD488481A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PrintPane.xib; sourceTree = "<group>"; };
-		2AD488491A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxEditSheet.xib; sourceTree = "<group>"; };
+		2AD488491A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxEditView.xib; sourceTree = "<group>"; };
 		2AD4884A1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxMappingConflictView.xib; sourceTree = "<group>"; };
-		2AD4884B1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EncodingListSheet.xib; sourceTree = "<group>"; };
+		2AD4884B1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EncodingListView.xib; sourceTree = "<group>"; };
 		2AD4884C1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuKeyBindingsEditView.xib; sourceTree = "<group>"; };
 		2AD4884D1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TextKeyBindingsEditView.xib; sourceTree = "<group>"; };
 		2AD4884E1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SizeSampleWindow.xib; sourceTree = "<group>"; };
@@ -955,7 +955,7 @@
 		2AD488621A08155700B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PreferencesWindow.strings; sourceTree = "<group>"; };
 		2AD488631A08169500B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SizeSampleWindow.strings; sourceTree = "<group>"; };
 		2AD488641A08173B00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ThemeView.strings; sourceTree = "<group>"; };
-		2AD488651A081C6100B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EncodingListSheet.strings; sourceTree = "<group>"; };
+		2AD488651A081C6100B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EncodingListView.strings; sourceTree = "<group>"; };
 		2AD488661A081CC800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MenuKeyBindingsEditView.strings; sourceTree = "<group>"; };
 		2AD488671A081D2300B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/TextKeyBindingsEditView.strings; sourceTree = "<group>"; };
 		2AD488681A081DEE00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxMappingConflictView.strings; sourceTree = "<group>"; };
@@ -967,7 +967,7 @@
 		2AD4886E1A08284800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditPane.strings; sourceTree = "<group>"; };
 		2AD4886F1A082ADA00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PrintPane.strings; sourceTree = "<group>"; };
 		2AD488701A082E5D00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FormatPane.strings; sourceTree = "<group>"; };
-		2AD488721A085D8B00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxEditSheet.strings; sourceTree = "<group>"; };
+		2AD488721A085D8B00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2AD49C211D0BE75A00FF4CC9 /* CESettingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESettingManager.h; sourceTree = "<group>"; };
 		2AD49C221D0BE75A00FF4CC9 /* CESettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESettingManager.m; sourceTree = "<group>"; };
 		2AD49C261D0BEF3800FF4CC9 /* CESettingFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESettingFileManager.h; sourceTree = "<group>"; };
@@ -1159,7 +1159,7 @@
 				25859EA5076D8EE80020F779 /* PreferencesWindow.xib */,
 				2A149DAF19016AD800A9D6EF /* Panes */,
 				2A3A759719E77E4C001DAB88 /* Syntax Edit Sheet */,
-				2A149DB019016DE200A9D6EF /* Sheets */,
+				2A149DB019016DE200A9D6EF /* Views */,
 				2A15831F18E3814200601026 /* SizeSampleWindow.xib */,
 				2A63122F19C2D3B60088C5C6 /* ThemeView.xib */,
 			);
@@ -1182,15 +1182,15 @@
 			name = Panes;
 			sourceTree = "<group>";
 		};
-		2A149DB019016DE200A9D6EF /* Sheets */ = {
+		2A149DB019016DE200A9D6EF /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */,
-				2A15831518E3688300601026 /* EncodingListSheet.xib */,
+				2A15831518E3688300601026 /* EncodingListView.xib */,
 				8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */,
 				2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */,
 			);
-			name = Sheets;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		2A149DC619018F9200A9D6EF /* Panes */ = {
@@ -1221,10 +1221,10 @@
 		2A149DC719019CC400A9D6EF /* Encoding List Sheet */ = {
 			isa = PBXGroup;
 			children = (
+				2A15831818E368CE00601026 /* CEEncodingListViewController.h */,
+				2A15831918E368CE00601026 /* CEEncodingListViewController.m */,
 				25AC0919077190EB00B0C91C /* CEPrefEncodingDataSource.h */,
 				25AC091A077190EB00B0C91C /* CEPrefEncodingDataSource.m */,
-				2A15831818E368CE00601026 /* CEEncodingListSheetController.h */,
-				2A15831918E368CE00601026 /* CEEncodingListSheetController.m */,
 				2A68F93618FB04F300673440 /* CEMenuItemCell.h */,
 				2A68F93718FB04F300673440 /* CEMenuItemCell.m */,
 				2A7FD3581C551C9700CE8566 /* CETableCellView.h */,
@@ -1381,8 +1381,8 @@
 		2A2E03471A4BF808006ABE9F /* Syntax Edit Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditSheetController.h */,
-				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditSheetController.m */,
+				2A3FB2AB18ECEFF200D9CB2C /* CESyntaxEditViewController.h */,
+				2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditViewController.m */,
 				2A1A3E4C1C099A21007FEA7A /* CESyntaxTermsEditViewController.h */,
 				2A1A3E4D1C099A21007FEA7A /* CESyntaxTermsEditViewController.m */,
 				2A3A75B119E77F32001DAB88 /* CESyntaxValidationViewController.h */,
@@ -1508,7 +1508,7 @@
 		2A3A759719E77E4C001DAB88 /* Syntax Edit Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */,
+				258EF2F8077FEDD000011E52 /* SyntaxEditView.xib */,
 				2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */,
 				2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */,
 				2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */,
@@ -2128,7 +2128,7 @@
 				2A6F0D611B5500E100C2D03C /* SizeSampleWindow.xib in Resources */,
 				2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */,
 				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
-				2A6F0D641B5500E100C2D03C /* SyntaxEditSheet.xib in Resources */,
+				2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */,
 				2A6F0D651B5500E100C2D03C /* ProgressSheet.xib in Resources */,
 				2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */,
 				2A6F0D671B5500E100C2D03C /* MenuKeyBindingsEditView.xib in Resources */,
@@ -2156,7 +2156,7 @@
 				2A6F0D7D1B5500E100C2D03C /* TextKeyBindingsEditView.xib in Resources */,
 				2A80C66F1CEE556600AA664D /* WebDocumentWindow.xib in Resources */,
 				2A5DBE5C1B5D2DBD00F8CB13 /* SyntaxInfoEditView.xib in Resources */,
-				2A6F0D7E1B5500E100C2D03C /* EncodingListSheet.xib in Resources */,
+				2A6F0D7E1B5500E100C2D03C /* EncodingListView.xib in Resources */,
 				2A6F0D821B5500E100C2D03C /* IntegrationPane.xib in Resources */,
 				2A6F0D831B5500E100C2D03C /* RegexReferenceView.xib in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
@@ -2228,7 +2228,7 @@
 				2A15832118E3814200601026 /* SizeSampleWindow.xib in Resources */,
 				2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */,
 				25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */,
-				258EF2FA077FEDD000011E52 /* SyntaxEditSheet.xib in Resources */,
+				258EF2FA077FEDD000011E52 /* SyntaxEditView.xib in Resources */,
 				2A3A75AA19E77E87001DAB88 /* SyntaxTermsEditView.xib in Resources */,
 				2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */,
 				2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */,
@@ -2265,7 +2265,7 @@
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */,
 				2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */,
-				2A15831718E3688300601026 /* EncodingListSheet.xib in Resources */,
+				2A15831718E3688300601026 /* EncodingListView.xib in Resources */,
 				2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */,
 				2A2D6C191A602D2C002451FF /* RegexReferenceView.xib in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
@@ -2508,7 +2508,7 @@
 				2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */,
 				2A6F0DB21B5500E100C2D03C /* CEAlphaWindow.m in Sources */,
 				2A6602F51D05E8CB003E8D87 /* CEEditorWrapper+Editor.m in Sources */,
-				2A6F0DB31B5500E100C2D03C /* CEEncodingListSheetController.m in Sources */,
+				2A6F0DB31B5500E100C2D03C /* CEEncodingListViewController.m in Sources */,
 				2A6F0DB41B5500E100C2D03C /* CESyntaxStyle.m in Sources */,
 				2A6F0DB51B5500E100C2D03C /* CEIncompatibleCharsViewController.m in Sources */,
 				2A6F0DB61B5500E100C2D03C /* CESyntaxManager.m in Sources */,
@@ -2565,7 +2565,7 @@
 				2ADD36981CFCAD6B00F3175D /* CEInspectorTabView.m in Sources */,
 				2AE0C0981C422F3300E52E04 /* NSTextView+CETextReplacement.m in Sources */,
 				2A6F0DD51B5500E100C2D03C /* CEClipView.m in Sources */,
-				2A6F0DD71B5500E100C2D03C /* CESyntaxEditSheetController.m in Sources */,
+				2A6F0DD71B5500E100C2D03C /* CESyntaxEditViewController.m in Sources */,
 				2ACC65291C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */,
 				2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */,
 				2ADD36931CFCABA400F3175D /* CEDocumentInspectorViewController.m in Sources */,
@@ -2686,7 +2686,7 @@
 				2AB0C59C1C4A18830019411A /* NSString+CEEncoding.m in Sources */,
 				2A6CE3A71CDEF9A00032A2A7 /* CEAntialiasingTextField.m in Sources */,
 				2A4C9A7F1D099CD900C76F28 /* CEFileDropComposer.m in Sources */,
-				2A15831A18E368CE00601026 /* CEEncodingListSheetController.m in Sources */,
+				2A15831A18E368CE00601026 /* CEEncodingListViewController.m in Sources */,
 				2582260107794C2A00A0F8D3 /* CESyntaxStyle.m in Sources */,
 				2A3A1E7A1C45233D00641CE0 /* CEHUDController.m in Sources */,
 				2AE0C09B1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
@@ -2748,7 +2748,7 @@
 				2AE356461A86D32500E29FEF /* CEClipView.m in Sources */,
 				2A2184201D043A0A00522EF5 /* CEMainViewController.m in Sources */,
 				2A476CAA1D09C6B50088E37A /* NSURL+CEAdditions.m in Sources */,
-				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditSheetController.m in Sources */,
+				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditViewController.m in Sources */,
 				2A6415941BD10EF40080358E /* NSString+Indentation.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */,
 				2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */,
@@ -2834,7 +2834,7 @@
 			name = ProgressSheet.xib;
 			sourceTree = "<group>";
 		};
-		258EF2F8077FEDD000011E52 /* SyntaxEditSheet.xib */ = {
+		258EF2F8077FEDD000011E52 /* SyntaxEditView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2AD488491A07FF1C00B795CB /* Base */,
@@ -2842,7 +2842,7 @@
 				2AA0AC6F1A28774D0063ED1B /* zh-Hans */,
 				2A69076D1B8443AA00D0F3A2 /* de */,
 			);
-			name = SyntaxEditSheet.xib;
+			name = SyntaxEditView.xib;
 			sourceTree = "<group>";
 		};
 		259C2316077678DE00BA61C5 /* Localizable.strings */ = {
@@ -2954,7 +2954,7 @@
 			name = WindowPane.xib;
 			sourceTree = "<group>";
 		};
-		2A15831518E3688300601026 /* EncodingListSheet.xib */ = {
+		2A15831518E3688300601026 /* EncodingListView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2AD4884B1A07FF1C00B795CB /* Base */,
@@ -2962,7 +2962,7 @@
 				2AA0AC6D1A2877310063ED1B /* zh-Hans */,
 				2A69076F1B8443AB00D0F3A2 /* de */,
 			);
-			name = EncodingListSheet.xib;
+			name = EncodingListView.xib;
 			sourceTree = "<group>";
 		};
 		2A15831F18E3814200601026 /* SizeSampleWindow.xib */ = {

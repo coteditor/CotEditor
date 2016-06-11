@@ -379,7 +379,7 @@
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
 
 
-/* MARK: CESyntaxEditSheetController */
+/* MARK: CESyntaxEditViewController */
 // Menu items
 "Keywords" = "关键字";
 "Commands" = "命令";

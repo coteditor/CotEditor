@@ -1,15 +1,16 @@
 /*
  
- SyntaxEditSheet.strings (German)
+ CESyntaxEditViewController.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2015-08-19.
- 
+ Created by 1024jp on 2014-04-03.
+
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2004-2007 nakamuxu
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,14 +26,19 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
-"987.title" = "Stilname:";
-/* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
-"988.placeholderString" = "Stilname";
+@import Cocoa;
 
-/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
-"1020.title" = "Auf Standard zurücksetzen";
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
-"986.title" = "Abbrechen";
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
-"985.title" = "OK";
+
+typedef NS_ENUM(NSInteger, CESyntaxEditSheetMode) {
+    CESyntaxEdit,
+    CECopySyntaxEdit,
+    CENewSyntaxEdit
+};
+
+
+@interface CESyntaxEditViewController : NSViewController
+
+/// default initializer (return nil if styleName is invalid)
+- (nullable instancetype)initWithStyle:(nonnull NSString *)styleName mode:(CESyntaxEditSheetMode)mode;
+
+@end
