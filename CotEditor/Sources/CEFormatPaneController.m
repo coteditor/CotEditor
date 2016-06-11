@@ -154,7 +154,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
     BOOL isCustomized = NO;
     BOOL isBundled = NO;
     if (representedStyleName) {
-        isBundled = [[CESyntaxManager sharedManager] isBundledStyle:representedStyleName cutomized:nil];
+        isBundled = [[CESyntaxManager sharedManager] isBundledSetting:representedStyleName cutomized:nil];
     }
     
     // 書き出し/複製メニュー項目に現在選択されているスタイル名を追加
@@ -172,7 +172,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
         if (!isContextualMenu) {
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Reveal “%@” in Finder", nil), representedStyleName]];
         }
-        return representedStyleName ? ([[CESyntaxManager sharedManager] URLForUserStyle:representedStyleName] != nil) : NO;
+        return representedStyleName ? ([[CESyntaxManager sharedManager] URLForUserSettingWithName:representedStyleName] != nil) : NO;
         
     } else if ([menuItem action] == @selector(deleteSyntaxStyle:)) {
         [menuItem setHidden:(isBundled || !representedStyleName)];
@@ -216,7 +216,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
     
     NSString *swipedSyntaxName = [[self stylesController] arrangedObjects][row][StyleNameKey];
     BOOL isCustomized;
-    BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:swipedSyntaxName cutomized:&isCustomized];
+    BOOL isBundled = [[CESyntaxManager sharedManager] isBundledSetting:swipedSyntaxName cutomized:&isCustomized];
     
     // do nothing on undeletable style
     if (isBundled && !isCustomized) { return @[]; }
@@ -288,7 +288,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 
 // ------------------------------------------------------
-/// シンタックススタイル削除ボタンが押された
+/// delete selected syntax style
 - (IBAction)deleteSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -299,7 +299,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 
 // ------------------------------------------------------
-/// シンタックススタイルリストアボタンが押された
+/// restore selected syntax style
 - (IBAction)restoreSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -315,8 +315,6 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 // ------------------------------------------------------
 {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-    
-    // OpenPanelをセットアップ(既定値を含む)、シートとして開く
     [openPanel setPrompt:NSLocalizedString(@"Import", nil)];
     [openPanel setResolvesAliases:YES];
     [openPanel setAllowsMultipleSelection:NO];
@@ -366,41 +364,41 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 
 // ------------------------------------------------------
-/// シンタックスカラーリングスタイルエクスポートボタンが押された
+/// export selected syntax style
 - (IBAction)exportSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
+    CESettingFileManager *manager = [CESyntaxManager sharedManager];
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
-    
-    // SavePanelをセットアップ(既定値を含む)、シートとして開く
     [savePanel setCanCreateDirectories:YES];
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
     [savePanel setNameFieldStringValue:styleName];
-    [savePanel setAllowedFileTypes:@[@"yaml"]];
+    [savePanel setAllowedFileTypes:@[[manager filePathExtension]]];
     
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelOKButton) {
-            [[CESyntaxManager sharedManager] exportStyle:styleName toURL:[savePanel URL]];
-        }
+        if (result == NSFileHandlingPanelCancelButton) { return; }
+        
+        [manager exportSettingWithName:styleName toURL:[savePanel URL] error:nil];
     }];
 }
 
 
 // ------------------------------------------------------
-/// シンタックスカラーリングファイルをFinderで開く
+/// open directory in Application Support where the selected syntax style exists in Finder
 - (IBAction)revealSyntaxStyleInFinder:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
     
-    NSURL *URL = [[CESyntaxManager sharedManager] URLForUserStyle:styleName];
+    NSURL *URL = [[CESyntaxManager sharedManager] URLForUserSettingWithName:styleName];
     
-    if (URL) {
-        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
-    }
+    if (!URL) { return; }
+    
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
+    
 }
 
 
@@ -509,7 +507,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
     NSMutableArray<NSDictionary *> *hoge = [NSMutableArray array];
     for (NSString *styleName in styleNames) {
         BOOL isCutomized;
-        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledStyle:styleName cutomized:&isCutomized];
+        BOOL isBundled = [[CESyntaxManager sharedManager] isBundledSetting:styleName cutomized:&isCutomized];
         
         [hoge addObject:@{StyleNameKey: styleName,
                           StyleStateKey: @(!isBundled || isCutomized)}];
@@ -549,7 +547,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 - (void)validateRemoveSyntaxStyleButton
 // ------------------------------------------------------
 {
-    BOOL isDeletable = [self selectedStyleName] ? ![[CESyntaxManager sharedManager] isBundledStyle:[self selectedStyleName] cutomized:nil] : NO;
+    BOOL isDeletable = [self selectedStyleName] ? ![[CESyntaxManager sharedManager] isBundledSetting:[self selectedStyleName] cutomized:nil] : NO;
     
     [[self syntaxStyleDeleteButton] setEnabled:isDeletable];
 }
@@ -571,16 +569,15 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
      {
          if (returnCode != NSAlertSecondButtonReturn) { return; }  // != Delete
          
-         if ([[CESyntaxManager sharedManager] removeStyleFileWithStyleName:styleName]) {
+         NSError *error;
+         if ([[CESyntaxManager sharedManager] removeSettingWithName:styleName error:&error]) {
              AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
-             
-         } else {
-             // 削除できなければ、その旨をユーザに通知
+         }
+         
+         if (error) {
+             // show alert if failed
              [[alert window] orderOut:nil];
-             [window makeKeyAndOrderFront:nil];
-             NSAlert *alert = [[NSAlert alloc] init];
-             [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
-             [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be deleted.", nil), styleName]];
+             NSAlert *alert = [NSAlert alertWithError:error];
              NSBeep();
              [alert beginSheetModalForWindow:window completionHandler:nil];
          }
@@ -589,13 +586,11 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 
 // ------------------------------------------------------
-/// try to delete given syntax style
+/// try to restore given syntax style
 - (void)restoreSyntaxStyleWithName:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    if (![[CESyntaxManager sharedManager] URLForUserStyle:styleName]) { return; }
-    
-    [[CESyntaxManager sharedManager] restoreStyleFileWithStyleName:styleName];
+    [[CESyntaxManager sharedManager] restoreSettingWithName:styleName error:nil];
 }
 
 
@@ -604,14 +599,11 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 - (void)doImport:(nonnull NSURL *)fileURL withCurrentSheetWindow:(nullable NSWindow *)window
 // ------------------------------------------------------
 {
-    if (![[CESyntaxManager sharedManager] importStyleFromURL:fileURL]) {
-        // インポートできなかったときは、セカンダリシートを閉じ、メッセージシートを表示
-        [window orderOut:self];
-        [[[self view] window] makeKeyAndOrderFront:self];
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:NSLocalizedString(@"An error occurred.", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"The style “%@” couldn’t be imported.", nil), [fileURL lastPathComponent]]];
-        
+    NSError *error = nil;
+    if (![[CESyntaxManager sharedManager] importSettingWithFileURL:fileURL error:&error]) {
+        // show alert if failed
+        [[window attachedSheet] orderOut:self];
+        NSAlert *alert = [NSAlert alertWithError:error];
         NSBeep();
         [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
     }

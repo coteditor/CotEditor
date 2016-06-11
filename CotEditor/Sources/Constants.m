@@ -41,10 +41,6 @@ NSString *_Nonnull const CESeparatorString = @"-";
 // Exported UTI
 NSString *_Nonnull const CEUTTypeTheme = @"com.coteditor.CotEditor.theme";
 
-// General notification's userInfo keys
-NSString *_Nonnull const CEOldNameKey = @"CEOldNameKey";
-NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
-
 // Metadata dict keys for themes and syntax styles
 NSString *_Nonnull const CEMetadataKey = @"metadata";
 NSString *_Nonnull const CEAuthorKey = @"author";

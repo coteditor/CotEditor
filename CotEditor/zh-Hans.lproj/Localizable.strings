@@ -404,13 +404,20 @@
 
 
 
-/* MARK: CESyntaxManager */
-// Syntax style name errors
-"Input style name." = "请输入样式名称。";
-"“%@” is already taken. Please choose another name." = "“%@”已经在使用中，请输入其他名称。";
-"You can’t use a style name that contains “/”. Please choose another name." = "样式名称中不能含有“/”，请输入其他名称。";
-"You can’t use a style name that begins with a dot “.”. Please choose another name." = "样式名称中不能含有“.”，请输入其他名称。";
+/* MARK: CESettingFileManager */
+"“%@” couldn’t be deleted." = "“%@”无法删除。";
+"“%@” couldn’t be imported." = "“%@”无法导入。";
 
+// Setting file name warnings
+"Please choose another name." = "请输入其他名称。";
+"Name can’t be empty." = "名称不能为空。";
+"You can’t use a name that contains “/”." = "名称不能含有“/”。";
+"You can’t use a name that begins with a dot “.”." = "名称不能含有“.”。";
+"The name “%@” is already taken." = "“%@”已经在使用中。";
+
+
+
+/* MARK: CESyntaxManager */
 // Selected syntax style name was original
 "Bundled styles can’t be renamed." = "内置样式的名称不能改变。";
 
@@ -423,18 +430,12 @@
 "Delete" = "删除";
 "Replace" = "替换";
 
-// Deleted error
-"The style “%@” couldn’t be deleted." = "“%@”无法删除。";
-
 // Import syntax style file choose openPanel button
 "Import" = "导入";
 // Importing same name style alert title
 "The “%@” style already exists." = "样式“%@”已经存在。";
 // Importing same name style alert info
 "Do you want to replace it?\nReplaced style can’t be restored." = "要替换样式吗？\n被替换的样式无法将恢复。";
-// Imported error
-"An error occurred." = "发生了错误。";
-"The style “%@” couldn’t be imported." = "“%@”无法导入。";
 
 // Export syntax style file savePanel label
 "Export As:" = "导出为：";
@@ -453,13 +454,6 @@
 // Theme names
 "Untitled" = "未命名";
 "Customized Theme" = "自定义主题";
-
-// Theme name warnings
-"The theme name “%@” is already taken." = "主题名称“%@”已在使用中。";
-"Theme name can’t be empty." = "主题名称不能为空。";
-"You can’t use a theme name that contains “/”." = "主题名称不能含有“/”。";
-"You can’t use a theme name that begins with a dot “.”." = "主题名称不能含有“.”。";
-"Please choose another name." = "请输入其他名称。";
 
 // Theme description meda data for migrated theme
 "Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";

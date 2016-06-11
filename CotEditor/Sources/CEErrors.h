@@ -47,6 +47,10 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     // text finder
     CERegularExpressionError = 1200,
     
+    // setting manager
+    CESettingDeletionFailedError = 1300,
+    CESettingImportFailedError,
+    
     // for command-line tool installer
     CEApplicationNotInApplicationDirectoryError = 1500,
     CEApplicationNameIsModifiedError,

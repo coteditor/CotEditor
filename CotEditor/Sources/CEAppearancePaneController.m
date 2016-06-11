@@ -123,6 +123,12 @@
                                              selector:@selector(setupThemeList)
                                                  name:CEThemeListDidUpdateNotification
                                                object:nil];
+    
+    // update theme view if theme is changed
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(themeDidUpdate:)
+                                                 name:CEThemeDidUpdateNotification
+                                               object:nil];
 }
 
 
@@ -155,7 +161,7 @@
     BOOL isCustomized = NO;
     BOOL isBundled = NO;
     if (representedTheme) {
-        isBundled = [[CEThemeManager sharedManager] isBundledTheme:representedTheme cutomized:&isCustomized];
+        isBundled = [[CEThemeManager sharedManager] isBundledSetting:representedTheme cutomized:&isCustomized];
     }
     
     if (([menuItem action] == @selector(addTheme:)) ||
@@ -300,7 +306,7 @@
     if ([notification object] == [self themeTableView]) {
         NSString *themeName = [self selectedTheme];
         BOOL isBundled;
-        NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *themeDict = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:&isBundled];
+        NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *themeDict = [[CEThemeManager sharedManager] archivedThemeWithName:themeName isBundled:&isBundled];
         
         // デフォルトテーマ設定の更新（初回の選択変更はまだ設定が反映されていない時点で呼び出されるので保存しない）
         if ([self themeViewController]) {
@@ -334,7 +340,7 @@
 {
     NSTableCellView *view = [tableView viewAtColumn:0 row:row makeIfNecessary:NO];
     NSString *themeName = [self themeNames][row];
-    BOOL editable = ![[CEThemeManager sharedManager] isBundledTheme:themeName cutomized:nil];
+    BOOL editable = ![[CEThemeManager sharedManager] isBundledSetting:themeName cutomized:nil];
     
     [[view textField] setEditable:editable];
 }
@@ -354,7 +360,7 @@
         return YES;
     }
     
-    BOOL success = [[CEThemeManager sharedManager] renameTheme:oldName toName:newName error:&error];
+    BOOL success = [[CEThemeManager sharedManager] renameThemeWithName:oldName toName:newName error:&error];
     
     if (error) {
         // revert name
@@ -379,7 +385,7 @@
     
     // check whether theme can be deleted
     BOOL isCustomized;
-    BOOL isBundled = [[CEThemeManager sharedManager] isBundledTheme:swipedThemeName cutomized:&isCustomized];
+    BOOL isBundled = [[CEThemeManager sharedManager] isBundledSetting:swipedThemeName cutomized:&isCustomized];
     
     // do nothing on undeletable theme
     if (isBundled && !isCustomized) { return @[]; }
@@ -462,7 +468,7 @@
 
 
 //------------------------------------------------------
-/// 選択しているテーマを削除
+/// delete selected theme
 - (IBAction)deleteTheme:(nullable id)sender
 //------------------------------------------------------
 {
@@ -473,50 +479,51 @@
 
 
 //------------------------------------------------------
-/// 選択しているテーマを複製
+/// duplicate selected theme
 - (IBAction)duplicateTheme:(nullable id)sender
 //------------------------------------------------------
 {
     NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
     
-    [[CEThemeManager sharedManager] duplicateTheme:themeName error:nil];
+    [[CEThemeManager sharedManager] duplicateThemeWithName:themeName error:nil];
 }
 
 
 //------------------------------------------------------
-/// 選択しているテーマを書き出し
+/// export selected theme
 - (IBAction)exportTheme:(nullable id)sender
 //------------------------------------------------------
 {
     NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
+    CESettingFileManager *manager = [CEThemeManager sharedManager];
     
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     [savePanel setCanCreateDirectories:YES];
     [savePanel setCanSelectHiddenExtension:YES];
     [savePanel setNameFieldLabel:NSLocalizedString(@"Export As:", nil)];
     [savePanel setNameFieldStringValue:themeName];
-    [savePanel setAllowedFileTypes:@[CEThemeExtension]];
+    [savePanel setAllowedFileTypes:@[[manager filePathExtension]]];
     
     [savePanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelCancelButton) { return; }
         
-        [[CEThemeManager sharedManager] exportTheme:themeName toURL:[savePanel URL] error:nil];
+        [manager exportSettingWithName:themeName toURL:[savePanel URL] error:nil];
     }];
 }
 
 
 // ------------------------------------------------------
-/// テーマファイルをFinderで開く
+/// open directory in Application Support where the selected theme exists in Finder
 - (IBAction)revealThemeInFinder:(nullable id)sender
 // ------------------------------------------------------
 {
     NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
     
-    NSURL *URL = [[CEThemeManager sharedManager] URLForUserTheme:themeName];
+    NSURL *URL = [[CEThemeManager sharedManager] URLForUserSettingWithName:themeName];
     
-    if (URL) {
-        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
-    }
+    if (!URL) { return; }
+    
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[URL]];
 }
 
 
@@ -597,6 +604,19 @@
 
 
 //------------------------------------------------------
+/// refresh theme view if current displayed theme was restored
+- (void)themeDidUpdate:(nonnull NSNotification *)notification
+//------------------------------------------------------
+{
+    NSMutableDictionary *bundledTheme = [[CEThemeManager sharedManager] archivedThemeWithName:[self selectedTheme] isBundled:nil];
+    
+    if (![bundledTheme isEqualToDictionary:[[self themeViewController] representedObject]]) {
+        [[self themeViewController] setRepresentedObject:bundledTheme];
+    }
+}
+
+
+//------------------------------------------------------
 /// try to delete given theme
 - (void)deleteThemeWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
@@ -613,17 +633,16 @@
          if (returnCode != NSAlertSecondButtonReturn) { return; } // != Delete
          
          NSError *error = nil;
-         if ([[CEThemeManager sharedManager] removeTheme:themeName error:&error]) {
+         if ([[CEThemeManager sharedManager] removeSettingWithName:themeName error:&error]) {
              AudioServicesPlaySystemSound(CESystemSoundID_MoveToTrash);
          }
          
          if (error) {
-             // 削除できなければ、その旨をユーザに通知
+             // show alert if failed
              [[alert window] orderOut:nil];
-             [window makeKeyAndOrderFront:nil];
-             NSAlert *errorAlert = [NSAlert alertWithError:error];
+             NSAlert *alert = [NSAlert alertWithError:error];
              NSBeep();
-             [errorAlert beginSheetModalForWindow:window completionHandler:nil];
+             [alert beginSheetModalForWindow:window completionHandler:nil];
          }
          
      }];
@@ -635,14 +654,7 @@
 - (void)restoreThemeWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
-    [[CEThemeManager sharedManager] restoreTheme:themeName completionHandler:^(NSError *error) {
-        // refresh theme view if current displayed theme was restored
-        if (!error && [themeName isEqualToString:[self selectedTheme]]) {
-            NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *>  *bundledTheme = [[CEThemeManager sharedManager] archivedTheme:themeName isBundled:nil];
-            
-            [[self themeViewController] setRepresentedObject:bundledTheme];
-        }
-    }];
+    [[CEThemeManager sharedManager] restoreSettingWithName:themeName error:nil];
 }
 
 
@@ -652,29 +664,25 @@
 //------------------------------------------------------
 {
     NSError *error = nil;
-    [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
+    [[CEThemeManager sharedManager] importThemeWithFileURL:URL replace:NO error:&error];
     
     if (error) {
         NSAlert *alert = [NSAlert alertWithError:error];
         NSWindow *window = [[self view] window];
         
-        // display as an independent window if any sheet is already attached
-        if ([window attachedSheet]) {
-            window = nil;
-        }
-        
         // ask for overwriting if a theme with the same name already exists
         if ([error code] == CEThemeFileDuplicationError) {
-            NSWindow *window = [[self view] window];
             [alert beginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
              {
                  if (returnCode != NSAlertSecondButtonReturn) { return; }  // Cancel
                  
                  NSError *error = nil;
-                 [[CEThemeManager sharedManager] importTheme:URL replace:YES error:&error];
+                 [[CEThemeManager sharedManager] importThemeWithFileURL:URL replace:YES error:&error];
                  
                  if (error) {
+                     [[alert window] orderOut:nil];
                      NSAlert *alert = [NSAlert alertWithError:error];
+                     NSBeep();
                      [alert beginSheetModalForWindow:window completionHandler:nil];
                  }
              }];

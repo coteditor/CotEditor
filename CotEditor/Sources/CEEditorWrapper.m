@@ -40,7 +40,6 @@
 #import "CETextFinder.h"
 
 #import "CEDefaults.h"
-#import "Constants.h"
 
 #import "NSTextView+CELayout.h"
 #import "NSString+Indentation.h"

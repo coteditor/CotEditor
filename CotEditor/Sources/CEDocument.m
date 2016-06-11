@@ -283,9 +283,9 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     [[self textStorage] replaceCharactersInRange:NSMakeRange(0, [[self textStorage] length]) withString:string];
     
     // determine syntax style
-    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[url lastPathComponent]];
+    NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromDocumentFileName:[url lastPathComponent]];
     if (!styleName && string) {
-        styleName = [[CESyntaxManager sharedManager] styleNameFromContent:string];
+        styleName = [[CESyntaxManager sharedManager] styleNameFromDocumentContent:string];
     }
     styleName = styleName ? : [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultSyntaxStyleKey];
     [self setSyntaxStyleWithName:styleName];
@@ -425,7 +425,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
          if (!error) {
              // apply syntax style that is inferred from the file name
              if (saveOperation == NSSaveAsOperation) {
-                 NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromFileName:[url lastPathComponent]];
+                 NSString *styleName = [[CESyntaxManager sharedManager] styleNameFromDocumentFileName:[url lastPathComponent]];
                  if (styleName) {
                      [self setSyntaxStyleWithName:styleName];
                  }

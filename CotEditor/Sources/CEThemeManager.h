@@ -25,7 +25,7 @@
  
  */
 
-#import "CESettingManager.h"
+#import "CESettingFileManager.h"
 @import AppKit.NSColor;
 
 
@@ -40,8 +40,9 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 @class CETheme;
 
 
-@interface CEThemeManager : CESettingManager
+@interface CEThemeManager : CESettingFileManager
 
+// readonly
 @property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *themeNames;
 
 
@@ -53,21 +54,13 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 - (nullable CETheme *)themeWithName:(nonnull NSString *)themeName;
 
 /// Theme dict in which objects are property list ready.
-- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedTheme:(nonnull NSString *)themeName isBundled:(nullable BOOL *)isBundled;
-
-/// Return whether the theme that has the given name is bundled with the app.
-- (BOOL)isBundledTheme:(nonnull NSString *)themeName cutomized:(nullable BOOL *)isCustomized;
-
-- (nullable NSURL *)URLForUserTheme:(nonnull NSString *)themeName;  // returns nil if file is not available
+- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedThemeWithName:(nonnull NSString *)themeName isBundled:(nullable BOOL *)isBundled;
 
 // manage themes
 - (BOOL)saveTheme:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
-- (BOOL)renameTheme:(nonnull NSString *)themeName toName:(nonnull NSString *)newThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
-- (BOOL)removeTheme:(nonnull NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
-- (BOOL)restoreTheme:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
-- (BOOL)duplicateTheme:(nonnull NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
-- (BOOL)exportTheme:(nonnull NSString *)themeName toURL:(nonnull NSURL *)URL error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
-- (BOOL)importTheme:(nonnull NSURL *)URL replace:(BOOL)doReplace error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)renameThemeWithName:(nonnull NSString *)themeName toName:(nonnull NSString *)newThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)duplicateThemeWithName:(nonnull NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)importThemeWithFileURL:(nonnull NSURL *)URL replace:(BOOL)doReplace error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)createUntitledThemeWithCompletionHandler:(nullable void (^)(NSString *_Nonnull themeName, NSError *_Nullable error))completionHandler;
 
 @end

@@ -387,7 +387,7 @@
         
         // import theme
         NSError *error = nil;
-        [[CEThemeManager sharedManager] importTheme:URL replace:NO error:&error];
+        [[CEThemeManager sharedManager] importThemeWithFileURL:URL replace:NO error:&error];
         
         // ask whether the old theme should be repleced with new one if the same name theme is already exists
         if ([error code] == CEThemeFileDuplicationError) {
@@ -398,7 +398,7 @@
                 return YES;
             } else {
                 error = nil;
-                [[CEThemeManager sharedManager] importTheme:URL replace:YES error:&error];
+                [[CEThemeManager sharedManager] importThemeWithFileURL:URL replace:YES error:&error];
             }
         }
         

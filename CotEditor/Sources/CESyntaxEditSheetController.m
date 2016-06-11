@@ -95,7 +95,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         
         switch (mode) {
             case CECopySyntaxEdit:
-                name = [syntaxManager copiedStyleName:styleName];
+                name = [syntaxManager copiedSettingName:styleName];
                 style = [syntaxManager styleDictionaryWithStyleName:styleName];
                 break;
                 
@@ -115,7 +115,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         _originalStyleName = name;
         _style = [style mutableCopy];
         _styleNameValid = YES;
-        _bundledStyle = [syntaxManager isBundledStyle:name cutomized:nil];
+        _bundledStyle = [syntaxManager isBundledSetting:name cutomized:nil];
         
         if (_bundledStyle) {
             _message = NSLocalizedString(@"Bundled styles can’t be renamed.", nil);
@@ -373,32 +373,16 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         return YES;
     }
     
-    NSString *message = nil;
+    NSError *error = nil;
     
     if (!(([self mode] == CESyntaxEdit) &&
           ([styleName caseInsensitiveCompare:[self originalStyleName]] == NSOrderedSame)))
     {
-        // NSArray を case insensitive に検索するブロック
-        __block NSString *duplicatedStyleName;
-        BOOL (^caseInsensitiveContains)() = ^(id obj, NSUInteger idx, BOOL *stop){
-            BOOL found = ([obj caseInsensitiveCompare:styleName] == NSOrderedSame);
-            if (found) { duplicatedStyleName = obj; }
-            return found;
-        };
-        
-        if ([styleName length] < 1) {  // 空は不可
-            message = NSLocalizedString(@"Input style name.", nil);
-        } else if ([styleName containsString:@"/"]) {  // ファイル名としても使われるので、"/" が含まれる名前は不可
-            message = NSLocalizedString(@"You can’t use a style name that contains “/”. Please choose another name.", nil);
-        } else if ([styleName hasPrefix:@"."]) {  // ファイル名としても使われるので、"." から始まる名前は不可
-            message = NSLocalizedString(@"You can’t use a style name that begins with a dot “.”. Please choose another name.", nil);
-        } else if ([[[CESyntaxManager sharedManager] styleNames] indexOfObjectPassingTest:caseInsensitiveContains] != NSNotFound) {  // 既にある名前は不可
-            message = [NSString stringWithFormat:NSLocalizedString(@"“%@” is already taken. Please choose another name.", nil), duplicatedStyleName];
-        }
+        [[CESyntaxManager sharedManager] validateSettingName:styleName originalName:[self originalStyleName] error:&error];
     }
     
-    [self setStyleNameValid:(!message)];
-    [self setMessage:message ? [NSString stringWithFormat:@"⚠️ %@", message] : nil];
+    [self setStyleNameValid:(!error)];
+    [self setMessage:error ? [NSString stringWithFormat:@"⚠️ %@ %@", [error localizedDescription], [error localizedRecoverySuggestion]] : nil];
     
     return [self isStyleNameValid];
 }

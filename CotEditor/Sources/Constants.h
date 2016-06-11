@@ -41,10 +41,6 @@ extern NSString *_Nonnull const CESeparatorString;
 // Exported UTI
 extern NSString *_Nonnull const CEUTTypeTheme;
 
-// General notification's userInfo keys
-extern NSString *_Nonnull const CEOldNameKey;
-extern NSString *_Nonnull const CENewNameKey;
-
 // Metadata dict keys
 extern NSString *_Nonnull const CEMetadataKey;
 extern NSString *_Nonnull const CEAuthorKey;

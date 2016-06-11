@@ -30,7 +30,6 @@
 #import "CESyntaxStyle.h"
 #import "CESyntaxDictionaryKeys.h"
 #import "CEDefaults.h"
-#import "Constants.h"
 
 #import <YAML-Framework/YAMLSerialization.h>
 
@@ -131,6 +130,33 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 }
 
 
+//------------------------------------------------------
+/// path extension for user setting file
+- (nonnull NSString *)filePathExtension
+//------------------------------------------------------
+{
+    return @"yaml";
+}
+
+
+//------------------------------------------------------
+/// list of names of setting file name (without extension)
+- (nonnull NSArray<NSString *> *)settingNames
+//------------------------------------------------------
+{
+    return [self styleNames];
+}
+
+
+//------------------------------------------------------
+/// list of names of setting file name which are bundled (without extension)
+- (nonnull NSArray<NSString *> *)bundledSettingNames
+//------------------------------------------------------
+{
+    return [self bundledStyleNames];
+}
+
+
 
 #pragma mark Public Methods
 
@@ -173,7 +199,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// ファイル名に応じたstyle名を返す
-- (nullable NSString *)styleNameFromFileName:(nullable NSString *)fileName
+- (nullable NSString *)styleNameFromDocumentFileName:(nullable NSString *)fileName
 // ------------------------------------------------------
 {
     NSString *styleName = [self filenameToStyleTable][fileName];
@@ -186,7 +212,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// 本文からシェバンをスキャンして、内容に応じたstyle名を返す
-- (nullable NSString *)styleNameFromContent:(nonnull NSString *)contentString
+- (nullable NSString *)styleNameFromDocumentContent:(nonnull NSString *)contentString
 // ------------------------------------------------------
 {
     NSString *interpreter = [self scanLanguageFromShebangInString:contentString];
@@ -220,7 +246,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     NSMutableDictionary<NSString *, id> *style;
     
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        style = [self styleCaches][styleName] ? : [self styleDictWithURL:[self URLForUsedStyle:styleName]];
+        style = [self styleCaches][styleName] ? : [self styleDictWithURL:[self URLForUsedSettingWithName:styleName]];
         
         // 新たに読み込んだ場合はキャッシュする
         if (![self styleCaches][styleName] && style) {
@@ -237,7 +263,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 - (nullable NSDictionary<NSString *, id> *)bundledStyleDictionaryWithStyleName:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    return [self styleDictWithURL:[self URLForBundledStyle:styleName available:NO]];
+    return [self styleDictWithURL:[self URLForBundledSettingWithName:styleName available:NO]];
 }
 
 
@@ -246,7 +272,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 - (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    if (![self isBundledStyle:styleName cutomized:nil]) { return NO; }
+    if (![self isBundledSetting:styleName cutomized:nil]) { return NO; }
     
     // numOfObjInArray などが混入しないようにスタイル定義部分だけを比較する
     NSArray<NSString *> *keys = [[self emptyStyleDictionary] allKeys];
@@ -256,130 +282,36 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 }
 
 
-// ------------------------------------------------------
-/// あるスタイルネームがデフォルトで用意されているものかどうかを返す
-- (BOOL)isBundledStyle:(nonnull NSString *)styleName cutomized:(nullable BOOL *)isCustomized;
-// ------------------------------------------------------
-{
-    BOOL isBundled = [[self bundledStyleNames] containsObject:styleName];
-    
-    if (isBundled && isCustomized) {
-        *isCustomized = ([self URLForUserStyle:styleName available:YES] != nil);
-    }
-    return isBundled;
-}
-
-
-// ------------------------------------------------------
-/// style名に応じたユーザ領域のスタイルファイルURLを返す（ない場合はnil）
-- (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName
-// ------------------------------------------------------
-{
-    return [self URLForUserStyle:styleName available:YES];
-}
-
-
 //------------------------------------------------------
-/// 外部styleファイルをユーザ領域にコピーする
-- (BOOL)importStyleFromURL:(nonnull NSURL *)fileURL
+/// 外部 style ファイルをユーザ領域にコピーする
+- (BOOL)importSettingWithFileURL:(NSURL *)fileURL error:(NSError *__autoreleasing  _Nullable *)outError
 //------------------------------------------------------
 {
     if ([[fileURL pathExtension] isEqualToString:@"plist"]) {
-        return [self importLegacyStyleFromURL:fileURL];
+        return [self importLegacyStyleWithFileURL:fileURL];
     }
     
-    NSURL *destURL = [[self userSettingDirectoryURL] URLByAppendingPathComponent:[fileURL lastPathComponent]];
-    
-    // ユーザ領域にシンタックス定義用ディレクトリがまだない場合は作成する
-    if (![self prepareUserSettingDirectory]) {
-        return NO;
-    }
-    
-    __block BOOL success = NO;
-    __block NSError *error = nil;
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
-    [coordinator coordinateReadingItemAtURL:fileURL options:NSFileCoordinatorReadingWithoutChanges
-                           writingItemAtURL:destURL options:NSFileCoordinatorWritingForReplacing
-                                      error:&error
-                                 byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
-     {
-         if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:nil];
-         }
-         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
-     }];
-    
-    if (error) {
-        NSLog(@"Error: %@", [error description]);
-    }
-    
-    if (success) {
-        // 内部で持っているキャッシュ用データを更新
-        [self updateCacheWithCompletionHandler:nil];
-    }
-    
-    return success;
-}
-
-
-//------------------------------------------------------
-/// styleファイルを指定のURLにコピーする
-- (BOOL)exportStyle:(nonnull NSString *)styleName toURL:(nonnull NSURL *)fileURL
-//------------------------------------------------------
-{
-    NSURL *sourceURL = [self URLForUsedStyle:styleName];
-    
-    __block BOOL success = NO;
-    __block NSError *error = nil;
-    NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
-    [coordinator coordinateReadingItemAtURL:sourceURL options:NSFileCoordinatorReadingWithoutChanges
-                           writingItemAtURL:fileURL options:NSFileCoordinatorWritingForReplacing
-                                      error:&error
-                                 byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
-     {
-         if ([newWritingURL checkResourceIsReachableAndReturnError:nil]) {
-             [[NSFileManager defaultManager] removeItemAtURL:newWritingURL error:nil];
-         }
-         success = [[NSFileManager defaultManager] copyItemAtURL:newReadingURL toURL:newWritingURL error:&error];
-     }];
-    
-    if (error) {
-        NSLog(@"Error: %@", [error description]);
-    }
-    
-    return success;
+    return [super importSettingWithFileURL:fileURL error:nil];
 }
 
 
 //------------------------------------------------------
 /// style名に応じたstyleファイルを削除する
-- (BOOL)removeStyleFileWithStyleName:(nonnull NSString *)styleName
+- (BOOL)removeSettingWithName:(NSString *)settingName error:(NSError *__autoreleasing  _Nullable *)outError
 //------------------------------------------------------
 {
-    BOOL success = NO;
-    NSURL *URL = [self URLForUserStyle:styleName available:NO];
-
-    if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
-    } else {
-        // already removed.
-        success = YES;
-    }
-    
-    if (!success) {
-        NSLog(@"Error. Could not remove \"%@\".", URL);
-        return NO;
-    }
+    BOOL success = [super removeSettingWithName:settingName error:outError];
     
     // 内部で持っているキャッシュ用データを更新
-    [[self styleCaches] removeObjectForKey:styleName];
+    [[self styleCaches] removeObjectForKey:settingName];
+    
     __weak typeof(self) weakSelf = self;
     [self updateCacheWithCompletionHandler:^{
         typeof(self) self = weakSelf;  // strong self
         
         [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
                                                             object:self
-                                                          userInfo:@{CEOldNameKey: styleName,
+                                                          userInfo:@{CEOldNameKey: settingName,
                                                                      CENewNameKey: NSLocalizedString(@"None", nil)}];
     }];
     
@@ -389,84 +321,25 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// style名に応じたstyleファイルをリストアする
-- (BOOL)restoreStyleFileWithStyleName:(nonnull NSString *)styleName
+- (BOOL)restoreSettingWithName:(NSString *)settingName error:(NSError *__autoreleasing  _Nullable *)outError
 //------------------------------------------------------
 {
-    BOOL success = NO;
-    NSURL *URL = [self URLForUserStyle:styleName available:NO];
-    
-    if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        success = [[NSFileManager defaultManager] trashItemAtURL:URL resultingItemURL:nil error:nil];
-    } else {
-        // already removed.
-        success = YES;
-    }
-    
-    if (!success) {
-        NSLog(@"Error. Could not restore \"%@\".", URL);
-        return NO;
-    }
+    BOOL success = [super restoreSettingWithName:settingName error:outError];
     
     // 内部で持っているキャッシュ用データを更新
-    [self styleCaches][styleName] = [[self bundledStyleDictionaryWithStyleName:styleName] mutableCopy];
+    [self styleCaches][settingName] = [[self bundledStyleDictionaryWithStyleName:settingName] mutableCopy];
+    
     __weak typeof(self) weakSelf = self;
     [self updateCacheWithCompletionHandler:^{
         typeof(self) self = weakSelf;  // strong self
         
         [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxDidUpdateNotification
                                                             object:self
-                                                          userInfo:@{CEOldNameKey: styleName,
-                                                                     CENewNameKey: styleName}];
+                                                          userInfo:@{CEOldNameKey: settingName,
+                                                                     CENewNameKey: settingName}];
     }];
     
     return success;
-}
-
-
-//------------------------------------------------------
-/// マッピング重複エラーがあるかどうかを返す
-- (BOOL)existsMappingConflict
-//------------------------------------------------------
-{
-    return (([[self extensionConflicts] count] > 0) || ([[self filenameConflicts] count] > 0));
-}
-
-
-//------------------------------------------------------
-/// コピーされたstyle名を返す
-- (nonnull NSString *)copiedStyleName:(nonnull NSString *)originalName
-//------------------------------------------------------
-{
-    NSString *baseName = [originalName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    BOOL copiedState = NO;
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:NSLocalizedString(@" copy$", nil)
-                                                                           options:0 error:nil];
-    NSRange copiedStrRange = [regex rangeOfFirstMatchInString:baseName options:0 range:NSMakeRange(0, [baseName length])];
-    if (copiedStrRange.location != NSNotFound) {
-        copiedState = YES;
-    } else {
-        regex = [NSRegularExpression regularExpressionWithPattern:NSLocalizedString(@" copy [0-9]+$", nil) options:0 error:nil];
-        copiedStrRange = [regex rangeOfFirstMatchInString:baseName options:0 range:NSMakeRange(0, [baseName length])];
-        if (copiedStrRange.location != NSNotFound) {
-            copiedState = YES;
-        }
-    }
-    NSString *copyString;
-    if (copiedState) {
-        copyString = [NSString stringWithFormat:@"%@%@",
-                      [baseName substringWithRange:NSMakeRange(0, copiedStrRange.location)],
-                      NSLocalizedString(@" copy", nil)];
-    } else {
-        copyString = [NSString stringWithFormat:@"%@%@", baseName, NSLocalizedString(@" copy", nil)];
-    }
-    NSMutableString *copiedStyleName = [copyString mutableCopy];
-    NSUInteger i = 2;
-    while ([[self styleNames] containsObject:copiedStyleName]) {
-        [copiedStyleName setString:[NSString stringWithFormat:@"%@ %tu", copyString, i]];
-        i++;
-    }
-    return [copiedStyleName copy];
 }
 
 
@@ -502,15 +375,13 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     // ユーザ領域にシンタックス定義用ディレクトリがまだない場合は作成する
-    if (![self prepareUserSettingDirectory]) {
-        return;
-    }
+    if (![self prepareUserSettingDirectory]) { return; }
     
     // save
-    NSURL *saveURL = [self URLForUserStyle:name available:NO];
+    NSURL *saveURL = [self URLForUserSettingWithName:name available:NO];
     // style名が変更されたときは、古いファイルを削除する
     if (![name isEqualToString:oldName]) {
-        [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserStyle:oldName available:NO] error:nil];
+        [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserSettingWithName:oldName available:NO] error:nil];
     }
     // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
     if ([style isEqualToDictionary:[self bundledStyleDictionaryWithStyleName:name]]) {
@@ -537,6 +408,15 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
                                                           userInfo:@{CEOldNameKey: oldName,
                                                                      CENewNameKey: name}];
     }];
+}
+
+
+//------------------------------------------------------
+/// マッピング重複エラーがあるかどうかを返す
+- (BOOL)existsMappingConflict
+//------------------------------------------------------
+{
+    return (([[self extensionConflicts] count] + [[self filenameConflicts] count]) > 0);
 }
 
 
@@ -663,54 +543,6 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 #pragma mark Private Mthods
 
 //------------------------------------------------------
-/// スタイルファイルの URL からスタイル名を返す
-- (nonnull NSString *)styleNameFromURL:(nonnull NSURL *)fileURL
-//------------------------------------------------------
-{
-    return [[fileURL lastPathComponent] stringByDeletingPathExtension];
-}
-
-
-//------------------------------------------------------
-/// style名から有効なstyle定義ファイルのURLを返す
-- (nullable NSURL *)URLForUsedStyle:(nonnull NSString *)styleName
-//------------------------------------------------------
-{
-    return [self URLForUserStyle:styleName available:YES] ?: [self URLForBundledStyle:styleName available:YES];
-}
-
-
-//------------------------------------------------------
-/// style名からバンドル領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
-- (nullable NSURL *)URLForBundledStyle:(nonnull NSString *)styleName available:(BOOL)available
-//------------------------------------------------------
-{
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:[self directoryName]];
-    
-    if (available) {
-        return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
-    } else {
-        return URL;
-    }
-}
-
-
-//------------------------------------------------------
-/// style名からユーザ領域のstyle定義ファイルのURLを返す (availableがYESの場合はファイルが実際に存在するときだけ返す)
-- (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName available:(BOOL)available
-//------------------------------------------------------
-{
-    NSURL *URL = [[[self userSettingDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];
-    
-    if (available) {
-        return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
-    } else {
-        return URL;
-    }
-}
-
-
-//------------------------------------------------------
 /// URLからスタイル辞書を返す
 - (nullable NSMutableDictionary<NSString *, id> *)styleDictWithURL:(NSURL *)URL
 //------------------------------------------------------
@@ -764,9 +596,9 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
                                                                                   options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles
                                                                                     error:nil];
         for (NSURL *URL in URLs) {
-            if (![@[@"yaml", @"yml"] containsObject:[URL pathExtension]]) { continue; }
+            if (![@[[self filePathExtension], @"yml"] containsObject:[URL pathExtension]]) { continue; }
             
-            NSString *styleName = [self styleNameFromURL:URL];
+            NSString *styleName = [self settingNameFromURL:URL];
             NSMutableDictionary<NSString *, id> *style = [self styleDictWithURL:URL];
             
             // URLが無効だった場合などに、dictがnilになる場合がある
@@ -948,7 +780,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
                                                                                 error:nil];
     
     for (NSURL *URL in URLs) {
-        if ([self importLegacyStyleFromURL:URL]) {
+        if ([self importLegacyStyleWithFileURL:URL]) {
             success = YES;
         }
     }
@@ -967,14 +799,14 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// plist 形式のシンタックス定義を YAML 形式に変換してユーザ領域に保存
-- (BOOL)importLegacyStyleFromURL:(nonnull NSURL *)fileURL
+- (BOOL)importLegacyStyleWithFileURL:(nonnull NSURL *)fileURL
 // ------------------------------------------------------
 {
     if (![[fileURL pathExtension] isEqualToString:@"plist"]) { return NO; }
 
     __block BOOL success = NO;
-    NSString *styleName = [self styleNameFromURL:fileURL];
-    NSURL *destURL = [self URLForUserStyle:styleName available:NO];
+    NSString *styleName = [self settingNameFromURL:fileURL];
+    NSURL *destURL = [self URLForUserSettingWithName:styleName available:NO];
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:fileURL options:NSFileCoordinatorReadingWithoutChanges

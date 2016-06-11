@@ -408,13 +408,20 @@
 
 
 
-/* MARK: CESyntaxManager */
-// Syntax style name errors
-"Input style name." = "スタイル名を入力してください。";
-"“%@” is already taken. Please choose another name." = "“%@”はすでに使用されています。別の名前を指定してください。";
-"You can’t use a style name that contains “/”. Please choose another name." = "スタイル名に“/”を含むことはできません。別の名前を指定してください。";
-"You can’t use a style name that begins with a dot “.”. Please choose another name." = "スタイル名を“.”から始めることはできません。別の名前を指定してください。";
+/* MARK: CESettingFileManager */
+"“%@” couldn’t be deleted." = "“%@”を削除できませんでした。";
+"“%@” couldn’t be imported." = "“%@”を読み込めませんでした。";
 
+// Setting file name warnings
+"Please choose another name." = "別の名前を指定してください。";
+"Name can’t be empty." = "名前は空にできません。";
+"You can’t use a name that contains “/”." = "名前に“/”を含むことはできません。";
+"You can’t use a name that begins with a dot “.”." = "名前を“.”から始めることはできません。";
+"The name “%@” is already taken." = "“%@”はすでに使用されています。";
+
+
+
+/* MARK: CESyntaxManager */
 // Selected syntax style name was original
 "Bundled styles can’t be renamed." = "バンドルされているスタイルの名前は変更できません。";
 
@@ -427,18 +434,12 @@
 "Delete" = "削除";
 "Replace" = "置換";
 
-// Deleted error
-"The style “%@” couldn’t be deleted." = "スタイル““%@”を削除できませんでした。";
-
 // Import syntax style file choose openPanel button
 "Import" = "読み込み";
 // Importing same name style alert title
 "The “%@” style already exists." = "スタイル“%@”はすでに存在しています。";
 // Importing same name style alert info
 "Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
-// Imported error
-"An error occurred." = "エラーが起きました。";
-"The style “%@” couldn’t be imported." = "スタイル“%@”を読み込めませんでした。";
 
 // Export syntax style file savePanel label
 "Export As:" = "書き出し：";
@@ -457,13 +458,6 @@
 // Theme names
 "Untitled" = "名称未設定";
 "Customized Theme" = "カスタムテーマ";
-
-// Theme name warnings
-"The theme name “%@” is already taken." = "テーマ名“%@”はすでに使用されています。";
-"Theme name can’t be empty." = "テーマ名は空にできません。";
-"You can’t use a theme name that contains “/”." = "テーマ名に“/”を含むことはできません。";
-"You can’t use a theme name that begins with a dot “.”." = "テーマ名を“.”から始めることはできません。";
-"Please choose another name." = "別の名前を指定してください。";
 
 // Theme description meda data for migrated theme
 "Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";

@@ -406,13 +406,20 @@
 
 
 
-/* MARK: CESyntaxManager */
-// Syntax style name errors
-"Input style name." = "Geben Sie einen Stilnamen ein.";
-"“%@” is already taken. Please choose another name." = "„%@“ wird bereits verwendet. Bitte wählen Sie einen anderen Namen.";
-"You can’t use a style name that contains “/”. Please choose another name." = "Stilnamen dürfen nicht „/“ enthalten. Bitte wählen Sie einen anderen Namen.";
-"You can’t use a style name that begins with a dot “.”. Please choose another name." = "Stilnamen dürfen nicht mit einem Punkt „.“ beginnen. Bitte wählen Sie einen anderen Namen.";
+/* MARK: CESettingFileManager */
+"“%@” couldn’t be deleted." = "„%@“ konnte nicht gelöscht werden.";
+"“%@” couldn’t be imported." = "„%@“ konnte nicht importiert werden.";
 
+// Setting file name warnings
+"Please choose another name." = "Bitte wählen Sie einen anderen Namen.";
+"Name can’t be empty." = "Namen dürfen nicht leer sein.";
+"You can’t use a name that contains “/”." = "Namen dürfen nicht „/“ enthalten.";
+"You can’t use a name that begins with a dot “.”." = "Namen dürfen nicht mit einem Punkt „.“ beginnen.";
+"The name “%@” is already taken." = "„%@“ wird bereits verwendet.";
+
+
+
+/* MARK: CESyntaxManager */
 // Selected syntax style name was original
 "Bundled styles can’t be renamed." = "Gebündelten Stile können nicht umbenannt werden.";
 
@@ -425,18 +432,12 @@
 "Delete" = "Löschen";
 "Replace" = "Ersetzen";
 
-// Deleted error
-"The style “%@” couldn’t be deleted." = "Der Stil „%@“ konnte nicht gelöscht werden.";
-
 // Import syntax style file choose openPanel button
 "Import" = "Importieren";
 // Importing same name style alert title
 "The “%@” style already exists." = "Der Stil „%@“ existiert bereits.";
 // Importing same name style alert info
 "Do you want to replace it?\nReplaced style can’t be restored." = "Möchten Sie ihn ersetzen?\n\nErsetzter Stil kann nicht wiederhergestellt werden.";
-// Imported error
-"An error occurred." = "Ein Fehler aufgetreten.";
-"The style “%@” couldn’t be imported." = "Der Stil „%@“ konnte nicht importiert werden.";
 
 // Export syntax style file savePanel label
 "Export As:" = "Exportieren Als:";
@@ -455,13 +456,6 @@
 // Theme names
 "Untitled" = "Ohne Title";
 "Customized Theme" = "Benutzerdefiniertes Thema";
-
-// Theme name warnings
-"The theme name “%@” is already taken." = "Der Themaname “%@” wird bereits verwendet.";
-"Theme name can’t be empty." = "Themanamen dürfen nicht leer sein.";
-"You can’t use a theme name that contains “/”." = "Themanamen dürfen nicht „/“ enthalten.";
-"You can’t use a theme name that begins with a dot “.”." = "Themanamen dürfen nicht mit einem Punkt „.“ beginnen.";
-"Please choose another name." = "Bitte wählen Sie einen anderen Namen.";
 
 // Theme description meda data for migrated theme
 "Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "Aus der vorherigen Einstellung in CotEditor 1.x automatisch migriertes Thema";
