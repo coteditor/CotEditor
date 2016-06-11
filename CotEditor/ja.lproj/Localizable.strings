@@ -433,7 +433,7 @@
 "Replace" = "置換";
 
 // Deleted error
-"The style “%@” couldn’t be deleted." = "スタイル““%@”を削除できませんでした。";
+"The style “%@” couldn’t be deleted." = "スタイル“%@”を削除できませんでした。";
 
 // Import syntax style file choose openPanel button
 "Import" = "読み込み";
