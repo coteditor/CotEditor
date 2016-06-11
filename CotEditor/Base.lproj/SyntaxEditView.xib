@@ -30,7 +30,7 @@
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N84-W6-0ZN">
                     <rect key="frame" x="168" y="408" width="280" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" priority="250" constant="280" id="SzE-BJ-isn"/>
+                        <constraint firstAttribute="width" priority="750" constant="280" id="SzE-BJ-isn"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Style Name" drawsBackground="YES" usesSingleLineMode="YES" id="988">
                         <font key="font" metaFont="system"/>
