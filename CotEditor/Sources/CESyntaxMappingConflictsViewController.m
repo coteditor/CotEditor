@@ -1,6 +1,6 @@
 /*
  
- CESyntaxMappingConflictsSheetController.m
+ CESyntaxMappingConflictsViewController.m
  
  CotEditor
  http://coteditor.com
@@ -25,11 +25,11 @@
  
  */
 
-#import "CESyntaxMappingConflictsSheetController.h"
+#import "CESyntaxMappingConflictsViewController.h"
 #import "CESyntaxManager.h"
 
 
-@interface CESyntaxMappingConflictsSheetController ()
+@interface CESyntaxMappingConflictsViewController ()
 
 @property (nonatomic, nonnull, copy) NSArray<NSDictionary<NSString *, NSString *> *> *extensionConflicts;
 @property (nonatomic, nonnull, copy) NSArray<NSDictionary<NSString *, NSString *> *> *filenameConflicts;
@@ -41,7 +41,7 @@
 
 #pragma mark -
 
-@implementation CESyntaxMappingConflictsSheetController
+@implementation CESyntaxMappingConflictsViewController
 
 #pragma mark Superclass Methods
 
@@ -61,22 +61,10 @@
 
 // ------------------------------------------------------
 /// nib name
-- (nullable NSString *)windowNibName
+- (nullable NSString *)nibName
 // ------------------------------------------------------
 {
-    return @"SyntaxMappingConflictSheet";
-}
-
-
-
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-/// Done button was clicked
-- (IBAction)closeSheet:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[[self window] sheetParent] endSheet:[self window]];
+    return @"SyntaxMappingConflictView";
 }
 
 

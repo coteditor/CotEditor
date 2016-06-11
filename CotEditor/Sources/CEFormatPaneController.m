@@ -30,7 +30,7 @@
 #import "CEFormatPaneController.h"
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
-#import "CESyntaxMappingConflictsSheetController.h"
+#import "CESyntaxMappingConflictsViewController.h"
 #import "CESyntaxEditSheetController.h"
 #import "CEEncodingListSheetController.h"
 #import "CEDefaults.h"
@@ -407,11 +407,10 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 - (IBAction)openSyntaxMappingConflictSheet:(nullable id)sender
 // ------------------------------------------------------
 {
-    CESyntaxMappingConflictsSheetController *sheetController = [[CESyntaxMappingConflictsSheetController alloc] init];
+    CESyntaxMappingConflictsViewController *viewController = [[CESyntaxMappingConflictsViewController alloc] init];
     
-    // show editor as sheet
-    [self setCurrentSheetController:sheetController];
-    [[[self view] window] beginSheet:[sheetController window] completionHandler:nil];
+    // show as sheet
+    [self presentViewControllerAsSheet:viewController];
 }
 
 

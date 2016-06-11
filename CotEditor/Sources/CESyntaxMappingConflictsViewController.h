@@ -1,15 +1,15 @@
 /*
  
- CEEncodingListSheetController.h
+ CESyntaxMappingConflictsViewController.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-03-26.
+ Created by 1024jp on 2014-03-25.
 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,6 +28,6 @@
 @import Cocoa;
 
 
-@interface CEEncodingListSheetController : NSWindowController <NSWindowDelegate>
+@interface CESyntaxMappingConflictsViewController : NSViewController
 
 @end

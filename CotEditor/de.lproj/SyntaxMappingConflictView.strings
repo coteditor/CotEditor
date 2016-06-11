@@ -1,15 +1,15 @@
 /*
  
- SyntaxMappingConflictSheet.strings (Japanese)
+ SyntaxMappingConflictView.strings (German)
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-11-04.
+ Created by 1024jp on 2015-08-19.
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,37 +26,37 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Syntax Style Mapping Conflicts"; ObjectID = "1022"; */
-"1022.title" = "ファイル関連付けのコンフリクト";
+"1022.title" = "Dateizuordnungskonflikte";
 
 /* Class = "NSTextFieldCell"; title = "CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
-"gnp-H7-p1W.title" = "CotEditor は自動的に最初のスタイルを使用します。解決するにはそれぞれのシンタックススタイルを編集してください。";
+"gnp-H7-p1W.title" = "CotEditor verwendet den ersten Stil automatisch. Um Konflikte zu beheben, bearbeiten Sie jede Syntaxstil.";
 
 
 /* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */
-"31z-NP-PkW.title" = "拡張子：";
+"31z-NP-PkW.title" = "Suffix:";
 /* Class = "NSTextFieldCell"; title = "The following extensions are registered in multiple styles."; ObjectID = "XdB-k6-qyy"; */
-"XdB-k6-qyy.title" = "以下の拡張子はいくつかのスタイルで重複して登録されています。";
+"XdB-k6-qyy.title" = "Die folgenden Suffixe sind in den mehrfachen Stilen registriert.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extension"; ObjectID = "qkj-mf-TAf"; */
-"qkj-mf-TAf.headerCell.title" = "拡張子";
+"qkj-mf-TAf.headerCell.title" = "Suffix";
 /* Class = "NSTableColumn"; headerCell.title = "Used Style"; ObjectID = "oen-KK-QCa"; */
-"oen-KK-QCa.headerCell.title" = "使用するスタイル";
+"oen-KK-QCa.headerCell.title" = "Angewandte Stil";
 /* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "zSH-kc-yV3"; */
-"zSH-kc-yV3.headerCell.title" = "重複しているスタイル";
+"zSH-kc-yV3.headerCell.title" = "duplizierte Stile";
 
 
 /* Class = "NSTextFieldCell"; title = "Filename:"; ObjectID = "Msi-ee-MNF"; */
-"Msi-ee-MNF.title" = "ファイル名：";
+"Msi-ee-MNF.title" = "Dateiname:";
 /* Class = "NSTextFieldCell"; title = "The following filenames are registered in multiple styles."; ObjectID = "4AH-1o-au2"; */
-"4AH-1o-au2.title" = "以下のファイル名はいくつかのスタイルで重複して登録されています。";
+"4AH-1o-au2.title" = "Die folgenden Dateinamen sind in den mehrfachen Stilen registriert.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "YGO-sx-UT0"; */
-"YGO-sx-UT0.headerCell.title" = "ファイル名";
+"YGO-sx-UT0.headerCell.title" = "Dateiname";
 /* Class = "NSTableColumn"; headerCell.title = "Used Style"; ObjectID = "cz8-8b-5qL"; */
-"cz8-8b-5qL.headerCell.title" = "使用するスタイル";
+"cz8-8b-5qL.headerCell.title" = "Angewandte Stil";
 /* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "nge-9Z-A9D"; */
-"nge-9Z-A9D.headerCell.title" = "重複しているスタイル";
+"nge-9Z-A9D.headerCell.title" = "duplizierte Stile";
 
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "1021"; */
-"1021.title" = "閉じる";
+"1021.title" = "Schließen";

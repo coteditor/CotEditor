@@ -25,11 +25,11 @@
  
  */
 
-#import "CEEncodingListSheetController.h"
+#import "CEEncodingListViewController.h"
 #import "CEPrefEncodingDataSource.h"
 
 
-@interface CEEncodingListSheetController ()
+@interface CEEncodingListViewController ()
 
 @property (nonatomic, nullable) IBOutlet CEPrefEncodingDataSource *dataSource;
 
@@ -46,7 +46,7 @@
 
 // ------------------------------------------------------
 /// nib name
-- (nullable NSString *)windowNibName
+- (nullable NSString *)nibName
 // ------------------------------------------------------
 {
     return @"EncodingListSheet";
@@ -63,16 +63,7 @@
 {
     [[self dataSource] writeToUserDefaults];  // save current setting
     
-    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
-}
-
-
-// ------------------------------------------------------
-/// Cancel button was clicked
-- (IBAction)cancel:(nullable id)sender
-// ------------------------------------------------------
-{
-    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
+    [self dismissController:nil];
 }
 
 @end
