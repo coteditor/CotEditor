@@ -26,6 +26,7 @@
  
  */
 
+#import "CESettingManager.h"
 @import Cocoa;
 
 
@@ -36,7 +37,7 @@ extern NSString *_Nonnull const CEKeyBindingSelectorStringKey;
 extern NSString *_Nonnull const CEKeyBindingChildrenKey;
 
 
-@interface CEKeyBindingManager : NSObject
+@interface CEKeyBindingManager : CESettingManager
 
 // singleton
 + (nonnull CEKeyBindingManager *)sharedManager;

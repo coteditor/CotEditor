@@ -25,7 +25,7 @@
  
  */
 
-@import Foundation;
+#import "CESettingManager.h"
 @import AppKit.NSColor;
 
 
@@ -40,7 +40,7 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 @class CETheme;
 
 
-@interface CEThemeManager : NSObject
+@interface CEThemeManager : CESettingManager
 
 @property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *themeNames;
 

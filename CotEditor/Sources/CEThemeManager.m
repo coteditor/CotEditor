@@ -28,7 +28,6 @@
 #import "CEThemeManager.h"
 #import "CETheme.h"
 #import "CEThemeDictionaryKeys.h"
-#import "CEAppDelegate.h"
 
 #import "NSColor+WFColorCode.h"
 
@@ -91,7 +90,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
     self = [super init];
     if (self) {
         // バンドルされているテーマの名前を読み込んでおく
-        NSArray<NSURL *> *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:CEThemeExtension subdirectory:@"Themes"];
+        NSArray<NSURL *> *URLs = [[NSBundle mainBundle] URLsForResourcesWithExtension:CEThemeExtension subdirectory:[self directoryName]];
         NSMutableArray<NSString *> *themeNames = [NSMutableArray array];
         for (NSURL *URL in URLs) {
             if ([[URL lastPathComponent] hasPrefix:@"_"]) { continue; }
@@ -110,6 +109,15 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
         }
     }
     return self;
+}
+
+
+//------------------------------------------------------
+/// directory name in both Application Support and bundled Resources
+- (nonnull NSString *)directoryName
+//------------------------------------------------------
+{
+    return @"Themes";
 }
 
 
@@ -160,7 +168,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 - (nullable NSURL *)URLForUserTheme:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
-    return [[[self userThemeDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:CEThemeExtension];
+    return [[[self userSettingDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:CEThemeExtension];
 }
 
 
@@ -175,7 +183,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
     
-    [self prepareUserThemeDirectory];
+    [self prepareUserSettingDirectory];
     
     BOOL success = [jsonData writeToURL:[self URLForUserTheme:themeName available:NO] options:NSDataWritingAtomic error:&error];
     
@@ -337,7 +345,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
     }
     
     // ユーザ領域にテーマ用ディレクトリがまだない場合は作成する
-    if (![self prepareUserThemeDirectory]) {
+    if (![self prepareUserSettingDirectory]) {
         return NO;
     }
     
@@ -395,7 +403,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
     NSString *newThemeName = nameBase;
     
     // ユーザ領域にテーマ用ディレクトリがまだない場合は作成する
-    if (![self prepareUserThemeDirectory]) {
+    if (![self prepareUserSettingDirectory]) {
         return NO;
     }
 
@@ -457,40 +465,6 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 
 //------------------------------------------------------
-/// Application Support内のテーマファイル保存ディレクトリ
-- (nonnull NSURL *)userThemeDirectoryURL
-//------------------------------------------------------
-{
-    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"Themes"];
-}
-
-
-//------------------------------------------------------
-/// ユーザ領域のテーマ保存用ディレクトリの存在をチェックし、ない場合は作成する
-- (BOOL)prepareUserThemeDirectory
-//------------------------------------------------------
-{
-    BOOL success = NO;
-    NSError *error = nil;
-    NSURL *URL = [self userThemeDirectoryURL];
-    NSNumber *isDirectory;
-    
-    if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
-        success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
-                                           withIntermediateDirectories:YES attributes:nil error:&error];
-    } else {
-        success = [isDirectory boolValue];
-    }
-    
-    if (!success) {
-        NSLog(@"failed to create a directory at \"%@\".", URL);
-    }
-    
-    return success;
-}
-
-
-//------------------------------------------------------
 /// テーマ名から有効なテーマ定義ファイルのURLを返す
 - (nullable NSURL *)URLForUsedTheme:(nonnull NSString *)themeName
 //------------------------------------------------------
@@ -506,7 +480,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 - (nullable NSURL *)URLForUserTheme:(NSString *)themeName available:(BOOL)available
 //------------------------------------------------------
 {
-    NSURL *URL = [[[self userThemeDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:CEThemeExtension];
+    NSURL *URL = [[[self userSettingDirectoryURL] URLByAppendingPathComponent:themeName] URLByAppendingPathExtension:CEThemeExtension];
     
     if (available) {
         return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
@@ -521,7 +495,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 - (nullable NSURL *)URLForBundledTheme:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
-    return [[NSBundle mainBundle] URLForResource:themeName withExtension:CEThemeExtension subdirectory:@"Themes"];
+    return [[NSBundle mainBundle] URLForResource:themeName withExtension:CEThemeExtension subdirectory:[self directoryName]];
 }
 
 
@@ -545,7 +519,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         typeof(self) self = weakSelf;  // strong self
         
-        NSURL *userDirURL = [self userThemeDirectoryURL];
+        NSURL *userDirURL = [self userSettingDirectoryURL];
         
         NSMutableOrderedSet<NSString *> *themeNameSet = [NSMutableOrderedSet orderedSetWithArray:[self bundledThemeNames]];
         

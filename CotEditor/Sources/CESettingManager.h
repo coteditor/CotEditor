@@ -1,16 +1,15 @@
 /*
  
- CEAppDelegate.h
+ CESettingManager.h
  
  CotEditor
  http://coteditor.com
  
- Created by nakamuxu on 2004-12-13.
-
+ Created by 1024jp on 2016-06-11.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,22 +25,14 @@
  
  */
 
-@import Cocoa;
+@import Foundation;
 
 
-@interface CEAppDelegate : NSObject <NSApplicationDelegate>
+@interface CESettingManager : NSObject
 
-// action messages
-- (IBAction)openHelpAnchor:(nullable id)sender;
+- (nonnull NSString *)directoryName;  // override required
 
-@end
-
-
-
-
-@interface CEAppDelegate (Services)
-
-- (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error;
-- (void)openFile:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error;
+- (nonnull NSURL *)userSettingDirectoryURL;
+- (BOOL)prepareUserSettingDirectory;
 
 @end

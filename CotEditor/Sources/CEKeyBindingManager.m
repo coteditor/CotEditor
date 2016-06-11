@@ -28,7 +28,6 @@
 
 #import "CEKeyBindingManager.h"
 #import "CEKeyBindingUtils.h"
-#import "CEAppDelegate.h"
 #import "CEDefaults.h"
 #import "Constants.h"
 
@@ -97,6 +96,15 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
                             : _defaultTextKeyBindingDict;
     }
     return self;
+}
+
+
+//------------------------------------------------------
+/// directory name in both Application Support and bundled Resources
+- (nonnull NSString *)directoryName
+//------------------------------------------------------
+{
+    return @"KeyBindings";
 }
 
 
@@ -239,7 +247,7 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
         success = YES;
         
     } else {
-        if ([self prepareUserSettingDicrectory]) {
+        if ([self prepareUserSettingDirectory]) {
             success = [dictToSave writeToURL:fileURL atomically:YES];
         }
     }
@@ -281,7 +289,7 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
         success = YES;
         
     } else {
-        if ([self prepareUserSettingDicrectory]) {
+        if ([self prepareUserSettingDirectory]) {
             success = [dictToSave writeToURL:fileURL atomically:YES];
         }
     }
@@ -303,20 +311,11 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 #pragma mark Private Mthods
 
 //------------------------------------------------------
-/// キーバインディング設定ファイル保存用ディレクトリのURLを返す
-- (nonnull NSURL *)userSettingDirecotryURL
-//------------------------------------------------------
-{
-    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"KeyBindings"];
-}
-
-
-//------------------------------------------------------
 /// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
 - (nonnull NSURL *)menuKeyBindingSettingFileURL
 //------------------------------------------------------
 {
-    return [[[self userSettingDirecotryURL] URLByAppendingPathComponent:@"MenuKeyBindings"]
+    return [[[self userSettingDirectoryURL] URLByAppendingPathComponent:@"MenuKeyBindings"]
                                             URLByAppendingPathExtension:@"plist"];
 }
 
@@ -326,32 +325,8 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 - (nonnull NSURL *)textKeyBindingSettingFileURL
 //------------------------------------------------------
 {
-    return [[[self userSettingDirecotryURL] URLByAppendingPathComponent:@"TextKeyBindings"]
+    return [[[self userSettingDirectoryURL] URLByAppendingPathComponent:@"TextKeyBindings"]
                                             URLByAppendingPathExtension:@"plist"];
-}
-
-
-//------------------------------------------------------
-/// ユーザ設定ディレクトリがない場合は作成する
-- (BOOL)prepareUserSettingDicrectory
-//------------------------------------------------------
-{
-    BOOL success = NO;
-    NSURL *URL = [self userSettingDirecotryURL];
-    NSNumber *isDirectory;
-    
-    if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
-        success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
-                                           withIntermediateDirectories:YES attributes:nil error:nil];
-    } else {
-        success = [isDirectory boolValue];
-    }
-    
-    if (!success) {
-        NSLog(@"failed to create a directory at \"%@\".", URL);
-    }
-    
-    return success;
 }
 
 

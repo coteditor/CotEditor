@@ -26,7 +26,7 @@
  
  */
 
-@import Foundation;
+#import "CESettingManager.h"
 
 
 // notifications
@@ -49,7 +49,7 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 @class CESyntaxStyle;
 
 
-@interface CESyntaxManager : NSObject
+@interface CESyntaxManager : CESettingManager
 
 // readonly
 @property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *styleNames;

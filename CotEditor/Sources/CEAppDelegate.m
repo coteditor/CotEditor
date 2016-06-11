@@ -66,10 +66,6 @@
 @property (nonatomic, nullable) IBOutlet NSMenu *syntaxStylesMenu;
 @property (nonatomic, nullable) IBOutlet NSMenu *themesMenu;
 
-
-// readonly
-@property (readwrite, nonatomic, nonnull) NSURL *supportDirectoryURL;
-
 @end
 
 
@@ -239,24 +235,6 @@
     // register transformers
     [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
                                     forName:@"CEHexColorTransformer"];
-}
-
-
-// ------------------------------------------------------
-/// initialize instance
-- (nullable instancetype)init
-// ------------------------------------------------------
-{
-    self = [super init];
-    if (self) {
-        _supportDirectoryURL = [[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-                                                                       inDomain:NSUserDomainMask
-                                                              appropriateForURL:nil
-                                                                         create:NO
-                                                                          error:nil]
-                                URLByAppendingPathComponent:@"CotEditor"];
-    }
-    return self;
 }
 
 
@@ -745,7 +723,7 @@
 //------------------------------------------------------
 {
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
-    NSURL *keybindingURL = [[self supportDirectoryURL] URLByAppendingPathComponent:@"KeyBindings"];  // KeyBindings dir was invariably made on the previous versions.
+    NSURL *keybindingURL = [[CEKeyBindingManager sharedManager] userSettingDirectoryURL];  // KeyBindings dir was invariably made on the previous versions.
     
     if (!lastVersion && [keybindingURL checkResourceIsReachableAndReturnError:nil]) {
         [self migrateToVersion2];

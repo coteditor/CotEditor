@@ -28,7 +28,6 @@
 
 #import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
-#import "CEAppDelegate.h"
 #import "CESyntaxDictionaryKeys.h"
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -120,6 +119,15 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         [self setupExtensionAndSyntaxTable];
     }
     return self;
+}
+
+
+//------------------------------------------------------
+/// directory name in both Application Support and bundled Resources
+- (nonnull NSString *)directoryName
+//------------------------------------------------------
+{
+    return @"Syntaxes";
 }
 
 
@@ -280,10 +288,10 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         return [self importLegacyStyleFromURL:fileURL];
     }
     
-    NSURL *destURL = [[self userStyleDirectoryURL] URLByAppendingPathComponent:[fileURL lastPathComponent]];
+    NSURL *destURL = [[self userSettingDirectoryURL] URLByAppendingPathComponent:[fileURL lastPathComponent]];
     
     // ユーザ領域にシンタックス定義用ディレクトリがまだない場合は作成する
-    if (![self prepareUserStyleDirectory]) {
+    if (![self prepareUserSettingDirectory]) {
         return NO;
     }
     
@@ -494,7 +502,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     // ユーザ領域にシンタックス定義用ディレクトリがまだない場合は作成する
-    if (![self prepareUserStyleDirectory]) {
+    if (![self prepareUserSettingDirectory]) {
         return;
     }
     
@@ -664,40 +672,6 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 
 //------------------------------------------------------
-/// Application Support内のstyleデータファイル保存ディレクトリ
-- (nonnull NSURL *)userStyleDirectoryURL
-//------------------------------------------------------
-{
-    return [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"Syntaxes"];
-}
-
-
-//------------------------------------------------------
-/// ユーザ領域のテーマ保存用ディレクトリの存在をチェックし、ない場合は作成する
-- (BOOL)prepareUserStyleDirectory
-//------------------------------------------------------
-{
-    BOOL success = NO;
-    NSError *error = nil;
-    NSURL *URL = [self userStyleDirectoryURL];
-    NSNumber *isDirectory;
-    
-    if (![URL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil]) {
-        success = [[NSFileManager defaultManager] createDirectoryAtURL:URL
-                                           withIntermediateDirectories:YES attributes:nil error:&error];
-    } else {
-        success = [isDirectory boolValue];
-    }
-    
-    if (!success) {
-        NSLog(@"failed to create a directory at \"%@\".", URL);
-    }
-    
-    return success;
-}
-
-
-//------------------------------------------------------
 /// style名から有効なstyle定義ファイルのURLを返す
 - (nullable NSURL *)URLForUsedStyle:(nonnull NSString *)styleName
 //------------------------------------------------------
@@ -711,7 +685,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 - (nullable NSURL *)URLForBundledStyle:(nonnull NSString *)styleName available:(BOOL)available
 //------------------------------------------------------
 {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:@"Syntaxes"];
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:styleName withExtension:@"yaml" subdirectory:[self directoryName]];
     
     if (available) {
         return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
@@ -726,7 +700,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 - (nullable NSURL *)URLForUserStyle:(nonnull NSString *)styleName available:(BOOL)available
 //------------------------------------------------------
 {
-    NSURL *URL = [[[self userStyleDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];
+    NSURL *URL = [[[self userSettingDirectoryURL] URLByAppendingPathComponent:styleName] URLByAppendingPathExtension:@"yaml"];
     
     if (available) {
         return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
@@ -780,7 +754,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 - (void)updateStyleTables
 //------------------------------------------------------
 {
-    NSURL *dirURL = [self userStyleDirectoryURL]; // ユーザディレクトリパス取得
+    NSURL *dirURL = [self userSettingDirectoryURL]; // ユーザディレクトリパス取得
     NSMutableDictionary<NSString *, NSDictionary<NSString *, NSArray *> *> *map = [[self bundledMap] mutableCopy];
     
     // ユーザ定義用ディレクトリが存在する場合は読み込む
@@ -956,17 +930,17 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 // ------------------------------------------------------
 {
     BOOL success = NO;
-    NSURL *oldDirURL = [[(CEAppDelegate *)[NSApp delegate] supportDirectoryURL] URLByAppendingPathComponent:@"SyntaxColorings"];
+    NSURL *oldDirURL = [[[self userSettingDirectoryURL] URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"SyntaxColorings"];
     
     // 移行の必要性チェック
     if (![oldDirURL checkResourceIsReachableAndReturnError:nil] ||
-        [[self userStyleDirectoryURL] checkResourceIsReachableAndReturnError:nil])
+        [[self userSettingDirectoryURL] checkResourceIsReachableAndReturnError:nil])
     {
         completionHandler(NO);
         return;
     }
     
-    [self prepareUserStyleDirectory];
+    [self prepareUserSettingDirectory];
     
     NSArray<NSURL *> *URLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:oldDirURL
                                                            includingPropertiesForKeys:nil
