@@ -6,18 +6,13 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEEncodingListViewController">
             <connections>
-                <outlet property="dataSource" destination="47" id="6wO-LB-N36"/>
+                <outlet property="deleteSeparatorButton" destination="5od-lM-Mgb" id="mbM-8E-5AH"/>
+                <outlet property="tableView" destination="sEh-f6-spz" id="Qem-Bc-oEu"/>
                 <outlet property="view" destination="woN-Zr-vcc" id="NdC-Nn-UTz"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="47" userLabel="Encoding Data Source" customClass="CEPrefEncodingDataSource">
-            <connections>
-                <outlet property="deleteSeparatorButton" destination="5od-lM-Mgb" id="RKu-BS-kIM"/>
-                <outlet property="tableView" destination="sEh-f6-spz" id="VYi-IX-uje"/>
-            </connections>
-        </customObject>
         <view id="woN-Zr-vcc">
             <rect key="frame" x="0.0" y="0.0" width="400" height="367"/>
             <autoresizingMask key="autoresizingMask"/>
@@ -78,8 +73,8 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <outlet property="dataSource" destination="47" id="O59-cv-BkI"/>
-                                    <outlet property="delegate" destination="47" id="8EP-Wi-DxM"/>
+                                    <outlet property="dataSource" destination="-2" id="e7n-Ge-vbK"/>
+                                    <outlet property="delegate" destination="-2" id="RnU-lX-j7t"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -134,7 +129,7 @@ DQ
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <action selector="addSeparator:" target="47" id="YtX-gx-cFC"/>
+                        <action selector="addSeparator:" target="-2" id="8tw-iU-5Ig"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5od-lM-Mgb">
@@ -144,7 +139,7 @@ DQ
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
-                        <action selector="deleteSeparator:" target="47" id="wNQ-M1-Imr"/>
+                        <action selector="deleteSeparator:" target="-2" id="1Lu-wq-3Kv"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Ji-oF-2Xz" customClass="CEWrappingTextField">
@@ -175,8 +170,8 @@ Auto-Detect tries these encodings from the top of the list.</string>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="revertDefaultEncodings:" target="47" id="3yB-2Z-lhu"/>
-                        <binding destination="47" name="enabled" keyPath="canRestore" id="j3S-Xv-LHm"/>
+                        <action selector="revertDefaultEncodings:" target="-2" id="4vp-ed-a7p"/>
+                        <binding destination="-2" name="enabled" keyPath="canRestore" id="k2k-BZ-7tu"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EvH-HI-yPD">
