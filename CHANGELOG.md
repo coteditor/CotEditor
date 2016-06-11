@@ -35,6 +35,7 @@ develop
 - Remove byte count display in document inspector.
 - Display dialogs while changing file encoding as a document-modal sheet.
 - Display also an accurate file size in document inspector.
+- Make window size setting window translucent.
 - Avoid expanding status bar into side inspector.
 - Improve line height calculation.
 - Better syntax highlighting while editing.
