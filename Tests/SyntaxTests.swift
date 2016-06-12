@@ -115,6 +115,8 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
             XCTAssertFalse(item.bold)
             XCTAssertFalse(item.italic)
             XCTAssertFalse(item.hasUnderline)
+        } else {
+            XCTFail()
         }
     }
     
