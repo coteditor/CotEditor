@@ -102,9 +102,13 @@ static const CGFloat kControlHeight = 28;
 {
     [super drawRect:dirtyRect];
     
-    [[NSColor gridColor] set];
+    [NSGraphicsContext saveGraphicsState];
+    
+    [[NSColor gridColor] setStroke];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), kControlHeight + 0.5)
                               toPoint:NSMakePoint(NSMaxX(dirtyRect), kControlHeight + 0.5)];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 

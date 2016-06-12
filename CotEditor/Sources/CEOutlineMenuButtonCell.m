@@ -38,6 +38,8 @@
 - (void)drawWithFrame:(NSRect)cellFrame inView:(nonnull NSView *)controlView
 // ------------------------------------------------------
 {
+    [NSGraphicsContext saveGraphicsState];
+    
     // draw background
     [super drawBezelWithFrame:cellFrame inView:controlView];
     
@@ -52,6 +54,8 @@
     
     // draw text
     [super drawInteriorWithFrame:cellFrame inView:controlView];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 @end

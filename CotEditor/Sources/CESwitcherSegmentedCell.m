@@ -51,6 +51,8 @@
     //   -> From a universal design point of view, it's better to use an image that has a different silhouette from the normal (unselected) one.
     //      Some of users may hard to distinguish the selected state just by the color.
     if ([self isSelectedForSegment:segment]) {
+        [NSGraphicsContext saveGraphicsState];
+        
         // load "selected" icon template
         NSString *iconName = [[self imageForSegment:segment] name];
         NSImage *selectedIcon = [NSImage imageNamed:[@"Selected" stringByAppendingString:iconName]];
@@ -64,8 +66,10 @@
         [selectedIcon drawInRect:imageRect];
         
         // tint drawn icon template
-        [[NSColor alternateSelectedControlColor] set];
+        [[NSColor alternateSelectedControlColor] setFill];
         NSRectFillUsingOperation(frame, NSCompositeSourceIn);
+        
+        [NSGraphicsContext restoreGraphicsState];
         
     } else {
         [super drawSegment:segment inFrame:frame withView:controlView];

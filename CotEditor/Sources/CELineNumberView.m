@@ -126,12 +126,14 @@ static CGFontRef BoldLineNumberFont;
     NSColor *textColor = [self textColor];
     CGFloat borderAlpha = 0.3 * [textColor alphaComponent];
     
+    [NSGraphicsContext saveGraphicsState];
+    
     // fill background
-    [[counterColor colorWithAlphaComponent:0.08] set];
+    [[counterColor colorWithAlphaComponent:0.08] setFill];
     [NSBezierPath fillRect:dirtyRect];
     
     // draw frame border (1px)
-    [[textColor colorWithAlphaComponent:borderAlpha] set];
+    [[textColor colorWithAlphaComponent:borderAlpha] setStroke];
     switch ([self orientation]) {
         case NSVerticalRuler:
             [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
@@ -145,6 +147,8 @@ static CGFontRef BoldLineNumberFont;
     }
     
     [self drawHashMarksAndLabelsInRect:dirtyRect];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 

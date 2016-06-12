@@ -35,8 +35,12 @@
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
 {
-    [[NSColor tertiaryLabelColor] set];
+    [NSGraphicsContext saveGraphicsState];
+    
+    [[NSColor tertiaryLabelColor] setFill];
     [[NSBezierPath bezierPathWithOvalInRect:[self bounds]] fill];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 @end

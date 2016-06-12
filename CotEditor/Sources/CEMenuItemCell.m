@@ -39,9 +39,13 @@
 // ------------------------------------------------------
 {
     if ([self isSeparator]) {
-        [[NSColor gridColor] set];
+        [NSGraphicsContext saveGraphicsState];
+        
+        [[NSColor gridColor] setStroke];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(cellFrame), floor(NSMidY(cellFrame)) + 0.5)
                                   toPoint:NSMakePoint(NSMaxX(cellFrame), floor(NSMidY(cellFrame)) + 0.5)];
+        
+        [NSGraphicsContext restoreGraphicsState];
     
     } else {
         [super drawInteriorWithFrame:cellFrame inView:controlView];

@@ -170,6 +170,8 @@ static NSString *HiraginoSansName;
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
 // ------------------------------------------------------
 {
+    [NSGraphicsContext saveGraphicsState];
+    
     // set anti-alias state on screen drawing
     if ([NSGraphicsContext currentContextDrawingToScreen]) {
         [[NSGraphicsContext currentContext] setShouldAntialias:[self usesAntialias]];
@@ -250,6 +252,8 @@ static NSString *HiraginoSansName;
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 
