@@ -68,5 +68,6 @@
 "TeX" = "TeX";
 "Textile document" = "Textile-Dokument";
 "Tcl source" = "Tcl-Quellcode";
+"Verilog source" = "Verilog-Quellcode";
 "XML document" = "XML-Dokument";
 "YAML" = "YAML";

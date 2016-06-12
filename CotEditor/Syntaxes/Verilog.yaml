@@ -1,0 +1,150 @@
+extensions:
+- keyString: "v"
+filenames: []
+interpreters: []
+metadata:
+  distributionURL: "http://coteditor.com"
+  lastModified: "2016-06-13"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  version: "1.0.0"
+keywords:
+- beginString: "always"
+- beginString: "and"
+- beginString: "assign"
+- beginString: "attribute"
+- beginString: "begin"
+- beginString: "buf"
+- beginString: "bufif0"
+- beginString: "bufif1"
+- beginString: "case"
+- beginString: "cmos"
+- beginString: "deassign"
+- beginString: "default"
+- beginString: "defparam"
+- beginString: "disable"
+- beginString: "else"
+- beginString: "end"
+- beginString: "endattribute"
+- beginString: "endcase"
+- beginString: "endfunction"
+- beginString: "endmodule"
+- beginString: "endprimitive"
+- beginString: "endtable"
+- beginString: "endtask"
+- beginString: "event"
+- beginString: "for"
+- beginString: "force"
+- beginString: "forever"
+- beginString: "fork"
+- beginString: "function"
+- beginString: "highz0"
+- beginString: "highz1"
+- beginString: "if"
+- beginString: "initial"
+- beginString: "inout"
+- beginString: "input"
+- beginString: "integer"
+- beginString: "join"
+- beginString: "large"
+- beginString: "medium"
+- beginString: "module"
+- beginString: "nand"
+- beginString: "negedge"
+- beginString: "nmos"
+- beginString: "nor"
+- beginString: "not"
+- beginString: "notif0"
+- beginString: "notif1"
+- beginString: "or"
+- beginString: "output"
+- beginString: "parameter"
+- beginString: "pmos"
+- beginString: "posedge"
+- beginString: "primitive"
+- beginString: "pull0"
+- beginString: "pull1"
+- beginString: "pulldown"
+- beginString: "pullup"
+- beginString: "rcmos"
+- beginString: "reg"
+- beginString: "release"
+- beginString: "repeat"
+- beginString: "rnmos"
+- beginString: "rpmos"
+- beginString: "rtran"
+- beginString: "rtranif0"
+- beginString: "rtranif1"
+- beginString: "scalared"
+- beginString: "small"
+- beginString: "specify"
+- beginString: "specparam"
+- beginString: "strong0"
+- beginString: "strong1"
+- beginString: "supply0"
+- beginString: "supply1"
+- beginString: "table"
+- beginString: "task"
+- beginString: "time"
+- beginString: "tran"
+- beginString: "tranif0"
+- beginString: "tranif1"
+- beginString: "tri"
+- beginString: "tri0"
+- beginString: "triand"
+- beginString: "tril"
+- beginString: "trior"
+- beginString: "trireg"
+- beginString: "vectored"
+- beginString: "wait"
+- beginString: "wand"
+- beginString: "weak0"
+- beginString: "weak1"
+- beginString: "while"
+- beginString: "wire"
+- beginString: "wor"
+commands: []
+types: []
+attributes: []
+variables: []
+values: []
+numbers:
+- beginString: "(?<=)b[01xz?][01xz?_]*"
+  regularExpression: true
+  ignoreCase: true
+  description: "binary"
+- beginString: "(?<=)d[0-9][0-9_]*\\b"
+  regularExpression: true
+  ignoreCase: true
+  description: "decimal"
+- beginString: "(?<=)h[0-9a-f][0-9a-f_]*\\b"
+  regularExpression: true
+  ignoreCase: true
+  description: "hex"
+- beginString: "(?<=)o[0-7][0-7_]*\\b"
+  regularExpression: true
+  ignoreCase: true
+  description: "octal"
+- regularExpression: true
+  beginString: "\\b-?\\d+\\.\\d+(e[-+]?\\d+)?l?\\b"
+  ignoreCase: true
+  description: "float (same as C)"
+- beginString: "\\b[0-9][0-9_]*\\b"
+  description: "decimal"
+  regularExpression: true
+strings: []
+characters:
+- beginString: "\\b[0-9]+'s?[bdh]"
+  regularExpression: true
+  ignoreCase: true
+  description: "number prefix"
+comments: []
+commentDelimiters:
+  inlineDelimiter: "//"
+  beginDelimiter: "/*"
+  endDelimiter: "*/"
+outlineMenu:
+- beginString: "^([ \\t]*)module[ \\t]+([a-zA-Z0-9_]+)(?=\\s|\\()"
+  keyString: "$1$2"
+  description: "module"
+completions: []

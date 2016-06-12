@@ -9,7 +9,7 @@ develop
 
 - Add newly rewritten syntax styles for “C” and “C++”.
     - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
-- Add syntax style for “MATLAB”.
+- Add syntax styles for “MATLAB” and “Verilog”.
 
 
 ### Improvements
