@@ -65,6 +65,7 @@ develop
     - Support emphasis with triple `*` and `_`.
 - Adjust height of the last empty line.
 - Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.
+- And some other trivial improvements.
 
 
 ### Fixes
