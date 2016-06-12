@@ -581,6 +581,17 @@
 
     ]
   },
+  "Verilog": {
+    "extensions": [
+      "v"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
   "XML": {
     "extensions": [
       "xml",

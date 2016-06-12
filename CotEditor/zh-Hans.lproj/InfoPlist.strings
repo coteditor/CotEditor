@@ -68,5 +68,6 @@
 "TeX" = "TeX";
 "Textile document" = "Textile 文档";
 "Tcl source" = "Tcl 源码";
+"Verilog source" = "Verilog 源码";
 "XML document" = "XML 文档";
 "YAML" = "YAML";

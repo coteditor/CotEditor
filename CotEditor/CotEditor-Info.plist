@@ -847,6 +847,22 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>v</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>VerilogIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Verilog source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>CEDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>xml</string>
 				<string>xsl</string>
 				<string>dtd</string>
