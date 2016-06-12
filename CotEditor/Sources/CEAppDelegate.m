@@ -203,6 +203,7 @@
                                                // ------ settings not in preferences window ------
                                                CEDefaultColorCodeTypeKey: @1,
                                                CEDefaultSidebarWidthKey: @220,
+                                               CEDefaultRecentlyUsedStyleNamesKey: @{},
                                                
                                                // settings for find panel are register in CETextFinder
                                                
@@ -221,7 +222,7 @@
                                                CEDefaultSavesTextOrientationKey: @YES,
                                                CEDefaultLayoutTextVerticalKey: @NO,
                                                CEDefaultEnableSmartIndentKey: @YES,
-                                               CEDefaultRecentlyUsedStylesLimitKey: @6U,
+                                               CEDefaultMaximumRecentStyleCountKey: @6U,
                                                };
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     

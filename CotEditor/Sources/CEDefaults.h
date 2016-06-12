@@ -174,7 +174,7 @@ extern NSString *_Nonnull const CEDefaultAutosavingDelayKey;
 extern NSString *_Nonnull const CEDefaultSavesTextOrientationKey;
 extern NSString *_Nonnull const CEDefaultLayoutTextVerticalKey;
 extern NSString *_Nonnull const CEDefaultEnableSmartIndentKey;
-extern NSString *_Nonnull const CEDefaultRecentlyUsedStylesLimitKey;
+extern NSString *_Nonnull const CEDefaultMaximumRecentStyleCountKey;
 
 extern NSString *_Nonnull const CEDefaultLastVersionKey;
 

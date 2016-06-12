@@ -54,7 +54,7 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 // readonly
 @property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *styleNames;
 
-@property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *recentlyUsedStyleNames;
+@property (readonly, nonatomic, nonnull, copy) NSArray<NSString *> *recentStyleNames;
 
 /// conflict error dicts
 @property (readonly, nonatomic, nonnull, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *extensionConflicts;

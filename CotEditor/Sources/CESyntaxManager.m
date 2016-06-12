@@ -48,7 +48,8 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 @interface CESyntaxManager ()
 
-@property (nonatomic, nonnull, copy) NSMutableOrderedSet<NSString *> *recentlyUsedStyleNameSet;
+@property (nonatomic, nonnull) NSMutableOrderedSet<NSString *> *recentStyleNameSet;
+@property (nonatomic) NSUInteger maximumRecentStyleNameCount;
 @property (nonatomic, nonnull) NSMutableDictionary<NSString *, NSMutableDictionary *> *styleCaches;  // カラーリング定義のキャッシュ
 @property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSDictionary<NSString *, NSArray *> *> *map;  // style名と拡張子/ファイル名の対応テーブル
 
@@ -102,7 +103,8 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 {
     self = [super init];
     if (self) {
-        _recentlyUsedStyleNameSet = [NSMutableOrderedSet orderedSetWithArray:[[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultRecentlyUsedStyleNamesKey]];
+        _recentStyleNameSet = [NSMutableOrderedSet orderedSetWithArray:[[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultRecentlyUsedStyleNamesKey]];
+        _maximumRecentStyleNameCount = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultMaximumRecentStyleCountKey];
         _styleCaches = [NSMutableDictionary dictionary];
         
         // バンドルされているstyle定義の一覧を読み込んでおく
@@ -162,12 +164,17 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// return recently used style history as an array
-- (nonnull NSArray<NSString *> *)recentlyUsedStyleNames
+- (nonnull NSArray<NSString *> *)recentStyleNames
 // ------------------------------------------------------
 {
-    NSUInteger itemNumber = MIN([[self recentlyUsedStyleNameSet] count], [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultRecentlyUsedStylesLimitKey]);
+    NSArray *styleNames = @[];
     
-    return [[[self recentlyUsedStyleNameSet] array] subarrayWithRange:NSMakeRange(0, itemNumber)];
+    @synchronized ([self recentStyleNameSet]) {
+        NSUInteger itemNumber = MIN([[self recentStyleNameSet] count], [self maximumRecentStyleNameCount]);
+        styleNames = [[[self recentStyleNameSet] array] subarrayWithRange:NSMakeRange(0, itemNumber)];
+    }
+    
+    return styleNames;
 }
 
 
@@ -186,9 +193,11 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     }
     
     if (style && styleName) {
-        [[self recentlyUsedStyleNameSet] removeObject:styleName];
-        [[self recentlyUsedStyleNameSet] insertObject:styleName atIndex:0];
-        [[NSUserDefaults standardUserDefaults] setObject:[self recentlyUsedStyleNames] forKey:CEDefaultRecentlyUsedStyleNamesKey];
+        @synchronized ([self recentStyleNameSet]) {
+            [[self recentStyleNameSet] removeObject:styleName];
+            [[self recentStyleNameSet] insertObject:styleName atIndex:0];
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:[self recentStyleNames] forKey:CEDefaultRecentlyUsedStyleNamesKey];
         [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxHistoryDidUpdateNotification
                                                             object:self];
     }
@@ -621,8 +630,10 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     
     // remove deleted styles
     // -> don't care about style name change just for laziness
-    [[self recentlyUsedStyleNameSet] intersectSet:[NSSet setWithArray:styleNames]];
-    [[NSUserDefaults standardUserDefaults] setObject:[self recentlyUsedStyleNames] forKey:CEDefaultRecentlyUsedStyleNamesKey];
+    @synchronized ([self recentStyleNameSet]) {
+        [[self recentStyleNameSet] intersectSet:[NSSet setWithArray:styleNames]];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:[self recentStyleNames] forKey:CEDefaultRecentlyUsedStyleNamesKey];
 }
 
 

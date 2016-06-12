@@ -222,7 +222,7 @@
 // ------------------------------------------------------
 {
     NSArray<NSString *> *styleNames = [[CESyntaxManager sharedManager] styleNames];
-    NSArray<NSString *> *recentlyUsedStyleNames = [[CESyntaxManager sharedManager] recentlyUsedStyleNames];
+    NSArray<NSString *> *recentStyleNames = [[CESyntaxManager sharedManager] recentStyleNames];
     
     [[self syntaxPopupButton] removeAllItems];
     
@@ -231,13 +231,13 @@
                                         keyEquivalent:@""];
     [[[self syntaxPopupButton] menu] addItem:[NSMenuItem separatorItem]];
     
-    if ([recentlyUsedStyleNames count] > 0) {
+    if ([recentStyleNames count] > 0) {
         NSMenuItem *titleItem = [[NSMenuItem alloc] init];
         [titleItem setTitle:NSLocalizedString(@"Recently Used", @"menu heading in syntax style list on toolbar popup")];
         [titleItem setEnabled:NO];
         [[[self syntaxPopupButton] menu] addItem:titleItem];
         
-        for (NSString *styleName in recentlyUsedStyleNames) {
+        for (NSString *styleName in recentStyleNames) {
             [[[self syntaxPopupButton] menu] addItemWithTitle:styleName
                                                        action:@selector(changeSyntaxStyle:)
                                                 keyEquivalent:@""];
