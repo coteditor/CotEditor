@@ -36,10 +36,15 @@
 // ------------------------------------------------------
 {
     if ([self disablesAntialiasing]) {
+        [NSGraphicsContext saveGraphicsState];
         [[NSGraphicsContext currentContext] setShouldAntialias:NO];
     }
     
     [super drawRect:dirtyRect];
+    
+    if ([self disablesAntialiasing]) {
+        [NSGraphicsContext restoreGraphicsState];
+    }
 }
 
 @end

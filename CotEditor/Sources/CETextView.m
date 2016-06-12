@@ -740,8 +740,12 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // draw current line highlight
     if (NSIntersectsRect(rect, [self highlightLineRect])) {
-        [[self highlightLineColor] set];
+        [NSGraphicsContext saveGraphicsState];
+        
+        [[self highlightLineColor] setFill];
         [NSBezierPath fillRect:[self highlightLineRect]];
+        
+        [NSGraphicsContext restoreGraphicsState];
     }
     
     // avoid rimaining dropshadow from letters on Mountain Lion (2015-02 by 1024jp)
@@ -771,9 +775,13 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for adjustment
         
-        [[[self textColor] colorWithAlphaComponent:0.2] set];
+        [NSGraphicsContext saveGraphicsState];
+        
+        [[[self textColor] colorWithAlphaComponent:0.2] setStroke];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, NSMinY(dirtyRect))
                                   toPoint:NSMakePoint(x, NSMaxY(dirtyRect))];
+        
+        [NSGraphicsContext restoreGraphicsState];
     }
 }
 
