@@ -67,6 +67,7 @@ body > h1::before {
 h2 {
 	font-family: -apple-system-font, 'Helvetica Neue', 'Hiragino Sans w5', sans-serif;
 	font-size: 110%;
+	font-weight: 500;
 	line-height: 1.1;
 	font-weight: 500;
 	margin-top: 2.5em;
