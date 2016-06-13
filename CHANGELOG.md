@@ -55,6 +55,7 @@ develop
 - Update “Julia” and “Swift” syntax styles.
 - Apply the change of line height/tab width to all split editors so that split editors not focused also can layout text correctly after the change.
 - Optimize text rendering performance a bit.
+- Improve compatibility with OS X Sierra beta.
 
 
 ### Fixes
