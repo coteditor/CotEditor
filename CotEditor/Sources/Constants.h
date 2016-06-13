@@ -124,9 +124,6 @@ typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     CEScriptMenuItemTag         =  800,
 };
 
-// Help document file names table
-extern NSString *_Nonnull const kBundledDocumentFileNames[];
-
 // Online URLs
 extern NSString *_Nonnull const kWebSiteURL;
 extern NSString *_Nonnull const kIssueTrackerURL;

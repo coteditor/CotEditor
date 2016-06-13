@@ -27,6 +27,10 @@ a:hover {
 	text-decoration: underline;
 }
 
+b {
+	font-weight: bold;
+}
+
 hr {
 	opacity: 0.33;
 }
@@ -77,6 +81,17 @@ h2 {
 h3 {
 	font-size: 100%;
 	line-height: 1.1;
+}
+h4 {
+	margin-bottom: 0;
+}
+h4 + * {
+	margin-top: 0;
+}
+
+article+article {
+	margin: 2em 0;
+	border-top: 1px solid #ddd;
 }
 
 ol,

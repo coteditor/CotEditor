@@ -517,18 +517,6 @@
 
 
 // ------------------------------------------------------
-/// open bundled documents in TextEdit.app
-- (IBAction)openBundledDocument:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *fileName = kBundledDocumentFileNames[[sender tag]];
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:fileName withExtension:@"rtf"];
-    
-    [[NSWorkspace sharedWorkspace] openURL:URL];
-}
-
-
-// ------------------------------------------------------
 /// open web site (coteditor.com) in default web browser
 - (IBAction)openWebSite:(nullable id)sender
 // ------------------------------------------------------
