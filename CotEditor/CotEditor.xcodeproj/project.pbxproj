@@ -1824,14 +1824,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor -AppStore" */;
 			buildPhases = (
-				2A6F0D531B5500E100C2D03C /* 📦 Check Pods Manifest.lock */,
+				2A6F0D531B5500E100C2D03C /* [CP] Check Pods Manifest.lock */,
 				2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
-				DCACFAE3957B360DC925F673 /* 📦 Embed Pods Frameworks */,
-				196995175ECE5E61C4E1785D /* 📦 Copy Pods Resources */,
+				DCACFAE3957B360DC925F673 /* [CP] Embed Pods Frameworks */,
+				196995175ECE5E61C4E1785D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1847,12 +1847,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
-				3B5A15231D48331DCBFF8C22 /* 📦 Check Pods Manifest.lock */,
+				3B5A15231D48331DCBFF8C22 /* [CP] Check Pods Manifest.lock */,
 				2AC71DDB1BF0BDBC002E1434 /* Sources */,
 				2AC71DDC1BF0BDBC002E1434 /* Frameworks */,
 				2AC71DDD1BF0BDBC002E1434 /* Resources */,
-				463BFB5D467C1DC1494706FC /* 📦 Embed Pods Frameworks */,
-				DE26E0CDA733B371672D265A /* 📦 Copy Pods Resources */,
+				463BFB5D467C1DC1494706FC /* [CP] Embed Pods Frameworks */,
+				DE26E0CDA733B371672D265A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1868,14 +1868,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */;
 			buildPhases = (
-				360866EE86A144AF8F8698E8 /* 📦 Check Pods Manifest.lock */,
+				360866EE86A144AF8F8698E8 /* [CP] Check Pods Manifest.lock */,
 				2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-				C40FF196FC931BDEC94F689E /* 📦 Embed Pods Frameworks */,
-				22663AC3ADB1560165C6C02E /* 📦 Copy Pods Resources */,
+				C40FF196FC931BDEC94F689E /* [CP] Embed Pods Frameworks */,
+				22663AC3ADB1560165C6C02E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2146,14 +2146,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		196995175ECE5E61C4E1785D /* 📦 Copy Pods Resources */ = {
+		196995175ECE5E61C4E1785D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2161,14 +2161,14 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		22663AC3ADB1560165C6C02E /* 📦 Copy Pods Resources */ = {
+		22663AC3ADB1560165C6C02E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2217,14 +2217,14 @@
 			shellPath = /bin/sh;
 			shellScript = "ruby makeSyntaxMap.rb";
 		};
-		2A6F0D531B5500E100C2D03C /* 📦 Check Pods Manifest.lock */ = {
+		2A6F0D531B5500E100C2D03C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2232,14 +2232,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		360866EE86A144AF8F8698E8 /* 📦 Check Pods Manifest.lock */ = {
+		360866EE86A144AF8F8698E8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2247,14 +2247,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		3B5A15231D48331DCBFF8C22 /* 📦 Check Pods Manifest.lock */ = {
+		3B5A15231D48331DCBFF8C22 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2262,14 +2262,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		463BFB5D467C1DC1494706FC /* 📦 Embed Pods Frameworks */ = {
+		463BFB5D467C1DC1494706FC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2277,14 +2277,14 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C40FF196FC931BDEC94F689E /* 📦 Embed Pods Frameworks */ = {
+		C40FF196FC931BDEC94F689E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2292,14 +2292,14 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DCACFAE3957B360DC925F673 /* 📦 Embed Pods Frameworks */ = {
+		DCACFAE3957B360DC925F673 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2307,14 +2307,14 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DE26E0CDA733B371672D265A /* 📦 Copy Pods Resources */ = {
+		DE26E0CDA733B371672D265A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3446,6 +3446,7 @@
 				2A3E847F1D07296200070A54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor -AppStore" */ = {
 			isa = XCConfigurationList;
