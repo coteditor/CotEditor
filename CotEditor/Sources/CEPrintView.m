@@ -127,7 +127,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey];
         NSFont *font = [NSFont fontWithName:fontName size:fontSize] ? : [NSFont userFixedPitchFontOfSize:fontSize];
         NSDictionary<NSString *, id> *attrs = @{NSFontAttributeName: font,
-                                                NSForegroundColorAttributeName: [NSColor textColor]};
+                                                NSForegroundColorAttributeName: [self textColor]};
         
         // calculate character width by treating the font as a mono-space font
         NSSize charSize = [@"8" sizeWithAttributes:attrs];

@@ -66,6 +66,7 @@ develop
     - Support emphasis with triple `*` and `_`.
 - Adjust height of the last empty line.
 - Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.
+- Change to use the body text color fot line numbers on printing that was previously always black.
 - And some other trivial improvements.
 
 
