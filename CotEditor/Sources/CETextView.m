@@ -592,9 +592,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [super setFont:font];
     
     [self invalidateDefaultParagraphStyle];
-    
-    // update current text
-    [self invalidateStyle];
 }
 
 
@@ -931,14 +928,11 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setTabWidth:(NSUInteger)tabWidth
 // ------------------------------------------------------
 {
-    if (tabWidth == [self tabWidth]) { return; }
+    if (tabWidth == [self tabWidth] || tabWidth == 0) { return; }
     
     _tabWidth = tabWidth;
     
     [self invalidateDefaultParagraphStyle];
-    
-    // update current text
-    [self invalidateStyle];
 }
 
 
@@ -947,14 +941,11 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setLineHeight:(CGFloat)lineHeight
 // ------------------------------------------------------
 {
-    if (lineHeight == [self lineHeight]) { return; }
+    if (lineHeight == [self lineHeight] || lineHeight <= 0) { return; }
     
     _lineHeight = lineHeight;
     
     [self invalidateDefaultParagraphStyle];
-    
-    // update current text
-    [self invalidateStyle];
 }
 
 
@@ -1197,7 +1188,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     //   -> The actual line height will be calculated in CELayoutManager and CEATSTypesetter based on this line height multiple.
     //      Because the default Cocoa Text System calculate line height differently
     //      if the first character of the document is drawn with another font (typically by a composite font).
-    [paragraphStyle setLineHeightMultiple:[self lineHeight]];
+    [paragraphStyle setLineHeightMultiple:[self lineHeight] ?: 1.0];
     
     // calculate tab interval
     NSFont *font = [[self font] screenFont] ?: [self font];
@@ -1212,6 +1203,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSMutableDictionary *typingAttributes = [[self typingAttributes] mutableCopy];
     typingAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
     [self setTypingAttributes:typingAttributes];
+    
+    // apply new style to current text
+    [self invalidateStyle];
 }
 
 
