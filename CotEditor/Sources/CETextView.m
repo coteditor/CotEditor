@@ -55,9 +55,8 @@ NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification = @"CETex
 // constants
 static NSString *_Nonnull const CEAutoBalancedClosingBracketAttributeName = @"autoBalancedClosingBracket";
 
-static const CGFloat kTextContainerInsetTop = 4.0;
-static const CGFloat kTextContainerInsetBottom = 16.0;
-static const CGFloat kTextContainerInsetLeft = 0.0;
+static const CGFloat kTextContainerInsetWidth = 0.0;
+static const CGFloat kTextContainerInsetHeight = 4.0;
 
 
 @interface CETextView ()
@@ -120,8 +119,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [self setMaxSize:NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX)];
         [self setHorizontallyResizable:YES];
         [self setVerticallyResizable:YES];
-        [self setTextContainerInset:NSMakeSize(kTextContainerInsetLeft,
-                                               floor((kTextContainerInsetTop + kTextContainerInsetBottom) / 2))];
+        [self setTextContainerInset:NSMakeSize(kTextContainerInsetWidth, kTextContainerInsetHeight)];
         
         // set NSTextView behaviors
         [self setAllowsDocumentBackgroundColorChange:NO];
@@ -222,16 +220,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
                                              selector:@selector(didWindowOpacityChange:)
                                                  name:CEWindowOpacityDidChangeNotification
                                                object:[self window]];
-}
-
-
-// ------------------------------------------------------
-/// coordinate of text container origin (top-left)
-- (NSPoint)textContainerOrigin
-// ------------------------------------------------------
-{
-    return NSMakePoint(kTextContainerInsetLeft,
-                       kTextContainerInsetTop);
 }
 
 
