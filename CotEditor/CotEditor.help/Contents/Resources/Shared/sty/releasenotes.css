@@ -8,7 +8,7 @@
  
  Created on 2014 by 1024jp
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
 */
 
 
@@ -39,25 +39,12 @@ footer::before {
 	margin: 0.8em 0;
 }
 
-code {
-	border: 1px solid hsla(0, 0%, 0%, .1);
-	background: hsla(0, 0%, 0%, .03);
-	padding: 0 0.3em;
-	border-radius: 2px;
-}
-
-
 p.note strong {
 	text-decoration: underline;
 }
 
-article {
-	font-size: 13px;
-}
-
 article+article {
 	margin-top: 4em;
-	border-top: 1px solid hsla(0, 0%, 0%, .25);
 	padding-top: 1em;
 }
 
@@ -71,7 +58,7 @@ article > header p {
 	margin: 0;
 }
 article h2 {
-	font-size: 110%;
+	font-size: 105%;
 	font-weight: bold;
 }
 

@@ -62,7 +62,7 @@ NSString *_Nonnull const kHelpAnchors[] = {
     @"pref_print",
     @"whats_new",
     @"specification_changes",  // 10
-    @"about_script_name",
+    @"howto_customize_scriptmenu",
     @"about_applescript",
     @"about_unixscript",
     @"pref_integration",
@@ -128,14 +128,6 @@ NSString *_Nonnull const CEFileDropTokenImageHeight = @"<<<IMAGEHEIGHT>>>";
 // ------------------------------------------------------
 // Main Menu
 // ------------------------------------------------------
-
-// Help document file names table
-NSString *_Nonnull const kBundledDocumentFileNames[] = {
-    @"Acknowledgements",
-    @"ScriptMenu Folder",
-    @"AppleScript",
-    @"ShellScript"
-};
 
 // Online URLs
 NSString *_Nonnull const kWebSiteURL = @"http://coteditor.com";

@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+/*
+ AppleScript Help Style Sheet
+ 
+ CotEditor
+ http://coteditor.com
+ 
+ © 2016 1024jp
+*/
+
+
+#Command section {
+	border-top: 1px solid #ddd;
+}
+#Command h3 {
+	display: none;
+}
+
+.added {
+	color: hsl(80, 50%, 40%);
+}
+.deprecated {
+	color: hsl(44, 75%, 33%);
+}
+dfn {
+	font-weight: bold;
+}
+
+figure {
+	margin: 1em 0;
+}
+figure > figcaption {
+	margin-left: 2em;
+}
+
+
+/* tree */
+dl.tree,
+dl.subtree {
+	overflow: hidden;
+}
+dl.tree + * {
+	clear: left;
+}
+dl.tree dt::after {
+	content: ':';
+	font-weight: normal;
+	margin-right: 0.5em;
+}
+dl.tree dt,
+dl.tree dd {
+	float: left;
+	margin: 0.1em 0;
+}
+dl.tree dt,
+dl.tree dd + dd {
+	clear: left;
+}
+dl.tree dl.subtree {
+	margin: 0 0 0 2.5em;
+}
+dl.tree dl.subtree dt {
+	font-weight: normal;
+}
+dl.tree dl.subtree dt::before {
+	content: '- ';
+	color: hsl(0, 0%, 50%);
+}
+
+ul.tree, ul.tree ul {
+	border: none;
+	background: none;
+}
+ul.tree li {
+	list-style: none;
+}
+ul.tree li li::before {
+	content: '- ';
+	color: hsl(0, 0%, 50%);
+}

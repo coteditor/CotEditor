@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="ja" xml:lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="script, AppleScript"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>AppleScript 対応の仕様改訂履歴</title>
+</head>
+
+<body>
+<nav><ul>
+	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
+</ul></nav>
+
+<h1>AppleScript 対応の仕様改訂履歴</h1>
+
+
+<article>
+<h2>CotEditor 2.6.0 での仕様改訂</h2>
+	<h3>行間プロパティ</h3>
+	<p><code>line spacing</code> プロパティは CotEditor 2.6.0 で廃止されました。</p>
+	<p><strong>この件に関しては後方互換性はありません</strong>のでご了承ください。</p>
+</article>
+
+
+<article>
+<h2>CotEditor 2.5.3 での仕様改訂</h2>
+<section>
+	<h3>Unicode 正規化</h3>
+	<p><code>normalize unicode</code> コマンドに新しく <code>Modified NFC</code> が追加されました。</p>
+</section>
+</article>
+
+
+<article>
+<h2>CotEditor 2.3.0 での仕様改訂</h2>
+<section>
+<h3>選択行の編集</h3>
+	<p>selection オブジェクトに新しく以下のコマンドが追加されました。</p>
+	<ul class="nostyle">
+		<li><code>move line up</code></li>
+		<li><code>move line down</code></li>
+		<li><code>sort lines</code></li>
+		<li><code>reverse lines</code></li>
+		<li><code>delete duplicate line</code></li>
+	</ul>
+</section>
+</article>
+
+
+<article>
+<h2>CotEditor 2.2.2 での仕様改訂</h2>
+<section>
+	<h3>Unicode 正規化</h3>
+	<p><code>normalize unicode</code> コマンドに新しく <code>Modified NFD</code> が追加されました。</p>
+</section>
+</article>
+
+
+<article>
+<h2>CotEditor 2.2.0 での仕様改訂</h2>
+<section>
+	<h3>Unicode 正規化</h3>
+	<p><code>normalize unicode</code> コマンドに新しく <code>NFCK Casefold</code> が追加されました。</p>
+</section>
+</article>
+
+
+<article>
+<h2>CotEditor 2.1.0 での仕様改訂</h2>
+<section>
+	<h3>タブ幅の操作</h3>
+	<p>document オブジェクトに新しく <code>tab width</code> プロパティが追加されました。</p>
+</section>
+</article>
+
+
+<article>
+<h2>CotEditor 2.0.1 での仕様改訂</h2>
+<section>
+	<h3>コメントアウトとコメント解除</h3>
+	<p>selection オブジェクトに新しく <code>comment out</code> と <code>uncomment</code> コマンドが追加されました。</p>
+</section>
+</article>
+
+
+<article>
+<h2>CotEditor 2.0.0 での仕様改訂</h2>
+<section>
+	<h3>Unicode 正規化</h3>
+	<p>CotEditor 1.x でコマンド <code>unicode normalization</code> として実装されていた Unicode 正規化コマンドは、 2.0 で <code>normalize unicode</code> に改名されました。機能とパラメータに変更はありません。</p>
+	<p><strong>この件に関しては後方互換性はありません</strong>のでご了承ください。</p>
+</section>
+
+<section>
+<h3><code>path</code> プロパティの廃止</h3>
+<p>document オブジェクトのファイルパスを得るための <code>path</code> プロパティは現在のモダンな AppleScript Standard Suite ではすでに削除になっています。かわりに <code>file</code> プロパティを使用してください。 <code>path</code> プロパティは text オブジェクトでしたが <code>file</code> プロパティは file オブジェクトを返します。</p>
+<p>なお、後方互換性確保のために CotEditor 2.0 では、従来と同じ働きをする <code>file</code> プロパティを隠し属性として独自に document オブジェクトに付与していますが、このプロパティは将来予告なく削除される可能性があります。</p>
+</section>
+
+<section>
+<h3><code>range</code> プロパティの内部コードの変更</h3>
+<p>selection オブジェクトが持つ <code>range</code> プロパティを内部的に表すコードが CotEditor 2.0 で変更されました。<code>range</code> プロパティは引き続き <code>range</code> というキーで操作するのでスクリプトを書く上では変更はありませんが、以前書かれたコンパイルされたスクリプト (.scpt) は新しい <code>range</code> プロパティを見つけられない可能性が高いです。</p>
+
+<h4>修正方法</h4>
+<p>以前の .scpt ファイルを AppleScript Editor (もしくは Script Editor) で開くと、従来 <code>range</code> であった部分が <code>«class prng»</code> のような文字列に変更されているはずなのでその部分を再び <code>range</code> に書き戻してください。プレーンテキスト形式のスクリプト (.applescript) ではこの問題は発生しません。</p>
+</section>
+</article>
+
+
+<article>
+<h2>CotEditor 1.5.0 での仕様改訂</h2>
+<section>
+<h3>ウインドウ透明度</h3>
+<p>CotEditor 1.5 でウインドウの不透明度設定の機構が変更されたのをうけて、不透明度設定に関する AppleScript での語句も変更されました。1.4 までて使用できた <b>document</b> オブジェクトのプロパティ：</p>
+
+<ul class="nostyle">
+	<li><code>transparency</code>: ウィンドウまたはテキストビューの透明度（real型、0.2 から 1.0 の範囲）</li>
+	<li><code>alpha only textView</code>: 透明度を設定するのはテキストビューだけかどうか（boolean型)</li>
+</ul>
+
+<p>は廃止され、新たに <b>window</b> オブジェクトにプロパティ：</p>
+
+<ul class="nostyle">
+	<li><code>view opacity</code>: テキストビューの不透明度（real型、0.2 から 1.0 の範囲）</li>
+</ul>
+
+<p>が追加されました。</p>
+
+<p>プロパティ名称が transparency (透明度) から opacity (不透明度) に変更されていますが、これは 1.5 以前の誤表現を訂正するものですので、実際に取る値に変更はありません。新旧とも 1.0 に近づくほど不透明度が増します。</p>
+<p>また、<strong>この件に関しては後方互換性はありません</strong>のでご了承ください。</p>
+</section>
+
+<section>
+<h3>アプリケーション直下の selection オブジェクト</h3>
+<p>CotEditor の最初のβ版 0.6 では、 &quot;selection&quot; オブジェクトをドキュメントを明示しなくてもアプリケーション前面のドキュメントが指定されたと見なしていました。しかし実際にはうまく動かなかったために、これは将来廃止にする可能性が高く非推奨となり、後方互換性のために該当部分のコードのみは残したままにしていました。</p>
+<p>この仕様は CotEditor 1.5 で正式に廃止され関連するコードも削除されました。最前面ドキュメントの selection を得るためには例 1 または例 2 のようにそれを明示して下さい。</p>
+
+<figure>
+<figcaption>例1）</figcaption>
+<pre class="source"><code class="AppleScript">tell application "CotEditor"
+	contents of selection <b>of front document</b>
+end tell
+</code></pre>
+</figure>
+
+<figure>
+<figcaption>例2）</figcaption>
+<pre class="source"><code class="AppleScript">tell application "CotEditor"
+	<b>tell document 1</b>
+		contents of selection
+	<b>end tell</b>
+end tell
+</code></pre>
+</figure>
+</section>
+</article>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="../pgs/about_applescript.html">AppleScript との連携</a></li>
+</ul>
+</section>
+
+</body>
+</html>
