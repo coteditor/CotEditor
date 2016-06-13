@@ -27,7 +27,7 @@ article ul li {
 
 footer {
 	font-size: 90%;
-	color: hsl(0,0%,50%);
+	color: hsl(0, 0%, 50%);
 	margin-top: 2em;
 	padding: 0 1em;
 }
@@ -35,13 +35,13 @@ footer::before {
 	content: '';
 	display: block;
 	width: 140px;
-	border-top: 1px solid hsla(0,0%,0%,.2);
+	border-top: 1px solid hsla(0, 0%, 0%, .2);
 	margin: 0.8em 0;
 }
 
 code {
-	border: 1px solid hsla(0,0%,0%,.1);
-	background: hsla(0,0%,0%,.03);
+	border: 1px solid hsla(0, 0%, 0%, .1);
+	background: hsla(0, 0%, 0%, .03);
 	padding: 0 0.3em;
 	border-radius: 2px;
 }
@@ -57,7 +57,7 @@ article {
 
 article+article {
 	margin-top: 4em;
-	border-top: 1px solid hsla(0,0%,0%,.25);
+	border-top: 1px solid hsla(0, 0%, 0%, .25);
 	padding-top: 1em;
 }
 
@@ -67,7 +67,7 @@ article > header h1 {
 	margin: 0;
 }
 article > header p {
-	color: hsl(0,0%,40%);
+	color: hsl(0, 0%, 40%);
 	margin: 0;
 }
 article h2 {
@@ -76,20 +76,20 @@ article h2 {
 }
 
 .none {
-	color: hsl(0,0%,50%);
+	color: hsl(0, 0%, 50%);
 }
 
 .label {
-	color: hsl(198,40%,45%);
+	color: hsl(198, 40%, 45%);
 	border: 1px solid;
 	border-radius: 3px;
 	padding: 0 0.2em;
 }
 p.important {
 	display: inline-block;
-	color: hsl(203,30%,30%);
-	background: hsl(203,50%,98%);
-	border: 1px solid hsl(203,20%,70%);
+	color: hsl(203, 30%, 30%);
+	background: hsl(203, 50%, 98%);
+	border: 1px solid hsl(203, 20%, 70%);
 	border-radius: 3px;
 	padding: 0.1em 0.5em;
 }
@@ -97,8 +97,8 @@ p.important {
 /* highlights */
 .highlights {
 	font: 'Helvetica Neue';
-	border-top: 2px solid hsl(203,20%,90%);
-	border-bottom: 2px solid hsl(203,20%,90%);
+	border-top: 2px solid hsl(203, 20%, 90%);
+	border-bottom: 2px solid hsl(203, 20%, 90%);
 	padding: 1em 0;
 }
 .highlights h1 {
@@ -106,7 +106,7 @@ p.important {
 }
 .highlights dt::before {
 	content: '✔︎';
-	color: hsl(90,50%,50%);
+	color: hsl(90, 50%, 50%);
 	font-size: 140%;
 	vertical-align: -0.05em;
 	margin-right: 0.3em;

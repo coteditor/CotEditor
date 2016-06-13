@@ -12,7 +12,7 @@
 
 body {
 	font: 10pt/1.5 -apple-system-font, 'Helvetica Neue', sans-serif;
-	color: hsla(0,0%,0%,0.8);
+	color: hsla(0, 0%, 0%, 0.8);
 	margin: 0;
 	padding: 1.5em;
 }
@@ -21,7 +21,7 @@ a {
 	text-decoration: none;
 }
 a:link {
-	color: hsl(206,50%,50%);
+	color: hsl(206, 50%, 50%);
 }
 a:hover {
 	text-decoration: underline;
@@ -34,11 +34,23 @@ hr {
 code {
 	font-family: 'menlo', monospace;
 	font-size: 90%;
+	background: hsla(201, 30%, 50%, .02);
+	border: 1px solid hsla(201, 40%, 50%, .3);
+	border-radius: 2px;
+	padding: 0 0.2em;
+}
+code.AppleScript {
+	color: hsl(230, 67%, 45%);
+}
+pre code {
+	background: transparent;
+	border: none;
 }
 
 body > h1 {
-	font-family: 'Helvetica Neue', 'Hiragino Sans w2', sans-serif;
+	font-family: -apple-system-font, 'Helvetica Neue', 'Hiragino Sans w2', sans-serif;
 	font-size: 160%;
+	line-height: 1.0;
 	font-weight: 300;
 	margin: 0 0 1.5em;
 }
@@ -53,9 +65,11 @@ body > h1::before {
 	margin-right: 12px;
 }
 h2 {
+	font-family: -apple-system-font, 'Helvetica Neue', 'Hiragino Sans w5', sans-serif;
 	font-size: 110%;
 	line-height: 1.1;
-	margin-top: 1.5em;
+	font-weight: 500;
+	margin-top: 2.5em;
 	margin-bottom: 0.5em;
 	clear: both;
 }
@@ -67,21 +81,18 @@ h3 {
 ol,
 ul,
 pre {
-	padding: 0.6em 2.5em 0.2em;
-	margin: 0.4em 0;
-	border: 1px solid hsl(213,25%,80%);
-	background-color: hsl(213,25%,96%);
-	border-radius: 3px;
+	margin: 0.5em 0;
 	clear: both;
 }
-ol.nostyle,
-ul.nostyle,
-pre.nostyle {
-	border: none;
-	background: none;
-}
 pre {
-	padding: 0.4em 1.0em;
+	margin-left: 1em;
+}
+pre.source {
+	background: hsl(0, 0%, 98%);
+	border: 1px solid hsl(0, 0%, 80%);
+	border-radius: 3px;
+	max-width: 50em;
+	padding: 0.2em 0.5em;
 }
 
 ul {
@@ -129,8 +140,8 @@ ul.topicbox {
 p.point {
 	padding: 1em 2em 1em 1.5em;
 	margin: auto -1%;
-	border: 1px solid hsl(213,25%,80%);
-	background-color: hsl(213,25%,96%);
+	border: 1px solid hsl(213, 25%, 80%);
+	background-color: hsl(213, 25%, 96%);
 }
 
 em {
@@ -193,9 +204,13 @@ td {
 	padding: 3px 0.5em;
 }
 th {
-	background-color: hsl(213,25%,96%);
+	background-color: hsl(213, 25%, 96%);
 	font-weight: normal;
 	white-space: nowrap;
+}
+th code {
+	border: none;
+	background: none;
 }
 th.lh,
 tbody th:first-child {
@@ -215,8 +230,8 @@ body {
 }
 
 body > nav {
-	border-bottom: 1px solid hsl(0,0%,80%);
-	background: hsl(0,0%,96%);
+	border-bottom: 1px solid hsl(0, 0%, 80%);
+	background: hsl(0, 0%, 96%);
 	
 	position: fixed;
 	top: 0;
@@ -225,7 +240,7 @@ body > nav {
 	z-index: 10;
 }
 body > nav a {
-	color: hsl(0,0%,40%);
+	color: hsl(0, 0%, 40%);
 }
 body > nav ul {
 	border: none;

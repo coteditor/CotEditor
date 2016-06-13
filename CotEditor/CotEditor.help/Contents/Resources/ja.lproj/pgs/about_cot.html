@@ -20,15 +20,15 @@
 <a name="about_cot"></a>
 <h1><code>cot</code> コマンド</h1>
 
-<p>CotEditor にはコマンドラインからの操作を可能にする <code>cot</code> コマンドラインツールがあります。<code>cot</code> コマンドを使うためには、まずインストールをしてください。</p>
+<p>CotEditor にはコマンドラインからの操作を可能にする <strong>cot</strong> コマンドラインツールがあります。<code>cot</code> コマンドを使うためには、まずインストールをしてください。</p>
 
 <h2>インストール</h2>
 <p><code>cot</code> コマンドは CotEditor.app 内の '<code>Contents/SharedSupport/bin/cot</code>' にバンドルされています。</p>
 <p>Terminal からシンボリックリンクを作成して、任意の場所にインストールすることができます（特にこだわりがない場合は '<code>/usr/local/bin/</code>' に作成することをお勧めします）。</p>
-<pre><code>ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
+<pre class="source"><code>ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
 
 <p>そして、Terminal からアンインストールする場合は以下のようにします。</p>
-<pre><code>unlink /usr/local/bin/cot</code></pre>
+<pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
 <h2>オプション</h2>
 <p><code>cot</code> コマンドは以下のオプションが使用できます。</p>
@@ -46,17 +46,17 @@
 <h2>例</h2>
 <p><code>cot</code> コマンド単体で CotEditor が起動します。</p>
 
-<pre><code>cot
+<pre class="source"><code>cot
 </code></pre>
 
 <p>以下のコマンドは、foo.txt ファイルを CotEditor で開き 200 行目にスクロールします。もし foo.txt ファイルが存在しない場合は、<code>cot</code> コマンドは何も行いません。</p>
 
-<pre><code>cot --line 200 foo.txt
+<pre class="source"><code>cot --line 200 foo.txt
 </code></pre>
 
 <p>文字列をパイプで渡すこともできます。CotEditor は渡された文字列を新規書類として開きます。</p>
 
-<pre><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot
+<pre class="source"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot
 </code></pre>
 
 
