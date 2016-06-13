@@ -717,6 +717,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setTabWidth:(NSUInteger)tabWidth
 // ------------------------------------------------------
 {
+    if (tabWidth == 0) { return; }
+    
     _tabWidth = tabWidth;
     [self setFont:[self font]];  // force re-layout with new width
 }
