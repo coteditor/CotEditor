@@ -82,10 +82,10 @@
 
 // ------------------------------------------------------
 /// text strage as AppleScript's return value did update
-- (void)textStorageDidProcessEditing:(nonnull NSNotification *)aNotification
+- (void)textStorageDidProcessEditing:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSTextStorage *storage = (NSTextStorage *)[aNotification object];
+    NSTextStorage *storage = (NSTextStorage *)[notification object];
 
     [[[self document] editor] insertTextViewString:[storage string]];
     [storage setDelegate:nil];

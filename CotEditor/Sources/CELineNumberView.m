@@ -485,12 +485,12 @@ unsigned int numberAt(int place, int number) { return (number % (int)pow(10, pla
 
 // ------------------------------------------------------
 /// start selecting correspondent lines in text view with drag / click event
-- (void)mouseDown:(nonnull NSEvent *)theEvent
+- (void)mouseDown:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
     // get start point
-    NSPoint point = [[self window] convertRectToScreen:NSMakeRect([theEvent locationInWindow].x,
-                                                                  [theEvent locationInWindow].y, 0, 0)].origin;
+    NSPoint point = [[self window] convertRectToScreen:NSMakeRect([event locationInWindow].x,
+                                                                  [event locationInWindow].y, 0, 0)].origin;
     NSUInteger index = [[self textView] characterIndexForPoint:point];
     
     // repeat while dragging
@@ -507,7 +507,7 @@ unsigned int numberAt(int place, int number) { return (number % (int)pow(10, pla
 
 // ------------------------------------------------------
 /// end selecting correspondent lines in text view with drag event
-- (void)mouseUp:(nonnull NSEvent *)theEvent
+- (void)mouseUp:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
     [[self draggingTimer] invalidate];

@@ -302,7 +302,7 @@
 
 // ------------------------------------------------------
 /// crates a new document on "Re-Open" AppleEvent
-- (BOOL)applicationShouldHandleReopen:(nonnull NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+- (BOOL)applicationShouldHandleReopen:(nonnull NSApplication *)application hasVisibleWindows:(BOOL)flag
 // ------------------------------------------------------
 {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultReopenBlankWindowKey]) {
@@ -364,7 +364,7 @@
 
 // ------------------------------------------------------
 /// open file
-- (BOOL)application:(nonnull NSApplication *)theApplication openFile:(nonnull NSString *)filename
+- (BOOL)application:(nonnull NSApplication *)application openFile:(nonnull NSString *)filename
 // ------------------------------------------------------
 {
     // perform install if the file is CotEditor theme file

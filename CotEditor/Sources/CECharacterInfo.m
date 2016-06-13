@@ -193,15 +193,15 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
     NSUInteger length = [string length];
     
     for (NSUInteger i = 0; i < length; i++) {
-        unichar theChar = [string characterAtIndex:i];
-        unichar nextChar = (length > i + 1) ? [string characterAtIndex:i + 1] : 0;
+        unichar character = [string characterAtIndex:i];
+        unichar nextCharacter = (length > i + 1) ? [string characterAtIndex:i + 1] : 0;
         UTF32Char utf32Char;
         
-        if (CFStringIsSurrogateHighCharacter(theChar) && CFStringIsSurrogateLowCharacter(nextChar)) {
-            utf32Char = CFStringGetLongCharacterForSurrogatePair(theChar, nextChar);
+        if (CFStringIsSurrogateHighCharacter(character) && CFStringIsSurrogateLowCharacter(nextCharacter)) {
+            utf32Char = CFStringGetLongCharacterForSurrogatePair(character, nextCharacter);
             i++;
         } else {
-            utf32Char = (UTF32Char)theChar;
+            utf32Char = (UTF32Char)character;
         }
         
         [unicodes addObject:[CEUnicodeCharacter unicodeCharacterWithCharacter:utf32Char]];

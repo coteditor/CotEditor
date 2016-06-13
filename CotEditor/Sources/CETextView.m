@@ -225,16 +225,16 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// key is pressed
-- (void)keyDown:(nonnull NSEvent *)theEvent
+- (void)keyDown:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
-    NSString *charIgnoringMod = [theEvent charactersIgnoringModifiers];
-    BOOL isModifierKeyPressed = ([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask) != 0;  // check just in case
+    NSString *charIgnoringMod = [event charactersIgnoringModifiers];
+    BOOL isModifierKeyPressed = ([event modifierFlags] & NSDeviceIndependentModifierFlagsMask) != 0;  // check just in case
     
     // perform snippet insertion if not in the middle of Japanese input
     if (![self hasMarkedText] && charIgnoringMod && isModifierKeyPressed) {
         NSString *selectorString = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
-                                                                                           modifierMask:[theEvent modifierFlags]];
+                                                                                           modifierMask:[event modifierFlags]];
         
         if (([selectorString length] == 20) && [selectorString hasPrefix:@"insertCustomText_"]) {
             NSInteger patternNumber = [[selectorString substringFromIndex:[@"insertCustomText_" length]] integerValue];
@@ -243,7 +243,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         }
     }
     
-    [super keyDown:theEvent];
+    [super keyDown:event];
 }
 
 
@@ -518,10 +518,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// customize context menu
-- (nullable NSMenu *)menuForEvent:(nonnull NSEvent *)theEvent
+- (nullable NSMenu *)menuForEvent:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
-    NSMenu *menu = [super menuForEvent:theEvent];
+    NSMenu *menu = [super menuForEvent:event];
 
     // remove unwanted "Font" menu and its submenus
     [menu removeItem:[menu itemWithTitle:NSLocalizedString(@"Font", nil)]];
@@ -665,15 +665,15 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// change text layout orientation
-- (void)setLayoutOrientation:(NSTextLayoutOrientation)theOrientation
+- (void)setLayoutOrientation:(NSTextLayoutOrientation)orientation
 // ------------------------------------------------------
 {
     // reset text wrapping
-    if (theOrientation != [self layoutOrientation] && [self wrapsLines]) {
+    if (orientation != [self layoutOrientation] && [self wrapsLines]) {
         [[self textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];
     }
     
-    [super setLayoutOrientation:theOrientation];
+    [super setLayoutOrientation:orientation];
 }
 
 
@@ -883,10 +883,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// apply current state to related toolbar items
-- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
+- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)item
 // ------------------------------------------------------
 {
-    if ([theItem action] == @selector(toggleComment:)) {
+    if ([item action] == @selector(toggleComment:)) {
         return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
     }
     

@@ -154,14 +154,14 @@ static NSString *HiraginoSansName;
 
 // ------------------------------------------------------
 /// adjust rect of last empty line
-- (void)setExtraLineFragmentRect:(NSRect)aRect usedRect:(NSRect)usedRect textContainer:(nonnull NSTextContainer *)aTextContainer
+- (void)setExtraLineFragmentRect:(NSRect)rect usedRect:(NSRect)usedRect textContainer:(nonnull NSTextContainer *)textContainer
 // ------------------------------------------------------
 {
     // 複合フォントで行の高さがばらつくのを防止するために一般の行の高さを変更しているので、それにあわせる
-    aRect.size.height = [self lineHeight];
+    rect.size.height = [self lineHeight];
     usedRect.size.height = [self lineHeight];
 
-    [super setExtraLineFragmentRect:aRect usedRect:usedRect textContainer:aTextContainer];
+    [super setExtraLineFragmentRect:rect usedRect:usedRect textContainer:textContainer];
 }
 
 

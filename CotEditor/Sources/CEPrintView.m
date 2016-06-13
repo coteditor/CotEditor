@@ -271,12 +271,12 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 // ------------------------------------------------------
 /// return whether do paganation by itself
--(BOOL)knowsPageRange:(NSRangePointer)aRange
+-(BOOL)knowsPageRange:(NSRangePointer)range
 // ------------------------------------------------------
 {
     [self setupPrintSize];
     
-    return [super knowsPageRange:aRange];
+    return [super knowsPageRange:range];
 }
 
 

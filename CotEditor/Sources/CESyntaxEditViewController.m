@@ -199,11 +199,11 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 
 // ------------------------------------------------------
 /// スタイル名が変更された
-- (void)controlTextDidChange:(nonnull NSNotification *)aNotification
+- (void)controlTextDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
     // 入力されたスタイル名の検証
-    if ([aNotification object] == [self styleNameField]) {
+    if ([notification object] == [self styleNameField]) {
         NSString *styleName = [[self styleNameField] stringValue];
         styleName = [styleName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         [self validateStyleName:styleName];

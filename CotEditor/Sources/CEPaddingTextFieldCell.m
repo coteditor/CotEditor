@@ -32,17 +32,17 @@
 
 // ------------------------------------------------------
 /// add padding to area to draw text
-- (NSRect)drawingRectForBounds:(NSRect)theRect
+- (NSRect)drawingRectForBounds:(NSRect)rect
 // ------------------------------------------------------
 {
     // add left padding
-    theRect.size.width -= MAX([self leftPadding], 0);
-    theRect.origin.x += MAX([self leftPadding], 0);
+    rect.size.width -= MAX([self leftPadding], 0);
+    rect.origin.x += MAX([self leftPadding], 0);
     
     // add right padding
-    theRect.size.width -= MAX([self rightPadding], 0);
+    rect.size.width -= MAX([self rightPadding], 0);
     
-    return [super drawingRectForBounds:theRect];
+    return [super drawingRectForBounds:rect];
 }
 
 @end

@@ -187,38 +187,38 @@
 
 // ------------------------------------------------------
 /// apply current state to related toolbar items
-- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)theItem
+- (BOOL)validateToolbarItem:(nonnull NSToolbarItem *)item
 // ------------------------------------------------------
 {
-    if ([theItem action] == @selector(recolorAll:)) {
+    if ([item action] == @selector(recolorAll:)) {
         return [[self syntaxStyle] canParse];
     }
     
     // validate button image state
-    if ([theItem isKindOfClass:[CEToggleToolbarItem class]]) {
-        CEToggleToolbarItem *imageItem = (CEToggleToolbarItem *)theItem;
+    if ([item isKindOfClass:[CEToggleToolbarItem class]]) {
+        CEToggleToolbarItem *imageItem = (CEToggleToolbarItem *)item;
         
-        if ([theItem action] == @selector(toggleLineWrap:)) {
+        if ([item action] == @selector(toggleLineWrap:)) {
             [imageItem setState:[self wrapsLines] ? NSOnState : NSOffState];
             
-        } else if ([theItem action] == @selector(toggleLayoutOrientation:)) {
+        } else if ([item action] == @selector(toggleLayoutOrientation:)) {
             [imageItem setState:[self isVerticalLayoutOrientation] ? NSOnState : NSOffState];
             
-        } else if ([theItem action] == @selector(togglePageGuide:)) {
+        } else if ([item action] == @selector(togglePageGuide:)) {
             [imageItem setState:[self showsPageGuide] ? NSOnState : NSOffState];
             
-        } else if ([theItem action] == @selector(toggleInvisibleChars:)) {
+        } else if ([item action] == @selector(toggleInvisibleChars:)) {
             [imageItem setState:[self showsInvisibles] ? NSOnState : NSOffState];
             
             // disable button if item cannot be enable
             if ([[self class] canActivateShowInvisibles]) {
-                [theItem setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
+                [item setToolTip:NSLocalizedString(@"Show or hide invisible characters in document", nil)];
             } else {
-                [theItem setToolTip:NSLocalizedString(@"To show invisible characters, set them in Preferences", nil)];
+                [item setToolTip:NSLocalizedString(@"To show invisible characters, set them in Preferences", nil)];
                 return NO;
             }
             
-        } else if ([theItem action] == @selector(toggleAutoTabExpand:)) {
+        } else if ([item action] == @selector(toggleAutoTabExpand:)) {
             [imageItem setState:[self isAutoTabExpandEnabled] ? NSOnState : NSOffState];
         }
     }

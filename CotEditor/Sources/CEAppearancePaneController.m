@@ -219,7 +219,7 @@
 
 // ------------------------------------------------------
 /// テーブルの行数を返す
-- (NSInteger)numberOfRowsInTableView:(nonnull NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(nonnull NSTableView *)tableView
 // ------------------------------------------------------
 {
     return [[self themeNames] count];
@@ -228,7 +228,7 @@
 
 // ------------------------------------------------------
 /// テーブルのセルの内容を返す
-- (nullable id)tableView:(nonnull NSTableView *)aTableView objectValueForTableColumn:(nullable NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+- (nullable id)tableView:(nonnull NSTableView *)tableView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 // ------------------------------------------------------
 {
     return [self themeNames][rowIndex];

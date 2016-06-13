@@ -249,10 +249,10 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
 
 // ------------------------------------------------------
 /// text did edit.
-- (void)textDidChange:(nonnull NSNotification *)aNotification
+- (void)textDidChange:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    CETextView *textView = [aNotification object];
+    CETextView *textView = [notification object];
     
     // retry completion if needed
     //   -> Flag is set in CETextView > `insertCompletion:forPartialWordRange:movement:isFinal:`
@@ -265,10 +265,10 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
 
 // ------------------------------------------------------
 /// the selection of main textView was changed.
-- (void)textViewDidChangeSelection:(nonnull NSNotification *)aNotification
+- (void)textViewDidChangeSelection:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    NSTextView *textView = [aNotification object];
+    NSTextView *textView = [notification object];
     if (![textView isKindOfClass:[NSTextView class]]) { return; }
     
     // highlight the current line
