@@ -277,6 +277,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSInteger knobStyle = [[self theme] isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
+    // tell line height also to scroll view so that scroll view can scroll line by line
+    [[self enclosingScrollView] setLineScroll:[(CELayoutManager *)[self layoutManager] lineHeight]];
+    
     // ウインドウの透明フラグを監視する
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didWindowOpacityChange:)
@@ -707,6 +710,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSMutableParagraphStyle *paragraphStyle = [[self defaultParagraphStyle] mutableCopy];
     [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
     [self setDefaultParagraphStyle:paragraphStyle];
+    
+    // tell line height also to scroll view so that scroll view can scroll line by line
+    [[self enclosingScrollView] setLineScroll:[(CELayoutManager *)[self layoutManager] lineHeight]];
     
     [self applyTypingAttributes];
 }
