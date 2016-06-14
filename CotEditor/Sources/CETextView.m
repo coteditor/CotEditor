@@ -1075,21 +1075,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// select all lines that include current selections
-- (IBAction)selectLines:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
-    for (NSValue *rangeValue in [self selectedRanges]) {
-        NSRange lineRange = [[self string] lineRangeForRange:[rangeValue rangeValue]];
-        [selectedLineRanges addObject:[NSValue valueWithRange:lineRange]];
-    }
-    
-    [self setSelectedRanges:selectedLineRanges];
-}
-
-
-// ------------------------------------------------------
 /// input an Yen sign (¥)
 - (IBAction)inputYenMark:(nullable id)sender
 // ------------------------------------------------------

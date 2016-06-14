@@ -60,7 +60,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 
 // Action Message
 - (IBAction)copyWithStyle:(nullable id)sender;
-- (IBAction)selectLines:(nullable id)sender;
 - (IBAction)inputYenMark:(nullable id)sender;
 - (IBAction)inputBackSlash:(nullable id)sender;
 - (IBAction)showSelectionInfo:(nullable id)sender;
