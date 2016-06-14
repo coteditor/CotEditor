@@ -167,7 +167,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 - (nonnull NSArray<NSString *> *)recentStyleNames
 // ------------------------------------------------------
 {
-    NSArray *styleNames = @[];
+    NSArray *styleNames;
     
     @synchronized ([self recentStyleNameSet]) {
         NSUInteger itemNumber = MIN([[self recentStyleNameSet] count], [self maximumRecentStyleNameCount]);
