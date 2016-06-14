@@ -1178,7 +1178,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 
 // ------------------------------------------------------
-/// set defaultParagraphStyle based on font, tabWidth, and line height
+/// set defaultParagraphStyle based on font, tab width, and line height
 - (void)invalidateDefaultParagraphStyle
 // ------------------------------------------------------
 {
@@ -1203,6 +1203,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSMutableDictionary *typingAttributes = [[self typingAttributes] mutableCopy];
     typingAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
     [self setTypingAttributes:typingAttributes];
+    
+    // tell line height also to scroll view so that scroll view can scroll line by line
+    [[self enclosingScrollView] setLineScroll:[(CELayoutManager *)[self layoutManager] lineHeight]];
     
     // apply new style to current text
     [self invalidateStyle];
