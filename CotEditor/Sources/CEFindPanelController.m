@@ -112,6 +112,9 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     
     [super windowDidLoad];
     
+    // make sure it's closed
+    [self closeResultView:self];
+    
     [self updateFindHistoryMenu];
     [self updateReplaceHistoryMenu];
     
