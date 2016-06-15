@@ -59,10 +59,10 @@ develop
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with triple `*` and `_`.
-- Adjust height of the last empty line.
 - Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.
 - Change to use the body text color for line numbers on printing that was previously always black.
 - Improve scroll behavior with arrow keys.
+- Improve compatibility with macOS Sierra beta.
 - And some other trivial improvements.
 
 
