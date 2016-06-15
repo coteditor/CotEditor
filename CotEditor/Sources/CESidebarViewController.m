@@ -33,8 +33,8 @@
 
 @interface CESidebarViewController ()
 
-@property (nonatomic, nullable) NSViewController *documentInspectorViewController;
-@property (nonatomic, nullable) NSViewController *incompatibleCharsViewController;
+@property (nonatomic, nullable, weak) NSTabViewItem *documentInspectorTabViewItem;
+@property (nonatomic, nullable, weak) NSTabViewItem *incompatibleCharactersTabViewItem;
 
 @end
 
@@ -54,18 +54,19 @@
 {
     [super viewDidLoad];
     
-    self.documentInspectorViewController = [[CEDocumentInspectorViewController alloc] init];
-    self.incompatibleCharsViewController = [[CEIncompatibleCharsViewController alloc] init];
+    NSTabViewItem *documentInspectorTabViewItem = [NSTabViewItem tabViewItemWithViewController:[[CEDocumentInspectorViewController alloc] init]];
+    NSTabViewItem *incompatibleCharactersTabViewItem = [NSTabViewItem tabViewItemWithViewController:[[CEIncompatibleCharsViewController alloc] init]];
     
-    NSTabViewItem *inspectorTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self documentInspectorViewController]];
-    NSTabViewItem *incompatibleCharactersTabViewItem = [NSTabViewItem tabViewItemWithViewController:[self incompatibleCharsViewController]];
-    [inspectorTabViewItem setImage:[NSImage imageNamed:@"DocumentTemplate"]];
+    [documentInspectorTabViewItem setImage:[NSImage imageNamed:@"DocumentTemplate"]];
     [incompatibleCharactersTabViewItem setImage:[NSImage imageNamed:@"ConflictsTemplate"]];
-    [inspectorTabViewItem setToolTip:NSLocalizedString(@"Document Inspector", nil)];
+    [documentInspectorTabViewItem setToolTip:NSLocalizedString(@"Document Inspector", nil)];
     [incompatibleCharactersTabViewItem setToolTip:NSLocalizedString(@"Incompatible Characters", nil)];
     
-    [self addTabViewItem:inspectorTabViewItem];
+    [self addTabViewItem:documentInspectorTabViewItem];
     [self addTabViewItem:incompatibleCharactersTabViewItem];
+    
+    [self setDocumentInspectorTabViewItem:documentInspectorTabViewItem];
+    [self setIncompatibleCharactersTabViewItem:incompatibleCharactersTabViewItem];
 }
 
 
@@ -80,8 +81,8 @@
     
     if (![document isKindOfClass:[CEDocument class]]) { return; }
     
-    [[self incompatibleCharsViewController] setRepresentedObject:[document incompatibleCharacterScanner]];
-    [[self documentInspectorViewController] setRepresentedObject:[document analyzer]];
+    [[[self documentInspectorTabViewItem] viewController] setRepresentedObject:[document analyzer]];
+    [[[self incompatibleCharactersTabViewItem] viewController] setRepresentedObject:[document incompatibleCharacterScanner]];
 }
 
 @end
