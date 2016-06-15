@@ -401,11 +401,11 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     if ([self isAutoTabExpandEnabled]) {
         NSInteger tabWidth = [self tabWidth];
-        NSInteger column = [[self string] columnOfLocation:[self selectedRange].location tabWidth:tabWidth];
+        NSInteger column = [[self string] columnOfLocation:[self rangeForUserTextChange].location tabWidth:tabWidth];
         NSInteger length = tabWidth - (column % tabWidth);
         NSString *spaces = [NSString stringWithSpaces:length];
 
-        return [super insertText:spaces replacementRange:[self selectedRange]];
+        return [super insertText:spaces replacementRange:[self rangeForUserTextChange]];
     }
     
     [super insertTab:sender];
@@ -502,14 +502,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         NSRange targetRange = NSMakeRange(selectedRange.location - 1, 2);
         NSString *surroundingCharacters = [[self string] substringWithRange:targetRange];
         
-        if ([surroundingCharacters isEqualToString:@"{}"] ||
-            [surroundingCharacters isEqualToString:@"[]"] ||
-            [surroundingCharacters isEqualToString:@"()"] ||
-            [surroundingCharacters isEqualToString:@"\"\""])
-        {
+        if ([@[@"{}", @"[]", @"()", @"\"\""] containsObject:surroundingCharacters]) {
             [self setSelectedRange:targetRange];
         }
-        
     }
     
     [super deleteBackward:sender];
@@ -647,11 +642,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     // scroll line by line if an arrow key is pressed
     if ([NSEvent modifierFlags] & NSNumericPadKeyMask) {
-        NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:range actualCharacterRange:nil];
+        NSRange glyphRange = [[self layoutManager] glyphRangeForCharacterRange:range actualCharacterRange:NULL];
         NSRect glyphRect = [[self layoutManager] boundingRectForGlyphRange:glyphRange inTextContainer:[self textContainer]];
-        CGFloat buffer = [[self font] pointSize] / 2;
-        
-        glyphRect = NSInsetRect(glyphRect, -buffer, -buffer);
         glyphRect = NSOffsetRect(glyphRect, [self textContainerOrigin].x, [self textContainerOrigin].y);
         
         [super scrollRectToVisible:glyphRect];  // move minimum distance
