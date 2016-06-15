@@ -30,7 +30,7 @@
         <customView identifier="EditorView" translatesAutoresizingMaskIntoConstraints="NO" id="JY7-6X-bJN" userLabel="Editor View">
             <rect key="frame" x="0.0" y="0.0" width="560" height="352"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe" customClass="CEBorderView">
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe" customClass="CEBackgroundView">
                     <rect key="frame" x="0.0" y="336" width="560" height="16"/>
                     <subviews>
                         <button toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
