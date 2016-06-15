@@ -27,7 +27,7 @@
 
 #import "CETextFinder.h"
 #import "CEFindPanelController.h"
-#import "CEProgressSheetController.h"
+#import "CEProgressViewController.h"
 #import "CEHUDController.h"
 
 #import "CEErrors.h"
@@ -346,8 +346,8 @@ static const NSUInteger kMaxHistorySize = 20;
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
     NSProgress *progress = [NSProgress progressWithTotalUnitCount:-1];
-    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithProgress:progress message:NSLocalizedString(@"Find All", nil)];
-    [indicator beginSheetForWindow:[textView window]];
+    CEProgressViewController *indicator = [[CEProgressViewController alloc] initWithProgress:progress message:NSLocalizedString(@"Find All", nil)];
+    [[[[textView window] windowController] contentViewController] presentViewControllerAsSheet:indicator];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -365,7 +365,7 @@ static const NSUInteger kMaxHistorySize = 20;
                                         BOOL * _Nonnull stop)
          {
              if ([progress isCancelled]) {
-                 [indicator close:self];
+                 [indicator dismissController:self];
                  [[self busyTextViews] removeObject:textView];
                  *stop = YES;
                  return;
@@ -440,7 +440,7 @@ static const NSUInteger kMaxHistorySize = 20;
             
             // -> close also if matched since result view will be shown when succeed
             if ([result count] > 0 || [self closesIndicatorWhenDone]) {
-                [indicator close:self];
+                [indicator dismissController:self];
                 if ([[[self findPanelController] window] isVisible]) {
                     [[[self findPanelController] window] makeKeyWindow];
                 }
@@ -476,8 +476,8 @@ static const NSUInteger kMaxHistorySize = 20;
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
     NSProgress *progress = [NSProgress progressWithTotalUnitCount:-1];
-    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithProgress:progress message:NSLocalizedString(@"Highlight", nil)];
-    [indicator beginSheetForWindow:[textView window]];
+    CEProgressViewController *indicator = [[CEProgressViewController alloc] initWithProgress:progress message:NSLocalizedString(@"Highlight", nil)];
+    [[[[textView window] windowController] contentViewController] presentViewControllerAsSheet:indicator];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -491,7 +491,7 @@ static const NSUInteger kMaxHistorySize = 20;
                                         BOOL * _Nonnull stop)
          {
              if ([progress isCancelled]) {
-                 [indicator close:self];
+                 [indicator dismissController:self];
                  [[self busyTextViews] removeObject:textView];
                  *stop = YES;
                  return;
@@ -536,7 +536,7 @@ static const NSUInteger kMaxHistorySize = 20;
             }
             
             if ([self closesIndicatorWhenDone]) {
-                [indicator close:self];
+                [indicator dismissController:self];
                 if ([[[self findPanelController] window] isVisible]) {
                     [[[self findPanelController] window] makeKeyWindow];
                 }
@@ -613,8 +613,8 @@ static const NSUInteger kMaxHistorySize = 20;
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
     NSProgress *progress = [NSProgress progressWithTotalUnitCount:-1];
-    CEProgressSheetController *indicator = [[CEProgressSheetController alloc] initWithProgress:progress message:NSLocalizedString(@"Replace All", nil)];
-    [indicator beginSheetForWindow:[textView window]];
+    CEProgressViewController *indicator = [[CEProgressViewController alloc] initWithProgress:progress message:NSLocalizedString(@"Replace All", nil)];
+    [[[[textView window] windowController] contentViewController] presentViewControllerAsSheet:indicator];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -636,7 +636,7 @@ static const NSUInteger kMaxHistorySize = 20;
                                         BOOL * _Nonnull stop)
          {
              if ([progress isCancelled]) {
-                 [indicator close:self];
+                 [indicator dismissController:self];
                  [[self busyTextViews] removeObject:textView];
                  *stop = YES;
                  return;
@@ -687,7 +687,7 @@ static const NSUInteger kMaxHistorySize = 20;
             }
             
             if ([self closesIndicatorWhenDone]) {
-                [indicator close:self];
+                [indicator dismissController:self];
                 if ([[[self findPanelController] window] isVisible]) {
                     [[[self findPanelController] window] makeKeyWindow];
                 }

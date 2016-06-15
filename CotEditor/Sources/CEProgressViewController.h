@@ -1,6 +1,6 @@
 /*
  
- CEProgressSheetController.h
+ CEProgressViewController.h
  
  CotEditor
  http://coteditor.com
@@ -28,19 +28,15 @@
 @import Cocoa;
 
 
-@interface CEProgressSheetController : NSWindowController
+@interface CEProgressViewController : NSViewController
 
 - (nonnull instancetype)initWithProgress:(nonnull NSProgress *)progress message:(nonnull NSString *)message;
-
-
-- (void)beginSheetForWindow:(nonnull NSWindow *)window;
 
 // change button to done
 - (void)doneWithButtonTitle:(nullable NSString *)title;
 
 
 // action messages
-- (IBAction)close:(nullable id)sender;
 - (IBAction)cancel:(nullable id)sender;
 
 @end

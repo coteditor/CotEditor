@@ -1,6 +1,6 @@
 /*
  
- CEProgressSheetController.m
+ CEProgressViewController.m
  
  CotEditor
  http://coteditor.com
@@ -25,17 +25,14 @@
  
  */
 
-#import "CEProgressSheetController.h"
+#import "CEProgressViewController.h"
 
 
-@interface CEProgressSheetController ()
+@interface CEProgressViewController ()
 
 @property (nonatomic, nonnull) NSProgress *progress;
 @property (nonatomic, nonnull, copy) NSString *message;
 
-@property (nonatomic) CEProgressSheetController *me;
-
-@property (nonatomic, nullable, weak) IBOutlet NSProgressIndicator *indicator;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *button;
 
 @end
@@ -45,7 +42,7 @@
 
 #pragma mark -
 
-@implementation CEProgressSheetController
+@implementation CEProgressViewController
 
 #pragma mark Superclass Methods
 
@@ -65,39 +62,15 @@
 
 // ------------------------------------------------------
 /// nib name
-- (nullable NSString *)windowNibName
+- (nullable NSString *)nibName
 // ------------------------------------------------------
 {
-    return @"ProgressSheet";
-}
-
-
-// ------------------------------------------------------
-/// setup UI
-- (void)windowDidLoad
-// ------------------------------------------------------
-{
-    [super windowDidLoad];
-    
-    // setup indicator
-    [[self indicator] setUsesThreadedAnimation:YES];
+    return @"ProgressView";
 }
 
 
 
 #pragma mark Public Methods
-
-// ------------------------------------------------------
-/// show as sheet
-- (void)beginSheetForWindow:(nonnull NSWindow *)window
-// ------------------------------------------------------
-{
-    [window beginSheet:[self window] completionHandler:nil];
-    
-    // retain itself to avoid dismiss controller while sheet is attached to a window
-    [self setMe:self];
-}
-
 
 // ------------------------------------------------------
 /// change state to done
@@ -107,7 +80,7 @@
     title = title ?: NSLocalizedString(@"OK", nil);
     
     [[self button] setTitle:title];
-    [[self button] setAction:@selector(close:)];
+    [[self button] setAction:@selector(dismissController:)];
     [[self button] setKeyEquivalent:@"\r"];
 }
 
@@ -116,26 +89,13 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// close sheet
-- (IBAction)close:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self setMe:nil];
-    
-    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseOK];
-}
-
-
-// ------------------------------------------------------
 /// cancel current process
 - (IBAction)cancel:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setMe:nil];
-    
     [[self progress] cancel];
     
-    [[[self window] sheetParent] endSheet:[self window] returnCode:NSModalResponseCancel];
+    [self dismissController:sender];
 }
 
 @end

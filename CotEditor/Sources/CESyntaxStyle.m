@@ -33,7 +33,7 @@
 #import "CESyntaxHighlightParseOperation.h"
 #import "CESyntaxDictionaryKeys.h"
 #import "CEThemableProtocol.h"
-#import "CEProgressSheetController.h"
+#import "CEProgressViewController.h"
 #import "CEDefaults.h"
 
 
@@ -534,7 +534,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     [operation setParseRange:highlightRange];
     
     // show highlighting indicator for large string
-    __block CEProgressSheetController *indicator = nil;
+    __block CEProgressViewController *indicator = nil;
     if ([self shouldShowIndicatorForHighlightLength:highlightRange.length]) {
         NSTextStorage *textStorage = [self textStorage];
         
@@ -550,8 +550,8 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 if ([operation isFinished]) { return; }
                 
                 NSWindow *documentWindow = [[[[textStorage layoutManagers] firstObject] firstTextView] window];
-                indicator = [[CEProgressSheetController alloc] initWithProgress:[operation progress] message:NSLocalizedString(@"Coloring text…", nil)];
-                [indicator beginSheetForWindow:documentWindow];
+                indicator = [[CEProgressViewController alloc] initWithProgress:[operation progress] message:NSLocalizedString(@"Coloring text…", nil)];
+                [[[documentWindow windowController] contentViewController] presentViewControllerAsSheet:indicator];
             });
         });
     }
@@ -580,7 +580,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
             
             // clean up indicator sheet
             if (indicator) {
-                [indicator close:self];
+                [indicator dismissController:self];
             }
             
             // do the rest things
