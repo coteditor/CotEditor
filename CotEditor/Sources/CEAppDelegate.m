@@ -203,7 +203,7 @@
                                                // ------ settings not in preferences window ------
                                                CEDefaultColorCodeTypeKey: @1,
                                                CEDefaultSidebarWidthKey: @220,
-                                               CEDefaultRecentlyUsedStyleNamesKey: @{},
+                                               CEDefaultRecentStyleNamesKey: @{},
                                                
                                                // settings for find panel are register in CETextFinder
                                                

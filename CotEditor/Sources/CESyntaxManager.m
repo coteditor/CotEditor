@@ -103,7 +103,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 {
     self = [super init];
     if (self) {
-        _recentStyleNameSet = [NSMutableOrderedSet orderedSetWithArray:[[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultRecentlyUsedStyleNamesKey]];
+        _recentStyleNameSet = [NSMutableOrderedSet orderedSetWithArray:[[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultRecentStyleNamesKey]];
         _maximumRecentStyleNameCount = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultMaximumRecentStyleCountKey];
         _styleCaches = [NSMutableDictionary dictionary];
         
@@ -197,7 +197,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
             [[self recentStyleNameSet] removeObject:styleName];
             [[self recentStyleNameSet] insertObject:styleName atIndex:0];
         }
-        [[NSUserDefaults standardUserDefaults] setObject:[self recentStyleNames] forKey:CEDefaultRecentlyUsedStyleNamesKey];
+        [[NSUserDefaults standardUserDefaults] setObject:[self recentStyleNames] forKey:CEDefaultRecentStyleNamesKey];
         [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxHistoryDidUpdateNotification
                                                             object:self];
     }
@@ -633,7 +633,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     @synchronized ([self recentStyleNameSet]) {
         [[self recentStyleNameSet] intersectSet:[NSSet setWithArray:styleNames]];
     }
-    [[NSUserDefaults standardUserDefaults] setObject:[self recentStyleNames] forKey:CEDefaultRecentlyUsedStyleNamesKey];
+    [[NSUserDefaults standardUserDefaults] setObject:[self recentStyleNames] forKey:CEDefaultRecentStyleNamesKey];
 }
 
 

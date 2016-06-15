@@ -157,7 +157,7 @@ extern NSString *_Nonnull const CEDefaultFindRegexUsesUnicodeBoundariesKey;
 // settings that are not in preferences
 extern NSString *_Nonnull const CEDefaultColorCodeTypeKey;
 extern NSString *_Nonnull const CEDefaultSidebarWidthKey;
-extern NSString *_Nonnull const CEDefaultRecentlyUsedStyleNamesKey;
+extern NSString *_Nonnull const CEDefaultRecentStyleNamesKey;
 
 // hidden settings
 extern NSString *_Nonnull const CEDefaultLineNumFontNameKey;
