@@ -177,7 +177,7 @@ NSString *_Nonnull const CEEncodingListDidUpdateNotification = @"CESyntaxListDid
     NSMutableArray<NSMenuItem *> *items = [[NSMutableArray alloc] initWithCapacity:[encodings count]];
     
     for (NSNumber *encodingNumber in encodings) {
-        CFStringEncoding cfEncoding = [encodingNumber unsignedLongValue];
+        CFStringEncoding cfEncoding = [encodingNumber unsignedIntValue];
         NSMenuItem *item;
         
         if (cfEncoding == kCFStringEncodingInvalidId) {

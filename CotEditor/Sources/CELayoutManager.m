@@ -440,8 +440,8 @@ static NSString *HiraginoSansName;
                         [CEInvisibles stringWithType:CEInvisibleTab Index:[defaults integerForKey:CEDefaultInvisibleTabKey]],
                         [CEInvisibles stringWithType:CEInvisibleNewLine Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]],
                         [CEInvisibles stringWithType:CEInvisibleFullWidthSpace Index:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]],
-                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:NULL],
-                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:NULL],
+                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:0],
+                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:0],
                         ];
     
     // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）

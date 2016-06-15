@@ -216,7 +216,7 @@ static CGFontRef BoldLineNumberFont;
         // use the line number of whole string, namely the possible largest line number
         // -> The view width depends on the number of digits of the total line numbers.
         //    It's quite dengerous to change width of line number view on scrolling dynamically.
-        NSUInteger digits = MAX(numberOfDigits([self totalNumberOfLines]), kMinNumberOfDigits);
+        NSUInteger digits = MAX(numberOfDigits((int)[self totalNumberOfLines]), kMinNumberOfDigits);
         ruleThickness = MAX(digits * charWidth + 3 * lineNumberPadding, kMinVerticalThickness);
     }
     ruleThickness = ceil(ruleThickness);
@@ -246,7 +246,7 @@ static CGFontRef BoldLineNumberFont;
     CGGlyph *digitGlyphsPtr = digitGlyphs;
     void (^draw_number)(NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, CGFloat y, BOOL isBold)
     {
-        NSUInteger digit = numberOfDigits(lineNumber);
+        NSUInteger digit = numberOfDigits((int)lineNumber);
         
         // calculate base position
         CGPoint position;
@@ -259,11 +259,11 @@ static CGFontRef BoldLineNumberFont;
         // get glyphs and positions
         CGGlyph glyphs[digit];
         CGPoint positions[digit];
-        for (NSUInteger i = 0; i < digit; i++) {
+        for (int i = 0; i < digit; i++) {
             position.x -= charWidth;
             
             positions[i] = position;
-            glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
+            glyphs[i] = digitGlyphsPtr[numberAt(i, (int)lineNumber)];
         }
         
         if (isBold) {

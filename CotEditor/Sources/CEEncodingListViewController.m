@@ -100,7 +100,7 @@ static NSString *_Nonnull const CERowsPboardType = @"CERowsPboardType";
 - (nullable id)tableView:(nonnull NSTableView *)tableView objectValueForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)rowIndex
 // ------------------------------------------------------
 {
-    CFStringEncoding cfEncoding = [[self encodings][rowIndex] unsignedLongValue];
+    CFStringEncoding cfEncoding = [[self encodings][rowIndex] unsignedIntValue];
     
     // separator
     if (cfEncoding == kCFStringEncodingInvalidId) {

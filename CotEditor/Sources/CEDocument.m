@@ -192,7 +192,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
         // check file meta data for text orientation
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
             NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:outError];  // FILE_READ
-            _verticalText = attributes[CEFileExtendedAttributes][CEXattrVerticalTextName];
+            _verticalText = [attributes[CEFileExtendedAttributes][CEXattrVerticalTextName] boolValue];
         }
     }
     return self;

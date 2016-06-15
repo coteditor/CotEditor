@@ -110,7 +110,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         // バンドルされているstyle定義の一覧を読み込んでおく
         NSURL *URL = [[NSBundle mainBundle] URLForResource:@"SyntaxMap" withExtension:@"json"];
         _bundledMap = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:URL]
-                                                      options:nil
+                                                      options:0
                                                         error:nil];
         _bundledStyleNames = [[_bundledMap allKeys]
                               sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
@@ -821,7 +821,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:fileURL options:NSFileCoordinatorReadingWithoutChanges
-                           writingItemAtURL:destURL options:NULL
+                           writingItemAtURL:destURL options:0
                                       error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
          NSDictionary<NSString *, id> *style = [NSDictionary dictionaryWithContentsOfURL:fileURL];

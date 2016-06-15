@@ -419,7 +419,7 @@
     
     if (selectedRow == -1) { return; }
     
-    NSInteger *column = [[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
+    NSInteger column = [[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     
     [[self outlineView] editColumn:column row:selectedRow withEvent:nil select:YES];
 }

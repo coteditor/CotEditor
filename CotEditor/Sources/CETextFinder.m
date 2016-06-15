@@ -888,7 +888,7 @@ static const NSUInteger kMaxHistorySize = 20;
     if ([self usesRegularExpression]) {
         NSRegularExpression *regex = [self regex];
         NSTextCheckingResult *match = [regex firstMatchInString:string
-                                                        options:[self regexOptions]
+                                                        options:0
                                                           range:[textView selectedRange]];
         
         if (!match) { return NO; }
