@@ -1414,7 +1414,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if (location > 0) {
         return [[self string] characterAtIndex:location - 1];
     }
-    return NULL;
+    return 0;
 }
 
 
@@ -1427,7 +1427,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if (location < [[self string] length]) {
         return [[self string] characterAtIndex:location];
     }
-    return NULL;
+    return 0;
 }
 
 

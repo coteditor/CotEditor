@@ -228,7 +228,7 @@ static CGFontRef BoldLineNumberFont;
     CGGlyph *digitGlyphsPtr = digitGlyphs;
     void (^draw_number)(NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, CGFloat y, BOOL isBold)
     {
-        NSUInteger digit = numberOfDigits(lineNumber);
+        NSUInteger digit = numberOfDigits((int)lineNumber);
         
         // calculate base position
         CGPoint position;
@@ -241,11 +241,11 @@ static CGFontRef BoldLineNumberFont;
         // get glyphs and positions
         CGGlyph glyphs[digit];
         CGPoint positions[digit];
-        for (NSUInteger i = 0; i < digit; i++) {
+        for (int i = 0; i < digit; i++) {
             position.x -= charWidth;
             
             positions[i] = position;
-            glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
+            glyphs[i] = digitGlyphsPtr[numberAt(i, (int)lineNumber)];
         }
         
         if (isBold) {

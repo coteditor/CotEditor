@@ -108,7 +108,7 @@
                                                                                                                Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]]
                                                                              attributes:fullwidthAttributes];
         NSAttributedString *verticalTab = [[NSAttributedString alloc] initWithString:[CEInvisibles stringWithType:CEInvisibleVerticalTab
-                                                                                                            Index:NULL]
+                                                                                                            Index:0]
                                                                           attributes:attributes];
         
         for (NSUInteger glyphIndex = glyphsToShow.location; glyphIndex < lengthToRedraw; glyphIndex++) {
