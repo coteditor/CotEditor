@@ -17,10 +17,10 @@ develop
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
     - Support emphasis with triple `*` and `_`.
-- Adjust height of the last empty line.
 - Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.
 - Change to use the body text color for line numbers on printing that was previously always black.
 - Improve scroll behavior with arrow keys.
+- Improve compatibility with macOS Sierra beta.
 - And some other trivial improvements.
 
 
@@ -57,7 +57,6 @@ develop
 - Update “Julia” and “Swift” syntax styles.
 - Apply the change of line height/tab width to all split editors so that split editors not focused also can layout text correctly after the change.
 - Optimize text rendering performance a bit.
-- Improve compatibility with OS X Sierra beta.
 
 
 ### Fixes
