@@ -60,6 +60,8 @@ extern NSString *_Nonnull const CENewNameKey;
 // manage setting files
 - (BOOL)removeSettingWithName:(nonnull NSString *)settingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)restoreSettingWithName:(nonnull NSString *)settingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)duplicateSettingWithName:(nonnull NSString *)settingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)renameSettingWithName:(nonnull NSString *)settingName toName:(nonnull NSString *)newSettingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)exportSettingWithName:(nonnull NSString *)settingName toURL:(nonnull NSURL *)URL error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)importSettingWithFileURL:(nonnull NSURL *)fileURL error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 

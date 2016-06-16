@@ -156,7 +156,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 - (nullable CETheme *)themeWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
-    NSDictionary<NSString *, NSDictionary *> *themeDict = [self archivedThemeWithName:themeName isBundled:NULL];
+    NSDictionary<NSString *, NSDictionary *> *themeDict = [self themeDictionaryWithName:themeName];
     if (!themeDict) { return nil; }
     
     return [CETheme themeWithDictinonary:themeDict name:themeName];
@@ -165,28 +165,26 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 //------------------------------------------------------
 /// テーマ名から Property list 形式のテーマ定義を返す
-- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedThemeWithName:(nonnull NSString *)themeName isBundled:(nullable BOOL *)isBundled
+- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictionaryWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
-    if (isBundled) {
-        *isBundled = [[self bundledThemeNames] containsObject:themeName];
-    }
     return [[self archivedThemes][themeName] mutableCopy];
 }
 
 
 //------------------------------------------------------
 /// テーマを保存する
-- (BOOL)saveTheme:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable))completionHandler
+- (BOOL)saveThemeDictionary:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable))completionHandler
 //------------------------------------------------------
 {
+    // create directory to save in user domain if not yet exist
+    if (![self prepareUserSettingDirectory]) { return NO; }
+    
     NSError *error = nil;
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:theme
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
-    
-    if (![self prepareUserSettingDirectory]) { return NO; }
     
     BOOL success = [jsonData writeToURL:[self URLForUserSettingWithName:themeName available:NO] options:NSDataWritingAtomic error:&error];
     
@@ -215,23 +213,14 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 //------------------------------------------------------
 /// テーマ名を変更する
-- (BOOL)renameThemeWithName:(nonnull NSString *)themeName toName:(nonnull NSString *)newThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+- (BOOL)renameSettingWithName:(nonnull NSString *)settingName toName:(nonnull NSString *)newSettingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    BOOL success = NO;
-    
-    newThemeName = [newThemeName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    if (![self validateSettingName:newThemeName originalName:themeName error:outError]) {
-        return NO;
-    }
-    
-    success = [[NSFileManager defaultManager] moveItemAtURL:[self URLForUserSettingWithName:themeName available:NO]
-                                                      toURL:[self URLForUserSettingWithName:newThemeName available:NO] error:nil];
+    BOOL success = [self renameSettingWithName:settingName toName:newSettingName error:outError];
     
     if (success) {
-        if ([[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey] isEqualToString:themeName]) {
-            [[NSUserDefaults standardUserDefaults] setObject:newThemeName forKey:CEDefaultThemeKey];
+        if ([[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey] isEqualToString:settingName]) {
+            [[NSUserDefaults standardUserDefaults] setObject:newSettingName forKey:CEDefaultThemeKey];
         }
         
         __weak typeof(self) weakSelf = self;
@@ -240,8 +229,8 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
             
             [[NSNotificationCenter defaultCenter] postNotificationName:CEThemeDidUpdateNotification
                                                                 object:self
-                                                              userInfo:@{CEOldNameKey: themeName,
-                                                                         CENewNameKey: newThemeName}];
+                                                              userInfo:@{CEOldNameKey: settingName,
+                                                                         CENewNameKey: newSettingName}];
         }];
     }
     
@@ -278,7 +267,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 - (BOOL)restoreSettingWithName:(nonnull NSString *)settingName error:(NSError *__autoreleasing  _Nullable *)outError
 //------------------------------------------------------
 {
-    BOOL success = [super restoreSettingWithName:settingName error:nil];
+    BOOL success = [super restoreSettingWithName:settingName error:outError];
     
     __weak typeof(self) weakSelf = self;
     [self updateCacheWithCompletionHandler:^{
@@ -331,28 +320,6 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 
 //------------------------------------------------------
-/// テーマを複製する
-- (BOOL)duplicateThemeWithName:(nonnull NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
-//------------------------------------------------------
-{
-    // ユーザ領域にテーマ用ディレクトリがまだない場合は作成する
-    if (![self prepareUserSettingDirectory]) { return NO; }
-    
-    NSString *newThemeName = [self copiedSettingName:themeName];
-    
-    BOOL success = [[NSFileManager defaultManager] copyItemAtURL:[self URLForUsedSettingWithName:themeName]
-                                                      toURL:[self URLForUserSettingWithName:newThemeName available:NO]
-                                                      error:outError];
-    
-    if (success) {
-        [self updateCacheWithCompletionHandler:nil];
-    }
-    
-    return success;
-}
-
-
-//------------------------------------------------------
 /// 新規テーマを作成
 - (BOOL)createUntitledThemeWithCompletionHandler:(nullable void (^)(NSString *_Nonnull, NSError *_Nullable))completionHandler
 //------------------------------------------------------
@@ -364,7 +331,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
         newThemeName = [self copiedSettingName:newThemeName];
     }
     
-    BOOL success = [self saveTheme:[self plainTheme] name:newThemeName completionHandler:^(NSError *error) {
+    BOOL success = [self saveThemeDictionary:[self plainThemeDict] name:newThemeName completionHandler:^(NSError *error) {
         if (completionHandler) {
             completionHandler(newThemeName, error);
         }
@@ -377,19 +344,9 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 #pragma mark Private Methods
 
-
-//------------------------------------------------------
-/// テーマ名からユーザ領域のテーマ定義ファイルのURLを返す
-- (nullable NSURL *)URLForBundledTheme:(nonnull NSString *)themeName
-//------------------------------------------------------
-{
-    return [self URLForBundledSettingWithName:themeName available:NO];
-}
-
-
 //------------------------------------------------------
 /// URLからテーマ辞書を返す
-- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictWithURL:(nonnull NSURL *)URL
+- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictionaryWithURL:(nonnull NSURL *)URL
 //------------------------------------------------------
 {
     return [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:URL]
@@ -432,7 +389,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
         // 定義をキャッシュする
         NSMutableDictionary<NSString *, NSMutableDictionary *> *themes = [NSMutableDictionary dictionary];
         for (NSString *name in themeNameSet) {
-            themes[name] = [self themeDictWithURL:[self URLForUsedSettingWithName:name]];
+            themes[name] = [self themeDictionaryWithURL:[self URLForUsedSettingWithName:name]];
         }
         
         [self setArchivedThemes:themes];
@@ -459,10 +416,10 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 //------------------------------------------------------
 /// 新規作成時のベースとなる何もないテーマ
-- (nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)plainTheme
+- (nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)plainThemeDict
 //------------------------------------------------------
 {
-    return [self themeDictWithURL:[self URLForBundledTheme:@"_Plain"]];
+    return [self themeDictionaryWithURL:[self URLForBundledSettingWithName:@"_Plain" available:NO]];
 }
 
 @end
@@ -510,7 +467,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
     
     // カスタマイズされたカラー設定があった場合は移行テーマを生成する
     if (isCustomized) {
-        [self saveTheme:theme name:themeName completionHandler:nil];
+        [self saveThemeDictionary:theme name:themeName completionHandler:nil];
         
         // カスタマイズされたテーマを選択
         [[NSUserDefaults standardUserDefaults] setObject:themeName forKey:CEDefaultThemeKey];
@@ -534,7 +491,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 - (nonnull NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)classicTheme
 //------------------------------------------------------
 {
-    NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *theme = [self themeDictWithURL:[self URLForBundledTheme:@"Classic"]];
+    NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *theme = [self themeDictionaryWithURL:[self URLForBundledSettingWithName:@"Classic" available:NO]];
     
     theme[CEMetadataKey] = [@{CEDescriptionKey: NSLocalizedString(@"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x", nil)}
                           mutableCopy];

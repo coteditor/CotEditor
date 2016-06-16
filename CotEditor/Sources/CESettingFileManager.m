@@ -274,6 +274,47 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 
 
 //------------------------------------------------------
+/// duplicate the setting with name
+- (BOOL)duplicateSettingWithName:(nonnull NSString *)settingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+//------------------------------------------------------
+{
+    // create directory to save in user domain if not yet exist
+    if (![self prepareUserSettingDirectory]) { return NO; }
+    
+    NSString *newSettingName = [self copiedSettingName:settingName];
+    
+    BOOL success = [[NSFileManager defaultManager] copyItemAtURL:[self URLForUsedSettingWithName:settingName]
+                                                           toURL:[self URLForUserSettingWithName:newSettingName available:NO]
+                                                           error:outError];
+    
+    if (success) {
+        [self updateCacheWithCompletionHandler:nil];
+    }
+    
+    return success;
+}
+
+
+//------------------------------------------------------
+/// rename the setting with name
+- (BOOL)renameSettingWithName:(nonnull NSString *)settingName toName:(nonnull NSString *)newSettingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+//------------------------------------------------------
+{
+    // sanitize name
+    newSettingName = [newSettingName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (![self validateSettingName:newSettingName originalName:settingName error:outError]) {
+        return NO;
+    }
+    
+    BOOL success = [[NSFileManager defaultManager] moveItemAtURL:[self URLForUserSettingWithName:settingName available:NO]
+                                                           toURL:[self URLForUserSettingWithName:newSettingName available:NO] error:outError];
+    
+    return success;
+}
+
+
+//------------------------------------------------------
 /// export setting file to passed-in URL
 - (BOOL)exportSettingWithName:(nonnull NSString *)settingName toURL:(nonnull NSURL *)URL error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------

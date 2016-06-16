@@ -71,14 +71,15 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 - (nullable NSString *)styleNameFromDocumentFileName:(nullable NSString *)fileName;
 - (nullable NSString *)styleNameFromDocumentContent:(nonnull NSString *)contentString;
 - (nonnull NSArray<NSString *> *)extensionsForStyleName:(nonnull NSString *)styleName;
-- (nonnull NSDictionary<NSString *, id> *)styleDictionaryWithStyleName:(nonnull NSString *)styleName;
-- (nullable NSDictionary<NSString *, id> *)bundledStyleDictionaryWithStyleName:(nonnull NSString *)styleName;
+
+- (nonnull NSDictionary<NSString *, id> *)styleDictionaryWithName:(nonnull NSString *)styleName;
+- (nullable NSDictionary<NSString *, id> *)bundledStyleDictionaryWithName:(nonnull NSString *)styleName;
 - (nonnull NSDictionary<NSString *, id> *)emptyStyleDictionary;
 
 - (BOOL)isEqualToBundledStyle:(nonnull NSDictionary<NSString *, id> *)style name:(nonnull NSString *)styleName;
 
 // manage styles
-- (void)saveStyle:(nonnull NSMutableDictionary<NSString *, id> *)style name:(nonnull NSString *)name oldName:(nonnull NSString *)oldName;
+- (void)saveStyleDictionary:(nonnull NSMutableDictionary<NSString *, id> *)style name:(nonnull NSString *)name oldName:(nonnull NSString *)oldName;
 
 - (BOOL)existsMappingConflict;
 - (nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)validateSyntax:(nonnull NSDictionary<NSString *, id> *)style;

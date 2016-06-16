@@ -290,7 +290,7 @@
 // ------------------------------------------------------
 {
     // save
-    [[CEThemeManager sharedManager] saveTheme:theme name:[self selectedTheme] completionHandler:nil];
+    [[CEThemeManager sharedManager] saveThemeDictionary:theme name:[self selectedTheme] completionHandler:nil];
 }
 
 
@@ -305,8 +305,8 @@
 {
     if ([notification object] == [self themeTableView]) {
         NSString *themeName = [self selectedTheme];
-        BOOL isBundled;
-        NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *themeDict = [[CEThemeManager sharedManager] archivedThemeWithName:themeName isBundled:&isBundled];
+        NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *themeDict = [[CEThemeManager sharedManager] themeDictionaryWithName:themeName];
+        BOOL isBundled = [[CEThemeManager sharedManager] isBundledSetting:themeName cutomized:NULL];
         
         // デフォルトテーマ設定の更新（初回の選択変更はまだ設定が反映されていない時点で呼び出されるので保存しない）
         if ([self themeViewController]) {
@@ -360,7 +360,7 @@
         return YES;
     }
     
-    BOOL success = [[CEThemeManager sharedManager] renameThemeWithName:oldName toName:newName error:&error];
+    BOOL success = [[CEThemeManager sharedManager] renameSettingWithName:oldName toName:newName error:&error];
     
     if (error) {
         // revert name
@@ -485,7 +485,7 @@
 {
     NSString *themeName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedTheme];
     
-    [[CEThemeManager sharedManager] duplicateThemeWithName:themeName error:nil];
+    [[CEThemeManager sharedManager] duplicateSettingWithName:themeName error:nil];
 }
 
 
@@ -608,7 +608,7 @@
 - (void)themeDidUpdate:(nonnull NSNotification *)notification
 //------------------------------------------------------
 {
-    NSMutableDictionary *bundledTheme = [[CEThemeManager sharedManager] archivedThemeWithName:[self selectedTheme] isBundled:nil];
+    NSMutableDictionary *bundledTheme = [[CEThemeManager sharedManager] themeDictionaryWithName:[self selectedTheme]];
     
     if (![bundledTheme isEqualToDictionary:[[self themeViewController] representedObject]]) {
         [[self themeViewController] setRepresentedObject:bundledTheme];

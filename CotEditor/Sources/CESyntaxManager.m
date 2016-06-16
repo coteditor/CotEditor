@@ -188,7 +188,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         style = [[CESyntaxStyle alloc] initWithDictionary:nil name:NSLocalizedString(@"None", nil)];
         
     } else if ([[self styleNames] containsObject:styleName]) {
-        NSDictionary<NSString *, id> *highlightDictionary = [self styleDictionaryWithStyleName:styleName];
+        NSDictionary<NSString *, id> *highlightDictionary = [self styleDictionaryWithName:styleName];
         style = [[CESyntaxStyle alloc] initWithDictionary:highlightDictionary name:styleName];
     }
     
@@ -249,13 +249,13 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// style名に応じたstyle辞書を返す
-- (nonnull NSDictionary<NSString *, id> *)styleDictionaryWithStyleName:(nonnull NSString *)styleName
+- (nonnull NSDictionary<NSString *, id> *)styleDictionaryWithName:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
     NSMutableDictionary<NSString *, id> *style;
     
     if (![styleName isEqualToString:@""] && ![styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        style = [self styleCaches][styleName] ? : [self styleDictWithURL:[self URLForUsedSettingWithName:styleName]];
+        style = [self styleCaches][styleName] ? : [self styleDictionaryWithURL:[self URLForUsedSettingWithName:styleName]];
         
         // 新たに読み込んだ場合はキャッシュする
         if (![self styleCaches][styleName] && style) {
@@ -269,10 +269,10 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// style名に応じたバンドル版のstyle辞書を返す（ない場合はnil）
-- (nullable NSDictionary<NSString *, id> *)bundledStyleDictionaryWithStyleName:(nonnull NSString *)styleName
+- (nullable NSDictionary<NSString *, id> *)bundledStyleDictionaryWithName:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    return [self styleDictWithURL:[self URLForBundledSettingWithName:styleName available:NO]];
+    return [self styleDictionaryWithURL:[self URLForBundledSettingWithName:styleName available:NO]];
 }
 
 
@@ -285,7 +285,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     
     // numOfObjInArray などが混入しないようにスタイル定義部分だけを比較する
     NSArray<NSString *> *keys = [[self emptyStyleDictionary] allKeys];
-    NSDictionary<NSString *, id> *bundledStyle = [[self bundledStyleDictionaryWithStyleName:styleName] dictionaryWithValuesForKeys:keys];
+    NSDictionary<NSString *, id> *bundledStyle = [[self bundledStyleDictionaryWithName:styleName] dictionaryWithValuesForKeys:keys];
     
     return [[style dictionaryWithValuesForKeys:keys] isEqualToDictionary:bundledStyle];
 }
@@ -300,7 +300,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         return [self importLegacyStyleWithFileURL:fileURL];
     }
     
-    return [super importSettingWithFileURL:fileURL error:nil];
+    return [super importSettingWithFileURL:fileURL error:outError];
 }
 
 
@@ -336,7 +336,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
     BOOL success = [super restoreSettingWithName:settingName error:outError];
     
     // 内部で持っているキャッシュ用データを更新
-    [self styleCaches][settingName] = [[self bundledStyleDictionaryWithStyleName:settingName] mutableCopy];
+    [self styleCaches][settingName] = [[self bundledStyleDictionaryWithName:settingName] mutableCopy];
     
     __weak typeof(self) weakSelf = self;
     [self updateCacheWithCompletionHandler:^{
@@ -354,15 +354,18 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// styleのファイルへの保存
-- (void)saveStyle:(nonnull NSMutableDictionary<NSString *, id> *)style name:(nonnull NSString *)name oldName:(nonnull NSString *)oldName
+- (void)saveStyleDictionary:(nonnull NSMutableDictionary<NSString *, id> *)style name:(nonnull NSString *)name oldName:(nonnull NSString *)oldName
 //------------------------------------------------------
 {
     if ([name length] == 0) { return; }
     
+    // create directory to save in user domain if not yet exist
+    if (![self prepareUserSettingDirectory]) { return; }
+    
     // sanitize
-    [(NSMutableArray<NSDictionary *> *)style[CESyntaxExtensionsKey] removeObject:@{}];
-    [(NSMutableArray<NSDictionary *> *)style[CESyntaxFileNamesKey] removeObject:@{}];
-    [(NSMutableArray<NSDictionary *> *)style[CESyntaxInterpretersKey] removeObject:@{}];
+    for (NSString *key in @[CESyntaxExtensionsKey, CESyntaxFileNamesKey, CESyntaxFileNamesKey]) {
+        [(NSMutableArray<NSDictionary *> *)style[key] removeObject:@{}];
+    }
     
     // sort
     NSArray<NSSortDescriptor *> *descriptors = @[[NSSortDescriptor sortDescriptorWithKey:CESyntaxBeginStringKey
@@ -383,17 +386,14 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         [style[key] sortUsingDescriptors:descriptors];
     }
     
-    // ユーザ領域にシンタックス定義用ディレクトリがまだない場合は作成する
-    if (![self prepareUserSettingDirectory]) { return; }
-    
     // save
     NSURL *saveURL = [self URLForUserSettingWithName:name available:NO];
-    // style名が変更されたときは、古いファイルを削除する
+    // style名が変更されたときは、古いファイルを上書きされる新しい名前に移動させておく
     if (![name isEqualToString:oldName]) {
-        [[NSFileManager defaultManager] removeItemAtURL:[self URLForUserSettingWithName:oldName available:NO] error:nil];
+        [self renameSettingWithName:oldName toName:name error:nil];
     }
     // 保存しようとしている定義がバンドル版と同じだった場合（出荷時に戻したときなど）はユーザ領域のファイルを削除して終わる
-    if ([style isEqualToDictionary:[self bundledStyleDictionaryWithStyleName:name]]) {
+    if ([self isEqualToBundledStyle:style name:name]) {
         if ([saveURL checkResourceIsReachableAndReturnError:nil]) {
             [[NSFileManager defaultManager] removeItemAtURL:saveURL error:nil];
             [[self styleCaches] removeObjectForKey:name];
@@ -553,7 +553,7 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 //------------------------------------------------------
 /// URLからスタイル辞書を返す
-- (nullable NSMutableDictionary<NSString *, id> *)styleDictWithURL:(NSURL *)URL
+- (nullable NSMutableDictionary<NSString *, id> *)styleDictionaryWithURL:(NSURL *)URL
 //------------------------------------------------------
 {
     NSData *yamlData = [NSData dataWithContentsOfURL:URL];
@@ -608,14 +608,14 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
             if (![@[[self filePathExtension], @"yml"] containsObject:[URL pathExtension]]) { continue; }
             
             NSString *styleName = [self settingNameFromURL:URL];
-            NSMutableDictionary<NSString *, id> *style = [self styleDictWithURL:URL];
+            NSMutableDictionary<NSString *, id> *style = [self styleDictionaryWithURL:URL];
             
             // URLが無効だった場合などに、dictがnilになる場合がある
             if (!style) { continue; }
             
-            map[styleName] = @{CESyntaxExtensionsKey: [self keyStringsFromDicts:style[CESyntaxExtensionsKey]],
-                               CESyntaxFileNamesKey: [self keyStringsFromDicts:style[CESyntaxFileNamesKey]],
-                               CESyntaxInterpretersKey: [self keyStringsFromDicts:style[CESyntaxInterpretersKey]]};
+            map[styleName] = @{CESyntaxExtensionsKey: [self keyStringsFromDictonaries:style[CESyntaxExtensionsKey]],
+                               CESyntaxFileNamesKey: [self keyStringsFromDictonaries:style[CESyntaxFileNamesKey]],
+                               CESyntaxInterpretersKey: [self keyStringsFromDictonaries:style[CESyntaxInterpretersKey]]};
             
             // せっかく読み込んだのでキャッシュしておく
             [self styleCaches][styleName] = style;
@@ -713,12 +713,12 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// 辞書の array から keyString をキーに持つ string を集めて返す
-- (nonnull NSArray<NSString *> *)keyStringsFromDicts:(nonnull NSArray *)dicts
+- (nonnull NSArray<NSString *> *)keyStringsFromDictonaries:(nonnull NSArray *)dictionaries
 // ------------------------------------------------------
 {
     NSMutableArray<NSString *> *strings = [NSMutableArray array];
     
-    for (NSDictionary *dict in dicts) {
+    for (NSDictionary *dict in dictionaries) {
         [strings addObject:dict[CESyntaxKeyStringKey]];
     }
     

@@ -54,13 +54,11 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 - (nullable CETheme *)themeWithName:(nonnull NSString *)themeName;
 
 /// Theme dict in which objects are property list ready.
-- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)archivedThemeWithName:(nonnull NSString *)themeName isBundled:(nullable BOOL *)isBundled;
+- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictionaryWithName:(nonnull NSString *)themeName;
 
 // manage themes
-- (BOOL)saveTheme:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
-- (BOOL)renameThemeWithName:(nonnull NSString *)themeName toName:(nonnull NSString *)newThemeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
-- (BOOL)duplicateThemeWithName:(nonnull NSString *)themeName error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
-- (BOOL)importThemeWithFileURL:(nonnull NSURL *)URL replace:(BOOL)doReplace error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)saveThemeDictionary:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
+- (BOOL)importThemeWithFileURL:(nonnull NSURL *)fileURL replace:(BOOL)doReplace error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)createUntitledThemeWithCompletionHandler:(nullable void (^)(NSString *_Nonnull themeName, NSError *_Nullable error))completionHandler;
 
 @end

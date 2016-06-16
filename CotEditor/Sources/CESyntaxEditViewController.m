@@ -96,7 +96,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         switch (mode) {
             case CECopySyntaxEdit:
                 name = [syntaxManager copiedSettingName:styleName];
-                style = [syntaxManager styleDictionaryWithStyleName:styleName];
+                style = [syntaxManager styleDictionaryWithName:styleName];
                 break;
                 
             case CENewSyntaxEdit:
@@ -106,7 +106,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
                 
             case CESyntaxEdit:
                 name = styleName;
-                style = [syntaxManager styleDictionaryWithStyleName:styleName];
+                style = [syntaxManager styleDictionaryWithName:styleName];
                 break;
         }
         if (!name) { return nil; }
@@ -246,7 +246,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 - (IBAction)setToFactoryDefaults:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSMutableDictionary<NSString *, id> *style = [[[CESyntaxManager sharedManager] bundledStyleDictionaryWithStyleName:[self originalStyleName]] mutableCopy];
+    NSMutableDictionary<NSString *, id> *style = [[[CESyntaxManager sharedManager] bundledStyleDictionaryWithName:[self originalStyleName]] mutableCopy];
     
     if (!style) { return; }
     
@@ -306,9 +306,7 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
         return;
     }
     
-    [[CESyntaxManager sharedManager] saveStyle:[self style]
-                                          name:styleName
-                                       oldName:[self originalStyleName]];
+    [[CESyntaxManager sharedManager] saveStyleDictionary:[self style] name:styleName oldName:[self originalStyleName]];
     
     [self dismissController:sender];
 }
