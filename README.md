@@ -2,7 +2,7 @@
 CotEditor
 =============================
 
-CotEditor is a lightweight plain-text editor for OS X.
+CotEditor is a lightweight plain-text editor for macOS.
 
 __Requirement__: OS X Yosemite or higher
 
