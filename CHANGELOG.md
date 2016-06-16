@@ -13,7 +13,7 @@ develop
 ### Improvements
 
 - Drop support for __OS X Mountain Lion__ and __Mavericks__.
-- Change the regular expression engine for find panel from the Ogigmo to the ICU library.
+- Change the regular expression engine for find panel from the Onigmo to the ICU library.
     - Update line-up of the search options.
 - Remove “Not writable” alert which displayed on file opening.
 - New acknowledgements window.
