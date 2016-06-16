@@ -187,10 +187,10 @@
         
     } else if ([menuItem action] == @selector(changeLineHeight:)) {
         CGFloat lineSpacing = [[menuItem title] doubleValue] - 1.0;
-        [menuItem setState:(CEIsAlmostEqualCGFloats([[self focusedTextView] lineSpacing], lineSpacing) ? NSOnState : NSOffState)];
+        state = CEIsAlmostEqualCGFloats([[self focusedTextView] lineSpacing], lineSpacing) ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(changeTabWidth:)) {
-        [menuItem setState:(([[self focusedTextView] tabWidth] == [menuItem tag]) ? NSOnState : NSOffState)];
+        state = ([[self focusedTextView] tabWidth] == [menuItem tag]) ? NSOnState : NSOffState;
         
     } else if ([menuItem action] == @selector(selectPrevItemOftimerMenu:)) {
         return ([[self navigationBarController] canSelectPrevItem]);

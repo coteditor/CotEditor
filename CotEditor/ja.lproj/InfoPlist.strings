@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,9 +33,7 @@
 "Configuration" = "Configuration";
 "C header" = "C ヘッダ";
 "C source" = "C ソース";
-"Objective-C source" = "Objective-C ソース";
 "C++ source" = "C++ ソース";
-"Objective-C++ source" = "Objective-C++ ソース";
 "C++ header" = "C++ ヘッダ";
 "C# source" = "C# ソース";
 "CoffeeScript" = "CoffeeScript";
@@ -70,5 +68,6 @@
 "TeX" = "TeX";
 "Textile document" = "Textile 書類";
 "Tcl source" = "Tcl ソース";
+"Verilog source" = "Verilog ソース";
 "XML document" = "XML 書類";
 "YAML" = "YAML";

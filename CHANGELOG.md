@@ -2,6 +2,48 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### New Features
+
+- Add newly rewritten syntax styles for “C” and “C++”.
+    - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
+- Add syntax styles for “MATLAB” and “Verilog”.
+
+
+### Improvements
+
+- Update “Markdown” syntax style:
+    - Support strikethrough with `~~` that is defined in the GitHub favored Markdown.
+    - Support emphasis with triple `*` and `_`.
+- Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.
+- Change to use the body text color for line numbers on printing that was previously always black.
+- Improve scroll behavior with arrow keys.
+- Improve compatibility with macOS Sierra beta.
+- And some other trivial improvements.
+
+
+### Fixes
+
+- Fix document counting as followings:
+    - “Char Count” counts composite characters as well as CR/LF as single characters and omits counting line endings if “Count each line ending as one character” option is off.
+    - “Length” counts bytes in UTF-16 literally and always counts line endings even if “Count each line ending as one character” option is off.
+    - “Location” and “Column” count characters just like “Char Count”.
+- Fix an issue where the selected marks of line height / tab width in the Format menu disappeared.
+- Fix an issue where unselected last line number could be highlighted if the text orientation is vertical.
+- Fix an issue where invisible characters were drawn off to the side if the text orientation is vertical.
+- Fix an issue where documents were marked as “Edited” just after document duplication if line ending is not the default one.
+- Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted.
+- Fix an issue where “Find All” result view did not open on OS X Mountain Lion.
+- Fix an issue where incompatible character markup could broken if undo/redo lossy encoding change continuously.
+- Fix an issue where keybindings of some submenu containers were customizable.
+- Fix an issue where tab width could be set as `0`.
+- Fix an issue where tab width changing via AppleScript changes only the tab width in the focused editor rather than all split editors.
+- Fix an issue where byte length display did not update after changing file encoding.
+
+
+
 2.5.5 (130)
 --------------------------
 
@@ -42,7 +84,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where application didn't work on Mavericks and earlier.
-- Fix an issue where syntax was occasionally parsed wtice on window restoration.
+- Fix an issue where syntax was occasionally parsed twice on window restoration.
 
 
 
@@ -60,7 +102,7 @@ Change Log
     - Remove “Fix line height with composite font” option, and now, the height of lines is always uniform.
     - Update line-height calculation to fix that the line height by “Fix line height with composite font” option was a bit higher than actual line height of the used font.
         - From this change, the line hight will get reduced than the previous versions. Please reset the line-height to your favorite number on the Appearance pane in the preferences.
-    - Improve line-height calcuration.
+    - Improve line-height calculation.
 - Optimize performance to apply syntax highlight to document significantly.
 - Now, the setting changes of status bar, appearance, tab and invisible chars are applied to documents immediately.
 - Update “INI” syntax style.
@@ -252,8 +294,8 @@ Change Log
 - Fix an issue where find-all highlight wasn't removed if find panel is closed before closing find result view.
 - Fix an issue where toggling invisible visibility didn't work correctly.
 - Fix an issue where the cursor located at the end of document after file opening.
-- Fix an issue where thousands separators weren't inserted to document information under specific enviroments.
-- Address an issue where paste was rarely failed under specific enviroments.
+- Fix an issue where thousands separators weren't inserted to document information under specific environments.
+- Address an issue where paste was rarely failed under specific environments.
 
 
 
@@ -365,7 +407,7 @@ Change Log
 - Improve line numbers view for multiple selections.
 - Now, “Select Line” action works with multiple selections.
 - Close character inspector when text selection was changed.
-- Reprocude previous selection by undoing line actions.
+- Reproduce previous selection by undoing line actions.
 - Improve syntax highlighting performance.
 
 
@@ -450,7 +492,7 @@ Change Log
 - Improve text selection by clicking line numbers view.
 - Tweak style of popup menus in toolbar.
 - Add “description” field that doesn't affect to highlighting but for commenting for each term to the syntax style and syntax style editor.
-- Add Swite to Delete action on El Capitan to tables in syntax style editor.
+- Add Swipe to Delete action on El Capitan to tables in syntax style editor.
 - Improve text encoding detection for UTF-32.
 - Update Python syntax style:
     - Add several commands and variables that are in `__foo__` form.
@@ -619,7 +661,7 @@ Change Log
 ### Improvements
 
 - Remove bundled `cot` command-line tool, due to the Mac App Store guidelines.
-    - To use `cot` command with CotEditor 2.2.0 and later, download it from <http://coteditor.com/cot> and install manually. You cannnot use the previous one with CotEditor 2.2.0.
+    - To use `cot` command with CotEditor 2.2.0 and later, download it from <http://coteditor.com/cot> and install manually. You cannot use the previous one with CotEditor 2.2.0.
 - Improve saving error dialog to display more detailed error reason.
 - Avoid beeping on typing an unmatched `>` even if `<>` brace highlighting turned on.
 - Update “Swift” syntax style:
@@ -640,7 +682,7 @@ Change Log
 - Fix an issue where invisibles which are a surrogate pair occasionally did not display.
 - Fix an issue where the toolbar button state of the text orientation was not updated on window restoration.
 - Fix help contents layout.
-- [rc] Fix an issue where table headers had sometime unwanted space around them on Yosemite and ealier.
+- [rc] Fix an issue where table headers had sometime unwanted space around them on Yosemite and earlier.
 - [rc] Fix an issue where calculation of hanging indent width was sometime incorrect.
 - [beta] Fix an issue where an unwanted migration window was displayed on the first launch even when there is nothing to be migrated.
 - [beta] Fix an issue where application could possibly crash on window restoration.
@@ -692,7 +734,7 @@ Change Log
 - Fix an issue where application could crash after when closing multiple split views.
 - Fix an issue where application crashed by clicking header of empty table in syntax editor sheet.
 - Fix an issue where warning on Integration pane didn't disappear even after the problem resolved.
-- Fix an issue where unwanted invisible character mark were drawn when tab drawing is turned off and other invisibles drawing is truned on. 
+- Fix an issue where unwanted invisible character mark were drawn when tab drawing is turned off and other invisibles drawing is turned on. 
 - Add some missing localized strings in Japanese.
 - [El Capitan] Fix an issue where color code view did not display on El Capitan.
 - [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
@@ -722,7 +764,7 @@ Change Log
 ### Improvements
 
 - [non-AppStore ver.] Disable auto-update feature.
-    - Since the Sparkle framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a nofitication window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the Mac App Store version when the stable CotEditor 2.2.0 is released.
+    - Since the Sparkle framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a notification window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the Mac App Store version when the stable CotEditor 2.2.0 is released.
 - Deprecate the feature opening/saving files that user doesn't have the permission, due to Sandbox requirement.
 - Improve side inspector UI.
 - Improve syntax highlighting:
@@ -917,7 +959,7 @@ Change Log
 - Fix an issue where tab width on printing didn't reflect user indent setting.
 - Fix an issue where tab width didn't update on font size change.
 - [beta] Fix an issue where the application could crash on Mountain Lion.
-- [beta] Fix an issue where `cot` command cannot be insalled on Mavericks and earlier.
+- [beta] Fix an issue where `cot` command cannot be installed on Mavericks and earlier.
 - [beta] Fix some layout issues on Mountain Lion.
 
 
@@ -1049,7 +1091,7 @@ Change Log
 - Fix an issue that cancelation of syntax extracting didn't work immediately under the specific conditions.
 - Fix an issue that selecting inside of brackets by double-clicking didn't work.
 - Fix an issue that script execution with large size output could cause application hang up.
-- Fix a possible issue that syntax highlighting while text editing chould cause application crash.
+- Fix a possible issue that syntax highlighting while text editing could cause application crash.
 - Fix an issue that application could hang up when no text font is found.
 - Fix an issue that highlights weren't updated after “Replace All” under Japanese localization.
 - Fix an issue that the Auto-Completion feature couldn't enable from the preferences under Japanese localization.

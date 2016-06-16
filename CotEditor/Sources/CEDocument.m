@@ -91,6 +91,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
 @property (nonatomic, nonnull, copy) NSString *autosaveIdentifier;
 @property (nonatomic) BOOL suppressesIANACharsetConflictAlert;
 @property (nonatomic, getter=isExecutable) BOOL executable;
+@property (nonatomic, getter=isFirstLoad) BOOL firstLoad;
 
 // readonly
 @property (readwrite, nonatomic, nullable) CEWindowController *windowController;
@@ -158,6 +159,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         _writable = YES;
         _shouldSaveXattr = YES;
         _autosaveIdentifier = [[[NSUUID UUID] UUIDString] substringToIndex:CEUniqueFileIDLength];
+        _firstLoad = YES;
         
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
@@ -641,7 +643,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     CEDocument *document = (CEDocument *)[super duplicateAndReturnError:outError];
     
     [document setSyntaxStyleWithName:[[self syntaxStyle] styleName]];
-    [document doSetLineEnding:[self lineEnding]];
+    [document setLineEnding:[self lineEnding]];
     [document doSetEncoding:[self encoding] withUTF8BOM:[self hasUTF8BOM] updateDocument:NO askLossy:NO lossy:NO asActionName:nil];
     
     // apply text orientation
@@ -900,7 +902,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         [editor setString:string];  // In this `setString:`, caret will be moved to the beginning.
         
         // detect indent style
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey]) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultDetectsIndentStyleKey] && [self isFirstLoad]) {
             switch ([string detectIndentStyle]) {
                 case CEIndentStyleTab:
                     [editor setAutoTabExpandEnabled:NO];
@@ -918,6 +920,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     } else {
         [editor setString:@""];
     }
+    [self setFirstLoad:NO];
     
     // update syntax highlights and outline menu
     [editor invalidateSyntaxHighlight];
@@ -1072,9 +1075,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
                                                          updateDocument:updateDocument
                                                                askLossy:NO lossy:allowsLossy
                                                            asActionName:actionName];  // redo in undo
-        if (shouldShowList) {
-            [[undoManager prepareWithInvocationTarget:[self windowController]] showIncompatibleCharList];
-        }
+        [[undoManager prepareWithInvocationTarget:[self windowController]] updateIncompatibleCharsIfNeeded];
         [[undoManager prepareWithInvocationTarget:self] updateEncodingInToolbarAndInfo];
         [[undoManager prepareWithInvocationTarget:self] setEncoding:[self encoding]];  // エンコード値設定
         [[undoManager prepareWithInvocationTarget:self] setHasUTF8BOM:[self hasUTF8BOM]];  // エンコード値設定
@@ -1087,11 +1088,10 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     [self setEncoding:encoding];
     [self setHasUTF8BOM:withUTF8BOM];
     [self updateEncodingInToolbarAndInfo];  // ツールバーのエンコーディングメニュー、ステータスバー、インスペクタを更新
+    [[self windowController] updateIncompatibleCharsIfNeeded];
     
     if (shouldShowList) {
         [[self windowController] showIncompatibleCharList];
-    } else {
-        [[self windowController] updateIncompatibleCharsIfNeeded];
     }
     
     return YES;
@@ -1293,7 +1293,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
         // 変換するか再解釈するかの選択ダイアログを表示
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:NSLocalizedString(@"File encoding", nil)];
-        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret it using “%@”?", nil), encodingName]];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to convert or reinterpret this document using “%@”?", nil), encodingName]];
         [alert addButtonWithTitle:NSLocalizedString(@"Convert", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Reinterpret", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
@@ -1420,6 +1420,7 @@ NSString *_Nonnull const CEIncompatibleConvertedCharKey = @"convertedChar";
     
     // ステータスバー、インスペクタを更新
     [[self windowController] updateModeInfoIfNeeded];
+    [[self windowController] updateEditorInfoIfNeeded];
 }
 
 

@@ -161,6 +161,7 @@ static NSString *HiraginoSansName;
 {
     // 複合フォントで行の高さがばらつくのを防止するために一般の行の高さを変更しているので、それにあわせる
     aRect.size.height = [self lineHeight];
+    usedRect.size.height = [self lineHeight];
 
     [super setExtraLineFragmentRect:aRect usedRect:usedRect textContainer:aTextContainer];
 }
@@ -171,6 +172,8 @@ static NSString *HiraginoSansName;
 - (void)drawGlyphsForGlyphRange:(NSRange)glyphsToShow atPoint:(NSPoint)origin
 // ------------------------------------------------------
 {
+    [NSGraphicsContext saveGraphicsState];
+    
     // set anti-alias state on screen drawing
     if ([NSGraphicsContext currentContextDrawingToScreen]) {
         [[NSGraphicsContext currentContext] setShouldAntialias:[self usesAntialias]];
@@ -180,7 +183,7 @@ static NSString *HiraginoSansName;
     if ([self showsInvisibles] && [[self invisibleLines] count] > 0) {
         CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
         NSString *completeString = [[self textStorage] string];
-        CGFloat baselineOffset = [self defaultBaselineOffset];
+        BOOL isVertical = ([[self firstTextView] layoutOrientation] == NSTextLayoutOrientationVertical);
         
         // flip coordinate if needed
         if ([[NSGraphicsContext currentContext] isFlipped]) {
@@ -236,8 +239,13 @@ static NSString *HiraginoSansName;
             // calcurate position to draw glyph
             NSPoint point = [self lineFragmentRectForGlyphAtIndex:glyphIndex effectiveRange:NULL withoutAdditionalLayout:YES].origin;
             NSPoint glyphLocation = [self locationForGlyphAtIndex:glyphIndex];
-            point.x += glyphLocation.x + origin.x;
-            point.y += baselineOffset + origin.y;
+            point.x += origin.x + glyphLocation.x;
+            point.y += origin.y + [self defaultBaselineOffset];
+            if (isVertical) {
+                // [note] Probably not a good solution but better than not (2016-05-25).
+                CGRect pathBounds = CTLineGetBoundsWithOptions(line, kCTLineBoundsUseGlyphPathBounds);
+                point.y += CGRectGetHeight(pathBounds)/ 2;
+            }
             
             // draw character
             CGContextSetTextPosition(context, point.x, point.y);
@@ -246,6 +254,8 @@ static NSString *HiraginoSansName;
     }
     
     [super drawGlyphsForGlyphRange:glyphsToShow atPoint:origin];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 
@@ -427,8 +437,8 @@ static NSString *HiraginoSansName;
                         [CEInvisibles stringWithType:CEInvisibleTab Index:[defaults integerForKey:CEDefaultInvisibleTabKey]],
                         [CEInvisibles stringWithType:CEInvisibleNewLine Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]],
                         [CEInvisibles stringWithType:CEInvisibleFullWidthSpace Index:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]],
-                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:NULL],
-                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:NULL],
+                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:0],
+                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:0],
                         ];
     
     // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）

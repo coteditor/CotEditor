@@ -124,11 +124,6 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 - (IBAction)showWindow:(nullable id)sender
 // ------------------------------------------------------
 {
-    // close result view
-    if (![[self window] isVisible]) {
-        [self setResultShown:NO animate:NO];
-    }
-    
     // select text in find text field
     if ([[self window] firstResponder] == [[self window] initialFirstResponder]) {
         // force reset firstResponder to invoke becomeFirstResponder in CEFindPanelTextView every time
@@ -137,7 +132,14 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     }
     [[self window] makeFirstResponder:[[self window] initialFirstResponder]];
     
+    BOOL closed = ![[self window] isVisible];
+    
     [super showWindow:sender];
+    
+    // close result view
+    if (closed) {
+        [self setResultShown:NO animate:NO];
+    }
 }
 
 

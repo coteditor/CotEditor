@@ -34,6 +34,7 @@
 
 #import "NSString+CECounting.h"
 #import "NSString+CEEncoding.h"
+#import "NSString+CENewLine.h"
 
 
 // notifications
@@ -152,18 +153,17 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 // ------------------------------------------------------
 {
     CEDocument *document = [self document];
-    CEEditorWrapper *editor = [document editor];
+    NSTextView *textView = [[document editor] focusedTextView];
     
-    if (![editor string]) { return; }
+    if (![textView string]) { return; }
     
-    BOOL hasMarked = [[editor focusedTextView] hasMarkedText];
-    NSString *wholeString = [document string];
-    NSString *selectedString = hasMarked ? nil : [editor substringWithSelection];
+    NSString *wholeString = [NSString stringWithString:[textView string]];  // LF
+    NSRange selectedRange = [textView selectedRange];
     NSStringEncoding encoding = [document encoding];
-    __block NSRange selectedRange = [editor selectedRange];
+    CENewLineType lineEnding = [document lineEnding];
     
     // IM で変換途中の文字列は選択範囲としてカウントしない (2007-05-20)
-    if (hasMarked) {
+    if ([textView hasMarkedText]) {
         selectedRange.length = 0;
     }
     
@@ -175,15 +175,18 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         BOOL countsLineEnding = [defaults boolForKey:CEDefaultCountLineEndingAsCharKey];
-        NSUInteger column = 0, currentLine = 0, length = [wholeString length], location = 0;
+        NSUInteger column = 0, currentLine = 0, location = 0;
+        NSUInteger length = 0, selectedLength = 0;
         NSUInteger numberOfLines = 0, numberOfSelectedLines = 0;
         NSUInteger numberOfChars = 0, numberOfSelectedChars = 0;
         NSUInteger numberOfWords = 0, numberOfSelectedWords = 0;
         NSUInteger byteLength = 0, selectedByteLength = 0;
         NSString *unicode;
         
-        if (length > 0) {
+        if (wholeString.length > 0) {
+            NSString *selectedString = [wholeString substringWithRange:selectedRange];  // LF
             BOOL hasSelection = (selectedRange.length > 0);
+            
             NSRange lineRange = [wholeString lineRangeForRange:selectedRange];
             column = selectedRange.location - lineRange.location;  // as length
             column = [[wholeString substringWithRange:NSMakeRange(lineRange.location, column)] numberOfComposedCharacters];
@@ -227,10 +230,16 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
                 }
             }
             
-            // re-calculate length without line ending if needed
-            if (!countsLineEnding) {
-                length = [[wholeString stringByDeletingNewLineCharacters] length];
-                selectedRange.length = [[selectedString stringByDeletingNewLineCharacters] length];
+            // count length
+            if (needsAll || [defaults boolForKey:CEDefaultShowStatusBarLengthKey]) {
+                BOOL isSingleLineEnding = ([[NSString newLineStringWithType:lineEnding] length] == 1);
+                NSString *str = isSingleLineEnding ? wholeString : [wholeString stringByReplacingNewLineCharacersWith:lineEnding];
+                length = [str length];
+                
+                if (hasSelection) {
+                    NSString *str = isSingleLineEnding ? selectedString : [selectedString stringByReplacingNewLineCharacersWith:lineEnding];
+                    selectedLength = [str length];
+                }
             }
             
             if (needsAll) {
@@ -241,15 +250,20 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
                 }
                 
                 // count byte length
-                byteLength = [wholeString lengthOfBytesUsingEncoding:encoding];
-                selectedByteLength = [selectedString lengthOfBytesUsingEncoding:encoding];
+                BOOL isSingleLineEnding = ([[NSString newLineStringWithType:lineEnding] length] == 1);
+                NSString *str = isSingleLineEnding ? wholeString : [wholeString stringByReplacingNewLineCharacersWith:lineEnding];
+                byteLength = [str lengthOfBytesUsingEncoding:encoding];
+                if (hasSelection) {
+                    NSString *str = isSingleLineEnding ? selectedString : [selectedString stringByReplacingNewLineCharacersWith:lineEnding];
+                    selectedByteLength = [str lengthOfBytesUsingEncoding:encoding];
+                }
             }
         }
         
         // apply to UI
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.lines = [self formatCount:numberOfLines selected:numberOfSelectedLines];
-            self.length = [self formatCount:length selected:selectedRange.length];
+            self.length = [self formatCount:length selected:selectedLength];
             self.chars = [self formatCount:numberOfChars selected:numberOfSelectedChars];
             self.byteLength = [self formatCount:byteLength selected:selectedByteLength];
             self.words = [self formatCount:numberOfWords selected:numberOfSelectedWords];

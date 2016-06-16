@@ -277,6 +277,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSInteger knobStyle = [[self theme] isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
+    // tell line height also to scroll view so that scroll view can scroll line by line
+    [[self enclosingScrollView] setLineScroll:[(CELayoutManager *)[self layoutManager] lineHeight]];
+    
     // ウインドウの透明フラグを監視する
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didWindowOpacityChange:)
@@ -708,6 +711,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [paragraphStyle setDefaultTabInterval:[self tabIntervalFromFont:font]];
     [self setDefaultParagraphStyle:paragraphStyle];
     
+    // tell line height also to scroll view so that scroll view can scroll line by line
+    [[self enclosingScrollView] setLineScroll:[(CELayoutManager *)[self layoutManager] lineHeight]];
+    
     [self applyTypingAttributes];
 }
 
@@ -717,6 +723,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setTabWidth:(NSUInteger)tabWidth
 // ------------------------------------------------------
 {
+    if (tabWidth == 0) { return; }
+    
     _tabWidth = tabWidth;
     [self setFont:[self font]];  // force re-layout with new width
 }
@@ -740,8 +748,12 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // draw current line highlight
     if (NSIntersectsRect(rect, [self highlightLineRect])) {
-        [[self highlightLineColor] set];
+        [NSGraphicsContext saveGraphicsState];
+        
+        [[self highlightLineColor] setFill];
         [NSBezierPath fillRect:[self highlightLineRect]];
+        
+        [NSGraphicsContext restoreGraphicsState];
     }
     
     // avoid rimaining dropshadow from letters on Mountain Lion (2015-02 by 1024jp)
@@ -771,9 +783,13 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for adjustment
         
-        [[[self textColor] colorWithAlphaComponent:0.2] set];
+        [NSGraphicsContext saveGraphicsState];
+        
+        [[[self textColor] colorWithAlphaComponent:0.2] setStroke];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(x, NSMinY(dirtyRect))
                                   toPoint:NSMakePoint(x, NSMaxY(dirtyRect))];
+        
+        [NSGraphicsContext restoreGraphicsState];
     }
 }
 
@@ -1398,7 +1414,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if (location > 0) {
         return [[self string] characterAtIndex:location - 1];
     }
-    return NULL;
+    return 0;
 }
 
 
@@ -1411,7 +1427,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if (location < [[self string] length]) {
         return [[self string] characterAtIndex:location];
     }
-    return NULL;
+    return 0;
 }
 
 

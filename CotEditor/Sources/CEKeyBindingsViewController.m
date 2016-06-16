@@ -122,7 +122,7 @@
 - (BOOL)outlineView:(nonnull NSOutlineView *)outlineView isItemExpandable:(nonnull id)item
 // ------------------------------------------------------
 {
-    return [[self childrenOfItem:item] count] > 0;
+    return [self childrenOfItem:item] != nil;
 }
 
 
@@ -418,7 +418,7 @@
     
     if (selectedRow == -1) { return; }
     
-    NSInteger *column = [[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
+    NSInteger column = [[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
     
     [[self outlineView] editColumn:column row:selectedRow withEvent:nil select:YES];
 }

@@ -125,12 +125,14 @@ static CGFontRef BoldLineNumberFont;
     NSColor *counterColor = [[self theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
     NSColor *textColor = [[self theme] weakTextColor];
     
+    [NSGraphicsContext saveGraphicsState];
+    
     // fill background
-    [[counterColor colorWithAlphaComponent:0.08] set];
+    [[counterColor colorWithAlphaComponent:0.08] setFill];
     [NSBezierPath fillRect:dirtyRect];
     
     // draw frame border (1px)
-    [[textColor colorWithAlphaComponent:0.3] set];
+    [[textColor colorWithAlphaComponent:0.3] setStroke];
     switch ([self orientation]) {
         case NSVerticalRuler:
             [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
@@ -144,6 +146,8 @@ static CGFontRef BoldLineNumberFont;
     }
     
     [self drawHashMarksAndLabelsInRect:dirtyRect];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 
@@ -224,7 +228,7 @@ static CGFontRef BoldLineNumberFont;
     CGGlyph *digitGlyphsPtr = digitGlyphs;
     void (^draw_number)(NSUInteger, CGFloat, BOOL) = ^(NSUInteger lineNumber, CGFloat y, BOOL isBold)
     {
-        NSUInteger digit = numberOfDigits(lineNumber);
+        NSUInteger digit = numberOfDigits((int)lineNumber);
         
         // calculate base position
         CGPoint position;
@@ -237,11 +241,11 @@ static CGFontRef BoldLineNumberFont;
         // get glyphs and positions
         CGGlyph glyphs[digit];
         CGPoint positions[digit];
-        for (NSUInteger i = 0; i < digit; i++) {
+        for (int i = 0; i < digit; i++) {
             position.x -= charWidth;
             
             positions[i] = position;
-            glyphs[i] = digitGlyphsPtr[numberAt(i, lineNumber)];
+            glyphs[i] = digitGlyphsPtr[numberAt(i, (int)lineNumber)];
         }
         
         if (isBold) {
@@ -293,10 +297,9 @@ static CGFontRef BoldLineNumberFont;
         for (NSValue *selectedLineValue in selectedLineRanges) {
             NSRange selectedRange = [selectedLineValue rangeValue];
             
-            if ((!isVerticalText && NSLocationInRange(lineRange.location, selectedRange)) ||
-                (isVerticalText && (lineRange.location == selectedRange.location ||
-                                    NSMaxRange(lineRange) == NSMaxRange(selectedRange))))
-            {
+            if (NSLocationInRange(lineRange.location, selectedRange) &&
+                (!isVerticalText || (lineRange.location == selectedRange.location ||
+                                     NSMaxRange(lineRange) == NSMaxRange(selectedRange)))) {
                 isSelected = YES;
                 break;
             }

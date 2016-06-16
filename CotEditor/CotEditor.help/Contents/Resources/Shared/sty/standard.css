@@ -6,7 +6,7 @@
  CotEditor
  http://coteditor.com
  
- © 2006-2015 CotEditor Project
+ © 2006-2016 CotEditor Project
 */
 
 
@@ -236,4 +236,16 @@ body > nav ul {
 body > nav li {
 	display: inline-block;
 	margin: 0.2em 1em;
+}
+
+
+/* syntax highlight */
+span.comment {
+	color: hsl(0, 40%, 40%);
+}
+span.keyword {
+	color: hsl(210, 50%, 40%);
+}
+span.string {
+	color: hsl(0, 0%, 50%);
 }

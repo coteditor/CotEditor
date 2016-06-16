@@ -72,6 +72,7 @@
 "Replace" = "替换";
 "Find All" = "查找全部";
 "Replace All" = "替换全部";
+"Highlight" = "高亮";
 "%@ string found." = "找到 %@ 个匹配";
 "%@ strings found." = "找到 %@ 个匹配";
 "%@ string replaced." = "已替换 %@ 个匹配";
@@ -118,7 +119,7 @@
 "Line Endings to “%@”" = "行尾变更为“%@”";
 // Convert or reinterpret encoding alert
 "File encoding" = "文件编码";
-"Do you want to convert or reinterpret it using “%@”?" = "要使用“%@”进行转换或者再次解释吗？";
+"Do you want to convert or reinterpret this document using “%@”?" = "要使用“%@”进行转换或者再次解释吗？";
 "Convert" = "转换";
 "Reinterpret" = "再次解释";
 

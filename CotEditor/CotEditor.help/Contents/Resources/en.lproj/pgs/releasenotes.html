@@ -24,8 +24,73 @@
 
 <article>
 <header>
+	<h1>CotEditor 2.5.6</h1>
+	<p>release: <time>2016-06</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Add newly rewritten syntax styles for “C” and “C++”.
+	<ul>
+		<li>From this change, previous  “C, C++, Objective-C” syntax style is deleted.</li>
+	</ul></li>
+	<li>Add syntax styles for “MATLAB” and “Verilog”.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Update “Markdown” syntax style:
+	<ul>
+		<li>Support strikethrough with <code>~~</code> that is defined in the GitHub favored Markdown.</li>
+		<li>Support emphasis with triple <code>*</code> and <code>_</code>.</li>
+	</ul></li>
+	<li>Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.</li>
+	<li>Change to use the body text color for line numbers on printing that was previously always black.</li>
+	<li>Improve scroll behavior with arrow keys.</li>
+	<li>Improve compatibility with macOS Sierra beta.</li>
+	<li>And some other trivial improvements.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix document counting as followings:
+	<ul>
+		<li>“Char Count” counts composite characters as well as CR/LF as single characters and omits counting line endings if “Count each line ending as one character” option is off.</li>
+		<li>“Length” counts bytes in UTF-16 literally and always counts line endings even if “Count each line ending as one character” option is off.</li>
+		<li>“Location” and “Column” count characters just like “Char Count”.</li>
+	</ul></li>
+	<li>Fix an issue where the selected marks of line height / tab width in the Format menu disappeared.</li>
+	<li>Fix an issue where unselected last line number could be highlighted if the text orientation is vertical.</li>
+	<li>Fix an issue where invisible characters were drawn off to the side if the text orientation is vertical.</li>
+	<li>Fix an issue where documents were marked as “Edited” just after document duplication if line ending is not the default one.</li>
+	<li>Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted.</li>
+	<li>Fix an issue where “Find All” result view did not open on OS X Mountain Lion.</li>
+	<li>Fix an issue where incompatible character markup could broken if undo/redo lossy encoding change continuously.</li>
+	<li>Fix an issue where keybindings of some submenu containers were customizable.</li>
+	<li>Fix an issue where tab width could be set as <code>0</code>.</li>
+	<li>Fix an issue where tab width changing via AppleScript changes only the tab width in the focused editor rather than all split editors.</li>
+	<li>Fix an issue where byte length display did not update after changing file encoding.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.5.5</h1>
-	<p>release: <time>2016-05</time></p>
+	<p>release: <time>2016-05-23</time></p>
 </header>
 
 
@@ -84,7 +149,7 @@
 
 <ul>
 	<li>Fix an issue where application didn't work on Mavericks and earlier.</li>
-	<li>Fix an issue where syntax was occasionally parsed wtice on window restoration.</li>
+	<li>Fix an issue where syntax was occasionally parsed twice on window restoration.</li>
 </ul>
 </section>
 </article>
@@ -116,7 +181,7 @@
 		<li>Update line-height calculation to fix that the line height by “Fix line height with composite font” option was a bit higher than actual line height of the used font.<ul>
 			<li>From this change, the line hight will get reduced than the previous versions. Please reset the line-height to your favorite number on the Appearance pane in the preferences.</li>
 		</ul></li>
-		<li>Improve line-height calcuration.</li>
+		<li>Improve line-height calculation.</li>
 	</ul></li>
 	<li>Optimize performance to apply syntax highlight to document significantly.</li>
 	<li>Now, the setting changes of status bar, appearance, tab and invisible chars are applied to documents immediately.</li>
@@ -387,8 +452,8 @@
 	<li>Fix an issue where find-all highlight wasn't removed if find panel is closed before closing find result view.</li>
 	<li>Fix an issue where toggling invisible visibility didn't work correctly.</li>
 	<li>Fix an issue where the cursor located at the end of document after file opening.</li>
-	<li>Fix an issue where thousands separators weren't inserted to document information under specific enviroments.</li>
-	<li>Address an issue where paste was rarely failed under specific enviroments.</li>
+	<li>Fix an issue where thousands separators weren't inserted to document information under specific environments.</li>
+	<li>Address an issue where paste was rarely failed under specific environments.</li>
 </ul>
 </section>
 </article>
@@ -544,7 +609,7 @@
     <li>Improve line numbers view for multiple selections.</li>
     <li>Now, “Select Line” action works with multiple selections.</li>
     <li>Close character inspector when text selection was changed.</li>
-    <li>Reprocude previous selection by undoing line actions.</li>
+    <li>Reproduce previous selection by undoing line actions.</li>
     <li>Improve syntax highlighting performance.</li>
 </ul>
 </section>
@@ -674,7 +739,7 @@
 	<li>Tweak style of popup menus in toolbar.</li>
 	<li>Improve text encoding detection for UTF-32.</li>
 	<li>Add “description” field that doesn't affect to highlighting but for commenting for each term to the syntax style and syntax style editor.</li>
-	<li>Add Swite to Delete action on El Capitan to tables in syntax style editor.</li>
+	<li>Add Swipe to Delete action on El Capitan to tables in syntax style editor.</li>
 	<li>Update Python syntax style:
 	<ul>
 		<li>Add several commands and variables that are in <code>__foo__</code> form.</li>
@@ -941,7 +1006,7 @@
 	<li>Deprecate the feature opening/saving files that user doesn't have the permission, due to Sandbox requirement.</li>
 	<li>Remove bundled <code>cot</code> command-line tool, due to the Mac App Store guidelines.
 	<ul>
-		<li>To use <code>cot</code> command with CotEditor 2.2.0 and later, download the new command-line tool from <a href="http://coteditor.com/cot">http://coteditor.com/cot</a> and install manually. You cannnot use the previous one with CotEditor 2.2.0.</li>
+		<li>To use <code>cot</code> command with CotEditor 2.2.0 and later, download the new command-line tool from <a href="http://coteditor.com/cot">http://coteditor.com/cot</a> and install manually. You cannot use the previous one with CotEditor 2.2.0.</li>
 	</ul></li>
 	<li>Improve side inspector UI.</li>
 	<li>Improve syntax highlighting:
@@ -1774,7 +1839,7 @@
 	<li>Fix an issue that preview didn’t update after changing of footer/header alignment.</li>
 	<li>Fix a rare issue that print cannot be performed under the specific environments.</li>
 	<li>Fix an issue that set file drop cannot be changed.</li>
-	<li>Fix file drop behaviour when files with multiple extensions are dropped.</li>
+	<li>Fix file drop behavior when files with multiple extensions are dropped.</li>
 	<li>Fix an issue that text view layout doesn’t follow text wrapping change when layout orientation is vertical.</li>
 	<li>Fix some error messages in English.</li>
 </ul>

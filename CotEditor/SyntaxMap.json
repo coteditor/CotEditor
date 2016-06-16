@@ -55,14 +55,25 @@
       "csharp"
     ]
   },
-  "C, C++, Objective-C": {
+  "C++": {
+    "extensions": [
+      "c++",
+      "cpp",
+      "cc",
+      "hpp",
+      "h++"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
+  "C": {
     "extensions": [
       "c",
-      "h",
-      "m",
-      "mm",
-      "cpp",
-      "cc"
+      "h"
     ],
     "filenames": [
 
@@ -320,6 +331,17 @@
 
     ]
   },
+  "MATLAB": {
+    "extensions": [
+      "m"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
   "METAFONT": {
     "extensions": [
       "mf"
@@ -551,6 +573,17 @@
   "Textile": {
     "extensions": [
       "textile"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
+  "Verilog": {
+    "extensions": [
+      "v"
     ],
     "filenames": [
 

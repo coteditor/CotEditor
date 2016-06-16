@@ -66,6 +66,21 @@
 	<li>CotEditor に返すテキストの文字エンコーディングは UTF-8 でなければなりません。</li>
 </ul>
 
+<h2>例</h2>
+<p>以下の Python スクリプトは最前面書類の選択範囲内のすべての行の行頭に“&gt;”を追加します。</p>
+
+<pre><code><span class="comment">#!/usr/bin/env python
+# %%%{CotEditorXInput=Selection}%%%
+# %%%{CotEditorXOutput=ReplaceSelection}%%%</span>
+
+<span class="keyword">import</span> sys
+<span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:
+    print(<span class="string">&quot;&gt;&quot;</span> + line.rstrip())
+</code></pre>
+
+<p>ほかにも、以下のサイトから様々なサンプルスクリプトを入手することができます：<br/>
+<a href="https://github.com/coteditor/SampleScripts" rel="external">coteditor/SampleScripts -GitHub</a></p>
+
 
 <section id="cf">
 <h2>関連項目</h2>

@@ -142,6 +142,12 @@
     [[self editorViewControllers] addObject:editorViewController];
     [[self splitView] addSubview:[editorViewController view] positioned:NSWindowAbove relativeTo:otherEditorView];
     
+    // workaround for OS X 10.12 Beta (2016-06-14)
+    if (NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max) {
+        [[self splitView] display];
+        [[self splitView] setNeedsLayout:YES];
+    }
+    
     [self updateCloseSplitViewButton];
 }
 
@@ -153,6 +159,12 @@
 {
     [[editorViewController view] removeFromSuperview];
     [[self editorViewControllers] removeObject:editorViewController];
+    
+    // workaround for OS X 10.12 Beta (2016-06-14)
+    if (NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max) {
+        [[self splitView] display];
+        [[self splitView] setNeedsLayout:YES];
+    }
     
     [self updateCloseSplitViewButton];
 }
@@ -195,6 +207,12 @@
 // ------------------------------------------------------
 {
     [[self splitView] setVertical:![[self splitView] isVertical]];
+    
+    // workaround for OS X 10.12 Beta (2016-06-14)
+    if (NSAppKitVersionNumber > NSAppKitVersionNumber10_10_Max) {
+        [[self splitView] display];
+        [[self splitView] setNeedsLayout:YES];
+    }
     
     [self updateOpenSplitViewButtons];
 }

@@ -129,7 +129,7 @@
     
     if (([tableView numberOfSelectedRows] <= 1) || !identifier) { return; }
     
-    NSInteger *columnIndex = [tableView columnWithIdentifier:identifier];
+    NSInteger columnIndex = [tableView columnWithIdentifier:identifier];
     
     [tableView enumerateAvailableRowViewsUsingBlock:^(NSTableRowView *rowView, NSInteger row) {
         if (![rowView isSelected]) { return; }

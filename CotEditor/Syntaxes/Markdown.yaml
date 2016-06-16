@@ -5,49 +5,46 @@ extensions:
 - keyString: "mdown"
 - keyString: "mkdn"
 metadata:
-  version: "1.2.2"
+  version: "1.3.0"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2016-05-24"
   distributionURL: "http://coteditor.com"
 keywords:
-- beginString: "(?<![\\\\*])\\*[^ \\t*](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])\\*"
-  description: "em"
+- beginString: "(?<![\\\\*])(\\*{1,3})[^ \\t*](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])\\1"
   regularExpression: true
-- beginString: "(?<![\\\\_])_[^ \\t_](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])_"
-  description: "em"
+  description: "em, strong"
+- beginString: "(?<![\\\\_])(_{1,3})[^ \\t_](?:\\n[^\\n]|[^\\n])*?(?<![\\\\ ])\\1"
   regularExpression: true
-- beginString: "(?<!\\\\)\\*\\*(?![ \\t])(?:\\n[^\\n]|[^\\n])*?(?<![\\\\\\t ])\\*\\*"
+  description: "em, strong"
+- beginString: "(?<[!\\\\~])~~(?![ \\t])(?:\\n[^\\n]|[^\\n])*?(?<![\\\\\\t ])~~"
   regularExpression: true
-  description: "strong"
-- beginString: "(?<!\\\\)__(?![ \\t])(?:\\n[^\\n]|[^\\n])*?(?<![\\\\\\t ])__"
-  description: "strong"
-  regularExpression: true
+  description: "[github] strikethrough"
 - beginString: "\\n[\\t ]*\\n(?:\\- *){3,}$"
-  description: "hr"
   regularExpression: true
+  description: "hr"
 - beginString: "\\n[^: \\t][^\\n]*(?=([\\t ]*\\n)?\\n[\\t ]*:[\\t ])"
+  regularExpression: true
   description: "[extra] dt"
-  regularExpression: true
 - beginString: "^(?:\\* *){3,}$"
-  description: "hr"
   regularExpression: true
+  description: "hr"
 - beginString: "^(?:\\_ *){3,}$"
-  description: "hr"
   regularExpression: true
+  description: "hr"
 - beginString: "^([ ]{4}|\\t)?>[\\t ]"
   regularExpression: true
   endString: "(\\n[ \\t]*\\n)|\\z"
   description: "blockquote"
 - beginString: "^[ \\t]*[\\*\\-\\+][ \\t]"
-  description: "li"
   regularExpression: true
+  description: "li"
 - beginString: "^[ \\t]*\\d+\\.[ \\t]"
+  regularExpression: true
   description: "li"
-  regularExpression: true
 - beginString: "^[ ]{0,3}\\[\\^[a-zA-Z0-9]*\\]:\\s"
-  description: "[extra] footnote"
   regularExpression: true
+  description: "[extra] footnote"
 types:
 - beginString: ".+\\n\\-+[\\t ]*$"
   description: "h2"

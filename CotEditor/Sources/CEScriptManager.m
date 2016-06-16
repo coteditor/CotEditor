@@ -557,7 +557,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSArray<NSNumber *> *encodings = [[NSUserDefaults standardUserDefaults] arrayForKey:CEDefaultEncodingListKey];
     
     for (NSNumber *encodingNumber in encodings) {
-        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedLongValue]);
+        NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding([encodingNumber unsignedIntValue]);
         NSString *scriptString = [[NSString alloc] initWithData:data encoding:encoding];
         if (scriptString) {
             return scriptString;

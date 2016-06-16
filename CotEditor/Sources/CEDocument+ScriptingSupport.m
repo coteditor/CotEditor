@@ -259,7 +259,14 @@
 - (void)setTabWidth:(NSNumber *)tabWidth
 // ------------------------------------------------------
 {
-    [[[self editor] focusedTextView] setTabWidth:[tabWidth unsignedIntegerValue]];
+    // dirty fix only for CotEditor 2.5.6 (2016-06)
+    // -> This code was already refactored on CotEditor 3.0
+    for (NSLayoutManager *layoutManager in [[[[self editor] focusedTextView] textStorage] layoutManagers]) {
+        CETextView *textView = (CETextView *)[layoutManager firstTextView];
+        if ([textView isKindOfClass:[CETextView class]]) {
+            [textView setTabWidth:[tabWidth unsignedIntegerValue]];
+        }
+    }
 }
 
 
