@@ -528,7 +528,7 @@
 
 
 //------------------------------------------------------
-/// テーマを読み込み
+/// import theme file via open panel
 - (IBAction)importTheme:(nullable id)sender
 //------------------------------------------------------
 {
@@ -539,11 +539,12 @@
     [openPanel setCanChooseDirectories:NO];
     [openPanel setAllowedFileTypes:@[CEThemeExtension]];
     
+    __weak typeof(self) weakSelf = self;
     [openPanel beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelCancelButton) { return; }
+        typeof(self) self = weakSelf;  // strong self
+        if (!self) { return; }
         
-        [openPanel orderOut:nil];
-        [[openPanel sheetParent] makeKeyAndOrderFront:nil];
+        if (result == NSFileHandlingPanelCancelButton) { return; }
         
         [self importThemeWithURL:[openPanel URL]];
     }];
@@ -644,7 +645,6 @@
              NSBeep();
              [alert beginSheetModalForWindow:window completionHandler:nil];
          }
-         
      }];
 }
 
@@ -664,32 +664,11 @@
 //------------------------------------------------------
 {
     NSError *error = nil;
-    [[CEThemeManager sharedManager] importThemeWithFileURL:URL replace:NO error:&error];
+    [[CEThemeManager sharedManager] importSettingWithFileURL:URL error:&error];
     
     if (error) {
-        NSAlert *alert = [NSAlert alertWithError:error];
-        NSWindow *window = [[self view] window];
-        
-        // ask for overwriting if a theme with the same name already exists
-        if ([error code] == CEThemeFileDuplicationError) {
-            [alert beginSheetModalForWindow:window completionHandler:^(NSInteger returnCode)
-             {
-                 if (returnCode != NSAlertSecondButtonReturn) { return; }  // Cancel
-                 
-                 NSError *error = nil;
-                 [[CEThemeManager sharedManager] importThemeWithFileURL:URL replace:YES error:&error];
-                 
-                 if (error) {
-                     [[alert window] orderOut:nil];
-                     NSAlert *alert = [NSAlert alertWithError:error];
-                     NSBeep();
-                     [alert beginSheetModalForWindow:window completionHandler:nil];
-                 }
-             }];
-            
-        } else {
-            [alert beginSheetModalForWindow:window completionHandler:nil];
-        }
+        // ask for overwriting if a setting with the same name already exists
+        [self presentError:error];
     }
 }
 

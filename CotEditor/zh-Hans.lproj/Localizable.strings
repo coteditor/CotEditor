@@ -341,9 +341,6 @@
 // Theme delete alert
 "Are you sure you want to delete “%@” theme?" = "确认删除“%@”主题？";
 "This action cannot be undone." = "此操作不能撤销。";
-// Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题。";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "要覆盖原主题吗？\n主题删除后将无法还原。";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "删除";
@@ -432,9 +429,8 @@
 
 // Import syntax style file choose openPanel button
 "Import" = "导入";
-// Importing same name style alert title
-"The “%@” style already exists." = "样式“%@”已经存在。";
-// Importing same name style alert info
+// Importing same name style alert
+"A new style named “%@” will be installed, but a custom style with the same name already exists." = "将要安装名为“%@”的新样式，但是已经存在同名的自定义样式。";
 "Do you want to replace it?\nReplaced style can’t be restored." = "要替换样式吗？\n被替换的样式无法将恢复。";
 
 // Export syntax style file savePanel label
@@ -457,6 +453,10 @@
 
 // Theme description meda data for migrated theme
 "Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
+
+// Theme import duplicated alert
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题。";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "要覆盖原主题吗？\n主题删除后将无法还原。";
 
 
 

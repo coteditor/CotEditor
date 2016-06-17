@@ -58,7 +58,6 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 
 // manage themes
 - (BOOL)saveThemeDictionary:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
-- (BOOL)importThemeWithFileURL:(nonnull NSURL *)fileURL replace:(BOOL)doReplace error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (BOOL)createUntitledThemeWithCompletionHandler:(nullable void (^)(NSString *_Nonnull themeName, NSError *_Nullable error))completionHandler;
 
 @end

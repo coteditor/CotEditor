@@ -344,9 +344,6 @@
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか？";
 "This action cannot be undone." = "この操作は取り消せません。";
-// Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "削除";
@@ -436,9 +433,8 @@
 
 // Import syntax style file choose openPanel button
 "Import" = "読み込み";
-// Importing same name style alert title
-"The “%@” style already exists." = "スタイル“%@”はすでに存在しています。";
-// Importing same name style alert info
+// Importing same name style alert
+"A new style named “%@” will be installed, but a custom style with the same name already exists." = "新しいスタイル“%@”のインストールを試みましたが、同名のカスタムスタイルがすでに存在しています。";
 "Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
 
 // Export syntax style file savePanel label
@@ -461,6 +457,10 @@
 
 // Theme description meda data for migrated theme
 "Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
+
+// Theme import duplicated alert
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
 
 
 

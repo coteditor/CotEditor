@@ -216,7 +216,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 - (BOOL)renameSettingWithName:(nonnull NSString *)settingName toName:(nonnull NSString *)newSettingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    BOOL success = [self renameSettingWithName:settingName toName:newSettingName error:outError];
+    BOOL success = [super renameSettingWithName:settingName toName:newSettingName error:outError];
     
     if (success) {
         if ([[[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultThemeKey] isEqualToString:settingName]) {
@@ -285,37 +285,20 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 //------------------------------------------------------
 /// 外部テーマファイルをユーザ領域にコピーする
-- (BOOL)importThemeWithFileURL:(nonnull NSURL *)fileURL replace:(BOOL)doReplace error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+- (BOOL)importSettingWithFileURL:(NSURL *)fileURL error:(NSError *__autoreleasing  _Nullable *)outError
 //------------------------------------------------------
 {
-    // check duplication if required
-    if (!doReplace) {
-        NSString *settingName = [self settingNameFromURL:fileURL];
-        
-        BOOL isDuplicated = NO;
-        for (NSString *name in [self settingNames]) {
-            if ([name caseInsensitiveCompare:settingName] == NSOrderedSame) {
-                BOOL isCustomized;
-                BOOL isBundled = [self isBundledSetting:settingName cutomized:&isCustomized];
-                isDuplicated = (!isBundled || (isBundled && isCustomized));
-                break;
-            }
-        }
-        if (isDuplicated) {
-            if (outError) {
-                *outError = [NSError errorWithDomain:CEErrorDomain
-                                                code:CEThemeFileDuplicationError
-                                            userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” will be installed, but a custom theme with the same name already exists.", nil), settingName],
-                                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced theme can’t be restored.", nil),
-                                                       NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
-                                                                                             NSLocalizedString(@"Replace", nil)],
-                                                       NSURLErrorKey: fileURL}];
-            }
-            return NO;
-        }
+    BOOL success = [super importSettingWithFileURL:fileURL error:outError];
+    
+    // replace error message
+    if (outError && [[*outError domain] isEqualToString:CEErrorDomain] && [*outError code] == CESettingImportFileDuplicatedError) {
+        NSMutableDictionary<NSString *, id> *userInfo = [[*outError userInfo] mutableCopy];
+        userInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"A new theme named “%@” will be installed, but a custom theme with the same name already exists.", nil);
+        userInfo[NSLocalizedRecoverySuggestionErrorKey] = NSLocalizedString(@"Do you want to replace it?\nReplaced theme can’t be restored.", nil);
+        *outError = [NSError errorWithDomain:CEErrorDomain code:CESettingImportFileDuplicatedError userInfo:userInfo];
     }
     
-    return [super importSettingWithFileURL:fileURL error:outError];
+    return success;
 }
 
 

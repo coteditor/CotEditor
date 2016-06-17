@@ -318,7 +318,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 
 
 // ------------------------------------------------------
-/// シンタックスカラーリングスタイルインポートボタンが押された
+/// import syntax style file via open panel
 - (IBAction)importSyntaxStyle:(nullable id)sender
 // ------------------------------------------------------
 {
@@ -336,37 +336,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
         
         if (result == NSFileHandlingPanelCancelButton) { return; }
         
-        NSURL *URL = [openPanel URL];
-        NSString *styleName = [[URL lastPathComponent] stringByDeletingPathExtension];
-        
-        // 同名styleが既にあるときは、置換してもいいか確認
-        if ([[[CESyntaxManager sharedManager] styleNames] containsObject:styleName]) {
-            // オープンパネルを閉じる
-            [openPanel orderOut:self];
-            [[[self view] window] makeKeyAndOrderFront:self];
-            
-            NSAlert *alert = [[NSAlert alloc] init];
-            [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The “%@” style already exists.", nil), styleName]];
-            [alert setInformativeText:NSLocalizedString(@"Do you want to replace it?\nReplaced style can’t be restored.", nil)];
-            [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-            [alert addButtonWithTitle:NSLocalizedString(@"Replace", nil)];
-            // 現行シート値を設定し、確認のためにセカンダリシートを開く
-            NSBeep();
-            
-            __weak typeof(self) weakSelf = self;
-            [alert beginSheetModalForWindow:[[self view] window] completionHandler:^(NSInteger returnCode)
-             {
-                 typeof(self) self = weakSelf;  // strong self
-                 
-                 if (returnCode == NSAlertSecondButtonReturn) { // = Replace
-                     [self doImport:URL withCurrentSheetWindow:[alert window]];
-                 }
-             }];
-            
-        } else {
-            // 重複するファイル名がないとき、インポート実行
-            [self doImport:URL withCurrentSheetWindow:openPanel];
-        }
+        [self importSyntaxStyleWithURL:[openPanel URL]];
     }];
 }
 
@@ -588,18 +558,17 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 }
 
 
-// ------------------------------------------------------
-/// styleインポート実行
-- (void)doImport:(nonnull NSURL *)fileURL withCurrentSheetWindow:(nullable NSWindow *)window
-// ------------------------------------------------------
+//------------------------------------------------------
+/// try to import syntax style file at given URL
+- (void)importSyntaxStyleWithURL:(nonnull NSURL *)URL
+//------------------------------------------------------
 {
     NSError *error = nil;
-    if (![[CESyntaxManager sharedManager] importSettingWithFileURL:fileURL error:&error]) {
-        // show alert if failed
-        [[window attachedSheet] orderOut:self];
-        NSAlert *alert = [NSAlert alertWithError:error];
-        NSBeep();
-        [alert beginSheetModalForWindow:[[self view] window] completionHandler:nil];
+    [[CESyntaxManager sharedManager] importSettingWithFileURL:URL error:&error];
+    
+    if (error) {
+        // ask for overwriting if a setting with the same name already exists
+        [self presentError:error];
     }
 }
 

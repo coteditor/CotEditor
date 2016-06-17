@@ -25,6 +25,8 @@
  
  */
 
+@import AppKit.NSApplication;
+
 #import "CESettingFileManager.h"
 #import "CEErrors.h"
 
@@ -71,6 +73,37 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 //------------------------------------------------------
 {
     @throw nil;
+}
+
+
+
+#pragma mark Error Recovery Attempting Protocol
+
+// ------------------------------------------------------
+/// recover error
+- (BOOL)attemptRecoveryFromError:(nonnull NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex
+// ------------------------------------------------------
+{
+    if ([[error domain] isEqualToString:CEErrorDomain]) {
+        switch ([error code]) {
+            case CESettingImportFileDuplicatedError: {
+                switch (recoveryOptionIndex) {
+                    case 0:  // == Cancel
+                        break;
+                    case 1: { // == Replace
+                        NSURL *fileURL = [error userInfo][NSURLErrorKey];
+                        NSError *anotherError;
+                        BOOL success = [self overwriteSettingWithFileURL:fileURL error:&anotherError];
+                        if (anotherError) {
+                            [NSApp presentError:anotherError];
+                        }
+                        return success;
+                    } break;
+                }
+            }
+        }
+    }
+    return NO;
 }
 
 
@@ -350,6 +383,42 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 //------------------------------------------------------
 /// import setting at passed-in URL
 - (BOOL)importSettingWithFileURL:(nonnull NSURL *)fileURL error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+//------------------------------------------------------
+{
+    NSString *settingName = [self settingNameFromURL:fileURL];
+    
+    // check duplication if required
+    for (NSString *name in [self settingNames]) {
+        if ([name caseInsensitiveCompare:settingName] == NSOrderedSame) {
+            BOOL isCustomized;
+            BOOL isBundled = [self isBundledSetting:settingName cutomized:&isCustomized];
+            
+            if (!isBundled || (isBundled && isCustomized)) {  // duplicated
+                if (outError) {
+                    *outError = [NSError errorWithDomain:CEErrorDomain
+                                                    code:CESettingImportFileDuplicatedError
+                                                userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"A new setting named “%@” will be installed, but a custom setting with the same name already exists.", nil), settingName],
+                                                           NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Do you want to replace it?\nReplaced setting can’t be restored.", nil),
+                                                           NSLocalizedRecoveryOptionsErrorKey: @[NSLocalizedString(@"Cancel", nil),
+                                                                                                 NSLocalizedString(@"Replace", nil)],
+                                                           NSRecoveryAttempterErrorKey: self,
+                                                           NSURLErrorKey: fileURL}];
+                }
+                return NO;
+            }
+        }
+    }
+    
+    return [self overwriteSettingWithFileURL:fileURL error:outError];
+}
+
+
+
+#pragma mark Private Methods
+
+//------------------------------------------------------
+/// force import setting at passed-in URL
+- (BOOL)overwriteSettingWithFileURL:(nonnull NSURL *)fileURL error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     // create directory to save in user domain if not yet exist

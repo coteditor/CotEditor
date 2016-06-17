@@ -33,7 +33,6 @@ extern NSString *_Nonnull const CEErrorDomain;
 
 typedef NS_ENUM(OSStatus, CEErrorCode) {
     CEInvalidNameError = 1000,
-    CEThemeFileDuplicationError,
     CEScriptNoTargetDocumentError,
     CEFileReadTooLargeError,
     CEFileReadBinaryFileError,
@@ -50,6 +49,7 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     // setting manager
     CESettingDeletionFailedError = 1300,
     CESettingImportFailedError,
+    CESettingImportFileDuplicatedError,
     
     // for command-line tool installer
     CEApplicationNotInApplicationDirectoryError = 1500,

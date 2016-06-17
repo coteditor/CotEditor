@@ -371,46 +371,35 @@
     if ([[filename pathExtension] isEqualToString:CEThemeExtension]) {
         NSURL *URL = [NSURL fileURLWithPath:filename];
         NSString *themeName = [[URL lastPathComponent] stringByDeletingPathExtension];
-        NSAlert *alert;
-        NSInteger returnCode;
         
         // ask whether theme file should be opened as a text file
-        alert = [[NSAlert alloc] init];
+        NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"“%@” is a CotEditor theme file.", nil), [URL lastPathComponent]]];
         [alert setInformativeText:NSLocalizedString(@"Do you want to install this theme?", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Install", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Open as Text File", nil)];
         
-        returnCode = [alert runModal];
-        if (returnCode == NSAlertSecondButtonReturn) {  // Edit as Text File
+        NSInteger returnCode = [alert runModal];
+        if (returnCode == NSAlertSecondButtonReturn) {  // = Open as Text File
             return NO;
         }
         
         // import theme
         NSError *error = nil;
-        [[CEThemeManager sharedManager] importThemeWithFileURL:URL replace:NO error:&error];
+        BOOL success = [[CEThemeManager sharedManager] importSettingWithFileURL:URL error:&error];
         
         // ask whether the old theme should be repleced with new one if the same name theme is already exists
-        if ([error code] == CEThemeFileDuplicationError) {
-            alert = [NSAlert alertWithError:error];
-            
-            returnCode = [alert runModal];
-            if (returnCode == NSAlertFirstButtonReturn) {  // Canceled
-                return YES;
-            } else {
-                error = nil;
-                [[CEThemeManager sharedManager] importThemeWithFileURL:URL replace:YES error:&error];
-            }
+        if (!success && error) {
+            success = [NSApp presentError:error];
         }
         
-        if (error) {
-            alert = [NSAlert alertWithError:error];
-        } else {
+        // feedback for succession
+        if (success) {
             [[NSSound soundNamed:@"Glass"] play];
-            alert = [[NSAlert alloc] init];
+            NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"A new theme named “%@” has been successfully installed.", nil), themeName]];
+            [alert runModal];
         }
-        [alert runModal];
         
         return YES;
     }

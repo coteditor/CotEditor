@@ -342,9 +342,6 @@
 // Theme delete alert
 "Are you sure you want to delete “%@” theme?" = "Möchten Sie das Thema „%@“ wirklich löschen?";
 "This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
-// Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefinierter Stil mit demselben Namen existiert bereits.";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "Möchten Sie es ersetzen?\nErsetzte Thema kann nicht wiederhergestellt werden.";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Löschen";
@@ -434,10 +431,9 @@
 
 // Import syntax style file choose openPanel button
 "Import" = "Importieren";
-// Importing same name style alert title
-"The “%@” style already exists." = "Der Stil „%@“ existiert bereits.";
-// Importing same name style alert info
-"Do you want to replace it?\nReplaced style can’t be restored." = "Möchten Sie ihn ersetzen?\n\nErsetzter Stil kann nicht wiederhergestellt werden.";
+// Importing same name style alert
+"A new style named “%@” will be installed, but a custom style with the same name already exists." = "Ein neuer Stil mit dem Namen „%@“ wird installiert, doch ein benutzerdefinierter Stil mit demselben Namen existiert bereits.";
+"Do you want to replace it?\nReplaced style can’t be restored." = "Möchten Sie ihn ersetzen?\nErsetzter Stil kann nicht wiederhergestellt werden.";
 
 // Export syntax style file savePanel label
 "Export As:" = "Exportieren Als:";
@@ -459,6 +455,10 @@
 
 // Theme description meda data for migrated theme
 "Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "Aus der vorherigen Einstellung in CotEditor 1.x automatisch migriertes Thema";
+
+// Theme import duplicated alert
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefiniertes Thema mit demselben Namen existiert bereits.";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "Möchten Sie es ersetzen?\nErsetzte Thema kann nicht wiederhergestellt werden.";
 
 
 

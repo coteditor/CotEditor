@@ -30,6 +30,7 @@
 #import "CESyntaxStyle.h"
 #import "CESyntaxDictionaryKeys.h"
 #import "CEDefaults.h"
+#import "CEErrors.h"
 
 #import <YAML-Framework/YAMLSerialization.h>
 
@@ -300,7 +301,17 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         return [self importLegacyStyleWithFileURL:fileURL];
     }
     
-    return [super importSettingWithFileURL:fileURL error:outError];
+    BOOL success = [super importSettingWithFileURL:fileURL error:outError];
+    
+    // replace error message
+    if (outError && [[*outError domain] isEqualToString:CEErrorDomain] && [*outError code] == CESettingImportFileDuplicatedError) {
+        NSMutableDictionary<NSString *, id> *userInfo = [[*outError userInfo] mutableCopy];
+        userInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"A new style named “%@” will be installed, but a custom style with the same name already exists.", nil);
+        userInfo[NSLocalizedRecoverySuggestionErrorKey] = NSLocalizedString(@"Do you want to replace it?\nReplaced style can’t be restored.", nil);
+        *outError = [NSError errorWithDomain:CEErrorDomain code:CESettingImportFileDuplicatedError userInfo:userInfo];
+    }
+    
+    return success;
 }
 
 
