@@ -136,36 +136,6 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 #pragma mark Public Methods
 
 //------------------------------------------------------
-/// build Script menu
-- (void)buildScriptMenu:(nullable id)sender
-//------------------------------------------------------
-{
-    NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu];
-    [menu removeAllItems];
-
-    [self addChildFileItemTo:menu fromDir:[self scriptsDirectoryURL]];
-    
-    NSMenuItem *separatorItem = [NSMenuItem separatorItem];
-    [separatorItem setTag:CEDefaultScriptMenuItemTag];
-    [menu addItem:separatorItem];
-    
-    NSMenuItem *openMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", nil)
-                                                          action:@selector(openScriptFolder:)
-                                                   keyEquivalent:@"a"];
-    [openMenuItem setTarget:self];
-    [openMenuItem setTag:CEDefaultScriptMenuItemTag];
-    [menu addItem:openMenuItem];
-    
-    NSMenuItem *updateMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", nil)
-                                                action:@selector(buildScriptMenu:)
-                                         keyEquivalent:@""];
-    [updateMenuItem setTarget:self];
-    [updateMenuItem setTag:CEDefaultScriptMenuItemTag];
-    [menu addItem:updateMenuItem];
-}
-
-
-//------------------------------------------------------
 /// return menu for context menu
 - (nullable NSMenu *)contexualMenu
 //------------------------------------------------------
@@ -241,6 +211,36 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
         
         [self runShellScript:URL];
     }
+}
+
+
+//------------------------------------------------------
+/// build Script menu
+- (IBAction)buildScriptMenu:(nullable id)sender
+//------------------------------------------------------
+{
+    NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu];
+    [menu removeAllItems];
+    
+    [self addChildFileItemTo:menu fromDir:[self scriptsDirectoryURL]];
+    
+    NSMenuItem *separatorItem = [NSMenuItem separatorItem];
+    [separatorItem setTag:CEDefaultScriptMenuItemTag];
+    [menu addItem:separatorItem];
+    
+    NSMenuItem *openMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", nil)
+                                                          action:@selector(openScriptFolder:)
+                                                   keyEquivalent:@"a"];
+    [openMenuItem setTarget:self];
+    [openMenuItem setTag:CEDefaultScriptMenuItemTag];
+    [menu addItem:openMenuItem];
+    
+    NSMenuItem *updateMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", nil)
+                                                            action:@selector(buildScriptMenu:)
+                                                     keyEquivalent:@""];
+    [updateMenuItem setTarget:self];
+    [updateMenuItem setTag:CEDefaultScriptMenuItemTag];
+    [menu addItem:updateMenuItem];
 }
 
 

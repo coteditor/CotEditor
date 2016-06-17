@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,12 +36,12 @@
 
 
 // Public method
-- (void)buildScriptMenu:(nullable id)sender;
 - (nullable NSMenu *)contexualMenu;
 
 
 // Action Message
 - (IBAction)launchScript:(nullable id)sender;
+- (IBAction)buildScriptMenu:(nullable id)sender;
 - (IBAction)openScriptFolder:(nullable id)sender;
 
 @end
