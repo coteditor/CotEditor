@@ -8,7 +8,7 @@
         <scene sceneID="sAX-Gn-44h">
             <objects>
                 <windowController id="0UB-Lz-R6c" customClass="CEWindowController" sceneMemberID="viewController">
-                    <window key="window" title="Untitled" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="document" id="gE4-1J-3li" customClass="CEAlphaWindow">
+                    <window key="window" title="Untitled" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="document" id="gE4-1J-3li" userLabel="Window" customClass="CEAlphaWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>

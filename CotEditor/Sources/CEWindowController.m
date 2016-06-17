@@ -94,6 +94,16 @@
 
 
 // ------------------------------------------------------
+/// cascade initial window position
+- (BOOL)shouldCascadeWindows
+// ------------------------------------------------------
+{
+    // -> It returns NO by default if the window controller was invoked from a storyboard.
+    return YES;
+}
+
+
+// ------------------------------------------------------
 /// apply passed-in document instance to window
 - (void)setDocument:(nullable id)document
 // ------------------------------------------------------
