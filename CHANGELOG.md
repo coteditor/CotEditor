@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix “Verilog” syntax style.
+- Fix update range of syntax highlight while editing.
 
 
 
