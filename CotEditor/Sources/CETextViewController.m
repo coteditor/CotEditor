@@ -70,7 +70,7 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultHighlightCurrentLineKey];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    // detatch textStorage safely
+    // detach textStorage safely
     [[[self textView] textStorage] removeLayoutManager:[[self textView] layoutManager]];
 }
 
