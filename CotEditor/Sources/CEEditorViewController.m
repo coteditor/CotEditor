@@ -129,10 +129,10 @@
 
 // ------------------------------------------------------
 /// 行番号表示設定をセット
-- (void)setShowsLineNum:(BOOL)showsLineNum
+- (void)setShowsLineNumber:(BOOL)showsLineNumber
 // ------------------------------------------------------
 {
-    [[self textViewController] setShowsLineNumber:showsLineNum];
+    [[self textViewController] setShowsLineNumber:showsLineNumber];
 }
 
 

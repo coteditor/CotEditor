@@ -53,7 +53,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 @interface CEPrintView () <NSLayoutManagerDelegate>
 
 @property (nonatomic) CGFloat lineHeight;
-@property (nonatomic) BOOL printsLineNum;
+@property (nonatomic) BOOL printsLineNumber;
 @property (nonatomic) CGFloat xOffset;
 @property (nonatomic, nullable) CESyntaxStyle *syntaxStyle;
 @property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
@@ -121,7 +121,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     [NSGraphicsContext restoreGraphicsState];
     
     // draw line numbers if needed
-    if ([self printsLineNum]) {
+    if ([self printsLineNumber]) {
         // prepare text attributes for line numbers
         CGFloat fontSize = round(0.9 * [[self font] pointSize]);
         NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey];
@@ -336,18 +336,18 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     // check whether print line numbers
     switch ((CELineNumberPrintMode)[settings[CEPrintLineNumberKey] unsignedIntegerValue]) {
         case CELinePrintNo:
-            [self setPrintsLineNum:NO];
+            [self setPrintsLineNumber:NO];
             break;
         case CELinePrintSameAsDocument:
-            [self setPrintsLineNum:[self documentShowsLineNum]];
+            [self setPrintsLineNumber:[self documentShowsLineNumber]];
             break;
         case CELinePrintYes:
-            [self setPrintsLineNum:YES];
+            [self setPrintsLineNumber:YES];
             break;
     }
     
     // adjust paddings considering the line numbers
-    if ([self printsLineNum]) {
+    if ([self printsLineNumber]) {
         [self setXOffset:kLineFragmentPadding];
     } else {
         [self setXOffset:0];

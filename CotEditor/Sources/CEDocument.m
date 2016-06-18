@@ -603,7 +603,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     [printView setFilePath:[[self fileURL] path]];
     [printView setSyntaxName:[[self syntaxStyle] styleName]];
     [printView setDocumentShowsInvisibles:[[self editor] showsInvisibles]];
-    [printView setDocumentShowsLineNum:[[self editor] showsLineNum]];
+    [printView setDocumentShowsLineNumber:[[self editor] showsLineNumber]];
     
     // set font for printing
     NSFont *font;

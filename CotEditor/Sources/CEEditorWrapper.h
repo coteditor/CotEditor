@@ -37,7 +37,7 @@
 
 @property (nonatomic, nullable) CEDocument *document;
 
-@property (nonatomic) BOOL showsLineNum;
+@property (nonatomic) BOOL showsLineNumber;
 @property (nonatomic) BOOL wrapsLines;
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL showsInvisibles;

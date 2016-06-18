@@ -70,7 +70,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         _showsInvisibles = [defaults boolForKey:CEDefaultShowInvisiblesKey];
-        _showsLineNum = [defaults boolForKey:CEDefaultShowLineNumbersKey];
+        _showsLineNumber = [defaults boolForKey:CEDefaultShowLineNumbersKey];
         _showsNavigationBar = [defaults boolForKey:CEDefaultShowNavigationBarKey];
         _wrapsLines = [defaults boolForKey:CEDefaultWrapLinesKey];
         _verticalLayoutOrientation = [defaults boolForKey:CEDefaultLayoutTextVerticalKey];
@@ -111,7 +111,7 @@
 // ------------------------------------------------------
 {
     return @[NSStringFromSelector(@selector(showsNavigationBar)),
-             NSStringFromSelector(@selector(showsLineNum)),
+             NSStringFromSelector(@selector(showsLineNumber)),
              NSStringFromSelector(@selector(showsPageGuide)),
              NSStringFromSelector(@selector(showsInvisibles)),
              NSStringFromSelector(@selector(verticalLayoutOrientation)),
@@ -132,7 +132,7 @@
     NSString *title;
     
     if ([menuItem action] == @selector(toggleLineNumber:)) {
-        title = [self showsLineNum] ? @"Hide Line Numbers" : @"Show Line Numbers";
+        title = [self showsLineNumber] ? @"Hide Line Numbers" : @"Show Line Numbers";
         
     } else if ([menuItem action] == @selector(toggleNavigationBar:)) {
         title = [self showsNavigationBar] ? @"Hide Navigation Bar" : @"Show Navigation Bar";
@@ -449,13 +449,13 @@
 
 // ------------------------------------------------------
 /// 行番号の表示をする／しないをセット
-- (void)setShowsLineNum:(BOOL)showsLineNum
+- (void)setShowsLineNumber:(BOOL)showsLineNumber
 // ------------------------------------------------------
 {
-    _showsLineNum = showsLineNum;
+    _showsLineNumber = showsLineNumber;
     
     for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
-        [viewController setShowsLineNum:showsLineNum];
+        [viewController setShowsLineNumber:showsLineNumber];
     }
 }
 
@@ -560,7 +560,7 @@
 - (IBAction)toggleLineNumber:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setShowsLineNum:![self showsLineNum]];
+    [self setShowsLineNumber:![self showsLineNumber]];
 }
 
 
@@ -797,7 +797,7 @@
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
     [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:baseViewController];
     
-    [editorViewController setShowsLineNum:[self showsLineNum]];
+    [editorViewController setShowsLineNumber:[self showsLineNumber]];
     [editorViewController setShowsNavigationBar:[self showsNavigationBar] animate:NO];
     [[editorViewController textView] setWrapsLines:[self wrapsLines]];
     [[editorViewController textView] setShowsInvisibles:[self showsInvisibles]];

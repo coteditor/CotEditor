@@ -44,7 +44,7 @@
 
 
 // public method
-- (void)setShowsLineNum:(BOOL)showsLineNum;
+- (void)setShowsLineNumber:(BOOL)showsLineNumber;
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle;
 
