@@ -251,12 +251,11 @@
     // parse syntax
     [[self syntaxStyle] invalidateOutline];
     if ([[self syntaxStyle] canParse]) {
-        // invalidate only edited lines
-        NSRange updateRange = [[textStorage string] lineRangeForRange:[textStorage editedRange]];
         // perform highlight in the next run loop to give layoutManager time to update temporary attribute
+        NSRange updateRange = [textStorage editedRange];
         CESyntaxStyle *syntaxStyle = [self syntaxStyle];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [syntaxStyle highlightRange:updateRange];
+            [syntaxStyle highlightAroundEditedRange:updateRange];
         });
     }
     

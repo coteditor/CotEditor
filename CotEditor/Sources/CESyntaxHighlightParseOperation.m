@@ -345,7 +345,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
          NSRange endRange = [endRegex rangeOfFirstMatchInString:string
                                                         options:NSMatchingWithTransparentBounds | NSMatchingWithoutAnchoringBounds
                                                           range:NSMakeRange(NSMaxRange(beginRange),
-                                                                            [string length] - NSMaxRange(beginRange))];
+                                                                            NSMaxRange(parseRange) - NSMaxRange(beginRange))];
          
          if (endRange.location != NSNotFound) {
              [ranges addObject:[NSValue valueWithRange:NSUnionRange(beginRange, endRange)]];

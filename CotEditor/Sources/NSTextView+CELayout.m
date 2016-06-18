@@ -30,6 +30,29 @@
 #import "CEGeometry.h"
 
 
+@implementation NSTextView (CERange)
+
+// ------------------------------------------------------
+/// calculate visible range
+- (NSRange)visibleRange
+// ------------------------------------------------------
+{
+    NSPoint containerOrigin = [self textContainerOrigin];
+    NSRect visibleRect = NSOffsetRect([[self enclosingScrollView] documentVisibleRect],
+                                      -containerOrigin.x,  -containerOrigin.y);
+    NSRange glyphRange = [[self layoutManager] glyphRangeForBoundingRectWithoutAdditionalLayout:visibleRect
+                                                                                inTextContainer:[self textContainer]];
+    
+    return [[self layoutManager] characterRangeForGlyphRange:glyphRange actualGlyphRange:NULL];
+}
+
+@end
+
+
+
+
+#pragma mark -
+
 @implementation NSTextView (CETextWrapping)
 
 // ------------------------------------------------------

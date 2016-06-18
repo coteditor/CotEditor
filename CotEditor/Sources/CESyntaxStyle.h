@@ -76,7 +76,7 @@
 @interface CESyntaxStyle (Highlighting)
 
 - (void)highlightWholeStringWithCompletionHandler:(nullable void (^)())completionHandler;
-- (void)highlightRange:(NSRange)range;
+- (void)highlightAroundEditedRange:(NSRange)editedRange;
 
 @end
 

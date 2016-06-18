@@ -28,6 +28,13 @@
 @import Cocoa;
 
 
+@interface NSTextView (CERange)
+
+- (NSRange)visibleRange;
+
+@end
+
+
 @interface NSTextView (CETextWrapping)
 
 - (BOOL)wrapsLines;

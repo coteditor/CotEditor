@@ -36,6 +36,8 @@
 #import "CEProgressViewController.h"
 #import "CEDefaults.h"
 
+#import "NSTextView+CELayout.h"
+
 
 // parsing constants
 static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
@@ -451,7 +453,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// 表示されている部分をカラーリング
-- (void)highlightRange:(NSRange)range
+- (void)highlightAroundEditedRange:(NSRange)editedRange
 // ------------------------------------------------------
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultEnableSyntaxHighlightKey]) { return; }
@@ -464,15 +466,25 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     
     NSUInteger bufferLength = [[NSUserDefaults standardUserDefaults] integerForKey:CEDefaultColoringRangeBufferLengthKey];
     NSRange wholeRange = NSMakeRange(0, [string length]);
-    NSRange highlightRange;
+    NSRange highlightRange = editedRange;
     
     // highlight whole if string is enough short
     if (wholeRange.length <= bufferLength) {
         highlightRange = wholeRange;
         
     } else {
-        NSUInteger start = range.location;
-        NSUInteger end = NSMaxRange(range) - 1;
+        // highlight whole visible area if edited point is visible
+        for (NSLayoutManager *layoutManager in [textStorage layoutManagers]) {
+            NSRange visibleRange = [[layoutManager firstTextView] visibleRange];
+            
+            if (NSIntersectionRange(editedRange, visibleRange).length > 0) {
+                highlightRange = NSUnionRange(highlightRange, visibleRange);
+            }
+        }
+        highlightRange = [string lineRangeForRange:highlightRange];
+        
+        NSUInteger start = highlightRange.location;
+        NSUInteger end = NSMaxRange(highlightRange) - 1;
         
         // 直前／直後が同色ならカラーリング範囲を拡大する
         NSLayoutManager *layoutManager = [[textStorage layoutManagers] firstObject];
