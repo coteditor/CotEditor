@@ -129,7 +129,6 @@
 		2A4DB13D19A265BA005A4F7C /* CEDraggableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4DB13C19A265BA005A4F7C /* CEDraggableArrayController.m */; };
 		2A51793A1A40A3B500A3F852 /* CEShortcutKeyField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5179391A40A3B500A3F852 /* CEShortcutKeyField.m */; };
 		2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
-		2A5411C319852C1C008B43DA /* EditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* EditorView.xib */; };
 		2A55335D1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */; };
 		2A55335E1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A55335C1B556F2A0056FF3E /* CEGeneralPaneController.m */; };
 		2A586A1619A4FA9D0053F5E3 /* CEKeyBindingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A586A1519A4FA9D0053F5E3 /* CEKeyBindingsViewController.m */; };
@@ -148,6 +147,10 @@
 		2A5DBE5C1B5D2DBD00F8CB13 /* SyntaxInfoEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759E19E77E87001DAB88 /* SyntaxInfoEditView.xib */; };
 		2A5DBE5D1B5D2DC000F8CB13 /* SyntaxValidationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */; };
 		2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */; };
+		2A5F7CA51D152589001D83BC /* EditorView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F7CA31D152589001D83BC /* EditorView.storyboard */; };
+		2A5F7CA61D152589001D83BC /* EditorView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F7CA31D152589001D83BC /* EditorView.storyboard */; };
+		2A5F7CA91D15295D001D83BC /* CETextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F7CA81D15295D001D83BC /* CETextViewController.m */; };
+		2A5F7CAA1D15295D001D83BC /* CETextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F7CA81D15295D001D83BC /* CETextViewController.m */; };
 		2A607B0D1905EB5500F3A991 /* CEColorCodePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A607B0C1905EB5500F3A991 /* CEColorCodePanelController.m */; };
 		2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */; };
 		2A61B7FE1B52D14400CE3AFB /* container-migration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A61B7FD1B52D14400CE3AFB /* container-migration.plist */; };
@@ -210,7 +213,6 @@
 		2A6F0D731B5500E100C2D03C /* EditPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9819016ABB00A9D6EF /* EditPane.xib */; };
 		2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */; };
 		2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149DA419016ABB00A9D6EF /* WindowPane.xib */; };
-		2A6F0D771B5500E100C2D03C /* EditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5411C119852C1C008B43DA /* EditorView.xib */; };
 		2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */; };
 		2A6F0D791B5500E100C2D03C /* FileDropPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9A19016ABB00A9D6EF /* FileDropPane.xib */; };
 		2A6F0D7A1B5500E100C2D03C /* FormatPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9C19016ABB00A9D6EF /* FormatPane.xib */; };
@@ -426,8 +428,6 @@
 		2ADD36931CFCABA400F3175D /* CEDocumentInspectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36911CFCABA400F3175D /* CEDocumentInspectorViewController.m */; };
 		2ADD36971CFCAD6B00F3175D /* CEInspectorTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36961CFCAD6B00F3175D /* CEInspectorTabView.m */; };
 		2ADD36981CFCAD6B00F3175D /* CEInspectorTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36961CFCAD6B00F3175D /* CEInspectorTabView.m */; };
-		2ADD36B01CFD666E00F3175D /* CETextViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36AF1CFD666E00F3175D /* CETextViewDelegate.m */; };
-		2ADD36B11CFD666E00F3175D /* CETextViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36AF1CFD666E00F3175D /* CETextViewDelegate.m */; };
 		2ADD36B41CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */; };
 		2ADD36B51CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */; };
 		2AE0C08F1C422A5200E52E04 /* CETextView+Transformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */; };
@@ -681,6 +681,12 @@
 		2A5D2B9018E1EC790020AA1F /* CESyntaxMappingConflictsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxMappingConflictsViewController.m; sourceTree = "<group>"; };
 		2A5E4D7B1A44F0D50072013F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		2A5E4D7D1A44F4A30072013F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ServicesMenu.strings"; sourceTree = "<group>"; };
+		2A5F7CA41D152589001D83BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditorView.storyboard; sourceTree = "<group>"; };
+		2A5F7CA71D15295D001D83BC /* CETextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextViewController.h; sourceTree = "<group>"; };
+		2A5F7CA81D15295D001D83BC /* CETextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETextViewController.m; sourceTree = "<group>"; };
+		2A5F7CAB1D157506001D83BC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditorView.strings; sourceTree = "<group>"; };
+		2A5F7CAC1D157509001D83BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EditorView.strings"; sourceTree = "<group>"; };
+		2A5F7CAD1D15750B001D83BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A607B04190582CE00F3A991 /* CEThemableProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEThemableProtocol.h; sourceTree = "<group>"; };
 		2A607B0B1905EB5400F3A991 /* CEColorCodePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEColorCodePanelController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2A607B0C1905EB5500F3A991 /* CEColorCodePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEColorCodePanelController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -718,7 +724,6 @@
 		2A69075B1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2A69075D1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
 		2A69075E1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
-		2A69075F1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A6907601B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2A6907611B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		2A6907621B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProgressView.strings; sourceTree = "<group>"; };
@@ -810,7 +815,6 @@
 		2AA0AC5A1A28765E0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
 		2AA0AC5B1A28766A0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MigrationWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC5C1A2876740063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
-		2AA0AC5E1A2876890063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		2AA0AC5F1A2876930063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
 		2AA0AC601A28769C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ProgressView.strings"; sourceTree = "<group>"; };
 		2AA0AC621A2876CC0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindow.strings"; sourceTree = "<group>"; };
@@ -902,7 +906,6 @@
 		2AD488381A07FF1A00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2AD488391A07FF1A00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MigrationWindow.xib; sourceTree = "<group>"; };
 		2AD4883A1A07FF1A00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
-		2AD4883C1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EditorView.xib; sourceTree = "<group>"; };
 		2AD4883D1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
 		2AD4883E1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProgressView.xib; sourceTree = "<group>"; };
 		2AD4883F1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CharacterPopover.xib; sourceTree = "<group>"; };
@@ -928,7 +931,6 @@
 		2AD488541A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UnicodePanel.xib; sourceTree = "<group>"; };
 		2AD488561A07FF8F00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		2AD488571A080A8C00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
-		2AD488581A080AF100B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2AD488591A080C1800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2AD4885A1A080C9500B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		2AD4885B1A08115800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MigrationWindow.strings; sourceTree = "<group>"; };
@@ -973,8 +975,6 @@
 		2ADD36911CFCABA400F3175D /* CEDocumentInspectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEDocumentInspectorViewController.m; sourceTree = "<group>"; };
 		2ADD36951CFCAD6B00F3175D /* CEInspectorTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEInspectorTabView.h; sourceTree = "<group>"; };
 		2ADD36961CFCAD6B00F3175D /* CEInspectorTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEInspectorTabView.m; sourceTree = "<group>"; };
-		2ADD36AE1CFD666E00F3175D /* CETextViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextViewDelegate.h; sourceTree = "<group>"; };
-		2ADD36AF1CFD666E00F3175D /* CETextViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETextViewDelegate.m; sourceTree = "<group>"; };
 		2ADD36B21CFD6C3C00F3175D /* NSTextView+CELayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+CELayout.h"; sourceTree = "<group>"; };
 		2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+CELayout.m"; sourceTree = "<group>"; };
 		2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CETextView+Transformation.m"; sourceTree = "<group>"; };
@@ -1560,8 +1560,8 @@
 			isa = PBXGroup;
 			children = (
 				2A607B04190582CE00F3A991 /* CEThemableProtocol.h */,
-				2ADD36AE1CFD666E00F3175D /* CETextViewDelegate.h */,
-				2ADD36AF1CFD666E00F3175D /* CETextViewDelegate.m */,
+				2A5F7CA71D15295D001D83BC /* CETextViewController.h */,
+				2A5F7CA81D15295D001D83BC /* CETextViewController.m */,
 				25B2C24A07FA6BC400F4EFC7 /* CETextView.h */,
 				25B2C24B07FA6BC400F4EFC7 /* CETextView.m */,
 				2A63CEC01D0AFE5D00ED8186 /* CETextView+Accessories.m */,
@@ -1628,7 +1628,7 @@
 				2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */,
 				2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */,
 				2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */,
-				2A5411C119852C1C008B43DA /* EditorView.xib */,
+				2A5F7CA31D152589001D83BC /* EditorView.storyboard */,
 			);
 			name = "Document Window";
 			sourceTree = "<group>";
@@ -2109,13 +2109,13 @@
 				2A6F0D6E1B5500E100C2D03C /* PrintPanelAccessory.xib in Resources */,
 				2A6F0D6F1B5500E100C2D03C /* ThemeView.xib in Resources */,
 				2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */,
+				2A5F7CA61D152589001D83BC /* EditorView.storyboard in Resources */,
 				2A6F0D701B5500E100C2D03C /* KeyBindingsPane.xib in Resources */,
 				2A6F0D711B5500E100C2D03C /* GeneralPane.xib in Resources */,
 				2A6F0D721B5500E100C2D03C /* MigrationWindow.xib in Resources */,
 				2A6F0D731B5500E100C2D03C /* EditPane.xib in Resources */,
 				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictView.xib in Resources */,
 				2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */,
-				2A6F0D771B5500E100C2D03C /* EditorView.xib in Resources */,
 				2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */,
 				2A6F0D791B5500E100C2D03C /* FileDropPane.xib in Resources */,
 				2A6F0D7A1B5500E100C2D03C /* FormatPane.xib in Resources */,
@@ -2221,7 +2221,6 @@
 				2A6602DB1D05D7C8003E8D87 /* GoToLineView.xib in Resources */,
 				2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictView.xib in Resources */,
 				2A149DAD19016ABB00A9D6EF /* WindowPane.xib in Resources */,
-				2A5411C319852C1C008B43DA /* EditorView.xib in Resources */,
 				2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */,
 				2A149DA819016ABB00A9D6EF /* FileDropPane.xib in Resources */,
 				2A149DA919016ABB00A9D6EF /* FormatPane.xib in Resources */,
@@ -2252,6 +2251,7 @@
 				8CEF66C70995E4A700C65A84 /* PageGuide_On.tiff in Resources */,
 				8C3E2D610808E210009894D1 /* WrapLines_Off.tiff in Resources */,
 				8C3E2D620808E210009894D1 /* WrapLines_On.tiff in Resources */,
+				2A5F7CA51D152589001D83BC /* EditorView.storyboard in Resources */,
 				2AC2C1D819881543007968CB /* VerticalOrientation_Off.tiff in Resources */,
 				2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */,
 				2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */,
@@ -2446,6 +2446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A5F7CAA1D15295D001D83BC /* CETextViewController.m in Sources */,
 				2A476CAB1D09C6B50088E37A /* NSURL+CEAdditions.m in Sources */,
 				2A6F0DA41B5500E100C2D03C /* main.m in Sources */,
 				2A6F0DA51B5500E100C2D03C /* Constants.m in Sources */,
@@ -2536,7 +2537,6 @@
 				2A6F0DDC1B5500E100C2D03C /* CEAppearancePaneController.m in Sources */,
 				2A4C9A801D099CD900C76F28 /* CEFileDropComposer.m in Sources */,
 				2A6F0DDD1B5500E100C2D03C /* CEBackgroundView.m in Sources */,
-				2ADD36B11CFD666E00F3175D /* CETextViewDelegate.m in Sources */,
 				2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */,
 				2A6F0DDF1B5500E100C2D03C /* CEHexColorTransformer.m in Sources */,
 				2A6F0DE01B5500E100C2D03C /* CESyntaxMappingConflictsViewController.m in Sources */,
@@ -2706,6 +2706,7 @@
 				2A3A1D841C17463E000243D8 /* CEDotView.m in Sources */,
 				2AD49C231D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2AE356461A86D32500E29FEF /* CEClipView.m in Sources */,
+				2A5F7CA91D15295D001D83BC /* CETextViewController.m in Sources */,
 				2A2184201D043A0A00522EF5 /* CEMainViewController.m in Sources */,
 				2A476CAA1D09C6B50088E37A /* NSURL+CEAdditions.m in Sources */,
 				2A3FB2AD18ECEFF200D9CB2C /* CESyntaxEditViewController.m in Sources */,
@@ -2726,7 +2727,6 @@
 				2AD9625F1B53496500D46C3A /* NSString+Sandboxing.m in Sources */,
 				2A3A75B319E77F32001DAB88 /* CESyntaxValidationViewController.m in Sources */,
 				2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */,
-				2ADD36B01CFD666E00F3175D /* CETextViewDelegate.m in Sources */,
 				2AE2E9D519D2CF00000D66A9 /* CEEncodingManager.m in Sources */,
 				2A009ACB1A57BA8B00C3D542 /* CETextFinder.m in Sources */,
 				2A41CB461C391B7400F9122B /* CEErrors.m in Sources */,
@@ -3109,17 +3109,6 @@
 			name = ReportTemplate.md;
 			sourceTree = "<group>";
 		};
-		2A5411C119852C1C008B43DA /* EditorView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AD4883C1A07FF1B00B795CB /* Base */,
-				2AD488581A080AF100B795CB /* ja */,
-				2AA0AC5E1A2876890063ED1B /* zh-Hans */,
-				2A69075F1B8443AA00D0F3A2 /* de */,
-			);
-			name = EditorView.xib;
-			sourceTree = "<group>";
-		};
 		2A5ABE77191861E3009265DF /* UnicodePanel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3150,6 +3139,17 @@
 				2A69077C1B8443AB00D0F3A2 /* de */,
 			);
 			name = ServicesMenu.strings;
+			sourceTree = "<group>";
+		};
+		2A5F7CA31D152589001D83BC /* EditorView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5F7CA41D152589001D83BC /* Base */,
+				2A5F7CAB1D157506001D83BC /* ja */,
+				2A5F7CAC1D157509001D83BC /* zh-Hans */,
+				2A5F7CAD1D15750B001D83BC /* de */,
+			);
+			name = EditorView.storyboard;
 			sourceTree = "<group>";
 		};
 		2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */ = {

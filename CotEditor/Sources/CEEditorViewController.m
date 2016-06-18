@@ -28,20 +28,14 @@
 
 #import "CEEditorViewController.h"
 #import "CENavigationBarController.h"
+#import "CETextViewController.h"
 #import "CETextView.h"
-#import "CESyntaxStyle.h"
-
-#import "CEGoToLineViewController.h"
 
 
 @interface CEEditorViewController ()
 
-@property (nonatomic, nullable, weak) IBOutlet __kindof NSScrollView *scrollView;
-
-
-// readonly
-@property (readwrite, nullable, nonatomic) IBOutlet CETextView *textView;
-@property (readwrite, nullable, nonatomic) IBOutlet CENavigationBarController *navigationBarController;
+@property (nonatomic, nullable, weak) IBOutlet NSSplitViewItem *navigationBarItem;
+@property (nonatomic, nullable, weak) IBOutlet NSSplitViewItem *textViewItem;
 
 @end
 
@@ -55,24 +49,6 @@
 #pragma mark Superclass Methods
 
 // ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [_textStorage removeLayoutManager:[_textView layoutManager]];
-}
-
-
-// ------------------------------------------------------
-/// nib name
-- (nullable NSString *)nibName
-// ------------------------------------------------------
-{
-    return @"EditorView";
-}
-
-
-// ------------------------------------------------------
 /// setup UI
 - (void)viewDidLoad
 // ------------------------------------------------------
@@ -80,11 +56,17 @@
     [super viewDidLoad];
     
     [[self navigationBarController] setTextView:[self textView]];
+}
+
+
+// ------------------------------------------------------
+/// avoid showing draggable cursor
+- (NSRect)splitView:(nonnull NSSplitView *)splitView effectiveRect:(NSRect)proposedEffectiveRect forDrawnRect:(NSRect)drawnRect ofDividerAtIndex:(NSInteger)dividerIndex
+// ------------------------------------------------------
+{
+    proposedEffectiveRect.size = NSZeroSize;
     
-    [self addChildViewController:[self navigationBarController]];
-    
-    // set textStorage to textView
-    [[[self textView] layoutManager] replaceTextStorage:[self textStorage]];
+    return [super splitView:splitView effectiveRect:proposedEffectiveRect forDrawnRect:drawnRect ofDividerAtIndex:dividerIndex];
 }
 
 
@@ -107,11 +89,50 @@
 #pragma mark Public Methods
 
 // ------------------------------------------------------
+
+- (void)setTextStorage:(NSTextStorage *)textStorage
+// ------------------------------------------------------
+{
+    _textStorage = textStorage;
+    
+    // set textStorage to textView
+    [[[self textView] layoutManager] replaceTextStorage:textStorage];
+}
+
+
+// ------------------------------------------------------
+
+- (nullable CETextView *)textView
+// ------------------------------------------------------
+{
+    return [[self textViewController] textView];
+}
+
+
+// ------------------------------------------------------
+
+- (nullable CENavigationBarController *)navigationBarController
+// ------------------------------------------------------
+{
+    return (CENavigationBarController *)[[self navigationBarItem] viewController];
+}
+
+
+// ------------------------------------------------------
+
+- (nullable CETextViewController *)textViewController
+// ------------------------------------------------------
+{
+    return (CETextViewController *)[[self textViewItem] viewController];
+}
+
+
+// ------------------------------------------------------
 /// 行番号表示設定をセット
 - (void)setShowsLineNum:(BOOL)showsLineNum
 // ------------------------------------------------------
 {
-    [[self scrollView] setRulersVisible:showsLineNum];
+    [[self textViewController] setShowsLineNumber:showsLineNum];
 }
 
 
@@ -120,7 +141,11 @@
 - (void)setShowsNavigationBar:(BOOL)showsNavigationBar animate:(BOOL)performAnimation;
 // ------------------------------------------------------
 {
-    [[self navigationBarController] setShown:showsNavigationBar animate:performAnimation];
+    if (performAnimation) {
+        [[[self navigationBarItem] animator] setCollapsed:!showsNavigationBar];
+    } else {
+        [[self navigationBarItem] setCollapsed:!showsNavigationBar];
+    }
 }
 
 
@@ -129,10 +154,7 @@
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle
 // ------------------------------------------------------
 {
-    [[self textView] setInlineCommentDelimiter:[syntaxStyle inlineCommentDelimiter]];
-    [[self textView] setBlockCommentDelimiters:[syntaxStyle blockCommentDelimiters]];
-    [[self textView] setSyntaxCompletionWords:[syntaxStyle completionWords]];
-    [[self textView] setFirstSyntaxCompletionCharacterSet:[syntaxStyle firstCompletionCharacterSet]];
+    [[self textViewController] setSyntaxStyle:syntaxStyle];
 }
 
 
@@ -140,22 +162,11 @@
 #pragma mark Action Messages
 
 // ------------------------------------------------------
-/// show Go To sheet
-- (IBAction)gotoLocation:(nullable id)sender
-// ------------------------------------------------------
-{
-    CEGoToLineViewController *viewController = [[CEGoToLineViewController alloc] initWithTextView:[self textView]];
-    
-    [self presentViewControllerAsSheet:viewController];
-}
-
-
-// ------------------------------------------------------
 /// アウトラインメニューの前の項目を選択（メニューバーからのアクションを中継）
 - (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self navigationBarController] selectPrevItem:sender];
+    [[self navigationBarController] selectPrevItemOfOutlineMenu:sender];
 }
 
 
@@ -164,7 +175,7 @@
 - (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[self navigationBarController] selectNextItem:sender];
+    [[self navigationBarController] selectNextItemOfOutlineMenu:sender];
 }
 
 @end

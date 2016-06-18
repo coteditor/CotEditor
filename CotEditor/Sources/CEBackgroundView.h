@@ -32,7 +32,5 @@ IB_DESIGNABLE
 @interface CEBackgroundView : NSView
 
 @property (nonatomic, nullable) IBInspectable NSColor *fillColor;
-@property (nonatomic) IBInspectable BOOL drawsTopBorder;
-@property (nonatomic) IBInspectable BOOL drawsBottomBorder;
 
 @end

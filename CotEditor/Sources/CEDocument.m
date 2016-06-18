@@ -277,7 +277,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     //   - File Open:
     //       - CEDocument > readFromURL:ofType:error:
     //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-    //       - CETextViewDelegate > textView:shouldChangeTextInRange:replacementString:
+    //       - CETextViewController > textView:shouldChangeTextInRange:replacementString:
     string = [string stringByReplacingNewLineCharacersWith:CENewLineLF];
     
     [[self textStorage] replaceCharactersInRange:NSMakeRange(0, [[self textStorage] length]) withString:string];

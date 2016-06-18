@@ -1,11 +1,11 @@
 /*
  
- CETextViewDelegate.h
+ CETextViewController.m
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2016-05-31.
+ Created by 1024jp on 2016-06-18.
  
  ------------------------------------------------------------------------------
  
@@ -28,6 +28,22 @@
 @import Cocoa;
 
 
-@interface CETextViewDelegate : NSObject <NSTextViewDelegate>
+@class CETextView;
+@class CESyntaxStyle;
+
+
+@interface CETextViewController : NSViewController
+
+@property (nonatomic, nullable, weak) CESyntaxStyle *syntaxStyle;
+
+// readonly
+@property (readonly, nonatomic, nullable) CETextView *textView;
+
+
+// public methods
+- (void)setShowsLineNumber:(BOOL)showsLineNumber;
+
+// action messages
+- (IBAction)gotoLocation:(nullable id)sender;
 
 @end

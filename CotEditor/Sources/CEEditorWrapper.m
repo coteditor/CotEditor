@@ -731,7 +731,7 @@
     [[NSTextInputContext currentInputContext] discardMarkedText];
     
     // move focus to the next text view if the view to close has a focus
-    if ([[self window] firstResponder] == [currentEditorViewController textView]) {
+    if ([[self splitViewController] focusedSubviewController] == currentEditorViewController) {
         NSArray<CEEditorViewController *> *childViewControllers = [[self splitViewController] childViewControllers];
         NSUInteger count = [childViewControllers count];
         NSUInteger deleteIndex = [childViewControllers indexOfObject:currentEditorViewController];
@@ -790,7 +790,8 @@
 - (nonnull CEEditorViewController *)createEditorBasedViewController:(nullable CEEditorViewController *)baseViewController
 // ------------------------------------------------------
 {
-    CEEditorViewController *editorViewController = [[CEEditorViewController alloc] init];
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"EditorView" bundle:nil];
+    CEEditorViewController *editorViewController = [storyboard instantiateInitialController];
     [editorViewController setTextStorage:[[self document] textStorage]];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus

@@ -25,11 +25,11 @@
  
  */
 
-/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
-"MlW-Dz-FOk.ibShadowedToolTip" = "Zum vorherige Gliederungspunkt springen";
-
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "BUj-TD-scp"; */
-"BUj-TD-scp.ibShadowedToolTip" = "Zum nächste Gliederungspunkt springen";
+"BUj-TD-scp.ibShadowedToolTip" = "Zum vorherige Gliederungspunkt springen";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
+"MlW-Dz-FOk.ibShadowedToolTip" = "Zum nächste Gliederungspunkt springen";
 
 
 /* Class = "NSTextFieldCell"; title = "Extracting Outline..."; ObjectID = "aUE-uy-XLQ"; */

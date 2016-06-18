@@ -34,7 +34,7 @@
 @class CESyntaxStyle;
 
 
-@interface CEEditorViewController : NSViewController
+@interface CEEditorViewController : NSSplitViewController
 
 @property (nonatomic, nullable) NSTextStorage *textStorage;
 
@@ -49,7 +49,6 @@
 - (void)applySyntax:(nonnull CESyntaxStyle *)syntaxStyle;
 
 // action messages
-- (IBAction)gotoLocation:(nullable id)sender;
 - (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender;
 - (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender;
 

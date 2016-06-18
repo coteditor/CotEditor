@@ -1,11 +1,11 @@
 /*
  
- CETextViewDelegate.m
+ CETextViewController.m
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2016-05-31.
+ Created by 1024jp on 2016-06-18.
  
  ------------------------------------------------------------------------------
  
@@ -26,10 +26,12 @@
  
  */
 
-#import "CETextViewDelegate.h"
+#import "CETextViewController.h"
 #import "CETextView.h"
 
+#import "CESyntaxStyle.h"
 #import "CEScriptManager.h"
+#import "CEGoToLineViewController.h"
 
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -40,12 +42,12 @@
 static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
 
 
-@interface CETextViewDelegate ()
+@interface CETextViewController () <NSTextViewDelegate>
 
 @property (nonatomic, nullable, weak) NSTimer *currentLineUpdateTimer;
 @property (nonatomic) NSUInteger lastCursorLocation;
 
-@property (nonatomic, nullable) IBOutlet CETextView *textView;
+@property (readwrite, nonatomic, nullable) IBOutlet CETextView *textView;
 
 @end
 
@@ -54,44 +56,43 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
 
 #pragma mark -
 
-@implementation CETextViewDelegate
+@implementation CETextViewController
 
-#pragma mark Object Methods
-
-// ------------------------------------------------------
-/// initialize instance
-- (nonnull instancetype)init
-// ------------------------------------------------------
-{
-    self = [super init];
-    if (self) {
-        // observe change of defaults
-        [[NSUserDefaults standardUserDefaults] addObserver:self
-                                                forKeyPath:CEDefaultHighlightCurrentLineKey
-                                                   options:NSKeyValueObservingOptionNew
-                                                   context:NULL];
-        
-        // update current line highlight on changing frame size with a delay
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(setupCurrentLineUpdateTimer)
-                                                     name:NSViewFrameDidChangeNotification
-                                                   object:[self textView]];
-    }
-    return self;
-}
-
+#pragma mark Public Methods
 
 // ------------------------------------------------------
 /// clean up
 - (void)dealloc
 // ------------------------------------------------------
 {
+    [_currentLineUpdateTimer invalidate];
+    
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:CEDefaultHighlightCurrentLineKey];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    _textView = nil;
-    [_currentLineUpdateTimer invalidate];
+    // detatch textStorage safely
+    [[[self textView] textStorage] removeLayoutManager:[[self textView] layoutManager]];
+}
+
+
+// ------------------------------------------------------
+/// initialize instance
+- (void)viewDidLoad
+// ------------------------------------------------------
+{
+    [super viewDidLoad];
     
+    // observe change of defaults
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:CEDefaultHighlightCurrentLineKey
+                                               options:NSKeyValueObservingOptionNew
+                                               context:NULL];
+    
+    // update current line highlight on changing frame size with a delay
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setupCurrentLineUpdateTimer)
+                                                 name:NSViewFrameDidChangeNotification
+                                               object:[self textView]];
 }
 
 
@@ -115,6 +116,31 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
 
 
 
+#pragma mark Public Methods
+
+// ------------------------------------------------------
+/// change line number visibility
+- (void)setShowsLineNumber:(BOOL)showsLineNumber
+// ------------------------------------------------------
+{
+    [[self scrollView] setRulersVisible:showsLineNumber];
+}
+
+
+// ------------------------------------------------------
+/// シンタックススタイルを設定
+- (void)setSyntaxStyle:(nullable CESyntaxStyle *)syntaxStyle
+// ------------------------------------------------------
+{
+    _syntaxStyle = syntaxStyle;
+    
+    [[self textView] setInlineCommentDelimiter:[syntaxStyle inlineCommentDelimiter]];
+    [[self textView] setBlockCommentDelimiters:[syntaxStyle blockCommentDelimiters]];
+    [[self textView] setFirstSyntaxCompletionCharacterSet:[syntaxStyle firstCompletionCharacterSet]];
+}
+
+
+
 #pragma mark Delegate
 
 //=======================================================
@@ -133,7 +159,7 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
     //   - File Open:
     //       - CEDocument > readFromURL:ofType:error:
     //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-    //       - CETextViewDelegate > textView:shouldChangeTextInRange:replacementString:
+    //       - CETextViewController > textView:shouldChangeTextInRange:replacementString:
     
     if (!replacementString ||  // = only attributes changed
         ([replacementString length] == 0) ||  // = text deleted
@@ -193,8 +219,7 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
     
     // copy words defined in syntax style
     if ([defaults boolForKey:CEDefaultCompletesSyntaxWordsKey]) {
-        NSArray<NSString *> *syntaxWords = [(CETextView *)textView syntaxCompletionWords];
-        for (NSString *word in syntaxWords) {
+        for (NSString *word in [[self syntaxStyle] completionWords]) {
             if ([word rangeOfString:partialWord options:NSCaseInsensitiveSearch|NSAnchoredSearch].location != NSNotFound) {
                 [candidateWords addObject:word];
             }
@@ -291,7 +316,30 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
 
 
 
+#pragma mark Action Messages
+
+// ------------------------------------------------------
+/// show Go To sheet
+- (IBAction)gotoLocation:(nullable id)sender
+// ------------------------------------------------------
+{
+    CEGoToLineViewController *viewController = [[CEGoToLineViewController alloc] initWithTextView:[self textView]];
+    
+    [self presentViewControllerAsSheet:viewController];
+}
+
+
+
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// cast view to NSScrollView
+- (nullable NSScrollView *)scrollView
+// ------------------------------------------------------
+{
+    return (NSScrollView *)[self view];
+}
+
 
 // ------------------------------------------------------
 /// find the matching open brace and highlight it
@@ -381,10 +429,10 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
         [[self currentLineUpdateTimer] setFireDate:[NSDate dateWithTimeIntervalSinceNow:kCurrentLineUpdateInterval]];
     } else {
         [self setCurrentLineUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:kCurrentLineUpdateInterval
-                                                                   target:self
-                                                                 selector:@selector(updateCurrentLineRect)
-                                                                 userInfo:nil
-                                                                  repeats:NO]];
+                                                                         target:self
+                                                                       selector:@selector(updateCurrentLineRect)
+                                                                       userInfo:nil
+                                                                        repeats:NO]];
     }
 }
 

@@ -33,24 +33,17 @@
 #import "NSFont+CESize.h"
 
 
-static const CGFloat kDefaultHeight = 16.0;
-static const NSTimeInterval kDuration = 0.12;
-
-
 @interface CENavigationBarController ()
 
 @property (nonatomic, nullable, weak) IBOutlet NSPopUpButton *outlineMenu;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *prevButton;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *nextButton;
+
 @property (nonatomic, nullable, weak) IBOutlet NSButton *openSplitButton;
 @property (nonatomic, nullable, weak) IBOutlet NSButton *closeSplitButton;
-@property (nonatomic, nullable, weak) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @property (nonatomic, nullable, weak) IBOutlet NSProgressIndicator *outlineIndicator;
 @property (nonatomic, nullable, weak) IBOutlet NSTextField *outlineLoadingMessage;
-
-// readonly
-@property (readwrite, nonatomic, getter=isShown) BOOL shown;
 
 @end
 
@@ -74,23 +67,15 @@ static const NSTimeInterval kDuration = 0.12;
 
 // ------------------------------------------------------
 /// view is loaded
-- (void)awakeFromNib
+- (void)viewDidLoad
 // ------------------------------------------------------
 {
-    [super awakeFromNib];
+    [super viewDidLoad];
     
     // hide as default (avoid flick)
     [[self prevButton] setHidden:YES];
     [[self nextButton] setHidden:YES];
     [[self outlineMenu] setHidden:YES];
-    
-    [[self outlineIndicator] setUsesThreadedAnimation:YES];
-    
-    // observe text selection change to update outline menu selection
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(invalidateOutlineMenuSelection)
-                                                 name:NSTextViewDidChangeSelectionNotification
-                                               object:[self textView]];
 }
 
 
@@ -98,24 +83,19 @@ static const NSTimeInterval kDuration = 0.12;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// set to show navigation bar.
-- (void)setShown:(BOOL)isShown animate:(BOOL)performAnimation
+/// observe textView
+- (void)setTextView:(nullable NSTextView *)textView
 // ------------------------------------------------------
 {
-    [self setShown:isShown];
+    if (!textView) { return; }
     
-    NSLayoutConstraint *heightConstraint = [self heightConstraint];
-    CGFloat height = [self isShown] ? kDefaultHeight : 0.0;
+    _textView = textView;
     
-    if (performAnimation) {
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-            [context setDuration:kDuration];
-            [[heightConstraint animator] setConstant:height];
-        } completionHandler:nil];
-        
-    } else {
-        [heightConstraint setConstant:height];
-    }
+    // observe text selection change to update outline menu selection
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(invalidateOutlineMenuSelection)
+                                                 name:NSTextViewDidChangeSelectionNotification
+                                               object:textView];
 }
 
 
@@ -280,7 +260,7 @@ static const NSTimeInterval kDuration = 0.12;
 
 // ------------------------------------------------------
 /// set select prev item of outline menu
-- (IBAction)selectPrevItem:(nullable id)sender
+- (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self canSelectPrevItem]) { return; }
@@ -299,7 +279,7 @@ static const NSTimeInterval kDuration = 0.12;
 
 // ------------------------------------------------------
 /// set select next item of outline menu
-- (IBAction)selectNextItem:(nullable id)sender
+- (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender
 // ------------------------------------------------------
 {
     if (![self canSelectNextItem]) { return; }

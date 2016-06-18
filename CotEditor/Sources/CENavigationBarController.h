@@ -34,15 +34,10 @@
 
 @interface CENavigationBarController : NSViewController
 
-@property (nonatomic, nullable, strong) NSTextView *textView;  // NSTextView cannot be weak
-
-// readonly
-@property (readonly, nonatomic, getter=isShown) BOOL shown;
+@property (nonatomic, nullable, unsafe_unretained) NSTextView *textView;  // NSTextView cannot be weak
 
 
 // public method
-- (void)setShown:(BOOL)shown animate:(BOOL)performAnimation;
-
 - (void)setOutlineItems:(nonnull NSArray<CEOutlineItem *> *)outlineItems;
 - (void)updatePrevNextButtonEnabled;
 - (BOOL)canSelectPrevItem;
@@ -54,7 +49,7 @@
 
 
 // action messages
-- (IBAction)selectPrevItem:(nullable id)sender;
-- (IBAction)selectNextItem:(nullable id)sender;
+- (IBAction)selectPrevItemOfOutlineMenu:(nullable id)sender;
+- (IBAction)selectNextItemOfOutlineMenu:(nullable id)sender;
 
 @end

@@ -39,22 +39,8 @@
 {
     [NSGraphicsContext saveGraphicsState];
     
-    NSRect frame = [self frame];
-    
-    // draw background
     [[self fillColor] setFill];
     [NSBezierPath fillRect:dirtyRect];
-    
-    // draw border
-    [[NSColor tertiaryLabelColor] setStroke];
-    if ([self drawsTopBorder]) {
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMaxY(frame) - 0.5)
-                                  toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(frame) - 0.5)];
-    }
-    if ([self drawsBottomBorder]) {
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), 0.5)
-                                  toPoint:NSMakePoint(NSMaxX(dirtyRect), 0.5)];
-    }
     
     [NSGraphicsContext restoreGraphicsState];
 }

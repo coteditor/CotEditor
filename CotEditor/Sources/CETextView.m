@@ -1334,7 +1334,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     }
     
     // 補完リストを表示中に通常のキー入力があったら、直後にもう一度入力補完を行うためのフラグを立てる
-    // （フラグは CETextViewDelegate > textDidChange: で評価される）
+    // （フラグは CETextViewController > textDidChange: で評価される）
     if (flag && ([event type] == NSKeyDown) && !([event modifierFlags] & NSCommandKeyMask)) {
         NSString *inputChar = [event charactersIgnoringModifiers];
         unichar character = [inputChar characterAtIndex:0];

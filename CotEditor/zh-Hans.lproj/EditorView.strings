@@ -26,11 +26,11 @@
  
  */
 
-/* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "MlW-Dz-FOk"; */
-"MlW-Dz-FOk.ibShadowedToolTip" = "上一个提纲项目";
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "BUj-TD-scp"; */
+"BUj-TD-scp.ibShadowedToolTip" = "上一个提纲项目";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "BUj-TD-scp"; */
-"BUj-TD-scp.ibShadowedToolTip" = "下一个提纲项目";
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
+"MlW-Dz-FOk.ibShadowedToolTip" = "下一个提纲项目";
 
 
 /* Class = "NSTextFieldCell"; title = "Extracting Outline..."; ObjectID = "aUE-uy-XLQ"; */

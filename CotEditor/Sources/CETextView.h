@@ -50,7 +50,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 @property (nonatomic, nullable, copy) NSString *inlineCommentDelimiter;  // インラインコメント開始文字列
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;  // ブロックコメント開始・終了文字列のペア
 
-@property (nonatomic, nullable, copy) NSArray<NSString *> *syntaxCompletionWords;  // 入力補完文字列配列
 @property (nonatomic, nullable, copy) NSCharacterSet *firstSyntaxCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 @property (nonatomic) BOOL needsRecompletion;  // 再度入力補完をするか
 
