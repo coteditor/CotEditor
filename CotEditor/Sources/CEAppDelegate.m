@@ -208,7 +208,6 @@
                                                // settings for find panel are register in CETextFinder
                                                
                                                // ------ hidden settings ------
-                                               CEDefaultLineNumFontNameKey: @"AvenirNextCondensed-Regular",
                                                CEDefaultUsesTextFontForInvisiblesKey: @NO,
                                                CEDefaultHeaderFooterDateFormatKey: @"YYYY-MM-dd HH:mm",
                                                CEDefaultHeaderFooterPathAbbreviatingWithTildeKey: @YES,

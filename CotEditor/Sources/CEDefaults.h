@@ -160,7 +160,6 @@ extern NSString *_Nonnull const CEDefaultSidebarWidthKey;
 extern NSString *_Nonnull const CEDefaultRecentStyleNamesKey;
 
 // hidden settings
-extern NSString *_Nonnull const CEDefaultLineNumFontNameKey;
 extern NSString *_Nonnull const CEDefaultUsesTextFontForInvisiblesKey;
 extern NSString *_Nonnull const CEDefaultHeaderFooterDateFormatKey;
 extern NSString *_Nonnull const CEDefaultHeaderFooterPathAbbreviatingWithTildeKey;

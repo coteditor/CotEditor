@@ -29,7 +29,6 @@
 @import CoreText;
 #import "CELineNumberView.h"
 #import "CEThemableProtocol.h"
-#import "CEDefaults.h"
 
 #import "NSString+CECounting.h"
 
@@ -39,6 +38,8 @@ static const CGFloat kMinVerticalThickness = 32.0;
 static const CGFloat kMinHorizontalThickness = 20.0;
 static const CGFloat kLineNumberPadding = 4.0;
 static const CGFloat kFontSizeFactor = 0.9;
+
+static NSString * _Nonnull const kLineNumberFontName = @"AvenirNextCondensed-Regular";
 
 // dragging info keys
 static NSString * _Nonnull const DraggingSelectedRangesKey = @"selectedRanges";
@@ -73,8 +74,7 @@ static CGFontRef BoldLineNumberFont;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *defaultFontName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey];
-        NSFont *font = [NSFont fontWithName:defaultFontName size:0] ? : [NSFont paletteFontOfSize:0];
+        NSFont *font = [NSFont fontWithName:kLineNumberFontName size:0] ? : [NSFont paletteFontOfSize:0];
         NSFont *boldFont = [[NSFontManager sharedFontManager] convertFont:font toHaveTrait:NSBoldFontMask];
         
         LineNumberFont = CGFontCreateWithFontName((CFStringRef)[font fontName]);

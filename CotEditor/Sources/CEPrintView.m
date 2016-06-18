@@ -47,6 +47,8 @@ static CGFloat const kLineFragmentPadding = 20.0;
 static CGFloat const kLineNumberPadding = 10.0;
 static CGFloat const kHeaderFooterFontSize = 9.0;
 
+static NSString * _Nonnull const kLineNumberFontName = @"AvenirNextCondensed-Regular";
+
 static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 
 
@@ -124,8 +126,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
     if ([self printsLineNumber]) {
         // prepare text attributes for line numbers
         CGFloat fontSize = round(0.9 * [[self font] pointSize]);
-        NSString *fontName = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLineNumFontNameKey];
-        NSFont *font = [NSFont fontWithName:fontName size:fontSize] ? : [NSFont userFixedPitchFontOfSize:fontSize];
+        NSFont *font = [NSFont fontWithName:kLineNumberFontName size:fontSize] ? : [NSFont userFixedPitchFontOfSize:fontSize];
         NSDictionary<NSString *, id> *attrs = @{NSFontAttributeName: font,
                                                 NSForegroundColorAttributeName: [self textColor]};
         
