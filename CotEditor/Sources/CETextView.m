@@ -108,11 +108,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         // setup layoutManager and textContainer
         CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
         [layoutManager setUsesScreenFonts:YES];
+        [layoutManager setAllowsNonContiguousLayout:YES];
         [[self textContainer] replaceLayoutManager:layoutManager];
-        
-        // set layer drawing policies
-        [self setLayerContentsRedrawPolicy:NSViewLayerContentsRedrawDuringViewResize];
-        [self setLayerContentsPlacement:NSViewLayerContentsPlacementScaleAxesIndependently];
         
         // set layout values
         [self setMinSize:[self frame].size];
@@ -139,10 +136,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [self setContinuousSpellCheckingEnabled:[defaults boolForKey:CEDefaultCheckSpellingAsTypeKey]];
         [self setAutomaticQuoteSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartQuotesKey]];
         [self setAutomaticDashSubstitutionEnabled:[defaults boolForKey:CEDefaultEnableSmartDashesKey]];
-        _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
-        
-        // set link detection
         [self setAutomaticLinkDetectionEnabled:[defaults boolForKey:CEDefaultAutoLinkDetectionKey]];
+        _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
         
         // setup theme
         [self setTheme:[[CEThemeManager sharedManager] themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
@@ -205,6 +200,9 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 // ------------------------------------------------------
 {
     [super viewDidMoveToWindow];
+    
+    // apply window opacity
+    [self didWindowOpacityChange:nil];
     
     // apply theme background color to window
     //   -> this is important if window is translucent.
@@ -664,6 +662,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if (orientation != [self layoutOrientation] && [self wrapsLines]) {
         [[self textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];
     }
+    
+    // enable non-contiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
+    //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
+    [[self layoutManager] setAllowsNonContiguousLayout:(orientation == NSTextLayoutOrientationHorizontal)];
     
     [super setLayoutOrientation:orientation];
 }
@@ -1207,18 +1209,13 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// window's opacity did change
-- (void)didWindowOpacityChange:(nonnull NSNotification *)notification
+- (void)didWindowOpacityChange:(nullable NSNotification *)notification
 // ------------------------------------------------------
 {
     BOOL isOpaque = [[self window] isOpaque];
     
     // let text view have own background if possible
     [self setDrawsBackground:isOpaque];
-    
-    // By opaque window, turn `copiesOnScroll` on to enable Responsive Scrolling with traditional drawing.
-    // -> Better not using layer-backed view to avoid ugly text rendering and performance issue (1024jp on 2015-01)
-    //    cf. Responsive Scrolling section in the Release Notes for OS X 10.9
-    [[[self enclosingScrollView] contentView] setCopiesOnScroll:isOpaque];
     
     // redraw visible area
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];

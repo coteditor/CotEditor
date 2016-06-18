@@ -31,6 +31,7 @@
 #import "CESyntaxDictionaryKeys.h"
 #import "CEDefaults.h"
 #import "CEErrors.h"
+#import "Constants.h"
 
 #import <YAML-Framework/YAMLSerialization.h>
 
@@ -199,8 +200,12 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
             [[self recentStyleNameSet] insertObject:styleName atIndex:0];
         }
         [[NSUserDefaults standardUserDefaults] setObject:[self recentStyleNames] forKey:CEDefaultRecentStyleNamesKey];
-        [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxHistoryDidUpdateNotification
-                                                            object:self];
+        
+        __weak typeof(self) weakSelf = self;
+        dispatch_sync_on_main_thread(^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:CESyntaxHistoryDidUpdateNotification
+                                                                object:weakSelf];
+        });
     }
     
     return style;
