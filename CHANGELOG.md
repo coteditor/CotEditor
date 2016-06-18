@@ -39,6 +39,7 @@ develop
 - Make window size setting window translucent.
 - Avoid expanding status bar into side inspector.
 - Improve line height calculation.
+- Improve scrolling with line number view drag.
 - Better syntax highlighting while editing.
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
 

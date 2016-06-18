@@ -106,18 +106,6 @@ static CGFontRef BoldLineNumberFont;
 
 
 // ------------------------------------------------------
-/// setup initial size
-- (void)viewDidMoveToSuperview
-// ------------------------------------------------------
-{
-    [super viewDidMoveToSuperview];
-    
-    CGFloat thickness = [self orientation] == NSHorizontalRuler ? kMinHorizontalThickness : kMinVerticalThickness;
-    [self setRuleThickness:thickness];
-}
-
-
-// ------------------------------------------------------
 /// draw background
 - (void)drawRect:(NSRect)dirtyRect
 // ------------------------------------------------------
@@ -170,7 +158,7 @@ static CGFontRef BoldLineNumberFont;
     // set graphics context
     CGContextRef context = [[NSGraphicsContext currentContext] CGContext];
     CGContextSaveGState(context);
-
+    
     // setup font
     CGFloat masterFontSize = scale * [[[self textView] font] pointSize];
     CGFloat fontSize = MIN(round(kFontSizeFactor * masterFontSize), masterFontSize);
@@ -404,7 +392,7 @@ static CGFontRef BoldLineNumberFont;
     if ([[self clientView] isKindOfClass:[NSTextView class]]) {
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:NSTextDidChangeNotification
-                                                      object:(NSTextView *)[self clientView]];
+                                                      object:[self clientView]];
     }
     
     // observe new textStorage change
@@ -412,7 +400,7 @@ static CGFontRef BoldLineNumberFont;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textDidChange:)
                                                      name:NSTextDidChangeNotification
-                                                   object:(NSTextView *)clientView];
+                                                   object:clientView];
         [self setNeedsRecountTotalNumberOfLines:YES];
     }
     
@@ -450,7 +438,9 @@ static CGFontRef BoldLineNumberFont;
 - (nonnull NSColor *)backgroundColor
 // ------------------------------------------------------
 {
-    return [[(NSTextView<CEThemable> *)[self clientView] theme] isDarkTheme] ? [NSColor whiteColor] : [NSColor blackColor];
+    BOOL isDarkBackground = [[(NSTextView<CEThemable> *)[self clientView] theme] isDarkTheme];
+    
+    return isDarkBackground ? [NSColor whiteColor] : [NSColor blackColor];
 }
 
 
@@ -511,7 +501,6 @@ unsigned int numberAt(int place, int number) { return (number % (int)pow(10, pla
 // ------------------------------------------------------
 {
     [[self draggingTimer] invalidate];
-    [self setDraggingTimer:nil];
     
     // settle selection
     //   -> in `selectLines:`, `stillSelecting` flag is always YES
@@ -531,13 +520,9 @@ unsigned int numberAt(int place, int number) { return (number % (int)pow(10, pla
     NSPoint point = [NSEvent mouseLocation];  // screen based point
     
     // scroll text view if needed
-    CGFloat y = [self convertPoint:[[self window] convertRectFromScreen:NSMakeRect(point.x, point.y, 0, 0)].origin
-                          fromView:nil].y;
-    if (y < 0) {
-        [textView scrollLineUp:nil];
-    } else if (y > NSHeight([self bounds])) {
-        [textView scrollLineDown:nil];
-    }
+    NSRect pointedRect = [[self window] convertRectFromScreen:NSMakeRect(point.x, point.y, 0, 0)];
+    NSRect targetRect = [textView convertRect:pointedRect toView:nil];
+    [textView scrollRectToVisible:targetRect];
     
     // select lines
     NSUInteger currentIndex = [textView characterIndexForPoint:point];
@@ -556,7 +541,7 @@ unsigned int numberAt(int place, int number) { return (number % (int)pow(10, pla
         
         for (NSValue *selectedRangeValue in originalSelectedRanges) {
             NSRange selectedRange = [selectedRangeValue rangeValue];
-
+            
             if (selectedRange.location <= range.location && NSMaxRange(range) <= NSMaxRange(selectedRange)) {  // exclude
                 NSRange range1 = NSMakeRange(selectedRange.location, range.location - selectedRange.location);
                 NSRange range2 = NSMakeRange(NSMaxRange(range), NSMaxRange(selectedRange) - NSMaxRange(range));
@@ -580,10 +565,7 @@ unsigned int numberAt(int place, int number) { return (number % (int)pow(10, pla
             [selectedRanges addObject:[NSValue valueWithRange:range]];
         }
         
-        [textView setSelectedRanges:selectedRanges affinity:affinity stillSelecting:YES];
-        
-        // redraw line number
-        [self setNeedsDisplay:YES];
+        [textView setSelectedRanges:selectedRanges affinity:affinity stillSelecting:NO];
         
         return;
     }
@@ -606,10 +588,7 @@ unsigned int numberAt(int place, int number) { return (number % (int)pow(10, pla
         }
     }
     
-    [textView setSelectedRange:range affinity:affinity stillSelecting:YES];
-    
-    // redraw line number
-    [self setNeedsDisplay:YES];
+    [textView setSelectedRange:range affinity:affinity stillSelecting:NO];
 }
 
 @end
