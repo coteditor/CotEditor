@@ -28,13 +28,13 @@
 
 #import "CEAppDelegate.h"
 
+#import "CotEditor-Swift.h"
+
 #import "CESyntaxManager.h"
 #import "CEEncodingManager.h"
 #import "CEKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEThemeManager.h"
-
-#import "CEHexColorTransformer.h"
 
 #import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
@@ -233,8 +233,8 @@
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:initialValues];
     
     // register transformers
-    [NSValueTransformer setValueTransformer:[[CEHexColorTransformer alloc] init]
-                                    forName:@"CEHexColorTransformer"];
+    [NSValueTransformer setValueTransformer:[[HexColorTransformer alloc] init]
+                                    forName:@"HexColorTransformer"];
 }
 
 

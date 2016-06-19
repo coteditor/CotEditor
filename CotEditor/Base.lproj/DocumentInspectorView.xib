@@ -576,6 +576,6 @@
         </scrollView>
         <dateFormatter dateStyle="medium" timeStyle="short" id="hpp-US-VpP"/>
         <byteCountFormatter includesActualByteCount="YES" adaptive="NO" id="STS-xN-bnE"/>
-        <customFormatter id="2pC-OH-bXK" customClass="CEFilePermissionsFormatter"/>
+        <customFormatter id="2pC-OH-bXK" customClass="FilePermissionsFormatter" customModule="CotEditor" customModuleProvider="target"/>
     </objects>
 </document>
