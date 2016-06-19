@@ -42,6 +42,6 @@
                           pairedQuoteTypes:(nullable NSDictionary<NSString *, NSString *> *)pairedQuoteTypes
                     inlineCommentDelimiter:(nullable NSString *)inlineCommentDelimiter
                     blockCommentDelimiters:(nullable NSDictionary<NSString *, NSString *> *)blockCommentDelimiters NS_DESIGNATED_INITIALIZER;
-- (nullable instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 @end

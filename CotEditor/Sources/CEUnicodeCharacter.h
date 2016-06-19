@@ -46,6 +46,6 @@
 
 /// designated initializer
 - (nonnull instancetype)initWithCharacter:(UTF32Char)character NS_DESIGNATED_INITIALIZER;
-- (nullable instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 @end

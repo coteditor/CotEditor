@@ -36,7 +36,7 @@
 @property (readonly, nonatomic) NSUInteger lineNumber;
 @property (readonly, nonatomic) NSRange range;
 
-- (nullable instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 @end
 

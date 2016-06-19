@@ -58,7 +58,7 @@
 
 //------------------------------------------------------
 /// disable superclass's designated initializer
-- (nullable instancetype)init
+- (nonnull instancetype)init
 //------------------------------------------------------
 {
     @throw nil;

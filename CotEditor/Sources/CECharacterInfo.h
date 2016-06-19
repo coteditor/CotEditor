@@ -42,6 +42,6 @@
 
 /// designated initializer
 - (nullable instancetype)initWithString:(nonnull NSString *)string NS_DESIGNATED_INITIALIZER;
-- (nullable instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 @end
