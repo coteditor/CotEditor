@@ -4,7 +4,7 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-06-10.
  
@@ -32,12 +32,12 @@ class URLExtensionsTests: XCTestCase {
 
     func testRelativeURLCreation() {
         let url = NSURL(string: "/foo/bar/file.txt")
-        let baseUrl = NSURL(string: "/foo/buz/file.txt")
+        let baseUrl = URL(string: "/foo/buz/file.txt")
         
-        XCTAssertEqual(url?.pathRelativeToURL(baseUrl), "../bar/file.txt")
+        XCTAssertEqual(url?.pathRelative(to: baseUrl), "../bar/file.txt")
         
-        XCTAssertNil(url?.pathRelativeToURL(nil))
-        XCTAssertNil(url?.pathRelativeToURL(NSURL(string: url!.path!)))
+        XCTAssertNil(url?.pathRelative(to: nil))
+        XCTAssertNil(url?.pathRelative(to: URL(string: url!.path!)))
     }
 
 }

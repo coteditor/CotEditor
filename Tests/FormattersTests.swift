@@ -4,7 +4,7 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-06-02.
  
@@ -33,9 +33,9 @@ class FormattersTests: XCTestCase {
     func testFilePermissionsFormatter() {
         let formatter = CEFilePermissionsFormatter()
         
-        XCTAssertEqual(formatter.stringForObjectValue(NSNumber(integer: 0o777)),
+        XCTAssertEqual(formatter.string(for: NSNumber(value: 0o777)),
                        "777 (-rwxrwxrwx)")
-        XCTAssertEqual(formatter.stringForObjectValue(NSNumber(integer: 0o643)),
+        XCTAssertEqual(formatter.string(for: NSNumber(value: 0o643)),
                        "643 (-rw-r---wx)")
     }
 

@@ -4,7 +4,7 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-06-11.
  
@@ -43,19 +43,19 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
     override func setUp() {
         super.setUp()
         
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: self.dynamicType)
         
         // load XML style
-        let styleURL = bundle.URLForResource("HTML", withExtension: StyleExtension, subdirectory: StyleDirectoryName)
-        let data = NSData(contentsOfURL: styleURL!)
-        let dict = try? YAMLSerialization.objectWithYAMLData(data, options: kYAMLReadOptionMutableContainersAndLeaves) as? [String: AnyObject]
+        let styleURL = bundle.urlForResource("HTML", withExtension: StyleExtension, subdirectory: StyleDirectoryName)
+        let data = try? Data(contentsOf: styleURL!)
+        let dict = try? YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as? [String: AnyObject]
         self.htmlStyle = CESyntaxStyle(dictionary: dict!, name: "HTML")
         
         XCTAssertNotNil(self.htmlStyle)
         
         // load test file
-        let sourceURL = bundle.URLForResource("sample", withExtension: "html")
-        self.htmlSource = try? NSString(contentsOfURL: sourceURL!, encoding: NSUTF8StringEncoding) as String
+        let sourceURL = bundle.urlForResource("sample", withExtension: "html")
+        self.htmlSource = try? NSString(contentsOf: sourceURL!, encoding: String.Encoding.utf8.rawValue) as String
         
         XCTAssertNotNil(self.htmlSource)
     }
@@ -65,7 +65,7 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
         let style = CESyntaxStyle(dictionary: nil, name: "foo")
         
         XCTAssertEqual(style.styleName, "foo")
-        XCTAssert(style.none)
+        XCTAssert(style.isNone)
         XCTAssertFalse(style.canParse())
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertNil(style.blockCommentDelimiters)
@@ -76,7 +76,7 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
         guard let style = self.htmlStyle else { return }
         
         XCTAssertEqual(style.styleName, "HTML")
-        XCTAssertFalse(style.none)
+        XCTAssertFalse(style.isNone)
         XCTAssert(style.canParse())
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertEqual(style.blockCommentDelimiters?["beginDelimiter"], "<!--")
@@ -95,13 +95,13 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
         style.delegate = self
         
         // test outline parsing with delegate
-        self.outlineParseExpectation = self.expectationWithDescription("didParseOutline")
+        self.outlineParseExpectation = self.expectation(withDescription: "didParseOutline")
         style.invalidateOutline()
-        self.waitForExpectationsWithTimeout(1, handler: nil)
+        self.waitForExpectations(withTimeout: 1, handler: nil)
     }
     
     
-    func syntaxStyle(syntaxStyle: CESyntaxStyle, didParseOutline outlineItems: [CEOutlineItem]?) {
+    func syntaxStyle(_ syntaxStyle: CESyntaxStyle, didParseOutline outlineItems: [CEOutlineItem]?) {
         self.outlineParseExpectation?.fulfill()
         
         XCTAssertEqual(outlineItems?.count, 3)
@@ -112,8 +112,8 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
             XCTAssertEqual(item.title, "   h2: 🐕🐄")
             XCTAssertEqual(item.range.location, 354)
             XCTAssertEqual(item.range.length, 13)
-            XCTAssertFalse(item.bold)
-            XCTAssertFalse(item.italic)
+            XCTAssertFalse(item.isBold)
+            XCTAssertFalse(item.isItalic)
             XCTAssertFalse(item.hasUnderline)
         } else {
             XCTFail()

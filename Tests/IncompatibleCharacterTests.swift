@@ -4,7 +4,7 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-05-29.
  
@@ -32,8 +32,8 @@ class IncompatibleCharacterTests: XCTestCase {
     
     func testIncompatibleCharacterScan() {
         let string = "abc\\ \n ¥ \n ~" as NSString
-        let encoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.ShiftJIS.rawValue));
-        let incompatibles = string.scanIncompatibleCharactersForEncoding(encoding)
+        let encoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue));
+        let incompatibles = string.scanIncompatibleCharacters(forEncoding: encoding)
         
         XCTAssertEqual(incompatibles?.count, 2)
         

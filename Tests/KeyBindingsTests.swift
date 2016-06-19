@@ -4,7 +4,7 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-06-04.
  
@@ -31,12 +31,12 @@ import XCTest
 class KeyBindingsTests: XCTestCase {
     
     func testKeySpecCharsCreation() {
-        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("a", modifierMask: [.Control, .Shift]), "^$a")
-        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("b", modifierMask: [.Command, .Option]), "~@b")
-        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("A", modifierMask: [.Control]), "^$A")  // uppercase for Shift key
+        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "a", modifierMask: [.control, .shift]), "^$a")
+        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "b", modifierMask: [.command, .option]), "~@b")
+        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "A", modifierMask: [.control]), "^$A")  // uppercase for Shift key
         
-        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("a", modifierMask: []), "a")
-        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("", modifierMask: [.Control, .Shift]), "")
+        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "a", modifierMask: []), "a")
+        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "", modifierMask: [.control, .shift]), "")
     }
     
     
@@ -45,7 +45,7 @@ class KeyBindingsTests: XCTestCase {
         let keyEquivalent = CEKeyBindingUtils.keyEquivalentAndModifierMask(&modifierMask, fromKeySpecChars: "^$a", requiresCommandKey: false)
         
         XCTAssertEqual(keyEquivalent, "a")
-        XCTAssertEqual(modifierMask, [.Control, .Shift])
+        XCTAssertEqual(modifierMask, [.control, .shift])
     }
     
     
@@ -60,15 +60,15 @@ class KeyBindingsTests: XCTestCase {
     
     func testPrintableShortcutKey () {
         // test modifier symbols
-        XCTAssertEqual(CEKeyBindingUtils.printableKeyStringFromKeySpecChars("^$a"), "^⇧A")
-        XCTAssertEqual(CEKeyBindingUtils.printableKeyStringFromKeySpecChars("~@b"), "⌥⌘B")
+        XCTAssertEqual(CEKeyBindingUtils.printableKeyString(fromKeySpecChars: "^$a"), "^⇧A")
+        XCTAssertEqual(CEKeyBindingUtils.printableKeyString(fromKeySpecChars: "~@b"), "⌥⌘B")
         
         // test unprintable keys
         let F10 = String(UnicodeScalar(NSF10FunctionKey))
-        XCTAssertEqual(CEKeyBindingUtils.printableKeyStringFromKeySpecChars("@" + F10), "⌘F10")
+        XCTAssertEqual(CEKeyBindingUtils.printableKeyString(fromKeySpecChars: "@" + F10), "⌘F10")
         
         let delete = String(UnicodeScalar(NSDeleteCharacter))
-        XCTAssertEqual(CEKeyBindingUtils.printableKeyStringFromKeySpecChars("@" + delete), "⌘⌦")
+        XCTAssertEqual(CEKeyBindingUtils.printableKeyString(fromKeySpecChars: "@" + delete), "⌘⌦")
     }
 
 }

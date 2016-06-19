@@ -4,7 +4,7 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-06-10.
  
@@ -31,9 +31,9 @@ import XCTest
 class FontExtensionTests: XCTestCase {
     
     func testFontSize() {
-        let font = NSFont(name: "Menlo-Regular", size:11)?.screenFont
+        let font = NSFont(name: "Menlo-Regular", size:11)?.screen
         
-        XCTAssertEqual(font?.advancementForCharacter(" ".utf16.first!), 7)
+        XCTAssertEqual(font?.advancement(forCharacter: " ".utf16.first!), 7)
     }
     
 }

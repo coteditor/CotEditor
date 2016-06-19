@@ -4,7 +4,7 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-01-16.
  
@@ -30,183 +30,183 @@ import XCTest
 
 class EncodingDetectionTests: XCTestCase {
     
-    var bundle: NSBundle?
+    var bundle: Bundle?
     
 
     override func setUp() {
         super.setUp()
         
-        self.bundle = NSBundle(forClass: self.dynamicType)
+        self.bundle = Bundle(for: self.dynamicType)
     }
     
     
     func testUTF8BOM() {
-        var encoding: NSStringEncoding = 0
-        let string = self.encodedStringForFileName("UTF-8 BOM", usedEncoding: &encoding)
+        var encodingUInt: UInt = 0
+        let string = self.encodedStringForFileName("UTF-8 BOM", usedEncoding: &encodingUInt)
         
         XCTAssertEqual(string, "0")
-        XCTAssertEqual(encoding, NSUTF8StringEncoding)
+        XCTAssertEqual(encodingUInt, String.Encoding.utf8.rawValue)
     }
     
     
     func testUTF16() {
-        var encoding: NSStringEncoding = 0
-        let string = self.encodedStringForFileName("UTF-16", usedEncoding: &encoding)
+        var encodingUInt: UInt = 0
+        let string = self.encodedStringForFileName("UTF-16", usedEncoding: &encodingUInt)
         
         XCTAssertEqual(string, "0")
-        XCTAssertEqual(encoding, NSUTF16StringEncoding)
+        XCTAssertEqual(encodingUInt, String.Encoding.utf16.rawValue)
     }
     
     
     func testUTF32() {
-        var encoding: NSStringEncoding = 0
-        let string = self.encodedStringForFileName("UTF-32", usedEncoding: &encoding)
+        var encodingUInt: UInt = 0
+        let string = self.encodedStringForFileName("UTF-32", usedEncoding: &encodingUInt)
         
         XCTAssertEqual(string, "0")
-        XCTAssertEqual(encoding, NSUTF32StringEncoding)
+        XCTAssertEqual(encodingUInt, String.Encoding.utf32.rawValue)
     }
-    
+
     
     func testISO2022() {
-        var encoding: NSStringEncoding = 0
-        let string = self.encodedStringForFileName("ISO 2022-JP", usedEncoding: &encoding)
+        var encodingUInt: UInt = 0
+        let string = self.encodedStringForFileName("ISO 2022-JP", usedEncoding: &encodingUInt)
         
         XCTAssertEqual(string, "dog犬")
-        XCTAssertEqual(encoding, NSISO2022JPStringEncoding)
+        XCTAssertEqual(encodingUInt, String.Encoding.iso2022JP.rawValue)
     }
     
     
     func testUTF8() {  // this should fail
-        var encoding: NSStringEncoding = 0
-        let string = self.encodedStringForFileName("UTF-8", usedEncoding: &encoding)
+        var encodingUInt: UInt = 0
+        let string = self.encodedStringForFileName("UTF-8", usedEncoding: &encodingUInt)
         
         XCTAssertNil(string)
-        XCTAssertEqual(Int(encoding), NSNotFound)
+        XCTAssertEqual(Int(encodingUInt), NSNotFound)
     }
-    
+
     
     func testSuggestedCFEncoding() {
         let data = self.dataForFileName("UTF-8")
         
-        var encoding: NSStringEncoding = 0
-        let invalidNumber = NSNumber(unsignedInt: UInt32(kCFStringEncodingInvalidId))
-        let utf8Number = NSNumber(unsignedInt: UInt32(CFStringBuiltInEncodings.UTF8.rawValue))
-        let string = try! NSString(data: data, suggestedCFEncodings: [invalidNumber, utf8Number], usedEncoding: &encoding)
+        var encodingUInt: UInt = 0
+        let invalidNumber = NSNumber(value: UInt32(kCFStringEncodingInvalidId))
+        let utf8Number = NSNumber(value: UInt32(CFStringBuiltInEncodings.UTF8.rawValue))
+        let string = try! NSString(data: data, suggestedCFEncodings: [invalidNumber, utf8Number], usedEncoding: &encodingUInt)
         
         XCTAssertEqual(string, "0")
-        XCTAssertEqual(encoding, NSUTF8StringEncoding)
+        XCTAssertEqual(encodingUInt, String.Encoding.utf8.rawValue)
     }
     
     
     func testEmptyData() {
-        let data = NSData()
+        let data = Data()
         
-        var encoding: NSStringEncoding = 0
+        var encodingUInt: UInt = 0
         var string: NSString?
         var didCatchError = false
         do {
-            string = try NSString(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)
+            string = try NSString(data: data, suggestedCFEncodings: [], usedEncoding: &encodingUInt)
         } catch let error as NSError {
             XCTAssertEqual(error.domain, NSCocoaErrorDomain)
             XCTAssertEqual(error.code, NSFileReadUnknownStringEncodingError)
             XCTAssertNotNil(error.localizedDescription)
             didCatchError = true
         }
-        
+
         XCTAssertTrue(didCatchError, "NSString+CEEncoding didn't throw error.")
         XCTAssertNil(string)
-        XCTAssertEqual(Int(encoding), NSNotFound)
-        XCTAssertFalse(data.hasUTF8BOM())
+        XCTAssertEqual(Int(encodingUInt), NSNotFound)
+        XCTAssertFalse((data as NSData).hasUTF8BOM())
     }
     
     
     func testUTF8BOMData() {
         let withBOMData = self.dataForFileName("UTF-8 BOM")
-        XCTAssertTrue(withBOMData.hasUTF8BOM())
+        XCTAssertTrue((withBOMData as NSData).hasUTF8BOM())
         
         let data = self.dataForFileName("UTF-8")
-        XCTAssertFalse(data.hasUTF8BOM())
-        XCTAssertTrue(data.dataByAddingUTF8BOM().hasUTF8BOM())
+        XCTAssertFalse((data as NSData).hasUTF8BOM())
+        XCTAssertTrue(((data as NSData).addingUTF8BOM() as NSData).hasUTF8BOM())
     }
     
     
     func testEncodingDeclarationScan() {
         let string = "<meta charset=\"Shift_JIS\"/>" as NSString
         let tags = ["encoding=", "charset="]
-        let utf8Number = NSNumber(unsignedInt: UInt32(CFStringBuiltInEncodings.UTF8.rawValue))
-        let shiftJISNumber = NSNumber(unsignedInt: UInt32(CFStringEncodings.ShiftJIS.rawValue))
-        let shiftJISX0213Number = NSNumber(unsignedInt: UInt32(CFStringEncodings.ShiftJIS_X0213.rawValue))
+        let utf8Number = NSNumber(value: UInt32(CFStringBuiltInEncodings.UTF8.rawValue))
+        let shiftJISNumber = NSNumber(value: UInt32(CFStringEncodings.shiftJIS.rawValue))
+        let shiftJISX0213Number = NSNumber(value: UInt32(CFStringEncodings.shiftJIS_X0213.rawValue))
         
-        XCTAssertEqual(Int(string.scanEncodingDeclarationForTags(tags, upToIndex: 16,
+        XCTAssertEqual(Int(string.scanEncodingDeclaration(forTags: tags, upTo: 16,
             suggestedCFEncodings: [utf8Number, shiftJISNumber, shiftJISX0213Number])),
             NSNotFound)
         
-        XCTAssertEqual(string.scanEncodingDeclarationForTags(tags, upToIndex: 128,
+        XCTAssertEqual(string.scanEncodingDeclaration(forTags: tags, upTo: 128,
             suggestedCFEncodings: [utf8Number, shiftJISNumber, shiftJISX0213Number]),
-            toNSEncoding(.ShiftJIS))
+            toNSEncoding(.shiftJIS).rawValue)
         
-        XCTAssertEqual(string.scanEncodingDeclarationForTags(tags, upToIndex: 128,
+        XCTAssertEqual(string.scanEncodingDeclaration(forTags: tags, upTo: 128,
             suggestedCFEncodings: [utf8Number, shiftJISX0213Number, shiftJISNumber]),
-            toNSEncoding(.ShiftJIS_X0213))
+            toNSEncoding(.shiftJIS_X0213).rawValue)
     }
     
     
     func testIANACharSetEncodingCompatibility() {
-        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(NSUTF8StringEncoding, NSUTF8StringEncoding));
-        XCTAssertFalse(CEIsCompatibleIANACharSetEncoding(NSUTF8StringEncoding, NSUTF16StringEncoding));
+        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(String.Encoding.utf8.rawValue, String.Encoding.utf8.rawValue));
+        XCTAssertFalse(CEIsCompatibleIANACharSetEncoding(String.Encoding.utf8.rawValue, String.Encoding.utf16.rawValue));
         
-        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(toNSEncoding(.ShiftJIS), toNSEncoding(.ShiftJIS)))
-        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(toNSEncoding(.ShiftJIS), toNSEncoding(.ShiftJIS_X0213)))
-        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(toNSEncoding(.ShiftJIS_X0213), toNSEncoding(.ShiftJIS)))
+        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(toNSEncoding(.shiftJIS).rawValue, toNSEncoding(.shiftJIS).rawValue))
+        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(toNSEncoding(.shiftJIS).rawValue, toNSEncoding(.shiftJIS_X0213).rawValue))
+        XCTAssertTrue(CEIsCompatibleIANACharSetEncoding(toNSEncoding(.shiftJIS_X0213).rawValue, toNSEncoding(.shiftJIS).rawValue))
     }
     
     
     func testXattrEncoding() {
-        let utf8Data = "utf-8;134217984".dataUsingEncoding(NSUTF8StringEncoding)
+        let utf8Data = "utf-8;134217984".data(using: String.Encoding.utf8)
         
-        XCTAssertEqual(encodeXattrEncoding(NSUTF8StringEncoding), utf8Data)
-        XCTAssertEqual(decodeXattrEncoding(utf8Data), NSUTF8StringEncoding)
-        XCTAssertEqual(decodeXattrEncoding("utf-8".dataUsingEncoding(NSUTF8StringEncoding)), NSUTF8StringEncoding)
+        XCTAssertEqual(encodeXattrEncoding(String.Encoding.utf8.rawValue), utf8Data)
+        XCTAssertEqual(decodeXattrEncoding(utf8Data), String.Encoding.utf8.rawValue)
+        XCTAssertEqual(decodeXattrEncoding("utf-8".data(using: String.Encoding.utf8)), String.Encoding.utf8.rawValue)
         
         
-        let eucJPData = "euc-jp;2336".dataUsingEncoding(NSUTF8StringEncoding)
+        let eucJPData = "euc-jp;2336".data(using: String.Encoding.utf8)
         
-        XCTAssertEqual(encodeXattrEncoding(NSJapaneseEUCStringEncoding), eucJPData)
-        XCTAssertEqual(decodeXattrEncoding(eucJPData), NSJapaneseEUCStringEncoding)
-        XCTAssertEqual(decodeXattrEncoding("euc-jp".dataUsingEncoding(NSUTF8StringEncoding)), NSJapaneseEUCStringEncoding)
+        XCTAssertEqual(encodeXattrEncoding(String.Encoding.japaneseEUC.rawValue), eucJPData)
+        XCTAssertEqual(decodeXattrEncoding(eucJPData), String.Encoding.japaneseEUC.rawValue)
+        XCTAssertEqual(decodeXattrEncoding("euc-jp".data(using: String.Encoding.utf8)), String.Encoding.japaneseEUC.rawValue)
     }
     
     
     func testYenConvertion() {
-        XCTAssertTrue(CEEncodingCanConvertYenSign(NSUTF8StringEncoding))
-        XCTAssertTrue(CEEncodingCanConvertYenSign(toNSEncoding(.ShiftJIS)))
-        XCTAssertFalse(CEEncodingCanConvertYenSign(NSJapaneseEUCStringEncoding))  // ? (U+003F)
-        XCTAssertFalse(CEEncodingCanConvertYenSign(NSASCIIStringEncoding))  // Y (U+0059)
+        XCTAssertTrue(CEEncodingCanConvertYenSign(String.Encoding.utf8.rawValue))
+        XCTAssertTrue(CEEncodingCanConvertYenSign(toNSEncoding(.shiftJIS).rawValue))
+        XCTAssertFalse(CEEncodingCanConvertYenSign(String.Encoding.japaneseEUC.rawValue))  // ? (U+003F)
+        XCTAssertFalse(CEEncodingCanConvertYenSign(String.Encoding.ascii.rawValue))  // Y (U+0059)
         
         let string = "yen \\ ¥ yen" as NSString
-        XCTAssertEqual(string.stringByConvertingYenSignForEncoding(NSUTF8StringEncoding), "yen \\ ¥ yen")
-        XCTAssertEqual(string.stringByConvertingYenSignForEncoding(NSASCIIStringEncoding), "yen \\ \\ yen")
+        XCTAssertEqual(string.convertingYenSign(forEncoding: String.Encoding.utf8.rawValue), "yen \\ ¥ yen")
+        XCTAssertEqual(string.convertingYenSign(forEncoding: String.Encoding.ascii.rawValue), "yen \\ \\ yen")
     }
     
     
     func testIANACharsetName() {
-        XCTAssertEqual(NSString.IANACharSetNameOfStringEncoding(NSUTF8StringEncoding), "utf-8")
-        XCTAssertEqual(NSString.IANACharSetNameOfStringEncoding(NSISOLatin1StringEncoding), "iso-8859-1")
+        XCTAssertEqual(NSString.ianaCharSetName(ofStringEncoding: String.Encoding.utf8.rawValue), "utf-8")
+        XCTAssertEqual(NSString.ianaCharSetName(ofStringEncoding: String.Encoding.isoLatin1.rawValue), "iso-8859-1")
     }
     
     
     // MARK: Private Methods
     
-    func encodedStringForFileName(fileName: String, usedEncoding: UnsafeMutablePointer<UInt>) -> NSString? {
+    func encodedStringForFileName(_ fileName: String, usedEncoding: UnsafeMutablePointer<UInt>) -> NSString? {
         let data = self.dataForFileName(fileName)
         
         return try? NSString(data: data, suggestedCFEncodings: [], usedEncoding: usedEncoding)
     }
     
     
-    func dataForFileName(fileName: String) -> NSData {
-        let fileURL = self.bundle?.URLForResource(fileName, withExtension: "txt", subdirectory: "Encodings")
-        let data = NSData(contentsOfURL: fileURL!)
+    func dataForFileName(_ fileName: String) -> Data {
+        let fileURL = self.bundle?.urlForResource(fileName, withExtension: "txt", subdirectory: "Encodings")
+        let data = try? Data(contentsOf: fileURL!)
         
         XCTAssertNotNil(data)
         
@@ -214,8 +214,9 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func toNSEncoding(cfEncodings: CFStringEncodings) -> NSStringEncoding {
-        return CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue));
+    func toNSEncoding(_ cfEncodings: CFStringEncodings) -> String.Encoding {
+        let rawValue = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue));
+        return String.Encoding(rawValue: rawValue)
     }
 
 }

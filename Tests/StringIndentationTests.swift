@@ -4,7 +4,7 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-11-24.
  
@@ -35,7 +35,7 @@ class StringIndentationTests: XCTestCase {
     func testIndentStyleDetection() {
         let string = "\t\tfoo\tbar"
         
-        XCTAssertEqual(string.detectIndentStyle(), CEIndentStyle.NotFound)
+        XCTAssertEqual(string.detectIndentStyle(), CEIndentStyle.notFound)
     }
     
     
@@ -45,19 +45,19 @@ class StringIndentationTests: XCTestCase {
         let string = "     foo    bar\n  "
         
         // NotFound
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.NotFound, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndentStyle(to: .notFound, tabWidth: 2), string)
         
         // spaces to tab
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Tab, tabWidth: 2), "\t\t foo    bar\n\t")
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Space, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndentStyle(to: .tab, tabWidth: 2), "\t\t foo    bar\n\t")
+        XCTAssertEqual(string.standardizingIndentStyle(to: .space, tabWidth: 2), string)
     }
     
     
     func testIndentStyleStandardizationToSpace() {
         let string = "\t\tfoo\tbar"
         
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Space, tabWidth: 2), "    foo\tbar")
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Tab, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndentStyle(to: .space, tabWidth: 2), "    foo\tbar")
+        XCTAssertEqual(string.standardizingIndentStyle(to: .tab, tabWidth: 2), string)
     }
     
     
@@ -70,18 +70,18 @@ class StringIndentationTests: XCTestCase {
     
     
     func testIndentLevelDetection() {
-        XCTAssertEqual("    foo".indentLevelAtLocation(0, tabWidth:0), 0)
+        XCTAssertEqual("    foo".indentLevel(atLocation: 0, tabWidth:0), 0)
         
-        XCTAssertEqual("    foo".indentLevelAtLocation(0, tabWidth:4), 1)
-        XCTAssertEqual("    foo".indentLevelAtLocation(4, tabWidth:2), 2)
-        XCTAssertEqual("\tfoo".indentLevelAtLocation(4, tabWidth:2), 1)
+        XCTAssertEqual("    foo".indentLevel(atLocation: 0, tabWidth:4), 1)
+        XCTAssertEqual("    foo".indentLevel(atLocation: 4, tabWidth:2), 2)
+        XCTAssertEqual("\tfoo".indentLevel(atLocation: 4, tabWidth:2), 1)
         
         // tab-space mix
-        XCTAssertEqual("  \t foo".indentLevelAtLocation(4, tabWidth:2), 2)
-        XCTAssertEqual("   \t foo".indentLevelAtLocation(4, tabWidth:2), 3)
+        XCTAssertEqual("  \t foo".indentLevel(atLocation: 4, tabWidth:2), 2)
+        XCTAssertEqual("   \t foo".indentLevel(atLocation: 4, tabWidth:2), 3)
         
         // multiline
-        XCTAssertEqual("    foo\n  bar".indentLevelAtLocation(10, tabWidth:2), 1)
+        XCTAssertEqual("    foo\n  bar".indentLevel(atLocation: 10, tabWidth:2), 1)
     }
 
 }
