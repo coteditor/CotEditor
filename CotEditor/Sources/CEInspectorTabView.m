@@ -169,7 +169,16 @@ static const CGFloat kControlHeight = 28;
 - (void)invalidateControlSelection
 // ------------------------------------------------------
 {
-    [[self segmentedControl] setSelectedSegment:[self indexOfTabViewItem:[self selectedTabViewItem]]];
+    NSInteger index = [self indexOfTabViewItem:[self selectedTabViewItem]];
+    
+    if (index == NSNotFound) { return; }
+    
+    if ([self numberOfTabViewItems] != [[self segmentedControl] segmentCount]) {
+        [self rebuildSegmentedControl];
+        return;  // This method will be invoked again in `rebuildSegmentedControl`.
+    }
+    
+    [[self segmentedControl] setSelectedSegment:index];
 }
 
 

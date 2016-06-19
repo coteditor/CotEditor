@@ -57,6 +57,8 @@
         NSString *iconName = [[self imageForSegment:segment] name];
         NSImage *selectedIcon = [NSImage imageNamed:[@"Selected" stringByAppendingString:iconName]];
         
+        NSAssert(selectedIcon, @"No selected icon template for inspector tab view was found.");
+        
         // calculate area to draw
         NSRect imageRect = [self imageRectForBounds:frame];
         imageRect.origin.y += floor((imageRect.size.height - [selectedIcon size].height) / 2);
