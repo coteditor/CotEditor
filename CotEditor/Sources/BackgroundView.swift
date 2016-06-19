@@ -1,9 +1,9 @@
 /*
  
- CEBackgroundView.m
+ BackgroundView.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-01-09.
  
@@ -25,33 +25,33 @@
  
  */
 
-#import "CEBackgroundView.h"
+import Cocoa
 
-
-@implementation CEBackgroundView
-
-#pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// draw inside
-- (void)drawRect:(NSRect)dirtyRect
-// ------------------------------------------------------
-{
-    [NSGraphicsContext saveGraphicsState];
+@IBDesignable class BackgroundView: NSView {
     
-    [[self fillColor] setFill];
-    [NSBezierPath fillRect:dirtyRect];
+    @IBInspectable var fillColor: NSColor = .windowBackgroundColor()
     
-    [NSGraphicsContext restoreGraphicsState];
+    
+    
+    // MARK:
+    // MARK: View Methods
+    
+    /// draw inside
+    override func draw(_ dirtyRect: NSRect)
+    {
+        NSGraphicsContext.saveGraphicsState()
+        
+        self.fillColor.setFill()
+        NSBezierPath.fill(dirtyRect)
+        
+        NSGraphicsContext.restoreGraphicsState()
+    }
+    
+    
+    /// whether it's an opaque view
+    override var isOpaque: Bool
+    {
+        return true
+    }
+    
 }
-
-
-// ------------------------------------------------------
-/// whether it's opaque view
-- (BOOL)isOpaque
-// ------------------------------------------------------
-{
-    return YES;
-}
-
-@end
