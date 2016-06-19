@@ -141,7 +141,7 @@
         title = [self wrapsLines] ? @"Unwrap Lines" : @"Wrap Lines";
         
     } else if ([menuItem action] == @selector(toggleLayoutOrientation:)) {
-        NSString *title = [self isVerticalLayoutOrientation] ? @"Use Horizontal Orientation" :  @"Use Vertical Orientation";
+        NSString *title = [self verticalLayoutOrientation] ? @"Use Horizontal Orientation" :  @"Use Vertical Orientation";
         [menuItem setTitle:NSLocalizedString(title, nil)];
         
     } else if ([menuItem action] == @selector(togglePageGuide:)) {
@@ -202,7 +202,7 @@
             [imageItem setState:[self wrapsLines] ? NSOnState : NSOffState];
             
         } else if ([item action] == @selector(toggleLayoutOrientation:)) {
-            [imageItem setState:[self isVerticalLayoutOrientation] ? NSOnState : NSOffState];
+            [imageItem setState:[self verticalLayoutOrientation] ? NSOnState : NSOffState];
             
         } else if ([item action] == @selector(togglePageGuide:)) {
             [imageItem setState:[self showsPageGuide] ? NSOnState : NSOffState];
@@ -474,12 +474,12 @@
 
 // ------------------------------------------------------
 /// 横書き／縦書きをセット
-- (void)setVerticalLayoutOrientation:(BOOL)isVerticalLayoutOrientation
+- (void)setVerticalLayoutOrientation:(BOOL)verticalLayoutOrientation
 // ------------------------------------------------------
 {
-    _verticalLayoutOrientation = isVerticalLayoutOrientation;
+    _verticalLayoutOrientation = verticalLayoutOrientation;
     
-    NSTextLayoutOrientation orientation = isVerticalLayoutOrientation ? NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal;
+    NSTextLayoutOrientation orientation = verticalLayoutOrientation ? NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal;
     
     for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [[viewController textView] setLayoutOrientation:orientation];
@@ -592,7 +592,7 @@
 - (IBAction)toggleLayoutOrientation:(nullable id)sender
 // ------------------------------------------------------
 {
-    [self setVerticalLayoutOrientation:![self isVerticalLayoutOrientation]];
+    [self setVerticalLayoutOrientation:![self verticalLayoutOrientation]];
 }
 
 
@@ -800,7 +800,7 @@
     [editorViewController setShowsNavigationBar:[self showsNavigationBar] animate:NO];
     [[editorViewController textView] setWrapsLines:[self wrapsLines]];
     [[editorViewController textView] setShowsInvisibles:[self showsInvisibles]];
-    [[editorViewController textView] setLayoutOrientation:([self isVerticalLayoutOrientation] ?
+    [[editorViewController textView] setLayoutOrientation:([self verticalLayoutOrientation] ?
                                                            NSTextLayoutOrientationVertical : NSTextLayoutOrientationHorizontal)];
     [[editorViewController textView] setShowsPageGuide:[self showsPageGuide]];
     

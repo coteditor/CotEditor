@@ -210,7 +210,7 @@ static NSString *_Nonnull const CERowsPboardType = @"CERowsPboardType";
     // update enability of "Delete Separator" button
     __block BOOL includesSeparator = NO;
     [selectedIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        CFStringEncoding encoding = [[self encodings][idx] unsignedIntegerValue];
+        CFStringEncoding encoding = [[self encodings][idx] unsignedIntValue];
         if (encoding == kCFStringEncodingInvalidId) {
             includesSeparator = YES;
             *stop = YES;
@@ -227,7 +227,7 @@ static NSString *_Nonnull const CERowsPboardType = @"CERowsPboardType";
 {
     if (edge == NSTableRowActionEdgeLeading) { return @[]; }
     
-    CFStringEncoding encoding = [[self encodings][row] unsignedIntegerValue];
+    CFStringEncoding encoding = [[self encodings][row] unsignedIntValue];
     
     // only separater can be removed
     if (encoding != kCFStringEncodingInvalidId) { return @[]; }
@@ -332,7 +332,7 @@ static NSString *_Nonnull const CERowsPboardType = @"CERowsPboardType";
     // pick only separators up
     NSArray<NSNumber *> *encodings = [self encodings];
     [rowIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        CFStringEncoding encoding = [encodings[idx] unsignedLongLongValue];
+        CFStringEncoding encoding = [encodings[idx] unsignedIntValue];
         
         if (encoding == kCFStringEncodingInvalidId) {
             [toDeleteIndexes addIndex:idx];

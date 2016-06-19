@@ -192,7 +192,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
         // check file meta data for text orientation
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
             NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:outError];  // FILE_READ
-            _verticalText = (attributes[CEFileExtendedAttributes][CEXattrVerticalTextName]);
+            _verticalText = (attributes[CEFileExtendedAttributes][CEXattrVerticalTextName] != nil);
         }
     }
     return self;
@@ -458,7 +458,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     
     // store current state here, since the main thread will already be unblocked after `dataOfType:error:`
     NSStringEncoding encoding = [self encoding];
-    [self setVerticalText:[[self editor] isVerticalLayoutOrientation]];
+    [self setVerticalText:[[self editor] verticalLayoutOrientation]];
     
     BOOL success = [super writeToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError];
 
@@ -669,7 +669,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     [document setHasUTF8BOM:[self hasUTF8BOM]];
     
     // apply text orientation
-    [[document editor] setVerticalLayoutOrientation:[[self editor] isVerticalLayoutOrientation]];
+    [[document editor] setVerticalLayoutOrientation:[[self editor] verticalLayoutOrientation]];
     
     return document;
 }

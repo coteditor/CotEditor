@@ -41,7 +41,7 @@
 @property (nonatomic) BOOL wrapsLines;
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL showsInvisibles;
-@property (nonatomic, getter=isVerticalLayoutOrientation) BOOL verticalLayoutOrientation;
+@property (nonatomic) BOOL verticalLayoutOrientation;
 @property (nonatomic) NSUInteger tabWidth;
 
 // readonly

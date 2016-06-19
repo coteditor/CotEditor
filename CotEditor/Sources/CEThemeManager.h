@@ -71,3 +71,12 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 - (BOOL)migrateTheme;
 
 @end
+
+
+
+@protocol CEThemeHolder <NSObject>
+
+@optional
+- (void)changeTheme:(nullable id)sender;
+
+@end

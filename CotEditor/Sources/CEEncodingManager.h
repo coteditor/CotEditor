@@ -49,3 +49,12 @@ extern NSString *_Nonnull const CEEncodingListDidUpdateNotification;
 - (void)updateChangeEncodingMenu:(nonnull NSMenu *)menu;
 
 @end
+
+
+
+@protocol CEEncodingHolder <NSObject>
+
+@optional
+- (void)changeEncoding:(nullable id)sender;
+
+@end

@@ -96,3 +96,13 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 - (BOOL)importLegacyStyleWithFileURL:(nonnull NSURL *)fileURL;
 
 @end
+
+
+
+@protocol CESyntaxHolder <NSObject>
+
+@optional
+- (void)changeSyntaxStyle:(nullable id)sender;
+- (void)recolorAll:(nullable id)sender;
+
+@end

@@ -279,6 +279,8 @@ static NSString *HiraginoSansName;
 - (void)setTextFont:(nullable NSFont *)textFont
 // ------------------------------------------------------
 {
+    if (!textFont) { return; }
+    
     // 複合フォントで行間が等間隔でなくなる問題を回避するため、自前でフォントを持っておく。
     //   -> [[self firstTextView] font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
     //      日本語フォント名を返してくることがあるため、使わない

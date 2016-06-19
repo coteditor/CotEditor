@@ -345,7 +345,7 @@
     
     NSMutableArray<NSString *> *replacementStrings = [NSMutableArray arrayWithCapacity:[replacementRanges count]];
     
-    for (NSValue *_ in replacementRanges) {
+    for (NSUInteger _ = 0; _ < [replacementRanges count]; _++) {
         [replacementStrings addObject:@""];
     }
     
