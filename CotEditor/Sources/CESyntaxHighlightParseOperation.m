@@ -288,7 +288,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:options error:&error];
     if (error) {
-        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
+        NSLog(@"Regex Syntax Error in \"%s\": %@", __PRETTY_FUNCTION__, [error localizedDescription]);
         return nil;
     }
     
@@ -324,9 +324,8 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     NSError *error = nil;
     NSRegularExpression *beginRegex = [NSRegularExpression regularExpressionWithPattern:beginString options:options error:&error];
     NSRegularExpression *endRegex = [NSRegularExpression regularExpressionWithPattern:endString options:options error:&error];
-    
     if (error) {
-        NSLog(@"ERROR in \"%s\"", __PRETTY_FUNCTION__);
+        NSLog(@"Regex Syntax Error in \"%s\": %@", __PRETTY_FUNCTION__, [error localizedDescription]);
         return nil;
     }
     
