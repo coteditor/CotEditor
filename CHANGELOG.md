@@ -50,7 +50,7 @@ develop
 
 ### Fixes
 
-- Fix “Verilog” syntax style.
+- Fix “Markdown” and “Verilog” syntax styles.
 - Fix update range of syntax highlight while editing.
 
 
