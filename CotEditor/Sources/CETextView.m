@@ -663,11 +663,11 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         [[self textContainer] setContainerSize:NSMakeSize(0, CGFLOAT_MAX)];
     }
     
+    [super setLayoutOrientation:orientation];
+    
     // enable non-contiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
     //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
     [[self layoutManager] setAllowsNonContiguousLayout:(orientation == NSTextLayoutOrientationHorizontal)];
-    
-    [super setLayoutOrientation:orientation];
 }
 
 
