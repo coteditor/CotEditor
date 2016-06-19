@@ -292,10 +292,7 @@ static NSString *HiraginoSansName;
     }
     
     // cache width of space char for hanging indent width calculation
-    NSFont *drawingFont = textFont;
-    if ([self usesScreenFonts]) {
-        drawingFont = [textFont screenFont] ? : textFont;
-    }
+    NSFont *drawingFont = [self substituteFontForFont:textFont];
     [self setSpaceWidth:[drawingFont advancementForCharacter:' ']];
     
     [self invalidateInvisiblesStyle];
@@ -365,6 +362,7 @@ static NSString *HiraginoSansName;
     NSMutableParagraphStyle *typingParagraphStyle = [indentAttributes[NSParagraphStyleAttributeName] mutableCopy];
     [typingParagraphStyle setHeadIndent:1.0];  // dummy indent value for size calculation (2016-04)
     indentAttributes[NSParagraphStyleAttributeName] = [typingParagraphStyle copy];
+    indentAttributes[NSFontAttributeName] = [self substituteFontForFont:[self textFont]];
     
     NSMutableDictionary<NSString *, NSNumber *> *cache = [NSMutableDictionary dictionary];
     
@@ -386,7 +384,7 @@ static NSString *HiraginoSansName;
              if (cache[indentString]) {
                  indent += [cache[indentString] doubleValue];
              } else {
-                 CGFloat width = ceil([indentString sizeWithAttributes:indentAttributes].width);
+                 CGFloat width = [indentString sizeWithAttributes:indentAttributes].width;
                  indent += width;
                  cache[indentString] = @(width);
              }

@@ -1170,7 +1170,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [paragraphStyle setLineHeightMultiple:[self lineHeight] ?: 1.0];
     
     // calculate tab interval
-    NSFont *font = [[self font] screenFont] ?: [self font];
+    NSFont *font = [[self layoutManager] substituteFontForFont:[self font]];
     CGFloat tabInterval = [self tabWidth] * [font advancementForCharacter:' '];
     [paragraphStyle setTabStops:@[]];  // clear default tab stops
     [paragraphStyle setDefaultTabInterval:tabInterval];
