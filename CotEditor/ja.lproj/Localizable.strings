@@ -412,7 +412,7 @@
 // Setting file name warnings
 "Please choose another name." = "別の名前を指定してください。";
 "Name can’t be empty." = "名前は空にできません。";
-"You can’t use a name that contains “/”." = "名前に“/”を含むことはできません。";
+"You can’t use a name that contains “/”." = "名前に“/”を含めることはできません。";
 "You can’t use a name that begins with a dot “.”." = "名前を“.”から始めることはできません。";
 "The name “%@” is already taken." = "“%@”はすでに使用されています。";
 
