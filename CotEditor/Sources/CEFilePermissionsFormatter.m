@@ -32,7 +32,7 @@
 
 // ------------------------------------------------------
 /// format permission number to human readable permission expression
-- (nullable NSString *)stringForObjectValue:(nonnull id)obj
+- (nullable NSString *)stringForObjectValue:(nullable id)obj
 // ------------------------------------------------------
 {
     if (![obj isKindOfClass:[NSNumber class]]) {

@@ -31,12 +31,12 @@ import XCTest
 class KeyBindingsTests: XCTestCase {
     
     func testKeySpecCharsCreation() {
-        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("a", modifierMask: [.ControlKeyMask, .ShiftKeyMask]), "^$a")
-        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("b", modifierMask: [.CommandKeyMask, .AlternateKeyMask]), "~@b")
-        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("A", modifierMask: [.ControlKeyMask]), "^$A")  // uppercase for Shift key
+        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("a", modifierMask: [.Control, .Shift]), "^$a")
+        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("b", modifierMask: [.Command, .Option]), "~@b")
+        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("A", modifierMask: [.Control]), "^$A")  // uppercase for Shift key
         
         XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("a", modifierMask: []), "a")
-        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("", modifierMask: [.ControlKeyMask, .ShiftKeyMask]), "")
+        XCTAssertEqual(CEKeyBindingUtils.keySpecCharsFromKeyEquivalent("", modifierMask: [.Control, .Shift]), "")
     }
     
     
@@ -45,7 +45,7 @@ class KeyBindingsTests: XCTestCase {
         let keyEquivalent = CEKeyBindingUtils.keyEquivalentAndModifierMask(&modifierMask, fromKeySpecChars: "^$a", requiresCommandKey: false)
         
         XCTAssertEqual(keyEquivalent, "a")
-        XCTAssertEqual(modifierMask, [.ControlKeyMask, .ShiftKeyMask])
+        XCTAssertEqual(modifierMask, [.Control, .Shift])
     }
     
     
