@@ -29,6 +29,7 @@
 @import Cocoa;
 
 
+IB_DESIGNABLE
 @interface CEOutlineMenuButtonCell : NSPopUpButtonCell
 
 @end

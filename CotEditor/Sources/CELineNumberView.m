@@ -124,13 +124,13 @@ static CGFontRef BoldLineNumberFont;
     [[textColor colorWithAlphaComponent:borderAlpha] setStroke];
     switch ([self orientation]) {
         case NSVerticalRuler:
-            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMaxY(dirtyRect))
-                                      toPoint:NSMakePoint(NSMaxX(dirtyRect) - 0.5, NSMinY(dirtyRect))];
+            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMaxX([self frame]) - 0.5, NSMaxY(dirtyRect))
+                                      toPoint:NSMakePoint(NSMaxX([self frame]) - 0.5, NSMinY(dirtyRect))];
             break;
             
         case NSHorizontalRuler:
-            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMaxY(dirtyRect) - 0.5)
-                                      toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY(dirtyRect) - 0.5)];
+            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(dirtyRect), NSMaxY([self frame]) - 0.5)
+                                      toPoint:NSMakePoint(NSMaxX(dirtyRect), NSMaxY([self frame]) - 0.5)];
             break;
     }
     

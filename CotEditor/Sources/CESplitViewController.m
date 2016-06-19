@@ -66,6 +66,15 @@
 
 
 // ------------------------------------------------------
+/// clean up
+- (void)dealloc
+// ------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+// ------------------------------------------------------
 /// setup view
 - (void)viewDidLoad
 // ------------------------------------------------------
@@ -78,15 +87,6 @@
 
 
 // ------------------------------------------------------
-/// clean up
-- (void)dealloc
-// ------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-// ------------------------------------------------------
 /// update close split view button state after remove
 - (void)removeSplitViewItem:(NSSplitViewItem *)splitViewItem
 // ------------------------------------------------------
@@ -94,16 +94,6 @@
     [super removeSplitViewItem:splitViewItem];
     
     [self invalidateCloseSplitEditorButtons];
-}
-
-
-// ------------------------------------------------------
-/// adjust divider position
-- (CGFloat)splitView:(nonnull NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex
-// ------------------------------------------------------
-{
-    // trim unwanted 0.5 px
-    return floor(proposedPosition);
 }
 
 

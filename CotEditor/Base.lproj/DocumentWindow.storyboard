@@ -260,7 +260,7 @@
                 <splitViewController showSeguePresentationStyle="single" id="2gA-dj-5gh" customClass="CEMainViewController" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="tZe-bg-feG"/>
-                        <splitViewItem holdingPriority="260" id="lfq-9K-fZM"/>
+                        <splitViewItem collapsed="YES" holdingPriority="260" id="lfq-9K-fZM"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" id="0PU-mC-e2a">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="300"/>
@@ -270,6 +270,9 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="2gA-dj-5gh" id="l9d-Qk-87h"/>
+                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="editor" destination="pVC-2A-ptR" id="oYe-qw-s7B"/>
@@ -292,7 +295,7 @@
         <scene sceneID="37M-iF-P9Z">
             <objects>
                 <splitViewController id="vcx-nD-eDH" customClass="CESplitViewController" sceneMemberID="viewController">
-                    <splitView key="splitView" dividerStyle="thin" id="tRF-P5-Ug9" customClass="CESplitView">
+                    <splitView key="splitView" id="tRF-P5-Ug9" customClass="CESplitView">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </splitView>
