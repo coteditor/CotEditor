@@ -69,6 +69,7 @@
 - (void)setWrapsLines:(BOOL)wrapsLines
 // ------------------------------------------------------
 {
+    NSRange visibleRange = [self visibleRange];
     BOOL isVertical = ([self layoutOrientation] == NSTextLayoutOrientationVertical);
     
     // 条件を揃えるためにいったん横書きに戻す (各項目の縦横の入れ替えは setLayoutOrientation: が良きに計らってくれる)
@@ -92,6 +93,8 @@
     if (isVertical) {
         [self setLayoutOrientation:NSTextLayoutOrientationVertical];
     }
+    
+    [self scrollRangeToVisible:visibleRange];
 }
 
 @end
