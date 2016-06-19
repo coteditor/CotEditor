@@ -1,9 +1,9 @@
 /*
  
- CESplitView.m
+ EditorSplitView.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-07-26.
  
@@ -25,28 +25,25 @@
  
  */
 
-#import "CESplitView.h"
+import Cocoa
 
-
-@implementation CESplitView
-
-#pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// change divider style depending on its split orientation
-- (NSSplitViewDividerStyle)dividerStyle
-// ------------------------------------------------------
-{
-    return [self isVertical] ? NSSplitViewDividerStyleThin : NSSplitViewDividerStylePaneSplitter;
+class EditorSplitView: NSSplitView {
+    
+    // MARK: Split View Methods
+    
+    /// change divider style depending on its split orientation
+    override var isVertical: Bool
+    {
+        didSet {
+            self.dividerStyle = isVertical ? .thin : .paneSplitter
+        }
+    }
+    
+    
+    /// override divider color
+    override var dividerColor: NSColor
+    {
+        return .windowFrameColor()
+    }
+    
 }
-
-
-// ------------------------------------------------------
-/// override divider color
-- (nonnull NSColor *)dividerColor
-// ------------------------------------------------------
-{
-    return [NSColor windowFrameColor];
-}
-
-@end

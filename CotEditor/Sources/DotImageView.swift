@@ -1,15 +1,15 @@
 /*
  
- CEClipView.m
+ DotImageView.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
- Created by 1024jp on 2014-10-25.
+ Created by 1024jp on 2015-12-09.
  
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,17 +25,21 @@
  
  */
 
-#import "CEClipView.h"
+import Cocoa
 
-
-@implementation CEClipView
-
-// ------------------------------------------------------
-/// flip for scroll view
-- (BOOL)isFlipped
-// ------------------------------------------------------
-{
-    return YES;
+@IBDesignable class DotImageView: NSImageView {
+    
+    // MARK: View Methods
+    
+    /// draw inside
+    override func draw(_ dirtyRect: NSRect)
+    {
+        NSGraphicsContext.saveGraphicsState()
+        
+        NSColor.tertiaryLabelColor().setFill()
+        NSBezierPath(ovalIn: self.bounds).fill()
+        
+        NSGraphicsContext.restoreGraphicsState()
+    }
+    
 }
-
-@end

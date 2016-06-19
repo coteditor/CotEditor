@@ -1,15 +1,15 @@
 /*
  
- CEInspectorTabView.h
+ WrappingTextField.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
- Created by 1024jp on 2016-05-31.
+ Created by 1024jp on 2014-12-26.
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,9 +25,18 @@
  
  */
 
-@import Cocoa;
+import Cocoa
 
-
-@interface CEInspectorTabView : NSTabView
-
-@end
+class WrappingTextField: NSTextField {
+    
+    // MARK: Text Field Methods
+    
+    /// make text field vertically expandable on resize
+    override func setFrameSize(_ newSize: NSSize)
+    {
+        self.preferredMaxLayoutWidth = newSize.width - 4  // 4 for 2 * inset
+        
+        super.setFrameSize(newSize)
+    }
+    
+}

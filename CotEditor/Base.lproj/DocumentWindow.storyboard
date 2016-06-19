@@ -240,7 +240,7 @@
             <objects>
                 <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="CESidebarViewController" sceneMemberID="viewController">
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
-                    <tabView key="tabView" id="wzn-c5-29x" customClass="CEInspectorTabView">
+                    <tabView key="tabView" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="252" y="0.0" width="140" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
@@ -295,7 +295,7 @@
         <scene sceneID="37M-iF-P9Z">
             <objects>
                 <splitViewController id="vcx-nD-eDH" customClass="CESplitViewController" sceneMemberID="viewController">
-                    <splitView key="splitView" id="tRF-P5-Ug9" customClass="CESplitView">
+                    <splitView key="splitView" id="tRF-P5-Ug9" customClass="EditorSplitView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </splitView>

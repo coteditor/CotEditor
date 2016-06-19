@@ -1,9 +1,9 @@
 /*
  
- CEAntialiasingTextField.m
+ AntialiasingTextField.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-05-08.
  
@@ -25,26 +25,30 @@
  
  */
 
-#import "CEAntialiasingTextField.h"
+import Cocoa
 
-
-@implementation CEAntialiasingTextField
-
-// ------------------------------------------------------
-/// control antialiasing of text
-- (void)drawRect:(NSRect)dirtyRect
-// ------------------------------------------------------
-{
-    if ([self disablesAntialiasing]) {
-        [NSGraphicsContext saveGraphicsState];
-        [[NSGraphicsContext currentContext] setShouldAntialias:NO];
+class AntialiasingTextField: NSTextField {
+    
+    var disablesAntialiasing: Bool = false
+    
+    
+    
+    // MARK:
+    // MARK: Text Field Methods
+    
+    /// control antialiasing of text
+    override func draw(_ dirtyRect: NSRect)
+    {
+        if self.disablesAntialiasing {
+            NSGraphicsContext.saveGraphicsState()
+            NSGraphicsContext.current()?.shouldAntialias = false
+        }
+        
+        super.draw(dirtyRect)
+        
+        if self.disablesAntialiasing {
+            NSGraphicsContext.restoreGraphicsState()
+        }
     }
     
-    [super drawRect:dirtyRect];
-    
-    if ([self disablesAntialiasing]) {
-        [NSGraphicsContext restoreGraphicsState];
-    }
 }
-
-@end

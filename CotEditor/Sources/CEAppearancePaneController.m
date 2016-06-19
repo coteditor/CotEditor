@@ -27,10 +27,12 @@
  */
 
 @import AudioToolbox;
+
+#import "CotEditor-Swift.h"
+
 #import "CEAppearancePaneController.h"
 #import "CEThemeViewController.h"
 #import "CEThemeManager.h"
-#import "CEAntialiasingTextField.h"
 #import "CEInvisibles.h"
 #import "CEErrors.h"
 #import "CEDefaults.h"
@@ -39,7 +41,7 @@
 
 @interface CEAppearancePaneController () <NSTableViewDelegate, NSTableViewDataSource, CEThemeViewControllerDelegate>
 
-@property (nonatomic, nullable, weak) IBOutlet CEAntialiasingTextField *fontField;
+@property (nonatomic, nullable, weak) IBOutlet AntialiasingTextField *fontField;
 @property (nonatomic, nullable, weak) IBOutlet NSTableView *themeTableView;
 @property (nonatomic, nullable, weak) IBOutlet NSBox *box;
 @property (nonatomic, nullable, weak) IBOutlet NSMenu *themeTableMenu;
