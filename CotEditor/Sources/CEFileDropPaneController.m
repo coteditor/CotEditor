@@ -92,6 +92,14 @@
 }
 
 
+// ------------------------------------------------------
+/// finish current editing
+- (void)viewWillDisappear
+// ------------------------------------------------------
+{
+    [self commitEditing];
+}
+
 
 #pragma mark Delegate
 
@@ -191,8 +199,8 @@
     NSTextView *textView = [self formatTextView];
     
     [[[self view] window] makeFirstResponder:textView];
-    if ([textView shouldChangeTextInRange:[textView selectedRange] replacementString:title]) {
-        [textView replaceCharactersInRange:[textView selectedRange] withString:title];
+    if ([textView shouldChangeTextInRange:[textView rangeForUserTextChange] replacementString:title]) {
+        [textView replaceCharactersInRange:[textView rangeForUserTextChange] withString:title];
         [textView didChangeText];
     }
 }
@@ -203,8 +211,8 @@
 - (IBAction)addSetting:(nullable id)sender
 // ------------------------------------------------------
 {
-    // フォーカスを移し、値入力を確定
-    [[sender window] makeFirstResponder:sender];
+    // 値入力を確定
+    [self commitEditing];
     
     [[self fileDropController] add:self];
 }
@@ -222,8 +230,8 @@
     // (編集中に削除ボタンが押され、かつ自動削除対象であったときの整合性を取るための)削除実施フラグをたてる
     [self setDeletingFileDrop:YES];
     
-    // フォーカスを移し、値入力を確定
-    [[sender window] makeFirstResponder:sender];
+    // 値入力を確定
+    [self commitEditing];
     
     // 確認ダイアログを出す
     [self deleteSettingAtIndex:selectedRow];

@@ -69,6 +69,15 @@
 
 
 // ------------------------------------------------------
+/// finish current editing
+- (void)viewWillDisappear
+// ------------------------------------------------------
+{
+    [self commitEditing];
+}
+
+
+// ------------------------------------------------------
 /// observe theme dict changes
 - (void)setRepresentedObject:(nullable id)representedObject
 // ------------------------------------------------------
@@ -147,7 +156,6 @@
 // ------------------------------------------------------
 {
     [[self popover] showRelativeToRect:[sender frame] ofView:[self view] preferredEdge:NSMaxYEdge];
-    [[sender window] makeFirstResponder:[sender window]];
 }
 
 

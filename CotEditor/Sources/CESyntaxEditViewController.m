@@ -250,8 +250,8 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
     
     if (!style) { return; }
     
-    // フォーカスを移しておく
-    [[sender window] makeFirstResponder:[sender window]];
+    // discard current editing
+    [self discardEditing];
     // 内容をセット
     [[self style] setDictionary:style];
     // デフォルト設定に戻すボタンを無効化
@@ -280,8 +280,8 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 - (IBAction)saveEdit:(nullable id)sender
 // ------------------------------------------------------
 {
-    // フォーカスを移して入力中の値を確定
-    [[sender window] makeFirstResponder:sender];
+    // 入力中の値を確定
+    [self commitEditing];
     
     // style名から先頭または末尾のスペース／タブ／改行を排除
     NSString *styleName = [[[self styleNameField] stringValue]
@@ -350,14 +350,14 @@ typedef NS_ENUM(NSUInteger, CESyntaxEditViewIndex) {
 
 
 // ------------------------------------------------------
-/// ビューを切り替える
+/// change pane
 - (void)swapViewWithIndex:(CESyntaxEditViewIndex)index
 // ------------------------------------------------------
 {
-    // finish current edit
-    [[[self view] window] makeFirstResponder:[self menuTableView]];
+    // finish current editing anyway
+    [self commitEditing];
     
-    // swap view
+    // swap views
     [[self box] setContentView:[[self viewControllers][index] view]];
 }
 

@@ -102,6 +102,15 @@
 }
 
 
+// ------------------------------------------------------
+/// finish current editing
+- (void)viewWillDisappear
+// ------------------------------------------------------
+{
+    [self commitEditing];
+}
+
+
 
 #pragma mark Data Source
 

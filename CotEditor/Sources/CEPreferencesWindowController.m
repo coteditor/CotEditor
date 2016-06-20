@@ -117,19 +117,6 @@
 
 
 
-#pragma mark Delegate
-
-// ------------------------------------------------------
-/// window will close
-- (void)windowWillClose:(nonnull NSNotification *)notification
-// ------------------------------------------------------
-{
-    // finish current edit
-    [[self window] makeFirstResponder:[self window]];
-}
-
-
-
 #pragma mark Action Messages
 
 // ------------------------------------------------------
