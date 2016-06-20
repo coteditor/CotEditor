@@ -1,15 +1,15 @@
 /*
  
- CETableCellView.h
+ CharacterField.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
- Created by 1024jp on 2016-01-25.
+ Created by 1024jp on 2015-11-21.
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,9 +25,24 @@
  
  */
 
-@import Cocoa;
+import Cocoa
 
-
-@interface CETableCellView : NSTableCellView
-
-@end
+class CharacterField: NSTextField {
+    
+    // MARK: Text Field Methods
+    
+    /// determine size
+    override var intrinsicContentSize: NSSize
+    {
+        var size = super.intrinsicContentSize
+        let bounds = self.attributedStringValue.boundingRect(with: size, options: .usesFontLeading)
+        
+        if let font = self.font {
+            size.width = max(font.pointSize, size.width)
+        }
+        size.height = ceil(bounds.height)
+        
+        return size
+    }
+    
+}

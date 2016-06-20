@@ -1,15 +1,15 @@
 /*
  
- CECharacterField.h
+ FindPanelSplitView.swift
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2015-11-21.
+ Created by 1024jp on 2015-01-05.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,9 +25,20 @@
  
  */
 
-@import Cocoa;
+import Cocoa
 
-
-@interface CECharacterField : NSTextField
-
-@end
+class FindPanelSplitView: NSSplitView {
+    
+    // MARK: Split View Methods
+    
+    /// hide divider completely when the second view (Find All result) is collapsed
+    override var dividerThickness: CGFloat
+    {
+        if self.isSubviewCollapsed(self.subviews[1]) {
+            return 0
+        }
+        
+        return super.dividerThickness
+    }
+    
+}
