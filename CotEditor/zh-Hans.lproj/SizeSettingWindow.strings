@@ -1,15 +1,16 @@
 /*
  
- SizeSampleWindow.strings (Japanese)
+ SizeSettingWindow.strings (Simplified Chinese)
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-11-04.
+ Created by 1024jp on 2014-12-12.
+ Localized by onevcat
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2015 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,17 +27,17 @@
  */
 
 /* Class = "NSWindow"; title = "Sample Window for Size"; ObjectID = "127"; */
-"127.title" = "ウインドウサイズを決定";
+"127.title" = "尺寸调整窗口";
 
 /* Class = "NSTextFieldCell"; title = "Resize this window.\nThe size of this window will be set as default."; ObjectID = "3399"; */
-"3399.title" = "このウインドウのサイズを調整してください。このウインドウサイズがデフォルトとして使用されます。";
+"3399.title" = "缩放这个窗口。\n这个窗口的尺寸将被设置为默认值。";
 
 /* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
-"3402.title" = "幅：";
+"3402.title" = "宽度：";
 /* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
-"3403.title" = "高さ：";
+"3403.title" = "高度：";
 
 /* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
-"3397.title" = "デフォルトに設定";
+"3397.title" = "设为默认值";
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3398"; */
-"3398.title" = "キャンセル";
+"3398.title" = "取消";

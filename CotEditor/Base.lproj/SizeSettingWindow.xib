@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CESizeSampleWindowController">
+        <customObject id="-2" userLabel="File's Owner" customClass="SizeSettingWindowController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="userDefaultsController" destination="3I1-SB-fO2" id="DDt-k2-X3m"/>
                 <outlet property="window" destination="127" id="evL-3h-9d0"/>
@@ -37,7 +37,7 @@ DQ
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="save:" target="-2" id="Gul-Zl-xbE"/>
+                                    <action selector="save:" target="-2" id="8bS-Fk-Sg3"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="129">
@@ -53,7 +53,7 @@ Gw
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="cancel:" target="-2" id="Owb-pY-bYW"/>
+                                    <action selector="cancel:" target="-2" id="uH7-EJ-Wyj"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="130" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">

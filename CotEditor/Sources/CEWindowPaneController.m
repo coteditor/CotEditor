@@ -27,7 +27,9 @@
  */
 
 #import "CEWindowPaneController.h"
-#import "CESizeSampleWindowController.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEDefaults.h"
 
 
@@ -86,7 +88,7 @@
 // ------------------------------------------------------
 {
     // display modal
-    CESizeSampleWindowController *sampleWindowController = [[CESizeSampleWindowController alloc] init];
+    SizeSettingWindowController *sampleWindowController = [[SizeSettingWindowController alloc] init];
     [sampleWindowController showWindow:sender];
     [NSApp runModalForWindow:[sampleWindowController window]];
     
