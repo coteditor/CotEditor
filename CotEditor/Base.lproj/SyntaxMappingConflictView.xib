@@ -5,7 +5,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxMappingConflictsViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="SyntaxMappingConflictsViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="ZCl-cg-5Ai" id="ZDZ-SJ-JqG"/>
             </connections>
@@ -443,7 +443,7 @@ DQ
             </constraints>
         </view>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <arrayController objectClassName="NSDictionary" editable="NO" avoidsEmptySelection="NO" id="oW9-gC-3kM" userLabel="Extension Conflicts Controller">
+        <arrayController objectClassName="MappingConflict" editable="NO" avoidsEmptySelection="NO" id="oW9-gC-3kM" userLabel="Extension Conflicts Controller">
             <declaredKeys>
                 <string>name</string>
                 <string>primaryStyle</string>
@@ -453,7 +453,7 @@ DQ
                 <binding destination="-2" name="contentArray" keyPath="extensionConflicts" id="t66-LI-bZu"/>
             </connections>
         </arrayController>
-        <arrayController objectClassName="NSDictionary" editable="NO" avoidsEmptySelection="NO" id="lxi-wt-2lm" userLabel="File Name Conflicts Controller">
+        <arrayController objectClassName="MappingConflict" editable="NO" avoidsEmptySelection="NO" id="lxi-wt-2lm" userLabel="File Name Conflicts Controller">
             <declaredKeys>
                 <string>name</string>
                 <string>primaryStyle</string>

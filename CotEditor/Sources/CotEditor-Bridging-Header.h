@@ -5,3 +5,5 @@
 
 // HexColorTransformer
 #import "NSColor+WFColorCode.h"
+
+#import "CESyntaxManager.h"

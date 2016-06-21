@@ -65,8 +65,8 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // readonly
 @property (readwrite, nonatomic, nonnull, copy) NSArray<NSString *> *styleNames;
-@property (readwrite, nonatomic, nonnull, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *extensionConflicts;
-@property (readwrite, nonatomic, nonnull, copy) NSDictionary<NSString *, NSMutableArray<NSString *> *> *filenameConflicts;
+@property (readwrite, nonatomic, nonnull, copy) NSDictionary<NSString *, NSArray<NSString *> *> *extensionConflicts;
+@property (readwrite, nonatomic, nonnull, copy) NSDictionary<NSString *, NSArray<NSString *> *> *filenameConflicts;
 
 @end
 

@@ -28,9 +28,11 @@
 
 @import AudioToolbox;
 #import "CEFormatPaneController.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
-#import "CESyntaxMappingConflictsViewController.h"
 #import "CESyntaxEditViewController.h"
 #import "CEEncodingListViewController.h"
 #import "CEDefaults.h"
@@ -288,7 +290,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 - (IBAction)openSyntaxMappingConflictSheet:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSViewController *viewController = [[CESyntaxMappingConflictsViewController alloc] init];
+    NSViewController *viewController = [[SyntaxMappingConflictsViewController alloc] init];
     
     // show as sheet
     [self presentViewControllerAsSheet:viewController];
