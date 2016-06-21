@@ -32,8 +32,8 @@ import Cocoa
     // MARK: View Methods
     
     /// draw inside
-    override func draw(_ dirtyRect: NSRect)
-    {
+    override func draw(_ dirtyRect: NSRect) {
+        
         NSGraphicsContext.saveGraphicsState()
         
         NSColor.tertiaryLabelColor().setFill()

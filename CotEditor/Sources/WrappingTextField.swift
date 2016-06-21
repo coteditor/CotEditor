@@ -32,8 +32,8 @@ class WrappingTextField: NSTextField {
     // MARK: Text Field Methods
     
     /// make text field vertically expandable on resize
-    override func setFrameSize(_ newSize: NSSize)
-    {
+    override func setFrameSize(_ newSize: NSSize) {
+        
         self.preferredMaxLayoutWidth = newSize.width - 4  // 4 for 2 * inset
         
         super.setFrameSize(newSize)

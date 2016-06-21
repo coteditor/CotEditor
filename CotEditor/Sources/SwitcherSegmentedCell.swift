@@ -32,16 +32,16 @@ class SwitcherSegmentedCell: NSSegmentedCell {
     // MARK: Segmented Cell Methods
     
     /// customize drawing items
-    override func draw(withFrame cellFrame: NSRect, in controlView: NSView)
-    {
+    override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
+        
         // draw only inside
         self.drawInterior(withFrame: cellFrame, in: controlView)
     }
     
     
     /// draw each segment
-    override func drawSegment(_ segment: Int, inFrame frame: NSRect, with controlView: NSView)
-    {
+    override func drawSegment(_ segment: Int, inFrame frame: NSRect, with controlView: NSView) {
+        
         // use another image on selected segment
         //   -> From a universal design point of view, it's better to use an image that has a different silhouette from the normal (unselected) one.
         //      Some of users may hard to distinguish the selected state just by the color.

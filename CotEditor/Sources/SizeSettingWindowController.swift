@@ -37,15 +37,15 @@ class SizeSettingWindowController: NSWindowController {
     // MARK: Window Controller Methods
     
     /// nib name
-    override var windowNibName: String?
-    {
+    override var windowNibName: String? {
+        
         return "SizeSettingWindow"
     }
     
     
     /// setup UI
-    override func windowDidLoad()
-    {
+    override func windowDidLoad() {
+        
         super.windowDidLoad()
         self.window?.center()
     }
@@ -55,8 +55,8 @@ class SizeSettingWindowController: NSWindowController {
     // MARK: Action Messages
     
     /// close window without save
-    @IBAction func cancel(_ sender: AnyObject?)
-    {
+    @IBAction func cancel(_ sender: AnyObject?) {
+        
         self.userDefaultsController.revert(sender)
         
         NSApp.stopModal(withCode: NSModalResponseCancel)
@@ -65,8 +65,8 @@ class SizeSettingWindowController: NSWindowController {
     
     
     /// save window size to the user defaults and close window
-    @IBAction func save(_ sender: AnyObject?)
-    {
+    @IBAction func save(_ sender: AnyObject?) {
+        
         self.userDefaultsController.save(sender)
         
         NSApp.stopModal(withCode: NSModalResponseOK)

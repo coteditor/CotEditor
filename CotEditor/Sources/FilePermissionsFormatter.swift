@@ -32,8 +32,8 @@ class FilePermissionsFormatter: Formatter {
     // MARK: Formatter Function
     
     /// format permission number to human readable permission expression
-    override func string(for obj: AnyObject?) -> String?
-    {
+    override func string(for obj: AnyObject?) -> String? {
+        
         guard let number = obj as? NSNumber else {
             return obj?.description
         }
@@ -45,8 +45,8 @@ class FilePermissionsFormatter: Formatter {
     
     
     /// disable backwards formatting
-    override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
-    {
+    override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
+        
         return false
     }
     
@@ -58,8 +58,8 @@ class FilePermissionsFormatter: Formatter {
 // MARK: Private Function
 
 /// create human-readable permission expression from integer
-private func humanReadable(permission: UInt) -> String
-{
+private func humanReadable(permission: UInt) -> String {
+    
     let units = ["---", "--x", "-w-", "-wx", "r--", "r-x", "rw-", "rwx"]
     var result = "-"  // Document is always file.
     

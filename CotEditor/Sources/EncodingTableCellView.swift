@@ -30,8 +30,8 @@ import Cocoa
 class EncodingTableCellView: NSTableCellView {
     
     /// inverse text color of highlighted cell
-    override var backgroundStyle: NSBackgroundStyle
-    {
+    override var backgroundStyle: NSBackgroundStyle {
+        
         didSet {
             guard let attrString = self.textField?.attributedStringValue else { return }
             

@@ -38,8 +38,8 @@ import Cocoa
     // MARK: Cell Methods
     
     /// add padding to area to draw text
-    override func drawingRect(forBounds rect: NSRect) -> NSRect
-    {
+    override func drawingRect(forBounds rect: NSRect) -> NSRect {
+        
         assert(self.leftPadding >= 0)
         assert(self.rightPadding >= 0)
         

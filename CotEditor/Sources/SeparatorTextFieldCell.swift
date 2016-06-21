@@ -41,8 +41,8 @@ class SeparatorTextFieldCell: NSTextFieldCell {
     // MARK: Menu Item Cell Methods
     
     /// draw cell
-    override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView)
-    {
+    override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+        
         guard self.isSeparator else {
             return super.drawInterior(withFrame: cellFrame, in: controlView)
         }

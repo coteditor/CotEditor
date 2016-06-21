@@ -37,8 +37,8 @@ import Cocoa
     // MARK: View Methods
     
     /// draw inside
-    override func draw(_ dirtyRect: NSRect)
-    {
+    override func draw(_ dirtyRect: NSRect) {
+        
         NSGraphicsContext.saveGraphicsState()
         
         self.fillColor.setFill()
@@ -49,8 +49,8 @@ import Cocoa
     
     
     /// whether it's an opaque view
-    override var isOpaque: Bool
-    {
+    override var isOpaque: Bool {
+        
         return true
     }
     

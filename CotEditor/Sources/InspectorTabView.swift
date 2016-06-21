@@ -38,8 +38,8 @@ class InspectorTabView: NSTabView {
     // MARK: Creation
     
     /// initialize instance
-    required init?(coder: NSCoder)
-    {
+    required init?(coder: NSCoder) {
+        
         super.init(coder: coder)
         
         self.tabViewType = .noTabsNoBorder
@@ -60,8 +60,8 @@ class InspectorTabView: NSTabView {
     // MARK: Tab View Methods
     
     /// take off control space
-    override var contentRect: NSRect
-        {
+    override var contentRect: NSRect {
+        
         var rect = self.bounds
         rect.origin.y = self.ControlHeight + 1  // +1 for border
         rect.size.height -= self.ControlHeight + 1
@@ -71,8 +71,8 @@ class InspectorTabView: NSTabView {
     
     
     /// reposition control manually
-    override var frame: NSRect
-    {
+    override var frame: NSRect {
+        
         didSet {
             self.invalidateControlPosition()
         }
@@ -80,8 +80,8 @@ class InspectorTabView: NSTabView {
     
     
     /// draw border below control
-    override func draw(_ dirtyRect: NSRect)
-    {
+    override func draw(_ dirtyRect: NSRect) {
+        
         super.draw(dirtyRect)
         
         NSGraphicsContext.saveGraphicsState()
@@ -95,24 +95,24 @@ class InspectorTabView: NSTabView {
     
     
     /// select also the private control
-    override func selectTabViewItem(at index: Int)
-    {
+    override func selectTabViewItem(at index: Int) {
+        
         super.selectTabViewItem(at: index)
         self.invalidateControlSelection()
     }
     
     
     /// select also the private control
-    override func addTabViewItem(_ tabViewItem: NSTabViewItem)
-    {
+    override func addTabViewItem(_ tabViewItem: NSTabViewItem) {
+        
         super.addTabViewItem(tabViewItem)
         self.invalidateControlSelection()
     }
     
     
     /// update the private control
-    override func insertTabViewItem(_ tabViewItem: NSTabViewItem, at index: Int)
-    {
+    override func insertTabViewItem(_ tabViewItem: NSTabViewItem, at index: Int) {
+        
         super.insertTabViewItem(tabViewItem, at: index)
         self.rebuildSegmentedControl()
     }
@@ -120,6 +120,7 @@ class InspectorTabView: NSTabView {
     
     /// update the private control
     override func removeTabViewItem(_ tabViewItem: NSTabViewItem) {
+        
         super.removeTabViewItem(tabViewItem)
         self.rebuildSegmentedControl()
     }
@@ -129,15 +130,15 @@ class InspectorTabView: NSTabView {
     // MARK: Private Methods
     
     /// switch tab from the private control
-     func selectTabViewItemWithSegmentedControl(_ sender: NSSegmentedControl)
-    {
+    func selectTabViewItemWithSegmentedControl(_ sender: NSSegmentedControl) {
+        
         super.selectTabViewItem(at: sender.selectedSegment)
     }
     
     
     /// update selection of the private control
-    private func invalidateControlSelection()
-    {
+    private func invalidateControlSelection() {
+        
         guard let selectedItem = self.selectedTabViewItem else { return }
         
         let index = self.indexOfTabViewItem(selectedItem)
@@ -153,8 +154,8 @@ class InspectorTabView: NSTabView {
     
     
     /// update private control position
-    private func invalidateControlPosition()
-    {
+    private func invalidateControlPosition() {
+        
         var frame = self.segmentedControl.frame
         frame.origin.x = floor((self.frame.width - frame.width) / 2)
         self.segmentedControl.frame = frame
@@ -162,8 +163,8 @@ class InspectorTabView: NSTabView {
     
     
     /// update the private control every time when tab item line-up changed
-    private func rebuildSegmentedControl()
-    {
+    private func rebuildSegmentedControl() {
+        
         self.segmentedControl.segmentCount = self.numberOfTabViewItems
         
         // set tabViewItem values to control buttons

@@ -32,8 +32,8 @@ class FlippedClipView: NSClipView {
     // MARK: Clip View Methods
     
     /// flip for scroll view
-    override var isFlipped: Bool
-    {
+    override var isFlipped: Bool {
+        
         return true
     }
     

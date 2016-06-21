@@ -33,8 +33,8 @@ class OutlineMenuButtonCell: NSPopUpButtonCell {
     // MARK: Pop Up Button Cell Methods
     
     /// draw cell
-    override func draw(withFrame cellFrame: NSRect, in controlView: NSView)
-    {
+    override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
+        
         NSGraphicsContext.saveGraphicsState()
         
         // draw background

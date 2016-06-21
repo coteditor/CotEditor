@@ -32,8 +32,8 @@ class EditorSplitView: NSSplitView {
     // MARK: Split View Methods
     
     /// change divider style depending on its split orientation
-    override var isVertical: Bool
-    {
+    override var isVertical: Bool {
+        
         didSet {
             self.dividerStyle = isVertical ? .thin : .paneSplitter
         }
@@ -41,8 +41,8 @@ class EditorSplitView: NSSplitView {
     
     
     /// override divider color
-    override var dividerColor: NSColor
-    {
+    override var dividerColor: NSColor {
+        
         return .windowFrameColor()
     }
     

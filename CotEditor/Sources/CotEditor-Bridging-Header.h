@@ -6,4 +6,5 @@
 // HexColorTransformer
 #import "NSColor+WFColorCode.h"
 
+// SyntaxMappingConflictsViewController
 #import "CESyntaxManager.h"

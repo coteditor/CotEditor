@@ -34,14 +34,17 @@ class HexColorTransformer: ValueTransformer {
     
     /// Class of transformed value
     override class func transformedValueClass() -> AnyClass {
+        
         return NSString.self
     }
     
     
     /// Can reverse transformeation?
     override class func allowsReverseTransformation() -> Bool {
+        
         return true
     }
+    
     
     /// From color code hex to NSColor (String -> NSColor)
     override func transformedValue(_ value: AnyObject?) -> AnyObject? {
@@ -60,8 +63,8 @@ class HexColorTransformer: ValueTransformer {
     
     
     /// From NSColor to hex color code string (NSColor -> String)
-    override func reverseTransformedValue(_ value: AnyObject?) -> AnyObject?
-    {
+    override func reverseTransformedValue(_ value: AnyObject?) -> AnyObject? {
+        
         guard let color = value as? NSColor else { return "#000000" }
         
         let sanitizedColor = color.usingColorSpaceName(NSCalibratedRGBColorSpace)

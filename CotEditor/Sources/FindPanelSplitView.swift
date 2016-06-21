@@ -3,7 +3,7 @@
  FindPanelSplitView.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-01-05.
  
@@ -32,8 +32,8 @@ class FindPanelSplitView: NSSplitView {
     // MARK: Split View Methods
     
     /// hide divider completely when the second view (Find All result) is collapsed
-    override var dividerThickness: CGFloat
-    {
+    override var dividerThickness: CGFloat {
+        
         if self.isSubviewCollapsed(self.subviews[1]) {
             return 0
         }

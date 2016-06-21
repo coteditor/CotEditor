@@ -37,8 +37,8 @@ class AntialiasingTextField: NSTextField {
     // MARK: Text Field Methods
     
     /// control antialiasing of text
-    override func draw(_ dirtyRect: NSRect)
-    {
+    override func draw(_ dirtyRect: NSRect) {
+        
         if self.disablesAntialiasing {
             NSGraphicsContext.saveGraphicsState()
             NSGraphicsContext.current()?.shouldAntialias = false
