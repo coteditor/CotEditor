@@ -1,6 +1,6 @@
 /*
  
- EncodingTableCellView.h
+ EncodingTableCellView.swift
  
  CotEditor
  https://coteditor.com
@@ -27,29 +27,57 @@
 
 import Cocoa
 
+extension NSColor {
+    class func alternateDisabledControlTextColor() -> NSColor {
+        return NSColor(white: 1.0, alpha: 0.75)
+    }
+}
+
+
+
+
+// MARK:
+
 class EncodingTableCellView: NSTableCellView {
     
     /// inverse text color of highlighted cell
     override var backgroundStyle: NSBackgroundStyle {
         
         didSet {
-            guard let attrString = self.textField?.attributedStringValue else { return }
+            guard let textField = self.textField else { return }
             
             let highlighted = (backgroundStyle == .dark)
+            let attrString = textField.attributedStringValue
             let mutableAttrString = attrString.mutableCopy() as! NSMutableAttributedString
             
             attrString.enumerateAttribute(NSForegroundColorAttributeName,
                                           in: NSRange(location: 0, length: attrString.length),
                                           options: [],
-                                          using: { (color: AnyObject?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
+                                          using: { (value: AnyObject?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
+                                            
+                                            let color = value as! NSColor?
+                                            var newColor: NSColor?
+                                            
                                             if highlighted && color == nil {
-                                                mutableAttrString.addAttribute(NSForegroundColorAttributeName, value: NSColor.alternateSelectedControlTextColor(), range: range)
-                                            } else if !highlighted && color as? NSColor == NSColor.alternateSelectedControlTextColor() {
+                                                newColor = .alternateSelectedControlTextColor()
+                                            } else if highlighted && color == .disabledControlTextColor() {
+                                                newColor = .alternateDisabledControlTextColor()
+                                            } else if !highlighted && color == .alternateSelectedControlTextColor() {
+                                                newColor = nil
+                                            } else if !highlighted && color == .alternateDisabledControlTextColor() {
+                                                newColor = .disabledControlTextColor()
+                                            } else {
+                                                return
+                                            }
+                                            
+                                            if let newColor = newColor {
+                                                mutableAttrString.addAttribute(NSForegroundColorAttributeName, value: newColor, range: range)
+                                            } else {
                                                 mutableAttrString.removeAttribute(NSForegroundColorAttributeName, range: range)
                                             }
             })
             
-            self.textField?.attributedStringValue = mutableAttrString
+            textField.attributedStringValue = mutableAttrString
         }
     }
     

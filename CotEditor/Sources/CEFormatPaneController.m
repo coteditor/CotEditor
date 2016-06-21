@@ -34,7 +34,6 @@
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
 #import "CESyntaxEditViewController.h"
-#import "CEEncodingListViewController.h"
 #import "CEDefaults.h"
 #import "CEEncodings.h"
 #import "Constants.h"
@@ -263,7 +262,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 - (IBAction)openEncodingEditSheet:(nullable id)sender
 // ------------------------------------------------------
 {
-    NSViewController *viewController = [[CEEncodingListViewController alloc] init];
+    NSViewController *viewController = [[EncodingListViewController alloc] init];
     
     // show as sheet
     [self presentViewControllerAsSheet:viewController];

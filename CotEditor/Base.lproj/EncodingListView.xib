@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEEncodingListViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="EncodingListViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="deleteSeparatorButton" destination="5od-lM-Mgb" id="mbM-8E-5AH"/>
                 <outlet property="tableView" destination="sEh-f6-spz" id="Qem-Bc-oEu"/>
