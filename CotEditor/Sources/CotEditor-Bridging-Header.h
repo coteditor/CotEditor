@@ -17,3 +17,9 @@
 #import "CESnippetKeyBindingManager.h"
 #import "CEKeyBindingItem.h"
 #import "CEKeyBindingUtils.h"
+
+// General Pane
+#import "CEDocument.h"
+#ifndef APPSTORE
+#import "CEUpdaterManager.h"
+#endif
