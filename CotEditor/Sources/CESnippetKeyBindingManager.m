@@ -27,6 +27,7 @@
  */
 
 #import "CESnippetKeyBindingManager.h"
+#import "CEKeyBindingItem.h"
 #import "CEKeyBindingUtils.h"
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -99,23 +100,24 @@
 //------------------------------------------------------
 /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
 /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *)keySpecCharsListForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
-    NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *keySpecCharsList = [NSMutableArray array];
+    NSMutableArray<CEKeyBindingItem *> *bindingItems = [NSMutableArray array];
     NSDictionary<NSString *, NSString *> *dict = usesFactoryDefaults ? [self defaultKeyBindingDict] : [self keyBindingDict];
     
     for (NSUInteger index = 0; index <= 30; index++) {
-        NSString *selectorString = [[self class] selectorStringWithIndex:index];
         NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Insert Text %li", nil), index];
-        NSString *key = [[dict allKeysForObject:selectorString] firstObject] ? : @"";
+        NSString *selector = [[self class] selectorStringWithIndex:index];
         
-        [keySpecCharsList addObject:[@{CEKeyBindingTitleKey: title,
-                                       CEKeyBindingKeySpecCharsKey: key,
-                                       CEKeyBindingSelectorStringKey: selectorString} mutableCopy]];
+        CEKeyBindingItem *item = [[CEKeyBindingItem alloc] initWithTitle:title
+                                                                selector:selector
+                                                            keySpecChars:[[dict allKeysForObject:selector] firstObject]];
+        
+        [bindingItems addObject:item];
     }
     
-    return keySpecCharsList;
+    return [bindingItems copy];
 }
 
 

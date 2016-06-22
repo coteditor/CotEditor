@@ -356,6 +356,8 @@
 		2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */; };
 		2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */; };
 		2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
+		2AA4D3711D1A9CBD001D261D /* CEKeyBindingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3701D1A9CBD001D261D /* CEKeyBindingItem.m */; };
+		2AA4D3721D1A9CBD001D261D /* CEKeyBindingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3701D1A9CBD001D261D /* CEKeyBindingItem.m */; };
 		2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AACB1D41D19AE600073775B /* CEMenuKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1D31D19AE600073775B /* CEMenuKeyBindingManager.m */; };
@@ -833,6 +835,8 @@
 		2AA2E0181BFF9AEE0087BDD6 /* CEUnicodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeCharacter.h; sourceTree = "<group>"; };
 		2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeCharacter.m; sourceTree = "<group>"; };
 		2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIndentationTests.swift; sourceTree = "<group>"; };
+		2AA4D36F1D1A9CBD001D261D /* CEKeyBindingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingItem.h; sourceTree = "<group>"; };
+		2AA4D3701D1A9CBD001D261D /* CEKeyBindingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingItem.m; sourceTree = "<group>"; };
 		2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutKeyField.swift; sourceTree = "<group>"; };
 		2AACB1D21D19AE600073775B /* CEMenuKeyBindingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMenuKeyBindingManager.h; sourceTree = "<group>"; };
 		2AACB1D31D19AE600073775B /* CEMenuKeyBindingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMenuKeyBindingManager.m; sourceTree = "<group>"; };
@@ -1724,6 +1728,8 @@
 				2AACB1D31D19AE600073775B /* CEMenuKeyBindingManager.m */,
 				2AACB1D61D19AE6F0073775B /* CESnippetKeyBindingManager.h */,
 				2AACB1D71D19AE6F0073775B /* CESnippetKeyBindingManager.m */,
+				2AA4D36F1D1A9CBD001D261D /* CEKeyBindingItem.h */,
+				2AA4D3701D1A9CBD001D261D /* CEKeyBindingItem.m */,
 			);
 			name = "Key Binding Managers";
 			sourceTree = "<group>";
@@ -2476,6 +2482,7 @@
 				2A6F0DB71B5500E100C2D03C /* CEKeyBindingsPaneController.m in Sources */,
 				2AE0C0901C422A5200E52E04 /* CETextView+Transformation.m in Sources */,
 				2A6F0DB81B5500E100C2D03C /* CELayoutManager.m in Sources */,
+				2AA4D3721D1A9CBD001D261D /* CEKeyBindingItem.m in Sources */,
 				2A6F0DB91B5500E100C2D03C /* CEEditorWrapper.m in Sources */,
 				2A1A1E351C2422D200DBA09F /* CEShareMenu.m in Sources */,
 				2AF587401CF76FFB009D44A2 /* NSString+CEAdditions.m in Sources */,
@@ -2649,6 +2656,7 @@
 				2A149DC51901885A00A9D6EF /* CEKeyBindingsPaneController.m in Sources */,
 				8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */,
 				2ACDC0971D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
+				2AA4D3711D1A9CBD001D261D /* CEKeyBindingItem.m in Sources */,
 				2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */,
 				2A4DB13D19A265BA005A4F7C /* CEDraggableArrayController.m in Sources */,
 				2A12C7FF1D1843B50069C60B /* SeparatorTextFieldCell.swift in Sources */,

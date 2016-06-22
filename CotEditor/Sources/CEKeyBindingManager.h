@@ -29,11 +29,7 @@
 #import "CESettingManager.h"
 
 
-// outlineView data key, column identifier
-extern NSString *_Nonnull const CEKeyBindingTitleKey;
-extern NSString *_Nonnull const CEKeyBindingKeySpecCharsKey;
-extern NSString *_Nonnull const CEKeyBindingSelectorStringKey;
-extern NSString *_Nonnull const CEKeyBindingChildrenKey;
+@protocol CEKeyBindingItemInterface;
 
 
 @interface CEKeyBindingManager : CESettingManager
@@ -49,9 +45,9 @@ extern NSString *_Nonnull const CEKeyBindingChildrenKey;
 - (nonnull NSURL *)keyBindingSettingFileURL;
 
 - (BOOL)usesDefaultKeyBindings;
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)keySpecCharsListForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
+- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
 
-- (BOOL)saveKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData;
+- (BOOL)saveKeyBindings:(nonnull NSArray<id<CEKeyBindingItemInterface>> *)outlineData;
 
 - (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldKeySpecChars:(nonnull NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (nonnull NSError *)errorWithMessageFormat:(nonnull NSString *)message keySpecChars:(nonnull NSString *)keySpecChars;

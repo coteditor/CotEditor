@@ -27,6 +27,7 @@
  */
 
 #import "CEMenuKeyBindingManager.h"
+#import "CEKeyBindingItem.h"
 #import "CEKeyBindingUtils.h"
 #import "Constants.h"
 
@@ -96,16 +97,16 @@
 //------------------------------------------------------
 /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
 /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)keySpecCharsListForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
-    return [self keySpecCharsListForMenu:[NSApp mainMenu] factoryDefaults:usesFactoryDefaults];
+    return [self bindingItemsWithMenu:[NSApp mainMenu] factoryDefaults:usesFactoryDefaults];
 }
 
 
 //------------------------------------------------------
 /// save passed-in key binding settings
-- (BOOL)saveKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData
+- (BOOL)saveKeyBindings:(nonnull NSArray<id<CEKeyBindingItemInterface>> *)outlineData
 //------------------------------------------------------
 {
     BOOL success = [super saveKeyBindings:outlineData];
@@ -316,37 +317,34 @@
 
 //------------------------------------------------------
 /// read key bindings from the menu and create an array data for outlineView to edit
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)keySpecCharsListForMenu:(nonnull NSMenu *)menu factoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsWithMenu:(nonnull NSMenu *)menu factoryDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
-    NSMutableArray<NSMutableDictionary<NSString *, id> *> *outlineData = [NSMutableArray array];
+    NSMutableArray<id<CEKeyBindingItemInterface>> *bindingItems = [NSMutableArray array];
     
-    for (NSMenuItem *item in [menu itemArray]) {
-        if ([self shouldIgnoreItem:item]) { continue; }
+    for (NSMenuItem *menuItem in [menu itemArray]) {
+        if ([self shouldIgnoreItem:menuItem]) { continue; }
         
-        NSDictionary<NSString *, id> *row;
-        if ([item hasSubmenu]) {
-            NSMutableArray<NSMutableDictionary<NSString *, id> *> *subArray = [self keySpecCharsListForMenu:[item submenu] factoryDefaults:usesFactoryDefaults];
-            
-            row = @{CEKeyBindingTitleKey: [item title],
-                    CEKeyBindingChildrenKey: subArray};
+        id<CEKeyBindingItemInterface> item;
+        if ([menuItem hasSubmenu]) {
+            item = [[CEKeyBindingContainerItem alloc] initWithTitle:[menuItem title]
+                                                           children:[self bindingItemsWithMenu:[menuItem submenu] factoryDefaults:usesFactoryDefaults]];
             
         } else {
-            if (![item action]) { continue; }
+            if (![menuItem action]) { continue; }
             
-            NSString *keySpecChars = usesFactoryDefaults ? [self keySpecCharsForSelector:[item action] factoryDefaults:YES] :
-            [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:[item keyEquivalent]
-                                                modifierMask:[item keyEquivalentModifierMask]];
+            NSString *keySpecChars = usesFactoryDefaults ? [self keySpecCharsForSelector:[menuItem action] factoryDefaults:YES] :
+                                                           [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:[menuItem keyEquivalent]
+                                                                                               modifierMask:[menuItem keyEquivalentModifierMask]];
             
-            row = @{CEKeyBindingTitleKey: [item title],
-                    CEKeyBindingKeySpecCharsKey: keySpecChars,
-                    CEKeyBindingSelectorStringKey: NSStringFromSelector([item action])};
+            item = [[CEKeyBindingItem alloc] initWithTitle:[menuItem title]
+                                                  selector:NSStringFromSelector([menuItem action])
+                                              keySpecChars:keySpecChars];
         }
-        
-        [outlineData addObject:[row mutableCopy]];
+        [bindingItems addObject:item];
     }
     
-    return outlineData;
+    return [bindingItems copy];
 }
 
 @end

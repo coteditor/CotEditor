@@ -27,20 +27,10 @@
  */
 
 #import "CEKeyBindingManager.h"
+#import "CEKeyBindingItem.h"
 #import "CEKeyBindingUtils.h"
 #import "CEErrors.h"
 
-
-// outlineView data key, column identifier
-NSString *_Nonnull const CEKeyBindingTitleKey = @"title";
-NSString *_Nonnull const CEKeyBindingKeySpecCharsKey = @"keyBindingKey";
-NSString *_Nonnull const CEKeyBindingSelectorStringKey = @"selectorString";
-NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
-
-
-
-
-#pragma mark -
 
 @implementation CEKeyBindingManager
 
@@ -70,7 +60,7 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 //------------------------------------------------------
 /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
 /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)keySpecCharsListForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
     @throw nil;
@@ -110,7 +100,7 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 
 //------------------------------------------------------
 /// save passed-in key binding settings
-- (BOOL)saveKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData
+- (BOOL)saveKeyBindings:(nonnull NSArray<id<CEKeyBindingItemInterface>> *)outlineData
 //------------------------------------------------------
 {
     // create directory to save in user domain if not yet exist
@@ -124,7 +114,9 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
     NSError *error;
     if ([plistDict isEqualToDictionary:[self defaultKeyBindingDict]]) {
         // just remove setting file if the new setting is exactly the same as the default
-        success = [[NSFileManager defaultManager] removeItemAtURL:fileURL error:&error];
+        [[NSFileManager defaultManager] removeItemAtURL:fileURL error:&error];
+        success = YES;
+        
     } else {
         success = [plistDict writeToURL:fileURL atomically:YES];
     }
@@ -180,21 +172,20 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 
 //------------------------------------------------------
 /// create a plist-compatible dictionary to save from outlineView data
-- (nonnull NSDictionary<NSString *, id> *)keyBindingDictionaryFromOutlineData:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData
+- (nonnull NSDictionary<NSString *, id> *)keyBindingDictionaryFromOutlineData:(nonnull NSArray<CEKeyBindingItem *> *)outlineData
 //------------------------------------------------------
 {
     NSMutableDictionary<NSString *, id> *keyBindingDict = [NSMutableDictionary dictionary];
     
-    for (NSDictionary<NSString *, id> *item in outlineData) {
-        NSArray<NSDictionary<NSString *, id> *> *children = item[CEKeyBindingChildrenKey];
-        if (children) {
+    for (id<CEKeyBindingItemInterface> item in outlineData) {
+        if ([item isKindOfClass:[CEKeyBindingContainerItem class]]) {
+            NSArray<id<CEKeyBindingItemInterface>> *children = ((CEKeyBindingContainerItem *)item).children;
             [keyBindingDict addEntriesFromDictionary:[self keyBindingDictionaryFromOutlineData:children]];
             
         } else {
-            NSString *keySpecChars = item[CEKeyBindingKeySpecCharsKey];
-            NSString *selectorString = item[CEKeyBindingSelectorStringKey];
-            if (([keySpecChars length] > 0) && ([selectorString length] > 0)) {
-                keyBindingDict[keySpecChars] = selectorString;
+            CEKeyBindingItem *keyItem = (CEKeyBindingItem *)item;
+            if ([keyItem.keySpecChars length] > 0) {  // ignore if no shortcut key is assigned
+                keyBindingDict[keyItem.keySpecChars] = keyItem.selector;
             }
         }
     }

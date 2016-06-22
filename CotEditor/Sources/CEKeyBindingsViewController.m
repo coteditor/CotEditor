@@ -28,8 +28,13 @@
 #import "CEKeyBindingsViewController.h"
 #import "CEMenuKeyBindingManager.h"
 #import "CESnippetKeyBindingManager.h"
+#import "CEKeyBindingItem.h"
 #import "CEKeyBindingUtils.h"
 
+
+// column identifier
+static NSString *_Nonnull const CETitleIdentifier = @"title";
+static NSString *_Nonnull const CEKeySpecCharsIdentifier = @"keyBindingKey";
 
 static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
 
@@ -37,7 +42,7 @@ static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
 @interface CEKeyBindingsViewController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>
 
 @property (nonatomic) KeyBindingsViewType mode;
-@property (nonatomic, nonnull) NSMutableArray *outlineData;
+@property (nonatomic, nonnull) NSArray<id<CEKeyBindingItemInterface>> *outlineData;
 @property (nonatomic, nullable, copy) NSString *warningMessage;  // for binding
 @property (nonatomic, getter=isRestoreble) BOOL restoreble;  // for binding
 
@@ -66,7 +71,7 @@ static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _mode = mode;
-        _outlineData = [[self manager] keySpecCharsListForOutlineDataWithFactoryDefaults:NO];
+        _outlineData = [[self manager] bindingItemsForOutlineDataWithFactoryDefaults:NO];
         _restoreble = ![[self manager] usesDefaultKeyBindings];
         
         if (mode == KeyBindingsViewTypeText) {
@@ -141,12 +146,16 @@ static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
 // ------------------------------------------------------
 {
     NSString *identifier = [tableColumn identifier];
+    id<CEKeyBindingItemInterface> keyBindingItem = item;
     
-    if ([identifier isEqualToString:CEKeyBindingKeySpecCharsKey]) {
-        return [CEKeyBindingUtils printableKeyStringFromKeySpecChars:item[identifier]];
+    if ([identifier isEqualToString:CETitleIdentifier] && [item respondsToSelector:@selector(title)]) {
+        return keyBindingItem.title;
+    }
+    if ([identifier isEqualToString:CEKeySpecCharsIdentifier] && [item isKindOfClass:[CEKeyBindingItem class]]) {
+        return [CEKeyBindingUtils printableKeyStringFromKeySpecChars:((CEKeyBindingItem *)item).keySpecChars];
     }
     
-    return item[identifier];
+    return @"";
 }
 
 
@@ -196,7 +205,7 @@ static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
     id item = [outlineView itemAtRow:row];
     
     if ([outlineView isExpandable:item]) {
-        NSTableCellView *cellView = [rowView viewAtColumn:[outlineView columnWithIdentifier:CEKeyBindingKeySpecCharsKey]];
+        NSTableCellView *cellView = [rowView viewAtColumn:[outlineView columnWithIdentifier:CEKeySpecCharsIdentifier]];
         [[cellView textField] setEditable:NO];
     }
 }
@@ -216,9 +225,12 @@ static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
     NSOutlineView *outlineView = [self outlineView];
     NSTextField *textField = (NSTextField *)[obj object];
     NSInteger row = [outlineView rowForView:textField];
-    id item = [outlineView itemAtRow:row];
+    CEKeyBindingItem *item = [outlineView itemAtRow:row];
+    
+    if (![item isKindOfClass:[CEKeyBindingItem class]]) { return; }
+    
+    NSString *oldKeySpecChars = item.keySpecChars;
     NSString *keySpecChars = [textField stringValue];
-    NSString *oldKeySpecChars = item[CEKeyBindingKeySpecCharsKey];
     NSError *error;
     
     // validate input value
@@ -232,7 +244,7 @@ static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
         [self setWarningMessage:nil];
         
         // update data
-        item[CEKeyBindingKeySpecCharsKey] = keySpecChars;
+        item.keySpecChars = keySpecChars;
         [self saveSettings];
         
     } else {
@@ -282,7 +294,7 @@ static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
         [self setupSnipetts:[[CESnippetKeyBindingManager sharedManager] snippetsWithFactoryDefaults:YES]];
     }
     
-    [self setOutlineData:[[self manager] keySpecCharsListForOutlineDataWithFactoryDefaults:YES]];
+    [self setOutlineData:[[self manager] bindingItemsForOutlineDataWithFactoryDefaults:YES]];
     
     [self saveSettings];
     
@@ -312,10 +324,16 @@ static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
 
 // ------------------------------------------------------
 /// 子アイテムを返す
-- (nonnull NSArray<id> *)childrenOfItem:(nullable id)item
+- (nullable NSArray<id<CEKeyBindingItemInterface>> *)childrenOfItem:(nullable id<CEKeyBindingItemInterface>)item
 // ------------------------------------------------------
 {
-    return item ? item[CEKeyBindingChildrenKey] : [self outlineData];
+    if ([item isKindOfClass:[CEKeyBindingContainerItem class]]) {
+        return ((CEKeyBindingContainerItem *)item).children;
+    } else if (item) {
+        return nil;
+    } else {
+        return [self outlineData];
+    }
 }
 
 
@@ -357,7 +375,7 @@ static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
     
     if (selectedRow == -1) { return; }
     
-    NSInteger column = [[self outlineView] columnWithIdentifier:CEKeyBindingKeySpecCharsKey];
+    NSInteger column = [[self outlineView] columnWithIdentifier:CEKeySpecCharsIdentifier];
     
     [[self outlineView] editColumn:column row:selectedRow withEvent:nil select:YES];
 }
