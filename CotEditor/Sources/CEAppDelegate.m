@@ -36,7 +36,6 @@
 #import "CEScriptManager.h"
 #import "CEThemeManager.h"
 
-#import "CEPreferencesWindowController.h"
 #import "CEOpacityPanelController.h"
 #import "CEColorCodePanelController.h"
 #import "CEConsolePanelController.h"
@@ -435,7 +434,7 @@
 - (IBAction)showPreferences:(nullable id)sender
 // ------------------------------------------------------
 {
-    [[CEPreferencesWindowController sharedController] showWindow:self];
+    [[PreferencesWindowController shared] showWindow:self];
 }
 
 
