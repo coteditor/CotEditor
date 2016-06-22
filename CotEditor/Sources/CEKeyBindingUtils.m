@@ -138,7 +138,7 @@ static NSUInteger const kSizeOfModifierKeys = sizeof(kModifierKeyMaskList) / siz
 {
     NSInteger length = [keySpecChars length];
     
-    if (length < 2) { return @""; }
+    if (length < 2) { return [keySpecChars uppercaseString] ?: @""; }
     
     NSString *keyEquivalent = [keySpecChars substringFromIndex:(length - 1)];
     
