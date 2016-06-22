@@ -81,6 +81,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     required init?(coder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -312,7 +313,9 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
         self.setup(snippets: CESnippetKeyBindingManager.shared().snippets(withFactoryDefaults: false))
     }
     
+    
     required init?(coder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
     }
     
