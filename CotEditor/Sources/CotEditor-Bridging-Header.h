@@ -26,7 +26,6 @@
 
 // Preferences Window Controller
 #import "CEAppearancePaneController.h"
-#import "CEEditPaneController.h"
 #import "CEFormatPaneController.h"
 #import "CEFileDropPaneController.h"
 #import "CEPrintPaneController.h"

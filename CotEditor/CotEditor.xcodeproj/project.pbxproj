@@ -52,7 +52,6 @@
 		2A149DAD19016ABB00A9D6EF /* WindowPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149DA419016ABB00A9D6EF /* WindowPane.xib */; };
 		2A149DB61901760300A9D6EF /* CEAppearancePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB51901760300A9D6EF /* CEAppearancePaneController.m */; };
 		2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB81901788000A9D6EF /* CEPrintPaneController.m */; };
-		2A149DBC1901803C00A9D6EF /* CEEditPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBB1901803C00A9D6EF /* CEEditPaneController.m */; };
 		2A149DBF1901828600A9D6EF /* CEFormatPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */; };
 		2A149DC21901884500A9D6EF /* CEFileDropPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DC11901884500A9D6EF /* CEFileDropPaneController.m */; };
 		2A149DD519032CC900A9D6EF /* CEKeyBindingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD419032CC900A9D6EF /* CEKeyBindingUtils.m */; };
@@ -239,7 +238,6 @@
 		2A6F0DA51B5500E100C2D03C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* Constants.m */; };
 		2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */; settings = {ATTRIBUTES = (); }; };
 		2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
-		2A6F0DA91B5500E100C2D03C /* CEEditPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DBB1901803C00A9D6EF /* CEEditPaneController.m */; };
 		2A6F0DAA1B5500E100C2D03C /* CEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DB1076D65310020F779 /* CEAppDelegate.m */; };
 		2A6F0DAB1B5500E100C2D03C /* CEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859DEC076D75BC0020F779 /* CEWindowController.m */; };
 		2A6F0DAC1B5500E100C2D03C /* CEDocumentAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */; };
@@ -311,6 +309,8 @@
 		2A78BFA81D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */; };
 		2A78BFAA1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA91D1B0E8B00A583D2 /* PreferencesWindowController.swift */; };
 		2A78BFAB1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA91D1B0E8B00A583D2 /* PreferencesWindowController.swift */; };
+		2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */; };
+		2A78BFAE1D1B138D00A583D2 /* EditPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */; };
 		2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF2401A573CEB00D09249 /* FindPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF23E1A573CEB00D09249 /* FindPanel.xib */; };
@@ -567,8 +567,6 @@
 		2A149DB51901760300A9D6EF /* CEAppearancePaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEAppearancePaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A149DB71901788000A9D6EF /* CEPrintPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintPaneController.h; sourceTree = "<group>"; };
 		2A149DB81901788000A9D6EF /* CEPrintPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintPaneController.m; sourceTree = "<group>"; };
-		2A149DBA1901803C00A9D6EF /* CEEditPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEEditPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2A149DBB1901803C00A9D6EF /* CEEditPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEEditPaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A149DBD1901828600A9D6EF /* CEFormatPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFormatPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFormatPaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A149DC01901884500A9D6EF /* CEFileDropPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFileDropPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -755,6 +753,7 @@
 		2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPaneController.swift; sourceTree = "<group>"; };
 		2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPaneController.swift; sourceTree = "<group>"; };
 		2A78BFA91D1B0E8B00A583D2 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaneController.swift; sourceTree = "<group>"; };
 		2A7A61041C9EA92500C658EA /* CEGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEGeometry.h; sourceTree = "<group>"; };
 		2A7AC3F11A46484B00F38868 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
 		2A7AC3F31A46484E00F38868 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationPane.strings"; sourceTree = "<group>"; };
@@ -1167,8 +1166,7 @@
 				2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */,
 				2A149DB41901760300A9D6EF /* CEAppearancePaneController.h */,
 				2A149DB51901760300A9D6EF /* CEAppearancePaneController.m */,
-				2A149DBA1901803C00A9D6EF /* CEEditPaneController.h */,
-				2A149DBB1901803C00A9D6EF /* CEEditPaneController.m */,
+				2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */,
 				2A149DBD1901828600A9D6EF /* CEFormatPaneController.h */,
 				2A149DBE1901828600A9D6EF /* CEFormatPaneController.m */,
 				2A149DC01901884500A9D6EF /* CEFileDropPaneController.h */,
@@ -1267,7 +1265,7 @@
 		2A15832D18E3A3E000601026 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				2A84C7C31A48F3D50013EE83 /* Window */,
+				2A78BFA91D1B0E8B00A583D2 /* PreferencesWindowController.swift */,
 				2A149DC619018F9200A9D6EF /* Panes */,
 				2A149DC719019CC400A9D6EF /* Encoding List Sheet */,
 				2A2E03471A4BF808006ABE9F /* Syntax Edit Sheet */,
@@ -1671,14 +1669,6 @@
 				2A009ADB1A5AB96F00C3D542 /* Views */,
 			);
 			name = "Text Finder";
-			sourceTree = "<group>";
-		};
-		2A84C7C31A48F3D50013EE83 /* Window */ = {
-			isa = PBXGroup;
-			children = (
-				2A78BFA91D1B0E8B00A583D2 /* PreferencesWindowController.swift */,
-			);
-			name = Window;
 			sourceTree = "<group>";
 		};
 		2A89847C1C3CE1CE006290FF /* Syntax */ = {
@@ -2438,7 +2428,6 @@
 				2A3A1E7B1C45233D00641CE0 /* CEHUDController.m in Sources */,
 				2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */,
 				2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */,
-				2A6F0DA91B5500E100C2D03C /* CEEditPaneController.m in Sources */,
 				2AACB1D91D19AE6F0073775B /* CESnippetKeyBindingManager.m in Sources */,
 				2A63CEC21D0AFE5D00ED8186 /* CETextView+Accessories.m in Sources */,
 				2A62D48C1CF70707002ADBE1 /* CEToggleToolbarItem.m in Sources */,
@@ -2487,6 +2476,7 @@
 				2A6F0DC21B5500E100C2D03C /* CEFindPanelController.m in Sources */,
 				2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2AE52F191D17468B00D60A32 /* EditorSplitView.swift in Sources */,
+				2A78BFAE1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
 				2A6F0DC51B5500E100C2D03C /* CEPanelController.m in Sources */,
 				2A6F0DC61B5500E100C2D03C /* CEEditorScrollView.m in Sources */,
 				2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */,
@@ -2618,7 +2608,6 @@
 				8D15AC310486D014006FF6A4 /* CEDocument.m in Sources */,
 				2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */,
 				2A78BFAA1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
-				2A149DBC1901803C00A9D6EF /* CEEditPaneController.m in Sources */,
 				2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				25859DB3076D65310020F779 /* CEAppDelegate.m in Sources */,
 				25859DEE076D75BC0020F779 /* CEWindowController.m in Sources */,
@@ -2639,6 +2628,7 @@
 				2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
 				2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2AE0C09B1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
+				2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
 				2A9C07521CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2A436DDB1A425AE500275FD4 /* CEIncompatibleCharsViewController.m in Sources */,
 				258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */,
