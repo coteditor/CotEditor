@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEWindowPaneController">
+        <customObject id="-2" userLabel="File's Owner" customClass="WindowPaneController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="741" id="Hc7-ko-9IX"/>
             </connections>
@@ -115,7 +114,7 @@
                         <font key="font" size="12" name="Helvetica"/>
                     </sliderCell>
                     <connections>
-                        <action selector="changeViewOpaque:" target="-2" id="RBd-aO-OB7"/>
+                        <action selector="changeEditorOpaque:" target="-2" id="ROg-Of-OEv"/>
                         <binding destination="26" name="value" keyPath="values.windowAlpha" id="634"/>
                     </connections>
                 </slider>
@@ -359,14 +358,14 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="hidden" keyPath="viewOpaque" id="LPI-e6-6bl"/>
+                        <binding destination="-2" name="hidden" keyPath="editorOpaque" id="JhL-46-iRv"/>
                     </connections>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dco-7P-YD6">
                     <rect key="frame" x="136" y="35" width="13" height="13"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CautionTemplate" id="y30-9L-giB"/>
                     <connections>
-                        <binding destination="-2" name="hidden" keyPath="viewOpaque" id="px1-Sz-QpG"/>
+                        <binding destination="-2" name="hidden" keyPath="editorOpaque" id="n2O-Fg-xV4"/>
                     </connections>
                 </imageView>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="2151">

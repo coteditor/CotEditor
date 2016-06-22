@@ -30,7 +30,6 @@
 #import "CotEditor-Swift.h"
 
 #import "CEGeneralPaneController.h"
-#import "CEWindowPaneController.h"
 #import "CEAppearancePaneController.h"
 #import "CEEditPaneController.h"
 #import "CEFormatPaneController.h"
@@ -80,7 +79,7 @@
     self = [super init];
     if (self) {
         _viewControllers = @[[[CEGeneralPaneController alloc] init],
-                             [[CEWindowPaneController alloc] init],
+                             [[WindowPaneController alloc] init],
                              [[CEAppearancePaneController alloc] init],
                              [[CEEditPaneController alloc] init],
                              [[CEFormatPaneController alloc] init],
