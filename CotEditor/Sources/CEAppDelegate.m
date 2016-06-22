@@ -32,7 +32,7 @@
 
 #import "CESyntaxManager.h"
 #import "CEEncodingManager.h"
-#import "CEKeyBindingManager.h"
+#import "CEMenuKeyBindingManager.h"
 #import "CEScriptManager.h"
 #import "CEThemeManager.h"
 
@@ -253,7 +253,7 @@
 // ------------------------------------------------------
 {
     // store key bindings in MainMenu.xib before menu is modified
-    [[CEKeyBindingManager sharedManager] scanDefaultMenuKeyBindings];
+    [[CEMenuKeyBindingManager sharedManager] scanDefaultMenuKeyBindings];
     
     // build menus
     [self buildEncodingMenu];
@@ -330,7 +330,7 @@
 // ------------------------------------------------------
 {
     // setup KeyBindingManager
-    [[CEKeyBindingManager sharedManager] applyKeyBindingsToMainMenu];
+    [[CEMenuKeyBindingManager sharedManager] applyKeyBindingsToMainMenu];
     
     // migrate user settings if needed
     [self migrateIfNeeded];
@@ -589,7 +589,7 @@
     // add item to recolor
     SEL recolorAction = @selector(recolorAll:);
     NSEventModifierFlags modifierMask;
-    NSString *keyEquivalent = [[CEKeyBindingManager sharedManager] keyEquivalentForAction:recolorAction modifierMask:&modifierMask];
+    NSString *keyEquivalent = [[CEMenuKeyBindingManager sharedManager] keyEquivalentForAction:recolorAction modifierMask:&modifierMask];
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Re-Color All", nil)
                                                   action:recolorAction
                                            keyEquivalent:keyEquivalent];
@@ -700,7 +700,7 @@
 //------------------------------------------------------
 {
     NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
-    NSURL *keybindingURL = [[CEKeyBindingManager sharedManager] userSettingDirectoryURL];  // KeyBindings dir was invariably made on the previous versions.
+    NSURL *keybindingURL = [[CEMenuKeyBindingManager sharedManager] userSettingDirectoryURL];  // KeyBindings dir was invariably made on the previous versions.
     
     if (!lastVersion && [keybindingURL checkResourceIsReachableAndReturnError:nil]) {
         [self migrateToVersion2];
@@ -720,7 +720,7 @@
     
     // reset menu keybindings setting
     [windowController setInformative:@"Restoring menu key bindings settings…"];
-    [[CEKeyBindingManager sharedManager] resetMenuKeyBindings];
+    [[CEMenuKeyBindingManager sharedManager] resetKeyBindings];
     [windowController progressIndicator];
     [windowController setDidResetKeyBindings:YES];
     

@@ -28,8 +28,7 @@
 
 #import "CEKeyBindingManager.h"
 #import "CEKeyBindingUtils.h"
-#import "CEDefaults.h"
-#import "Constants.h"
+#import "CEErrors.h"
 
 
 // outlineView data key, column identifier
@@ -39,65 +38,13 @@ NSString *_Nonnull const CEKeyBindingSelectorStringKey = @"selectorString";
 NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 
 
-@interface CEKeyBindingManager ()
-
-@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSString *> *defaultMenuKeyBindingDict;
-@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSString *> *defaultTextKeyBindingDict;
-@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSString *> *menuKeyBindingDict;
-@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSString *> *textKeyBindingDict;
-
-@end
-
-
 
 
 #pragma mark -
 
 @implementation CEKeyBindingManager
 
-#pragma mark Singleton
-
-// ------------------------------------------------------
-/// return singleton instance
-+ (nonnull CEKeyBindingManager *)sharedManager
-// ------------------------------------------------------
-{
-    static dispatch_once_t onceToken;
-    static id shared = nil;
-    
-    dispatch_once(&onceToken, ^{
-        shared = [[self alloc] init];
-    });
-    
-    return shared;
-}
-
-
-
 #pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// initialize instance
-- (nonnull instancetype)init
-// ------------------------------------------------------
-{
-    self = [super init];
-    if (self) {
-        NSAssert([NSApp mainMenu], @"%@ should be initialized after MainMenu.xib is loaded.", [self className]);
-        
-        // set default key bindings
-        _defaultMenuKeyBindingDict = [self scanMenuKeyBindingRecurrently:[NSApp mainMenu]];
-        _defaultTextKeyBindingDict = @{@"$\r": @"insertCustomText_00:"};
-        
-        // read user key bindins if available
-        _menuKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self menuKeyBindingSettingFileURL]] ?
-                            : _defaultMenuKeyBindingDict;
-        _textKeyBindingDict = [NSDictionary dictionaryWithContentsOfURL:[self textKeyBindingSettingFileURL]] ?
-                            : _defaultTextKeyBindingDict;
-    }
-    return self;
-}
-
 
 //------------------------------------------------------
 /// directory name in both Application Support and bundled Resources
@@ -109,201 +56,122 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 
 
 
+#pragma mark Abstract Methods
+
+//------------------------------------------------------
+/// name of file to save custom key bindings in the plist file form (without extension)
+- (nonnull NSString *)settingFileName
+//------------------------------------------------------
+{
+    @throw nil;
+}
+
+
+//------------------------------------------------------
+/// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
+/// @param usesFactoryDefaults   YES for default setting and NO for the current setting
+- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)keySpecCharsListForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
+//------------------------------------------------------
+{
+    @throw nil;
+}
+
+
+//------------------------------------------------------
+/// default key binding
+- (NSDictionary<NSString *, NSString *> *)defaultKeyBindingDict
+//------------------------------------------------------
+{
+    @throw nil;
+}
+
+
+
 #pragma mark Public Methods
 
 //------------------------------------------------------
-/// scan key bindings in main menu and store them as default values
-- (void)scanDefaultMenuKeyBindings
+/// file URL to save custom key bindings file
+- (nonnull NSURL *)keyBindingSettingFileURL
 //------------------------------------------------------
 {
-    // do nothing
-    // -> Actually, `defaultMenuKeyBindings` is already scanned in `init`.
+    return [[[self userSettingDirectoryURL] URLByAppendingPathComponent:[self settingFileName]]
+            URLByAppendingPathExtension:@"plist"];
 }
 
 
 // ------------------------------------------------------
-/// keyEquivalent and modifierMask for passed-in selector
-- (nonnull NSString *)keyEquivalentForAction:(nonnull SEL)action modifierMask:(nonnull NSEventModifierFlags *)modifierMask
+/// whether key bindings are not customized
+- (BOOL)usesDefaultKeyBindings
 // ------------------------------------------------------
 {
-    NSString *keySpecChars = [self keySpecCharsForSelector:action factoryDefaults:NO];
+    return [[self keyBindingDict] isEqualToDictionary:[self defaultKeyBindingDict]];
+}
+
+
+//------------------------------------------------------
+/// save passed-in key binding settings
+- (BOOL)saveKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData
+//------------------------------------------------------
+{
+    // create directory to save in user domain if not yet exist
+    if (![self prepareUserSettingDirectory]) { return NO; }
     
-    return [CEKeyBindingUtils keyEquivalentAndModifierMask:modifierMask fromKeySpecChars:keySpecChars requiresCommandKey:YES];
-}
-
-
-//------------------------------------------------------
-/// すべてのメニューにキーボードショートカットを設定し直す
-- (void)applyKeyBindingsToMainMenu
-//------------------------------------------------------
-{
-    // まず、全メニューのショートカット定義をクリアする
-    [self clearMenuKeyBindingRecurrently:[NSApp mainMenu]];
-    
-    // メニュー更新（キーボードショートカット設定反映）
-    [self applyMenuKeyBindingRecurrently:[NSApp mainMenu]];
-}
-
-
-//------------------------------------------------------
-/// 重複チェック用配列を生成
-- (nonnull NSMutableArray<NSString *> *)keySpecCharsListFromOutlineData:(nonnull NSArray<NSDictionary *> *)outlineData
-//------------------------------------------------------
-{
-    NSMutableArray<NSString *> *keySpecCharsList = [NSMutableArray array];
-    
-    for (NSDictionary *item in outlineData) {
-        NSArray *children = item[CEKeyBindingChildrenKey];
-        if (children) {
-            [keySpecCharsList addObjectsFromArray:[self keySpecCharsListFromOutlineData:children]];
-        }
-        NSString *keySpecChars = item[CEKeyBindingKeySpecCharsKey];
-        if (([keySpecChars length] > 0) && ![keySpecCharsList containsObject:keySpecChars]) {
-            [keySpecCharsList addObject:keySpecChars];
-        }
-    }
-    return keySpecCharsList;
-}
-
-
-// ------------------------------------------------------
-/// キー入力に応じたセレクタ文字列を返す
-- (nullable NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask
-// ------------------------------------------------------
-{
-    NSString *keySpecChars = [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:keyEquivalent modifierMask:modifierMask];
-
-    return [self textKeyBindingDict][keySpecChars];
-}
-
-
-// ------------------------------------------------------
-/// メニューキーバインディングがカスタマイズされているか
-- (BOOL)usesDefaultMenuKeyBindings
-// ------------------------------------------------------
-{
-    return [[self menuKeyBindingDict] isEqualToDictionary:[self defaultMenuKeyBindingDict]];
-}
-
-
-// ------------------------------------------------------
-/// テキストキーバインディングがカスタマイズされているか
-- (BOOL)usesDefaultTextKeyBindings
-// ------------------------------------------------------
-{
-    NSArray<NSString *> *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
-    NSArray<NSString *> *insertTexts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
-    
-    return [insertTexts isEqualToArray:defaultInsertTexts] && [[self textKeyBindingDict] isEqualToDictionary:[self defaultTextKeyBindingDict]];
-}
-
-
-//------------------------------------------------------
-/// メニューキーバインディングの現在の保持データから設定を読み込み編集用アウトラインビューデータ配列を返す（usesFactoryDefaults == YES で標準設定を、NO で現在の設定を返す）
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)menuKeySpecCharsArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
-//------------------------------------------------------
-{
-    return [self menuKeySpecCharsArrayForMenu:[NSApp mainMenu] factoryDefaults:usesFactoryDefaults];
-}
-
-
-//------------------------------------------------------
-/// テキストキーバインディングの現在の保持データから設定を読み込み編集用アウトラインビューデータ配列を返す（usesFactoryDefaults == YES で標準設定を、NO で現在の設定を返す）
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *)textKeySpecCharsArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
-//------------------------------------------------------
-{
-    NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *textKeySpecCharsArray = [NSMutableArray array];
-    NSDictionary<NSString *, NSString *> *dict = usesFactoryDefaults ? [self defaultTextKeyBindingDict] : [self textKeyBindingDict];
-    const NSRange actionIndexRange = NSMakeRange(17, 2);  // range of numbers in "insertCustomText_00:"
-    
-    for (NSString *selector in [[self class] textKeyBindingSelectorStrings]) {
-        if ([selector length] == 0) { continue; }
-        
-        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Insert Text %@", nil),
-                           @([[selector substringWithRange:actionIndexRange] integerValue])] ? : @"";
-        NSString *key = [[dict allKeysForObject:selector] firstObject] ? : @"";
-        
-        [textKeySpecCharsArray addObject:[@{CEKeyBindingTitleKey: title,
-                                            CEKeyBindingKeySpecCharsKey: key,
-                                            CEKeyBindingSelectorStringKey: selector} mutableCopy]];
-    }
-    
-    return textKeySpecCharsArray;
-}
-
-
-//------------------------------------------------------
-/// メニューキーバインディング設定を保存
-- (BOOL)saveMenuKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData
-//------------------------------------------------------
-{
-    NSDictionary<NSString *, id> *dictToSave = [self keyBindingDictionaryFromOutlineData:outlineData];
-    NSURL *fileURL = [self menuKeyBindingSettingFileURL];
+    NSDictionary<NSString *, id> *plistDict = [self keyBindingDictionaryFromOutlineData:outlineData];
+    NSURL *fileURL = [self keyBindingSettingFileURL];
     BOOL success = NO;
     
-    // デフォルトと同じ場合は現在のユーザ設定ファイルを削除する
-    if ([dictToSave isEqualToDictionary:[self defaultMenuKeyBindingDict]]) {
-        [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
-        success = YES;
-        
+    // write to file
+    NSError *error;
+    if ([plistDict isEqualToDictionary:[self defaultKeyBindingDict]]) {
+        // just remove setting file if the new setting is exactly the same as the default
+        success = [[NSFileManager defaultManager] removeItemAtURL:fileURL error:&error];
     } else {
-        if ([self prepareUserSettingDirectory]) {
-            success = [dictToSave writeToURL:fileURL atomically:YES];
-        }
+        success = [plistDict writeToURL:fileURL atomically:YES];
     }
     
-    // メニューに反映させる
+    // store new values
     if (success) {
-        [self setMenuKeyBindingDict:dictToSave];
+        [self setKeyBindingDict:plistDict];
     } else {
-        NSLog(@"Error on saving the menu keybindings setting file.");
+        NSLog(@"Error on saving keybindings setting file: %@", [error description]);
     }
-    [self applyKeyBindingsToMainMenu];
     
     return success;
 }
 
 
 //------------------------------------------------------
-/// テキストキーバインディング設定を保存
-- (BOOL)saveTextKeyBindings:(nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)outlineData texts:(nullable NSArray<NSString *> *)texts
+/// validate new key spec chars are settable
+- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldKeySpecChars:(nonnull NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    NSDictionary<NSString *, id> *dictToSave = [self keyBindingDictionaryFromOutlineData:outlineData];
-    NSURL *fileURL = [self textKeyBindingSettingFileURL];
-    BOOL success = NO;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray<NSString *> *defaultInsertTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
+    // blank key is always valid
+    if ([keySpec length] == 0) { return YES; }
     
-    NSMutableArray<NSString *> *insertTexts = [NSMutableArray array];
-    for (NSDictionary<NSString *, NSString *> *dict in texts) {
-        NSString *insertText = dict[CEDefaultInsertCustomTextKey] ? : @"";
-        [insertTexts addObject:insertText];
-    }
-    
-    // デフォルトと同じ場合は現在のユーザ設定ファイルを削除する
-    if ([dictToSave isEqualToDictionary:[self defaultTextKeyBindingDict]] &&
-        [insertTexts isEqualToArray:defaultInsertTexts])
-    {
-        [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
-        success = YES;
-        
-    } else {
-        if ([self prepareUserSettingDirectory]) {
-            success = [dictToSave writeToURL:fileURL atomically:YES];
+    // duplication check
+    NSArray<NSString *> *registeredKeySpecChars = [[self keyBindingDict] allKeys];
+    if (![keySpec isEqualToString:oldKeySpecChars] && [registeredKeySpecChars containsObject:keySpec]) {
+        if (outError) {
+            *outError = [self errorWithMessageFormat:@"“%@” is already taken." keySpecChars:keySpec];
         }
+        return NO;
     }
     
-    // 新しいデータを保存する
-    if (success) {
-        [self setTextKeyBindingDict:dictToSave];
-        [defaults setObject:insertTexts forKey:CEDefaultInsertCustomTextArrayKey];
-        
-    } else {
-        NSLog(@"Error on saving the text keybindings setting file.");
-    }
+    return YES;
+}
+
+
+//------------------------------------------------------
+/// create error for keySpecChars validation
+- (nonnull NSError *)errorWithMessageFormat:(nonnull NSString *)message keySpecChars:(nonnull NSString *)keySpecChars
+//------------------------------------------------------
+{
+    NSString *printableKey = [CEKeyBindingUtils printableKeyStringFromKeySpecChars:keySpecChars];
+    return [NSError errorWithDomain:CEErrorDomain
+                                    code:CEInvalidKeySpecCharsError
+                                userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(message, nil), printableKey],
+                                           NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Please choose another key.", nil)}];
     
-    return success;
 }
 
 
@@ -311,180 +179,16 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
 #pragma mark Private Mthods
 
 //------------------------------------------------------
-/// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
-- (nonnull NSURL *)menuKeyBindingSettingFileURL
-//------------------------------------------------------
-{
-    return [[[self userSettingDirectoryURL] URLByAppendingPathComponent:@"MenuKeyBindings"]
-                                            URLByAppendingPathExtension:@"plist"];
-}
-
-
-//------------------------------------------------------
-/// メニューキーバインディング設定ファイル保存用ファイルのURLを返す
-- (nonnull NSURL *)textKeyBindingSettingFileURL
-//------------------------------------------------------
-{
-    return [[[self userSettingDirectoryURL] URLByAppendingPathComponent:@"TextKeyBindings"]
-                                            URLByAppendingPathExtension:@"plist"];
-}
-
-
-//------------------------------------------------------
-/// menu item to ignore by key binding setting
-- (BOOL)shouldIgnoreItem:(nonnull NSMenuItem *)menuItem
-//------------------------------------------------------
-{
-    // specific item types
-    if ([menuItem isSeparatorItem] ||
-        [menuItem isAlternate] ||  // hidden items
-        [[menuItem title] length] == 0)
-    {
-        return YES;
-    }
-    
-    // specific tags
-    if ([menuItem tag] == CEServicesMenuItemTag ||
-        [menuItem tag] == CESharingServiceMenuItemTag ||
-        [menuItem tag] == CEScriptMenuDirectoryTag)
-    {
-        return YES;
-    }
-    
-    // specific selectors
-    NSString *selectorString = NSStringFromSelector([menuItem action]);
-    if ([[[self class] selectorStringsToIgnore] containsObject:selectorString]) {
-        return YES;
-    }
-    
-    return NO;
-}
-
-
-//------------------------------------------------------
-/// scan all key bindings as well as selector name in passed-in menu
-- (nonnull NSDictionary<NSString *, NSString *> *)scanMenuKeyBindingRecurrently:(nonnull NSMenu *)menu
-//------------------------------------------------------
-{
-    NSMutableDictionary<NSString *, NSString *> *dictionary = [NSMutableDictionary dictionary];
-    
-    for (NSMenuItem *item in [menu itemArray]) {
-        if ([self shouldIgnoreItem:item]) { continue; }
-        
-        if ([item hasSubmenu]) {
-            [dictionary addEntriesFromDictionary:[self scanMenuKeyBindingRecurrently:[item submenu]]];
-            
-        } else {
-            NSString *selector = NSStringFromSelector([item action]);
-            NSString *key = [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:[item keyEquivalent]
-                                                                modifierMask:[item keyEquivalentModifierMask]];
-            
-            if ([selector length] > 0 && [key length] > 0) {
-                dictionary[key] = selector;
-            }
-        }
-    }
-    
-    return dictionary;
-}
-
-
-//------------------------------------------------------
-/// メニューのキーボードショートカットをクリアする
-- (void)clearMenuKeyBindingRecurrently:(nonnull NSMenu *)menu
-//------------------------------------------------------
-{
-    for (NSMenuItem *item in [menu itemArray]) {
-        if ([self shouldIgnoreItem:item]) { continue; }
-        
-        if ([item hasSubmenu]) {
-            [self clearMenuKeyBindingRecurrently:[item submenu]];
-            
-        } else {
-            [item setKeyEquivalent:@""];
-            [item setKeyEquivalentModifierMask:0];
-        }
-    }
-}
-
-
-//------------------------------------------------------
-/// メニューにキーボードショートカットを設定する
-- (void)applyMenuKeyBindingRecurrently:(nonnull NSMenu *)menu
-//------------------------------------------------------
-{
-    // NSMenu の indexOfItemWithTarget:andAction: だと取得できないメニューアイテムがあるため、メニューをひとつずつなめる
-    for (NSMenuItem *item in [menu itemArray]) {
-        if ([self shouldIgnoreItem:item]) { continue; }
-        
-        if ([item hasSubmenu]) {
-            [self applyMenuKeyBindingRecurrently:[item submenu]];
-            
-        } else {
-            NSUInteger modifierMask = 0;
-            NSString *keyEquivalent = [self keyEquivalentForAction:[item action] modifierMask:&modifierMask];
-
-            // keyEquivalent があり Cmd が設定されている場合だけ、反映させる
-            if (([keyEquivalent length] > 0) && (modifierMask & NSCommandKeyMask)) {
-                [item setKeyEquivalent:keyEquivalent];
-                [item setKeyEquivalentModifierMask:modifierMask];
-            }
-        }
-    }
-    
-    // ショートカット設定を反映させる
-    [menu update];
-}
-
-
-//------------------------------------------------------
-/// 現在のメニューからショートカットキー設定を読み込み編集用アウトラインビューデータ配列を返す
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)menuKeySpecCharsArrayForMenu:(nonnull NSMenu *)menu factoryDefaults:(BOOL)usesFactoryDefaults
-//------------------------------------------------------
-{
-    NSMutableArray<NSMutableDictionary<NSString *, id> *> *outlineData = [NSMutableArray array];
-    
-    for (NSMenuItem *item in [menu itemArray]) {
-        if ([self shouldIgnoreItem:item]) { continue; }
-        
-        NSDictionary<NSString *, id> *row;
-        if ([item hasSubmenu]) {
-            NSMutableArray<NSMutableDictionary<NSString *, id> *> *subArray = [self menuKeySpecCharsArrayForMenu:[item submenu] factoryDefaults:usesFactoryDefaults];
-            
-            row = @{CEKeyBindingTitleKey: [item title],
-                    CEKeyBindingChildrenKey: subArray};
-            
-        } else {
-            if (![item action]) { continue; }
-            
-            NSString *keySpecChars = usesFactoryDefaults ? [self keySpecCharsForSelector:[item action] factoryDefaults:YES] :
-                                                           [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:[item keyEquivalent]
-                                                                                               modifierMask:[item keyEquivalentModifierMask]];
-            
-            row = @{CEKeyBindingTitleKey: [item title],
-                    CEKeyBindingKeySpecCharsKey: keySpecChars,
-                    CEKeyBindingSelectorStringKey: NSStringFromSelector([item action])};
-        }
-        
-        [outlineData addObject:[row mutableCopy]];
-    }
-    
-    return outlineData;
-}
-
-
-//------------------------------------------------------
-/// アウトラインビューデータから保存用辞書を生成
-- (nonnull NSMutableDictionary<NSString *, id> *)keyBindingDictionaryFromOutlineData:(NSArray<NSDictionary<NSString *, id> *> *)outlineData
+/// create a plist-compatible dictionary to save from outlineView data
+- (nonnull NSDictionary<NSString *, id> *)keyBindingDictionaryFromOutlineData:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData
 //------------------------------------------------------
 {
     NSMutableDictionary<NSString *, id> *keyBindingDict = [NSMutableDictionary dictionary];
-
+    
     for (NSDictionary<NSString *, id> *item in outlineData) {
-        if (item[CEKeyBindingChildrenKey]) {
-            NSArray<NSDictionary<NSString *, id> *> *children = item[CEKeyBindingChildrenKey];
-            NSDictionary<NSString *, id> *childDict = [self keyBindingDictionaryFromOutlineData:children];
-            [keyBindingDict addEntriesFromDictionary:childDict];
+        NSArray<NSDictionary<NSString *, id> *> *children = item[CEKeyBindingChildrenKey];
+        if (children) {
+            [keyBindingDict addEntriesFromDictionary:[self keyBindingDictionaryFromOutlineData:children]];
             
         } else {
             NSString *keySpecChars = item[CEKeyBindingKeySpecCharsKey];
@@ -495,110 +199,7 @@ NSString *_Nonnull const CEKeyBindingChildrenKey = @"children";
         }
     }
     
-    return keyBindingDict;
-}
-
-
-//------------------------------------------------------
-/// セレクタ名を定義しているキーバインディング文字列（キー）を得る
-- (nonnull NSString *)keySpecCharsForSelector:(SEL)selector factoryDefaults:(BOOL)usesFactoryDefaults
-//------------------------------------------------------
-{
-    NSString *selectorString = NSStringFromSelector(selector);
-    NSDictionary *dict = usesFactoryDefaults ? [self defaultMenuKeyBindingDict] : [self menuKeyBindingDict];
-    NSArray<NSString *> *keys = [dict allKeysForObject:selectorString];
-    
-    return [keys firstObject] ? : @"";
-}
-
-
-//------------------------------------------------------
-/// 独自定義のセレクタ名配列を返す
-+ (nonnull NSArray<NSString *> *)textKeyBindingSelectorStrings
-//------------------------------------------------------
-{
-    return @[@"insertCustomText_00:",
-             @"insertCustomText_01:",
-             @"insertCustomText_02:",
-             @"insertCustomText_03:",
-             @"insertCustomText_04:",
-             @"insertCustomText_05:",
-             @"insertCustomText_06:",
-             @"insertCustomText_07:",
-             @"insertCustomText_08:",
-             @"insertCustomText_09:",
-             @"insertCustomText_10:",
-             @"insertCustomText_11:",
-             @"insertCustomText_12:",
-             @"insertCustomText_13:",
-             @"insertCustomText_14:",
-             @"insertCustomText_15:",
-             @"insertCustomText_16:",
-             @"insertCustomText_17:",
-             @"insertCustomText_18:",
-             @"insertCustomText_19:",
-             @"insertCustomText_20:",
-             @"insertCustomText_21:",
-             @"insertCustomText_22:",
-             @"insertCustomText_23:",
-             @"insertCustomText_24:",
-             @"insertCustomText_25:",
-             @"insertCustomText_26:",
-             @"insertCustomText_27:",
-             @"insertCustomText_28:",
-             @"insertCustomText_29:",
-             @"insertCustomText_30:"];
-}
-
-
-//------------------------------------------------------
-/// 変更しない項目のセレクタ名配列を返す
-+ (nonnull NSArray<NSString *> *)selectorStringsToIgnore
-//------------------------------------------------------
-{
-    return @[@"changeEncoding:",
-             @"changeSyntaxStyle:",
-             @"changeTheme:",
-             @"changeTabWidth:",
-             @"biggerFont:",
-             @"smallerFont:",
-             @"makeKeyAndOrderFront:",
-             @"launchScript:",
-             @"_openRecentDocument:",  // = 10.3 の「最近開いた書類」
-             @"orderFrontCharacterPalette:",  // = 10.4「特殊文字…」
-             ];
-}
-
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CEKeyBindingManager (Migration)
-
-//------------------------------------------------------
-/// ユーザのメニューキーバインディング設定をいったん削除する
-- (BOOL)resetMenuKeyBindings
-//------------------------------------------------------
-{
-    // 以前の CotEditor ではユーザがカスタムをしているしていないに関わらずメニューキーバインディングの設定が
-    // ユーザ領域に作成されていたため最初にインストールしたバージョン以降でデフォルトのショートカットやメソッド名が
-    // 変更された場合にそれに追従できなかった。
-    // その負のサイクルを断ち切るために、過去の設定ファイルを一旦削除をする。
-    
-    BOOL success = NO;
-    NSURL *URL = [self menuKeyBindingSettingFileURL];
-    
-    if ([URL checkResourceIsReachableAndReturnError:nil]) {
-        success = [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
-        
-        [self setMenuKeyBindingDict:[self defaultMenuKeyBindingDict]];
-        [self applyKeyBindingsToMainMenu];
-    }
-    
-    return success;
+    return [keyBindingDict copy];
 }
 
 @end

@@ -30,13 +30,13 @@
 #import "CELayoutManager.h"
 #import "CEEditorScrollView.h"
 
-#import "CECharacterPopoverController.h"
 #import "CEDocument.h"
 #import "CEAlphaWindow.h"
 
 #import "CEThemeManager.h"
-#import "CEKeyBindingManager.h"
+#import "CESnippetKeyBindingManager.h"
 #import "CEFileDropComposer.h"
+#import "CECharacterPopoverController.h"
 
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -226,18 +226,17 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)keyDown:(nonnull NSEvent *)event
 // ------------------------------------------------------
 {
-    NSString *charIgnoringMod = [event charactersIgnoringModifiers];
-    BOOL isModifierKeyPressed = ([event modifierFlags] & NSDeviceIndependentModifierFlagsMask) != 0;  // check just in case
-    
     // perform snippet insertion if not in the middle of Japanese input
-    if (![self hasMarkedText] && charIgnoringMod && isModifierKeyPressed) {
-        NSString *selectorString = [[CEKeyBindingManager sharedManager] selectorStringWithKeyEquivalent:charIgnoringMod
-                                                                                           modifierMask:[event modifierFlags]];
-        
-        if (([selectorString length] == 20) && [selectorString hasPrefix:@"insertCustomText_"]) {
-            NSInteger patternNumber = [[selectorString substringFromIndex:[@"insertCustomText_" length]] integerValue];
-            [self insertCustomTextWithPatternNumber:patternNumber];
-            return;
+    if (![self hasMarkedText]) {
+        NSString *snippet = [[CESnippetKeyBindingManager sharedManager] snippetWithKeyEquivalent:[event charactersIgnoringModifiers]
+                                                                                    modifierMask:[event modifierFlags]];
+        if (snippet) {
+            if ([self shouldChangeTextInRange:[self rangeForUserTextChange] replacementString:snippet]) {
+                [self replaceCharactersInRange:[self rangeForUserTextChange] withString:snippet];
+                [self didChangeText];
+                [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
+                [self scrollRangeToVisible:[self selectedRange]];
+            }
         }
     }
     
@@ -1219,27 +1218,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // redraw visible area
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
-}
-
-
-// ------------------------------------------------------
-/// insert snippet via custom key binding
-- (void)insertCustomTextWithPatternNumber:(NSInteger)patternNumber
-// ------------------------------------------------------
-{
-    NSArray<NSString *> *texts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
-    
-    if (patternNumber < 0 || patternNumber >= [texts count]) { return; }
-    
-    NSRange range = [self rangeForUserTextChange];
-    NSString *string = texts[patternNumber];
-    
-    if ([self shouldChangeTextInRange:range replacementString:string]) {
-        [self replaceCharactersInRange:range withString:string];
-        [self didChangeText];
-        [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
-        [self scrollRangeToVisible:[self selectedRange]];
-    }
 }
 
 

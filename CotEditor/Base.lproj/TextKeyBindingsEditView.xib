@@ -964,6 +964,9 @@
             <declaredKeys>
                 <string>insertCustomText</string>
             </declaredKeys>
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="snippets" id="cpT-Dn-yXl"/>
+            </connections>
         </arrayController>
     </objects>
 </document>

@@ -117,7 +117,6 @@ NSString *_Nonnull const CEDefaultSyntaxStyleKey = @"defaultColoringStyleName";
 NSString *_Nonnull const CEDefaultFileDropArrayKey = @"fileDropArray";
 
 NSString *_Nonnull const CEDefaultInsertCustomTextArrayKey = @"insertCustomTextArray";
-NSString *_Nonnull const CEDefaultInsertCustomTextKey = @"insertCustomText";
 
 NSString *_Nonnull const CEDefaultSetPrintFontKey = @"setPrintFont";
 NSString *_Nonnull const CEDefaultPrintFontNameKey = @"printFontName";

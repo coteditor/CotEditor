@@ -117,7 +117,6 @@ extern NSString *_Nonnull const CEDefaultSyntaxStyleKey;
 extern NSString *_Nonnull const CEDefaultFileDropArrayKey;
 
 extern NSString *_Nonnull const CEDefaultInsertCustomTextArrayKey;
-extern NSString *_Nonnull const CEDefaultInsertCustomTextKey;
 
 extern NSString *_Nonnull const CEDefaultSetPrintFontKey;
 extern NSString *_Nonnull const CEDefaultPrintFontNameKey;

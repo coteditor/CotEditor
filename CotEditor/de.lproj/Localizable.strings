@@ -470,9 +470,10 @@
 "Space" = "Leertaste";
 
 // Warning messages
-"“%@” is already taken. Please choose another key." = "„%@“ wird bereits verwendet. Bitte wählen Sie eine andere Taste.";
-"“%@” does not include the Command key. Please choose another key." = "„%@“ enthaltet die Command-Taste nicht. Bitte wählen Sie eine andere Taste.";
-"“%@” includes the Command key. Please choose another key." = "„%@“ enthaltet die Command-Taste. Bitte wählen Sie eine andere Taste.";
+"“%@” is already taken." = "„%@“ wird bereits verwendet.";
+"“%@” does not include the Command key." = "„%@“ enthaltet die Command-Taste nicht.";
+"“%@” includes the Command key." = "„%@“ enthaltet die Command-Taste.";
+"Please choose another key." = "Bitte wählen Sie eine andere Taste.";
 
 
 

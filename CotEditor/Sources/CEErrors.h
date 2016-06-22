@@ -51,6 +51,9 @@ typedef NS_ENUM(OSStatus, CEErrorCode) {
     CESettingImportFailedError,
     CESettingImportFileDuplicatedError,
     
+    // key binding manager
+    CEInvalidKeySpecCharsError = 1400,
+    
     // for command-line tool installer
     CEApplicationNotInApplicationDirectoryError = 1500,
     CEApplicationNameIsModifiedError,

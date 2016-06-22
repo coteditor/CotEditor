@@ -1,15 +1,16 @@
 /*
  
- CEKeyBindingsViewController.h
+ CESnippetKeyBindingManager.h
  
  CotEditor
  http://coteditor.com
  
- Created by 1024jp on 2014-08-20.
-
+ Created by 1024jp on 2016-06-22.
+ 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2004-2007 nakamuxu
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,17 +26,20 @@
  
  */
 
+#import "CEKeyBindingManager.h"
 @import Cocoa;
 
 
-typedef NS_ENUM(NSUInteger, KeyBindingsViewType) {
-    KeyBindingsViewTypeMenu,
-    KeyBindingsViewTypeText,
-};
+@interface CESnippetKeyBindingManager : CEKeyBindingManager
+
+// singleton
++ (nonnull CESnippetKeyBindingManager *)sharedManager;
 
 
-@interface CEKeyBindingsViewController : NSViewController
+// Public methods
+- (nullable NSString *)snippetWithKeyEquivalent:(nullable NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask;
 
-- (nonnull instancetype)initWithMode:(KeyBindingsViewType)mode;
+- (nonnull NSArray<NSString *> *)snippetsWithFactoryDefaults:(BOOL)usesFactoryDefaults;
+- (void)saveSnippets:(nullable NSArray<NSString *> *)snippets;
 
 @end

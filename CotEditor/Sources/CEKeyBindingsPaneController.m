@@ -60,8 +60,8 @@
 {
     [super viewDidLoad];
     
-    [self setMenuViewController:[[CEKeyBindingsViewController alloc] initWithMode:CEMenuKeyBindingsType]];
-    [self setTextViewController:[[CEKeyBindingsViewController alloc] initWithMode:CETextKeyBindingsType]];
+    [self setMenuViewController:[[CEKeyBindingsViewController alloc] initWithMode:KeyBindingsViewTypeMenu]];
+    [self setTextViewController:[[CEKeyBindingsViewController alloc] initWithMode:KeyBindingsViewTypeText]];
     
     [[[self tabView] tabViewItemAtIndex:0] setView:[[self menuViewController] view]];
     [[[self tabView] tabViewItemAtIndex:1] setView:[[self textViewController] view]];

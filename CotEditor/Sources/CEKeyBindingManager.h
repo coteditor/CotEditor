@@ -27,7 +27,6 @@
  */
 
 #import "CESettingManager.h"
-@import Cocoa;
 
 
 // outlineView data key, column identifier
@@ -39,37 +38,23 @@ extern NSString *_Nonnull const CEKeyBindingChildrenKey;
 
 @interface CEKeyBindingManager : CESettingManager
 
-// singleton
-+ (nonnull CEKeyBindingManager *)sharedManager;
+@property (nonatomic, nonnull, copy) NSDictionary<NSString *, NSString *> *keyBindingDict;  // overwrite required
 
 
-// Public methods
-- (void)scanDefaultMenuKeyBindings;  // This method should be called before main menu is modified.
-
-- (void)applyKeyBindingsToMainMenu;
-
-- (nonnull NSString *)keyEquivalentForAction:(nonnull SEL)action modifierMask:(nonnull NSEventModifierFlags *)modifierMask;
-
-- (nonnull NSMutableArray<NSString *> *)keySpecCharsListFromOutlineData:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData;
-- (nullable NSString *)selectorStringWithKeyEquivalent:(nonnull NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask;
-
-- (BOOL)usesDefaultMenuKeyBindings;
-- (BOOL)usesDefaultTextKeyBindings;
-
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)menuKeySpecCharsArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
-- (nonnull NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *)textKeySpecCharsArrayForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
-
-- (BOOL)saveMenuKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData;
-- (BOOL)saveTextKeyBindings:(nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)outlineData texts:(nullable NSArray<NSString *> *)texts;
-
-@end
+// overwrite required
+- (nonnull NSString *)settingFileName;
+- (nonnull NSDictionary<NSString *, NSString *> *)defaultKeyBindingDict;
 
 
+- (nonnull NSURL *)keyBindingSettingFileURL;
 
-// Category for migration from CotEditor 1.x to 2.0. (2014-10)
-// It can be removed when the most of users have been already migrated in the future.
-@interface CEKeyBindingManager (Migration)
+- (BOOL)usesDefaultKeyBindings;
+- (nonnull NSMutableArray<NSMutableDictionary<NSString *, id> *> *)keySpecCharsListForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
 
-- (BOOL)resetMenuKeyBindings;
+- (BOOL)saveKeyBindings:(nonnull NSArray<NSDictionary<NSString *, id> *> *)outlineData;
+
+- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldKeySpecChars:(nonnull NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (nonnull NSError *)errorWithMessageFormat:(nonnull NSString *)message keySpecChars:(nonnull NSString *)keySpecChars;
+
 
 @end

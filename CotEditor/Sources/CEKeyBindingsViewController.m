@@ -26,14 +26,17 @@
  */
 
 #import "CEKeyBindingsViewController.h"
-#import "CEKeyBindingManager.h"
+#import "CEMenuKeyBindingManager.h"
+#import "CESnippetKeyBindingManager.h"
 #import "CEKeyBindingUtils.h"
-#import "CEDefaults.h"
+
+
+static NSString *_Nonnull const InsertCustomTextKey = @"insertCustomText";
 
 
 @interface CEKeyBindingsViewController () <NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate, NSTextViewDelegate>
 
-@property (nonatomic) CEKeyBindingType mode;
+@property (nonatomic) KeyBindingsViewType mode;
 @property (nonatomic, nonnull) NSMutableArray *outlineData;
 @property (nonatomic, nullable, copy) NSString *warningMessage;  // for binding
 @property (nonatomic, getter=isRestoreble) BOOL restoreble;  // for binding
@@ -42,6 +45,7 @@
 
 // only in text key bindings edit sheet
 @property (nonatomic, nullable) IBOutlet NSArrayController *snippetArrayController;
+@property (nonatomic) NSArray *snippets;
 
 @end
 
@@ -56,25 +60,17 @@
 
 // ------------------------------------------------------
 /// initialize
-- (nonnull instancetype)initWithMode:(CEKeyBindingType)mode
+- (nonnull instancetype)initWithMode:(KeyBindingsViewType)mode
 // ------------------------------------------------------
 {
-    NSString *nibName = (mode == CEMenuKeyBindingsType) ? @"MenuKeyBindingsEditView" : @"TextKeyBindingsEditView";
-    
-    self = [super initWithNibName:nibName bundle:nil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _mode = mode;
+        _outlineData = [[self manager] keySpecCharsListForOutlineDataWithFactoryDefaults:NO];
+        _restoreble = ![[self manager] usesDefaultKeyBindings];
         
-        switch (mode) {
-            case CEMenuKeyBindingsType:
-                _outlineData = [[CEKeyBindingManager sharedManager] menuKeySpecCharsArrayForOutlineDataWithFactoryDefaults:NO];
-                _restoreble = ![[CEKeyBindingManager sharedManager] usesDefaultMenuKeyBindings];
-                break;
-                
-            case CETextKeyBindingsType:
-                _outlineData = [[CEKeyBindingManager sharedManager] textKeySpecCharsArrayForOutlineDataWithFactoryDefaults:NO];
-                _restoreble = ![[CEKeyBindingManager sharedManager] usesDefaultTextKeyBindings];
-                break;
+        if (mode == KeyBindingsViewTypeText) {
+            [self setupSnipetts:[[CESnippetKeyBindingManager sharedManager] snippetsWithFactoryDefaults:NO]];
         }
     }
     return self;
@@ -82,22 +78,16 @@
 
 
 // ------------------------------------------------------
-/// setup UI
-- (void)viewWillAppear
+/// change nib by mode
+- (nullable NSString *)nibName
 // ------------------------------------------------------
 {
-    [super viewWillAppear];
-    
     switch ([self mode]) {
-        case CEMenuKeyBindingsType:
-            // toggle item expand by double-clicking
-            [[self outlineView] setDoubleAction:@selector(toggleOutlineItemExpand:)];
-            break;
+        case KeyBindingsViewTypeMenu:
+            return @"MenuKeyBindingsEditView";
             
-        case CETextKeyBindingsType: {
-            NSArray<NSString *> *customTexts = [[NSUserDefaults standardUserDefaults] stringArrayForKey:CEDefaultInsertCustomTextArrayKey];
-            [self setupCustomTexts:customTexts];
-        } break;
+        case KeyBindingsViewTypeText:
+            return @"TextKeyBindingsEditView";
     }
 }
 
@@ -188,7 +178,7 @@
 // ------------------------------------------------------
 {
     // テキストのバインディングを編集している時は挿入文字列配列コントローラの選択オブジェクトを変更
-    if ([self mode] == CETextKeyBindingsType) {
+    if ([self mode] == KeyBindingsViewTypeText) {
         NSUInteger index = [outlineView rowForItem:item];
         
         [[self snippetArrayController] setSelectionIndex:index];
@@ -213,7 +203,7 @@
 
 
 //=======================================================
-// NSTextFieldDelegate  < outlineView->CEShortcutKeyField
+// NSTextFieldDelegate  < outlineView->ShortcutKeyField
 //=======================================================
 
 // ------------------------------------------------------
@@ -228,29 +218,33 @@
     NSInteger row = [outlineView rowForView:textField];
     id item = [outlineView itemAtRow:row];
     NSString *keySpecChars = [textField stringValue];
-    NSString *oldChars = item[CEKeyBindingKeySpecCharsKey];
-        
+    NSString *oldKeySpecChars = item[CEKeyBindingKeySpecCharsKey];
+    NSError *error;
+    
     // validate input value
     if ([keySpecChars isEqualToString:@"\e"]) {
         // treat esc key as cancel
         
-    } else if ([keySpecChars isEqualToString:[CEKeyBindingUtils printableKeyStringFromKeySpecChars:oldChars]]) {  // not edited
+    } else if ([keySpecChars isEqualToString:[CEKeyBindingUtils printableKeyStringFromKeySpecChars:oldKeySpecChars]]) {  // not edited
         // do nothing
         
-    } else if ([self validateKeySpecChars:keySpecChars oldChars:oldChars]) {
+    } else if ([[self manager] validateKeySpecChars:keySpecChars oldKeySpecChars:oldKeySpecChars error:&error]) {
+        [self setWarningMessage:nil];
+        
         // update data
         item[CEKeyBindingKeySpecCharsKey] = keySpecChars;
-        
-        // save settings
         [self saveSettings];
         
     } else {
+        NSBeep();
+        [self setWarningMessage:[@[[error localizedDescription], [error localizedRecoverySuggestion]] componentsJoinedByString:@" "]];
+        
         // make text field edit mode again if invalid
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             typeof(self) self = weakSelf;  // strong self
             
-            [self performEditSelectedBindingKeyColumn];
+            [self beginEditingSelectedKeyCell];
         });
     }
     
@@ -284,18 +278,11 @@
 - (IBAction)setToFactoryDefaults:(nullable id)sender
 // ------------------------------------------------------
 {
-    switch ([self mode]) {
-        case CEMenuKeyBindingsType:
-            [self setOutlineData:[[CEKeyBindingManager sharedManager] menuKeySpecCharsArrayForOutlineDataWithFactoryDefaults:YES]];
-            break;
-            
-        case CETextKeyBindingsType: {
-            [self setOutlineData:[[CEKeyBindingManager sharedManager] textKeySpecCharsArrayForOutlineDataWithFactoryDefaults:YES]];
-            
-            NSArray<NSString *> *defaultCustomTexts = [[[NSUserDefaults alloc] init] volatileDomainForName:NSRegistrationDomain][CEDefaultInsertCustomTextArrayKey];
-            [self setupCustomTexts:defaultCustomTexts];
-        } break;
+    if ([self mode] == KeyBindingsViewTypeText) {
+        [self setupSnipetts:[[CESnippetKeyBindingManager sharedManager] snippetsWithFactoryDefaults:YES]];
     }
+    
+    [self setOutlineData:[[self manager] keySpecCharsListForOutlineDataWithFactoryDefaults:YES]];
     
     [self saveSettings];
     
@@ -305,52 +292,27 @@
 }
 
 
-//------------------------------------------------------
-/// アウトラインビューの行がダブルクリックされた
-- (IBAction)toggleOutlineItemExpand:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSInteger selectedRow = [[self outlineView] selectedRow];
-    
-    if (selectedRow == -1) { return; }
-    
-    id item = [[self outlineView] itemAtRow:selectedRow];
-    
-    // toggle by double-clicking
-    if ([[self outlineView] isExpandable:item]) {
-        [[self outlineView] expandItem:item];
-    } else {
-        [[self outlineView] collapseItem:item];
-    }
-}
-
-
 
 #pragma mark Private Mthods
 
-// ------------------------------------------------------
-/// save current settings
-- (void)saveSettings
-// ------------------------------------------------------
+//------------------------------------------------------
+/// corresponding key binding manager
+- (nonnull CEKeyBindingManager *)manager
+//------------------------------------------------------
 {
     switch ([self mode]) {
-        case CEMenuKeyBindingsType:
-            [[CEKeyBindingManager sharedManager] saveMenuKeyBindings:[self outlineData]];
-            [self setRestoreble:![[CEKeyBindingManager sharedManager] usesDefaultMenuKeyBindings]];
-            break;
+        case KeyBindingsViewTypeMenu:
+            return [CEMenuKeyBindingManager sharedManager];
             
-        case CETextKeyBindingsType:
-            [[CEKeyBindingManager sharedManager] saveTextKeyBindings:[self outlineData]
-                                                               texts:[[self snippetArrayController] content]];
-            [self setRestoreble:![[CEKeyBindingManager sharedManager] usesDefaultTextKeyBindings]];
-            break;
+        case KeyBindingsViewTypeText:
+            return [CESnippetKeyBindingManager sharedManager];
     }
 }
 
 
 // ------------------------------------------------------
 /// 子アイテムを返す
-- (nonnull NSArray<id> *)childrenOfItem:(id)item
+- (nonnull NSArray<id> *)childrenOfItem:(nullable id)item
 // ------------------------------------------------------
 {
     return item ? item[CEKeyBindingChildrenKey] : [self outlineData];
@@ -358,70 +320,37 @@
 
 
 // ------------------------------------------------------
-/// カスタムテキスト設定を arrayController にセットする
-- (void)setupCustomTexts:(NSArray<NSString *> *)customTexts
+/// save current settings
+- (void)saveSettings
 // ------------------------------------------------------
 {
-    NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *content = [NSMutableArray array];
-    
-    for (NSString *text in customTexts) {
-        [content addObject:[@{CEDefaultInsertCustomTextKey: text} mutableCopy]];
+    if ([self mode] == KeyBindingsViewTypeText) {
+        NSArray<NSString *> *texts = [[self snippets] valueForKey:InsertCustomTextKey];
+        [[CESnippetKeyBindingManager sharedManager] saveSnippets:texts];
     }
-    [[self snippetArrayController] setContent:content];
-    [[self snippetArrayController] setSelectionIndex:NSNotFound];
+    
+    [[self manager] saveKeyBindings:[self outlineData]];
+    [self setRestoreble:![[self manager] usesDefaultKeyBindings]];
 }
 
 
-//------------------------------------------------------
-/// 重複などの警告メッセージを表示
-- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldChars:(nonnull NSString *)oldSpec
-//------------------------------------------------------
+// ------------------------------------------------------
+/// カスタムテキスト設定を arrayController にセットする
+- (void)setupSnipetts:(NSArray<NSString *> *)snippets
+// ------------------------------------------------------
 {
-    // clear error
-    [self setWarningMessage:nil];
-    
-    // blank key is always valid
-    if ([keySpec length] == 0) { return YES; }
-    
-    NSString *warning = nil;
-    
-    // 重複チェック用配列を生成
-    NSArray<NSString *> *registeredKeySpecChars = [[CEKeyBindingManager sharedManager] keySpecCharsListFromOutlineData:[self outlineData]];
-    
-    if (![keySpec isEqualToString:oldSpec] && [registeredKeySpecChars containsObject:keySpec]) {
-        // duplication check
-        warning = NSLocalizedString(@"“%@” is already taken. Please choose another key.", nil);
-        
-    } else {
-        // command key existance check
-        BOOL containsCmd = [keySpec containsString:@"@"];
-        
-        // command key and mode matching check
-        if (([self mode] == CEMenuKeyBindingsType) && !containsCmd) {
-            warning = NSLocalizedString(@"“%@” does not include the Command key. Please choose another key.", nil);
-            
-        } else if (([self mode] == CETextKeyBindingsType) && containsCmd) {
-            warning = NSLocalizedString(@"“%@” includes the Command key. Please choose another key.", nil);
-        }
+    NSMutableArray<NSMutableDictionary<NSString *, NSString *> *> *content = [NSMutableArray array];
+    for (NSString *snippet in snippets) {
+        [content addObject:[@{InsertCustomTextKey: snippet} mutableCopy]];
     }
     
-    // show warning and return
-    if (warning) {
-        NSString *printableKey = [CEKeyBindingUtils printableKeyStringFromKeySpecChars:keySpec];
-        
-        [self setWarningMessage:[NSString stringWithFormat:warning, printableKey]];
-        
-        NSBeep();
-        return NO;
-    }
-
-    return YES;
+    [self setSnippets:content];
 }
 
 
 //------------------------------------------------------
 /// キーを選択状態にする
-- (void)performEditSelectedBindingKeyColumn
+- (void)beginEditingSelectedKeyCell
 //------------------------------------------------------
 {
     NSInteger selectedRow = [[self outlineView] selectedRow];

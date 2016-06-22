@@ -472,9 +472,10 @@
 "Space" = "スペース";
 
 // Warning messages
-"“%@” is already taken. Please choose another key." = "“%@”はすでに使用されています。再編集してください。";
-"“%@” does not include the Command key. Please choose another key." = "“%@”にはコマンドキーが含まれていません。再編集してください。";
-"“%@” includes the Command key. Please choose another key." = "“%@”はコマンドキーを含んでいます。再編集してください。";
+"“%@” is already taken." = "“%@”はすでに使用されています。";
+"“%@” does not include the Command key." = "“%@”にはコマンドキーが含まれていません。";
+"“%@” includes the Command key." = "“%@”はコマンドキーを含んでいます。";
+"Please choose another key." = "別のキーを選んでください。";
 
 
 

@@ -468,9 +468,10 @@
 "Space" = "空格键";
 
 // Warning messages
-"“%@” is already taken. Please choose another key." = "“%@”已在使用中，请选择其他按键。";
-"“%@” does not include the Command key. Please choose another key." = "“%@”中没有包含 Command 键，请选择其他按键。";
-"“%@” includes the Command key. Please choose another key." = "“%@”包含了 Command 键，请选择其他按键。";
+"“%@” is already taken." = "“%@”已在使用中。";
+"“%@” does not include the Command key." = "“%@”中没有包含 Command 键。";
+"“%@” includes the Command key." = "“%@”包含了 Command 键。";
+"Please choose another key." = "请选择其他按键。";
 
 
 
