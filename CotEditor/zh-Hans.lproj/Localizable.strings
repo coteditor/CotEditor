@@ -472,6 +472,8 @@
 "“%@” does not include the Command key." = "“%@”中没有包含 Command 键。";
 "“%@” includes the Command key." = "“%@”包含了 Command 键。";
 "Please choose another key." = "请选择其他按键。";
+"Single type is invalid for a shortcut." = "Single type is invalid for a shortcut.";  // FIXME: new
+"Please combinate with another keys." = "Please combinate with another keys.";  // FIXME: new
 
 
 

@@ -134,17 +134,28 @@
 
 //------------------------------------------------------
 /// validate new key spec chars are settable
-- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldKeySpecChars:(nonnull NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpecChars oldKeySpecChars:(nullable NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
     // blank key is always valid
-    if ([keySpec length] == 0) { return YES; }
+    if ([keySpecChars length] == 0) { return YES; }
+    
+    // single key is invalid
+    if ([keySpecChars length] == 1) {
+        if (outError) {
+            *outError = [NSError errorWithDomain:CEErrorDomain
+                                            code:CEInvalidKeySpecCharsError
+                                        userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Single type is invalid for a shortcut.", nil),
+                                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Please combinate with another keys.", nil)}];;
+        }
+        return NO;
+    }
     
     // duplication check
     NSArray<NSString *> *registeredKeySpecChars = [[self keyBindingDict] allKeys];
-    if (![keySpec isEqualToString:oldKeySpecChars] && [registeredKeySpecChars containsObject:keySpec]) {
+    if (![keySpecChars isEqualToString:oldKeySpecChars] && [registeredKeySpecChars containsObject:keySpecChars]) {
         if (outError) {
-            *outError = [self errorWithMessageFormat:@"“%@” is already taken." keySpecChars:keySpec];
+            *outError = [self errorWithMessageFormat:@"“%@” is already taken." keySpecChars:keySpecChars];
         }
         return NO;
     }

@@ -41,6 +41,6 @@
                                 requiresCommandKey:(BOOL)requiresCommandKey;
 
 /// return shortcut string to display from keySpecChars to store
-+ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nonnull NSString *)keySpecChars;
++ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nullable NSString *)keySpecChars;
 
 @end

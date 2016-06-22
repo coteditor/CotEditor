@@ -474,6 +474,8 @@
 "“%@” does not include the Command key." = "„%@“ enthaltet die Command-Taste nicht.";
 "“%@” includes the Command key." = "„%@“ enthaltet die Command-Taste.";
 "Please choose another key." = "Bitte wählen Sie eine andere Taste.";
+"Single type is invalid for a shortcut." = "Einzeltastenschlag ist für eine Kurzbefehl ungültig.";
+"Please combinate with another keys." = "Bitte kombinieren Sie sie mit anderen Tasten.";
 
 
 

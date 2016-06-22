@@ -49,7 +49,7 @@
 
 - (BOOL)saveKeyBindings:(nonnull NSArray<id<CEKeyBindingItemInterface>> *)outlineData;
 
-- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldKeySpecChars:(nonnull NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
+- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpecChars oldKeySpecChars:(nullable NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (nonnull NSError *)errorWithMessageFormat:(nonnull NSString *)message keySpecChars:(nonnull NSString *)keySpecChars;
 
 

@@ -68,7 +68,7 @@ class ShortcutKeyField: NSTextField {
             
             // set input shortcut string to field
             var keySpecChars = CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: charsIgnoringModifiers, modifierMask: modifierMask)
-            if keySpecChars == "\\b" {  // single NSDeleteCharacter should be deleted
+            if keySpecChars == "\u{8}" {  // single NSDeleteCharacter should be deleted
                 keySpecChars = ""
             }
             self.stringValue = keySpecChars

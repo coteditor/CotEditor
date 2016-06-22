@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" customClass="CEKeyBindingsViewController">
+        <customObject id="-2" customClass="SnippetKeyBindingsViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="outlineView" destination="86" id="cXw-yD-mOE"/>
                 <outlet property="snippetArrayController" destination="98" id="hVp-m9-i69"/>
@@ -745,12 +745,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <binding destination="98" name="editable" keyPath="selection.insertCustomText" id="XT8-AO-JtU">
+                                    <binding destination="98" name="editable" keyPath="selection.text" id="KGk-A7-joa">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="98" name="value" keyPath="selection.insertCustomText" id="jTj-QW-dQw">
+                                    <binding destination="98" name="value" keyPath="selection.text" id="mIh-YA-eHt">
                                         <dictionary key="options">
                                             <string key="NSNoSelectionPlaceholder">Select Action</string>
                                         </dictionary>
@@ -960,9 +960,9 @@
                 <constraint firstItem="63" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="sUU-aa-YPD"/>
             </constraints>
         </view>
-        <arrayController objectClassName="NSString" avoidsEmptySelection="NO" id="98" userLabel="Snippet Array Controller">
+        <arrayController objectClassName="SnippetItem" avoidsEmptySelection="NO" id="98" userLabel="Snippet Array Controller">
             <declaredKeys>
-                <string>insertCustomText</string>
+                <string>text</string>
             </declaredKeys>
             <connections>
                 <binding destination="-2" name="contentArray" keyPath="snippets" id="cpT-Dn-yXl"/>

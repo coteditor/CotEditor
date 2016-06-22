@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" customClass="CEKeyBindingsViewController">
+        <customObject id="-2" customClass="KeyBindingsViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="outlineView" destination="8" id="87F-fg-biJ"/>
                 <outlet property="view" destination="6" id="1zd-lS-lXz"/>

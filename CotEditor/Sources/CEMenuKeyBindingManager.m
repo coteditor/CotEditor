@@ -120,15 +120,15 @@
 
 //------------------------------------------------------
 /// validate new key spec chars are settable
-- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpec oldKeySpecChars:(nonnull NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError
+- (BOOL)validateKeySpecChars:(nonnull NSString *)keySpecChars oldKeySpecChars:(nullable NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    BOOL valid = [super validateKeySpecChars:keySpec oldKeySpecChars:oldKeySpecChars error:outError];
+    BOOL valid = [super validateKeySpecChars:keySpecChars oldKeySpecChars:oldKeySpecChars error:outError];
     
     // command key existance check
-    if (valid && ![keySpec containsString:@"@"]) {
+    if (valid && ![keySpecChars containsString:@"@"]) {
         if (outError) {
-            *outError = [self errorWithMessageFormat:@"“%@” does not include the Command key." keySpecChars:keySpec];
+            *outError = [self errorWithMessageFormat:@"“%@” does not include the Command key." keySpecChars:keySpecChars];
         }
         return NO;
     }

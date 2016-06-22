@@ -26,13 +26,15 @@
  */
 
 #import "CEPreferencesWindowController.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEGeneralPaneController.h"
 #import "CEWindowPaneController.h"
 #import "CEAppearancePaneController.h"
 #import "CEEditPaneController.h"
 #import "CEFormatPaneController.h"
 #import "CEFileDropPaneController.h"
-#import "CEKeyBindingsPaneController.h"
 #import "CEPrintPaneController.h"
 #import "CEIntegrationPaneController.h"
 
@@ -84,7 +86,7 @@
                              [[CEEditPaneController alloc] init],
                              [[CEFormatPaneController alloc] init],
                              [[CEFileDropPaneController alloc] init],
-                             [[CEKeyBindingsPaneController alloc] init],
+                             [[KeyBindingsPaneController alloc] init],
                              [[CEPrintPaneController alloc] init],
                              [[CEIntegrationPaneController alloc] init]];
     }

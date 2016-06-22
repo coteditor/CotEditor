@@ -133,7 +133,7 @@ static NSUInteger const kSizeOfModifierKeys = sizeof(kModifierKeyMaskList) / siz
 
 //------------------------------------------------------
 /// return shortcut string to display from keySpecChars to store
-+ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nonnull NSString *)keySpecChars
++ (nonnull NSString *)printableKeyStringFromKeySpecChars:(nullable NSString *)keySpecChars
 //------------------------------------------------------
 {
     NSInteger length = [keySpecChars length];
