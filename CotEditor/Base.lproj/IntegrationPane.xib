@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEIntegrationPaneController">
+        <customObject id="-2" userLabel="File's Owner" customClass="IntegrationPaneController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="c22-O7-iKe" id="mxI-ay-v2T"/>
             </connections>

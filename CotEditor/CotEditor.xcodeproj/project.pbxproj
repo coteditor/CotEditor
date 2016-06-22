@@ -281,7 +281,6 @@
 		2A6F0DD71B5500E100C2D03C /* CESyntaxEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3FB2AC18ECEFF200D9CB2C /* CESyntaxEditViewController.m */; };
 		2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumberView.m */; };
 		2A6F0DDA1B5500E100C2D03C /* CEPrintPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB81901788000A9D6EF /* CEPrintPaneController.m */; };
-		2A6F0DDB1B5500E100C2D03C /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
 		2A6F0DDC1B5500E100C2D03C /* CEAppearancePaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DB51901760300A9D6EF /* CEAppearancePaneController.m */; };
 		2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
 		2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */; };
@@ -310,6 +309,8 @@
 		2A7314EE1A0326D300C0EDA9 /* CEAlphaWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7314ED1A0326D300C0EDA9 /* CEAlphaWindow.m */; };
 		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
 		2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
+		2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */; };
+		2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */; };
 		2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF2401A573CEB00D09249 /* FindPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF23E1A573CEB00D09249 /* FindPanel.xib */; };
@@ -411,7 +412,6 @@
 		2AD172FB1CF0B807007314B3 /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
 		2AD172FC1CF0B807007314B3 /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
-		2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */; };
 		2AD49C231D0BE75A00FF4CC9 /* CESettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD49C221D0BE75A00FF4CC9 /* CESettingManager.m */; };
 		2AD49C241D0BE75A00FF4CC9 /* CESettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD49C221D0BE75A00FF4CC9 /* CESettingManager.m */; };
 		2AD49C281D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD49C271D0BEF3800FF4CC9 /* CESettingFileManager.m */; };
@@ -757,6 +757,7 @@
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		2A7846DC18FE0C0C006BDF00 /* CETheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETheme.h; sourceTree = "<group>"; };
 		2A7846DD18FE0C0C006BDF00 /* CETheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETheme.m; sourceTree = "<group>"; };
+		2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationPaneController.swift; sourceTree = "<group>"; };
 		2A7A61041C9EA92500C658EA /* CEGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEGeometry.h; sourceTree = "<group>"; };
 		2A7AC3F11A46484B00F38868 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
 		2A7AC3F31A46484E00F38868 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationPane.strings"; sourceTree = "<group>"; };
@@ -897,8 +898,6 @@
 		2AD172F91CF0B807007314B3 /* NSFont+CESize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFont+CESize.h"; sourceTree = "<group>"; };
 		2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFont+CESize.m"; sourceTree = "<group>"; };
 		2AD318BF1A462A10001B8112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPane.xib; sourceTree = "<group>"; };
-		2AD318C11A462C30001B8112 /* CEIntegrationPaneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEIntegrationPaneController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEIntegrationPaneController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2AD488381A07FF1A00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2AD488391A07FF1A00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MigrationWindow.xib; sourceTree = "<group>"; };
 		2AD4883A1A07FF1A00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
@@ -1182,8 +1181,7 @@
 				2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */,
 				2A149DB71901788000A9D6EF /* CEPrintPaneController.h */,
 				2A149DB81901788000A9D6EF /* CEPrintPaneController.m */,
-				2AD318C11A462C30001B8112 /* CEIntegrationPaneController.h */,
-				2AD318C21A462C30001B8112 /* CEIntegrationPaneController.m */,
+				2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */,
 			);
 			name = Panes;
 			sourceTree = "<group>";
@@ -2530,8 +2528,8 @@
 				2ADD36931CFCABA400F3175D /* CEDocumentInspectorViewController.m in Sources */,
 				2A6F0DDA1B5500E100C2D03C /* CEPrintPaneController.m in Sources */,
 				2A55335E1B556F2A0056FF3E /* CEGeneralPaneController.m in Sources */,
-				2A6F0DDB1B5500E100C2D03C /* CEIntegrationPaneController.m in Sources */,
 				2A6F0DDC1B5500E100C2D03C /* CEAppearancePaneController.m in Sources */,
+				2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2A4C9A801D099CD900C76F28 /* CEFileDropComposer.m in Sources */,
 				2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */,
 				2ACDC0921D1726BD009B72D6 /* DotImageView.swift in Sources */,
@@ -2626,6 +2624,7 @@
 				8D15AC310486D014006FF6A4 /* CEDocument.m in Sources */,
 				2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */,
 				2A149DBC1901803C00A9D6EF /* CEEditPaneController.m in Sources */,
+				2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				25859DB3076D65310020F779 /* CEAppDelegate.m in Sources */,
 				25859DEE076D75BC0020F779 /* CEWindowController.m in Sources */,
 				2A436DDF1A4288AC00275FD4 /* CEDocumentAnalyzer.m in Sources */,
@@ -2705,7 +2704,6 @@
 				25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */,
 				2A149DB91901788000A9D6EF /* CEPrintPaneController.m in Sources */,
 				2AACB1D41D19AE600073775B /* CEMenuKeyBindingManager.m in Sources */,
-				2AD318C31A462C30001B8112 /* CEIntegrationPaneController.m in Sources */,
 				2AE0C08F1C422A5200E52E04 /* CETextView+Transformation.m in Sources */,
 				2A21841A1D04304800522EF5 /* CEWindowContentViewController.m in Sources */,
 				2A149DB61901760300A9D6EF /* CEAppearancePaneController.m in Sources */,
