@@ -20,12 +20,13 @@
 
 // General Pane
 #import "CEDocument.h"
-#ifndef APPSTORE
-#import "CEUpdaterManager.h"
-#endif
 
 // Preferences Window Controller
 #import "CEAppearancePaneController.h"
 #import "CEFormatPaneController.h"
 #import "CEFileDropPaneController.h"
 #import "CEPrintPaneController.h"
+
+#import "CEAppDelegate.h"
+#import "CEThemeManager.h"
+#import "CESyntaxManager.h"

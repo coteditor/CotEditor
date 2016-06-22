@@ -62,7 +62,7 @@ class GeneralPaneController: NSViewController {
         #else
             self.hasUpdater = true
             
-            if CEUpdaterManager.shared().isPrerelease {
+            if UpdaterManager.shared.isPrerelease {
                 self.prerelease = true
             } else {
                 // cut down height for pre-release note

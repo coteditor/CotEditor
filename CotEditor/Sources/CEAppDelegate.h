@@ -31,17 +31,9 @@
 
 @interface CEAppDelegate : NSObject <NSApplicationDelegate>
 
+@property (nonatomic, nullable) NSWindowController *migrationWindowController;
+
 // action messages
 - (IBAction)openHelpAnchor:(nullable id)sender;
-
-@end
-
-
-
-
-@interface CEAppDelegate (Services)
-
-- (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error;
-- (void)openFile:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error;
 
 @end

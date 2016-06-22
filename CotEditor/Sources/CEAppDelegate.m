@@ -39,39 +39,22 @@
 #import "CEOpacityPanelController.h"
 #import "CEColorCodePanelController.h"
 #import "CEConsolePanelController.h"
-#import "CEWebDocumentWindowController.h"
-#import "CEMigrationWindowController.h"
-
-#import "CEDocument.h"
 
 #import "CEErrors.h"
 #import "CEDefaults.h"
 #import "CEEncodings.h"
 #import "Constants.h"
 
-#ifndef APPSTORE
-#import "CEUpdaterManager.h"
-#endif
-
 
 @interface CEAppDelegate ()
 
 @property (nonatomic) BOOL didFinishLaunching;
 
-@property (nonatomic, nullable) CEWebDocumentWindowController *acknowledgementsWindowController;
-@property (nonatomic, nullable) CEMigrationWindowController *migrationWindowController;
+@property (nonatomic, nullable) WebDocumentWindowController *acknowledgementsWindowController;
 
 @property (nonatomic, nullable) IBOutlet NSMenu *encodingsMenu;
 @property (nonatomic, nullable) IBOutlet NSMenu *syntaxStylesMenu;
 @property (nonatomic, nullable) IBOutlet NSMenu *themesMenu;
-
-@end
-
-
-
-@interface CEAppDelegate (Migration)
-
-- (void)migrateIfNeeded;
 
 @end
 
@@ -318,7 +301,7 @@
 // ------------------------------------------------------
 {
     // setup updater
-    [[CEUpdaterManager sharedManager] setup];
+    [[UpdaterManager shared] setup];
 }
 #endif
 
@@ -353,7 +336,7 @@
     }
     
     // register Services
-    [NSApp setServicesProvider:self];
+    [NSApp setServicesProvider:[[ServicesProvider alloc] init]];
     
     // raise didFinishLaunching flag
     [self setDidFinishLaunching:YES];
@@ -471,7 +454,7 @@
 // ------------------------------------------------------
 {
     if (![self acknowledgementsWindowController]) {
-        [self setAcknowledgementsWindowController:[[CEWebDocumentWindowController alloc] initWithDocumentName:@"Acknowledgements"]];
+        [self setAcknowledgementsWindowController:[[WebDocumentWindowController alloc] initWithDocumentName:@"Acknowledgements"]];
     }
     
     [[self acknowledgementsWindowController] showWindow:sender];
@@ -611,132 +594,6 @@
                         action:@selector(changeTheme:)
                  keyEquivalent:@""];
     }
-}
-
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CEAppDelegate (Services)
-
-// ------------------------------------------------------
-/// open new document with string via Services
-- (void)openSelection:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error
-// ------------------------------------------------------
-{
-    NSString *selection = [pboard stringForType:NSPasteboardTypeString];
-    
-    if (!selection) { return; }
-    
-    NSError *err = nil;
-    CEDocument *document = [[NSDocumentController sharedDocumentController] openUntitledDocumentAndDisplay:NO error:&err];
-    
-    if (document) {
-        [[document textStorage] replaceCharactersInRange:NSMakeRange(0, 0) withString:selection];
-        [document makeWindowControllers];
-        [document showWindows];
-    } else {
-        [[NSAlert alertWithError:err] runModal];
-    }
-}
-
-
-// ------------------------------------------------------
-/// open files via Services
-- (void)openFile:(nonnull NSPasteboard *)pboard userData:(nonnull NSString *)userData error:(NSString * _Nullable * _Nullable)error
-// ------------------------------------------------------
-{
-    for (NSPasteboardItem *item in [pboard pasteboardItems]) {
-        NSString *type = [item availableTypeFromArray:@[(NSString *)kUTTypeFileURL, (NSString *)kUTTypeText]];
-        NSURL *fileURL = [NSURL URLWithString:[item stringForType:type]];
-        
-        if (![fileURL checkResourceIsReachableAndReturnError:nil]) {
-            continue;
-        }
-        
-        // get file UTI
-        NSString *uti = nil;
-        [fileURL getResourceValue:&uti forKey:NSURLTypeIdentifierKey error:nil];
-        
-        // process only plain-text files
-        if (![[NSWorkspace sharedWorkspace] type:uti conformsToType:(NSString *)kUTTypeText]) {
-            NSError *err = [NSError errorWithDomain:NSCocoaErrorDomain
-                                               code:NSFileReadCorruptFileError
-                                           userInfo:@{NSURLErrorKey: fileURL}];
-            [[NSAlert alertWithError:err] runModal];
-            continue;
-        }
-        
-        // open file
-        [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:fileURL
-                                                                               display:YES
-                                                                     completionHandler:^(NSDocument * _Nullable document,
-                                                                                         BOOL documentWasAlreadyOpen,
-                                                                                         NSError * _Nullable error)
-         {
-             if (error) {
-                 [[NSAlert alertWithError:error] runModal];
-             }
-         }];
-    }
-}
-
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CEAppDelegate (Migration)
-
-//------------------------------------------------------
-/// migrate user settings from CotEditor v1.x if needed
-- (void)migrateIfNeeded
-//------------------------------------------------------
-{
-    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultLastVersionKey];
-    NSURL *keybindingURL = [[CEMenuKeyBindingManager sharedManager] userSettingDirectoryURL];  // KeyBindings dir was invariably made on the previous versions.
-    
-    if (!lastVersion && [keybindingURL checkResourceIsReachableAndReturnError:nil]) {
-        [self migrateToVersion2];
-    }
-}
-
-
-//------------------------------------------------------
-/// perform migration from CotEditor 1.x to 2.0
-- (void)migrateToVersion2
-//------------------------------------------------------
-{
-    // show migration window
-    CEMigrationWindowController *windowController = [[CEMigrationWindowController alloc] init];
-    [self setMigrationWindowController:windowController];
-    [windowController showWindow:self];
-    
-    // reset menu keybindings setting
-    [windowController setInformative:@"Restoring menu key bindings settings…"];
-    [[CEMenuKeyBindingManager sharedManager] resetKeyBindings];
-    [windowController progressIndicator];
-    [windowController setDidResetKeyBindings:YES];
-    
-    // migrate coloring setting
-    [windowController setInformative:@"Migrating coloring settings…"];
-    BOOL didMigrate = [[CEThemeManager sharedManager] migrateTheme];
-    [windowController progressIndicator];
-    [windowController setDidMigrateTheme:didMigrate];
-    
-    // migrate syntax styles to modern style
-    [windowController setInformative:@"Migrating user syntax styles…"];
-    [[CESyntaxManager sharedManager] migrateStylesWithCompletionHandler:^(BOOL success) {
-        [windowController setDidMigrateSyntaxStyles:success];
-        
-        [windowController setInformative:@"Migration finished."];
-        [windowController setMigrationFinished:YES];
-    }];
 }
 
 @end
