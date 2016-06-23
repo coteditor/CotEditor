@@ -37,7 +37,7 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
         CEAppearancePaneController(),
         EditPaneController(),
         CEFormatPaneController(),
-        CEFileDropPaneController(),
+        FileDropPaneController(),
         KeyBindingsPaneController(),
         PrintPaneController(),
         IntegrationPaneController(),

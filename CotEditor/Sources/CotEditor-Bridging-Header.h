@@ -25,7 +25,6 @@
 // Preferences Window Controller
 #import "CEAppearancePaneController.h"
 #import "CEFormatPaneController.h"
-#import "CEFileDropPaneController.h"
 
 // App Delegate
 #import "CEThemeManager.h"
