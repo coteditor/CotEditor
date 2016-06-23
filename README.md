@@ -14,20 +14,22 @@ __Mac App Store__: <http://appstore.com/mac/CotEditor>
 
 
 
-About Source Code
+Source Code
 -----------------------------
 
 [![Build Status](https://travis-ci.org/coteditor/CotEditor.svg?branch=develop)](https://travis-ci.org/coteditor/CotEditor)
 [![License](https://img.shields.io/github/license/coteditor/CotEditor.svg)](https://github.com/coteditor/CotEditor/blob/develop/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/coteditor/CotEditor.svg)](https://github.com/coteditor/CotEditor/releases/latest)
 
-It's a pure document-based Cocoa application. The source code is written in Objective-C with ARC enabled.
+CotEditor is a pure document-based Cocoa application. The source code is written in Swift/Objective-C with ARC enabled.
 
 
 ### Development Environment
 
 - OS X 10.11 El Capitan
 - Xcode 8.0 beta
+- Swift 3
+- Sandbox enabled
 
 
 
