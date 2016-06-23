@@ -148,7 +148,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [super initialize];
     
     // register defaults for find panel here
-    // sicne CEFindPanelController can be initialized before registering user defaults in CEAppDelegate. (2015-01 by 1024jp)
+    // sicne CEFindPanelController can be initialized before registering user defaults in AppDelegate. (2015-01 by 1024jp)
     NSDictionary<NSString *, id> *defaults = @{CEDefaultFindHistoryKey: @[],
                                                CEDefaultReplaceHistoryKey: @[],
                                                CEDefaultFindUsesRegularExpressionKey: @NO,

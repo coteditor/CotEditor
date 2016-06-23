@@ -3,6 +3,7 @@
 //
 
 #import "CEDefaults.h"
+#import "CEEncodings.h"
 #import "Constants.h"
 
 
@@ -27,6 +28,12 @@
 #import "CEFileDropPaneController.h"
 #import "CEPrintPaneController.h"
 
-#import "CEAppDelegate.h"
+// App Delegate
 #import "CEThemeManager.h"
 #import "CESyntaxManager.h"
+#import "CEEncodingManager.h"
+#import "CEScriptManager.h"
+
+#import "CEOpacityPanelController.h"
+#import "CEColorCodePanelController.h"
+#import "CEConsolePanelController.h"

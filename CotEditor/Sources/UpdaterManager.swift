@@ -29,23 +29,9 @@ import Cocoa
 import Sparkle
 
 
-enum MainMenuIndex: Int {
-    case application
-    case file
-    case edit
-    case view
-    case format
-    case text
-    case find
-    case window
-    case script
-    case help
-}
-
-
 private enum AppCastURL {
     
-    case standard
+    case stable
     case beta
     
     
@@ -54,7 +40,7 @@ private enum AppCastURL {
         let host = "https://coteditor.com/"
         
         switch self {
-        case .standard:
+        case .stable:
             return host + "appcast.xml"
         case .beta:
             return host + "appcast-beta.xml"
@@ -71,13 +57,13 @@ class UpdaterManager: NSObject, SUUpdaterDelegate {
     static let shared = UpdaterManager()
     
     /// Is the running app a pre-release version?
-    lazy var isPrerelease: Bool = {
+    let isPrerelease: Bool = {
         
-        let version = Bundle.main().objectForInfoDictionaryKey("CFBundleShortVersionString")
+        let version = AppInfo.shortVersion
         let digitSet = CharacterSet(charactersIn: "0123456789.")
         
         // pre-releases contain non-digit letter
-        return (version?.rangeOfCharacter(from: digitSet.inverted).location != NSNotFound)
+        return (version.rangeOfCharacter(from: digitSet.inverted) != nil)
     }()
     
     
@@ -120,7 +106,7 @@ class UpdaterManager: NSObject, SUUpdaterDelegate {
             checksBeta = UserDefaults.standard().bool(forKey: CEDefaultChecksUpdatesForBetaKey)
         }
         
-        let appCast: AppCastURL = checksBeta ? .beta : .standard
+        let appCast: AppCastURL = checksBeta ? .beta : .stable
         
         return appCast.URL
     }

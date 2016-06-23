@@ -39,7 +39,7 @@ class IntegrationPaneController: NSViewController {
                                                                            in: .localDomainMask,
                                                                            appropriateFor: nil,
                                                                            create: false)
-        let appName = (Bundle.main().objectForInfoDictionaryKey("CFBundleName") as! NSString) as String
+        let appName = AppInfo.bundleName
         
         return try! applicationDirURL.appendingPathComponent(appName).appendingPathExtension("app")
     }()

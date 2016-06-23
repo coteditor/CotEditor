@@ -1,6 +1,6 @@
 /*
  
- CEAppDelegate+Migration.swift
+ AppDelegate+Migration.swift
  
  CotEditor
  https://coteditor.com
@@ -27,7 +27,7 @@
 
 import Cocoa
 
-extension CEAppDelegate {
+extension AppDelegate {
     
     // MARK: Public Methods
     

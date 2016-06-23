@@ -42,7 +42,7 @@
 
 
 
-/* MARK: CEAppDelegate */
+/* MARK: AppDelegate */
 // File open accessory's menu item title
 "Auto-Detect" = "Auto-Erkennung";
 // Format - Syntax coloring menu item title

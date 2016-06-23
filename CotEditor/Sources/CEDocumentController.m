@@ -97,7 +97,7 @@
 // ------------------------------------------------------
 {
     // [note] Better not to set this `autosavingDelay` on the documentController's `init`,
-    //        since the `init` can be invoked before the userDefaults are initialized with the default values in CEAppDelegate.
+    //        since the `init` can be invoked before the userDefaults are initialized with the default values in AppDelegate.
     return (NSTimeInterval)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultAutosavingDelayKey];
 }
 

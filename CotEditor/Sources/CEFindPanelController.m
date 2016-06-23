@@ -67,7 +67,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 - (nonnull instancetype)init
 // ------------------------------------------------------
 {
-    // [attention] This method can be invoked before initializing user defaults in CEAppDelegate.
+    // [attention] This method can be invoked before initializing user defaults in AppDelegate.
     
     self = [super init];
     if (self) {
@@ -107,7 +107,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
 - (void)windowDidLoad
 // ------------------------------------------------------
 {
-    // [attention] This method can be invoked before initializing user defaults in CEAppDelegate.
+    // [attention] This method can be invoked before initializing user defaults in AppDelegate.
     
     [super windowDidLoad];
     

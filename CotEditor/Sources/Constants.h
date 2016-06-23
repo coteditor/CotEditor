@@ -48,9 +48,6 @@ extern NSString *_Nonnull const CEDistributionURLKey;
 extern NSString *_Nonnull const CELicenseKey;
 extern NSString *_Nonnull const CEDescriptionKey;
 
-// Help anchors
-extern NSString *_Nonnull const kHelpAnchors[];
-
 
 // labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
 typedef NS_ENUM(UInt32, CESystemSoundID) {
@@ -123,7 +120,3 @@ typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     // in contextual menu
     CEScriptMenuItemTag         =  800,
 };
-
-// Online URLs
-extern NSString *_Nonnull const kWebSiteURL;
-extern NSString *_Nonnull const kIssueTrackerURL;

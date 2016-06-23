@@ -36,12 +36,7 @@ class MigrationWindowController: NSWindowController {
     
     // MARK: Private Properties
     
-    let appName: String = {
-        let appName = (Bundle.main().objectForInfoDictionaryKey("CFBundleName") as! NSString) as String
-        let version = (Bundle.main().objectForInfoDictionaryKey("CFBundleShortVersionString") as! NSString) as String
-        
-        return appName + " " + version
-    }()
+    let appName: String = AppInfo.bundleName + " " + AppInfo.shortVersion
     
     @IBOutlet private var initialView: NSView?
     @IBOutlet private var finishedView: NSView?

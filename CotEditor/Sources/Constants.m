@@ -49,35 +49,6 @@ NSString *_Nonnull const CELicenseKey = @"license";
 NSString *_Nonnull const CEDescriptionKey = @"description";
 
 
-// Help anchors
-NSString *_Nonnull const kHelpAnchors[] = {
-    @"releasenotes",
-    @"pref_general",
-    @"pref_window",
-    @"pref_appearance",
-    @"pref_edit",
-    @"pref_format",  // 5
-    @"pref_filedrop",
-    @"pref_keybindings",
-    @"pref_print",
-    @"whats_new",
-    @"specification_changes",  // 10
-    @"howto_customize_scriptmenu",
-    @"about_applescript",
-    @"about_unixscript",
-    @"pref_integration",
-    @"about_file_mapping",  // 15
-    @"about_cot",
-    
-    @"about_syntaxstyle",
-    @"about_comment_settings",
-    @"about_outlinemenu_settings",
-    @"about_complist_settings",  // 20
-    @"about_file_mapping",
-    @"about_styleinfo_settings",
-};
-
-
 // Convenient functions
 /// compare CGFloats
 BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2) {
@@ -120,15 +91,3 @@ NSString *_Nonnull const CEFileDropTokenFileextensionUpper = @"<<<FILEEXTENSION-
 NSString *_Nonnull const CEFileDropTokenDirectory = @"<<<DIRECTORY>>>";
 NSString *_Nonnull const CEFileDropTokenImageWidth = @"<<<IMAGEWIDTH>>>";
 NSString *_Nonnull const CEFileDropTokenImageHeight = @"<<<IMAGEHEIGHT>>>";
-
-
-
-#pragma mark Main Menu
-
-// ------------------------------------------------------
-// Main Menu
-// ------------------------------------------------------
-
-// Online URLs
-NSString *_Nonnull const kWebSiteURL = @"http://coteditor.com";
-NSString *_Nonnull const kIssueTrackerURL = @"https://github.com/coteditor/CotEditor/issues";
