@@ -26,7 +26,6 @@
 #import "CEAppearancePaneController.h"
 #import "CEFormatPaneController.h"
 #import "CEFileDropPaneController.h"
-#import "CEPrintPaneController.h"
 
 // App Delegate
 #import "CEThemeManager.h"

@@ -27,6 +27,9 @@
  */
 
 #import "CEEncodingManager.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEDefaults.h"
 #import "CEEncodings.h"
 
