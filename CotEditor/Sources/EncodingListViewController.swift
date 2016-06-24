@@ -28,9 +28,6 @@
 
 import Cocoa
 
-private let RowsPboardType = "CERowsPboardType"
-
-
 extension Array {
     
     /// remove elements with IndexSet
@@ -58,9 +55,9 @@ extension Array {
 
 // MARK:
 
-class EncodingListViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
-    private var encodings: [NSNumber] {
+    private dynamic var encodings: [NSNumber] {
         didSet {
             // validate restorebility
             self.canRestore = (encodings != self.defaultEncodings)
@@ -103,23 +100,18 @@ class EncodingListViewController: NSViewController, NSTableViewDataSource, NSTab
     
     
     
-    // MARK: Table Data Source Protocol
+    // MARK: Table View Delegate
     
-    /// return number of rows in table
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
-        return self.encodings.count
-    }
-    
-    
-    /// return content of each cell
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+        guard let textField = (rowView.view(atColumn: 0)  as? NSTableCellView)?.textField else { return }
         
         let cfEncoding = CFStringEncoding.init(self.encodings[row].uint32Value)
         
         // separator
         if cfEncoding == kCFStringEncodingInvalidId {
-            return CESeparatorString
+            textField.stringValue = CESeparatorString
+            return
         }
         
         // styled encoding name
@@ -131,77 +123,11 @@ class EncodingListViewController: NSViewController, NSTableViewDataSource, NSTab
         attrString.append(AttributedString(string: " : " + ianaName,
                                            attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor()]))
         
-        return attrString
+        textField.attributedStringValue = attrString
     }
     
     
-    /// start dragging
-    func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
-        
-        // register dragged type
-        tableView.register(forDraggedTypes: [RowsPboardType])
-        pboard.declareTypes([RowsPboardType], owner: self)
-        
-        // select rows to drag
-        tableView.selectRowIndexes(rowIndexes, byExtendingSelection: false)
-        
-        // set dragged items to pasteboard
-        let plist = NSKeyedArchiver.archivedData(withRootObject: rowIndexes)
-        pboard.setData(plist, forType: RowsPboardType)
-        
-        return true
-    }
-    
-    
-    /// validate when dragged items come to tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
-        
-        // accept only self drag-and-drop
-        guard info.draggingSource() as? NSTableView == tableView else { return [] }
-        
-        // avoid drop-on
-        if dropOperation == .on {
-            let newRow = min(row + 1, tableView.numberOfRows - 1)
-            tableView.setDropRow(newRow, dropOperation: .above)
-        }
-        
-        return .move
-    }
-    
-    
-    /// check acceptability of dragged items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
-        
-        // accept only self drag-and-drop
-        guard info.draggingSource() as? NSTableView == tableView else { return false }
-        
-        // obtain original rows from paste board
-        guard let data = info.draggingPasteboard().data(forType: RowsPboardType),
-              let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet else { return false }
-        
-        let draggingItems = self.encodings.elements(at: sourceRows)
-        let destinationRow = row - sourceRows.count(in: Range(0...row))  // real insertion point after removing items to move
-        let destinationRows = IndexSet(destinationRow..<(destinationRow + draggingItems.count))
-        
-        // update data
-        self.encodings.remove(in: sourceRows)
-        self.encodings.insert(contentsOf: draggingItems, at: destinationRow)
-        
-        // update UI
-        tableView.beginUpdates()
-        tableView.removeRows(at: sourceRows, withAnimation: .effectFade)
-        tableView.insertRows(at: destinationRows, withAnimation: .effectGap)
-        tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
-        tableView.endUpdates()
-        
-        return true
-    }
-    
-    
-    
-    // MARK: Table View Delegate
-    
-    /// update UI just before selected rows are changed
+    /// update UI just after selected rows are changed
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         // update enability of "Delete Separator" button
@@ -219,22 +145,25 @@ class EncodingListViewController: NSViewController, NSTableViewDataSource, NSTab
     
     
     @available(OSX 10.11, *)
-    /// set action on swiping theme name
+    /// set action on swiping row
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
         
-        let encoding = self.encodings[row].uint32Value
-        
         // only separater can be removed
-        guard encoding == kCFStringEncodingInvalidId else { return [] }
+        guard self.encodings[row].uint32Value == kCFStringEncodingInvalidId else { return [] }
         
         // delete
         return [NSTableViewRowAction(style: .destructive,
                                      title: NSLocalizedString("Delete", comment: "table view action title"),
-                                     handler: { [unowned self] (action: NSTableViewRowAction, row: Int) in
-                                        tableView.removeRows(at: IndexSet(integer: row), withAnimation: .slideLeft)
-                                        self.encodings.remove(at: row)
+                                     handler: { (action: NSTableViewRowAction, row: Int) in
+                                        NSAnimationContext.runAnimationGroup({ context in
+                                            // update UI
+                                            tableView.removeRows(at: IndexSet(integer: row), withAnimation: .slideLeft)
+                                            }, completionHandler: { [weak self] in
+                                                // update data
+                                                self?.encodings.remove(at: row)
+                                        })
             })]
     }
     
@@ -284,46 +213,46 @@ class EncodingListViewController: NSViewController, NSTableViewDataSource, NSTab
     /// add separator to desired row
     private func addSeparator(at rowIndex: Int) {
         
-        // update data
-        self.encodings.insert(NSNumber(value: kCFStringEncodingInvalidId), at: rowIndex)
+        guard let tableView = self.tableView else { return }
         
-        // update UI
-        if let tableView = self.tableView {
-            let indexes = IndexSet(integer: rowIndex)
+        let indexes = IndexSet(integer: rowIndex)
+        
+        NSAnimationContext.runAnimationGroup({ context in
+            // update UI
             tableView.insertRows(at: indexes, withAnimation: .effectGap)
-            tableView.selectRowIndexes(indexes, byExtendingSelection: false)
-        }
+            }, completionHandler: { [weak self] in
+                // update data
+                let item = NSNumber(value: kCFStringEncodingInvalidId)
+                self?.encodings.insert(item, at: rowIndex)
+                
+                tableView.selectRowIndexes(indexes, byExtendingSelection: false)
+        })
     }
     
     
     /// remove separators at desired rows
     private func deleteSeparators(at rowIndexes: IndexSet) {
         
-        guard !rowIndexes.isEmpty else { return }
-        
-        var toDeleteIndexes = IndexSet()
-        
         // pick only separators up
-        for index in toDeleteIndexes.sorted() {
+        var toDeleteIndexes = IndexSet()
+        for index in rowIndexes.sorted() {
             let encoding = self.encodings[index].uint32Value
             
             if encoding == kCFStringEncodingInvalidId {
                 toDeleteIndexes.insert(index)
             }
         }
-        
         guard !toDeleteIndexes.isEmpty else { return }
         
-        // update UI
-        if let tableView = self.tableView {
-            tableView.selectRowIndexes(toDeleteIndexes, byExtendingSelection: false)
-            tableView.removeRows(at: toDeleteIndexes, withAnimation: .slideUp)
-        }
+        guard let tableView = self.tableView else { return }
         
-        // update data
-        for index in toDeleteIndexes.sorted() {
-            self.encodings.remove(at: index)
-        }
+        NSAnimationContext.runAnimationGroup({ context in
+            // update UI
+            tableView.removeRows(at: toDeleteIndexes, withAnimation: [.slideUp, .effectFade])
+            }, completionHandler: { [weak self] in
+                // update data
+                self?.encodings.remove(in: toDeleteIndexes)
+        })
     }
     
 }

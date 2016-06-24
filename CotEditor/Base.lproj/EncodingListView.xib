@@ -73,7 +73,10 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
-                                    <outlet property="dataSource" destination="-2" id="e7n-Ge-vbK"/>
+                                    <binding destination="HYH-gP-Jrd" name="content" keyPath="arrangedObjects" id="HJb-pQ-XOk"/>
+                                    <binding destination="HYH-gP-Jrd" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="HJb-pQ-XOk" id="Kg5-kF-z2q"/>
+                                    <binding destination="HYH-gP-Jrd" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="Kg5-kF-z2q" id="Ejo-Em-QWS"/>
+                                    <outlet property="dataSource" destination="HYH-gP-Jrd" id="vch-RH-NNU"/>
                                     <outlet property="delegate" destination="-2" id="RnU-lX-j7t"/>
                                 </connections>
                             </tableView>
@@ -214,5 +217,14 @@ Auto-Detect tries these encodings from the top of the list.</string>
             </constraints>
             <point key="canvasLocation" x="-106" y="-189.5"/>
         </view>
+        <arrayController objectClassName="NSNumber" id="HYH-gP-Jrd" customClass="DraggableArrayController" customModule="CotEditor" customModuleProvider="target">
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="encodings" id="5KA-CB-lbE">
+                    <dictionary key="options">
+                        <bool key="NSConditionallySetsEditable" value="NO"/>
+                    </dictionary>
+                </binding>
+            </connections>
+        </arrayController>
     </objects>
 </document>

@@ -1229,6 +1229,7 @@
 				2A149DD419032CC900A9D6EF /* CEKeyBindingUtils.m */,
 				2A41CB3B1C3906BA00F9122B /* CEInvisibles.h */,
 				2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */,
+				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A41CB3A1C39068200F9122B /* Value Transformers */,
 				2A41CB391C39066F00F9122B /* Extensions */,
 			);
@@ -1319,7 +1320,6 @@
 				2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */,
 				2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */,
 				2A38FAFF1D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift */,
-				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 			);
 			name = "Syntax Edit Sheet";
 			sourceTree = "<group>";
