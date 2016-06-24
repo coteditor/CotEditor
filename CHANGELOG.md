@@ -10,6 +10,7 @@ Change Log
 - Fix “Markdown” and “Verilog” syntax styles.
 - Fix update range of syntax highlight while editing.
 - Fix key binding setting error message.
+- Fix an issue where syntax validation result view was editable.
 
 
 
