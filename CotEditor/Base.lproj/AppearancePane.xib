@@ -5,7 +5,7 @@
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" customClass="CEAppearancePaneController">
+        <customObject id="-2" customClass="AppearancePaneController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="box" destination="htB-OO-KPY" id="Rpo-zq-R2I"/>
                 <outlet property="fontField" destination="385" id="n5f-3y-xKI"/>

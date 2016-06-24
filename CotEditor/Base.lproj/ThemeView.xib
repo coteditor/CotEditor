@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEThemeViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="ThemeViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="popover" destination="3ZW-ti-l9p" id="5df-aJ-bIt"/>
                 <outlet property="view" destination="8Mv-NZ-wYH" id="BCv-jM-YWI"/>
@@ -14,7 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <objectController id="h6Y-ET-p1K" userLabel="Theme Controller">
             <connections>
-                <binding destination="-2" name="contentObject" keyPath="representedObject" id="35s-ND-JCw"/>
+                <binding destination="-2" name="contentObject" keyPath="theme" id="MGE-N6-ihw"/>
             </connections>
         </objectController>
         <customView id="8Mv-NZ-wYH" userLabel="Theme View">
@@ -164,14 +164,14 @@
                     <rect key="frame" x="282" y="201" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.selection.usesSystemSetting" id="LiX-Z7-p1X">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                         <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.color" id="v8r-oj-p4o">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">HexColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.selection.usesSystemSetting" id="LiX-Z7-p1X">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
                     </connections>
@@ -551,7 +551,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="bundled" id="son-UD-yny">
+                        <binding destination="-2" name="editable" keyPath="isBundled" id="ziP-dj-zQn">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
@@ -572,7 +572,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="bundled" id="6yq-SV-Tjg">
+                        <binding destination="-2" name="editable" keyPath="isBundled" id="h6j-DC-7uR">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
@@ -593,7 +593,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="bundled" id="hFg-IT-hrN">
+                        <binding destination="-2" name="editable" keyPath="isBundled" id="weM-y6-ddI">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
@@ -618,7 +618,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="bundled" id="huM-gg-K23">
+                        <binding destination="-2" name="editable" keyPath="isBundled" id="VYO-VD-Lmw">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>

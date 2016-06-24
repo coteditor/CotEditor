@@ -54,10 +54,10 @@ extern NSString *_Nonnull const CEThemeDidUpdateNotification;
 - (nullable CETheme *)themeWithName:(nonnull NSString *)themeName;
 
 /// Theme dict in which objects are property list ready.
-- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictionaryWithName:(nonnull NSString *)themeName;
+- (nullable NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictionaryWithName:(nonnull NSString *)themeName;
 
 // manage themes
-- (BOOL)saveThemeDictionary:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
+- (BOOL)saveThemeDictionary:(nonnull NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable error))completionHandler;
 - (BOOL)createUntitledThemeWithCompletionHandler:(nullable void (^)(NSString *_Nonnull themeName, NSError *_Nullable error))completionHandler;
 
 @end

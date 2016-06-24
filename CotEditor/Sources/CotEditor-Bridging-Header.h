@@ -22,8 +22,10 @@
 // General Pane
 #import "CEDocument.h"
 
+// Appearance Pane
+#import "CEInvisibles.h"
+
 // Preferences Window Controller
-#import "CEAppearancePaneController.h"
 #import "CEFormatPaneController.h"
 
 // App Delegate
@@ -35,3 +37,6 @@
 #import "CEOpacityPanelController.h"
 #import "CEColorCodePanelController.h"
 #import "CEConsolePanelController.h"
+
+// Theme View Controller
+#import "CEThemeDictionaryKeys.h"

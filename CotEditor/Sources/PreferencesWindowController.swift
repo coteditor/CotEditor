@@ -34,7 +34,7 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
     private let viewControllers: [NSViewController] = [
         GeneralPaneController(),
         WindowPaneController(),
-        CEAppearancePaneController(),
+        AppearancePaneController(),
         EditPaneController(),
         CEFormatPaneController(),
         FileDropPaneController(),

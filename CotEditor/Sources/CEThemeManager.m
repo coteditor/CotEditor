@@ -165,7 +165,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 //------------------------------------------------------
 /// テーマ名から Property list 形式のテーマ定義を返す
-- (nullable NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictionaryWithName:(nonnull NSString *)themeName
+- (nullable NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)themeDictionaryWithName:(nonnull NSString *)themeName
 //------------------------------------------------------
 {
     return [[self archivedThemes][themeName] mutableCopy];
@@ -174,7 +174,7 @@ NSString *_Nonnull const CEThemeDidUpdateNotification = @"CEThemeDidUpdateNotifi
 
 //------------------------------------------------------
 /// テーマを保存する
-- (BOOL)saveThemeDictionary:(nonnull NSDictionary<NSString *, NSDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable))completionHandler
+- (BOOL)saveThemeDictionary:(nonnull NSDictionary<NSString *, NSMutableDictionary<NSString *, id> *> *)theme name:(nonnull NSString *)themeName completionHandler:(nullable void (^)(NSError *_Nullable))completionHandler
 //------------------------------------------------------
 {
     // create directory to save in user domain if not yet exist

@@ -1,16 +1,15 @@
 /*
  
- CEAppearancePaneController.h
+ Constants.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
- Created by 1024jp on 2014-04-18.
-
+ Created by 1024jp on 2016-06-25.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,9 +25,9 @@
  
  */
 
-@import Cocoa;
+import AudioToolbox
 
-
-@interface CEAppearancePaneController : NSViewController
-
-@end
+// labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
+extension SystemSoundID {
+    static let moveToTrash = SystemSoundID(0x11)
+}
