@@ -444,7 +444,7 @@
                 <binding destination="-2" name="contentObject" keyPath="representedObject" id="jmY-UA-VTK"/>
             </connections>
         </objectController>
-        <arrayController clearsFilterPredicateOnInsertion="NO" id="4o4-Do-zNT" userLabel="Extensions Controller" customClass="CEDraggableArrayController">
+        <arrayController clearsFilterPredicateOnInsertion="NO" id="4o4-Do-zNT" userLabel="Extensions Controller" customClass="DraggableArrayController" customModule="CotEditor" customModuleProvider="target">
             <declaredKeys>
                 <string>keyString</string>
             </declaredKeys>
@@ -468,17 +468,17 @@
                 <binding destination="x4x-57-b26" name="contentArray" keyPath="selection.interpreters" id="oBh-2N-vcl"/>
             </connections>
         </arrayController>
-        <customObject id="d7s-my-ran" customClass="CESyntaxEditTableViewDelegate">
+        <customObject id="d7s-my-ran" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="4o4-Do-zNT" id="3Se-9O-qZt"/>
             </connections>
         </customObject>
-        <customObject id="A1s-0g-450" customClass="CESyntaxEditTableViewDelegate">
+        <customObject id="A1s-0g-450" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="GNq-TE-e6o" id="IYP-VP-dWx"/>
             </connections>
         </customObject>
-        <customObject id="T80-vh-snI" customClass="CESyntaxEditTableViewDelegate">
+        <customObject id="T80-vh-snI" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="b1i-d7-DoG" id="TRE-Uh-zQr"/>
             </connections>

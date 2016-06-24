@@ -5,7 +5,7 @@
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxEditViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="SyntaxEditViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="box" destination="WhA-dU-Us9" id="cck-Ad-z3q"/>
                 <outlet property="menuTableView" destination="1Wa-et-npE" id="lS4-Re-kDg"/>
@@ -167,7 +167,7 @@ Gw
 </string>
                     </buttonCell>
                     <connections>
-                        <action selector="cancelEdit:" target="-2" id="efC-qa-GnV"/>
+                        <action selector="cancel:" target="-2" id="OpO-Z1-FgH"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="Kxb-9F-vML">
@@ -183,7 +183,7 @@ DQ
 </string>
                     </buttonCell>
                     <connections>
-                        <action selector="saveEdit:" target="-2" id="Hwi-zy-Pnx"/>
+                        <action selector="save:" target="-2" id="Nwz-1i-ZQ1"/>
                         <binding destination="-2" name="enabled" keyPath="styleNameValid" id="bQY-nY-uok"/>
                     </connections>
                 </button>

@@ -333,7 +333,7 @@
                 <binding destination="-2" name="contentArray" keyPath="representedObject.outlineMenu" id="i8s-Rl-rXC"/>
             </connections>
         </arrayController>
-        <customObject id="6W8-jL-KBe" customClass="CESyntaxEditTableViewDelegate">
+        <customObject id="6W8-jL-KBe" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="SKZ-Xe-n9z" id="riK-mC-ZLg"/>
             </connections>

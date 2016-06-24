@@ -41,12 +41,29 @@ NSString *_Nonnull const CESyntaxListDidUpdateNotification = @"CESyntaxListDidUp
 NSString *_Nonnull const CESyntaxDidUpdateNotification = @"CESyntaxDidUpdateNotification";
 NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification = @"CESyntaxHistoryDidUpdateNotification";
 
-// keys for validation result
-NSString *_Nonnull const CESyntaxValidationTypeKey = @"SyntaxTypeKey";
-NSString *_Nonnull const CESyntaxValidationRoleKey = @"RoleKey";
-NSString *_Nonnull const CESyntaxValidationStringKey = @"StringKey";
-NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
+@implementation SyntaxValidationResult
+
+// ------------------------------------------------------
+/// initializer
+- (nonnull instancetype)initWithType:(nonnull NSString *)type role:(nonnull NSString *)role string:(nonnull NSString *)string localizedFailureReason:(nonnull NSString *)localizedFailureReason
+// ------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        _localizedType = type;
+        _localizedRole = role;
+        _string = string;
+        _localizedFailureReason = localizedFailureReason;
+    }
+    return self;
+}
+
+@end
+
+
+
+#pragma mark -
 
 @interface CESyntaxManager ()
 
@@ -447,10 +464,10 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
 
 // ------------------------------------------------------
 /// 正規表現構文と重複のチェック実行をしてエラーメッセージ(NSDictionary)のArrayを返す
-- (nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)validateSyntax:(nonnull NSDictionary *)style
+- (nonnull NSArray<SyntaxValidationResult *> *)validateSyntax:(nonnull NSDictionary *)style
 // ------------------------------------------------------
 {
-    NSMutableArray<NSDictionary<NSString *, NSString *> *> *results = [NSMutableArray array];
+    NSMutableArray<SyntaxValidationResult *> *results = [NSMutableArray array];
     NSString *tmpBeginStr = nil, *tmpEndStr = nil;
     NSError *error = nil;
     
@@ -478,31 +495,32 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
             
             if ([tmpBeginStr isEqualToString:beginStr] &&
                 ((!tmpEndStr && !endStr) || [tmpEndStr isEqualToString:endStr])) {
-                [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
-                                     CESyntaxValidationRoleKey: NSLocalizedString(@"Begin string", nil),
-                                     CESyntaxValidationStringKey: beginStr,
-                                     CESyntaxValidationMessageKey: NSLocalizedString(@"multiple registered.", nil)}];
+                [results addObject:[[SyntaxValidationResult alloc] initWithType:NSLocalizedString(key, nil)
+                                                                           role:NSLocalizedString(@"Begin string", nil)
+                                                                         string:beginStr
+                                                         localizedFailureReason:NSLocalizedString(@"multiple registered.", nil)]];
+                
                 
             } else if ([dict[CESyntaxRegularExpressionKey] boolValue]) {
                 error = nil;
                 [NSRegularExpression regularExpressionWithPattern:beginStr options:0 error:&error];
                 if (error) {
-                    [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
-                                         CESyntaxValidationRoleKey: NSLocalizedString(@"Begin string", nil),
-                                         CESyntaxValidationStringKey: beginStr,
-                                         CESyntaxValidationMessageKey: [NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
-                                                                        [error localizedFailureReason]]}];
+                    [results addObject:[[SyntaxValidationResult alloc] initWithType:NSLocalizedString(key, nil)
+                                                                               role:NSLocalizedString(@"Begin string", nil)
+                                                                             string:beginStr
+                                                             localizedFailureReason:[NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
+                                                                                     [error localizedFailureReason]]]];
                 }
                 
                 if (endStr) {
                     error = nil;
                     [NSRegularExpression regularExpressionWithPattern:endStr options:0 error:&error];
                     if (error) {
-                        [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
-                                             CESyntaxValidationRoleKey: NSLocalizedString(@"End string", nil),
-                                             CESyntaxValidationStringKey: endStr,
-                                             CESyntaxValidationMessageKey: [NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
-                                                                            [error localizedFailureReason]]}];
+                        [results addObject:[[SyntaxValidationResult alloc] initWithType:NSLocalizedString(key, nil)
+                                                                                   role:NSLocalizedString(@"End string", nil)
+                                                                                 string:endStr
+                                                                 localizedFailureReason:[NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
+                                                                                         [error localizedFailureReason]]]];
                     }
                 }
                 
@@ -510,11 +528,11 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
                 error = nil;
                 [NSRegularExpression regularExpressionWithPattern:beginStr options:0 error:&error];
                 if (error) {
-                    [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(key, nil),
-                                         CESyntaxValidationRoleKey: NSLocalizedString(@"RE string", nil),
-                                         CESyntaxValidationStringKey: beginStr,
-                                         CESyntaxValidationMessageKey: [NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
-                                                                        [error localizedFailureReason]]}];
+                    [results addObject:[[SyntaxValidationResult alloc] initWithType:NSLocalizedString(key, nil)
+                                                                               role:NSLocalizedString(@"RE string", nil)
+                                                                             string:beginStr
+                                                             localizedFailureReason:[NSString stringWithFormat:NSLocalizedString(@"Regex Error: %@", nil),
+                                                                                     [error localizedFailureReason]]]];
                 }
             }
             tmpBeginStr = beginStr;
@@ -529,10 +547,10 @@ NSString *_Nonnull const CESyntaxValidationMessageKey = @"MessageKey";
         ([beginDelimiter length] == 0 && [endDelimiter length] >  0))
     {
         NSString *role = ([beginDelimiter length] > 0) ? @"Begin string" : @"End string";
-        [results addObject:@{CESyntaxValidationTypeKey: NSLocalizedString(@"comment", nil),
-                             CESyntaxValidationRoleKey: NSLocalizedString(role, nil),
-                             CESyntaxValidationStringKey: ([beginDelimiter length] > 0) ? beginDelimiter : endDelimiter,
-                             CESyntaxValidationMessageKey: NSLocalizedString(@"Block comment needs both begin delimiter and end delimiter.", nil)}];
+        [results addObject:[[SyntaxValidationResult alloc] initWithType:NSLocalizedString(@"comment", nil)
+                                                                   role:NSLocalizedString(role, nil)
+                                                                 string:([beginDelimiter length] > 0) ? beginDelimiter : endDelimiter
+                                                 localizedFailureReason:NSLocalizedString(@"Block comment needs both begin delimiter and end delimiter.", nil)]];
     }
     
     return [results copy];

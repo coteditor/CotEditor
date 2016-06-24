@@ -39,11 +39,18 @@ extern NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification;
 /// Posted when a syntax style is updated.  Information about new/previous style name is in userInfo.
 extern NSString *_Nonnull const CESyntaxDidUpdateNotification;
 
-// keys for validation result
-extern NSString *_Nonnull const CESyntaxValidationTypeKey;
-extern NSString *_Nonnull const CESyntaxValidationRoleKey;
-extern NSString *_Nonnull const CESyntaxValidationStringKey;
-extern NSString *_Nonnull const CESyntaxValidationMessageKey;
+
+
+/// model object for syntax validation result
+@interface SyntaxValidationResult : NSObject
+
+@property (readonly, nonatomic, nonnull, copy) NSString *localizedType;
+@property (readonly, nonatomic, nonnull, copy) NSString *localizedRole;
+@property (readonly, nonatomic, nonnull, copy) NSString *string;
+@property (readonly, nonatomic, nonnull, copy) NSString *localizedFailureReason;
+
+@end
+
 
 
 @class CESyntaxStyle;
@@ -82,7 +89,7 @@ extern NSString *_Nonnull const CESyntaxValidationMessageKey;
 - (void)saveStyleDictionary:(nonnull NSMutableDictionary<NSString *, id> *)style name:(nonnull NSString *)name oldName:(nonnull NSString *)oldName;
 
 - (BOOL)existsMappingConflict;
-- (nonnull NSArray<NSDictionary<NSString *, NSString *> *> *)validateSyntax:(nonnull NSDictionary<NSString *, id> *)style;
+- (nonnull NSArray<SyntaxValidationResult *> *)validateSyntax:(nonnull NSDictionary<NSString *, id> *)style;
 
 @end
 

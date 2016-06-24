@@ -28,7 +28,7 @@
 import Cocoa
 
 /// Container for application specific information.
-struct AppInfo {
+enum AppInfo {
     
     /// application name
     static let bundleName = Bundle.main().objectForInfoDictionaryKey("CFBundleName") as! String

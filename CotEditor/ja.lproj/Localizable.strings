@@ -380,7 +380,7 @@
 
 
 
-/* MARK: CESyntaxEditViewController */
+/* MARK: SyntaxEditViewController */
 // Menu items
 "Keywords" = "キーワード";
 "Commands" = "コマンド";

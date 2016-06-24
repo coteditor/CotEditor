@@ -378,7 +378,7 @@
 
 
 
-/* MARK: CESyntaxEditViewController */
+/* MARK: SyntaxEditViewController */
 // Menu items
 "Keywords" = "Schlüsselwörter";
 "Commands" = "Befehle";

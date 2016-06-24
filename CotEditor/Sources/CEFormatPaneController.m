@@ -33,7 +33,6 @@
 
 #import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
-#import "CESyntaxEditViewController.h"
 #import "CEDefaults.h"
 #import "CEEncodings.h"
 #import "Constants.h"
@@ -162,7 +161,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Export “%@”…", nil), representedStyleName]];
         }
         
-    } else if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == CECopySyntaxEdit) {
+    } else if ([menuItem action] == @selector(openSyntaxEditSheet:) && [menuItem tag] == 2) {  // 2 for SyntaxEditSheetMode.copy
         if (!isContextualMenu) {
             [menuItem setTitle:[NSString stringWithFormat:NSLocalizedString(@"Duplicate “%@”…", nil), representedStyleName]];
         }
@@ -276,7 +275,7 @@ NSString *_Nonnull const IsUTF8WithBOM = @"UTF-8 with BOM";
 {
     NSString *styleName = ([sender isKindOfClass:[NSMenuItem class]]) ? [sender representedObject] : [self selectedStyleName];
     
-    NSViewController *viewController = [[CESyntaxEditViewController alloc] initWithStyle:styleName mode:[sender tag]];
+    NSViewController *viewController = [[SyntaxEditViewController alloc] initWithStyle:styleName modeIndex:[sender tag]];
     if (!viewController) { return; }
     
     // show as sheet
