@@ -36,7 +36,6 @@
 
 #import "CEOpacityPanelController.h"
 #import "CEColorCodePanelController.h"
-#import "CEConsolePanelController.h"
 
 // Theme View Controller
 #import "CEThemeDictionaryKeys.h"

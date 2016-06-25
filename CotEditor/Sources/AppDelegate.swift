@@ -286,7 +286,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Show console panel
     @IBAction func showConsolePanel(_ sender: AnyObject?) {
         
-        CEConsolePanelController.shared().showWindow(sender)
+        ConsolePanelController.shared.showWindow(sender)
     }
     
     

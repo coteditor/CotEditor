@@ -54,7 +54,6 @@
 		2A15831718E3688300601026 /* EncodingListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListView.xib */; };
 		2A15832118E3814200601026 /* SizeSettingWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSettingWindow.xib */; };
 		2A15832818E39B7400601026 /* TextKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15832618E39B7400601026 /* TextKeyBindingsEditView.xib */; };
-		2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEConsolePanelController.m */; };
 		2A18A5BB1C4A72BF00BAD817 /* NSString+CEEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */; };
 		2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */; };
 		2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */ = {isa = PBXBuildFile; fileRef = 2A18A5BE1C4A746A00BAD817 /* Encodings */; };
@@ -130,6 +129,8 @@
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A5B0AF5190723AC00B6A51C /* EditColorCode.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */; };
+		2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */; };
+		2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */; };
 		2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */; };
 		2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */; };
 		2A5DBE581B5D2DB000F8CB13 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
@@ -262,7 +263,6 @@
 		2A6F0DC51B5500E100C2D03C /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
 		2A6F0DC61B5500E100C2D03C /* CEEditorScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A49861E1A67CC7100172797 /* CEEditorScrollView.m */; };
 		2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
-		2A6F0DC91B5500E100C2D03C /* CEConsolePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A15833418E3B83F00601026 /* CEConsolePanelController.m */; };
 		2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */; };
 		2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */; };
@@ -574,8 +574,6 @@
 		2A149DD319032CC900A9D6EF /* CEKeyBindingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingUtils.h; sourceTree = "<group>"; };
 		2A149DD419032CC900A9D6EF /* CEKeyBindingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingUtils.m; sourceTree = "<group>"; };
 		2A149DD619033CBB00A9D6EF /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		2A15833318E3B83F00601026 /* CEConsolePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEConsolePanelController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2A15833418E3B83F00601026 /* CEConsolePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEConsolePanelController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingDetectionTests.swift; sourceTree = "<group>"; };
 		2A18A5BE1C4A746A00BAD817 /* Encodings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Encodings; path = TestFiles/Encodings; sourceTree = "<group>"; };
 		2A1A1E321C2422D200DBA09F /* CEShareMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEShareMenu.h; sourceTree = "<group>"; };
@@ -653,6 +651,7 @@
 		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
 		2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeInputPanelController.m; sourceTree = "<group>"; };
 		2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = EditColorCode.tiff; sourceTree = "<group>"; };
+		2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolePanelController.swift; sourceTree = "<group>"; };
 		2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterField.swift; sourceTree = "<group>"; };
 		2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxMappingConflictsViewController.swift; sourceTree = "<group>"; };
 		2A5DCE881D18FFDB00D5D74C /* EncodingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingListViewController.swift; sourceTree = "<group>"; };
@@ -1848,8 +1847,7 @@
 				2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */,
 				2A607B0B1905EB5400F3A991 /* CEColorCodePanelController.h */,
 				2A607B0C1905EB5500F3A991 /* CEColorCodePanelController.m */,
-				2A15833318E3B83F00601026 /* CEConsolePanelController.h */,
-				2A15833418E3B83F00601026 /* CEConsolePanelController.m */,
+				2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */,
 				2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */,
 				2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */,
 			);
@@ -2418,6 +2416,7 @@
 				2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */,
 				2A6F0DB21B5500E100C2D03C /* CEAlphaWindow.m in Sources */,
 				2A6602F51D05E8CB003E8D87 /* CEEditorWrapper+Editor.m in Sources */,
+				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
 				2A6F0DB41B5500E100C2D03C /* CESyntaxStyle.m in Sources */,
 				2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
@@ -2454,7 +2453,6 @@
 				2A6F0DC51B5500E100C2D03C /* CEPanelController.m in Sources */,
 				2A6F0DC61B5500E100C2D03C /* CEEditorScrollView.m in Sources */,
 				2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */,
-				2A6F0DC91B5500E100C2D03C /* CEConsolePanelController.m in Sources */,
 				2AE52F231D175A9400D60A32 /* SizeSettingWindowController.swift in Sources */,
 				2AA4D3781D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				2A9C074F1CF99F12006D672D /* CEIncompatibleCharacterScanner.m in Sources */,
@@ -2644,7 +2642,6 @@
 				2A9C074E1CF99F12006D672D /* CEIncompatibleCharacterScanner.m in Sources */,
 				2AE0C0931C422DFA00E52E04 /* CETextView+Commenting.m in Sources */,
 				2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */,
-				2A15833518E3B83F00601026 /* CEConsolePanelController.m in Sources */,
 				2A009AD11A58ED1D00C3D542 /* CEFindResultViewController.m in Sources */,
 				2AA2E00B1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */,
 				2A63CEC11D0AFE5D00ED8186 /* CETextView+Accessories.m in Sources */,
@@ -2713,6 +2710,7 @@
 				2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */,
 				2A149DD519032CC900A9D6EF /* CEKeyBindingUtils.m in Sources */,
 				2A94A45A18D08D52009FA90D /* NSWindow+ScriptingSupport.m in Sources */,
+				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AB432741915D6AA00835004 /* NSString+CECounting.m in Sources */,
 				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,

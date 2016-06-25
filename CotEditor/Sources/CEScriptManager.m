@@ -27,7 +27,9 @@
  */
 
 #import "CEScriptManager.h"
-#import "CEConsolePanelController.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEDocument.h"
 #import "CEEditorWrapper+Editor.h"
 #import "CEKeyBindingUtils.h"
@@ -690,8 +692,8 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
 - (void)showScriptError:(nonnull NSString *)errorString scriptName:(nonnull NSString *)scriptName
 // ------------------------------------------------------
 {
-    [[CEConsolePanelController sharedController] showWindow:self];
-    [[CEConsolePanelController sharedController] appendMessage:errorString title:scriptName];
+    [[ConsolePanelController shared] showWindow:self];
+    [[ConsolePanelController shared] appendWithMessage:errorString title:scriptName];
 }
 
 @end
