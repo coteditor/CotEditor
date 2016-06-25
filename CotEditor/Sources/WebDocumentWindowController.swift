@@ -30,10 +30,11 @@ import WebKit
 
 class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     
-    let fileURL: URL
+    // MARK: Private Properties
+    
+    private let fileURL: URL
     
     @IBOutlet private weak var webView: WebView?
-    
     
     
     

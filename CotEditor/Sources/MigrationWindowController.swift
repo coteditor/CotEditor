@@ -29,6 +29,8 @@ import Cocoa
 
 class MigrationWindowController: NSWindowController {
     
+    // MARK: Public Properties
+    
     dynamic var didMigrateSyntaxStyles: Bool = false
     dynamic var didMigrateTheme: Bool = false
     dynamic var didResetKeyBindings: Bool = false
@@ -45,7 +47,6 @@ class MigrationWindowController: NSWindowController {
     @IBOutlet private weak var indicator: NSProgressIndicator?
     @IBOutlet private weak var informativeField: NSTextField?
     @IBOutlet private weak var button: NSButton?
-    
     
     
     

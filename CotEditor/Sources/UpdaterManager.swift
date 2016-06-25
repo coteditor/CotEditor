@@ -54,6 +54,8 @@ private enum AppCastURL {
 
 class UpdaterManager: NSObject, SUUpdaterDelegate {
     
+    // MARK: Public Properties
+    
     static let shared = UpdaterManager()
     
     /// Is the running app a pre-release version?

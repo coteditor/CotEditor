@@ -57,6 +57,8 @@ extension Array {
 
 class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
+    // MARK: Private Properties
+    
     private dynamic var encodings: [NSNumber] {
         didSet {
             // validate restorebility

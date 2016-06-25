@@ -29,6 +29,8 @@ import Cocoa
 
 class SizeSettingWindowController: NSWindowController {
     
+    // MARK: Private Properties
+    
     @IBOutlet private var userDefaultsController: NSUserDefaultsController!
     
     

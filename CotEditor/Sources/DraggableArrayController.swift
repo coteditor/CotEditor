@@ -28,7 +28,7 @@
 import Cocoa
 
 /// type identifiers for dragging operation
-private struct PboardType {
+private enum PboardType {
     static let rows = "rows"
     static let objects = "objects"
 }

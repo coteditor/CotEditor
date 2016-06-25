@@ -29,10 +29,12 @@ import Cocoa
 
 class KeyBindingsPaneController: NSViewController {
     
-    let menuViewController = KeyBindingsViewController()
-    let textViewController = SnippetKeyBindingsViewController()
+    // MARK: Private Properties
     
-    @IBOutlet var tabView: NSTabView?
+    private let menuViewController = KeyBindingsViewController()
+    private let textViewController = SnippetKeyBindingsViewController()
+    
+    @IBOutlet private var tabView: NSTabView?
     
     
     

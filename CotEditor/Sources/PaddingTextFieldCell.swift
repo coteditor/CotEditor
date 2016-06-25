@@ -29,6 +29,8 @@ import Cocoa
 
 @IBDesignable class PaddingTextFieldCell: NSTextFieldCell {
     
+    // MARK: Public Properties
+    
     @IBInspectable var leftPadding: CGFloat = 0
     @IBInspectable var rightPadding: CGFloat = 0
     

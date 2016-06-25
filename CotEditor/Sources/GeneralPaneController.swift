@@ -28,12 +28,13 @@
 import Cocoa
 
 class GeneralPaneController: NSViewController {
-
+    
+    // MARK: Private Properties
+    
     private dynamic var hasUpdater: Bool = false
     private dynamic var prerelease: Bool = false
     
     @IBOutlet private weak var updaterConstraint: NSLayoutConstraint?
-    
     
     
     

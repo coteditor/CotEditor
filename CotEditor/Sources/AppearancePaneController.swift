@@ -53,7 +53,6 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     // MARK: Creation
     
     deinit {
-        
         NotificationCenter.default().removeObserver(self)
     }
     
@@ -75,7 +74,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         
         self.setupFontFamilyNameAndSize()
         
-        self.setupThemeList(nil)
+        self.setupThemeList()
         
         // register droppable types
         self.themeTableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
@@ -86,24 +85,21 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
         // observe theme list change
-        NotificationCenter.default().addObserver(self, selector: #selector(setupThemeList(_:)), name: .CEThemeListDidUpdate, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(themeDidUpdate(_:)), name: .CEThemeDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(setupThemeList), name: .CEThemeListDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(themeDidUpdate), name: .CEThemeDidUpdate, object: nil)
     }
     
-    
-    
-    // MARK: Protocol
     
     /// apply current state to menu items
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
         
-        var representedTheme: String? = self.selectedTheme
+        var representedTheme: String? = self.selectedThemeName
         if (isContextualMenu) {
             let clickedRow = self.themeTableView?.clickedRow ?? -1
             
-            if clickedRow == -1 {
+            if clickedRow == -1 {  // clicked blank area
                 representedTheme = nil
             } else {
                 representedTheme = self.themeNames[clickedRow]
@@ -120,21 +116,8 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         guard let action = menuItem.action else { return false }
         
         switch action {
-        case #selector(addTheme(_:)), #selector(importTheme(_:)):
+        case #selector(addTheme), #selector(importTheme(_:)):
             menuItem.isHidden = (isContextualMenu && representedTheme != nil)
-            
-        case #selector(exportTheme(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), representedTheme!)
-            }
-            menuItem.isHidden = (representedTheme == nil)
-            return (!isBundled || isCustomized)
-            
-        case #selector(revealThemeInFinder(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), representedTheme!)
-            }
-            return (!isBundled || isCustomized)
             
         case #selector(renameTheme(_:)):
             if !isContextualMenu {
@@ -149,15 +132,28 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
             }
             menuItem.isHidden = (representedTheme == nil)
             
-        case #selector(duplicateTheme(_:)):
+        case #selector(deleteTheme(_:)):
+            menuItem.isHidden = (isBundled || representedTheme == nil)
+            
+        case #selector(restoreTheme(_:)):
             if !isContextualMenu {
                 menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), representedTheme!)
             }
             menuItem.isHidden = (!isBundled || representedTheme == nil)
             return isCustomized.boolValue
             
-        case #selector(deleteTheme(_:)):
-            menuItem.isHidden = (isBundled || representedTheme == nil)
+        case #selector(exportTheme(_:)):
+            if !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), representedTheme!)
+            }
+            menuItem.isHidden = (representedTheme == nil)
+            return (!isBundled || isCustomized)
+            
+        case #selector(revealThemeInFinder(_:)):
+            if !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), representedTheme!)
+            }
+            return (!isBundled || isCustomized)
             
         default: break
         }
@@ -230,7 +226,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     func didUpdate(theme: ThemeDictionary) {
         
         // save
-        CEThemeManager.shared().saveThemeDictionary(theme, name: self.selectedTheme, completionHandler: nil)
+        CEThemeManager.shared().saveThemeDictionary(theme, name: self.selectedThemeName, completionHandler: nil)
     }
     
     
@@ -239,7 +235,9 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     /// selection of theme table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        let themeName = self.selectedTheme
+        guard let object = notification.object as? NSTableView where object == self.themeTableView else { return }
+        
+        let themeName = self.selectedThemeName
         let themeDict = CEThemeManager.shared().themeDictionary(withName: themeName)
         let isBundled = CEThemeManager.shared().isBundledSetting(themeName, cutomized: nil)
         
@@ -285,7 +283,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         // finish if empty (The original name will be restored automatically)
         guard let newName = fieldEditor.string where !newName.isEmpty else { return true }
         
-        let oldName = self.selectedTheme
+        let oldName = self.selectedThemeName
         
         do {
             try CEThemeManager.shared().renameSetting(withName: oldName, toName: newName)
@@ -312,7 +310,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         // get swiped theme
         let themeName = self.themeNames[row]
         
-        // check whether theme can be deleted
+        // check whether theme is deletable
         var isCustomized: ObjCBool = false
         let isBundled = CEThemeManager.shared().isBundledSetting(themeName, cutomized: &isCustomized)
         
@@ -391,28 +389,47 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     }
     
     
-    /// delete selected theme
-    @IBAction func deleteTheme(_ sender: AnyObject?) {
-     
-        let themeName = self.targetTheme(for: sender)
-        
-        self.deleteTheme(name: themeName)
-    }
-    
-    
     /// duplicate selected theme
     @IBAction func duplicateTheme(_ sender: AnyObject?) {
         
-        let themeName = self.targetTheme(for: sender)
+        let themeName = self.targetThemeName(for: sender)
         
         _ = try? CEThemeManager.shared().duplicateSetting(withName: themeName)
     }
     
     
-    /// duplicate selected theme
+    /// start renaming theme
+    @IBAction func renameTheme(_ sender: AnyObject?) {
+        
+        let themeName = self.targetThemeName(for: sender)
+        let row = self.themeNames.index(of: themeName) ?? 0
+        
+        self.themeTableView?.editColumn(0, row: row, with: nil, select: false)
+    }
+    
+    
+    /// delete selected theme
+    @IBAction func deleteTheme(_ sender: AnyObject?) {
+     
+        let themeName = self.targetThemeName(for: sender)
+        
+        self.deleteTheme(name: themeName)
+    }
+    
+    
+    /// restore selected theme to original bundled one
+    @IBAction func restoreTheme(_ sender: AnyObject?) {
+        
+        let themeName = self.targetThemeName(for: sender)
+        
+        self.restoreTheme(name: themeName)
+    }
+    
+    
+    /// export selected theme
     @IBAction func exportTheme(_ sender: AnyObject?) {
         
-        let themeName = self.targetTheme(for: sender)
+        let themeName = self.targetThemeName(for: sender)
         
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
@@ -426,17 +443,6 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
             
             _ = try? CEThemeManager.shared().exportSetting(withName: themeName, to: savePanel.url!)
         }
-    }
-    
-    
-    /// open directory in Application Support in Finder where the selected theme exists
-    @IBAction func revealThemeInFinder(_ sender: AnyObject?) {
-        
-        let themeName = self.targetTheme(for: sender)
-        
-        guard let url = CEThemeManager.shared().urlForUserSetting(withName: themeName) else { return }
-        
-        NSWorkspace.shared().activateFileViewerSelecting([url])
     }
     
     
@@ -458,23 +464,16 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     }
     
     
-    /// restore customized bundled theme to original
-    @IBAction func restoreTheme(_ sender: AnyObject?) {
+    /// open directory in Application Support in Finder where the selected theme exists
+    @IBAction func revealThemeInFinder(_ sender: AnyObject?) {
         
-        let themeName = self.targetTheme(for: sender)
+        let themeName = self.targetThemeName(for: sender)
         
-        self.restoreTheme(name: themeName)
+        guard let url = CEThemeManager.shared().urlForUserSetting(withName: themeName) else { return }
+        
+        NSWorkspace.shared().activateFileViewerSelecting([url])
     }
     
-    
-    /// start renaming theme
-    @IBAction func renameTheme(_ sender: AnyObject?) {
-        
-        let themeName = self.targetTheme(for: sender)
-        let row = self.themeNames.index(of: themeName) ?? 0
-        
-        self.themeTableView?.editColumn(0, row: row, with: nil, select: false)
-    }
     
     
     // MARK: Private Methods
@@ -492,13 +491,13 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         
         fontField.stringValue = font.displayName! + " " + String(size)
         fontField.font = displayFont
-        fontField.disablesAntialiasing = shouldAntiailias
+        fontField.disablesAntialiasing = !shouldAntiailias
     }
     
     
 
-    /// return theme name which is currently selected in the menu table
-    private dynamic var selectedTheme: String {
+    /// return theme name which is currently selected in the list table
+    private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView else {
             return UserDefaults.standard().string(forKey: CEDefaultThemeKey)!
@@ -507,20 +506,20 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     }
     
     
-    /// return representedObject if sender is menu item, otherwise selection in the table
-    private func targetTheme(for sender: AnyObject?) -> String {
+    /// return representedObject if sender is menu item, otherwise selection in the list table
+    private func targetThemeName(for sender: AnyObject?) -> String {
         
         if let menuItem = sender as? NSMenuItem {
             return menuItem.representedObject as! String
         }
-        return self.selectedTheme
+        return self.selectedThemeName
     }
     
     
     /// refresh theme view if current displayed theme was restored
     func themeDidUpdate(_ notification: Notification) {
         
-        let bundledTheme = CEThemeManager.shared().themeDictionary(withName: self.selectedTheme)
+        let bundledTheme = CEThemeManager.shared().themeDictionary(withName: self.selectedThemeName)
         
         if bundledTheme! == (self.themeViewController?.theme)! {
             self.themeViewController?.theme = bundledTheme
@@ -541,7 +540,6 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         alert.beginSheetModal(for: window) { (returnCode: NSModalResponse) in
             
             guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
-                
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
                 if #available(OSX 10.11, *) {
                     self.themeTableView?.rowActionsVisible = false
@@ -588,7 +586,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     
     
     /// update theme list
-    func setupThemeList(_ notification: Notification?) {
+    func setupThemeList() {
         
         self.themeNames = CEThemeManager.shared().themeNames
         self.themeTableView?.reloadData()

@@ -48,11 +48,14 @@ class MappingConflict: NSObject {
 
 class SyntaxMappingConflictsViewController: NSViewController {
     
-    let extensionConflicts: [MappingConflict]
-    let filenameConflicts: [MappingConflict]
+    // MARK: Private Properties
+    
+    private let extensionConflicts: [MappingConflict]
+    private let filenameConflicts: [MappingConflict]
     
     
     
+    // MARK:
     // MARK: Creation
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

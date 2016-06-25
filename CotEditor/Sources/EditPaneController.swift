@@ -30,8 +30,9 @@ import Cocoa
 
 class EditPaneController: NSViewController {
     
-    private dynamic var completionHintMessage: String = ""
+    // MARK: Private Properties
     
+    private dynamic var completionHintMessage: String = ""
     
     
     

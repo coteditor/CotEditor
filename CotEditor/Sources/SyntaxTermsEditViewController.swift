@@ -29,6 +29,8 @@ import Cocoa
 
 class SyntaxTermsEditViewController: NSViewController {
     
+    // MARK: Private Properties
+    
     private var syntaxType: SyntaxType
     
     @IBOutlet weak var termsController: NSArrayController?

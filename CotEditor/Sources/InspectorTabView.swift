@@ -29,6 +29,8 @@ import Cocoa
 
 class InspectorTabView: NSTabView {
     
+    // MARK: Private Properties
+    
     private let segmentedControl = NSSegmentedControl()
     private let ControlHeight: CGFloat = 28.0
     

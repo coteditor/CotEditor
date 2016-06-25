@@ -30,6 +30,8 @@ import Cocoa
 
 class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate {
     
+    // MARK: Private Properties
+    
     private var deletingFileDrop = false
     
     @IBOutlet private var fileDropController: NSArrayController?
@@ -80,8 +82,8 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         
         guard obj.object is NSTextField else { return }
         
-        guard let extensions = self.fileDropController?.selection.value(forKey: CEFileDropExtensionsKey) as? String,
-              let format = self.fileDropController?.selection.value(forKey: CEFileDropFormatStringKey) as? String else
+        guard let newItem = self.fileDropController?.selectedObjects.first as? [String: String],
+              let extensions = newItem[CEFileDropExtensionsKey] where !extensions.isEmpty else
         {
             // delete row if empty
             // -> set false to flag for in case that the delete button was pressed while editing and the target can be automatically deleted
@@ -96,7 +98,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         // save if new text valid
         if !newExtensions.isEmpty {
             self.fileDropController?.selection.setValue(newExtensions, forKey: CEFileDropExtensionsKey)
-        } else if format.isEmpty {
+        } else if let format = newItem[CEFileDropFormatStringKey] where format.isEmpty {
             self.fileDropController?.remove(self)
         }
         
@@ -260,7 +262,13 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         
         alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode: NSModalResponse) in
             
-            guard returnCode == NSAlertSecondButtonReturn else { return } // = Cancel
+            guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
+                // flush swipe action for in case if this deletion was invoked by swiping the theme name
+                if #available(OSX 10.11, *) {
+                    self.extensionTableView?.rowActionsVisible = false
+                }
+                return
+            }
             guard self.deletingFileDrop else { return }
             
             self.fileDropController?.remove(atArrangedObjectIndex: row)

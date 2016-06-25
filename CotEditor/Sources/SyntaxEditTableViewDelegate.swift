@@ -30,6 +30,8 @@ import Cocoa
 
 class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
     
+    // MARK: Private Properties
+    
     @IBOutlet private weak var arrayController: NSArrayController?
     
     

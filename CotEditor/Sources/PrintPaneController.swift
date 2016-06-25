@@ -30,9 +30,10 @@ import Cocoa
 
 class PrintPaneController: NSViewController {
     
+    // MARK: Private Properties
+    
     @IBOutlet private weak var fontField: NSTextField?
     @IBOutlet private weak var colorPopupButton: NSPopUpButton?
-    
     
     
     
@@ -60,10 +61,10 @@ class PrintPaneController: NSViewController {
         super.viewDidLoad()
         
         self.setupFontFamilyNameAndSize()
-        self.setupColorMenu(nil)
+        self.setupColorMenu()
         
         // observe theme list update
-        NotificationCenter.default().addObserver(self, selector: #selector(setupColorMenu(_:)), name: .CEThemeListDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(setupColorMenu), name: .CEThemeListDidUpdate, object: nil)
     }
     
     
@@ -123,12 +124,11 @@ class PrintPaneController: NSViewController {
         
         fontField.stringValue = font.displayName! + " " + String(size)
         fontField.font = displayFont
-    
     }
     
     
     /// setup popup menu for color setting
-    func setupColorMenu(_ notification: Notification?) {
+    func setupColorMenu() {
         
         let index = UserDefaults.standard().integer(forKey: CEDefaultPrintColorIndexKey)
         let themeName = UserDefaults.standard().string(forKey: CEDefaultPrintThemeKey)

@@ -29,6 +29,8 @@ import Cocoa
 
 class SyntaxValidationViewController: NSViewController {
     
+    // MARK: Private Properties
+    
     private(set) var didValidate = false
     
     private dynamic var result: String?
@@ -80,7 +82,7 @@ class SyntaxValidationViewController: NSViewController {
     /// start syntax style validation
     @IBAction func startValidation(_ sender: AnyObject?) {
         
-        self.validateSyntax()
+        _ = self.validateSyntax()
     }
     
 }

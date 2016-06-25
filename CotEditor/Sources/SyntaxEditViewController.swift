@@ -87,6 +87,8 @@ private enum PaneIndex: Int {
 
 class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
     
+    // MARK: Private Properties
+    
     private let mode: SyntaxEditSheetMode
     private let originalStyleName: String
     private dynamic var style: NSMutableDictionary
@@ -217,7 +219,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
         // validate newly input name
         let styleName = field.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        self.validate(styleName: styleName)
+        _ = self.validate(styleName: styleName)
     }
     
     

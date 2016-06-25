@@ -30,7 +30,9 @@ import Cocoa
 
 class ShortcutKeyField: NSTextField {
     
-    var keyDownMonitor: AnyObject?
+    // MARK: Private Properties
+    
+    private var keyDownMonitor: AnyObject?
     
     
     

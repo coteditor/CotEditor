@@ -29,6 +29,8 @@ import Cocoa
 
 @IBDesignable class BackgroundView: NSView {
     
+    // MARK: Public Properties
+    
     @IBInspectable var fillColor: NSColor = .windowBackgroundColor()
     
     

@@ -86,15 +86,19 @@ struct Help {
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
+    // MARK: Public Properties
+    
+    var migrationWindowController: NSWindowController?  // for extension
+    
+    
+    // MARK: Private Properties
+    
     private var didFinishLaunching = false
     private var acknowledgementsWindowController: WebDocumentWindowController?
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
-    
-    var migrationWindowController: NSWindowController?  // for extension
-    
     
     
     
@@ -115,7 +119,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     deinit {
-        
         NotificationCenter.default().removeObserver(self)
     }
     
@@ -128,15 +131,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         CEMenuKeyBindingManager.shared().scanDefaultMenuKeyBindings()
         
         // build menus
-        self.buildEncodingMenu(nil)
-        self.buildSyntaxMenu(nil)
-        self.buildThemeMenu(nil)
+        self.buildEncodingMenu()
+        self.buildSyntaxMenu()
+        self.buildThemeMenu()
         CEScriptManager.shared().buildScriptMenu(self)
         
         // observe setting list updates
-        NotificationCenter.default().addObserver(self, selector: #selector(buildEncodingMenu(_:)), name: .CEEncodingListDidUpdate, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(buildSyntaxMenu(_:)), name: .CESyntaxListDidUpdate, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(buildThemeMenu(_:)), name: .CEThemeListDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(buildEncodingMenu), name: .CEEncodingListDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(buildSyntaxMenu), name: .CESyntaxListDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(buildThemeMenu), name: .CEThemeListDidUpdate, object: nil)
     }
     
     
@@ -371,7 +374,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Private Methods
     
     /// build encoding menu in the main menu
-    func buildEncodingMenu(_ notification: Notification?) {
+    func buildEncodingMenu() {
         
         guard let menu = self.encodingsMenu else { return }
         
@@ -380,7 +383,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// build syntax style menu in the main menu
-    func buildSyntaxMenu(_ notification: Notification?) {
+    func buildSyntaxMenu() {
         
         guard let menu = self.syntaxStylesMenu else { return }
         
@@ -408,7 +411,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// build theme menu in the main menu
-     func buildThemeMenu(_ notification: Notification?) {
+     func buildThemeMenu() {
         
         guard let menu = self.themesMenu else { return }
         

@@ -29,7 +29,9 @@ import Cocoa
 
 class SeparatorTextFieldCell: NSTextFieldCell {
     
-    static let SeparatorString = "-"
+    // MARK: Private Properties
+    
+    private static let SeparatorString = "-"
     
     /// whether it is a separator item
     var isSeparator: Bool {

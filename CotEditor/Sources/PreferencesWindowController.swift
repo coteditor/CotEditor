@@ -28,8 +28,13 @@
 import Cocoa
 
 class PreferencesWindowController: NSWindowController, NSWindowDelegate {
-
+    
+    // MARK: Public Properties
+    
     static let shared = PreferencesWindowController()
+    
+    
+    // MARK: Private Properties
     
     private let viewControllers: [NSViewController] = [
         GeneralPaneController(),

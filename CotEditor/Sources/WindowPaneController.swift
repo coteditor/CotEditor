@@ -29,9 +29,10 @@
 import Cocoa
 
 class WindowPaneController: NSViewController {
-
-    private dynamic var editorOpaque: Bool = (UserDefaults.standard().double(forKey: CEDefaultWindowAlphaKey) == 1.0)
     
+    // MARK: Private Properties
+    
+    private dynamic var editorOpaque: Bool = (UserDefaults.standard().double(forKey: CEDefaultWindowAlphaKey) == 1.0)
     
     
     

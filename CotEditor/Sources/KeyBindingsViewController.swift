@@ -60,6 +60,8 @@ class SnippetItem : NSObject {
 
 class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate {
     
+    // MARK: Private Properties
+    
     private var outlineData: [CEKeyBindingItemInterface] = [CEKeyBindingItemInterface]()
     private dynamic var warningMessage: String?  // for binding
     private dynamic var restoreble: Bool = false  // for binding
