@@ -136,7 +136,7 @@
                             </menuItem>
                             <menuItem title="Share" tag="1999" id="U5u-O7-0EX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Share" id="6Ei-Iv-yMD" customClass="CEShareMenu"/>
+                                <menu key="submenu" title="Share" id="6Ei-Iv-yMD" customClass="SharingMenu" customModule="CotEditor" customModuleProvider="target"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="74">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
