@@ -359,7 +359,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         
         guard let fontManager = sender as? NSFontManager else { return }
         
-        let newFont = fontManager.convert(NSFont())
+        let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
         
         UserDefaults.standard().set(newFont.fontName, forKey: CEDefaultFontNameKey)
         UserDefaults.standard().set(newFont.pointSize, forKey: CEDefaultFontSizeKey)
