@@ -133,6 +133,8 @@
 		2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */; };
 		2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDController.swift */; };
 		2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDController.swift */; };
+		2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
+		2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
 		2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */; };
 		2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */; };
 		2A5DBE581B5D2DB000F8CB13 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
@@ -175,8 +177,6 @@
 		2A6602D11D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A6602DB1D05D7C8003E8D87 /* GoToLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602D91D05D7C8003E8D87 /* GoToLineView.xib */; };
 		2A6602DC1D05D7C8003E8D87 /* GoToLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602D91D05D7C8003E8D87 /* GoToLineView.xib */; };
-		2A6602E31D05DCE8003E8D87 /* CEGoToLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6602E21D05DCE8003E8D87 /* CEGoToLineViewController.m */; };
-		2A6602E41D05DCE8003E8D87 /* CEGoToLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6602E21D05DCE8003E8D87 /* CEGoToLineViewController.m */; };
 		2A6602F41D05E8CB003E8D87 /* CEEditorWrapper+Editor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6602F31D05E8CB003E8D87 /* CEEditorWrapper+Editor.m */; };
 		2A6602F51D05E8CB003E8D87 /* CEEditorWrapper+Editor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6602F31D05E8CB003E8D87 /* CEEditorWrapper+Editor.m */; };
 		2A68F93518F9995500673440 /* CEThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68F93418F9995500673440 /* CEThemeManager.m */; };
@@ -652,6 +652,7 @@
 		2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolePanelController.swift; sourceTree = "<group>"; };
 		2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		2A5D13121D1EE8FF00D38E6A /* HUDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDController.swift; sourceTree = "<group>"; };
+		2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineViewController.swift; sourceTree = "<group>"; };
 		2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterField.swift; sourceTree = "<group>"; };
 		2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxMappingConflictsViewController.swift; sourceTree = "<group>"; };
 		2A5DCE881D18FFDB00D5D74C /* EncodingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingListViewController.swift; sourceTree = "<group>"; };
@@ -681,8 +682,6 @@
 		2A6602D31D05BD86003E8D87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
 		2A6602D41D05BD88003E8D87 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		2A6602DA1D05D7C8003E8D87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GoToLineView.xib; sourceTree = "<group>"; };
-		2A6602E11D05DCE8003E8D87 /* CEGoToLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEGoToLineViewController.h; sourceTree = "<group>"; };
-		2A6602E21D05DCE8003E8D87 /* CEGoToLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEGoToLineViewController.m; sourceTree = "<group>"; };
 		2A6602E61D05DF83003E8D87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		2A6602E81D05DF85003E8D87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
 		2A6602EA1D05DF87003E8D87 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GoToLineView.strings; sourceTree = "<group>"; };
@@ -1591,8 +1590,7 @@
 		2A6602EB1D05E04E003E8D87 /* Accessory Views */ = {
 			isa = PBXGroup;
 			children = (
-				2A6602E11D05DCE8003E8D87 /* CEGoToLineViewController.h */,
-				2A6602E21D05DCE8003E8D87 /* CEGoToLineViewController.m */,
+				2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDController.swift */,
 				2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */,
 			);
@@ -2428,6 +2426,7 @@
 				2AB0C59D1C4A18830019411A /* NSString+CEEncoding.m in Sources */,
 				2AE0C0901C422A5200E52E04 /* CETextView+Transformation.m in Sources */,
 				2A6F0DB81B5500E100C2D03C /* CELayoutManager.m in Sources */,
+				2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2AA4D3721D1A9CBD001D261D /* CEKeyBindingItem.m in Sources */,
 				2A6F0DB91B5500E100C2D03C /* CEEditorWrapper.m in Sources */,
 				2A1A1E351C2422D200DBA09F /* CEShareMenu.m in Sources */,
@@ -2528,7 +2527,6 @@
 				2A6F0DF61B5500E100C2D03C /* NSString+CECounting.m in Sources */,
 				2A88A7911B8B899F0055B9AE /* NSString+Normalization.m in Sources */,
 				2A6F0DF71B5500E100C2D03C /* NSString+JapaneseTransform.m in Sources */,
-				2A6602E41D05DCE8003E8D87 /* CEGoToLineViewController.m in Sources */,
 				2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2649,9 +2647,9 @@
 				2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */,
 				2A89848F1C3CFD80006290FF /* CESyntaxHighlightParseOperation.m in Sources */,
 				2A41CB401C39167500F9122B /* CEDefaults.m in Sources */,
-				2A6602E31D05DCE8003E8D87 /* CEGoToLineViewController.m in Sources */,
 				2A89847F1C3CE201006290FF /* CEOutlineParseOperation.m in Sources */,
 				2AE52F181D17468B00D60A32 /* EditorSplitView.swift in Sources */,
+				2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2AB432711912AF7200835004 /* CECharacterPopoverController.m in Sources */,
 				2AD49C231D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2A5F7CA91D15295D001D83BC /* CETextViewController.m in Sources */,

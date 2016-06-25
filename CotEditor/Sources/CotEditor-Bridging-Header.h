@@ -28,6 +28,10 @@
 // Format Pane
 #import "NSString+CEEncoding.h"
 
+// Go To Line View
+#import "NSString+CECounting.h"
+#import "NSString+CERange.h"
+
 // App Delegate
 #import "CEThemeManager.h"
 #import "CESyntaxManager.h"

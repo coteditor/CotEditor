@@ -27,11 +27,13 @@
  */
 
 #import "CETextViewController.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CETextView.h"
 
 #import "CESyntaxStyle.h"
 #import "CEScriptManager.h"
-#import "CEGoToLineViewController.h"
 
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -323,7 +325,7 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
 - (IBAction)gotoLocation:(nullable id)sender
 // ------------------------------------------------------
 {
-    CEGoToLineViewController *viewController = [[CEGoToLineViewController alloc] initWithTextView:[self textView]];
+    GoToLineViewController *viewController = [[GoToLineViewController alloc] initWithTextView:[self textView]];
     
     [self presentViewControllerAsSheet:viewController];
 }
