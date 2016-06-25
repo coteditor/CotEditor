@@ -30,7 +30,6 @@
 #import "CotEditor-Swift.h"
 
 #import "CEFindPanelController.h"
-#import "CEHUDController.h"
 
 #import "CEErrors.h"
 #import "CEDefaults.h"
@@ -858,9 +857,9 @@ static const NSUInteger kMaxHistorySize = 20;
         [textView showFindIndicatorForRange:foundRange];
         
         if (isWrapped) {
-            CEHUDController *HUDController = [[CEHUDController alloc] initWithSymbolName:CEWrapSymbolName];
-            [HUDController setReversed:!forward];
-            [HUDController showInView:[[textView enclosingScrollView] superview]];
+            HUDController *hudController = [[HUDController alloc] initWithSymbol:HUDSymbolWrap];
+            [hudController setReversed:!forward];
+            [hudController showIn:[[textView enclosingScrollView] superview]];
         }
     } else {
         NSBeep();
