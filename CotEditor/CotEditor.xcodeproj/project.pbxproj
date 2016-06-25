@@ -3328,21 +3328,14 @@
 			baseConfigurationReference = D5A849AA44E5F351B7D93C41 /* Pods-app-CotEditor -AppStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"APPSTORE=1",
-				);
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -3351,20 +3344,14 @@
 			baseConfigurationReference = 4AEC6947578D0EF73538D6D4 /* Pods-app-CotEditor -AppStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"APPSTORE=1",
-				);
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -3372,42 +3359,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E822AA586F63297D0FAD719 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = ../Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
 			};
 			name = Debug;
@@ -3416,40 +3374,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60077770CABE2BF4FFA92915 /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				COPY_PHASE_STRIP = NO;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = ../Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
 			};
 			name = Release;
@@ -3459,7 +3390,6 @@
 			baseConfigurationReference = 3E7727543EB50AC65E9738BE /* Pods-app-CotEditor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
@@ -3467,8 +3397,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -3477,7 +3405,6 @@
 			baseConfigurationReference = 81DF558CB239313DB3176921 /* Pods-app-CotEditor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
@@ -3485,7 +3412,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -3512,6 +3438,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3529,6 +3456,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -3551,14 +3480,14 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = NS_BLOCK_ASSERTIONS;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3570,6 +3499,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
