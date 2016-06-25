@@ -26,8 +26,10 @@
  */
 
 #import "CETextFinder.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEFindPanelController.h"
-#import "CEProgressViewController.h"
 #import "CEHUDController.h"
 
 #import "CEErrors.h"
@@ -346,7 +348,7 @@ static const NSUInteger kMaxHistorySize = 20;
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
     NSProgress *progress = [NSProgress progressWithTotalUnitCount:-1];
-    CEProgressViewController *indicator = [[CEProgressViewController alloc] initWithProgress:progress message:NSLocalizedString(@"Find All", nil)];
+    ProgressViewController *indicator = [[ProgressViewController alloc] initWithProgress:progress message:NSLocalizedString(@"Find All", nil)];
     [[[[textView window] windowController] contentViewController] presentViewControllerAsSheet:indicator];
     
     __weak typeof(self) weakSelf = self;
@@ -476,7 +478,7 @@ static const NSUInteger kMaxHistorySize = 20;
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
     NSProgress *progress = [NSProgress progressWithTotalUnitCount:-1];
-    CEProgressViewController *indicator = [[CEProgressViewController alloc] initWithProgress:progress message:NSLocalizedString(@"Highlight", nil)];
+    ProgressViewController *indicator = [[ProgressViewController alloc] initWithProgress:progress message:NSLocalizedString(@"Highlight", nil)];
     [[[[textView window] windowController] contentViewController] presentViewControllerAsSheet:indicator];
     
     __weak typeof(self) weakSelf = self;
@@ -613,7 +615,7 @@ static const NSUInteger kMaxHistorySize = 20;
     // setup progress sheet
     NSAssert([textView window], @"The find target text view must be embedded in a window.");
     NSProgress *progress = [NSProgress progressWithTotalUnitCount:-1];
-    CEProgressViewController *indicator = [[CEProgressViewController alloc] initWithProgress:progress message:NSLocalizedString(@"Replace All", nil)];
+    ProgressViewController *indicator = [[ProgressViewController alloc] initWithProgress:progress message:NSLocalizedString(@"Replace All", nil)];
     [[[[textView window] windowController] contentViewController] presentViewControllerAsSheet:indicator];
     
     __weak typeof(self) weakSelf = self;

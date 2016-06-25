@@ -29,11 +29,13 @@
 #import <NSHash/NSString+NSHash.h>
 
 #import "CESyntaxStyle.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEOutlineParseOperation.h"
 #import "CESyntaxHighlightParseOperation.h"
 #import "CESyntaxDictionaryKeys.h"
 #import "CEThemableProtocol.h"
-#import "CEProgressViewController.h"
 #import "CEDefaults.h"
 
 #import "NSTextView+CELayout.h"
@@ -546,7 +548,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     [operation setParseRange:highlightRange];
     
     // show highlighting indicator for large string
-    __block CEProgressViewController *indicator = nil;
+    __block ProgressViewController *indicator = nil;
     if ([self shouldShowIndicatorForHighlightLength:highlightRange.length]) {
         NSTextStorage *textStorage = [self textStorage];
         
@@ -562,7 +564,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 if ([operation isFinished]) { return; }
                 
                 NSWindow *documentWindow = [[[[textStorage layoutManagers] firstObject] firstTextView] window];
-                indicator = [[CEProgressViewController alloc] initWithProgress:[operation progress] message:NSLocalizedString(@"Coloring text…", nil)];
+                indicator = [[ProgressViewController alloc] initWithProgress:[operation progress] message:NSLocalizedString(@"Coloring text…", nil)];
                 [[[documentWindow windowController] contentViewController] presentViewControllerAsSheet:indicator];
             });
         });
