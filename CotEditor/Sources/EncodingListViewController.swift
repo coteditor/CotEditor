@@ -112,7 +112,7 @@ class EncodingListViewController: NSViewController, NSTableViewDelegate {
         
         // separator
         if cfEncoding == kCFStringEncodingInvalidId {
-            textField.stringValue = CESeparatorString
+            textField.stringValue = String.separator
             return
         }
         

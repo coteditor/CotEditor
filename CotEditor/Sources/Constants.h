@@ -49,12 +49,6 @@ extern NSString *_Nonnull const CELicenseKey;
 extern NSString *_Nonnull const CEDescriptionKey;
 
 
-// labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
-typedef NS_ENUM(UInt32, CESystemSoundID) {
-    CESystemSoundID_MoveToTrash = 0x10,
-};
-
-
 // Convenient functions
 /// compare CGFloats
 extern BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2);

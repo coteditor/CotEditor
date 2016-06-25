@@ -31,3 +31,9 @@ import AudioToolbox
 extension SystemSoundID {
     static let moveToTrash = SystemSoundID(0x10)
 }
+
+
+extension String {
+    /// constant string representing a separator
+    static let separator = "-"
+}

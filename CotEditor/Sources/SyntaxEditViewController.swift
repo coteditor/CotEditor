@@ -70,11 +70,11 @@ private enum PaneIndex: Int {
         case .strings: return "Strings"
         case .characters: return "Characters"
         case .comments: return "Comments"
-        case .separator1: return CESeparatorString
+        case .separator1: return String.separator
         case .outline: return "Outline Menu"
         case .completion: return "Completion List"
         case .fileMapping: return "File Mapping"
-        case .separator2: return CESeparatorString
+        case .separator2: return String.separator
         case .styleInfo: return "Style Info"
         case .validation: return "Syntax Validation"
         }
@@ -109,9 +109,8 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     // MARK:
     // MARK: Creation
     
-    required init?(style styleName: String, modeIndex: Int) {
+    required init?(style styleName: String, mode: SyntaxEditSheetMode) {
         
-        let mode = SyntaxEditSheetMode(rawValue: modeIndex)!
         let manager = CESyntaxManager.shared()
         let name: String
         let style: [String: AnyObject]
@@ -241,7 +240,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         // separator cannot be selected
-        return (PaneIndex(rawValue: row)!.title != CESeparatorString)
+        return (PaneIndex(rawValue: row)!.title != String.separator)
     }
     
     

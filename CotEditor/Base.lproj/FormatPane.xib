@@ -5,10 +5,10 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEFormatPaneController">
+        <customObject id="-2" userLabel="File's Owner" customClass="FormatPaneController" customModule="CotEditor" customModuleProvider="target">
             <connections>
-                <outlet property="encodingMenuInNew" destination="80" id="eqc-w1-QrX"/>
-                <outlet property="encodingMenuInOpen" destination="76" id="8DX-cy-t6W"/>
+                <outlet property="inNewEncodingMenu" destination="80" id="zx6-Xh-shz"/>
+                <outlet property="inOpenEncodingMenu" destination="76" id="BLx-k8-gba"/>
                 <outlet property="stylesController" destination="Qfx-DD-EBP" id="g9W-3p-vV2"/>
                 <outlet property="syntaxStyleDeleteButton" destination="dI1-Dk-Mce" id="WhQ-fH-VAB"/>
                 <outlet property="syntaxStylesDefaultPopup" destination="727" id="aKL-mF-XGI"/>
@@ -93,7 +93,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <action selector="checkSelectedItemOfEncodingMenuInOpen:" target="-2" id="tKD-WQ-wzk"/>
+                        <action selector="checkSelectedItemOfInOpenEncodingMenu:" target="-2" id="daD-tJ-DQb"/>
                         <binding destination="26" name="selectedTag" keyPath="values.encodingInOpen" id="98"/>
                     </connections>
                 </popUpButton>

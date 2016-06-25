@@ -25,8 +25,8 @@
 // Appearance Pane
 #import "CEInvisibles.h"
 
-// Preferences Window Controller
-#import "CEFormatPaneController.h"
+// Format Pane
+#import "NSString+CEEncoding.h"
 
 // App Delegate
 #import "CEThemeManager.h"
