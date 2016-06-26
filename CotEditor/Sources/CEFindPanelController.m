@@ -132,7 +132,7 @@ static const CGFloat kDefaultResultViewHeight = 200.0;
     
     // select text in find text field
     if ([[self window] firstResponder] == [[self window] initialFirstResponder]) {
-        // force reset firstResponder to invoke becomeFirstResponder in CEFindPanelTextView every time
+        // force reset firstResponder to invoke becomeFirstResponder in FindPanelTextView every time
         // -> `becomeFirstResponder` will not be called on `makeFirstResponder:` if it given object is alrady set as first responder.
         [[self window] makeFirstResponder:nil];
     }

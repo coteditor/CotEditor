@@ -143,6 +143,12 @@
 		2A5D13261D1F9D4100D38E6A /* TogglableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* TogglableToolbarItem.swift */; };
 		2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */; };
 		2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */; };
+		2A5D132F1D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */; };
+		2A5D13301D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */; };
+		2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */; };
+		2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */; };
+		2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */; };
+		2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */; };
 		2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */; };
 		2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */; };
 		2A5DBE581B5D2DB000F8CB13 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
@@ -263,7 +269,6 @@
 		2A6F0DB91B5500E100C2D03C /* CEEditorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */; };
 		2A6F0DBC1B5500E100C2D03C /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
 		2A6F0DBD1B5500E100C2D03C /* CEDocument+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */; };
-		2A6F0DBE1B5500E100C2D03C /* CEFindPanelTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */; };
 		2A6F0DC01B5500E100C2D03C /* CEScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */; };
 		2A6F0DC21B5500E100C2D03C /* CEFindPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */; };
 		2A6F0DC51B5500E100C2D03C /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
@@ -271,8 +276,6 @@
 		2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
 		2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */; };
 		2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
-		2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */; };
-		2A6F0DD11B5500E100C2D03C /* CEFindPanelLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */; };
 		2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
 		2A6F0DD41B5500E100C2D03C /* CECharacterPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CECharacterPopoverController.m */; };
 		2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumberView.m */; };
@@ -429,9 +432,6 @@
 		2AD49C241D0BE75A00FF4CC9 /* CESettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD49C221D0BE75A00FF4CC9 /* CESettingManager.m */; };
 		2AD49C281D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD49C271D0BEF3800FF4CC9 /* CESettingFileManager.m */; };
 		2AD49C291D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD49C271D0BEF3800FF4CC9 /* CESettingFileManager.m */; };
-		2AD67C241AA7285F0078BB95 /* CEFindPanelTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */; };
-		2AD67C2A1AA75E7F0078BB95 /* CEFindPanelTextClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */; };
-		2AD67C2F1AA7651B0078BB95 /* CEFindPanelLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */; };
 		2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
 		2AD789D61C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
 		2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
@@ -656,6 +656,9 @@
 		2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D13241D1F9D4000D38E6A /* TogglableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TogglableToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarController.swift; sourceTree = "<group>"; };
+		2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelLayoutManager.swift; sourceTree = "<group>"; };
+		2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextView.swift; sourceTree = "<group>"; };
+		2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextClipView.swift; sourceTree = "<group>"; };
 		2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterField.swift; sourceTree = "<group>"; };
 		2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxMappingConflictsViewController.swift; sourceTree = "<group>"; };
 		2A5DCE881D18FFDB00D5D74C /* EncodingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingListViewController.swift; sourceTree = "<group>"; };
@@ -943,12 +946,6 @@
 		2AD49C221D0BE75A00FF4CC9 /* CESettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESettingManager.m; sourceTree = "<group>"; };
 		2AD49C261D0BEF3800FF4CC9 /* CESettingFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESettingFileManager.h; sourceTree = "<group>"; };
 		2AD49C271D0BEF3800FF4CC9 /* CESettingFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESettingFileManager.m; sourceTree = "<group>"; };
-		2AD67C221AA7285F0078BB95 /* CEFindPanelTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindPanelTextView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindPanelTextView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		2AD67C281AA75E7F0078BB95 /* CEFindPanelTextClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindPanelTextClipView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindPanelTextClipView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		2AD67C2D1AA7651B0078BB95 /* CEFindPanelLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindPanelLayoutManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindPanelLayoutManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2AD789D31C31AD81008B746F /* CEControlCharacerNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEControlCharacerNames.h; sourceTree = "<group>"; };
 		2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEControlCharacerNames.m; sourceTree = "<group>"; };
 		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
@@ -1090,14 +1087,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		2A009ADB1A5AB96F00C3D542 /* Views */ = {
+		2A009ADB1A5AB96F00C3D542 /* Text View */ = {
 			isa = PBXGroup;
 			children = (
-				2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */,
-				2AD67C281AA75E7F0078BB95 /* CEFindPanelTextClipView.h */,
-				2AD67C291AA75E7F0078BB95 /* CEFindPanelTextClipView.m */,
+				2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */,
+				2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */,
+				2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */,
 			);
-			name = Views;
+			name = "Text View";
 			sourceTree = "<group>";
 		};
 		2A0E160B18E7240C00AAD872 /* Print */ = {
@@ -1609,11 +1606,8 @@
 				2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */,
 				2A009ACF1A58ED1D00C3D542 /* CEFindResultViewController.h */,
 				2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */,
-				2AD67C221AA7285F0078BB95 /* CEFindPanelTextView.h */,
-				2AD67C231AA7285F0078BB95 /* CEFindPanelTextView.m */,
-				2AD67C2D1AA7651B0078BB95 /* CEFindPanelLayoutManager.h */,
-				2AD67C2E1AA7651B0078BB95 /* CEFindPanelLayoutManager.m */,
-				2A009ADB1A5AB96F00C3D542 /* Views */,
+				2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */,
+				2A009ADB1A5AB96F00C3D542 /* Text View */,
 			);
 			name = "Text Finder";
 			sourceTree = "<group>";
@@ -2384,6 +2378,7 @@
 				2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2A6F0DA51B5500E100C2D03C /* Constants.m in Sources */,
 				2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */,
+				2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
 				2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */,
 				2AACB1D91D19AE6F0073775B /* CESnippetKeyBindingManager.m in Sources */,
 				2A63CEC21D0AFE5D00ED8186 /* CETextView+Accessories.m in Sources */,
@@ -2426,7 +2421,6 @@
 				2ADD36B51CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */,
 				2A6F0DBC1B5500E100C2D03C /* CETextSelection.m in Sources */,
 				2A6F0DBD1B5500E100C2D03C /* CEDocument+ScriptingSupport.m in Sources */,
-				2A6F0DBE1B5500E100C2D03C /* CEFindPanelTextView.m in Sources */,
 				2A6F0DC01B5500E100C2D03C /* CEScriptManager.m in Sources */,
 				2AD49C291D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */,
 				2A91C3191D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
@@ -2434,6 +2428,7 @@
 				2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2AE52F191D17468B00D60A32 /* EditorSplitView.swift in Sources */,
 				2A78BFAE1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
+				2A5D13301D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */,
 				2A6F0DC51B5500E100C2D03C /* CEPanelController.m in Sources */,
 				2A6F0DC61B5500E100C2D03C /* CEEditorScrollView.m in Sources */,
 				2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */,
@@ -2452,10 +2447,8 @@
 				2A2792961D1DBDAC00F3FC5D /* Constants.swift in Sources */,
 				2A41CB471C391B7400F9122B /* CEErrors.m in Sources */,
 				2A5D13231D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */,
-				2A6F0DD01B5500E100C2D03C /* CEFindPanelTextClipView.m in Sources */,
 				2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */,
 				2A12C8001D1843B50069C60B /* SeparatorTextFieldCell.swift in Sources */,
-				2A6F0DD11B5500E100C2D03C /* CEFindPanelLayoutManager.m in Sources */,
 				2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */,
 				2ACDC0951D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,
 				2A33D0821D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
@@ -2489,6 +2482,7 @@
 				2A8984801C3CE201006290FF /* CEOutlineParseOperation.m in Sources */,
 				2A6F0DE31B5500E100C2D03C /* CEStatusBarController.m in Sources */,
 				2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
+				2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A6F0DE41B5500E100C2D03C /* CEEncodingManager.m in Sources */,
 				2A78BFA81D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */,
 				2AE0C0A01C42330000E52E04 /* CETextView+Indentation.m in Sources */,
@@ -2606,7 +2600,6 @@
 				2A12C7FF1D1843B50069C60B /* SeparatorTextFieldCell.swift in Sources */,
 				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
 				8CC1925707E2D84500B54AE4 /* CEDocument+ScriptingSupport.m in Sources */,
-				2AD67C241AA7285F0078BB95 /* CEFindPanelTextView.m in Sources */,
 				2A78BFB61D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				8CC1961D07E2E54E00B54AE4 /* CEScriptManager.m in Sources */,
@@ -2630,14 +2623,13 @@
 				2AA2E00B1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */,
 				2A63CEC11D0AFE5D00ED8186 /* CETextView+Accessories.m in Sources */,
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
-				2AD67C2A1AA75E7F0078BB95 /* CEFindPanelTextClipView.m in Sources */,
-				2AD67C2F1AA7651B0078BB95 /* CEFindPanelLayoutManager.m in Sources */,
 				2A2184151D0428F200522EF5 /* CESidebarViewController.m in Sources */,
 				2AB0C5981C49FB260019411A /* CEEncodings.m in Sources */,
 				2A7846DE18FE0C0C006BDF00 /* CETheme.m in Sources */,
 				2A89848F1C3CFD80006290FF /* CESyntaxHighlightParseOperation.m in Sources */,
 				2A41CB401C39167500F9122B /* CEDefaults.m in Sources */,
 				2A89847F1C3CE201006290FF /* CEOutlineParseOperation.m in Sources */,
+				2A5D132F1D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */,
 				2AE52F181D17468B00D60A32 /* EditorSplitView.swift in Sources */,
 				2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2AB432711912AF7200835004 /* CECharacterPopoverController.m in Sources */,
@@ -2688,12 +2680,14 @@
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
 				2AE52F1F1D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CEEditorViewController.m in Sources */,
+				2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
 				2AEA27DF1CE3D4C1006CDB80 /* CEOutlineItem.m in Sources */,
 				2A38FB001D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift in Sources */,
 				2AE0C09F1C42330000E52E04 /* CETextView+Indentation.m in Sources */,
 				2A68F93518F9995500673440 /* CEThemeManager.m in Sources */,
 				2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */,
 				2A149DD519032CC900A9D6EF /* CEKeyBindingUtils.m in Sources */,
+				2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AB432741915D6AA00835004 /* NSString+CECounting.m in Sources */,
 				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,

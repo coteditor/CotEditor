@@ -37,11 +37,11 @@
                                 <subviews>
                                     <scrollView toolTip="Type the text to search for." focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxw-DS-gxQ" userLabel="Find Scroll View">
                                         <rect key="frame" x="20" y="84" width="420" height="44"/>
-                                        <clipView key="contentView" copiesOnScroll="NO" id="YCX-T1-drQ" customClass="CEFindPanelTextClipView">
+                                        <clipView key="contentView" copiesOnScroll="NO" id="YCX-T1-drQ" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="1" y="1" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="fDB-No-De7" customClass="CEFindPanelTextView">
+                                                <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="fDB-No-De7" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,11 +81,11 @@
                                     </scrollView>
                                     <scrollView toolTip="Type the text to replace the found text." focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiQ-tb-XCa" userLabel="Replecement Scroll View">
                                         <rect key="frame" x="20" y="30" width="420" height="44"/>
-                                        <clipView key="contentView" copiesOnScroll="NO" id="sC4-EU-bnm" customClass="CEFindPanelTextClipView">
+                                        <clipView key="contentView" copiesOnScroll="NO" id="sC4-EU-bnm" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="1" y="1" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="0XH-tC-fau" customClass="CEFindPanelTextView">
+                                                <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="0XH-tC-fau" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

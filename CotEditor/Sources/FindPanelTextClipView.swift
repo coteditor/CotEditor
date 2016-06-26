@@ -1,15 +1,15 @@
 /*
  
- CEFindPanelTextView.h
+ FindPanelTextClipView.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
- Created by 1024jp on 2015-03-04.
-
+ Created by 1024jp on 2015-03-05.
+ 
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,9 +25,26 @@
  
  */
 
-@import Cocoa;
+import Cocoa
 
-
-@interface CEFindPanelTextView : NSTextView
-
-@end
+class FindPanelTextClipView: NSClipView {
+    
+    // MARK: Private Properties
+    
+    private let leftPadding: CGFloat = 28.0
+    
+    
+    
+    // MARK: View Methods
+    
+    /// add left padding for popup button
+    override var frame: NSRect {
+        didSet {
+            guard frame.minX < self.leftPadding else { return }  // avoid infinity loop
+            
+            frame.origin.x += self.leftPadding
+            frame.size.width -= self.leftPadding
+        }
+    }
+    
+}

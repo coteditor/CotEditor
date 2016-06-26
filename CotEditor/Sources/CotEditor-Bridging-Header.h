@@ -52,3 +52,5 @@
 #import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
 #import "NSString+CENewLine.h"
+
+#import "CETextFinder.h"

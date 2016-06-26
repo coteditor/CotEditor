@@ -36,4 +36,11 @@ extension SystemSoundID {
 extension String {
     /// constant string representing a separator
     static let separator = "-"
+    
+    /// whole range in NSRange
+    var nsRange: NSRange {
+        return NSRange(location: 0, length: (self as NSString).length)
+    }
 }
+
+let NotFoundRange = NSRange(location: NSNotFound, length: 0)
