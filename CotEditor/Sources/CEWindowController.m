@@ -27,16 +27,18 @@
  */
 
 #import "CEWindowController.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEAlphaWindow.h"
 #import "CEDocument.h"
-#import "CEToolbarController.h"
 #import "CEWindowContentViewController.h"
 #import "CEDefaults.h"
 
 
 @interface CEWindowController ()
 
-@property (nonatomic, nullable) IBOutlet CEToolbarController *toolbarController;
+@property (nonatomic, nullable) IBOutlet ToolbarController *toolbarController;
 
 @end
 

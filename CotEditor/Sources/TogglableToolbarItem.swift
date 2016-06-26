@@ -1,9 +1,9 @@
 /*
  
- CEToggleToolbarItem.h
+ ToggleToolbarItem.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-05-26.
  
@@ -25,11 +25,20 @@
  
  */
 
-@import Cocoa;
+import Cocoa
 
-
-@interface CEToggleToolbarItem : NSToolbarItem
-
-@property (nonatomic) NSInteger state;
-
-@end
+class TogglableToolbarItem: NSToolbarItem {
+    
+    // MARK: Public Properties
+    
+    var state: Int = NSOnState {
+        didSet {
+            let base = self.image!.name()!.components(separatedBy: "_").first!
+            let suffix = (state == NSOnState) ? "On" : "Off"
+            if let image = NSImage(named: base + "_" + suffix) {
+                self.image = image
+            }
+        }
+    }
+    
+}

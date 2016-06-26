@@ -17,7 +17,7 @@
                         <value key="minSize" type="size" width="400" height="200"/>
                         <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="peS-bo-gb4">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="82E9CC78-BD07-4AD5-983F-5059E7871ECC" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="9p6-Sj-QjF" customClass="CEPopUpToolbarItem">
+                                <toolbarItem implicitItemIdentifier="82E9CC78-BD07-4AD5-983F-5059E7871ECC" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="9p6-Sj-QjF" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="48" height="24"/>
                                     <size key="maxSize" width="64" height="26"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="rSf-Ar-e7V">
@@ -48,7 +48,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="806A37E9-83DB-4B6B-B90D-CABEAE582D79" explicitItemIdentifier="fileEncodingsItemID" label="File Encoding" paletteLabel="File Encoding" toolTip="Change file encoding" tag="2" id="VL4-m8-9uC" customClass="CEPopUpToolbarItem">
+                                <toolbarItem implicitItemIdentifier="806A37E9-83DB-4B6B-B90D-CABEAE582D79" explicitItemIdentifier="fileEncodingsItemID" label="File Encoding" paletteLabel="File Encoding" toolTip="Change file encoding" tag="2" id="VL4-m8-9uC" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="140" height="24"/>
                                     <size key="maxSize" width="140" height="26"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" tag="2" id="nMw-zO-d1x">
@@ -61,7 +61,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="B616AE88-EC2F-48EB-8098-8A12F994F9B8" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" tag="3" id="rHo-eU-O5x" customClass="CEPopUpToolbarItem">
+                                <toolbarItem implicitItemIdentifier="B616AE88-EC2F-48EB-8098-8A12F994F9B8" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" tag="3" id="rHo-eU-O5x" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="120" height="24"/>
                                     <size key="maxSize" width="120" height="26"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="RTF-Xf-Dgz">
@@ -133,27 +133,27 @@
                                         <action selector="toggleComment:" target="klO-m3-n5X" id="YdZ-m0-PoD"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="C0DAB9D1-B5F6-48D2-9818-75DE6DC6E209" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Auto Tab Expand" toolTip="Toggle auto tab expand" tag="13" image="AutoTabExpand_On" id="c9C-af-Zcg" customClass="CEToggleToolbarItem">
+                                <toolbarItem implicitItemIdentifier="C0DAB9D1-B5F6-48D2-9818-75DE6DC6E209" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Auto Tab Expand" toolTip="Toggle auto tab expand" tag="13" image="AutoTabExpand_On" id="c9C-af-Zcg" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="AOo-vA-XLq"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="7A543E54-397D-4BF6-8781-28A1C45E0F90" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="xbD-Up-YfQ" customClass="CEToggleToolbarItem">
+                                <toolbarItem implicitItemIdentifier="7A543E54-397D-4BF6-8781-28A1C45E0F90" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="xbD-Up-YfQ" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleInvisibleChars:" target="klO-m3-n5X" id="UVg-ZM-cYT"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="93F983D5-17B1-449B-A3E1-4B276BAF221B" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show / Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_On" id="GS6-aA-mgz" customClass="CEToggleToolbarItem">
+                                <toolbarItem implicitItemIdentifier="93F983D5-17B1-449B-A3E1-4B276BAF221B" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show / Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_On" id="GS6-aA-mgz" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="togglePageGuide:" target="klO-m3-n5X" id="iZD-jx-cOQ"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="F9AB6624-7FDD-45B3-B6D3-59A60C475E8A" explicitItemIdentifier="wrapLinesItemID" label="Wrap Lines" paletteLabel="Toggle Wrap Lines" toolTip="Toggle wrap lines" tag="19" image="WrapLines_On" id="mGD-5P-MDq" customClass="CEToggleToolbarItem">
+                                <toolbarItem implicitItemIdentifier="F9AB6624-7FDD-45B3-B6D3-59A60C475E8A" explicitItemIdentifier="wrapLinesItemID" label="Wrap Lines" paletteLabel="Toggle Wrap Lines" toolTip="Toggle wrap lines" tag="19" image="WrapLines_On" id="mGD-5P-MDq" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleLineWrap:" target="klO-m3-n5X" id="2hs-RC-dKd"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="78DD4E2B-150C-46DE-87C5-0EEFA792D573" explicitItemIdentifier="textOrientationItemID" label="Orientation" paletteLabel="Toggle Text Orientation" toolTip="Toggle text orientation" tag="20" image="VerticalOrientation_On" id="1cW-FV-40L" customClass="CEToggleToolbarItem">
+                                <toolbarItem implicitItemIdentifier="78DD4E2B-150C-46DE-87C5-0EEFA792D573" explicitItemIdentifier="textOrientationItemID" label="Orientation" paletteLabel="Toggle Text Orientation" toolTip="Toggle text orientation" tag="20" image="VerticalOrientation_On" id="1cW-FV-40L" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleLayoutOrientation:" target="klO-m3-n5X" id="1ee-vK-XVD"/>
                                     </connections>
@@ -194,7 +194,7 @@
                     </connections>
                 </windowController>
                 <customObject id="klO-m3-n5X" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="6RX-So-XzC" customClass="CEToolbarController">
+                <customObject id="6RX-So-XzC" customClass="ToolbarController" customModule="CotEditor" customModuleProvider="target">
                     <connections>
                         <outlet property="encodingPopupButton" destination="nMw-zO-d1x" id="kTt-9A-udb"/>
                         <outlet property="lineEndingPopupButton" destination="rSf-Ar-e7V" id="3OJ-uo-Y2O"/>

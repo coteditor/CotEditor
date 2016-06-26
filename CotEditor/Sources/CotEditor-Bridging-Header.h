@@ -46,3 +46,9 @@
 
 // Theme View Controller
 #import "CEThemeDictionaryKeys.h"
+
+// Toolbar Controller
+#import "CEEncodingManager.h"
+#import "CESyntaxManager.h"
+#import "CESyntaxStyle.h"
+#import "NSString+CENewLine.h"

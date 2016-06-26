@@ -27,6 +27,9 @@
  */
 
 #import "CEEditorWrapper.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEDocument.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEIncompatibleCharacterScanner.h"
@@ -36,7 +39,6 @@
 #import "CETextView.h"
 #import "CEThemeManager.h"
 #import "CESyntaxStyle.h"
-#import "CEToggleToolbarItem.h"
 #import "CETextFinder.h"
 
 #import "CEDefaults.h"
@@ -195,8 +197,8 @@
     }
     
     // validate button image state
-    if ([item isKindOfClass:[CEToggleToolbarItem class]]) {
-        CEToggleToolbarItem *imageItem = (CEToggleToolbarItem *)item;
+    if ([item isKindOfClass:[TogglableToolbarItem class]]) {
+        TogglableToolbarItem *imageItem = (TogglableToolbarItem *)item;
         
         if ([item action] == @selector(toggleLineWrap:)) {
             [imageItem setState:[self wrapsLines] ? NSOnState : NSOffState];
