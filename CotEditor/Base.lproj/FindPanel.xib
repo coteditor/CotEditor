@@ -4,17 +4,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEFindPanelController">
+        <customObject id="-2" userLabel="File's Owner" customClass="FindPanelController" customModule="CotEditor" customModuleProvider="target">
             <connections>
-                <outlet property="disclosureButton" destination="oC1-bN-UeN" id="j2a-5P-Uu1"/>
-                <outlet property="findHistoryMenu" destination="Zor-um-eIs" id="81b-eT-9Dh"/>
-                <outlet property="preferencesPopover" destination="00C-j6-lNt" id="Wrb-hr-DbZ"/>
-                <outlet property="regexReferencePopover" destination="aeg-YU-kMW" id="LBF-6V-RfW"/>
-                <outlet property="replaceButton" destination="7cY-9y-k1i" id="LWp-Pg-0vR"/>
-                <outlet property="replaceHistoryMenu" destination="xUj-lq-8zt" id="sNr-bZ-1ib"/>
-                <outlet property="resultViewController" destination="46P-vJ-49R" id="ZOR-xa-vFP"/>
-                <outlet property="splitView" destination="ZjI-28-T38" id="xBZ-Aw-Dkb"/>
-                <outlet property="textFinder" destination="qZS-yd-wpm" id="ys6-af-QfP"/>
                 <outlet property="window" destination="Wal-Sg-6d6" id="2mL-pb-7HO"/>
             </connections>
         </customObject>
@@ -32,11 +23,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="460" height="380"/>
                         <subviews>
                             <customView verticalHuggingPriority="751" verticalCompressionResistancePriority="751" id="lkE-wj-Gi5" userLabel="Field View">
-                                <rect key="frame" x="0.0" y="0.0" width="460" height="148"/>
+                                <rect key="frame" x="0.0" y="0.0" width="460" height="147"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <scrollView toolTip="Type the text to search for." focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxw-DS-gxQ" userLabel="Find Scroll View">
-                                        <rect key="frame" x="20" y="84" width="420" height="44"/>
+                                        <rect key="frame" x="20" y="83" width="420" height="44"/>
                                         <clipView key="contentView" copiesOnScroll="NO" id="YCX-T1-drQ" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="1" y="1" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +50,7 @@
                                                                 <bool key="NSValidatesImmediately" value="YES"/>
                                                             </dictionary>
                                                         </binding>
-                                                        <outlet property="delegate" destination="-2" id="TNp-r7-XPV"/>
+                                                        <outlet property="delegate" destination="4Tr-N6-sVc" id="3D5-BW-YAE"/>
                                                         <outlet property="nextKeyView" destination="0XH-tC-fau" id="nZE-Wv-9Ph"/>
                                                         <outlet property="textFinder" destination="qZS-yd-wpm" id="gQB-6b-he5"/>
                                                     </connections>
@@ -80,19 +71,19 @@
                                         </scroller>
                                     </scrollView>
                                     <scrollView toolTip="Type the text to replace the found text." focusRingType="exterior" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiQ-tb-XCa" userLabel="Replecement Scroll View">
-                                        <rect key="frame" x="20" y="30" width="420" height="44"/>
+                                        <rect key="frame" x="20" y="28" width="420" height="45"/>
                                         <clipView key="contentView" copiesOnScroll="NO" id="sC4-EU-bnm" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
-                                            <rect key="frame" x="1" y="1" width="418" height="42"/>
+                                            <rect key="frame" x="1" y="1" width="418" height="43"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="0XH-tC-fau" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="418" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="418" height="42"/>
+                                                    <size key="minSize" width="418" height="43"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
                                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="minSize" width="418" height="42"/>
+                                                    <size key="minSize" width="418" height="43"/>
                                                     <size key="maxSize" width="10000000" height="10000000"/>
                                                     <connections>
                                                         <binding destination="qZS-yd-wpm" name="value" keyPath="replacementString" id="MRv-ox-jgD">
@@ -110,16 +101,16 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="DHo-wb-6CP">
-                                            <rect key="frame" x="1" y="29" width="418" height="14"/>
+                                            <rect key="frame" x="1" y="30" width="418" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="kcQ-as-bev">
-                                            <rect key="frame" x="405" y="1" width="14" height="42"/>
+                                            <rect key="frame" x="405" y="1" width="14" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <button toolTip="Select to search with regular expression." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8My-G5-daT">
-                                        <rect key="frame" x="17" y="7" width="123" height="18"/>
+                                        <rect key="frame" x="17" y="5" width="123" height="18"/>
                                         <buttonCell key="cell" type="check" title="Regular Expression" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="brT-HP-GVL">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -129,7 +120,7 @@
                                         </connections>
                                     </button>
                                     <button toolTip="Select to ignore character case on search." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GvT-tD-Cbk">
-                                        <rect key="frame" x="166" y="7" width="85" height="18"/>
+                                        <rect key="frame" x="166" y="5" width="85" height="18"/>
                                         <buttonCell key="cell" type="check" title="Ignore Case" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="4wg-Cz-ozb">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -139,7 +130,7 @@
                                         </connections>
                                     </button>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ybT-sQ-Vn5" userLabel="Recent Searches">
-                                        <rect key="frame" x="17" y="109" width="35" height="17"/>
+                                        <rect key="frame" x="17" y="108" width="35" height="17"/>
                                         <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="vE8-oK-xlC" id="rfC-IT-glr" userLabel="Recent Searches">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -154,7 +145,7 @@
                                                     <menuItem isSeparatorItem="YES" tag="-1" id="Cgh-09-On5"/>
                                                     <menuItem title="Clear Recent Searches" tag="-1" id="vE8-oK-xlC">
                                                         <connections>
-                                                            <action selector="clearFindHistory:" target="-2" id="6JU-Zz-Y3p"/>
+                                                            <action selector="clearFindHistory:" target="-1" id="Rlr-wE-fEc"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -162,8 +153,8 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="gM0-RD-hIC" userLabel="Recent Replacements">
-                                        <rect key="frame" x="17" y="55" width="35" height="17"/>
-                                        <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="vfK-an-Qnl" id="u5j-P5-Mjd" userLabel="Recent Replacements">
+                                        <rect key="frame" x="17" y="54" width="35" height="17"/>
+                                        <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="minX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="u5j-P5-Mjd" userLabel="Recent Replacements">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" autoenablesItems="NO" id="xUj-lq-8zt">
@@ -177,7 +168,7 @@
                                                     <menuItem isSeparatorItem="YES" tag="-1" id="VtR-6M-Yz8"/>
                                                     <menuItem title="Clear Recent Replacements" tag="-1" id="vfK-an-Qnl">
                                                         <connections>
-                                                            <action selector="clearReplaceHistory:" target="-2" id="V1b-g8-vjd"/>
+                                                            <action selector="clearReplaceHistory:" target="4Tr-N6-sVc" id="yqX-Wb-fRG"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -185,7 +176,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <button toolTip="Select to search text only from selection." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-IT-dA3">
-                                        <rect key="frame" x="254" y="7" width="84" height="18"/>
+                                        <rect key="frame" x="254" y="5" width="84" height="18"/>
                                         <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="9bc-9Q-fhd">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -195,33 +186,33 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BGD-yc-FIZ">
-                                        <rect key="frame" x="373" y="109" width="59" height="14"/>
+                                        <rect key="frame" x="373" y="108" width="59" height="14"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not Found" drawsBackground="YES" usesSingleLineMode="YES" id="zYg-kb-bL1">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="-2" name="value" keyPath="resultMessage" id="GiZ-by-oJS"/>
-                                            <binding destination="-2" name="hidden" keyPath="resultMessage" id="Ilb-I7-qPw">
+                                            <binding destination="4Tr-N6-sVc" name="hidden" keyPath="resultMessage" id="IFw-qF-2SM">
                                                 <dictionary key="options">
                                                     <string key="NSValueTransformerName">NSIsNil</string>
                                                 </dictionary>
                                             </binding>
+                                            <binding destination="4Tr-N6-sVc" name="value" keyPath="resultMessage" id="TM1-o6-8sE"/>
                                         </connections>
                                     </textField>
                                     <button toolTip="Show quick reference for regular expression syntax." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-7Z-Zmf">
-                                        <rect key="frame" x="141" y="7" width="19" height="19"/>
+                                        <rect key="frame" x="141" y="5" width="19" height="19"/>
                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xcc-KP-rT7">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="miniSystem"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="showRegexHelp:" target="-2" id="dU4-DV-GCP"/>
+                                            <action selector="showRegexHelp:" target="4Tr-N6-sVc" id="jj7-Ha-zzO"/>
                                         </connections>
                                     </button>
                                     <button toolTip="Set advanced options." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ESq-ws-6H3">
-                                        <rect key="frame" x="407" y="1" width="38" height="28"/>
+                                        <rect key="frame" x="407" y="-1" width="38" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="28" id="04A-tP-1IZ"/>
                                         </constraints>
@@ -230,7 +221,7 @@
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="showPreferences:" target="-2" id="8jX-cO-171"/>
+                                            <action selector="showPreferences:" target="4Tr-N6-sVc" id="ckT-wV-cov"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -245,7 +236,7 @@
                                     <constraint firstItem="ESq-ws-6H3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tu7-IT-dA3" secondAttribute="trailing" constant="8" symbolic="YES" id="F5X-mE-FGX"/>
                                     <constraint firstAttribute="trailing" secondItem="hxw-DS-gxQ" secondAttribute="trailing" constant="20" symbolic="YES" id="Jep-hH-pjq"/>
                                     <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="lkE-wj-Gi5" secondAttribute="leading" constant="20" symbolic="YES" id="RQw-6a-TxC"/>
-                                    <constraint firstAttribute="bottom" secondItem="8My-G5-daT" secondAttribute="bottom" constant="10" id="U9G-t3-7BQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="8My-G5-daT" secondAttribute="bottom" constant="8" id="U9G-t3-7BQ"/>
                                     <constraint firstItem="hxw-DS-gxQ" firstAttribute="height" secondItem="qiQ-tb-XCa" secondAttribute="height" id="U9g-2U-ALP"/>
                                     <constraint firstItem="hxw-DS-gxQ" firstAttribute="leading" secondItem="ybT-sQ-Vn5" secondAttribute="leading" constant="3" id="Ygo-iO-YvZ"/>
                                     <constraint firstItem="i2l-7Z-Zmf" firstAttribute="leading" secondItem="8My-G5-daT" secondAttribute="trailing" constant="4" id="agF-9g-sxW"/>
@@ -263,17 +254,17 @@
                                 </constraints>
                             </customView>
                             <customView id="CRP-NW-b9J" userLabel="Result View">
-                                <rect key="frame" x="0.0" y="149" width="460" height="179"/>
+                                <rect key="frame" x="0.0" y="148" width="460" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ0-Hu-hCy">
-                                        <rect key="frame" x="0.0" y="0.0" width="460" height="132"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="460" height="133"/>
                                         <clipView key="contentView" id="LtC-0z-Ps3">
-                                            <rect key="frame" x="0.0" y="0.0" width="460" height="132"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="460" height="133"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" headerView="Eh4-qj-Isz" viewBased="YES" id="4Sw-Gq-de2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="460" height="109"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="460" height="110"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -390,7 +381,7 @@
                                         </tableHeaderView>
                                     </scrollView>
                                     <textField translatesAutoresizingMaskIntoConstraints="NO" id="Tx6-Mq-e2w">
-                                        <rect key="frame" x="45" y="154" width="397" height="14"/>
+                                        <rect key="frame" x="45" y="155" width="397" height="14"/>
                                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Found 4 strings in “Document.txt”." usesSingleLineMode="YES" id="GE3-n2-xfY">
                                             <font key="font" metaFont="smallSystemBold"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -401,17 +392,17 @@
                                         </connections>
                                     </textField>
                                     <button toolTip="Close find result." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oC1-bN-UeN">
-                                        <rect key="frame" x="17" y="150" width="25" height="23"/>
+                                        <rect key="frame" x="17" y="151" width="25" height="23"/>
                                         <buttonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hOj-VQ-awg">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="closeResultView:" target="-2" id="jtv-qA-YlU"/>
+                                            <action selector="closeResultView:" target="VmP-eL-dtS" id="rVY-t8-P3o"/>
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J3a-A0-07I">
-                                        <rect key="frame" x="18" y="136" width="424" height="14"/>
+                                        <rect key="frame" x="18" y="137" width="424" height="14"/>
                                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Find string: Clarus" usesSingleLineMode="YES" id="t0t-lo-Df5">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -452,7 +443,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="replace:" target="-2" id="zCu-tF-My8"/>
+                                            <action selector="replace:" target="ej9-Bo-o6z" id="PKD-09-7Ma"/>
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZIn-Dy-dyd">
@@ -469,7 +460,7 @@
                                             </segments>
                                         </segmentedCell>
                                         <connections>
-                                            <action selector="clickSegmentedFindButton:" target="-2" id="eLL-VE-b93"/>
+                                            <action selector="clickSegmentedFindButton:" target="ej9-Bo-o6z" id="nLM-hQ-djH"/>
                                         </connections>
                                     </segmentedControl>
                                     <button toolTip="List all matches." verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="OCv-Y5-8XR">
@@ -513,7 +504,7 @@
                             <real value="250"/>
                         </holdingPriorities>
                         <connections>
-                            <outlet property="delegate" destination="-2" id="uBB-2O-CWe"/>
+                            <outlet property="delegate" destination="VmP-eL-dtS" id="91v-9c-K0I"/>
                         </connections>
                     </splitView>
                 </subviews>
@@ -524,37 +515,43 @@
                     <constraint firstAttribute="bottom" secondItem="ZjI-28-T38" secondAttribute="bottom" id="yeE-z3-7nb"/>
                 </constraints>
             </view>
-            <connections>
-                <outlet property="delegate" destination="-2" id="bpX-37-HAV"/>
-                <outlet property="initialFirstResponder" destination="fDB-No-De7" id="ADj-AL-xHX"/>
-            </connections>
             <point key="canvasLocation" x="261" y="-21"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="1KP-j4-l6E"/>
         <customObject id="qZS-yd-wpm" customClass="CETextFinder">
             <connections>
-                <outlet property="delegate" destination="-2" id="W9S-zF-ulY"/>
+                <outlet property="delegate" destination="VmP-eL-dtS" id="ax4-9q-0Ns"/>
             </connections>
         </customObject>
-        <viewController id="46P-vJ-49R" customClass="CEFindResultViewController">
+        <viewController id="VmP-eL-dtS" userLabel="Content View Controller" customClass="FindPanelContentViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
+                <outlet property="fieldViewController" destination="4Tr-N6-sVc" id="Xwc-9Q-k0G"/>
+                <outlet property="resultViewController" destination="46P-vJ-49R" id="n8A-Ks-CNX"/>
+                <outlet property="splitView" destination="ZjI-28-T38" id="tQ3-jB-yTg"/>
+                <outlet property="view" destination="ZjI-28-T38" id="hL8-QD-f73"/>
+            </connections>
+        </viewController>
+        <viewController id="4Tr-N6-sVc" customClass="FindPanelFieldViewController" customModule="CotEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="findHistoryMenu" destination="Zor-um-eIs" id="lvr-PY-DuF"/>
+                <outlet property="findTextView" destination="fDB-No-De7" id="74N-Yn-d8r"/>
+                <outlet property="replaceHistoryMenu" destination="xUj-lq-8zt" id="JRz-Vz-ZQz"/>
+                <outlet property="view" destination="lkE-wj-Gi5" id="BC8-s3-Wez"/>
+            </connections>
+        </viewController>
+        <viewController id="46P-vJ-49R" customClass="FindPanelResultViewController" customModule="CotEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="disclosureButton" destination="oC1-bN-UeN" id="Fj6-Vl-4pN"/>
                 <outlet property="tableView" destination="4Sw-Gq-de2" id="nR3-HO-4fV"/>
                 <outlet property="view" destination="CRP-NW-b9J" id="HyB-MX-ri4"/>
             </connections>
         </viewController>
-        <viewController title="Quick Reference of Regular Expression" nibName="RegexReferenceView" id="uMF-F8-Wjs" userLabel="Regex Reference View Controller"/>
-        <popover behavior="semitransient" id="aeg-YU-kMW">
+        <viewController id="ej9-Bo-o6z" customClass="FindPanelButtonViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
-                <outlet property="contentViewController" destination="uMF-F8-Wjs" id="O3O-mx-K8n"/>
-                <outlet property="delegate" destination="-2" id="SVT-4d-mbL"/>
+                <outlet property="replaceButton" destination="7cY-9y-k1i" id="o8t-sU-ddb"/>
+                <outlet property="view" destination="qJx-yz-gkf" id="3W2-RP-7uR"/>
             </connections>
-        </popover>
-        <viewController nibName="FindPreferencesView" id="49v-VK-h0w" userLabel="Preferences View Controller"/>
-        <popover appearance="aqua" behavior="t" id="00C-j6-lNt">
-            <connections>
-                <outlet property="contentViewController" destination="49v-VK-h0w" id="12W-Vg-o60"/>
-            </connections>
-        </popover>
+        </viewController>
     </objects>
     <resources>
         <image name="FindTemplate" width="20" height="13"/>

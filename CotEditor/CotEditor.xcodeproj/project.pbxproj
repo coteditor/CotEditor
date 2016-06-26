@@ -34,7 +34,6 @@
 		25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumberView.m */; };
 		25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
 		2A009ACB1A57BA8B00C3D542 /* CETextFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */; };
-		2A009AD11A58ED1D00C3D542 /* CEFindResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */; };
 		2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
 		2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */; };
@@ -149,6 +148,16 @@
 		2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */; };
 		2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */; };
 		2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */; };
+		2A5D13381D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */; };
+		2A5D13391D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */; };
+		2A5D133B1D1FCFC400D38E6A /* TextFindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D133A1D1FCFC400D38E6A /* TextFindResult.swift */; };
+		2A5D133C1D1FCFC400D38E6A /* TextFindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D133A1D1FCFC400D38E6A /* TextFindResult.swift */; };
+		2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */; };
+		2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */; };
+		2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */; };
+		2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */; };
+		2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */; };
+		2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */; };
 		2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */; };
 		2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */; };
 		2A5DBE581B5D2DB000F8CB13 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
@@ -270,11 +279,9 @@
 		2A6F0DBC1B5500E100C2D03C /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
 		2A6F0DBD1B5500E100C2D03C /* CEDocument+ScriptingSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1925507E2D84500B54AE4 /* CEDocument+ScriptingSupport.m */; };
 		2A6F0DC01B5500E100C2D03C /* CEScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC1961B07E2E54E00B54AE4 /* CEScriptManager.m */; };
-		2A6F0DC21B5500E100C2D03C /* CEFindPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */; };
 		2A6F0DC51B5500E100C2D03C /* CEPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFB71518D7DCC000118477 /* CEPanelController.m */; };
 		2A6F0DC61B5500E100C2D03C /* CEEditorScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A49861E1A67CC7100172797 /* CEEditorScrollView.m */; };
 		2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */; };
-		2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */; };
 		2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7846DD18FE0C0C006BDF00 /* CETheme.m */; };
 		2A6F0DD41B5500E100C2D03C /* CECharacterPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CECharacterPopoverController.m */; };
@@ -325,7 +332,6 @@
 		2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF2401A573CEB00D09249 /* FindPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF23E1A573CEB00D09249 /* FindPanel.xib */; };
-		2A7CF2431A5747EC00D09249 /* CEFindPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */; };
 		2A80C65E1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C65F1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C6681CEE540F00AA664D /* Acknowledgements.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgements.html */; };
@@ -425,6 +431,8 @@
 		2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */; };
 		2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
 		2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
+		2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
+		2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
 		2AD172FB1CF0B807007314B3 /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
 		2AD172FC1CF0B807007314B3 /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
@@ -565,8 +573,6 @@
 		25B2C24B07FA6BC400F4EFC7 /* CETextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CETextView.m; sourceTree = "<group>"; };
 		2A009AC91A57BA8B00C3D542 /* CETextFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextFinder.h; sourceTree = "<group>"; };
 		2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETextFinder.m; sourceTree = "<group>"; };
-		2A009ACF1A58ED1D00C3D542 /* CEFindResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindResultViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindResultViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintPanelAccessoryController.h; sourceTree = "<group>"; };
 		2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintPanelAccessoryController.m; sourceTree = "<group>"; };
 		2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTableCellView.swift; sourceTree = "<group>"; };
@@ -659,6 +665,11 @@
 		2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelLayoutManager.swift; sourceTree = "<group>"; };
 		2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextView.swift; sourceTree = "<group>"; };
 		2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextClipView.swift; sourceTree = "<group>"; };
+		2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelResultViewController.swift; sourceTree = "<group>"; };
+		2A5D133A1D1FCFC400D38E6A /* TextFindResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindResult.swift; sourceTree = "<group>"; };
+		2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelButtonViewController.swift; sourceTree = "<group>"; };
+		2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelFieldViewController.swift; sourceTree = "<group>"; };
+		2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelController.swift; sourceTree = "<group>"; };
 		2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterField.swift; sourceTree = "<group>"; };
 		2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxMappingConflictsViewController.swift; sourceTree = "<group>"; };
 		2A5DCE881D18FFDB00D5D74C /* EncodingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingListViewController.swift; sourceTree = "<group>"; };
@@ -759,8 +770,6 @@
 		2A7AC3F31A46484E00F38868 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationPane.strings"; sourceTree = "<group>"; };
 		2A7CF1581C4F569B0015FF2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FindPreferencesView.xib; sourceTree = "<group>"; };
 		2A7CF23F1A573CEB00D09249 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FindPanel.xib; sourceTree = "<group>"; };
-		2A7CF2411A5747EC00D09249 /* CEFindPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEFindPanelController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEFindPanelController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A7FD3501C54B1AF00CE8566 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2A7FD3541C54B1B400CE8566 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPreferencesView.strings"; sourceTree = "<group>"; };
 		2A7FD3551C54B87A00CE8566 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
@@ -888,6 +897,7 @@
 		2ACDC09C1D172EF7009B72D6 /* WrappingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrappingTextField.swift; sourceTree = "<group>"; };
 		2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitcherSegmentedCell.swift; sourceTree = "<group>"; };
 		2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabView.swift; sourceTree = "<group>"; };
+		2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachablePopoverViewController.swift; sourceTree = "<group>"; };
 		2AD172F91CF0B807007314B3 /* NSFont+CESize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFont+CESize.h"; sourceTree = "<group>"; };
 		2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFont+CESize.m"; sourceTree = "<group>"; };
 		2AD318BF1A462A10001B8112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPane.xib; sourceTree = "<group>"; };
@@ -1602,11 +1612,8 @@
 			children = (
 				2A009AC91A57BA8B00C3D542 /* CETextFinder.h */,
 				2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */,
-				2A7CF2411A5747EC00D09249 /* CEFindPanelController.h */,
-				2A7CF2421A5747EC00D09249 /* CEFindPanelController.m */,
-				2A009ACF1A58ED1D00C3D542 /* CEFindResultViewController.h */,
-				2A009AD01A58ED1D00C3D542 /* CEFindResultViewController.m */,
-				2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */,
+				2A5D133A1D1FCFC400D38E6A /* TextFindResult.swift */,
+				2ACFE5891D205CE90005233A /* View Controllers */,
 				2A009ADB1A5AB96F00C3D542 /* Text View */,
 			);
 			name = "Text Finder";
@@ -1743,6 +1750,19 @@
 				2A18A5BE1C4A746A00BAD817 /* Encodings */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		2ACFE5891D205CE90005233A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */,
+				2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */,
+				2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */,
+				2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */,
+				2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */,
+				2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		2AD2861919856F3100C9342F /* Editor Controller */ = {
@@ -2373,6 +2393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
+				2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2A5F7CAA1D15295D001D83BC /* CETextViewController.m in Sources */,
 				2A476CAB1D09C6B50088E37A /* NSURL+CEAdditions.m in Sources */,
 				2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
@@ -2424,13 +2445,13 @@
 				2A6F0DC01B5500E100C2D03C /* CEScriptManager.m in Sources */,
 				2AD49C291D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */,
 				2A91C3191D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
-				2A6F0DC21B5500E100C2D03C /* CEFindPanelController.m in Sources */,
 				2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2AE52F191D17468B00D60A32 /* EditorSplitView.swift in Sources */,
 				2A78BFAE1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
 				2A5D13301D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */,
 				2A6F0DC51B5500E100C2D03C /* CEPanelController.m in Sources */,
 				2A6F0DC61B5500E100C2D03C /* CEEditorScrollView.m in Sources */,
+				2A5D13391D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */,
 				2A6F0DC81B5500E100C2D03C /* CEOpacityPanelController.m in Sources */,
 				2A5D131A1D1EFE4B00D38E6A /* SharingMenu.swift in Sources */,
 				2AE52F231D175A9400D60A32 /* SizeSettingWindowController.swift in Sources */,
@@ -2439,7 +2460,6 @@
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
 				2AE52F201D17533900D60A32 /* HexColorTransformer.swift in Sources */,
-				2A6F0DCC1B5500E100C2D03C /* CEFindResultViewController.m in Sources */,
 				2AEA27E01CE3D4C1006CDB80 /* CEOutlineItem.m in Sources */,
 				2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */,
 				2AB340801D01E2A4000F5EEC /* CESyntaxDictionaryKeys.m in Sources */,
@@ -2468,6 +2488,8 @@
 				2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2A4C9A801D099CD900C76F28 /* CEFileDropComposer.m in Sources */,
 				2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */,
+				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
+				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2ACDC0921D1726BD009B72D6 /* DotImageView.swift in Sources */,
 				2A12C7FD1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
 				2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
@@ -2475,6 +2497,7 @@
 				2A78BFBA1D1B329400A583D2 /* AppDelegate+Migration.swift in Sources */,
 				2A21841B1D04304800522EF5 /* CEWindowContentViewController.m in Sources */,
 				2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */,
+				2A5D133C1D1FCFC400D38E6A /* TextFindResult.swift in Sources */,
 				2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */,
 				2AACB1D51D19AE600073775B /* CEMenuKeyBindingManager.m in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
@@ -2506,6 +2529,7 @@
 				2A6F0DF41B5500E100C2D03C /* CEKeyBindingUtils.m in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2A78BFB71D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */,
+				2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
 				2A8984901C3CFD80006290FF /* CESyntaxHighlightParseOperation.m in Sources */,
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2A6F0DF61B5500E100C2D03C /* NSString+CECounting.m in Sources */,
@@ -2575,6 +2599,7 @@
 				259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */,
 				2A5DCE891D18FFDB00D5D74C /* EncodingListViewController.swift in Sources */,
 				2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
+				2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2AFEA0CE1C2D2FC6009001F6 /* NSString+CERange.m in Sources */,
 				2AC2462E1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A7314EE1A0326D300C0EDA9 /* CEAlphaWindow.m in Sources */,
@@ -2586,6 +2611,7 @@
 				2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2A5D13101D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
+				2A5D133B1D1FCFC400D38E6A /* TextFindResult.swift in Sources */,
 				2AE0C09B1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
 				2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
@@ -2606,11 +2632,11 @@
 				2AA2E01A1BFF9AEE0087BDD6 /* CEUnicodeCharacter.m in Sources */,
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
-				2A7CF2431A5747EC00D09249 /* CEFindPanelController.m in Sources */,
 				2A6602F41D05E8CB003E8D87 /* CEEditorWrapper+Editor.m in Sources */,
 				2AFFB71618D7DCC000118477 /* CEPanelController.m in Sources */,
 				2AE0C0971C422F3300E52E04 /* NSTextView+CETextReplacement.m in Sources */,
 				2A49861F1A67CC7100172797 /* CEEditorScrollView.m in Sources */,
+				2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
 				2AB3407F1D01E2A4000F5EEC /* CESyntaxDictionaryKeys.m in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2A94A45E18D0B562009FA90D /* CEOpacityPanelController.m in Sources */,
@@ -2618,8 +2644,8 @@
 				2ADD36921CFCABA400F3175D /* CEDocumentInspectorViewController.m in Sources */,
 				2A9C074E1CF99F12006D672D /* CEIncompatibleCharacterScanner.m in Sources */,
 				2AE0C0931C422DFA00E52E04 /* CETextView+Commenting.m in Sources */,
+				2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
 				2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */,
-				2A009AD11A58ED1D00C3D542 /* CEFindResultViewController.m in Sources */,
 				2AA2E00B1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */,
 				2A63CEC11D0AFE5D00ED8186 /* CETextView+Accessories.m in Sources */,
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
@@ -2629,6 +2655,7 @@
 				2A89848F1C3CFD80006290FF /* CESyntaxHighlightParseOperation.m in Sources */,
 				2A41CB401C39167500F9122B /* CEDefaults.m in Sources */,
 				2A89847F1C3CE201006290FF /* CEOutlineParseOperation.m in Sources */,
+				2A5D13381D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */,
 				2A5D132F1D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */,
 				2AE52F181D17468B00D60A32 /* EditorSplitView.swift in Sources */,
 				2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
@@ -2661,6 +2688,7 @@
 				2A5D13191D1EFE4B00D38E6A /* SharingMenu.swift in Sources */,
 				2A91C31E1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
+				2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2A33D0841D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2A41CB461C391B7400F9122B /* CEErrors.m in Sources */,

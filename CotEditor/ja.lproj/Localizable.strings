@@ -82,14 +82,14 @@
 "Invalid regular expression" =  "無効な正規表現です。";
 
 
-/* MARK: CEFindPanelController */
+/* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次のマッチを検索";
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
 "Not Found" = "見つかりません";
 "%@ found" = "%@ 件見つかりました";
 
 
-/* MARK: CEFindResultViewController */
+/* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に 1 件見つかりました。";

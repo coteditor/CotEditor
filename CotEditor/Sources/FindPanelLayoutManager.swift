@@ -109,11 +109,11 @@ class FindPanelLayoutManager: NSLayoutManager {
                     
                 case "\u{3000}":  // fullwidth-space (JP)
                     guard showsFullWidthSpace else { continue }
-                    glyphString = verticalTab
+                    glyphString = fullWidthSpace
                     
                 case "\u{b}":
                     guard showsOtherInvisibles else { continue }
-                    glyphString = fullWidthSpace
+                    glyphString = verticalTab
                     
                 default:
                     guard showsInvisibleCharacters && Int(self.glyph(at: glyphIndex, isValidIndex: nil)) == NSControlGlyph else { continue }

@@ -1,12 +1,12 @@
 /*
  
- CEFindResultViewController.h
+ TextFindResult.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
- Created by 1024jp on 2015-01-04.
-
+ Created by 1024jp on 2016-06-26.
+ 
  ------------------------------------------------------------------------------
  
  © 2015-2016 1024jp
@@ -25,15 +25,22 @@
  
  */
 
-@import Cocoa;
+import Foundation
 
-
-@interface CEFindResultViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
-
-@property (nonatomic, nullable, copy) NSArray<NSDictionary *> *result;
-@property (nonatomic, nullable, unsafe_unretained) NSTextView *target;
-
-@property (nonatomic, nullable, copy) NSString *findString;
-@property (nonatomic, nullable, copy) NSString *documentName;
-
-@end
+@objc class TextFindResult: NSObject {
+    
+    let range: NSRange
+    let lineRange: NSRange
+    let lineNumber: UInt
+    let attributedLineString: AttributedString
+    
+    
+    required init(range: NSRange, lineRange: NSRange, lineNumber: UInt, attributedLineString: AttributedString) {
+        
+        self.range = range
+        self.lineRange = lineRange
+        self.lineNumber = lineNumber
+        self.attributedLineString = attributedLineString
+    }
+    
+}

@@ -74,11 +74,11 @@
 
 /* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
 "W4Z-S2-wvv.title" = "置換";
-// Note: The tooltip for "Replace button is set the in CEFindPanelController.
+// Note: The tooltip for "Replace button is set the in FindPanelController.
 
 /* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
-"u6p-Hz-aK5.ibShadowedToolTips[0]" = "次のマッチを検索";  /* "Find previous match." */
-"u6p-Hz-aK5.ibShadowedToolTips[1]" = "前のマッチを検索";  /* "Find next match." */
+"u6p-Hz-aK5.ibShadowedToolTips[0]" = "前のマッチを検索";  /* "Find previous match." */
+"u6p-Hz-aK5.ibShadowedToolTips[1]" = "次のマッチを検索";  /* "Find next match." */
 
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
 "cdV-rY-hCN.title" = "最近の検索";

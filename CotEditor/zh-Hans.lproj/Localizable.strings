@@ -81,14 +81,14 @@
 "Invalid regular expression" = "无效的正则表达式";
 
 
-/* MARK: CEFindPanelController */
+/* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
 "Not Found" = "未找到";
 "%@ found" = "找到 %@ 项";
 
 
-/* MARK: CEFindResultViewController */
+/* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "在“%@”中没有找到字符串。";
 "Found one string in “%@”." = "在“%@”中找到一个字符串。";

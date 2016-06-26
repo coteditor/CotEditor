@@ -35,6 +35,19 @@ class FindPanelTextClipView: NSClipView {
     
     
     
+    // MARK:
+    // MARK: Creation
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        // make sure frame to be initialized (Otherwise input area can be arranged in a wrong place.)
+        let frame = self.frame
+        self.frame = frame
+    }
+    
+    
+    
     // MARK: View Methods
     
     /// add left padding for popup button

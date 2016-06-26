@@ -32,13 +32,11 @@ class FindPanelSplitView: NSSplitView {
     // MARK: Split View Methods
     
     /// hide divider completely when the second view (Find All result) is collapsed
-    override var dividerThickness: CGFloat {
+    override func drawDivider(in rect: NSRect) {
         
-        if self.isSubviewCollapsed(self.subviews[1]) {
-            return 0
-        }
+        guard !self.isSubviewCollapsed(self.subviews[1]) else { return }
         
-        return super.dividerThickness
+        super.drawDivider(in: rect)
     }
     
 }

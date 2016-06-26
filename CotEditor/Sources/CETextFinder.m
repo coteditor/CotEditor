@@ -29,20 +29,12 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEFindPanelController.h"
-
 #import "CEErrors.h"
 #import "CEDefaults.h"
 
 #import "NSTextView+CETextReplacement.h"
 #import "NSString+CENewLine.h"
 
-
-// keys for Find All result
-NSString * _Nonnull const CEFindResultRange = @"range";
-NSString * _Nonnull const CEFindResultLineNumber = @"lineNumber";
-NSString * _Nonnull const CEFindResultAttributedLineString = @"attributedLineString";
-NSString * _Nonnull const CEFindResultLineRange = @"lineRange";
 
 // keys for highlight
 static NSString * _Nonnull const CEFindHighlightRange = @"range";
@@ -53,7 +45,7 @@ static const NSUInteger kMaxHistorySize = 20;
 
 @interface CETextFinder ()
 
-@property (nonatomic, nonnull) CEFindPanelController *findPanelController;
+@property (nonatomic, nonnull) __kindof NSWindowController *findPanelController;
 @property (nonatomic, nonnull) NSNumberFormatter *integerFormatter;
 @property (nonatomic, nonnull) NSColor *highlightColor;
 @property (nonatomic, nonnull) NSMutableSet<NSTextView *> *busyTextViews;
@@ -149,7 +141,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [super initialize];
     
     // register defaults for find panel here
-    // sicne CEFindPanelController can be initialized before registering user defaults in AppDelegate. (2015-01 by 1024jp)
+    // sicne FindPanelController can be initialized before registering user defaults in AppDelegate. (2015-01 by 1024jp)
     NSDictionary<NSString *, id> *defaults = @{CEDefaultFindHistoryKey: @[],
                                                CEDefaultReplaceHistoryKey: @[],
                                                CEDefaultFindUsesRegularExpressionKey: @NO,
@@ -181,11 +173,11 @@ static const NSUInteger kMaxHistorySize = 20;
     if (self) {
         _findString = @"";
         _replacementString = @"";
-        _findPanelController = [[CEFindPanelController alloc] init];
         _busyTextViews = [NSMutableSet set];
         _integerFormatter = [[NSNumberFormatter alloc] init];
         [_integerFormatter setUsesGroupingSeparator:YES];
         [_integerFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        _findPanelController = [[FindPanelController alloc] initWithWindowNibName:@"FindPanel"];
         
         _highlightColor = [NSColor colorWithCalibratedHue:0.24 saturation:0.8 brightness:0.8 alpha:0.4];
         // Highlight color is currently not customizable. (2015-01-04)
@@ -355,7 +347,7 @@ static const NSUInteger kMaxHistorySize = 20;
         typeof(self) self = weakSelf;
         if (!self) { return; }
         
-        NSMutableArray<NSDictionary *> *result = [NSMutableArray array];
+        NSMutableArray<TextFindResult *> *results = [NSMutableArray array];
         NSMutableArray<NSDictionary *> *highlights = [NSMutableArray array];
         
         __block NSUInteger lineNumber = 1;
@@ -404,14 +396,14 @@ static const NSUInteger kMaxHistorySize = 20;
                  }
              }
              
-             [result addObject:@{CEFindResultRange: [NSValue valueWithRange:matchedRange],
-                                 CEFindResultLineNumber: @(lineNumber),
-                                 CEFindResultAttributedLineString: lineAttrString,
-                                 CEFindResultLineRange: [NSValue valueWithRange:inlineRange]}];
+             [results addObject:[[TextFindResult alloc] initWithRange:matchedRange
+                                                            lineRange:inlineRange
+                                                           lineNumber:lineNumber
+                                                 attributedLineString:lineAttrString]];
              
-             NSString *informativeFormat = ([result count] == 1) ? @"%@ string found." : @"%@ strings found.";
+             NSString *informativeFormat = ([results count] == 1) ? @"%@ string found." : @"%@ strings found.";
              NSString *informative = [NSString stringWithFormat:NSLocalizedString(informativeFormat, nil),
-                                      [integerFormatter stringFromNumber:@([result count])]];
+                                      [integerFormatter stringFromNumber:@([results count])]];
              dispatch_async(dispatch_get_main_queue(), ^{
                  [progress setLocalizedDescription:informative];
              });
@@ -429,9 +421,9 @@ static const NSUInteger kMaxHistorySize = 20;
             
             [indicator doneWithButtonTitle:nil];
             
-            if ([result count] > 0) {
+            if ([results count] > 0) {
                 if ([[self delegate] respondsToSelector:@selector(textFinder:didFinishFindingAll:results:textView:)]) {
-                    [[self delegate] textFinder:self didFinishFindingAll:findString results:result textView:textView];
+                    [[self delegate] textFinder:self didFinishFindingAll:findString results:results textView:textView];
                 }
                 
             } else {
@@ -440,7 +432,7 @@ static const NSUInteger kMaxHistorySize = 20;
             }
             
             // -> close also if matched since result view will be shown when succeed
-            if ([result count] > 0 || [self closesIndicatorWhenDone]) {
+            if ([results count] > 0 || [self closesIndicatorWhenDone]) {
                 [indicator dismissController:self];
                 if ([[[self findPanelController] window] isVisible]) {
                     [[[self findPanelController] window] makeKeyWindow];
@@ -1089,10 +1081,6 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     [defaults setObject:history forKey:CEDefaultFindHistoryKey];
-    
-    if ([[self delegate] respondsToSelector:@selector(textFinderDidUpdateFindHistory)]) {
-        [[self delegate] textFinderDidUpdateFindHistory];
-    }
 }
 
 
@@ -1114,10 +1102,6 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     [defaults setObject:history forKey:CEDefaultReplaceHistoryKey];
-    
-    if ([[self delegate] respondsToSelector:@selector(textFinderDidUpdateReplaceHistory)]) {
-        [[self delegate] textFinderDidUpdateReplaceHistory];
-    }
 }
 
 
