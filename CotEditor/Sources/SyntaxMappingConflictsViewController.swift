@@ -35,7 +35,7 @@ class MappingConflict: NSObject {
     let doubledStyles: String
     
     
-    init(name: String, primaryStyle: String, doubledStyles: String) {
+    required init(name: String, primaryStyle: String, doubledStyles: String) {
         
         self.name = name
         self.primaryStyle = primaryStyle
@@ -50,8 +50,8 @@ class SyntaxMappingConflictsViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private let extensionConflicts: [MappingConflict]
-    private let filenameConflicts: [MappingConflict]
+    private dynamic let extensionConflicts: [MappingConflict]
+    private dynamic let filenameConflicts: [MappingConflict]
     
     
     
@@ -93,7 +93,7 @@ class SyntaxMappingConflictsViewController: NSViewController {
         
         for (key, styles) in conflictDict {
             let primaryStyle = styles.first!
-            let doubledStyles = styles[1..<styles.count].joined(separator: ", ")
+            let doubledStyles = styles.dropFirst().joined(separator: ", ")
             
             conflicts.append(MappingConflict(name: key,
                                              primaryStyle: primaryStyle,
