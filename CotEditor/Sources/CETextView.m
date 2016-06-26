@@ -760,6 +760,21 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 }
 
 
+// ------------------------------------------------------
+/// select all lines containing the current selections
+- (IBAction)selectLine:(nullable id)sender
+// ------------------------------------------------------
+{
+    NSMutableArray<NSValue *> *selectedLineRanges = [NSMutableArray arrayWithCapacity:[[self selectedRanges] count]];
+    for (NSValue *rangeValue in [self selectedRanges]) {
+        NSRange lineRange = [[self string] lineRangeForRange:[rangeValue rangeValue]];
+        [selectedLineRanges addObject:[NSValue valueWithRange:lineRange]];
+    }
+    
+    [self setSelectedRanges:selectedLineRanges];
+}
+
+
 
 #pragma mark Protocol
 
