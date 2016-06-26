@@ -25,6 +25,9 @@
 // Appearance Pane
 #import "CEInvisibles.h"
 
+// NSWindow
+#import "CEAlphaWindow.h"
+
 // Format Pane
 #import "NSString+CEEncoding.h"
 

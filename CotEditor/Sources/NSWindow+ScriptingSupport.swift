@@ -1,15 +1,15 @@
 /*
  
- NSWindow+ScriptingSupport.h
+ NSWindow+ScriptingSupport.swift
  
  CotEditor
  http://coteditor.com
  
  Created by 1024jp on 2014-03-12.
-
+ 
  ------------------------------------------------------------------------------
  
- © 2014-2015 1024jp
+ © 2014-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,11 +25,25 @@
  
  */
 
-@import Cocoa;
+import Cocoa
 
-
-@interface NSWindow (ScriptingSupport)
-
-@property (nonatomic, nonnull) NSNumber *viewOpacity;
-
-@end
+/// scripting support
+extension NSWindow {
+    
+    /// opacity of the editor view for AppleScript (real type)
+    var viewOpacity: NSNumber {
+        
+        get {
+            guard let alphaWindow = self as? CEAlphaWindow else { return 1.0 }
+            
+            return alphaWindow.backgroundAlpha
+        }
+        
+        set {
+            guard let alphaWindow = self as? CEAlphaWindow else { return }
+            
+            alphaWindow.backgroundAlpha = CGFloat(viewOpacity.doubleValue)
+        }
+    }
+    
+}
