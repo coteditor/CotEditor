@@ -28,33 +28,6 @@
 
 import Cocoa
 
-extension Array {
-    
-    /// remove elements with IndexSet
-    mutating func remove(in indexes: IndexSet) {
-        
-        for index in indexes.reversed() {
-            self.remove(at: index)
-        }
-    }
-    
-    
-    /// subset
-    func elements(at indexes: IndexSet) -> [Element] {
-        
-        return indexes.flatMap({ index in
-            guard index < self.count else { return nil }
-            return self[index]
-        })
-    }
-    
-}
-
-
-
-
-// MARK:
-
 class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     // MARK: Private Properties

@@ -123,6 +123,10 @@
 		2A5411C01983E5FA008B43DA /* CESplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5411BF1983E5FA008B43DA /* CESplitViewController.m */; };
 		2A5ABE761918615E009265DF /* CEUnicodeInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
+		2A5ADE841D2168FC00F6CE26 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Array.swift */; };
+		2A5ADE851D2168FC00F6CE26 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Array.swift */; };
+		2A5ADE881D216D4900F6CE26 /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE871D216D4900F6CE26 /* NSColor.swift */; };
+		2A5ADE891D216D4900F6CE26 /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE871D216D4900F6CE26 /* NSColor.swift */; };
 		2A5B0AF5190723AC00B6A51C /* EditColorCode.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */; };
 		2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */; };
 		2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */; };
@@ -657,6 +661,8 @@
 		2A5411BF1983E5FA008B43DA /* CESplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESplitViewController.m; sourceTree = "<group>"; };
 		2A5ABE741918615E009265DF /* CEUnicodeInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeInputPanelController.h; sourceTree = "<group>"; };
 		2A5ABE751918615E009265DF /* CEUnicodeInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeInputPanelController.m; sourceTree = "<group>"; };
+		2A5ADE831D2168FC00F6CE26 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		2A5ADE871D216D4900F6CE26 /* NSColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
 		2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = EditColorCode.tiff; sourceTree = "<group>"; };
 		2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolePanelController.swift; sourceTree = "<group>"; };
 		2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
@@ -1365,6 +1371,7 @@
 				2A15832C18E3A29A00601026 /* Views */,
 				2A476CAF1D09CA640088E37A /* Models */,
 				2A15832B18E3A25C00601026 /* Utilities */,
+				2A5ADE861D21690300F6CE26 /* Extensions */,
 				2A41CB431C391ACE00F9122B /* Constants */,
 			);
 			path = Sources;
@@ -1575,6 +1582,15 @@
 				2A4C9A7E1D099CD900C76F28 /* CEFileDropComposer.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		2A5ADE861D21690300F6CE26 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2A5ADE831D2168FC00F6CE26 /* Array.swift */,
+				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		2A62D48D1CF73693002ADBE1 /* Toolbar */ = {
@@ -2489,6 +2505,7 @@
 				2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */,
 				2ADD36931CFCABA400F3175D /* CEDocumentInspectorViewController.m in Sources */,
 				2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
+				2A5ADE851D2168FC00F6CE26 /* Array.swift in Sources */,
 				2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2A4C9A801D099CD900C76F28 /* CEFileDropComposer.m in Sources */,
 				2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */,
@@ -2538,6 +2555,7 @@
 				2A8984901C3CFD80006290FF /* CESyntaxHighlightParseOperation.m in Sources */,
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2A6F0DF61B5500E100C2D03C /* NSString+CECounting.m in Sources */,
+				2A5ADE891D216D4900F6CE26 /* NSColor.swift in Sources */,
 				2A88A7911B8B899F0055B9AE /* NSString+Normalization.m in Sources */,
 				2A6F0DF71B5500E100C2D03C /* NSString+JapaneseTransform.m in Sources */,
 				2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */,
@@ -2648,6 +2666,7 @@
 				2ACDC09D1D172EF7009B72D6 /* WrappingTextField.swift in Sources */,
 				2ADD36921CFCABA400F3175D /* CEDocumentInspectorViewController.m in Sources */,
 				2A9C074E1CF99F12006D672D /* CEIncompatibleCharacterScanner.m in Sources */,
+				2A5ADE881D216D4900F6CE26 /* NSColor.swift in Sources */,
 				2AE0C0931C422DFA00E52E04 /* CETextView+Commenting.m in Sources */,
 				2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
 				2A88A7901B8B87C90055B9AE /* NSString+Normalization.m in Sources */,
@@ -2680,6 +2699,7 @@
 				25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */,
 				2AD172FB1CF0B807007314B3 /* NSFont+CESize.m in Sources */,
 				2ACDC0A31D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
+				2A5ADE841D2168FC00F6CE26 /* Array.swift in Sources */,
 				2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				8CF02E1608B9B9F8004044EB /* CENavigationBarController.m in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,

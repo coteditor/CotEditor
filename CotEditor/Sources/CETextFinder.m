@@ -330,7 +330,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [[self busyTextViews] addObject:textView];
     
     NSUInteger numberOfGroups = [regex numberOfCaptureGroups];
-    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups + 1];
+    NSArray<NSColor *> *highlightColors = [[self highlightColor] decompositeInto:numberOfGroups + 1];
     
     NSRegularExpression *lineRegex = [NSRegularExpression regularExpressionWithPattern:@"\n" options:0 error:nil];
     NSString *string = [NSString stringWithString:[textView string]];
@@ -461,7 +461,7 @@ static const NSUInteger kMaxHistorySize = 20;
     [[self busyTextViews] addObject:textView];
     
     NSUInteger numberOfGroups = [regex numberOfCaptureGroups];
-    NSArray<NSColor *> *highlightColors = [self decomposeHighlightColorsInto:numberOfGroups + 1];
+    NSArray<NSColor *> *highlightColors = [[self highlightColor] decompositeInto:numberOfGroups + 1];
     
     NSString *string = [NSString stringWithString:[textView string]];
     
@@ -1012,7 +1012,7 @@ static const NSUInteger kMaxHistorySize = 20;
     
     NSWindow *findPanel = [[self findPanelController] window];
     if ([findPanel attachedSheet]) {
-        [findPanel makeKeyAndOrderFront:self];
+        [self.findPanelController showWindow:self];
         NSBeep();
         return NO;
     }
@@ -1114,26 +1114,6 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     [defaults setObject:history forKey:CEDefaultReplaceHistoryKey];
-}
-
-
-// ------------------------------------------------------
-/// create desired number of highlight colors from base highlight color
-- (nonnull NSArray<NSColor *> *)decomposeHighlightColorsInto:(NSUInteger)numberOfGroups
-// ------------------------------------------------------
-{
-    NSMutableArray<NSColor *> *highlightColors = [NSMutableArray arrayWithCapacity:numberOfGroups];
-    
-    CGFloat hue, saturation, brightness, alpha;
-    [[self highlightColor] getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
-    
-    for (NSUInteger i = 0; i < numberOfGroups; i++) {
-        double dummy;
-        [highlightColors addObject:[NSColor colorWithCalibratedHue:modf(hue + (CGFloat)i / numberOfGroups, &dummy)
-                                                        saturation:saturation brightness:brightness alpha:alpha]];
-    }
-    
-    return [highlightColors copy];
 }
 
 
