@@ -59,7 +59,7 @@ class FindPanelLayoutManager: NSLayoutManager {
         let defaults = UserDefaults.standard()
         
         if defaults.bool(forKey: CEDefaultShowInvisiblesKey) {
-            let string = self.textStorage!.string as NSString
+            let string = self.textStorage?.string ?? ""
             
             let color = NSColor.tertiaryLabelColor()
             
@@ -91,7 +91,9 @@ class FindPanelLayoutManager: NSLayoutManager {
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<NSMaxRange(glyphsToShow) {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                let character = Character(UnicodeScalar(string.character(at: charIndex)))
+                
+                let utfChar = string.utf16[String.UTF16Index(charIndex)]
+                let character = String(utf16CodeUnits: [utfChar], count: 1)
                 
                 let glyphString: AttributedString
                 switch character {
@@ -122,7 +124,7 @@ class FindPanelLayoutManager: NSLayoutManager {
                     
                     let replaceFont = NSFont(name: "Lucida Grande", size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
                     let charRange = self.characterRange(forGlyphRange: NSRange(location: glyphIndex, length: 1), actualGlyphRange: nil)
-                    let baseString = string.substring(with: charRange)
+                    let baseString = (string as NSString).substring(with: charRange)
                     
                     guard let glyphInfo = NSGlyphInfo(glyphName: "replacement", for: replaceFont, baseString: baseString) else { continue }
                     
