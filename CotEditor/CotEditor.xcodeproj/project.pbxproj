@@ -152,6 +152,8 @@
 		2A5D13391D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */; };
 		2A5D133B1D1FCFC400D38E6A /* TextFindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D133A1D1FCFC400D38E6A /* TextFindResult.swift */; };
 		2A5D133C1D1FCFC400D38E6A /* TextFindResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D133A1D1FCFC400D38E6A /* TextFindResult.swift */; };
+		2A5D13421D1FE34F00D38E6A /* FindPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */; };
+		2A5D13431D1FE34F00D38E6A /* FindPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */; };
 		2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */; };
 		2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */; };
 		2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */; };
@@ -210,7 +212,6 @@
 		2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
 		2A6F0D5E1B5500E100C2D03C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */; };
-		2A6F0D601B5500E100C2D03C /* FindPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF23E1A573CEB00D09249 /* FindPanel.xib */; };
 		2A6F0D611B5500E100C2D03C /* SizeSettingWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSettingWindow.xib */; };
 		2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
@@ -331,7 +332,6 @@
 		2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
-		2A7CF2401A573CEB00D09249 /* FindPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF23E1A573CEB00D09249 /* FindPanel.xib */; };
 		2A80C65E1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C65F1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C6681CEE540F00AA664D /* Acknowledgements.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgements.html */; };
@@ -433,6 +433,8 @@
 		2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
 		2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
 		2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
+		2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */; };
+		2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */; };
 		2AD172FB1CF0B807007314B3 /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
 		2AD172FC1CF0B807007314B3 /* NSFont+CESize.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */; };
 		2AD318C01A462A10001B8112 /* IntegrationPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AD318BE1A462A10001B8112 /* IntegrationPane.xib */; };
@@ -575,6 +577,9 @@
 		2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETextFinder.m; sourceTree = "<group>"; };
 		2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintPanelAccessoryController.h; sourceTree = "<group>"; };
 		2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintPanelAccessoryController.m; sourceTree = "<group>"; };
+		2A0D64A11D20FFB0006B4937 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
+		2A0D64A21D20FFB3006B4937 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPanel.strings"; sourceTree = "<group>"; };
+		2A0D64A31D20FFB6006B4937 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTableCellView.swift; sourceTree = "<group>"; };
 		2A12C7FE1D1843B50069C60B /* SeparatorTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorTextFieldCell.swift; sourceTree = "<group>"; };
 		2A149DD319032CC900A9D6EF /* CEKeyBindingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingUtils.h; sourceTree = "<group>"; };
@@ -667,6 +672,7 @@
 		2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextClipView.swift; sourceTree = "<group>"; };
 		2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelResultViewController.swift; sourceTree = "<group>"; };
 		2A5D133A1D1FCFC400D38E6A /* TextFindResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindResult.swift; sourceTree = "<group>"; };
+		2A5D13411D1FE34F00D38E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FindPanel.storyboard; sourceTree = "<group>"; };
 		2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelButtonViewController.swift; sourceTree = "<group>"; };
 		2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelFieldViewController.swift; sourceTree = "<group>"; };
 		2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelController.swift; sourceTree = "<group>"; };
@@ -705,7 +711,6 @@
 		2A68F93318F9995500673440 /* CEThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEThemeManager.h; sourceTree = "<group>"; };
 		2A68F93418F9995500673440 /* CEThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEThemeManager.m; sourceTree = "<group>"; };
 		2A6907591B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MigrationWindow.strings; sourceTree = "<group>"; };
-		2A69075A1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		2A69075B1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2A69075D1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
 		2A69075E1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
@@ -769,7 +774,6 @@
 		2A7AC3F11A46484B00F38868 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
 		2A7AC3F31A46484E00F38868 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationPane.strings"; sourceTree = "<group>"; };
 		2A7CF1581C4F569B0015FF2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FindPreferencesView.xib; sourceTree = "<group>"; };
-		2A7CF23F1A573CEB00D09249 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FindPanel.xib; sourceTree = "<group>"; };
 		2A7FD3501C54B1AF00CE8566 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2A7FD3541C54B1B400CE8566 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPreferencesView.strings"; sourceTree = "<group>"; };
 		2A7FD3551C54B87A00CE8566 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
@@ -794,8 +798,6 @@
 		2A94A45B18D0B562009FA90D /* CEOpacityPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOpacityPanelController.h; sourceTree = "<group>"; };
 		2A94A45C18D0B562009FA90D /* CEOpacityPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOpacityPanelController.m; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = ../cot/cot; sourceTree = SOURCE_ROOT; };
-		2A9966971A5C245F0086689E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
-		2A9966991A5C29F40086689E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPanel.strings"; sourceTree = "<group>"; };
 		2A9C074C1CF99F12006D672D /* CEIncompatibleCharacterScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIncompatibleCharacterScanner.h; sourceTree = "<group>"; };
 		2A9C074D1CF99F12006D672D /* CEIncompatibleCharacterScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIncompatibleCharacterScanner.m; sourceTree = "<group>"; };
 		2A9C07501CF9A3C7006D672D /* CEIncompatibleCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIncompatibleCharacter.h; sourceTree = "<group>"; };
@@ -898,6 +900,7 @@
 		2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitcherSegmentedCell.swift; sourceTree = "<group>"; };
 		2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabView.swift; sourceTree = "<group>"; };
 		2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachablePopoverViewController.swift; sourceTree = "<group>"; };
+		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
 		2AD172F91CF0B807007314B3 /* NSFont+CESize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFont+CESize.h"; sourceTree = "<group>"; };
 		2AD172FA1CF0B807007314B3 /* NSFont+CESize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFont+CESize.m"; sourceTree = "<group>"; };
 		2AD318BF1A462A10001B8112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPane.xib; sourceTree = "<group>"; };
@@ -1300,7 +1303,7 @@
 		2A2D6C1A1A602D7E002451FF /* Text Finder */ = {
 			isa = PBXGroup;
 			children = (
-				2A7CF23E1A573CEB00D09249 /* FindPanel.xib */,
+				2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */,
 				2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */,
 				2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */,
 			);
@@ -1756,6 +1759,7 @@
 			isa = PBXGroup;
 			children = (
 				2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */,
+				2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */,
 				2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */,
 				2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */,
 				2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */,
@@ -2038,10 +2042,10 @@
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A6F0D841B5500E100C2D03C /* FileDropGlossary.txt in Resources */,
 				2A6F0D5E1B5500E100C2D03C /* MainMenu.xib in Resources */,
-				2A6F0D601B5500E100C2D03C /* FindPanel.xib in Resources */,
 				2A6F0D611B5500E100C2D03C /* SizeSettingWindow.xib in Resources */,
 				2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */,
 				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
+				2A5D13431D1FE34F00D38E6A /* FindPanel.storyboard in Resources */,
 				2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */,
 				2A6F0D651B5500E100C2D03C /* ProgressView.xib in Resources */,
 				2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */,
@@ -2135,7 +2139,6 @@
 				2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */,
 				2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */,
-				2A7CF2401A573CEB00D09249 /* FindPanel.xib in Resources */,
 				2A15832118E3814200601026 /* SizeSettingWindow.xib in Resources */,
 				2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */,
 				25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */,
@@ -2170,6 +2173,7 @@
 				2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */,
 				2A149DA819016ABB00A9D6EF /* FileDropPane.xib in Resources */,
 				2A149DA919016ABB00A9D6EF /* FormatPane.xib in Resources */,
+				2A5D13421D1FE34F00D38E6A /* FindPanel.storyboard in Resources */,
 				2A80C66E1CEE556600AA664D /* WebDocumentWindow.xib in Resources */,
 				2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
@@ -2520,6 +2524,7 @@
 				2A6F0DEC1B5500E100C2D03C /* CEATSTypesetter.m in Sources */,
 				2A6F0DED1B5500E100C2D03C /* CEEditorViewController.m in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
+				2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2AB0C5991C49FB260019411A /* CEEncodings.m in Sources */,
 				2ACDC09E1D172EF7009B72D6 /* WrappingTextField.swift in Sources */,
 				2A9C07531CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */,
@@ -2705,6 +2710,7 @@
 				8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */,
 				2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
 				2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
+				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
 				2AE52F1F1D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CEEditorViewController.m in Sources */,
@@ -3090,6 +3096,17 @@
 			name = UnicodePanel.xib;
 			sourceTree = "<group>";
 		};
+		2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5D13411D1FE34F00D38E6A /* Base */,
+				2A0D64A11D20FFB0006B4937 /* ja */,
+				2A0D64A21D20FFB3006B4937 /* zh-Hans */,
+				2A0D64A31D20FFB6006B4937 /* de */,
+			);
+			name = FindPanel.storyboard;
+			sourceTree = "<group>";
+		};
 		2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3175,17 +3192,6 @@
 				2A7FD3551C54B87A00CE8566 /* de */,
 			);
 			name = FindPreferencesView.xib;
-			sourceTree = "<group>";
-		};
-		2A7CF23E1A573CEB00D09249 /* FindPanel.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A7CF23F1A573CEB00D09249 /* Base */,
-				2A9966971A5C245F0086689E /* ja */,
-				2A9966991A5C29F40086689E /* zh-Hans */,
-				2A69075A1B8443AA00D0F3A2 /* de */,
-			);
-			name = FindPanel.xib;
 			sourceTree = "<group>";
 		};
 		2A80C65C1CEE33C100AA664D /* Credits.html */ = {

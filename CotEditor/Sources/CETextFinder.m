@@ -45,7 +45,7 @@ static const NSUInteger kMaxHistorySize = 20;
 
 @interface CETextFinder ()
 
-@property (nonatomic, nonnull) __kindof NSWindowController *findPanelController;
+@property (nonatomic, nullable) __kindof NSWindowController *findPanelController;
 @property (nonatomic, nonnull) NSNumberFormatter *integerFormatter;
 @property (nonatomic, nonnull) NSColor *highlightColor;
 @property (nonatomic, nonnull) NSMutableSet<NSTextView *> *busyTextViews;
@@ -177,7 +177,6 @@ static const NSUInteger kMaxHistorySize = 20;
         _integerFormatter = [[NSNumberFormatter alloc] init];
         [_integerFormatter setUsesGroupingSeparator:YES];
         [_integerFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        _findPanelController = [[FindPanelController alloc] initWithWindowNibName:@"FindPanel"];
         
         _highlightColor = [NSColor colorWithCalibratedHue:0.24 saturation:0.8 brightness:0.8 alpha:0.4];
         // Highlight color is currently not customizable. (2015-01-04)
@@ -736,6 +735,19 @@ static const NSUInteger kMaxHistorySize = 20;
 
 
 #pragma mark Private Methods
+
+// ------------------------------------------------------
+/// lazy creation of panel controller
+- (__kindof NSWindowController *)findPanelController
+// ------------------------------------------------------
+{
+    if (!_findPanelController) {
+        _findPanelController = [[NSStoryboard storyboardWithName:@"FindPanel" bundle:nil] instantiateInitialController];
+        
+    }
+    return _findPanelController;
+}
+
 
 // ------------------------------------------------------
 /// target text view

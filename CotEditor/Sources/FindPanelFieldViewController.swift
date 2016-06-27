@@ -62,15 +62,22 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidLoad()
         
-        // make find text view the initial first responder to focus it on showWindow(_:)
-        self.view.window?.initialFirstResponder = self.findTextView
-        
         self.updateFindHistoryMenu()
         self.updateReplaceHistoryMenu()
         
         // observe default change for the history menus
         UserDefaults.standard().addObserver(self, forKeyPath: CEDefaultFindHistoryKey, options: [], context: nil)
         UserDefaults.standard().addObserver(self, forKeyPath: CEDefaultReplaceHistoryKey, options: [], context: nil)
+    }
+    
+    
+    /// make find field initial first responder
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // make find text view the initial first responder to focus it on showWindow(_:)
+        self.view.window?.initialFirstResponder = self.findTextView
     }
     
     

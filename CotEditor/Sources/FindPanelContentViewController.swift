@@ -29,41 +29,31 @@ import Cocoa
 
 private let DefaultResultViewHeight: CGFloat = 200.0
 
-class FindPanelContentViewController: NSViewController, NSSplitViewDelegate, CETextFinderDelegate {
+class FindPanelContentViewController: NSSplitViewController, CETextFinderDelegate {
     
     // MARK: Private Properties
     
     private var isUncollapsing = false
     
-    @IBOutlet private weak var splitView: NSSplitView?
-    @IBOutlet private var fieldViewController: FindPanelFieldViewController?
-    @IBOutlet private var resultViewController: FindPanelResultViewController?
+    @IBOutlet private var fieldSplitViewItem: NSSplitViewItem?
+    @IBOutlet private var resultSplitViewItem: NSSplitViewItem?
     
     
     
     // MARK:
-    // MARK: Creation
-    
-    deinit {
-        self.splitView?.delegate = nil  // NSSplitView's delegate is assign, not weak
-    }
-    
-    
+    // MARK: Split View Controller Methods
     
     /// setup UI
-    override func viewWillAppear() {
+    override func viewDidDisappear() {
         
-        super.viewWillAppear()
+        super.viewDidDisappear()
         
         self.setResultShown(false, animate: false)
     }
     
     
-    
-    // MARK: Split View Delegate
-    
     /// collapse result view by dragging divider
-     func splitViewDidResizeSubviews(_ notification: Notification) {
+     override func splitViewDidResizeSubviews(_ notification: Notification) {
         
         guard !self.isUncollapsing else { return }
         
@@ -71,15 +61,8 @@ class FindPanelContentViewController: NSViewController, NSSplitViewDelegate, CET
     }
     
     
-    /// only result view can collapse
-     func splitView(_ splitView: NSSplitView, canCollapseSubview subview: NSView) -> Bool {
-        
-        return subview == self.resultViewController?.view
-    }
-    
-    
     /// avoid showing draggable cursor when result view collapsed
-     func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
+     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
         var effectiveRect = proposedEffectiveRect
         
@@ -98,6 +81,7 @@ class FindPanelContentViewController: NSViewController, NSSplitViewDelegate, CET
     func textFinder(_ textFinder: CETextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView) {
         
         // set to result table
+        self.fieldViewController?.updateResultCount(results.count, target: textView)
         self.resultViewController?.setResults(results, findString: findString, target: textView)
         
         self.setResultShown(true, animate: true)
@@ -125,27 +109,52 @@ class FindPanelContentViewController: NSViewController, NSSplitViewDelegate, CET
     
     // MARK: Private Methods
     
+    /// unwrap viewController from split view item
+    private var fieldViewController: FindPanelFieldViewController? {
+        
+        return self.fieldSplitViewItem?.viewController as? FindPanelFieldViewController
+    }
+    
+    
+    /// unwrap viewController from split view item
+    private var resultViewController: FindPanelResultViewController? {
+        
+        return self.resultSplitViewItem?.viewController as? FindPanelResultViewController
+    }
+    
+    
     /// toggle result view visibility with/without animation
     private func setResultShown(_ shown: Bool, animate: Bool) {
         
         guard let resultView = self.resultViewController?.view,
-            let panel = self.view.window else { return }
+              let panel = self.view.window else { return }
         
         let height = resultView.bounds.height
         
         guard (shown && resultView.isHidden) || (!shown || height <= DefaultResultViewHeight) else { return }
         
+        // resize panel frame
+        var panelFrame = panel.frame
+        let diff: CGFloat = {
+            if shown {
+                if self.resultSplitViewItem!.isCollapsed {
+                    return DefaultResultViewHeight
+                } else {
+                    return DefaultResultViewHeight - height
+                }
+            } else {
+                return  -height
+            }
+        }()
+        panelFrame.size.height += diff
+        panelFrame.origin.y -= diff
+        
         // uncollapse if needed
         if shown {
             self.isUncollapsing = true
+            self.resultSplitViewItem?.isCollapsed = !shown
             resultView.isHidden = false
         }
-        
-        // resize panel frame
-        var panelFrame = panel.frame
-        let diff = shown ? DefaultResultViewHeight - height : -height
-        panelFrame.size.height += diff
-        panelFrame.origin.y -= diff
         
         panel.setFrame(panelFrame, display: true, animate: animate)
         
@@ -162,8 +171,7 @@ class FindPanelContentViewController: NSViewController, NSSplitViewDelegate, CET
         guard let resultView = self.resultViewController?.view
             where !resultView.isHidden && resultView.visibleRect.isEmpty else { return }
         
-        resultView.isHidden = true
-        self.splitView!.needsDisplay = true
+        self.resultSplitViewItem?.isCollapsed = true
     }
     
 }
