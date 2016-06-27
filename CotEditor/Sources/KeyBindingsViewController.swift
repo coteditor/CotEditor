@@ -62,7 +62,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     // MARK: Private Properties
     
-    private var outlineData: [CEKeyBindingItemInterface] = [CEKeyBindingItemInterface]()
+    private var outlineTree: [NSTreeNode] = [NSTreeNode]()
     private dynamic var warningMessage: String?  // for binding
     private dynamic var restoreble: Bool = false  // for binding
     
@@ -73,21 +73,6 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     // MARK:
     // MARK: Lifecycle
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        self.outlineData = self.manager.bindingItemsForOutlineData(withFactoryDefaults: false)
-        self.restoreble = !self.manager.usesDefaultKeyBindings()
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     override var nibName: String? {
         
         return "MenuKeyBindingsEditView"
@@ -96,6 +81,15 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.outlineTree = self.manager.outlineTree(withDefaults: false)
+        self.restoreble = !self.manager.usesDefaultKeyBindings()
+    }
+    
     
     /// finish current editing
     override func viewDidDisappear() {
@@ -138,19 +132,15 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: AnyObject?) -> AnyObject? {
         
         guard let identifier = ColumnIdentifier(tableColumn?.identifier),
-              let keyBindingItem = item as? CEKeyBindingItemInterface else { return "" }
+              let node = item as? NamedTreeNode else { return "" }
         
         switch identifier {
         case .title:
-            return keyBindingItem.title()
+            return node.name
             
         case .keySpecChars:
-            if let keyBindingItem = keyBindingItem as? CEKeyBindingItem {
-                return CEKeyBindingUtils.printableKeyString(fromKeySpecChars: keyBindingItem.keySpecChars)
-            }
+            return (node.representedObject as? KeyBindingItem)?.printableKey
         }
-        
-        return nil
     }
     
     
@@ -182,7 +172,8 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         let row = outlineView.row(for: textField)
         
-        guard let item = outlineView.item(atRow: row) as? CEKeyBindingItem else { return }
+        guard let node = outlineView.item(atRow: row) as? NSTreeNode where node.isLeaf else { return }
+        guard let item = node.representedObject as? KeyBindingItem else { return }
         
         let oldKeySpecChars = item.keySpecChars
         let keySpecChars = textField.stringValue
@@ -194,7 +185,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         if keySpecChars == "\u{1b}" {
             // treat esc key as cancel
             
-        } else if keySpecChars == CEKeyBindingUtils.printableKeyString(fromKeySpecChars: oldKeySpecChars) {  // not edited
+        } else if keySpecChars == item.printableKey {  // not edited
             // do nothing
             
         } else {
@@ -233,7 +224,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// restore key binding setting to default
     @IBAction func setToFactoryDefaults(_ sender: AnyObject?) {
         
-        self.outlineData = self.manager.bindingItemsForOutlineData(withFactoryDefaults: true)
+        self.outlineTree = self.manager.outlineTree(withDefaults: true)
         
         self.saveSettings()
         
@@ -254,22 +245,18 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     /// return child items of passed-in item
-    private func children(ofItem item: AnyObject?) -> [CEKeyBindingItemInterface]? {
+    private func children(ofItem item: AnyObject?) -> [NSTreeNode]? {
     
-        if item == nil {
-            return self.outlineData
-        } else if let item = item as? CEKeyBindingContainerItem {
-            return item.children
-        } else {
-            return nil
-        }
+        guard let node = item as? NSTreeNode else { return self.outlineTree }
+        
+        return node.isLeaf ? nil : node.children
     }
     
     
     /// save current settings
     private func saveSettings() {
         
-        self.manager.saveKeyBindings(self.outlineData)
+        self.manager.saveKeyBindings(self.outlineTree)
         self.restoreble = !self.manager.usesDefaultKeyBindings()
     }
     
@@ -306,23 +293,23 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
     // MARK:
     // MARK: Lifecycle
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        self.setup(snippets: CESnippetKeyBindingManager.shared().snippets(withFactoryDefaults: false))
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     override var nibName: String? {
         
         return "TextKeyBindingsEditView"
+    }
+    
+    
+    
+    // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.outlineTree = self.manager.outlineTree(withDefaults: false)
+        self.restoreble = !self.manager.usesDefaultKeyBindings()
+        
+        self.setup(snippets: CESnippetKeyBindingManager.shared().snippets(withDefaults: false))
     }
     
     
@@ -349,7 +336,7 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
     /// restore key binding setting to default
     override func setToFactoryDefaults(_ sender: AnyObject?) {
         
-        self.setup(snippets: CESnippetKeyBindingManager.shared().snippets(withFactoryDefaults: true))
+        self.setup(snippets: CESnippetKeyBindingManager.shared().snippets(withDefaults: true))
         
         super.setToFactoryDefaults(sender)
     }

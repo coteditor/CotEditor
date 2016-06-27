@@ -100,24 +100,24 @@
 //------------------------------------------------------
 /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
 /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
-- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSArray<__kindof NSTreeNode *> *)outlineTreeWithDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
-    NSMutableArray<CEKeyBindingItem *> *bindingItems = [NSMutableArray array];
     NSDictionary<NSString *, NSString *> *dict = usesFactoryDefaults ? [self defaultKeyBindingDict] : [self keyBindingDict];
     
+    NSMutableArray<__kindof NSTreeNode *> *tree = [NSMutableArray array];
     for (NSUInteger index = 0; index <= 30; index++) {
         NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Insert Text %li", nil), index];
         NSString *selector = [[self class] selectorStringWithIndex:index];
+        NSString *keySpecChars = [[dict allKeysForObject:selector] firstObject];
         
-        CEKeyBindingItem *item = [[CEKeyBindingItem alloc] initWithTitle:title
-                                                                selector:selector
-                                                            keySpecChars:[[dict allKeysForObject:selector] firstObject]];
+        KeyBindingItem *item = [[KeyBindingItem alloc] initWithSelector:selector
+                                                           keySpecChars:keySpecChars];
         
-        [bindingItems addObject:item];
+        [tree addObject:[[NamedTreeNode alloc] initWithName:title representedObject:item]];
     }
     
-    return [bindingItems copy];
+    return [tree copy];
 }
 
 
@@ -126,7 +126,7 @@
 - (BOOL)usesDefaultKeyBindings
 // ------------------------------------------------------
 {
-    BOOL usesDefaultSnippets = [[self snippetsWithFactoryDefaults:NO] isEqualToArray:[self defaultSnippets]];
+    BOOL usesDefaultSnippets = [[self snippetsWithDefaults:NO] isEqualToArray:[self defaultSnippets]];
     
     return usesDefaultSnippets && [super usesDefaultKeyBindings];
 }
@@ -170,7 +170,7 @@
     
     if (index == NSNotFound) { return nil; }
 
-    NSArray<NSString *> *snippets = [self snippetsWithFactoryDefaults:NO];
+    NSArray<NSString *> *snippets = [self snippetsWithDefaults:NO];
     
     if (index >= [snippets count]) { return nil; }
     
@@ -181,7 +181,7 @@
 //------------------------------------------------------
 /// return snippet texts to insert with key binding
 /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
-- (nonnull NSArray<NSString *> *)snippetsWithFactoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSArray<NSString *> *)snippetsWithDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
     if (usesFactoryDefaults) {

@@ -97,16 +97,16 @@
 //------------------------------------------------------
 /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
 /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
-- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSArray<__kindof NSTreeNode *> *)outlineTreeWithDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
-    return [self bindingItemsWithMenu:[NSApp mainMenu] factoryDefaults:usesFactoryDefaults];
+    return [self outlineTreeWithMenu:[NSApp mainMenu] factoryDefaults:usesFactoryDefaults];
 }
 
 
 //------------------------------------------------------
 /// save passed-in key binding settings
-- (BOOL)saveKeyBindings:(nonnull NSArray<id<CEKeyBindingItemInterface>> *)outlineData
+- (BOOL)saveKeyBindings:(nonnull NSArray<__kindof NSTreeNode *> *)outlineData
 //------------------------------------------------------
 {
     BOOL success = [super saveKeyBindings:outlineData];
@@ -317,34 +317,32 @@
 
 //------------------------------------------------------
 /// read key bindings from the menu and create an array data for outlineView to edit
-- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsWithMenu:(nonnull NSMenu *)menu factoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSArray<__kindof NSTreeNode *> *)outlineTreeWithMenu:(nonnull NSMenu *)menu factoryDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
-    NSMutableArray<id<CEKeyBindingItemInterface>> *bindingItems = [NSMutableArray array];
+    NSMutableArray<NamedTreeNode *> *tree = [NSMutableArray array];
     
     for (NSMenuItem *menuItem in [menu itemArray]) {
         if ([self shouldIgnoreItem:menuItem]) { continue; }
         
-        id<CEKeyBindingItemInterface> item;
+        NamedTreeNode *node;
         if ([menuItem hasSubmenu]) {
-            item = [[CEKeyBindingContainerItem alloc] initWithTitle:[menuItem title]
-                                                           children:[self bindingItemsWithMenu:[menuItem submenu] factoryDefaults:usesFactoryDefaults]];
+            node = [[NamedTreeNode alloc] initWithName:[menuItem title] representedObject:nil];
+            [[node mutableChildNodes] addObjectsFromArray:[self outlineTreeWithMenu:[menuItem submenu] factoryDefaults:usesFactoryDefaults]];
             
         } else {
             if (![menuItem action]) { continue; }
-            
             NSString *keySpecChars = usesFactoryDefaults ? [self keySpecCharsForSelector:[menuItem action] factoryDefaults:YES] :
-                                                           [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:[menuItem keyEquivalent]
-                                                                                               modifierMask:[menuItem keyEquivalentModifierMask]];
+            [CEKeyBindingUtils keySpecCharsFromKeyEquivalent:[menuItem keyEquivalent]
+                                                modifierMask:[menuItem keyEquivalentModifierMask]];
             
-            item = [[CEKeyBindingItem alloc] initWithTitle:[menuItem title]
-                                                  selector:NSStringFromSelector([menuItem action])
-                                              keySpecChars:keySpecChars];
+            KeyBindingItem *item = [[KeyBindingItem alloc] initWithSelector:NSStringFromSelector([menuItem action]) keySpecChars:keySpecChars];
+            node = [[NamedTreeNode alloc] initWithName:[menuItem title] representedObject:item];
         }
-        [bindingItems addObject:item];
+        [tree addObject:node];
     }
     
-    return [bindingItems copy];
+    return [tree copy];
 }
 
 @end

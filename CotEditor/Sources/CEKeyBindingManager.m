@@ -60,7 +60,7 @@
 //------------------------------------------------------
 /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
 /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
-- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults
+- (nonnull NSArray<__kindof NSTreeNode *> *)outlineTreeWithDefaults:(BOOL)usesFactoryDefaults
 //------------------------------------------------------
 {
     @throw nil;
@@ -100,13 +100,13 @@
 
 //------------------------------------------------------
 /// save passed-in key binding settings
-- (BOOL)saveKeyBindings:(nonnull NSArray<id<CEKeyBindingItemInterface>> *)outlineData
+- (BOOL)saveKeyBindings:(nonnull NSArray<__kindof NSTreeNode *> *)outlineData
 //------------------------------------------------------
 {
     // create directory to save in user domain if not yet exist
     if (![self prepareUserSettingDirectory]) { return NO; }
     
-    NSDictionary<NSString *, id> *plistDict = [self keyBindingDictionaryFromOutlineData:outlineData];
+    NSDictionary<NSString *, id> *plistDict = [self keyBindingDictionaryFromOutlineNode:outlineData];
     NSURL *fileURL = [self keyBindingSettingFileURL];
     BOOL success = NO;
     
@@ -183,25 +183,24 @@
 
 //------------------------------------------------------
 /// create a plist-compatible dictionary to save from outlineView data
-- (nonnull NSDictionary<NSString *, id> *)keyBindingDictionaryFromOutlineData:(nonnull NSArray<CEKeyBindingItem *> *)outlineData
+- (nonnull NSDictionary<NSString *, id> *)keyBindingDictionaryFromOutlineNode:(nonnull NSArray<__kindof NSTreeNode *> *)outlineTree
 //------------------------------------------------------
 {
-    NSMutableDictionary<NSString *, id> *keyBindingDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, id> *tree = [NSMutableDictionary dictionary];
     
-    for (id<CEKeyBindingItemInterface> item in outlineData) {
-        if ([item isKindOfClass:[CEKeyBindingContainerItem class]]) {
-            NSArray<id<CEKeyBindingItemInterface>> *children = ((CEKeyBindingContainerItem *)item).children;
-            [keyBindingDict addEntriesFromDictionary:[self keyBindingDictionaryFromOutlineData:children]];
+    for (__kindof NSTreeNode *node in outlineTree) {
+        if ([[node childNodes] count] > 0) {
+            [tree addEntriesFromDictionary:[self keyBindingDictionaryFromOutlineNode:[node childNodes]]];
             
         } else {
-            CEKeyBindingItem *keyItem = (CEKeyBindingItem *)item;
+            KeyBindingItem *keyItem = (KeyBindingItem *)[node representedObject];
             if ([keyItem.keySpecChars length] > 0) {  // ignore if no shortcut key is assigned
-                keyBindingDict[keyItem.keySpecChars] = keyItem.selector;
+                tree[keyItem.keySpecChars] = keyItem.selector;
             }
         }
     }
     
-    return [keyBindingDict copy];
+    return [tree copy];
 }
 
 @end

@@ -26,18 +26,18 @@
  */
 
 #import "CEKeyBindingItem.h"
+#import "CEKeyBindingUtils.h"
 
 
-@implementation CEKeyBindingItem
+@implementation KeyBindingItem
 
 //------------------------------------------------------
 /// initialize
-- (nonnull instancetype)initWithTitle:(NSString *)title selector:(nonnull NSString *)selector keySpecChars:(nullable NSString *)keySpecChars
+- (nonnull instancetype)initWithSelector:(nonnull NSString *)selector keySpecChars:(nullable NSString *)keySpecChars
 //------------------------------------------------------
 {
     self = [super init];
     if (self) {
-        _title = title;
         _selector = selector;
         _keySpecChars = keySpecChars;
     }
@@ -53,24 +53,27 @@
     @throw nil;
 }
 
+
+//------------------------------------------------------
+- (nullable NSString *)printableKey
+//------------------------------------------------------
+{
+    return [CEKeyBindingUtils printableKeyStringFromKeySpecChars:[self keySpecChars]];
+}
+
 @end
 
 
-
-
-#pragma -
-
-@implementation CEKeyBindingContainerItem
+@implementation NamedTreeNode
 
 //------------------------------------------------------
 /// initialize
-- (nonnull instancetype)initWithTitle:(NSString *)title children:(nonnull NSArray<CEKeyBindingItem *> *)children
+- (nonnull instancetype)initWithName:(nonnull NSString *)name representedObject:(nullable id)representedObject
 //------------------------------------------------------
 {
-    self = [super init];
+    self = [super initWithRepresentedObject:representedObject];
     if (self) {
-        _title = title;
-        _children = children;
+        _name = name;
     }
     return self;
 }

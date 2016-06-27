@@ -39,7 +39,7 @@
 // Public methods
 - (nullable NSString *)snippetWithKeyEquivalent:(nullable NSString *)keyEquivalent modifierMask:(NSEventModifierFlags)modifierMask;
 
-- (nonnull NSArray<NSString *> *)snippetsWithFactoryDefaults:(BOOL)usesFactoryDefaults;
+- (nonnull NSArray<NSString *> *)snippetsWithDefaults:(BOOL)usesFactoryDefaults;
 - (void)saveSnippets:(nullable NSArray<NSString *> *)snippets;
 
 @end

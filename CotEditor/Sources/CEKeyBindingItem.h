@@ -26,35 +26,28 @@
  */
 
 @import Foundation;
+@import AppKit.NSTreeNode;
+
+@interface KeyBindingItem : NSObject
+
+@property (readonly, nonatomic, nonnull, copy) NSString *selector;
+@property (nonatomic, nullable, copy) NSString *keySpecChars;
+@property (nonatomic, nullable, copy) NSString *printableKey;
 
 
-@protocol CEKeyBindingItemInterface <NSObject>
-
-- (nonnull NSString *)title;
-
-@end
-
-
-@interface CEKeyBindingItem : NSObject <CEKeyBindingItemInterface>
-
-@property (readonly, nonatomic, nonnull) NSString *title;
-@property (readonly, nonatomic, nonnull) NSString *selector;
-@property (nonatomic, nullable) NSString *keySpecChars;
-
-
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)title selector:(nonnull NSString *)selector keySpecChars:(nullable NSString *)keySpecChars NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithSelector:(nonnull NSString *)selector keySpecChars:(nullable NSString *)keySpecChars NS_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
 @end
 
 
-@interface CEKeyBindingContainerItem : NSObject <CEKeyBindingItemInterface>
 
-@property (readonly, nonatomic, nonnull) NSString *title;
-@property (readonly, nonatomic, nonnull) NSArray<CEKeyBindingItem *> *children;
+@interface NamedTreeNode : NSTreeNode
+
+@property (readonly, nonatomic, nonnull, copy) NSString *name;
 
 
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)title children:(nonnull NSArray<CEKeyBindingItem *> *)children NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithName:(nonnull NSString *)name representedObject:(nullable id)representedObject NS_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
 @end

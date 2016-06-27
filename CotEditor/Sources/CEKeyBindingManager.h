@@ -27,9 +27,7 @@
  */
 
 #import "CESettingManager.h"
-
-
-@protocol CEKeyBindingItemInterface;
+@import AppKit;
 
 
 @interface CEKeyBindingManager : CESettingManager
@@ -45,9 +43,9 @@
 - (nonnull NSURL *)keyBindingSettingFileURL;
 
 - (BOOL)usesDefaultKeyBindings;
-- (nonnull NSArray<id<CEKeyBindingItemInterface>> *)bindingItemsForOutlineDataWithFactoryDefaults:(BOOL)usesFactoryDefaults;
+- (nonnull NSArray<__kindof NSTreeNode *> *)outlineTreeWithDefaults:(BOOL)usesFactoryDefaults;
 
-- (BOOL)saveKeyBindings:(nonnull NSArray<id<CEKeyBindingItemInterface>> *)outlineData;
+- (BOOL)saveKeyBindings:(nonnull NSArray<__kindof NSTreeNode *> *)outlineData;
 
 - (BOOL)validateKeySpecChars:(nonnull NSString *)keySpecChars oldKeySpecChars:(nullable NSString *)oldKeySpecChars error:(NSError * _Nullable __autoreleasing * _Nullable)outError;
 - (nonnull NSError *)errorWithMessageFormat:(nonnull NSString *)message keySpecChars:(nonnull NSString *)keySpecChars;
