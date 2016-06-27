@@ -1047,13 +1047,13 @@ CA
                 <menuItem title="New" id="Dq1-kY-xVh">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="newInDockMenu:" target="-1" id="cZf-JO-Cve"/>
+                        <action selector="newDocumentActivatingApplication:" target="-1" id="igT-QV-5Im"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Open…" id="d1B-5p-GZQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="openInDockMenu:" target="-1" id="maI-iN-1S6"/>
+                        <action selector="openDocumentActivatingApplication:" target="-1" id="Lgu-kI-vvL"/>
                     </connections>
                 </menuItem>
             </items>

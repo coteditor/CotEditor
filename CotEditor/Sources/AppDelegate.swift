@@ -261,7 +261,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Action Messages
     
     /// activate self and perform "New" menu action
-    @IBAction func newInDockMenu(_ sender: AnyObject?) {
+    @IBAction func newDocumentActivatingApplication(_ sender: AnyObject?) {
         
         NSApp.activateIgnoringOtherApps(true)
         NSDocumentController.shared().newDocument(sender)
@@ -269,7 +269,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// activate self and perform "Open..." menu action
-    @IBAction func openInDockMenu(_ sender: AnyObject?) {
+    @IBAction func openDocumentActivatingApplication(_ sender: AnyObject?) {
         
         NSApp.activateIgnoringOtherApps(true)
         NSDocumentController.shared().openDocument(sender)
