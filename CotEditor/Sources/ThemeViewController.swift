@@ -64,7 +64,7 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     deinit {
         self.popover?.delegate = nil  // avoid crash (2014-12-31)
@@ -72,15 +72,14 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "ThemeView"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// finish current editing
     override func viewWillDisappear() {
@@ -96,6 +95,7 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
         
         self.delegate?.didUpdate(theme: self.theme!)
     }
+    
     
     
     // MARK: Delegate

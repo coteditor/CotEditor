@@ -39,7 +39,7 @@ class ProgressViewController: NSViewController {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     required init?(progress: Progress, message: String) {
         
@@ -56,10 +56,6 @@ class ProgressViewController: NSViewController {
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "ProgressView"

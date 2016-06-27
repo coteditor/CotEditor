@@ -36,9 +36,10 @@ class FindPanelTextClipView: NSClipView {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     required init?(coder: NSCoder) {
+        
         super.init(coder: coder)
         
         // make sure frame to be initialized (Otherwise input area can be arranged in a wrong place.)

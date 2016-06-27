@@ -42,14 +42,16 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
     
     
     // MARK:
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
     
-    /// nib name
     override var nibName: String? {
         
         return "FileDropPane"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// setup UI
     override func viewDidLoad() {

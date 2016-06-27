@@ -56,7 +56,7 @@ class SyntaxMappingConflictsViewController: NSViewController {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         
@@ -73,10 +73,6 @@ class SyntaxMappingConflictsViewController: NSViewController {
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "SyntaxMappingConflictView"

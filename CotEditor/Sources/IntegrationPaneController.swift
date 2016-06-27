@@ -47,13 +47,13 @@ class IntegrationPaneController: NSViewController {
     }()
     
     private dynamic var linkURL: URL!
-    private dynamic var installed: Bool = false
+    private dynamic var installed = false
     private dynamic var warning: String?
     
     
     
     // MARK:
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
     
     /// nib name
     override var nibName: String? {
@@ -61,6 +61,9 @@ class IntegrationPaneController: NSViewController {
         return "IntegrationPane"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// update warnings before view appears
     override func viewWillAppear() {

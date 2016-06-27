@@ -41,7 +41,7 @@ class ServicesProvider: NSObject {
             document = try NSDocumentController.shared().openUntitledDocumentAndDisplay(false)
             
         } catch let error as NSError {
-            NSAlert(error: error).runModal()
+            NSApp.presentError(error)
             return
         }
         
@@ -69,7 +69,7 @@ class ServicesProvider: NSObject {
             // process only plain-text files
             guard NSWorkspace.shared().type(UTI, conformsToType: kUTTypeText as String) else {
                 let error = NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [NSURLErrorKey: fileURL])
-                NSAlert(error: error).runModal()
+                NSApp.presentError(error)
                 continue
             }
             

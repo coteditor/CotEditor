@@ -37,9 +37,8 @@ class WindowPaneController: NSViewController {
     
     
     // MARK:
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
     
-    /// nib name
     override var nibName: String? {
         
         return "WindowPane"

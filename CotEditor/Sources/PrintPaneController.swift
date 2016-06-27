@@ -38,22 +38,21 @@ class PrintPaneController: NSViewController {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     deinit {
         NotificationCenter.default().removeObserver(self)
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "PrintPane"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// setup UI
     override func viewDidLoad() {

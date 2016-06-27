@@ -50,22 +50,21 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     deinit {
         NotificationCenter.default().removeObserver(self)
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "AppearancePane"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// setup UI
     override func viewDidLoad() {

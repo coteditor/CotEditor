@@ -31,22 +31,24 @@ class GeneralPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private dynamic var hasUpdater: Bool = false
-    private dynamic var prerelease: Bool = false
+    private dynamic var hasUpdater = false
+    private dynamic var prerelease = false
     
     @IBOutlet private weak var updaterConstraint: NSLayoutConstraint?
     
     
     
     // MARK:
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
     
-    /// nib name
     override var nibName: String? {
         
         return "GeneralPane"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// setup UI
     override func viewDidLoad() {

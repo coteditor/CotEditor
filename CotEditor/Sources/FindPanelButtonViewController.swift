@@ -36,7 +36,7 @@ class FindPanelButtonViewController: NSViewController {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     deinit {
         UserDefaults.standard().removeObserver(self, forKeyPath: CEDefaultFindNextAfterReplaceKey)

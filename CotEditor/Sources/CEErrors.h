@@ -31,7 +31,7 @@
 // Error domain
 extern NSString *_Nonnull const CEErrorDomain;
 
-typedef NS_ENUM(OSStatus, CEErrorCode) {
+typedef NS_ENUM(NSInteger, CEErrorCode) {
     CEInvalidNameError = 1000,
     CEScriptNoTargetDocumentError,
     CEFileReadTooLargeError,

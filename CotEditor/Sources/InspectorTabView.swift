@@ -37,9 +37,8 @@ class InspectorTabView: NSTabView {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
-    /// initialize instance
     required init?(coder: NSCoder) {
         
         super.init(coder: coder)

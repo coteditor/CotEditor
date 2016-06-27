@@ -38,13 +38,17 @@ class KeyBindingsPaneController: NSViewController {
     
     
     
-    // MARK: View Controller Methods
+    // MARK:
+    // MARK: Lifecycle
     
-    /// nib name
     override var nibName: String? {
+        
         return "KeyBindingsPane"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// setup tab views
     override func viewDidLoad() {

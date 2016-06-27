@@ -25,7 +25,7 @@
  
  */
 
-import Cocoa
+import Foundation
 
 /// Container for application specific information.
 enum AppInfo {

@@ -42,17 +42,7 @@ enum MainMenuIndex: Int {
 }
 
 
-enum AppWebURL: String {
-    case website = "https://coteditor.com"
-    case issueTracker = "https://github.com/coteditor/CotEditor/issues"
-    
-    var url: URL {
-        return URL(string: self.rawValue)!
-    }
-}
-
-
-struct Help {
+private struct Help {
     static let anchors = [
         "releasenotes",
         "pref_general",
@@ -81,10 +71,26 @@ struct Help {
 }
 
 
+// constants
+private let ScriptEditorIdentifier = "com.apple.ScriptEditor2"
+
+
 // MARK:
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    // MARK: Enums
+    
+    private enum AppWebURL: String {
+        case website = "https://coteditor.com"
+        case issueTracker = "https://github.com/coteditor/CotEditor/issues"
+        
+        var url: URL {
+            return URL(string: self.rawValue)!
+        }
+    }
+    
     
     // MARK: Public Properties
     
@@ -94,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Private Properties
     
     private var didFinishLaunching = false
-    private var acknowledgementsWindowController: WebDocumentWindowController?
+    private lazy var acknowledgementsWindowController = WebDocumentWindowController(documentName: "Acknowledgements")!
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
@@ -103,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     override init() {
         
@@ -123,8 +129,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    
-    /// setup UI
     override func awakeFromNib() {
         
         // store key bindings in MainMenu.xib before menu is modified
@@ -173,7 +177,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// setup Sparkle framework
     func applicationWillFinishLaunching(_ notification: Notification) {
         
-        // setup updater
         UpdaterManager.shared.setup()
     }
     #endif
@@ -307,11 +310,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// show acknowlegements
     @IBAction func showAcknowledgements(_ sender: AnyObject?) {
         
-        if self.acknowledgementsWindowController == nil {
-            self.acknowledgementsWindowController = WebDocumentWindowController(documentName: "Acknowledgements")
-        }
-        
-        self.acknowledgementsWindowController?.showWindow(sender)
+        self.acknowledgementsWindowController.showWindow(sender)
     }
     
     
@@ -319,9 +318,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func openAppleScriptDictionary(_ sender: AnyObject?) {
         
         let appURL = Bundle.main().bundleURL
-        let scriptEditorIdentifier = "com.apple.ScriptEditor2"
         
-        NSWorkspace.shared().open([appURL], withAppBundleIdentifier: scriptEditorIdentifier,
+        NSWorkspace.shared().open([appURL], withAppBundleIdentifier: ScriptEditorIdentifier,
                                   options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil)
     }
     
@@ -376,7 +374,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// build encoding menu in the main menu
     func buildEncodingMenu() {
         
-        guard let menu = self.encodingsMenu else { return }
+        let menu = self.encodingsMenu!
         
         CEEncodingManager.shared().updateChangeEncoding(menu)
     }
@@ -385,7 +383,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// build syntax style menu in the main menu
     func buildSyntaxMenu() {
         
-        guard let menu = self.syntaxStylesMenu else { return }
+        let menu = self.syntaxStylesMenu!
         
         menu.removeAllItems()
         
@@ -413,7 +411,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// build theme menu in the main menu
      func buildThemeMenu() {
         
-        guard let menu = self.themesMenu else { return }
+        let menu = self.themesMenu!
         
         menu.removeAllItems()
         

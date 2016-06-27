@@ -38,7 +38,7 @@ class SyntaxTermsEditViewController: NSViewController {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     required init(syntaxType: SyntaxType) {
         
@@ -49,6 +49,7 @@ class SyntaxTermsEditViewController: NSViewController {
     
     
     required init?(coder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -58,15 +59,14 @@ class SyntaxTermsEditViewController: NSViewController {
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "SyntaxTermsEditView"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// setup binding with desired key
     override func viewDidLoad() {

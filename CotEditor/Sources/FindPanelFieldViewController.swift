@@ -44,7 +44,7 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     deinit {
         UserDefaults.standard().removeObserver(self, forKeyPath: CEDefaultFindHistoryKey)

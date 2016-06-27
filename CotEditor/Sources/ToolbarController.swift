@@ -70,7 +70,7 @@ class ToolbarController: NSObject {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     deinit {
         NotificationCenter.default().removeObserver(self)
@@ -82,7 +82,7 @@ class ToolbarController: NSObject {
     
     
     
-    // MARK:
+    // MARK: Object Methods
     
     /// setup UI
     override func awakeFromNib() {

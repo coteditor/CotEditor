@@ -61,14 +61,16 @@ class ConsolePanelController: NSWindowController {
     
     
     // MARK:
-    // MARK: WindowController Methods
+    // MARK: Lifecycle
     
-    /// nib name
     override var windowNibName: String? {
         
         return "ConsolePanel"
     }
     
+    
+    
+    // MARK: WindowController Methods
     
     /// setup UI
     override func windowDidLoad() {

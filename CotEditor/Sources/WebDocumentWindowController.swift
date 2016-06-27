@@ -39,7 +39,7 @@ class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     required init?(documentName: String) {
         
@@ -57,14 +57,14 @@ class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     }
     
     
-    
-    // MARK: Window Controller Methods
-    
-    /// nib name
     override var windowNibName: String? {
         
         return "WebDocumentWindow"
     }
+    
+    
+    
+    // MARK: Window Controller Methods
     
     /// let webView load document file
     override func windowDidLoad() {
@@ -82,7 +82,7 @@ class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     /// open external link in default browser
     func webView(_ webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: URLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
         
-        guard let url = request.url, let _ = url.host else {
+        guard let url = request.url where url.host != nil else {
             listener.use()
             return
         }

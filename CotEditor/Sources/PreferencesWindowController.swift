@@ -50,16 +50,17 @@ class PreferencesWindowController: NSWindowController, NSWindowDelegate {
     
     
     
-    
     // MARK:
-    // MARK: Window Controller Methods
+    // MARK: Lifecycle
     
-    /// window nib name
     override var windowNibName: String? {
         
         return "PreferencesWindow"
     }
     
+    
+    
+    // MARK: Window Controller Methods
     
     /// set initial pane
     override func windowDidLoad() {

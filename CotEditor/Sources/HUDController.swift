@@ -66,7 +66,7 @@ class HUDController: NSViewController {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     required init?(symbol: HUDSymbol) {
         
@@ -82,15 +82,14 @@ class HUDController: NSViewController {
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "HUDView"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// setup UI
     override func viewDidLoad() {

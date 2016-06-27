@@ -54,22 +54,21 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     deinit {
         NotificationCenter.default().removeObserver(self)
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "FormatPane"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     // setup UI
     override func viewDidLoad() {

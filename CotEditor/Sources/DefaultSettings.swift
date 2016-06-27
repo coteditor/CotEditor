@@ -105,7 +105,7 @@ struct DefaultEncodings {
     ]
     
     static var objects: [NSNumber] {
-        return DefaultEncodings.encodings.map{encoding in NSNumber(value: encoding)}
+        return DefaultEncodings.encodings.map { encoding in NSNumber(value: encoding) }
     }
 }
 

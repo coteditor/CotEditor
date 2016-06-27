@@ -31,7 +31,7 @@ class AntialiasingTextField: NSTextField {
     
     // MARK: Public Properties
     
-    var disablesAntialiasing: Bool = false
+    var disablesAntialiasing = false
     
     
     

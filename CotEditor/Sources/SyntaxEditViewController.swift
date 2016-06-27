@@ -93,7 +93,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     private let originalStyleName: String
     private dynamic var style: NSMutableDictionary
     private dynamic var message: String?
-    private dynamic var isStyleNameValid: Bool = true
+    private dynamic var isStyleNameValid = true
     private let isBundledStyle: Bool
     private let isCustomized: Bool
     
@@ -107,7 +107,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     required init?(style styleName: String, mode: SyntaxEditSheetMode) {
         
@@ -149,16 +149,14 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "SyntaxEditView"
     }
     
     
+    
+    // MARK: View Controller Methods
     
     /// setup UI
     override func viewDidLoad() {

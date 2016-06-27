@@ -71,14 +71,14 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         self.outlineData = self.manager.bindingItemsForOutlineData(withFactoryDefaults: false)
-        self.restoreble = self.manager.usesDefaultKeyBindings()
+        self.restoreble = !self.manager.usesDefaultKeyBindings()
     }
     
     
@@ -88,15 +88,14 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "MenuKeyBindingsEditView"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// finish current editing
     override func viewDidDisappear() {
@@ -304,9 +303,8 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
     
     
     
-    
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         
@@ -322,15 +320,14 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
     }
     
     
-    
-    // MARK: Key Bindings View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "TextKeyBindingsEditView"
     }
     
+    
+    
+    // MARK: Key Bindings View Controller Methods
     
     /// corresponding key binding manager
     private override var manager: CEKeyBindingManager {

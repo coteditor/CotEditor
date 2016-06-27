@@ -47,7 +47,7 @@ class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         
@@ -64,9 +64,6 @@ class EncodingListViewController: NSViewController, NSTableViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-    // MARK: View Controller Methods
     
     override var nibName: String? {
         

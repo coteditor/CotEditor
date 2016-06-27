@@ -5,7 +5,7 @@
  CotEditor
  http://coteditor.com
  
- Created by nakamuxu on 2016-06-09.
+ Created by 1024jp on 2016-06-09.
  
  ------------------------------------------------------------------------------
  

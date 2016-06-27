@@ -1,9 +1,9 @@
 /*
  
- CEFindPanelLayoutManager.m
+ FindPanelLayoutManager.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-03-04.
  

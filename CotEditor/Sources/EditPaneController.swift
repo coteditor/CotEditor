@@ -32,19 +32,21 @@ class EditPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private dynamic var completionHintMessage: String = ""
+    private dynamic var completionHintMessage = ""
     
     
     
     // MARK:
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
     
-    /// nib name
     override var nibName: String? {
         
         return "EditPane"
     }
     
+    
+    
+    // MARK: View Controller Methods
     
     /// setup UI
     override func viewDidLoad() {

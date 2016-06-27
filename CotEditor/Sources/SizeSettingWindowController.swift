@@ -3,7 +3,7 @@
  SizeSettingWindowController.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-03-26.
  
@@ -36,19 +36,22 @@ class SizeSettingWindowController: NSWindowController {
     
     
     // MARK:
-    // MARK: Window Controller Methods
+    // MARK: Lifecycle
     
-    /// nib name
     override var windowNibName: String? {
         
         return "SizeSettingWindow"
     }
     
     
+    
+    // MARK: Window Controller Methods
+    
     /// setup UI
     override func windowDidLoad() {
         
         super.windowDidLoad()
+        
         self.window?.center()
     }
     

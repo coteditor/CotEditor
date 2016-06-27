@@ -37,7 +37,7 @@ class GoToLineViewController: NSViewController {
     
     
     // MARK:
-    // MARK: Creation
+    // MARK: Lifecycle
     
     required init?(textView: NSTextView) {
         
@@ -62,10 +62,6 @@ class GoToLineViewController: NSViewController {
     }
     
     
-    
-    // MARK: View Controller Methods
-    
-    /// nib name
     override var nibName: String? {
         
         return "GoToLineView"

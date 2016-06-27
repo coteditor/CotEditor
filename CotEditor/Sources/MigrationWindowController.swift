@@ -31,9 +31,9 @@ class MigrationWindowController: NSWindowController {
     
     // MARK: Public Properties
     
-    dynamic var didMigrateSyntaxStyles: Bool = false
-    dynamic var didMigrateTheme: Bool = false
-    dynamic var didResetKeyBindings: Bool = false
+    dynamic var didMigrateSyntaxStyles = false
+    dynamic var didMigrateTheme = false
+    dynamic var didResetKeyBindings = false
     
     
     // MARK: Private Properties
@@ -51,13 +51,16 @@ class MigrationWindowController: NSWindowController {
     
     
     // MARK:
-    // MARK: Window Controller Methods
+    // MARK: Lifecycle
     
-    /// nib name
     override var windowNibName: String? {
+        
         return "MigrationWindow"
     }
     
+    
+    
+    // MARK: Window Controller Methods
     
     /// setup UI
     override func windowDidLoad() {

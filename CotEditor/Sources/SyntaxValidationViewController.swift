@@ -38,13 +38,13 @@ class SyntaxValidationViewController: NSViewController {
     
     
     // MARK:
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
     
-    /// nib name
     override var nibName: String? {
         
         return "SyntaxValidationView"
     }
+    
     
     
     // MARK: Public Methods

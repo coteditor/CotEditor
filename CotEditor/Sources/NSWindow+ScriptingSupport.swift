@@ -3,7 +3,7 @@
  NSWindow+ScriptingSupport.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-03-12.
  
