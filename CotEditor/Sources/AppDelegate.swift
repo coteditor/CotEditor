@@ -78,7 +78,7 @@ private let ScriptEditorIdentifier = "com.apple.ScriptEditor2"
 // MARK:
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSResponder, NSApplicationDelegate {
     
     // MARK: Enums
     
@@ -121,6 +121,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ValueTransformer.setValueTransformer(HexColorTransformer(), forName: "HexColorTransformer" as ValueTransformerName)
         
         super.init()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
     
     
