@@ -3,9 +3,7 @@
 language: objective-c
 osx_image: xcode8
 xcode_workspace: CotEditor.xcworkspace
-xcode_scheme:
-  - CotEditor
-  - CotEditor -AppStore
+xcode_scheme: CotEditor
 before_install:
   - gem install cocoapods
 script: xcodebuild -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO

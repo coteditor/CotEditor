@@ -105,6 +105,7 @@
 		2A41CB411C39167500F9122B /* CEDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3F1C39167500F9122B /* CEDefaults.m */; };
 		2A41CB461C391B7400F9122B /* CEErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB451C391B7400F9122B /* CEErrors.m */; };
 		2A41CB471C391B7400F9122B /* CEErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB451C391B7400F9122B /* CEErrors.m */; };
+		2A42579C1D2298100086DAAD /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */; };
 		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A436DDB1A425AE500275FD4 /* CEIncompatibleCharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDA1A425AE500275FD4 /* CEIncompatibleCharsViewController.m */; };
@@ -2573,6 +2574,7 @@
 				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
 				2A476CAE1D09C8C80088E37A /* URLExtensionsTests.swift in Sources */,
 				2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */,
+				2A42579C1D2298100086DAAD /* ProgressViewController.swift in Sources */,
 				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
 				2A7135831CFFDC6600ADA555 /* FormattersTests.swift in Sources */,
 				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
@@ -3396,6 +3398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "CotEditor-Swift.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
 			};
 			name = Debug;
@@ -3411,6 +3414,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "CotEditor-Swift.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
 			};
 			name = Release;
@@ -3483,6 +3487,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
@@ -3527,6 +3532,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
