@@ -81,7 +81,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         self.setupEncodingMenus()
         self.setupSyntaxStyleMenus()
         
-        NotificationCenter.default().addObserver(self, selector: #selector(setupEncodingMenus), name: .CEEncodingListDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(setupEncodingMenus), name: EncodingManager.ListDidUpdateNotification, object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: .CESyntaxListDidUpdate, object: nil)
     }
     
@@ -340,7 +340,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         guard let inOpenMenu = self.inOpenEncodingMenu?.menu,
             let inNewMenu = self.inNewEncodingMenu?.menu else { return }
         
-        let menuItems = CEEncodingManager.shared().encodingMenuItems
+        let menuItems = EncodingManager.shared.encodingMenuItems()
         
         inOpenMenu.removeAllItems()
         inNewMenu.removeAllItems()

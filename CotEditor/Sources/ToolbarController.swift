@@ -94,7 +94,7 @@ class ToolbarController: NSObject {
         self.buildSyntaxPopupButton()
         
         // observe popup menu line-up change
-        NotificationCenter.default().addObserver(self, selector: #selector(buildEncodingPopupButton), name: .CEEncodingListDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(buildEncodingPopupButton), name: EncodingManager.ListDidUpdateNotification, object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .CESyntaxListDidUpdate, object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .CESyntaxHistoryDidUpdate, object: nil)
     }
@@ -171,7 +171,7 @@ class ToolbarController: NSObject {
         
         guard let popUpButton = self.encodingPopupButton else { return }
         
-        CEEncodingManager.shared().updateChangeEncoding(popUpButton.menu!)
+        EncodingManager.shared.updateChangeEncodingMenu(popUpButton.menu!)
         
         self.invalidateEncodingSelection()
     }

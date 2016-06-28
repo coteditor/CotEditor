@@ -27,10 +27,12 @@
  */
 
 #import "CEDocument+ScriptingSupport.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CETextSelection.h"
 #import "CEEditorWrapper+Editor.h"
 #import "CESyntaxStyle.h"
-#import "CEEncodingManager.h"
 
 
 @implementation CEDocument (ScriptingSupport)
@@ -253,7 +255,7 @@
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
-    NSStringEncoding encoding = [CEEncodingManager encodingFromName:encodingName];
+    NSStringEncoding encoding = [EncodingManager encodingFromName:encodingName];
     
     if (encoding == NSNotFound) {
         return @NO;
@@ -276,7 +278,7 @@
 {
     NSDictionary<NSString *, id> *arguments = [command evaluatedArguments];
     NSString *encodingName = arguments[@"newEncoding"];
-    NSStringEncoding encoding = [CEEncodingManager encodingFromName:encodingName];
+    NSStringEncoding encoding = [EncodingManager encodingFromName:encodingName];
     
     BOOL success = [self reinterpretWithEncoding:encoding error:nil];
 

@@ -49,6 +49,13 @@ extern NSString *_Nonnull const CELicenseKey;
 extern NSString *_Nonnull const CEDescriptionKey;
 
 
+// Original special encoding type
+extern NSInteger const CEAutoDetectEncoding;
+
+// Max length to scan encoding declaration
+extern NSUInteger const kMaxEncodingScanLength;
+
+
 // Convenient functions
 /// compare CGFloats
 extern BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2);

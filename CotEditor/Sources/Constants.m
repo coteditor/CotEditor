@@ -49,6 +49,13 @@ NSString *_Nonnull const CELicenseKey = @"license";
 NSString *_Nonnull const CEDescriptionKey = @"description";
 
 
+// Encoding menu
+const NSInteger CEAutoDetectEncoding = 0;
+
+// Max length to scan encoding declaration
+const NSUInteger kMaxEncodingScanLength = 2000;
+
+
 // Convenient functions
 /// compare CGFloats
 BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2) {

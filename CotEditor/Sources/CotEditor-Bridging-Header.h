@@ -3,7 +3,6 @@
 //
 
 #import "CEDefaults.h"
-#import "CEEncodings.h"
 #import "Constants.h"
 
 
@@ -38,7 +37,6 @@
 // App Delegate
 #import "CEThemeManager.h"
 #import "CESyntaxManager.h"
-#import "CEEncodingManager.h"
 #import "CEScriptManager.h"
 
 #import "CEOpacityPanelController.h"
@@ -48,7 +46,6 @@
 #import "CEThemeDictionaryKeys.h"
 
 // Toolbar Controller
-#import "CEEncodingManager.h"
 #import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
 #import "NSString+CENewLine.h"

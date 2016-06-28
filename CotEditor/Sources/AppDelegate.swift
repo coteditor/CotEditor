@@ -147,7 +147,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         CEScriptManager.shared().buildScriptMenu(self)
         
         // observe setting list updates
-        NotificationCenter.default().addObserver(self, selector: #selector(buildEncodingMenu), name: .CEEncodingListDidUpdate, object: nil)
+        NotificationCenter.default().addObserver(self, selector: #selector(buildEncodingMenu), name: EncodingManager.ListDidUpdateNotification, object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(buildSyntaxMenu), name: .CESyntaxListDidUpdate, object: nil)
         NotificationCenter.default().addObserver(self, selector: #selector(buildThemeMenu), name: .CEThemeListDidUpdate, object: nil)
     }
@@ -382,7 +382,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         
         let menu = self.encodingsMenu!
         
-        CEEncodingManager.shared().updateChangeEncoding(menu)
+        EncodingManager.shared.updateChangeEncodingMenu(menu)
     }
     
     

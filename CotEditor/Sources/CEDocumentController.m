@@ -27,9 +27,10 @@
  */
 
 #import "CEDocumentController.h"
-#import "CEEncodingManager.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEDefaults.h"
-#import "CEEncodings.h"
 #import "CEErrors.h"
 #import "Constants.h"
 
@@ -263,7 +264,7 @@
 - (void)buildEncodingPopupButton
 // ------------------------------------------------------
 {
-    NSArray<NSMenuItem *> *items = [[CEEncodingManager sharedManager] encodingMenuItems];
+    NSArray<NSMenuItem *> *items = [[EncodingManager shared] encodingMenuItems];
     NSMenu *menu = [[self accessoryEncodingMenu] menu];
     
     [menu removeAllItems];
