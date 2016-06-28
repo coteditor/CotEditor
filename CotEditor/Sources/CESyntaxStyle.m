@@ -32,7 +32,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEOutlineParseOperation.h"
 #import "CESyntaxHighlightParseOperation.h"
 #import "CESyntaxDictionaryKeys.h"
 #import "CEThemableProtocol.h"
@@ -51,7 +50,7 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, id> *highlightDictionary;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSCharacterSet *> *simpleWordsCharacterSets;
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *pairedQuoteTypes;  // dict for quote pair to extract with comment
-@property (nonatomic, nullable, copy) NSArray<NSDictionary *> *outlineDefinitions;
+@property (nonatomic, nullable, copy) NSArray<OutlineDefinition *> *outlineDefinitions;
 
 @property (nonatomic, nullable, copy) NSDictionary<NSString *, NSArray *> *cachedHighlights;  // extracted results cache of the last whole string highlighs
 @property (nonatomic, nullable, copy) NSString *highlightCacheHash;  // MD5 hash
@@ -263,7 +262,17 @@ static NSArray<NSString *> *kSyntaxDictKeys;
             // store as properties
             _highlightDictionary = [mutableDictionary copy];
             
-            _outlineDefinitions = mutableDictionary[CESyntaxOutlineMenuKey];
+            // parse outline definitions
+            NSMutableArray<OutlineDefinition *> *outlineDefinitions = [NSMutableArray arrayWithCapacity:[mutableDictionary[CESyntaxOutlineMenuKey] count]];
+            for (NSDictionary *definition in mutableDictionary[CESyntaxOutlineMenuKey]) {
+                OutlineDefinition *item = [[OutlineDefinition alloc] initWithDefinition:definition];
+                if (item) {
+                    [outlineDefinitions addObject:item];
+                }
+            }
+            _outlineDefinitions = [outlineDefinitions copy];
+            
+            
         }
     }
     return self;
@@ -377,7 +386,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     NSString *string = [NSString stringWithString:[[self textStorage] string]];
     NSRange range = NSMakeRange(0, [string length]);
     
-    CEOutlineParseOperation *operation = [[CEOutlineParseOperation alloc] initWithDefinitions:[self outlineDefinitions]];
+    OutlineParseOperation *operation = [[OutlineParseOperation alloc] initWithDefinitions:[self outlineDefinitions]];
     [operation setString:string];
     [operation setParseRange:range];
     

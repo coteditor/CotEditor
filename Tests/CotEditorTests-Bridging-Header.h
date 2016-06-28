@@ -7,6 +7,7 @@
 #import "CESyntaxStyle.h"
 #import "CESyntaxHighlightParseOperation.h"
 #import "CEOutlineItem.h"
+#import "CESyntaxDictionaryKeys.h"
 
 // Character Info Tests
 #import "CEControlCharacerNames.h"

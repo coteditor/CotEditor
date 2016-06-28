@@ -54,3 +54,7 @@
 #import "NSString+CENewLine.h"
 
 #import "CETextFinder.h"
+
+// Syntax Style
+#import "CEOutlineItem.h"
+#import "CESyntaxDictionaryKeys.h"
