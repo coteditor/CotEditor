@@ -39,9 +39,6 @@
 #import "CESyntaxManager.h"
 #import "CEScriptManager.h"
 
-#import "CEOpacityPanelController.h"
-#import "CEColorCodePanelController.h"
-
 // Theme View Controller
 #import "CEThemeDictionaryKeys.h"
 
@@ -55,3 +52,7 @@
 // Syntax Style
 #import "CEOutlineItem.h"
 #import "CESyntaxDictionaryKeys.h"
+
+#import "CEUnicodeCharacter.h"
+
+#import "CETextView.h"

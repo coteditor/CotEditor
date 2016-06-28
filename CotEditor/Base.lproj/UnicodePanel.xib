@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" customClass="CEUnicodeInputPanelController">
+        <customObject id="-2" customClass="UnicodeInputPanelController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="window" destination="Y41-ro-Xeo" id="PWB-vA-Xu7"/>
             </connections>
@@ -54,7 +54,7 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="insertToDocument:" target="-2" id="kxS-dD-7R4"/>
-                            <binding destination="-2" name="enabled" keyPath="valid" id="XcT-s6-szS"/>
+                            <binding destination="-2" name="enabled" keyPath="isValid" id="WL3-7G-6Zb"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="gA5-1J-lea" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
@@ -70,9 +70,9 @@ DQ
                                     <string key="NSNullPlaceholder">Invalid code</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="-2" name="hidden" keyPath="unicode.length" id="VP2-7w-0rq">
+                            <binding destination="-2" name="hidden" keyPath="unicode" id="Jvl-4K-DRa">
                                 <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    <string key="NSValueTransformerName">NSIsNil</string>
                                 </dictionary>
                             </binding>
                         </connections>
@@ -107,9 +107,6 @@ DQ
                     <constraint firstItem="gA5-1J-lea" firstAttribute="leading" secondItem="iYt-Yd-KXc" secondAttribute="trailing" constant="8" symbolic="YES" id="z5c-jb-0eI"/>
                 </constraints>
             </view>
-            <connections>
-                <outlet property="delegate" destination="-2" id="3EJ-ju-Wzb"/>
-            </connections>
             <point key="canvasLocation" x="448" y="556"/>
         </window>
     </objects>

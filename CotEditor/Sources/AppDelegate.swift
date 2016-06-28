@@ -302,14 +302,14 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     /// show color code editor panel
     @IBAction func showColorCodePanel(_ sender: AnyObject?) {
         
-        CEColorCodePanelController.shared().showWindow(sender)
+        ColorCodePanelController.shared.showWindow(sender)
     }
     
     
     /// show editor opacity panel
     @IBAction func showOpacityPanel(_ sender: AnyObject?) {
         
-        CEOpacityPanelController.shared().showWindow(sender)
+        OpacityPanelController.shared.showWindow(sender)
     }
     
     

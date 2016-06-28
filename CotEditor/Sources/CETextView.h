@@ -84,23 +84,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 
 
 
-#pragma mark - CETextView+Accessories.m
-
-@interface CETextView (UnicodeInput)
-
-- (IBAction)showUnicodeInputPanel:(nullable id)sender;
-
-@end
-
-
-@interface CETextView (ColorCode)
-
-- (IBAction)editColorCode:(nullable id)sender;
-
-@end
-
-
-
 #pragma mark - CETextView+Indentation.m
 
 @interface CETextView (Indentation)

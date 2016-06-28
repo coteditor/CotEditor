@@ -313,7 +313,7 @@
 
 
 
-/* MARK: CEColorCodePanelController */
+/* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "カラーコードを挿入";
 // color list name

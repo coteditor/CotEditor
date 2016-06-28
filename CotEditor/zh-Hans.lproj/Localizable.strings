@@ -310,7 +310,7 @@
 
 
 
-/* MARK: CEColorCodePanelController */
+/* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "插入颜色代码";
 // color list name

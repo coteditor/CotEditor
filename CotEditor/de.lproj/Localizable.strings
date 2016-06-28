@@ -311,7 +311,7 @@
 
 
 
-/* MARK: CEColorCodePanelController */
+/* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "Farbcode Hinzufügen";
 // color list name
