@@ -107,7 +107,7 @@ static const NSTimeInterval kUpdateInterval = 0.42;
 {
     [[self updateTimer] invalidate];
     
-    [self setIncompatibleCharacers:[[[self document] string] scanIncompatibleCharactersForEncoding:[[self document] encoding]]];
+    [self setIncompatibleCharacers:[[[self document] string] scanIncompatibleCharactersForEncoding:[[self document] encoding]] ?: @[]];
     [self setNeedsUpdate:NO];
     
     if ([[self delegate] respondsToSelector:@selector(document:didUpdateIncompatibleCharacters:)]) {

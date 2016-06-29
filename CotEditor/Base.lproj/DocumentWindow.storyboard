@@ -238,7 +238,7 @@
         <!--Sidebar View Controller-->
         <scene sceneID="Z70-6I-Rpr">
             <objects>
-                <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="CESidebarViewController" sceneMemberID="viewController">
+                <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="SidebarViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="252" y="0.0" width="140" height="300"/>

@@ -4,9 +4,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEIncompatibleCharsViewController">
+        <customObject id="-2" customClass="IncompatibleCharactersViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
-                <outlet property="incompatibleCharsController" destination="avY-Hl-jdD" id="Bth-21-9pY"/>
+                <outlet property="incompatibleCharsController" destination="avY-Hl-jdD" id="oZB-1u-2h0"/>
                 <outlet property="view" destination="jLy-9i-VMu" id="wXO-ld-01i"/>
             </connections>
         </customObject>
@@ -187,7 +187,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="hidden" keyPath="charAvailable" id="pqa-uq-qMD"/>
+                        <binding destination="-2" name="hidden" keyPath="characterAvailable" id="OFe-im-HV0"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rrr-tD-nLq">
@@ -212,7 +212,7 @@
                 <constraint firstItem="1fA-a5-pHs" firstAttribute="leading" secondItem="jLy-9i-VMu" secondAttribute="leading" constant="12" id="yr3-h4-MVA"/>
             </constraints>
         </view>
-        <arrayController objectClassName="CEIncompatibleCharacter" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="avY-Hl-jdD" userLabel="Incompatible Chars Controller">
+        <arrayController objectClassName="CEIncompatibleCharacter" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="avY-Hl-jdD">
             <declaredKeys>
                 <string>lineNumber</string>
                 <string>character</string>

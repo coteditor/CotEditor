@@ -53,3 +53,11 @@
 #import "CEUnicodeCharacter.h"
 
 #import "CETextView.h"
+
+// Sidebar View Controllers
+
+#import "CEDocumentAnalyzer.h"
+#import "CEIncompatibleCharacterScanner.h"
+#import "CEIncompatibleCharacter.h"
+#import "CEDocument.h"
+#import "CEEditorWrapper+Editor.h"

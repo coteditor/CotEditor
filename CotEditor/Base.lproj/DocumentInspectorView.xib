@@ -5,7 +5,7 @@
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
+        <customObject id="-2" customClass="DocumentInspectorViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="kdC-U7-dlL" id="SjA-TU-mRy"/>
             </connections>

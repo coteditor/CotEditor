@@ -26,8 +26,10 @@
  */
 
 #import "CEWindowContentViewController.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEMainViewController.h"
-#import "CESidebarViewController.h"
 #import "CEDefaults.h"
 
 
