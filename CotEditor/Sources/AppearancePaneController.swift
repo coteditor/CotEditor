@@ -33,10 +33,10 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     
     // MARK: Private Properties
     
-    private dynamic let invisibleSpaces: [String] = CEInvisibles.spaceStrings()
-    private dynamic let invisibleTabs: [String] = CEInvisibles.tabStrings()
-    private dynamic let invisibleNewLines: [String] = CEInvisibles.newLineStrings()
-    private dynamic let invisibleFullWidthSpaces: [String] = CEInvisibles.fullwidthSpaceStrings()
+    private dynamic let invisibleSpaces: [String] = Invisible.spaces
+    private dynamic let invisibleTabs: [String] = Invisible.tabs
+    private dynamic let invisibleNewLines: [String] = Invisible.newLines
+    private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullWidthSpaces
     
     private var themeViewController: ThemeViewController?
     private var themeNames = [String]()

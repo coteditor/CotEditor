@@ -77,16 +77,15 @@ class FindPanelLayoutManager: NSLayoutManager {
             let showsFullWidthSpace = defaults.bool(forKey: CEDefaultShowInvisibleFullwidthSpaceKey)
             let showsOtherInvisibles = defaults.bool(forKey: CEDefaultShowOtherInvisibleCharsKey)
             
-            let space = AttributedString(string: CEInvisibles.string(with: .space, index: UInt(defaults.integer(forKey: CEDefaultInvisibleSpaceKey))),
+            let space = AttributedString(string: Invisible.space(index: defaults.integer(forKey: CEDefaultInvisibleSpaceKey)),
                                          attributes: attributes)
-            let tab = AttributedString(string: CEInvisibles.string(with: .tab, index: UInt(defaults.integer(forKey: CEDefaultInvisibleTabKey))),
+            let tab = AttributedString(string: Invisible.tab(index: defaults.integer(forKey: CEDefaultInvisibleTabKey)),
                                        attributes: attributes)
-            let newLine = AttributedString(string: CEInvisibles.string(with: .newLine, index: UInt(defaults.integer(forKey: CEDefaultInvisibleNewLineKey))),
+            let newLine = AttributedString(string: Invisible.newLine(index: defaults.integer(forKey: CEDefaultInvisibleNewLineKey)),
                                            attributes: attributes)
-            let fullWidthSpace = AttributedString(string: CEInvisibles.string(with: .fullWidthSpace, index: UInt(defaults.integer(forKey: CEDefaultInvisibleFullwidthSpaceKey))),
+            let fullWidthSpace = AttributedString(string: Invisible.fullWidthSpace(index: defaults.integer(forKey: CEDefaultInvisibleFullwidthSpaceKey)),
                                                   attributes: fullwidthAttributes)
-            let verticalTab = AttributedString(string: CEInvisibles.string(with: .verticalTab, index: 0),
-                                               attributes: attributes)
+            let verticalTab = AttributedString(string: Invisible.verticalTab, attributes: attributes)
             
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<NSMaxRange(glyphsToShow) {

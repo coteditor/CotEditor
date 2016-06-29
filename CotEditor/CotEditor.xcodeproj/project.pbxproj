@@ -98,8 +98,6 @@
 		2A3CC1F71C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
 		2A3CC1F81C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
-		2A41CB3D1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
-		2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */; };
 		2A41CB401C39167500F9122B /* CEDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3F1C39167500F9122B /* CEDefaults.m */; };
 		2A41CB411C39167500F9122B /* CEDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB3F1C39167500F9122B /* CEDefaults.m */; };
 		2A41CB461C391B7400F9122B /* CEErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A41CB451C391B7400F9122B /* CEErrors.m */; };
@@ -120,6 +118,8 @@
 		2A4257B71D23153B0086DAAD /* UnicodeInputPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B51D23153B0086DAAD /* UnicodeInputPanelController.swift */; };
 		2A4257B91D2392A40086DAAD /* CETextView+Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* CETextView+Accessories.swift */; };
 		2A4257BA1D2392A40086DAAD /* CETextView+Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* CETextView+Accessories.swift */; };
+		2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
+		2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
 		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A436DDB1A425AE500275FD4 /* CEIncompatibleCharsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDA1A425AE500275FD4 /* CEIncompatibleCharsViewController.m */; };
@@ -628,8 +628,6 @@
 		2A4064021B9DA7C60032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
 		2A4064041B9DA8BE0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
 		2A4064061B9DAA4E0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
-		2A41CB3B1C3906BA00F9122B /* CEInvisibles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEInvisibles.h; sourceTree = "<group>"; };
-		2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEInvisibles.m; sourceTree = "<group>"; };
 		2A41CB3F1C39167500F9122B /* CEDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDefaults.m; sourceTree = "<group>"; };
 		2A41CB421C39168C00F9122B /* CEDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEDefaults.h; sourceTree = "<group>"; };
 		2A41CB441C391B7400F9122B /* CEErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEErrors.h; sourceTree = "<group>"; };
@@ -640,6 +638,7 @@
 		2A4257B21D2309AB0086DAAD /* OpacityPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpacityPanelController.swift; sourceTree = "<group>"; };
 		2A4257B51D23153B0086DAAD /* UnicodeInputPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeInputPanelController.swift; sourceTree = "<group>"; };
 		2A4257B81D2392A40086DAAD /* CETextView+Accessories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CETextView+Accessories.swift"; sourceTree = "<group>"; };
+		2A4257BB1D239F850086DAAD /* Invisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invisible.swift; sourceTree = "<group>"; };
 		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInspectorView.xib; sourceTree = "<group>"; };
 		2A436DCF1A4249CB00275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IncompatibleCharsView.xib; sourceTree = "<group>"; };
 		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
@@ -1220,8 +1219,6 @@
 				2A7A61041C9EA92500C658EA /* CEGeometry.h */,
 				2A149DD319032CC900A9D6EF /* CEKeyBindingUtils.h */,
 				2A149DD419032CC900A9D6EF /* CEKeyBindingUtils.m */,
-				2A41CB3B1C3906BA00F9122B /* CEInvisibles.h */,
-				2A41CB3C1C3906BA00F9122B /* CEInvisibles.m */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A41CB3A1C39068200F9122B /* Value Transformers */,
 				2A41CB391C39066F00F9122B /* Extensions */,
@@ -1475,6 +1472,7 @@
 			children = (
 				2A2792941D1DBDAC00F3FC5D /* Constants.swift */,
 				2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */,
+				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2A41CB441C391B7400F9122B /* CEErrors.h */,
 				2A41CB451C391B7400F9122B /* CEErrors.m */,
 				2A41CB421C39168C00F9122B /* CEDefaults.h */,
@@ -2415,7 +2413,6 @@
 				2AD789D61C31AD81008B746F /* CEControlCharacerNames.m in Sources */,
 				2A5D13261D1F9D4100D38E6A /* TogglableToolbarItem.swift in Sources */,
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
-				2A41CB3E1C3906BA00F9122B /* CEInvisibles.m in Sources */,
 				2A6F0DB21B5500E100C2D03C /* CEAlphaWindow.m in Sources */,
 				2A6602F51D05E8CB003E8D87 /* CEEditorWrapper+Editor.m in Sources */,
 				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
@@ -2463,6 +2460,7 @@
 				2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */,
 				2AB340801D01E2A4000F5EEC /* CESyntaxDictionaryKeys.m in Sources */,
 				2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */,
+				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
 				2A2792961D1DBDAC00F3FC5D /* Constants.swift in Sources */,
 				2A41CB471C391B7400F9122B /* CEErrors.m in Sources */,
 				2A5D13231D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */,
@@ -2711,6 +2709,7 @@
 				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,
+				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
 				2AE52F1F1D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CEEditorViewController.m in Sources */,
 				2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
@@ -2727,7 +2726,6 @@
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,
 				2ADD36B41CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */,
 				2ACC65281C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */,
-				2A41CB3D1C3906BA00F9122B /* CEInvisibles.m in Sources */,
 				2ACDC0941D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,
 				2A33D0811D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
 				2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */,

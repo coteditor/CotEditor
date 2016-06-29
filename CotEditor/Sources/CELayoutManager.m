@@ -28,8 +28,10 @@
 
 @import CoreText;
 #import "CELayoutManager.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEATSTypesetter.h"
-#import "CEInvisibles.h"
 #import "CEDefaults.h"
 
 #import "NSFont+CESize.h"
@@ -193,32 +195,32 @@ static NSString *HiraginoSansName;
             NSUInteger charIndex = [self characterIndexForGlyphAtIndex:glyphIndex];
             unichar character = [completeString characterAtIndex:charIndex];
             
-            CEInvisibleType invisibleType;
+            InvisibleType invisibleType;
             switch (character) {
                 case ' ':
                 case 0x00A0:
                     if (![self showsSpace]) { continue; }
-                    invisibleType = CEInvisibleSpace;
+                    invisibleType = InvisibleTypeSpace;
                     break;
                     
                 case '\t':
                     if (![self showsTab]) { continue; }
-                    invisibleType = CEInvisibleTab;
+                    invisibleType = InvisibleTypeTab;
                     break;
                     
                 case '\n':
                     if (![self showsNewLine]) { continue; }
-                    invisibleType = CEInvisibleNewLine;
+                    invisibleType = InvisibleTypeNewLine;
                     break;
                     
                 case 0x3000:  // fullwidth-space (JP)
                     if (![self showsFullwidthSpace]) { continue; }
-                    invisibleType = CEInvisibleFullWidthSpace;
+                    invisibleType = InvisibleTypeFullWidthSpace;
                     break;
                     
                 case '\v':
                     if (![self showsOtherInvisibles]) { continue; }  // Vertical tab belongs to the other invisibles.
-                    invisibleType = CEInvisibleVerticalTab;
+                    invisibleType = InvisibleTypeVerticalTab;
                     break;
                     
                 default:
@@ -229,7 +231,7 @@ static NSString *HiraginoSansName;
                     {
                         continue;
                     }
-                    invisibleType = CEInvisibleReplacement;
+                    invisibleType = InvisibleTypeReplacement;
             }
             
             CTLineRef line = (__bridge CTLineRef)[self invisibleLines][invisibleType];
@@ -436,12 +438,12 @@ static NSString *HiraginoSansName;
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    self.invisibles = @[[CEInvisibles stringWithType:CEInvisibleSpace Index:[defaults integerForKey:CEDefaultInvisibleSpaceKey]],
-                        [CEInvisibles stringWithType:CEInvisibleTab Index:[defaults integerForKey:CEDefaultInvisibleTabKey]],
-                        [CEInvisibles stringWithType:CEInvisibleNewLine Index:[defaults integerForKey:CEDefaultInvisibleNewLineKey]],
-                        [CEInvisibles stringWithType:CEInvisibleFullWidthSpace Index:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]],
-                        [CEInvisibles stringWithType:CEInvisibleVerticalTab Index:0],
-                        [CEInvisibles stringWithType:CEInvisibleReplacement Index:0],
+    self.invisibles = @[[Invisible spaceWithIndex:[defaults integerForKey:CEDefaultInvisibleSpaceKey]],
+                        [Invisible tabWithIndex:[defaults integerForKey:CEDefaultInvisibleTabKey]],
+                        [Invisible newLineWithIndex:[defaults integerForKey:CEDefaultInvisibleNewLineKey]],
+                        [Invisible fullWidthSpaceWithIndex:[defaults integerForKey:CEDefaultInvisibleFullwidthSpaceKey]],
+                        [Invisible verticalTab],
+                        [Invisible replacement],
                         ];
     
     // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）
@@ -472,12 +474,12 @@ static NSString *HiraginoSansName;
     NSDictionary<NSString *, id> *fullWidthAttributes = @{NSForegroundColorAttributeName: [self invisiblesColor],
                                                           NSFontAttributeName: fullWidthFont ?: font};
     
-    [self setInvisibleLines:@[(__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleSpace], attributes),
-                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleTab], attributes),
-                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleNewLine], attributes),
-                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleFullWidthSpace], fullWidthAttributes),
-                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleVerticalTab], fullWidthAttributes),
-                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][CEInvisibleReplacement], fullWidthAttributes),
+    [self setInvisibleLines:@[(__bridge_transfer id)createCTLineRefWithString([self invisibles][InvisibleTypeSpace], attributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][InvisibleTypeTab], attributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][InvisibleTypeNewLine], attributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][InvisibleTypeFullWidthSpace], fullWidthAttributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][InvisibleTypeVerticalTab], fullWidthAttributes),
+                              (__bridge_transfer id)createCTLineRefWithString([self invisibles][InvisibleTypeReplacement], fullWidthAttributes),
                               ]];
 }
 

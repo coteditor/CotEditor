@@ -21,9 +21,6 @@
 // General Pane
 #import "CEDocument.h"
 
-// Appearance Pane
-#import "CEInvisibles.h"
-
 // NSWindow
 #import "CEAlphaWindow.h"
 
