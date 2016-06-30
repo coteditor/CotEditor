@@ -252,11 +252,11 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
     if (scriptMenu) {
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultInlineContextualScriptMenuKey]) {
             [menu addItem:[NSMenuItem separatorItem]];
-            [[[menu itemArray] lastObject] setTag:CEScriptMenuItemTag];
+            [[[menu itemArray] lastObject] setTag:CEMenuItemTagScript];
             
             for (NSMenuItem *item in [scriptMenu itemArray]) {
                 NSMenuItem *addItem = [item copy];
-                [addItem setTag:CEScriptMenuItemTag];
+                [addItem setTag:CEMenuItemTagScript];
                 [menu addItem:addItem];
             }
             [menu addItem:[NSMenuItem separatorItem]];
@@ -264,7 +264,7 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
         } else {
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
             [item setImage:[NSImage imageNamed:@"ScriptTemplate"]];
-            [item setTag:CEScriptMenuItemTag];
+            [item setTag:CEMenuItemTagScript];
             [item setSubmenu:scriptMenu];
             [menu addItem:item];
         }

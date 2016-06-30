@@ -222,9 +222,9 @@
     }
     
     // specific tags
-    if ([menuItem tag] == CEServicesMenuItemTag ||
-        [menuItem tag] == CESharingServiceMenuItemTag ||
-        [menuItem tag] == CEScriptMenuDirectoryTag)
+    if ([menuItem tag] == CEMenuItemTagServices ||
+        [menuItem tag] == CEMenuItemTagSharingService ||
+        [menuItem tag] == CEMenuItemTagScriptDirectory)
     {
         return YES;
     }

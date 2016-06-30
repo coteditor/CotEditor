@@ -145,7 +145,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     NSMenu *menu = [[[[NSApp mainMenu] itemAtIndex:CEScriptMenuIndex] submenu] copy];
     
     for (NSMenuItem *item in [menu itemArray]) {
-        if ([item tag] == CEDefaultScriptMenuItemTag) {
+        if ([item tag] == CEMenuItemTagScriptsDefault) {
             [menu removeItem:item];
         }
     }
@@ -227,21 +227,21 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
     [self addChildFileItemTo:menu fromDir:[self scriptsDirectoryURL]];
     
     NSMenuItem *separatorItem = [NSMenuItem separatorItem];
-    [separatorItem setTag:CEDefaultScriptMenuItemTag];
+    [separatorItem setTag:CEMenuItemTagScriptsDefault];
     [menu addItem:separatorItem];
     
     NSMenuItem *openMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Open Scripts Folder", nil)
                                                           action:@selector(openScriptFolder:)
                                                    keyEquivalent:@"a"];
     [openMenuItem setTarget:self];
-    [openMenuItem setTag:CEDefaultScriptMenuItemTag];
+    [openMenuItem setTag:CEMenuItemTagScriptsDefault];
     [menu addItem:openMenuItem];
     
     NSMenuItem *updateMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Update Script Menu", nil)
                                                             action:@selector(buildScriptMenu:)
                                                      keyEquivalent:@""];
     [updateMenuItem setTarget:self];
-    [updateMenuItem setTag:CEDefaultScriptMenuItemTag];
+    [updateMenuItem setTag:CEMenuItemTagScriptsDefault];
     [menu addItem:updateMenuItem];
 }
 
@@ -465,7 +465,7 @@ typedef NS_ENUM(NSUInteger, CEScriptInputType) {
             }
             NSMenu *subMenu = [[NSMenu alloc] initWithTitle:title];
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""];
-            [item setTag:CEScriptMenuDirectoryTag];
+            [item setTag:CEMenuItemTagScriptDirectory];
             [menu addItem:item];
             [item setSubmenu:subMenu];
             [self addChildFileItemTo:subMenu fromDir:URL];
