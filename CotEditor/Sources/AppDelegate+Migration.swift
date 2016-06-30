@@ -35,7 +35,7 @@ extension AppDelegate {
     func migrateIfNeeded() {
         
         let lastVersion = UserDefaults.standard().string(forKey: CEDefaultLastVersionKey)
-        let keybindingURL = CEMenuKeyBindingManager.shared().userSettingDirectoryURL()
+        let keybindingURL = MenuKeyBindingManager.shared.userSettingDirectoryURL()
         let existsKeybindingDir = (try? keybindingURL.checkResourceIsReachable()) ?? false  // KeyBindings dir was invariably made on the previous versions.
         
         if lastVersion == nil && existsKeybindingDir {
@@ -57,7 +57,7 @@ extension AppDelegate {
         
         // reset menu keybindings setting
         windowController.update(informative: "Restoring menu key bindings settings…")
-        windowController.didResetKeyBindings = CEMenuKeyBindingManager.shared().resetKeyBindings()
+        windowController.didResetKeyBindings = MenuKeyBindingManager.shared.resetKeyBindings()
         windowController.progressIndicator()
         
         // migrate coloring setting

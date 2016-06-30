@@ -207,6 +207,8 @@
 		2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */; };
 		2A6415941BD10EF40080358E /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
 		2A6415951BD10EFA0080358E /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
+		2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */; };
+		2A64F2431D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */; };
 		2A6602D01D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A6602D11D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A6602DB1D05D7C8003E8D87 /* GoToLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602D91D05D7C8003E8D87 /* GoToLineView.xib */; };
@@ -390,8 +392,6 @@
 		2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
 		2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
-		2AACB1D41D19AE600073775B /* CEMenuKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1D31D19AE600073775B /* CEMenuKeyBindingManager.m */; };
-		2AACB1D51D19AE600073775B /* CEMenuKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1D31D19AE600073775B /* CEMenuKeyBindingManager.m */; };
 		2AACB1D81D19AE6F0073775B /* CESnippetKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1D71D19AE6F0073775B /* CESnippetKeyBindingManager.m */; };
 		2AACB1D91D19AE6F0073775B /* CESnippetKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1D71D19AE6F0073775B /* CESnippetKeyBindingManager.m */; };
 		2AB0C59C1C4A18830019411A /* NSString+CEEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */; };
@@ -698,6 +698,7 @@
 		2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		2A6415921BD10EF30080358E /* NSString+Indentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Indentation.h"; sourceTree = "<group>"; };
 		2A6415931BD10EF30080358E /* NSString+Indentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indentation.m"; sourceTree = "<group>"; };
+		2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuKeyBindingManager.swift; sourceTree = "<group>"; };
 		2A6602CF1D05BD72003E8D87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DocumentWindow.storyboard; sourceTree = "<group>"; };
 		2A6602D21D05BD84003E8D87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		2A6602D31D05BD86003E8D87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
@@ -841,8 +842,6 @@
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutKeyField.swift; sourceTree = "<group>"; };
-		2AACB1D21D19AE600073775B /* CEMenuKeyBindingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMenuKeyBindingManager.h; sourceTree = "<group>"; };
-		2AACB1D31D19AE600073775B /* CEMenuKeyBindingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMenuKeyBindingManager.m; sourceTree = "<group>"; };
 		2AACB1D61D19AE6F0073775B /* CESnippetKeyBindingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESnippetKeyBindingManager.h; sourceTree = "<group>"; };
 		2AACB1D71D19AE6F0073775B /* CESnippetKeyBindingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESnippetKeyBindingManager.m; sourceTree = "<group>"; };
 		2AB0C59A1C4A18830019411A /* NSString+CEEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CEEncoding.h"; sourceTree = "<group>"; };
@@ -1661,8 +1660,7 @@
 			children = (
 				8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */,
 				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
-				2AACB1D21D19AE600073775B /* CEMenuKeyBindingManager.h */,
-				2AACB1D31D19AE600073775B /* CEMenuKeyBindingManager.m */,
+				2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */,
 				2AACB1D61D19AE6F0073775B /* CESnippetKeyBindingManager.h */,
 				2AACB1D71D19AE6F0073775B /* CESnippetKeyBindingManager.m */,
 				2AA4D36F1D1A9CBD001D261D /* CEKeyBindingItem.h */,
@@ -2493,7 +2491,6 @@
 				2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */,
 				2A5D133C1D1FCFC400D38E6A /* TextFindResult.swift in Sources */,
 				2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */,
-				2AACB1D51D19AE600073775B /* CEMenuKeyBindingManager.m in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AD49C241D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2A6F0DE31B5500E100C2D03C /* CEStatusBarController.m in Sources */,
@@ -2514,6 +2511,7 @@
 				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A4257B41D2309AB0086DAAD /* OpacityPanelController.swift in Sources */,
+				2A64F2431D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
 				2ACDC09E1D172EF7009B72D6 /* WrappingTextField.swift in Sources */,
 				2A9C07531CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2A6F0DF21B5500E100C2D03C /* CEThemeManager.m in Sources */,
@@ -2661,7 +2659,6 @@
 				2A476CAA1D09C6B50088E37A /* NSURL+CEAdditions.m in Sources */,
 				2A6415941BD10EF40080358E /* NSString+Indentation.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */,
-				2AACB1D41D19AE600073775B /* CEMenuKeyBindingManager.m in Sources */,
 				2AE0C08F1C422A5200E52E04 /* CETextView+Transformation.m in Sources */,
 				2A21841A1D04304800522EF5 /* CEWindowContentViewController.m in Sources */,
 				2A91C3181D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
@@ -2685,6 +2682,7 @@
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
+				2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
 				2A33D0841D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2A41CB461C391B7400F9122B /* CEErrors.m in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,

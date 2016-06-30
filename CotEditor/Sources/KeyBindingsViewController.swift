@@ -240,7 +240,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// corresponding key binding manager
     private var manager: CEKeyBindingManager {
         
-        return CEMenuKeyBindingManager.shared()
+        return MenuKeyBindingManager.shared
     }
     
     

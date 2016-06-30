@@ -138,7 +138,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     override func awakeFromNib() {
         
         // store key bindings in MainMenu.xib before menu is modified
-        CEMenuKeyBindingManager.shared().scanDefaultMenuKeyBindings()
+        MenuKeyBindingManager.shared.scanDefaultMenuKeyBindings()
         
         // build menus
         self.buildEncodingMenu()
@@ -192,7 +192,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         
         // setup KeyBindingManager
-        CEMenuKeyBindingManager.shared().applyKeyBindingsToMainMenu()
+        MenuKeyBindingManager.shared.applyKeyBindingsToMainMenu()
         
         // migrate user settings if needed
         self.migrateIfNeeded()
@@ -407,7 +407,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         // add item to recolor
         let recolorAction = #selector(CESyntaxHolder.recolorAll(_:))
         var modifierMask = NSEventModifierFlags()
-        let keyEquivalent = CEMenuKeyBindingManager.shared().keyEquivalent(forAction: recolorAction, modifierMask: &modifierMask)
+        let keyEquivalent = MenuKeyBindingManager.shared.keyEquivalent(action: recolorAction, modifierMask: &modifierMask)
         let recoloritem = NSMenuItem(title: NSLocalizedString("Re-Color All", comment: ""), action: recolorAction, keyEquivalent: keyEquivalent)
         recoloritem.keyEquivalentModifierMask = modifierMask // = default: Cmd + Opt + R
         menu.addItem(recoloritem)
