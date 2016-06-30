@@ -203,7 +203,7 @@
                             <menuItem title="Select Line" keyEquivalent="A" id="Cwp-ys-LJc">
                                 <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 <connections>
-                                    <action selector="selectLine:" target="-1" id="KhH-m7-Qld"/>
+                                    <action selector="selectParagraph:" target="-1" id="MHD-pJ-iMR"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="630">
