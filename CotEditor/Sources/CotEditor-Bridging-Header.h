@@ -3,6 +3,7 @@
 //
 
 #import "CEDefaults.h"
+#import "CEErrors.h"
 #import "Constants.h"
 
 
@@ -13,8 +14,6 @@
 #import "CESyntaxManager.h"
 
 // KeyBindingsViewController
-#import "CEKeyBindingManager.h"
-#import "CEKeyBindingItem.h"
 #import "CEKeyBindingUtils.h"
 
 // General Pane

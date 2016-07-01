@@ -211,6 +211,10 @@
 		2A64F2431D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */; };
 		2A64F2451D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */; };
 		2A64F2461D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */; };
+		2A64F2481D26327C001B229F /* KeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2471D26327C001B229F /* KeyBindingManager.swift */; };
+		2A64F2491D26327C001B229F /* KeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2471D26327C001B229F /* KeyBindingManager.swift */; };
+		2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F24A1D26615A001B229F /* KeyBindingItem.swift */; };
+		2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F24A1D26615A001B229F /* KeyBindingItem.swift */; };
 		2A6602D01D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A6602D11D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A6602DB1D05D7C8003E8D87 /* GoToLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602D91D05D7C8003E8D87 /* GoToLineView.xib */; };
@@ -305,7 +309,6 @@
 		2A6F0DE31B5500E100C2D03C /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */; };
 		2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
-		2A6F0DE91B5500E100C2D03C /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
 		2A6F0DEB1B5500E100C2D03C /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
 		2A6F0DEC1B5500E100C2D03C /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
 		2A6F0DED1B5500E100C2D03C /* CEEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD7A93A09CBDDDC00739513 /* CEEditorViewController.m */; };
@@ -380,8 +383,6 @@
 		2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */; };
 		2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */; };
 		2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
-		2AA4D3711D1A9CBD001D261D /* CEKeyBindingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3701D1A9CBD001D261D /* CEKeyBindingItem.m */; };
-		2AA4D3721D1A9CBD001D261D /* CEKeyBindingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3701D1A9CBD001D261D /* CEKeyBindingItem.m */; };
 		2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
 		2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
 		2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */; };
@@ -502,7 +503,6 @@
 		8C52080A0880BAAF005734F2 /* RecolorAll.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C5208090880BAAF005734F2 /* RecolorAll.tiff */; };
 		8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C65C0E607927D0F0028D94A /* CELayoutManager.m */; };
 		8C7400A408C6D93900683672 /* MenuKeyBindingsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7400A208C6D93900683672 /* MenuKeyBindingsEditView.xib */; };
-		8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */; };
 		8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C83A48109485F27004E48A8 /* CEATSTypesetter.m */; };
 		8C98366708C0211D00746F92 /* IncompatibleChars.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C98366608C0211D00746F92 /* IncompatibleChars.tiff */; };
 		8CA71BCE07D2A79100C146B0 /* BiggerFont.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CA71BCC07D2A79100C146B0 /* BiggerFont.tiff */; };
@@ -700,6 +700,8 @@
 		2A6415931BD10EF30080358E /* NSString+Indentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indentation.m"; sourceTree = "<group>"; };
 		2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuKeyBindingManager.swift; sourceTree = "<group>"; };
 		2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnippetKeyBindingManager.swift; sourceTree = "<group>"; };
+		2A64F2471D26327C001B229F /* KeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingManager.swift; sourceTree = "<group>"; };
+		2A64F24A1D26615A001B229F /* KeyBindingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingItem.swift; sourceTree = "<group>"; };
 		2A6602CF1D05BD72003E8D87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DocumentWindow.storyboard; sourceTree = "<group>"; };
 		2A6602D21D05BD84003E8D87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		2A6602D31D05BD86003E8D87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
@@ -835,8 +837,6 @@
 		2AA2E0181BFF9AEE0087BDD6 /* CEUnicodeCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEUnicodeCharacter.h; sourceTree = "<group>"; };
 		2AA2E0191BFF9AEE0087BDD6 /* CEUnicodeCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEUnicodeCharacter.m; sourceTree = "<group>"; };
 		2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIndentationTests.swift; sourceTree = "<group>"; };
-		2AA4D36F1D1A9CBD001D261D /* CEKeyBindingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEKeyBindingItem.h; sourceTree = "<group>"; };
-		2AA4D3701D1A9CBD001D261D /* CEKeyBindingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEKeyBindingItem.m; sourceTree = "<group>"; };
 		2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsViewController.swift; sourceTree = "<group>"; };
 		2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsPaneController.swift; sourceTree = "<group>"; };
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
@@ -1005,8 +1005,6 @@
 		8C5208090880BAAF005734F2 /* RecolorAll.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = RecolorAll.tiff; sourceTree = "<group>"; };
 		8C65C0E507927D0F0028D94A /* CELayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELayoutManager.h; sourceTree = "<group>"; };
 		8C65C0E607927D0F0028D94A /* CELayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CELayoutManager.m; sourceTree = "<group>"; wrapsLines = 1; };
-		8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEKeyBindingManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEKeyBindingManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ODBEditorSuite.h; sourceTree = "<group>"; };
 		8C83A48009485F27004E48A8 /* CEATSTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEATSTypesetter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8C83A48109485F27004E48A8 /* CEATSTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEATSTypesetter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1657,12 +1655,10 @@
 		2AACB1DA1D19B1440073775B /* Key Binding Managers */ = {
 			isa = PBXGroup;
 			children = (
-				8C7400A608C6D96D00683672 /* CEKeyBindingManager.h */,
-				8C7400A708C6D96D00683672 /* CEKeyBindingManager.m */,
+				2A64F2471D26327C001B229F /* KeyBindingManager.swift */,
 				2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */,
 				2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */,
-				2AA4D36F1D1A9CBD001D261D /* CEKeyBindingItem.h */,
-				2AA4D3701D1A9CBD001D261D /* CEKeyBindingItem.m */,
+				2A64F24A1D26615A001B229F /* KeyBindingItem.swift */,
 			);
 			name = "Key Binding Managers";
 			sourceTree = "<group>";
@@ -2421,7 +2417,6 @@
 				2AE0C0901C422A5200E52E04 /* CETextView+Transformation.m in Sources */,
 				2A6F0DB81B5500E100C2D03C /* CELayoutManager.m in Sources */,
 				2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
-				2AA4D3721D1A9CBD001D261D /* CEKeyBindingItem.m in Sources */,
 				2A6F0DB91B5500E100C2D03C /* CEEditorWrapper.m in Sources */,
 				2AF587401CF76FFB009D44A2 /* NSString+CEAdditions.m in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
@@ -2459,6 +2454,7 @@
 				2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */,
 				2ACDC0951D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */,
+				2A64F2491D26327C001B229F /* KeyBindingManager.swift in Sources */,
 				2A33D0821D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
 				2A6F0DD41B5500E100C2D03C /* CECharacterPopoverController.m in Sources */,
 				2A41CB411C39167500F9122B /* CEDefaults.m in Sources */,
@@ -2498,7 +2494,6 @@
 				2AE0C0A01C42330000E52E04 /* CETextView+Indentation.m in Sources */,
 				2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */,
 				2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */,
-				2A6F0DE91B5500E100C2D03C /* CEKeyBindingManager.m in Sources */,
 				2A42579F1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
 				2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
@@ -2506,6 +2501,7 @@
 				2AA2E00C1BFDD3A60087BDD6 /* CECharacterInfo.m in Sources */,
 				2A6F0DEC1B5500E100C2D03C /* CEATSTypesetter.m in Sources */,
 				2A6F0DED1B5500E100C2D03C /* CEEditorViewController.m in Sources */,
+				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A4257B41D2309AB0086DAAD /* OpacityPanelController.swift in Sources */,
@@ -2611,9 +2607,9 @@
 				2A91C31B1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
 				258700E6077BAD2200E541BB /* CESyntaxManager.m in Sources */,
 				2A64F2451D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */,
+				2A64F2481D26327C001B229F /* KeyBindingManager.swift in Sources */,
 				8C65C0E807927D0F0028D94A /* CELayoutManager.m in Sources */,
 				2ACDC0971D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
-				2AA4D3711D1A9CBD001D261D /* CEKeyBindingItem.m in Sources */,
 				2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */,
 				2A12C7FF1D1843B50069C60B /* SeparatorTextFieldCell.swift in Sources */,
 				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
@@ -2691,7 +2687,6 @@
 				2A78BFA71D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */,
 				2A5D13251D1F9D4100D38E6A /* TogglableToolbarItem.swift in Sources */,
 				2AF5873F1CF76FFB009D44A2 /* NSString+CEAdditions.m in Sources */,
-				8C7400A908C6D96D00683672 /* CEKeyBindingManager.m in Sources */,
 				8CC5044508EE829500A525A6 /* CEPrintView.m in Sources */,
 				8C83A48309485F27004E48A8 /* CEATSTypesetter.m in Sources */,
 				2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
@@ -2716,6 +2711,7 @@
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,
 				2ADD36B41CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */,
 				2ACC65281C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */,
+				2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2ACDC0941D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,
 				2A33D0811D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
 				2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */,

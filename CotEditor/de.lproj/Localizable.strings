@@ -462,7 +462,7 @@
 
 
 
-/* MARK: CEKeyBindingManager */
+/* MARK: KeyBindingManager */
 // label for text menu keybindings action
 "Insert Text %@" = "Text hinzufügen %@";
 

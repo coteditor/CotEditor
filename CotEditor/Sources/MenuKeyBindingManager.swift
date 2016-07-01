@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class MenuKeyBindingManager: CEKeyBindingManager {
+class MenuKeyBindingManager: KeyBindingManager {
     
     // MARK: Public Properties
     
@@ -51,12 +51,16 @@ class MenuKeyBindingManager: CEKeyBindingManager {
             abort()
         }
         
-        self._defaultKeyBindingDict = MenuKeyBindingManager.scanMenuKeyBindingRecurrently(menu: mainMenu)
+        _defaultKeyBindingDict = MenuKeyBindingManager.scanMenuKeyBindingRecurrently(menu: mainMenu)
         
         super.init()
         
         // read user key bindings if available
-        self.keyBindingDict = NSDictionary(contentsOf: self.keyBindingSettingFileURL()) as? [String: String] ?? self.defaultKeyBindingDict()
+        if let customDict = NSDictionary(contentsOf: self.keyBindingSettingFileURL) as? [String: String] where !customDict.isEmpty {
+            self.keyBindingDict = customDict
+        } else {
+            self.keyBindingDict = self.defaultKeyBindingDict
+        }
     }
     
     
@@ -64,30 +68,30 @@ class MenuKeyBindingManager: CEKeyBindingManager {
     // Key Binding Manager Methods
     
     /// name of file to save custom key bindings in the plist file form (without extension)
-    override func settingFileName() -> String {
+    override var settingFileName: String {
         
         return "MenuKeyBindings"
     }
     
     
-    override func defaultKeyBindingDict() -> [String : String] {
+    override var defaultKeyBindingDict: [String: String] {
         
-        return self._defaultKeyBindingDict
+        return _defaultKeyBindingDict
     }
     
     
     /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
     /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
-    override func outlineTree(withDefaults usesDefaults: Bool) -> [NSTreeNode] {
+    override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
         return self.outlineTree(menu: NSApp.mainMenu!, defaults: usesDefaults)
     }
     
     
     /// save passed-in key binding settings
-    override func saveKeyBindings(_ outlineData: [NSTreeNode]) -> Bool {
+    override func saveKeyBindings(outlineTree: [NSTreeNode]) -> Bool {
         
-        let success = super.saveKeyBindings(outlineData)
+        let success = super.saveKeyBindings(outlineTree: outlineTree)
         
         // apply new settings to the menu
         self.applyKeyBindingsToMainMenu()
@@ -97,15 +101,15 @@ class MenuKeyBindingManager: CEKeyBindingManager {
     
     
     /// validate new key spec chars are settable
-    override func validateKeySpecChars(_ keySpecChars: String, oldKeySpecChars: String?) throws {
+    override func validate(keySpecChars: String, oldKeySpecChars: String?) throws {
         
         do {
-            try super.validateKeySpecChars(keySpecChars, oldKeySpecChars: oldKeySpecChars)
+            try super.validate(keySpecChars: keySpecChars, oldKeySpecChars: oldKeySpecChars)
         }
         
         // command key existance check
         if !keySpecChars.contains("@") {  // TODO: use const for "@"
-            throw self.error(withMessageFormat: "“%@” does not include the Command key.", keySpecChars: keySpecChars)
+            throw self.error(messageFormat: "“%@” does not include the Command key.", keySpecChars: keySpecChars)
         }
     }
     
@@ -138,11 +142,14 @@ class MenuKeyBindingManager: CEKeyBindingManager {
     
     
     /// keyEquivalent and modifierMask for passed-in selector
-    func keyEquivalent(action: Selector, modifierMask: UnsafeMutablePointer<NSEventModifierFlags>) -> String {
+    func keyEquivalentAndModifierMask(from action: Selector) -> (String, NSEventModifierFlags) {
         
         let keySpecChars = self.keySpecChars(for: action, defaults: false)
         
-        return CEKeyBindingUtils.keyEquivalentAndModifierMask(modifierMask, fromKeySpecChars: keySpecChars, requiresCommandKey: true)
+        var modifierMask = NSEventModifierFlags()
+        let keyEquivalent = CEKeyBindingUtils.keyEquivalentAndModifierMask(&modifierMask, fromKeySpecChars: keySpecChars, requiresCommandKey: true)
+        
+        return (keyEquivalent, modifierMask)
     }
     
     
@@ -153,7 +160,7 @@ class MenuKeyBindingManager: CEKeyBindingManager {
     private func keySpecChars(for action: Selector, defaults usesDefaults: Bool) -> String {
         
         let selectorString = NSStringFromSelector(action)
-        let dict = usesDefaults ? self.defaultKeyBindingDict() : self.keyBindingDict
+        let dict = usesDefaults ? self.defaultKeyBindingDict : self.keyBindingDict
         let definition = dict.first { (key, value) in value == selectorString }
         
         return definition?.key ?? ""
@@ -260,8 +267,7 @@ class MenuKeyBindingManager: CEKeyBindingManager {
             } else {
                 guard let action = menuItem.action else { continue }
                 
-                var modifierMask = NSEventModifierFlags()
-                let keyEquivalent = self.keyEquivalent(action: action, modifierMask: &modifierMask)
+                let (keyEquivalent, modifierMask) = self.keyEquivalentAndModifierMask(from: action)
                 
                 // apply only if keyEquivalent exists and the Command key is included
                 if !keyEquivalent.isEmpty && modifierMask.contains(.command) {
@@ -316,7 +322,7 @@ extension MenuKeyBindingManager {
         // 変更された場合にそれに追従できなかった。
         // その負のサイクルを断ち切るために、過去の設定ファイルを一旦削除をする。
         
-        let url = self.keyBindingSettingFileURL()
+        let url = self.keyBindingSettingFileURL
         
         if (try? url.checkResourceIsReachable()) ?? false {
             do {
@@ -325,7 +331,7 @@ extension MenuKeyBindingManager {
                 return false
             }
             
-            self.keyBindingDict = self.defaultKeyBindingDict()
+            self.keyBindingDict = self.defaultKeyBindingDict
             self.applyKeyBindingsToMainMenu()
             
             return true

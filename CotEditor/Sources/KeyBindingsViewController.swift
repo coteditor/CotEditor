@@ -86,8 +86,8 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         super.viewDidLoad()
         
-        self.outlineTree = self.manager.outlineTree(withDefaults: false)
-        self.restoreble = !self.manager.usesDefaultKeyBindings()
+        self.outlineTree = self.manager.outlineTree(defaults: false)
+        self.restoreble = !self.manager.usesDefaultKeyBindings
     }
     
     
@@ -191,7 +191,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         } else {
             var success = true
             do {
-                try self.manager.validateKeySpecChars(keySpecChars, oldKeySpecChars: oldKeySpecChars)
+                try self.manager.validate(keySpecChars: keySpecChars, oldKeySpecChars: oldKeySpecChars)
                 
             } catch let error as NSError {
                 success = false
@@ -224,7 +224,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// restore key binding setting to default
     @IBAction func setToFactoryDefaults(_ sender: AnyObject?) {
         
-        self.outlineTree = self.manager.outlineTree(withDefaults: true)
+        self.outlineTree = self.manager.outlineTree(defaults: true)
         
         self.saveSettings()
         
@@ -238,7 +238,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     // MARK: Private Methods
     
     /// corresponding key binding manager
-    private var manager: CEKeyBindingManager {
+    private var manager: KeyBindingManager {
         
         return MenuKeyBindingManager.shared
     }
@@ -256,8 +256,8 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// save current settings
     private func saveSettings() {
         
-        self.manager.saveKeyBindings(self.outlineTree)
-        self.restoreble = !self.manager.usesDefaultKeyBindings()
+        let _ = self.manager.saveKeyBindings(outlineTree: self.outlineTree)
+        self.restoreble = !self.manager.usesDefaultKeyBindings
     }
     
     
@@ -314,7 +314,7 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
     // MARK: Key Bindings View Controller Methods
     
     /// corresponding key binding manager
-    private override var manager: CEKeyBindingManager {
+    private override var manager: KeyBindingManager {
         
         return SnippetKeyBindingManager.shared
     }

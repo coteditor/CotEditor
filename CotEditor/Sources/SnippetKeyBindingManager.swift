@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class SnippetKeyBindingManager: CEKeyBindingManager {
+class SnippetKeyBindingManager: KeyBindingManager {
     
     // MARK: Public Properties
     
@@ -37,8 +37,8 @@ class SnippetKeyBindingManager: CEKeyBindingManager {
     
     // MARK: Private Properties
     
-    private let _defaultKeyBindingDict: [String: String]
     private let defaultSnippets: [String]
+    private let _defaultKeyBindingDict: [String: String]
     
     
     
@@ -47,13 +47,13 @@ class SnippetKeyBindingManager: CEKeyBindingManager {
     
     override init() {
         
-        self._defaultKeyBindingDict = ["$\r": SnippetKeyBindingManager.selectorString(index: 0)]
+        _defaultKeyBindingDict = ["$\r": SnippetKeyBindingManager.selectorString(index: 0)]
         self.defaultSnippets = UserDefaults().volatileDomain(forName: UserDefaults.registrationDomain)[CEDefaultInsertCustomTextArrayKey]! as! [String]
         
         super.init()
         
         // read user key bindings if available
-        self.keyBindingDict = NSDictionary(contentsOf: self.keyBindingSettingFileURL()) as? [String: String] ?? self.defaultKeyBindingDict()
+        self.keyBindingDict = NSDictionary(contentsOf: self.keyBindingSettingFileURL) as? [String: String] ?? self.defaultKeyBindingDict
     }
     
     
@@ -61,23 +61,23 @@ class SnippetKeyBindingManager: CEKeyBindingManager {
     // MARK: Key Binding Manager Methods
     
     /// name of file to save custom key bindings in the plist file form (without extension)
-    override func settingFileName() -> String {
+    override var settingFileName: String {
         
         return "TextKeyBindings"
     }
     
     
-    override func defaultKeyBindingDict() -> [String : String] {
+    override var defaultKeyBindingDict: [String : String] {
         
-        return self._defaultKeyBindingDict
+        return _defaultKeyBindingDict
     }
     
     
     /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
     /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
-    override func outlineTree(withDefaults usesDefaults: Bool) -> [NSTreeNode] {
+    override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
-        let dict = usesDefaults ? self.defaultKeyBindingDict() : self.keyBindingDict
+        let dict = usesDefaults ? self.defaultKeyBindingDict : self.keyBindingDict
         
         var tree = [NSTreeNode]()
         
@@ -97,24 +97,24 @@ class SnippetKeyBindingManager: CEKeyBindingManager {
     
     
     /// whether key bindings are not customized
-    override func usesDefaultKeyBindings() -> Bool {
+    override var usesDefaultKeyBindings: Bool {
         
         let usesDefaultSnippets = self.snippets(defaults: false) == self.defaultSnippets
         
-        return usesDefaultSnippets && super.usesDefaultKeyBindings()
+        return usesDefaultSnippets && super.usesDefaultKeyBindings
     }
     
     
     /// validate new key spec chars are settable
-    override func validateKeySpecChars(_ keySpecChars: String, oldKeySpecChars: String?) throws {
+    override func validate(keySpecChars: String, oldKeySpecChars: String?) throws {
         
         do {
-            try super.validateKeySpecChars(keySpecChars, oldKeySpecChars: oldKeySpecChars)
+            try super.validate(keySpecChars: keySpecChars, oldKeySpecChars: oldKeySpecChars)
         }
         
         // command key existance check
         if keySpecChars.contains("@") {  // TODO: use const for "@"
-            throw self.error(withMessageFormat: "“%@” includes the Command key.", keySpecChars: keySpecChars)
+            throw self.error(messageFormat: "“%@” includes the Command key.", keySpecChars: keySpecChars)
         }
     }
     
