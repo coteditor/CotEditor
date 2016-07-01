@@ -27,6 +27,9 @@
  */
 
 #import "CETextView.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CELayoutManager.h"
 #import "CEEditorScrollView.h"
 
@@ -34,7 +37,6 @@
 #import "CEAlphaWindow.h"
 
 #import "CEThemeManager.h"
-#import "CESnippetKeyBindingManager.h"
 #import "CEFileDropComposer.h"
 #import "CECharacterPopoverController.h"
 
@@ -228,8 +230,8 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     // perform snippet insertion if not in the middle of Japanese input
     if (![self hasMarkedText]) {
-        NSString *snippet = [[CESnippetKeyBindingManager sharedManager] snippetWithKeyEquivalent:[event charactersIgnoringModifiers]
-                                                                                    modifierMask:[event modifierFlags]];
+        NSString *snippet = [[SnippetKeyBindingManager shared] snippetWithKeyEquivalent:[event charactersIgnoringModifiers]
+                                                                           modifierMask:[event modifierFlags]];
         if (snippet) {
             if ([self shouldChangeTextInRange:[self rangeForUserTextChange] replacementString:snippet]) {
                 [self replaceCharactersInRange:[self rangeForUserTextChange] withString:snippet];
@@ -237,6 +239,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
                 [[self undoManager] setActionName:NSLocalizedString(@"Insert Custom Text", nil)];
                 [self scrollRangeToVisible:[self selectedRange]];
             }
+            return;
         }
     }
     

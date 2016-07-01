@@ -284,7 +284,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
 
 class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
     
-    var snippets = [SnippetItem]()
+    dynamic var snippets = [SnippetItem]()
     
     @IBOutlet private var snippetArrayController: NSArrayController?
     
@@ -306,10 +306,7 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
         
         super.viewDidLoad()
         
-        self.outlineTree = self.manager.outlineTree(withDefaults: false)
-        self.restoreble = !self.manager.usesDefaultKeyBindings()
-        
-        self.setup(snippets: CESnippetKeyBindingManager.shared().snippets(withDefaults: false))
+        self.setup(snippets: SnippetKeyBindingManager.shared.snippets(defaults: false))
     }
     
     
@@ -319,7 +316,7 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
     /// corresponding key binding manager
     private override var manager: CEKeyBindingManager {
         
-        return CESnippetKeyBindingManager.shared()
+        return SnippetKeyBindingManager.shared
     }
     
     
@@ -327,7 +324,7 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
     private override func saveSettings() {
         
         let snippets = self.snippets.flatMap({ snippet in snippet.text })
-        CESnippetKeyBindingManager.shared().saveSnippets(snippets)
+        SnippetKeyBindingManager.shared.saveSnippets(snippets)
         
         super.saveSettings()
     }
@@ -336,7 +333,7 @@ class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDel
     /// restore key binding setting to default
     override func setToFactoryDefaults(_ sender: AnyObject?) {
         
-        self.setup(snippets: CESnippetKeyBindingManager.shared().snippets(withDefaults: true))
+        self.setup(snippets: SnippetKeyBindingManager.shared.snippets(defaults: true))
         
         super.setToFactoryDefaults(sender)
     }

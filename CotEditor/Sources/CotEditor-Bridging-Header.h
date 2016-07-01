@@ -13,7 +13,7 @@
 #import "CESyntaxManager.h"
 
 // KeyBindingsViewController
-#import "CESnippetKeyBindingManager.h"
+#import "CEKeyBindingManager.h"
 #import "CEKeyBindingItem.h"
 #import "CEKeyBindingUtils.h"
 
