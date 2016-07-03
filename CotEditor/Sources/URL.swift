@@ -1,16 +1,15 @@
 /*
  
- CEScriptManager.h
+ URL.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
- Created by nakamuxu on 2005-03-12.
-
+ Created by 1024jp on 2016-07-03.
+ 
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,22 +25,21 @@
  
  */
 
-@import Cocoa;
+import Foundation
 
-
-@interface CEScriptManager : NSObject
-
-// singleton
-+ (nonnull CEScriptManager *)sharedManager;
-
-
-// Public method
-- (nullable NSMenu *)contexualMenu;
-
-
-// Action Message
-- (IBAction)launchScript:(nullable id)sender;
-- (IBAction)buildScriptMenu:(nullable id)sender;
-- (IBAction)openScriptFolder:(nullable id)sender;
-
-@end
+extension URL {
+    
+    /// check if file URL is executable
+    var isExecutable: Bool? {
+        
+        return (try? self.resourceValues(forKeys: [.isExecutableKey]))?.isExecutable
+    }
+    
+    
+    /// check just URL is reachable and ignore any errors
+    var isReachable: Bool {
+        
+        return (try? self.checkResourceIsReachable()) ?? false
+    }
+    
+}

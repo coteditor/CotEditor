@@ -95,19 +95,6 @@ extern NSString *_Nonnull const CEFileDropTokenImageHeight;
 // Main Menu
 // ------------------------------------------------------
 
-// Main menu indexes
-typedef NS_ENUM(NSUInteger, CEMainMenuIndex) {
-    CEApplicationMenuIndex,
-    CEFileMenuIndex,
-    CEEditMenuIndex,
-    CEViewMenuIndex,
-    CEFormatMenuIndex,
-    CETextMenuIndex,
-    CEFindMenuIndex,
-    CEWindowMenuIndex,
-    CEScriptMenuIndex,
-};
-
 // Menu item tags
 typedef NS_ENUM(NSInteger, CEMenuItemTag) {
     // in main menu

@@ -481,13 +481,17 @@
 
 
 
-/* MARK: CEScriptManager */
+/* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 "Update Script Menu" = "スクリプトメニューを更新";
 
 // Script menu item tooltips
-"“Opt + click” to open in Script Editor." = "スクリプトエディタで開くには、“Opt + クリック”します。";
+"“Option + click” to open script in editor." = "スクリプトをエディタで開くには、“Option + クリック”してください。";
+
+// No script target document errors
+"No document to get input." = "入力元となる書類が見つかりませんでした。";
+"No document to put output." = "結果を出力する書類が見つかりませんでした。";
 
 // Script error alert message
 "Script Error" = "スクリプトエラー";

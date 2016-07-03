@@ -32,7 +32,6 @@
 // App Delegate
 #import "CEThemeManager.h"
 #import "CESyntaxManager.h"
-#import "CEScriptManager.h"
 
 // Theme View Controller
 #import "CEThemeDictionaryKeys.h"

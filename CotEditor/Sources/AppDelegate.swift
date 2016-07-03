@@ -28,7 +28,7 @@
 
 import Cocoa
 
-enum MainMenuIndex: Int {
+enum MainMenu: Int {
     case application
     case file
     case edit
@@ -39,6 +39,12 @@ enum MainMenuIndex: Int {
     case window
     case script
     case help
+    
+    
+    var menu: NSMenu? {
+        
+        return NSApp.mainMenu?.item(at: self.rawValue)?.submenu
+    }
 }
 
 
@@ -144,7 +150,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         self.buildEncodingMenu()
         self.buildSyntaxMenu()
         self.buildThemeMenu()
-        CEScriptManager.shared().buildScriptMenu(self)
+        ScriptManager.shared.buildScriptMenu(self)
         
         // observe setting list updates
         NotificationCenter.default().addObserver(self, selector: #selector(buildEncodingMenu), name: EncodingManager.ListDidUpdateNotification, object: nil)

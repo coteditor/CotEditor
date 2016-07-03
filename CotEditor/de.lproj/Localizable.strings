@@ -479,13 +479,17 @@
 
 
 
-/* MARK: CEScriptManager */
+/* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "Skripte-Ordner öffnen";
 "Update Script Menu" = "Skripte-Menü aktualisieren";
 
 // Script menu item tooltips
-"“Opt + click” to open in Script Editor." = "“Opt + Klicken”, um in Skript-Editor öffnen.";
+"“Option + click” to open script in editor." = "“Option + Klicken”, um das Skript im Editor öffnen.";
+
+// No script target document errors
+"No document to get input." = "No document to get input.";  // FIXME: new
+"No document to put output." = "No document to put output.";  // FIXME: new
 
 // Script error alert message
 "Script Error" = "Skriptfehler";

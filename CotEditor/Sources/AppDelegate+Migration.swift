@@ -36,7 +36,7 @@ extension AppDelegate {
         
         let lastVersion = UserDefaults.standard().string(forKey: CEDefaultLastVersionKey)
         let keybindingURL = MenuKeyBindingManager.shared.userSettingDirectoryURL()
-        let existsKeybindingDir = (try? keybindingURL.checkResourceIsReachable()) ?? false  // KeyBindings dir was invariably made on the previous versions.
+        let existsKeybindingDir = keybindingURL.isReachable  // KeyBindings dir was invariably made on the previous versions.
         
         if lastVersion == nil && existsKeybindingDir {
             self.migrateToVersion2()

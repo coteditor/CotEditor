@@ -87,7 +87,7 @@ class IntegrationPaneController: NSViewController {
         self.linkURL = self.dynamicType.preferredLinkURL
         
         // not installed yet (= can install)
-        if (try? !self.linkURL.checkResourceIsReachable()) ?? false { return false }
+        if !self.linkURL.isReachable { return false }
         
         // ???: `resolvingSymlinksInPath` doesn't work correctly on OS X 10.10 SDK, so I use a legacy way (2015-08).
 //        let linkDestinationURL = self.linkURL.resolvingSymlinksInPath()
@@ -106,7 +106,7 @@ class IntegrationPaneController: NSViewController {
         if linkDestinationURL == self.dynamicType.preferredLinkTargetURL { return true }
         
         // display warning for invalid link
-        if (try? linkDestinationURL.checkResourceIsReachable()) ?? false {
+        if linkDestinationURL.isReachable {
             // link destinaiton is not running CotEditor
             self.warning = NSLocalizedString("The current 'cot' symbolic link doesn’t target the running CotEditor.", comment: "")
         } else {

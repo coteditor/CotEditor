@@ -85,7 +85,7 @@ class UpdaterManager: NSObject, SUUpdaterDelegate {
         let menuItem = NSMenuItem(title: NSLocalizedString("Check for Updates…", comment: ""), action: #selector(SUUpdater.checkForUpdates(_:)), keyEquivalent: "")
         menuItem.target = updater
         
-        if let applicationMenu = NSApp.mainMenu?.item(at: MainMenuIndex.application.rawValue)?.submenu {
+        if let applicationMenu = MainMenu.application.menu {
             applicationMenu.insertItem(menuItem, at: 1)
         }
         

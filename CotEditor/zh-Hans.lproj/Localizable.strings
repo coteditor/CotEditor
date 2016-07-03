@@ -477,13 +477,17 @@
 
 
 
-/* MARK: CEScriptManager */
+/* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "打开脚本文件夹";
 "Update Script Menu" = "更新脚本菜单";
 
 // Script menu item tooltips
-"“Opt + click” to open in Script Editor." = "使用“Opt + 单击”打开脚本编辑器。";
+"“Option + click” to open script in editor." = "“Option + click” to open script in editor.";  // FIXME: new
+
+// No script target document errors
+"No document to get input." = "No document to get input.";  // FIXME: new
+"No document to put output." = "No document to put output.";  // FIXME: new
 
 // Script error alert message
 "Script Error" = "脚本错误";

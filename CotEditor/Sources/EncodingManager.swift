@@ -86,6 +86,30 @@ class EncodingManager: NSObject {
     
     // MARK: Public Methods
     
+    /// return user's encoding priority list
+    var defaultEncodings: [String.Encoding?] {
+        
+        var encodings: [String.Encoding?] = []
+        let encodingNumbers = UserDefaults.standard().array(forKey: CEDefaultEncodingListKey) as! [NSNumber]
+        
+        for encodingNumber in encodingNumbers {
+            let cfEncoding = encodingNumber.uint32Value
+            
+            if cfEncoding == kCFStringEncodingInvalidId {
+                encodings.append(nil)
+                continue
+            }
+          
+            let encodingInt = CFStringConvertEncodingToNSStringEncoding(cfEncoding)
+            let encoding = String.Encoding(rawValue: encodingInt)
+            
+            encodings.append(encoding)
+        }
+        
+        return encodings
+    }
+    
+    
     /// returns corresponding NSStringEncoding from a encoding name
     class func encoding(fromName encodingName: String) -> UInt {
         
@@ -140,17 +164,12 @@ class EncodingManager: NSObject {
         
         var items = [NSMenuItem]()
         
-        let encodingNumbers = UserDefaults.standard().array(forKey: CEDefaultEncodingListKey) as! [NSNumber]
-        let cfEncodings = encodingNumbers.map { $0.uint32Value }
-        
-        for cfEncoding in cfEncodings {
-            guard cfEncoding != kCFStringEncodingInvalidId else {
+        for encoding in self.defaultEncodings {
+            guard let encoding = encoding else {
                 items.append(NSMenuItem.separator())
                 continue
             }
             
-            let encodingInt = CFStringConvertEncodingToNSStringEncoding(cfEncoding)
-            let encoding = String.Encoding(rawValue: encodingInt)
             let menuTitle = String.localizedName(of: encoding)
             
             let item = NSMenuItem(title: menuTitle, action: nil, keyEquivalent: "")

@@ -197,7 +197,7 @@ class MenuKeyBindingManager: KeyBindingManager {
                  #selector(CEEditorWrapper.changeTabWidth(_:)),
                  #selector(CETextView.biggerFont(_:)),
                  #selector(CETextView.smallerFont(_:)),
-                 #selector(CEScriptManager.launchScript(_:)),
+                 #selector(ScriptManager.launchScript(_:)),
                  #selector(NSWindow.makeKeyAndOrderFront(_:)),
                  #selector(NSApplication.orderFrontCharacterPalette(_:)):  // = "Emoji & Symbols"
                 return false
@@ -324,7 +324,7 @@ extension MenuKeyBindingManager {
         
         let url = self.keyBindingSettingFileURL
         
-        if (try? url.checkResourceIsReachable()) ?? false {
+        if url.isReachable {
             do {
                 try FileManager.default().removeItem(at: url)
             } catch {

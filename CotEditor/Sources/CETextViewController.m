@@ -33,7 +33,6 @@
 #import "CETextView.h"
 
 #import "CESyntaxStyle.h"
-#import "CEScriptManager.h"
 
 #import "CEDefaults.h"
 #import "Constants.h"
@@ -248,7 +247,7 @@ static const NSTimeInterval kCurrentLineUpdateInterval = 0.01;
 // ------------------------------------------------------
 {
     // append Script menu
-    NSMenu *scriptMenu = [[CEScriptManager sharedManager] contexualMenu];
+    NSMenu *scriptMenu = [[ScriptManager shared] contexualMenu];
     if (scriptMenu) {
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultInlineContextualScriptMenuKey]) {
             [menu addItem:[NSMenuItem separatorItem]];
