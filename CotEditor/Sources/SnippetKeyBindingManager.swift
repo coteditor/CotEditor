@@ -129,7 +129,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
         guard !modifierMask.contains(.deviceIndependentFlagsMask) else { return nil }  // check modifier key is pressed  (just in case)
         
         // selector string for the key press
-        let keySpecChars = CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: keyEquivalent, modifierMask: modifierMask)
+        let keySpecChars = KeyBindingUtils.keySpecChars(keyEquivalent: keyEquivalent, modifierMask: modifierMask)
         
         guard let selectorString = self.keyBindingDict[keySpecChars] else { return nil }
         

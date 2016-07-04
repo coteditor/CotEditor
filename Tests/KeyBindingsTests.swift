@@ -31,18 +31,17 @@ import XCTest
 class KeyBindingsTests: XCTestCase {
     
     func testKeySpecCharsCreation() {
-        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "a", modifierMask: [.control, .shift]), "^$a")
-        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "b", modifierMask: [.command, .option]), "~@b")
-        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "A", modifierMask: [.control]), "^$A")  // uppercase for Shift key
+        XCTAssertEqual(KeyBindingUtils.keySpecChars(keyEquivalent: "a", modifierMask: [.control, .shift]), "^$a")
+        XCTAssertEqual(KeyBindingUtils.keySpecChars(keyEquivalent: "b", modifierMask: [.command, .option]), "~@b")
+        XCTAssertEqual(KeyBindingUtils.keySpecChars(keyEquivalent: "A", modifierMask: [.control]), "^$A")  // uppercase for Shift key
         
-        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "a", modifierMask: []), "a")
-        XCTAssertEqual(CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: "", modifierMask: [.control, .shift]), "")
+        XCTAssertEqual(KeyBindingUtils.keySpecChars(keyEquivalent: "a", modifierMask: []), "a")
+        XCTAssertEqual(KeyBindingUtils.keySpecChars(keyEquivalent: "", modifierMask: [.control, .shift]), "")
     }
     
     
     func testStringToKeyEquivalentAndModifierMask() {
-        var modifierMask = NSEventModifierFlags()
-        let keyEquivalent = CEKeyBindingUtils.keyEquivalentAndModifierMask(&modifierMask, fromKeySpecChars: "^$a", requiresCommandKey: false)
+        let (keyEquivalent, modifierMask) = KeyBindingUtils.keyEquivalentAndModifierMask(keySpecChars: "^$a", requiresCommandKey: false)
         
         XCTAssertEqual(keyEquivalent, "a")
         XCTAssertEqual(modifierMask, [.control, .shift])
@@ -50,8 +49,7 @@ class KeyBindingsTests: XCTestCase {
     
     
     func testStringToKeyEquivalentAndModifierMaskWithoutCommandKey() {
-        var modifierMask = NSEventModifierFlags()
-        let keyEquivalent = CEKeyBindingUtils.keyEquivalentAndModifierMask(&modifierMask, fromKeySpecChars: "^$a", requiresCommandKey: true)
+        let (keyEquivalent, modifierMask) = KeyBindingUtils.keyEquivalentAndModifierMask(keySpecChars: "^$a", requiresCommandKey: true)
         
         XCTAssertEqual(keyEquivalent, "")
         XCTAssertEqual(modifierMask, [])
@@ -60,15 +58,15 @@ class KeyBindingsTests: XCTestCase {
     
     func testPrintableShortcutKey () {
         // test modifier symbols
-        XCTAssertEqual(CEKeyBindingUtils.printableKeyString(fromKeySpecChars: "^$a"), "^⇧A")
-        XCTAssertEqual(CEKeyBindingUtils.printableKeyString(fromKeySpecChars: "~@b"), "⌥⌘B")
+        XCTAssertEqual(KeyBindingUtils.printableKeyString(keySpecChars: "^$a"), "^⇧A")
+        XCTAssertEqual(KeyBindingUtils.printableKeyString(keySpecChars: "~@b"), "⌥⌘B")
         
         // test unprintable keys
         let F10 = String(UnicodeScalar(NSF10FunctionKey))
-        XCTAssertEqual(CEKeyBindingUtils.printableKeyString(fromKeySpecChars: "@" + F10), "⌘F10")
+        XCTAssertEqual(KeyBindingUtils.printableKeyString(keySpecChars: "@" + F10), "⌘F10")
         
         let delete = String(UnicodeScalar(NSDeleteCharacter))
-        XCTAssertEqual(CEKeyBindingUtils.printableKeyString(fromKeySpecChars: "@" + delete), "⌘⌦")
+        XCTAssertEqual(KeyBindingUtils.printableKeyString(keySpecChars: "@" + delete), "⌘⌦")
     }
 
 }

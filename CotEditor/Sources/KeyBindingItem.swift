@@ -38,7 +38,7 @@ class KeyBindingItem: NSObject {
     /// printable representation of the shortcut key
     var printableKey: String? {
         
-        return CEKeyBindingUtils.printableKeyString(fromKeySpecChars: self.keySpecChars)
+        return KeyBindingUtils.printableKeyString(keySpecChars: self.keySpecChars)
     }
     
     

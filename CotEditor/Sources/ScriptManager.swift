@@ -363,8 +363,10 @@ class ScriptManager: NSObject {
         scriptName = regex.stringByReplacingMatches(in: scriptName, options: [], range: scriptName.nsRange, withTemplate: "")
         
         // remove keyboard shortcut definition
-        let specSet = NSCharacterSet(charactersIn: "^~$@")  // TODO: Read from KeyBindingUtils
-        if let firstExtensionChar = scriptName.components(separatedBy: ".").last?.utf16.first where specSet.characterIsMember(firstExtensionChar) {
+        let specChars = ModifierKey.all.map { $0.keySpecChar }
+        if let firstExtensionChar = scriptName.components(separatedBy: ".").last?.characters.first
+            where specChars.contains(String(firstExtensionChar))
+        {
             scriptName = scriptName.components(separatedBy: ".").first!
         }
         
@@ -377,10 +379,7 @@ class ScriptManager: NSObject {
         
         guard let keySpecChars = (try? fileURL.deletingPathExtension())?.pathExtension else { return ("", []) }
         
-        var modifierMask = NSEventModifierFlags()
-        let keyEquivalent = CEKeyBindingUtils.keyEquivalentAndModifierMask(&modifierMask, fromKeySpecChars: keySpecChars, requiresCommandKey: true)
-        
-        return (keyEquivalent, modifierMask)
+        return KeyBindingUtils.keyEquivalentAndModifierMask(keySpecChars: keySpecChars, requiresCommandKey: true)
     }
     
     

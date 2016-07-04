@@ -10,15 +10,6 @@
 // HexColorTransformer
 #import "NSColor+WFColorCode.h"
 
-// SyntaxMappingConflictsViewController
-#import "CESyntaxManager.h"
-
-// KeyBindingsViewController
-#import "CEKeyBindingUtils.h"
-
-// General Pane
-#import "CEDocument.h"
-
 // NSWindow
 #import "CEAlphaWindow.h"
 

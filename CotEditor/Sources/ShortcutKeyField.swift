@@ -56,9 +56,9 @@ class ShortcutKeyField: NSTextField {
             //     "delete (forword)" key: the key with printed "Delete" where next to the ten key pad.
             switch Int(charsIgnoringModifiers.utf16.first!) {
             case NSDeleteCharacter:
-                charsIgnoringModifiers = String(format: "%C", NSBackspaceCharacter)
+                charsIgnoringModifiers = String(UnicodeScalar(NSBackspaceCharacter))
             case NSDeleteFunctionKey:
-                charsIgnoringModifiers = String(format: "%C", NSDeleteCharacter)
+                charsIgnoringModifiers = String(UnicodeScalar(NSDeleteCharacter))
             default: break
             }
             
@@ -69,7 +69,7 @@ class ShortcutKeyField: NSTextField {
             }
             
             // set input shortcut string to field
-            var keySpecChars = CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: charsIgnoringModifiers, modifierMask: modifierMask)
+            var keySpecChars = KeyBindingUtils.keySpecChars(keyEquivalent: charsIgnoringModifiers, modifierMask: modifierMask)
             if keySpecChars == "\u{8}" {  // single NSDeleteCharacter should be deleted
                 keySpecChars = ""
             }

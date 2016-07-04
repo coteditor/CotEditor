@@ -146,10 +146,7 @@ class MenuKeyBindingManager: KeyBindingManager {
         
         let keySpecChars = self.keySpecChars(for: action, defaults: false)
         
-        var modifierMask = NSEventModifierFlags()
-        let keyEquivalent = CEKeyBindingUtils.keyEquivalentAndModifierMask(&modifierMask, fromKeySpecChars: keySpecChars, requiresCommandKey: true)
-        
-        return (keyEquivalent, modifierMask)
+        return KeyBindingUtils.keyEquivalentAndModifierMask(keySpecChars: keySpecChars, requiresCommandKey: true)
     }
     
     
@@ -225,8 +222,8 @@ class MenuKeyBindingManager: KeyBindingManager {
             } else {
                 guard let action = menuItem.action else { continue }
                 
-                let key = CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: menuItem.keyEquivalent,
-                                                         modifierMask: menuItem.keyEquivalentModifierMask)
+                let key = KeyBindingUtils.keySpecChars(keyEquivalent: menuItem.keyEquivalent,
+                                                        modifierMask: menuItem.keyEquivalentModifierMask)
                 
                 if !key.isEmpty {
                     dictionary[key] = NSStringFromSelector(action)
@@ -295,7 +292,7 @@ class MenuKeyBindingManager: KeyBindingManager {
             } else {
                 guard let action = menuItem.action else { continue }
                 
-                let keySpecChars = usesDefaults ? self.keySpecChars(for: action, defaults: true) : CEKeyBindingUtils.keySpecChars(fromKeyEquivalent: menuItem.keyEquivalent, modifierMask: menuItem.keyEquivalentModifierMask)
+                let keySpecChars = usesDefaults ? self.keySpecChars(for: action, defaults: true) : KeyBindingUtils.keySpecChars(keyEquivalent: menuItem.keyEquivalent, modifierMask: menuItem.keyEquivalentModifierMask)
                 
                 let item = KeyBindingItem(selector: NSStringFromSelector(action), keySpecChars: keySpecChars)
                 node = NamedTreeNode(name: menuItem.title, representedObject: item)

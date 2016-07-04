@@ -153,7 +153,7 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
     /// create error for keySpecChars validation
     func error(messageFormat: String, keySpecChars: String) -> NSError {
         
-        let printableKey = CEKeyBindingUtils.printableKeyString(fromKeySpecChars: keySpecChars)
+        let printableKey = KeyBindingUtils.printableKeyString(keySpecChars: keySpecChars)
         
         return NSError(domain: CEErrorDomain, code: CEErrorCode.CEInvalidKeySpecCharsError.rawValue,
                        userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString(messageFormat, comment: ""), printableKey),
