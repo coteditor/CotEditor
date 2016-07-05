@@ -28,6 +28,7 @@
 import Foundation
 
 enum SyntaxType: String {
+    
     case keywords
     case commands
     case types
@@ -41,7 +42,8 @@ enum SyntaxType: String {
     
     static let all: [SyntaxType] = [.keywords,
                                     .commands,
-                                    .types, .attributes,
+                                    .types,
+                                    .attributes,
                                     .variables,
                                     .values,
                                     .numbers,
