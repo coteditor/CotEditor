@@ -323,7 +323,7 @@ extension MenuKeyBindingManager {
         
         if url.isReachable {
             do {
-                try FileManager.default().removeItem(at: url)
+                try FileManager.default.removeItem(at: url)
             } catch {
                 return false
             }

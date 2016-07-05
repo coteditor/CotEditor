@@ -106,7 +106,7 @@ class ThemeTests: XCTestCase {
     /// test if all of bundled themes are valid
     func testBundledThemes() {
         let themeDirectoryURL = self.bundle?.urlForResource(ThemeDirectoryName, withExtension: nil)!
-        let enumerator = FileManager.default().enumerator(at: themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles], errorHandler: nil)!
+        let enumerator = FileManager.default.enumerator(at: themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles], errorHandler: nil)!
         
         for url in enumerator.allObjects as! [URL] {
             guard url.pathExtension == ThemeExtension else { continue }

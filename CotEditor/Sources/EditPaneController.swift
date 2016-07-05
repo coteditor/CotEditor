@@ -73,7 +73,7 @@ class EditPaneController: NSViewController {
     /// update hint for word completion
     private func updateCompletionHintMessage() {
         
-        let defaults = UserDefaults.standard()
+        let defaults = UserDefaults.standard
         
         if !defaults.bool(forKey: CEDefaultCompletesDocumentWordsKey) &&
            !defaults.bool(forKey: CEDefaultCompletesSyntaxWordsKey) &&

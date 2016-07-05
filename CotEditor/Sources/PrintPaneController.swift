@@ -41,7 +41,7 @@ class PrintPaneController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -63,7 +63,7 @@ class PrintPaneController: NSViewController {
         self.setupColorMenu()
         
         // observe theme list update
-        NotificationCenter.default().addObserver(self, selector: #selector(setupColorMenu), name: .CEThemeListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupColorMenu), name: .CEThemeListDidUpdate, object: nil)
     }
     
     
@@ -72,8 +72,8 @@ class PrintPaneController: NSViewController {
     
     /// show font panel
     @IBAction func showFonts(_ sender: AnyObject?) {
-        guard let font = NSFont(name: UserDefaults.standard().string(forKey: CEDefaultPrintFontNameKey)!,
-                                size: CGFloat(UserDefaults.standard().double(forKey: CEDefaultPrintFontSizeKey))) else { return }
+        guard let font = NSFont(name: UserDefaults.standard.string(forKey: CEDefaultPrintFontNameKey)!,
+                                size: CGFloat(UserDefaults.standard.double(forKey: CEDefaultPrintFontSizeKey))) else { return }
         
         self.view.window?.makeFirstResponder(self)
         NSFontManager.shared().setSelectedFont(font, isMultiple: false)
@@ -88,8 +88,8 @@ class PrintPaneController: NSViewController {
         
         let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
         
-        UserDefaults.standard().set(newFont.fontName, forKey: CEDefaultPrintFontNameKey)
-        UserDefaults.standard().set(newFont.pointSize, forKey: CEDefaultPrintFontSizeKey)
+        UserDefaults.standard.set(newFont.fontName, forKey: CEDefaultPrintFontNameKey)
+        UserDefaults.standard.set(newFont.pointSize, forKey: CEDefaultPrintFontSizeKey)
         
         self.setupFontFamilyNameAndSize()
     }
@@ -103,8 +103,8 @@ class PrintPaneController: NSViewController {
         let index = popup.indexOfSelectedItem
         let theme = (index > 2) ? popup.titleOfSelectedItem : nil  // do not set theme on `Black and White` and `same as document's setting`
         
-        UserDefaults.standard().set(theme, forKey: CEDefaultPrintThemeKey)
-        UserDefaults.standard().set(index, forKey: CEDefaultPrintColorIndexKey)
+        UserDefaults.standard.set(theme, forKey: CEDefaultPrintThemeKey)
+        UserDefaults.standard.set(index, forKey: CEDefaultPrintColorIndexKey)
     }
     
     
@@ -114,8 +114,8 @@ class PrintPaneController: NSViewController {
     /// display font name and size in the font field
     private func setupFontFamilyNameAndSize() {
         
-        let name = UserDefaults.standard().string(forKey: CEDefaultPrintFontNameKey)!
-        let size = CGFloat(UserDefaults.standard().double(forKey: CEDefaultPrintFontSizeKey))
+        let name = UserDefaults.standard.string(forKey: CEDefaultPrintFontNameKey)!
+        let size = CGFloat(UserDefaults.standard.double(forKey: CEDefaultPrintFontSizeKey))
         
         guard let font = NSFont(name: name, size: size),
               let displayFont = NSFont(name: name, size: min(size, 13.0)),
@@ -129,8 +129,8 @@ class PrintPaneController: NSViewController {
     /// setup popup menu for color setting
     func setupColorMenu() {
         
-        let index = UserDefaults.standard().integer(forKey: CEDefaultPrintColorIndexKey)
-        let themeName = UserDefaults.standard().string(forKey: CEDefaultPrintThemeKey)
+        let index = UserDefaults.standard.integer(forKey: CEDefaultPrintColorIndexKey)
+        let themeName = UserDefaults.standard.string(forKey: CEDefaultPrintThemeKey)
         let themeNames = CEThemeManager.shared().themeNames
         
         guard let popupButton = self.colorPopupButton else { return }

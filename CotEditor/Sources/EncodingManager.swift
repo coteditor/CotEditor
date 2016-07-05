@@ -63,12 +63,12 @@ class EncodingManager: NSObject {
         
         self.buildEncodingMenuItems()
         
-        UserDefaults.standard().addObserver(self, forKeyPath: CEDefaultEncodingListKey, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: CEDefaultEncodingListKey, options: .new, context: nil)
     }
     
     
     deinit {
-        UserDefaults.standard().removeObserver(self, forKeyPath: CEDefaultEncodingListKey)
+        UserDefaults.standard.removeObserver(self, forKeyPath: CEDefaultEncodingListKey)
     }
     
     
@@ -90,7 +90,7 @@ class EncodingManager: NSObject {
     var defaultEncodings: [String.Encoding?] {
         
         var encodings: [String.Encoding?] = []
-        let encodingNumbers = UserDefaults.standard().array(forKey: CEDefaultEncodingListKey) as! [NSNumber]
+        let encodingNumbers = UserDefaults.standard.array(forKey: CEDefaultEncodingListKey) as! [NSNumber]
         
         for encodingNumber in encodingNumbers {
             let cfEncoding = encodingNumber.uint32Value
@@ -181,7 +181,7 @@ class EncodingManager: NSObject {
         
         // notify that new encoding menu items was created
         DispatchQueue.main.async { [weak self] in
-            NotificationCenter.default().post(name: EncodingManager.ListDidUpdateNotification, object: self)
+            NotificationCenter.default.post(name: EncodingManager.ListDidUpdateNotification, object: self)
         }
     }
     

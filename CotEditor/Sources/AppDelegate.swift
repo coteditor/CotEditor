@@ -120,7 +120,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     override init() {
         
         // register default setting values
-        UserDefaults.standard().register(DefaultSettings)
+        UserDefaults.standard.register(DefaultSettings)
         NSUserDefaultsController.shared().initialValues = DefaultSettings
         
         // register transformers
@@ -137,7 +137,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -153,9 +153,9 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu(self)
         
         // observe setting list updates
-        NotificationCenter.default().addObserver(self, selector: #selector(buildEncodingMenu), name: EncodingManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(buildSyntaxMenu), name: .CESyntaxListDidUpdate, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(buildThemeMenu), name: .CEThemeListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: EncodingManager.ListDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: .CESyntaxListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: .CEThemeListDidUpdate, object: nil)
     }
     
     
@@ -166,7 +166,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
         if self.didFinishLaunching {
-            return UserDefaults.standard().bool(forKey: CEDefaultCreateNewAtStartupKey)
+            return UserDefaults.standard.bool(forKey: CEDefaultCreateNewAtStartupKey)
         }
         
         return true
@@ -176,7 +176,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     /// crates a new document on "Re-Open" AppleEvent
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         
-        if UserDefaults.standard().bool(forKey: CEDefaultReopenBlankWindowKey) {
+        if UserDefaults.standard.bool(forKey: CEDefaultReopenBlankWindowKey) {
             return true
         }
         
@@ -209,7 +209,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         //      >= 2.2.0 : Single Integer
         var isLatest = true
         let thisVersion = AppInfo.bundleVersion
-        if let lastVersion = UserDefaults.standard().string(forKey: CEDefaultLastVersionKey) {
+        if let lastVersion = UserDefaults.standard.string(forKey: CEDefaultLastVersionKey) {
             // if isDigit -> probably semver (semver must be older than 2.2.0)
             let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) != nil)
             
@@ -218,7 +218,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
             }
         }
         if isLatest {
-            UserDefaults.standard().set(thisVersion, forKey: CEDefaultLastVersionKey)
+            UserDefaults.standard.set(thisVersion, forKey: CEDefaultLastVersionKey)
         }
         
         // register Services
@@ -329,7 +329,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     /// open OSAScript dictionary in Script Editor
     @IBAction func openAppleScriptDictionary(_ sender: AnyObject?) {
         
-        let appURL = Bundle.main().bundleURL
+        let appURL = Bundle.main.bundleURL
         
         NSWorkspace.shared().open([appURL], withAppBundleIdentifier: ScriptEditorIdentifier,
                                   options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil)
@@ -363,13 +363,13 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     @IBAction func createBugReport(_ sender: AnyObject?) {
         
         // load template file
-        let url = Bundle.main().urlForResource("ReportTemplate", withExtension: "md")!
+        let url = Bundle.main.urlForResource("ReportTemplate", withExtension: "md")!
         guard var template = try? String(contentsOf: url) else { return }
         
         // fill template with user environment info
         template = template.replacingOccurrences(of: "%BUNDLE_VERSION%", with: AppInfo.bundleVersion)
         template = template.replacingOccurrences(of: "%SHORT_VERSION%", with: AppInfo.shortVersion)
-        template = template.replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo().operatingSystemVersionString)
+        template = template.replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document
         guard let document = (try? NSDocumentController.shared().openUntitledDocumentAndDisplay(false)) as? CEDocument else { return }

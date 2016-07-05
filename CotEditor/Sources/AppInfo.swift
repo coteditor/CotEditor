@@ -31,14 +31,14 @@ import Foundation
 enum AppInfo {
     
     /// application name
-    static let bundleName = Bundle.main().objectForInfoDictionaryKey("CFBundleName") as! String
+    static let bundleName = Bundle.main.objectForInfoDictionaryKey("CFBundleName") as! String
     
     /// human-friendly version expression
-    static let shortVersion = Bundle.main().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+    static let shortVersion = Bundle.main.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
     
     /// build number
-    static let bundleVersion = Bundle.main().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
+    static let bundleVersion = Bundle.main.objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
     
     /// help book name
-    static let helpBookName = Bundle.main().objectForInfoDictionaryKey("CFBundleHelpBookName") as! String
+    static let helpBookName = Bundle.main.objectForInfoDictionaryKey("CFBundleHelpBookName") as! String
 }

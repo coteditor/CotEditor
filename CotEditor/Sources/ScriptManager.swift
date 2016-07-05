@@ -74,17 +74,17 @@ class ScriptManager: NSObject {
         
         // find Application Scripts folder
         do {
-            self.scriptsDirectoryURL = try FileManager.default().urlForDirectory(.applicationScriptsDirectory,
+            self.scriptsDirectoryURL = try FileManager.default.urlForDirectory(.applicationScriptsDirectory,
                                                                                   in: .userDomainMask, appropriateFor: nil, create: true)
         } catch _ {
             // fallback directory creation for in case the app is not Sandboxed
-            let bundleIdentifier = Bundle.main().bundleIdentifier!
-            let libraryURL = try! FileManager.default().urlForDirectory(.libraryDirectory,
+            let bundleIdentifier = Bundle.main.bundleIdentifier!
+            let libraryURL = try! FileManager.default.urlForDirectory(.libraryDirectory,
                                                                                 in: .userDomainMask, appropriateFor: nil, create: false)
             self.scriptsDirectoryURL = try! libraryURL.appendingPathComponent("Application Scripts").appendingPathComponent(bundleIdentifier, isDirectory: true)
             
             if !self.scriptsDirectoryURL.isReachable {
-                try! FileManager.default().createDirectory(at: self.scriptsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+                try! FileManager.default.createDirectory(at: self.scriptsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
             }
         }
         
@@ -138,7 +138,7 @@ class ScriptManager: NSObject {
         // change behavior if modifier key is pressed
         let modifierFlags = NSEvent.modifierFlags()
         if modifierFlags == .option {  // open script file in editor if the Option key is pressed
-            let identifier = self.AppleScriptExtensions.contains(pathExtension) ? "com.apple.ScriptEditor2" : Bundle.main().bundleIdentifier!
+            let identifier = self.AppleScriptExtensions.contains(pathExtension) ? "com.apple.ScriptEditor2" : Bundle.main.bundleIdentifier!
             guard NSWorkspace.shared().open([fileURL], withAppBundleIdentifier: identifier, options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil) else {
                 // display alert if cannot open/select the script file
                 let message = String(format: NSLocalizedString("The script file “%@” couldn’t be opened.", comment: ""), fileURL)
@@ -310,7 +310,7 @@ class ScriptManager: NSObject {
     /// read files and create/add menu items
     private func addChildFileItem(to menu: NSMenu, fromDirctory directoryURL: URL) {
         
-        guard let fileURLs = try? FileManager.default().contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: [URLResourceKey.fileResourceTypeKey.rawValue], options: [.skipsPackageDescendants, .skipsHiddenFiles]) else { return }
+        guard let fileURLs = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: [URLResourceKey.fileResourceTypeKey.rawValue], options: [.skipsPackageDescendants, .skipsHiddenFiles]) else { return }
         
         for fileURL in fileURLs {
             // ignore files/folders of which name starts with "_"
@@ -497,8 +497,8 @@ class ScriptManager: NSObject {
         // read output asynchronously for safe with huge output
         outPipe.fileHandleForReading.readToEndOfFileInBackgroundAndNotify()
         var observer: NSObjectProtocol?
-        observer = NotificationCenter.default().addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: nil) { [weak self] (note: Notification) in
-            NotificationCenter.default().removeObserver(observer!)
+        observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: nil) { [weak self] (note: Notification) in
+            NotificationCenter.default.removeObserver(observer!)
             
             guard !isCancelled else { return }
             guard let outputType = outputType else { return }

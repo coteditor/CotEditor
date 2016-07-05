@@ -47,10 +47,10 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard().removeObserver(self, forKeyPath: CEDefaultFindHistoryKey)
-        UserDefaults.standard().removeObserver(self, forKeyPath: CEDefaultReplaceHistoryKey)
+        UserDefaults.standard.removeObserver(self, forKeyPath: CEDefaultFindHistoryKey)
+        UserDefaults.standard.removeObserver(self, forKeyPath: CEDefaultReplaceHistoryKey)
         
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -66,8 +66,8 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.updateReplaceHistoryMenu()
         
         // observe default change for the history menus
-        UserDefaults.standard().addObserver(self, forKeyPath: CEDefaultFindHistoryKey, options: [], context: nil)
-        UserDefaults.standard().addObserver(self, forKeyPath: CEDefaultReplaceHistoryKey, options: [], context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: CEDefaultFindHistoryKey, options: [], context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: CEDefaultReplaceHistoryKey, options: [], context: nil)
     }
     
     
@@ -162,7 +162,7 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.view.window?.makeKeyAndOrderFront(self)
         
-        UserDefaults.standard().removeObject(forKey: CEDefaultFindHistoryKey)
+        UserDefaults.standard.removeObject(forKey: CEDefaultFindHistoryKey)
         self.updateFindHistoryMenu()
     }
     
@@ -172,7 +172,7 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.view.window?.makeKeyAndOrderFront(self)
         
-        UserDefaults.standard().removeObject(forKey: CEDefaultReplaceHistoryKey)
+        UserDefaults.standard.removeObject(forKey: CEDefaultReplaceHistoryKey)
         self.updateReplaceHistoryMenu()
     }
     
@@ -194,8 +194,8 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // dismiss result either client text or find string did change
         self.currentResultMessageTarget = target.layoutManager
-        NotificationCenter.default().addObserver(self, selector: #selector(invalidateNumberOfFound), name: .NSTextStorageDidProcessEditing, object: target.textStorage)
-        NotificationCenter.default().addObserver(self, selector: #selector(invalidateNumberOfFound), name: .NSWindowWillClose, object: target.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(invalidateNumberOfFound), name: .NSTextStorageDidProcessEditing, object: target.textStorage)
+        NotificationCenter.default.addObserver(self, selector: #selector(invalidateNumberOfFound), name: .NSWindowWillClose, object: target.window)
     }
 
     
@@ -226,7 +226,7 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             }
         }
         
-        guard let history = UserDefaults.standard().stringArray(forKey: key) where !history.isEmpty else { return }
+        guard let history = UserDefaults.standard.stringArray(forKey: key) where !history.isEmpty else { return }
         
         menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
         
@@ -248,8 +248,8 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // -> specify the object to remove osberver to avoid removing the windowWillClose notification (via delegate) from find panel itself.
         if let target = self.currentResultMessageTarget?.firstTextView {
-            NotificationCenter.default().removeObserver(self, name: .NSTextStorageDidProcessEditing, object: target.textStorage)
-            NotificationCenter.default().removeObserver(self, name: .NSWindowWillClose, object: target.window)
+            NotificationCenter.default.removeObserver(self, name: .NSTextStorageDidProcessEditing, object: target.textStorage)
+            NotificationCenter.default.removeObserver(self, name: .NSWindowWillClose, object: target.window)
         }
     }
     

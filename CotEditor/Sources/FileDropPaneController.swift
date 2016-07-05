@@ -62,7 +62,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         self.loadSetting()
         
         // set localized glossary to view
-        let glossaryURL = Bundle.main().urlForResource("FileDropGlossary", withExtension: "txt")!
+        let glossaryURL = Bundle.main.urlForResource("FileDropGlossary", withExtension: "txt")!
         let glossary = try! String(contentsOf: glossaryURL)
         self.glossaryTextView?.string = glossary
     }
@@ -200,7 +200,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         
         guard let content = self.fileDropController?.content else { return }
         
-        UserDefaults.standard().set(content, forKey: CEDefaultFileDropArrayKey)
+        UserDefaults.standard.set(content, forKey: CEDefaultFileDropArrayKey)
     }
     
     
@@ -213,7 +213,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         
         // make data mutable for NSArrayController
         let content = NSMutableArray()
-        if let settings = UserDefaults.standard().array(forKey: CEDefaultFileDropArrayKey) as? [[String: String]] {
+        if let settings = UserDefaults.standard.array(forKey: CEDefaultFileDropArrayKey) as? [[String: String]] {
             for setting in settings {
                 content.add(NSMutableDictionary(dictionary: setting))
             }

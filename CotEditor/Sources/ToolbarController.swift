@@ -73,7 +73,7 @@ class ToolbarController: NSObject {
     // MARK: Lifecycle
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         
         for keyPath in self.observedDocumentKeys {
             self.document?.removeObserver(self, forKeyPath: keyPath)
@@ -94,9 +94,9 @@ class ToolbarController: NSObject {
         self.buildSyntaxPopupButton()
         
         // observe popup menu line-up change
-        NotificationCenter.default().addObserver(self, selector: #selector(buildEncodingPopupButton), name: EncodingManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .CESyntaxListDidUpdate, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .CESyntaxHistoryDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: EncodingManager.ListDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .CESyntaxListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .CESyntaxHistoryDidUpdate, object: nil)
     }
     
     

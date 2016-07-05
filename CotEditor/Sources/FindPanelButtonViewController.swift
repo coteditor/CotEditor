@@ -39,7 +39,7 @@ class FindPanelButtonViewController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard().removeObserver(self, forKeyPath: CEDefaultFindNextAfterReplaceKey)
+        UserDefaults.standard.removeObserver(self, forKeyPath: CEDefaultFindNextAfterReplaceKey)
     }
     
     
@@ -54,7 +54,7 @@ class FindPanelButtonViewController: NSViewController {
         self.invalidateReplaceButtonBehavior()
         
         // observe default change for the "Replace" button tooltip
-        UserDefaults.standard().addObserver(self, forKeyPath: CEDefaultFindNextAfterReplaceKey, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: CEDefaultFindNextAfterReplaceKey, options: .new, context: nil)
     }
     
     
@@ -74,7 +74,7 @@ class FindPanelButtonViewController: NSViewController {
     @IBAction func replace(_ sender: AnyObject?) {
         
         // perform "Replace & Find" instead of "Replace"
-        if UserDefaults.standard().bool(forKey: CEDefaultFindNextAfterReplaceKey) {
+        if UserDefaults.standard.bool(forKey: CEDefaultFindNextAfterReplaceKey) {
             CETextFinder.shared().replaceAndFind(sender)
         } else {
             CETextFinder.shared().replace(sender)
@@ -104,7 +104,7 @@ class FindPanelButtonViewController: NSViewController {
     /// toggle replace button behavior and tooltip
     private func invalidateReplaceButtonBehavior() {
         
-        if UserDefaults.standard().bool(forKey: CEDefaultFindNextAfterReplaceKey) {
+        if UserDefaults.standard.bool(forKey: CEDefaultFindNextAfterReplaceKey) {
             self.replaceButton?.toolTip = NSLocalizedString("Replace the current selection with the replacement text, then find the next match.", comment: "")
         } else {
             self.replaceButton?.toolTip = NSLocalizedString("Replace the current selection with the replacement text.", comment: "")

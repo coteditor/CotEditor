@@ -31,13 +31,13 @@ class IntegrationPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private static let commandURL = try! Bundle.main().sharedSupportURL!.appendingPathComponent("bin/cot").standardizingPath()
+    private static let commandURL = try! Bundle.main.sharedSupportURL!.appendingPathComponent("bin/cot").standardizingPath()
     
     private static let preferredLinkURL = URL.init(fileURLWithPath: "/usr/local/bin/cot")
     
     private static let preferredLinkTargetURL: URL = {
         // cot in CotEditor.app in /Applications directory
-        let applicationDirURL = try! FileManager.default().urlForDirectory(.applicationDirectory,
+        let applicationDirURL = try! FileManager.default.urlForDirectory(.applicationDirectory,
                                                                            in: .localDomainMask,
                                                                            appropriateFor: nil,
                                                                            create: false)
@@ -92,7 +92,7 @@ class IntegrationPaneController: NSViewController {
         // ???: `resolvingSymlinksInPath` doesn't work correctly on OS X 10.10 SDK, so I use a legacy way (2015-08).
 //        let linkDestinationURL = self.linkURL.resolvingSymlinksInPath()
         let linkDestinationURL: URL = {
-            let linkDestinationPath = try! FileManager.default().destinationOfSymbolicLink(atPath: self.linkURL.path!)
+            let linkDestinationPath = try! FileManager.default.destinationOfSymbolicLink(atPath: self.linkURL.path!)
             return URL.init(fileURLWithPath: linkDestinationPath)
         }()
         

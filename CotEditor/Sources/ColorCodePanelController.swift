@@ -92,7 +92,7 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
         var codeType: WFColorCodeType = .invalid
         guard let color = NSColor(colorCode: sanitizedCode, codeType: &codeType) else { return }
         
-        UserDefaults.standard().set(codeType.rawValue, forKey: CEDefaultColorCodeTypeKey)
+        UserDefaults.standard.set(codeType.rawValue, forKey: CEDefaultColorCodeTypeKey)
         self.panel?.color = color
     }
     
@@ -178,7 +178,7 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
     /// update color code in the field
     @IBAction func updateCode(_ sender: AnyObject?) {
         
-        let codeType = WFColorCodeType(rawValue: UInt(UserDefaults.standard().integer(forKey: CEDefaultColorCodeTypeKey))) ?? .hex
+        let codeType = WFColorCodeType(rawValue: UInt(UserDefaults.standard.integer(forKey: CEDefaultColorCodeTypeKey))) ?? .hex
         var color = self.color
         if let unsafeColor = color where ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(unsafeColor.colorSpace) {
             color = unsafeColor.usingColorSpaceName(NSCalibratedRGBColorSpace)
@@ -186,7 +186,7 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
         var code = color?.colorCode(with: codeType)
         
         // keep lettercase if current Hex code is uppercase
-        if (codeType == .hex || codeType == .shortHex) && self.colorCode?.range(of: "^#[0-9A-F]{1,6}$", options: .regularExpressionSearch) != nil {
+        if (codeType == .hex || codeType == .shortHex) && self.colorCode?.range(of: "^#[0-9A-F]{1,6}$", options: .regularExpression) != nil {
             code = code?.uppercased()
         }
         

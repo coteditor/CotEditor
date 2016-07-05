@@ -177,7 +177,7 @@ class OutlineParseOperation: Operation {
                             }
                             
                             // replace
-                            title = title.replacingOccurrences(of: "(?<!\\\\)\\$LN", with: String(lineCount), options: .regularExpressionSearch)
+                            title = title.replacingOccurrences(of: "(?<!\\\\)\\$LN", with: String(lineCount), options: .regularExpression)
                         }
                         
                         // replace whitespaces

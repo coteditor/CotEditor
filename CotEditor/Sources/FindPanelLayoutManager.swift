@@ -56,7 +56,7 @@ class FindPanelLayoutManager: NSLayoutManager {
     /// show invisible characters
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
-        let defaults = UserDefaults.standard()
+        let defaults = UserDefaults.standard
         
         if defaults.bool(forKey: CEDefaultShowInvisiblesKey) {
             let string = self.textStorage?.string ?? ""

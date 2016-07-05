@@ -148,7 +148,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
         if usesDefaults {
             return self.defaultSnippets
         } else {
-            return UserDefaults.standard().stringArray(forKey: CEDefaultInsertCustomTextArrayKey)!
+            return UserDefaults.standard.stringArray(forKey: CEDefaultInsertCustomTextArrayKey)!
         }
     }
     
@@ -156,7 +156,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
     /// save texts to insert
     func saveSnippets(_ snippets: [String]) {
         
-        UserDefaults.standard().set(snippets, forKey: CEDefaultInsertCustomTextArrayKey)
+        UserDefaults.standard.set(snippets, forKey: CEDefaultInsertCustomTextArrayKey)
     }
     
     

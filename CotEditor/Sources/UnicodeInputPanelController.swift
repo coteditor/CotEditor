@@ -63,7 +63,7 @@ class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate {
     // MARK: Lifecycle
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -80,7 +80,7 @@ class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate {
         
         super.windowDidLoad()
         
-        NotificationCenter.default().addObserver(self, selector: #selector(mainWindowDidResign(_:)), name: .NSWindowDidResignMain, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidResign(_:)), name: .NSWindowDidResignMain, object: nil)
     }
     
     

@@ -247,7 +247,7 @@ class SyntaxHighlightParseOperation: Operation {
         var location = self.parseRange.location
         while location != NSNotFound {
             let range = (string as NSString).range(of: searchString,
-                                                   options: .literalSearch,
+                                                   options: .literal,
                                                    range: NSRange(location: location,
                                                                   length: NSMaxRange(self.parseRange) - location))
             location = NSMaxRange(range)

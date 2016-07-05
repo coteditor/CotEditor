@@ -53,7 +53,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     // MARK: Lifecycle
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -79,13 +79,13 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         self.themeTableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
         
         // select default theme
-        let themeName = UserDefaults.standard().string(forKey: CEDefaultThemeKey)!
+        let themeName = UserDefaults.standard.string(forKey: CEDefaultThemeKey)!
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
         // observe theme list change
-        NotificationCenter.default().addObserver(self, selector: #selector(setupThemeList), name: .CEThemeListDidUpdate, object: nil)
-        NotificationCenter.default().addObserver(self, selector: #selector(themeDidUpdate), name: .CEThemeDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .CEThemeListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: .CEThemeDidUpdate, object: nil)
     }
     
     
@@ -202,7 +202,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     /// check acceptability of dragged items and insert them to table
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
         
-        info.enumerateDraggingItems([], for: tableView, classes: [NSURL.self],
+        info.enumerateDraggingItems(options: [], for: tableView, classes: [NSURL.self],
                                     searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: true,
                                                     NSPasteboardURLReadingContentsConformToTypesKey: [CEUTTypeTheme]]) { [weak self]
                                                         (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
@@ -243,13 +243,13 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         // update default theme setting
         // -> skip on the first time because, at the time point, the settings are not yet applied.
         if self.themeViewController != nil {
-            let oldThemeName = UserDefaults.standard().string(forKey: CEDefaultThemeKey)!
+            let oldThemeName = UserDefaults.standard.string(forKey: CEDefaultThemeKey)!
             
-            UserDefaults.standard().set(themeName, forKey: CEDefaultThemeKey)
+            UserDefaults.standard.set(themeName, forKey: CEDefaultThemeKey)
             
             // update theme of the current document windows
             //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
-            NotificationCenter.default().post(name: .CEThemeDidUpdate, object: self, userInfo: [CEOldNameKey: oldThemeName,
+            NotificationCenter.default.post(name: .CEThemeDidUpdate, object: self, userInfo: [CEOldNameKey: oldThemeName,
                                                                                                 CENewNameKey: themeName])
         }
         
@@ -344,8 +344,8 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     /// show font panel
     @IBAction func showFonts(_ sender: AnyObject?) {
         
-        guard let font = NSFont(name: UserDefaults.standard().string(forKey: CEDefaultFontNameKey)!,
-                                size: CGFloat(UserDefaults.standard().double(forKey: CEDefaultFontSizeKey))) else { return }
+        guard let font = NSFont(name: UserDefaults.standard.string(forKey: CEDefaultFontNameKey)!,
+                                size: CGFloat(UserDefaults.standard.double(forKey: CEDefaultFontSizeKey))) else { return }
         
         self.view.window?.makeFirstResponder(self)
         NSFontManager.shared().setSelectedFont(font, isMultiple: false)
@@ -360,8 +360,8 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         
         let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
         
-        UserDefaults.standard().set(newFont.fontName, forKey: CEDefaultFontNameKey)
-        UserDefaults.standard().set(newFont.pointSize, forKey: CEDefaultFontSizeKey)
+        UserDefaults.standard.set(newFont.fontName, forKey: CEDefaultFontNameKey)
+        UserDefaults.standard.set(newFont.pointSize, forKey: CEDefaultFontSizeKey)
         
         self.setupFontFamilyNameAndSize()
     }
@@ -480,9 +480,9 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     /// display font name and size in the font field
     private func setupFontFamilyNameAndSize() {
         
-        let name = UserDefaults.standard().string(forKey: CEDefaultFontNameKey)!
-        let size = CGFloat(UserDefaults.standard().double(forKey: CEDefaultFontSizeKey))
-        let shouldAntiailias = UserDefaults.standard().bool(forKey: CEDefaultShouldAntialiasKey)
+        let name = UserDefaults.standard.string(forKey: CEDefaultFontNameKey)!
+        let size = CGFloat(UserDefaults.standard.double(forKey: CEDefaultFontSizeKey))
+        let shouldAntiailias = UserDefaults.standard.bool(forKey: CEDefaultShouldAntialiasKey)
         
         guard let font = NSFont(name: name, size: size),
             let displayFont = NSFont(name: name, size: min(size, 13.0)),
@@ -499,7 +499,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView else {
-            return UserDefaults.standard().string(forKey: CEDefaultThemeKey)!
+            return UserDefaults.standard.string(forKey: CEDefaultThemeKey)!
         }
         return self.themeNames[tableView.selectedRow]
     }

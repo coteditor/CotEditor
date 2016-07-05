@@ -110,7 +110,7 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
         if plistDict == self.defaultKeyBindingDict {
             // just remove setting file if the new setting is exactly the same as the default
             do {
-                try FileManager.default().removeItem(at: fileURL)
+                try FileManager.default.removeItem(at: fileURL)
             } catch let error as NSError {
                 print("Error on saving keybindings setting file: " + error.description)
                 return false
