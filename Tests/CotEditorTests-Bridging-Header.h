@@ -25,7 +25,6 @@
 // String Extensions Tests
 #import "NSString+CEAdditions.h"
 #import "NSString+CENewLine.h"
-#import "NSString+CERange.h"
 #import "NSString+CECounting.h"
 #import "NSString+JapaneseTransform.h"
 #import "NSString+Normalization.h"

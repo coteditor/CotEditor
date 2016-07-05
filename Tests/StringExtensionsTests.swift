@@ -123,24 +123,24 @@ class StringExtensionsTests: XCTestCase {
     func testRange() {
         let testString = "0123456789" as NSString
         
-        XCTAssertTrue(NSEqualRanges(testString.range(forLocation: 2, length: 2), NSMakeRange(2, 2)))
-        XCTAssertTrue(NSEqualRanges(testString.range(forLocation: -1, length: 1), NSMakeRange(9, 1)))
-        XCTAssertTrue(NSEqualRanges(testString.range(forLocation: 3, length: -2), NSMakeRange(3, "45678".length)))
+        XCTAssertTrue(NSEqualRanges(testString.range(location: 2, length: 2), NSMakeRange(2, 2)))
+        XCTAssertTrue(NSEqualRanges(testString.range(location: -1, length: 1), NSMakeRange(9, 1)))
+        XCTAssertTrue(NSEqualRanges(testString.range(location: 3, length: -2), NSMakeRange(3, "45678".length)))
         
         
         let linesString = "1\r\n2\r\n3\r\n4" as NSString  // 1 based
         var range: NSRange
         
-        range = linesString.range(forLineLocation: 1, length: 2)
+        range = linesString.rangeForLine(location: 1, length: 2)
         XCTAssertEqual(linesString.substring(with: range), "1\r\n2\r\n")
         
-        range = linesString.range(forLineLocation: -1, length: 1)
+        range = linesString.rangeForLine(location: -1, length: 1)
         XCTAssertEqual(linesString.substring(with: range), "4")
         
-        range = linesString.range(forLineLocation: -2, length: 1)
+        range = linesString.rangeForLine(location: -2, length: 1)
         XCTAssertEqual(linesString.substring(with: range), "3\r\n")
         
-        range = linesString.range(forLineLocation: 2, length: -2)
+        range = linesString.rangeForLine(location: 2, length: -2)
         XCTAssertEqual(linesString.substring(with: range), "2\r\n")
     }
     

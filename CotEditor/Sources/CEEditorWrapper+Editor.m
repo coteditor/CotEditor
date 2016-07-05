@@ -27,11 +27,13 @@
  */
 
 #import "CEEditorWrapper+Editor.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEDocument.h"
 
 #import "NSTextView+CETextReplacement.h"
 #import "NSString+CENewLine.h"
-#import "NSString+CERange.h"
 
 
 @implementation CEEditorWrapper (TextEditing)
@@ -145,7 +147,7 @@
 {
     NSString *documentString = [[self string] stringByReplacingNewLineCharacersWith:[[self document] lineEnding]];
     
-    return [documentString rangeForLocation:location length:length];
+    return [documentString rangeWithLocation:location length:length];
 }
 
 
@@ -170,7 +172,7 @@
     // you can ignore actuall line ending type and directly comunicate with textView, as this handle just lines
     NSTextView *textView = [self focusedTextView];
     
-    NSRange range = [[textView string] rangeForLineLocation:location length:length];
+    NSRange range = [[textView string] rangeForLineWithLocation:location length:length];
     
     if (range.location == NSNotFound) { return; }
     
