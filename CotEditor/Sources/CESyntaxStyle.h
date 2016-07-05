@@ -29,7 +29,7 @@
 @import Cocoa;
 
 
-@class CEOutlineItem;
+@class OutlineItem;
 
 
 @protocol CESyntaxStyleDelegate;
@@ -64,7 +64,7 @@
 
 @interface CESyntaxStyle (Outline)
 
-@property (readonly, nonatomic, nullable, copy) NSArray<CEOutlineItem *> *outlineItems;
+@property (readonly, nonatomic, nullable, copy) NSArray<OutlineItem *> *outlineItems;
 
 
 - (void)invalidateOutline;
@@ -84,6 +84,6 @@
 @protocol CESyntaxStyleDelegate <NSObject>
 
 @optional
-- (void)syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle didParseOutline:(nullable NSArray<CEOutlineItem *> *)outlineItems;
+- (void)syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle didParseOutline:(nullable NSArray<OutlineItem *> *)outlineItems;
 
 @end

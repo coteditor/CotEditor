@@ -201,7 +201,6 @@
 		2A63CEC61D0B072A00ED8186 /* CESyntaxHighlightParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A89848E1C3CFD80006290FF /* CESyntaxHighlightParseOperation.m */; };
 		2A63CEC91D0B0D4600ED8186 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A63CECB1D0B0E7800ED8186 /* sample.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A63CECA1D0B0E7800ED8186 /* sample.html */; };
-		2A63CECC1D0B182D00ED8186 /* CEOutlineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEA27DE1CE3D4C1006CDB80 /* CEOutlineItem.m */; };
 		2A63FBE31D1D90E70081C84E /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */; };
 		2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */; };
 		2A6415941BD10EF40080358E /* NSString+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6415931BD10EF30080358E /* NSString+Indentation.m */; };
@@ -402,6 +401,9 @@
 		2AAD61F01D2B0856008FE772 /* NSString+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* NSString+Range.swift */; };
 		2AAD61F11D2B0856008FE772 /* NSString+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* NSString+Range.swift */; };
 		2AAD61F21D2B0856008FE772 /* NSString+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* NSString+Range.swift */; };
+		2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */; };
+		2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */; };
+		2AAD61F61D2BA0E0008FE772 /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */; };
 		2AB0C59C1C4A18830019411A /* NSString+CEEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */; };
 		2AB0C59D1C4A18830019411A /* NSString+CEEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */; };
 		2AB3407F1D01E2A4000F5EEC /* CESyntaxDictionaryKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3407E1D01E2A4000F5EEC /* CESyntaxDictionaryKeys.m */; };
@@ -485,8 +487,6 @@
 		2AE52F231D175A9400D60A32 /* SizeSettingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F211D175A9400D60A32 /* SizeSettingWindowController.swift */; };
 		2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
-		2AEA27DF1CE3D4C1006CDB80 /* CEOutlineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEA27DE1CE3D4C1006CDB80 /* CEOutlineItem.m */; };
-		2AEA27E01CE3D4C1006CDB80 /* CEOutlineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEA27DE1CE3D4C1006CDB80 /* CEOutlineItem.m */; };
 		2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */; };
 		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AF5873F1CF76FFB009D44A2 /* NSString+CEAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5873E1CF76FFB009D44A2 /* NSString+CEAdditions.m */; };
@@ -847,6 +847,7 @@
 		2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutKeyField.swift; sourceTree = "<group>"; };
 		2AAD61EB1D2A4CE5008FE772 /* KeyBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBinding.swift; sourceTree = "<group>"; };
 		2AAD61EF1D2B0856008FE772 /* NSString+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Range.swift"; sourceTree = "<group>"; };
+		2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineItem.swift; sourceTree = "<group>"; };
 		2AB0C59A1C4A18830019411A /* NSString+CEEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CEEncoding.h"; sourceTree = "<group>"; };
 		2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CEEncoding.m"; sourceTree = "<group>"; };
 		2AB3407D1D01E2A4000F5EEC /* CESyntaxDictionaryKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxDictionaryKeys.h; sourceTree = "<group>"; };
@@ -978,8 +979,6 @@
 		2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColorTransformer.swift; sourceTree = "<group>"; };
 		2AE52F211D175A9400D60A32 /* SizeSettingWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeSettingWindowController.swift; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
-		2AEA27DD1CE3D4C1006CDB80 /* CEOutlineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEOutlineItem.h; sourceTree = "<group>"; };
-		2AEA27DE1CE3D4C1006CDB80 /* CEOutlineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEOutlineItem.m; sourceTree = "<group>"; };
 		2AEB8B7B19AF73980098D557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2AEB8B7D19AF739F0098D557 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text; name = ja; path = ja.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2AF47C8419227B2300A48047 /* NSString+CECounting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CECounting.h"; sourceTree = "<group>"; };
@@ -1620,8 +1619,7 @@
 				2A42579D1D229A8B0086DAAD /* OutlineParseOperation.swift */,
 				2A89848D1C3CFD80006290FF /* CESyntaxHighlightParseOperation.h */,
 				2A89848E1C3CFD80006290FF /* CESyntaxHighlightParseOperation.m */,
-				2AEA27DD1CE3D4C1006CDB80 /* CEOutlineItem.h */,
-				2AEA27DE1CE3D4C1006CDB80 /* CEOutlineItem.m */,
+				2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */,
 				2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */,
 				2AB3407D1D01E2A4000F5EEC /* CESyntaxDictionaryKeys.h */,
 				2AB3407E1D01E2A4000F5EEC /* CESyntaxDictionaryKeys.m */,
@@ -2375,6 +2373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
+				2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
 				2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2A5F7CAA1D15295D001D83BC /* CETextViewController.m in Sources */,
 				2A476CAB1D09C6B50088E37A /* NSURL+CEAdditions.m in Sources */,
@@ -2439,7 +2438,6 @@
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
 				2AE52F201D17533900D60A32 /* HexColorTransformer.swift in Sources */,
-				2AEA27E01CE3D4C1006CDB80 /* CEOutlineItem.m in Sources */,
 				2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */,
 				2AB340801D01E2A4000F5EEC /* CESyntaxDictionaryKeys.m in Sources */,
 				2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */,
@@ -2541,7 +2539,6 @@
 				2AAD61EE1D2A9055008FE772 /* KeyBinding.swift in Sources */,
 				2A63CEC41D0B06D800ED8186 /* SyntaxTests.swift in Sources */,
 				2A4257A51D22CEB60086DAAD /* CESyntaxDictionaryKeys.m in Sources */,
-				2A63CECC1D0B182D00ED8186 /* CEOutlineItem.m in Sources */,
 				2A9C07541CF9F958006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2A63CEC51D0B072700ED8186 /* CESyntaxStyle.m in Sources */,
 				2ACC653C1C9844ED000574DC /* CETheme.m in Sources */,
@@ -2558,6 +2555,7 @@
 				2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */,
 				2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */,
 				2A4257A31D22CD220086DAAD /* OutlineParseOperation.swift in Sources */,
+				2AAD61F61D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
 				2A476CAC1D09C8960088E37A /* NSURL+CEAdditions.m in Sources */,
 				2A476CB21D09D1CD0088E37A /* NSFont+CESize.m in Sources */,
 				2AE52F1D1D174CC400D60A32 /* FilePermissionsFormatter.swift in Sources */,
@@ -2588,6 +2586,7 @@
 				2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
 				2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2AC2462E1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
+				2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
 				2A7314EE1A0326D300C0EDA9 /* CEAlphaWindow.m in Sources */,
 				2AD49C281D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */,
 				2A4257B61D23153B0086DAAD /* UnicodeInputPanelController.swift in Sources */,
@@ -2699,7 +2698,6 @@
 				2AE52F1F1D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				8CD7A93C09CBDDDC00739513 /* CEEditorViewController.m in Sources */,
 				2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
-				2AEA27DF1CE3D4C1006CDB80 /* CEOutlineItem.m in Sources */,
 				2A38FB001D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift in Sources */,
 				2AE0C09F1C42330000E52E04 /* CETextView+Indentation.m in Sources */,
 				2A68F93518F9995500673440 /* CEThemeManager.m in Sources */,

@@ -29,7 +29,7 @@
 @import AppKit;
 
 
-@class CEOutlineItem;
+@class OutlineItem;
 
 
 @interface CENavigationBarController : NSViewController
@@ -38,7 +38,7 @@
 
 
 // public method
-- (void)setOutlineItems:(nonnull NSArray<CEOutlineItem *> *)outlineItems;
+- (void)setOutlineItems:(nonnull NSArray<OutlineItem *> *)outlineItems;
 - (void)updatePrevNextButtonEnabled;
 - (BOOL)canSelectPrevItem;
 - (BOOL)canSelectNextItem;

@@ -1,9 +1,9 @@
 /*
  
- CEOutlineItem.h
+ OutlineItem.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-05-12.
  
@@ -25,15 +25,25 @@
  
  */
 
-@import Foundation;
+import Foundation
 
+class OutlineItem: NSObject {  // TODO: to stract
 
-@interface CEOutlineItem : NSObject
-
-@property (nonatomic, nullable, copy) NSString *title;
-@property (nonatomic) NSRange range;
-@property (nonatomic, getter=isBold) BOOL bold;
-@property (nonatomic, getter=isItalic) BOOL italic;
-@property (nonatomic) BOOL hasUnderline;
-
-@end
+    let title: String
+    let range: NSRange
+    let isBold: Bool
+    let isItalic: Bool
+    let hasUnderline: Bool
+    
+    required init(title: String, range: NSRange, isBold: Bool = false, isItalic: Bool = false, hasUnderline: Bool = false) {
+        
+        self.title = title
+        self.range = range
+        self.isBold = isBold
+        self.isItalic = isItalic
+        self.hasUnderline = hasUnderline
+        
+        super.init()
+    }
+    
+}

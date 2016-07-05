@@ -272,7 +272,7 @@
 
 // ------------------------------------------------------
 /// update outline menu in navigation bar
-- (void)syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle didParseOutline:(nullable NSArray<CEOutlineItem *> *)outlineItems
+- (void)syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle didParseOutline:(nullable NSArray<OutlineItem *> *)outlineItems
 // ------------------------------------------------------
 {
     for (CEEditorViewController *viewController in [[self splitViewController] childViewControllers]) {

@@ -27,7 +27,9 @@
  */
 
 #import "CENavigationBarController.h"
-#import "CEOutlineItem.h"
+
+#import "CotEditor-Swift.h"
+
 #import "Constants.h"
 
 #import "NSFont+CESize.h"
@@ -101,7 +103,7 @@
 
 // ------------------------------------------------------
 /// build outline menu from given array
-- (void)setOutlineItems:(nonnull NSArray<CEOutlineItem *> *)outlineItems
+- (void)setOutlineItems:(nonnull NSArray<OutlineItem *> *)outlineItems
 // ------------------------------------------------------
 {
     // stop outline extracting indicator
@@ -140,7 +142,7 @@
     [[menu itemAtIndex:0] setRepresentedObject:[NSValue valueWithRange:NSMakeRange(0, 0)]];
     
     // add outline items
-    for (CEOutlineItem *outlineItem in outlineItems) {
+    for (OutlineItem *outlineItem in outlineItems) {
         if ([[outlineItem title] isEqualToString:CESeparatorString]) {
             [menu addItem:[NSMenuItem separatorItem]];
             continue;

@@ -34,7 +34,6 @@
 #import "CETextFinder.h"
 
 // Syntax Style
-#import "CEOutlineItem.h"
 #import "CESyntaxDictionaryKeys.h"
 
 #import "CEUnicodeCharacter.h"

@@ -6,7 +6,6 @@
 #import <YAML-Framework/YAMLSerialization.h>
 #import "CESyntaxStyle.h"
 #import "CESyntaxHighlightParseOperation.h"
-#import "CEOutlineItem.h"
 #import "CESyntaxDictionaryKeys.h"
 
 // Character Info Tests

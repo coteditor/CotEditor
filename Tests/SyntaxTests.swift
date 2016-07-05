@@ -101,7 +101,7 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
     }
     
     
-    func syntaxStyle(_ syntaxStyle: CESyntaxStyle, didParseOutline outlineItems: [CEOutlineItem]?) {
+    func syntaxStyle(_ syntaxStyle: CESyntaxStyle, didParseOutline outlineItems: [OutlineItem]?) {
         self.outlineParseExpectation?.fulfill()
         
         XCTAssertEqual(outlineItems?.count, 3)

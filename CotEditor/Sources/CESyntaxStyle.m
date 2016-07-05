@@ -68,7 +68,7 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
 @property (readwrite, nonatomic, getter=isNone) BOOL none;
 
-@property (readwrite, nonatomic, nullable, copy) NSArray<CEOutlineItem *> *outlineItems;
+@property (readwrite, nonatomic, nullable, copy) NSArray<OutlineItem *> *outlineItems;
 
 @end
 
@@ -324,7 +324,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 // ------------------------------------------------------
 /// inform delegate about outline items update
-- (void)setOutlineItems:(NSArray<CEOutlineItem *> *)outlineItems
+- (void)setOutlineItems:(NSArray<OutlineItem *> *)outlineItems
 // ------------------------------------------------------
 {
     _outlineItems = [outlineItems copy];

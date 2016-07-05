@@ -80,7 +80,7 @@ class OutlineParseOperation: Operation {
     var parseRange: NSRange = NotFoundRange
     
     let progress: Progress
-    private(set) var results = [CEOutlineItem]()
+    private(set) var results = [OutlineItem]()
     
     
     // MARK: Private Properties
@@ -132,7 +132,7 @@ class OutlineParseOperation: Operation {
         let parseRange = self.parseRange
         guard let string = self.string where !string.isEmpty && parseRange.location != NSNotFound else { return }
         
-        var outlineItems = [CEOutlineItem]()
+        var outlineItems = [OutlineItem]()
         
         for definition in self.definitions {
             self.progress.completedUnitCount += 1
@@ -147,12 +147,10 @@ class OutlineParseOperation: Operation {
                     guard let result = result else { return }
                     
                     let range = result.range
-                    let item = CEOutlineItem()
                     
                     // separator item
                     if definition.isSeparator {
-                        item.title = definition.template
-                        item.range = range
+                        let item = OutlineItem(title: definition.template, range: range)
                         outlineItems.append(item)
                         return
                     }
@@ -185,11 +183,11 @@ class OutlineParseOperation: Operation {
                         // replace whitespaces
                         title = title.replacingOccurrences(of: "\n", with: " ")
                         
-                        item.range = range
-                        item.title = title
-                        item.isBold = definition.isBold
-                        item.isItalic = definition.isItalic
-                        item.hasUnderline = definition.hasUnderline
+                        let item = OutlineItem(title: title,
+                                               range: range,
+                                               isBold: definition.isBold,
+                                               isItalic: definition.isItalic,
+                                               hasUnderline: definition.hasUnderline)
                         
                         // append outline item
                         outlineItems.append(item)
