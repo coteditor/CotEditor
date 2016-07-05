@@ -5,7 +5,6 @@
 // Syntax Tests
 #import <YAML-Framework/YAMLSerialization.h>
 #import "CESyntaxStyle.h"
-#import "CESyntaxHighlightParseOperation.h"
 #import "CESyntaxDictionaryKeys.h"
 
 // Character Info Tests
@@ -22,7 +21,6 @@
 #import "NSString+CECounting.h"
 
 // String Extensions Tests
-#import "NSString+CEAdditions.h"
 #import "NSString+CENewLine.h"
 #import "NSString+CECounting.h"
 #import "NSString+JapaneseTransform.h"

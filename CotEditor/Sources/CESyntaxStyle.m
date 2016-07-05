@@ -32,7 +32,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CESyntaxHighlightParseOperation.h"
 #import "CESyntaxDictionaryKeys.h"
 #import "CEThemableProtocol.h"
 #import "CEDefaults.h"
@@ -548,11 +547,11 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         return;
     }
     
-    CESyntaxHighlightParseOperation *operation = [[CESyntaxHighlightParseOperation alloc] initWithDictionary:[self highlightDictionary]
-                                                                                    simpleWordsCharacterSets:[self simpleWordsCharacterSets]
-                                                                                            pairedQuoteTypes:[self pairedQuoteTypes]
-                                                                                      inlineCommentDelimiter:[self inlineCommentDelimiter]
-                                                                                      blockCommentDelimiters:[self blockCommentDelimiters]];
+    SyntaxHighlightParseOperation *operation = [[SyntaxHighlightParseOperation alloc] initWithDictionary:[self highlightDictionary]
+                                                                                simpleWordsCharacterSets:[self simpleWordsCharacterSets]
+                                                                                        pairedQuoteTypes:[self pairedQuoteTypes]
+                                                                                  inlineCommentDelimiter:[self inlineCommentDelimiter]
+                                                                                  blockCommentDelimiters:[self blockCommentDelimiters]];
     [operation setString:wholeString];
     [operation setParseRange:highlightRange];
     
