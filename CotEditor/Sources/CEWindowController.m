@@ -32,7 +32,6 @@
 
 #import "CEAlphaWindow.h"
 #import "CEDocument.h"
-#import "CEWindowContentViewController.h"
 #import "CEDefaults.h"
 
 
@@ -128,7 +127,8 @@
 - (void)showIncompatibleCharList
 // ------------------------------------------------------
 {
-    [(CEWindowContentViewController *)[self contentViewController] showSidebarPaneWithIndex:CESidebarTabIndexIncompatibleChararacters];
+//    [(WindowContentViewController *)[self contentViewController] showSidebarPaneWithIndex:SidebarTabIndexIncompatibleChararacters];
+    [(WindowContentViewController *)[self contentViewController] showSidebarPaneWithIndex:1];
 }
 
 
@@ -137,7 +137,7 @@
 - (nullable CEEditorWrapper *)editor
 // ------------------------------------------------------
 {
-    return [(CEWindowContentViewController *)[self contentViewController] editor];
+    return [(WindowContentViewController *)[self contentViewController] editor];
 }
 
 @end

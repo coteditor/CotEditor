@@ -41,9 +41,11 @@
 #import "CETextView.h"
 
 // Sidebar View Controllers
-
 #import "CEDocumentAnalyzer.h"
 #import "CEIncompatibleCharacterScanner.h"
 #import "CEIncompatibleCharacter.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper+Editor.h"
+
+// View Controllers
+#import "CEMainViewController.h"
