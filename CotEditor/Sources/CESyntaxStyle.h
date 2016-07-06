@@ -42,11 +42,13 @@
 
 // readonly
 @property (readonly, nonatomic, nonnull, copy) NSString *styleName;
-@property (readonly, nonatomic, nullable, copy) NSArray<NSString *> *completionWords;  // 入力補完文字列配列
-@property (readonly, nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;  // 入力補完の最初の1文字のセット
+@property (readonly, nonatomic, getter=isNone) BOOL none;
+
 @property (readonly, nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
-@property (readonly, nonatomic, getter=isNone) BOOL none;
+
+@property (readonly, nonatomic, nullable, copy) NSArray<NSString *> *completionWords;  // completion words list
+@property (readonly, nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;  // set of the first characters of the completion words
 
 
 /// designated initializer (return nil if no corresponded style dictionary can be found.)

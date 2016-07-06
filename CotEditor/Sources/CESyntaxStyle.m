@@ -61,11 +61,11 @@ static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyz
 
 // readonly
 @property (readwrite, nonatomic, nonnull, copy) NSString *styleName;
-@property (readwrite, nonatomic, nullable, copy) NSArray<NSString *> *completionWords;
-@property (readwrite, nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;
+@property (readwrite, nonatomic, getter=isNone) BOOL none;
 @property (readwrite, nonatomic, nullable, copy) NSString *inlineCommentDelimiter;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, NSString *> *blockCommentDelimiters;
-@property (readwrite, nonatomic, getter=isNone) BOOL none;
+@property (readwrite, nonatomic, nullable, copy) NSArray<NSString *> *completionWords;
+@property (readwrite, nonatomic, nullable, copy) NSCharacterSet *firstCompletionCharacterSet;
 
 @property (readwrite, nonatomic, nullable, copy) NSArray<OutlineItem *> *outlineItems;
 
@@ -143,7 +143,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         } else {
             NSMutableDictionary<NSString *, id> *mutableDictionary = [dictionary mutableCopy];
             
-            // コメントデリミッタを設定
+            // set comment delimiters
             NSDictionary<NSString *, NSString *> *delimiters = mutableDictionary[CESyntaxCommentDelimitersKey];
             if ([delimiters[CESyntaxInlineCommentKey] length] > 0) {
                 _inlineCommentDelimiter = delimiters[CESyntaxInlineCommentKey];
@@ -153,7 +153,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                                             CEEndDelimiterKey: delimiters[CESyntaxEndCommentKey]};
             }
             
-            // カラーリング辞書から補完文字列配列を生成
+            // create word-completion data set
             {
                 NSMutableArray<NSString *> *completionWords = [NSMutableArray array];
                 NSMutableString *firstCharsString = [NSMutableString string];
@@ -181,19 +181,18 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                             }
                         } // ==== end-autoreleasepool
                     }
-                    // ソート
+                    // sort
                     [completionWords sortUsingSelector:@selector(compare:)];
                 }
-                // completionWords を保持する
-                _completionWords = completionWords;
                 
-                // firstCompletionCharacterSet を保持する
+                // keep results
+                _completionWords = completionWords;
                 if ([firstCharsString length] > 0) {
                     _firstCompletionCharacterSet = [NSCharacterSet characterSetWithCharactersInString:firstCharsString];
                 }
             }
             
-            // カラーリング辞書から単純文字列検索のときに使う characterSet の辞書を生成
+            // create characerSet dict for simple word highlights
             {
                 NSMutableDictionary<NSString *, NSCharacterSet *> *characterSets = [NSMutableDictionary dictionary];
                 NSCharacterSet *trimCharSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
@@ -216,7 +215,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                                 }
                             }
                         }
-                        [charSet removeCharactersInString:@"\n\t "];  // 改行、タブ、スペースは無視
+                        [charSet removeCharactersInString:@"\n\t "];   // ignore line breaks, tabs and spaces
                         
                         characterSets[key] = [charSet copy];
                     }
@@ -224,8 +223,8 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 _simpleWordsCharacterSets = [characterSets copy];
             }
             
-            // 引用符のカラーリングはコメントと一緒に別途 extractCommentsWithQuotesFromString: で行なうので選り分けておく
-            // そもそもカラーリング用の定義があるのかもここでチェック
+            // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
+            // also check if highlighting definition exists
             {
                 NSUInteger count = 0;
                 NSMutableDictionary<NSString *, NSString *> *quoteTypes = [NSMutableDictionary dictionary];
@@ -238,13 +237,14 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                         NSString *begin = wordDict[CESyntaxBeginStringKey];
                         NSString *end = wordDict[CESyntaxEndStringKey];
                         
-                        // 最初に出てきたクォートのみを把握
+                        // check just firstly appeared quotes
                         for (NSString *quote in @[@"\"\"\"", @"'''", @"'", @"\"", @"`"]) {
                             if (([begin isEqualToString:quote] && [end isEqualToString:quote]) &&
                                 !quoteTypes[quote])
                             {
+                                // remove from the normal highlight definition list
+                                [wordDicts removeObject:wordDict];
                                 quoteTypes[quote] = key;
-                                [wordDicts removeObject:wordDict];  // 引用符としてカラーリングするのでリストからははずす
                             }
                         }
                     }
@@ -254,7 +254,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                 }
                 _pairedQuoteTypes = quoteTypes;
                 
-                // シンタックスカラーリングが必要かをキャッシュ
+                // cache if syntax highlight exists
                 _hasSyntaxHighlighting = ((count > 0) || _inlineCommentDelimiter || _blockCommentDelimiters);
             }
             
@@ -431,7 +431,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 #pragma mark Public Methods
 
 // ------------------------------------------------------
-/// 全体をカラーリング
+/// update whole document highlights
 - (void)highlightWholeStringWithCompletionHandler:(nullable void (^)())completionHandler
 // ------------------------------------------------------
 {
@@ -441,7 +441,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
     NSTextStorage *textStorage = [self textStorage];
     NSRange wholeRange = NSMakeRange(0, [textStorage length]);
     
-    // 前回の全文カラーリングと内容が全く同じ場合はキャッシュを使う
+    // use cache if the content of the whole document is the same as the last
     if ([self highlightCacheHash] && [[self highlightCacheHash] isEqualToString:[[textStorage string] MD5]]) {
         [self applyHighlights:[self cachedHighlights] range:wholeRange];
         if (completionHandler) {
@@ -462,7 +462,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 
 // ------------------------------------------------------
-/// 表示されている部分をカラーリング
+/// update highlights around passed-in range
 - (void)highlightAroundEditedRange:(NSRange)editedRange
 // ------------------------------------------------------
 {
@@ -496,11 +496,11 @@ static NSArray<NSString *> *kSyntaxDictKeys;
         NSUInteger start = highlightRange.location;
         NSUInteger end = NSMaxRange(highlightRange) - 1;
         
-        // 直前／直後が同色ならカラーリング範囲を拡大する
+        // expand highlight area if the character just before/after the highlighting area is the same color
         NSLayoutManager *layoutManager = [[textStorage layoutManagers] firstObject];
         NSRange effectiveRange;
         
-        // 表示領域の前があまり多くないときはファイル頭からカラーリングする
+        // highlight from the beginning of the document if it's not so large
         if (start <= bufferLength) {
             start = 0;
         } else {
@@ -532,13 +532,13 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 #pragma mark Private Methods
 
 // ------------------------------------------------------
-/// カラーリングを実行
+/// perform highlighting
 - (void)highlightString:(nonnull NSString *)wholeString range:(NSRange)highlightRange completionHandler:(nullable void (^)())completionHandler
 // ------------------------------------------------------
 {
     if (highlightRange.length == 0) { return; }
     
-    // カラーリング不要なら現在のカラーリングをクリアして戻る
+    // just clear current highlight and return if no coloring needs
     if (![self hasSyntaxHighlighting]) {
         [self applyHighlights:@{} range:highlightRange];
         if (completionHandler) {
@@ -629,7 +629,7 @@ static NSArray<NSString *> *kSyntaxDictKeys;
 
 
 // ------------------------------------------------------
-/// 抽出したカラー範囲配列を書類に適用する
+/// apply highlights to the document
 - (void)applyHighlights:(NSDictionary<NSString *, NSArray<NSValue *> *> *)highlights range:(NSRange)highlightRange
 // ------------------------------------------------------
 {
