@@ -56,10 +56,10 @@ class ToolbarController: NSObject {
     // MARK: Private Properties
     
     /// document's key paths to observe
-    private var observedDocumentKeys = [NSStringFromSelector(#selector(getter: CEDocument.lineEnding)),
-                                        NSStringFromSelector(#selector(getter: CEDocument.encoding)),
-                                        NSStringFromSelector(#selector(getter: CEDocument.hasUTF8BOM)),
-                                        NSStringFromSelector(#selector(getter: CEDocument.syntaxStyle))]
+    private var observedDocumentKeys = [#keyPath(CEDocument.lineEnding),
+                                        #keyPath(CEDocument.encoding),
+                                        #keyPath(CEDocument.hasUTF8BOM),
+                                        #keyPath(CEDocument.syntaxStyle)]
     
     @IBOutlet private weak var toolbar: NSToolbar?
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
@@ -105,19 +105,19 @@ class ToolbarController: NSObject {
         
         guard let keyPath = keyPath else { return }
         
-        switch NSSelectorFromString(keyPath) {
-        case #selector(getter: CEDocument.lineEnding):
+        switch keyPath {
+        case #keyPath(CEDocument.lineEnding):
             DispatchQueue.main.async { [weak self] in
                 self?.invalidateLineEndingSelection()
             }
             
-        case #selector(getter: CEDocument.encoding),
-             #selector(getter: CEDocument.hasUTF8BOM):
+        case #keyPath(CEDocument.encoding),
+             #keyPath(CEDocument.hasUTF8BOM):
             DispatchQueue.main.async { [weak self] in
                 self?.invalidateEncodingSelection()
             }
             
-        case #selector(getter: CEDocument.syntaxStyle):
+        case #keyPath(CEDocument.syntaxStyle):
             DispatchQueue.main.async { [weak self] in
                 self?.invalidateSyntaxStyleSelection()
             }

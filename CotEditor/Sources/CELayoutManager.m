@@ -446,7 +446,7 @@ static NSString *HiraginoSansName;
                         [Invisible replacement],
                         ];
     
-    // （setShowsInvisibles: は CEEditorViewController から実行される。プリント時は CEPrintView から実行される）
+    // （setShowsInvisibles: は EditorViewController から実行される。プリント時は CEPrintView から実行される）
     self.showsSpace = [defaults boolForKey:CEDefaultShowInvisibleSpaceKey];
     self.showsTab = [defaults boolForKey:CEDefaultShowInvisibleTabKey];
     self.showsNewLine = [defaults boolForKey:CEDefaultShowInvisibleNewLineKey];

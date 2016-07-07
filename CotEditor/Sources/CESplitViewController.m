@@ -27,7 +27,9 @@
  */
 
 #import "CESplitViewController.h"
-#import "CEEditorViewController.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CENavigationBarController.h"
 #import "CETextView.h"
 #import "CEDefaults.h"
@@ -36,7 +38,7 @@
 @interface CESplitViewController ()
 
 // readonly
-@property (readwrite, nonatomic, nullable, weak) CEEditorViewController *focusedSubviewController;
+@property (readwrite, nonatomic, nullable, weak) EditorViewController *focusedSubviewController;
 
 @end
 
@@ -122,7 +124,7 @@
 
 // ------------------------------------------------------
 /// add subview for given viewController at desired position
-- (void)addSubviewForViewController:(nonnull CEEditorViewController *)editorViewController relativeTo:(nullable CEEditorViewController *)otherEditorViewController
+- (void)addSubviewForViewController:(nonnull EditorViewController *)editorViewController relativeTo:(nullable EditorViewController *)otherEditorViewController
 // ------------------------------------------------------
 {
     NSSplitViewItem *splitViewItem = [NSSplitViewItem splitViewItemWithViewController:editorViewController];
@@ -140,10 +142,10 @@
 
 // ------------------------------------------------------
 /// find viewController for given subview
-- (nullable CEEditorViewController *)viewControllerForSubview:(nonnull __kindof NSView *)view
+- (nullable EditorViewController *)viewControllerForSubview:(nonnull __kindof NSView *)view
 // ------------------------------------------------------
 {
-    for (CEEditorViewController *viewController in [self childViewControllers]) {
+    for (EditorViewController *viewController in [self childViewControllers]) {
         if ([viewController view] == view) {
             return viewController;
         }
@@ -195,7 +197,7 @@
 {
     NSAssert([[notification object] isKindOfClass:[CETextView class]], @"");
     
-    for (CEEditorViewController *viewController in [self childViewControllers]) {
+    for (EditorViewController *viewController in [self childViewControllers]) {
         if ([viewController textView] == [notification object]) {
             [self setFocusedSubviewController:viewController];
         }
@@ -229,7 +231,7 @@
         index = 0;
     }
     
-    CEEditorViewController *nextEditorViewController = [self childViewControllers][index];
+    EditorViewController *nextEditorViewController = [self childViewControllers][index];
     
     [[[self view] window] makeFirstResponder:[nextEditorViewController textView]];
 }
@@ -242,7 +244,7 @@
 {
     BOOL isVertical = [[self splitView] isVertical];
     
-    for (CEEditorViewController *viewController in [self childViewControllers]) {
+    for (EditorViewController *viewController in [self childViewControllers]) {
         [[viewController navigationBarController] setSplitOrientationVertical:isVertical];
     }
 }
@@ -255,7 +257,7 @@
 {
     BOOL isEnabled = ([[self splitViewItems] count] > 1);
     
-    for (CEEditorViewController *viewController in [self childViewControllers]) {
+    for (EditorViewController *viewController in [self childViewControllers]) {
         [[viewController navigationBarController] setCloseSplitButtonEnabled:isEnabled];
     }
 }

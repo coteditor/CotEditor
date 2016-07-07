@@ -49,7 +49,7 @@ let NotFoundRange = NSRange(location: NSNotFound, length: 0)
 /**
  Modify number to be within max/min values.
  
- - Parameters:
+ - parameters:
     - minimum: Condition which passed-in value should not smaller than.
     - value  : Value to modify.
     - maximum: Condition which passed-in value should not larger than.

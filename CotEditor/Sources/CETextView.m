@@ -31,7 +31,6 @@
 #import "CotEditor-Swift.h"
 
 #import "CELayoutManager.h"
-#import "CEEditorScrollView.h"
 
 #import "CEDocument.h"
 
@@ -758,7 +757,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)updateRuler
 // ------------------------------------------------------
 {
-    [(CEEditorScrollView *)[self enclosingScrollView] invalidateLineNumber];
+    [(EditorScrollView *)[self enclosingScrollView] invalidateLineNumber];
 }
 
 

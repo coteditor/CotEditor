@@ -43,3 +43,9 @@
 #import "CEIncompatibleCharacter.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper+Editor.h"
+
+// Editor View
+#import "CENavigationBarController.h"
+#import "CETextViewController.h"
+#import "CETextView.h"
+#import "CELineNumberView.h"

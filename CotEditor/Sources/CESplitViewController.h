@@ -29,17 +29,17 @@
 @import AppKit;
 
 
-@class CEEditorViewController;
+@class EditorViewController;
 
 
 @interface CESplitViewController : NSSplitViewController
 
-@property (readonly, nonatomic, nullable, weak) CEEditorViewController *focusedSubviewController;
+@property (readonly, nonatomic, nullable, weak) EditorViewController *focusedSubviewController;
 
 
-- (void)addSubviewForViewController:(nonnull CEEditorViewController *)editorViewController relativeTo:(nullable CEEditorViewController *)otherEditorViewController;
+- (void)addSubviewForViewController:(nonnull EditorViewController *)editorViewController relativeTo:(nullable EditorViewController *)otherEditorViewController;
 
-- (nullable CEEditorViewController *)viewControllerForSubview:(nonnull __kindof NSView *)view;
+- (nullable EditorViewController *)viewControllerForSubview:(nonnull __kindof NSView *)view;
 
 - (IBAction)toggleSplitOrientation:(nullable id)sender;
 - (IBAction)focusNextSplitTextView:(nullable id)sender;
