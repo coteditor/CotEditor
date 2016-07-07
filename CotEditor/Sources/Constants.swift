@@ -44,3 +44,18 @@ extension String {
 }
 
 let NotFoundRange = NSRange(location: NSNotFound, length: 0)
+
+
+/**
+ Modify number to be within max/min values.
+ 
+ - Parameters:
+    - minimum: Condition which passed-in value should not smaller than.
+    - value  : Value to modify.
+    - maximum: Condition which passed-in value should not larger than.
+ 
+ - returns: Processed value.
+ */ 
+func within<T: Comparable>(_ minimum: T, _ value: T, _ maximum: T) -> T {
+    return max(minimum, min(value, maximum))
+}

@@ -30,7 +30,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEAlphaWindow.h"
 #import "CEDocument.h"
 #import "CEDefaults.h"
 
@@ -73,7 +72,7 @@
                                              (CGFloat)[defaults doubleForKey:CEDefaultWindowHeightKey])];
     
     // setup background
-    [(CEAlphaWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
+    [(AlphaWindow *)[self window] setBackgroundAlpha:[defaults doubleForKey:CEDefaultWindowAlphaKey]];
     
     // observe opacity setting change
     [[NSUserDefaults standardUserDefaults] addObserver:self
@@ -89,7 +88,7 @@
 // ------------------------------------------------------
 {
     if ([keyPath isEqualToString:CEDefaultWindowAlphaKey]) {
-        [(CEAlphaWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
+        [(AlphaWindow *)[self window] setBackgroundAlpha:(CGFloat)[change[NSKeyValueChangeNewKey] doubleValue]];
     }
 }
 

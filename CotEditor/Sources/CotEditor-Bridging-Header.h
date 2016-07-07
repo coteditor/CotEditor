@@ -10,9 +10,6 @@
 // HexColorTransformer
 #import "NSColor+WFColorCode.h"
 
-// NSWindow
-#import "CEAlphaWindow.h"
-
 // Format Pane
 #import "NSString+CEEncoding.h"
 

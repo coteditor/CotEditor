@@ -34,13 +34,13 @@ extension NSWindow {
     var viewOpacity: NSNumber {
         
         get {
-            guard let alphaWindow = self as? CEAlphaWindow else { return 1.0 }
+            guard let alphaWindow = self as? AlphaWindow else { return 1.0 }
             
             return alphaWindow.backgroundAlpha
         }
         
         set {
-            guard let alphaWindow = self as? CEAlphaWindow else { return }
+            guard let alphaWindow = self as? AlphaWindow else { return }
             
             alphaWindow.backgroundAlpha = CGFloat(viewOpacity.doubleValue)
         }

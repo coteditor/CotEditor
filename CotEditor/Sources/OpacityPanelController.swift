@@ -39,7 +39,7 @@ class OpacityPanelController: NSWindowController {
     private dynamic var opacity: CGFloat = 0 {
         didSet {
             // apply to the frontmost document window
-            if let window = NSApp.mainWindow as? CEAlphaWindow {
+            if let window = NSApp.mainWindow as? AlphaWindow {
                 window.backgroundAlpha = opacity
             }
         }
@@ -80,7 +80,7 @@ class OpacityPanelController: NSWindowController {
     
     /// notification about main window change
     func mainWindowDidChange(_ notification: Notification) {
-        if let window = notification.object as? CEAlphaWindow {
+        if let window = notification.object as? AlphaWindow {
             self.opacity = window.backgroundAlpha
         }
     }

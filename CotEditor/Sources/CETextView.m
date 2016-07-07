@@ -34,7 +34,6 @@
 #import "CEEditorScrollView.h"
 
 #import "CEDocument.h"
-#import "CEAlphaWindow.h"
 
 #import "CEThemeManager.h"
 #import "CEFileDropComposer.h"
@@ -215,10 +214,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSInteger knobStyle = [[self theme] isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
     [[self enclosingScrollView] setScrollerKnobStyle:knobStyle];
     
-    // observe window opacity flag
+    // observe window opacity flag  TODO: migrate to Swifty notification
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didWindowOpacityChange:)
-                                                 name:CEWindowOpacityDidChangeNotification
+                                                 name:@"WindowOpacityDidChangeNotification"
                                                object:[self window]];
 }
 
