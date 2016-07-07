@@ -61,8 +61,6 @@
 		2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */ = {isa = PBXBuildFile; fileRef = 2A18A5BE1C4A746A00BAD817 /* Encodings */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
-		2A2184201D043A0A00522EF5 /* CEMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A21841F1D043A0A00522EF5 /* CEMainViewController.m */; };
-		2A2184211D043A0A00522EF5 /* CEMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A21841F1D043A0A00522EF5 /* CEMainViewController.m */; };
 		2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
 		2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
 		2A2792951D1DBDAC00F3FC5D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* Constants.swift */; };
@@ -492,6 +490,8 @@
 		2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AEB8B7C19AF73980098D557 /* FileDropGlossary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2AEB8B7A19AF73980098D557 /* FileDropGlossary.txt */; };
+		2AED70EE1D2E36EF006FFBCE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED70ED1D2E36EF006FFBCE /* MainViewController.swift */; };
+		2AED70EF1D2E36EF006FFBCE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED70ED1D2E36EF006FFBCE /* MainViewController.swift */; };
 		2AF4E0D7196F7958008E9EF7 /* CEStatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */; };
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
@@ -595,8 +595,6 @@
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
-		2A21841E1D043A0A00522EF5 /* CEMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEMainViewController.h; sourceTree = "<group>"; };
-		2A21841F1D043A0A00522EF5 /* CEMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEMainViewController.m; sourceTree = "<group>"; };
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
@@ -980,6 +978,7 @@
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
 		2AEB8B7B19AF73980098D557 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
 		2AEB8B7D19AF739F0098D557 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text; name = ja; path = ja.lproj/FileDropGlossary.txt; sourceTree = "<group>"; };
+		2AED70ED1D2E36EF006FFBCE /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2AF47C8419227B2300A48047 /* NSString+CECounting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CECounting.h"; sourceTree = "<group>"; };
 		2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEStatusBarController.h; sourceTree = "<group>"; };
 		2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEStatusBarController.m; sourceTree = "<group>"; };
@@ -1268,8 +1267,7 @@
 		2A2184221D043D7E00522EF5 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
-				2A21841E1D043A0A00522EF5 /* CEMainViewController.h */,
-				2A21841F1D043A0A00522EF5 /* CEMainViewController.m */,
+				2AED70ED1D2E36EF006FFBCE /* MainViewController.swift */,
 				2AF4E0D5196F7958008E9EF7 /* CEStatusBarController.h */,
 				2AF4E0D6196F7958008E9EF7 /* CEStatusBarController.m */,
 			);
@@ -2407,6 +2405,7 @@
 				2A6F0DB81B5500E100C2D03C /* CELayoutManager.m in Sources */,
 				2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2A6F0DB91B5500E100C2D03C /* CEEditorWrapper.m in Sources */,
+				2AED70EF1D2E36EF006FFBCE /* MainViewController.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
 				2A33D07F1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				2ADD36B51CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */,
@@ -2500,7 +2499,6 @@
 				2ACDC09E1D172EF7009B72D6 /* WrappingTextField.swift in Sources */,
 				2A9C07531CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */,
 				2A6F0DF21B5500E100C2D03C /* CEThemeManager.m in Sources */,
-				2A2184211D043A0A00522EF5 /* CEMainViewController.m in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2A78BFB71D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */,
 				2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
@@ -2642,7 +2640,6 @@
 				2AD49C231D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2A5F7CA91D15295D001D83BC /* CETextViewController.m in Sources */,
 				2A2792981D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
-				2A2184201D043A0A00522EF5 /* CEMainViewController.m in Sources */,
 				2A476CAA1D09C6B50088E37A /* NSURL+CEAdditions.m in Sources */,
 				2A6415941BD10EF40080358E /* NSString+Indentation.m in Sources */,
 				25B2C23707FA667400F4EFC7 /* CELineNumberView.m in Sources */,
@@ -2656,6 +2653,7 @@
 				2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				8CF02E1608B9B9F8004044EB /* CENavigationBarController.m in Sources */,
+				2AED70EE1D2E36EF006FFBCE /* MainViewController.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2ACDC0911D1726BD009B72D6 /* DotImageView.swift in Sources */,
 				2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,

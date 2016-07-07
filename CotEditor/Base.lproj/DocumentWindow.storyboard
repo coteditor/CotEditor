@@ -257,7 +257,7 @@
         <!--Main View Controller-->
         <scene sceneID="og9-Gf-wXr">
             <objects>
-                <splitViewController showSeguePresentationStyle="single" id="2gA-dj-5gh" customClass="CEMainViewController" sceneMemberID="viewController">
+                <splitViewController showSeguePresentationStyle="single" id="2gA-dj-5gh" customClass="MainViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="tZe-bg-feG"/>
                         <splitViewItem collapsed="YES" holdingPriority="260" id="lfq-9K-fZM"/>

@@ -38,8 +38,8 @@ class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
-    @IBOutlet private var mainViewItem: NSSplitViewItem?
-    @IBOutlet private var sidebarViewItem: NSSplitViewItem?
+    @IBOutlet private weak var mainViewItem: NSSplitViewItem?
+    @IBOutlet private weak var sidebarViewItem: NSSplitViewItem?
     
     
     
@@ -89,7 +89,7 @@ class WindowContentViewController: NSSplitViewController {
     /// deliver editor to outer view controllers
     var editor: CEEditorWrapper? {
         
-        return (self.mainViewItem?.viewController as? CEMainViewController)?.editor
+        return (self.mainViewItem?.viewController as? MainViewController)?.editor
     }
     
     

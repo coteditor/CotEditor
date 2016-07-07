@@ -45,4 +45,4 @@
 #import "CEEditorWrapper+Editor.h"
 
 // View Controllers
-#import "CEMainViewController.h"
+#import "CEStatusBarController.h"
