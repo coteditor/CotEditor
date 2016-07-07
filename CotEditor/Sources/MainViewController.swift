@@ -58,7 +58,7 @@ class MainViewController: NSSplitViewController {
         didSet {
             guard let document = representedObject as? CEDocument else { return }
             
-            (self.statusBarItem?.viewController as? CEStatusBarController)?.documentAnalyzer = document.analyzer
+            (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
             self.editor?.document = document
         }
     }
@@ -113,10 +113,10 @@ class MainViewController: NSSplitViewController {
     /// Whether status bar is visible
     private var isStatusBarShown: Bool {
         set (shown) {
-            self.statusBarItem!.isCollapsed = !shown
+            self.statusBarItem?.isCollapsed = !shown
         }
         get {
-            return self.statusBarItem!.isCollapsed
+            return !(self.statusBarItem?.isCollapsed ?? true)
         }
     }
     

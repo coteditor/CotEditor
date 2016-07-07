@@ -59,3 +59,8 @@ let NotFoundRange = NSRange(location: NSNotFound, length: 0)
 func within<T: Comparable>(_ minimum: T, _ value: T, _ maximum: T) -> T {
     return max(minimum, min(value, maximum))
 }
+
+/// print a dog for debug.
+func Baw() {
+    print("🐕")
+}

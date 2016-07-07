@@ -43,6 +43,3 @@
 #import "CEIncompatibleCharacter.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper+Editor.h"
-
-// View Controllers
-#import "CEStatusBarController.h"
