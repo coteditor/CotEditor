@@ -43,6 +43,16 @@ extension String {
     }
 }
 
+
+extension NSRange {
+    
+    /// syntax sugar of NSMaxRange
+    var max: Int {
+        return NSMaxRange(self)
+    }
+}
+
+
 let NotFoundRange = NSRange(location: NSNotFound, length: 0)
 
 

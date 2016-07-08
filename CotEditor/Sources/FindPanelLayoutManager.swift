@@ -88,7 +88,7 @@ class FindPanelLayoutManager: NSLayoutManager {
             let verticalTab = AttributedString(string: Invisible.verticalTab, attributes: attributes)
             
             // draw invisibles glyph by glyph
-            for glyphIndex in glyphsToShow.location..<NSMaxRange(glyphsToShow) {
+            for glyphIndex in glyphsToShow.location..<glyphsToShow.max {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
                 
                 let utfChar = string.utf16[String.UTF16Index(charIndex)]

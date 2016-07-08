@@ -172,7 +172,7 @@ class OutlineParseOperation: Operation {
                             var lineCount = 0
                             var index = 0
                             while index <= range.location {
-                                index = NSMaxRange((string as NSString).lineRange(for: NSRange(location: index, length: 0)))
+                                index = (string as NSString).lineRange(for: NSRange(location: index, length: 0)).max
                                 lineCount += 1
                             }
                             
