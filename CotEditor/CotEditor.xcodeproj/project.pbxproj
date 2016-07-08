@@ -297,7 +297,6 @@
 		2A6F0DD41B5500E100C2D03C /* CECharacterPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432701912AF7200835004 /* CECharacterPopoverController.m */; };
 		2A6F0DD81B5500E100C2D03C /* CELineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C23507FA667400F4EFC7 /* CELineNumberView.m */; };
 		2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
-		2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */; };
 		2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
 		2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */; };
 		2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
@@ -378,6 +377,11 @@
 		2AA45A4C1D2E871900A1A401 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */; };
 		2AA45A4E1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A4D1D2E8EE700A1A401 /* EditorScrollView.swift */; };
 		2AA45A4F1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A4D1D2E8EE700A1A401 /* EditorScrollView.swift */; };
+		2AA45A511D2E938500A1A401 /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A501D2E938500A1A401 /* NavigationBarController.swift */; };
+		2AA45A521D2E938500A1A401 /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A501D2E938500A1A401 /* NavigationBarController.swift */; };
+		2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */; };
+		2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */; };
+		2AA45A561D2F243400A1A401 /* NSFont+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */; };
 		2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
 		2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
 		2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */; };
@@ -518,7 +522,6 @@
 		8CEF66C30995E47F00C65A84 /* InvisibleChars_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C10995E47F00C65A84 /* InvisibleChars_On.tiff */; };
 		8CEF66C60995E4A700C65A84 /* PageGuide_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C40995E4A700C65A84 /* PageGuide_Off.tiff */; };
 		8CEF66C70995E4A700C65A84 /* PageGuide_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C50995E4A700C65A84 /* PageGuide_On.tiff */; };
-		8CF02E1608B9B9F8004044EB /* CENavigationBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */; };
 		8D15AC310486D014006FF6A4 /* CEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */; settings = {ATTRIBUTES = (); }; };
 		9EA5A949CE2156DE4CB0E10F /* libPods-app-CotEditor -AppStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D6B6F2FBCDF9C1B74A5570 /* libPods-app-CotEditor -AppStore.a */; };
@@ -834,6 +837,8 @@
 		2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIndentationTests.swift; sourceTree = "<group>"; };
 		2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		2AA45A4D1D2E8EE700A1A401 /* EditorScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorScrollView.swift; sourceTree = "<group>"; };
+		2AA45A501D2E938500A1A401 /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
+		2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFont+Size.swift"; sourceTree = "<group>"; };
 		2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsViewController.swift; sourceTree = "<group>"; };
 		2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsPaneController.swift; sourceTree = "<group>"; };
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
@@ -1015,8 +1020,6 @@
 		8CEF66C10995E47F00C65A84 /* InvisibleChars_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = InvisibleChars_On.tiff; sourceTree = "<group>"; };
 		8CEF66C40995E4A700C65A84 /* PageGuide_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PageGuide_Off.tiff; sourceTree = "<group>"; };
 		8CEF66C50995E4A700C65A84 /* PageGuide_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PageGuide_On.tiff; sourceTree = "<group>"; };
-		8CF02E1308B9B9F8004044EB /* CENavigationBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CENavigationBarController.h; sourceTree = "<group>"; };
-		8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CENavigationBarController.m; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CotEditor-Info.plist"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E822AA586F63297D0FAD719 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1548,8 +1551,9 @@
 			children = (
 				2A5ADE831D2168FC00F6CE26 /* Array.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
-				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
 				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
+				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
+				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1744,8 +1748,7 @@
 			isa = PBXGroup;
 			children = (
 				2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */,
-				8CF02E1308B9B9F8004044EB /* CENavigationBarController.h */,
-				8CF02E1408B9B9F8004044EB /* CENavigationBarController.m */,
+				2AA45A501D2E938500A1A401 /* NavigationBarController.swift */,
 				2AA45A4D1D2E8EE700A1A401 /* EditorScrollView.swift */,
 				25B2C23407FA667400F4EFC7 /* CELineNumberView.h */,
 				25B2C23507FA667400F4EFC7 /* CELineNumberView.m */,
@@ -2367,6 +2370,7 @@
 				2A6F0DA71B5500E100C2D03C /* CEDocument.m in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
+				2AA45A521D2E938500A1A401 /* NavigationBarController.swift in Sources */,
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */,
 				2A38FB011D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift in Sources */,
@@ -2394,6 +2398,7 @@
 				2AE0C0941C422DFA00E52E04 /* CETextView+Commenting.m in Sources */,
 				2A5D13201D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
 				2AE0C09C1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
+				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
 				2AB0C59D1C4A18830019411A /* NSString+CEEncoding.m in Sources */,
 				2AE0C0901C422A5200E52E04 /* CETextView+Transformation.m in Sources */,
 				2A6F0DB81B5500E100C2D03C /* CELayoutManager.m in Sources */,
@@ -2465,7 +2470,6 @@
 				2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
 				2A78BFBA1D1B329400A583D2 /* AppDelegate+Migration.swift in Sources */,
 				2AD21FCD1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */,
-				2A6F0DE11B5500E100C2D03C /* CENavigationBarController.m in Sources */,
 				2A5D133C1D1FCFC400D38E6A /* TextFindResult.swift in Sources */,
 				2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
@@ -2514,6 +2518,7 @@
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2ABFF6D71D02856A00BE2795 /* KeyBindingsTests.swift in Sources */,
 				2AAD61FE1D2BD102008FE772 /* String+Additions.swift in Sources */,
+				2AA45A561D2F243400A1A401 /* NSFont+Size.swift in Sources */,
 				2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */,
 				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
 				2AAD61FA1D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */,
@@ -2631,6 +2636,7 @@
 				2AE52F181D17468B00D60A32 /* EditorSplitView.swift in Sources */,
 				2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2A4257B31D2309AB0086DAAD /* OpacityPanelController.swift in Sources */,
+				2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
 				2AB432711912AF7200835004 /* CECharacterPopoverController.m in Sources */,
 				2AD49C231D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2A5F7CA91D15295D001D83BC /* CETextViewController.m in Sources */,
@@ -2648,7 +2654,6 @@
 				2A5ADE841D2168FC00F6CE26 /* Array.swift in Sources */,
 				2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
-				8CF02E1608B9B9F8004044EB /* CENavigationBarController.m in Sources */,
 				2AED70EE1D2E36EF006FFBCE /* MainViewController.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2ACDC0911D1726BD009B72D6 /* DotImageView.swift in Sources */,
@@ -2690,6 +2695,7 @@
 				2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AB432741915D6AA00835004 /* NSString+CECounting.m in Sources */,
+				2AA45A511D2E938500A1A401 /* NavigationBarController.swift in Sources */,
 				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,

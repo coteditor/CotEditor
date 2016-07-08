@@ -30,7 +30,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CENavigationBarController.h"
 #import "CETextView.h"
 #import "CEDefaults.h"
 

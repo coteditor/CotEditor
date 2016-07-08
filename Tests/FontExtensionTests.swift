@@ -33,7 +33,7 @@ class FontExtensionTests: XCTestCase {
     func testFontSize() {
         let font = NSFont(name: "Menlo-Regular", size:11)?.screen
         
-        XCTAssertEqual(font?.advancement(forCharacter: " ".utf16.first!), 7)
+        XCTAssertEqual(font?.advancement(character: " ").width, 7)
     }
     
 }

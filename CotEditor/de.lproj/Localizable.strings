@@ -285,7 +285,7 @@
 
 
 
-/* MARK: CENavigationBarController */
+/* MARK: NavigationBarController */
 // Outline menu title
 "<Outline Menu>" = "<Gliederungsmenü>";
 

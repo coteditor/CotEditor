@@ -34,6 +34,3 @@
 
 // URL Extensions Tests
 #import "NSURL+CEAdditions.h"
-
-// Font Tests
-#import "NSFont+CESize.h"

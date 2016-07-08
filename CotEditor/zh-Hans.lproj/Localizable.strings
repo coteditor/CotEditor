@@ -284,7 +284,7 @@
 
 
 
-/* MARK: CENavigationBarController */
+/* MARK: NavigationBarController */
 // Outline menu title
 "<Outline Menu>" = "<大纲菜单>";
 

@@ -46,9 +46,9 @@ class EditorViewController: NSSplitViewController {
         return self.textViewController?.textView
     }
     
-    var navigationBarController: CENavigationBarController? {
+    var navigationBarController: NavigationBarController? {
         
-        return self.navigationBarItem?.viewController as? CENavigationBarController
+        return self.navigationBarItem?.viewController as? NavigationBarController
     }
     
     
@@ -88,10 +88,10 @@ class EditorViewController: NSSplitViewController {
         
         switch action {
         case #selector(selectPrevItemOfOutlineMenu):
-            return self.navigationBarController!.canSelectPrevItem()
+            return self.navigationBarController!.canSelectPrevItem
             
         case #selector(selectNextItemOfOutlineMenu):
-            return self.navigationBarController!.canSelectNextItem()
+            return self.navigationBarController!.canSelectNextItem
             
         default: break
         }

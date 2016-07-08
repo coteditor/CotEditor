@@ -45,7 +45,6 @@
 #import "CEEditorWrapper+Editor.h"
 
 // Editor View
-#import "CENavigationBarController.h"
 #import "CETextViewController.h"
 #import "CETextView.h"
 #import "CELineNumberView.h"

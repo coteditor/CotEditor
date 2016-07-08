@@ -34,7 +34,6 @@
 #import "CEDocumentAnalyzer.h"
 #import "CEIncompatibleCharacterScanner.h"
 #import "CESplitViewController.h"
-#import "CENavigationBarController.h"
 #import "CETextView.h"
 #import "CEThemeManager.h"
 #import "CESyntaxStyle.h"
