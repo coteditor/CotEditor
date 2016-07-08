@@ -35,7 +35,6 @@
 #import "CEDocument.h"
 
 #import "CEThemeManager.h"
-#import "CEFileDropComposer.h"
 #import "CECharacterPopoverController.h"
 
 #import "CEDefaults.h"
@@ -713,7 +712,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         
         for (NSString *path in filePaths) {
             NSURL *url = [NSURL fileURLWithPath:path];
-            NSString *dropText = [CEFileDropComposer dropTextForFileURL:url documentURL:documentURL];
+            NSString *dropText = [FileDropComposer dropTextForFileURL:url documentURL:documentURL];
             
             if (dropText) {
                 [replacementString appendString:dropText];

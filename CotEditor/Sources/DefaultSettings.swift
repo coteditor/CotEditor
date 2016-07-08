@@ -193,8 +193,8 @@ let DefaultSettings: [String: AnyObject] = [
     CEDefaultEnableSyntaxHighlightKey: true,
     CEDefaultSyntaxStyleKey: "Plain Text",
     
-    CEDefaultFileDropArrayKey: [[CEFileDropExtensionsKey: "jpg, jpeg, gif, png",
-                                 CEFileDropFormatStringKey: "<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"]],
+    CEDefaultFileDropArrayKey: [[FileDropComposer.SettingKey.extensions: "jpg, jpeg, gif, png",
+                                 FileDropComposer.SettingKey.formatString: "<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"]],
     
     CEDefaultInsertCustomTextArrayKey: ["<br />\n", "", "", "", "", "", "", "", "", "", "",
                                         "", "", "", "", "", "", "", "", "", "",

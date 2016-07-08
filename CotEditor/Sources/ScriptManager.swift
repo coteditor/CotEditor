@@ -318,7 +318,7 @@ class ScriptManager: NSObject {
             
             let title = self.scriptName(fromURL: fileURL)
             
-            if title == "-" {
+            if title == String.separator {
                 menu.addItem(NSMenuItem.separator())
                 continue
             }

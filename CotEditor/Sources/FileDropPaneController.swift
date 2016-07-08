@@ -36,6 +36,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
     
     @IBOutlet private var fileDropController: NSArrayController?
     @IBOutlet private weak var extensionTableView: NSTableView?
+    @IBOutlet private weak var tokenInsertionMenu: NSPopUpButton?
     @IBOutlet private var formatTextView: NSTextView?  // NSTextView cannot be weak
     @IBOutlet private var glossaryTextView: NSTextView?  // NSTextView cannot be weak
     
@@ -62,9 +63,26 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         self.loadSetting()
         
         // set localized glossary to view
-        let glossaryURL = Bundle.main.urlForResource("FileDropGlossary", withExtension: "txt")!
-        let glossary = try! String(contentsOf: glossaryURL)
-        self.glossaryTextView?.string = glossary
+        var glossary = ""
+        for token in FileDropComposer.Token.all {
+            glossary += token.rawValue + "\n" + token.localizedDescription + "\n\n"
+        }
+        self.glossaryTextView!.string = glossary
+        
+        // setup token menu
+        if let menu = self.tokenInsertionMenu?.menu {
+            for token in FileDropComposer.Token.pathTokens {
+                let item = NSMenuItem(title: token.rawValue, action: #selector(insertToken), keyEquivalent: "")
+                item.toolTip = token.localizedDescription
+                menu.addItem(item)
+            }
+            menu.addItem(NSMenuItem.separator())
+            for token in FileDropComposer.Token.imageTokens {
+                let item = NSMenuItem(title: token.rawValue, action: #selector(insertToken), keyEquivalent: "")
+                item.toolTip = token.localizedDescription
+                menu.addItem(item)
+            }
+        }
     }
     
     
@@ -85,7 +103,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         guard obj.object is NSTextField else { return }
         
         guard let newItem = self.fileDropController?.selectedObjects.first as? [String: String],
-              let extensions = newItem[CEFileDropExtensionsKey] where !extensions.isEmpty else
+              let extensions = newItem[FileDropComposer.SettingKey.extensions] where !extensions.isEmpty else
         {
             // delete row if empty
             // -> set false to flag for in case that the delete button was pressed while editing and the target can be automatically deleted
@@ -99,8 +117,8 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         
         // save if new text valid
         if !newExtensions.isEmpty {
-            self.fileDropController?.selection.setValue(newExtensions, forKey: CEFileDropExtensionsKey)
-        } else if let format = newItem[CEFileDropFormatStringKey] where format.isEmpty {
+            self.fileDropController?.selection.setValue(newExtensions, forKey: FileDropComposer.SettingKey.extensions)
+        } else if let format = newItem[FileDropComposer.SettingKey.formatString] where format.isEmpty {
             self.fileDropController?.remove(self)
         }
         
@@ -254,7 +272,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         guard let objects = self.fileDropController?.arrangedObjects as? [[String: String]] else { return }
         
         // obtain extension to delete for display
-        let extension_ = objects[row][CEFileDropExtensionsKey] ?? ""
+        let extension_ = objects[row][FileDropComposer.SettingKey.extensions] ?? ""
         
         let alert = NSAlert()
         alert.messageText = String(format: NSLocalizedString("Are you sure you want to delete the file drop setting for “%@”?", comment: ""), extension_)

@@ -31,13 +31,13 @@ import XCTest
 class URLExtensionsTests: XCTestCase {
 
     func testRelativeURLCreation() {
-        let url = NSURL(string: "/foo/bar/file.txt")
-        let baseUrl = URL(string: "/foo/buz/file.txt")
+        let url = URL(string: "/foo/bar/file.txt")!
+        let baseUrl = URL(string: "/foo/buz/file.txt")!
         
-        XCTAssertEqual(url?.pathRelative(to: baseUrl), "../bar/file.txt")
+        XCTAssertEqual(url.path(relativeTo: baseUrl), "../bar/file.txt")
         
-        XCTAssertNil(url?.pathRelative(to: nil))
-        XCTAssertNil(url?.pathRelative(to: URL(string: url!.path!)))
+        XCTAssertNil(url.path(relativeTo: nil))
+        XCTAssertNil(url.path(relativeTo: URL(string: url.path!)!))
     }
 
 }

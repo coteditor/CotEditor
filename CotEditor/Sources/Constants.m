@@ -35,9 +35,6 @@
 // General
 // ------------------------------------------------------
 
-// separator
-NSString *_Nonnull const CESeparatorString = @"-";
-
 // Exported UTI
 NSString *_Nonnull const CEUTTypeTheme = @"com.coteditor.CotEditor.theme";
 
@@ -74,27 +71,3 @@ void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block)
         });
     }
 }
-
-
-
-#pragma mark File Drop
-
-// ------------------------------------------------------
-// File Drop
-// ------------------------------------------------------
-
-// keys for dicts in CEDefaultFileDropArrayKey
-NSString *_Nonnull const CEFileDropExtensionsKey = @"extensions";
-NSString *_Nonnull const CEFileDropFormatStringKey = @"formatString";
-
-// tokens
-NSString *_Nonnull const CEFileDropTokenAbsolutePath = @"<<<ABSOLUTE-PATH>>>";
-NSString *_Nonnull const CEFileDropTokenRelativePath = @"<<<RELATIVE-PATH>>>";
-NSString *_Nonnull const CEFileDropTokenFilename = @"<<<FILENAME>>>";
-NSString *_Nonnull const CEFileDropTokenFilenameNosuffix = @"<<<FILENAME-NOSUFFIX>>>";
-NSString *_Nonnull const CEFileDropTokenFileextension = @"<<<FILEEXTENSION>>>";
-NSString *_Nonnull const CEFileDropTokenFileextensionLower = @"<<<FILEEXTENSION-LOWER>>>";
-NSString *_Nonnull const CEFileDropTokenFileextensionUpper = @"<<<FILEEXTENSION-UPPER>>>";
-NSString *_Nonnull const CEFileDropTokenDirectory = @"<<<DIRECTORY>>>";
-NSString *_Nonnull const CEFileDropTokenImageWidth = @"<<<IMAGEWIDTH>>>";
-NSString *_Nonnull const CEFileDropTokenImageHeight = @"<<<IMAGEHEIGHT>>>";

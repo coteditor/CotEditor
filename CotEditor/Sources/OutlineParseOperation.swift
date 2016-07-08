@@ -59,7 +59,7 @@ class OutlineDefinition: NSObject {
         }
         
         self.template = (definition[CESyntaxKeyStringKey] as? String) ?? ""
-        self.isSeparator = (self.template == "-")
+        self.isSeparator = (self.template == String.separator)
         
         self.isBold = (definition[CESyntaxBoldKey] as? Bool) ?? false
         self.isItalic = (definition[CESyntaxItalicKey] as? Bool) ?? false

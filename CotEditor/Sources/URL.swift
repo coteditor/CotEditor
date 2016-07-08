@@ -42,4 +42,37 @@ extension URL {
         return (try? self.checkResourceIsReachable()) ?? false
     }
     
+    
+    /// return relative-path string
+    func path(relativeTo baseURL: URL?) -> String? {
+        
+        guard let baseURL = baseURL where baseURL != self else { return nil }
+        
+        let pathComponents = self.pathComponents ?? []
+        let basePathComponents = baseURL.pathComponents ?? []
+        
+        var sameCount = 0
+        var parentCount = 0
+        let componentsCount = pathComponents.count
+        let baseComponentsCount = basePathComponents.count
+        
+        for (baseComponent, component) in zip(basePathComponents, pathComponents) {
+            if baseComponent == component {
+                sameCount += 1
+                continue
+            }
+            
+            parentCount = baseComponentsCount - sameCount - 1
+            break
+        }
+        
+        var relativeComponents = [String]()
+        for _ in 0..<parentCount {
+            relativeComponents.append("..")
+        }
+        relativeComponents.append(contentsOf: pathComponents[sameCount..<componentsCount])
+        
+        return NSURL.fileURL(withPathComponents: relativeComponents)?.relativePath
+    }
+    
 }

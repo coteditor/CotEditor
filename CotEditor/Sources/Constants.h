@@ -35,9 +35,6 @@
 // General
 // ------------------------------------------------------
 
-// Separator
-extern NSString *_Nonnull const CESeparatorString;
-
 // Exported UTI
 extern NSString *_Nonnull const CEUTTypeTheme;
 
@@ -62,30 +59,6 @@ extern BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2);
 
 /// invoke passed-in block on main thread
 extern void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block);
-
-
-
-#pragma mark File Drop
-
-// ------------------------------------------------------
-// File Drop
-// ------------------------------------------------------
-
-// keys for dicts in CEDefaultFileDropArrayKey
-extern NSString *_Nonnull const CEFileDropExtensionsKey;
-extern NSString *_Nonnull const CEFileDropFormatStringKey;
-
-// tokens
-extern NSString *_Nonnull const CEFileDropTokenAbsolutePath;
-extern NSString *_Nonnull const CEFileDropTokenRelativePath;
-extern NSString *_Nonnull const CEFileDropTokenFilename;
-extern NSString *_Nonnull const CEFileDropTokenFilenameNosuffix;
-extern NSString *_Nonnull const CEFileDropTokenFileextension;
-extern NSString *_Nonnull const CEFileDropTokenFileextensionLower;
-extern NSString *_Nonnull const CEFileDropTokenFileextensionUpper;
-extern NSString *_Nonnull const CEFileDropTokenDirectory;
-extern NSString *_Nonnull const CEFileDropTokenImageWidth;
-extern NSString *_Nonnull const CEFileDropTokenImageHeight;
 
 
 

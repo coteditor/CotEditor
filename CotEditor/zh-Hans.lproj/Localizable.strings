@@ -501,6 +501,21 @@
 
 
 
+// MARK: File Drop
+// descriptions about tokens in the file drop feature
+"The dropped file absolute path." = "拖拽的文件绝对路径";
+"The relative path between dropped file and the document." = "拖拽的文件与编辑中文档的相对路径";
+"The dropped file’s name include extension (if exists)." = "拖拽的文件的文件名以及扩展名（如果存在）";
+"The dropped file’s name without extension." = "不带扩展名的文件名";
+"The dropped file’s extension." = "拖拽的文件的扩展名";
+"The dropped file’s extension (converted to lowercase)." = "拖拽的文件的扩展名（转换为小写）";
+"The dropped file’s extension (converted to uppercase)." = "拖拽的文件的扩展名（转换为大写）";
+"The parent directory name of dropped file." = "拖拽的文件的上级目录";
+"(If the dropped file is an image) image width." = "图片宽度（如果拖拽文件是图像）";
+"(If the dropped file is an image) image height." = "图片高度（如果拖拽文件是图像）";
+
+
+
 /* NSString Categories */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 // No need to be tranlated since "UTF-8 with BOM" is acceptable in zh-Hans.
