@@ -35,9 +35,6 @@
 // General
 // ------------------------------------------------------
 
-// Exported UTI
-NSString *_Nonnull const CEUTTypeTheme = @"com.coteditor.CotEditor.theme";
-
 // Metadata dict keys for themes and syntax styles
 NSString *_Nonnull const CEMetadataKey = @"metadata";
 NSString *_Nonnull const CEAuthorKey = @"author";
@@ -54,12 +51,6 @@ const NSUInteger kMaxEncodingScanLength = 2000;
 
 
 // Convenient functions
-/// compare CGFloats
-BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2) {
-    const double ACCURACY = 5;
-    return (fabs(float1 - float2) < pow(10, -ACCURACY));
-}
-
 /// invoke passed-in block on main thread
 void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block)
 {

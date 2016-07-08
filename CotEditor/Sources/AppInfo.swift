@@ -41,4 +41,10 @@ enum AppInfo {
     
     /// help book name
     static let helpBookName = Bundle.main.objectForInfoDictionaryKey("CFBundleHelpBookName") as! String
+    
+    
+    enum UTType {
+        static let theme = "com.coteditor.CotEditor.theme"
+    }
+    
 }

@@ -35,9 +35,6 @@
 // General
 // ------------------------------------------------------
 
-// Exported UTI
-extern NSString *_Nonnull const CEUTTypeTheme;
-
 // Metadata dict keys
 extern NSString *_Nonnull const CEMetadataKey;
 extern NSString *_Nonnull const CEAuthorKey;
@@ -54,9 +51,6 @@ extern NSUInteger const kMaxEncodingScanLength;
 
 
 // Convenient functions
-/// compare CGFloats
-extern BOOL CEIsAlmostEqualCGFloats(CGFloat float1, CGFloat float2);
-
 /// invoke passed-in block on main thread
 extern void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block);
 
