@@ -47,4 +47,5 @@
 // Editor View
 #import "CETextViewController.h"
 #import "CETextView.h"
-#import "CELineNumberView.h"
+#import "CEThemableProtocol.h"
+

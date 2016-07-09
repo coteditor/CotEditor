@@ -44,7 +44,7 @@ class EditorScrollView: NSScrollView {
     /// use custom ruler view
     override class func rulerViewClass() -> AnyClass {
     
-        return CELineNumberView.self
+        return LineNumberView.self
     }
     
     

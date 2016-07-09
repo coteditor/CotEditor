@@ -53,6 +53,14 @@ extension NSRange {
 }
 
 
+extension NSString {
+    
+    var range: NSRange {
+        return NSRange(location: 0, length: self.length)
+    }
+}
+
+
 let NotFoundRange = NSRange(location: NSNotFound, length: 0)
 
 
