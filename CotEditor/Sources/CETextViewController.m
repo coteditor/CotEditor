@@ -35,7 +35,6 @@
 #import "CESyntaxStyle.h"
 
 #import "CEDefaults.h"
-#import "Constants.h"
 
 #import "NSString+CENewLine.h"
 
