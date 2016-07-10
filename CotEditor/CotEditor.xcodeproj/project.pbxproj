@@ -343,6 +343,17 @@
 		2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9431D286C53003D0C4B /* ScriptManager.swift */; };
 		2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9461D28ED93003D0C4B /* URL.swift */; };
 		2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9461D28ED93003D0C4B /* URL.swift */; };
+		2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
+		2A9082E31D32456300228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
+		2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E41D324D9A00228F50 /* Geometry.swift */; };
+		2A9082E61D324D9A00228F50 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E41D324D9A00228F50 /* Geometry.swift */; };
+		2A9082E71D324D9A00228F50 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E41D324D9A00228F50 /* Geometry.swift */; };
+		2A9082E91D32539A00228F50 /* CETextView+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E81D32539A00228F50 /* CETextView+Scaling.swift */; };
+		2A9082EA1D32539A00228F50 /* CETextView+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E81D32539A00228F50 /* CETextView+Scaling.swift */; };
+		2A9082EC1D325BEC00228F50 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082EB1D325BEC00228F50 /* UserDefaults.swift */; };
+		2A9082ED1D325BEC00228F50 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082EB1D325BEC00228F50 /* UserDefaults.swift */; };
+		2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082EE1D325ED900228F50 /* GeometryTests.swift */; };
+		2A9082F01D325F6A00228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
 		2A91C3181D1BE91E007CF8BE /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */; };
 		2A91C3191D1BE91E007CF8BE /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */; };
 		2A91C31B1D1BFE47007CF8BE /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C31A1D1BFE47007CF8BE /* AppInfo.swift */; };
@@ -469,8 +480,6 @@
 		2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; };
 		2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; };
 		2AD9625F1B53496500D46C3A /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
-		2ADD36B41CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */; };
-		2ADD36B51CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */; };
 		2AE0C08F1C422A5200E52E04 /* CETextView+Transformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */; };
 		2AE0C0901C422A5200E52E04 /* CETextView+Transformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */; };
 		2AE0C0931C422DFA00E52E04 /* CETextView+Commenting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C0921C422DFA00E52E04 /* CETextView+Commenting.m */; };
@@ -763,7 +772,6 @@
 		2A78BFB51D1B2BA600A583D2 /* MigrationWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MigrationWindowController.swift; sourceTree = "<group>"; };
 		2A78BFB81D1B329400A583D2 /* AppDelegate+Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Migration.swift"; sourceTree = "<group>"; };
 		2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
-		2A7A61041C9EA92500C658EA /* CEGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEGeometry.h; sourceTree = "<group>"; };
 		2A7AC3F11A46484B00F38868 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
 		2A7AC3F31A46484E00F38868 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationPane.strings"; sourceTree = "<group>"; };
 		2A7CF1581C4F569B0015FF2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FindPreferencesView.xib; sourceTree = "<group>"; };
@@ -782,6 +790,11 @@
 		2A88A78F1B8B87C90055B9AE /* NSString+Normalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Normalization.m"; sourceTree = "<group>"; };
 		2A8DA9431D286C53003D0C4B /* ScriptManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptManager.swift; sourceTree = "<group>"; };
 		2A8DA9461D28ED93003D0C4B /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		2A9082E11D32456300228F50 /* NSTextView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Layout.swift"; sourceTree = "<group>"; };
+		2A9082E41D324D9A00228F50 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		2A9082E81D32539A00228F50 /* CETextView+Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CETextView+Scaling.swift"; sourceTree = "<group>"; };
+		2A9082EB1D325BEC00228F50 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		2A9082EE1D325ED900228F50 /* GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSettings.swift; sourceTree = "<group>"; };
 		2A91C31A1D1BFE47007CF8BE /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPaneController.swift; sourceTree = "<group>"; };
@@ -960,8 +973,6 @@
 		2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SpellCheck.tiff; sourceTree = "<group>"; };
 		2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Sandboxing.h"; sourceTree = "<group>"; };
 		2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Sandboxing.m"; sourceTree = "<group>"; };
-		2ADD36B21CFD6C3C00F3175D /* NSTextView+CELayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+CELayout.h"; sourceTree = "<group>"; };
-		2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+CELayout.m"; sourceTree = "<group>"; };
 		2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CETextView+Transformation.m"; sourceTree = "<group>"; };
 		2AE0C0921C422DFA00E52E04 /* CETextView+Commenting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CETextView+Commenting.m"; sourceTree = "<group>"; };
 		2AE0C0951C422F3300E52E04 /* NSTextView+CETextReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+CETextReplacement.h"; sourceTree = "<group>"; };
@@ -1191,7 +1202,6 @@
 		2A15832B18E3A25C00601026 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				2A7A61041C9EA92500C658EA /* CEGeometry.h */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A41CB3A1C39068200F9122B /* Value Transformers */,
 				2A41CB391C39066F00F9122B /* Extensions */,
@@ -1455,6 +1465,7 @@
 				2A5F7CA81D15295D001D83BC /* CETextViewController.m */,
 				25B2C24A07FA6BC400F4EFC7 /* CETextView.h */,
 				25B2C24B07FA6BC400F4EFC7 /* CETextView.m */,
+				2A9082E81D32539A00228F50 /* CETextView+Scaling.swift */,
 				2A4257B81D2392A40086DAAD /* CETextView+Accessories.swift */,
 				2AE0C09E1C42330000E52E04 /* CETextView+Indentation.m */,
 				2AE0C0921C422DFA00E52E04 /* CETextView+Commenting.m */,
@@ -1462,8 +1473,7 @@
 				2AE0C08E1C422A5200E52E04 /* CETextView+Transformation.m */,
 				2AE0C0951C422F3300E52E04 /* NSTextView+CETextReplacement.h */,
 				2AE0C0961C422F3300E52E04 /* NSTextView+CETextReplacement.m */,
-				2ADD36B21CFD6C3C00F3175D /* NSTextView+CELayout.h */,
-				2ADD36B31CFD6C3C00F3175D /* NSTextView+CELayout.m */,
+				2A9082E11D32456300228F50 /* NSTextView+Layout.swift */,
 				8C65C0E507927D0F0028D94A /* CELayoutManager.h */,
 				8C65C0E607927D0F0028D94A /* CELayoutManager.m */,
 				8C83A48009485F27004E48A8 /* CEATSTypesetter.h */,
@@ -1533,9 +1543,11 @@
 		2A5ADE861D21690300F6CE26 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2A9082E41D324D9A00228F50 /* Geometry.swift */,
 				2A5ADE831D2168FC00F6CE26 /* Array.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
 				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
+				2A9082EB1D325BEC00228F50 /* UserDefaults.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 			);
@@ -1685,6 +1697,7 @@
 		2ACC652F1C9802CB000574DC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2A9082EE1D325ED900228F50 /* GeometryTests.swift */,
 				2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */,
 				2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */,
 				2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */,
@@ -2354,6 +2367,7 @@
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2A6F0DA81B5500E100C2D03C /* CESplitViewController.m in Sources */,
 				2A38FB011D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift in Sources */,
+				2A9082E31D32456300228F50 /* NSTextView+Layout.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
 				2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2A78BFAB1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
@@ -2369,6 +2383,7 @@
 				2A6602F51D05E8CB003E8D87 /* CEEditorWrapper+Editor.m in Sources */,
 				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
+				2A9082ED1D325BEC00228F50 /* UserDefaults.swift in Sources */,
 				2A6F0DB41B5500E100C2D03C /* CESyntaxStyle.m in Sources */,
 				2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
@@ -2387,7 +2402,6 @@
 				2AED70EF1D2E36EF006FFBCE /* MainViewController.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
 				2A33D07F1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
-				2ADD36B51CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */,
 				2A6F0DBC1B5500E100C2D03C /* CETextSelection.m in Sources */,
 				2A6F0DBD1B5500E100C2D03C /* CEDocument+ScriptingSupport.m in Sources */,
 				2AD49C291D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */,
@@ -2420,6 +2434,7 @@
 				2A6F0DD21B5500E100C2D03C /* CETheme.m in Sources */,
 				2ACDC0951D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */,
+				2A9082EA1D32539A00228F50 /* CETextView+Scaling.swift in Sources */,
 				2A64F2491D26327C001B229F /* KeyBindingManager.swift in Sources */,
 				2A33D0821D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
 				2AAD61ED1D2A4CE5008FE772 /* KeyBinding.swift in Sources */,
@@ -2433,6 +2448,7 @@
 				2AE0C0981C422F3300E52E04 /* NSTextView+CETextReplacement.m in Sources */,
 				2A5DCE8A1D18FFDB00D5D74C /* EncodingListViewController.swift in Sources */,
 				2AC2462F1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
+				2A9082E61D324D9A00228F50 /* Geometry.swift in Sources */,
 				2ACC65291C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */,
 				2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
 				2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
@@ -2506,6 +2522,7 @@
 				2AAD61FF1D2BD6A8008FE772 /* SyntaxDictionary.swift in Sources */,
 				2A18A5BD1C4A730D00BAD817 /* EncodingDetectionTests.swift in Sources */,
 				2A42579C1D2298100086DAAD /* ProgressViewController.swift in Sources */,
+				2A9082F01D325F6A00228F50 /* NSTextView+Layout.swift in Sources */,
 				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
 				2A7135831CFFDC6600ADA555 /* FormattersTests.swift in Sources */,
 				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
@@ -2522,7 +2539,9 @@
 				2A4682B41D2F741A0005410E /* URL.swift in Sources */,
 				2A4257A41D22CEA20086DAAD /* Constants.swift in Sources */,
 				2A18A5BB1C4A72BF00BAD817 /* NSString+CEEncoding.m in Sources */,
+				2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */,
 				2AC71DED1BF0C5B5002E1434 /* NSString+CECounting.m in Sources */,
+				2A9082E71D324D9A00228F50 /* Geometry.swift in Sources */,
 				2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */,
 				2AC71DEF1BF0C7A9002E1434 /* NSString+JapaneseTransform.m in Sources */,
 				2AC71DF01BF0CDD8002E1434 /* NSString+Normalization.m in Sources */,
@@ -2552,6 +2571,7 @@
 				2A2792951D1DBDAC00F3FC5D /* Constants.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
 				259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */,
+				2A9082E91D32539A00228F50 /* CETextView+Scaling.swift in Sources */,
 				2A5DCE891D18FFDB00D5D74C /* EncodingListViewController.swift in Sources */,
 				2AAD61EC1D2A4CE5008FE772 /* KeyBinding.swift in Sources */,
 				2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
@@ -2570,6 +2590,7 @@
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2A5D133B1D1FCFC400D38E6A /* TextFindResult.swift in Sources */,
 				2AE0C09B1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */,
+				2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */,
 				2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
 				2A9C07521CF9A3C7006D672D /* CEIncompatibleCharacter.m in Sources */,
@@ -2592,6 +2613,7 @@
 				2A6602F41D05E8CB003E8D87 /* CEEditorWrapper+Editor.m in Sources */,
 				2AAD61F01D2B0856008FE772 /* NSString+Range.swift in Sources */,
 				2AE0C0971C422F3300E52E04 /* NSTextView+CETextReplacement.m in Sources */,
+				2A9082EC1D325BEC00228F50 /* UserDefaults.swift in Sources */,
 				2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
 				2AB3407F1D01E2A4000F5EEC /* CESyntaxDictionaryKeys.m in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
@@ -2632,6 +2654,7 @@
 				2A5ADE841D2168FC00F6CE26 /* Array.swift in Sources */,
 				2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
+				2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2AED70EE1D2E36EF006FFBCE /* MainViewController.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
@@ -2678,7 +2701,6 @@
 				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2A2BDF0D198A899E0029848B /* NSString+JapaneseTransform.m in Sources */,
-				2ADD36B41CFD6C3C00F3175D /* NSTextView+CELayout.m in Sources */,
 				2ACC65281C97FEAA000574DC /* CEThemeDictionaryKeys.m in Sources */,
 				2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2ACDC0941D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,

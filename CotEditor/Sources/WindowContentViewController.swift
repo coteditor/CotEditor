@@ -57,7 +57,7 @@ class WindowContentViewController: NSSplitViewController {
         }
         
         self.isSidebarShown = UserDefaults.standard.bool(forKey: CEDefaultShowDocumentInspectorKey)
-        self.sidebarThickness = CGFloat(UserDefaults.standard.double(forKey: CEDefaultSidebarWidthKey))
+        self.sidebarThickness = UserDefaults.standard.cgFloat(forKey: CEDefaultSidebarWidthKey)
     }
     
     

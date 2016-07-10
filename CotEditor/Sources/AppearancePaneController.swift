@@ -345,7 +345,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     @IBAction func showFonts(_ sender: AnyObject?) {
         
         guard let font = NSFont(name: UserDefaults.standard.string(forKey: CEDefaultFontNameKey)!,
-                                size: CGFloat(UserDefaults.standard.double(forKey: CEDefaultFontSizeKey))) else { return }
+                                size: UserDefaults.standard.cgFloat(forKey: CEDefaultFontSizeKey)) else { return }
         
         self.view.window?.makeFirstResponder(self)
         NSFontManager.shared().setSelectedFont(font, isMultiple: false)
@@ -481,7 +481,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     private func setupFontFamilyNameAndSize() {
         
         let name = UserDefaults.standard.string(forKey: CEDefaultFontNameKey)!
-        let size = CGFloat(UserDefaults.standard.double(forKey: CEDefaultFontSizeKey))
+        let size = UserDefaults.standard.cgFloat(forKey: CEDefaultFontSizeKey)
         let shouldAntiailias = UserDefaults.standard.bool(forKey: CEDefaultShouldAntialiasKey)
         
         guard let font = NSFont(name: name, size: size),

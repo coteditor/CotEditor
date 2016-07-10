@@ -73,7 +73,7 @@ class PrintPaneController: NSViewController {
     /// show font panel
     @IBAction func showFonts(_ sender: AnyObject?) {
         guard let font = NSFont(name: UserDefaults.standard.string(forKey: CEDefaultPrintFontNameKey)!,
-                                size: CGFloat(UserDefaults.standard.double(forKey: CEDefaultPrintFontSizeKey))) else { return }
+                                size: UserDefaults.standard.cgFloat(forKey: CEDefaultPrintFontSizeKey)) else { return }
         
         self.view.window?.makeFirstResponder(self)
         NSFontManager.shared().setSelectedFont(font, isMultiple: false)
@@ -115,7 +115,7 @@ class PrintPaneController: NSViewController {
     private func setupFontFamilyNameAndSize() {
         
         let name = UserDefaults.standard.string(forKey: CEDefaultPrintFontNameKey)!
-        let size = CGFloat(UserDefaults.standard.double(forKey: CEDefaultPrintFontSizeKey))
+        let size = UserDefaults.standard.cgFloat(forKey: CEDefaultPrintFontSizeKey)
         
         guard let font = NSFont(name: name, size: size),
               let displayFont = NSFont(name: name, size: min(size, 13.0)),

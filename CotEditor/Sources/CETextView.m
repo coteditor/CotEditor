@@ -40,7 +40,6 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
-#import "NSTextView+CELayout.h"
 #import "NSString+CECounting.h"
 #import "NSString+CEEncoding.h"
 #import "NSString+Indentation.h"
@@ -65,9 +64,6 @@ static const CGFloat kTextContainerInsetHeight = 4.0;
 
 @property (nonatomic, weak) NSTimer *completionTimer;
 @property (nonatomic, copy) NSString *particalCompletionWord;  // ユーザが実際に入力した補完の元になる文字列
-
-@property (nonatomic) CGFloat initialMagnificationScale;
-@property (nonatomic) CGFloat deferredMagnification;
 
 @end
 
@@ -1564,99 +1560,6 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     }
     
     return wordRange;
-}
-
-@end
-
-
-
-
-#pragma mark -
-
-@implementation CETextView (Scaling)
-
-#pragma mark Superclass Methods
-
-// ------------------------------------------------------
-/// change font size by pinch gesture
-- (void)magnifyWithEvent:(nonnull NSEvent *)event
-// ------------------------------------------------------
-{
-    if ([event phase] & NSEventPhaseBegan) {
-        [self setInitialMagnificationScale:[self scale]];
-    }
-    
-    CGFloat scale = [self scale] + [event magnification];
-    CGPoint center = [self convertPoint:[event locationInWindow] fromView:nil];
-    
-    // hold a bit at scale 1.0
-    if (([self initialMagnificationScale] > 1.0 && scale < 1.0) ||  // zoom-out
-        ([self initialMagnificationScale] <= 1.0 && scale >= 1.0))  // zoom-in
-    {
-        self.deferredMagnification += [event magnification];
-        if (fabs([self deferredMagnification]) > 0.4) {
-            scale = [self scale] + [self deferredMagnification] / 2;
-            self.deferredMagnification = 0;
-            [self setInitialMagnificationScale:scale];
-        } else {
-            scale = 1.0;
-        }
-    }
-    
-    // sanitize final scale
-    if ([event phase] & NSEventPhaseEnded) {
-        if (fabs(scale - 1.0) < 0.05) {
-            scale = 1.0;
-        }
-    }
-    
-    [self setScale:scale centeredAtPoint:center];
-}
-
-
-// ------------------------------------------------------
-/// reset font size by two-finger double tap
-- (void)smartMagnifyWithEvent:(nonnull NSEvent *)event
-// ------------------------------------------------------
-{
-    CGFloat scale = ([self scale] == 1.0) ? 1.5 : 1.0;
-    CGPoint center = [self convertPoint:[event locationInWindow] fromView:nil];
-    
-    [self setScale:scale centeredAtPoint:center];
-}
-
-
-
-#pragma mark Action Messages
-
-// ------------------------------------------------------
-/// scale up
-- (IBAction)biggerFont:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self setScaleKeepingVisibleArea:[self scale] * 1.1];
-}
-
-
-// ------------------------------------------------------
-/// scale down
-- (IBAction)smallerFont:(nullable id)sender
-// ------------------------------------------------------
-{
-    [self setScaleKeepingVisibleArea:[self scale] / 1.1];
-}
-
-
-// ------------------------------------------------------
-/// reset scale and font to default
-- (IBAction)resetFont:(nullable id)sender
-// ------------------------------------------------------
-{
-    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:CEDefaultFontNameKey];
-    CGFloat size = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultFontSizeKey];
-    [self setFont:[NSFont fontWithName:name size:size] ? : [NSFont userFontOfSize:size]];
-    
-    [self setScaleKeepingVisibleArea:1.0];
 }
 
 @end

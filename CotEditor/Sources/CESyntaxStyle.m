@@ -36,8 +36,6 @@
 #import "CEThemableProtocol.h"
 #import "CEDefaults.h"
 
-#import "NSTextView+CELayout.h"
-
 
 // parsing constants
 static NSString *_Nonnull const kAllAlphabetChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";

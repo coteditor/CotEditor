@@ -41,7 +41,6 @@
 
 #import "CEDefaults.h"
 
-#import "NSTextView+CELayout.h"
 #import "NSString+Indentation.h"
 
 

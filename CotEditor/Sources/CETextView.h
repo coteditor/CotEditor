@@ -53,6 +53,10 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 @property (nonatomic, nullable, copy) NSCharacterSet *firstSyntaxCompletionCharacterSet;  // 入力補完の最初の1文字のセット
 @property (nonatomic) BOOL needsRecompletion;  // 再度入力補完をするか
 
+// for Scaling category
+@property (nonatomic) CGFloat initialMagnificationScale;
+@property (nonatomic) CGFloat deferredMagnification;
+
 
 // Public method
 - (void)invalidateStyle;
@@ -70,15 +74,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 @interface CETextView (WordCompletion)
 
 - (void)completeAfterDelay:(NSTimeInterval)delay;
-
-@end
-
-
-@interface CETextView (Scaling)
-
-- (IBAction)biggerFont:(nullable id)sender;
-- (IBAction)smallerFont:(nullable id)sender;
-- (IBAction)resetFont:(nullable id)sender;
 
 @end
 

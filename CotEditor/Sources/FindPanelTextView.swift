@@ -51,7 +51,7 @@ class FindPanelTextView: NSTextView {
         
         // avoid wrapping
         self.textContainer?.widthTracksTextView = false
-        self.textContainer?.containerSize = NSSize(width: DBL_MAX, height: DBL_MAX)
+        self.textContainer?.containerSize = NSSize.infinite
         self.isHorizontallyResizable = true
         
         // disable automatic text substitutions

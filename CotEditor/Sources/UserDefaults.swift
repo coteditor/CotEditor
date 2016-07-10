@@ -1,11 +1,11 @@
 /*
  
- NSTextView+CELayout.h
+ UserDefaults.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
- Created by 1024jp on 2016-05-31.
+ Created by 1024jp on 2016-07-10.
  
  ------------------------------------------------------------------------------
  
@@ -25,30 +25,21 @@
  
  */
 
-@import Cocoa;
+import Foundation
 
-
-@interface NSTextView (CERange)
-
-- (NSRange)visibleRange;
-
-@end
-
-
-@interface NSTextView (CETextWrapping)
-
-- (BOOL)wrapsLines;
-- (void)setWrapsLines:(BOOL)wrapsLines;
-
-@end
-
-
-@interface NSTextView (CEScaling)
-
-- (CGFloat)scale;
-
-- (void)setScale:(CGFloat)scale;
-- (void)setScale:(CGFloat)scale centeredAtPoint:(NSPoint)point;
-- (void)setScaleKeepingVisibleArea:(CGFloat)scale;
-
-@end
+extension UserDefaults {
+    
+    /**
+     Returns the CGFloat value associated with the specified key.
+     
+     - parameters:
+     - key: A key in the current user's defaults database.
+     
+     - returns: The CGFloat value associated with the specified key. If the key does not exist, this method returns 0.
+     */
+    func cgFloat(forKey key: String) -> CGFloat {
+        
+        return CGFloat(self.double(forKey: key))
+    }
+    
+}
