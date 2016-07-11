@@ -54,7 +54,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 // readonly
 @property (nonatomic, readwrite, nonnull, copy) NSString *string;
-@property (nonatomic, readwrite, nonnull, copy) NSString *pictureString;
+@property (nonatomic, readwrite, nullable, copy) NSString *pictureString;
 @property (nonatomic, readwrite, nonnull, copy) NSArray<CEUnicodeCharacter *> *unicodes;
 @property (nonatomic, readwrite, nonnull, copy) NSString *unicode;
 @property (nonatomic, readwrite, getter=isComplexChar) BOOL complexChar;

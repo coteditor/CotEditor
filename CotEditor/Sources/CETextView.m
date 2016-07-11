@@ -34,8 +34,6 @@
 
 #import "CEDocument.h"
 
-#import "CECharacterPopoverController.h"
-
 #import "CEDefaults.h"
 #import "Constants.h"
 
@@ -1094,14 +1092,14 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         selectedString = [selectedString stringByReplacingNewLineCharacersWith:[self documentNewLineType]];
     }
     
-    CECharacterPopoverController *popoverController = [[CECharacterPopoverController alloc] initWithCharacter:selectedString];
+    CharacterPopoverController *popoverController = [[CharacterPopoverController alloc] initWithCharacter:selectedString];
     
     if (!popoverController) { return; }
     
     NSRect selectedRect = [self overlayRectForRange:selectedRange];
     selectedRect.origin.y -= 4;
     
-    [popoverController showPopoverRelativeToRect:selectedRect ofView:self];
+    [popoverController showPopoverWithRelativeTo:selectedRect of:self];
     [self showFindIndicatorForRange:NSMakeRange(selectedRange.location, 1)];
 }
 

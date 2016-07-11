@@ -28,6 +28,7 @@
 #import "CESyntaxDictionaryKeys.h"
 
 #import "CEUnicodeCharacter.h"
+#import "CECharacterInfo.h"
 
 #import "CETextView.h"
 
