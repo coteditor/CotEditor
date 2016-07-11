@@ -34,7 +34,6 @@
 
 #import "CEDocument.h"
 
-#import "CEThemeManager.h"
 #import "CECharacterPopoverController.h"
 
 #import "CEDefaults.h"
@@ -135,7 +134,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         _autoTabExpandEnabled = [defaults boolForKey:CEDefaultAutoExpandTabKey];
         
         // setup theme
-        [self setTheme:[[CEThemeManager sharedManager] themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
+        [self setTheme:[[ThemeManager shared] themeWithName:[defaults stringForKey:CEDefaultThemeKey]]];
         
         // set font
         CGFloat fontSize = (CGFloat)[defaults doubleForKey:CEDefaultFontSizeKey];
@@ -888,7 +887,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// update coloring settings
-- (void)setTheme:(nullable CETheme *)theme;
+- (void)setTheme:(nullable Theme *)theme;
 // ------------------------------------------------------
 {
     [[self window] setBackgroundColor:[theme backgroundColor]];

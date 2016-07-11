@@ -26,12 +26,14 @@
  */
 
 @import Foundation;
-#import "CETheme.h"
+
+
+@class Theme;
 
 
 @protocol CEThemable
 
 @required
-- (nullable CETheme *)theme;
+- (nullable Theme *)theme;
 
 @end

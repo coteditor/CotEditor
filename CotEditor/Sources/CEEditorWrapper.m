@@ -35,7 +35,6 @@
 #import "CEIncompatibleCharacterScanner.h"
 #import "CESplitViewController.h"
 #import "CETextView.h"
-#import "CEThemeManager.h"
 #import "CESyntaxStyle.h"
 #import "CETextFinder.h"
 
@@ -77,7 +76,7 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didUpdateTheme:)
-                                                     name:CEThemeDidUpdateNotification
+                                                     name:@"ThemeDidUpdate"
                                                    object:nil];
     }
     return self;
@@ -320,7 +319,7 @@
 
 
 //=======================================================
-// Notification  < CEThemeManager
+// Notification  < ThemeManager
 //=======================================================
 
 // ------------------------------------------------------
@@ -516,7 +515,7 @@
 
 // ------------------------------------------------------
 /// 現在のテーマを返す
-- (nullable CETheme *)theme
+- (nullable Theme *)theme
 // ------------------------------------------------------
 {
     return [[self focusedTextView] theme];
@@ -887,7 +886,7 @@
 - (void)setThemeWithName:(nonnull NSString *)themeName
 // ------------------------------------------------------
 {
-    CETheme *theme = [[CEThemeManager sharedManager] themeWithName:themeName];
+    Theme *theme = [[ThemeManager shared] themeWithName:themeName];
     
     if (!theme) { return; }
     

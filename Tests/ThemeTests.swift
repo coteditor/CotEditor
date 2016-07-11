@@ -66,17 +66,17 @@ class ThemeTests: XCTestCase {
         XCTAssertGreaterThan(theme.charactersColor.hueComponent, 0)
         XCTAssertGreaterThan(theme.commandsColor.hueComponent, 0)
         
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeKeywordsKey), theme.keywordsColor)
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeCommandsKey), theme.commandsColor)
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeTypesKey), theme.typesColor)
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeAttributesKey), theme.attributesColor)
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeVariablesKey), theme.variablesColor)
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeValuesKey), theme.valuesColor)
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeNumbersKey), theme.numbersColor)
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeStringsKey), theme.stringsColor)
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeCharactersKey), theme.charactersColor)
-        XCTAssertEqual(theme.syntaxColor(forType: CEThemeCommandsKey), theme.commandsColor)
-        XCTAssertNil(theme.syntaxColor(forType: "foo"))
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.keywords.rawValue), theme.keywordsColor)
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.commands.rawValue), theme.commandsColor)
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.types.rawValue), theme.typesColor)
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.attributes.rawValue), theme.attributesColor)
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.variables.rawValue), theme.variablesColor)
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.values.rawValue), theme.valuesColor)
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.numbers.rawValue), theme.numbersColor)
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.strings.rawValue), theme.stringsColor)
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.characters.rawValue), theme.charactersColor)
+        XCTAssertEqual(theme.syntaxColor(type: SyntaxType.commands.rawValue), theme.commandsColor)
+        XCTAssertNil(theme.syntaxColor(type: "foo"))
         
         XCTAssertFalse(theme.isDarkTheme)
     }
@@ -93,9 +93,9 @@ class ThemeTests: XCTestCase {
     
     func testFail() {
         // zero-length theme name is invalid
-        XCTAssertNil(CETheme(dictinonary: ["foo": ["dog": "cow"]], name: ""))
+        XCTAssertNil(Theme(dictionary: [:], name: ""))
         
-        let theme = CETheme(dictinonary: ["foo": ["dog": "cow"]], name: "Broken Theme")
+        let theme = Theme(dictionary: [:], name: "Broken Theme")
         
         XCTAssertNotNil(theme)  // Theme can be created from a lacking dictionary
         XCTAssertFalse(theme!.isValid)  // but flagged as invalid
@@ -121,23 +121,22 @@ class ThemeTests: XCTestCase {
     
     // MARK: Private Methods
     
-    func loadThemeWithName(_ name: String) -> CETheme? {
+    func loadThemeWithName(_ name: String) -> Theme? {
         let url = self.bundle?.urlForResource(name, withExtension: ThemeExtension, subdirectory: ThemeDirectoryName)
         
         return self.loadThemeWithURL(url!)
     }
     
     
-    func loadThemeWithURL(_ url: URL) -> CETheme? {
+    func loadThemeWithURL(_ url: URL) -> Theme? {
         let data = try? Data(contentsOf: url)
-        let jsonDict = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: [NSObject: AnyObject]]
+        let jsonDict = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! ThemeDictionary
         let themeName = try! url.deletingPathExtension().lastPathComponent!
         
         XCTAssertNotNil(jsonDict)
         XCTAssertNotNil(themeName)
         
-        return CETheme(dictinonary: jsonDict, name: themeName)
-        
+        return Theme(dictionary: jsonDict, name: themeName)
     }
 
 }

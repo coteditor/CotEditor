@@ -26,7 +26,9 @@
  */
 
 #import "CEPrintPanelAccessoryController.h"
-#import "CEThemeManager.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEDefaults.h"
 
 
@@ -300,7 +302,7 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
     [[self themePopup] addItemWithTitle:NSLocalizedString(@"Theme", nil)];
     [[[self themePopup] itemWithTitle:NSLocalizedString(@"Theme", nil)] setAction:nil];
     
-    NSArray<NSString *> *themeNames = [[CEThemeManager sharedManager] themeNames];
+    NSArray<NSString *> *themeNames = [[ThemeManager shared] themeNames];
     for (NSString *themeName in themeNames) {
         [[self themePopup] addItemWithTitle:themeName];
         [[[self themePopup] lastItem] setIndentationLevel:1];

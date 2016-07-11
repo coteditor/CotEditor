@@ -30,7 +30,7 @@
 
 
 @class CEDocument;
-@class CETheme;
+@class Theme;
 
 
 @interface CEEditorWrapper : NSResponder
@@ -47,7 +47,7 @@
 // readonly
 @property (readonly, nonatomic, nullable) __kindof NSTextView *focusedTextView;
 @property (readonly, nonatomic, nullable) NSFont *font;
-@property (readonly, nonatomic, nullable) CETheme *theme;
+@property (readonly, nonatomic, nullable) Theme *theme;
 
 
 #pragma mark Public Methods

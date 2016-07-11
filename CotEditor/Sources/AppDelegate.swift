@@ -155,7 +155,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         // observe setting list updates
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: EncodingManager.ListDidUpdateNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: .CESyntaxListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: .CEThemeListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: ThemeManager.ListDidUpdateNotification, object: nil)
     }
     
     
@@ -235,7 +235,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         let url = URL(fileURLWithPath: filename)
         
         // perform install if the file is CotEditor theme file
-        guard url.pathExtension == CEThemeExtension else { return false }
+        guard url.pathExtension == ThemeExtension else { return false }
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
@@ -251,7 +251,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         // import theme
         var success = true
         do {
-            try CEThemeManager.shared().importSetting(withFileURL: url)
+            try ThemeManager.shared.importSetting(withFileURL: url)
             
         } catch let error as NSError {
             // ask whether the old theme should be repleced with new one if the same name theme is already exists
@@ -260,7 +260,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         
         // feedback for succession
         if success {
-            let themeName = CEThemeManager.shared().settingName(from: url)
+            let themeName = ThemeManager.shared.settingName(from: url)
             let alert = NSAlert()
             alert.messageText = String(format: NSLocalizedString("A new theme named “%@” has been successfully installed.", comment: ""), themeName)
             
@@ -426,9 +426,9 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         
         menu.removeAllItems()
         
-        let themeNames = CEThemeManager.shared().themeNames
+        let themeNames = ThemeManager.shared.themeNames
         for themeName in themeNames {
-            menu.addItem(withTitle: themeName, action: #selector(CEThemeHolder.changeTheme(_:)), keyEquivalent: "")
+            menu.addItem(withTitle: themeName, action: #selector(ThemeHolder.changeTheme(_:)), keyEquivalent: "")
         }
     }
     

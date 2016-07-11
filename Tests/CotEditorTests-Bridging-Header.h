@@ -11,9 +11,8 @@
 #import "CEControlCharacerNames.h"
 #import "CECharacterInfo.h"
 
-// CETheme Tests
-#import "CETheme.h"
-#import "CEThemeDictionaryKeys.h"
+// Theme Tests
+#import "NSColor+WFColorCode.h"
 
 // Incompatible Character Tests
 #import "CEIncompatibleCharacter.h"

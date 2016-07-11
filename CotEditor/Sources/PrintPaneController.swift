@@ -63,7 +63,7 @@ class PrintPaneController: NSViewController {
         self.setupColorMenu()
         
         // observe theme list update
-        NotificationCenter.default.addObserver(self, selector: #selector(setupColorMenu), name: .CEThemeListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupColorMenu), name: ThemeManager.ListDidUpdateNotification, object: nil)
     }
     
     
@@ -131,7 +131,7 @@ class PrintPaneController: NSViewController {
         
         let index = UserDefaults.standard.integer(forKey: CEDefaultPrintColorIndexKey)
         let themeName = UserDefaults.standard.string(forKey: CEDefaultPrintThemeKey)
-        let themeNames = CEThemeManager.shared().themeNames
+        let themeNames = ThemeManager.shared.themeNames
         
         guard let popupButton = self.colorPopupButton else { return }
         

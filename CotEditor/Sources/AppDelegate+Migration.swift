@@ -62,7 +62,7 @@ extension AppDelegate {
         
         // migrate coloring setting
         windowController.update(informative: "Migrating coloring settings…")
-        windowController.didMigrateTheme = CEThemeManager.shared().migrateTheme()
+        windowController.didMigrateTheme = ThemeManager.shared.migrateTheme()
         windowController.progressIndicator()
         
         // migrate syntax styles to modern style

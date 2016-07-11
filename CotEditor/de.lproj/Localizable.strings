@@ -448,7 +448,7 @@
 
 
 
-/* MARK: CEThemeManager */
+/* MARK: ThemeManager */
 // Theme names
 "Untitled" = "Ohne Title";
 "Customized Theme" = "Benutzerdefiniertes Thema";

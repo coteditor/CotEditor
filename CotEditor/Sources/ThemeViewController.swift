@@ -27,10 +27,6 @@
 
 import Cocoa
 
-//typealias ThemeDictionary = [String: [String: AnyObject]]  // move this declaration to other file
-typealias ThemeDictionary = [String: NSMutableDictionary]  // move this declaration to other file
-
-
 protocol ThemeViewControllerDelegate: class {
     
     func didUpdate(theme: ThemeDictionary)
@@ -128,7 +124,7 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
         let color = NSColor.selectedTextBackgroundColor()
         let colorCode = color.usingColorSpaceName(NSCalibratedRGBColorSpace)?.colorCode(with: .hex)
         
-        self.theme?[CEThemeSelectionKey]?[CEThemeColorKey] = colorCode
+        self.theme?[ThemeKey.selection.rawValue]?[ThemeKey.Sub.color.rawValue] = colorCode
     }
     
     

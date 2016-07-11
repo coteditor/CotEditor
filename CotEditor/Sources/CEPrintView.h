@@ -40,7 +40,7 @@ extern CGFloat const kHorizontalPrintMargin;  // left/light margin
 @property (nonatomic, nullable, copy) NSString *filePath;
 @property (nonatomic, nullable, copy) NSString *documentName;
 @property (nonatomic, nullable, copy) NSString *syntaxName;
-@property (nonatomic, nullable) CETheme *theme;
+@property (nonatomic, nullable) Theme *theme;
 
 // settings on current window to be set by CEDocument.
 // These values are used if set option is "Same as document's setting"

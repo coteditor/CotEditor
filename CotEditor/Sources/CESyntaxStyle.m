@@ -637,10 +637,10 @@ static NSArray<NSString *> *kSyntaxDictKeys;
                               forCharacterRange:highlightRange];
         
         // apply color to layoutManager
-        CETheme *theme = [(NSTextView<CEThemable> *)[layoutManager firstTextView] theme];
+        Theme *theme = [(NSTextView<CEThemable> *)[layoutManager firstTextView] theme];
         for (NSString *syntaxType in kSyntaxDictKeys) {
             NSArray<NSValue *> *ranges = highlights[syntaxType];
-            NSColor *color = [theme syntaxColorForType:syntaxType] ?: [theme textColor];
+            NSColor *color = [theme syntaxColorWithType:syntaxType] ?: [theme textColor];
             
             for (NSValue *rangeValue in ranges) {
                 [layoutManager addTemporaryAttribute:NSForegroundColorAttributeName

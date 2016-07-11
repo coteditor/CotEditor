@@ -2,13 +2,11 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
+#import "NSColor+WFColorCode.h"
+
 #import "CEDefaults.h"
 #import "CEErrors.h"
 #import "Constants.h"
-
-
-// HexColorTransformer
-#import "NSColor+WFColorCode.h"
 
 // Format Pane
 #import "NSString+CEEncoding.h"
@@ -17,11 +15,7 @@
 #import "NSString+CECounting.h"
 
 // App Delegate
-#import "CEThemeManager.h"
 #import "CESyntaxManager.h"
-
-// Theme View Controller
-#import "CEThemeDictionaryKeys.h"
 
 // Toolbar Controller
 #import "CESyntaxManager.h"

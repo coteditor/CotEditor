@@ -43,7 +43,7 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 @property (nonatomic) NSUInteger tabWidth;
 @property (nonatomic, getter=isAutoTabExpandEnabled) BOOL autoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 
-@property (nonatomic, nullable) CETheme *theme;
+@property (nonatomic, nullable) Theme *theme;
 
 @property (nonatomic) NSRect highlightLineRect;  // ハイライト行の矩形
 

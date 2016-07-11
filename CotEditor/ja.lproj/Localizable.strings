@@ -450,7 +450,7 @@
 
 
 
-/* MARK: CEThemeManager */
+/* MARK: ThemeManager */
 // Theme names
 "Untitled" = "名称未設定";
 "Customized Theme" = "カスタムテーマ";

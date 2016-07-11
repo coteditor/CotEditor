@@ -190,7 +190,7 @@ class MenuKeyBindingManager: KeyBindingManager {
             switch action {
             case #selector(EncodingHolder.changeEncoding(_:)),
                  #selector(CESyntaxHolder.changeSyntaxStyle(_:)),
-                 #selector(CEThemeHolder.changeTheme(_:)),
+                 #selector(ThemeHolder.changeTheme(_:)),
                  #selector(CEEditorWrapper.changeTabWidth(_:)),
                  #selector(CETextView.biggerFont(_:)),
                  #selector(CETextView.smallerFont(_:)),

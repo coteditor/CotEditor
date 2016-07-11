@@ -446,7 +446,7 @@
 
 
 
-/* MARK: CEThemeManager */
+/* MARK: ThemeManager */
 // Theme names
 "Untitled" = "未命名";
 "Customized Theme" = "自定义主题";
