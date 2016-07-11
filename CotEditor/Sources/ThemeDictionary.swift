@@ -27,8 +27,8 @@
 
 import Foundation
 
-//typealias ThemeDictionary = [String: [String: AnyObject]]
-typealias ThemeDictionary = [String: NSMutableDictionary]
+//typealias ColorDefinition = [String: [String: AnyObject]]
+typealias ThemeDictionary = [String: NSMutableDictionary]  // use NSMutableDictionary for KVO
 
 enum ThemeKey: String {
     
@@ -50,6 +50,8 @@ enum ThemeKey: String {
     case characters
     case comments
     
+    case metadata
+    
     /// sub-dictionary keys
     enum Sub: String {
         case color
@@ -60,6 +62,6 @@ enum ThemeKey: String {
     static let basicKeys: [ThemeKey] = [.text, .background, .invisibles, .selection, .insertionPoint, .lineHighlight]
     
     static let syntaxKeys: [ThemeKey] = [.keywords, .commands, .types, .attributes, .variables, .values, .numbers, .strings, .characters, .comments]
-    static let all: [ThemeKey] = ThemeKey.basicKeys + ThemeKey.syntaxKeys
+    static let all: [ThemeKey] = ThemeKey.basicKeys + ThemeKey.syntaxKeys + [.metadata]
     
 }

@@ -35,14 +35,6 @@
 // General
 // ------------------------------------------------------
 
-// Metadata dict keys for themes and syntax styles
-NSString *_Nonnull const CEMetadataKey = @"metadata";
-NSString *_Nonnull const CEAuthorKey = @"author";
-NSString *_Nonnull const CEDistributionURLKey = @"distributionURL";
-NSString *_Nonnull const CELicenseKey = @"license";
-NSString *_Nonnull const CEDescriptionKey = @"description";
-
-
 // Encoding menu
 const NSInteger CEAutoDetectEncoding = 0;
 

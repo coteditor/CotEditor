@@ -28,6 +28,11 @@
 import Foundation
 import AppKit.NSColor
 
+private enum ThemeError: ErrorProtocol {
+    case novalue
+    case invalid
+}
+
 class Theme: NSObject {
     
     // MARK: Public Properties
@@ -43,18 +48,6 @@ class Theme: NSObject {
     let insertionPointColor: NSColor
     let lineHighLightColor: NSColor
     
-    // syntax colors
-    let keywordsColor: NSColor
-    let commandsColor: NSColor
-    let typesColor: NSColor
-    let attributesColor: NSColor
-    let variablesColor: NSColor
-    let valuesColor: NSColor
-    let numbersColor: NSColor
-    let stringsColor: NSColor
-    let charactersColor: NSColor
-    let commentsColor: NSColor
-    
     /// Is background color dark?
     let isDarkTheme: Bool
     
@@ -64,6 +57,7 @@ class Theme: NSObject {
     
     // MARK: Private Properties
     
+    private let syntaxColors: [SyntaxType: NSColor]
     private let usesSystemSelectionColor: Bool
     private let _selectionColor: NSColor
     
@@ -79,19 +73,35 @@ class Theme: NSObject {
         var colors = [ThemeKey: NSColor]()
         var isValid = true
         
-        for key in ThemeKey.all {
-            var type: WFColorCodeType = .invalid
-            var color: NSColor?
+        func unarchiveColor(subdict: NSMutableDictionary?) throws -> NSColor {
             
-            if let colorCode = dictionary[key.rawValue]?[ThemeKey.Sub.color.rawValue] as? String {
-                color = NSColor(colorCode: colorCode, codeType: &type)
-            }
-            if color == nil || !(type == .hex || type == .shortHex) {
-                color = .gray()  // color for invalid color code
+            guard let colorCode = subdict?[ThemeKey.Sub.color.rawValue] as? String else { throw ThemeError.novalue }
+            
+            var type: WFColorCodeType = .invalid
+            guard let color = NSColor(colorCode: colorCode, codeType: &type)
+                where type == .hex || type == .shortHex else { throw ThemeError.invalid }
+            
+            return color
+        }
+        
+        for key in ThemeKey.basicKeys {
+            do {
+                colors[key] = try unarchiveColor(subdict: dictionary[key.rawValue]) ?? .gray()
+            } catch {
                 isValid = false
             }
-            colors[key] = color
         }
+        
+        // unarchive syntax colors also
+        var syntaxColors = [SyntaxType: NSColor]()
+        for key in SyntaxType.all {
+            do {
+                syntaxColors[key] = try unarchiveColor(subdict: dictionary[key.rawValue]) ?? .gray()
+            } catch {
+                isValid = false
+            }
+        }
+        self.syntaxColors = syntaxColors
         
         // set properties
         self.name = name
@@ -103,16 +113,6 @@ class Theme: NSObject {
         self._selectionColor = colors[.selection]!
         self.insertionPointColor = colors[.insertionPoint]!
         self.lineHighLightColor = colors[.lineHighlight]!
-        self.keywordsColor = colors[.keywords]!
-        self.commandsColor = colors[.commands]!
-        self.typesColor = colors[.types]!
-        self.attributesColor = colors[.attributes]!
-        self.variablesColor = colors[.variables]!
-        self.valuesColor = colors[.values]!
-        self.numbersColor = colors[.numbers]!
-        self.stringsColor = colors[.strings]!
-        self.charactersColor = colors[.characters]!
-        self.commentsColor = colors[.comments]!
         
         self.usesSystemSelectionColor = (dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool) ?? false
         
@@ -127,6 +127,12 @@ class Theme: NSObject {
     }
     
     
+    override var debugDescription: String {
+        
+        return "Theme<\(self.name)>"
+    }
+    
+    
     
     // MARK: Public Methods
     
@@ -135,28 +141,7 @@ class Theme: NSObject {
         
         guard let syntaxType = SyntaxType(rawValue: type) else { return nil }
         
-        switch syntaxType {
-        case .keywords:
-            return self.keywordsColor
-        case .commands:
-            return self.commandsColor
-        case .types:
-            return self.typesColor
-        case .attributes:
-            return self.attributesColor
-        case .variables:
-            return self.variablesColor
-        case .values:
-            return self.valuesColor
-        case .numbers:
-            return self.numbersColor
-        case .strings:
-            return self.stringsColor
-        case .characters:
-            return self.charactersColor
-        case .comments:
-            return self.commentsColor
-        }
+        return self.syntaxColors[syntaxType]
     }
     
 }

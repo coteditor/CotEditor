@@ -140,7 +140,7 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
     /// jump to theme's destribution URL
     @IBAction func jumpToURL(_ sender: AnyObject?) {
         
-        guard let address =  self.theme?[CEMetadataKey]?[CEDistributionURLKey] as? String,
+        guard let address =  self.theme?[DictionaryKey.metadata.rawValue]?[MetadataKey.distributionURL.rawValue] as? String,
               let url = URL(string: address) else
         {
                 NSBeep()
@@ -158,7 +158,7 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
     private func observe(theme: ThemeDictionary) {
         
         for (key, subdict) in theme {
-            guard key != CEMetadataKey else { continue }
+            guard key != DictionaryKey.metadata.rawValue else { continue }
             
             for subkey in subdict.allKeys {
                 let keyPath = subkey as! String
@@ -175,7 +175,7 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
         guard let theme = self.theme else { return }
         
         for (key, subdict) in theme {
-            guard key != CEMetadataKey else { continue }
+            guard key != DictionaryKey.metadata.rawValue else { continue }
             
             for subkey in subdict.allKeys {
                 let keyPath = subkey as! String
@@ -183,7 +183,6 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
                 subdict.removeObserver(self, forKeyPath: keyPath)
             }
         }
-        
     }
     
 }

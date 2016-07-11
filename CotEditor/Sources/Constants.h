@@ -35,14 +35,6 @@
 // General
 // ------------------------------------------------------
 
-// Metadata dict keys
-extern NSString *_Nonnull const CEMetadataKey;
-extern NSString *_Nonnull const CEAuthorKey;
-extern NSString *_Nonnull const CEDistributionURLKey;
-extern NSString *_Nonnull const CELicenseKey;
-extern NSString *_Nonnull const CEDescriptionKey;
-
-
 // Original special encoding type
 extern NSInteger const CEAutoDetectEncoding;
 

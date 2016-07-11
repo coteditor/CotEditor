@@ -351,7 +351,7 @@ extension ThemeManager {
         guard theme == self.classicTheme else { return false }
         
         // add description
-        theme[CEMetadataKey] = NSMutableDictionary(dictionary: [CEDescriptionKey: NSLocalizedString("Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x", comment: "")])
+        theme[DictionaryKey.metadata.rawValue] = NSMutableDictionary(dictionary: [[MetadataKey.description.rawValue]: NSLocalizedString("Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x", comment: "")])
         
         guard self.save(themeDictionary: theme, name: themeName, completionHandler: nil) else { return false }
         

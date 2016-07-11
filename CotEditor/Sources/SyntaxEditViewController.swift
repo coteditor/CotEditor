@@ -264,7 +264,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     /// jump to style's destribution URL
     @IBAction func jumpToURL(_ sender: AnyObject?) {
         
-        guard let urlString = self.style[CEMetadataKey]?[CEDistributionURLKey] as? String,
+        guard let urlString = self.style[DictionaryKey.metadata.rawValue]?[MetadataKey.distributionURL.rawValue] as? String,
               let url = URL(string: urlString) else {
                 NSBeep()
                 return
