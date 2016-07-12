@@ -86,8 +86,9 @@ class Theme: NSObject {
         
         for key in ThemeKey.basicKeys {
             do {
-                colors[key] = try unarchiveColor(subdict: dictionary[key.rawValue]) ?? .gray()
+                colors[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
             } catch {
+                colors[key] = .gray()
                 isValid = false
             }
         }
@@ -96,8 +97,9 @@ class Theme: NSObject {
         var syntaxColors = [SyntaxType: NSColor]()
         for key in SyntaxType.all {
             do {
-                syntaxColors[key] = try unarchiveColor(subdict: dictionary[key.rawValue]) ?? .gray()
+                syntaxColors[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
             } catch {
+                syntaxColors[key] = .gray()
                 isValid = false
             }
         }
