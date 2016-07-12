@@ -46,7 +46,7 @@ class GoToLineViewController: NSViewController {
         super.init(nibName: nil, bundle: nil)
         
         let string = (self.textView.string as NSString?) ?? ""
-        let lineNumber = string.lineNumber(at: UInt(textView.selectedRange().location))
+        let lineNumber = string.lineNumber(at: textView.selectedRange().location)
         let lineCount = (string.substring(with: textView.selectedRange()) as NSString).numberOfLines()
         
         self.location = String(lineNumber)

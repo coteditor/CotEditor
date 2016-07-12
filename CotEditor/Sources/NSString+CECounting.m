@@ -34,7 +34,7 @@
 
 // ------------------------------------------------------
 /// number of composed characters in the whole string
-- (NSUInteger)numberOfComposedCharacters
+- (NSInteger)numberOfComposedCharacters
 // ------------------------------------------------------
 {
     if ([self length] == 0) { return 0; }
@@ -43,7 +43,7 @@
     NSString *string = [self precomposedStringWithCanonicalMapping];
     
     // count composed chars
-    __block NSUInteger count = 0;
+    __block NSInteger count = 0;
     __block BOOL isLastCharRegionalIndicator = NO;
     NSRange regionalIndicatorRange = NSMakeRange(0xDDE6, 0xDDFF - 0xDDE6 + 1);
     [string enumerateSubstringsInRange:NSMakeRange(0, [string length])
@@ -76,14 +76,14 @@
 
 // ------------------------------------------------------
 /// number of words in the whole string
-- (NSUInteger)numberOfWords
+- (NSInteger)numberOfWords
 // ------------------------------------------------------
 {
     if ([self length] == 0) { return 0; }
     
     CFStringTokenizerRef tokenizer = CFStringTokenizerCreate(NULL, (CFStringRef)self, CFRangeMake(0, [self length]), kCFStringTokenizerUnitWord, NULL);
     
-    NSUInteger count = 0;
+    NSInteger count = 0;
     while (CFStringTokenizerAdvanceToNextToken(tokenizer) != kCFStringTokenizerTokenNone) {
         count++;
     }
@@ -96,12 +96,12 @@
 
 // ------------------------------------------------------
 /// Return the number of lines in the range.
-- (NSUInteger)numberOfLinesInRange:(NSRange)range includingLastNewLine:(BOOL)includingLastNewLine
+- (NSInteger)numberOfLinesInRange:(NSRange)range includingLastNewLine:(BOOL)includingLastNewLine
 // ------------------------------------------------------
 {
     if ([self length] == 0 || range.length == 0) { return 0; }
     
-    __block NSUInteger count = 0;
+    __block NSInteger count = 0;
     
     [self enumerateSubstringsInRange:range
                              options:NSStringEnumerationByLines | NSStringEnumerationSubstringNotRequired
@@ -120,7 +120,7 @@
 
 // ------------------------------------------------------
 /// Return the number of lines in the whole string ignoring the last new line character.
-- (NSUInteger)numberOfLines
+- (NSInteger)numberOfLines
 // ------------------------------------------------------
 {
     return [self numberOfLinesInRange:NSMakeRange(0, [self length]) includingLastNewLine:NO];
@@ -129,12 +129,12 @@
 
 // ------------------------------------------------------
 /// Return the number of lines at the character index (1-based).
-- (NSUInteger)lineNumberAtIndex:(NSUInteger)index
+- (NSInteger)lineNumberAtIndex:(NSInteger)index
 // ------------------------------------------------------
 {
     if ([self length] == 0 || index == 0) { return 1; }
     
-    NSUInteger number = [self numberOfLinesInRange:NSMakeRange(0, index) includingLastNewLine:YES];
+    NSInteger number = [self numberOfLinesInRange:NSMakeRange(0, index) includingLastNewLine:YES];
     
     return number;
 }

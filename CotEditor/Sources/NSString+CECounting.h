@@ -31,20 +31,20 @@
 @interface NSString (CECounting)
 
 /// Return the number of composed characters in the whole string. The string is normalized using NFC before counting.
-- (NSUInteger)numberOfComposedCharacters;
+- (NSInteger)numberOfComposedCharacters;
 
 
 /// Return the number of words in the current language.
-- (NSUInteger)numberOfWords;
+- (NSInteger)numberOfWords;
 
 
 /// Return the number of lines in the range.
-- (NSUInteger)numberOfLinesInRange:(NSRange)range includingLastNewLine:(BOOL)ignore;
+- (NSInteger)numberOfLinesInRange:(NSRange)range includingLastNewLine:(BOOL)ignore;
 
 /// Return the number of lines in the whole string without the last new line character.
-- (NSUInteger)numberOfLines;
+- (NSInteger)numberOfLines;
 
 /// Return the number of lines at the character index (1-based).
-- (NSUInteger)lineNumberAtIndex:(NSUInteger)index;
+- (NSInteger)lineNumberAtIndex:(NSInteger)index;
 
 @end
