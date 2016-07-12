@@ -111,52 +111,52 @@ class CharacterInfoTests: XCTestCase {
     }
     
     
-    // MARK: - CECharacterInfo Tests
+    // MARK: - CharacterInfo Tests
     
     func testMultiCharString() {
-        XCTAssertNil(CECharacterInfo(string: "foo"))
+        XCTAssertNil(CharacterInfo(string: "foo"))
     }
     
     
     func testSingleCharWithVSInfo() {
-        guard let charInfo = CECharacterInfo(string: "☺︎") else {
+        guard let charInfo = CharacterInfo(string: "☺︎") else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(charInfo.string, "☺︎")
-        XCTAssertFalse(charInfo.isComplexChar)
+        XCTAssertFalse(charInfo.isComplex)
         XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+263A", "U+FE0E"])
         XCTAssertEqual(charInfo.unicodes.map{$0.name}, ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
-        XCTAssertEqual(charInfo.prettyDescription, "WHITE SMILING FACE (Text Style)")
+        XCTAssertEqual(charInfo.localizedDescription, "WHITE SMILING FACE (Text Style)")
     }
     
     
     func testCombiningCharacterInfo() {
-        guard let charInfo = CECharacterInfo(string: "1️⃣") else {
+        guard let charInfo = CharacterInfo(string: "1️⃣") else {
             XCTFail()
             return
         }
         
-        XCTAssertTrue(charInfo.isComplexChar)
+        XCTAssertTrue(charInfo.isComplex)
         XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+0031", "U+FE0F", "U+20E3"])
-        XCTAssertEqual(charInfo.prettyDescription, "<a letter consisting of 3 characters>")
+        XCTAssertEqual(charInfo.localizedDescription, "<a letter consisting of 3 characters>")
     }
     
     
     func testNationalIndicatorInfo() {
-        guard let charInfo = CECharacterInfo(string: "🇯🇵") else {
+        guard let charInfo = CharacterInfo(string: "🇯🇵") else {
             XCTFail()
             return
         }
         
-        XCTAssertTrue(charInfo.isComplexChar)
+        XCTAssertTrue(charInfo.isComplex)
         XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+1F1EF", "U+1F1F5"])
     }
     
     
     func testControlCharacterInfo() {
-        guard let charInfo = CECharacterInfo(string: " ") else {
+        guard let charInfo = CharacterInfo(string: " ") else {
             XCTFail()
             return
         }

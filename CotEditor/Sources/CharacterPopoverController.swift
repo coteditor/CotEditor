@@ -48,11 +48,11 @@ class CharacterPopoverController: NSViewController, NSPopoverDelegate {
     /// default initializer (singleString must be a single character (or a surrogate-pair). If not, return nil.)
     init?(character: String) {  // TODO: -> Character
         
-        guard let characterInfo = CECharacterInfo(string: character) else { return nil }
+        guard let characterInfo = CharacterInfo(string: character) else { return nil }
         
         self.glyph = characterInfo.pictureString ?? characterInfo.string
-        self.unicodeName = characterInfo.prettyDescription
-        self.unicodeBlockName = characterInfo.isComplexChar ? nil : characterInfo.unicodes.first?.localizedBlockName
+        self.unicodeName = characterInfo.localizedDescription
+        self.unicodeBlockName = characterInfo.isComplex ? nil : characterInfo.unicodes.first?.localizedBlockName
         
         // build Unicode code point string
         var unicode = ""

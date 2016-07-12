@@ -9,7 +9,7 @@
 
 // Character Info Tests
 #import "CEControlCharacerNames.h"
-#import "CECharacterInfo.h"
+#import "CEUnicodeCharacter.h"
 
 // Theme Tests
 #import "NSColor+WFColorCode.h"

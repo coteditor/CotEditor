@@ -27,9 +27,11 @@
  */
 
 #import "CEDocumentAnalyzer.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEDocument.h"
 #import "CEEditorWrapper.h"
-#import "CECharacterInfo.h"
 #import "CEDefaults.h"
 
 #import "NSString+CECounting.h"
@@ -261,7 +263,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
             
             // unicode
             if (needsAll && hasSelection) {
-                CECharacterInfo *characterInfo = [CECharacterInfo characterInfoWithString:selectedString];
+                CharacterInfo *characterInfo = [[CharacterInfo alloc] initWithString:selectedString];
                 if ([[characterInfo unicodes] count] == 1) {
                     unicode = [[[characterInfo unicodes] firstObject] unicode];
                 }
