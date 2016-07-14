@@ -36,7 +36,9 @@
 #include "umachine.h"
 #include "uversion.h"
 #include "uconfig.h"
+#if U_PLATFORM!=U_PF_IPHONE
 #include <float.h>
+#endif
 
 #if !U_NO_DEFAULT_INCLUDE_UTF_HEADERS
 #   include "utf.h"
@@ -137,7 +139,7 @@
 #define U_ICUDATA_NAME    "icudt" U_ICU_VERSION_SHORT U_ICUDATA_TYPE_LETTER
 #ifndef U_HIDE_INTERNAL_API
 #define U_USRDATA_NAME    "usrdt" U_ICU_VERSION_SHORT U_ICUDATA_TYPE_LETTER  /**< @internal */
-#define U_USE_USRDATA     1  /**< @internal */
+#define U_USE_USRDATA     0  /**< @internal */
 #endif  /* U_HIDE_INTERNAL_API */
 
 /**
@@ -213,13 +215,17 @@ typedef double UDate;
  * Maximum UDate value 
  * @stable ICU 4.8 
  */ 
+#if U_PLATFORM!=U_PF_IPHONE
 #define U_DATE_MAX DBL_MAX
+#else
+#define U_DATE_MAX (1.7976931348623157e+308)
+#endif
 
 /**
  * Minimum UDate value 
  * @stable ICU 4.8 
  */ 
-#define U_DATE_MIN -U_DATE_MAX
+#define U_DATE_MIN (-U_DATE_MAX)
 
 /*===========================================================================*/
 /* Shared library/DLL import-export API control                              */

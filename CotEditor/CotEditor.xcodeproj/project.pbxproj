@@ -750,7 +750,6 @@
 		2A69077C1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		2A69077E1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = de; path = de.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A69077F1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
-		2A6A29681B9751CB002F434C /* icu */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icu; path = Sources/icu; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E081B5500E100C2D03C /* CotEditor -AppStore-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CotEditor -AppStore-Info.plist"; sourceTree = "<group>"; };
@@ -801,6 +800,8 @@
 		2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPaneController.swift; sourceTree = "<group>"; };
 		2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropPaneController.swift; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = ../cot/cot; sourceTree = SOURCE_ROOT; };
+		2A9BF3B91D37EB0900E3D3E2 /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		2A9BF3C21D3803B600E3D3E2 /* unicode */ = {isa = PBXFileReference; lastKnownFileType = folder; path = unicode; sourceTree = "<group>"; };
 		2A9C074C1CF99F12006D672D /* CEIncompatibleCharacterScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIncompatibleCharacterScanner.h; sourceTree = "<group>"; };
 		2A9C074D1CF99F12006D672D /* CEIncompatibleCharacterScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEIncompatibleCharacterScanner.m; sourceTree = "<group>"; };
 		2A9C07501CF9A3C7006D672D /* CEIncompatibleCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEIncompatibleCharacter.h; sourceTree = "<group>"; };
@@ -1308,7 +1309,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
-				2A37F4C3FDCFA73011CA2CEA /* Libraries */,
+				2AF0740B1D37DE5400770BA6 /* Modules */,
 				BEED9F89D1E364DD05CA42CB /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				234A213E93629F3A79324102 /* Pods */,
@@ -1349,7 +1350,6 @@
 				8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */,
 				2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */,
 				2A3E84821D07331900070A54 /* updateHelpindex.sh */,
-				2A6A29681B9751CB002F434C /* icu */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1381,14 +1381,6 @@
 				2A7846DA18FE035E006BDF00 /* Themes */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		2A37F4C3FDCFA73011CA2CEA /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				2A83E2391BA1E65A0069CDFE /* libicucore.tbd */,
-			);
-			name = Libraries;
 			sourceTree = "<group>";
 		};
 		2A3A759719E77E4C001DAB88 /* Syntax Edit Sheet */ = {
@@ -1627,6 +1619,16 @@
 			name = "Other View Controllers";
 			sourceTree = "<group>";
 		};
+		2A9BF3B71D37EAFA00E3D3E2 /* ICU */ = {
+			isa = PBXGroup;
+			children = (
+				2A83E2391BA1E65A0069CDFE /* libicucore.tbd */,
+				2A9BF3B91D37EB0900E3D3E2 /* module.map */,
+				2A9BF3C21D3803B600E3D3E2 /* unicode */,
+			);
+			path = ICU;
+			sourceTree = "<group>";
+		};
 		2AA2E00D1BFDD3AE0087BDD6 /* Character */ = {
 			isa = PBXGroup;
 			children = (
@@ -1783,6 +1785,14 @@
 				2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */,
 			);
 			name = "Inspector Tab View";
+			sourceTree = "<group>";
+		};
+		2AF0740B1D37DE5400770BA6 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				2A9BF3B71D37EAFA00E3D3E2 /* ICU */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		2AFFB72E18D8E87900118477 /* Panel Controllers */ = {
@@ -3409,6 +3419,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = Modules/;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -3454,6 +3465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = Modules/;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;

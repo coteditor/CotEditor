@@ -25,9 +25,11 @@
  
  */
 
+
+@import ICU;
+
 #import "CEUnicodeCharacter.h"
 #import "CEControlCharacerNames.h"
-#import "icu/uchar.h"
 
 
 @interface CEUnicodeCharacter ()
