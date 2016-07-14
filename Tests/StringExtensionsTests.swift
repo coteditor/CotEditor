@@ -84,10 +84,10 @@ class StringExtensionsTests: XCTestCase {
     func testJapaneseTransform() {
         let testString = "犬 イヌ いぬ Ｉｎｕ Dog"
         
-        XCTAssertEqual(testString.fullWidthRoman(), "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ")
-        XCTAssertEqual(testString.halfWidthRoman(), "犬 イヌ いぬ Inu Dog")
-        XCTAssertEqual(testString.katakana(), "犬 イヌ イヌ Ｉｎｕ Dog")
-        XCTAssertEqual(testString.hiragana(), "犬 いぬ いぬ Ｉｎｕ Dog")
+        XCTAssertEqual(testString.fullWidthRoman, "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ")
+        XCTAssertEqual(testString.halfWidthRoman, "犬 イヌ いぬ Inu Dog")
+        XCTAssertEqual(testString.katakana, "犬 イヌ イヌ Ｉｎｕ Dog")
+        XCTAssertEqual(testString.hiragana, "犬 いぬ いぬ Ｉｎｕ Dog")
     }
     
     
@@ -146,19 +146,11 @@ class StringExtensionsTests: XCTestCase {
     
     
     func testUnicodeNormalization() {
-        XCTAssertNotEqual("\u{1f71}".nsString, "\u{03ac}".nsString)  // test nsString itself
         
-        XCTAssertEqual("é 神 ㍑".precomposedStringWithCompatibilityMappingWithCasefold().nsString, "é 神 リットル".nsString)
-        XCTAssertEqual("\u{1f71} \u{03b1}\u{0301}".precomposedStringWithHFSPlusMapping().nsString, "\u{1f71} \u{03ac}".nsString)
-        XCTAssertEqual("\u{1f71}".precomposedStringWithHFSPlusMapping().nsString, "\u{1f71}".nsString)  // test single char
-        XCTAssertEqual("\u{1f71}".decomposedStringWithHFSPlusMapping().nsString, "\u{03b1}\u{0301}".nsString)
+        XCTAssertEqual("é 神 ㍑".precomposedStringWithCompatibilityMappingWithCasefold, "é 神 リットル")
+        XCTAssertEqual("\u{1f71} \u{03b1}\u{0301}".precomposedStringWithHFSPlusMapping, "\u{1f71} \u{03ac}")
+        XCTAssertEqual("\u{1f71}".precomposedStringWithHFSPlusMapping, "\u{1f71}")  // test single char
+        XCTAssertEqual("\u{1f71}".decomposedStringWithHFSPlusMapping, "\u{03b1}\u{0301}")
     }
 
-}
-
-
-extension String {
-    var nsString: NSString {
-        return self as NSString
-    }
 }

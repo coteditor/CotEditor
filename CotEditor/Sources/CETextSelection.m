@@ -27,6 +27,9 @@
  */
 
 #import "CETextSelection.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEDocument+ScriptingSupport.h"
 #import "CEEditorWrapper+Editor.h"
 #import "CETextView.h"

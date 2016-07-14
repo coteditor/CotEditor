@@ -121,23 +121,3 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 - (IBAction)trimTrailingWhitespace:(nullable id)sender;
 
 @end
-
-
-
-#pragma mark - CETextView+Transformation.m
-
-@interface CETextView (Transformation)
-
-- (IBAction)exchangeFullwidthRoman:(nullable id)sender;
-- (IBAction)exchangeHalfwidthRoman:(nullable id)sender;
-- (IBAction)exchangeKatakana:(nullable id)sender;
-- (IBAction)exchangeHiragana:(nullable id)sender;
-- (IBAction)normalizeUnicodeWithNFD:(nullable id)sender;
-- (IBAction)normalizeUnicodeWithNFC:(nullable id)sender;
-- (IBAction)normalizeUnicodeWithNFKD:(nullable id)sender;
-- (IBAction)normalizeUnicodeWithNFKC:(nullable id)sender;
-- (IBAction)normalizeUnicodeWithNFKCCF:(nullable id)sender;
-- (IBAction)normalizeUnicodeWithModifiedNFC:(nullable id)sender;
-- (IBAction)normalizeUnicodeWithModifiedNFD:(nullable id)sender;
-
-@end
