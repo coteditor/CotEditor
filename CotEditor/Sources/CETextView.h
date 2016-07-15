@@ -79,19 +79,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 
 
 
-#pragma mark - CETextView+Indentation.m
-
-@interface CETextView (Indentation)
-
-- (IBAction)shiftRight:(nullable id)sender;
-- (IBAction)shiftLeft:(nullable id)sender;
-- (IBAction)convertIndentationToSpaces:(nullable id)sender;
-- (IBAction)convertIndentationToTabs:(nullable id)sender;
-
-@end
-
-
-
 #pragma mark - CETextView+Commenting.m
 
 @interface CETextView (Commenting)

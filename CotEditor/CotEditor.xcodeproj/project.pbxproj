@@ -297,6 +297,8 @@
 		2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
 		2A6FD9D11D38933100A59784 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D01D38933100A59784 /* TextViewController.swift */; };
 		2A6FD9D21D38933100A59784 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D01D38933100A59784 /* TextViewController.swift */; };
+		2A6FD9DA1D38F93100A59784 /* CETextView+Indentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D71D38C94100A59784 /* CETextView+Indentation.swift */; };
+		2A6FD9DB1D38F93300A59784 /* CETextView+Indentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D71D38C94100A59784 /* CETextView+Indentation.swift */; };
 		2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */; };
 		2A712CA318EFB716001FEC33 /* AutoTabExpand_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */; };
 		2A7135831CFFDC6600ADA555 /* FormattersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7135821CFFDC6600ADA555 /* FormattersTests.swift */; };
@@ -478,8 +480,6 @@
 		2AE0C0981C422F3300E52E04 /* NSTextView+CETextReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C0961C422F3300E52E04 /* NSTextView+CETextReplacement.m */; };
 		2AE0C09B1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C09A1C42306000E52E04 /* CETextView+LineProcessing.m */; };
 		2AE0C09C1C42306000E52E04 /* CETextView+LineProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C09A1C42306000E52E04 /* CETextView+LineProcessing.m */; };
-		2AE0C09F1C42330000E52E04 /* CETextView+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C09E1C42330000E52E04 /* CETextView+Indentation.m */; };
-		2AE0C0A01C42330000E52E04 /* CETextView+Indentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE0C09E1C42330000E52E04 /* CETextView+Indentation.m */; };
 		2AE52F181D17468B00D60A32 /* EditorSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F171D17468B00D60A32 /* EditorSplitView.swift */; };
 		2AE52F191D17468B00D60A32 /* EditorSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F171D17468B00D60A32 /* EditorSplitView.swift */; };
 		2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */; };
@@ -751,6 +751,7 @@
 		2A6F0E081B5500E100C2D03C /* CotEditor -AppStore-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CotEditor -AppStore-Info.plist"; sourceTree = "<group>"; };
 		2A6F0E091B55043800C2D03C /* CotEditor -AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CotEditor -AppStore.entitlements"; sourceTree = "<group>"; };
 		2A6FD9D01D38933100A59784 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
+		2A6FD9D71D38C94100A59784 /* CETextView+Indentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CETextView+Indentation.swift"; sourceTree = "<group>"; };
 		2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_Off.tiff; sourceTree = "<group>"; };
 		2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_On.tiff; sourceTree = "<group>"; };
 		2A7135821CFFDC6600ADA555 /* FormattersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattersTests.swift; sourceTree = "<group>"; };
@@ -971,7 +972,6 @@
 		2AE0C0951C422F3300E52E04 /* NSTextView+CETextReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+CETextReplacement.h"; sourceTree = "<group>"; };
 		2AE0C0961C422F3300E52E04 /* NSTextView+CETextReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+CETextReplacement.m"; sourceTree = "<group>"; };
 		2AE0C09A1C42306000E52E04 /* CETextView+LineProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CETextView+LineProcessing.m"; sourceTree = "<group>"; };
-		2AE0C09E1C42330000E52E04 /* CETextView+Indentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CETextView+Indentation.m"; sourceTree = "<group>"; };
 		2AE52F171D17468B00D60A32 /* EditorSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorSplitView.swift; sourceTree = "<group>"; };
 		2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionsFormatter.swift; sourceTree = "<group>"; };
 		2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColorTransformer.swift; sourceTree = "<group>"; };
@@ -1452,7 +1452,7 @@
 				25B2C24B07FA6BC400F4EFC7 /* CETextView.m */,
 				2A9082E81D32539A00228F50 /* CETextView+Scaling.swift */,
 				2A4257B81D2392A40086DAAD /* CETextView+Accessories.swift */,
-				2AE0C09E1C42330000E52E04 /* CETextView+Indentation.m */,
+				2A6FD9D71D38C94100A59784 /* CETextView+Indentation.swift */,
 				2AE0C0921C422DFA00E52E04 /* CETextView+Commenting.m */,
 				2AE0C09A1C42306000E52E04 /* CETextView+LineProcessing.m */,
 				2A9BF3C31D382BB100E3D3E2 /* CETextView+Transformation.swift */,
@@ -2456,12 +2456,12 @@
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AD49C241D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
+				2A6FD9DA1D38F93100A59784 /* CETextView+Indentation.swift in Sources */,
 				2AAD61FD1D2BD102008FE772 /* String+Additions.swift in Sources */,
 				2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A78BFA81D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */,
 				2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */,
 				2A4682B31D2F6B580005410E /* FIleDropComposer.swift in Sources */,
-				2AE0C0A01C42330000E52E04 /* CETextView+Indentation.m in Sources */,
 				2A6FD9D21D38933100A59784 /* TextViewController.swift in Sources */,
 				2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */,
@@ -2607,6 +2607,7 @@
 				2AE0C0971C422F3300E52E04 /* NSTextView+CETextReplacement.m in Sources */,
 				2A9082EC1D325BEC00228F50 /* UserDefaults.swift in Sources */,
 				2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
+				2A6FD9DB1D38F93300A59784 /* CETextView+Indentation.swift in Sources */,
 				2AB3407F1D01E2A4000F5EEC /* CESyntaxDictionaryKeys.m in Sources */,
 				2AF073F41D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
@@ -2683,7 +2684,6 @@
 				2AE52F1F1D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
 				2A38FB001D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift in Sources */,
-				2AE0C09F1C42330000E52E04 /* CETextView+Indentation.m in Sources */,
 				2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AB432741915D6AA00835004 /* NSString+CECounting.m in Sources */,

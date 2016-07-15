@@ -8,28 +8,19 @@
 #import "CEErrors.h"
 #import "Constants.h"
 
-// Format Pane
 #import "NSString+CEEncoding.h"
-
-// Go To Line View
 #import "NSString+CECounting.h"
-
-// App Delegate
-#import "CESyntaxManager.h"
-
-// Toolbar Controller
-#import "CESyntaxManager.h"
-#import "CESyntaxStyle.h"
 #import "NSString+CENewLine.h"
+#import "NSString+Indentation.h"
 
 #import "CETextFinder.h"
 
 // Syntax Style
+#import "CESyntaxManager.h"
+#import "CESyntaxStyle.h"
 #import "CESyntaxDictionaryKeys.h"
 
 #import "CEUnicodeCharacter.h"
-
-#import "CETextView.h"
 
 // Sidebar View Controllers
 #import "CEDocumentAnalyzer.h"
@@ -41,4 +32,3 @@
 // Editor View
 #import "CETextView.h"
 #import "CEThemableProtocol.h"
-
