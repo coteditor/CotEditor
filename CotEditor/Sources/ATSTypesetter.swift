@@ -42,10 +42,10 @@ class ATSTypesetter: NSATSTypesetter {
         //      「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         //      挿入すると行間がズレる」問題が生じる。
         
-        guard let manager = self.layoutManager as? CELayoutManager else { return }
+        guard let manager = self.layoutManager as? LayoutManager else { return }
         
-        lineRect.pointee.size.height = manager.lineHeight()
-        usedRect.pointee.size.height = manager.lineHeight()
+        lineRect.pointee.size.height = manager.lineHeight
+        usedRect.pointee.size.height = manager.lineHeight
         baselineOffset.pointee = manager.defaultBaselineOffset
     }
     
@@ -71,7 +71,7 @@ class ATSTypesetter: NSATSTypesetter {
     /// return bounding box for control glyph
     override func boundingBox(forControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
-        guard let manager = self.layoutManager as? CELayoutManager where manager.showsOtherInvisibles && manager.showsInvisibles else {
+        guard let manager = self.layoutManager as? LayoutManager where manager.showsOtherInvisibles && manager.showsInvisibles else {
             // DON'T invoke super method here. If invoked, it can not continue drawing remaining lines any more on Mountain Lion (and possible other versions except El Capitan).
             // Just passing zero rect is enough if you don't need to draw it.
             return NSRect()

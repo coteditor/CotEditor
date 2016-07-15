@@ -31,7 +31,6 @@
 #import "CotEditor-Swift.h"
 
 #import "CEPrintPanelAccessoryController.h"
-#import "CELayoutManager.h"
 #import "CESyntaxManager.h"
 #import "CESyntaxStyle.h"
 #import "CEDefaults.h"
@@ -91,7 +90,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         [[self textContainer] setLineFragmentPadding:kLineFragmentPadding];
         
         // replace layoutManager
-        CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
+        LayoutManager *layoutManager = [[LayoutManager alloc] init];
         [layoutManager setDelegate:self];
         [layoutManager setUsesScreenFonts:NO];
         [[self textContainer] replaceLayoutManager:layoutManager];
@@ -303,7 +302,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
                                range:NSMakeRange(0, [[self textStorage] length])];
     
     // set font also to layout manager
-    [(CELayoutManager *)[self layoutManager] setTextFont:font];
+    [(LayoutManager *)[self layoutManager] setTextFont:font];
     
     [super setFont:font];
 }
@@ -369,7 +368,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
             showsInvisibles = YES;
             break;
     }
-    [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
+    [(LayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
     
     // setup syntax highlighting with theme
     if ([settings[CEPrintThemeKey] isEqualToString:NSLocalizedString(@"Black and White",  nil)]) {
@@ -377,13 +376,13 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
                                      forCharacterRange:NSMakeRange(0, [[self textStorage] length])];
         [self setTextColor:[NSColor blackColor]];
         [self setBackgroundColor:[NSColor whiteColor]];
-        [(CELayoutManager *)[self layoutManager] setInvisiblesColor:[NSColor grayColor]];
+        [(LayoutManager *)[self layoutManager] setInvisiblesColor:[NSColor grayColor]];
         
     } else {
         [self setTheme:[[ThemeManager shared] themeWithName:settings[CEPrintThemeKey]]];
         [self setTextColor:[[self theme] textColor]];
         [self setBackgroundColor:[[self theme] backgroundColor]];
-        [(CELayoutManager *)[self layoutManager] setInvisiblesColor:[[self theme] invisiblesColor]];
+        [(LayoutManager *)[self layoutManager] setInvisiblesColor:[[self theme] invisiblesColor]];
         
         // perform coloring
         if (![self syntaxStyle]) {

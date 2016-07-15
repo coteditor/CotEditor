@@ -30,8 +30,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CELayoutManager.h"
-
 #import "CEDocument.h"
 
 #import "CEDefaults.h"
@@ -98,7 +96,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     self = [super initWithCoder:(NSCoder *)coder];
     if (self) {
         // setup layoutManager and textContainer
-        CELayoutManager *layoutManager = [[CELayoutManager alloc] init];
+        LayoutManager *layoutManager = [[LayoutManager alloc] init];
         [layoutManager setUsesScreenFonts:YES];
         [layoutManager setAllowsNonContiguousLayout:YES];
         [[self textContainer] replaceLayoutManager:layoutManager];
@@ -559,7 +557,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (nullable NSFont *)font
 // ------------------------------------------------------
 {
-    return [(CELayoutManager *)[self layoutManager] textFont] ?: [super font];
+    return [(LayoutManager *)[self layoutManager] textFont] ?: [super font];
 }
 
 
@@ -570,10 +568,10 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 {
     if (!font) { return; }
     
-    // 複合フォントで行間が等間隔でなくなる問題を回避するため、CELayoutManager にもフォントを持たせておく
+    // 複合フォントで行間が等間隔でなくなる問題を回避するため、LayoutManager にもフォントを持たせておく
     // -> [NSTextView font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
-    //    日本語フォントを返してくることがあるため、CELayoutManager からは [textView font] を使わない
-    [(CELayoutManager *)[self layoutManager] setTextFont:font];
+    //    日本語フォントを返してくることがあるため、LayoutManager からは [textView font] を使わない
+    [(LayoutManager *)[self layoutManager] setTextFont:font];
     [super setFont:font];
     
     [self invalidateDefaultParagraphStyle];
@@ -609,7 +607,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     // draw page guide
     if ([self showsPageGuide] && [self textColor]) {
         CGFloat column = (CGFloat)[[NSUserDefaults standardUserDefaults] doubleForKey:CEDefaultPageGuideColumnKey];
-        CGFloat charWidth = [(CELayoutManager *)[self layoutManager] spaceWidth];
+        CGFloat charWidth = [(LayoutManager *)[self layoutManager] spaceWidth];
         CGFloat inset = [self textContainerOrigin].x;
         CGFloat linePadding = [[self textContainer] lineFragmentPadding];
         CGFloat x = floor(charWidth * column + inset + linePadding) + 2.5;  // +2px for an esthetic adjustment
@@ -789,7 +787,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         if ([keyPath isEqualToString:CEDefaultEnablesHangingIndentKey] && ![newValue boolValue]) {
             [[self textStorage] addAttribute:NSParagraphStyleAttributeName value:[self defaultParagraphStyle] range:wholeRange];
         } else {
-            [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:wholeRange];
+            [(LayoutManager *)[self layoutManager] invalidateIndentIn:wholeRange];
         }
         
     } else if ([keyPath isEqualToString:CEDefaultEnableSmartQuotesKey]) {
@@ -896,7 +894,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setInsertionPointColor:[theme insertionPointColor]];
     [self setSelectedTextAttributes:@{NSBackgroundColorAttributeName: [theme selectionColor]}];
     
-    [(CELayoutManager *)[self layoutManager] setInvisiblesColor:[theme invisiblesColor]];
+    [(LayoutManager *)[self layoutManager] setInvisiblesColor:[theme invisiblesColor]];
     
     // 背景色に合わせたスクローラのスタイルをセット
     NSInteger knobStyle = [theme isDarkTheme] ? NSScrollerKnobStyleLight : NSScrollerKnobStyleDefault;
@@ -940,7 +938,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setUsesAntialias:(BOOL)usesAntialias
 // ------------------------------------------------------
 {
-    [(CELayoutManager *)[self layoutManager] setUsesAntialias:usesAntialias];
+    [(LayoutManager *)[self layoutManager] setUsesAntialias:usesAntialias];
     [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
 }
 
@@ -950,7 +948,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (BOOL)usesAntialias
 // ------------------------------------------------------
 {
-    return [(CELayoutManager *)[self layoutManager] usesAntialias];
+    return [(LayoutManager *)[self layoutManager] usesAntialias];
 }
 
 
@@ -959,7 +957,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (void)setShowsInvisibles:(BOOL)showsInvisibles
 // ------------------------------------------------------
 {
-    [(CELayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
+    [(LayoutManager *)[self layoutManager] setShowsInvisibles:showsInvisibles];
 }
 
 
@@ -968,7 +966,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 - (BOOL)showsInvisibles
 // ------------------------------------------------------
 {
-    return [(CELayoutManager *)[self layoutManager] showsInvisibles];
+    return [(LayoutManager *)[self layoutManager] showsInvisibles];
 }
 
 
@@ -985,7 +983,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     if (range.length == 0) { return; }
     
     [[self textStorage] addAttributes:[self typingAttributes] range:range];
-    [(CELayoutManager *)[self layoutManager] invalidateIndentInRange:range];
+    [(LayoutManager *)[self layoutManager] invalidateIndentIn:range];
     [self detectLinkIfNeeded];
 }
 
@@ -1156,7 +1154,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     
     // set line height
-    //   -> The actual line height will be calculated in CELayoutManager and ATSTypesetter based on this line height multiple.
+    //   -> The actual line height will be calculated in LayoutManager and ATSTypesetter based on this line height multiple.
     //      Because the default Cocoa Text System calculate line height differently
     //      if the first character of the document is drawn with another font (typically by a composite font).
     [paragraphStyle setLineHeightMultiple:[self lineHeight] ?: 1.0];
@@ -1176,7 +1174,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     [self setTypingAttributes:typingAttributes];
     
     // tell line height also to scroll view so that scroll view can scroll line by line
-    [[self enclosingScrollView] setLineScroll:[(CELayoutManager *)[self layoutManager] lineHeight]];
+    [[self enclosingScrollView] setLineScroll:[(LayoutManager *)[self layoutManager] lineHeight]];
     
     // apply new style to current text
     [self invalidateStyle];

@@ -25,18 +25,7 @@
  
  */
 
-@objc enum InvisibleType: Int {
-    
-    case space
-    case tab
-    case newLine
-    case fullWidthSpace
-    case verticalTab
-    case replacement
-}
-
-
-class Invisible: NSObject {
+enum Invisible {
     
     static let spaces = ["·", "°", "ː", "␣"]
     static let tabs = ["¬", "⇥", "‣", "▹"]
@@ -44,26 +33,38 @@ class Invisible: NSObject {
     static let fullWidthSpaces = ["□", "⊠", "■", "•"]
     static let verticalTab = "␋"
     static let replacement = "�"
+}
+
+
+
+// MARK: User Defaults
+
+extension Invisible {
     
-    
-    /// returns substitute character as String
-    class func space(index: Int) -> String {
+    static var userSpace: String {
         
+        let index = UserDefaults.standard.integer(forKey: CEDefaultInvisibleSpaceKey)
         return self.spaces[index] ?? self.spaces.first!
     }
     
-    class func tab(index: Int) -> String {
+    
+    static var userTab: String {
         
+        let index = UserDefaults.standard.integer(forKey: CEDefaultInvisibleTabKey)
         return self.tabs[index] ?? self.tabs.first!
     }
     
-    class func newLine(index: Int) -> String {
+    
+    static var userNewLine: String {
         
+        let index = UserDefaults.standard.integer(forKey: CEDefaultInvisibleNewLineKey)
         return self.newLines[index] ?? self.newLines.first!
     }
     
-    class func fullWidthSpace(index: Int) -> String {
+    
+    static var userFullWidthSpace: String {
         
+        let index = UserDefaults.standard.integer(forKey: CEDefaultInvisibleFullwidthSpaceKey)
         return self.fullWidthSpaces[index] ?? self.fullWidthSpaces.first!
     }
     
