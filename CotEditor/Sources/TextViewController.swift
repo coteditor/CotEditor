@@ -266,6 +266,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
+    
     // MARK: Action Messages
     
     /// show Go To sheet
