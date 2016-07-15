@@ -107,10 +107,10 @@ class EditorViewController: NSSplitViewController {
     var showsLineNumber: Bool {
         
         set (shown) {
-            self.textViewController?.setShowsLineNumber(shown)
+            self.textViewController?.showsLineNumber = shown
         }
         get {
-            return false  // TODO: implement
+            return self.textViewController?.showsLineNumber ?? false
         }
     }
     
@@ -154,9 +154,9 @@ class EditorViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// split view item to view controller
-    private var textViewController: CETextViewController? {
+    private var textViewController: TextViewController? {
         
-        return self.textViewItem?.viewController as? CETextViewController
+        return self.textViewItem?.viewController as? TextViewController
     }
     
 }

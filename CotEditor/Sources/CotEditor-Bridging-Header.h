@@ -39,7 +39,6 @@
 #import "CEEditorWrapper+Editor.h"
 
 // Editor View
-#import "CETextViewController.h"
 #import "CETextView.h"
 #import "CEThemableProtocol.h"
 
