@@ -33,7 +33,6 @@
 #import "CEDocument.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEIncompatibleCharacterScanner.h"
-#import "CESplitViewController.h"
 #import "CETextView.h"
 #import "CESyntaxStyle.h"
 #import "CETextFinder.h"
@@ -679,7 +678,7 @@
     id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
     while (view) {
         if ([[view identifier] isEqualToString:@"EditorView"]) {
-            currentEditorViewController = [[self splitViewController] viewControllerForSubview:view];
+            currentEditorViewController = [[self splitViewController] viewControllerFor:view];
             break;
         }
         view = [view superview];
@@ -716,7 +715,7 @@
     id view = [sender isMemberOfClass:[NSMenuItem class]] ? [[self window] firstResponder] : sender;
     while (view) {
         if ([[view identifier] isEqualToString:@"EditorView"]) {
-            currentEditorViewController = [[self splitViewController] viewControllerForSubview:view];
+            currentEditorViewController = [[self splitViewController] viewControllerFor:view];
             break;
         }
         view = [view superview];
@@ -792,7 +791,7 @@
     [editorViewController setTextStorage:[[self document] textStorage]];
     
     // instert new editorView just below the editorView that the pressed button belongs to or has focus
-    [[self splitViewController] addSubviewForViewController:editorViewController relativeTo:baseViewController];
+    [[self splitViewController] addSubviewFor:editorViewController relativeTo:baseViewController];
     
     [editorViewController setShowsLineNumber:[self showsLineNumber]];
     [editorViewController setShowsNavigationBar:[self showsNavigationBar] animate:NO];
@@ -821,10 +820,10 @@
 
 
 // ------------------------------------------------------
-- (CESplitViewController *)splitViewController
+- (SplitViewController *)splitViewController
 // ------------------------------------------------------
 {
-    return (CESplitViewController *)[[self splitViewItem] viewController];
+    return (SplitViewController *)[[self splitViewItem] viewController];
 }
 
 

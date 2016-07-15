@@ -294,7 +294,7 @@
         <!--Split View Controller-->
         <scene sceneID="37M-iF-P9Z">
             <objects>
-                <splitViewController id="vcx-nD-eDH" customClass="CESplitViewController" sceneMemberID="viewController">
+                <splitViewController id="vcx-nD-eDH" customClass="SplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitView key="splitView" id="tRF-P5-Ug9" customClass="EditorSplitView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
