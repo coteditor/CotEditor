@@ -175,11 +175,10 @@ class MenuKeyBindingManager: KeyBindingManager {
         }
         
         // specific tags
-        if let tag = CEMenuItemTag(rawValue: menuItem.tag) {
+        if let tag = MainMenu.MenuItemTag(rawValue: menuItem.tag) {
             switch tag {
             case .services,
-                 .sharingService,
-                 .script:
+                 .sharingService:
                 return false
             default: break
             }

@@ -45,25 +45,3 @@ extern NSUInteger const kMaxEncodingScanLength;
 // Convenient functions
 /// invoke passed-in block on main thread
 extern void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block);
-
-
-
-#pragma mark Main Menu
-
-// ------------------------------------------------------
-// Main Menu
-// ------------------------------------------------------
-
-// Menu item tags
-typedef NS_ENUM(NSInteger, CEMenuItemTag) {
-    // in main menu
-    CEMenuItemTagServices        =  999,  // const to not list up in "Menu Key Bindings" setting
-    CEMenuItemTagSharingService  = 1999,
-    CEMenuItemTagScriptDirectory = 8999,  // const to not list up in "Menu Key Bindings" setting
-    
-    // in script menu
-    CEMenuItemTagScriptsDefault  = 8001,  // const to not list up in context menu
-    
-    // in contextual menu
-    CEMenuItemTagScript          =  800,
-};

@@ -56,6 +56,10 @@ class TextViewController: NSViewController, NSTextViewDelegate {
     private static let CurrentLineUpdateInterval = 0.01
     private var currentLineUpdateTimer: Timer?
     private var lastCursorLocation = 0
+    
+    private enum MenuItemTag: Int {
+        case script = 800
+    }
 
     
     
@@ -208,11 +212,11 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         if let scriptMenu = ScriptManager.shared.contexualMenu {
             if UserDefaults.standard.bool(forKey: CEDefaultInlineContextualScriptMenuKey) {
                 menu.addItem(NSMenuItem.separator())
-                menu.items.last?.tag = CEMenuItemTag.script.rawValue
+                menu.items.last?.tag = MenuItemTag.script.rawValue
                 
                 for item in scriptMenu.items {
                     let addItem = item.copy() as! NSMenuItem
-                    addItem.tag = CEMenuItemTag.script.rawValue
+                    addItem.tag = MenuItemTag.script.rawValue
                     menu.addItem(addItem)
                 }
                 menu.addItem(NSMenuItem.separator())
@@ -220,7 +224,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
             } else {
                 let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
                 item.image = #imageLiteral(resourceName: "ScriptTemplate")
-                item.tag = CEMenuItemTag.script.rawValue
+                item.tag = MenuItemTag.script.rawValue
                 item.submenu = scriptMenu
                 menu.addItem(item)
             }

@@ -49,6 +49,7 @@ class ScriptManager: NSObject {
     
     
     // MARK: Private Enum
+    
     private enum OutputType: String {
         
         case replaceSelection = "ReplaceSelection"
@@ -63,6 +64,11 @@ class ScriptManager: NSObject {
         
         case selection = "Selection"
         case allText = "AllText"
+    }
+    
+    
+    private enum MenuItemTag: Int {
+        case scriptsDefault = 8001  // not to list up in context menu
     }
     
     
@@ -109,7 +115,7 @@ class ScriptManager: NSObject {
         let menu = NSMenu()
         
         for item in MainMenu.script.menu!.items {
-            guard item.tag != CEMenuItemTag.scriptsDefault.rawValue else { continue }
+            guard item.tag != MenuItemTag.scriptsDefault.rawValue else { continue }
             
             menu.addItem(item.copy() as! NSMenuItem)
         }
@@ -180,19 +186,19 @@ class ScriptManager: NSObject {
         self.addChildFileItem(to: menu, fromDirctory: self.scriptsDirectoryURL)
         
         let separatorItem = NSMenuItem.separator()
-        separatorItem.tag = CEMenuItemTag.scriptsDefault.rawValue
+        separatorItem.tag = MenuItemTag.scriptsDefault.rawValue
         menu.addItem(separatorItem)
         
         let openMenuItem = NSMenuItem(title: NSLocalizedString("Open Scripts Folder", comment: ""),
                                       action: #selector(openScriptFolder(_:)),keyEquivalent: "")
         openMenuItem.target = self
-        openMenuItem.tag = CEMenuItemTag.scriptsDefault.rawValue
+        openMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
         menu.addItem(openMenuItem)
         
         let updateMenuItem = NSMenuItem(title: NSLocalizedString("Update Script Menu", comment: ""),
                                         action: #selector(buildScriptMenu(_:)),keyEquivalent: "")
         updateMenuItem.target = self
-        updateMenuItem.tag = CEMenuItemTag.scriptsDefault.rawValue
+        updateMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
         menu.addItem(updateMenuItem)
     }
     
@@ -329,7 +335,7 @@ class ScriptManager: NSObject {
             case URLFileResourceType.directory:
                 let submenu = NSMenu(title: title)
                 let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
-                item.tag = CEMenuItemTag.scriptDirectory.rawValue
+                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
                 menu.addItem(item)
                 item.submenu = submenu
                 self.addChildFileItem(to: submenu, fromDirctory: fileURL)
