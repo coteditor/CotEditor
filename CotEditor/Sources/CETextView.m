@@ -1156,7 +1156,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     
     // set line height
-    //   -> The actual line height will be calculated in CELayoutManager and CEATSTypesetter based on this line height multiple.
+    //   -> The actual line height will be calculated in CELayoutManager and ATSTypesetter based on this line height multiple.
     //      Because the default Cocoa Text System calculate line height differently
     //      if the first character of the document is drawn with another font (typically by a composite font).
     [paragraphStyle setLineHeightMultiple:[self lineHeight] ?: 1.0];

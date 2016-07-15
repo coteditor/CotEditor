@@ -31,7 +31,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEATSTypesetter.h"
 #import "CEDefaults.h"
 
 #import "NSFont+CESize.h"
@@ -119,7 +118,7 @@ static NSString *HiraginoSansName;
         // this flag is actually not so necessary as I thougth. Thus, treat carefully this.
         [self setShowsControlCharacters:NO];
         
-        [self setTypesetter:[[CEATSTypesetter alloc] init]];
+        [self setTypesetter:[[ATSTypesetter alloc] init]];
         
         // observe change of defaults
         for (NSString *key in [[self class] observedDefaultKeys]) {

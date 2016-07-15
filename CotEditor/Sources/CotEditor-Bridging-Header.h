@@ -32,3 +32,4 @@
 // Editor View
 #import "CETextView.h"
 #import "CEThemableProtocol.h"
+#import "CELayoutManager.h"
