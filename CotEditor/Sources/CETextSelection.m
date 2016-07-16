@@ -37,7 +37,7 @@
 
 @interface CETextSelection ()
 
-@property (nonatomic, weak) CEDocument *document;
+@property (readwrite, nonatomic, weak) CEDocument *document;
 
 @end
 
@@ -289,24 +289,6 @@
 // ------------------------------------------------------
 {
     [[self textView] deleteDuplicateLine:command];
-}
-
-
-// ------------------------------------------------------
-/// comment-out the selection
-- (void)handleCommentOutScriptCommand:(NSScriptCommand *)command
-// ------------------------------------------------------
-{
-    [[self textView] commentOut:command];
-}
-
-
-// ------------------------------------------------------
-/// uncomment the selection
-- (void)handleUncommentScriptCommand:(NSScriptCommand *)command
-// ------------------------------------------------------
-{
-    [[self textView] uncomment:command];
 }
 
 

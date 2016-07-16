@@ -22,12 +22,13 @@
 
 #import "CEUnicodeCharacter.h"
 
-// Sidebar View Controllers
+// Document
 #import "CEDocumentAnalyzer.h"
 #import "CEIncompatibleCharacterScanner.h"
 #import "CEIncompatibleCharacter.h"
 #import "CEDocument.h"
 #import "CEEditorWrapper+Editor.h"
+#import "CETextSelection.h"
 
 // Editor View
 #import "CETextView.h"

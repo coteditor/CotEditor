@@ -61,6 +61,8 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 
 @interface CETextSelection : NSObject
 
+@property (readonly, nonatomic, weak) CEDocument *document;  // temporary readable for Swift extension
+
 // Public method
 - (instancetype)initWithDocument:(CEDocument *)document NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
@@ -86,8 +88,6 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 - (void)handleSortLinesAscendingScriptCommand:(NSScriptCommand *)command;
 - (void)handleReverseLinesScriptCommand:(NSScriptCommand *)command;
 - (void)handleDeleteDuplicateLineScriptCommand:(NSScriptCommand *)command;
-- (void)handleCommentOutScriptCommand:(NSScriptCommand *)command;
-- (void)handleUncommentScriptCommand:(NSScriptCommand *)command;
 - (void)handleChangeCaseScriptCommand:(NSScriptCommand *)command;
 - (void)handleChangeWidthRomanScriptCommand:(NSScriptCommand *)command;
 - (void)handleChangeKanaScriptCommand:(NSScriptCommand *)command;

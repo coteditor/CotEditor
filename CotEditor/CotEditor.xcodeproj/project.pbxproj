@@ -305,6 +305,8 @@
 		2A6FD9EB1D3A819500A59784 /* CETextView+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9E91D3A819500A59784 /* CETextView+Commenting.swift */; };
 		2A6FD9ED1D3A85D700A59784 /* String+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */; };
 		2A6FD9EE1D3A85D700A59784 /* String+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */; };
+		2A6FD9F01D3AB7A900A59784 /* CETextSelection+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EF1D3AB7A900A59784 /* CETextSelection+Commenting.swift */; };
+		2A6FD9F11D3AB7A900A59784 /* CETextSelection+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EF1D3AB7A900A59784 /* CETextSelection+Commenting.swift */; };
 		2A712CA218EFB716001FEC33 /* AutoTabExpand_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */; };
 		2A712CA318EFB716001FEC33 /* AutoTabExpand_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */; };
 		2A7135831CFFDC6600ADA555 /* FormattersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7135821CFFDC6600ADA555 /* FormattersTests.swift */; };
@@ -757,6 +759,7 @@
 		2A6FD9E61D394F5900A59784 /* LayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
 		2A6FD9E91D3A819500A59784 /* CETextView+Commenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CETextView+Commenting.swift"; sourceTree = "<group>"; };
 		2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+NSRange.swift"; sourceTree = "<group>"; };
+		2A6FD9EF1D3AB7A900A59784 /* CETextSelection+Commenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CETextSelection+Commenting.swift"; sourceTree = "<group>"; };
 		2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_Off.tiff; sourceTree = "<group>"; };
 		2A712CA118EFB716001FEC33 /* AutoTabExpand_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_On.tiff; sourceTree = "<group>"; };
 		2A7135821CFFDC6600ADA555 /* FormattersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattersTests.swift; sourceTree = "<group>"; };
@@ -1482,6 +1485,7 @@
 				2A9C07511CF9A3C7006D672D /* CEIncompatibleCharacter.m */,
 				258D708707D456DF0062A3E5 /* CETextSelection.h */,
 				258D708807D456DF0062A3E5 /* CETextSelection.m */,
+				2A6FD9EF1D3AB7A900A59784 /* CETextSelection+Commenting.swift */,
 				2AD84CA81966314100DE49BD /* CEODBEventSender.h */,
 				2AD84CA91966314100DE49BD /* CEODBEventSender.m */,
 				2A5D13181D1EFE4B00D38E6A /* SharingMenu.swift */,
@@ -2452,6 +2456,7 @@
 				2A5D133C1D1FCFC400D38E6A /* TextFindResult.swift in Sources */,
 				2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */,
 				2A6FD9EB1D3A819500A59784 /* CETextView+Commenting.swift in Sources */,
+				2A6FD9F11D3AB7A900A59784 /* CETextSelection+Commenting.swift in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AD49C241D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
@@ -2599,6 +2604,7 @@
 				2AA2E01A1BFF9AEE0087BDD6 /* CEUnicodeCharacter.m in Sources */,
 				2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
+				2A6FD9F01D3AB7A900A59784 /* CETextSelection+Commenting.swift in Sources */,
 				2A6FD9D11D38933100A59784 /* TextViewController.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */,
 				2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
