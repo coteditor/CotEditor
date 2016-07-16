@@ -113,7 +113,7 @@ class EncodingManager: NSObject {
     /// returns corresponding NSStringEncoding from a encoding name
     class func encoding(fromName encodingName: String) -> UInt {
         
-        for cfEncoding in DefaultEncodings.encodings {
+        for cfEncoding in DefaultEncodings {
             guard cfEncoding != kCFStringEncodingInvalidId else { continue }  // = separator
             
             let encodingInt = CFStringConvertEncodingToNSStringEncoding(cfEncoding)
