@@ -48,7 +48,7 @@ class MainViewController: NSSplitViewController {
         super.viewDidLoad()
         
         // setup status bar
-        self.isStatusBarShown = UserDefaults.standard.bool(forKey: CEDefaultShowStatusBarKey)
+        self.isStatusBarShown = UserDefaults.standard.bool(forKey: DefaultKey.showStatusBar.rawValue)
     }
     
     

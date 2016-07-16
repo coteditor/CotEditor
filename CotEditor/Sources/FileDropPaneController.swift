@@ -218,7 +218,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         
         guard let content = self.fileDropController?.content else { return }
         
-        UserDefaults.standard.set(content, forKey: CEDefaultFileDropArrayKey)
+        UserDefaults.standard.set(content, forKey: DefaultKey.fileDropArray.rawValue)
     }
     
     
@@ -231,7 +231,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         
         // make data mutable for NSArrayController
         let content = NSMutableArray()
-        if let settings = UserDefaults.standard.array(forKey: CEDefaultFileDropArrayKey) as? [[String: String]] {
+        if let settings = UserDefaults.standard.array(forKey: DefaultKey.fileDropArray.rawValue) as? [[String: String]] {
             for setting in settings {
                 content.add(NSMutableDictionary(dictionary: setting))
             }

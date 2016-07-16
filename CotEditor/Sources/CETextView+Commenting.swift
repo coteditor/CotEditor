@@ -48,9 +48,9 @@ extension CETextView {
     @IBAction func toggleComment(_ sender: AnyObject?) {
         
         if self.canUncomment(range: self.selectedRange(), partly: false) {
-            self.uncomment(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: CEDefaultCommentsAtLineHeadKey))
+            self.uncomment(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: DefaultKey.commentsAtLineHead.rawValue))
         } else {
-            self.commentOut(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: CEDefaultCommentsAtLineHeadKey))
+            self.commentOut(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: DefaultKey.commentsAtLineHead.rawValue))
         }
     }
     
@@ -96,7 +96,7 @@ extension CETextView {
             let targetRange = self.commentingRange(fromLineHead: fromLineHead)
             else { return }
         
-        let spacer = UserDefaults.standard.bool(forKey: CEDefaultAppendsCommentSpacerKey) ? " " : ""
+        let spacer = UserDefaults.standard.bool(forKey: DefaultKey.appendsCommentSpacer.rawValue) ? " " : ""
         var new: (String, NSRange)?
         
         // insert delimiters
@@ -127,7 +127,7 @@ extension CETextView {
             let targetRange = self.commentingRange(fromLineHead: fromLineHead)
             where !targetRange.isEmpty else { return }
         
-        let spacer = UserDefaults.standard.bool(forKey: CEDefaultAppendsCommentSpacerKey) ? " " : ""
+        let spacer = UserDefaults.standard.bool(forKey: DefaultKey.appendsCommentSpacer.rawValue) ? " " : ""
         var new: (String, NSRange)?
         
         if let blockDelimiters = self.blockCommentDelimiters where types.contains(.block) {
@@ -154,7 +154,7 @@ extension CETextView {
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return false }
         
         guard let string = self.string,
-            let targetRange = self.commentingRange(fromLineHead: UserDefaults.standard.bool(forKey: CEDefaultCommentsAtLineHeadKey))
+            let targetRange = self.commentingRange(fromLineHead: UserDefaults.standard.bool(forKey: DefaultKey.commentsAtLineHead.rawValue))
             where !targetRange.isEmpty else { return false }
         
         let target = string.substring(with: targetRange)

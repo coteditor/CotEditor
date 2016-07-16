@@ -173,5 +173,3 @@ NSString *_Nonnull const CEDefaultSavesTextOrientationKey = @"savesTextOrientati
 NSString *_Nonnull const CEDefaultLayoutTextVerticalKey = @"layoutTextVertical";
 NSString *_Nonnull const CEDefaultEnableSmartIndentKey = @"enableSmartIndent";
 NSString *_Nonnull const CEDefaultMaximumRecentStyleCountKey = @"maximumRecentStyleCount";
-
-NSString *_Nonnull const CEDefaultLastVersionKey = @"lastVersion";

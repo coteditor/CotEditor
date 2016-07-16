@@ -94,8 +94,8 @@ extension CETextView {
     /// reset scale and font to default
     @IBAction func resetFont(_ sender: AnyObject?) {
         
-        let name = UserDefaults.standard.string(forKey: CEDefaultFontNameKey)!
-        let size = UserDefaults.standard.cgFloat(forKey: CEDefaultFontSizeKey)
+        let name = UserDefaults.standard.string(forKey: DefaultKey.fontName.rawValue)!
+        let size = UserDefaults.standard.cgFloat(forKey: DefaultKey.fontSize.rawValue)
         self.font = NSFont(name: name, size: size) ?? NSFont.userFont(ofSize: size)
         
         self.setScaleKeepingVisibleArea(1.0)

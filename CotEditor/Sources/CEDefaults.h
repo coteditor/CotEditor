@@ -174,8 +174,6 @@ extern NSString *_Nonnull const CEDefaultLayoutTextVerticalKey;
 extern NSString *_Nonnull const CEDefaultEnableSmartIndentKey;
 extern NSString *_Nonnull const CEDefaultMaximumRecentStyleCountKey;
 
-extern NSString *_Nonnull const CEDefaultLastVersionKey;
-
 
 
 

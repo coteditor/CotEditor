@@ -69,7 +69,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
     deinit {
         self.currentLineUpdateTimer?.invalidate()
         
-        UserDefaults.standard.removeObserver(self, forKeyPath: CEDefaultHighlightCurrentLineKey)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.highlightCurrentLine.rawValue)
         NotificationCenter.default.removeObserver(self)
         
         // detach textStorage safely
@@ -87,7 +87,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidLoad()
         
-        UserDefaults.standard.addObserver(self, forKeyPath: CEDefaultHighlightCurrentLineKey, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.highlightCurrentLine.rawValue, options: .new, context: nil)
         
         // update current line highlight on changing frame size with a delay
         NotificationCenter.default.addObserver(self, selector: #selector(setupCurrentLineUpdateTimer), name: .NSViewFrameDidChange, object: self.textView)
@@ -100,7 +100,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
     /// apply change of user setting
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
-        if keyPath == CEDefaultHighlightCurrentLineKey {
+        if keyPath == DefaultKey.highlightCurrentLine.rawValue {
             if (change?[NSKeyValueChangeKey.newKey] as? Bool) ?? false {
                 self.setupCurrentLineUpdateTimer()
                 
@@ -167,7 +167,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         let particalWord = (string as NSString).substring(with: charRange)
         
         // extract words in document and set to candidateWords
-        if defaults.bool(forKey: CEDefaultCompletesDocumentWordsKey) {
+        if defaults.bool(forKey: DefaultKey.completesDocumentWords.rawValue) {
             if charRange.length == 1 && !CharacterSet.alphanumerics.contains(particalWord.unicodeScalars.first!) {
                 // do nothing if the particle word is an symbol
                 
@@ -183,7 +183,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // copy words defined in syntax style
-        if let syntaxWords = self.syntaxStyle?.completionWords where defaults.bool(forKey: CEDefaultCompletesSyntaxWordsKey) {
+        if let syntaxWords = self.syntaxStyle?.completionWords where defaults.bool(forKey: DefaultKey.completesSyntaxWords.rawValue) {
             for word in syntaxWords {
                 if word.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil {
                     candidateWords.add(word)
@@ -192,7 +192,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // copy the standard words from default completion words
-        if defaults.bool(forKey: CEDefaultCompletesStandartWordsKey) {
+        if defaults.bool(forKey: DefaultKey.completesStandartWords.rawValue) {
             candidateWords.addObjects(from: words)
         }
         
@@ -210,7 +210,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         
         // append Script menu
         if let scriptMenu = ScriptManager.shared.contexualMenu {
-            if UserDefaults.standard.bool(forKey: CEDefaultInlineContextualScriptMenuKey) {
+            if UserDefaults.standard.bool(forKey: DefaultKey.inlineContextualScriptMenu.rawValue) {
                 menu.addItem(NSMenuItem.separator())
                 menu.items.last?.tag = MenuItemTag.script.rawValue
                 
@@ -295,7 +295,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
     /// find the matching open brace and highlight it
     private func highlightMatchingBrace(in textView: NSTextView) {
         
-        guard UserDefaults.standard.bool(forKey: CEDefaultHighlightBracesKey) else { return }
+        guard UserDefaults.standard.bool(forKey: DefaultKey.highlightBraces.rawValue) else { return }
         
         // The following part is based on Smultron's SMLTextView.m by Peter Borg. (2006-09-09)
         // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
@@ -325,7 +325,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         case "]":
             braces = (begin: "[", end: "]")
         case ">":
-            guard UserDefaults.standard.bool(forKey: CEDefaultHighlightLtGtKey) else { return }
+            guard UserDefaults.standard.bool(forKey: DefaultKey.highlightLtGt.rawValue) else { return }
             braces = (begin: "<", end: ">")
         default: return
         }
@@ -361,7 +361,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
     /// set update timer for current line highlight calculation
     func setupCurrentLineUpdateTimer() {
         
-        guard UserDefaults.standard.bool(forKey: CEDefaultHighlightCurrentLineKey) else { return }
+        guard UserDefaults.standard.bool(forKey: DefaultKey.highlightCurrentLine.rawValue) else { return }
         
         let interval = self.dynamicType.CurrentLineUpdateInterval
         
@@ -384,7 +384,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         
         self.currentLineUpdateTimer?.invalidate()
         
-        guard UserDefaults.standard.bool(forKey: CEDefaultHighlightCurrentLineKey) else { return }
+        guard UserDefaults.standard.bool(forKey: DefaultKey.highlightCurrentLine.rawValue) else { return }
         
         guard let textView = self.textView,
             let layoutManager = textView.layoutManager,

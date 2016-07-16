@@ -3,7 +3,7 @@
  DictionaryKey.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-07-11.
  

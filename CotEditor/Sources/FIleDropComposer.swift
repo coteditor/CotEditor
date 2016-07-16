@@ -29,7 +29,7 @@ import Cocoa
 
 class FileDropComposer: NSObject {  // TODO: remove NSObject
     
-    /// keys for dicts in CEDefaultFileDropArrayKey
+    /// keys for dicts in DefaultKey.fileDropArray
     enum SettingKey {
         
         static let extensions = "extensions"
@@ -134,7 +134,7 @@ class FileDropComposer: NSObject {  // TODO: remove NSObject
         
         guard let fileExtension = fileExtension else { return nil }
         
-        let definitions = UserDefaults.standard.array(forKey: CEDefaultFileDropArrayKey) as! [[String: String]]
+        let definitions = UserDefaults.standard.array(forKey: DefaultKey.fileDropArray.rawValue) as! [[String: String]]
         
         for definition in definitions {
             guard let extensions = definition[SettingKey.extensions]?.components(separatedBy: ", ") else { continue }

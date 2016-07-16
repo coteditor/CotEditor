@@ -3,7 +3,7 @@
  String+Normalization.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-08-25.
  

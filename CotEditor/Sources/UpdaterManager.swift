@@ -105,7 +105,7 @@ class UpdaterManager: NSObject, SUUpdaterDelegate {
         if self.isPrerelease {
             checksBeta = true
         } else {
-            checksBeta = UserDefaults.standard.bool(forKey: CEDefaultChecksUpdatesForBetaKey)
+            checksBeta = UserDefaults.standard.bool(forKey: DefaultKey.checksUpdatesForBeta.rawValue)
         }
         
         let appCast: AppCastURL = checksBeta ? .beta : .stable

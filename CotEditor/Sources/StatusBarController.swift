@@ -45,7 +45,7 @@ class StatusBarController: NSViewController {
         NotificationCenter.default.removeObserver(self)
         
         for key in self.dynamicType.observedDefaultKeys {
-            UserDefaults.standard.removeObserver(self, forKeyPath: key)
+            UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
     }
     
@@ -62,7 +62,7 @@ class StatusBarController: NSViewController {
         
         // observe change of defaults
         for key in self.dynamicType.observedDefaultKeys {
-            UserDefaults.standard.addObserver(self, forKeyPath: key, options: [], context: nil)
+            UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, options: [], context: nil)
         }
     }
     
@@ -90,9 +90,9 @@ class StatusBarController: NSViewController {
     /// apply change of user setting
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
-        guard let keyPath = keyPath else { return }
+        guard let keyPath = keyPath, let key = DefaultKey(rawValue: keyPath) else { return }
         
-        if self.dynamicType.observedDefaultKeys.contains(keyPath) {
+        if self.dynamicType.observedDefaultKeys.contains(key) {
             self.updateEditorStatus()
             self.updateDocumentStatus()
         }
@@ -127,18 +127,18 @@ class StatusBarController: NSViewController {
     // MARK: Private Methods
     
     /// default keys to observe update
-    private static let observedDefaultKeys = [CEDefaultShowStatusBarLinesKey,
-                                              CEDefaultShowStatusBarCharsKey,
-                                              CEDefaultShowStatusBarLengthKey,
-                                              CEDefaultShowStatusBarWordsKey,
-                                              CEDefaultShowStatusBarLocationKey,
-                                              CEDefaultShowStatusBarLineKey,
-                                              CEDefaultShowStatusBarColumnKey,
-                                              
-                                              CEDefaultShowStatusBarEncodingKey,
-                                              CEDefaultShowStatusBarLineEndingsKey,
-                                              CEDefaultShowStatusBarFileSizeKey,
-                                              ]
+    private static let observedDefaultKeys: [DefaultKey] = [.showStatusBarLines,
+                                                            .showStatusBarChars,
+                                                            .showStatusBarLength,
+                                                            .showStatusBarWords,
+                                                            .showStatusBarLocation,
+                                                            .showStatusBarLine,
+                                                            .showStatusBarColumn,
+                                                            
+                                                            .showStatusBarEncoding,
+                                                            .showStatusBarLineEndings,
+                                                            .showStatusBarFileSize,
+                                                            ]
     
     
     /// update left side text
@@ -150,25 +150,25 @@ class StatusBarController: NSViewController {
         let status = NSMutableAttributedString()
         let defaults = UserDefaults.standard
         
-        if defaults.bool(forKey: CEDefaultShowStatusBarLinesKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarLines.rawValue) {
             status.appendFormattedState(value: info.lines, label: "Lines")
         }
-        if defaults.bool(forKey: CEDefaultShowStatusBarCharsKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarChars.rawValue) {
             status.appendFormattedState(value: info.chars, label: "Chars")
         }
-        if defaults.bool(forKey: CEDefaultShowStatusBarLengthKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarLength.rawValue) {
             status.appendFormattedState(value: info.length, label: "Length")
         }
-        if defaults.bool(forKey: CEDefaultShowStatusBarWordsKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarWords.rawValue) {
             status.appendFormattedState(value: info.words, label: "Words")
         }
-        if defaults.bool(forKey: CEDefaultShowStatusBarLocationKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarLocation.rawValue) {
             status.appendFormattedState(value: info.location, label: "Location")
         }
-        if defaults.bool(forKey: CEDefaultShowStatusBarLineKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarLine.rawValue) {
             status.appendFormattedState(value: info.line, label: "Line")
         }
-        if defaults.bool(forKey: CEDefaultShowStatusBarColumnKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarColumn.rawValue) {
             status.appendFormattedState(value: info.column, label: "Column")
         }
         
@@ -185,13 +185,13 @@ class StatusBarController: NSViewController {
         let status = NSMutableAttributedString()
         let defaults = UserDefaults.standard
         
-        if defaults.bool(forKey: CEDefaultShowStatusBarEncodingKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarEncoding.rawValue) {
             status.appendFormattedState(value: info.charsetName, label: nil)
         }
-        if defaults.bool(forKey: CEDefaultShowStatusBarLineEndingsKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarLineEndings.rawValue) {
             status.appendFormattedState(value: info.lineEndings, label: nil)
         }
-        if defaults.bool(forKey: CEDefaultShowStatusBarFileSizeKey) {
+        if defaults.bool(forKey: DefaultKey.showStatusBarFileSize.rawValue) {
             let fileSize = self.byteCountFormatter.string(for: info.fileSize)  // TODO: Int64?
             status.appendFormattedState(value: fileSize, label: nil)
         }

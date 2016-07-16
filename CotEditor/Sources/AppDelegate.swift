@@ -127,8 +127,12 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     override init() {
         
         // register default setting values
-        UserDefaults.standard.register(DefaultSettings)
-        NSUserDefaultsController.shared().initialValues = DefaultSettings
+        var defaultDictionary = [String: AnyObject]()
+        for (key, value) in DefaultSettings {
+            defaultDictionary[key.rawValue] = value
+        }
+        UserDefaults.standard.register(defaultDictionary)
+        NSUserDefaultsController.shared().initialValues = defaultDictionary
         
         // register transformers
         ValueTransformer.setValueTransformer(HexColorTransformer(), forName: "HexColorTransformer" as ValueTransformerName)
@@ -173,7 +177,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
         if self.didFinishLaunching {
-            return UserDefaults.standard.bool(forKey: CEDefaultCreateNewAtStartupKey)
+            return UserDefaults.standard.bool(forKey: DefaultKey.createNewAtStartup.rawValue)
         }
         
         return true
@@ -183,7 +187,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     /// crates a new document on "Re-Open" AppleEvent
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         
-        if UserDefaults.standard.bool(forKey: CEDefaultReopenBlankWindowKey) {
+        if UserDefaults.standard.bool(forKey: DefaultKey.reopenBlankWindow.rawValue) {
             return true
         }
         
@@ -216,7 +220,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         //      >= 2.2.0 : Single Integer
         var isLatest = true
         let thisVersion = AppInfo.bundleVersion
-        if let lastVersion = UserDefaults.standard.string(forKey: CEDefaultLastVersionKey) {
+        if let lastVersion = UserDefaults.standard.string(forKey: DefaultKey.lastVersion.rawValue) {
             // if isDigit -> probably semver (semver must be older than 2.2.0)
             let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) != nil)
             
@@ -225,7 +229,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
             }
         }
         if isLatest {
-            UserDefaults.standard.set(thisVersion, forKey: CEDefaultLastVersionKey)
+            UserDefaults.standard.set(thisVersion, forKey: DefaultKey.lastVersion.rawValue)
         }
         
         // register Services

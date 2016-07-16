@@ -3,7 +3,7 @@
  CETextSelection+Commenting.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by nakamuxu on 2005-03-01.
  
