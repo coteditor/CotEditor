@@ -852,9 +852,18 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
         return ([selection numberOfComposedCharacters] == 1);
         
     } else if ([menuItem action] == @selector(toggleComment:)) {
-        NSString *title = [self canUncommentRange:[self selectedRange]] ? @"Uncomment Selection" : @"Comment Selection";
+        NSString *title = [self canUncommentRange:[self selectedRange] partly: NO] ? @"Uncomment" : @"Comment Out";
         [menuItem setTitle:NSLocalizedString(title, nil)];
         return ([self inlineCommentDelimiter] || [self blockCommentDelimiters]);
+        
+    } else if ([menuItem action] == @selector(inlineCommentOut:)) {
+        return [self inlineCommentDelimiter] != nil;
+        
+    } else if ([menuItem action] == @selector(blockCommentOut:)) {
+        return [self blockCommentDelimiters] != nil;
+        
+    } else if ([menuItem action] == @selector(uncomment:)) {
+        return [self canUncommentRange:[self selectedRange] partly: true];
     }
     
     return [super validateMenuItem:menuItem];

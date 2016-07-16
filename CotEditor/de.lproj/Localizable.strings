@@ -231,10 +231,6 @@
 "Delete Line" = "Zeile löschen";
 "Trim Trailing Whitespace" = "Nachfolgende Leerzeichen entfernen";
 
-// Menu items
-"Comment Selection" = "Auswahl auskommentieren";
-"Uncomment Selection" = "Auswahl unkommentieren";
-
 // Contextual menu items
 "Font" = "Schrift";
 "Text" = "Text";

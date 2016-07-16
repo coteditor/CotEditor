@@ -306,8 +306,19 @@
 "578.title" = "テキスト";
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
 "579.title" = "テキスト";
-/* Class = "NSMenuItem"; title = "Comment Selection"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "選択範囲をコメントアウト";
+
+/* Class = "NSMenuItem"; title = "Comment"; ObjectID = "EYa-d3-sUR"; */
+"EYa-d3-sUR.title" = "コメント";
+/* Class = "NSMenu"; title = "Comment"; ObjectID = "yph-qH-qNE"; */
+"yph-qH-qNE.title" = "コメント";
+/* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
+"LLy-Yx-tXI.title" = "コメント状態をトグル";
+/* Class = "NSMenuItem"; title = "Inline Comment"; ObjectID = "F6P-7N-LSf"; */
+"F6P-7N-LSf.title" = "インラインコメントアウト";
+/* Class = "NSMenuItem"; title = "Block Comment"; ObjectID = "U5v-4k-2tq"; */
+"U5v-4k-2tq.title" = "ブロックコメントアウト";
+/* Class = "NSMenuItem"; title = "Uncomment"; ObjectID = "dob-yj-jf3"; */
+"dob-yj-jf3.title" = "コメント解除";
 
 /* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
 "4h9-iu-ehP.title" = "インデント";

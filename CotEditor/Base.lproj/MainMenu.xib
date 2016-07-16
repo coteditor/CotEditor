@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11163.2" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -600,10 +600,36 @@
                     <attributedString key="attributedTitle"/>
                     <menu key="submenu" title="Text" id="578">
                         <items>
-                            <menuItem title="Comment Selection" keyEquivalent="/" id="LLy-Yx-tXI">
-                                <connections>
-                                    <action selector="toggleComment:" target="-1" id="NSz-mr-8wt"/>
-                                </connections>
+                            <menuItem title="Comment" id="yph-qH-qNE">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Comment" id="EYa-d3-sUR">
+                                    <items>
+                                        <menuItem title="Toggle Comment" keyEquivalent="/" id="LLy-Yx-tXI">
+                                            <connections>
+                                                <action selector="toggleComment:" target="-1" id="NSz-mr-8wt"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="WqH-at-5aR"/>
+                                        <menuItem title="Inline Comment" id="F6P-7N-LSf">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="inlineCommentOut:" target="-1" id="ERQ-9z-0a7"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Blcok Comment" id="U5v-4k-2tq">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="blockCommentOut:" target="-1" id="Mwm-ak-f1Q"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Uncomment" id="dob-yj-jf3">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="uncomment:" target="-1" id="V2H-Uo-R4h"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="174">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>

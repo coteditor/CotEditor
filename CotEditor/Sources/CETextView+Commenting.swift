@@ -47,10 +47,10 @@ extension CETextView {
     /// toggle comment state in selection
     @IBAction func toggleComment(_ sender: AnyObject?) {
         
-        if self.canUncomment(range: self.selectedRange()) {
-            self.uncomment(sender)
+        if self.canUncomment(range: self.selectedRange(), partly: false) {
+            self.uncomment(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: CEDefaultCommentsAtLineHeadKey))
         } else {
-            self.commentOut(sender)
+            self.commentOut(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: CEDefaultCommentsAtLineHeadKey))
         }
     }
     
@@ -58,14 +58,28 @@ extension CETextView {
     /// comment out selection appending comment delimiters
     @IBAction func commentOut(_ sender: AnyObject?) {
         
-        self.commentOut(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: CEDefaultCommentsAtLineHeadKey))
+        self.commentOut(types: .both, fromLineHead: false)
+    }
+    
+    
+    /// comment out selection appending block comment delimiters
+    @IBAction func blockCommentOut(_ sender: AnyObject?) {
+        
+        self.commentOut(types: .block, fromLineHead: false)
+    }
+    
+    
+    /// comment out selection appending inline comment delimiters
+    @IBAction func inlineCommentOut(_ sender: AnyObject?) {
+        
+        self.commentOut(types: .inline, fromLineHead: false)
     }
     
     
     /// uncomment selection removing comment delimiters
     @IBAction func uncomment(_ sender: AnyObject?) {
         
-        self.uncomment(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: CEDefaultCommentsAtLineHeadKey))
+        self.uncomment(types: .both, fromLineHead: false)
     }
     
     
@@ -134,8 +148,8 @@ extension CETextView {
     
     
     /// whether given range can be uncommented
-    @objc(canUncommentRange:)
-    func canUncomment(range: NSRange) -> Bool {
+    @objc(canUncommentRange:partly:)
+    func canUncomment(range: NSRange, partly: Bool) -> Bool {
         
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return false }
         
@@ -158,6 +172,7 @@ extension CETextView {
             var commentLineCount = 0
             for line in lines {
                 if line.hasPrefix(delimiter) {
+                    if partly { return true }
                     commentLineCount += 1
                 }
             }

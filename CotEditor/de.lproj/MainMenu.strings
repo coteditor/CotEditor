@@ -307,8 +307,18 @@
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
 "579.title" = "Text";
 
-/* Class = "NSMenuItem"; title = "Comment Selection"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "Auswahl Auskommentieren";
+/* Class = "NSMenuItem"; title = "Comment"; ObjectID = "EYa-d3-sUR"; */
+"EYa-d3-sUR.title" = "Kommentar";
+/* Class = "NSMenu"; title = "Comment"; ObjectID = "yph-qH-qNE"; */
+"yph-qH-qNE.title" = "Kommentar";
+/* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
+"LLy-Yx-tXI.title" = "Aus-/Unkommentieren";
+/* Class = "NSMenuItem"; title = "Inline Comment"; ObjectID = "F6P-7N-LSf"; */
+"F6P-7N-LSf.title" = "Inline Auskommentieren";
+/* Class = "NSMenuItem"; title = "Block Comment"; ObjectID = "U5v-4k-2tq"; */
+"U5v-4k-2tq.title" = "Block Auskommentieren";
+/* Class = "NSMenuItem"; title = "Uncomment"; ObjectID = "dob-yj-jf3"; */
+"dob-yj-jf3.title" = "Unkommentieren";
 
 /* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
 "4h9-iu-ehP.title" = "Einzug";

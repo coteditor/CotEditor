@@ -308,8 +308,18 @@
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
 "579.title" = "文本";
 
-/* Class = "NSMenuItem"; title = "omment Selection"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "注释选中内容";
+/* Class = "NSMenuItem"; title = "Comment"; ObjectID = "EYa-d3-sUR"; */
+"EYa-d3-sUR.title" = "Comment";  // FIXME: new
+/* Class = "NSMenu"; title = "Comment"; ObjectID = "yph-qH-qNE"; */
+"yph-qH-qNE.title" = "Comment";  // FIXME: new
+/* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
+"LLy-Yx-tXI.title" = "Toggle Comment";  // FIXME: new
+/* Class = "NSMenuItem"; title = "Inline Comment"; ObjectID = "F6P-7N-LSf"; */
+"F6P-7N-LSf.title" = "Inline Comment";  // FIXME: new
+/* Class = "NSMenuItem"; title = "Block Comment"; ObjectID = "U5v-4k-2tq"; */
+"U5v-4k-2tq.title" = "Block Comment";  // FIXME: new
+/* Class = "NSMenuItem"; title = "Uncomment"; ObjectID = "dob-yj-jf3"; */
+"dob-yj-jf3.title" = "Uncomment";  // FIXME: new
 
 /* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
 "4h9-iu-ehP.title" = "缩进";
