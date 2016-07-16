@@ -73,11 +73,11 @@ class ThemeManager: CESettingFileManager {
         
         // cache user themes asynchronously but wait until the process will be done
         let semaphore = DispatchSemaphore(value: 0)
-        self.updateCache { 
+        self.updateCache {
             semaphore.signal()
         }
-        while semaphore.wait(timeout: .now()) == .Success {
-            RunLoop.current.run()
+        while semaphore.wait(timeout: .now()) == .TimedOut {
+            RunLoop.current.run(mode: .defaultRunLoopMode, before: Date.distantFuture)
         }
     }
     
