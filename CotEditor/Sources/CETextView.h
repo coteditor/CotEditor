@@ -79,21 +79,6 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 
 
 
-#pragma mark - CETextView+Commenting.m
-
-@interface CETextView (Commenting)
-
-- (IBAction)toggleComment:(nullable id)sender;
-- (IBAction)commentOut:(nullable id)sender;
-- (IBAction)uncomment:(nullable id)sender;
-
-// semi-private methods
-- (BOOL)canUncommentRange:(NSRange)range;
-
-@end
-
-
-
 #pragma mark - CETextView+LineProcessing.m
 
 @interface CETextView (LineProcessing)
