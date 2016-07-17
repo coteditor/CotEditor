@@ -27,6 +27,7 @@
  */
 
 import XCTest
+@testable import CotEditor
 
 class StringExtensionsTests: XCTestCase {
     

@@ -27,6 +27,7 @@
  */
 
 import XCTest
+@testable import CotEditor
 
 let StyleDirectoryName = "Syntaxes"
 let StyleExtension = "yaml"

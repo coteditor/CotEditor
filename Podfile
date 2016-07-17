@@ -29,4 +29,5 @@ target 'Tests' do
         :git => 'https://github.com/coteditor/YAML.framework.git',
         :branch => 'coteditor-mod'
     pod 'WFColorCode'
+    pod 'Sparkle'
 end
