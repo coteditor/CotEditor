@@ -32,7 +32,6 @@
 
 #import "CEPrintPanelAccessoryController.h"
 #import "CESyntaxManager.h"
-#import "CESyntaxStyle.h"
 #import "CEDefaults.h"
 
 #import "NSString+Sandboxing.h"
@@ -58,7 +57,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
 @property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) BOOL printsLineNumber;
 @property (nonatomic) CGFloat xOffset;
-@property (nonatomic, nullable) CESyntaxStyle *syntaxStyle;
+@property (nonatomic, nullable) SyntaxStyle *syntaxStyle;
 @property (nonatomic, nonnull) NSDateFormatter *dateFormatter;
 
 @end
@@ -390,7 +389,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
             [[self syntaxStyle] setTextStorage:[self textStorage]];
         }
         CEPrintPanelAccessoryController *controller = [[[[NSPrintOperation currentOperation] printPanel] accessoryControllers] firstObject];
-        [[self syntaxStyle] highlightWholeStringWithCompletionHandler:^ {
+        [[self syntaxStyle] highlightAllWithCompletionHandler:^ {
             if (![[controller view] isHidden]) {
                 [controller setNeedsPreview:YES];
             }

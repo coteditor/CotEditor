@@ -127,7 +127,7 @@ class EditorViewController: NSSplitViewController {
     
     
     /// apply syntax style to inner text view
-    func apply(syntax: CESyntaxStyle) {
+    func apply(syntax: SyntaxStyle) {
         
         self.textViewController?.syntaxStyle = syntax
     }

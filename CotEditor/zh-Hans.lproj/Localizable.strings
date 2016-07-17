@@ -286,7 +286,7 @@
 
 
 
-/* MARK: CESyntaxStyle */
+/* MARK: SyntaxStyle */
 // Coloring indicator
 "Coloring text…" = "文本着色中...";
 "Please wait for a while." = "请稍等片刻...";

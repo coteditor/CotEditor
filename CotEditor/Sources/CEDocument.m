@@ -29,6 +29,8 @@
 
 @import ObjectiveC.message;
 
+#import "CotEditor-Swift.h"
+
 #import <NSHash/NSData+NSHash.h>
 
 #import "CEDocument.h"
@@ -40,7 +42,6 @@
 #import "CETextSelection.h"
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
-#import "CESyntaxStyle.h"
 #import "CEWindowController.h"
 #import "CEEditorWrapper+Editor.h"
 
@@ -93,7 +94,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 @property (readwrite, nonatomic) BOOL hasUTF8BOM;
 @property (readwrite, nonatomic) CENewLineType lineEnding;
 @property (readwrite, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
-@property (readwrite, nonatomic, nonnull) CESyntaxStyle *syntaxStyle;
+@property (readwrite, nonatomic, nonnull) SyntaxStyle *syntaxStyle;
 
 @property (readwrite, nonatomic, nonnull) CETextSelection *selection;
 @property (readwrite, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;
@@ -1047,7 +1048,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 {
     if ([styleName length] == 0) { return; }
     
-    CESyntaxStyle *syntaxStyle = [[CESyntaxManager sharedManager] styleWithName:styleName];
+    SyntaxStyle *syntaxStyle = [[CESyntaxManager sharedManager] styleWithName:styleName];
     
     if ([syntaxStyle isEqualToSyntaxStyle:[self syntaxStyle]]) { return; }
     

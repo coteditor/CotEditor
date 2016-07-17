@@ -34,7 +34,6 @@
 #import "CEDocumentAnalyzer.h"
 #import "CEIncompatibleCharacterScanner.h"
 #import "CETextView.h"
-#import "CESyntaxStyle.h"
 #import "CETextFinder.h"
 
 #import "CEDefaults.h"
@@ -42,7 +41,7 @@
 #import "NSString+Indentation.h"
 
 
-@interface CEEditorWrapper () <CETextFinderClientProvider, CESyntaxStyleDelegate, NSTextStorageDelegate>
+@interface CEEditorWrapper () <CETextFinderClientProvider, SyntaxStyleDelegate, NSTextStorageDelegate>
 
 @property (nonatomic) BOOL showsNavigationBar;
 
@@ -250,7 +249,7 @@
     if ([[self syntaxStyle] canParse]) {
         // perform highlight in the next run loop to give layoutManager time to update temporary attribute
         NSRange updateRange = [textStorage editedRange];
-        CESyntaxStyle *syntaxStyle = [self syntaxStyle];
+        SyntaxStyle *syntaxStyle = [self syntaxStyle];
         dispatch_async(dispatch_get_main_queue(), ^{
             [syntaxStyle highlightAroundEditedRange:updateRange];
         });
@@ -262,12 +261,12 @@
 
 
 //=======================================================
-// CESyntaxStyleDelegate Protocol
+// SyntaxStyleDelegate Protocol
 //=======================================================
 
 // ------------------------------------------------------
 /// update outline menu in navigation bar
-- (void)syntaxStyle:(nonnull CESyntaxStyle *)syntaxStyle didParseOutline:(nullable NSArray<OutlineItem *> *)outlineItems
+- (void)syntaxStyle:(nonnull SyntaxStyle *)syntaxStyle didParseOutline:(nullable NSArray<OutlineItem *> *)outlineItems
 // ------------------------------------------------------
 {
     for (EditorViewController *viewController in [[self splitViewController] childViewControllers]) {
@@ -303,7 +302,7 @@
 - (void)didChangeSyntaxStyle:(nonnull NSNotification *)notification
 // ------------------------------------------------------
 {
-    CESyntaxStyle *syntaxStyle = [self syntaxStyle];
+    SyntaxStyle *syntaxStyle = [self syntaxStyle];
     
     for (EditorViewController *viewController in [[self splitViewController] childViewControllers]) {
         [viewController applyWithSyntax:syntaxStyle];
@@ -777,7 +776,7 @@
 - (void)invalidateSyntaxHighlight
 // ------------------------------------------------------
 {
-    [[self syntaxStyle] highlightWholeStringWithCompletionHandler:nil];
+    [[self syntaxStyle] highlightAllWithCompletionHandler:nil];
 }
 
 
@@ -847,7 +846,7 @@
 
 // ------------------------------------------------------
 /// シンタックススタイル名を返す
-- (nullable CESyntaxStyle *)syntaxStyle
+- (nullable SyntaxStyle *)syntaxStyle
 // ------------------------------------------------------
 {
     return [[self document] syntaxStyle];

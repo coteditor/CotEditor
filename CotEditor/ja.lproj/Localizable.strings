@@ -289,7 +289,7 @@
 
 
 
-/* MARK: CESyntaxStyle */
+/* MARK: SyntaxStyle */
 // Coloring indicator
 "Coloring text…" = "テキストのカラーリング中...";
 "Please wait for a while." = "しばらくお待ちください...";

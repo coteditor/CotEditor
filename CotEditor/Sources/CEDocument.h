@@ -32,7 +32,7 @@
 
 @class CEEditorWrapper;
 @class CETextSelection;
-@class CESyntaxStyle;
+@class SyntaxStyle;
 @class CEDocumentAnalyzer;
 @class CEIncompatibleCharacterScanner;
 
@@ -49,7 +49,7 @@ extern NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification;
 @property (readonly, nonatomic) BOOL hasUTF8BOM;
 @property (readonly, nonatomic) CENewLineType lineEnding;
 @property (readonly, nonatomic, nullable, copy) NSDictionary<NSString *, id> *fileAttributes;
-@property (readonly, nonatomic, nonnull) CESyntaxStyle *syntaxStyle;
+@property (readonly, nonatomic, nonnull) SyntaxStyle *syntaxStyle;
 
 @property (readonly, nonatomic, nonnull) CETextSelection *selection;
 @property (readonly, nonatomic, nonnull) CEDocumentAnalyzer *analyzer;

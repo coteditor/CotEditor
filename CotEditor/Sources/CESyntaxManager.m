@@ -27,7 +27,9 @@
  */
 
 #import "CESyntaxManager.h"
-#import "CESyntaxStyle.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CESyntaxDictionaryKeys.h"
 #import "CEDefaults.h"
 #import "CEErrors.h"
@@ -198,17 +200,17 @@ NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification = @"CESyntaxHistor
 
 
 // ------------------------------------------------------
-/// create new CESyntaxStyle instance
-- (nullable CESyntaxStyle *)styleWithName:(NSString *)styleName
+/// create new SyntaxStyle instance
+- (nullable SyntaxStyle *)styleWithName:(NSString *)styleName
 // ------------------------------------------------------
 {
-    CESyntaxStyle *style = nil;
+    SyntaxStyle *style = nil;
     if (!styleName || [styleName isEqualToString:NSLocalizedString(@"None", nil)]) {
-        style = [[CESyntaxStyle alloc] initWithDictionary:nil name:NSLocalizedString(@"None", nil)];
+        style = [[SyntaxStyle alloc] initWithDictionary:nil name:NSLocalizedString(@"None", nil)];
         
     } else if ([[self styleNames] containsObject:styleName]) {
         NSDictionary<NSString *, id> *highlightDictionary = [self styleDictionaryWithName:styleName];
-        style = [[CESyntaxStyle alloc] initWithDictionary:highlightDictionary name:styleName];
+        style = [[SyntaxStyle alloc] initWithDictionary:highlightDictionary name:styleName];
     }
     
     if (style && styleName) {

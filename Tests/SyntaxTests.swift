@@ -32,9 +32,9 @@ let StyleDirectoryName = "Syntaxes"
 let StyleExtension = "yaml"
 
 
-class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
+class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
     
-    var htmlStyle: CESyntaxStyle?
+    var htmlStyle: SyntaxStyle?
     var htmlSource: String?
     
     var outlineParseExpectation: XCTestExpectation?
@@ -49,7 +49,7 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
         let styleURL = bundle.urlForResource("HTML", withExtension: StyleExtension, subdirectory: StyleDirectoryName)
         let data = try? Data(contentsOf: styleURL!)
         let dict = try? YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as? [String: AnyObject]
-        self.htmlStyle = CESyntaxStyle(dictionary: dict!, name: "HTML")
+        self.htmlStyle = SyntaxStyle(dictionary: dict!, name: "HTML")
         
         XCTAssertNotNil(self.htmlStyle)
         
@@ -62,11 +62,11 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
     
     
     func testNoneSytle() {
-        let style = CESyntaxStyle(dictionary: nil, name: "foo")
+        let style = SyntaxStyle(dictionary: nil, name: "foo")
         
         XCTAssertEqual(style.styleName, "foo")
         XCTAssert(style.isNone)
-        XCTAssertFalse(style.canParse())
+        XCTAssertFalse(style.canParse)
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertNil(style.blockCommentDelimiters)
     }
@@ -77,7 +77,7 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
         
         XCTAssertEqual(style.styleName, "HTML")
         XCTAssertFalse(style.isNone)
-        XCTAssert(style.canParse())
+        XCTAssert(style.canParse)
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertEqual(style.blockCommentDelimiters?["beginDelimiter"], "<!--")
         XCTAssertEqual(style.blockCommentDelimiters?["endDelimiter"], "-->")
@@ -101,7 +101,7 @@ class SyntaxTests: XCTestCase, CESyntaxStyleDelegate {
     }
     
     
-    func syntaxStyle(_ syntaxStyle: CESyntaxStyle, didParseOutline outlineItems: [OutlineItem]?) {
+    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]?) {
         self.outlineParseExpectation?.fulfill()
         
         XCTAssertEqual(outlineItems?.count, 3)

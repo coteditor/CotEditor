@@ -3,6 +3,7 @@
 //
 
 #import "NSColor+WFColorCode.h"
+#import <NSHash/NSString+NSHash.h>
 
 #import "CEDefaults.h"
 #import "CEErrors.h"
@@ -17,7 +18,6 @@
 
 // Syntax Style
 #import "CESyntaxManager.h"
-#import "CESyntaxStyle.h"
 #import "CESyntaxDictionaryKeys.h"
 
 #import "CEUnicodeCharacter.h"

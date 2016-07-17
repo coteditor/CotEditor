@@ -146,4 +146,11 @@ class Theme: NSObject {
         return self.syntaxColors[syntaxType]
     }
     
+    
+    /// color for syntax type defined in theme
+    func syntaxColor(type: SyntaxType) -> NSColor? {
+        
+        return self.syntaxColors[type]
+    }
+    
 }

@@ -53,7 +53,7 @@ extern NSString *_Nonnull const CESyntaxDidUpdateNotification;
 
 
 
-@class CESyntaxStyle;
+@class SyntaxStyle;
 
 
 @interface CESyntaxManager : CESettingFileManager
@@ -73,7 +73,7 @@ extern NSString *_Nonnull const CESyntaxDidUpdateNotification;
 
 
 // public methods
-- (nullable CESyntaxStyle *)styleWithName:(nullable NSString *)styleName;
+- (nullable SyntaxStyle *)styleWithName:(nullable NSString *)styleName;
 
 - (nullable NSString *)styleNameFromDocumentFileName:(nullable NSString *)fileName;
 - (nullable NSString *)styleNameFromDocumentContent:(nonnull NSString *)contentString;

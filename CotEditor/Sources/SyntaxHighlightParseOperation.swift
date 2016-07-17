@@ -28,14 +28,26 @@
 
 import Foundation
 
-struct BlockDelimiters {
+struct BlockDelimiters: Equatable, CustomDebugStringConvertible {
     
     let begin: String
     let end: String
+    
+    /// debug description
+    var debugDescription: String {
+        
+        return "<\(BlockDelimiters.self) begin: \(self.begin)  end: \(self.end)>"
+    }
+    
+}
+
+func ==(lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
+    return lhs.begin == rhs.begin && lhs.end == rhs.end
 }
 
 
-struct HighlightDefinition {
+
+struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
     
     let beginString: String
     let endString: String?
@@ -51,12 +63,31 @@ struct HighlightDefinition {
         guard let beginString = definition[CESyntaxBeginStringKey] as? String else { return nil }
         
         self.beginString = beginString
-        self.endString = definition[CESyntaxEndStringKey] as? String
+        if let endString = definition[CESyntaxEndStringKey] as? String where !endString.isEmpty {
+            self.endString = endString
+        } else {
+            self.endString = nil
+        }
         self.isRegularExpression = (definition[CESyntaxRegularExpressionKey] as? Bool) ?? false
         self.ignoreCase = (definition[CESyntaxIgnoreCaseKey] as? Bool) ?? false
     }
     
+    
+    /// debug description
+    var debugDescription: String {
+        
+        return "<\(HighlightDefinition.self) begin: \(self.beginString)  end: \(self.endString)>"
+    }
+    
 }
+
+func ==(lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
+    return lhs.beginString == rhs.beginString &&
+        lhs.endString == rhs.endString &&
+        lhs.isRegularExpression == rhs.isRegularExpression &&
+        lhs.ignoreCase == rhs.ignoreCase
+}
+
 
 
 private struct QuoteCommentItem {
@@ -92,8 +123,7 @@ class SyntaxHighlightParseOperation: Operation {
     var parseRange: NSRange = NotFoundRange
     
     let progress: Progress
-//    private(set) var results = [SyntaxType: [NSRange]]()
-    private(set) var results = [String: [NSRange]]()
+    private(set) var results = [SyntaxType: [NSRange]]()
     
     
     // MARK: Private Properties
@@ -109,52 +139,15 @@ class SyntaxHighlightParseOperation: Operation {
     // MARK:
     // MARK: Lifecycle
     
-    required init(dictionary: [String: AnyObject], simpleWordsCharacterSets: [String: CharacterSet]?, pairedQuoteTypes: [String: String]?, inlineCommentDelimiter: String?, blockCommentDelimiters: [String: String]?) {
+    required init(definitions: [SyntaxType: [HighlightDefinition]], simpleWordsCharacterSets: [SyntaxType: CharacterSet]?, pairedQuoteTypes: [String: SyntaxType]?, inlineCommentDelimiter: String?, blockCommentDelimiters: BlockDelimiters?) {
         
-        var definitions = [SyntaxType: [HighlightDefinition]]()
-        for (key, values) in dictionary {
-            guard let dicts = values as? [[String: AnyObject]] else { continue }
-            
-            var defs = [HighlightDefinition]()
-            for dict in dicts {
-                if let definition = HighlightDefinition(definition: dict) {
-                    defs.append(definition)
-                }
-            }
-            
-            if let type = SyntaxType(rawValue: key) where !defs.isEmpty {
-                definitions[type] = defs
-            }
-        }
         self.definitions = definitions
-        
-        var newSimpleWordsCharacterSets: [SyntaxType: CharacterSet]?
-        if let simpleWordsCharacterSets = simpleWordsCharacterSets {
-            newSimpleWordsCharacterSets = [SyntaxType: CharacterSet]()
-            for (key, value) in simpleWordsCharacterSets {
-                newSimpleWordsCharacterSets![SyntaxType(rawValue: key)!] = value
-            }
-        }
-        self.simpleWordsCharacterSets = newSimpleWordsCharacterSets
-        
-        var newPairedQuoteTypes: [String: SyntaxType]?
-        if let pairedQuoteTypes = pairedQuoteTypes {
-            newPairedQuoteTypes = [String: SyntaxType]()
-            for (key, value) in pairedQuoteTypes {
-                newPairedQuoteTypes![key] = SyntaxType(rawValue: value)!
-            }
-        }
-        self.pairedQuoteTypes = newPairedQuoteTypes
-        
+        self.simpleWordsCharacterSets = simpleWordsCharacterSets
+        self.pairedQuoteTypes = pairedQuoteTypes
         self.inlineCommentDelimiter = inlineCommentDelimiter
+        self.blockCommentDelimiters = blockCommentDelimiters
         
-        if let blockCommentDelimiters = blockCommentDelimiters {
-            self.blockCommentDelimiters = BlockDelimiters(begin: blockCommentDelimiters[CEBeginDelimiterKey]!, end: blockCommentDelimiters[CEEndDelimiterKey]!)
-        } else {
-            self.blockCommentDelimiters = nil
-        }
-        
-        self.progress = Progress(totalUnitCount: Int64(dictionary.count))
+        self.progress = Progress(totalUnitCount: Int64(definitions.count))
         
         super.init()
         
@@ -186,14 +179,7 @@ class SyntaxHighlightParseOperation: Operation {
     /// parse string in background and return extracted highlight ranges per syntax types
     override func main() {
         
-        let results = self.extractHighlights()
-        
-        var objcResults = [String: [NSRange]]()
-        for (type, ranges) in results {
-            objcResults[type.rawValue] = ranges
-        }
-        
-        self.results = objcResults
+        self.results = self.extractHighlights()
     }
     
     
@@ -214,7 +200,9 @@ class SyntaxHighlightParseOperation: Operation {
             
             var scanningString: NSString?
             scanner.scanUpToCharacters(from: charSet, into: nil)
-            guard scanner.scanCharacters(from: charSet, into: &scanningString), let scannedString = scanningString as? String else { break }
+            guard
+                scanner.scanCharacters(from: charSet, into: &scanningString),
+                let scannedString = scanningString as? String else { break }
             
             let length = scannedString.utf16.count
             var words: [String] = wordsDict[length] ?? []

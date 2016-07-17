@@ -32,7 +32,6 @@
 
 #import "CETextSelection.h"
 #import "CEEditorWrapper+Editor.h"
-#import "CESyntaxStyle.h"
 
 
 @implementation CEDocument (ScriptingSupport)

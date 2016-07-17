@@ -33,7 +33,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
     // MARK: Public Properties
     @IBOutlet private(set) var textView: CETextView?
     
-    weak var syntaxStyle: CESyntaxStyle? {
+    weak var syntaxStyle: SyntaxStyle? {
         didSet {
             guard let textView = self.textView else { return }
             

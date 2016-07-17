@@ -46,4 +46,10 @@ class OutlineItem: NSObject {  // TODO: to stract
         super.init()
     }
     
+    
+    override var debugDescription: String {
+        
+        return "<" + self.className + ": " + self.title + ">"
+    }
+    
 }
