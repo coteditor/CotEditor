@@ -275,7 +275,6 @@
 		2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
 		2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
 		2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */; };
-		2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
 		2A6F0DEB1B5500E100C2D03C /* CEPrintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5044308EE829500A525A6 /* CEPrintView.m */; };
 		2A6F0DF61B5500E100C2D03C /* NSString+CECounting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+CECounting.m */; };
 		2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
@@ -393,6 +392,8 @@
 		2AA4D3781D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */; };
 		2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
+		2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */; };
+		2AA749C71D3C2B4A00850802 /* ODBEventSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */; };
 		2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */; };
 		2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */; };
 		2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
@@ -463,7 +464,6 @@
 		2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
 		2AD789D61C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
 		2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
-		2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD84CA91966314100DE49BD /* CEODBEventSender.m */; };
 		2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; };
 		2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; };
 		2AD9625F1B53496500D46C3A /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
@@ -831,6 +831,7 @@
 		2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsViewController.swift; sourceTree = "<group>"; };
 		2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsPaneController.swift; sourceTree = "<group>"; };
 		2AA749C21D3C263300850802 /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
+		2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ODBEventSender.swift; sourceTree = "<group>"; };
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -950,8 +951,6 @@
 		2AD49C271D0BEF3800FF4CC9 /* CESettingFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESettingFileManager.m; sourceTree = "<group>"; };
 		2AD789D31C31AD81008B746F /* CEControlCharacerNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEControlCharacerNames.h; sourceTree = "<group>"; };
 		2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEControlCharacerNames.m; sourceTree = "<group>"; };
-		2AD84CA81966314100DE49BD /* CEODBEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEODBEventSender.h; sourceTree = "<group>"; };
-		2AD84CA91966314100DE49BD /* CEODBEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEODBEventSender.m; sourceTree = "<group>"; };
 		2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SpellCheck.tiff; sourceTree = "<group>"; };
 		2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Sandboxing.h"; sourceTree = "<group>"; };
 		2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Sandboxing.m"; sourceTree = "<group>"; };
@@ -987,7 +986,7 @@
 		8C3E2D5C0808E210009894D1 /* WrapLines_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = WrapLines_Off.tiff; sourceTree = "<group>"; };
 		8C3E2D5D0808E210009894D1 /* WrapLines_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = WrapLines_On.tiff; sourceTree = "<group>"; };
 		8C5208090880BAAF005734F2 /* RecolorAll.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = RecolorAll.tiff; sourceTree = "<group>"; };
-		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ODBEditorSuite.h; sourceTree = "<group>"; };
+		8C7F74EB091C738C005C7598 /* ODBEditorSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ODBEditorSuite.h; sourceTree = "<group>"; };
 		8C98366608C0211D00746F92 /* IncompatibleChars.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = IncompatibleChars.tiff; sourceTree = "<group>"; };
 		8CA71BCC07D2A79100C146B0 /* BiggerFont.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = BiggerFont.tiff; sourceTree = "<group>"; };
 		8CA71BCD07D2A79100C146B0 /* SmallerFont.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SmallerFont.tiff; sourceTree = "<group>"; };
@@ -1466,8 +1465,7 @@
 				258D708707D456DF0062A3E5 /* CETextSelection.h */,
 				258D708807D456DF0062A3E5 /* CETextSelection.m */,
 				2A6FD9EF1D3AB7A900A59784 /* CETextSelection+Commenting.swift */,
-				2AD84CA81966314100DE49BD /* CEODBEventSender.h */,
-				2AD84CA91966314100DE49BD /* CEODBEventSender.m */,
+				2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */,
 				2A5D13181D1EFE4B00D38E6A /* SharingMenu.swift */,
 			);
 			name = Document;
@@ -2345,6 +2343,7 @@
 				2A5D13261D1F9D4100D38E6A /* TogglableToolbarItem.swift in Sources */,
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A6FD9E11D393F9100A59784 /* SplitViewController.swift in Sources */,
+				2AA749C71D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2A6602F51D05E8CB003E8D87 /* CEEditorWrapper+Editor.m in Sources */,
 				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
@@ -2448,7 +2447,6 @@
 				2A6FD9D21D38933100A59784 /* TextViewController.swift in Sources */,
 				2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */,
-				2A6F0DE81B5500E100C2D03C /* CEODBEventSender.m in Sources */,
 				2A42579F1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
 				2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
@@ -2580,6 +2578,7 @@
 				2A9BF3C71D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
+				2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* CETextView+Accessories.swift in Sources */,
 				2A07202B18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m in Sources */,
 				2A41CB401C39167500F9122B /* CEDefaults.m in Sources */,
@@ -2631,7 +2630,6 @@
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2ACDC08B1D171F1E009B72D6 /* BackgroundView.swift in Sources */,
 				2A5D13221D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */,
-				2AD84CAA1966314100DE49BD /* CEODBEventSender.m in Sources */,
 				2A6FD9E71D394F5900A59784 /* LayoutManager.swift in Sources */,
 				2A78BFA71D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */,
 				2AAD61FC1D2BD102008FE772 /* String+Additions.swift in Sources */,

@@ -40,7 +40,6 @@
 #import "CEPrintPanelAccessoryController.h"
 #import "CEPrintView.h"
 #import "CETextSelection.h"
-#import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
 #import "CEEditorWrapper+Editor.h"
 
@@ -81,7 +80,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 @property (nonatomic, getter=isExternalUpdateAlertShown) BOOL externalUpdateAlertShown;
 @property (nonatomic, nullable, copy) NSData *fileMD5;
 @property (nonatomic, getter=isVerticalText) BOOL verticalText;
-@property (nonatomic, nullable) CEODBEventSender *ODBEventSender;
+@property (nonatomic, nullable) ODBEventSender *odbEventSender;
 @property (nonatomic) BOOL shouldSaveXattr;
 @property (nonatomic, nonnull, copy) NSString *autosaveIdentifier;
 @property (nonatomic) BOOL suppressesIANACharsetConflictAlert;
@@ -186,7 +185,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     self = [super initWithContentsOfURL:url ofType:typeName error:outError];
     if (self) {
         // set sender of external editor protocol (ODB Editor Suite)
-        _ODBEventSender = [[CEODBEventSender alloc] init];
+        _odbEventSender = [[ODBEventSender alloc] init];
         
         // check file meta data for text orientation
         if ([[NSUserDefaults standardUserDefaults] boolForKey:CEDefaultSavesTextOrientationKey]) {
@@ -439,7 +438,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
                  [[self analyzer] invalidateFileInfo];
                  
                  // send file update notification for the external editor protocol (ODB Editor Suite)
-                 [[self ODBEventSender] sendModifiedEventWithURL:url operation:saveOperation];
+                 [[self odbEventSender] sendModifiedEventWithFileURL:url operation:saveOperation];
              }
          }
          
@@ -582,7 +581,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
     
     // send file close notification for the external editor protocol (ODB Editor Suite)
     if ([self fileURL]) {
-        [[self ODBEventSender] sendCloseEventWithURL:[self fileURL]];
+        [[self odbEventSender] sendCloseEventWithFileURL:[self fileURL]];
     }
     
     [super close];

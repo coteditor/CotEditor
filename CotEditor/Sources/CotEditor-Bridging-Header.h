@@ -8,6 +8,7 @@
 #import "CEDefaults.h"
 #import "CEErrors.h"
 #import "Constants.h"
+#import "ODBEditorSuite.h"
 
 #import "NSString+CEEncoding.h"
 #import "NSString+CECounting.h"
