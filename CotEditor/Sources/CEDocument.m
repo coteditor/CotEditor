@@ -42,7 +42,6 @@
 #import "CETextSelection.h"
 #import "CEODBEventSender.h"
 #import "CESyntaxManager.h"
-#import "CEWindowController.h"
 #import "CEEditorWrapper+Editor.h"
 
 #import "NSTextView+CETextReplacement.h"
@@ -73,7 +72,7 @@ NSString *_Nonnull const CEDocumentSyntaxStyleDidChangeNotification = @"CEDocume
 
 @interface CEDocument ()
 
-@property (nonatomic, nullable) CEWindowController *windowController;
+@property (nonatomic, nullable) DocumentWindowController *windowController;
 @property (nonatomic, nullable) CEPrintPanelAccessoryController *printPanelAccessoryController;
 @property (nonatomic, nullable) IBOutlet NSView *savePanelAccessoryView;
 

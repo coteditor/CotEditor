@@ -94,9 +94,9 @@ class WindowContentViewController: NSSplitViewController {
     
     
     /// display desired sidebar pane
-    func showSidebarPane(index: Int) {  // TODO: Int to SidebarTabIndex
+    func showSidebarPane(index: SidebarTabIndex) {
         
-        self.sidebarViewController?.tabView.selectTabViewItem(at: index)
+        self.sidebarViewController?.tabView.selectTabViewItem(at: index.rawValue)
         self.sidebarViewItem?.animator().isCollapsed = false
     }
     
