@@ -4,9 +4,7 @@
 
 #import "NSColor+WFColorCode.h"
 #import <NSHash/NSString+NSHash.h>
-
-#import "CEDefaults.h"
-#import "Constants.h"
+#import <NSHash/NSData+NSHash.h>
 #import "ODBEditorSuite.h"
 
 #import "NSString+CEEncoding.h"
@@ -23,12 +21,15 @@
 #import "CEUnicodeCharacter.h"
 
 // Document
+#import "CEDocumentController.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEIncompatibleCharacterScanner.h"
 #import "CEIncompatibleCharacter.h"
-#import "CEDocument.h"
 #import "CEEditorWrapper+Editor.h"
 #import "CETextSelection.h"
+#import "CEPrintPanelAccessoryController.h"
+#import "CEPrintView.h"
+#import "NSTextView+CETextReplacement.h"
 
 // Editor View
 #import "CETextView.h"

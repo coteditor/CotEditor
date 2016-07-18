@@ -26,8 +26,10 @@
  */
 
 #import "CEIncompatibleCharacterScanner.h"
+
+#import "CotEditor-Swift.h"
+
 #import "CEIncompatibleCharacter.h"
-#import "CEDocument.h"
 
 
 static const NSTimeInterval kUpdateInterval = 0.42;
@@ -39,7 +41,7 @@ static const NSTimeInterval kUpdateInterval = 0.42;
 @property (nonatomic) BOOL needsUpdate;
 
 // readonly
-@property (readwrite, nonatomic, nullable, weak) CEDocument *document;  // weak to avoid cycle retain
+@property (readwrite, nonatomic, nullable, weak) Document *document;  // weak to avoid cycle retain
 @property (readwrite, nonatomic, nonnull) NSArray<CEIncompatibleCharacter *> *incompatibleCharacers;
 
 @end
@@ -67,7 +69,7 @@ static const NSTimeInterval kUpdateInterval = 0.42;
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithDocument:(nonnull CEDocument *)document
+- (nonnull instancetype)initWithDocument:(nonnull Document *)document
 // ------------------------------------------------------
 {
     self = [super init];
@@ -107,7 +109,7 @@ static const NSTimeInterval kUpdateInterval = 0.42;
 {
     [[self updateTimer] invalidate];
     
-    [self setIncompatibleCharacers:[[[self document] string] scanIncompatibleCharactersForEncoding:[[self document] encoding]] ?: @[]];
+    [self setIncompatibleCharacers:[[[self document] string] scanIncompatibleCharactersForEncoding:[[self document] encodingObjC]] ?: @[]];
     [self setNeedsUpdate:NO];
     
     if ([[self delegate] respondsToSelector:@selector(document:didUpdateIncompatibleCharacters:)]) {

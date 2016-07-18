@@ -26,7 +26,7 @@
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -50,7 +50,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -88,7 +88,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -104,7 +104,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -126,7 +126,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -146,7 +146,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -170,7 +170,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -192,7 +192,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -208,7 +208,7 @@
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -228,7 +228,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -252,7 +252,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -268,7 +268,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -284,7 +284,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -302,7 +302,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -320,7 +320,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -336,7 +336,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -353,7 +353,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -378,7 +378,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -394,7 +394,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -414,7 +414,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -438,7 +438,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -462,7 +462,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -478,7 +478,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -495,7 +495,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -515,7 +515,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -539,7 +539,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -565,7 +565,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -590,7 +590,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -615,7 +615,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -632,7 +632,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -656,7 +656,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -673,7 +673,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -697,7 +697,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -713,7 +713,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -730,7 +730,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -750,7 +750,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -772,7 +772,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -792,7 +792,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -810,7 +810,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -826,7 +826,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -842,7 +842,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -858,7 +858,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -908,7 +908,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -925,7 +925,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>CEDocument</string>
+			<string>CotEditor.Document</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

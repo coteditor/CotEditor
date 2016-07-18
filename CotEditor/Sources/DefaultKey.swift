@@ -182,3 +182,55 @@ enum DefaultKey: String {
     case lastVersion = "lastVersion"
 
 }
+
+
+// MARK: Default Values
+
+enum DocumentConflictOption: Int {
+    
+    case ignore
+    case notify
+    case revert
+}
+
+
+enum PrintColorMode: Int {
+    
+    case blackWhite
+    case sameAsDocument
+}
+
+
+enum PrintLineNmuberMode: Int {
+    
+    case no
+    case sameAsDocument
+    case yes
+}
+
+
+enum PrintInvisiblesMode: Int {
+    
+    case no
+    case sameAsDocument
+    case all
+}
+
+
+enum PrintInfoType: Int {
+    
+    case none
+    case syntaxName
+    case documentName
+    case filePath
+    case printDate
+    case pageNumber
+}
+
+
+enum AlignmentType: Int {
+    
+    case left
+    case center
+    case right
+}

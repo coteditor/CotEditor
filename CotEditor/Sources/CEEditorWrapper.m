@@ -30,7 +30,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEDocument.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEIncompatibleCharacterScanner.h"
 #import "CETextView.h"
@@ -294,7 +293,7 @@
 
 
 //=======================================================
-// CEDocument
+// Document
 //=======================================================
 
 // ------------------------------------------------------
@@ -339,7 +338,7 @@
 
 // ------------------------------------------------------
 ///
-- (void)setDocument:(CEDocument *)document
+- (void)setDocument:(Document *)document
 // ------------------------------------------------------
 {
     if (!document) { return; }
@@ -378,7 +377,7 @@
     // observe syntax/theme change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didChangeSyntaxStyle:)
-                                                 name:CEDocumentSyntaxStyleDidChangeNotification
+                                                 name:@"DocumentSyntaxStyleDidChangeNotification"
                                                object:document];
 }
 

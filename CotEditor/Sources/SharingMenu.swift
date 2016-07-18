@@ -82,7 +82,7 @@ class SharingMenu: NSMenu, NSMenuDelegate {
         
         self.removeAllItems()
         
-        guard let document = NSDocumentController.shared().currentDocument as? CEDocument else {
+        guard let document = NSDocumentController.shared().currentDocument as? Document else {
             let item = NSMenuItem(title: NSLocalizedString("No document", comment: ""), action: nil, keyEquivalent: "")
             item.isEnabled = false
             self.addItem(item)
@@ -99,7 +99,7 @@ class SharingMenu: NSMenu, NSMenuDelegate {
         }
         
         // text
-        self.addSharingItems(for: document.string(),
+        self.addSharingItems(for: document.string,
                              subject: document.displayName,
                              label: NSLocalizedString("Text", comment: ""),
                              excludingSercives: [.postOnTwitter,

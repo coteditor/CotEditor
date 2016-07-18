@@ -61,7 +61,7 @@ class CharacterInfo: NSObject {  // TODO: struct?
     let string: String
     let pictureString: String?
     let unicodes: [CEUnicodeCharacter]
-    let isComplex: Bool
+    @nonobjc let isComplex: Bool  // TODO: remove @nonobjc
     
     
     // MARK: Private Properties

@@ -31,7 +31,7 @@
 @protocol CEIncompatibleCharacterScannerDelegate;
 
 
-@class CEDocument;
+@class Document;
 @class CEIncompatibleCharacter;
 
 
@@ -39,12 +39,12 @@
 
 @property (nonatomic, nullable, weak) id<CEIncompatibleCharacterScannerDelegate> delegate;
 
-@property (readonly, nonatomic, nullable, weak) CEDocument *document;
+@property (readonly, nonatomic, nullable, weak) Document *document;
 @property (readonly, nonatomic, nonnull) NSArray<CEIncompatibleCharacter *> *incompatibleCharacers;  // line endings applied
 
 
 // initializer
-- (nonnull instancetype)initWithDocument:(nonnull CEDocument *)document;
+- (nonnull instancetype)initWithDocument:(nonnull Document *)document;
 
 // public methods
 - (void)invalidate;

@@ -39,6 +39,16 @@ extension String {
 }
 
 
+extension String.Encoding {
+    /// original special encoding type
+    static let autoDetection = String.Encoding(rawValue: 0)
+}
+
+extension NSNumber {
+    @nonobjc static let no = NSNumber(value: false)
+    @nonobjc static let yes = NSNumber(value: true)
+}
+
 /**
  Modify number to be within max/min values.
  

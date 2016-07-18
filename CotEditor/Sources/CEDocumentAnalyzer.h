@@ -34,7 +34,7 @@ extern NSString *_Nonnull const CEAnalyzerDidUpdateModeInfoNotification;
 extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 
 
-@class CEDocument;
+@class Document;
 
 
 @interface CEDocumentAnalyzer : NSObject
@@ -68,7 +68,7 @@ extern NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification;
 
 
 // initializer
-- (nonnull instancetype)initWithDocument:(nonnull CEDocument *)document;
+- (nonnull instancetype)initWithDocument:(nonnull Document *)document;
 
 // Public Methods
 - (void)invalidateFileInfo;

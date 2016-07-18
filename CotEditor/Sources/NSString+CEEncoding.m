@@ -255,7 +255,7 @@ NSData * _Nullable encodeXattrEncoding(NSStringEncoding encoding)
 
 //------------------------------------------------------
 /// scan encoding declaration in string
-- (NSStringEncoding)scanEncodingDeclarationForTags:(nonnull NSArray<NSString *> *)tags upToIndex:(NSUInteger)maxLength suggestedCFEncodings:(nonnull NSArray<NSNumber *> *)suggestedCFEncodings
+- (NSStringEncoding)scanEncodingDeclarationForTags:(nonnull NSArray<NSString *> *)tags upToIndex:(NSInteger)maxLength suggestedCFEncodings:(nonnull NSArray<NSNumber *> *)suggestedCFEncodings
 //------------------------------------------------------
 {
     if ([self length] < 2) { return NSNotFound; }

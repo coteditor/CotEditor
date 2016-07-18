@@ -29,13 +29,13 @@
 @import Cocoa;
 
 
-@class CEDocument;
+@class Document;
 @class Theme;
 
 
 @interface CEEditorWrapper : NSResponder
 
-@property (nonatomic, nullable) CEDocument *document;
+@property (nonatomic, nullable) Document *document;
 
 @property (nonatomic) BOOL showsLineNumber;
 @property (nonatomic) BOOL wrapsLines;

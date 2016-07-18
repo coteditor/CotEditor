@@ -53,7 +53,7 @@
         </class-extension>
         
         <class-extension extends="document" description="A CotEditor document.">
-            <cocoa class="CEDocument"/>
+            <cocoa class="CotEditor.Document"/>
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <contents name="text" code="ctxt" type="attribute run" access="rw" description="The whole text of the document.">
                 <cocoa key="scriptTextStorage"/>

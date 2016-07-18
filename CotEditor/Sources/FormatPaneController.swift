@@ -233,7 +233,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             guard returnCode == NSAlertFirstButtonReturn else { return }
             
-            UserDefaults.standard.set(CEAutoDetectEncoding, forKey: DefaultKey.encodingInOpen.rawValue)
+            UserDefaults.standard.set(String.Encoding.autoDetection.rawValue, forKey: DefaultKey.encodingInOpen.rawValue)
         }
     }
     
@@ -346,7 +346,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         inNewMenu.removeAllItems()
         
         let autoDetectItem = NSMenuItem(title: NSLocalizedString("Auto-Detect", comment: ""), action: nil, keyEquivalent: "")
-        autoDetectItem.tag = CEAutoDetectEncoding
+        autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
         inOpenMenu.addItem(autoDetectItem)
         inOpenMenu.addItem(NSMenuItem.separator())
         

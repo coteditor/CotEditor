@@ -30,8 +30,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEDocument.h"
-
 #import "NSTextView+CETextReplacement.h"
 #import "NSString+CENewLine.h"
 

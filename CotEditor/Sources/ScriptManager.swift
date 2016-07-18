@@ -261,7 +261,7 @@ class ScriptManager: NSObject {
     
     
     /// return document content conforming to the input type
-    private func inputString(type: InputType, document: CEDocument?) throws -> String {
+    private func inputString(type: InputType, document: Document?) throws -> String {
     
         guard let editor = document?.editor else {
             // on no document found
@@ -280,7 +280,7 @@ class ScriptManager: NSObject {
     
     
     /// apply results conforming to the output type to the frontmost document
-    private func applyOutput(_ output: String, document: CEDocument?, type: OutputType) throws {
+    private func applyOutput(_ output: String, document: Document?, type: OutputType) throws {
         
         let editor = document?.editor
         
@@ -450,7 +450,7 @@ class ScriptManager: NSObject {
         let scriptName = self.scriptName(fromURL: url)
         
         // hold target document
-        weak var document = NSDocumentController.shared().currentDocument as? CEDocument
+        weak var document = NSDocumentController.shared().currentDocument as? Document
         
         // read input
         var input: String?

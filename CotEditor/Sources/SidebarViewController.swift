@@ -64,7 +64,7 @@ class SidebarViewController: NSTabViewController {
     override var representedObject: AnyObject? {
         
         didSet {
-            guard let document = representedObject as? CEDocument else { return }
+            guard let document = representedObject as? Document else { return }
             
             self.documentInspectorTabViewItem?.viewController?.representedObject = document.analyzer
             self.incompatibleCharactersTabViewItem?.viewController?.representedObject = document.incompatibleCharacterScanner

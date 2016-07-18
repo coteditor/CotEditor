@@ -29,7 +29,7 @@
 @import Cocoa;
 
 
-@class CEDocument;
+@class Document;
 
 // AppleScript Enum
 typedef NS_ENUM(NSUInteger, CECaseType) {
@@ -61,10 +61,10 @@ typedef NS_ENUM(NSUInteger, CEUNFType) {
 
 @interface CETextSelection : NSObject
 
-@property (readonly, nonatomic, weak) CEDocument *document;  // temporary readable for Swift extension
+@property (readonly, nonatomic, weak) Document *document;  // temporary readable for Swift extension
 
 // Public method
-- (instancetype)initWithDocument:(CEDocument *)document NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDocument:(Document *)document NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
 @end

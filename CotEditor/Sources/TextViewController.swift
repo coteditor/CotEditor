@@ -126,7 +126,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         //
         // # Methods Standardizing Line Endings on Text Editing
         //   - File Open:
-        //       - CEDocument > readFromURL:ofType:error:
+        //       - Document > readFromURL:ofType:error:
         //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
         //       - TextViewController > textView:shouldChangeTextInRange:replacementString:
         

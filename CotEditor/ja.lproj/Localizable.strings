@@ -109,7 +109,7 @@
 
 
 
-/* MARK: CEDocument */
+/* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "エンコーディングを“%@”へ";
 "Line Endings to “%@”" = "改行コードを“%@”へ";

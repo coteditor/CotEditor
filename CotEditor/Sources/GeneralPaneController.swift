@@ -81,7 +81,7 @@ class GeneralPaneController: NSViewController {
     /// "Enable Auto Save and Versions" checkbox was clicked
     @IBAction func updateAutosaveSetting(_ sender: AnyObject?) {
         
-        let currentSetting = CEDocument.autosavesInPlace()
+        let currentSetting = Document.autosavesInPlace()
         let newSetting = UserDefaults.standard.bool(forKey: DefaultKey.enablesAutosaveInPlace.rawValue)
         
         // do nothing if the setting returned to the current one.

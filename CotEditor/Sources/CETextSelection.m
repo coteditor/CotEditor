@@ -30,14 +30,13 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEDocument+ScriptingSupport.h"
 #import "CEEditorWrapper+Editor.h"
 #import "CETextView.h"
 
 
 @interface CETextSelection ()
 
-@property (readwrite, nonatomic, weak) CEDocument *document;
+@property (readwrite, nonatomic, weak) Document *document;
 
 @end
 
@@ -65,7 +64,7 @@
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithDocument:(CEDocument *)document
+- (instancetype)initWithDocument:(Document *)document
 // ------------------------------------------------------
 {
     self = [super init];

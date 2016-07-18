@@ -30,8 +30,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEDocument.h"
-
 #import "CEDefaults.h"
 #import "Constants.h"
 

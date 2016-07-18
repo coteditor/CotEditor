@@ -56,7 +56,7 @@ class MainViewController: NSSplitViewController {
     override var representedObject: AnyObject? {
         
         didSet {
-            guard let document = representedObject as? CEDocument else { return }
+            guard let document = representedObject as? Document else { return }
             
             (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
             self.editor?.document = document

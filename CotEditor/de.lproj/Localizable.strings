@@ -108,7 +108,7 @@
 
 
 
-/* MARK: CEDocument */
+/* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Codierung zu „%@“";
 "Line Endings to “%@”" = "Zeilenenden zu „%@“";

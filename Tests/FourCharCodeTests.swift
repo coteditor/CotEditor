@@ -1,16 +1,16 @@
 /*
  
- Constants.h
+ FourCharCodeTests.swift
+ Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
- Created by nakamuxu on 2004-12-13.
+ Created by 1024jp on 2016-07-19.
  
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,19 +26,15 @@
  
  */
 
-@import Foundation;
+import XCTest
+@testable import CotEditor
 
+class FourCharCodeTests: XCTestCase {
 
-#pragma mark General
+    func testInitializerr() {
+        
+        XCTAssertEqual(FourCharCode("TEXT"), NSHFSTypeCodeFromFileType("'TEXT'"))
+        XCTAssertEqual(FourCharCode("rtfd"), NSHFSTypeCodeFromFileType("'rtfd'"))
+    }
 
-// ------------------------------------------------------
-// General
-// ------------------------------------------------------
-
-// Original special encoding type
-extern NSInteger const CEAutoDetectEncoding;
-
-
-// Convenient functions
-/// invoke passed-in block on main thread
-extern void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block);
+}

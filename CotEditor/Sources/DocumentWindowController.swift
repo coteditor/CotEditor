@@ -88,7 +88,7 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// apply passed-in document instance to window
     override var document: AnyObject? {
         didSet {
-            guard let document = document as? CEDocument else { return }
+            guard let document = document as? Document else { return }
             
             self.toolbarController!.document = document
             self.contentViewController!.representedObject = document

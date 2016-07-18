@@ -115,7 +115,7 @@ class IncompatibleCharactersViewController: NSViewController, CEIncompatibleChar
             ranges.append(NSValue(range: incompatible.range))
         }
         
-        guard let editor = (document as? CEDocument)?.editor else { return }
+        guard let editor = (document as? Document)?.editor else { return }
         
         editor.clearAllMarkup()
         editor.markupRanges(ranges)

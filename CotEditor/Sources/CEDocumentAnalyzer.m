@@ -30,7 +30,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEDocument.h"
 #import "CEEditorWrapper.h"
 #import "CEDefaults.h"
 
@@ -47,7 +46,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 
 @interface CEDocumentAnalyzer ()
 
-@property (nonatomic, nullable, weak) CEDocument *document;  // weak to avoid cycle retain
+@property (nonatomic, nullable, weak) Document *document;  // weak to avoid cycle retain
 
 @property (nonatomic, nullable, weak) NSTimer *editorInfoUpdateTimer;
 
@@ -100,7 +99,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 
 // ------------------------------------------------------
 /// initialize instance
-- (nonnull instancetype)initWithDocument:(nonnull CEDocument *)document
+- (nonnull instancetype)initWithDocument:(nonnull Document *)document
 // ------------------------------------------------------
 {
     self = [super init];
@@ -116,7 +115,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 - (void)invalidateFileInfo
 // ------------------------------------------------------
 {
-    CEDocument *document = [self document];
+    Document *document = [self document];
     NSDictionary<NSString *, id> *attrs = [document fileAttributes];
     
     self.creationDate = [attrs fileCreationDate];
@@ -142,10 +141,10 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 - (void)invalidateModeInfo
 // ------------------------------------------------------
 {
-    CEDocument *document = [self document];
+    Document *document = [self document];
     
-    self.encoding = [NSString localizedNameOfStringEncoding:[document encoding] withUTF8BOM:[document hasUTF8BOM]];
-    self.charsetName = [NSString IANACharSetNameOfStringEncoding:[document encoding]];
+    self.encoding = [NSString localizedNameOfStringEncoding:[document encodingObjC] withUTF8BOM:[document hasUTF8BOM]];
+    self.charsetName = [NSString IANACharSetNameOfStringEncoding:[document encodingObjC]];
     self.lineEndings = [NSString newLineNameWithType:[document lineEnding]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CEAnalyzerDidUpdateModeInfoNotification
@@ -171,7 +170,7 @@ NSString *_Nonnull const CEAnalyzerDidUpdateEditorInfoNotification = @"CEAnalyze
 {
     BOOL needsAll = [self needsUpdateEditorInfo];
     
-    CEDocument *document = [self document];
+    Document *document = [self document];
     NSTextView *textView = [[document editor] focusedTextView];
     
     if (![textView string]) { return; }

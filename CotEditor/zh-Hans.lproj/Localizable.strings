@@ -108,7 +108,7 @@
 
 
 
-/* MARK: CEDocument */
+/* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "编码变更为“%@”";
 "Line Endings to “%@”" = "行尾变更为“%@”";

@@ -383,10 +383,10 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         template = template.replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document
-        guard let document = (try? NSDocumentController.shared().openUntitledDocumentAndDisplay(false)) as? CEDocument else { return }
+        guard let document = (try? NSDocumentController.shared().openUntitledDocumentAndDisplay(false)) as? Document else { return }
         document.displayName = NSLocalizedString("Bug Report", comment: "document title")
         document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: template)
-        document.setSyntaxStyleWithName("Markdown")
+        document.setSyntaxStyle(name: "Markdown")
         document.makeWindowControllers()
         document.showWindows()
     }

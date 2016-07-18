@@ -32,34 +32,35 @@ class ToolbarController: NSObject {
     
     // MARK: Public Properties
     
-    var document: CEDocument? {
+    var document: Document? {
         willSet {
-            for keyPath in self.observedDocumentKeys {
-                self.document?.removeObserver(self, forKeyPath: keyPath)
-            }
+            guard let document = document else { return }
+            
+            NotificationCenter.default.removeObserver(self, name: Document.EncodingDidChangeNotification, object: document)
+            NotificationCenter.default.removeObserver(self, name: Document.LineEndingDidChangeNotification, object: document)
+            NotificationCenter.default.removeObserver(self, name: Document.SyntaxStyleDidChangeNotification, object: document)
         }
         
         didSet {
+            guard let document = document else { return }
+            
             self.invalidateLineEndingSelection()
             self.invalidateEncodingSelection()
             self.invalidateSyntaxStyleSelection()
             self.toolbar?.validateVisibleItems()
             
             // observe document status change
-            for keyPath in self.observedDocumentKeys {
-                document?.addObserver(self, forKeyPath: keyPath, options: [], context: nil)
-            }
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection),
+                                                   name: Document.EncodingDidChangeNotification, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection),
+                                                   name: Document.LineEndingDidChangeNotification, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection),
+                                                   name: Document.SyntaxStyleDidChangeNotification, object: document)
         }
     }
     
     
     // MARK: Private Properties
-    
-    /// document's key paths to observe
-    private var observedDocumentKeys = [#keyPath(CEDocument.lineEnding),
-                                        #keyPath(CEDocument.encoding),
-                                        #keyPath(CEDocument.hasUTF8BOM),
-                                        #keyPath(CEDocument.syntaxStyle)]
     
     @IBOutlet private weak var toolbar: NSToolbar?
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
@@ -74,10 +75,6 @@ class ToolbarController: NSObject {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        
-        for keyPath in self.observedDocumentKeys {
-            self.document?.removeObserver(self, forKeyPath: keyPath)
-        }
     }
     
     
@@ -100,38 +97,11 @@ class ToolbarController: NSObject {
     }
     
     
-    /// update popup button selection
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
-        
-        guard let keyPath = keyPath else { return }
-        
-        switch keyPath {
-        case #keyPath(CEDocument.lineEnding):
-            DispatchQueue.main.async { [weak self] in
-                self?.invalidateLineEndingSelection()
-            }
-            
-        case #keyPath(CEDocument.encoding),
-             #keyPath(CEDocument.hasUTF8BOM):
-            DispatchQueue.main.async { [weak self] in
-                self?.invalidateEncodingSelection()
-            }
-            
-        case #keyPath(CEDocument.syntaxStyle):
-            DispatchQueue.main.async { [weak self] in
-                self?.invalidateSyntaxStyleSelection()
-            }
-            
-        default: break
-        }
-    }
-    
-    
     
     // MARK: Private Methods
     
     /// select item in the encoding popup menu
-    private func invalidateLineEndingSelection() {
+    func invalidateLineEndingSelection() {
         
         guard let lineEnding = self.document?.lineEnding else { return }
         
@@ -140,11 +110,11 @@ class ToolbarController: NSObject {
     
     
     /// select item in the line ending menu
-    private func invalidateEncodingSelection() {
+    func invalidateEncodingSelection() {
         
         guard let encoding = self.document?.encoding else { return }
         
-        var tag = Int(encoding)
+        var tag = Int(encoding.rawValue)
         if self.document?.hasUTF8BOM ?? false {
             tag *= -1
         }
@@ -154,7 +124,7 @@ class ToolbarController: NSObject {
     
     
     /// select item in the syntax style menu
-    private func invalidateSyntaxStyleSelection() {
+    func invalidateSyntaxStyleSelection() {
         
         guard let popUpButton = self.syntaxPopupButton else { return }
         guard let styleName = self.document?.syntaxStyle.styleName else { return }
@@ -184,7 +154,7 @@ class ToolbarController: NSObject {
         
         let styleNames = CESyntaxManager.shared().styleNames
         let recentStyleNames = CESyntaxManager.shared().recentStyleNames
-        let action = #selector(CEDocument.changeSyntaxStyle(_:))
+        let action = #selector(Document.changeSyntaxStyle(_:))
         
         menu.removeAllItems()
         
