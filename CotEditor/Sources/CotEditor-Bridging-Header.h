@@ -6,7 +6,6 @@
 #import <NSHash/NSString+NSHash.h>
 
 #import "CEDefaults.h"
-#import "CEErrors.h"
 #import "Constants.h"
 #import "ODBEditorSuite.h"
 

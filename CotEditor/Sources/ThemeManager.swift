@@ -217,14 +217,14 @@ class ThemeManager: CESettingFileManager {
         do {
             try super.importSetting(withFileURL: fileURL)
             
-        } catch let error as NSError where error.domain == CEErrorDomain && error.code == CEErrorCode.CESettingImportFileDuplicatedError.rawValue {
+        } catch let error as NSError where error.domain == CotEditorError.domain && error.code == CotEditorError.settingImportFileDuplicated.rawValue {
             // replace error message
             let themeName = self.settingName(from: fileURL)
             var userInfo = error.userInfo
             userInfo[NSLocalizedDescriptionKey] = String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), themeName)
             userInfo[NSLocalizedRecoverySuggestionErrorKey] = NSLocalizedString("Do you want to replace it?\nReplaced theme can’t be restored.", comment: "")
             
-            throw NSError(domain: CEErrorDomain, code: CEErrorCode.CESettingImportFileDuplicatedError.rawValue, userInfo: userInfo)
+            throw NSError(domain: CotEditorError.domain, code: CotEditorError.settingImportFileDuplicated.rawValue, userInfo: userInfo)
         }
     }
     

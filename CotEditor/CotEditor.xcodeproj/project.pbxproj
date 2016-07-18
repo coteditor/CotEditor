@@ -71,6 +71,8 @@
 		2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */; };
 		2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */; };
 		2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */; };
+		2A33F9311D3D666700249A7B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33F9301D3D666700249A7B /* Errors.swift */; };
+		2A33F9321D3D666700249A7B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33F9301D3D666700249A7B /* Errors.swift */; };
 		2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
 		2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
 		2A38FB001D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift */; };
@@ -595,6 +597,7 @@
 		2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTermsEditViewController.swift; sourceTree = "<group>"; };
 		2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxEditViewController.swift; sourceTree = "<group>"; };
 		2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxDictionary.swift; sourceTree = "<group>"; };
+		2A33F9301D3D666700249A7B /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* CEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDocument.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A37F4AEFDCFA73011CA2CEA /* CEDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEDocument.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableArrayController.swift; sourceTree = "<group>"; };
@@ -1411,6 +1414,7 @@
 			isa = PBXGroup;
 			children = (
 				2A2792941D1DBDAC00F3FC5D /* Constants.swift */,
+				2A33F9301D3D666700249A7B /* Errors.swift */,
 				2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */,
 				2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */,
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
@@ -2421,6 +2425,7 @@
 				2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */,
 				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
+				2A33F9321D3D666700249A7B /* Errors.swift in Sources */,
 				2A4257B71D23153B0086DAAD /* UnicodeInputPanelController.swift in Sources */,
 				2ACDC0921D1726BD009B72D6 /* DotImageView.swift in Sources */,
 				2A6FD9F41D3ACEB500A59784 /* DefaultKey.swift in Sources */,
@@ -2626,6 +2631,7 @@
 				2A33D0841D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2A41CB461C391B7400F9122B /* CEErrors.m in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
+				2A33F9311D3D666700249A7B /* Errors.swift in Sources */,
 				2A6FD9F61D3AE29E00A59784 /* SyntaxStyle.swift in Sources */,
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2ACDC08B1D171F1E009B72D6 /* BackgroundView.swift in Sources */,

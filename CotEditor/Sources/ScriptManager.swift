@@ -265,7 +265,7 @@ class ScriptManager: NSObject {
     
         guard let editor = document?.editor else {
             // on no document found
-            throw NSError(domain: CEErrorDomain, code: CEErrorCode.CEScriptNoTargetDocumentError.rawValue,
+            throw NSError(domain: CotEditorError.domain, code: CotEditorError.scriptNoTargetDocument.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No document to get input.", comment: "")])
         }
         
@@ -285,7 +285,7 @@ class ScriptManager: NSObject {
         let editor = document?.editor
         
         guard editor != nil || type == .pasteBoard else {
-            throw NSError(domain: CEErrorDomain, code: CEErrorCode.CEScriptNoTargetDocumentError.rawValue,
+            throw NSError(domain: CotEditorError.domain, code: CotEditorError.scriptNoTargetDocument.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No document to put output.", comment: "")])
         }
         
