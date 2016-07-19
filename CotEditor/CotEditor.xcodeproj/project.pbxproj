@@ -112,7 +112,6 @@
 		2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
 		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
-		2A436DDF1A4288AC00275FD4 /* CEDocumentAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */; };
 		2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
 		2A45AB9C1960BDED0020E72B /* Comment.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A45AB9B1960BDED0020E72B /* Comment.tiff */; };
 		2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FIleDropComposer.swift */; };
@@ -265,7 +264,6 @@
 		2A6F0DA11B5500E100C2D03C /* EditColorCode.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */; };
 		2A6F0DA21B5500E100C2D03C /* RecolorAll.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C5208090880BAAF005734F2 /* RecolorAll.tiff */; };
 		2A6F0DA51B5500E100C2D03C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A149DD619033CBB00A9D6EF /* Constants.m */; };
-		2A6F0DAC1B5500E100C2D03C /* CEDocumentAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */; };
 		2A6F0DB91B5500E100C2D03C /* CEEditorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */; };
 		2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
@@ -465,6 +463,8 @@
 		2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
 		2AD789D61C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
 		2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
+		2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
+		2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
 		2AD9039B1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; };
 		2AD9039C1BCE86A3004F2B8A /* SpellCheck.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */; };
 		2AD9625F1B53496500D46C3A /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
@@ -630,8 +630,6 @@
 		2A436DD41A42533100275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
 		2A436DD61A4253B100275FD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentInspectorView.strings"; sourceTree = "<group>"; };
 		2A436DD81A4254A400275FD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IncompatibleCharsView.strings"; sourceTree = "<group>"; };
-		2A436DDD1A4288AC00275FD4 /* CEDocumentAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEDocumentAnalyzer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDocumentAnalyzer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2A456C431A1EDCFC00395158 /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A456C441A1EDD0400395158 /* ja */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ja; path = ja.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A45AB9B1960BDED0020E72B /* Comment.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Comment.tiff; sourceTree = "<group>"; };
@@ -950,6 +948,7 @@
 		2AD69B871D3E4FCD00FBD998 /* CEEditorWrapper+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CEEditorWrapper+Editor.swift"; sourceTree = "<group>"; };
 		2AD789D31C31AD81008B746F /* CEControlCharacerNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEControlCharacerNames.h; sourceTree = "<group>"; };
 		2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEControlCharacerNames.m; sourceTree = "<group>"; };
+		2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentAnalyzer.swift; sourceTree = "<group>"; };
 		2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SpellCheck.tiff; sourceTree = "<group>"; };
 		2AD9625D1B53496500D46C3A /* NSString+Sandboxing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Sandboxing.h"; sourceTree = "<group>"; };
 		2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Sandboxing.m"; sourceTree = "<group>"; };
@@ -1452,8 +1451,7 @@
 				2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */,
 				2A1679E51D3CE07100E8261D /* Document.swift */,
 				2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */,
-				2A436DDD1A4288AC00275FD4 /* CEDocumentAnalyzer.h */,
-				2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */,
+				2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */,
 				2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2AD69B841D3E42F700FBD998 /* TextSelection.swift */,
@@ -2327,7 +2325,6 @@
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
 				2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2A78BFAB1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
-				2A6F0DAC1B5500E100C2D03C /* CEDocumentAnalyzer.m in Sources */,
 				2AF073F51D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
 				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2ACDC08C1D171F1E009B72D6 /* BackgroundView.swift in Sources */,
@@ -2440,6 +2437,7 @@
 				2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */,
 				2A4682B31D2F6B580005410E /* FIleDropComposer.swift in Sources */,
 				2A6FD9D21D38933100A59784 /* TextViewController.swift in Sources */,
+				2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
 				2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */,
 				2AD616CD1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
@@ -2504,7 +2502,6 @@
 				2A78BFAA1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
 				2A5D131F1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
 				2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
-				2A436DDF1A4288AC00275FD4 /* CEDocumentAnalyzer.m in Sources */,
 				2AF073EB1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
@@ -2543,6 +2540,7 @@
 				2ACDC0971D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
 				2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */,
 				2A12C7FF1D1843B50069C60B /* SeparatorTextFieldCell.swift in Sources */,
+				2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
 				2A6FD9EA1D3A819500A59784 /* CETextView+Commenting.swift in Sources */,
 				2A78BFB61D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,

@@ -31,9 +31,9 @@ class DocumentInspectorViewController: NSViewController {
         
     // MARK: Private Properties
     
-    private var analyzer: CEDocumentAnalyzer? {
+    private var analyzer: DocumentAnalyzer? {
         
-        return self.representedObject as? CEDocumentAnalyzer
+        return self.representedObject as? DocumentAnalyzer
     }
     
     
@@ -71,8 +71,8 @@ class DocumentInspectorViewController: NSViewController {
     /// set analyzer
     override var representedObject: AnyObject? {
         willSet (newObject) {
-            guard newObject is CEDocumentAnalyzer else {
-                assertionFailure("representedObject of \(self.className) must be an instance of \(CEDocumentAnalyzer.className())")
+            guard newObject is DocumentAnalyzer else {
+                assertionFailure("representedObject of \(self.className) must be an instance of \(DocumentAnalyzer.className())")
                 return
             }
             self.analyzer?.needsUpdateEditorInfo = false

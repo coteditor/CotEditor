@@ -30,7 +30,6 @@
 
 #import "CotEditor-Swift.h"
 
-#import "CEDocumentAnalyzer.h"
 #import "CETextView.h"
 #import "CETextFinder.h"
 

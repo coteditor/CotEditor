@@ -102,7 +102,7 @@ class StatusBarController: NSViewController {
     
     // MARK: Public Methods
     
-    weak var documentAnalyzer: CEDocumentAnalyzer?
+    weak var documentAnalyzer: DocumentAnalyzer?
         {
         willSet {
             self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
@@ -113,9 +113,12 @@ class StatusBarController: NSViewController {
             
             analyzer.needsUpdateStatusEditorInfo = !self.view.isHidden
             
-            NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: .CEAnalyzerDidUpdateEditorInfo, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: .CEAnalyzerDidUpdateFileInfo, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: .CEAnalyzerDidUpdateModeInfo, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus),
+                                                   name: DocumentAnalyzer.DidUpdateEditorInfoNotification, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus),
+                                                   name: DocumentAnalyzer.DidUpdateFileInfoNotification, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus),
+                                                   name: DocumentAnalyzer.DidUpdateModeInfoNotification, object: analyzer)
             
             self.updateEditorStatus()
             self.updateDocumentStatus()

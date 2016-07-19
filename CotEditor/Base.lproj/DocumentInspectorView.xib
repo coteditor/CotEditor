@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -12,7 +12,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <objectController objectClassName="CEDocumentAnalyzer" editable="NO" id="b8V-it-sgR" userLabel="Document Info Controller">
+        <objectController objectClassName="DocumentAnalyzer" editable="NO" id="b8V-it-sgR" userLabel="Document Info Controller">
             <connections>
                 <binding destination="-2" name="contentObject" keyPath="representedObject" id="49Z-zT-g8I"/>
             </connections>
@@ -178,7 +178,7 @@
                                     <outlet property="formatter" destination="2pC-OH-bXK" id="ry8-H5-g5E"/>
                                 </connections>
                             </textField>
-                            <box autoresizesSubviews="NO" borderWidth="0.0" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-5X-1Cm" userLabel="Horizontal Line">
+                            <box autoresizesSubviews="NO" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-5X-1Cm" userLabel="Horizontal Line">
                                 <rect key="frame" x="8" y="296" width="204" height="1"/>
                                 <view key="contentView" id="0sj-QD-wdU">
                                     <rect key="frame" x="0.0" y="0.0" width="204" height="1"/>
@@ -236,7 +236,7 @@
                                     </binding>
                                 </connections>
                             </textField>
-                            <box autoresizesSubviews="NO" borderWidth="0.0" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="HX1-lW-KZj" userLabel="Horizontal Line">
+                            <box autoresizesSubviews="NO" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="HX1-lW-KZj" userLabel="Horizontal Line">
                                 <rect key="frame" x="8" y="227" width="204" height="1"/>
                                 <view key="contentView" id="Vys-fW-syB">
                                     <rect key="frame" x="0.0" y="0.0" width="204" height="1"/>
@@ -248,7 +248,7 @@
                                 <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <box autoresizesSubviews="NO" borderWidth="0.0" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="G6g-V0-fD4" userLabel="Horizontal Line">
+                            <box autoresizesSubviews="NO" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="G6g-V0-fD4" userLabel="Horizontal Line">
                                 <rect key="frame" x="8" y="46" width="204" height="1"/>
                                 <view key="contentView" id="REV-WI-oPr">
                                     <rect key="frame" x="0.0" y="0.0" width="204" height="1"/>

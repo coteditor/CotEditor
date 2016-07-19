@@ -83,7 +83,7 @@ class IncompatibleCharacterScanner: NSObject {
             let document = self.document,
             self.delegate?.needsUpdateIncompatibleCharacter(document) ?? false else { return }
         
-        if let timer = self.updateTimer {
+        if let timer = self.updateTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: self.dynamicType.UpdateInterval)
         } else {
             self.updateTimer = Timer.scheduledTimer(timeInterval: self.dynamicType.UpdateInterval,
