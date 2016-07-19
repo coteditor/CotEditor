@@ -96,7 +96,7 @@
 
 
 
-/* MARK: CEDocumentController */
+/* MARK: Document Controller */
 // binary file alert
 "The file “%@” doesn’t appear to be text data." = "Die Datei “%@” entspricht keiner Textdatei.";
 "The file is %@.\n\nMöchten Sie die Datei wirklich öffnen?" = "Die Datei ist %@.\n\nMöchten Sie die Datei wirklich öffnen?";

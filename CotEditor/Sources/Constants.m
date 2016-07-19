@@ -29,16 +29,6 @@
 #import "Constants.h"
 
 
-#pragma mark General
-
-// ------------------------------------------------------
-// General
-// ------------------------------------------------------
-
-// Encoding menu
-const NSInteger CEAutoDetectEncoding = 0;
-
-
 // Convenient functions
 /// invoke passed-in block on main thread
 void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block)

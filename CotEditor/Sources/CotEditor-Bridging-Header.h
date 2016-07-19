@@ -21,7 +21,6 @@
 #import "CEUnicodeCharacter.h"
 
 // Document
-#import "CEDocumentController.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEEditorWrapper.h"
 #import "CEPrintPanelAccessoryController.h"

@@ -340,7 +340,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         guard let inOpenMenu = self.inOpenEncodingMenu?.menu,
             let inNewMenu = self.inNewEncodingMenu?.menu else { return }
         
-        let menuItems = EncodingManager.shared.encodingMenuItems()
+        let menuItems = EncodingManager.shared.encodingMenuItems
         
         inOpenMenu.removeAllItems()
         inNewMenu.removeAllItems()

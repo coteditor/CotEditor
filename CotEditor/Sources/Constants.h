@@ -29,16 +29,6 @@
 @import Foundation;
 
 
-#pragma mark General
-
-// ------------------------------------------------------
-// General
-// ------------------------------------------------------
-
-// Original special encoding type
-extern NSInteger const CEAutoDetectEncoding;
-
-
 // Convenient functions
 /// invoke passed-in block on main thread
 extern void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block);

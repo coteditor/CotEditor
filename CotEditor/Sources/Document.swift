@@ -117,7 +117,7 @@ class Document: NSDocument, EncodingHolder {
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
         // -> This must be set before `readFromData:ofType:error:` is called.
-        self.readingEncoding = String.Encoding(rawValue: (CEDocumentController.shared() as! CEDocumentController).accessorySelectedEncoding)
+        self.readingEncoding = (DocumentController.shared() as! DocumentController).accessorySelectedEncoding
         
         super.init()
         
@@ -388,7 +388,7 @@ class Document: NSDocument, EncodingHolder {
         var newUrl: URL = {
             guard let fileURL = self.fileURL, saveOperation == .autosaveElsewhereOperation else { return url }
             
-            let autosaveDirectoryURL = (CEDocumentController.shared() as! CEDocumentController).autosaveDirectoryURL
+            let autosaveDirectoryURL = (DocumentController.shared() as! DocumentController).autosaveDirectoryURL
             var baseFileName = ((try? fileURL.deletingPathExtension()) ?? fileURL).lastPathComponent!
             if baseFileName.hasPrefix(".") {  // avoid file to be hidden
                 baseFileName.remove(at: baseFileName.startIndex)

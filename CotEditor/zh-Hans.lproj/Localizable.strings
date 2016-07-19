@@ -96,7 +96,7 @@
 
 
 
-/* MARK: CEDocumentController */
+/* MARK: Document Controller */
 // binary file alert
 "The file “%@” doesn’t appear to be text data." = "文件 “%@” 不是文本数据";
 "The file is %@.\n\nDo you really want to open the file?" = "文件 %@.\n\n确定要打开该文件？";

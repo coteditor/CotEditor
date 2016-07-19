@@ -128,7 +128,7 @@ class EncodingManager: NSObject {
     
     
     /// return copied encoding menu items
-    func encodingMenuItems() -> [NSMenuItem] {
+    var encodingMenuItems: [NSMenuItem] {
         
         return self._menuItems.map { $0.copy() as! NSMenuItem }
     }
@@ -139,7 +139,7 @@ class EncodingManager: NSObject {
         
         menu.removeAllItems()
         
-        for item in self.encodingMenuItems() {
+        for item in self.encodingMenuItems {
             item.action = #selector(EncodingHolder.changeEncoding(_:))
             item.target = nil
             menu.addItem(item)
