@@ -287,13 +287,6 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
         self.syntaxHighlightParseOperationQueue.cancelAllOperations()
     }
     
-    
-    /// check equality
-    func isEqualToSyntaxStyle(_ syntaxStyle: SyntaxStyle) -> Bool {  // TODO: remove
-        
-        return syntaxStyle == self
-    }
-    
 }
 
 

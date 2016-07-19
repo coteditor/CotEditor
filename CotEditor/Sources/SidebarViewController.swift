@@ -29,6 +29,12 @@ import Cocoa
 
 class SidebarViewController: NSTabViewController {
     
+    enum TabIndex: Int {
+        
+        case documentInspector
+        case incompatibleCharacters
+    }
+    
     // MARK: Private Properties
     
     private weak var documentInspectorTabViewItem: NSTabViewItem?

@@ -113,7 +113,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
         }
         
         // command key existance check
-        if keySpecChars.contains("@") {  // TODO: use const for "@"
+        if keySpecChars.contains(ModifierKey.command.keySpecChar) {
             throw self.error(messageFormat: "“%@” includes the Command key.", keySpecChars: keySpecChars)
         }
     }

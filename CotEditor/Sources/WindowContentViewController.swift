@@ -27,13 +27,6 @@
 
 import Cocoa
 
-enum SidebarTabIndex: Int {  // TODO: move to inside of SidebarViewController
-    
-    case documentInspector
-    case incompatibleCharacters
-}
-
-
 class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
@@ -94,7 +87,7 @@ class WindowContentViewController: NSSplitViewController {
     
     
     /// display desired sidebar pane
-    func showSidebarPane(index: SidebarTabIndex) {
+    func showSidebarPane(index: SidebarViewController.TabIndex) {
         
         self.sidebarViewController?.tabView.selectTabViewItem(at: index.rawValue)
         self.sidebarViewItem?.animator().isCollapsed = false
@@ -153,7 +146,7 @@ class WindowContentViewController: NSSplitViewController {
     
     
     /// toggle visibility of pane in sidebar
-    private func toggleVisibilityOfSidebarTabItem(index: SidebarTabIndex) {
+    private func toggleVisibilityOfSidebarTabItem(index: SidebarViewController.TabIndex) {
         
         let isCollapsed = self.isSidebarShown && (index.rawValue == self.sidebarViewController!.selectedTabViewItemIndex)
         
