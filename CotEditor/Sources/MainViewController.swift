@@ -31,7 +31,7 @@ class MainViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    @IBOutlet private(set) var editor: CEEditorWrapper?
+    @IBOutlet private(set) var editor: EditorWrapper?
     
     
     // MARK: Private Properties

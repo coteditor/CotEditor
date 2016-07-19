@@ -99,7 +99,7 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
 
 // ------------------------------------------------------
 /// standardize indent style
-- (nonnull NSString *)stringByStandardizingIndentStyleTo:(CEIndentStyle)indentStyle tabWidth:(NSUInteger)tabWidth
+- (nonnull NSString *)stringByStandardizingIndentStyleTo:(CEIndentStyle)indentStyle tabWidth:(NSInteger)tabWidth
 // ------------------------------------------------------
 {
     NSString *regexPattern;

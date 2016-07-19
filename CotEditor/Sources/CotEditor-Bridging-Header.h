@@ -20,7 +20,6 @@
 #import "CEUnicodeCharacter.h"
 
 // Document
-#import "CEEditorWrapper.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEPrintView.h"
 #import "NSTextView+CETextReplacement.h"

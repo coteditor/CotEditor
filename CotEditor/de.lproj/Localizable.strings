@@ -239,7 +239,7 @@
 
 
 
-/* MARK: CEEditorWrapper */
+/* MARK: EditorWrapper */
 // Menu items
 "Hide Line Numbers" = "Zeilennummern ausblenden";
 "Show Line Numbers" = "Zeilennummern einblenden";

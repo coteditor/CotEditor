@@ -40,7 +40,7 @@ extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL usesAntialias;
 @property (nonatomic) BOOL showsInvisibles;
-@property (nonatomic) NSUInteger tabWidth;
+@property (nonatomic) NSInteger tabWidth;
 @property (nonatomic, getter=isAutoTabExpandEnabled) BOOL autoTabExpandEnabled;  // タブを自動的にスペースに展開するか
 
 @property (nonatomic, nullable) Theme *theme;

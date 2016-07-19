@@ -110,15 +110,15 @@ class IncompatibleCharactersViewController: NSViewController, IncompatibleCharac
         self.incompatibleCharsController!.content = incompatibleCharacers
         self.isCharacterAvailable = !incompatibleCharacers.isEmpty
         
-        var ranges = [NSValue]()
+        var ranges = [NSRange]()
         for incompatible in incompatibleCharacers {
-            ranges.append(NSValue(range: incompatible.range))
+            ranges.append(incompatible.range)
         }
         
         guard let editor = document.editor else { return }
         
         editor.clearAllMarkup()
-        editor.markupRanges(ranges)
+        editor.markup(ranges: ranges)
     }
     
     

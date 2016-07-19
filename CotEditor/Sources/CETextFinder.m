@@ -754,9 +754,9 @@ static const NSUInteger kMaxHistorySize = 20;
 - (nullable NSTextView *)client
 // ------------------------------------------------------
 {
-    id<CETextFinderClientProvider> provider = [NSApp targetForAction:@selector(focusedTextView)];
+    id<CETextFinderClientProvider> provider = [NSApp targetForAction:@selector(textFinderClient)];
     if (provider) {
-        return [provider focusedTextView];
+        return [provider textFinderClient];
     }
     
     return nil;

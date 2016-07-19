@@ -238,7 +238,7 @@
 
 
 
-/* MARK: CEEditorWrapper */
+/* MARK: EditorWrapper */
 // Menu items
 "Hide Line Numbers" = "隐藏行号";
 "Show Line Numbers" = "显示行号";

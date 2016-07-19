@@ -28,7 +28,7 @@
 @import Foundation;
 
 
-typedef NS_ENUM(NSUInteger, CEIndentStyle) {
+typedef NS_ENUM(NSInteger, CEIndentStyle) {
     CEIndentStyleNotFound,
     CEIndentStyleTab,
     CEIndentStyleSpace,
@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, CEIndentStyle) {
 - (CEIndentStyle)detectIndentStyle;
 
 /// standardize indent style
-- (nonnull NSString *)stringByStandardizingIndentStyleTo:(CEIndentStyle)indentStyle tabWidth:(NSUInteger)tabWidth;
+- (nonnull NSString *)stringByStandardizingIndentStyleTo:(CEIndentStyle)indentStyle tabWidth:(NSInteger)tabWidth;
 
 /// detect indent level of line at the location
 - (NSUInteger)indentLevelAtLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth;

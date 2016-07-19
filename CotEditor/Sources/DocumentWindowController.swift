@@ -103,7 +103,7 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
     // MARK: Public Methods
     
     /// pass editor instance to document
-    var editor: CEEditorWrapper? {
+    var editor: EditorWrapper? {
         
         return (self.contentViewController as? WindowContentViewController)?.editor
     }

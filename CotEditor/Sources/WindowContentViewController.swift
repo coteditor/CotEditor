@@ -80,7 +80,7 @@ class WindowContentViewController: NSSplitViewController {
     // MARK: Public Methods
     
     /// deliver editor to outer view controllers
-    var editor: CEEditorWrapper? {
+    var editor: EditorWrapper? {
         
         return (self.mainViewItem?.viewController as? MainViewController)?.editor
     }

@@ -170,7 +170,7 @@ extension Document {
             return NSNumber(value: self.editor?.tabWidth ?? 0)
         }
         set (tabWidth) {
-            self.editor?.tabWidth = tabWidth.uintValue
+            self.editor?.tabWidth = tabWidth.intValue
         }
     }
     

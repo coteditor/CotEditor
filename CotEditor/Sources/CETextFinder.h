@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 @protocol CETextFinderClientProvider <NSObject>
 
 @required
-- (nullable NSTextView *)focusedTextView;
+- (nullable NSTextView *)textFinderClient;
 
 @end
 

@@ -821,7 +821,7 @@ class Document: NSDocument, EncodingHolder {
     
     
     /// return document window's editor wrapper
-    var editor: CEEditorWrapper? {
+    var editor: EditorWrapper? {
         
         return self.windowController.editor
     }

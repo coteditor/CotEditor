@@ -916,7 +916,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
 
 // ------------------------------------------------------
 /// change tab width and apply to views
-- (void)setTabWidth:(NSUInteger)tabWidth
+- (void)setTabWidth:(NSInteger)tabWidth
 // ------------------------------------------------------
 {
     if (tabWidth == [self tabWidth] || tabWidth == 0) { return; }

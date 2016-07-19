@@ -1,6 +1,6 @@
 /*
  
- CEEditorWrapper+Editor.swift
+ EditorWrapper+Editor.swift
  
  CotEditor
  https://coteditor.com
@@ -29,7 +29,7 @@
 import Cocoa
 
 // MARK: Text Editing
-extension CEEditorWrapper {
+extension EditorWrapper {
     
     /// return string in text view (LF fix)
     var string: String {
@@ -104,7 +104,7 @@ extension CEEditorWrapper {
 
 // MARK: Locating
 
-extension CEEditorWrapper {
+extension EditorWrapper {
     
     // MARK: Public Methods
     
