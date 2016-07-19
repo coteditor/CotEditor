@@ -15,10 +15,6 @@
 // Theme Tests
 #import "NSColor+WFColorCode.h"
 
-// Incompatible Character Tests
-#import "NSString+CEEncoding.h"
-#import "NSString+CECounting.h"
-
 // String Extensions Tests
 #import "NSString+CENewLine.h"
 #import "NSString+CECounting.h"

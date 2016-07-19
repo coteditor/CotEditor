@@ -143,7 +143,7 @@ extension Document {
     
     
     /// selection-object
-    func selectionObject() -> CETextSelection {
+    func selectionObject() -> TextSelection {
         return self.selection
     }
     func setSelectionObject(_ object: AnyObject) {

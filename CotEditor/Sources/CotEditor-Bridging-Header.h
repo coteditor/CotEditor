@@ -24,7 +24,6 @@
 #import "CEDocumentController.h"
 #import "CEDocumentAnalyzer.h"
 #import "CEEditorWrapper+Editor.h"
-#import "CETextSelection.h"
 #import "CEPrintPanelAccessoryController.h"
 #import "CEPrintView.h"
 #import "NSTextView+CETextReplacement.h"

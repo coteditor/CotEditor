@@ -73,7 +73,7 @@ class Document: NSDocument, EncodingHolder {
     private(set) var fileAttributes: [FileAttributeKey: AnyObject]?
     private(set) var syntaxStyle: SyntaxStyle
     
-    private(set) lazy var selection: CETextSelection = CETextSelection(document: self)
+    private(set) lazy var selection: TextSelection = TextSelection(document: self)
     private(set) lazy var analyzer: CEDocumentAnalyzer = CEDocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner: IncompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
     

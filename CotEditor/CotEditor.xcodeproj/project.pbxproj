@@ -24,7 +24,6 @@
 		25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
 		2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */; };
 		2588E9CE07C4851C0060021D /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* ProgressView.xib */; };
-		258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
 		258EF2FA077FEDD000011E52 /* SyntaxEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditView.xib */; };
 		259BFDCE076EBF7E00A5A6D0 /* CEDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */; };
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
@@ -272,7 +271,6 @@
 		2A6F0DAC1B5500E100C2D03C /* CEDocumentAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */; };
 		2A6F0DAE1B5500E100C2D03C /* CEDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */; };
 		2A6F0DB91B5500E100C2D03C /* CEEditorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */; };
-		2A6F0DBC1B5500E100C2D03C /* CETextSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D708807D456DF0062A3E5 /* CETextSelection.m */; };
 		2A6F0DCD1B5500E100C2D03C /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2A6F0DDE1B5500E100C2D03C /* CETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B2C24B07FA6BC400F4EFC7 /* CETextView.m */; };
 		2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
@@ -294,8 +292,6 @@
 		2A6FD9EB1D3A819500A59784 /* CETextView+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9E91D3A819500A59784 /* CETextView+Commenting.swift */; };
 		2A6FD9ED1D3A85D700A59784 /* String+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */; };
 		2A6FD9EE1D3A85D700A59784 /* String+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */; };
-		2A6FD9F01D3AB7A900A59784 /* CETextSelection+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EF1D3AB7A900A59784 /* CETextSelection+Commenting.swift */; };
-		2A6FD9F11D3AB7A900A59784 /* CETextSelection+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EF1D3AB7A900A59784 /* CETextSelection+Commenting.swift */; };
 		2A6FD9F31D3ACEB500A59784 /* DefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */; };
 		2A6FD9F41D3ACEB500A59784 /* DefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */; };
 		2A6FD9F61D3AE29E00A59784 /* SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */; };
@@ -462,6 +458,8 @@
 		2AD49C241D0BE75A00FF4CC9 /* CESettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD49C221D0BE75A00FF4CC9 /* CESettingManager.m */; };
 		2AD49C281D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD49C271D0BEF3800FF4CC9 /* CESettingFileManager.m */; };
 		2AD49C291D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD49C271D0BEF3800FF4CC9 /* CESettingFileManager.m */; };
+		2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B841D3E42F700FBD998 /* TextSelection.swift */; };
+		2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B841D3E42F700FBD998 /* TextSelection.swift */; };
 		2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
 		2AD789D61C31AD81008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
 		2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */; };
@@ -566,8 +564,6 @@
 		258700E4077BAD2200E541BB /* CESyntaxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxManager.m; sourceTree = "<group>"; };
 		2588E9BD07C47ACC0060021D /* CEEditorWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEEditorWrapper.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2588E9BE07C47ACC0060021D /* CEEditorWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEEditorWrapper.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		258D708707D456DF0062A3E5 /* CETextSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextSelection.h; sourceTree = "<group>"; };
-		258D708807D456DF0062A3E5 /* CETextSelection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CETextSelection.m; sourceTree = "<group>"; };
 		259BFDCB076EBF7E00A5A6D0 /* CEDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CEDocumentController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		259BFDCC076EBF7E00A5A6D0 /* CEDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CEDocumentController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		25B2C24A07FA6BC400F4EFC7 /* CETextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CETextView.h; sourceTree = "<group>"; };
@@ -739,7 +735,6 @@
 		2A6FD9E61D394F5900A59784 /* LayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
 		2A6FD9E91D3A819500A59784 /* CETextView+Commenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CETextView+Commenting.swift"; sourceTree = "<group>"; };
 		2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+NSRange.swift"; sourceTree = "<group>"; };
-		2A6FD9EF1D3AB7A900A59784 /* CETextSelection+Commenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CETextSelection+Commenting.swift"; sourceTree = "<group>"; };
 		2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKey.swift; sourceTree = "<group>"; };
 		2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxStyle.swift; sourceTree = "<group>"; };
 		2A712CA018EFB716001FEC33 /* AutoTabExpand_Off.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AutoTabExpand_Off.tiff; sourceTree = "<group>"; };
@@ -951,6 +946,7 @@
 		2AD49C221D0BE75A00FF4CC9 /* CESettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESettingManager.m; sourceTree = "<group>"; };
 		2AD49C261D0BEF3800FF4CC9 /* CESettingFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESettingFileManager.h; sourceTree = "<group>"; };
 		2AD49C271D0BEF3800FF4CC9 /* CESettingFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESettingFileManager.m; sourceTree = "<group>"; };
+		2AD69B841D3E42F700FBD998 /* TextSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSelection.swift; sourceTree = "<group>"; };
 		2AD789D31C31AD81008B746F /* CEControlCharacerNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEControlCharacerNames.h; sourceTree = "<group>"; };
 		2AD789D41C31AD81008B746F /* CEControlCharacerNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEControlCharacerNames.m; sourceTree = "<group>"; };
 		2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SpellCheck.tiff; sourceTree = "<group>"; };
@@ -1384,7 +1380,6 @@
 			children = (
 				2AC75C061A2AF47E00C7DB0A /* NSString+CENewLine.h */,
 				2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */,
-				2AAD61EF1D2B0856008FE772 /* NSString+Range.swift */,
 				2AB0C59A1C4A18830019411A /* NSString+CEEncoding.h */,
 				2AB0C59B1C4A18830019411A /* NSString+CEEncoding.m */,
 				2AF47C8419227B2300A48047 /* NSString+CECounting.h */,
@@ -1462,9 +1457,7 @@
 				2A436DDE1A4288AC00275FD4 /* CEDocumentAnalyzer.m */,
 				2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
-				258D708707D456DF0062A3E5 /* CETextSelection.h */,
-				258D708807D456DF0062A3E5 /* CETextSelection.m */,
-				2A6FD9EF1D3AB7A900A59784 /* CETextSelection+Commenting.swift */,
+				2AD69B841D3E42F700FBD998 /* TextSelection.swift */,
 				2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */,
 				2A5D13181D1EFE4B00D38E6A /* SharingMenu.swift */,
 			);
@@ -1514,6 +1507,7 @@
 				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
 				2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */,
 				2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */,
+				2AAD61EF1D2B0856008FE772 /* NSString+Range.swift */,
 				2A9082EB1D325BEC00228F50 /* UserDefaults.swift */,
 				2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
@@ -2323,6 +2317,7 @@
 				2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2AF073E71D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */,
+				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A6F0DA51B5500E100C2D03C /* Constants.m in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
@@ -2366,7 +2361,6 @@
 				2AED70EF1D2E36EF006FFBCE /* MainViewController.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
 				2A33D07F1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
-				2A6F0DBC1B5500E100C2D03C /* CETextSelection.m in Sources */,
 				2AD49C291D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */,
 				2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2A91C3191D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
@@ -2438,7 +2432,6 @@
 				2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */,
 				2AF0C1261D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,
 				2A6FD9EB1D3A819500A59784 /* CETextView+Commenting.swift in Sources */,
-				2A6FD9F11D3AB7A900A59784 /* CETextSelection+Commenting.swift in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AD49C241D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
@@ -2551,14 +2544,12 @@
 				2ACDC0971D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
 				2588E9C007C47ACC0060021D /* CEEditorWrapper.m in Sources */,
 				2A12C7FF1D1843B50069C60B /* SeparatorTextFieldCell.swift in Sources */,
-				258D708A07D456DF0062A3E5 /* CETextSelection.m in Sources */,
 				2A6FD9EA1D3A819500A59784 /* CETextView+Commenting.swift in Sources */,
 				2A78BFB61D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				2AA2E01A1BFF9AEE0087BDD6 /* CEUnicodeCharacter.m in Sources */,
 				2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
-				2A6FD9F01D3AB7A900A59784 /* CETextSelection+Commenting.swift in Sources */,
 				2A6FD9D11D38933100A59784 /* TextViewController.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */,
 				2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
@@ -2600,6 +2591,7 @@
 				2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */,
 				2A91C3181D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
 				2AA45A4B1D2E871900A1A401 /* EditorViewController.swift in Sources */,
+				2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2AE52F221D175A9400D60A32 /* SizeSettingWindowController.swift in Sources */,
 				25B2C24D07FA6BC400F4EFC7 /* CETextView.m in Sources */,
 				2AD172FB1CF0B807007314B3 /* NSFont+CESize.m in Sources */,

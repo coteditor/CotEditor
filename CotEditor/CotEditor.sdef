@@ -106,7 +106,7 @@
         </class-extension>
         
         <class name="text selection" plural="text selections" code="tSel" description="A way to refer to the state of the current selection.">
-            <cocoa class="CETextSelection"/>
+            <cocoa class="CotEditor.TextSelection"/>
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <contents code="PCnt" type="attribute run" name="contents" access="rw" description="The contents of the selection."/>
             <property name="line range" code="lRng" access="rw" description="The range of lines of the selection. The format is “{location, length}”.">
