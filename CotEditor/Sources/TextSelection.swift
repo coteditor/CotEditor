@@ -102,7 +102,7 @@ class TextSelection: NSObject {
         get {
             guard let document = self.document, let editor = document.editor else { return nil }
             
-            var string = editor.substringWithSelection()
+            var string = editor.substringWithSelection!
             
             // apply line endings
             string = (string as NSString).replacingNewLineCharacers(with: document.lineEnding)
@@ -123,7 +123,7 @@ class TextSelection: NSObject {
                 return
             }
             
-            self.document?.editor?.insertTextViewString(string)
+            self.document?.editor?.insert(string: string)
         }
     }
     
@@ -131,7 +131,7 @@ class TextSelection: NSObject {
     /// character range (location and length) of the selection
     var range: [NSNumber]? {
         get {
-            guard let range = self.document?.editor?.selectedRange() else { return nil }
+            guard let range = self.document?.editor?.selectedRange else { return nil }
             
             return [NSNumber(value: range.location),
                     NSNumber(value: range.length)]
@@ -142,7 +142,7 @@ class TextSelection: NSObject {
                 let location = range?[0].intValue,
                 let length = range?[1].intValue else { return }
             
-            self.document?.editor?.setSelectedCharacterRangeWithLocation(location, length: length)
+            self.document?.editor?.setSelectedCharacterRange(location: location, length: length)
         }
     }
     
@@ -151,7 +151,7 @@ class TextSelection: NSObject {
     var lineRange: AnyObject? {
         get {
             guard
-                let selectedRange = self.document?.editor?.selectedRange(),
+                let selectedRange = self.document?.editor?.selectedRange,
                 let string = self.document?.string else { return nil }
             
             let startLine = (string as NSString).lineNumber(at: selectedRange.location)
@@ -174,7 +174,7 @@ class TextSelection: NSObject {
                 return
             }
             
-            self.document?.editor?.setSelectedLineRangeWithLocation(location, length: length)
+            self.document?.editor?.setSelectedLineRange(location: location, length: length)
         }
     }
     
@@ -337,7 +337,7 @@ class TextSelection: NSObject {
         
         guard let storage = notification.object as? NSTextStorage else { return }
         
-        self.document?.editor?.insertTextViewString(storage.string)
+        self.document?.editor?.insert(string: storage.string)
         storage.delegate = nil
     }
     

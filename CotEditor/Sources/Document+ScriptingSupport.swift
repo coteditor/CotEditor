@@ -60,9 +60,9 @@ extension Document {
         
         set (object) {
             if let textStorage = object as? NSTextStorage {
-                self.editor?.replaceTextViewAllString(with: textStorage.string)
+                self.editor?.replaceAllString(with: textStorage.string)
             } else if let string = object as? String {
-                self.editor?.replaceTextViewAllString(with: string)
+                self.editor?.replaceAllString(with: string)
             }
         }
     }
@@ -149,7 +149,7 @@ extension Document {
     func setSelectionObject(_ object: AnyObject) {
         
         if let string = object as? String {
-            self.selection.setContents(string)
+            self.selection.contents = string
         }
     }
     
@@ -233,7 +233,7 @@ extension Document {
         guard !wholeString.isEmpty else { return .no }
         
         // set target range
-        let selectedRange = self.editor?.selectedRange() ?? NSRange()
+        let selectedRange = self.editor?.selectedRange ?? NSRange()
         let targetRange: NSRange = {
             if isBackwards {
                 return NSRange(location: 0, length: selectedRange.location)
@@ -273,7 +273,7 @@ extension Document {
         guard isRegex || searchString != replacementString else { return .no }
         
         // set target range
-        let selectedRange = self.editor?.selectedRange() ?? NSRange()
+        let selectedRange = self.editor?.selectedRange ?? NSRange()
         let targetRange: NSRange = {
             if isAll {
                 return wholeString.nsRange
@@ -304,8 +304,8 @@ extension Document {
                                                                          options: options, range: targetRange)
             }
             if (numberOfReplacements > 0) {
-                self.editor?.replaceTextViewAllString(with: newWholeString as String)
-                self.editor?.setSelectedRange(NSRange())
+                self.editor?.replaceAllString(with: newWholeString as String)
+                self.editor?.selectedRange = NSRange()
             }
             
         } else {
@@ -314,7 +314,7 @@ extension Document {
                 success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: wholeString.nsRange)
             }
             if success {
-                self.selection.setContents(replacementString)  // CETextSelection's `setContents:` accepts also NSString for its argument
+                self.selection.contents = replacementString  // CETextSelection's `setContents:` accepts also NSString for its argument
                 numberOfReplacements = 1
             }
         }
@@ -340,9 +340,9 @@ extension Document {
         
         let location = rangeArray[0]
         let length = rangeArray[1] ?? 1
-        guard let range = self.editor?.range(withLocation: location, length: length), range.length > 0 else { return "" }
+        guard let range = self.editor?.range(location: location, length: length), range.length > 0 else { return "" }
         
-        return (self.editor?.string() as NSString?)?.substring(with: range)
+        return (self.editor?.string as NSString?)?.substring(with: range)
         
     }
     
@@ -355,7 +355,7 @@ extension Document {
         
         guard let textStorage = notification.object as? NSTextStorage else { return }
         
-        self.editor?.replaceTextViewAllString(with: textStorage.string)
+        self.editor?.replaceAllString(with: textStorage.string)
         
         NotificationCenter.default.removeObserver(self, name: .NSTextStorageDidProcessEditing, object: textStorage)
     }
@@ -382,7 +382,7 @@ extension Document {
         
         guard foundRange.location != NSNotFound else { return false }
         
-        self.editor?.setSelectedRange(foundRange)
+        self.editor?.selectedRange = foundRange
         
         return true
     }

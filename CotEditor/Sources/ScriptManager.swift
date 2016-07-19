@@ -271,10 +271,10 @@ class ScriptManager: NSObject {
         
         switch type {
         case .selection:
-            return editor.substringWithSelection()
+            return editor.substringWithSelection ?? ""
             
         case .allText:
-            return editor.string()
+            return editor.string
         }
     }
     
@@ -291,16 +291,16 @@ class ScriptManager: NSObject {
         
         switch type {
         case .replaceSelection:
-            editor!.insertTextViewString(output)
+            editor!.insert(string: output)
             
         case .replaceAllText:
-            editor!.replaceTextViewAllString(with: output)
+            editor!.replaceAllString(with: output)
             
         case .insertAfterSelection:
-            editor!.insertTextViewString(afterSelection: output)
+            editor!.insert(stringAfterSelection: output)
             
         case .appendToAllText:
-            editor!.appendTextViewString(output)
+            editor!.append(string: output)
             
         case .pasteBoard:
             let pasteboard = NSPasteboard.general()

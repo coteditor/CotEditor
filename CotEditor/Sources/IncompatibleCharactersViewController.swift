@@ -132,7 +132,7 @@ class IncompatibleCharactersViewController: NSViewController, IncompatibleCharac
         guard let editor = self.scanner?.document?.editor else { return }
         
         let range = selectedIncompatible.range
-        editor.setSelectedRange(range)
+        editor.selectedRange = range
         
         // focus result
         // -> use textView's `selectedRange` since `range` is incompatible with CR/LF

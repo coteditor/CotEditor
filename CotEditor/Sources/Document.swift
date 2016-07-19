@@ -1155,7 +1155,7 @@ class Document: NSDocument, EncodingHolder {
         
         guard let string = NSString.ianaCharSetName(ofStringEncoding: self.encoding.rawValue) else { return }
         
-        self.editor?.insertTextViewString(string)
+        self.editor?.insert(string: string)
     }
     
     
