@@ -28,13 +28,13 @@
 
 import Cocoa
 
-class IncompatibleCharactersViewController: NSViewController, CEIncompatibleCharacterScannerDelegate, NSTableViewDelegate {
+class IncompatibleCharactersViewController: NSViewController, IncompatibleCharacterScannerDelegate, NSTableViewDelegate {
     
     // MARK: Private Properties
     
-    private weak var scanner: CEIncompatibleCharacterScanner? {
+    private weak var scanner: IncompatibleCharacterScanner? {
         
-        return self.representedObject as? CEIncompatibleCharacterScanner
+        return self.representedObject as? IncompatibleCharacterScanner
     }
     
     private dynamic var isCharacterAvailable = false
@@ -80,8 +80,8 @@ class IncompatibleCharactersViewController: NSViewController, CEIncompatibleChar
     override var representedObject: AnyObject? {
         
         willSet (newObject) {
-            guard newObject is CEIncompatibleCharacterScanner else {
-                assertionFailure("representedObject of \(self.className) must be an instance of \(CEIncompatibleCharacterScanner.className())")
+            guard newObject is IncompatibleCharacterScanner else {
+                assertionFailure("representedObject of \(self.className) must be an instance of \(IncompatibleCharacterScanner.self)")
                 return
             }
             self.scanner?.delegate = nil
@@ -98,14 +98,14 @@ class IncompatibleCharactersViewController: NSViewController, CEIncompatibleChar
     // MARK: Scanner Delegate
     
     /// update list constantly only if the table is visible
-    func documentNeedsUpdateIncompatibleCharacter(_ document: NSDocument) -> Bool {
+    func needsUpdateIncompatibleCharacter(_ document: Document) -> Bool {
         
         return self.isVisible
     }
     
     
     /// incompatible characters list was updated
-    func document(_ document: NSDocument, didUpdate incompatibleCharacers: [CEIncompatibleCharacter]) {
+    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacers: [IncompatibleCharacter]) {
         
         self.incompatibleCharsController!.content = incompatibleCharacers
         self.isCharacterAvailable = !incompatibleCharacers.isEmpty
@@ -115,7 +115,7 @@ class IncompatibleCharactersViewController: NSViewController, CEIncompatibleChar
             ranges.append(NSValue(range: incompatible.range))
         }
         
-        guard let editor = (document as? Document)?.editor else { return }
+        guard let editor = document.editor else { return }
         
         editor.clearAllMarkup()
         editor.markupRanges(ranges)
@@ -128,7 +128,7 @@ class IncompatibleCharactersViewController: NSViewController, CEIncompatibleChar
     /// select correspondent char in text view
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let selectedIncompatible = self.incompatibleCharsController?.selectedObjects.first as? CEIncompatibleCharacter else { return }
+        guard let selectedIncompatible = self.incompatibleCharsController?.selectedObjects.first as? IncompatibleCharacter else { return }
         guard let editor = self.scanner?.document?.editor else { return }
         
         let range = selectedIncompatible.range

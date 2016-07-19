@@ -27,13 +27,14 @@
  */
 
 import XCTest
+@testable import CotEditor
 
 class IncompatibleCharacterTests: XCTestCase {
     
     func testIncompatibleCharacterScan() {
-        let string = "abc\\ \n ¥ \n ~" as NSString
-        let encoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue));
-        let incompatibles = string.scanIncompatibleCharacters(forEncoding: encoding)
+        let string = "abc\\ \n ¥ \n ~"
+        let encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)))
+        let incompatibles = string.scanIncompatibleCharacters(for: encoding)
         
         XCTAssertEqual(incompatibles?.count, 2)
         

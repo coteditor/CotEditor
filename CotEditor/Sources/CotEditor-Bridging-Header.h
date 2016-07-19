@@ -23,8 +23,6 @@
 // Document
 #import "CEDocumentController.h"
 #import "CEDocumentAnalyzer.h"
-#import "CEIncompatibleCharacterScanner.h"
-#import "CEIncompatibleCharacter.h"
 #import "CEEditorWrapper+Editor.h"
 #import "CETextSelection.h"
 #import "CEPrintPanelAccessoryController.h"

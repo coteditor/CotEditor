@@ -923,7 +923,7 @@ class Document: NSDocument, EncodingHolder {
         }
         
         // register undo
-        self.undoManager?.prepare(withInvocationTarget: self).changeEncoding(to: self.encoding, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
+        self.undoManager?.prepare(withInvocationTarget: self).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
         self.undoManager?.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
         
         // update encoding

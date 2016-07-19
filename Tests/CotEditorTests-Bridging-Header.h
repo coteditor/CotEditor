@@ -16,7 +16,6 @@
 #import "NSColor+WFColorCode.h"
 
 // Incompatible Character Tests
-#import "CEIncompatibleCharacter.h"
 #import "NSString+CEEncoding.h"
 #import "NSString+CECounting.h"
 
