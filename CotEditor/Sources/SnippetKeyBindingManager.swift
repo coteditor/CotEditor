@@ -134,7 +134,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
         guard let selectorString = self.keyBindingDict[keySpecChars] else { return nil }
         
         let snippets = self.snippets(defaults: false)
-        guard let index = self.snippetIndex(forSelectorWithString: selectorString) where index < snippets.count else { return nil }
+        guard let index = self.snippetIndex(forSelectorWithString: selectorString), index < snippets.count else { return nil }
         
         return snippets[index]
     
@@ -177,7 +177,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
         let regex = try! RegularExpression(pattern: "^insertCustomText_([0-9]{2}):$", options: [])
         let result = regex.firstMatch(in: selectorString, options: [], range: selectorString.nsRange)
         
-        guard let numberRange = result?.range(at: 1) where numberRange.location != NSNotFound else { return nil }
+        guard let numberRange = result?.range(at: 1), numberRange.location != NSNotFound else { return nil }
         
         return Int((selectorString as NSString).substring(with: numberRange))
     }

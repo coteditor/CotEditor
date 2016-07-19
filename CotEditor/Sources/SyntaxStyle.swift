@@ -121,12 +121,12 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
         var blockCommentDelimiters: [String: String]?
         var _blockCommentDelimiters: BlockDelimiters?
         if let delimiters = dictionary[CESyntaxCommentDelimitersKey] as? [String: String] {
-            if let delimiter = delimiters[CESyntaxInlineCommentKey] where !delimiter.isEmpty {
+            if let delimiter = delimiters[CESyntaxInlineCommentKey], !delimiter.isEmpty {
                 inlineCommentDelimiter = delimiter
             }
             if let beginDelimiter = delimiters[CESyntaxBeginCommentKey],
-                let endDelimiter = delimiters[CESyntaxEndCommentKey]
-                where !beginDelimiter.isEmpty && !endDelimiter.isEmpty
+                let endDelimiter = delimiters[CESyntaxEndCommentKey],
+                !beginDelimiter.isEmpty && !endDelimiter.isEmpty
             {
                 blockCommentDelimiters = [CEBeginDelimiterKey: beginDelimiter,
                                                CEEndDelimiterKey: endDelimiter]
@@ -170,7 +170,7 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
         // create word-completion data set
         var completionWords = [String]()
         var firstCharSet = CharacterSet()
-        if let completionDicts = dictionary[CESyntaxCompletionsKey] as? [[String: AnyObject]] where !completionDicts.isEmpty {
+        if let completionDicts = dictionary[CESyntaxCompletionsKey] as? [[String: AnyObject]], !completionDicts.isEmpty {
             for dict in completionDicts {
                 guard
                     let word = dict[CESyntaxKeyStringKey] as? String,
@@ -184,8 +184,8 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
                 for definition in definitions {
                     let word = definition.beginString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                     guard
-                        let firstChar = word.unicodeScalars.first
-                        where !word.isEmpty && definition.endString == nil && !definition.isRegularExpression else { continue }
+                        let firstChar = word.unicodeScalars.first,
+                        !word.isEmpty && definition.endString == nil && !definition.isRegularExpression else { continue }
                     
                     completionWords.append(word)
                     firstCharSet.update(with: firstChar)
@@ -303,7 +303,7 @@ func ==(lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
         lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&
         lhs._blockCommentDelimiters == rhs._blockCommentDelimiters else { return false }
     
-    if let lProp = lhs.pairedQuoteTypes, let rProp = rhs.pairedQuoteTypes where lProp != rProp {
+    if let lProp = lhs.pairedQuoteTypes, let rProp = rhs.pairedQuoteTypes, lProp != rProp {
         return false
     } else if !(lhs.pairedQuoteTypes == nil && rhs.pairedQuoteTypes == nil) {
         return false
@@ -315,7 +315,7 @@ func ==(lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
     } else if let lProp = lhs.highlightDictionary, let rProp = rhs.highlightDictionary {
         guard lProp.count == rProp.count else { return false }
         for (key, lhsub) in rProp {
-            guard let rhsub = lProp[key] where lhsub == rhsub else { return false }
+            guard let rhsub = lProp[key], lhsub == rhsub else { return false }
         }
     }
     
@@ -353,8 +353,8 @@ extension SyntaxStyle {
         
         guard
             let definitions = self.outlineDefinitions,
-            let string = self.textStorage?.string
-            where !string.isEmpty else
+            let string = self.textStorage?.string,
+            !string.isEmpty else
         {
             self.outlineItems = []
             return
@@ -365,7 +365,7 @@ extension SyntaxStyle {
         operation.parseRange = string.nsRange
         
         operation.completionBlock = { [weak self, weak operation] in
-            guard let operation = operation where !operation.isCancelled else { return }
+            guard let operation = operation, !operation.isCancelled else { return }
             
             self?.outlineItems = operation.results
         }
@@ -379,7 +379,7 @@ extension SyntaxStyle {
         
         let interval: TimeInterval = UserDefaults.standard.double(forKey:  DefaultKey.outlineMenuInterval.rawValue)
         
-        if let timer = self.outlineMenuTimer where timer.isValid {
+        if let timer = self.outlineMenuTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)
         } else {
             self.outlineMenuTimer = Timer.scheduledTimer(timeInterval: interval,
@@ -403,12 +403,12 @@ extension SyntaxStyle {
     func highlightAll(completionHandler: (() -> Void)? = nil) {
         
         guard UserDefaults.standard.bool(forKey: DefaultKey.enableSyntaxHighlight.rawValue) else { return }
-        guard let textStorage = self.textStorage where !textStorage.string.isEmpty else { return }
+        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
         let wholeRange = textStorage.string.nsRange
         
         // use cache if the content of the whole document is the same as the last
-        if let hash = self.highlightCacheHash, let highlights = self.cachedHighlights where hash == (textStorage.string as NSString).md5() {
+        if let hash = self.highlightCacheHash, let highlights = self.cachedHighlights, hash == (textStorage.string as NSString).md5() {
             self.apply(highlights: highlights, range: wholeRange)
             completionHandler?()
             return
@@ -430,7 +430,7 @@ extension SyntaxStyle {
     func highlight(around editedRange: NSRange) {
         
         guard UserDefaults.standard.bool(forKey: DefaultKey.enableSyntaxHighlight.rawValue) else { return }
-        guard let textStorage = self.textStorage where !textStorage.string.isEmpty else { return }
+        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = NSString(string: textStorage.string) as String
@@ -509,7 +509,7 @@ extension SyntaxStyle {
         
         // show highlighting indicator for large string
         var indicator: ProgressViewController?
-        if let storage = self.textStorage where self.shouldShowIndicator(for: highlightRange.length) {
+        if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
             // wait for window becomes visible and sheet-attachable
             DispatchQueue.global(attributes: .qosBackground).async {
                 while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) {

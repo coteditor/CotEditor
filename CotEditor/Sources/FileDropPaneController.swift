@@ -103,7 +103,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         guard obj.object is NSTextField else { return }
         
         guard let newItem = self.fileDropController?.selectedObjects.first as? [String: String],
-              let extensions = newItem[FileDropComposer.SettingKey.extensions] where !extensions.isEmpty else
+              let extensions = newItem[FileDropComposer.SettingKey.extensions], !extensions.isEmpty else
         {
             // delete row if empty
             // -> set false to flag for in case that the delete button was pressed while editing and the target can be automatically deleted
@@ -118,7 +118,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
         // save if new text valid
         if !newExtensions.isEmpty {
             self.fileDropController?.selection.setValue(newExtensions, forKey: FileDropComposer.SettingKey.extensions)
-        } else if let format = newItem[FileDropComposer.SettingKey.formatString] where format.isEmpty {
+        } else if let format = newItem[FileDropComposer.SettingKey.formatString], format.isEmpty {
             self.fileDropController?.remove(self)
         }
         
@@ -159,7 +159,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
     /// insertion format text view was edited
     func textDidEndEditing(_ notification: Notification) {
         
-        guard let textView = notification.object as? NSTextView where textView == self.formatTextView else { return }
+        guard let textView = notification.object as? NSTextView, textView == self.formatTextView else { return }
         
         self.saveSetting()
     }
@@ -197,7 +197,7 @@ class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextField
     /// remove selected file drop setting
     @IBAction func removeSetting(_ sender: AnyObject?) {
         
-        guard let selectedRow = self.extensionTableView?.selectedRow where selectedRow != -1 else { return }
+        guard let selectedRow = self.extensionTableView?.selectedRow, selectedRow != -1 else { return }
         
         // raise flag for in case that the delete button was pressed while editing and the target can be automatically deleted
         self.deletingFileDrop = true

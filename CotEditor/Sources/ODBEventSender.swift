@@ -88,7 +88,7 @@ class ODBEventSender: NSObject {  // TODO: to struct
     /// send a notification to the file client
     private func sendEvent(type eventType: AEEventID, fileURL: URL) {
         
-        guard var creatorCode = self.fileSender?.typeCodeValue where creatorCode != 0 else { return }
+        guard var creatorCode = self.fileSender?.typeCodeValue, creatorCode != 0 else { return }
         
         let creatorDescriptor = NSAppleEventDescriptor(descriptorType: typeApplSignature,
                                                        bytes: &creatorCode,

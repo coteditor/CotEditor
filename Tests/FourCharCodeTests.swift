@@ -33,8 +33,8 @@ class FourCharCodeTests: XCTestCase {
 
     func testInitializerr() {
         
-        XCTAssertEqual(FourCharCode("TEXT"), NSHFSTypeCodeFromFileType("'TEXT'"))
-        XCTAssertEqual(FourCharCode("rtfd"), NSHFSTypeCodeFromFileType("'rtfd'"))
+        XCTAssertEqual(FourCharCode(code: "TEXT"), NSHFSTypeCodeFromFileType("'TEXT'"))
+        XCTAssertEqual(FourCharCode(code: "rtfd"), NSHFSTypeCodeFromFileType("'rtfd'"))
     }
 
 }

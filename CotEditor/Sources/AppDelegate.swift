@@ -350,7 +350,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
     /// open a specific page in Help contents
     @IBAction func openHelpAnchor(_ sender: AnyObject?) {
         
-        guard let tag = sender?.tag where tag < Help.anchors.count else { return }
+        guard let tag = sender?.tag, tag < Help.anchors.count else { return }
         
         NSHelpManager.shared().openHelpAnchor(Help.anchors[tag], inBook: AppInfo.helpBookName)
     }

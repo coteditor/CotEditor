@@ -176,8 +176,10 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
                 }
                 
             } else {
-                guard let keyItem = node.representedObject as? KeyBindingItem,
-                    let keySpecChars = keyItem.keySpecChars where !keySpecChars.isEmpty else { continue }
+                guard
+                    let keyItem = node.representedObject as? KeyBindingItem,
+                    let keySpecChars = keyItem.keySpecChars,
+                    !keySpecChars.isEmpty else { continue }
                 
                 dictionary[keySpecChars] = keyItem.selector
             }

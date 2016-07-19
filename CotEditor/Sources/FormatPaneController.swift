@@ -162,7 +162,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
     /// selected syntax style in "Installed styles" list table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let object = notification.object as? NSTableView where object == self.syntaxTableView else { return }
+        guard let object = notification.object as? NSTableView, object == self.syntaxTableView else { return }
         
         self.validateRemoveSyntaxStyleButton()
     }
@@ -221,7 +221,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
     /// recommend user to use "Auto-Detect" on changing encoding setting
     @IBAction func checkSelectedItemOfInOpenEncodingMenu(_ sender: AnyObject?) {
         
-        guard let newTitle = self.inOpenEncodingMenu?.selectedItem?.title where newTitle != NSLocalizedString("Auto-Detect", comment: "") else { return }
+        guard let newTitle = self.inOpenEncodingMenu?.selectedItem?.title, newTitle != NSLocalizedString("Auto-Detect", comment: "") else { return }
         
         let alert = NSAlert()
         alert.messageText = String(format: NSLocalizedString("Are you sure you want to change to “%@”?", comment: ""), newTitle)

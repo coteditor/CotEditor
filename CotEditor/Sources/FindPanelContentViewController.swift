@@ -168,8 +168,8 @@ class FindPanelContentViewController: NSSplitViewController, CETextFinderDelegat
     /// collapse result view if closed
     private func collapseResultViewIfNeeded() {
         
-        guard let resultView = self.resultViewController?.view
-            where !resultView.isHidden && resultView.visibleRect.isEmpty else { return }
+        guard let resultView = self.resultViewController?.view,
+            !resultView.isHidden && resultView.visibleRect.isEmpty else { return }
         
         self.resultSplitViewItem?.isCollapsed = true
     }

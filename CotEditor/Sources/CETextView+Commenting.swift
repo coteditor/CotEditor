@@ -100,10 +100,10 @@ extension CETextView {
         var new: (String, NSRange)?
         
         // insert delimiters
-        if let delimiter = self.inlineCommentDelimiter where types.contains(.inline) {
+        if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) {
             new = string.inlineCommentOut(delimiter: delimiter, spacer: spacer, range: targetRange, selectedRange: selectedRange)
             
-        } else if let blockDelimiters = self.blockCommentDelimiters where types.contains(.block) {
+        } else if let blockDelimiters = self.blockCommentDelimiters, types.contains(.block) {
             let delimiters = BlockDelimiters(begin: blockDelimiters[CEBeginDelimiterKey]!, end: blockDelimiters[CEEndDelimiterKey]!)
             
             new = string.blockCommentOut(delimiters: delimiters, spacer: spacer, range: targetRange, selectedRange: selectedRange)
@@ -124,18 +124,18 @@ extension CETextView {
         
         guard let string = self.string,
             let selectedRange = string.range(from: self.selectedRange()),
-            let targetRange = self.commentingRange(fromLineHead: fromLineHead)
-            where !targetRange.isEmpty else { return }
+            let targetRange = self.commentingRange(fromLineHead: fromLineHead),
+            !targetRange.isEmpty else { return }
         
         let spacer = UserDefaults.standard.bool(forKey: DefaultKey.appendsCommentSpacer.rawValue) ? " " : ""
         var new: (String, NSRange)?
         
-        if let blockDelimiters = self.blockCommentDelimiters where types.contains(.block) {
+        if let blockDelimiters = self.blockCommentDelimiters, types.contains(.block) {
             let delimiters = BlockDelimiters(begin: blockDelimiters[CEBeginDelimiterKey]!, end: blockDelimiters[CEEndDelimiterKey]!)
             
             new = string.blockUncomment(delimiters: delimiters, spacer: spacer, range: targetRange, selectedRange: selectedRange)
         }
-        if let delimiter = self.inlineCommentDelimiter where types.contains(.inline) && new == nil {
+        if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) && new == nil {
             new = string.inlineUncomment(delimiter: delimiter, spacer: spacer, range: targetRange, selectedRange: selectedRange)
         }
         
@@ -153,9 +153,10 @@ extension CETextView {
         
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return false }
         
-        guard let string = self.string,
-            let targetRange = self.commentingRange(fromLineHead: UserDefaults.standard.bool(forKey: DefaultKey.commentsAtLineHead.rawValue))
-            where !targetRange.isEmpty else { return false }
+        guard
+            let string = self.string,
+            let targetRange = self.commentingRange(fromLineHead: UserDefaults.standard.bool(forKey: DefaultKey.commentsAtLineHead.rawValue)),
+            !targetRange.isEmpty else { return false }
         
         let target = string.substring(with: targetRange)
         

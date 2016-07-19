@@ -116,7 +116,7 @@ class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
             superview = superview?.superview
         }
         
-        guard let tableView = superview as? NSTableView where tableView.numberOfSelectedRows > 1 else { return }
+        guard let tableView = superview as? NSTableView, tableView.numberOfSelectedRows > 1 else { return }
         
         let columnIndex = tableView.column(withIdentifier: identifier)
         let isChecked = checkbox.state == NSOnState

@@ -211,7 +211,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     /// style name did change
     override func controlTextDidChange(_ obj: Notification) {
         
-        guard let field = obj.object as? NSTextField where field == self.styleNameField else { return }
+        guard let field = obj.object as? NSTextField, field == self.styleNameField else { return }
         
         // validate newly input name
         let styleName = field.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

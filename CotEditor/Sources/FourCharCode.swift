@@ -27,31 +27,19 @@
 
 import Foundation
 
-extension FourCharCode {  // TODO: StringLiteralConvertible
+extension FourCharCode {
     
-    init (_ stringLiteral: String) {
+    init (code string: String) {
         
-        assert(stringLiteral.utf16.count == 4, "FourCharCode must be made from 4 ASCII characters.")
+        assert(string.utf16.count == 4, "FourCharCode must be made from 4 ASCII characters.")
         
         var code: FourCharCode = 0
-        for character in stringLiteral.utf16 {
+        for character in string.utf16 {
             assert(character <= 0xFF, "FourCharCode must contain only ASCII characters.")
             
             code = (code << 8) + FourCharCode(character)
         }
         self = code
-    }
-    
-    
-    public init(unicodeScalarLiteral value: String) {
-        
-        fatalError("FourCharCode must be made from 4 ASCII characters.")
-    }
-    
-    
-    public init(extendedGraphemeClusterLiteral value: String) {
-        
-        fatalError("FourCharCode must be made from 4 ASCII characters.")
     }
     
 }

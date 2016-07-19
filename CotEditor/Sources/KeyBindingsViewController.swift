@@ -172,7 +172,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         let row = outlineView.row(for: textField)
         
-        guard let node = outlineView.item(atRow: row) as? NSTreeNode where node.isLeaf else { return }
+        guard let node = outlineView.item(atRow: row) as? NSTreeNode, node.isLeaf else { return }
         guard let item = node.representedObject as? KeyBindingItem else { return }
         
         let oldKeySpecChars = item.keySpecChars

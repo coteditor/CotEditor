@@ -46,7 +46,7 @@ extension URL {
     /// return relative-path string
     func path(relativeTo baseURL: URL?) -> String? {
         
-        guard let baseURL = baseURL where baseURL != self else { return nil }
+        guard let baseURL = baseURL, baseURL != self else { return nil }
         
         let pathComponents = self.pathComponents ?? []
         let basePathComponents = baseURL.pathComponents ?? []

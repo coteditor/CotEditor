@@ -78,8 +78,8 @@ class Theme: NSObject {
             guard let colorCode = subdict?[ThemeKey.Sub.color.rawValue] as? String else { throw ThemeError.novalue }
             
             var type: WFColorCodeType = .invalid
-            guard let color = NSColor(colorCode: colorCode, codeType: &type)
-                where type == .hex || type == .shortHex else { throw ThemeError.invalid }
+            guard let color = NSColor(colorCode: colorCode, codeType: &type),
+                type == .hex || type == .shortHex else { throw ThemeError.invalid }
             
             return color
         }

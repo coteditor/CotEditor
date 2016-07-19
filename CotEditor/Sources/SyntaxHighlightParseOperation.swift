@@ -63,7 +63,7 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
         guard let beginString = definition[CESyntaxBeginStringKey] as? String else { return nil }
         
         self.beginString = beginString
-        if let endString = definition[CESyntaxEndStringKey] as? String where !endString.isEmpty {
+        if let endString = definition[CESyntaxEndStringKey] as? String, !endString.isEmpty {
             self.endString = endString
         } else {
             self.endString = nil
@@ -482,7 +482,7 @@ class SyntaxHighlightParseOperation: Operation {
         }
         
         // highlight until the end if not closed
-        if let searchingPairKind = searchingPairKind where isContinued {
+        if let searchingPairKind = searchingPairKind, isContinued {
             let syntaxType = self.pairedQuoteTypes?[searchingPairKind] ?? SyntaxType.comments
             let range = NSRange(location: startLocation, length: parseRange.max - startLocation)
             
@@ -532,7 +532,7 @@ class SyntaxHighlightParseOperation: Operation {
                 
                 autoreleasepool {
                     if definition.isRegularExpression {
-                        if let endString = definition.endString where !endString.isEmpty {
+                        if let endString = definition.endString, !endString.isEmpty {
                             extractedRanges = self.ranges(regularExpressionBeginString: definition.beginString,
                                                           endString: endString,
                                                           ignoreCase: definition.ignoreCase)
@@ -542,7 +542,7 @@ class SyntaxHighlightParseOperation: Operation {
                         }
                         
                     } else {
-                        if let endString = definition.endString where !endString.isEmpty {
+                        if let endString = definition.endString, !endString.isEmpty {
                             extractedRanges = self.ranges(beginString: definition.beginString,
                                                           endString: endString,
                                                           ignoreCase: definition.ignoreCase)

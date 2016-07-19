@@ -132,7 +132,7 @@ class KeyBindingUtils {
     /// return shortcut string to display from keySpecChars to store
     static func printableKeyString(keySpecChars: String?) -> String {
         
-        guard let keySpecChars = keySpecChars where keySpecChars.characters.count > 1 else { return "" }
+        guard let keySpecChars = keySpecChars, keySpecChars.characters.count > 1 else { return "" }
         
         let splitIndex = keySpecChars.index(before: keySpecChars.endIndex)
         let keyEquivalent = keySpecChars.substring(from: splitIndex)

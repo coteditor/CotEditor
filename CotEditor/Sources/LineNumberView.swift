@@ -107,7 +107,7 @@ class LineNumberView: NSRulerView {
     /// draw line numbers
     override func drawHashMarksAndLabels(in rect: NSRect) {
         
-        guard let textView = self.textView, let string = textView.string as NSString? where string.length > 0 else { return }
+        guard let textView = self.textView, let string = textView.string as NSString?, string.length > 0 else { return }
         
         let length = string.length
         let textColor = self.textColor

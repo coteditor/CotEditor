@@ -131,7 +131,7 @@ class SplitViewController: NSSplitViewController {
     func viewController(for subview: NSView) -> EditorViewController? {
         
         for viewController in self.childViewControllers {
-            if let viewController = viewController as? EditorViewController where viewController.view == subview {
+            if let viewController = viewController as? EditorViewController, viewController.view == subview {
                 return viewController
             }
         }

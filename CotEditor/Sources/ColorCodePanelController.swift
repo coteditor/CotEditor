@@ -87,7 +87,7 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
     /// set color to color panel from color code
     func setColor(withCode code: String?) {
         
-        guard let sanitizedCode = code?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) where !sanitizedCode.isEmpty else { return }
+        guard let sanitizedCode = code?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !sanitizedCode.isEmpty else { return }
         
         var codeType: WFColorCodeType = .invalid
         guard let color = NSColor(colorCode: sanitizedCode, codeType: &codeType) else { return }
@@ -180,7 +180,7 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         let codeType = WFColorCodeType(rawValue: UInt(UserDefaults.standard.integer(forKey: DefaultKey.colorCodeType.rawValue))) ?? .hex
         var color = self.color
-        if let unsafeColor = color where ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(unsafeColor.colorSpace) {
+        if let unsafeColor = color, ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(unsafeColor.colorSpace) {
             color = unsafeColor.usingColorSpaceName(NSCalibratedRGBColorSpace)
         }
         var code = color?.colorCode(with: codeType)

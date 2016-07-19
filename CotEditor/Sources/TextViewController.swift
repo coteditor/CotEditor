@@ -160,7 +160,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
     func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>?) -> [String] {
         
         // do nothing if completion is not suggested from the typed characters
-        guard let string = textView.string where charRange.length > 0 else { return [] }
+        guard let string = textView.string, charRange.length > 0 else { return [] }
         
         let candidateWords = NSMutableOrderedSet()
         let defaults = UserDefaults.standard
@@ -183,7 +183,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // copy words defined in syntax style
-        if let syntaxWords = self.syntaxStyle?.completionWords where defaults.bool(forKey: DefaultKey.completesSyntaxWords.rawValue) {
+        if let syntaxWords = self.syntaxStyle?.completionWords, defaults.bool(forKey: DefaultKey.completesSyntaxWords.rawValue) {
             for word in syntaxWords {
                 if word.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil {
                     candidateWords.add(word)
@@ -197,7 +197,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // provide nothing if there is only a candidate which is same as input word
-        if  let word = candidateWords.firstObject as? String where candidateWords.count == 1 && word.caseInsensitiveCompare(particalWord) == .orderedSame {
+        if  let word = candidateWords.firstObject as? String, candidateWords.count == 1 && word.caseInsensitiveCompare(particalWord) == .orderedSame {
             return []
         }
         
@@ -301,7 +301,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
         // Copyright (c) 2004-2006 Peter Borg
         
-        guard let string = textView.string where !string.isEmpty else { return }
+        guard let string = textView.string, !string.isEmpty else { return }
         
         let location = textView.selectedRange().location
         let difference = location - self.lastCursorLocation
@@ -365,7 +365,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         
         let interval = self.dynamicType.CurrentLineUpdateInterval
         
-        if let timer = self.currentLineUpdateTimer where timer.isValid {
+        if let timer = self.currentLineUpdateTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)
         } else {
             self.currentLineUpdateTimer = Timer.scheduledTimer(timeInterval: interval,

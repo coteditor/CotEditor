@@ -161,7 +161,7 @@ class LayoutManager: NSLayoutManager {
     /// apply change of user setting
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
-        if let keyPath = keyPath, let key = DefaultKey(rawValue: keyPath) where self.dynamicType.observedDefaultKeys.contains(key) {
+        if let keyPath = keyPath, let key = DefaultKey(rawValue: keyPath), self.dynamicType.observedDefaultKeys.contains(key) {
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
             self.invalidateLayout(forCharacterRange: NSRange(location: 0, length: self.textStorage?.length ?? 0), actualCharacterRange: nil)
@@ -196,7 +196,7 @@ class LayoutManager: NSLayoutManager {
         }
         
         // draw invisibles
-        if let context = NSGraphicsContext.current()?.cgContext where self.showsInvisibles {
+        if let context = NSGraphicsContext.current()?.cgContext, self.showsInvisibles {
             
             let string = self.textStorage!.string
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical) ?? false

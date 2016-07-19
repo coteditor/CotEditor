@@ -862,7 +862,7 @@ static const NSUInteger kMaxHistorySize = 20;
         
         if (isWrapped) {
             HUDController *hudController = [[HUDController alloc] initWithSymbol:HUDSymbolWrap];
-            [hudController setReversed:!forward];
+            [hudController setIsReversed:!forward];
             [hudController showIn:[[textView enclosingScrollView] superview]];
         }
     } else {

@@ -56,7 +56,7 @@ class MenuKeyBindingManager: KeyBindingManager {
         super.init()
         
         // read user key bindings if available
-        if let customDict = NSDictionary(contentsOf: self.keyBindingSettingFileURL) as? [String: String] where !customDict.isEmpty {
+        if let customDict = NSDictionary(contentsOf: self.keyBindingSettingFileURL) as? [String: String], !customDict.isEmpty {
             self.keyBindingDict = customDict
         } else {
             self.keyBindingDict = self.defaultKeyBindingDict

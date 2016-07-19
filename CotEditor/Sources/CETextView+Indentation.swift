@@ -34,7 +34,7 @@ extension CETextView {
     /// increase indent level
     @IBAction func shiftRight(_ sender: AnyObject?) {
         
-        guard let string = self.string where self.tabWidth > 0 else { return }
+        guard let string = self.string, self.tabWidth > 0 else { return }
         
         // get range to process
         let selectedRange = self.selectedRange()
@@ -76,7 +76,7 @@ extension CETextView {
     /// decrease indent level
     @IBAction func shiftLeft(_ sender: AnyObject?) {
         
-        guard let string = self.string where self.tabWidth > 0 else { return }
+        guard let string = self.string, self.tabWidth > 0 else { return }
         
         // get range to process
         let selectedRange = self.selectedRange()
@@ -168,7 +168,7 @@ extension CETextView {
     /// standardize inentation of given ranges
     private func convertIndentation(style: CEIndentStyle) {
         
-        guard let string = self.string where !string.isEmpty else { return }
+        guard let string = self.string, !string.isEmpty else { return }
         
         var ranges = [NSRange]()
         if self.selectedRange().length == 0 {  // convert all if nothing selected

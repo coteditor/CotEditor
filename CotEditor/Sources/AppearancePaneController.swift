@@ -187,7 +187,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
                                          options: [NSPasteboardURLReadingFileURLsOnlyKey: true,
                                                    NSPasteboardURLReadingContentsConformToTypesKey: [AppInfo.UTType.theme]])
         
-        guard let urls = objects where !urls.isEmpty else { return [] }
+        guard let urls = objects, !urls.isEmpty else { return [] }
         
         // highlight text view itself
         tableView.setDropRow(-1, dropOperation: .on)
@@ -234,7 +234,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     /// selection of theme table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let object = notification.object as? NSTableView where object == self.themeTableView else { return }
+        guard let object = notification.object as? NSTableView, object == self.themeTableView else { return }
         
         let themeName = self.selectedThemeName
         let themeDict = ThemeManager.shared.themeDictionary(name: themeName)
@@ -282,7 +282,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
         // finish if empty (The original name will be restored automatically)
-        guard let newName = fieldEditor.string where !newName.isEmpty else { return true }
+        guard let newName = fieldEditor.string, !newName.isEmpty else { return true }
         
         let oldName = self.selectedThemeName
         

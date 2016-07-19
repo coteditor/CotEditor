@@ -226,7 +226,7 @@ class NavigationBarController: NSViewController {
     /// select previous outline menu item
     @IBAction func selectPrevItemOfOutlineMenu(_ sender: AnyObject?) {
         
-        guard let popUp = self.outlineMenu where self.canSelectPrevItem else { return }
+        guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
         
         var targetIndex = popUp.indexOfSelectedItem - 1
         
@@ -242,7 +242,7 @@ class NavigationBarController: NSViewController {
     /// select next outline menu item
     @IBAction func selectNextItemOfOutlineMenu(_ sender: AnyObject?) {
         
-        guard let popUp = self.outlineMenu where self.canSelectNextItem else { return }
+        guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
         
         var targetIndex = popUp.indexOfSelectedItem + 1
         let maxIndex = popUp.numberOfItems - 1
@@ -274,7 +274,7 @@ class NavigationBarController: NSViewController {
     /// set outline menu selection
     func invalidateOutlineMenuSelection() {
         
-        guard let popUp = self.outlineMenu where popUp.isEnabled && (popUp.menu!.numberOfItems > 0) else { return }
+        guard let popUp = self.outlineMenu, popUp.isEnabled && (popUp.menu!.numberOfItems > 0) else { return }
         
         let range = self.textView!.selectedRange()
         var selectedIndex = 0

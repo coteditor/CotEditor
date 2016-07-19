@@ -30,9 +30,9 @@ import Foundation
 
 typealias OSALineEnding = FourCharCode
 private extension OSALineEnding {
-    static let LF = FourCharCode("leLF")
-    static let CR = FourCharCode("leCR")
-    static let CRLF = FourCharCode("leCL")
+    static let LF = FourCharCode(code: "leLF")
+    static let CR = FourCharCode(code: "leCR")
+    static let CRLF = FourCharCode(code: "leCL")
 }
 
 extension Document {
@@ -193,7 +193,7 @@ extension Document {
         
         let lossy = (arguments?["Lossy"] as? NSNumber)?.boolValue ?? false
         
-        return self.changeEncoding(encoding, withUTF8BOM: false, askLossy: false, lossy: lossy) ? .yes : .no
+        return self.changeEncoding(to: encoding, withUTF8BOM: false, askLossy: false, lossy: lossy) ? .yes : .no
     }
     
     
@@ -221,7 +221,7 @@ extension Document {
         
         guard
             let arguments = command.evaluatedArguments,
-            let searchString = arguments["targetString"] as? String where !searchString.isEmpty else { return .no }
+            let searchString = arguments["targetString"] as? String, !searchString.isEmpty else { return .no }
         
         let isRegex = (arguments["regularExpression"] as? NSNumber)?.boolValue ?? false
         let ignoresCase = (arguments["ignoreCase"] as? NSNumber)?.boolValue ?? false
@@ -256,7 +256,7 @@ extension Document {
         
         guard
             let arguments = command.evaluatedArguments,
-            let searchString = arguments["targetString"] as? String where !searchString.isEmpty else { return .no }
+            let searchString = arguments["targetString"] as? String, !searchString.isEmpty else { return .no }
         
         let isRegex = (arguments["regularExpression"] as? NSNumber)?.boolValue ?? false
         let ignoresCase = (arguments["ignoreCase"] as? NSNumber)?.boolValue ?? false
@@ -340,7 +340,7 @@ extension Document {
         
         let location = rangeArray[0]
         let length = rangeArray[1] ?? 1
-        guard let range = self.editor?.range(withLocation: location, length: length) where range.length > 0 else { return "" }
+        guard let range = self.editor?.range(withLocation: location, length: length), range.length > 0 else { return "" }
         
         return (self.editor?.string() as NSString?)?.substring(with: range)
         

@@ -341,9 +341,9 @@ class ScriptManager: NSObject {
                 self.addChildFileItem(to: submenu, fromDirctory: fileURL)
                 
             case URLFileResourceType.regular:
-                guard let pathExtension = fileURL.pathExtension
-                    where self.AppleScriptExtensions.contains(pathExtension) ||
-                          self.scriptExtensions.contains(pathExtension) else { continue }
+                guard let pathExtension = fileURL.pathExtension,
+                    self.AppleScriptExtensions.contains(pathExtension) ||
+                    self.scriptExtensions.contains(pathExtension) else { continue }
                 
                 let (keyEquivalent, modifierMask) = self.keyEquivalentAndModifierMask(from: fileURL)
                 let item = NSMenuItem(title: title, action: #selector(launchScript(_:)), keyEquivalent: keyEquivalent)
@@ -370,8 +370,8 @@ class ScriptManager: NSObject {
         
         // remove keyboard shortcut definition
         let specChars = ModifierKey.all.map { $0.keySpecChar }
-        if let firstExtensionChar = scriptName.components(separatedBy: ".").last?.characters.first
-            where specChars.contains(String(firstExtensionChar))
+        if let firstExtensionChar = scriptName.components(separatedBy: ".").last?.characters.first,
+            specChars.contains(String(firstExtensionChar))
         {
             scriptName = scriptName.components(separatedBy: ".").first!
         }
@@ -443,7 +443,7 @@ class ScriptManager: NSObject {
     private func runShellScript(url: URL) {
         
         // show an alert and endup if script file cannot read
-        guard let script = self.contentStringOfScript(url: url) where !script.isEmpty else {
+        guard let script = self.contentStringOfScript(url: url), !script.isEmpty else {
             self.showAlert(message: String(format: NSLocalizedString("The script “%@” couldn’t be read.", comment: ""), url))
             return
         }
@@ -490,7 +490,7 @@ class ScriptManager: NSObject {
         task.standardError = errPipe.fileHandleForWriting
         
         // set input data asynchronously if available
-        if let input = input where !input.isEmpty {
+        if let input = input, !input.isEmpty {
             inPipe.fileHandleForWriting.writeabilityHandler = { (handle: FileHandle) in
                 let data = input.data(using: .utf8)!
                 handle.write(data)
@@ -529,7 +529,7 @@ class ScriptManager: NSObject {
             
             //set error message to the sconsole
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
-            if let message = String(data: errorData, encoding: .utf8) where !message.isEmpty {
+            if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
                 DispatchQueue.main.async {
                     self?.writeToConsole(message: message, scriptName: scriptName)
                 }

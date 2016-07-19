@@ -124,7 +124,7 @@ class CharacterInfo: NSObject {  // TODO: struct?
         
         var pictureString: String?
         if self.unicodes.count == 1 {  // ignore CR/LF
-            if let pictureCharacter = self.unicodes.first?.pictureCharacter where pictureCharacter != 0 {
+            if let pictureCharacter = self.unicodes.first?.pictureCharacter, pictureCharacter != 0 {
                 let scalar = UnicodeScalar(pictureCharacter)
                 pictureString = String(scalar)
             }

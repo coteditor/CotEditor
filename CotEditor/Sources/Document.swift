@@ -75,7 +75,7 @@ class Document: NSDocument, EncodingHolder {
     
     private(set) lazy var selection: CETextSelection = CETextSelection(document: self)
     private(set) lazy var analyzer: CEDocumentAnalyzer = CEDocumentAnalyzer(document: self)
-    private(set) lazy var incompatibleCharacterScanner: CEIncompatibleCharacterScanner = CEIncompatibleCharacterScanner(document: self)
+    private(set) lazy var incompatibleCharacterScanner: IncompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
     
     
     // MARK: Public Properties
@@ -386,7 +386,7 @@ class Document: NSDocument, EncodingHolder {
         //   -> save backup file always in `~/Library/Autosaved Information/` directory
         //      (The default backup URL is the same directory as the fileURL.)
         var newUrl: URL = {
-            guard let fileURL = self.fileURL where saveOperation == .autosaveElsewhereOperation else { return url }
+            guard let fileURL = self.fileURL, saveOperation == .autosaveElsewhereOperation else { return url }
             
             let autosaveDirectoryURL = (CEDocumentController.shared() as! CEDocumentController).autosaveDirectoryURL
             var baseFileName = ((try? fileURL.deletingPathExtension()) ?? fileURL).lastPathComponent!
@@ -484,7 +484,7 @@ class Document: NSDocument, EncodingHolder {
         // give the execute permission if user requested
         if self.isExecutable && saveOperation != .autosaveElsewhereOperation {
             var permissions = (attributes[FileAttributeKey.posixPermissions.rawValue] as? UInt16) ?? 0
-            if let originalPath = absoluteOriginalContentsURL?.path where permissions == 0 {
+            if let originalPath = absoluteOriginalContentsURL?.path, permissions == 0 {
                 permissions = ((try? FileManager.default.attributesOfItem(atPath: originalPath))?[.posixPermissions] as? UInt16) ?? 0  // FILE_READ
             }
             if permissions == 0 {
@@ -648,7 +648,7 @@ class Document: NSDocument, EncodingHolder {
         
         var didRecover = false
         
-        if let errorCode = CotEditorError(rawValue: error.code) where error.domain == CotEditorError.domain {
+        if let errorCode = CotEditorError(rawValue: error.code), error.domain == CotEditorError.domain {
             switch errorCode {
             case .unconvertibleCharacters:
                 switch recoveryOptionIndex {
@@ -667,10 +667,10 @@ class Document: NSDocument, EncodingHolder {
                     // reset to force reverting toolbar selection
                     NotificationCenter.default.post(name: Document.EncodingDidChangeNotification, object: self)
                 case 1:  // == Change Encoding
-                    let _ = self.changeEncoding(String.Encoding(rawValue: error.userInfo[NSStringEncodingErrorKey] as! UInt!),
+                    let _ = self.changeEncoding(to: String.Encoding(rawValue: error.userInfo[NSStringEncodingErrorKey] as! UInt!),
                                                 withUTF8BOM: error.userInfo[ErrorKey.StringEncodingUTF8BOM] as! Bool,
                                                 askLossy: false, lossy: true)
-                    (self.undoManager?.prepare(withInvocationTarget: self.windowController) as! DocumentWindowController).showIncompatibleCharList()
+                    self.undoManager?.prepare(withInvocationTarget: self.windowController).showIncompatibleCharList()
                     self.windowController.showIncompatibleCharList()
                     didRecover = true
                 default: break
@@ -736,8 +736,8 @@ class Document: NSDocument, EncodingHolder {
         guard fileHash != self.fileHash else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
             // If not, an alert shows up when user saves the file.
-            if let currentFileModificationDate = self.fileModificationDate
-                where fileModificationDate?.compare(currentFileModificationDate) == .orderedDescending
+            if let currentFileModificationDate = self.fileModificationDate,
+                fileModificationDate?.compare(currentFileModificationDate) == .orderedDescending
             {
                 self.fileModificationDate = fileModificationDate
             }
@@ -896,7 +896,7 @@ class Document: NSDocument, EncodingHolder {
     
     
     /// change string encoding registering process to the undo manager
-    func changeEncoding(_ encoding: String.Encoding, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) -> Bool {  // TODO: thorw?
+    func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) -> Bool {  // TODO: throw?
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return true }
         
@@ -923,7 +923,7 @@ class Document: NSDocument, EncodingHolder {
         }
         
         // register undo
-        let _ = (self.undoManager?.prepare(withInvocationTarget: self) as? Document)?.changeEncoding(self.encoding, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
+        self.undoManager?.prepare(withInvocationTarget: self).changeEncoding(to: self.encoding, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
         self.undoManager?.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
         
         // update encoding
@@ -941,13 +941,20 @@ class Document: NSDocument, EncodingHolder {
     }
     
     
+    /// dummy method for undoManager that can recognize only ObjC-compatible methods...
+    func objcChangeEncoding(to encoding: UInt, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) {
+        
+        let _ = self.changeEncoding(to: String.Encoding(rawValue: encoding), withUTF8BOM: withUTF8BOM, askLossy: askLossy, lossy: lossy)
+    }
+    
+    
     /// change line endings registering process to the undo manager
     func changeLineEnding(to lineEnding: CENewLineType) {
         
         guard lineEnding != self.lineEnding else { return }
         
         // register undo
-        (self.undoManager?.prepare(withInvocationTarget: self) as? Document)?.changeLineEnding(to: self.lineEnding)
+        self.undoManager?.prepare(withInvocationTarget: self).changeLineEnding(to: self.lineEnding)
         self.undoManager?.setActionName(String(format: NSLocalizedString("Line Endings to “%@”", comment: ""),
                                                NSString.newLineName(with: lineEnding)))
         
@@ -966,9 +973,9 @@ class Document: NSDocument, EncodingHolder {
     /// change syntax style with style name
     func setSyntaxStyle(name: String?) {
         
-        guard let name = name where !name.isEmpty else { return }
+        guard let name = name, !name.isEmpty else { return }
         
-        guard let syntaxStyle = CESyntaxManager.shared().style(withName: name) where syntaxStyle != self.syntaxStyle else { return }
+        guard let syntaxStyle = CESyntaxManager.shared().style(withName: name), syntaxStyle != self.syntaxStyle else { return }
         
         self.syntaxStyle.cancelAllParses()
         
@@ -1080,7 +1087,7 @@ class Document: NSDocument, EncodingHolder {
         if self.textStorage.string.isEmpty ||
             self.fileURL == nil ||
             encoding == .utf8 && encoding == self.encoding {
-            let _ = self.changeEncoding(encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
+            let _ = self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
             return
         }
         
@@ -1095,7 +1102,7 @@ class Document: NSDocument, EncodingHolder {
         alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSModalResponse) in
             switch returnCode {
             case NSAlertFirstButtonReturn:  // = Convert
-                let _ = self.changeEncoding(encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
+                let _ = self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
                 
             case NSAlertSecondButtonReturn:  // = Reinterpret
                 if self.isDocumentEdited {
@@ -1137,7 +1144,7 @@ class Document: NSDocument, EncodingHolder {
     /// change syntax style
     @IBAction func changeSyntaxStyle(_ sender: AnyObject?) {
         
-        guard let name = sender?.title where name != self.syntaxStyle.styleName else { return }
+        guard let name = sender?.title, name != self.syntaxStyle.styleName else { return }
         
         self.setSyntaxStyle(name: name)
     }
@@ -1172,7 +1179,7 @@ class Document: NSDocument, EncodingHolder {
         let usedEncoding = String.Encoding(rawValue: usedEncodingInt)
         
         // try reading encoding declaration and take priority of it if it seems well
-        if let scannedEncoding = self.scanEncodingFromDeclaration(content: string) where scannedEncoding != usedEncoding {
+        if let scannedEncoding = self.scanEncodingFromDeclaration(content: string), scannedEncoding != usedEncoding {
             if let string = String(data: data, encoding: scannedEncoding) {
                 return (string, scannedEncoding)
             }
@@ -1313,9 +1320,9 @@ class Document: NSDocument, EncodingHolder {
     
         NotificationCenter.default.removeObserver(self, name: .NSApplicationDidBecomeActive, object: nil)
         
-        guard let fileURL = self.fileURL
-            where self.needsShowUpdateAlertWithBecomeKey &&
-                 !self.isExternalUpdateAlertShown  // do nothing if alert is already shown
+        guard let fileURL = self.fileURL,
+            self.needsShowUpdateAlertWithBecomeKey &&
+                !self.isExternalUpdateAlertShown  // do nothing if alert is already shown
             else { return }
         
         let messageText: String = {

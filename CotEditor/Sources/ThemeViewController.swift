@@ -119,7 +119,7 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
     /// apply system highlight color to color well
     @IBAction func applySystemSelectionColor(_ sender: AnyObject?) {
         
-        guard let button = sender as? NSButton where button.state == NSOnState else { return }
+        guard let button = sender as? NSButton, button.state == NSOnState else { return }
         
         let color = NSColor.selectedTextBackgroundColor()
         let colorCode = color.usingColorSpaceName(NSCalibratedRGBColorSpace)?.colorCode(with: .hex)

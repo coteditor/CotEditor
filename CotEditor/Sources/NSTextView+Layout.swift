@@ -98,7 +98,7 @@ extension NSTextView {
         
         guard let scrollView = self.enclosingScrollView,
               let layoutManager = self.layoutManager,
-              let textContainer = self.textContainer where scale != self.scale else { return }
+              let textContainer = self.textContainer, scale != self.scale else { return }
         
         // store current coordinate
         let centerGlyphIndex = layoutManager.glyphIndex(for: point, in: textContainer)
