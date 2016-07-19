@@ -5,7 +5,6 @@
 #import "NSColor+WFColorCode.h"
 #import <NSHash/NSString+NSHash.h>
 #import <NSHash/NSData+NSHash.h>
-#import "ODBEditorSuite.h"
 
 #import "NSString+CEEncoding.h"
 #import "NSString+CECounting.h"
