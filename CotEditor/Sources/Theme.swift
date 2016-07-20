@@ -28,7 +28,15 @@
 import Foundation
 import AppKit.NSColor
 
+
+protocol Themable {
+    
+    var theme: Theme? { get }
+}
+
+
 private enum ThemeError: ErrorProtocol {
+    
     case novalue
     case invalid
 }

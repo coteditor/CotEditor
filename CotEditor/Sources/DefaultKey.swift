@@ -194,14 +194,14 @@ enum DocumentConflictOption: Int {
 }
 
 
-enum PrintColorMode: Int {
+@objc enum PrintColorMode: Int {
     
     case blackWhite
     case sameAsDocument
 }
 
 
-enum PrintLineNmuberMode: Int {
+@objc enum PrintLineNmuberMode: Int {
     
     case no
     case sameAsDocument
@@ -209,7 +209,7 @@ enum PrintLineNmuberMode: Int {
 }
 
 
-enum PrintInvisiblesMode: Int {
+@objc enum PrintInvisiblesMode: Int {
     
     case no
     case sameAsDocument
@@ -217,7 +217,7 @@ enum PrintInvisiblesMode: Int {
 }
 
 
-enum PrintInfoType: Int {
+@objc enum PrintInfoType: Int {
     
     case none
     case syntaxName
@@ -228,9 +228,22 @@ enum PrintInfoType: Int {
 }
 
 
-enum AlignmentType: Int {
+@objc enum AlignmentType: Int {
     
     case left
     case center
     case right
+    
+    
+    var textAlignment: NSTextAlignment {
+        
+        switch self {
+        case .left:
+            return .left
+        case .center:
+            return .center
+        case .right:
+            return .right
+        }
+    }
 }
