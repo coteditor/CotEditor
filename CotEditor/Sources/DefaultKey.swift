@@ -156,7 +156,7 @@ enum DefaultKey: String {
     case findTextIgnoresWidth = "findTextIgnoresWidth"
     case findRegexIsSingleline = "findRegexIsSingleline"
     case findRegexIsMultiline = "findRegexIsMultiline"
-    case FindRegexUsesUnicodeBoundaries = "regexUsesUnicodeBoundaries"
+    case findRegexUsesUnicodeBoundaries = "regexUsesUnicodeBoundaries"
     
     // settings that are not in preferences
     case colorCodeType = "colorCodeType"
