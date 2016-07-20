@@ -34,7 +34,6 @@
 #import "Constants.h"
 
 #import "NSString+CECounting.h"
-#import "NSString+CEEncoding.h"
 #import "NSString+Indentation.h"
 #import "NSFont+CESize.h"
 

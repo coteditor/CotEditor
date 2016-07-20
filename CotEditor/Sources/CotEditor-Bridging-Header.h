@@ -6,7 +6,6 @@
 #import <NSHash/NSString+NSHash.h>
 #import <NSHash/NSData+NSHash.h>
 
-#import "NSString+CEEncoding.h"
 #import "NSString+CECounting.h"
 #import "NSString+CENewLine.h"
 #import "NSString+Indentation.h"

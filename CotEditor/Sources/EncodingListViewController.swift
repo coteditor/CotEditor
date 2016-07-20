@@ -78,7 +78,7 @@ class EncodingListViewController: NSViewController, NSTableViewDelegate {
         
         guard let textField = (rowView.view(atColumn: 0)  as? NSTableCellView)?.textField else { return }
         
-        let cfEncoding = CFStringEncoding.init(self.encodings[row].uint32Value)
+        let cfEncoding = CFStringEncoding(self.encodings[row].uint32Value)
         
         // separator
         if cfEncoding == kCFStringEncodingInvalidId {
@@ -87,8 +87,8 @@ class EncodingListViewController: NSViewController, NSTableViewDelegate {
         }
         
         // styled encoding name
-        let encoding = CFStringConvertEncodingToNSStringEncoding(cfEncoding)
-        let encodingName = NSString.localizedName(of: encoding)
+        let encoding = String.Encoding(cfEncoding: cfEncoding)
+        let encodingName = String.localizedName(of: encoding)
         let ianaName = (CFStringConvertEncodingToIANACharSetName(cfEncoding) ?? "-") as String
         
         var attrString = AttributedString(string: encodingName)

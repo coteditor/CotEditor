@@ -100,8 +100,7 @@ class EncodingManager: NSObject {
                 continue
             }
           
-            let encodingInt = CFStringConvertEncodingToNSStringEncoding(cfEncoding)
-            let encoding = String.Encoding(rawValue: encodingInt)
+            let encoding = String.Encoding(cfEncoding: cfEncoding)
             
             encodings.append(encoding)
         }
@@ -116,8 +115,7 @@ class EncodingManager: NSObject {
         for cfEncoding in DefaultEncodings {
             guard cfEncoding != kCFStringEncodingInvalidId else { continue }  // = separator
             
-            let encodingInt = CFStringConvertEncodingToNSStringEncoding(cfEncoding)
-            let encoding = String.Encoding(rawValue: encodingInt)
+            let encoding = String.Encoding(cfEncoding: cfEncoding)
             if encodingName == String.localizedName(of: encoding) {
                 return encoding
             }
@@ -146,7 +144,7 @@ class EncodingManager: NSObject {
             
             // add "UTF-8 with BOM" item just after the normal UTF-8
             if item.tag == UTF8Tag {
-                let bomItem = NSMenuItem(title: NSString.localizedNameOfUTF8EncodingWithBOM(),
+                let bomItem = NSMenuItem(title: String.localizedNameOfUTF8EncodingWithBOM,
                                          action: #selector(EncodingHolder.changeEncoding(_:)),
                                          keyEquivalent: "")
                 bomItem.tag = -UTF8Tag  // negative value is sign for "with BOM"

@@ -235,10 +235,7 @@ class Document: NSDocument, EncodingHolder {
         var xattrEncoding: String.Encoding?
         if let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path!)[NSFileExtendedAttributes]) as? [String: AnyObject],
             let xattrEncodingValue = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data {
-            let xattrEncodingRaw = decodeXattrEncoding(xattrEncodingValue)
-            if xattrEncodingRaw != UInt(NSNotFound) {
-                xattrEncoding = String.Encoding(rawValue: xattrEncodingRaw)
-            }
+            xattrEncoding = xattrEncodingValue.decodeXattrEncoding
         }
         self.shouldSaveXattr = (xattrEncoding != nil)
         
@@ -260,7 +257,7 @@ class Document: NSDocument, EncodingHolder {
         
         // set read values
         self.encoding = usedEncoding
-        self.hasUTF8BOM = (usedEncoding == .utf8) && ((data as NSData).hasUTF8BOM())
+        self.hasUTF8BOM = (usedEncoding == .utf8) && data.hasUTF8BOM
         
         let lineEnding = (content as NSString).detectNewLineType()
         if lineEnding != .none {  // keep default if no line endings are found
@@ -330,7 +327,7 @@ class Document: NSDocument, EncodingHolder {
         let needsUTF8BOM = (encoding == .utf8) && self.hasUTF8BOM
         
         // convert Yen sign in consideration of the current encoding
-        let string = (self.string as NSString).convertingYenSign(forEncoding: encoding.rawValue)
+        let string = self.string.convertingYenSign(for: encoding)
         
         // unblock the user interface, since fetching current document state has been done here
         self.unblockUserInteraction()
@@ -344,7 +341,7 @@ class Document: NSDocument, EncodingHolder {
         
         // add UTF-8 BOM if needed
         if needsUTF8BOM {
-            data = (data as NSData).addingUTF8BOM()
+            data = data.addingUTF8BOM
         }
         
         return data
@@ -471,7 +468,7 @@ class Document: NSDocument, EncodingHolder {
         var extendedAttributes: [String: AnyObject] = (attributes[NSFileExtendedAttributes.rawValue] as? [String: AnyObject]) ?? [:]
         // save encoding to the extended file attributes (com.apple.TextEncoding)
         if saveOperation == .autosaveElsewhereOperation || self.shouldSaveXattr {
-            extendedAttributes[FileExtendedAttributeName.Encoding] = encodeXattrEncoding(self.encoding.rawValue)
+            extendedAttributes[FileExtendedAttributeName.Encoding] = self.encoding.xattrEncodingData
         }
         // save text orientation state to the extended file attributes (com.coteditor.VerticalText)
         if UserDefaults.standard.bool(forKey: DefaultKey.savesTextOrientation.rawValue) {
@@ -900,7 +897,7 @@ class Document: NSDocument, EncodingHolder {
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return true }
         
-        let encodingName = NSString.localizedName(ofStringEncoding: encoding.rawValue, withUTF8BOM: withUTF8BOM)
+        let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
         
         // ask lossy
         guard !askLossy || self.string.canBeConverted(to: encoding) else {
@@ -1153,7 +1150,7 @@ class Document: NSDocument, EncodingHolder {
     /// insert IANA CharSet name to editor's insertion point
     @IBAction func insertIANACharSetName(_ sender: AnyObject?) {
         
-        guard let string = NSString.ianaCharSetName(ofStringEncoding: self.encoding.rawValue) else { return }
+        guard let string = String.IANACharSetName(of: self.encoding) else { return }
         
         self.editor?.insert(string: string)
     }
@@ -1174,9 +1171,9 @@ class Document: NSDocument, EncodingHolder {
         }
         
         // detect encoding from data
-        var usedEncodingInt: UInt = 0
-        let string = try NSString(data: data, suggestedCFEncodings: UserDefaults.standard.array(forKey: DefaultKey.encodingList.rawValue) as! [NSNumber], usedEncoding: &usedEncodingInt) as String
-        let usedEncoding = String.Encoding(rawValue: usedEncodingInt)
+        let encodingList = (UserDefaults.standard.array(forKey: DefaultKey.encodingList.rawValue) as! [NSNumber]).map { return $0.uint32Value }
+        var usedEncoding: String.Encoding?
+        let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
         
         // try reading encoding declaration and take priority of it if it seems well
         if let scannedEncoding = self.scanEncodingFromDeclaration(content: string), scannedEncoding != usedEncoding {
@@ -1185,7 +1182,7 @@ class Document: NSDocument, EncodingHolder {
             }
         }
         
-        return (string, usedEncoding)
+        return (string, usedEncoding!)
     }
     
     
@@ -1195,11 +1192,10 @@ class Document: NSDocument, EncodingHolder {
         guard UserDefaults.standard.bool(forKey: DefaultKey.referToEncodingTag.rawValue) else { return nil }
         
         let suggestedCFEncodings = (UserDefaults.standard.array(forKey: DefaultKey.encodingList.rawValue) as? [NSNumber]) ?? []
-        let encoding = (content as NSString).scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
-                                                                    upTo: MaxEncodingScanLength,
-                                                                    suggestedCFEncodings: suggestedCFEncodings)
         
-        return (encoding == UInt(NSNotFound)) ? nil : String.Encoding(rawValue: encoding)
+        return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
+                                               upTo: MaxEncodingScanLength,
+                                               suggestedCFEncodings: suggestedCFEncodings.map { return $0.uint32Value })
     }
     
     
@@ -1257,7 +1253,7 @@ class Document: NSDocument, EncodingHolder {
         
         guard let IANACharSetEncoding = self.scanEncodingFromDeclaration(content: content) else { return }
         
-        guard CEIsCompatibleIANACharSetEncoding(IANACharSetEncoding.rawValue, encoding.rawValue) else {
+        guard encoding.isCompatible(ianaCharSetEncoding: IANACharSetEncoding) else {
             let encodingName = String.localizedName(of: encoding)
             let IANAName = String.localizedName(of: IANACharSetEncoding)
             
@@ -1277,7 +1273,7 @@ class Document: NSDocument, EncodingHolder {
     private func checkSavingSafetyForConverting(content: String, encoding: String.Encoding) throws {
         
         // convert yen if needed
-        let newString = (content as NSString).convertingYenSign(forEncoding: encoding.rawValue)
+        let newString = content.convertingYenSign(for: encoding)
         
         guard newString.canBeConverted(to: encoding) else {
             let encodingName = String.localizedName(of: encoding)

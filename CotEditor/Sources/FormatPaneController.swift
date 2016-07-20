@@ -357,7 +357,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             // add "UTF-8 with BOM" item only to "In New" menu
             if item.tag == UTF8Int {
-                let bomItem = NSMenuItem(title: NSString.localizedNameOfUTF8EncodingWithBOM(), action: nil, keyEquivalent: "")
+                let bomItem = NSMenuItem(title: String.localizedNameOfUTF8EncodingWithBOM, action: nil, keyEquivalent: "")
                 bomItem.tag = UTF8Int
                 bomItem.representedObject = IsUTF8WithBOM
                 inNewMenu.addItem(bomItem)

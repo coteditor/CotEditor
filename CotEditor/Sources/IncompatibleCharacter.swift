@@ -71,7 +71,7 @@ extension String {
         
         // list-up characters to be converted/deleted
         var incompatibles = [IncompatibleCharacter]()
-        let isInvalidYenEncoding = CEEncodingCanConvertYenSign(encoding.rawValue)
+        let isInvalidYenEncoding = encoding.canConvertYenSign
         
         for (index, (character, convertedCharacter)) in zip(self.characters, convertedString.characters).enumerated() {
             

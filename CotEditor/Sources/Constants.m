@@ -29,6 +29,10 @@
 #import "Constants.h"
 
 
+const unichar kYenCharacter = 0x00A5;
+const unichar kYenSubstitutionCharacter = '\\';
+
+
 // Convenient functions
 /// invoke passed-in block on main thread
 void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block)

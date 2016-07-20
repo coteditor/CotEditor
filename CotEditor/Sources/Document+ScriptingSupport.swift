@@ -127,7 +127,7 @@ extension Document {
     /// encoding in IANA CharSet name (Unicode text)
     var IANACharSetName: String {
         
-        return NSString.ianaCharSetName(ofStringEncoding: self.encoding.rawValue) ?? ""
+        return String.IANACharSetName(of: self.encoding) ?? ""
     }
     
     

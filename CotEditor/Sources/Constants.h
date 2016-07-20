@@ -29,6 +29,11 @@
 @import Foundation;
 
 
+// Yen mark char
+extern unichar const kYenCharacter;
+extern unichar const kYenSubstitutionCharacter;
+
+
 // Convenient functions
 /// invoke passed-in block on main thread
 extern void dispatch_sync_on_main_thread(_Nonnull dispatch_block_t block);
