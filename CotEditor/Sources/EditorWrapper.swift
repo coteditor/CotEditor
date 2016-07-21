@@ -43,12 +43,12 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
         
         let defaults = UserDefaults.standard
         
-        self.showsInvisibles = defaults.bool(forKey: DefaultKey.showInvisibles.rawValue)
-        self.showsLineNumber = defaults.bool(forKey: DefaultKey.showLineNumbers.rawValue)
-        self.showsNavigationBar = defaults.bool(forKey: DefaultKey.showNavigationBar.rawValue)
-        self.wrapsLines = defaults.bool(forKey: DefaultKey.wrapLines.rawValue)
-        self.verticalLayoutOrientation = defaults.bool(forKey: DefaultKey.layoutTextVertical.rawValue)
-        self.showsPageGuide = defaults.bool(forKey: DefaultKey.showPageGuide.rawValue)
+        self.showsInvisibles = defaults.bool(forKey: DefaultKey.showInvisibles)
+        self.showsLineNumber = defaults.bool(forKey: DefaultKey.showLineNumbers)
+        self.showsNavigationBar = defaults.bool(forKey: DefaultKey.showNavigationBar)
+        self.wrapsLines = defaults.bool(forKey: DefaultKey.wrapLines)
+        self.verticalLayoutOrientation = defaults.bool(forKey: DefaultKey.layoutTextVertical)
+        self.showsPageGuide = defaults.bool(forKey: DefaultKey.showPageGuide)
         
         super.init()
         
@@ -313,7 +313,7 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
             guard let document = document else { return }
             
             // detect indent style
-            if UserDefaults.standard.bool(forKey: DefaultKey.detectsIndentStyle.rawValue) {
+            if UserDefaults.standard.bool(forKey: DefaultKey.detectsIndentStyle) {
                 let indentStyle = (document.textStorage.string as NSString).detectIndentStyle()
                 
                 switch indentStyle {
@@ -672,11 +672,11 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
         
         let defaults = UserDefaults.standard
         
-        return (defaults.bool(forKey: DefaultKey.showInvisibleSpace.rawValue) ||
-                defaults.bool(forKey: DefaultKey.showInvisibleTab.rawValue) ||
-                defaults.bool(forKey: DefaultKey.showInvisibleNewLine.rawValue) ||
-                defaults.bool(forKey: DefaultKey.showInvisibleFullwidthSpace.rawValue) ||
-                defaults.bool(forKey: DefaultKey.showInvisibles.rawValue))
+        return (defaults.bool(forKey: DefaultKey.showInvisibleSpace) ||
+                defaults.bool(forKey: DefaultKey.showInvisibleTab) ||
+                defaults.bool(forKey: DefaultKey.showInvisibleNewLine) ||
+                defaults.bool(forKey: DefaultKey.showInvisibleFullwidthSpace) ||
+                defaults.bool(forKey: DefaultKey.showInvisibles))
     }
     
     
@@ -758,7 +758,7 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
             if let textView = self.focusedTextView {
                 return textView.isAutoTabExpandEnabled
             } else {
-                return UserDefaults.standard.bool(forKey: DefaultKey.autoExpandTab.rawValue)
+                return UserDefaults.standard.bool(forKey: DefaultKey.autoExpandTab)
             }
         }
         

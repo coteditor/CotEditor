@@ -172,7 +172,7 @@ class DocumentAnalyzer: NSObject {
             
             let defaults = UserDefaults.standard
             
-            let countsLineEnding = defaults.bool(forKey: DefaultKey.countLineEndingAsChar.rawValue)
+            let countsLineEnding = defaults.bool(forKey: DefaultKey.countLineEndingAsChar)
             var location = 0
             var line = 0
             var column = 0
@@ -187,7 +187,7 @@ class DocumentAnalyzer: NSObject {
                 let hasSelection = !selectedString.isEmpty
                 
                 // count length
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLength.rawValue) {
+                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLength) {
                     let isSingleLineEnding = (NSString.newLineString(with: lineEnding).length == 1)
                     var tmp = isSingleLineEnding ? string : (string as NSString).replacingNewLineCharacers(with: lineEnding)
                     length = tmp.utf16.count
@@ -199,7 +199,7 @@ class DocumentAnalyzer: NSObject {
                 }
                 
                 // count characters
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarChars.rawValue) {
+                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarChars) {
                     var tmp = countsLineEnding ? string : (string as NSString).deletingNewLineCharacters()
                     numberOfChars = (tmp as NSString).numberOfComposedCharacters()
                     
@@ -210,7 +210,7 @@ class DocumentAnalyzer: NSObject {
                 }
                 
                 // count lines
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLines.rawValue) {
+                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLines) {
                     numberOfLines = (string as NSString).numberOfLines()
                     if hasSelection {
                         numberOfSelectedLines = (selectedString as NSString).numberOfLines()
@@ -218,7 +218,7 @@ class DocumentAnalyzer: NSObject {
                 }
                 
                 // count words
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarWords.rawValue) {
+                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarWords) {
                     numberOfWords = (string as NSString).numberOfWords()
                     if hasSelection {
                         numberOfSelectedWords = (selectedString as NSString).numberOfWords()
@@ -226,20 +226,20 @@ class DocumentAnalyzer: NSObject {
                 }
                 
                 // calculate current location
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLocation.rawValue) {
+                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLocation) {
                     let locString = (string as NSString).substring(to: selectedRange.location)
                     let tmp = countsLineEnding ? locString : (locString as NSString).deletingNewLineCharacters()
                     location = (tmp as NSString).numberOfComposedCharacters()
                 }
                 
                 // calculate current line
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLine.rawValue) {
+                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLine) {
                     line = (string as NSString).lineNumber(at: selectedRange.location)
                     
                 }
                 
                 // calculate current column
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarColumn.rawValue) {
+                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarColumn) {
                     let lineRange = (string as NSString).lineRange(for: selectedRange)
                     column = selectedRange.location - lineRange.location  // as length
                     column = (string as NSString).substring(with: NSRange(location: lineRange.location, length: column)).numberOfComposedCharacters()
@@ -287,7 +287,7 @@ class DocumentAnalyzer: NSObject {
     /// set update timer for information about the content text
     private func setupEditorInfoUpdateTimer() {
         
-        let interval = TimeInterval(UserDefaults.standard.double(forKey: DefaultKey.infoUpdateInterval.rawValue))
+        let interval = TimeInterval(UserDefaults.standard.double(forKey: DefaultKey.infoUpdateInterval))
         
         if let timer = self.editorInfoUpdateTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)

@@ -43,28 +43,28 @@ extension Invisible {
     
     static var userSpace: String {
         
-        let index = UserDefaults.standard.integer(forKey: DefaultKey.invisibleSpace.rawValue)
+        let index = UserDefaults.standard.integer(forKey: DefaultKey.invisibleSpace)
         return self.spaces[index] ?? self.spaces.first!
     }
     
     
     static var userTab: String {
         
-        let index = UserDefaults.standard.integer(forKey: DefaultKey.invisibleTab.rawValue)
+        let index = UserDefaults.standard.integer(forKey: DefaultKey.invisibleTab)
         return self.tabs[index] ?? self.tabs.first!
     }
     
     
     static var userNewLine: String {
         
-        let index = UserDefaults.standard.integer(forKey: DefaultKey.invisibleNewLine.rawValue)
+        let index = UserDefaults.standard.integer(forKey: DefaultKey.invisibleNewLine)
         return self.newLines[index] ?? self.newLines.first!
     }
     
     
     static var userFullWidthSpace: String {
         
-        let index = UserDefaults.standard.integer(forKey: DefaultKey.invisibleFullwidthSpace.rawValue)
+        let index = UserDefaults.standard.integer(forKey: DefaultKey.invisibleFullwidthSpace)
         return self.fullWidthSpaces[index] ?? self.fullWidthSpaces.first!
     }
     

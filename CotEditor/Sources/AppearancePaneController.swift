@@ -79,7 +79,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         self.themeTableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
         
         // select default theme
-        let themeName = UserDefaults.standard.string(forKey: DefaultKey.theme.rawValue)!
+        let themeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
@@ -243,9 +243,9 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         // update default theme setting
         // -> skip on the first time because, at the time point, the settings are not yet applied.
         if self.themeViewController != nil {
-            let oldThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme.rawValue)!
+            let oldThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
             
-            UserDefaults.standard.set(themeName, forKey: DefaultKey.theme.rawValue)
+            UserDefaults.standard.set(themeName, forKey: DefaultKey.theme)
             
             // update theme of the current document windows
             //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
@@ -346,8 +346,8 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     /// show font panel
     @IBAction func showFonts(_ sender: AnyObject?) {
         
-        guard let font = NSFont(name: UserDefaults.standard.string(forKey: DefaultKey.fontName.rawValue)!,
-                                size: UserDefaults.standard.cgFloat(forKey: DefaultKey.fontSize.rawValue)) else { return }
+        guard let font = NSFont(name: UserDefaults.standard.string(forKey: DefaultKey.fontName)!,
+                                size: UserDefaults.standard.cgFloat(forKey: DefaultKey.fontSize)) else { return }
         
         self.view.window?.makeFirstResponder(self)
         NSFontManager.shared().setSelectedFont(font, isMultiple: false)
@@ -362,8 +362,8 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         
         let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
         
-        UserDefaults.standard.set(newFont.fontName, forKey: DefaultKey.fontName.rawValue)
-        UserDefaults.standard.set(newFont.pointSize, forKey: DefaultKey.fontSize.rawValue)
+        UserDefaults.standard.set(newFont.fontName, forKey: DefaultKey.fontName)
+        UserDefaults.standard.set(newFont.pointSize, forKey: DefaultKey.fontSize)
         
         self.setupFontFamilyNameAndSize()
     }
@@ -482,9 +482,9 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     /// display font name and size in the font field
     private func setupFontFamilyNameAndSize() {
         
-        let name = UserDefaults.standard.string(forKey: DefaultKey.fontName.rawValue)!
-        let size = UserDefaults.standard.cgFloat(forKey: DefaultKey.fontSize.rawValue)
-        let shouldAntiailias = UserDefaults.standard.bool(forKey: DefaultKey.shouldAntialias.rawValue)
+        let name = UserDefaults.standard.string(forKey: DefaultKey.fontName)!
+        let size = UserDefaults.standard.cgFloat(forKey: DefaultKey.fontSize)
+        let shouldAntiailias = UserDefaults.standard.bool(forKey: DefaultKey.shouldAntialias)
         
         guard let font = NSFont(name: name, size: size),
             let displayFont = NSFont(name: name, size: min(size, 13.0)),
@@ -501,7 +501,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView else {
-            return UserDefaults.standard.string(forKey: DefaultKey.theme.rawValue)!
+            return UserDefaults.standard.string(forKey: DefaultKey.theme)!
         }
         return self.themeNames[tableView.selectedRow]
     }

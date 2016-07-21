@@ -39,7 +39,7 @@ class FindPanelButtonViewController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.findNextAfterReplace.rawValue)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.findNextAfterReplace)
     }
     
     
@@ -54,14 +54,14 @@ class FindPanelButtonViewController: NSViewController {
         self.invalidateReplaceButtonBehavior()
         
         // observe default change for the "Replace" button tooltip
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.findNextAfterReplace.rawValue, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.findNextAfterReplace, options: .new, context: nil)
     }
     
     
     /// observed user defaults are changed
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
-        if keyPath == DefaultKey.findNextAfterReplace.rawValue {
+        if keyPath == DefaultKey.findNextAfterReplace {
             self.invalidateReplaceButtonBehavior()
         }
     }
@@ -74,7 +74,7 @@ class FindPanelButtonViewController: NSViewController {
     @IBAction func replace(_ sender: AnyObject?) {
         
         // perform "Replace & Find" instead of "Replace"
-        if UserDefaults.standard.bool(forKey: DefaultKey.findNextAfterReplace.rawValue) {
+        if UserDefaults.standard.bool(forKey: DefaultKey.findNextAfterReplace) {
             CETextFinder.shared().replaceAndFind(sender)
         } else {
             CETextFinder.shared().replace(sender)
@@ -104,7 +104,7 @@ class FindPanelButtonViewController: NSViewController {
     /// toggle replace button behavior and tooltip
     private func invalidateReplaceButtonBehavior() {
         
-        if UserDefaults.standard.bool(forKey: DefaultKey.findNextAfterReplace.rawValue) {
+        if UserDefaults.standard.bool(forKey: DefaultKey.findNextAfterReplace) {
             self.replaceButton?.toolTip = NSLocalizedString("Replace the current selection with the replacement text, then find the next match.", comment: "")
         } else {
             self.replaceButton?.toolTip = NSLocalizedString("Replace the current selection with the replacement text.", comment: "")

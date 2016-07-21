@@ -51,8 +51,8 @@ class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         
-        self.defaultEncodings = NSUserDefaultsController.shared().initialValues?[DefaultKey.encodingList.rawValue] as! [NSNumber]
-        self.encodings = UserDefaults.standard.array(forKey: DefaultKey.encodingList.rawValue) as! [NSNumber]
+        self.defaultEncodings = NSUserDefaultsController.shared().initialValues?[DefaultKey.encodingList] as! [NSNumber]
+        self.encodings = UserDefaults.standard.array(forKey: DefaultKey.encodingList) as! [NSNumber]
         self.canRestore = (self.encodings != self.defaultEncodings)
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -147,7 +147,7 @@ class EncodingListViewController: NSViewController, NSTableViewDelegate {
     @IBAction func save(_ sender: AnyObject?) {
         
         // write back current encoding list userDefaults
-        UserDefaults.standard.set(self.encodings, forKey: DefaultKey.encodingList.rawValue)
+        UserDefaults.standard.set(self.encodings, forKey: DefaultKey.encodingList)
         
         self.dismiss(sender)
     }

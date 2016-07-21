@@ -47,8 +47,8 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.findHistory.rawValue)
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.replaceHistory.rawValue)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.findHistory)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.replaceHistory)
         
         NotificationCenter.default.removeObserver(self)
     }
@@ -66,8 +66,8 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.updateReplaceHistoryMenu()
         
         // observe default change for the history menus
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.findHistory.rawValue, options: [], context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.replaceHistory.rawValue, options: [], context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.findHistory, options: [], context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.replaceHistory, options: [], context: nil)
     }
     
     
@@ -84,12 +84,12 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// observed user defaults are changed
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
-        guard let keyPath = keyPath, let key = DefaultKey(rawValue: keyPath) else { return }
+        guard let keyPath = keyPath else { return }
         
-        switch key {
-        case .findHistory:
+        switch keyPath {
+        case DefaultKey.findHistory:
             self.updateFindHistoryMenu()
-        case .replaceHistory:
+        case DefaultKey.replaceHistory:
             self.updateReplaceHistoryMenu()
         default: break
         }
@@ -162,7 +162,7 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.view.window?.makeKeyAndOrderFront(self)
         
-        UserDefaults.standard.removeObject(forKey: DefaultKey.findHistory.rawValue)
+        UserDefaults.standard.removeObject(forKey: DefaultKey.findHistory)
         self.updateFindHistoryMenu()
     }
     
@@ -172,7 +172,7 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.view.window?.makeKeyAndOrderFront(self)
         
-        UserDefaults.standard.removeObject(forKey: DefaultKey.replaceHistory.rawValue)
+        UserDefaults.standard.removeObject(forKey: DefaultKey.replaceHistory)
         self.updateReplaceHistoryMenu()
     }
     
@@ -205,14 +205,14 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// update find history menu
     private func updateFindHistoryMenu() {
         
-        self.buildHistoryMenu(self.findHistoryMenu!, defaultsKey: DefaultKey.findHistory.rawValue, action: #selector(selectFindHistory(_:)))
+        self.buildHistoryMenu(self.findHistoryMenu!, defaultsKey: DefaultKey.findHistory, action: #selector(selectFindHistory(_:)))
     }
     
     
     /// update replace history menu
     private func updateReplaceHistoryMenu() {
         
-        self.buildHistoryMenu(self.replaceHistoryMenu!, defaultsKey: DefaultKey.replaceHistory.rawValue, action: #selector(selectReplaceHistory(_:)))
+        self.buildHistoryMenu(self.replaceHistoryMenu!, defaultsKey: DefaultKey.replaceHistory, action: #selector(selectReplaceHistory(_:)))
     }
     
     

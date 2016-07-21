@@ -120,7 +120,7 @@ class FindPanelTextView: NSTextView {
         }()
         
         // swap '¥' with '\' if needed
-        if UserDefaults.standard.bool(forKey: DefaultKey.swapYenAndBackSlash.rawValue) {
+        if UserDefaults.standard.bool(forKey: DefaultKey.swapYenAndBackSlash) {
             switch str {
             case "\\":
                 str = "¥"

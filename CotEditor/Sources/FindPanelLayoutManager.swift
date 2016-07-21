@@ -58,7 +58,7 @@ class FindPanelLayoutManager: NSLayoutManager {
         
         let defaults = UserDefaults.standard
         
-        if defaults.bool(forKey: DefaultKey.showInvisibles.rawValue) {
+        if defaults.bool(forKey: DefaultKey.showInvisibles) {
             let string = self.textStorage?.string ?? ""
             
             let color = NSColor.tertiaryLabelColor()
@@ -71,11 +71,11 @@ class FindPanelLayoutManager: NSLayoutManager {
             let fullwidthAttributes = [NSFontAttributeName: fullWidthFont,
                               NSForegroundColorAttributeName: color]
             
-            let showsSpace = defaults.bool(forKey: DefaultKey.showInvisibleSpace.rawValue)
-            let showsTab = defaults.bool(forKey: DefaultKey.showInvisibleTab.rawValue)
-            let showsNewLine = defaults.bool(forKey: DefaultKey.showInvisibleNewLine.rawValue)
-            let showsFullWidthSpace = defaults.bool(forKey: DefaultKey.showInvisibleFullwidthSpace.rawValue)
-            let showsOtherInvisibles = defaults.bool(forKey: DefaultKey.showOtherInvisibleChars.rawValue)
+            let showsSpace = defaults.bool(forKey: DefaultKey.showInvisibleSpace)
+            let showsTab = defaults.bool(forKey: DefaultKey.showInvisibleTab)
+            let showsNewLine = defaults.bool(forKey: DefaultKey.showInvisibleNewLine)
+            let showsFullWidthSpace = defaults.bool(forKey: DefaultKey.showInvisibleFullwidthSpace)
+            let showsOtherInvisibles = defaults.bool(forKey: DefaultKey.showOtherInvisibleChars)
             
             let space = AttributedString(string: Invisible.userSpace, attributes: attributes)
             let tab = AttributedString(string: Invisible.userTab, attributes: attributes)

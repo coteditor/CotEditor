@@ -34,7 +34,7 @@ extension AppDelegate {
     /// migrate user settings from CotEditor v1.x if needed
     func migrateIfNeeded() {
         
-        let lastVersion = UserDefaults.standard.string(forKey: DefaultKey.lastVersion.rawValue)
+        let lastVersion = UserDefaults.standard.string(forKey: DefaultKey.lastVersion)
         let keybindingURL = MenuKeyBindingManager.shared.userSettingDirectoryURL()
         let existsKeybindingDir = keybindingURL.isReachable  // KeyBindings dir was invariably made on the previous versions.
         

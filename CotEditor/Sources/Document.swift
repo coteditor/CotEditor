@@ -107,12 +107,12 @@ class Document: NSDocument, EncodingHolder {
         let uuid = UUID().uuidString
         self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: UniqueFileIDLength))
         
-        self.encoding = String.Encoding(rawValue: UInt(defaults.integer(forKey: DefaultKey.encodingInNew.rawValue)))
+        self.encoding = String.Encoding(rawValue: UInt(defaults.integer(forKey: DefaultKey.encodingInNew)))
         if self.encoding == .utf8 {
-            self.hasUTF8BOM = defaults.bool(forKey: DefaultKey.saveUTF8BOM.rawValue)
+            self.hasUTF8BOM = defaults.bool(forKey: DefaultKey.saveUTF8BOM)
         }
-        self.lineEnding = CENewLineType(rawValue: defaults.integer(forKey: DefaultKey.lineEndCharCode.rawValue)) ?? .LF
-        self.syntaxStyle = CESyntaxManager.shared().style(withName: defaults.string(forKey: DefaultKey.syntaxStyle.rawValue)) ?? SyntaxStyle()
+        self.lineEnding = CENewLineType(rawValue: defaults.integer(forKey: DefaultKey.lineEndCharCode)) ?? .LF
+        self.syntaxStyle = CESyntaxManager.shared().style(withName: defaults.string(forKey: DefaultKey.syntaxStyle)) ?? SyntaxStyle()
         
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
@@ -142,7 +142,7 @@ class Document: NSDocument, EncodingHolder {
 //        self.odbEventSender = ODBEventSender()
 //        
 //        // check file meta data for text orientation
-//        if UserDefaults.standard.bool(forKey: DefaultKey.savesTextOrientation.rawValue) {
+//        if UserDefaults.standard.bool(forKey: DefaultKey.savesTextOrientation) {
 //            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path!)  // FILE_READ
 //            self.isVerticalText = (attributes?[NSFileExtendedAttributes]?[FileExtendedAttributeName.VerticalText] != nil)
 //        }
@@ -191,7 +191,7 @@ class Document: NSDocument, EncodingHolder {
         return self._autosavesInPlace
     }
     // avoid changing the value while the application is running
-    private static let _autosavesInPlace = UserDefaults.standard.bool(forKey: DefaultKey.enablesAutosaveInPlace.rawValue)
+    private static let _autosavesInPlace = UserDefaults.standard.bool(forKey: DefaultKey.enablesAutosaveInPlace)
     
     
     /// can read document on a background thread?
@@ -287,7 +287,7 @@ class Document: NSDocument, EncodingHolder {
         if styleName == nil {
             styleName = CESyntaxManager.shared().styleName(fromDocumentContent: string)
         }
-        styleName = styleName ?? UserDefaults.standard.string(forKey: DefaultKey.syntaxStyle.rawValue)
+        styleName = styleName ?? UserDefaults.standard.string(forKey: DefaultKey.syntaxStyle)
         self.setSyntaxStyle(name: styleName)
     }
     
@@ -359,7 +359,7 @@ class Document: NSDocument, EncodingHolder {
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, completionHandler: (NSError?) -> Void) {
         
         // trim trailing whitespace if needed
-        if UserDefaults.standard.bool(forKey: DefaultKey.trimsTrailingWhitespaceOnSave.rawValue) {
+        if UserDefaults.standard.bool(forKey: DefaultKey.trimsTrailingWhitespaceOnSave) {
             let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
             
             for layoutManager in self.textStorage.layoutManagers {
@@ -471,7 +471,7 @@ class Document: NSDocument, EncodingHolder {
             extendedAttributes[FileExtendedAttributeName.Encoding] = self.encoding.xattrEncodingData
         }
         // save text orientation state to the extended file attributes (com.coteditor.VerticalText)
-        if UserDefaults.standard.bool(forKey: DefaultKey.savesTextOrientation.rawValue) {
+        if UserDefaults.standard.bool(forKey: DefaultKey.savesTextOrientation) {
             extendedAttributes[FileExtendedAttributeName.VerticalText] = self.isVerticalText ? Data(bytes: [1]) : nil
         }
         if attributes[NSFileExtendedAttributes.rawValue] != nil || !extendedAttributes.isEmpty {
@@ -576,9 +576,9 @@ class Document: NSDocument, EncodingHolder {
         
         // set font for printing
         printView.font = {
-            if UserDefaults.standard.integer(forKey: DefaultKey.setPrintFont.rawValue) == 1 {  // == use printing font
-                return NSFont(name: UserDefaults.standard.string(forKey: DefaultKey.printFontName.rawValue)!,
-                              size: UserDefaults.standard.cgFloat(forKey: DefaultKey.printFontSize.rawValue))
+            if UserDefaults.standard.integer(forKey: DefaultKey.setPrintFont) == 1 {  // == use printing font
+                return NSFont(name: UserDefaults.standard.string(forKey: DefaultKey.printFontName)!,
+                              size: UserDefaults.standard.cgFloat(forKey: DefaultKey.printFontSize))
             }
             return self.editor?.font
         }()
@@ -709,7 +709,7 @@ class Document: NSDocument, EncodingHolder {
         
         guard let fileURL = self.fileURL else { return }
         
-        let option = DocumentConflictOption(rawValue: UserDefaults.standard.integer(forKey: DefaultKey.documentConflictOption.rawValue)) ?? .notify
+        let option = DocumentConflictOption(rawValue: UserDefaults.standard.integer(forKey: DefaultKey.documentConflictOption)) ?? .notify
         
         // do nothing
         if option == .ignore { return }
@@ -1171,7 +1171,7 @@ class Document: NSDocument, EncodingHolder {
         }
         
         // detect encoding from data
-        let encodingList = (UserDefaults.standard.array(forKey: DefaultKey.encodingList.rawValue) as! [NSNumber]).map { return $0.uint32Value }
+        let encodingList = (UserDefaults.standard.array(forKey: DefaultKey.encodingList) as! [NSNumber]).map { return $0.uint32Value }
         var usedEncoding: String.Encoding?
         let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
         
@@ -1189,9 +1189,9 @@ class Document: NSDocument, EncodingHolder {
     /// detect file encoding from encoding declaration like "charset=" or "encoding=" in file content
     private func scanEncodingFromDeclaration(content: String) -> String.Encoding? {
         
-        guard UserDefaults.standard.bool(forKey: DefaultKey.referToEncodingTag.rawValue) else { return nil }
+        guard UserDefaults.standard.bool(forKey: DefaultKey.referToEncodingTag) else { return nil }
         
-        let suggestedCFEncodings = (UserDefaults.standard.array(forKey: DefaultKey.encodingList.rawValue) as? [NSNumber]) ?? []
+        let suggestedCFEncodings = (UserDefaults.standard.array(forKey: DefaultKey.encodingList) as? [NSNumber]) ?? []
         
         return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
                                                upTo: MaxEncodingScanLength,

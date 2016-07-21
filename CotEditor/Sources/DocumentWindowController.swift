@@ -40,7 +40,7 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.windowAlpha.rawValue)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.windowAlpha)
     }
     
     
@@ -50,9 +50,9 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// apply user defaults change
     override func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutablePointer<Void>?) {
         
-        if keyPath == DefaultKey.windowAlpha.rawValue {
+        if keyPath == DefaultKey.windowAlpha {
             if let window = self.window as? AlphaWindow {
-                window.backgroundAlpha = UserDefaults.standard.cgFloat(forKey: DefaultKey.windowAlpha.rawValue)
+                window.backgroundAlpha = UserDefaults.standard.cgFloat(forKey: DefaultKey.windowAlpha)
             }
         }
     }
@@ -73,15 +73,15 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
         let defaults = UserDefaults.standard
         
         // set window size
-        let contentSize = NSSize(width: defaults.cgFloat(forKey: DefaultKey.windowWidth.rawValue),
-                                 height: defaults.cgFloat(forKey: DefaultKey.windowHeight.rawValue))
+        let contentSize = NSSize(width: defaults.cgFloat(forKey: DefaultKey.windowWidth),
+                                 height: defaults.cgFloat(forKey: DefaultKey.windowHeight))
         window.setContentSize(contentSize)
         
         // setup background
-        window.backgroundAlpha = defaults.cgFloat(forKey: DefaultKey.windowAlpha.rawValue)
+        window.backgroundAlpha = defaults.cgFloat(forKey: DefaultKey.windowAlpha)
         
         // observe opacity setting change
-        defaults.addObserver(self, forKeyPath: DefaultKey.windowAlpha.rawValue, context: nil)
+        defaults.addObserver(self, forKeyPath: DefaultKey.windowAlpha, context: nil)
     }
     
     

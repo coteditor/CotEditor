@@ -92,7 +92,7 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
         var codeType: WFColorCodeType = .invalid
         guard let color = NSColor(colorCode: sanitizedCode, codeType: &codeType) else { return }
         
-        UserDefaults.standard.set(codeType.rawValue, forKey: DefaultKey.colorCodeType.rawValue)
+        UserDefaults.standard.set(codeType.rawValue, forKey: DefaultKey.colorCodeType)
         self.panel?.color = color
     }
     
@@ -178,7 +178,7 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
     /// update color code in the field
     @IBAction func updateCode(_ sender: AnyObject?) {
         
-        let codeType = WFColorCodeType(rawValue: UInt(UserDefaults.standard.integer(forKey: DefaultKey.colorCodeType.rawValue))) ?? .hex
+        let codeType = WFColorCodeType(rawValue: UInt(UserDefaults.standard.integer(forKey: DefaultKey.colorCodeType))) ?? .hex
         var color = self.color
         if let unsafeColor = color, ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(unsafeColor.colorSpace) {
             color = unsafeColor.usingColorSpaceName(NSCalibratedRGBColorSpace)

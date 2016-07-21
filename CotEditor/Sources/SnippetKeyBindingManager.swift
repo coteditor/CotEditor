@@ -48,7 +48,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
     override init() {
         
         _defaultKeyBindingDict = ["$\r": SnippetKeyBindingManager.selectorString(index: 0)]
-        self.defaultSnippets = UserDefaults().volatileDomain(forName: UserDefaults.registrationDomain)[DefaultKey.insertCustomTextArray.rawValue]! as! [String]
+        self.defaultSnippets = UserDefaults().volatileDomain(forName: UserDefaults.registrationDomain)[DefaultKey.insertCustomTextArray]! as! [String]
         
         super.init()
         
@@ -148,7 +148,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
         if usesDefaults {
             return self.defaultSnippets
         } else {
-            return UserDefaults.standard.stringArray(forKey: DefaultKey.insertCustomTextArray.rawValue)!
+            return UserDefaults.standard.stringArray(forKey: DefaultKey.insertCustomTextArray)!
         }
     }
     
@@ -156,7 +156,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
     /// save texts to insert
     func saveSnippets(_ snippets: [String]) {
         
-        UserDefaults.standard.set(snippets, forKey: DefaultKey.insertCustomTextArray.rawValue)
+        UserDefaults.standard.set(snippets, forKey: DefaultKey.insertCustomTextArray)
     }
     
     

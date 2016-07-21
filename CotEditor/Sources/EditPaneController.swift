@@ -75,9 +75,9 @@ class EditPaneController: NSViewController {
         
         let defaults = UserDefaults.standard
         
-        if !defaults.bool(forKey: DefaultKey.completesDocumentWords.rawValue) &&
-           !defaults.bool(forKey: DefaultKey.completesSyntaxWords.rawValue) &&
-           !defaults.bool(forKey: DefaultKey.completesStandartWords.rawValue)
+        if !defaults.bool(forKey: DefaultKey.completesDocumentWords) &&
+           !defaults.bool(forKey: DefaultKey.completesSyntaxWords) &&
+           !defaults.bool(forKey: DefaultKey.completesStandartWords)
         {
             self.completionHintMessage =  "⚠️ " + NSLocalizedString("Select at least one item to enable completion.", comment: "")
         } else {

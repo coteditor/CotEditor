@@ -167,8 +167,8 @@ class ThemeManager: CESettingFileManager {
         
         try super.renameSetting(withName: settingName, toName: newSettingName)
         
-        if UserDefaults.standard.string(forKey: DefaultKey.theme.rawValue) == settingName {
-            UserDefaults.standard.set(newSettingName, forKey: DefaultKey.theme.rawValue)
+        if UserDefaults.standard.string(forKey: DefaultKey.theme) == settingName {
+            UserDefaults.standard.set(newSettingName, forKey: DefaultKey.theme)
         }
         
         self.updateCache { [weak self] in
@@ -187,7 +187,7 @@ class ThemeManager: CESettingFileManager {
         
         self.updateCache { [weak self] in
             // restore theme of opened documents to default
-            let defaultThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme.rawValue)!
+            let defaultThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
             
             NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
                                             object: self,
@@ -291,9 +291,9 @@ class ThemeManager: CESettingFileManager {
                 strongSelf.archivedThemes = themes
                 
                 // reset user default if not found
-                let defaultThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme.rawValue)!
+                let defaultThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
                 if !themeNameSet.contains(defaultThemeName) {
-                    UserDefaults.standard.removeObject(forKey: DefaultKey.theme.rawValue)
+                    UserDefaults.standard.removeObject(forKey: DefaultKey.theme)
                 }
                 
                 DispatchQueue.main.sync {
@@ -356,7 +356,7 @@ extension ThemeManager {
         guard self.save(themeDictionary: theme, name: themeName, completionHandler: nil) else { return false }
         
         // set as default theme
-        UserDefaults.standard.set(themeName, forKey: DefaultKey.theme.rawValue)
+        UserDefaults.standard.set(themeName, forKey: DefaultKey.theme)
         
         self.updateCache(completionHandler: nil)
         

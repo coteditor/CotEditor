@@ -240,7 +240,7 @@ class LineNumberView: NSRulerView {
         
         // count up lines until visible
         let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
-        var lineNumber = max(Int(string.numberOfLines(in: undisplayedRange, includingLastNewLine: true)), 1)  // start with 1
+        var lineNumber = max(string.numberOfLines(in: undisplayedRange, includingLastNewLine: true), 1)  // start with 1
         
         // draw visible line numbers
         var glyphCount = glyphRangeToDraw.location
