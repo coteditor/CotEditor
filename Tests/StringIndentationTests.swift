@@ -34,6 +34,7 @@ class StringIndentationTests: XCTestCase {
     // MARK: Indentation Style Detection Tests
     
     func testIndentStyleDetection() {
+        
         let string = "\t\tfoo\tbar"
         
         XCTAssertEqual(string.detectIndentStyle(), CEIndentStyle.notFound)
@@ -43,6 +44,7 @@ class StringIndentationTests: XCTestCase {
     // MARK: Indentation Style Standardization Tests
     
     func testIndentStyleStandardizationToTab() {
+        
         let string = "     foo    bar\n  "
         
         // NotFound
@@ -55,6 +57,7 @@ class StringIndentationTests: XCTestCase {
     
     
     func testIndentStyleStandardizationToSpace() {
+        
         let string = "\t\tfoo\tbar"
         
         XCTAssertEqual(string.standardizingIndentStyle(to: .space, tabWidth: 2), "    foo\tbar")
@@ -65,12 +68,14 @@ class StringIndentationTests: XCTestCase {
     // MARK: Other Tests
     
     func testIndentCreation() {
+        
         XCTAssertEqual(NSString(spaces: 1), " ")
         XCTAssertEqual(NSString(spaces: 4), "    ")
     }
     
     
     func testIndentLevelDetection() {
+        
         XCTAssertEqual("    foo".indentLevel(atLocation: 0, tabWidth:0), 0)
         
         XCTAssertEqual("    foo".indentLevel(atLocation: 0, tabWidth:4), 1)

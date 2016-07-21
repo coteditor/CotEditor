@@ -27,7 +27,7 @@
 
 import Foundation
 
-class OutlineItem: NSObject {  // TODO: to stract
+struct OutlineItem: Equatable, CustomDebugStringConvertible {
 
     let title: String
     let range: NSRange
@@ -35,21 +35,27 @@ class OutlineItem: NSObject {  // TODO: to stract
     let isItalic: Bool
     let hasUnderline: Bool
     
-    required init(title: String, range: NSRange, isBold: Bool = false, isItalic: Bool = false, hasUnderline: Bool = false) {
+    init(title: String, range: NSRange, isBold: Bool = false, isItalic: Bool = false, hasUnderline: Bool = false) {
         
         self.title = title
         self.range = range
         self.isBold = isBold
         self.isItalic = isItalic
         self.hasUnderline = hasUnderline
-        
-        super.init()
     }
     
     
-    override var debugDescription: String {
+    var debugDescription: String {
         
-        return "<" + self.className + ": " + self.title + ">"
+        return "<\(self): \(self.title)>"
     }
     
+}
+
+func ==(lhs: OutlineItem, rhs: OutlineItem) -> Bool {
+    return lhs.title == rhs.title &&
+        lhs.range == rhs.range &&
+        lhs.isBold == rhs.isBold &&
+        lhs.isItalic == rhs.isItalic &&
+        lhs.hasUnderline == rhs.hasUnderline
 }

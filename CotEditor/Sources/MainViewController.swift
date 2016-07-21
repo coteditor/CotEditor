@@ -67,7 +67,7 @@ class MainViewController: NSSplitViewController {
     /// keys to be restored from the last session
     override class func restorableStateKeyPaths() -> [String] {
         
-        return ["isStatusBarShown"]  // TODO: selector?
+        return [#keyPath(isStatusBarShown)]
     }
     
     
@@ -111,7 +111,7 @@ class MainViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// Whether status bar is visible
-    private var isStatusBarShown: Bool {
+    @objc private var isStatusBarShown: Bool {
         set (shown) {
             self.statusBarItem?.isCollapsed = !shown
         }

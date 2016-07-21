@@ -36,7 +36,7 @@ protocol IncompatibleCharacterScannerDelegate: class {
 
 
 
-class IncompatibleCharacterScanner: NSObject {
+class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     
     // MARK: Public Properties
     
@@ -61,13 +61,17 @@ class IncompatibleCharacterScanner: NSObject {
     required init(document: Document) {
         
         self.document = document
-        
-        super.init()
     }
     
     
     deinit {
         self.updateTimer?.invalidate()
+    }
+    
+    
+    var debugDescription: String {
+        
+        return "<\(self): \(self.document?.displayName)>"
     }
     
     

@@ -94,10 +94,8 @@ class GoToLineViewController: NSViewController {
         guard let location = Int(loclen[0]),
               let length = (loclen.count > 1) ? Int(loclen[1]) : 0 else { return false }
         
-        let string = (self.textView.string as NSString?) ?? ""
-        let range = string.rangeForLine(location: location, length: length)
-        
-        guard range.location != NSNotFound else { return false }
+        let string = self.textView.string ?? ""
+        guard let range = string.rangeForLine(location: location, length: length) else { return false }
         
         self.textView.setSelectedRange(range)
         self.textView.scrollRangeToVisible(range)

@@ -32,6 +32,7 @@ import XCTest
 class KeyBindingsTests: XCTestCase {
     
     func testKeySpecCharsCreation() {
+        
         XCTAssertEqual(KeyBindingUtils.keySpecChars(keyEquivalent: "a", modifierMask: [.control, .shift]), "^$a")
         XCTAssertEqual(KeyBindingUtils.keySpecChars(keyEquivalent: "b", modifierMask: [.command, .option]), "~@b")
         XCTAssertEqual(KeyBindingUtils.keySpecChars(keyEquivalent: "A", modifierMask: [.control]), "^$A")  // uppercase for Shift key
@@ -42,6 +43,7 @@ class KeyBindingsTests: XCTestCase {
     
     
     func testStringToKeyEquivalentAndModifierMask() {
+        
         let (keyEquivalent, modifierMask) = KeyBindingUtils.keyEquivalentAndModifierMask(keySpecChars: "^$a", requiresCommandKey: false)
         
         XCTAssertEqual(keyEquivalent, "a")
@@ -50,6 +52,7 @@ class KeyBindingsTests: XCTestCase {
     
     
     func testStringToKeyEquivalentAndModifierMaskWithoutCommandKey() {
+        
         let (keyEquivalent, modifierMask) = KeyBindingUtils.keyEquivalentAndModifierMask(keySpecChars: "^$a", requiresCommandKey: true)
         
         XCTAssertEqual(keyEquivalent, "")
@@ -58,6 +61,7 @@ class KeyBindingsTests: XCTestCase {
     
     
     func testPrintableShortcutKey () {
+        
         // test modifier symbols
         XCTAssertEqual(KeyBindingUtils.printableKeyString(keySpecChars: "^$a"), "^⇧A")
         XCTAssertEqual(KeyBindingUtils.printableKeyString(keySpecChars: "~@b"), "⌥⌘B")

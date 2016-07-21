@@ -54,4 +54,5 @@ enum SyntaxType: String {
     var localizedName: String {
         return NSLocalizedString(self.rawValue, comment: "")
     }
+    
 }

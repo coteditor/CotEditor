@@ -32,6 +32,7 @@ import XCTest
 class FormattersTests: XCTestCase {
 
     func testFilePermissionsFormatter() {
+        
         let formatter = FilePermissionsFormatter()
         
         XCTAssertEqual(formatter.string(for: NSNumber(value: 0o777)),

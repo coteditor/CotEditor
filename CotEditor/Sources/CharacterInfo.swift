@@ -28,12 +28,14 @@
 import Foundation
 
 struct SkinToneEmojiModifier {
+    
     static let type12 = UnicodeScalar(0x1F3FB)  // 🏻 Light
     static let type3  = UnicodeScalar(0x1F3FC)  // 🏼 Medium Light
     static let type4  = UnicodeScalar(0x1F3FD)  // 🏽 Medium
     static let type5  = UnicodeScalar(0x1F3FE)  // 🏾 Medium Dark
     static let type6  = UnicodeScalar(0x1F3FF)  // 🏿 Dark
 }
+
 
 extension UnicodeScalar {
     
@@ -54,14 +56,14 @@ extension UnicodeScalar {
 
 // MARK:
 
-class CharacterInfo: NSObject {  // TODO: struct?
+class CharacterInfo: CustomDebugStringConvertible {  // TODO: struct?
     
     // MARK: Public Properties
 
     let string: String
     let pictureString: String?
     let unicodes: [CEUnicodeCharacter]
-    @nonobjc let isComplex: Bool  // TODO: remove @nonobjc
+    let isComplex: Bool
     
     
     // MARK: Private Properties
@@ -75,7 +77,7 @@ class CharacterInfo: NSObject {  // TODO: struct?
     
     required init?(string: String) {
         
-        guard (string as NSString).numberOfComposedCharacters() == 1 || string == "\r\n" else { return nil }
+        guard string.numberOfComposedCharacters() == 1 || string == "\r\n" else { return nil }
         // -> Number of String.characters.count and numberOfComposedCharacters are different.
         
         self.string = string
@@ -130,8 +132,12 @@ class CharacterInfo: NSObject {  // TODO: struct?
             }
         }
         self.pictureString = pictureString
+    }
+    
+    
+    var debugDescription: String {
         
-        super.init()
+        return "<\(self): \(self.string)>"
     }
     
     

@@ -31,11 +31,11 @@ import AppKit
 extension NSTextView {
     
     /// calculate visible range
-    var visibleRange: NSRange {  // TODO: make optional
+    var visibleRange: NSRange? {
         
         guard let scrollView = self.enclosingScrollView,
               let layoutManager = self.layoutManager,
-              let textContainer = self.textContainer else { return NotFoundRange }
+              let textContainer = self.textContainer else { return nil }
         
         let containerOrigin = self.textContainerOrigin
         let visibleRect = scrollView.documentVisibleRect.offsetBy(dx: -containerOrigin.x, dy: -containerOrigin.y)
@@ -108,7 +108,6 @@ extension NSTextView {
         let visibleOrigin = NSPoint(x: visibleRect.minX, y: isVertical ? visibleRect.maxY : visibleRect.minY)
         let centerFromClipOrigin = point.offsetBy(dx: -visibleOrigin.x, dy: visibleOrigin.y).scaled(to: currentScale)  // from top-left
         
-        
         self.scale = scale
         
         // adjust scroller to keep position of the glyph at the passed-in center point
@@ -176,7 +175,9 @@ extension NSTextView {
                 self.setLayoutOrientation(.vertical)
             }
             
-            self.scrollRangeToVisible(visibleRange)
+            if let visibleRange = visibleRange {
+                self.scrollRangeToVisible(visibleRange)
+            }
         }
     }
     

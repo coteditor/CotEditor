@@ -41,7 +41,7 @@ private enum ThemeError: ErrorProtocol {
     case invalid
 }
 
-class Theme: NSObject {
+class Theme: NSObject {  // TODO: to struct
     
     // MARK: Public Properties
     
@@ -139,7 +139,7 @@ class Theme: NSObject {
     
     override var debugDescription: String {
         
-        return "Theme<\(self.name)>"
+        return "<Theme: \(self.name)>"
     }
     
     

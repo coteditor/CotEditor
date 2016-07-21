@@ -1,6 +1,6 @@
 /*
  
- NSString+Range.swift
+ String+Range.swift
  
  CotEditor
  https://coteditor.com
@@ -38,12 +38,12 @@ import Foundation
  
  Well, this category is not so useful as you thought.
  */
-extension NSString {
+extension String {
     
     /// convert location/length allowing negative value to valid NSRange.
     func range(location: Int, length: Int) -> NSRange {
         
-        let wholeLength = self.length
+        let wholeLength = self.utf16.count
         
         let newLocation = (location < 0) ? (wholeLength + location) : location
         var newLength = (length < 0) ? (wholeLength - newLocation + length) : length
@@ -72,14 +72,14 @@ extension NSString {
      
      - note: The last line break will be included.
      */
-    func rangeForLine(location: Int, length: Int) -> NSRange {
+    func rangeForLine(location: Int, length: Int) -> NSRange? {
         
-        let wholeLength = self.length
+        let wholeLength = self.utf16.count
         let regex = try! RegularExpression(pattern: "^", options: .anchorsMatchLines)
         let matches = regex.matches(in: self as String, options: [], range: NSRange(location: 0, length: wholeLength))
         let count = matches.count
         
-        guard count > 0 else { return NotFoundRange }
+        guard count > 0 else { return nil }
 
         guard location != 0 else { return NSRange(location: 0, length: 0) }
         
@@ -102,7 +102,7 @@ extension NSString {
             newLength = 1
         }
         
-        guard newLocation > 0 && newLength > 0 else { return NotFoundRange }
+        guard newLocation > 0 && newLength > 0 else { return nil }
         
         let match = matches[newLocation - 1]
         var range = match.range
@@ -111,7 +111,7 @@ extension NSString {
         for _ in 1...newLength {
             guard NSMaxRange(tmpRange) <= wholeLength else { break }
             
-            range = self.lineRange(for: tmpRange)
+            range = (self as NSString).lineRange(for: tmpRange)
             tmpRange.length = range.length + 1
         }
         if wholeLength < NSMaxRange(range) {

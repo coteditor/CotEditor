@@ -60,12 +60,17 @@ extension String {
 }
 
 
-extension NSRange {
+extension NSRange: Equatable {
     
     /// syntax sugar of NSMaxRange
     var max: Int {
         return NSMaxRange(self)
     }
+}
+
+public func ==(lhs: NSRange, rhs: NSRange) -> Bool {
+    
+    return NSEqualRanges(lhs, rhs)
 }
 
 

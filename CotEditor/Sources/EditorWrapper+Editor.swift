@@ -134,10 +134,7 @@ extension EditorWrapper {
         // you can ignore actuall line ending type and directly comunicate with textView, as this handle just lines
         guard let textView = self.focusedTextView, let string = textView.string else { return }
         
-        let range = (string as NSString).rangeForLine(location: location, length: length)
-        
-        
-        guard range.location != NSNotFound else { return }
+        guard let range = string.rangeForLine(location: location, length: length) else { return }
         
         self.selectedRange = range
     }

@@ -28,9 +28,9 @@
 
 import Cocoa
 
-@objc protocol SyntaxStyleDelegate: class {
+protocol SyntaxStyleDelegate: class {
     
-    @objc optional func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]?)
+    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]?)
 }
 
 
@@ -56,7 +56,7 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
                 DispatchQueue.main.async { [weak self] in
                     guard let strongSelf = self else { return }
                     
-                    strongSelf.delegate?.syntaxStyle?(strongSelf, didParseOutline: items)
+                    strongSelf.delegate?.syntaxStyle(strongSelf, didParseOutline: items)
                 }
             }
         }
@@ -299,6 +299,12 @@ func ==(lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
     if let lProp = lhs.pairedQuoteTypes, let rProp = rhs.pairedQuoteTypes, lProp != rProp {
         return false
     } else if !(lhs.pairedQuoteTypes == nil && rhs.pairedQuoteTypes == nil) {
+        return false
+    }
+    
+    if let lProp = lhs.outlineDefinitions, let rProp = rhs.outlineDefinitions, lProp != rProp {
+        return false
+    } else if !(lhs.outlineDefinitions == nil && rhs.outlineDefinitions == nil) {
         return false
     }
     

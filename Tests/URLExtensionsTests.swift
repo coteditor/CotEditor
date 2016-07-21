@@ -32,6 +32,7 @@ import XCTest
 class URLExtensionsTests: XCTestCase {
 
     func testRelativeURLCreation() {
+        
         let url = URL(string: "/foo/bar/file.txt")!
         let baseUrl = URL(string: "/foo/buz/file.txt")!
         

@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class ODBEventSender: NSObject {  // TODO: to struct
+class ODBEventSender {
     
     // MARK: Private Properties
     
@@ -39,7 +39,7 @@ class ODBEventSender: NSObject {  // TODO: to struct
     // MARK:
     // MARK: Lifecycle
     
-    override init() {
+    init() {
         
         let descriptor = NSAppleEventManager.shared().currentAppleEvent
         
@@ -58,8 +58,6 @@ class ODBEventSender: NSObject {  // TODO: to struct
         
         self.fileSender = fileSender
         self.fileToken = (fileSender != nil) ? fileToken : nil
-        
-        super.init()
     }
     
     

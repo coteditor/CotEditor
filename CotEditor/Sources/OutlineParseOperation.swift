@@ -28,7 +28,7 @@
 
 import Foundation
 
-class OutlineDefinition: NSObject {
+struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
     
     let regex: RegularExpression
     let template: String
@@ -66,6 +66,21 @@ class OutlineDefinition: NSObject {
         self.hasUnderline = (definition[CESyntaxUnderlineKey] as? Bool) ?? false
     }
     
+    
+    var debugDescription: String {
+        
+        return "<\(self): \(self.regex.pattern) template: \(self.template)>"
+    }
+    
+}
+
+func ==(lhs: OutlineDefinition, rhs: OutlineDefinition) -> Bool {
+    
+    return lhs.regex == rhs.regex &&
+        lhs.template == rhs.template &&
+        lhs.isBold == rhs.isBold &&
+        lhs.isItalic == rhs.isItalic &&
+        lhs.hasUnderline == rhs.hasUnderline
 }
 
 
