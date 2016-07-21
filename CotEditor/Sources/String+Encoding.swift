@@ -116,19 +116,17 @@ extension String {
                     self = string
                     return
                 }
-            }
-            
+                
             // check UTF-32 BOM
-            if data.starts(with: UTF32.beBom) || data.starts(with: UTF32.leBom) {
+            } else if data.starts(with: UTF32.beBom) || data.starts(with: UTF32.leBom) {
                 if let string = String(data: data, encoding: .utf32) {
                     usedEncoding = .utf32
                     self = string
                     return
                 }
-            }
-            
+                
             // check UTF-32 BOM
-            if data.starts(with: UTF16.beBom) || data.starts(with: UTF16.leBom) {
+            } else if data.starts(with: UTF16.beBom) || data.starts(with: UTF16.leBom) {
                 if let string = String(data: data, encoding: .utf16) {
                     usedEncoding = .utf16
                     self = string

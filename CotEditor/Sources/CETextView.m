@@ -33,6 +33,7 @@
 #import "CEDefaults.h"
 #import "Constants.h"
 
+#import "NSString+CENewLine.h"
 #import "NSString+CECounting.h"
 #import "NSString+Indentation.h"
 #import "NSFont+CESize.h"

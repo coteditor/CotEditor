@@ -16,7 +16,6 @@
 #import "NSColor+WFColorCode.h"
 
 // String Extensions Tests
-#import "NSString+CENewLine.h"
 #import "NSString+CECounting.h"
 
 // Indentation Tests

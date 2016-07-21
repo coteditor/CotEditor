@@ -32,6 +32,7 @@ import XCTest
 class StringExtensionsTests: XCTestCase {
     
     func testCharacterEscape() {
+        
         let string = "a\\a\\\\aa"
         
         XCTAssertFalse(string.isCharacterEscaped(at: 0))
@@ -41,6 +42,7 @@ class StringExtensionsTests: XCTestCase {
     
     
     func testComposedCharactersCount() {
+        
         XCTAssertEqual("foo".numberOfComposedCharacters(), 3)
         XCTAssertEqual("😀🇯🇵a".numberOfComposedCharacters(), 3)
         
@@ -50,6 +52,7 @@ class StringExtensionsTests: XCTestCase {
     
     
     func testWordsCount() {
+        
         XCTAssertEqual("Clarus says moof!".numberOfWords(), 3)
         XCTAssertEqual("plain-text".numberOfWords(), 2)
         XCTAssertEqual("!".numberOfWords(), 0)
@@ -58,6 +61,7 @@ class StringExtensionsTests: XCTestCase {
     
     
     func testLinesCount() {
+        
         XCTAssertEqual("".numberOfLines(), 0)
         XCTAssertEqual("a".numberOfLines(), 1)
         XCTAssertEqual("\n".numberOfLines(), 1)
@@ -83,6 +87,7 @@ class StringExtensionsTests: XCTestCase {
     
     
     func testJapaneseTransform() {
+        
         let testString = "犬 イヌ いぬ Ｉｎｕ Dog"
         
         XCTAssertEqual(testString.fullWidthRoman, "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ")
@@ -92,36 +97,8 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
-    func testNewLine() {
-        // new line string
-        XCTAssertEqual(NSString.newLineString(with: .LF), "\n")
-        XCTAssertEqual(NSString.newLineString(with: .CRLF), "\r\n")
-        XCTAssertEqual(NSString.newLineString(with: .paragraphSeparator), "\u{2029}")
-        
-        // new line name
-        XCTAssertEqual(NSString.newLineName(with: .LF), "LF")
-        XCTAssertEqual(NSString.newLineName(with: .CRLF), "CR/LF")
-        XCTAssertEqual(NSString.newLineName(with: .paragraphSeparator), "PS")
-        
-        // new line detection
-        XCTAssertEqual("".detectNewLineType(), CENewLineType.none)
-        XCTAssertEqual("a".detectNewLineType(), CENewLineType.none)
-        XCTAssertEqual("\n".detectNewLineType(), CENewLineType.LF)
-        XCTAssertEqual("\r".detectNewLineType(), CENewLineType.CR)
-        XCTAssertEqual("\r\n".detectNewLineType(), CENewLineType.CRLF)
-        XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectNewLineType(), CENewLineType.CRLF)  // just check the first new line
-        
-        // new line replacement
-        XCTAssertEqual("foo\nbar".deletingNewLineCharacters(), "foobar")
-        XCTAssertEqual("foo\r\nbar".replacingNewLineCharacers(with: .CR), "foo\rbar")
-        
-        // range conversion
-        XCTAssertTrue(NSEqualRanges("a\nb\nc".convert(NSMakeRange(2, 2), from:.LF, to:.CRLF), NSMakeRange(3, 3)))
-        XCTAssertTrue(NSEqualRanges("a\r\nb\r\nc".convert(NSMakeRange(3, 3), from:.none, to:.LF), NSMakeRange(2, 2)))
-    }
-    
-    
     func testRange() {
+        
         let testString = "0123456789" as NSString
         
         XCTAssertTrue(NSEqualRanges(testString.range(location: 2, length: 2), NSMakeRange(2, 2)))
