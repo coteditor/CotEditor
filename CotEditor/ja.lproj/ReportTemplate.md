@@ -6,7 +6,7 @@
 ## 環境 
 
 - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
-- システム: OS X %SYSTEM_VERSION%
+- システム: macOS %SYSTEM_VERSION%
 - 言語環境: 日本語
 
 

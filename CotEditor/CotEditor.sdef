@@ -12,7 +12,7 @@
         </enumeration>
         
         <enumeration name="line ending character" code="lend">
-            <enumerator name="LF" code="leLF" description="OS X / Unix (LF)"/>
+            <enumerator name="LF" code="leLF" description="macOS / Unix (LF)"/>
             <enumerator name="CR" code="leCR" description="Classic Mac OS (CR)"/>
             <enumerator name="CRLF" code="leCL" description="Windows (CR/LF)"/>
         </enumeration>
