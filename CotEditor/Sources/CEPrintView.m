@@ -391,7 +391,7 @@ static NSString *_Nonnull const PageNumberPlaceholder = @"PAGENUM";
         CEPrintPanelAccessoryController *controller = [[[[NSPrintOperation currentOperation] printPanel] accessoryControllers] firstObject];
         [[self syntaxStyle] highlightAllWithCompletionHandler:^ {
             if (![[controller view] isHidden]) {
-                [controller setNeedsPreview:YES];
+                [controller setNeedsUpdatePreview:YES];
             }
         }];
     }

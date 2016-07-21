@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CEPrintPanelAccessoryController">
             <connections>
-                <outlet property="themePopup" destination="585" id="CRd-uY-Fch"/>
+                <outlet property="themePopUp" destination="585" id="IIv-8C-vlI"/>
                 <outlet property="view" destination="196" id="5dt-Bk-3DO"/>
             </connections>
         </customObject>
@@ -182,6 +181,14 @@
                         </segments>
                     </segmentedCell>
                     <connections>
+                        <binding destination="-2" name="enabled2" keyPath="primaryHeaderContent" previousBinding="P6q-iK-XAR" id="EzE-pI-SV1">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="selectedIndex" keyPath="primaryHeaderAlignment" id="fjA-81-DWA"/>
                         <binding destination="-2" name="enabled" keyPath="printsHeader" id="P6q-iK-XAR"/>
                     </connections>
@@ -199,6 +206,14 @@
                         </segments>
                     </segmentedCell>
                     <connections>
+                        <binding destination="-2" name="enabled2" keyPath="primaryFooterContent" previousBinding="vpb-1X-X1v" id="P7R-qe-YtO">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="selectedIndex" keyPath="primaryFooterAlignment" id="RPe-D1-hln"/>
                         <binding destination="-2" name="enabled" keyPath="printsFooter" id="vpb-1X-X1v"/>
                     </connections>
@@ -216,6 +231,14 @@
                         </segments>
                     </segmentedCell>
                     <connections>
+                        <binding destination="-2" name="enabled2" keyPath="secondaryHeaderContent" previousBinding="uIW-VB-xZa" id="Aog-1C-i8I">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="enabled" keyPath="printsHeader" id="uIW-VB-xZa"/>
                         <binding destination="-2" name="selectedIndex" keyPath="secondaryHeaderAlignment" id="eR4-Jf-JBc"/>
                     </connections>
@@ -233,6 +256,14 @@
                         </segments>
                     </segmentedCell>
                     <connections>
+                        <binding destination="-2" name="enabled2" keyPath="secondaryFooterContent" previousBinding="vV0-JQ-TdN" id="9FT-Lr-TJh">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="-2" name="enabled" keyPath="printsFooter" id="vV0-JQ-TdN"/>
                         <binding destination="-2" name="selectedIndex" keyPath="secondaryFooterAlignment" id="FeU-ej-Qw8"/>
                     </connections>

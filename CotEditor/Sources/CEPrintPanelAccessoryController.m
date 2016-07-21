@@ -50,7 +50,7 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
 
 @interface CEPrintPanelAccessoryController ()
 
-@property (nonatomic, nullable) IBOutlet NSPopUpButton *themePopup;
+@property (nonatomic, nullable) IBOutlet NSPopUpButton *themePopUp;
 
 
 @property (nonatomic, nullable, copy) NSString *theme;
@@ -155,7 +155,7 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
                                  @"primaryFooterContent",
                                  @"secondaryFooterAlignment",
                                  @"secondaryFooterContent",
-                                 @"needsPreview",
+                                 @"needsUpdatePreview",
                                  ]];
 }
 
@@ -293,26 +293,26 @@ NSString *_Nonnull const CESecondaryFooterAlignmentKey = @"CESecondaryFooterAlig
 - (void)updateThemeList
 // ------------------------------------------------------
 {
-    [[self themePopup] removeAllItems];
+    [[self themePopUp] removeAllItems];
     
-    [[self themePopup] addItemWithTitle:NSLocalizedString(@"Black and White", nil)];
+    [[self themePopUp] addItemWithTitle:NSLocalizedString(@"Black and White", nil)];
     
-    [[[self themePopup] menu] addItem:[NSMenuItem separatorItem]];
+    [[[self themePopUp] menu] addItem:[NSMenuItem separatorItem]];
     
-    [[self themePopup] addItemWithTitle:NSLocalizedString(@"Theme", nil)];
-    [[[self themePopup] itemWithTitle:NSLocalizedString(@"Theme", nil)] setAction:nil];
+    [[self themePopUp] addItemWithTitle:NSLocalizedString(@"Theme", nil)];
+    [[[self themePopUp] itemWithTitle:NSLocalizedString(@"Theme", nil)] setAction:nil];
     
     NSArray<NSString *> *themeNames = [[ThemeManager shared] themeNames];
     for (NSString *themeName in themeNames) {
-        [[self themePopup] addItemWithTitle:themeName];
-        [[[self themePopup] lastItem] setIndentationLevel:1];
+        [[self themePopUp] addItemWithTitle:themeName];
+        [[[self themePopUp] lastItem] setIndentationLevel:1];
     }
     
     // 選択すべきテーマがなかったら白黒にする
     if (![themeNames containsObject:[self theme]]) {
-        [[self themePopup] selectItemAtIndex:0];
+        [[self themePopUp] selectItemAtIndex:0];
     } else {
-        [[self themePopup] selectItemWithTitle:[self theme]];
+        [[self themePopUp] selectItemWithTitle:[self theme]];
     }
 }
 
