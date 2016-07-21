@@ -385,7 +385,7 @@ class LineNumberView: NSRulerView {
     /// return coloring theme
     private var backgroundColor: NSColor {
         
-        let isDarkBackground = (self.textView as? CEThemable)?.theme()?.isDarkTheme ?? false
+        let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
         
         return isDarkBackground ? .white() : .black()
     }

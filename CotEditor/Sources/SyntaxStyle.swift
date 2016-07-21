@@ -577,7 +577,7 @@ extension SyntaxStyle {
         for layoutManager in storage.layoutManagers {
             layoutManager.removeTemporaryAttribute(NSForegroundColorAttributeName, forCharacterRange: highlightRange)
             
-            guard let theme = (layoutManager.firstTextView as? CEThemable)?.theme() else { continue }
+            guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }
             
             for (type, ranges) in highlights {
                 let color = theme.syntaxColor(type: type) ?? theme.textColor

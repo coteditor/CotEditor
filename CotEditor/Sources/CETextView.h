@@ -28,14 +28,16 @@
 
 @import Cocoa;
 #import "NSTextView+CETextReplacement.h"
-#import "CEThemableProtocol.h"
 
 
 // notifications
 extern NSString *_Nonnull const CETextViewDidBecomeFirstResponderNotification;
 
 
-@interface CETextView : NSTextView <CEThemable>
+@class Theme;
+
+
+@interface CETextView : NSTextView
 
 @property (nonatomic) BOOL showsPageGuide;
 @property (nonatomic) BOOL usesAntialias;

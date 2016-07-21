@@ -9,6 +9,7 @@
 #import "NSString+CECounting.h"
 #import "NSString+CENewLine.h"
 #import "NSString+Indentation.h"
+#import "NSString+Sandboxing.h"
 
 #import "CETextFinder.h"
 
@@ -20,9 +21,7 @@
 
 // Document
 #import "CEPrintPanelAccessoryController.h"
-#import "CEPrintView.h"
 #import "NSTextView+CETextReplacement.h"
 
 // Editor View
 #import "CETextView.h"
-#import "CEThemableProtocol.h"

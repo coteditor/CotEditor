@@ -565,7 +565,7 @@ class Document: NSDocument, EncodingHolder {
         let editor = self.editor!
         
         // create printView
-        let printView = CEPrintView()
+        let printView = PrintTextView()
         printView.setLayoutOrientation(editor.focusedTextView?.layoutOrientation ?? .horizontal)
         printView.theme = editor.theme
         printView.documentName = self.displayName

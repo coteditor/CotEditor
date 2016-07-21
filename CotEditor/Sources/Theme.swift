@@ -29,7 +29,7 @@ import Foundation
 import AppKit.NSColor
 
 
-protocol Themable {
+@objc protocol Themable {  // TODO: remove @objc
     
     var theme: Theme? { get }
 }

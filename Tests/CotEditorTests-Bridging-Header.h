@@ -6,7 +6,6 @@
 #import <YAML-Framework/YAMLSerialization.h>
 #import <NSHash/NSString+NSHash.h>
 #import "CESyntaxDictionaryKeys.h"
-#import "CEThemableProtocol.h"
 
 // Character Info Tests
 #import "CEControlCharacerNames.h"

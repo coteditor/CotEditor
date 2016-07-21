@@ -50,7 +50,7 @@ static const CGFloat kTextContainerInsetWidth = 0.0;
 static const CGFloat kTextContainerInsetHeight = 4.0;
 
 
-@interface CETextView ()
+@interface CETextView () <Themable>
 
 @property (nonatomic) CGFloat lineHeight;
 @property (nonatomic) NSColor *highlightLineColor;  // current line background color
