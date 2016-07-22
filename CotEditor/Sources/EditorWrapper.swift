@@ -268,13 +268,16 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
     /// document updated syntax style
     func didChangeSyntaxStyle(_ notification: NSNotification?) {
         
-        guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController],
-            let syntaxStyle = self.syntaxStyle else { return }
+        guard let syntaxStyle = self.syntaxStyle else { return }
         
-        for viewController in childViewControllers {
-            viewController.apply(syntax: syntaxStyle)
-            if syntaxStyle.canParse {
-                viewController.navigationBarController?.showOutlineIndicator()
+        syntaxStyle.delegate = self
+        
+        if let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController]  {
+            for viewController in childViewControllers {
+                viewController.apply(syntax: syntaxStyle)
+                if syntaxStyle.canParse {
+                    viewController.navigationBarController?.showOutlineIndicator()
+                }
             }
         }
         
