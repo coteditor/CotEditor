@@ -37,7 +37,7 @@ let ThemeExtension = "cottheme"
 }
 
 
-class ThemeManager: CESettingFileManager {
+final class ThemeManager: CESettingFileManager {
     
     // MARK: Public Properties
     
@@ -59,7 +59,7 @@ class ThemeManager: CESettingFileManager {
     // MARK:
     // MARK: Lifecycle
     
-    override init() {
+    override private init() {
         
         super.init()
         

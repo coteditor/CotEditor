@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class SnippetKeyBindingManager: KeyBindingManager {
+final class SnippetKeyBindingManager: KeyBindingManager {
     
     // MARK: Public Properties
     
@@ -45,7 +45,7 @@ class SnippetKeyBindingManager: KeyBindingManager {
     // MARK:
     // MARK: Lifecycle
     
-    override init() {
+    override private init() {
         
         _defaultKeyBindingDict = ["$\r": SnippetKeyBindingManager.selectorString(index: 0)]
         self.defaultSnippets = UserDefaults().volatileDomain(forName: UserDefaults.registrationDomain)[DefaultKey.insertCustomTextArray]! as! [String]

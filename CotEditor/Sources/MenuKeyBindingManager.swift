@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class MenuKeyBindingManager: KeyBindingManager {
+final class MenuKeyBindingManager: KeyBindingManager {
     
     // MARK: Public Properties
     
@@ -44,7 +44,7 @@ class MenuKeyBindingManager: KeyBindingManager {
     // MARK:
     // MARK: Lifecycle
     
-    override init() {
+    override private init() {
         
         guard let mainMenu = NSApp.mainMenu else {
             assertionFailure("\(MenuKeyBindingManager.className) should be initialized after MainMenu.xib is loaded.")

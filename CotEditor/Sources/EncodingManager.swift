@@ -37,7 +37,7 @@ import Cocoa
 
 // MARK:
 
-class EncodingManager: NSObject {
+final class EncodingManager: NSObject {
     
     // MARK: Public Properties
     
@@ -57,7 +57,7 @@ class EncodingManager: NSObject {
     // MARK:
     // MARK: Lifecycle
     
-    private override init() {
+    override private init() {
         
         super.init()
         

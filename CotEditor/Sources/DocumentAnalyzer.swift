@@ -85,9 +85,6 @@ class DocumentAnalyzer: NSObject {
     }
     
     
-    private override init() { }
-    
-    
     deinit {
         self.editorInfoUpdateTimer?.invalidate()
     }

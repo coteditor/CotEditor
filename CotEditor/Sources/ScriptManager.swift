@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class ScriptManager: NSObject {
+final class ScriptManager: NSObject {
     
     // MARK: Public Properties
     
@@ -76,7 +76,7 @@ class ScriptManager: NSObject {
     // MARK:
     // MARK: Lifecycle
     
-    override init() {
+    private override init() {
         
         // find Application Scripts folder
         do {

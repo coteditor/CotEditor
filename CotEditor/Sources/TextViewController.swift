@@ -386,7 +386,8 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         
         guard UserDefaults.standard.bool(forKey: DefaultKey.highlightCurrentLine) else { return }
         
-        guard let textView = self.textView,
+        guard
+            let textView = self.textView,
             let layoutManager = textView.layoutManager,
             let textContainer = textView.textContainer,
             let string = textView.string else { return }
