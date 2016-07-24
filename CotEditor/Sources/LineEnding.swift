@@ -40,21 +40,6 @@ enum LineEnding: Character {
     static let characterSet = CharacterSet(charactersIn: "\n\r\u{2028}\u{2029}")
     
     
-    init?(index: Int) {
-        
-        switch index {
-        case 0:
-            self = .LF
-        case 0:
-            self = .CR
-        case 0:
-            self = .CRLF
-        default:
-            return nil
-        }
-    }
-    
-    
     var string: String {
         
         return String(self.rawValue)

@@ -101,7 +101,7 @@ extension Document {
             }
         }
         set (lineEndingChar) {
-            let type: CENewLineType
+            let type: LineEnding
             switch lineEndingChar {
             case OSALineEnding.LF:
                 type = .LF

@@ -124,7 +124,7 @@ class DocumentAnalyzer: NSObject {
         
         self.encoding = String.localizedName(of: document.encoding, withUTF8BOM: document.hasUTF8BOM)
         self.charsetName = String.IANACharSetName(of: document.encoding)
-        self.lineEndings = NSString.newLineName(with: document.lineEnding) as String
+        self.lineEndings = document.lineEnding.name
         
         NotificationCenter.default.post(name: DocumentAnalyzer.DidUpdateModeInfoNotification, object: self)
     }
@@ -185,23 +185,23 @@ class DocumentAnalyzer: NSObject {
                 
                 // count length
                 if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLength) {
-                    let isSingleLineEnding = (NSString.newLineString(with: lineEnding).length == 1)
-                    var tmp = isSingleLineEnding ? string : (string as NSString).replacingNewLineCharacers(with: lineEnding)
+                    let isSingleLineEnding = (String(lineEnding.rawValue).unicodeScalars.count == 1)
+                    var tmp = isSingleLineEnding ? string : string.replacingLineEndings(with: lineEnding)
                     length = tmp.utf16.count
                     
                     if hasSelection {
-                        tmp = isSingleLineEnding ? selectedString : (selectedString as NSString).replacingNewLineCharacers(with: lineEnding)
+                        tmp = isSingleLineEnding ? selectedString : selectedString.replacingLineEndings(with: lineEnding)
                         selectedLength = tmp.utf16.count
                     }
                 }
                 
                 // count characters
                 if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarChars) {
-                    var tmp = countsLineEnding ? string : (string as NSString).deletingNewLineCharacters()
+                    var tmp = countsLineEnding ? string : string.removingLineEndings
                     numberOfChars = (tmp as NSString).numberOfComposedCharacters()
                     
                     if hasSelection {
-                        tmp = countsLineEnding ? selectedString : (selectedString as NSString).deletingNewLineCharacters()
+                        tmp = countsLineEnding ? selectedString : selectedString.removingLineEndings
                         numberOfSelectedChars = (tmp as NSString).numberOfComposedCharacters()
                     }
                 }
@@ -225,7 +225,7 @@ class DocumentAnalyzer: NSObject {
                 // calculate current location
                 if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLocation) {
                     let locString = (string as NSString).substring(to: selectedRange.location)
-                    let tmp = countsLineEnding ? locString : (locString as NSString).deletingNewLineCharacters()
+                    let tmp = countsLineEnding ? locString : locString.removingLineEndings
                     location = (tmp as NSString).numberOfComposedCharacters()
                 }
                 

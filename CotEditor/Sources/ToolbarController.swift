@@ -28,6 +28,40 @@
 
 import Cocoa
 
+extension LineEnding {
+    
+    init?(index: Int) {
+        
+        switch index {
+        case 0:
+            self = .LF
+        case 1:
+            self = .CR
+        case 2:
+            self = .CRLF
+        default:
+            return nil
+        }
+    }
+    
+    
+    var index: Int {
+        switch self {
+        case .LF:
+            return 0
+        case .CR:
+            return 1
+        case .CRLF:
+            return 2
+        default:
+            return -1
+        }
+    }
+    
+}
+
+
+
 class ToolbarController: NSObject {
     
     // MARK: Public Properties
@@ -105,7 +139,7 @@ class ToolbarController: NSObject {
         
         guard let lineEnding = self.document?.lineEnding else { return }
         
-        self.lineEndingPopupButton?.selectItem(withTag: lineEnding.rawValue)
+        self.lineEndingPopupButton?.selectItem(withTag: lineEnding.index)
     }
     
     

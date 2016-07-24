@@ -266,7 +266,6 @@
 		2A6F0DE21B5500E100C2D03C /* NSString+Sandboxing.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AD9625E1B53496500D46C3A /* NSString+Sandboxing.m */; };
 		2A6F0DE51B5500E100C2D03C /* CETextFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A009ACA1A57BA8B00C3D542 /* CETextFinder.m */; };
 		2A6F0DF61B5500E100C2D03C /* NSString+CECounting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+CECounting.m */; };
-		2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
 		2A6FD9D11D38933100A59784 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D01D38933100A59784 /* TextViewController.swift */; };
 		2A6FD9D21D38933100A59784 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D01D38933100A59784 /* TextViewController.swift */; };
 		2A6FD9DA1D38F93100A59784 /* CETextView+Indentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D71D38C94100A59784 /* CETextView+Indentation.swift */; };
@@ -414,9 +413,7 @@
 		2AC2C1D919881543007968CB /* VerticalOrientation_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2AC2C1D719881543007968CB /* VerticalOrientation_On.tiff */; };
 		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
 		2AC71DED1BF0C5B5002E1434 /* NSString+CECounting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB432731915D6AA00835004 /* NSString+CECounting.m */; };
-		2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
 		2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
-		2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
 		2ACDC08B1D171F1E009B72D6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */; };
 		2ACDC08C1D171F1E009B72D6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */; };
@@ -850,8 +847,6 @@
 		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		2AC71DE31BF0BDBC002E1434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AC71DE91BF0C57A002E1434 /* CotEditorTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CotEditorTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		2AC75C061A2AF47E00C7DB0A /* NSString+CENewLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CENewLine.h"; sourceTree = "<group>"; };
-		2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CENewLine.m"; sourceTree = "<group>"; };
 		2ACB538D1A3DFC170040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2ACB538F1A3DFC9E0040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
 		2ACB53911A3DFD390040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
@@ -1374,8 +1369,6 @@
 		2A41CB391C39066F00F9122B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2AC75C061A2AF47E00C7DB0A /* NSString+CENewLine.h */,
-				2AC75C071A2AF47F00C7DB0A /* NSString+CENewLine.m */,
 				2AF47C8419227B2300A48047 /* NSString+CECounting.h */,
 				2AB432731915D6AA00835004 /* NSString+CECounting.m */,
 				2A6415921BD10EF30080358E /* NSString+Indentation.h */,
@@ -2458,7 +2451,6 @@
 				2A9BF3C81D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */,
 				2A6F0DF61B5500E100C2D03C /* NSString+CECounting.m in Sources */,
 				2A5ADE891D216D4900F6CE26 /* NSColor.swift in Sources */,
-				2A6F0DFA1B5500E100C2D03C /* NSString+CENewLine.m in Sources */,
 				2AAD61F91D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2484,7 +2476,6 @@
 				2A54BE2C1D40EB24000816B0 /* LineEndingTexts.swift in Sources */,
 				2AD789D81C31BE32008B746F /* CEControlCharacerNames.m in Sources */,
 				2AA2E01C1BFFA22B0087BDD6 /* CEUnicodeCharacter.m in Sources */,
-				2AC71DEE1BF0C6DD002E1434 /* NSString+CENewLine.m in Sources */,
 				2AC71DED1BF0C5B5002E1434 /* NSString+CECounting.m in Sources */,
 				2AA2E0271C0455180087BDD6 /* NSString+Indentation.m in Sources */,
 			);
@@ -2650,7 +2641,6 @@
 				2ACDC0941D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,
 				2A33D0811D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
 				2AD789D51C31AD81008B746F /* CEControlCharacerNames.m in Sources */,
-				2AC75C081A2AF47F00C7DB0A /* NSString+CENewLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

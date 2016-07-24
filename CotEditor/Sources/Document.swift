@@ -69,7 +69,7 @@ class Document: NSDocument, EncodingHolder {
     let textStorage = NSTextStorage()
     private(set) var encoding: String.Encoding
     private(set) var hasUTF8BOM = false
-    private(set) var lineEnding: CENewLineType
+    private(set) var lineEnding: LineEnding
     private(set) var fileAttributes: [FileAttributeKey: AnyObject]?
     private(set) var syntaxStyle: SyntaxStyle
     
@@ -111,7 +111,7 @@ class Document: NSDocument, EncodingHolder {
         if self.encoding == .utf8 {
             self.hasUTF8BOM = defaults.bool(forKey: DefaultKey.saveUTF8BOM)
         }
-        self.lineEnding = CENewLineType(rawValue: defaults.integer(forKey: DefaultKey.lineEndCharCode)) ?? .LF
+        self.lineEnding = LineEnding(index: defaults.integer(forKey: DefaultKey.lineEndCharCode)) ?? .LF
         self.syntaxStyle = CESyntaxManager.shared().style(withName: defaults.string(forKey: DefaultKey.syntaxStyle)) ?? SyntaxStyle()
         
         // set encoding to read file
@@ -259,8 +259,7 @@ class Document: NSDocument, EncodingHolder {
         self.encoding = usedEncoding
         self.hasUTF8BOM = (usedEncoding == .utf8) && data.hasUTF8BOM
         
-        let lineEnding = (content as NSString).detectNewLineType()
-        if lineEnding != .none {  // keep default if no line endings are found
+        if let lineEnding = content.detectedLineEnding {  // keep default if no line endings are found
             self.lineEnding = lineEnding
         }
         
@@ -278,7 +277,7 @@ class Document: NSDocument, EncodingHolder {
         //       - Document > read(from:ofType:)
         //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
         //       - TextViewController > textView:shouldChangeTextInRange:replacementString:
-        let string = (content as NSString).replacingNewLineCharacers(with: .LF)
+        let string = content.replacingLineEndings(with: .LF)
         
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
         
@@ -772,7 +771,7 @@ class Document: NSDocument, EncodingHolder {
              #selector(changeLineEndingToLF(_:)),
              #selector(changeLineEndingToCR(_:)),
              #selector(changeLineEndingToCRLF(_:)):
-            menuItem.state = (menuItem.tag == self.lineEnding.rawValue) ? NSOnState : NSOffState
+            menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? NSOnState : NSOffState
             
         case #selector(changeSyntaxStyle(_:)):
             let name = self.syntaxStyle.styleName
@@ -813,7 +812,7 @@ class Document: NSDocument, EncodingHolder {
             return NSString(string: editorString) as String  // make sure being immutable
         }
         
-        return (editorString as NSString).replacingNewLineCharacers(with: self.lineEnding)
+        return editorString.replacingLineEndings(with: self.lineEnding)
     }
     
     
@@ -946,14 +945,13 @@ class Document: NSDocument, EncodingHolder {
     
     
     /// change line endings registering process to the undo manager
-    func changeLineEnding(to lineEnding: CENewLineType) {
+    func changeLineEnding(to lineEnding: LineEnding) {
         
         guard lineEnding != self.lineEnding else { return }
         
         // register undo
-        self.undoManager?.prepare(withInvocationTarget: self).changeLineEnding(to: self.lineEnding)
-        self.undoManager?.setActionName(String(format: NSLocalizedString("Line Endings to “%@”", comment: ""),
-                                               NSString.newLineName(with: lineEnding)))
+        self.undoManager?.prepare(withInvocationTarget: self).objcChangeLineEnding(to: String(self.lineEnding.rawValue))
+        self.undoManager?.setActionName(String(format: NSLocalizedString("Line Endings to “%@”", comment: ""), lineEnding.name))
         
         // update line ending
         self.lineEnding = lineEnding
@@ -964,6 +962,13 @@ class Document: NSDocument, EncodingHolder {
         // update UI
         self.analyzer.invalidateModeInfo()
         self.analyzer.invalidateEditorInfo()
+    }
+    
+    
+    /// dummy method for undoManager that can recognize only ObjC-compatible methods...
+    func objcChangeLineEnding(to lineEnding: String) {
+        
+        self.changeLineEnding(to: LineEnding(rawValue: lineEnding.characters.first!)!)
     }
     
     
@@ -1064,7 +1069,7 @@ class Document: NSDocument, EncodingHolder {
         
         guard
             let tag = sender?.tag,
-            let lineEnding = CENewLineType(rawValue: tag) else { return }
+            let lineEnding = LineEnding(index: tag) else { return }
         
         self.changeLineEnding(to: lineEnding)
     }

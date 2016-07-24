@@ -105,7 +105,7 @@ class TextSelection: NSObject {
             var string = editor.substringWithSelection!
             
             // apply line endings
-            string = (string as NSString).replacingNewLineCharacers(with: document.lineEnding)
+            string = string.replacingLineEndings(with: document.lineEnding)
             
             let storage = NSTextStorage(string: string)
             

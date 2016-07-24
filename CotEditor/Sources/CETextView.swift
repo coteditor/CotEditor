@@ -695,12 +695,12 @@ class CETextView: NSTextView, Themable {
         
     let success = super.writeSelection(to: pboard, types: types)
         
-        guard let lineEnding = self.documentLineEnding, (lineEnding == .LF || lineEnding == .none) else { return success }
+        guard let lineEnding = self.documentLineEnding, lineEnding == .LF else { return success }
         
         for type in types {
             guard let string = pboard.string(forType: type) else { continue }
             
-            pboard.setString((string as NSString).replacingNewLineCharacers(with: lineEnding), forType: type)
+            pboard.setString(string.replacingLineEndings(with: lineEnding), forType: type)
         }
         
         return success
@@ -961,7 +961,7 @@ class CETextView: NSTextView, Themable {
         
         var selections = [AttributedString]()
         var propertyList = [NSNumber]()
-        let lineEnding = NSString.newLineString(with: self.documentLineEnding ?? .LF) as String
+        let lineEnding = String((self.documentLineEnding ?? .LF).rawValue)
         
         // substring all selected attributed strings
         let selectedRanges = self.selectedRanges as! [NSRange]
@@ -1050,7 +1050,7 @@ class CETextView: NSTextView, Themable {
         if let documentLineEnding = self.documentLineEnding,
             documentLineEnding != .LF && selectedString.detectedLineEnding == .LF
         {
-            selectedString = (selectedString as NSString).replacingNewLineCharacers(with: documentLineEnding)
+            selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
         }
         
         guard let popoverController = CharacterPopoverController(character: selectedString),
@@ -1089,7 +1089,7 @@ class CETextView: NSTextView, Themable {
     
     
     /// true new line type of document
-    private var documentLineEnding: CENewLineType? {
+    private var documentLineEnding: LineEnding? {
         
         return self.document?.lineEnding
     }

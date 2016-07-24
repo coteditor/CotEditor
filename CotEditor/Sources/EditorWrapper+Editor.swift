@@ -85,14 +85,14 @@ extension EditorWrapper {
         get {
             guard let textView = self.focusedTextView else { return NotFoundRange }
             
-            return (textView.string! as NSString).convert(textView.selectedRange(),
-                                                          from: .LF, to: self.document?.lineEnding ?? .LF)
+            return textView.string!.convert(range: textView.selectedRange(),
+                                            from: .LF, to: self.document?.lineEnding ?? .LF)
         }
         set (selectedRange) {
             guard let textView = self.focusedTextView else { return }
             
-            let range = (textView.string! as NSString).convert(textView.selectedRange(),
-                                                               from: self.document?.lineEnding ?? .LF, to: .LF)
+            let range = textView.string!.convert(range: textView.selectedRange(),
+                                                 from: self.document?.lineEnding ?? .LF, to: .LF)
             
             textView.setSelectedRange(range)
         }
@@ -111,7 +111,7 @@ extension EditorWrapper {
     /// convert minus location/length to NSRange
     func range(location: Int, length: Int) -> NSRange {
         
-        let documentString = (self.string as NSString).replacingNewLineCharacers(with: self.document?.lineEnding ?? .LF)
+        let documentString = self.string.replacingLineEndings(with: self.document?.lineEnding ?? .LF)
         
         return documentString.range(location: location, length: length)
     }

@@ -142,9 +142,8 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // replace all line endings with LF
-        let lineEnding = (replacementString as NSString).detectNewLineType()
-        if lineEnding != .none && lineEnding != .LF {
-            let newString = (replacementString as NSString).replacingNewLineCharacers(with: .LF)
+        if let lineEnding = replacementString.detectedLineEnding, lineEnding != .LF {
+            let newString = replacementString.replacingLineEndings(with: .LF)
             
             textView.replace(with: newString,
                              range: affectedCharRange,

@@ -33,7 +33,6 @@
 #import "CEDefaults.h"
 
 #import "NSTextView+CETextReplacement.h"
-#import "NSString+CENewLine.h"
 
 
 // keys for highlight
@@ -792,7 +791,15 @@ static const NSUInteger kMaxHistorySize = 20;
 - (NSString *)sanitizedFindString
 // ------------------------------------------------------
 {
-    return [[self findString] stringByReplacingNewLineCharacersWith:CENewLineLF];
+    // TODO: ```return self.findString.replacingLineEndings(with: .LF)```
+    
+    NSString *string = [self findString];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\r\\n|[\\n\\r\\u2028\\u2029]"
+                                                                           options:0 error:nil];
+    return [regex stringByReplacingMatchesInString:string
+                                           options:0
+                                             range:NSMakeRange(0, [string length])
+                                      withTemplate:@"\n"];
 }
 
 
