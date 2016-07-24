@@ -22,6 +22,3 @@
 // Document
 #import "CEPrintPanelAccessoryController.h"
 #import "NSTextView+CETextReplacement.h"
-
-// Editor View
-#import "CETextView.h"

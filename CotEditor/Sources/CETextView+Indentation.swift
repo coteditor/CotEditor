@@ -46,7 +46,7 @@ extension CETextView {
         }
         
         // create indent string to prepend
-        let indent = self.isAutoTabExpandEnabled ? String(repeating: Character(" "), count: Int(self.tabWidth)) : "\t"
+        let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: Character(" "), count: Int(self.tabWidth)) : "\t"
         let indentLength = indent.utf16.count
         
         // create shifted string

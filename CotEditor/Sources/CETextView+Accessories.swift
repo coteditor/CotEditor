@@ -74,7 +74,7 @@ extension CETextView: ColorCodeReceiver {
     
     
     /// avoid changing text color by color panel
-    @IBAction override public func changeColor(_ sender: AnyObject?) { }
+    @IBAction override func changeColor(_ sender: AnyObject?) { }
     
     
     

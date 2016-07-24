@@ -107,9 +107,11 @@ class TextViewController: NSViewController, NSTextViewDelegate {
             } else {
                 guard let textView = self.textView else { return }
                 
-                let rect = textView.highlightLineRect
-                textView.highlightLineRect = NSRect()
-                textView.setNeedsDisplay(rect, avoidAdditionalLayout: true)
+                let rect = textView.lineHighlightRect
+                textView.lineHighlightRect = NSRect()
+                if let rect = rect {
+                    textView.setNeedsDisplay(rect, avoidAdditionalLayout: true)
+                }
             }
         }
     }
@@ -243,7 +245,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         //   -> Flag is set in CETextView > `insertCompletion:forPartialWordRange:movement:isFinal:`
         if textView.needsRecompletion {
             textView.needsRecompletion = false
-            textView.complete(afterDelay: 0.05)
+            textView.complete(after: 0.05)
         }
     }
     
@@ -400,13 +402,15 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         rect.size.width = textContainer.containerSize.width - 2 * rect.minX
         rect = rect.offsetBy(dx: textView.textContainerOrigin.x, dy: textView.textContainerOrigin.y)
         
-        guard textView.highlightLineRect != rect else { return }
+        guard textView.lineHighlightRect != rect else { return }
         
         // clear previous highlihght
-        textView.setNeedsDisplay(textView.highlightLineRect, avoidAdditionalLayout: true)
+        if let lineHighlightRect = textView.lineHighlightRect {
+            textView.setNeedsDisplay(lineHighlightRect, avoidAdditionalLayout: true)
+        }
         
         // draw highlight
-        textView.highlightLineRect = rect
+        textView.lineHighlightRect = rect
         textView.setNeedsDisplay(rect, avoidAdditionalLayout: true)
     }
     

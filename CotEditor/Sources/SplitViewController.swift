@@ -56,7 +56,7 @@ class SplitViewController: NSSplitViewController {
         self.invalidateOpenSplitEditorButtons()
         
         // observe focus change
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBecomeFirstResponder), name: .CETextViewDidBecomeFirstResponder, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBecomeFirstResponder), name: CETextView.DidBecomeFirstResponderNotification, object: nil)
     }
     
     

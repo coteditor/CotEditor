@@ -570,7 +570,7 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
     /// toggle if text view expands tab input
     @IBAction func toggleAutoTabExpand(_ sender: AnyObject?) {
         
-        self.isAutoTabExpandEnabled = !(self.focusedTextView?.isAutoTabExpandEnabled ?? false)
+        self.isAutoTabExpandEnabled = !(self.focusedTextView?.isAutomaticTabExpansionEnabled ?? false)
         
     }
     
@@ -759,7 +759,7 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
         
         get {
             if let textView = self.focusedTextView {
-                return textView.isAutoTabExpandEnabled
+                return textView.isAutomaticTabExpansionEnabled
             } else {
                 return UserDefaults.standard.bool(forKey: DefaultKey.autoExpandTab)
             }
@@ -768,7 +768,7 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
         set (isAutoTabExpandEnabled) {
             guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
             for viewController in childViewControllers {
-                viewController.textView?.isAutoTabExpandEnabled = isAutoTabExpandEnabled
+                viewController.textView?.isAutomaticTabExpansionEnabled = isAutoTabExpandEnabled
             }
         }
     }

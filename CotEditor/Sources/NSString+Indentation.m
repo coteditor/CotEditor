@@ -129,7 +129,7 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
 
 // ------------------------------------------------------
 /// detect indent level of line at the location
-- (NSUInteger)indentLevelAtLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth
+- (NSInteger)indentLevelAtLocation:(NSInteger)location tabWidth:(NSInteger)tabWidth
 // ------------------------------------------------------
 {
     if (tabWidth == 0) { return 0; }  // avoid to divide with zero
@@ -147,7 +147,7 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
 
 // ------------------------------------------------------
 /// calculate column number at location in the line expanding tab (\t) character
-- (NSUInteger)columnOfLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth
+- (NSInteger)columnOfLocation:(NSInteger)location tabWidth:(NSInteger)tabWidth
 // ------------------------------------------------------
 {
     NSRange lineRange = [self lineRangeForRange:NSMakeRange(location, 0)];
@@ -164,7 +164,7 @@ static const NSUInteger MAX_DETECTION_LINES = 100;
 
 // ------------------------------------------------------
 /// range of indent characters in line at the location
-- (NSRange)rangeOfIndentAtIndex:(NSUInteger)location
+- (NSRange)rangeOfIndentAtIndex:(NSInteger)location
 // ------------------------------------------------------
 {
     NSRange lineRange = [self lineRangeForRange:NSMakeRange(location, 0)];

@@ -32,7 +32,7 @@ extension CETextView {
     // MARK: View Methods
     
     /// change font size by pinch gesture
-    public override func magnify(with event: NSEvent) {
+    override func magnify(with event: NSEvent) {
         
         if event.phase.contains(.began) {
             self.initialMagnificationScale = self.scale
@@ -65,7 +65,7 @@ extension CETextView {
     
     
     /// reset font size by two-finger double tap
-    public override func smartMagnify(with event: NSEvent) {
+    override func smartMagnify(with event: NSEvent) {
         
         let scale: CGFloat = (self.scale == 1.0) ? 1.5 : 1.0
         let center = self.convert(event.locationInWindow, from: nil)

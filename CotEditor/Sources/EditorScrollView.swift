@@ -53,7 +53,7 @@ class EditorScrollView: NSScrollView {
         
         willSet {
             if let documentView = self.documentView as? NSTextView {
-                documentView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .new, context: nil)
+                documentView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
             }
         }
     }

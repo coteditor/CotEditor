@@ -47,12 +47,12 @@ typedef NS_ENUM(NSInteger, CEIndentStyle) {
 - (nonnull NSString *)stringByStandardizingIndentStyleTo:(CEIndentStyle)indentStyle tabWidth:(NSInteger)tabWidth;
 
 /// detect indent level of line at the location
-- (NSUInteger)indentLevelAtLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth;
+- (NSInteger)indentLevelAtLocation:(NSInteger)location tabWidth:(NSInteger)tabWidth;
 
 /// calculate column number at location in the line expanding tab (\t) character
-- (NSUInteger)columnOfLocation:(NSUInteger)location tabWidth:(NSUInteger)tabWidth;
+- (NSInteger)columnOfLocation:(NSInteger)location tabWidth:(NSInteger)tabWidth;
 
 /// range of indent characters in line at the location
-- (NSRange)rangeOfIndentAtIndex:(NSUInteger)location;
+- (NSRange)rangeOfIndentAtIndex:(NSInteger)location;
 
 @end
