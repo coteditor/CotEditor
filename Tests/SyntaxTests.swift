@@ -80,8 +80,8 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         XCTAssertFalse(style.isNone)
         XCTAssert(style.canParse)
         XCTAssertNil(style.inlineCommentDelimiter)
-        XCTAssertEqual(style.blockCommentDelimiters?["beginDelimiter"], "<!--")
-        XCTAssertEqual(style.blockCommentDelimiters?["endDelimiter"], "-->")
+        XCTAssertEqual(style.blockCommentDelimiters?.begin, "<!--")
+        XCTAssertEqual(style.blockCommentDelimiters?.end, "-->")
     }
     
     

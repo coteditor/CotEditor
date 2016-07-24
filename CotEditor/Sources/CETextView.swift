@@ -48,7 +48,7 @@ class CETextView: NSTextView, Themable {
     var lineHighlightRect: NSRect?
     
     var inlineCommentDelimiter: String?
-    var blockCommentDelimiters: [String: String]?
+    var blockCommentDelimiters: BlockDelimiters?
     
     var firstSyntaxCompletionCharacterSet: CharacterSet?
     var needsRecompletion = false

@@ -103,9 +103,7 @@ extension CETextView {
         if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) {
             new = string.inlineCommentOut(delimiter: delimiter, spacer: spacer, range: targetRange, selectedRange: selectedRange)
             
-        } else if let blockDelimiters = self.blockCommentDelimiters, types.contains(.block) {
-            let delimiters = BlockDelimiters(begin: blockDelimiters[CEBeginDelimiterKey]!, end: blockDelimiters[CEEndDelimiterKey]!)
-            
+        } else if let delimiters = self.blockCommentDelimiters, types.contains(.block) {
             new = string.blockCommentOut(delimiters: delimiters, spacer: spacer, range: targetRange, selectedRange: selectedRange)
         }
         
@@ -130,9 +128,7 @@ extension CETextView {
         let spacer = UserDefaults.standard.bool(forKey: DefaultKey.appendsCommentSpacer) ? " " : ""
         var new: (String, NSRange)?
         
-        if let blockDelimiters = self.blockCommentDelimiters, types.contains(.block) {
-            let delimiters = BlockDelimiters(begin: blockDelimiters[CEBeginDelimiterKey]!, end: blockDelimiters[CEEndDelimiterKey]!)
-            
+        if let delimiters = self.blockCommentDelimiters, types.contains(.block) {
             new = string.blockUncomment(delimiters: delimiters, spacer: spacer, range: targetRange, selectedRange: selectedRange)
         }
         if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) && new == nil {
@@ -160,9 +156,7 @@ extension CETextView {
         
         let target = string.substring(with: targetRange)
         
-        if let blockDelimiters = self.blockCommentDelimiters {
-            let delimiters = BlockDelimiters(begin: blockDelimiters[CEBeginDelimiterKey]!, end: blockDelimiters[CEEndDelimiterKey]!)
-            
+        if let delimiters = self.blockCommentDelimiters {
             if target.hasPrefix(delimiters.begin) && target.hasSuffix(delimiters.end) {
                 return true
             }

@@ -44,7 +44,7 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
     let isNone: Bool
     
     let inlineCommentDelimiter: String?
-    let blockCommentDelimiters: [String: String]?
+    let blockCommentDelimiters: BlockDelimiters?
     
     let completionWords: [String]?  // completion words list
     let firstCompletionCharacterSet: CharacterSet?  // set of the first characters of the completion words
@@ -78,8 +78,6 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
     private var highlightCacheHash: String?  // MD5 hash
     private weak var outlineMenuTimer: Timer?
     
-    private let _blockCommentDelimiters: BlockDelimiters?
-    
     private static let AllAlphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
     
     
@@ -100,7 +98,6 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
             self.isNone = true
             self.inlineCommentDelimiter = nil
             self.blockCommentDelimiters = nil
-            self._blockCommentDelimiters = nil
             self.completionWords = nil
             
             self.hasSyntaxHighlighting = false
@@ -118,8 +115,7 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
         
         // set comment delimiters
         var inlineCommentDelimiter: String?
-        var blockCommentDelimiters: [String: String]?
-        var _blockCommentDelimiters: BlockDelimiters?
+        var blockCommentDelimiters: BlockDelimiters?
         if let delimiters = dictionary[CESyntaxCommentDelimitersKey] as? [String: String] {
             if let delimiter = delimiters[CESyntaxInlineCommentKey], !delimiter.isEmpty {
                 inlineCommentDelimiter = delimiter
@@ -128,15 +124,11 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
                 let endDelimiter = delimiters[CESyntaxEndCommentKey],
                 !beginDelimiter.isEmpty && !endDelimiter.isEmpty
             {
-                blockCommentDelimiters = [CEBeginDelimiterKey: beginDelimiter,
-                                               CEEndDelimiterKey: endDelimiter]
-                
-                _blockCommentDelimiters = BlockDelimiters(begin: beginDelimiter, end: endDelimiter)
+                blockCommentDelimiters = BlockDelimiters(begin: beginDelimiter, end: endDelimiter)
             }
         }
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
-        self._blockCommentDelimiters = _blockCommentDelimiters
         
         // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
         // also check if highlighting definition exists
@@ -294,7 +286,7 @@ func ==(lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
     
     guard lhs.styleName == rhs.styleName &&
         lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&
-        lhs._blockCommentDelimiters == rhs._blockCommentDelimiters else { return false }
+        lhs.blockCommentDelimiters == rhs.blockCommentDelimiters else { return false }
     
     if let lProp = lhs.pairedQuoteTypes, let rProp = rhs.pairedQuoteTypes, lProp != rProp {
         return false
@@ -502,7 +494,7 @@ extension SyntaxStyle {
                                                       simpleWordsCharacterSets: self.simpleWordsCharacterSets,
                                                       pairedQuoteTypes: self.pairedQuoteTypes,
                                                       inlineCommentDelimiter: self.inlineCommentDelimiter,
-                                                      blockCommentDelimiters: self._blockCommentDelimiters)
+                                                      blockCommentDelimiters: self.blockCommentDelimiters)
         operation.string = string
         operation.parseRange = highlightRange
         
