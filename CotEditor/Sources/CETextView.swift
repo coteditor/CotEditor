@@ -1321,7 +1321,7 @@ extension CETextView {
             timer.fireDate = Date(timeIntervalSinceNow: delay)
             
         } else {
-            self.completionTimer = Timer.scheduledTimer(timeInterval: delay, target: self, selector: #selector(completionWithTimer), userInfo: nil, repeats: false)
+            self.completionTimer = Timer.scheduledTimer(timeInterval: delay, target: self, selector: #selector(completion(timer:)), userInfo: nil, repeats: false)
         }
     }
     
@@ -1330,7 +1330,7 @@ extension CETextView {
     // MARK: Private Methods
     
     /// display word completion list
-    func completionWithTimer(_ timer: Timer) {
+    func completion(timer: Timer) {
         
         self.completionTimer?.invalidate()
         

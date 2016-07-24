@@ -29,7 +29,7 @@ import Foundation
 import AppKit.NSColor
 
 
-@objc protocol Themable {  // TODO: remove @objc
+protocol Themable {
     
     var theme: Theme? { get }
 }
@@ -41,7 +41,7 @@ private enum ThemeError: ErrorProtocol {
     case invalid
 }
 
-class Theme: NSObject {  // TODO: to struct
+struct Theme: CustomDebugStringConvertible {
     
     // MARK: Public Properties
     
@@ -74,7 +74,7 @@ class Theme: NSObject {  // TODO: to struct
     // MARK:
     // MARK: Lifecycle
     
-    required init?(dictionary: ThemeDictionary, name: String) {
+    init?(dictionary: ThemeDictionary, name: String) {
         
         guard !name.isEmpty else { return nil }
         
@@ -132,12 +132,10 @@ class Theme: NSObject {  // TODO: to struct
         
         // check if background is dark
         self.isDarkTheme = backgroundColor?.brightnessComponent < textColor?.brightnessComponent
-        
-        super.init()
     }
     
     
-    override var debugDescription: String {
+    var debugDescription: String {
         
         return "<Theme: \(self.name)>"
     }

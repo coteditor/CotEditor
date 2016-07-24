@@ -292,7 +292,7 @@ class DocumentAnalyzer: NSObject {
         } else {
             self.editorInfoUpdateTimer = Timer.scheduledTimer(timeInterval: interval,
                                                               target: self,
-                                                              selector: #selector(updateEditorInfoWithTimer),
+                                                              selector: #selector(updateEditorInfo(timer:)),
                                                               userInfo: nil,
                                                               repeats: false)
         }
@@ -300,7 +300,7 @@ class DocumentAnalyzer: NSObject {
     
     
     /// editor info update timer is fired
-    func updateEditorInfoWithTimer(_ timer: Timer) {
+    func updateEditorInfo(timer: Timer) {
         
         self.editorInfoUpdateTimer?.invalidate()
         self.updateEditorInfo()

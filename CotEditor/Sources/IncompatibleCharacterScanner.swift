@@ -92,7 +92,7 @@ class IncompatibleCharacterScanner: CustomDebugStringConvertible {
         } else {
             self.updateTimer = Timer.scheduledTimer(timeInterval: self.dynamicType.UpdateInterval,
                                                     target: self,
-                                                    selector: #selector(scanWithTimer),
+                                                    selector: #selector(scan(timer:)),
                                                     userInfo: nil, repeats: false)
         }
     }
@@ -116,7 +116,7 @@ class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     // MARK: Private Methods
     
     /// update incompatible chars afer interval
-    @objc func scanWithTimer(_ timer: Timer) {
+    @objc func scan(timer: Timer) {
         
         self.updateTimer?.invalidate()
         self.scan()

@@ -338,7 +338,7 @@ extension SyntaxStyle {
     // MARK: Private Methods
     
     /// parse outline
-    func parseOutline() {
+    @objc func parseOutline() {
         
         self.outlineMenuTimer?.invalidate()
         
