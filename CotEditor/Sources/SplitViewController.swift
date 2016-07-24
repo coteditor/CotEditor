@@ -56,7 +56,7 @@ class SplitViewController: NSSplitViewController {
         self.invalidateOpenSplitEditorButtons()
         
         // observe focus change
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBecomeFirstResponder), name: CETextView.DidBecomeFirstResponderNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBecomeFirstResponder), name: EditorTextView.DidBecomeFirstResponderNotification, object: nil)
     }
     
     
@@ -96,7 +96,7 @@ class SplitViewController: NSSplitViewController {
     /// editor's focus did change
     func textViewDidBecomeFirstResponder(_ notification: Notification) {
         
-        guard let textView = notification.object as? CETextView else { return }
+        guard let textView = notification.object as? EditorTextView else { return }
         
         for viewController in self.childViewControllers as! [EditorViewController] {
             if viewController.textView == textView {

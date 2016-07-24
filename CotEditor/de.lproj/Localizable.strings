@@ -201,7 +201,7 @@
 
 
 
-/* MARK: CETextView */
+/* MARK: EditorTextView */
 // Undo action names
 "Replace Text" = "Text ersetzen";
 "Insert Text" = "Text hinzufügen";

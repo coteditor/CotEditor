@@ -276,7 +276,7 @@ class Document: NSDocument, EncodingHolder {
         //   - File Open:
         //       - Document > read(from:ofType:)
         //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-        //       - TextViewController > textView:shouldChangeTextInRange:replacementString:
+        //       - EditorTextViewController > textView:shouldChangeTextInRange:replacementString:
         let string = content.replacingLineEndings(with: .LF)
         
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)

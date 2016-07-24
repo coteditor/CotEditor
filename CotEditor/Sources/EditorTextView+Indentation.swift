@@ -1,6 +1,6 @@
 /*
  
- CETextView+Indentation.swift
+ EditorTextView+Indentation.swift
  
  CotEditor
  https://coteditor.com
@@ -27,7 +27,7 @@
 
 import Cocoa
 
-extension CETextView {
+extension EditorTextView {
     
     // MARK: Action Messages
     

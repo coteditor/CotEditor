@@ -1,6 +1,6 @@
 /*
  
- TextViewController.swift
+ EditorTextViewController.swift
  
  CotEditor
  https://coteditor.com
@@ -28,10 +28,10 @@
 
 import Cocoa
 
-class TextViewController: NSViewController, NSTextViewDelegate {
+class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Properties
-    @IBOutlet private(set) var textView: CETextView?
+    @IBOutlet private(set) var textView: EditorTextView?
     
     weak var syntaxStyle: SyntaxStyle? {
         didSet {
@@ -130,7 +130,7 @@ class TextViewController: NSViewController, NSTextViewDelegate {
         //   - File Open:
         //       - Document > readFromURL:ofType:error:
         //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-        //       - TextViewController > textView:shouldChangeTextInRange:replacementString:
+        //       - EditorTextViewController > textView:shouldChangeTextInRange:replacementString:
         
         guard let replacementString = replacementString else {  // = only attributes changed
             return true
@@ -238,10 +238,10 @@ class TextViewController: NSViewController, NSTextViewDelegate {
     /// text was edited
     func textDidChange(_ notification: Notification) {
         
-        guard let textView = notification.object as? CETextView else { return }
+        guard let textView = notification.object as? EditorTextView else { return }
         
         // retry completion if needed
-        //   -> Flag is set in CETextView > `insertCompletion:forPartialWordRange:movement:isFinal:`
+        //   -> Flag is set in EditorTextView > `insertCompletion:forPartialWordRange:movement:isFinal:`
         if textView.needsRecompletion {
             textView.needsRecompletion = false
             textView.complete(after: 0.05)

@@ -1,6 +1,6 @@
 /*
  
- CETextView+LineProcessing.m
+ EditorTextView+LineProcessing.m
  
  CotEditor
  http://coteditor.com
@@ -25,10 +25,10 @@
  
  */
 
-#import "CETextView.h"
+@import Cocoa;
 
 
-@implementation CETextView (LineProcessing)
+@implementation EditorTextView (LineProcessing)
 
 #pragma mark Action Messages
 

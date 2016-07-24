@@ -303,7 +303,7 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
     // MARK: Public Methods
     
     /// return textView focused on
-    var focusedTextView: CETextView? {
+    var focusedTextView: EditorTextView? {
         
         return self.splitViewController?.focusedSubviewController?.textView
     }

@@ -1,6 +1,6 @@
 /*
  
- CETextView+Accessories.swift
+ EditorTextView+Accessories.swift
  
  CotEditor
  https://coteditor.com
@@ -27,7 +27,7 @@
 
 import Cocoa
 
-extension CETextView: UnicodeInputReceiver {
+extension EditorTextView: UnicodeInputReceiver {
     
     // MARK: Action Messages
     
@@ -58,7 +58,7 @@ extension CETextView: UnicodeInputReceiver {
 
 
 
-extension CETextView: ColorCodeReceiver {
+extension EditorTextView: ColorCodeReceiver {
     
     // MARK: Action Messages
     

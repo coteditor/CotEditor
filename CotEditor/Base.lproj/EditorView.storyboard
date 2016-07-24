@@ -166,10 +166,10 @@
             </objects>
             <point key="canvasLocation" x="1423" y="-256"/>
         </scene>
-        <!--Text View Controller-->
+        <!--Editor Text View Controller-->
         <scene sceneID="F5v-F6-xnV">
             <objects>
-                <viewController id="u5I-Fh-D97" customClass="TextViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="u5I-Fh-D97" customClass="EditorTextViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <scrollView key="view" identifier="editorScrollView" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="1UU-Ev-81X" customClass="EditorScrollView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -177,7 +177,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView identifier="coreTextView" importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="CETextView" customModule="CotEditor" customModuleProvider="target">
+                                <textView identifier="coreTextView" importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

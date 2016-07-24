@@ -1,6 +1,6 @@
 /*
  
- CETextView+LineProcessing.swift
+ EditorTextView+LineProcessing.swift
  
  CotEditor
  http://coteditor.com
@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension CETextView {
+extension EditorTextView {
     
     // MARK: Action Messages
     

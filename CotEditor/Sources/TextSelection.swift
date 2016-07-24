@@ -345,7 +345,7 @@ class TextSelection: NSObject {
     
     // MARK: Private Methods
     
-    private var textView: CETextView? {
+    private var textView: EditorTextView? {
         
         return self.document?.editor?.focusedTextView
     }

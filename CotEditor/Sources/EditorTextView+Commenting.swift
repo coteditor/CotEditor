@@ -1,6 +1,6 @@
 /*
  
- CETextView+Commenting.swift
+ EditorTextView+Commenting.swift
  
  CotEditor
  https://coteditor.com
@@ -27,7 +27,7 @@
 
 import Cocoa
 
-extension CETextView {
+extension EditorTextView {
     
     // MARK: Options
     

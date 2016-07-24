@@ -38,7 +38,7 @@ class ATSTypesetter: NSATSTypesetter {
         // avoid being line height different by composite font
         //   -> LayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
         //      通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない。
-        //   -> CETextView で、NSParagraphStyle の lineHeightMultiple を設定しても行間は制御できるが、
+        //   -> EditorTextView で、NSParagraphStyle の lineHeightMultiple を設定しても行間は制御できるが、
         //      「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         //      挿入すると行間がズレる」問題が生じる。
         

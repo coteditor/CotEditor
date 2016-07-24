@@ -203,7 +203,7 @@
 
 
 
-/* MARK: CETextView */
+/* MARK: EditorTextView */
 // Undo action names
 "Replace Text" = "テキストを置換";
 "Insert Text" = "テキストを挿入";

@@ -41,7 +41,7 @@ class EditorViewController: NSSplitViewController {
         }
     }
     
-    var textView: CETextView? {
+    var textView: EditorTextView? {
         
         return self.textViewController?.textView
     }
@@ -154,9 +154,9 @@ class EditorViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// split view item to view controller
-    private var textViewController: TextViewController? {
+    private var textViewController: EditorTextViewController? {
         
-        return self.textViewItem?.viewController as? TextViewController
+        return self.textViewItem?.viewController as? EditorTextViewController
     }
     
 }

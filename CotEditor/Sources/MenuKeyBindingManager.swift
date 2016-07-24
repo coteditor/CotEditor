@@ -191,8 +191,8 @@ final class MenuKeyBindingManager: KeyBindingManager {
                  #selector(CESyntaxHolder.changeSyntaxStyle(_:)),
                  #selector(ThemeHolder.changeTheme(_:)),
                  #selector(EditorWrapper.changeTabWidth(_:)),
-                 #selector(CETextView.biggerFont(_:)),
-                 #selector(CETextView.smallerFont(_:)),
+                 #selector(EditorTextView.biggerFont(_:)),
+                 #selector(EditorTextView.smallerFont(_:)),
                  #selector(ScriptManager.launchScript(_:)),
                  #selector(NSWindow.makeKeyAndOrderFront(_:)),
                  #selector(NSApplication.orderFrontCharacterPalette(_:)):  // = "Emoji & Symbols"

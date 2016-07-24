@@ -1,6 +1,6 @@
 /*
  
- CETextView.swift
+ EditorTextView.swift
  
  CotEditor
  https://coteditor.com
@@ -33,7 +33,7 @@ private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 private let AutoBalancedClosingBracketAttributeName = "autoBalancedClosingBracket"
 
 
-class CETextView: NSTextView, Themable {
+class EditorTextView: NSTextView, Themable {
     
     // MARK: Notifications
     
@@ -178,7 +178,7 @@ class CETextView: NSTextView, Themable {
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
-        NotificationCenter.default.post(name: CETextView.DidBecomeFirstResponderNotification, object: self)
+        NotificationCenter.default.post(name: EditorTextView.DidBecomeFirstResponderNotification, object: self)
         
         return super.becomeFirstResponder()
     }
@@ -1224,7 +1224,7 @@ private extension NSTextView {
 
 // MARK: - Word Completion
 
-extension CETextView {
+extension EditorTextView {
     
     // MARK: Text View Methods
     
@@ -1266,7 +1266,7 @@ extension CETextView {
         }
         
         // raise frag to proceed word completion again, if a normal key input is performed during displaying the completion list
-        //   -> The flag will be used in TextViewController > `textDidChange`
+        //   -> The flag will be used in EditorTextViewController > `textDidChange`
         if flag, let event = event, event.type == .keyDown && !event.modifierFlags.contains(.command) {
             let inputChar = event.charactersIgnoringModifiers
             let character = inputChar?.utf16.first
@@ -1350,7 +1350,7 @@ extension CETextView {
 
 // MARK: - Word Selection
 
-extension CETextView {
+extension EditorTextView {
     
     // MARK: Text View Methods
     
