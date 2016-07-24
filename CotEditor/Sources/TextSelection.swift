@@ -154,8 +154,8 @@ class TextSelection: NSObject {
                 let selectedRange = self.document?.editor?.selectedRange,
                 let string = self.document?.string else { return nil }
             
-            let startLine = (string as NSString).lineNumber(at: selectedRange.location)
-            let endLine = (string as NSString).lineNumber(at: selectedRange.max)
+            let startLine = string.lineNumber(at: selectedRange.location)
+            let endLine = string.lineNumber(at: selectedRange.max)
             
             return [NSNumber(value: startLine),
                     NSNumber(value: endLine - startLine + 1)]

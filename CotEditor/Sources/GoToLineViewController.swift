@@ -45,9 +45,9 @@ class GoToLineViewController: NSViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        let string = (self.textView.string as NSString?) ?? ""
+        let string = self.textView.string ?? ""
         let lineNumber = string.lineNumber(at: textView.selectedRange().location)
-        let lineCount = (string.substring(with: textView.selectedRange()) as NSString).numberOfLines()
+        let lineCount = (string as NSString).substring(with: textView.selectedRange()).numberOfLines
         
         self.location = String(lineNumber)
         if lineCount > 1 {

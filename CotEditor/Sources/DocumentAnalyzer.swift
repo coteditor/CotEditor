@@ -198,27 +198,27 @@ class DocumentAnalyzer: NSObject {
                 // count characters
                 if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarChars) {
                     var tmp = countsLineEnding ? string : string.removingLineEndings
-                    numberOfChars = (tmp as NSString).numberOfComposedCharacters()
+                    numberOfChars = tmp.numberOfComposedCharacters
                     
                     if hasSelection {
                         tmp = countsLineEnding ? selectedString : selectedString.removingLineEndings
-                        numberOfSelectedChars = (tmp as NSString).numberOfComposedCharacters()
+                        numberOfSelectedChars = tmp.numberOfComposedCharacters
                     }
                 }
                 
                 // count lines
                 if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLines) {
-                    numberOfLines = (string as NSString).numberOfLines()
+                    numberOfLines = string.numberOfLines
                     if hasSelection {
-                        numberOfSelectedLines = (selectedString as NSString).numberOfLines()
+                        numberOfSelectedLines = selectedString.numberOfLines
                     }
                 }
                 
                 // count words
                 if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarWords) {
-                    numberOfWords = (string as NSString).numberOfWords()
+                    numberOfWords = string.numberOfWords
                     if hasSelection {
-                        numberOfSelectedWords = (selectedString as NSString).numberOfWords()
+                        numberOfSelectedWords = selectedString.numberOfWords
                     }
                 }
                 
@@ -226,12 +226,12 @@ class DocumentAnalyzer: NSObject {
                 if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLocation) {
                     let locString = (string as NSString).substring(to: selectedRange.location)
                     let tmp = countsLineEnding ? locString : locString.removingLineEndings
-                    location = (tmp as NSString).numberOfComposedCharacters()
+                    location = tmp.numberOfComposedCharacters
                 }
                 
                 // calculate current line
                 if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLine) {
-                    line = (string as NSString).lineNumber(at: selectedRange.location)
+                    line = string.lineNumber(at: selectedRange.location)
                     
                 }
                 
@@ -239,7 +239,7 @@ class DocumentAnalyzer: NSObject {
                 if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarColumn) {
                     let lineRange = (string as NSString).lineRange(for: selectedRange)
                     column = selectedRange.location - lineRange.location  // as length
-                    column = (string as NSString).substring(with: NSRange(location: lineRange.location, length: column)).numberOfComposedCharacters()
+                    column = (string as NSString).substring(with: NSRange(location: lineRange.location, length: column)).numberOfComposedCharacters
                 }
                 
                 // unicode

@@ -90,7 +90,7 @@ extension String {
             incompatibles.append(IncompatibleCharacter(character: character,
                                                        convertedCharacter: sanitizedConvertedCharacter,
                                                        location: location,
-                                                       lineNumber: (self as NSString).lineNumber(at: location)))
+                                                       lineNumber: self.lineNumber(at: location)))
         }
         
         return incompatibles

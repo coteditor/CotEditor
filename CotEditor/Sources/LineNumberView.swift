@@ -154,7 +154,7 @@ class LineNumberView: NSRulerView {
         } else {
             if self.needsRecountTotalNumberOfLines {
                 // -> count only if really needed since the line counting is high workload, especially by large document
-                self.totalNumberOfLines = Int(string.numberOfLines(in: string.range, includingLastNewLine: true))
+                self.totalNumberOfLines = (string as String).numberOfLines(in: string.range, includingLastLineEnding: true)
                 self.needsRecountTotalNumberOfLines = false
             }
             
@@ -240,7 +240,7 @@ class LineNumberView: NSRulerView {
         
         // count up lines until visible
         let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
-        var lineNumber = max(string.numberOfLines(in: undisplayedRange, includingLastNewLine: true), 1)  // start with 1
+        var lineNumber = max((string as String).numberOfLines(in: undisplayedRange, includingLastLineEnding: true), 1)  // start with 1
         
         // draw visible line numbers
         var glyphCount = glyphRangeToDraw.location

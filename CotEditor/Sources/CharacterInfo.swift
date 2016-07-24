@@ -77,7 +77,7 @@ class CharacterInfo: CustomDebugStringConvertible {  // TODO: struct?
     
     required init?(string: String) {
         
-        guard string.numberOfComposedCharacters() == 1 || string == "\r\n" else { return nil }
+        guard string.numberOfComposedCharacters == 1 || string == "\r\n" else { return nil }
         // -> Number of String.characters.count and numberOfComposedCharacters are different.
         
         self.string = string

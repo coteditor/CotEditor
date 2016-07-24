@@ -502,7 +502,7 @@ class EditorTextView: NSTextView, Themable {
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if ((self.string as NSString?)?.substring(with: self.selectedRange()) as NSString?)?.numberOfComposedCharacters() == 1 {
+        if (self.string as NSString?)?.substring(with: self.selectedRange()).numberOfComposedCharacters == 1 {
             menu.insertItem(withTitle: NSLocalizedString("Inspect Character", comment: ""),
                             action: #selector(showSelectionInfo(_:)),
                             keyEquivalent: "",
@@ -824,7 +824,7 @@ class EditorTextView: NSTextView, Themable {
             
         case #selector(showSelectionInfo):
             let selection = (self.string as NSString?)?.substring(with: self.selectedRange())
-            return (selection as NSString?)?.numberOfComposedCharacters() == 1
+            return selection?.numberOfComposedCharacters == 1
             
         case #selector(toggleComment):
             let canComment = self.canUncomment(range: self.selectedRange(), partly: false)
