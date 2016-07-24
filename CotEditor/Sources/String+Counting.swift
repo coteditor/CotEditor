@@ -37,7 +37,12 @@ extension String {
         // normalize using NFC
         let string = self.precomposedStringWithCanonicalMapping
         
-        return string.characters.count
+        var count = 0
+        string.enumerateSubstrings(in: string.startIndex..<string.endIndex, options: [.byComposedCharacterSequences, .substringNotRequired]) { (substring, substringRange, enclosingRange, stop) in
+            count += 1
+        }
+        
+        return count
     }
     
     
