@@ -860,7 +860,7 @@ NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification = @"CESyntaxHistor
                            writingItemAtURL:destURL options:0
                                       error:nil byAccessor:^(NSURL *newReadingURL, NSURL *newWritingURL)
      {
-         NSDictionary<NSString *, id> *style = [NSDictionary dictionaryWithContentsOfURL:fileURL];
+         NSDictionary<NSString *, id> *style = [NSDictionary dictionaryWithContentsOfURL:newReadingURL];
          
          if (!style) { return; }
          
@@ -879,7 +879,7 @@ NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification = @"CESyntaxHistor
          NSData *yamlData = [YAMLSerialization YAMLDataWithObject:newStyle
                                                           options:kYAMLWriteOptionSingleDocument
                                                             error:nil];
-         success = [yamlData writeToURL:destURL atomically:YES];
+         success = [yamlData writeToURL:newWritingURL atomically:YES];
      }];
     
     return success;
