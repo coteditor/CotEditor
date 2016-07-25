@@ -52,7 +52,6 @@ class EncodingTableCellView: NSTableCellView {
             
             attrString.enumerateAttribute(NSForegroundColorAttributeName,
                                           in: NSRange(location: 0, length: attrString.length),
-                                          options: [],
                                           using: { (value: AnyObject?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
                                             
                                             let color = value as! NSColor?

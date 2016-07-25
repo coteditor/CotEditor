@@ -202,7 +202,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     /// check acceptability of dragged items and insert them to table
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
         
-        info.enumerateDraggingItems(options: [], for: tableView, classes: [NSURL.self],
+        info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: true,
                                                     NSPasteboardURLReadingContentsConformToTypesKey: [AppInfo.UTType.theme]]) { [weak self]
                                                         (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in

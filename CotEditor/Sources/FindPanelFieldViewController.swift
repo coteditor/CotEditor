@@ -66,8 +66,8 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.updateReplaceHistoryMenu()
         
         // observe default change for the history menus
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.findHistory, options: [], context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.replaceHistory, options: [], context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.findHistory, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.replaceHistory, context: nil)
     }
     
     

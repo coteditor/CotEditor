@@ -290,7 +290,7 @@ extension Document {
             if isRegex {
                 let options: RegularExpression.Options = ignoresCase ? .caseInsensitive : []
                 guard let regex = try? RegularExpression(pattern: searchString, options: options) else { return .no }
-                numberOfReplacements = regex.replaceMatches(in: newWholeString, options: [], range: targetRange, withTemplate: replacementString)
+                numberOfReplacements = regex.replaceMatches(in: newWholeString, range: targetRange, withTemplate: replacementString)
                 
             } else {
                 var options = NSString.CompareOptions()

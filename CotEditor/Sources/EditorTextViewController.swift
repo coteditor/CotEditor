@@ -174,8 +174,8 @@ class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 
             } else {
                 let pattern = "(?:^|\\b|(?<=\\W))" + RegularExpression.escapedPattern(for: particalWord) + "\\w+?(?:$|\\b)"
-                if let regex = try? RegularExpression(pattern: pattern, options: []) {
-                    regex.enumerateMatches(in: string, options: [], range: string.nsRange, using: { (result: TextCheckingResult?, flags, stop) in
+                if let regex = try? RegularExpression(pattern: pattern) {
+                    regex.enumerateMatches(in: string, range: string.nsRange, using: { (result: TextCheckingResult?, flags, stop) in
                         guard let result = result else { return }
                         candidateWords.add((string as NSString).substring(with: result.range))
                     })

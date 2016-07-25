@@ -114,7 +114,7 @@ extension String {
         let regex = try! RegularExpression(pattern: "\\r\\n|[\\n\\r\\u2028\\u2029]")
         let template = lineEnding?.string ?? ""
         
-        return regex.stringByReplacingMatches(in: self, options: [], range: self.nsRange, withTemplate: template)
+        return regex.stringByReplacingMatches(in: self, range: self.nsRange, withTemplate: template)
     }
     
     
