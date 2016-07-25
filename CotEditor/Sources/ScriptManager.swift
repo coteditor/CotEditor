@@ -145,7 +145,7 @@ final class ScriptManager: NSObject {
         let modifierFlags = NSEvent.modifierFlags()
         if modifierFlags == .option {  // open script file in editor if the Option key is pressed
             let identifier = self.AppleScriptExtensions.contains(pathExtension) ? "com.apple.ScriptEditor2" : Bundle.main.bundleIdentifier!
-            guard NSWorkspace.shared().open([fileURL], withAppBundleIdentifier: identifier, options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil) else {
+            guard NSWorkspace.shared().open([fileURL], withAppBundleIdentifier: identifier, additionalEventParamDescriptor: nil, launchIdentifiers: nil) else {
                 // display alert if cannot open/select the script file
                 let message = String(format: NSLocalizedString("The script file “%@” couldn’t be opened.", comment: ""), fileURL)
                 self.showAlert(message: message)
@@ -365,8 +365,8 @@ final class ScriptManager: NSObject {
         var scriptName = (try! url.deletingPathExtension()).lastPathComponent!
         
         // remove the number prefix ordering
-        let regex = try! RegularExpression(pattern: "^[0-9]+\\)", options: [])
-        scriptName = regex.stringByReplacingMatches(in: scriptName, options: [], range: scriptName.nsRange, withTemplate: "")
+        let regex = try! RegularExpression(pattern: "^[0-9]+\\)")
+        scriptName = regex.stringByReplacingMatches(in: scriptName, range: scriptName.nsRange, withTemplate: "")
         
         // remove keyboard shortcut definition
         let specChars = ModifierKey.all.map { $0.keySpecChar }

@@ -62,7 +62,7 @@ class StatusBarController: NSViewController {
         
         // observe change of defaults
         for key in self.dynamicType.observedDefaultKeys {
-            UserDefaults.standard.addObserver(self, forKeyPath: key, options: [], context: nil)
+            UserDefaults.standard.addObserver(self, forKeyPath: key, context: nil)
         }
     }
     

@@ -339,7 +339,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         let appURL = Bundle.main.bundleURL
         
         NSWorkspace.shared().open([appURL], withAppBundleIdentifier: ScriptEditorIdentifier,
-                                  options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+                                  additionalEventParamDescriptor: nil, launchIdentifiers: nil)
     }
     
     

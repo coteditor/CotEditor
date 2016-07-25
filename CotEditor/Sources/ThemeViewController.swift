@@ -163,7 +163,7 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
             for subkey in subdict.allKeys {
                 let keyPath = subkey as! String
                 
-                subdict.addObserver(self, forKeyPath: keyPath, options: [], context: nil)
+                subdict.addObserver(self, forKeyPath: keyPath, context: nil)
             }
         }
     }

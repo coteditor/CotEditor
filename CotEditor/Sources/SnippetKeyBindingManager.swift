@@ -174,8 +174,8 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         guard !selectorString.isEmpty else { return nil }
         
-        let regex = try! RegularExpression(pattern: "^insertCustomText_([0-9]{2}):$", options: [])
-        let result = regex.firstMatch(in: selectorString, options: [], range: selectorString.nsRange)
+        let regex = try! RegularExpression(pattern: "^insertCustomText_([0-9]{2}):$")
+        let result = regex.firstMatch(in: selectorString, range: selectorString.nsRange)
         
         guard let numberRange = result?.range(at: 1), numberRange.location != NSNotFound else { return nil }
         

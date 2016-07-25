@@ -251,7 +251,7 @@ final class ThemeManager: CESettingFileManager {
     /// create ThemeDictionary from a file at the URL
     func themeDictionary(fileURL: URL) -> ThemeDictionary? {
         
-        guard let data = try? Data(contentsOf: fileURL, options: []) else { return nil }
+        guard let data = try? Data(contentsOf: fileURL) else { return nil }
         
         return (try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)) as? ThemeDictionary
     }
