@@ -37,7 +37,7 @@ class StringIndentationTests: XCTestCase {
         
         let string = "\t\tfoo\tbar"
         
-        XCTAssertEqual(string.detectIndentStyle(), CEIndentStyle.notFound)
+        XCTAssertNil(string.detectedIndentStyle)
     }
     
     
@@ -47,12 +47,9 @@ class StringIndentationTests: XCTestCase {
         
         let string = "     foo    bar\n  "
         
-        // NotFound
-        XCTAssertEqual(string.standardizingIndentStyle(to: .notFound, tabWidth: 2), string)
-        
         // spaces to tab
-        XCTAssertEqual(string.standardizingIndentStyle(to: .tab, tabWidth: 2), "\t\t foo    bar\n\t")
-        XCTAssertEqual(string.standardizingIndentStyle(to: .space, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndent(to: .tab, tabWidth: 2), "\t\t foo    bar\n\t")
+        XCTAssertEqual(string.standardizingIndent(to: .space, tabWidth: 2), string)
     }
     
     
@@ -60,34 +57,38 @@ class StringIndentationTests: XCTestCase {
         
         let string = "\t\tfoo\tbar"
         
-        XCTAssertEqual(string.standardizingIndentStyle(to: .space, tabWidth: 2), "    foo\tbar")
-        XCTAssertEqual(string.standardizingIndentStyle(to: .tab, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndent(to: .space, tabWidth: 2), "    foo\tbar")
+        XCTAssertEqual(string.standardizingIndent(to: .tab, tabWidth: 2), string)
     }
     
     
     // MARK: Other Tests
     
-    func testIndentCreation() {
-        
-        XCTAssertEqual(NSString(spaces: 1), " ")
-        XCTAssertEqual(NSString(spaces: 4), "    ")
-    }
-    
-    
     func testIndentLevelDetection() {
         
-        XCTAssertEqual("    foo".indentLevel(atLocation: 0, tabWidth:0), 0)
+        XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth:0), 0)
         
-        XCTAssertEqual("    foo".indentLevel(atLocation: 0, tabWidth:4), 1)
-        XCTAssertEqual("    foo".indentLevel(atLocation: 4, tabWidth:2), 2)
-        XCTAssertEqual("\tfoo".indentLevel(atLocation: 4, tabWidth:2), 1)
+        XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth:4), 1)
+        XCTAssertEqual("    foo".indentLevel(at: 4, tabWidth:2), 2)
+        XCTAssertEqual("\tfoo".indentLevel(at: 4, tabWidth:2), 1)
         
         // tab-space mix
-        XCTAssertEqual("  \t foo".indentLevel(atLocation: 4, tabWidth:2), 2)
-        XCTAssertEqual("   \t foo".indentLevel(atLocation: 4, tabWidth:2), 3)
+        XCTAssertEqual("  \t foo".indentLevel(at: 4, tabWidth:2), 2)
+        XCTAssertEqual("   \t foo".indentLevel(at: 4, tabWidth:2), 3)
         
         // multiline
-        XCTAssertEqual("    foo\n  bar".indentLevel(atLocation: 10, tabWidth:2), 1)
+        XCTAssertEqual("    foo\n  bar".indentLevel(at: 10, tabWidth:2), 1)
     }
 
+}
+
+
+private extension String {
+    
+    func indentLevel(at location: Int, tabWidth: Int) -> Int {
+        
+        let index = self.index(self.startIndex, offsetBy: location)
+        
+        return self.indentLevel(at: index, tabWidth: tabWidth)
+    }
 }

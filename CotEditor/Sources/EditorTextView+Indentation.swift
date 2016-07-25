@@ -46,14 +46,19 @@ extension EditorTextView {
         }
         
         // create indent string to prepend
-        let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: Character(" "), count: Int(self.tabWidth)) : "\t"
+        let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: Character(" "), count: self.tabWidth) : "\t"
         let indentLength = indent.utf16.count
         
         // create shifted string
         var newLines = [String]()
-        (string as NSString).substring(with: lineRange).enumerateLines { (line, stop) in
-            newLines.append(indent + line)
+        if lineRange.length == 0 {
+            newLines = [indent]
+        } else {
+            (string as NSString).substring(with: lineRange).enumerateLines { (line, stop) in
+                newLines.append(indent + line)
+            }
         }
+        
         let newString = newLines.joined(separator: "\n")
         let numberOfLines = newLines.count
         
@@ -92,7 +97,7 @@ extension EditorTextView {
         
         // create shifted string
         var newLines = [String]()
-        let tabWidth = Int(self.tabWidth)
+        let tabWidth = self.tabWidth
         var newSelectedRange = selectedRange
         var didShift = false
         var scanningLineLocation = lineRange.location
@@ -166,7 +171,7 @@ extension EditorTextView {
     // MARK: Private Methods
     
     /// standardize inentation of given ranges
-    private func convertIndentation(style: CEIndentStyle) {
+    private func convertIndentation(style: IndentStyle) {
         
         guard let string = self.string, !string.isEmpty else { return }
         
@@ -182,7 +187,7 @@ extension EditorTextView {
         
         for range in ranges {
             let selectedString = (string as NSString).substring(with: range)
-            let convertedString = (selectedString as NSString).standardizingIndentStyle(to: style, tabWidth: self.tabWidth)
+            let convertedString = selectedString.standardizingIndent(to: style, tabWidth: self.tabWidth)
             
             guard convertedString != selectedString else { continue }  // no need to convert
             

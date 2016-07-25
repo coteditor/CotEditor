@@ -13,6 +13,3 @@
 
 // Theme Tests
 #import "NSColor+WFColorCode.h"
-
-// Indentation Tests
-#import "NSString+Indentation.h"

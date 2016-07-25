@@ -316,16 +316,14 @@ class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegat
             guard let document = document else { return }
             
             // detect indent style
-            if UserDefaults.standard.bool(forKey: DefaultKey.detectsIndentStyle) {
-                let indentStyle = (document.textStorage.string as NSString).detectIndentStyle()
-                
+            if UserDefaults.standard.bool(forKey: DefaultKey.detectsIndentStyle),
+                let indentStyle = document.textStorage.string.detectedIndentStyle
+            {
                 switch indentStyle {
                 case .tab:
                     self.isAutoTabExpandEnabled = false
                 case .space:
                     self.isAutoTabExpandEnabled = true
-                case .notFound:
-                    break
                 }
             }
             

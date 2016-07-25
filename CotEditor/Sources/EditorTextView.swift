@@ -351,11 +351,8 @@ class EditorTextView: NSTextView, Themable {
                 
                 // outdent
                 if precedingIndex != wholeString.startIndex {
-                    let precedingLocation = precedingIndex.samePosition(in: wholeString.utf16).distance(to: wholeString.utf16.startIndex)
-                    let insretionLocation = insretionIndex.samePosition(in: wholeString.utf16).distance(to: wholeString.utf16.startIndex)
-                    
-                    let desiredLevel = (wholeString as NSString).indentLevel(atLocation: precedingLocation, tabWidth: self.tabWidth)
-                    let currentLevel = (wholeString as NSString).indentLevel(atLocation: insretionLocation, tabWidth: self.tabWidth)
+                    let desiredLevel = wholeString.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
+                    let currentLevel = wholeString.indentLevel(at: insretionIndex, tabWidth: self.tabWidth)
                     let levelToReduce = currentLevel - desiredLevel
                     
                     for _ in 0..<levelToReduce {
@@ -380,7 +377,7 @@ class EditorTextView: NSTextView, Themable {
         
         if self.isAutomaticTabExpansionEnabled, let string = self.string {
             let tabWidth = self.tabWidth
-            let column = (string as NSString).column(ofLocation: self.rangeForUserTextChange.location, tabWidth: tabWidth)
+            let column = string.column(of: self.rangeForUserTextChange.location, tabWidth: tabWidth)
             let length = tabWidth - (column % tabWidth)
             let spaces = String(repeating: Character(" "), count: length)
             
@@ -399,7 +396,7 @@ class EditorTextView: NSTextView, Themable {
         }
         
         let selectedRange = self.selectedRange()
-        let indentRange = (string as NSString).rangeOfIndent(at: selectedRange.location)
+        let indentRange = string.rangeOfIndent(at: selectedRange.location)
         
         // don't auto-indent if indent is selected (2008-12-13)
         guard selectedRange != indentRange else {
@@ -460,11 +457,11 @@ class EditorTextView: NSTextView, Themable {
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled {
-            let indentRange = (string as NSString).rangeOfIndent(at: selectedRange.location)
+            let indentRange = string.rangeOfIndent(at: selectedRange.location)
             
             if selectedRange.location <= indentRange.max {
                 let tabWidth = self.tabWidth
-                let column = (string as NSString).column(ofLocation: selectedRange.location, tabWidth: tabWidth)
+                let column = string.column(of: selectedRange.location, tabWidth: tabWidth)
                 let targetLength = tabWidth - (column % tabWidth)
                 
                 if selectedRange.location >= targetLength {
