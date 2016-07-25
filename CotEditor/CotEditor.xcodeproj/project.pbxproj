@@ -3215,7 +3215,6 @@
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -3231,7 +3230,6 @@
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -3246,7 +3244,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = ../Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
@@ -3261,7 +3259,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = ../Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "../Tests/CotEditorTests-Bridging-Header.h";
@@ -3277,7 +3275,6 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
@@ -3292,7 +3289,6 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = "CotEditor-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
