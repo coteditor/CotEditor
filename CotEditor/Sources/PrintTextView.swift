@@ -488,7 +488,7 @@ class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 return self.documentName
             }
             if UserDefaults.standard.bool(forKey: DefaultKey.headerFooterPathAbbreviatingWithTilde) {
-                return (filePath as NSString).abbreviatingWithTildeInSandboxedPath()
+                return filePath.abbreviatingWithTildeInSandboxedPath
             } else {
                 return filePath
             }

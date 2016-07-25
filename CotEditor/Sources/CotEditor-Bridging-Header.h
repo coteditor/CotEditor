@@ -6,8 +6,6 @@
 #import <NSHash/NSString+NSHash.h>
 #import <NSHash/NSData+NSHash.h>
 
-#import "NSString+Sandboxing.h"
-
 #import "CETextFinder.h"
 
 // Syntax Style
