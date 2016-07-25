@@ -55,7 +55,7 @@ extension String {
         guard let tokenizer = CFStringTokenizerCreate(nil, self, range, kCFStringTokenizerUnitWord, nil) else { return 0 }
         
         var count = 0
-        while CFStringTokenizerAdvanceToNextToken(tokenizer) != .none {
+        while CFStringTokenizerAdvanceToNextToken(tokenizer) != [] {
             count += 1
         }
         
