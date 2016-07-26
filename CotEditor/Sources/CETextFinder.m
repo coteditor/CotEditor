@@ -32,8 +32,6 @@
 #import "CEErrors.h"
 #import "CEDefaults.h"
 
-#import "NSTextView+CETextReplacement.h"
-
 
 // keys for highlight
 static NSString * _Nonnull const CEFindHighlightRange = @"range";
@@ -922,9 +920,12 @@ static const NSUInteger kMaxHistorySize = 20;
     }
     
     // apply replacement to text view
-    return [textView replaceWithString:replacedString range:matchedRange
-                         selectedRange:NSMakeRange(matchedRange.location, [replacedString length])
-                            actionName:NSLocalizedString(@"Replace", nil)];
+//    return [textView replaceWithString:replacedString range:matchedRange
+//                         selectedRange:NSMakeRange(matchedRange.location, [replacedString length])  // TODO: use single replacement func
+//                            actionName:NSLocalizedString(@"Replace", nil)];
+    return [textView replaceWithStrings:@[replacedString] ranges:@[[NSValue valueWithRange: matchedRange]]
+                         selectedRanges:@[[NSValue valueWithRange: NSMakeRange(matchedRange.location, [replacedString length])]]
+                                          actionName:NSLocalizedString(@"Replace", nil)];
 }
 
 

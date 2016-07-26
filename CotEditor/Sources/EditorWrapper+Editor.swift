@@ -55,28 +55,28 @@ extension EditorWrapper {
     /// replace selected text with given string and select inserted range
     func insert(string: String) {
         
-        self.focusedTextView?.insertString(string)
+        self.focusedTextView?.insert(string: string)
     }
     
     
     /// insert given string just after current selection and select inserted range
-    func insert(stringAfterSelection string: String) {
+    func insertAfterSelection(string: String) {
         
-        self.focusedTextView?.insertString(afterSelection: string)
+        self.focusedTextView?.insertAfterSelection(string: string)
     }
     
     
     /// swap whole current string with given string and select inserted range
     func replaceAllString(with string: String) {
         
-        self.focusedTextView?.appendString(string)
+        self.focusedTextView?.replaceAllString(with: string)
     }
     
     
     /// append string at the end of the whole string and select inserted range
     func append(string: String) {
         
-        self.focusedTextView?.appendString(string)
+        self.focusedTextView?.append(string: string)
     }
     
     

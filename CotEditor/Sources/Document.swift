@@ -367,7 +367,7 @@ class Document: NSDocument, EncodingHolder {
                     let window = textView.window else { continue }
                 
                 if !keepsEditingPoint || layoutManager.layoutManagerOwnsFirstResponder(in: window) {
-                    textView.trimTrailingWhitespaceKeepingEditingPoint(keepsEditingPoint)
+                    textView.trimTrailingWhitespace(keepingEditingPoint: keepsEditingPoint)
                     break  // trimming once is enough
                 }
             }

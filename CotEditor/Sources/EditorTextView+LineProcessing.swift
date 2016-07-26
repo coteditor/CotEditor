@@ -314,7 +314,7 @@ extension EditorTextView {
     /// trim all trailing whitespace
     @IBAction func trimTrailingWhitespace(_ sender: AnyObject?) {
         
-        self.trimTrailingWhitespaceKeepingEditingPoint(false)
+        self.trimTrailingWhitespace()
     }
     
     

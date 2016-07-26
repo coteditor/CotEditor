@@ -297,7 +297,7 @@ final class ScriptManager: NSObject {
             editor!.replaceAllString(with: output)
             
         case .insertAfterSelection:
-            editor!.insert(stringAfterSelection: output)
+            editor!.insertAfterSelection(string: output)
             
         case .appendToAllText:
             editor!.append(string: output)
