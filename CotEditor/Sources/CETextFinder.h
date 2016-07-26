@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, CETextFinderAction) {
 
 @interface CETextFinder : NSResponder
 
-@property (nonatomic, nullable, weak) IBOutlet id<CETextFinderDelegate> delegate;
+@property (nonatomic, nullable, weak) id<CETextFinderDelegate> delegate;
 
 @property (nonatomic, nonnull, copy) NSString *findString;
 @property (nonatomic, nonnull, copy) NSString *replacementString;

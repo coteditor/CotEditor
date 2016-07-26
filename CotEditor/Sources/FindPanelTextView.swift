@@ -32,7 +32,7 @@ class FindPanelTextView: NSTextView {
     
     // MARK: Private Properties
     
-    @IBOutlet private weak var textFinder: CETextFinder?
+    @IBInspectable var performsActionOnEnter: Bool = false
     
     
     
@@ -94,9 +94,9 @@ class FindPanelTextView: NSTextView {
     /// perform Find Next with return
     override func insertNewline(_ sender: AnyObject?) {
         
-        // -> do nothing if no findpanelController is connected (standard NSTextField behavior)
-        if let textFinder = self.textFinder {
-            textFinder.findNext(self)
+        // perform Find Next in find string field (standard NSTextField behavior)
+        if performsActionOnEnter {
+           CETextFinder.shared().findNext(self)
         }
     }
     

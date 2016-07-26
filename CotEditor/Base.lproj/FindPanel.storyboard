@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -43,11 +43,6 @@
                     </connections>
                 </splitViewController>
                 <customObject id="vTS-S6-K0K" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="Mf6-da-8ab" customClass="CETextFinder">
-                    <connections>
-                        <outlet property="delegate" destination="YRm-Np-TJD" id="0re-kZ-Wfl"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="198" y="659"/>
         </scene>
@@ -55,7 +50,6 @@
         <scene sceneID="1pW-mx-KSL">
             <objects>
                 <customObject id="dAo-9o-oAJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="2B5-jZ-WES" customClass="CETextFinder"/>
                 <userDefaultsController representsSharedInstance="YES" id="gfK-Wq-Lgn"/>
                 <viewController showSeguePresentationStyle="single" id="fdE-8e-ywb" customClass="FindPanelFieldViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="D8F-V7-fpC">
@@ -68,17 +62,18 @@
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView toolTip="Type the text to search for." importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="hxw-DS-gxQ" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
+                                        <textView toolTip="Type the text to search for." importsGraphics="NO" richText="NO" allowsUndo="YES" allowsNonContiguousLayout="YES" id="hxw-DS-gxQ" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="minSize" width="418" height="42"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="418" height="42"/>
-                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="performsActionOnEnter" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <binding destination="2B5-jZ-WES" name="value" keyPath="findString" id="RMK-P4-pYn">
+                                                <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.findString" id="3sL-0v-4Cy">
                                                     <dictionary key="options">
                                                         <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -88,7 +83,6 @@
                                                 </binding>
                                                 <outlet property="delegate" destination="fdE-8e-ywb" id="v4C-dI-JPd"/>
                                                 <outlet property="nextKeyView" destination="qiQ-tb-XCa" id="cvy-Ew-3PD"/>
-                                                <outlet property="textFinder" destination="2B5-jZ-WES" id="D5C-LF-cmy"/>
                                             </connections>
                                         </textView>
                                     </subviews>
@@ -112,17 +106,15 @@
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView toolTip="Type the text to replace the found text." importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="qiQ-tb-XCa" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
+                                        <textView toolTip="Type the text to replace the found text." importsGraphics="NO" richText="NO" allowsUndo="YES" allowsNonContiguousLayout="YES" id="qiQ-tb-XCa" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="minSize" width="418" height="42"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="418" height="42"/>
-                                            <size key="maxSize" width="463" height="10000000"/>
                                             <connections>
-                                                <binding destination="2B5-jZ-WES" name="value" keyPath="replacementString" id="MRv-ox-jgD">
+                                                <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.replacementString" id="VUA-ld-ABD">
                                                     <dictionary key="options">
                                                         <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -410,7 +402,6 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
-                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="4il-pN-ytW">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>

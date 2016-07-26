@@ -43,6 +43,15 @@ class FindPanelContentViewController: NSSplitViewController, CETextFinderDelegat
     // MARK:
     // MARK: Split View Controller Methods
     
+    /// set delegate
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        CETextFinder.shared().delegate = self
+    }
+    
+    
     /// setup UI
     override func viewDidDisappear() {
         
