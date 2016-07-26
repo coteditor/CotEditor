@@ -130,6 +130,9 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         UserDefaults.standard.register(DefaultSettings)
         NSUserDefaultsController.shared().initialValues = DefaultSettings
         
+        // setup text finder (avoid awaking in Interface Builder)
+        let _ = TextFinder.shared
+        
         // register transformers
         ValueTransformer.setValueTransformer(HexColorTransformer(), forName: "HexColorTransformer" as ValueTransformerName)
         
@@ -386,6 +389,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         document.makeWindowControllers()
         document.showWindows()
     }
+    
     
     
     // MARK: Private Methods

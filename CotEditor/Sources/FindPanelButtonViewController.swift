@@ -75,9 +75,9 @@ class FindPanelButtonViewController: NSViewController {
         
         // perform "Replace & Find" instead of "Replace"
         if UserDefaults.standard.bool(forKey: DefaultKey.findNextAfterReplace) {
-            CETextFinder.shared().replaceAndFind(sender)
+            TextFinder.shared.replaceAndFind(sender)
         } else {
-            CETextFinder.shared().replace(sender)
+            TextFinder.shared.replace(sender)
         }
     }
     
@@ -89,9 +89,9 @@ class FindPanelButtonViewController: NSViewController {
         
         switch segmentedControl.selectedSegment {
         case 0:
-            CETextFinder.shared().findPrevious(sender)
+            TextFinder.shared.findPrevious(sender)
         case 1:
-            CETextFinder.shared().findNext(sender)
+            TextFinder.shared.findNext(sender)
         default:
             break
         }

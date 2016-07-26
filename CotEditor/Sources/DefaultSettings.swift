@@ -211,12 +211,26 @@ let DefaultSettings: [DefaultKey: AnyObject] = [
     .secondaryFooterContent: PrintInfoType.pageNumber.rawValue,
     .secondaryFooterAlignment: AlignmentType.center.rawValue,
     
+    // ------ text finder ------
+    .findHistory: [],
+    .replaceHistory: [],
+    .findUsesRegularExpression: false,
+    .findInSelection: false,
+    .findIsWrap: true,
+    .findNextAfterReplace: true,
+    .findClosesIndicatorWhenDone: true,
+    .findIgnoresCase: false,
+    .findTextIsLiteralSearch: false,
+    .findTextIgnoresDiacriticMarks: false,
+    .findTextIgnoresWidth: false,
+    .findRegexIsSingleline: false,
+    .findRegexIsMultiline: true,
+    .findRegexUsesUnicodeBoundaries: false,
+    
     // ------ settings not in preferences window ------
     .colorCodeType: 1,
     .sidebarWidth: 220,
     .recentStyleNames: [],
-    
-    // settings for find panel are register in CETextFinder
     
     // ------ hidden settings ------
     .usesTextFontForInvisibles: false,

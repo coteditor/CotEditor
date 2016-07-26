@@ -871,7 +871,7 @@ CA
                             </menuItem>
                             <menuItem title="Jump to Selection" tag="6" keyEquivalent="j" id="p4A-mE-Ve3">
                                 <connections>
-                                    <action selector="centerSelectionInVisibleArea:" target="289" id="MVE-2w-HCv"/>
+                                    <action selector="centerSelectionInVisibleArea:" target="-1" id="BFc-Rc-aye"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="RmP-uk-9Kf">
@@ -1092,7 +1092,6 @@ CA
                 <outlet property="themesMenu" destination="165-HJ-Xty" id="0gf-6L-bfk"/>
             </connections>
         </customObject>
-        <customObject id="289" customClass="CETextFinder"/>
         <customObject id="329" customClass="DocumentController" customModule="CotEditor" customModuleProvider="target"/>
         <customObject id="432" customClass="NSFontManager"/>
     </objects>

@@ -111,7 +111,6 @@ extension NSTextView {
     
     
     /// perform multiple text replacements
-    @objc(replaceWithStrings:ranges:selectedRanges:actionName:)
     @discardableResult
     func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String?) -> Bool {
         

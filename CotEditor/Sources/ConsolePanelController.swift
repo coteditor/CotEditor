@@ -117,7 +117,7 @@ class ConsolePanelController: NSWindowController {
 // MARK:
 // MARK: TextFinder Support
 
-/// Map find actions to NSTextFinder, since find action key bindings are configured for CETextFinder.
+/// Map find actions to NSTextFinder, since find action key bindings are configured for TextFinder.
 extension ConsolePanelController {
     
     /// bridge find action to NSTextFinder

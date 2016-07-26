@@ -31,7 +31,7 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private dynamic let textFinder = CETextFinder.shared()
+    private dynamic let textFinder = TextFinder.shared
     
     private dynamic var resultMessage: String?  // binding
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
@@ -146,7 +146,7 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         guard let string = sender?.representedObject as? String else { return }
         
-        CETextFinder.shared().findString = string
+        TextFinder.shared.findString = string
     }
     
     
@@ -155,7 +155,7 @@ class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         guard let string = sender?.representedObject as? String else { return }
         
-        CETextFinder.shared().replacementString = string
+        TextFinder.shared.replacementString = string
     }
     
     

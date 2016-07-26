@@ -6,8 +6,6 @@
 #import <NSHash/NSString+NSHash.h>
 #import <NSHash/NSData+NSHash.h>
 
-#import "CETextFinder.h"
-
 // Syntax Style
 #import "CESyntaxManager.h"
 #import "CESyntaxDictionaryKeys.h"

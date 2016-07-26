@@ -51,13 +51,13 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
     
     private(set) var outlineItems: [OutlineItem]? {
         didSet {
+            guard let items = self.outlineItems else { return }
+            
             // inform delegate about outline items update
-            if let items = self.outlineItems {
-                DispatchQueue.main.async { [weak self] in
-                    guard let strongSelf = self else { return }
-                    
-                    strongSelf.delegate?.syntaxStyle(strongSelf, didParseOutline: items)
-                }
+            DispatchQueue.main.async { [weak self] in
+                guard let strongSelf = self else { return }
+                
+                strongSelf.delegate?.syntaxStyle(strongSelf, didParseOutline: items)
             }
         }
     }

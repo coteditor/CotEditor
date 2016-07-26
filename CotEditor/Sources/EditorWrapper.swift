@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class EditorWrapper: NSResponder, CETextFinderClientProvider, SyntaxStyleDelegate, NSTextStorageDelegate {
+class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDelegate, NSTextStorageDelegate {
     
     // MARK: Private Properties
     

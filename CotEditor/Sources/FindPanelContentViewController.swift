@@ -29,7 +29,7 @@ import Cocoa
 
 private let DefaultResultViewHeight: CGFloat = 200.0
 
-class FindPanelContentViewController: NSSplitViewController, CETextFinderDelegate {
+class FindPanelContentViewController: NSSplitViewController, TextFinderDelegate {
     
     // MARK: Private Properties
     
@@ -48,7 +48,7 @@ class FindPanelContentViewController: NSSplitViewController, CETextFinderDelegat
         
         super.viewDidLoad()
         
-        CETextFinder.shared().delegate = self
+        TextFinder.shared.delegate = self
     }
     
     
@@ -87,7 +87,7 @@ class FindPanelContentViewController: NSSplitViewController, CETextFinderDelegat
     // MARK: TextFinder Delegate
     
     /// complemention notification for "Find All"
-    func textFinder(_ textFinder: CETextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView) {
+    func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView) {
         
         // set to result table
         self.fieldViewController?.updateResultCount(results.count, target: textView)
@@ -99,7 +99,7 @@ class FindPanelContentViewController: NSSplitViewController, CETextFinderDelegat
     
     
     /// recieve number of found
-    func textFinder(_ textFinder: CETextFinder, didFound numberOfFound: Int, textView: NSTextView) {
+    func textFinder(_ textFinder: TextFinder, didFound numberOfFound: Int, textView: NSTextView) {
         
         self.fieldViewController?.updateResultCount(numberOfFound, target: textView)
     }

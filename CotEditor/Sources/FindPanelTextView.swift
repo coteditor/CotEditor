@@ -96,7 +96,7 @@ class FindPanelTextView: NSTextView {
         
         // perform Find Next in find string field (standard NSTextField behavior)
         if performsActionOnEnter {
-           CETextFinder.shared().findNext(self)
+           TextFinder.shared.findNext(self)
         }
     }
     
