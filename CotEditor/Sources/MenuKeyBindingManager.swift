@@ -89,14 +89,12 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     /// save passed-in key binding settings
-    override func saveKeyBindings(outlineTree: [NSTreeNode]) -> Bool {
+    override func saveKeyBindings(outlineTree: [NSTreeNode]) throws {
         
-        let success = super.saveKeyBindings(outlineTree: outlineTree)
+        try super.saveKeyBindings(outlineTree: outlineTree)
         
         // apply new settings to the menu
         self.applyKeyBindingsToMainMenu()
-        
-        return success
     }
     
     

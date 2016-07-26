@@ -195,7 +195,7 @@ class StatusBarController: NSViewController {
             status.appendFormattedState(value: info.lineEndings, label: nil)
         }
         if defaults.bool(forKey: DefaultKey.showStatusBarFileSize) {
-            let fileSize = self.byteCountFormatter.string(for: info.fileSize)  // TODO: Int64?
+            let fileSize = self.byteCountFormatter.string(for: info.fileSize)
             status.appendFormattedState(value: fileSize, label: nil)
         }
         

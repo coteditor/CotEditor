@@ -98,11 +98,12 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
     
     
     /// save passed-in key binding settings
-    @discardableResult
-    func saveKeyBindings(outlineTree: [NSTreeNode]) -> Bool {  // TODO: throw
+    func saveKeyBindings(outlineTree: [NSTreeNode]) throws {
         
         // create directory to save in user domain if not yet exist
-        guard self.prepareUserSettingDirectory() else { return false }
+        guard self.prepareUserSettingDirectory() else {
+            throw NSError(domain: NSCocoaErrorDomain, code: NSFileWriteUnknownError, userInfo: [:])
+        }
         
         let plistDict = self.keyBindingDictionary(from: outlineTree)
         let fileURL = self.keyBindingSettingFileURL
@@ -110,23 +111,14 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
         // write to file
         if plistDict == self.defaultKeyBindingDict {
             // just remove setting file if the new setting is exactly the same as the default
-            do {
-                try FileManager.default.removeItem(at: fileURL)
-            } catch let error as NSError {
-                print("Error on saving keybindings setting file: " + error.description)
-                return false
-            }
+            try FileManager.default.removeItem(at: fileURL)
         } else {
-            guard (plistDict as NSDictionary).write(to: fileURL, atomically: true) else {  // TODO: save plist saving
-                print("Error on saving keybindings setting file.")
-                return false
-            }
+            let data = try PropertyListSerialization.data(fromPropertyList: plistDict, format: .xml, options: 0)
+            try data.write(to: fileURL, options: .atomic)
         }
         
         // store new values
         self.keyBindingDict = plistDict
-        
-        return true
     }
     
     
@@ -171,7 +163,7 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
         var dictionary = [String: String]()
         
         for node in outlineTree {
-            if let children = node.children {
+            if let children = node.children, !children.isEmpty {
                 for (key, value) in self.keyBindingDictionary(from: children) {
                     dictionary[key] = value
                 }

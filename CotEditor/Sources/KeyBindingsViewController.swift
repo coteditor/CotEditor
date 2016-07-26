@@ -256,7 +256,12 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// save current settings
     private func saveSettings() {
         
-        self.manager.saveKeyBindings(outlineTree: self.outlineTree)
+        do {
+            try self.manager.saveKeyBindings(outlineTree: self.outlineTree)
+        } catch let error as NSError {
+            Swift.print(error)
+        }
+        
         self.restoreble = !self.manager.usesDefaultKeyBindings
     }
     
