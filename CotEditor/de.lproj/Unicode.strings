@@ -179,7 +179,7 @@
 "Samaritan" = "Samaritanisch";
 "Old Italic" = "Altitalienisch";
 "CJK Symbols and Punctuation" = "CJK Symbole und Satzzeichen";
-"Half-width and Full-width Forms" = "ASCII-Zeichen";
+"Halfwidth and Fullwidth Forms" = "ASCII-Zeichen";  // Half-width -> halfwidth
 "Kangxi Radicals" = "Kangxi Radikale";
 "Buginese" = "Buginesisch";
 "Phoenician" = "Phönizisch";
@@ -254,7 +254,8 @@
 "Gujarati" = "Gujarati";
 "Tai Xuan Jing Symbols" = "Tai Xuan Jing Symbole";
 "Kana Supplement" = "Ergänzungen zu Kana";
-"Unknown block" = "Unknown block";  // FIXME: added
+
+"No Block" = "Kein Block";
 
 // Unicode category names
-"Unknown category" = "Unknown category";  // FIXME: added
+"No Category" = "Keine Kategorie";

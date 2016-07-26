@@ -28,7 +28,6 @@
 import Foundation
 import ICU
 
-
 extension UnicodeScalar {
     
     /// initialize only if code point is in valid range for a UnicodeScalar
@@ -50,6 +49,17 @@ extension UnicodeScalar {
     }
     
     
+    /// code point pair in UTF-16 surrogate pair
+    var surrogateCodePoints: [String]? {
+        
+        guard self.isSurrogatePair else { return nil }
+        
+        return [String(format: "U+%04X", UTF16.leadSurrogate(self)),
+                String(format: "U+%04X", UTF16.trailSurrogate(self))]
+    }
+    
+    
+    /// if character becomes a surrogate pair in UTF-16
     var isSurrogatePair: Bool {
         
         return (UTF16.width(self) == 2)
@@ -74,6 +84,15 @@ extension UnicodeScalar {
     var blockName: String? {
         
         return UTF32Char(self.value).blockName
+    }
+    
+    
+    /// Localized and sanitized unicode block name
+    var localizedBlockName: String? {
+        
+        guard let blockName = self.blockName else { return nil }
+        
+        return NSLocalizedString(sanitize(blockName: blockName), tableName: "Unicode", comment: "")
     }
     
 }
@@ -140,4 +159,46 @@ extension UTF32Char {
         return String(cString: name).replacingOccurrences(of: "_", with: " ")
     }
     
+}
+
+
+
+// MARK: - Block Name Sanitizing
+
+/// sanitize block name for localization
+private func sanitize(blockName: String) -> String
+{
+    // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
+    //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
+    
+    var sanitized = blockName
+    
+    sanitized = sanitized.replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
+    sanitized = sanitized.replacingOccurrences(of: "Extension-", with: "Ext. ")
+    sanitized = sanitized.replacingOccurrences(of: " And ", with: " and ")
+    sanitized = sanitized.replacingOccurrences(of: " For ", with: " for ")
+    sanitized = sanitized.replacingOccurrences(of: " Mathematical ", with: " Math ")
+    sanitized = sanitized.replacingOccurrences(of: "Supplementary ", with: "Supp. ")
+    sanitized = sanitized.replacingOccurrences(of: "Latin 1", with: "Latin-1")  // only for "Latin-1
+    
+    return sanitized
+}
+
+
+/// check which block names will be lozalized (only for test use)
+private func testUnicodeBlockNameLocalization(for language: String = "ja") {
+    
+    let bundleURL = Bundle.main.urlForResource(language, withExtension: "lproj")!
+    let bundle = Bundle(url: bundleURL)
+    
+    for index in 0..<UBLOCK_COUNT.rawValue {
+        let blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, index, U_LONG_PROPERTY_NAME)!
+        
+        var blockName = String(cString: blockNameChars).replacingOccurrences(of: "_", with: " ")  // sanitize
+        blockName = sanitize(blockName: blockName)
+        
+        let localizedBlockName = bundle?.localizedString(forKey: blockName, value: nil, table: "Unicode")
+        
+        print((localizedBlockName == blockName) ? "⚠️" : "  ", blockName, localizedBlockName!, separator: "\t")
+    }
 }

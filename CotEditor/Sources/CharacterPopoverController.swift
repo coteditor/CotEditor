@@ -32,7 +32,7 @@ class CharacterPopoverController: NSViewController, NSPopoverDelegate {
     // MARK: Private Properties
     
     dynamic let glyph: String
-    dynamic let unicodeName: String
+    dynamic let unicodeName: String?
     dynamic let unicodeBlockName: String?
     dynamic let unicode: String
     
@@ -46,33 +46,35 @@ class CharacterPopoverController: NSViewController, NSPopoverDelegate {
     // MARK: Lifecycle
     
     /// default initializer (singleString must be a single character (or a surrogate-pair). If not, return nil.)
-    init?(character: String) {  // TODO: -> Character
+    init?(character: String) {
         
-        guard let characterInfo = CharacterInfo(string: character) else { return nil }
+        guard let info = CharacterInfo(string: character) else { return nil }
         
-        self.glyph = characterInfo.pictureString ?? characterInfo.string
-        self.unicodeName = characterInfo.localizedDescription
-        self.unicodeBlockName = characterInfo.isComplex ? nil : characterInfo.unicodes.first?.localizedBlockName
+        let unicodes = character.unicodeScalars
+        
+        self.glyph = info.pictureString ?? info.string
+        self.unicodeName = info.localizedDescription
+        self.unicodeBlockName = info.isComplex ? nil : unicodes.first?.localizedBlockName
         
         // build Unicode code point string
-        var unicode = ""
-        for char in characterInfo.unicodes {
-            if !unicode.isEmpty {
-                unicode += "\n"
+        var codePoint = ""
+        for unicode in unicodes {
+            if !codePoint.isEmpty {
+                codePoint += "\n"
             }
-            unicode += char.unicode
-            if let surrogates = char.surrogateUnicodes {
-                unicode += " (" + surrogates.joined(separator: " ") + ")"
+            codePoint += unicode.codePoint
+            if let surrogates = unicode.surrogateCodePoints {
+                codePoint += " (" + surrogates.joined(separator: " ") + ")"
             }
             
             // append Unicode name
-            if characterInfo.unicodes.count > 1 {
-                unicode += "\t" + char.name
+            if unicodes.count > 1, let name = unicode.name {
+                codePoint += "\t" + name
             }
         }
         
-        self.unicode = unicode
-        self.characterColor = (characterInfo.pictureString != nil) ? .tertiaryLabelColor() : .labelColor()
+        self.unicode = codePoint
+        self.characterColor = (info.pictureString != nil) ? .tertiaryLabelColor() : .labelColor()
         
         super.init(nibName: nil, bundle: nil)
     }

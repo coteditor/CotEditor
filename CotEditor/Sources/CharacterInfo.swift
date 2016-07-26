@@ -27,16 +27,6 @@
 
 import Foundation
 
-struct SkinToneEmojiModifier {
-    
-    static let type12 = UnicodeScalar(0x1F3FB)  // 🏻 Light
-    static let type3  = UnicodeScalar(0x1F3FC)  // 🏼 Medium Light
-    static let type4  = UnicodeScalar(0x1F3FD)  // 🏽 Medium
-    static let type5  = UnicodeScalar(0x1F3FE)  // 🏾 Medium Dark
-    static let type6  = UnicodeScalar(0x1F3FF)  // 🏿 Dark
-}
-
-
 extension UnicodeScalar {
     
     // variant selectors
@@ -44,51 +34,54 @@ extension UnicodeScalar {
     static let emojiSequence = UnicodeScalar(0xFE0F)
     
     
+    struct SkinToneModifier {
+        static let type12 = UnicodeScalar(0x1F3FB)  // 🏻 Light
+        static let type3  = UnicodeScalar(0x1F3FC)  // 🏼 Medium Light
+        static let type4  = UnicodeScalar(0x1F3FD)  // 🏽 Medium
+        static let type5  = UnicodeScalar(0x1F3FE)  // 🏾 Medium Dark
+        static let type6  = UnicodeScalar(0x1F3FF)  // 🏿 Dark
+    }
+    
+    
     var isVariantSelector: Bool {
         
-        let codePoint = self.value
-        return ((codePoint >= 0x180B && codePoint <= 0x180D) ||
-                (codePoint >= 0xFE00 && codePoint <= 0xFE0F) ||
-                (codePoint >= 0xE0100 && codePoint <= 0xE01EF))
+        return (0xE0100...0xE01EF).contains(self.value) ||
+            (0x180B...0x180D).contains(self.value) ||
+            (0xFE00...0xFE0F).contains(self.value)
     }
     
 }
 
 
-// MARK:
 
-class CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {  // TODO: struct?
+// MARK: -
+
+struct CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {
     
     // MARK: Public Properties
 
     let string: String
     let pictureString: String?
-    let unicodes: [UnicodeCharacter]
     let isComplex: Bool
-    
-    
-    // MARK: Private Properties
-    
-    private let variationSelectorAdditional: String?
+    let localizedDescription: String
     
     
     
     // MARK:
     // MARK: Lifecycle
     
-    required init?(string: String) {
+    init?(string: String) {
         
         guard string.numberOfComposedCharacters == 1 || string == "\r\n" else { return nil }
         // -> Number of String.characters.count and numberOfComposedCharacters are different.
         
-        let unicodes = string.unicodes
+        let unicodes = string.unicodeScalars
         
         self.string = string
-        self.unicodes = unicodes
         
         // check variation selector
         let additional: String? = {
-            guard unicodes.count == 2, let lastUnicode = unicodes.last?.character else { return nil }
+            guard unicodes.count == 2, let lastUnicode = unicodes.last else { return nil }
             
             switch lastUnicode {
             case UnicodeScalar.emojiSequence:
@@ -97,19 +90,19 @@ class CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {  //
             case UnicodeScalar.textSequence:
                 return "Text Style"
                 
-            case SkinToneEmojiModifier.type12:
+            case UnicodeScalar.SkinToneModifier.type12:
                 return "Skin Tone I-II"
                 
-            case SkinToneEmojiModifier.type3:
+            case UnicodeScalar.SkinToneModifier.type3:
                 return "Skin Tone III"
                 
-            case SkinToneEmojiModifier.type4:
+            case UnicodeScalar.SkinToneModifier.type4:
                 return "Skin Tone IV"
                 
-            case SkinToneEmojiModifier.type5:
+            case UnicodeScalar.SkinToneModifier.type5:
                 return "Skin Tone V"
                 
-            case SkinToneEmojiModifier.type6:
+            case UnicodeScalar.SkinToneModifier.type6:
                 return "Skin Tone VI"
                 
             case let unicode where unicode.isVariantSelector:
@@ -119,14 +112,31 @@ class CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {  //
                 return nil
             }
         }()
-        self.variationSelectorAdditional = additional
-        self.isComplex = (unicodes.count > 1 && additional == nil)
+        let isComplex = (unicodes.count > 1 && additional == nil)
+        
+        self.isComplex = isComplex
         
         self.pictureString = {
             guard unicodes.count == 1,  // ignore CR/LF
-                let pictureCharacter = unicodes.first?.pictureCharacter else { return nil }
+                let pictureCharacter = unicodes.first?.pictureRepresentation else { return nil }
             
             return String(Character(pictureCharacter))
+        }()
+        
+        self.localizedDescription = {
+            // number of characters message
+            if isComplex {
+                return String(format: NSLocalizedString("<a letter consisting of %d characters>", tableName: "Unicode", comment: ""), unicodes.count)
+            }
+            
+            // unicode character name
+            guard var unicodeName = unicodes.first?.name else { return string }
+            
+            if let additional = additional {
+                unicodeName += " (" + NSLocalizedString(additional, tableName: "Unicode", comment: "") + ")"
+            }
+            
+            return unicodeName
         }()
     }
     
@@ -139,40 +149,7 @@ class CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {  //
     
     var debugDescription: String {
         
-        return "<\(self): \(self.string)>"
-    }
-    
-    
-    
-    // MARK: Public Properties
-    
-    /// create human-readable description
-    lazy var localizedDescription: String = {
-        
-        // number of characters message
-        if self.isComplex {
-            return String(format: NSLocalizedString("<a letter consisting of %d characters>", tableName: "Unicode", comment: ""), self.unicodes.count)
-        }
-        
-        // unicode character name
-        var unicodeName = self.unicodes.first!.name
-        if let additional = self.variationSelectorAdditional {
-            unicodeName += " (" + NSLocalizedString(additional, tableName: "Unicode", comment: "") + ")"
-        }
-        
-        return unicodeName
-    }()
-    
-}
-
-
-
-private extension String {
-    
-    /// devide given string into UnicodeCharacter objects
-    var unicodes: [UnicodeCharacter] {
-        
-        return self.unicodeScalars.map { UnicodeCharacter(character: $0) }
+        return "<\(self): \(self.string) -\(self.localizedDescription)>"
     }
     
 }

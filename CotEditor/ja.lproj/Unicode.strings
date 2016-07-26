@@ -179,7 +179,7 @@
 "Samaritan" = "サマリア文字";
 "Old Italic" = "古代イタリアの文字";
 "CJK Symbols and Punctuation" = "CJK 記号と句読点";
-"Half-width and Full-width Forms" = "半角・全角形";
+"Halfwidth and Fullwidth Forms" = "半角・全角形";  // Half-width -> halfwidth
 "Kangxi Radicals" = "康熙部首";
 "Buginese" = "ブギ文字";
 "Phoenician" = "フェニキア文字";
@@ -254,7 +254,8 @@
 "Gujarati" = "グジャラート文字";
 "Tai Xuan Jing Symbols" = "太玄経の記号";
 "Kana Supplement" = "かな補助";
-"Unknown block" = "不明なブロック";
+
+"No Block" = "ブロックなし";
 
 // Unicode category names
-"Unknown category" = "不明なカテゴリ";
+"No Category" = "カテゴリなし";

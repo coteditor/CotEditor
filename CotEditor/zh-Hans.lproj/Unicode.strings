@@ -179,7 +179,7 @@
 "Samaritan" = "撒马利亚文";
 "Old Italic" = "旧斜体";
 "CJK Symbols and Punctuation" = "CJK 符号和标点符号";
-"Half-width and Full-width Forms" = "半形和全形";
+"Halfwidth and Fullwidth Forms" = "半形和全形";  // Half-width -> halfwidth
 "Kangxi Radicals" = "康熙字根";
 "Buginese" = "布吉文";
 "Phoenician" = "腓尼基文";
@@ -254,8 +254,9 @@
 "Gujarati" = "古吉拉特文";
 "Tai Xuan Jing Symbols" = "太玄经符号";
 "Kana Supplement" = "假名补充";
-"Unknown block" = "Unknown block";  // FIXME: added
+
+"No Block" = "No Block";  // FIXME: added
 
 
 // Unicode category names
-"Unknown category" = "Unknown category";  // FIXME: added
+"No Category" = "No Category";  // FIXME: added
