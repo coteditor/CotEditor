@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -254,3 +254,7 @@
 "Gujarati" = "グジャラート文字";
 "Tai Xuan Jing Symbols" = "太玄経の記号";
 "Kana Supplement" = "かな補助";
+"Unknown block" = "不明なブロック";
+
+// Unicode category names
+"Unknown category" = "不明なカテゴリ";

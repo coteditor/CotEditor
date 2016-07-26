@@ -12,8 +12,6 @@
 #import "CESyntaxManager.h"
 #import "CESyntaxDictionaryKeys.h"
 
-#import "CEUnicodeCharacter.h"
-
 // Document
 #import "CEPrintPanelAccessoryController.h"
 #import "NSTextView+CETextReplacement.h"

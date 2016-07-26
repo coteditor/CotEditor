@@ -42,20 +42,14 @@ class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate {
     
     static let shared = UnicodeInputPanelController()
     
-    dynamic var characterString: String? {
-        
-        return self.character?.string
-    }
+    private(set) dynamic var characterString: String?
     
     
     // MARK: Private Properties
     
-    private dynamic var unicode = ""
+    private dynamic var codePoint: String?
     private dynamic var isValid = false
-    
-    private dynamic var character: CEUnicodeCharacter?
-    
-    private let unicodeRegex = try! RegularExpression(pattern: "^(?:U\\+|0x|\\\\u)?([0-9a-f]{1,5})$", options: .caseInsensitive)
+    private dynamic var unicodeName: String?
     
     
     
@@ -104,12 +98,26 @@ class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate {
     /// text in text field was changed
     override func controlTextDidChange(_ obj: Notification) {
         
-        guard let input = (obj.object as? NSTextField)?.stringValue else { return }
+        var isValid = false
+        var unicodeName: String? = nil
+        var characterString: String? = nil
         
-        let result = self.unicodeRegex.firstMatch(in: input, options: [], range: NSRange(location: 0, length: input.utf16.count))
+        defer {
+            self.isValid = isValid
+            self.unicodeName = unicodeName
+            self.characterString = characterString
+        }
         
-        self.isValid = (result != nil)
-        self.character = self.isValid ? CEUnicodeCharacter(character: self.longChar) : nil
+        guard
+            let input = (obj.object as? NSTextField)?.stringValue,
+            let longChar = UInt32(codePoint: input) else { return }
+        
+        unicodeName = longChar.unicodeName
+        
+        guard let scalar = UnicodeScalar(codePoint: longChar) else { return }
+        
+        isValid = true
+        characterString = String(Character(scalar))
     }
     
     
@@ -128,25 +136,28 @@ class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate {
         
         receiver.insertUnicodeCharacter(self)
         
-        self.unicode = ""
-        self.character = nil
+        self.codePoint = ""
         self.isValid = false
+        self.unicodeName = nil
+        self.characterString = nil
     }
     
+}
+
+
+
+// MARK: Private Methods
+
+private extension UInt32 {
     
-    
-    // MARK: Private Methods
-    
-    /// UTF32Char form of current input unicode codepoint
-    private var longChar: UTF32Char {
+    /// initialize from a possible Unicode code point representation like `U+1F600`, `1f600`, `0x1F600` and so on.
+    init?(codePoint: String) {
         
-        let scanner = Scanner(string: self.unicode)
-        scanner.charactersToBeSkipped = CharacterSet(charactersIn: "uU+\\")
+        guard let range = codePoint.range(of: "(?<=^(U\\+|0x|\\\\u)?)[0-9a-f]{1,5}$",
+                                          options: [.regularExpression, .caseInsensitive]) else { return nil }
+        let hexString = codePoint.substring(with: range)
         
-        var longChar: UTF32Char = 0
-        scanner.scanHexInt32(&longChar)
-        
-        return longChar
+        self.init(hexString, radix: 16)
     }
     
 }

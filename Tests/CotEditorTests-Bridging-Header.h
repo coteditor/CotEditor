@@ -7,9 +7,5 @@
 #import <NSHash/NSString+NSHash.h>
 #import "CESyntaxDictionaryKeys.h"
 
-// Character Info Tests
-#import "CEControlCharacerNames.h"
-#import "CEUnicodeCharacter.h"
-
 // Theme Tests
 #import "NSColor+WFColorCode.h"

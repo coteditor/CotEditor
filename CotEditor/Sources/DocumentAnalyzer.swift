@@ -244,11 +244,10 @@ class DocumentAnalyzer: NSObject {
                 
                 // unicode
                 if needsAll && hasSelection {
-                    if let unicodes = CharacterInfo(string: selectedString)?.unicodes,
-                        let first = unicodes.first,
-                        unicodes.count == 1
+                    if selectedString.unicodeScalars.count == 1,
+                        let first = selectedString.unicodeScalars.first
                     {
-                        unicode = first.unicode
+                        unicode = first.codePoint
                     }
                 }
             }

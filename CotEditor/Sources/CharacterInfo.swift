@@ -43,6 +43,7 @@ extension UnicodeScalar {
     static let textSequence = UnicodeScalar(0xFE0E)
     static let emojiSequence = UnicodeScalar(0xFE0F)
     
+    
     var isVariantSelector: Bool {
         
         let codePoint = self.value
@@ -56,13 +57,13 @@ extension UnicodeScalar {
 
 // MARK:
 
-class CharacterInfo: CustomDebugStringConvertible {  // TODO: struct?
+class CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {  // TODO: struct?
     
     // MARK: Public Properties
 
     let string: String
     let pictureString: String?
-    let unicodes: [CEUnicodeCharacter]
+    let unicodes: [UnicodeCharacter]
     let isComplex: Bool
     
     
@@ -80,58 +81,59 @@ class CharacterInfo: CustomDebugStringConvertible {  // TODO: struct?
         guard string.numberOfComposedCharacters == 1 || string == "\r\n" else { return nil }
         // -> Number of String.characters.count and numberOfComposedCharacters are different.
         
+        let unicodes = string.unicodes
+        
         self.string = string
-        self.unicodes = string.unicodes
+        self.unicodes = unicodes
         
         // check variation selector
-        var additional: String?
-        var isComplex = false
-        if self.unicodes.count ==  2 {
-            let scalar = UnicodeScalar(unicodes.last!.character)
+        let additional: String? = {
+            guard unicodes.count == 2, let lastUnicode = unicodes.last?.character else { return nil }
             
-            switch (scalar) {
+            switch lastUnicode {
             case UnicodeScalar.emojiSequence:
-                additional = "Emoji Style"
+                return "Emoji Style"
                 
             case UnicodeScalar.textSequence:
-                additional = "Text Style"
+                return "Text Style"
                 
             case SkinToneEmojiModifier.type12:
-                additional = "Skin Tone I-II"
+                return "Skin Tone I-II"
                 
             case SkinToneEmojiModifier.type3:
-                additional = "Skin Tone III"
+                return "Skin Tone III"
                 
             case SkinToneEmojiModifier.type4:
-                additional = "Skin Tone IV"
+                return "Skin Tone IV"
                 
             case SkinToneEmojiModifier.type5:
-                additional = "Skin Tone V"
+                return "Skin Tone V"
                 
             case SkinToneEmojiModifier.type6:
-                additional = "Skin Tone VI"
+                return "Skin Tone VI"
+                
+            case let unicode where unicode.isVariantSelector:
+                return "Variant"
+                
             default:
-                if scalar.isVariantSelector {
-                    additional = "Variant"
-                } else {
-                    isComplex = true
-                }
+                return nil
             }
-            
-        } else if self.unicodes.count > 2 {
-            isComplex = true
-        }
+        }()
         self.variationSelectorAdditional = additional
-        self.isComplex = isComplex
+        self.isComplex = (unicodes.count > 1 && additional == nil)
         
-        var pictureString: String?
-        if self.unicodes.count == 1 {  // ignore CR/LF
-            if let pictureCharacter = self.unicodes.first?.pictureCharacter, pictureCharacter != 0 {
-                let scalar = UnicodeScalar(pictureCharacter)
-                pictureString = String(scalar)
-            }
-        }
-        self.pictureString = pictureString
+        self.pictureString = {
+            guard unicodes.count == 1,  // ignore CR/LF
+                let pictureCharacter = unicodes.first?.pictureCharacter else { return nil }
+            
+            return String(Character(pictureCharacter))
+        }()
+    }
+    
+    
+    var description: String {
+        
+        return "\(self.string)"
     }
     
     
@@ -168,9 +170,9 @@ class CharacterInfo: CustomDebugStringConvertible {  // TODO: struct?
 private extension String {
     
     /// devide given string into UnicodeCharacter objects
-    var unicodes: [CEUnicodeCharacter] {
+    var unicodes: [UnicodeCharacter] {
         
-        return self.unicodeScalars.map { CEUnicodeCharacter(character: $0.value) }
+        return self.unicodeScalars.map { UnicodeCharacter(character: $0) }
     }
     
 }

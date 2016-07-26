@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -254,3 +254,7 @@
 "Gujarati" = "Gujarati";
 "Tai Xuan Jing Symbols" = "Tai Xuan Jing Symbole";
 "Kana Supplement" = "Ergänzungen zu Kana";
+"Unknown block" = "Unknown block";  // FIXME: added
+
+// Unicode category names
+"Unknown category" = "Unknown category";  // FIXME: added

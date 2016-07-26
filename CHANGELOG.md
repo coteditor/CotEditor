@@ -16,6 +16,7 @@ develop
 - Drop support for __OS X Mountain Lion__ and __Mavericks__.
 - Change the regular expression engine for find panel from the Onigmo to the ICU library.
     - Update line-up of the search options.
+- Inserting single surrogate character is no more valid.
 - Remove “Not writable” alert which displayed on file opening.
 - New acknowledgements window.
 - Add help buttons to syntax style editor.
