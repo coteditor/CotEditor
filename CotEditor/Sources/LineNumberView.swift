@@ -193,12 +193,13 @@ class LineNumberView: NSRulerView {
             let digit = numberOfDigits(in: lineNumber)
             
             // calculate base position
-            var position: CGPoint
-            if isVerticalText {
-                position = CGPoint(x: ceil(y + charWidth * CGFloat(digit) / 2), y: 2 * tickLength)
-            } else {
-                position = CGPoint(x: ruleThickness, y: y)
-            }
+            var position: CGPoint = {
+                if isVerticalText {
+                    return CGPoint(x: ceil(y + charWidth * CGFloat(digit) / 2), y: 2 * tickLength)
+                } else {
+                    return CGPoint(x: ruleThickness, y: y)
+                }
+            }()
             
             // get glyphs and positions
             var glyphs = [CGGlyph]()

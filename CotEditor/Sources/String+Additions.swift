@@ -27,6 +27,21 @@
 
 extension String {
     
+    /// line range adding ability to exclude last line ending character if exists
+    func lineRange(for range: Range<Index>, excludingLastLineEnding: Bool) -> Range<Index> {
+        
+        var lineRange = self.lineRange(for: range)
+        
+        guard excludingLastLineEnding else { return lineRange }
+        
+        if self.characters[self.index(before: lineRange.upperBound)] == "\n" {
+            lineRange = lineRange.lowerBound..<self.index(before: lineRange.upperBound)
+        }
+        
+        return lineRange
+    }
+    
+    
     /// check if character at the location in UTF16 is escaped with backslash
     func isCharacterEscaped(at location: Int) -> Bool {
         

@@ -186,14 +186,7 @@ extension EditorTextView {
         
         guard let string = self.string, let selectedRange = string.range(from: self.selectedRange()) else { return nil }
         
-        var targetRange = fromLineHead ? string.lineRange(for: selectedRange) : selectedRange
-        
-        // remove last return
-        if string.characters[string.index(before: targetRange.upperBound)] == "\n" {
-            targetRange = targetRange.lowerBound..<string.index(before: targetRange.upperBound)
-        }
-        
-        return targetRange
+        return fromLineHead ? string.lineRange(for: selectedRange, excludingLastLineEnding: true) : selectedRange
     }
     
 }

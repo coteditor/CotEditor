@@ -38,34 +38,26 @@ extension EditorTextView {
         
         // get range to process
         let selectedRange = self.selectedRange()
-        var lineRange = (string as NSString).lineRange(for: selectedRange)
-        
-        // remove the last line ending
-        if lineRange.length > 0 {
-            lineRange.length -= 1
-        }
+        let lineRange = (string as NSString).lineRange(for: selectedRange, excludingLastLineEnding: true)
         
         // create indent string to prepend
         let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: Character(" "), count: self.tabWidth) : "\t"
         let indentLength = indent.utf16.count
         
         // create shifted string
-        var newLines = [String]()
-        if lineRange.length == 0 {
-            newLines = [indent]
-        } else {
-            (string as NSString).substring(with: lineRange).enumerateLines { (line, stop) in
-                newLines.append(indent + line)
-            }
-        }
+        let newLines: [String] = {
+            guard lineRange.length > 0 else { return [indent] }
+            
+            return (string as NSString).substring(with: lineRange).components(separatedBy: .newlines).map { indent + $0 }
+        }()
         
         let newString = newLines.joined(separator: "\n")
         let numberOfLines = newLines.count
         
         // calculate new selection range
-        var newSelectedRange = NSRange(location: selectedRange.location,
-                                       length: selectedRange.length + indentLength * numberOfLines)
-        if lineRange.location == selectedRange.location && selectedRange.length > 0 && (string as NSString).substring(with: selectedRange).hasSuffix("\n") {
+        var newSelectedRange = selectedRange
+        newSelectedRange.length += (numberOfLines - 1) * indentLength
+        if lineRange.location == selectedRange.location && selectedRange.length > 0 {
             // keep selecting from the line head to the line end
             newSelectedRange.length += indentLength
         } else {
@@ -85,15 +77,9 @@ extension EditorTextView {
         
         // get range to process
         let selectedRange = self.selectedRange()
-        var lineRange = (string as NSString).lineRange(for: selectedRange)
+        let lineRange = (string as NSString).lineRange(for: selectedRange, excludingLastLineEnding: true)
         
         guard lineRange.length > 0 else { return }  // do nothing with blank line
-        
-        // remove the last line ending
-        let lastLineCharacterIndex = string.utf16.startIndex.advanced(by: lineRange.max - 1).samePosition(in: string)!
-        if lineRange.length > 0 && string.characters[lastLineCharacterIndex] == "\n" {
-            lineRange.length -= 1
-        }
         
         // create shifted string
         var newLines = [String]()

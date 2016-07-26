@@ -79,6 +79,23 @@ extension NSString {
     var range: NSRange {
         return NSRange(location: 0, length: self.length)
     }
+    
+    
+    /// line range adding ability to exclude last line ending character if exists
+    func lineRange(for range: NSRange, excludingLastLineEnding: Bool) -> NSRange {
+        
+        var lineRange = self.lineRange(for: range)
+        
+        guard excludingLastLineEnding else { return lineRange }
+        
+        // ignore last line ending
+        if self.character(at: lineRange.max - 1) == "\n".utf16.first! {
+            lineRange.length -= 1
+        }
+        
+        return lineRange
+    }
+    
 }
 
 
