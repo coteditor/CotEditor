@@ -63,7 +63,9 @@ func within<T: Comparable>(_ minimum: T, _ value: T, _ maximum: T) -> T {
     return max(minimum, min(value, maximum))
 }
 
-/// print a dog for debug.
-func Baw(_ items: Any...) {
-    Swift.print("🐕", items)
+
+/// debug friendly print with a dog.
+func moof(_ items: Any..., function: String = #function) {
+    Swift.print("🐕 \(function): ", terminator: "")
+    Swift.debugPrint(items)
 }
