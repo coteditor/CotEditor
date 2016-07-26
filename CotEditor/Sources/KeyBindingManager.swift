@@ -98,6 +98,7 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
     
     
     /// save passed-in key binding settings
+    @discardableResult
     func saveKeyBindings(outlineTree: [NSTreeNode]) -> Bool {  // TODO: throw
         
         // create directory to save in user domain if not yet exist

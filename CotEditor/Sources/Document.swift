@@ -663,9 +663,9 @@ class Document: NSDocument, EncodingHolder {
                     // reset to force reverting toolbar selection
                     NotificationCenter.default.post(name: Document.EncodingDidChangeNotification, object: self)
                 case 1:  // == Change Encoding
-                    let _ = self.changeEncoding(to: String.Encoding(rawValue: error.userInfo[NSStringEncodingErrorKey] as! UInt!),
-                                                withUTF8BOM: error.userInfo[ErrorKey.StringEncodingUTF8BOM] as! Bool,
-                                                askLossy: false, lossy: true)
+                    self.changeEncoding(to: String.Encoding(rawValue: error.userInfo[NSStringEncodingErrorKey] as! UInt!),
+                                        withUTF8BOM: error.userInfo[ErrorKey.StringEncodingUTF8BOM] as! Bool,
+                                        askLossy: false, lossy: true)
                     self.undoManager?.prepare(withInvocationTarget: self.windowController).showIncompatibleCharList()
                     self.windowController.showIncompatibleCharList()
                     didRecover = true
@@ -847,6 +847,7 @@ class Document: NSDocument, EncodingHolder {
     // string encoding
     
     /// reinterpret file with the desired encoding and show error dialog if failed
+    @discardableResult
     func reinterpretAndShowError(encoding: String.Encoding) {
         
         do {
@@ -892,6 +893,7 @@ class Document: NSDocument, EncodingHolder {
     
     
     /// change string encoding registering process to the undo manager
+    @discardableResult
     func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) -> Bool {  // TODO: throw?
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return true }
@@ -940,7 +942,7 @@ class Document: NSDocument, EncodingHolder {
     /// dummy method for undoManager that can recognize only ObjC-compatible methods...
     func objcChangeEncoding(to encoding: UInt, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) {
         
-        let _ = self.changeEncoding(to: String.Encoding(rawValue: encoding), withUTF8BOM: withUTF8BOM, askLossy: askLossy, lossy: lossy)
+        self.changeEncoding(to: String.Encoding(rawValue: encoding), withUTF8BOM: withUTF8BOM, askLossy: askLossy, lossy: lossy)
     }
     
     
@@ -1089,7 +1091,7 @@ class Document: NSDocument, EncodingHolder {
         if self.textStorage.string.isEmpty ||
             self.fileURL == nil ||
             encoding == .utf8 && encoding == self.encoding {
-            let _ = self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
+            self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
             return
         }
         
@@ -1104,7 +1106,7 @@ class Document: NSDocument, EncodingHolder {
         alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSModalResponse) in
             switch returnCode {
             case NSAlertFirstButtonReturn:  // = Convert
-                let _ = self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
+                self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
                 
             case NSAlertSecondButtonReturn:  // = Reinterpret
                 if self.isDocumentEdited {

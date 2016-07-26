@@ -133,6 +133,7 @@ final class ThemeManager: CESettingFileManager {
     
     
     /// save theme
+    @discardableResult
     func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: ((NSError?) -> Void)? = nil) -> Bool {
         
         // create directory to save in user domain if not yet exist
@@ -239,7 +240,7 @@ final class ThemeManager: CESettingFileManager {
             newThemeName = self.copiedSettingName(newThemeName)
         }
         
-        let _ = self.save(themeDictionary: self.plainThemeDictionary, name: newThemeName) { (error: NSError?) in
+        self.save(themeDictionary: self.plainThemeDictionary, name: newThemeName) { (error: NSError?) in
             completionHandler?(newThemeName, error)
         }
     }

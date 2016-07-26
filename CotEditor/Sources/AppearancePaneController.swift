@@ -225,7 +225,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     func didUpdate(theme: ThemeDictionary) {
         
         // save
-        let _ = ThemeManager.shared.save(themeDictionary: theme, name: self.selectedThemeName, completionHandler: nil)
+        ThemeManager.shared.save(themeDictionary: theme, name: self.selectedThemeName, completionHandler: nil)
     }
     
     

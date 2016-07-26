@@ -256,7 +256,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// save current settings
     private func saveSettings() {
         
-        let _ = self.manager.saveKeyBindings(outlineTree: self.outlineTree)
+        self.manager.saveKeyBindings(outlineTree: self.outlineTree)
         self.restoreble = !self.manager.usesDefaultKeyBindings
     }
     
