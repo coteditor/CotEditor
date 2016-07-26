@@ -249,7 +249,7 @@ class EncodingDetectionTests: XCTestCase {
     
     func toNSEncoding(_ cfEncodings: CFStringEncodings) -> String.Encoding {
         
-        let rawValue = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue));
+        let rawValue = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue))
         return String.Encoding(rawValue: rawValue)
     }
 

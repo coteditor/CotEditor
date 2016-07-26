@@ -651,8 +651,8 @@ class EditorTextView: NSTextView, Themable {
     override func readSelection(from pboard: NSPasteboard, type: String) -> Bool {
         
         // apply link to pasted string
-        DispatchQueue.main.async { [weak self] in  // NSTextView cannot be weak
-            self?.detectLinkIfNeeded()
+        DispatchQueue.main.async {
+            self.detectLinkIfNeeded()
         }
         
         // on file drop

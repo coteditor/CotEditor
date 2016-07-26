@@ -937,7 +937,6 @@
 		2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SpellCheck.tiff; sourceTree = "<group>"; };
 		2AE0C0951C422F3300E52E04 /* NSTextView+CETextReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+CETextReplacement.h"; sourceTree = "<group>"; };
 		2AE0C0961C422F3300E52E04 /* NSTextView+CETextReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+CETextReplacement.m"; sourceTree = "<group>"; };
-		2AE0C09A1C42306000E52E04 /* EditorTextView+LineProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EditorTextView+LineProcessing.m"; sourceTree = "<group>"; };
 		2AE3F3171D3F8A1F005B8724 /* AttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		2AE52F171D17468B00D60A32 /* EditorSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorSplitView.swift; sourceTree = "<group>"; };
 		2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionsFormatter.swift; sourceTree = "<group>"; };
@@ -1393,7 +1392,6 @@
 				2A6FD9D71D38C94100A59784 /* EditorTextView+Indentation.swift */,
 				2A6FD9E91D3A819500A59784 /* EditorTextView+Commenting.swift */,
 				2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */,
-				2AE0C09A1C42306000E52E04 /* EditorTextView+LineProcessing.m */,
 				2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */,
 				2AE0C0951C422F3300E52E04 /* NSTextView+CETextReplacement.h */,
 				2AE0C0961C422F3300E52E04 /* NSTextView+CETextReplacement.m */,
