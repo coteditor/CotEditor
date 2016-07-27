@@ -9,6 +9,3 @@
 // Syntax Style
 #import "CESyntaxManager.h"
 #import "CESyntaxDictionaryKeys.h"
-
-// Document
-#import "CEPrintPanelAccessoryController.h"

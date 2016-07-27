@@ -79,7 +79,7 @@ class Document: NSDocument, EncodingHolder {
     // MARK: Public Properties
     
     private var windowController: DocumentWindowController!
-    private lazy var printPanelAccessoryController = CEPrintPanelAccessoryController()
+    private lazy var printPanelAccessoryController: PrintPanelAccessoryController = PrintPanelAccessoryController()
     @IBOutlet private var savePanelAccessoryView: NSView?
     
     private var readingEncoding: String.Encoding  // encoding to read document file

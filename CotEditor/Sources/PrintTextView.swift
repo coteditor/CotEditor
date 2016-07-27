@@ -28,29 +28,6 @@
 
 import Cocoa
 
-/// print setting keys
-enum PrintSettingKey: String {
-    
-    case theme = "CEThemeName"
-    case lineNumber = "CEPrintLineNumber"
-    case invisibles = "CEPrintInvisibles"
-    case printsHeader = "CEPrintHeader"
-    case primaryHeaderContent = "CEPrimaryHeaderContent"
-    case secondaryHeaderContent = "CESecondaryHeaderContent"
-    case primaryHeaderAlignment = "CEPrimaryHeaderAlignment"
-    case secondaryHeaderAlignment = "CESecondaryHeaderAlignment"
-    case printsFooter = "CEPrintFooter"
-    case primaryFooterContent = "CEPrimaryFooterContent"
-    case secondaryFooterContent = "CESecondaryFooterContent"
-    case primaryFooterAlignment = "CEPrimaryFooterAlignment"
-    case secondaryFooterAlignment = "CESecondaryFooterAlignment"
-    
-}
-
-
-let BlackAndWhiteThemeName = NSLocalizedString("Black and White", comment: "")
-
-
 let kVerticalPrintMargin: CGFloat = 56.0    // default 90.0
 let kHorizontalPrintMargin: CGFloat = 24.0  // default 72.0
 
@@ -59,6 +36,7 @@ private let kLineNumberPadding: CGFloat = 10.0
 private let kHeaderFooterFontSize: CGFloat = 9.0
 
 private let kLineNumberFontName = "AvenirNextCondensed-Regular"
+
 
 
 class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
@@ -403,7 +381,7 @@ class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 self.syntaxStyle = CESyntaxManager.shared().style(withName: self.syntaxName)
                 self.syntaxStyle?.textStorage = self.textStorage
             }
-            if let controller = NSPrintOperation.current()?.printPanel.accessoryControllers.first as? CEPrintPanelAccessoryController {
+            if let controller = NSPrintOperation.current()?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController {
                 self.syntaxStyle?.highlightAll { [weak controller] in
                     if let controller = controller, !controller.view.isHidden {
                         controller.needsUpdatePreview = true

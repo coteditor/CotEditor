@@ -52,6 +52,8 @@
 		2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */; };
 		2A18560B1D47FA37008FA79E /* TextFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18560A1D47FA37008FA79E /* TextFinder.swift */; };
 		2A18560C1D47FA37008FA79E /* TextFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18560A1D47FA37008FA79E /* TextFinder.swift */; };
+		2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */; };
+		2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */; };
 		2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */ = {isa = PBXBuildFile; fileRef = 2A18A5BE1C4A746A00BAD817 /* Encodings */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
@@ -493,8 +495,6 @@
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
 		2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
 		2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
-		2AFAFD511D4169E600F1458F /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
-		2AFAFD521D4169E700F1458F /* CEPrintPanelAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
 		2E99EEA0924F366FF76E5F91 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD3DA9878BE30BB0DF9CE52 /* libPods-Tests.a */; };
@@ -565,8 +565,6 @@
 		25859E90076D88ED0020F779 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		258700E3077BAD2200E541BB /* CESyntaxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CESyntaxManager.h; sourceTree = "<group>"; };
 		258700E4077BAD2200E541BB /* CESyntaxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CESyntaxManager.m; sourceTree = "<group>"; };
-		2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEPrintPanelAccessoryController.h; sourceTree = "<group>"; };
-		2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPrintPanelAccessoryController.m; sourceTree = "<group>"; };
 		2A0D64A11D20FFB0006B4937 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		2A0D64A21D20FFB3006B4937 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPanel.strings"; sourceTree = "<group>"; };
 		2A0D64A31D20FFB6006B4937 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPanel.strings; sourceTree = "<group>"; };
@@ -578,6 +576,7 @@
 		2A17A3151D2D4319001DD717 /* AlphaWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphaWindow.swift; sourceTree = "<group>"; };
 		2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+TextReplacement.swift"; sourceTree = "<group>"; };
 		2A18560A1D47FA37008FA79E /* TextFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFinder.swift; sourceTree = "<group>"; };
+		2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPanelAccessoryController.swift; sourceTree = "<group>"; };
 		2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingDetectionTests.swift; sourceTree = "<group>"; };
 		2A18A5BE1C4A746A00BAD817 /* Encodings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Encodings; path = TestFiles/Encodings; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -1057,8 +1056,7 @@
 		2A0E160B18E7240C00AAD872 /* Print */ = {
 			isa = PBXGroup;
 			children = (
-				2A07202918E0E1C2006F3A43 /* CEPrintPanelAccessoryController.h */,
-				2A07202A18E0E1C2006F3A43 /* CEPrintPanelAccessoryController.m */,
+				2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */,
 				2AFAFD491D41487600F1458F /* PrintTextView.swift */,
 			);
 			name = Print;
@@ -1373,9 +1371,9 @@
 				2A33F9301D3D666700249A7B /* Errors.swift */,
 				2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */,
 				2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */,
+				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
 				2A41CB441C391B7400F9122B /* CEErrors.h */,
 				2A41CB451C391B7400F9122B /* CEErrors.m */,
-				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
 				2A41CB421C39168C00F9122B /* CEDefaults.h */,
 				2A41CB3F1C39167500F9122B /* CEDefaults.m */,
 				25859E90076D88ED0020F779 /* Constants.h */,
@@ -2395,6 +2393,7 @@
 				2A4682B31D2F6B580005410E /* FIleDropComposer.swift in Sources */,
 				2A6FD9D21D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
+				2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2AD616CD1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2A42579F1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
@@ -2419,7 +2418,6 @@
 				2A9BF3C81D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */,
 				2A5ADE891D216D4900F6CE26 /* NSColor.swift in Sources */,
 				2AAD61F91D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */,
-				2AFAFD511D4169E600F1458F /* CEPrintPanelAccessoryController.m in Sources */,
 				2AD49C241D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2AD49C291D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */,
 				2A6FD9FA1D3B05F100A59784 /* CESyntaxManager.m in Sources */,
@@ -2456,6 +2454,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A63FBE31D1D90E70081C84E /* ThemeViewController.swift in Sources */,
+				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AE3F3181D3F8A1F005B8724 /* AttributedString.swift in Sources */,
 				2A78BFAA1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
 				2A5D131F1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
@@ -2603,7 +2602,6 @@
 				2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2ACDC0941D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,
 				2A33D0811D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
-				2AFAFD521D4169E700F1458F /* CEPrintPanelAccessoryController.m in Sources */,
 				2AD49C231D0BE75A00FF4CC9 /* CESettingManager.m in Sources */,
 				2AD49C281D0BEF3800FF4CC9 /* CESettingFileManager.m in Sources */,
 				2A6FD9F91D3B05F100A59784 /* CESyntaxManager.m in Sources */,
