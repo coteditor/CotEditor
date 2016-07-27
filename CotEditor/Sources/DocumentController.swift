@@ -87,8 +87,6 @@ class DocumentController: NSDocumentController {
         {
             let localizedTypeName = (UTTypeCopyDescription(typeName as CFString)?.takeRetainedValue() as String?) ?? "unknown file type"
             
-            print(UTTypeCopyDescription(typeName as CFString)?.takeRetainedValue())
-            
             error = NSError(domain: CotEditorError.domain, code: CotEditorError.fileReadBinaryFile.rawValue,
                             userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("The file “%@” doesn’t appear to be text data.", comment: ""), url.lastPathComponent!),
                                        NSLocalizedRecoverySuggestionErrorKey: String(format: NSLocalizedString("The file is %@.\n\nDo you really want to open the file?", comment: ""), localizedTypeName),
@@ -122,12 +120,8 @@ class DocumentController: NSDocumentController {
         // ask user for opening file
         if let error = error {
             var wantsOpen = false
-            if Thread.isMainThread {
+            DispatchQueue.syncOnMain { [unowned self] in
                 wantsOpen = self.presentError(error)
-            } else {
-                DispatchQueue.main.sync { [unowned self] in
-                    wantsOpen = self.presentError(error)
-                }
             }
             
             // cancel operation
