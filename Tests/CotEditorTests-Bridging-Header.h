@@ -4,8 +4,6 @@
 
 // Syntax Tests
 #import <YAML-Framework/YAMLSerialization.h>
-#import <NSHash/NSString+NSHash.h>
-#import "CESyntaxDictionaryKeys.h"
 
 // Theme Tests
 #import "NSColor+WFColorCode.h"
