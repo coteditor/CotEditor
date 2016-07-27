@@ -97,7 +97,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     private let isBundledStyle: Bool
     private let isCustomized: Bool
     
-    private var viewControllers = [AnyObject]()
+    private var viewControllers = [AnyObject]()  // NSViewController subclass or nil
     
     @IBOutlet private weak var box: NSBox?
     @IBOutlet private weak var menuTableView: NSTableView?
@@ -111,29 +111,28 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     
     required init?(style styleName: String, mode: SyntaxEditSheetMode) {
         
-        let manager = CESyntaxManager.shared()
+        let manager = SyntaxManager.shared
         let name: String
-        let style: [String: AnyObject]
+        let style: SyntaxManager.StyleDictionary
         switch mode {
         case .edit:
             name = styleName
-            style = manager.styleDictionary(withName: styleName)
+            style = manager.styleDictionary(name: styleName)
             
         case .copy:
             name = manager.copiedSettingName(styleName)
-            style = manager.styleDictionary(withName: styleName)
+            style = manager.styleDictionary(name: styleName)
             
         case .new:
             name = ""
-            style = manager.emptyStyleDictionary()
+            style = manager.emptyStyleDictionary
         }
         self.mode = mode
         self.style = NSMutableDictionary(dictionary: style)
         self.originalStyleName = name
         
-        var isCustomized: ObjCBool = false
-        self.isBundledStyle = manager.isBundledSetting(name, cutomized: &isCustomized)
-        self.isCustomized = isCustomized.boolValue
+        self.isBundledStyle = manager.isBundledSetting(name: name)
+        self.isCustomized = manager.isCustomizedBundledSetting(name: name)
         
         if (self.isBundledStyle) {
             self.message = NSLocalizedString("Bundled styles can’t be renamed.", comment: "")
@@ -214,7 +213,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
         guard let field = obj.object as? NSTextField, field == self.styleNameField else { return }
         
         // validate newly input name
-        let styleName = field.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let styleName = field.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
         _ = self.validate(styleName: styleName)
     }
@@ -248,7 +247,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
     /// restore current settings in editor to default
     @IBAction func setToFactoryDefaults(_ sender: AnyObject?) {
         
-        guard let style = CESyntaxManager.shared().bundledStyleDictionary(withName: self.originalStyleName) else { return }
+        guard let style = SyntaxManager.shared.bundledStyleDictionary(name: self.originalStyleName) else { return }
         
         // discard current editing
         self.discardEditing()
@@ -281,7 +280,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
         self.commitEditing()
         
         // trim spaces/tab/newlines in style name
-        let styleName = self.styleNameField?.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) ?? ""
+        let styleName = self.styleNameField?.stringValue.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
         self.styleNameField?.stringValue = styleName
         
@@ -301,7 +300,20 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
             return
         }
         
-        CESyntaxManager.shared().saveStyleDictionary(self.style, name: styleName, oldName: self.originalStyleName)
+        // NSMutableDictonary to StyleDictionary
+        let style = self.style
+        var styleDictionary = SyntaxManager.StyleDictionary()
+        for (key, value) in style {
+            guard let key = key as? String else { continue }
+            
+            styleDictionary[key] = value
+        }
+        
+        do {
+            try SyntaxManager.shared.save(styleDictionary: styleDictionary, name: styleName, oldName: self.originalStyleName)
+        } catch let error as NSError {
+            print(error.description)
+        }
         
         self.dismiss(sender)
     }
@@ -352,7 +364,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
         if (self.mode == .edit) && (styleName.caseInsensitiveCompare(self.originalStyleName) == .orderedSame) { return true }
         
         do {
-            try CESyntaxManager.shared().validateSettingName(styleName, originalName: self.originalStyleName)
+            try SyntaxManager.shared.validate(settingName: styleName, originalName: self.originalStyleName)
         } catch let error as NSError {
             self.isStyleNameValid = false
             self.message = "⚠️ " + error.localizedDescription + " " + error.localizedRecoverySuggestion!

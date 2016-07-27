@@ -290,8 +290,8 @@ class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDelegate,
     func didUpdateTheme(_ notification: NSNotification?) {
         
         guard
-            let oldName = notification?.userInfo?[CEOldNameKey] as? String,
-            let newName = notification?.userInfo?[CENewNameKey] as? String else { return }
+            let oldName = notification?.userInfo?[SettingFileManager.NotificationKey.old] as? String,
+            let newName = notification?.userInfo?[SettingFileManager.NotificationKey.new] as? String else { return }
         
         if oldName == self.theme?.name {
             self.setTheme(name: newName)

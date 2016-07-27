@@ -67,7 +67,7 @@ extension AppDelegate {
         
         // migrate syntax styles to modern style
         windowController.update(informative: "Migrating user syntax settings…")
-        CESyntaxManager.shared().migrateStyles { success in
+        SyntaxManager.shared.migrateStyles { success in
             windowController.didMigrateSyntaxStyles = success
             
             windowController.update(informative: "Migration finished.")

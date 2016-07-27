@@ -158,8 +158,8 @@ final class ThemeManager: SettingFileManager {
         
         self.updateCache { [weak self] in
             NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification, object: self,
-                                            userInfo: [CEOldNameKey: themeName,
-                                                       CENewNameKey: themeName])
+                                            userInfo: [SettingFileManager.NotificationKey.old: themeName,
+                                                       SettingFileManager.NotificationKey.new: themeName])
             
             completionHandler?(nil)
         }
@@ -180,8 +180,8 @@ final class ThemeManager: SettingFileManager {
         self.updateCache { [weak self] in
             NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
                                             object: self,
-                                            userInfo: [CEOldNameKey: settingName,
-                                                       CENewNameKey: newName])
+                                            userInfo: [SettingFileManager.NotificationKey.old: settingName,
+                                                       SettingFileManager.NotificationKey.new: newName])
         }
     }
     
@@ -197,8 +197,8 @@ final class ThemeManager: SettingFileManager {
             
             NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
                                             object: self,
-                                            userInfo: [CEOldNameKey: settingName,
-                                                       CENewNameKey: defaultThemeName])
+                                            userInfo: [SettingFileManager.NotificationKey.old: settingName,
+                                                       SettingFileManager.NotificationKey.new: defaultThemeName])
         }
     }
     
@@ -211,8 +211,8 @@ final class ThemeManager: SettingFileManager {
         self.updateCache { [weak self] in
             NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
                                             object: self,
-                                            userInfo: [CEOldNameKey: settingName,
-                                                       CENewNameKey: settingName])
+                                            userInfo: [SettingFileManager.NotificationKey.old: settingName,
+                                                       SettingFileManager.NotificationKey.new: settingName])
         }
     }
     

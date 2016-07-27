@@ -243,7 +243,7 @@ extension EditorTextView {
         for range in self.selectedRanges as! [NSRange] {
             let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
             let targetString = string.substring(with: lineRange)
-            let lines = targetString.components(separatedBy: CharacterSet.newlines)
+            let lines = targetString.components(separatedBy: .newlines)
             
             // filter duplicate lines
             uniqueLines.addObjects(from: lines)

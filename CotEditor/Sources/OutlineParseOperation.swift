@@ -41,9 +41,9 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
     
     init?(definition: [String: AnyObject]) {
         
-        guard let pattern = definition[CESyntaxBeginStringKey] as? String else { return nil }
+        guard let pattern = definition[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
         
-        let ignoreCase = (definition[CESyntaxIgnoreCaseKey] as? Bool) ?? false
+        let ignoreCase = (definition[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
         var options: RegularExpression.Options = .anchorsMatchLines
         if ignoreCase {
             options.update(with: .caseInsensitive)
@@ -58,12 +58,12 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
             return nil
         }
         
-        self.template = (definition[CESyntaxKeyStringKey] as? String) ?? ""
+        self.template = (definition[SyntaxDefinitionKey.keyString.rawValue] as? String) ?? ""
         self.isSeparator = (self.template == String.separator)
         
-        self.isBold = (definition[CESyntaxBoldKey] as? Bool) ?? false
-        self.isItalic = (definition[CESyntaxItalicKey] as? Bool) ?? false
-        self.hasUnderline = (definition[CESyntaxUnderlineKey] as? Bool) ?? false
+        self.isBold = (definition[OutlineStyleKey.bold.rawValue] as? Bool) ?? false
+        self.isItalic = (definition[OutlineStyleKey.italic.rawValue] as? Bool) ?? false
+        self.hasUnderline = (definition[OutlineStyleKey.underline.rawValue] as? Bool) ?? false
     }
     
     

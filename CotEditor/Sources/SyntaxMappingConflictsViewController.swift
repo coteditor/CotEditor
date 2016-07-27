@@ -60,8 +60,8 @@ class SyntaxMappingConflictsViewController: NSViewController {
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         
-        extensionConflicts = self.dynamicType.parseConflictDict(conflictDict: CESyntaxManager.shared().extensionConflicts)
-        filenameConflicts = self.dynamicType.parseConflictDict(conflictDict: CESyntaxManager.shared().filenameConflicts)
+        extensionConflicts = self.dynamicType.parseConflictDict(conflictDict: SyntaxManager.shared.extensionConflicts)
+        filenameConflicts = self.dynamicType.parseConflictDict(conflictDict: SyntaxManager.shared.filenameConflicts)
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }

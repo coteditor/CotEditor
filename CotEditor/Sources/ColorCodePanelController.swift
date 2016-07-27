@@ -87,7 +87,7 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
     /// set color to color panel from color code
     func setColor(withCode code: String?) {
         
-        guard let sanitizedCode = code?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !sanitizedCode.isEmpty else { return }
+        guard let sanitizedCode = code?.trimmingCharacters(in: .whitespacesAndNewlines), !sanitizedCode.isEmpty else { return }
         
         var codeType: WFColorCodeType = .invalid
         guard let color = NSColor(colorCode: sanitizedCode, codeType: &codeType) else { return }

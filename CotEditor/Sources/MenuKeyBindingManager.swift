@@ -186,7 +186,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         if let action = menuItem.action {
             switch action {
             case #selector(EncodingHolder.changeEncoding(_:)),
-                 #selector(CESyntaxHolder.changeSyntaxStyle(_:)),
+                 #selector(SyntaxHolder.changeSyntaxStyle(_:)),
                  #selector(ThemeHolder.changeTheme(_:)),
                  #selector(EditorWrapper.changeTabWidth(_:)),
                  #selector(EditorTextView.biggerFont(_:)),

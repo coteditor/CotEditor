@@ -35,7 +35,7 @@ protocol SyntaxStyleDelegate: class {
 
 
 
-class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
+class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringConvertible {
     
     var textStorage: NSTextStorage?
     weak var delegate: SyntaxStyleDelegate?
@@ -107,7 +107,6 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
             self.outlineDefinitions = nil
             self.firstCompletionCharacterSet = nil
             
-            super.init()
             return
         }
         
@@ -116,12 +115,12 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
         // set comment delimiters
         var inlineCommentDelimiter: String?
         var blockCommentDelimiters: BlockDelimiters?
-        if let delimiters = dictionary[CESyntaxCommentDelimitersKey] as? [String: String] {
-            if let delimiter = delimiters[CESyntaxInlineCommentKey], !delimiter.isEmpty {
+        if let delimiters = dictionary[SyntaxKey.commentDelimiters.rawValue] as? [String: String] {
+            if let delimiter = delimiters[DelimiterKey.inlineDelimiter.rawValue], !delimiter.isEmpty {
                 inlineCommentDelimiter = delimiter
             }
-            if let beginDelimiter = delimiters[CESyntaxBeginCommentKey],
-                let endDelimiter = delimiters[CESyntaxEndCommentKey],
+            if let beginDelimiter = delimiters[DelimiterKey.beginDelimiter.rawValue],
+                let endDelimiter = delimiters[DelimiterKey.endDelimiter.rawValue],
                 !beginDelimiter.isEmpty && !endDelimiter.isEmpty
             {
                 blockCommentDelimiters = BlockDelimiters(begin: beginDelimiter, end: endDelimiter)
@@ -162,10 +161,10 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
         // create word-completion data set
         var completionWords = [String]()
         var firstCharSet = CharacterSet()
-        if let completionDicts = dictionary[CESyntaxCompletionsKey] as? [[String: AnyObject]], !completionDicts.isEmpty {
+        if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: AnyObject]], !completionDicts.isEmpty {
             for dict in completionDicts {
                 guard
-                    let word = dict[CESyntaxKeyStringKey] as? String,
+                    let word = dict[SyntaxDefinitionKey.keyString.rawValue] as? String,
                     let firstChar = word.unicodeScalars.first else { continue }
                 
                 completionWords.append(word)
@@ -174,7 +173,7 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
         } else {
             for definitions in highlightDictionary.values {
                 for definition in definitions {
-                    let word = definition.beginString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                    let word = definition.beginString.trimmingCharacters(in: .whitespacesAndNewlines)
                     guard
                         let firstChar = word.unicodeScalars.first,
                         !word.isEmpty && definition.endString == nil && !definition.isRegularExpression else { continue }
@@ -203,7 +202,7 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
                 var charSet = CharacterSet(charactersIn: SyntaxStyle.AllAlphabets)
                 
                 for definition in definitions {
-                    let word = definition.beginString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                    let word = definition.beginString.trimmingCharacters(in: .whitespacesAndNewlines)
                     guard !word.isEmpty && definition.endString == nil && !definition.isRegularExpression else { continue }
                     
                     if definition.ignoreCase {
@@ -224,7 +223,7 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
         
         // parse outline definitions
         self.outlineDefinitions = {
-            guard let definitionDictionaries = dictionary[CESyntaxOutlineMenuKey] as? [[String: AnyObject]] else { return nil }
+            guard let definitionDictionaries = dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: AnyObject]] else { return nil }
             
             var outlineDefinitions = [OutlineDefinition]()
             for definitionDictionary in definitionDictionaries {
@@ -236,14 +235,12 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
             
             return outlineDefinitions
         }()
-        
-        super.init()
     }
     
     
-    override convenience init() {
+    convenience init() {
         
-        self.init(dictionary: nil, name: NSLocalizedString("None", comment: ""))
+        self.init(dictionary: nil, name: BundledStyleName.none)
     }
     
     
@@ -255,9 +252,15 @@ class SyntaxStyle: NSObject {  // TODO: remove NSOjbect
     }
     
     
-    override var debugDescription: String {
+    var description: String {
         
-        return "<\(self.className) -\(self.styleName): \(unsafeAddress(of: self))>"
+        return "<\(self) -\(self.styleName)>"
+    }
+    
+    
+    var debugDescription: String {
+        
+        return "<\(self) -\(self.styleName): \(unsafeAddress(of: self))>"
     }
     
     
@@ -408,7 +411,7 @@ extension SyntaxStyle {
         // make sure that string is immutable
         // [Caution] DO NOT use [string copy] here instead of `stringWithString:`.
         //           It still returns a mutable object, NSBigMutableString,
-        //           and it can cause crash when the mutable string is given to NSRegularExpression instance.
+        //           and it can cause crash when the mutable string is given to RegularExpression instance.
         //           (2015-08, with OS X 10.10 SDK)
         let string = NSString(string: textStorage.string) as String
         

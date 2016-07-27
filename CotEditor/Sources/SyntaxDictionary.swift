@@ -56,3 +56,42 @@ enum SyntaxType: String {
     }
     
 }
+
+
+enum SyntaxKey: String {
+    
+    case metadata
+    case extensions
+    case filenames
+    case interpreters
+    
+    case commentDelimiters
+    case outlineMenu
+    case completions
+}
+
+
+enum SyntaxDefinitionKey: String {
+    
+    case keyString
+    case beginString
+    case endString
+    case ignoreCase
+    case regularExpression
+}
+
+
+enum DelimiterKey: String {
+    
+    case inlineDelimiter
+    case beginDelimiter
+    case endDelimiter
+}
+
+
+enum OutlineStyleKey: String {
+    
+    case bold
+    case underline
+    case italic
+}

@@ -60,16 +60,16 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
     
     init?(definition: [String: AnyObject]) {
         
-        guard let beginString = definition[CESyntaxBeginStringKey] as? String else { return nil }
+        guard let beginString = definition[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
         
         self.beginString = beginString
-        if let endString = definition[CESyntaxEndStringKey] as? String, !endString.isEmpty {
+        if let endString = definition[SyntaxDefinitionKey.endString.rawValue] as? String, !endString.isEmpty {
             self.endString = endString
         } else {
             self.endString = nil
         }
-        self.isRegularExpression = (definition[CESyntaxRegularExpressionKey] as? Bool) ?? false
-        self.ignoreCase = (definition[CESyntaxIgnoreCaseKey] as? Bool) ?? false
+        self.isRegularExpression = (definition[SyntaxDefinitionKey.regularExpression.rawValue] as? Bool) ?? false
+        self.ignoreCase = (definition[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
     }
     
     

@@ -54,7 +54,7 @@ class SyntaxValidationViewController: NSViewController {
         
         guard let style = self.representedObject as? [String: AnyObject] else { return true }
         
-        let results = CESyntaxManager.shared().validateSyntax(style)
+        let results = SyntaxManager.shared.validate(styleDictionary: style)
         var message = ""
         
         switch results.count {

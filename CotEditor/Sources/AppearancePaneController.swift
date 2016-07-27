@@ -252,8 +252,8 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
             //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
             NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
                                             object: self,
-                                            userInfo: [CEOldNameKey: oldThemeName,
-                                                       CENewNameKey: themeName])
+                                            userInfo: [SettingFileManager.NotificationKey.old: oldThemeName,
+                                                       SettingFileManager.NotificationKey.new: themeName])
         }
         
         let themeViewController = ThemeViewController()

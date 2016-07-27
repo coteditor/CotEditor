@@ -3,7 +3,7 @@
  SettingFileManager.swift
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-06-11.
  
@@ -30,7 +30,7 @@ import AppKit.NSApplication
 
 class SettingFileManager: SettingManager {
     
-    /// General notification's userInfo keys
+    /// general notification's userInfo keys
     enum NotificationKey {
         
         static let old = "OldNameKey"
@@ -113,7 +113,7 @@ class SettingFileManager: SettingManager {
     /// create setting name from a URL (don't care if it exists)
     func settingName(from fileURL: URL) -> String {
         
-        return (try? fileURL.deletingPathExtension())?.lastPathComponent ?? "New Style"
+        return (try? fileURL.deletingPathExtension())?.lastPathComponent ?? "New Setting"
     }
     
     
@@ -124,7 +124,7 @@ class SettingFileManager: SettingManager {
     }
     
     
-    /// return a setting file URL in the application's Resources domain (if available is YES, returns URL only if the file exists)
+    /// return a setting file URL in the application's Resources domain or nil if not exists
     func urlForBundledSetting(name: String) -> URL? {
         
         return Bundle.main.urlForResource(name, withExtension: self.filePathExtension, subdirectory: self.directoryName)
@@ -167,25 +167,21 @@ class SettingFileManager: SettingManager {
         let baseName = originalName.trimmingCharacters(in: .whitespacesAndNewlines)
         let localizedCopy = " " + NSLocalizedString("copy", comment: "copied file suffix")
         
-        let regex = try! RegularExpression(pattern: localizedCopy + "$")
-        var copiedStringRange = regex.rangeOfFirstMatch(in: baseName, range: baseName.nsRange)
-        if copiedStringRange.location == NSNotFound {
-            let numberRegex = try! RegularExpression(pattern: localizedCopy + " [0-9]+$")
-            copiedStringRange = numberRegex.rangeOfFirstMatch(in: baseName, range: baseName.nsRange)
-        }
+        let regex = try! RegularExpression(pattern: localizedCopy + "( [0-9]+)?$")
+        let copySuffixRange = regex.rangeOfFirstMatch(in: baseName, range: baseName.nsRange)
         
-        let copyBase: String = {
-            if copiedStringRange.location != NSNotFound {
-                return (baseName as NSString).substring(to: copiedStringRange.location) + localizedCopy
+        let copyBaseName: String = {
+            if copySuffixRange.location != NSNotFound {
+                return (baseName as NSString).substring(to: copySuffixRange.location) + localizedCopy
             }
             return baseName + localizedCopy
         }()
         
         // increase number suffix
-        var copiedName = copyBase
+        var copiedName = copyBaseName
         var count = 2
         while self.settingNames.contains(copiedName) {
-            copiedName = copyBase + " " + String(count)
+            copiedName = copyBaseName + " " + String(count)
             count += 1
         }
         
@@ -193,7 +189,7 @@ class SettingFileManager: SettingManager {
     }
     
     
-    /// validate whether the file name is valid (for a file name) and returns error if not
+    /// validate whether the setting name is valid (for a file name) and throw an error if not
     func validate(settingName: String, originalName: String) throws {
         
         // just case difference is OK
@@ -209,7 +205,7 @@ class SettingFileManager: SettingManager {
             } else if settingName.hasPrefix(".") {  // Starting with "." is invalid for a file name.
                 return NSLocalizedString("You can’t use a name that begins with a dot “.”.", comment: "")
                 
-            } else if let duplicatedSettingName = self.settingNames.filter({ $0.caseInsensitiveCompare(settingName) == .orderedSame }).first {  // already exists
+            } else if let duplicatedSettingName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) { // already exists
                 return String(format: NSLocalizedString("The name “%@” is already taken.", comment: ""), duplicatedSettingName)
             }
             return nil
@@ -223,7 +219,7 @@ class SettingFileManager: SettingManager {
     }
     
     
-    /// delete user's file for the setting name
+    /// delete user's setting file for the setting name
     func removeSetting(name: String) throws {
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
@@ -244,6 +240,8 @@ class SettingFileManager: SettingManager {
     /// restore the setting with name
     func restoreSetting(name: String) throws {
         
+        guard self.isBundledSetting(name: name) else { return }  // only bundled setting can be restored
+        
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
         
         try FileManager.default.removeItem(at: url)
@@ -253,14 +251,14 @@ class SettingFileManager: SettingManager {
     /// duplicate the setting with name
     func duplicateSetting(name: String) throws {
         
-        // create directory to save in user domain if not yet exist
-        try self.prepareUserSettingDirectory()
-        
         let newName = self.copiedSettingName(name)
         
         guard let sourceURL = self.urlForUsedSetting(name: name) else {
             throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [:])  // throw a dummy error
         }
+        
+        // create directory to save in user domain if not yet exist
+        try self.prepareUserSettingDirectory()
         
         try FileManager.default.copyItem(at: sourceURL,
                                          to: self.preparedURLForUserSetting(name: newName))
@@ -272,12 +270,12 @@ class SettingFileManager: SettingManager {
     /// rename the setting with name
     func renameSetting(name: String, to newName: String) throws {
         
-        let sanitizedName = newName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let sanitizedNewName = newName.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        try self.validate(settingName: sanitizedName, originalName: name)
+        try self.validate(settingName: sanitizedNewName, originalName: name)
         
         try FileManager.default.moveItem(at: self.preparedURLForUserSetting(name: name),
-                                         to: self.preparedURLForUserSetting(name: sanitizedName))
+                                         to: self.preparedURLForUserSetting(name: sanitizedNewName))
     }
     
     
@@ -335,11 +333,11 @@ class SettingFileManager: SettingManager {
     /// force import setting at passed-in URL
     private func overwriteSetting(fileURL: URL) throws {
         
-        // create directory to save in user domain if not yet exist
-        try self.prepareUserSettingDirectory()
-        
         let name = self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: name)
+        
+        // create directory to save in user domain if not yet exist
+        try self.prepareUserSettingDirectory()
         
         // copy file
         var error: NSError?

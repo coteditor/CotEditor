@@ -82,7 +82,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         self.setupSyntaxStyleMenus()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: EncodingManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: .CESyntaxListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: SyntaxManager.ListDidUpdateNotification, object: nil)
     }
     
     
@@ -106,10 +106,11 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
             menuItem.representedObject = representedStyleName
         }
         
-        var isCustomized: ObjCBool = false
         var isBundled = false
+        var isCustomized = false
         if let representedStyleName = representedStyleName {
-            isBundled = CESyntaxManager.shared().isBundledSetting(representedStyleName, cutomized: &isCustomized)
+            isBundled = SyntaxManager.shared.isBundledSetting(name: representedStyleName)
+            isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: representedStyleName)
         }
         
         guard let action = menuItem.action else { return false }
@@ -117,7 +118,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         // append targeet style name to menu titles
         switch action {
         case #selector(openSyntaxMappingConflictSheet(_:)):
-            return CESyntaxManager.shared().existsMappingConflict()
+            return SyntaxManager.shared.existsMappingConflict
             
         case #selector(openSyntaxEditSheet(_:)) where SyntaxEditSheetMode(rawValue: menuItem.tag) == .copy:
             if !isContextualMenu {
@@ -133,7 +134,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
                 menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), representedStyleName!)
             }
             menuItem.isHidden = (!isBundled || representedStyleName == nil)
-            return isCustomized.boolValue
+            return isCustomized
             
         case #selector(exportSyntaxStyle(_:)):
             if !isContextualMenu {
@@ -178,8 +179,8 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         let styleName = self.stylesController!.arrangedObjects[row][StyleKey.name.rawValue] as! String
         
         // check whether style is deletable
-        var isCustomized: ObjCBool = false
-        let isBundled = CESyntaxManager.shared().isBundledSetting(styleName, cutomized: &isCustomized)
+        let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
+        let isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: styleName)
         
         // do nothing on undeletable style
         guard !isBundled || isCustomized else { return [] }
@@ -292,12 +293,12 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         savePanel.canSelectHiddenExtension = true
         savePanel.nameFieldLabel = NSLocalizedString("Export As:", comment: "")
         savePanel.nameFieldStringValue = styleName
-        savePanel.allowedFileTypes = [CESyntaxManager.shared().filePathExtension()]
+        savePanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension]
         
         savePanel.beginSheetModal(for: self.view.window!) { (result: Int) in
             guard result == NSFileHandlingPanelOKButton else { return }
             
-            _ = try? CESyntaxManager.shared().exportSetting(withName: styleName, to: savePanel.url!)
+            _ = try? SyntaxManager.shared.exportSetting(name: styleName, to: savePanel.url!)
         }
     }
     
@@ -310,7 +311,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = [CESyntaxManager.shared().filePathExtension(), "plist"]
+        openPanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension, "plist"]
         
         openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: Int) in
             guard result == NSFileHandlingPanelOKButton else { return }
@@ -325,7 +326,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         let styleName = self.targetStyleName(for: sender)
         
-        guard let url = CESyntaxManager.shared().urlForUserSetting(withName: styleName) else { return }
+        guard let url = SyntaxManager.shared.urlForUserSetting(name: styleName) else { return }
         
         NSWorkspace.shared().activateFileViewerSelecting([url])
     }
@@ -387,27 +388,26 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
     /// build sytnax style menus
     func setupSyntaxStyleMenus() {
         
-        let styleNames = CESyntaxManager.shared().styleNames
-        let noneStyle = NSLocalizedString("None", comment: "")
+        let styleNames = SyntaxManager.shared.styleNames
         
-        var hoge = [[String: AnyObject]]()
+        var styleStates = [[String: AnyObject]]()
         for styleName in styleNames {
-            var isCustomized: ObjCBool = false
-            let isBundled = CESyntaxManager.shared().isBundledSetting(styleName, cutomized: &isCustomized)
+            let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
+            let isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: styleName)
             
-            hoge.append([StyleKey.name.rawValue: styleName,
-                         StyleKey.state.rawValue: (!isBundled || isCustomized)])
+            styleStates.append([StyleKey.name.rawValue: styleName,
+                                StyleKey.state.rawValue: (!isBundled || isCustomized)])
         }
         
         // update installed style list table
-        self.stylesController?.content = hoge
+        self.stylesController?.content = styleStates
         self.validateRemoveSyntaxStyleButton()
         self.syntaxTableView?.reloadData()
         
         // update default style popup menu
         if let popup = self.syntaxStylesDefaultPopup {
             popup.removeAllItems()
-            popup.addItem(withTitle: noneStyle)
+            popup.addItem(withTitle: BundledStyleName.none)
             popup.menu?.addItem(NSMenuItem.separator())
             popup.addItems(withTitles: styleNames)
             
@@ -415,7 +415,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
             //   -> Because items were actually added after Cocoa-Binding selected the item.
             var selectedStyle = UserDefaults.standard.string(forKey: DefaultKey.syntaxStyle)!
             if !styleNames.contains(selectedStyle) {
-                selectedStyle = noneStyle
+                selectedStyle = BundledStyleName.none
             }
             popup.selectItem(withTitle: selectedStyle)
         }
@@ -445,9 +445,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
     /// update button that deletes syntax style
     private func validateRemoveSyntaxStyleButton() {
         
-        let isDeletable = CESyntaxManager.shared().isBundledSetting(self.selectedStyleName, cutomized: nil)
-        
-        self.syntaxStyleDeleteButton?.isEnabled = isDeletable
+        self.syntaxStyleDeleteButton?.isEnabled = !SyntaxManager.shared.isBundledSetting(name: self.selectedStyleName)
     }
     
     
@@ -472,7 +470,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
             }
             
             do {
-                try CESyntaxManager.shared().removeSetting(withName: name)
+                try SyntaxManager.shared.removeSetting(name: name)
                 
             } catch let error as NSError {
                 alert.window.orderOut(nil)
@@ -490,7 +488,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
     private func restoreSyntaxStyle(name: String) {
         
         do {
-            try CESyntaxManager.shared().restoreSetting(withName: name)
+            try SyntaxManager.shared.restoreSetting(name: name)
         } catch let error as NSError {
             self.presentError(error)
         }
@@ -502,7 +500,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
     private func importSyntaxStyle(fileURL: URL) {
         
         do {
-            try CESyntaxManager.shared().importSetting(withFileURL: fileURL)
+            try SyntaxManager.shared.importSetting(fileURL: fileURL)
         } catch let error as NSError {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)

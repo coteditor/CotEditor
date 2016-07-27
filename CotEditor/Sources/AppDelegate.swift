@@ -164,7 +164,7 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         
         // observe setting list updates
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: EncodingManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: .CESyntaxListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: SyntaxManager.ListDidUpdateNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: ThemeManager.ListDidUpdateNotification, object: nil)
     }
     
@@ -411,18 +411,18 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         menu.removeAllItems()
         
         // add None
-        menu.addItem(withTitle: NSLocalizedString("None", comment: ""), action: #selector(CESyntaxHolder.changeSyntaxStyle(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle(_:)), keyEquivalent: "")
         menu.addItem(NSMenuItem.separator())
         
         // add syntax styles
-        let styleNames = CESyntaxManager.shared().styleNames
+        let styleNames = SyntaxManager.shared.styleNames
         for styleName in styleNames {
-            menu.addItem(withTitle: styleName, action: #selector(CESyntaxHolder.changeSyntaxStyle(_:)), keyEquivalent: "")
+            menu.addItem(withTitle: styleName, action: #selector(SyntaxHolder.changeSyntaxStyle(_:)), keyEquivalent: "")
         }
         menu.addItem(NSMenuItem.separator())
         
         // add item to recolor
-        let recolorAction = #selector(CESyntaxHolder.recolorAll(_:))
+        let recolorAction = #selector(SyntaxHolder.recolorAll(_:))
         let (keyEquivalent, modifierMask) = MenuKeyBindingManager.shared.keyEquivalentAndModifierMask(from: recolorAction)
         let recoloritem = NSMenuItem(title: NSLocalizedString("Re-Color All", comment: ""), action: recolorAction, keyEquivalent: keyEquivalent)
         recoloritem.keyEquivalentModifierMask = modifierMask // = default: Cmd + Opt + R

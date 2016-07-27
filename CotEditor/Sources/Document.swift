@@ -110,7 +110,7 @@ class Document: NSDocument, EncodingHolder {
             self.hasUTF8BOM = defaults.bool(forKey: DefaultKey.saveUTF8BOM)
         }
         self.lineEnding = LineEnding(index: defaults.integer(forKey: DefaultKey.lineEndCharCode)) ?? .LF
-        self.syntaxStyle = CESyntaxManager.shared().style(withName: defaults.string(forKey: DefaultKey.syntaxStyle)) ?? SyntaxStyle()
+        self.syntaxStyle = SyntaxManager.shared.style(name: defaults.string(forKey: DefaultKey.syntaxStyle)) ?? SyntaxStyle()
         
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
@@ -122,7 +122,7 @@ class Document: NSDocument, EncodingHolder {
         self.hasUndoManager = true
         
         // observe sytnax style update
-        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: .CESyntaxDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: SyntaxManager.SyntaxDidUpdateNotification, object: nil)
     }
     
     
@@ -280,9 +280,9 @@ class Document: NSDocument, EncodingHolder {
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
         
         // determine syntax style
-        var styleName = CESyntaxManager.shared().styleName(fromDocumentFileName: url.lastPathComponent!)
+        var styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent!)
         if styleName == nil {
-            styleName = CESyntaxManager.shared().styleName(fromDocumentContent: string)
+            styleName = SyntaxManager.shared.styleName(documentContent: string)
         }
         styleName = styleName ?? UserDefaults.standard.string(forKey: DefaultKey.syntaxStyle)
         self.setSyntaxStyle(name: styleName)
@@ -311,7 +311,7 @@ class Document: NSDocument, EncodingHolder {
         }
         
         let styleName = self.syntaxStyle.styleName
-        let extensions = CESyntaxManager.shared().extensions(forStyleName: styleName)
+        let extensions = SyntaxManager.shared.extensions(name: styleName)
         
         return extensions.first
     }
@@ -410,7 +410,7 @@ class Document: NSDocument, EncodingHolder {
             // apply syntax style that is inferred from the file name
             if saveOperation == .saveAsOperation {
                 if let fileName = url.lastPathComponent,
-                   let styleName = CESyntaxManager.shared().styleName(fromDocumentFileName: fileName)
+                   let styleName = SyntaxManager.shared.styleName(documentFileName: fileName)
                 {
                     self.setSyntaxStyle(name: styleName)
                 }
@@ -789,8 +789,8 @@ class Document: NSDocument, EncodingHolder {
     func syntaxDidUpdate(_ notification: Notification) {
         
         guard
-            let oldName = notification.userInfo?[CEOldNameKey] as? String,
-            let newName = notification.userInfo?[CENewNameKey] as? String else { return }
+            let oldName = notification.userInfo?[SettingFileManager.NotificationKey.old] as? String,
+            let newName = notification.userInfo?[SettingFileManager.NotificationKey.new] as? String else { return }
         
         if oldName == self.syntaxStyle.styleName {
             self.setSyntaxStyle(name: newName)
@@ -977,7 +977,7 @@ class Document: NSDocument, EncodingHolder {
         
         guard let name = name, !name.isEmpty else { return }
         
-        guard let syntaxStyle = CESyntaxManager.shared().style(withName: name), syntaxStyle != self.syntaxStyle else { return }
+        guard let syntaxStyle = SyntaxManager.shared.style(name: name), syntaxStyle != self.syntaxStyle else { return }
         
         self.syntaxStyle.cancelAllParses()
         

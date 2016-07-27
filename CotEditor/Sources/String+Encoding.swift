@@ -135,7 +135,7 @@ extension String {
             }
             
             // text ISO-2022-JP
-            if data.contains(0x1B) {
+            if data.prefix(MaxDetectionLength).contains(0x1B) {
                 // check existance of typical escape sequences
                 // -> It's not perfect yet works in most cases. (2016-01 by 1024p)
                 for escapeSequence in ISO2022JP_EscapeSequences {

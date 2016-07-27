@@ -3,9 +3,6 @@
 //
 
 #import "NSColor+WFColorCode.h"
+#import <YAML-Framework/YAMLSerialization.h>
 #import <NSHash/NSString+NSHash.h>
 #import <NSHash/NSData+NSHash.h>
-
-// Syntax Style
-#import "CESyntaxManager.h"
-#import "CESyntaxDictionaryKeys.h"

@@ -126,8 +126,8 @@ class ToolbarController: NSObject {
         
         // observe popup menu line-up change
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: EncodingManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .CESyntaxListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .CESyntaxHistoryDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SyntaxManager.ListDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SyntaxManager.HistoryDidUpdateNotification, object: nil)
     }
     
     
@@ -186,13 +186,13 @@ class ToolbarController: NSObject {
         
         guard let menu = self.syntaxPopupButton?.menu else { return }
         
-        let styleNames = CESyntaxManager.shared().styleNames
-        let recentStyleNames = CESyntaxManager.shared().recentStyleNames
+        let styleNames = SyntaxManager.shared.styleNames
+        let recentStyleNames = SyntaxManager.shared.recentStyleNames
         let action = #selector(Document.changeSyntaxStyle(_:))
         
         menu.removeAllItems()
         
-        menu.addItem(withTitle: NSLocalizedString("None", comment: ""), action: action, keyEquivalent: "")
+        menu.addItem(withTitle: BundledStyleName.none, action: action, keyEquivalent: "")
         menu.addItem(NSMenuItem.separator())
         
         if !recentStyleNames.isEmpty {
