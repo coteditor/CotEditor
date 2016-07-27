@@ -297,7 +297,7 @@ NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification = @"CESyntaxHistor
 - (nullable NSDictionary<NSString *, id> *)bundledStyleDictionaryWithName:(nonnull NSString *)styleName
 // ------------------------------------------------------
 {
-    return [self styleDictionaryWithURL:[self URLForBundledSettingWithName:styleName available:NO]];
+    return [self styleDictionaryWithURL:[self URLForBundledSettingWithName:styleName]];
 }
 
 
@@ -422,7 +422,7 @@ NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification = @"CESyntaxHistor
     }
     
     // save
-    NSURL *saveURL = [self URLForUserSettingWithName:name available:NO];
+    NSURL *saveURL = [self preparedURLForUserSettingWithName:name];
     // style名が変更されたときは、古いファイルを上書きされる新しい名前に移動させておく
     if (![name isEqualToString:oldName]) {
         [self renameSettingWithName:oldName toName:name error:nil];
@@ -853,7 +853,7 @@ NSString *_Nonnull const CESyntaxHistoryDidUpdateNotification = @"CESyntaxHistor
 
     __block BOOL success = NO;
     NSString *styleName = [self settingNameFromURL:fileURL];
-    NSURL *destURL = [self URLForUserSettingWithName:styleName available:NO];
+    NSURL *destURL = [self preparedURLForUserSettingWithName:styleName];
     
     NSFileCoordinator *coordinator = [[NSFileCoordinator alloc] initWithFilePresenter:nil];
     [coordinator coordinateReadingItemAtURL:fileURL options:NSFileCoordinatorReadingWithoutChanges

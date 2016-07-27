@@ -46,9 +46,9 @@ extern NSString *_Nonnull const CENewNameKey;
 
 // setting file location
 - (nullable NSURL *)URLForUsedSettingWithName:(nonnull NSString *)settingNeme;
-- (nullable NSURL *)URLForBundledSettingWithName:(nonnull NSString *)settingName available:(BOOL)available;
-- (nullable NSURL *)URLForUserSettingWithName:(nonnull NSString *)settingName available:(BOOL)available;
+- (nullable NSURL *)URLForBundledSettingWithName:(nonnull NSString *)settingName;
 - (nullable NSURL *)URLForUserSettingWithName:(nonnull NSString *)settingName;  // returns nil if file is not available
+- (nonnull NSURL *)preparedURLForUserSettingWithName:(nonnull NSString *)settingName;
 
 /// Return whether the setting that has the given name is bundled in the app.
 - (BOOL)isBundledSetting:(nonnull NSString *)settingName cutomized:(nullable BOOL *)isCustomized;  // check only the name

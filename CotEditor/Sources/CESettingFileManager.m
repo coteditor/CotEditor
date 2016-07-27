@@ -124,37 +124,16 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 - (nullable NSURL *)URLForUsedSettingWithName:(nonnull NSString *)settingName
 //------------------------------------------------------
 {
-    return [self URLForUserSettingWithName:settingName available:YES] ?: [self URLForBundledSettingWithName:settingName available:YES];
+    return [self URLForUserSettingWithName:settingName] ?: [self URLForBundledSettingWithName:settingName];
 }
 
 
 //------------------------------------------------------
-/// return a setting file URL in the application's Resources domain (if available is YES, returns URL only if the file exists)
-- (nullable NSURL *)URLForBundledSettingWithName:(nonnull NSString *)settingName available:(BOOL)available
+/// return a setting file URL in the application's Resources domain (only if the file exists)
+- (nullable NSURL *)URLForBundledSettingWithName:(nonnull NSString *)settingName
 //------------------------------------------------------
 {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:settingName withExtension:[self filePathExtension] subdirectory:[self directoryName]];
-    
-    if (available) {
-        return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
-    } else {
-        return URL;
-    }
-}
-
-
-//------------------------------------------------------
-/// return a setting file URL in the user's Application Support domain (if available is YES, returns URL only if the file exists)
-- (nullable NSURL *)URLForUserSettingWithName:(nonnull NSString *)settingName available:(BOOL)available
-//------------------------------------------------------
-{
-    NSURL *URL = [[[self userSettingDirectoryURL] URLByAppendingPathComponent:settingName] URLByAppendingPathExtension:[self filePathExtension]];
-    
-    if (available) {
-        return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
-    } else {
-        return URL;
-    }
+    return [[NSBundle mainBundle] URLForResource:settingName withExtension:[self filePathExtension] subdirectory:[self directoryName]];
 }
 
 
@@ -163,7 +142,18 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 - (nullable NSURL *)URLForUserSettingWithName:(nonnull NSString *)settingName
 //------------------------------------------------------
 {
-    return [self URLForUserSettingWithName:settingName available:YES];
+    NSURL *URL = [self preparedURLForUserSettingWithName:settingName];
+    
+    return [URL checkResourceIsReachableAndReturnError:nil] ? URL : nil;
+}
+
+
+//------------------------------------------------------
+/// return a setting file URL in the user's Application Support domain (don't care if it exists)
+- (nonnull NSURL *)preparedURLForUserSettingWithName:(nonnull NSString *)settingName
+//------------------------------------------------------
+{
+    return [[[self userSettingDirectoryURL] URLByAppendingPathComponent:settingName] URLByAppendingPathExtension:[self filePathExtension]];
 }
 
 
@@ -175,7 +165,7 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
     BOOL isBundled = [[self bundledSettingNames] containsObject:settingName];
     
     if (isBundled && isCustomized) {
-        *isCustomized = ([self URLForUserSettingWithName:settingName available:YES] != nil);
+        *isCustomized = ([self URLForUserSettingWithName:settingName] != nil);
     }
     return isBundled;
 }
@@ -264,7 +254,7 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 - (BOOL)removeSettingWithName:(nonnull NSString *)settingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    NSURL *URL = [self URLForUserSettingWithName:settingName available:YES];
+    NSURL *URL = [self URLForUserSettingWithName:settingName];
     
     if (!URL) { return YES; }  // not exist or already removed
     
@@ -292,7 +282,7 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 - (BOOL)restoreSettingWithName:(nonnull NSString *)settingName error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    NSURL *URL = [self URLForUserSettingWithName:settingName available:NO];
+    NSURL *URL = [self preparedURLForUserSettingWithName:settingName];
     
     if (!URL) { return YES; }  // not exist or already removed
     
@@ -317,7 +307,7 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
     NSString *newSettingName = [self copiedSettingName:settingName];
     
     BOOL success = [[NSFileManager defaultManager] copyItemAtURL:[self URLForUsedSettingWithName:settingName]
-                                                           toURL:[self URLForUserSettingWithName:newSettingName available:NO]
+                                                           toURL:[self preparedURLForUserSettingWithName:newSettingName]
                                                            error:outError];
     
     if (success) {
@@ -340,8 +330,8 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
         return NO;
     }
     
-    BOOL success = [[NSFileManager defaultManager] moveItemAtURL:[self URLForUserSettingWithName:settingName available:NO]
-                                                           toURL:[self URLForUserSettingWithName:newSettingName available:NO] error:outError];
+    BOOL success = [[NSFileManager defaultManager] moveItemAtURL:[self preparedURLForUserSettingWithName:settingName]
+                                                           toURL:[self preparedURLForUserSettingWithName:newSettingName] error:outError];
     
     return success;
 }
@@ -352,7 +342,7 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
 - (BOOL)exportSettingWithName:(nonnull NSString *)settingName toURL:(nonnull NSURL *)URL error:(NSError * _Nullable __autoreleasing * _Nullable)outError
 //------------------------------------------------------
 {
-    NSURL *sourceURL = [self URLForUserSettingWithName:settingName available:NO];
+    NSURL *sourceURL = [self preparedURLForUserSettingWithName:settingName];
     
     __block BOOL success = NO;
     __block NSError *error = nil;
@@ -425,7 +415,7 @@ NSString *_Nonnull const CENewNameKey = @"CENewNameKey";
     if (![self prepareUserSettingDirectory]) { return NO; }
     
     NSString *settingName = [self settingNameFromURL:fileURL];
-    NSURL *destURL = [self URLForUserSettingWithName:settingName available:NO];
+    NSURL *destURL = [self preparedURLForUserSettingWithName:settingName];
     
     // copy file
     __block BOOL success = NO;

@@ -139,7 +139,7 @@ final class ThemeManager: CESettingFileManager {
         // create directory to save in user domain if not yet exist
         guard self.prepareUserSettingDirectory() else { return false }
         
-        let fileURL = self.urlForUserSetting(withName: themeName, available: false)!
+        let fileURL = self.preparedURLForUserSetting(withName: themeName)
         
         do {
             let data = try JSONSerialization.data(withJSONObject: themeDictionary, options: .prettyPrinted)
@@ -236,7 +236,7 @@ final class ThemeManager: CESettingFileManager {
         var newThemeName = NSLocalizedString("Untitled", comment: "")
         
         // append "Copy n" if "Untitled" already exists
-        if self.urlForUserSetting(withName: newThemeName, available: true) != nil {
+        if self.urlForUserSetting(withName: newThemeName) != nil {
             newThemeName = self.copiedSettingName(newThemeName)
         }
         
@@ -313,7 +313,7 @@ final class ThemeManager: CESettingFileManager {
     /// plain theme to be based on when creating a new theme
     var plainThemeDictionary: ThemeDictionary {
         
-        let url = self.urlForBundledSetting(withName: "_Plain", available: false)!
+        let url = self.urlForBundledSetting(withName: "_Plain")!
         
         return self.themeDictionary(fileURL: url)!
     }
@@ -333,7 +333,7 @@ extension ThemeManager {
         let themeName = NSLocalizedString("Customized Theme", comment: "")
         
         // don't need to migrate if custom theme file already exists (to avoid overwrite)
-        guard self.urlForUserSetting(withName: themeName, available: true) == nil else { return false }
+        guard self.urlForUserSetting(withName: themeName) == nil else { return false }
         
         // find customized theme colors from UserDefault
         var theme = self.classicTheme
@@ -368,7 +368,7 @@ extension ThemeManager {
     /// CotEditor 1.5までで使用されていたデフォルトテーマに新たなキーワードを加えたもの
     private var classicTheme: ThemeDictionary {
         
-        let url = self.urlForBundledSetting(withName: "Classic", available: false)!
+        let url = self.urlForBundledSetting(withName: "Classic")!
         
         return self.themeDictionary(fileURL: url)!
     }
