@@ -57,8 +57,6 @@ private enum ErrorKey {
 
 class Document: NSDocument, EncodingHolder {
     
-    @objc var encodingObjC: UInt { return self.encoding.rawValue }
-    
     static let EncodingDidChangeNotification = Notification.Name("DocumentEncodingDidChangeNotification")
     static let LineEndingDidChangeNotification = Notification.Name("DocumentLineEndingDidChangeNotification")
     static let SyntaxStyleDidChangeNotification = Notification.Name("DocumentSyntaxStyleDidChangeNotification")

@@ -417,7 +417,6 @@ extension SyntaxStyle {
     
     
     /// update highlights around passed-in range
-    @objc(highlightAroundEditedRange:)
     func highlight(around editedRange: NSRange) {
         
         guard UserDefaults.standard.bool(forKey: DefaultKey.enableSyntaxHighlight) else { return }

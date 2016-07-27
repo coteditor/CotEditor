@@ -144,7 +144,6 @@ extension EditorTextView {
     
     
     /// whether given range can be uncommented
-    @objc(canUncommentRange:partly:)
     func canUncomment(range: NSRange, partly: Bool) -> Bool {
         
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return false }

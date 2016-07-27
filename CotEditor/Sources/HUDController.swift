@@ -28,8 +28,7 @@
 import Cocoa
 import QuartzCore
 
-
-@objc enum HUDSymbol: Int {
+enum HUDSymbol {
     
     case wrap
     
