@@ -47,7 +47,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     override private init() {
         
         guard let mainMenu = NSApp.mainMenu else {
-            assertionFailure("\(MenuKeyBindingManager.className) should be initialized after MainMenu.xib is loaded.")
+            assertionFailure("MenuKeyBindingManager should be initialized after MainMenu.xib is loaded.")
             abort()
         }
         

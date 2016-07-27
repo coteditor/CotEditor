@@ -106,10 +106,11 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         }
         menuItem.representedObject = representedTheme
         
-        var isCustomized: ObjCBool = false
         var isBundled = false
+        var isCustomized = false
         if let representedTheme = representedTheme {
-            isBundled = ThemeManager.shared.isBundledSetting(representedTheme, cutomized: &isCustomized)
+            isBundled = ThemeManager.shared.isBundledSetting(name: representedTheme)
+            isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: representedTheme)
         }
         
         guard let action = menuItem.action else { return false }
@@ -139,7 +140,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
                 menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), representedTheme!)
             }
             menuItem.isHidden = (!isBundled || representedTheme == nil)
-            return isCustomized.boolValue
+            return isCustomized
             
         case #selector(exportTheme(_:)):
             if !isContextualMenu {
@@ -238,7 +239,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         
         let themeName = self.selectedThemeName
         let themeDict = ThemeManager.shared.themeDictionary(name: themeName)
-        let isBundled = ThemeManager.shared.isBundledSetting(themeName, cutomized: nil)
+        let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
         // update default theme setting
         // -> skip on the first time because, at the time point, the settings are not yet applied.
@@ -272,9 +273,9 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         guard let view = tableView.view(atColumn: 0, row: row, makeIfNecessary: false) as? NSTableCellView else { return }
         
         let themeName = self.themeNames[row]
-        let isBundled = ThemeManager.shared.isBundledSetting(themeName, cutomized: nil)
+        let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
-        view.textField?.isEditable = isBundled
+        view.textField?.isEditable = !isBundled
     }
     
     
@@ -287,7 +288,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         let oldName = self.selectedThemeName
         
         do {
-            try ThemeManager.shared.renameSetting(withName: oldName, toName: newName)
+            try ThemeManager.shared.renameSetting(name: oldName, to: newName)
             
         } catch let error as NSError {
             // revert name
@@ -312,8 +313,8 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         let themeName = self.themeNames[row]
         
         // check whether theme is deletable
-        var isCustomized: ObjCBool = false
-        let isBundled = ThemeManager.shared.isBundledSetting(themeName, cutomized: &isCustomized)
+        let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
+        let isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: themeName)
         
         // do nothing on undeletable theme
         guard !isBundled || isCustomized else { return [] }
@@ -395,7 +396,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         
         let themeName = self.targetThemeName(for: sender)
         
-        _ = try? ThemeManager.shared.duplicateSetting(withName: themeName)
+        _ = try? ThemeManager.shared.duplicateSetting(name: themeName)
     }
     
     
@@ -437,12 +438,12 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         savePanel.canSelectHiddenExtension = true
         savePanel.nameFieldLabel = NSLocalizedString("Export As:", comment: "")
         savePanel.nameFieldStringValue = themeName
-        savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension()]
+        savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
         savePanel.beginSheetModal(for: self.view.window!) { (result: Int) in
             guard result == NSFileHandlingPanelOKButton else { return }
             
-            _ = try? ThemeManager.shared.exportSetting(withName: themeName, to: savePanel.url!)
+            _ = try? ThemeManager.shared.exportSetting(name: themeName, to: savePanel.url!)
         }
     }
     
@@ -455,7 +456,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = [ThemeManager.shared.filePathExtension()]
+        openPanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
         openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: Int) in
             guard result == NSFileHandlingPanelOKButton else { return }
@@ -470,7 +471,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         
         let themeName = self.targetThemeName(for: sender)
         
-        guard let url = ThemeManager.shared.urlForUserSetting(withName: themeName) else { return }
+        guard let url = ThemeManager.shared.urlForUserSetting(name: themeName) else { return }
         
         NSWorkspace.shared().activateFileViewerSelecting([url])
     }
@@ -520,9 +521,11 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     /// refresh theme view if current displayed theme was restored
     func themeDidUpdate(_ notification: Notification) {
         
-        let bundledTheme = ThemeManager.shared.themeDictionary(name: self.selectedThemeName)
+        guard
+            let bundledTheme = ThemeManager.shared.themeDictionary(name: self.selectedThemeName),
+            let newTheme = self.themeViewController?.theme else { return }
         
-        if bundledTheme! == (self.themeViewController?.theme)! {
+        if bundledTheme == newTheme {
             self.themeViewController?.theme = bundledTheme
         }
     }
@@ -549,7 +552,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
             }
             
             do {
-                try ThemeManager.shared.removeSetting(withName: name)
+                try ThemeManager.shared.removeSetting(name: name)
                 
             } catch let error as NSError {
                 alert.window.orderOut(nil)
@@ -567,7 +570,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     private func restoreTheme(name: String) {
         
         do {
-            try ThemeManager.shared.restoreSetting(withName: name)
+            try ThemeManager.shared.restoreSetting(name: name)
         } catch let error as NSError {
             self.presentError(error)
         }
@@ -578,7 +581,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
     private func importTheme(fileURL: URL) {
         
         do {
-            try ThemeManager.shared.importSetting(withFileURL: fileURL)
+            try ThemeManager.shared.importSetting(fileURL: fileURL)
         } catch let error as NSError {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)

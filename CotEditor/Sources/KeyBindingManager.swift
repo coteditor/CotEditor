@@ -39,7 +39,7 @@ protocol KeyBindingManagerProtocol: class {
 
 
 
-class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
+class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     // MARK: Public Properties
     
@@ -50,7 +50,7 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
     // MARK: Superclass Methods
     
     /// directory name in both Application Support and bundled Resources
-    override func directoryName() -> String {
+    override var directoryName: String {
         
         return "KeyBindings"
     }
@@ -86,7 +86,7 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
     /// file URL to save custom key bindings file
     var keyBindingSettingFileURL: URL {
         
-        return try! self.userSettingDirectoryURL().appendingPathComponent(self.settingFileName).appendingPathExtension("plist")
+        return try! self.userSettingDirectoryURL.appendingPathComponent(self.settingFileName).appendingPathExtension("plist")
     }
     
     
@@ -101,9 +101,7 @@ class KeyBindingManager: CESettingManager, KeyBindingManagerProtocol {
     func saveKeyBindings(outlineTree: [NSTreeNode]) throws {
         
         // create directory to save in user domain if not yet exist
-        guard self.prepareUserSettingDirectory() else {
-            throw NSError(domain: NSCocoaErrorDomain, code: NSFileWriteUnknownError, userInfo: [:])
-        }
+        try self.prepareUserSettingDirectory()
         
         let plistDict = self.keyBindingDictionary(from: outlineTree)
         let fileURL = self.keyBindingSettingFileURL

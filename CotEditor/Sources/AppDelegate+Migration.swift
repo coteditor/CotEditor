@@ -35,7 +35,7 @@ extension AppDelegate {
     func migrateIfNeeded() {
         
         let lastVersion = UserDefaults.standard.string(forKey: DefaultKey.lastVersion)
-        let keybindingURL = MenuKeyBindingManager.shared.userSettingDirectoryURL()
+        let keybindingURL = MenuKeyBindingManager.shared.userSettingDirectoryURL
         let existsKeybindingDir = keybindingURL.isReachable  // KeyBindings dir was invariably made on the previous versions.
         
         if lastVersion == nil && existsKeybindingDir {

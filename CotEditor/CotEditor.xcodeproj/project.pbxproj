@@ -291,6 +291,10 @@
 		2A73B5BC1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */; };
 		2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */; };
 		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
+		2A7646E71D48EAF200350674 /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManager.swift */; };
+		2A7646E81D48EAF200350674 /* SettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManager.swift */; };
+		2A7646EC1D49035500350674 /* SettingFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManager.swift */; };
+		2A7646ED1D49035500350674 /* SettingFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManager.swift */; };
 		2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */; };
 		2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */; };
 		2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */; };
@@ -736,6 +740,8 @@
 		2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+ControlCharacter.swift"; sourceTree = "<group>"; };
 		2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+Information.swift"; sourceTree = "<group>"; };
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
+		2A7646E61D48EAF200350674 /* SettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManager.swift; sourceTree = "<group>"; };
+		2A7646E91D48ECD100350674 /* SettingFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManager.swift; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationPaneController.swift; sourceTree = "<group>"; };
 		2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPaneController.swift; sourceTree = "<group>"; };
@@ -1689,6 +1695,8 @@
 		2AD49C251D0BEF0400FF4CC9 /* Abstract Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2A7646E61D48EAF200350674 /* SettingManager.swift */,
+				2A7646E91D48ECD100350674 /* SettingFileManager.swift */,
 				2AD49C211D0BE75A00FF4CC9 /* CESettingManager.h */,
 				2AD49C221D0BE75A00FF4CC9 /* CESettingManager.m */,
 				2AD49C261D0BEF3800FF4CC9 /* CESettingFileManager.h */,
@@ -2336,6 +2344,7 @@
 				2AA4D3781D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				2A6FD9EE1D3A85D700A59784 /* String+NSRange.swift in Sources */,
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
+				2A7646EC1D49035500350674 /* SettingFileManager.swift in Sources */,
 				2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
 				2AE52F201D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				2AA375481D40BDCB0080C27C /* LineEnding.swift in Sources */,
@@ -2413,6 +2422,7 @@
 				2A64F2431D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2AD616D01D3E67160016EFB6 /* ODBEditorSuite.swift in Sources */,
+				2A7646E81D48EAF200350674 /* SettingManager.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
 				2ACDC09E1D172EF7009B72D6 /* WrappingTextField.swift in Sources */,
@@ -2516,6 +2526,7 @@
 				2AD616CF1D3E67160016EFB6 /* ODBEditorSuite.swift in Sources */,
 				2A6FD9DB1D38F93300A59784 /* EditorTextView+Indentation.swift in Sources */,
 				2AF073F41D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
+				2A7646E71D48EAF200350674 /* SettingManager.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2AA45A4E1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */,
@@ -2571,6 +2582,7 @@
 				2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
+				2A7646ED1D49035500350674 /* SettingFileManager.swift in Sources */,
 				2A33D0841D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2AF0C1251D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,

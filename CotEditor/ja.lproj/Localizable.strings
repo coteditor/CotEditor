@@ -419,7 +419,7 @@
 "Bundled styles can’t be renamed." = "バンドルされているスタイルの名前は変更できません。";
 
 // Suffix of copied syntax coloring style
-" copy" = " コピー";
+"copy" = "コピー";
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか？";

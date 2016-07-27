@@ -417,7 +417,7 @@
 "Bundled styles can’t be renamed." = "Gebündelten Stile können nicht umbenannt werden.";
 
 // Suffix of copied syntax coloring style
-" copy" = " Kopie";
+"copy" = "Kopie";
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "Möchten Sie den Syntaxstil „%@“ wirklich löschen?";

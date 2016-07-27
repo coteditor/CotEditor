@@ -37,7 +37,7 @@ let ThemeExtension = "cottheme"
 }
 
 
-final class ThemeManager: CESettingFileManager {
+final class ThemeManager: SettingFileManager {
     
     // MARK: Public Properties
     
@@ -64,7 +64,7 @@ final class ThemeManager: CESettingFileManager {
         super.init()
         
         // cache bundled theme names
-        let themeURLs = Bundle.main.urlsForResources(withExtension: self.filePathExtension(), subdirectory: self.directoryName()) ?? []
+        let themeURLs = Bundle.main.urlsForResources(withExtension: self.filePathExtension, subdirectory: self.directoryName) ?? []
         for themeURL in themeURLs {
             if themeURL.lastPathComponent?.hasPrefix("_") ?? false { continue }
             
@@ -86,28 +86,28 @@ final class ThemeManager: CESettingFileManager {
     // MARK: Setting File Manager Methods
     
     /// directory name in both Application Support and bundled Resources
-    override func directoryName() -> String {
+    override var directoryName: String {
         
         return "Themes"
     }
     
     
     /// path extension for user setting file
-    override func filePathExtension() -> String {
+    override var filePathExtension: String {
         
         return ThemeExtension
     }
     
     
     /// list of names of setting file name (without extension)
-    override func settingNames() -> [String] {
+    override var settingNames: [String] {
         
         return self.themeNames
     }
     
     
     /// list of names of setting file name which are bundled (without extension)
-    override func bundledSettingNames() -> [String] {
+    override var bundledSettingNames: [String] {
         
         return self.bundledThemeNames
     }
@@ -117,18 +117,18 @@ final class ThemeManager: CESettingFileManager {
     // MARK: Public Methods
     
     /// create Theme instance from theme name
-    func theme(name themeName: String) -> Theme? {
+    func theme(name: String) -> Theme? {
         
-        guard let themeDictionary = self.themeDictionary(name: themeName) else { return nil }
+        guard let themeDictionary = self.themeDictionary(name: name) else { return nil }
         
-        return Theme(dictionary: themeDictionary, name: themeName)
+        return Theme(dictionary: themeDictionary, name: name)
     }
     
     
     /// Theme dict in which objects are property list ready.
-    func themeDictionary(name themeName: String) -> ThemeDictionary? {
+    func themeDictionary(name: String) -> ThemeDictionary? {
     
-        return self.archivedThemes[themeName]
+        return self.archivedThemes[name]
     }
     
     
@@ -137,9 +137,14 @@ final class ThemeManager: CESettingFileManager {
     func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: ((NSError?) -> Void)? = nil) -> Bool {
         
         // create directory to save in user domain if not yet exist
-        guard self.prepareUserSettingDirectory() else { return false }
+        do {
+            try self.prepareUserSettingDirectory()
+        } catch let error as NSError {
+            completionHandler?(error)
+            return false
+        }
         
-        let fileURL = self.preparedURLForUserSetting(withName: themeName)
+        let fileURL = self.preparedURLForUserSetting(name: themeName)
         
         do {
             let data = try JSONSerialization.data(withJSONObject: themeDictionary, options: .prettyPrinted)
@@ -164,27 +169,27 @@ final class ThemeManager: CESettingFileManager {
     
     
     /// rename theme
-    override func renameSetting(withName settingName: String, toName newSettingName: String) throws {
+    override func renameSetting(name settingName: String, to newName: String) throws {
         
-        try super.renameSetting(withName: settingName, toName: newSettingName)
+        try super.renameSetting(name: settingName, to: newName)
         
         if UserDefaults.standard.string(forKey: DefaultKey.theme) == settingName {
-            UserDefaults.standard.set(newSettingName, forKey: DefaultKey.theme)
+            UserDefaults.standard.set(newName, forKey: DefaultKey.theme)
         }
         
         self.updateCache { [weak self] in
             NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
                                             object: self,
                                             userInfo: [CEOldNameKey: settingName,
-                                                       CENewNameKey: newSettingName])
+                                                       CENewNameKey: newName])
         }
     }
     
     
     /// delete theme file corresponding to the theme name
-    override func removeSetting(withName settingName: String) throws {
+    override func removeSetting(name settingName: String) throws {
         
-        try super.removeSetting(withName: settingName)
+        try super.removeSetting(name: settingName)
         
         self.updateCache { [weak self] in
             // restore theme of opened documents to default
@@ -199,9 +204,9 @@ final class ThemeManager: CESettingFileManager {
     
     
     /// restore customized bundled theme to original one
-    override func restoreSetting(withName settingName: String) throws {
+    override func restoreSetting(name settingName: String) throws {
         
-        try super.restoreSetting(withName: settingName)
+        try super.restoreSetting(name: settingName)
         
         self.updateCache { [weak self] in
             NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
@@ -213,16 +218,16 @@ final class ThemeManager: CESettingFileManager {
     
     
     /// copy external theme file to user domain
-    override func importSetting(withFileURL fileURL: URL) throws {
+    override func importSetting(fileURL: URL) throws {
         
         do {
-            try super.importSetting(withFileURL: fileURL)
+            try super.importSetting(fileURL: fileURL)
             
         } catch let error as NSError where error.domain == CotEditorError.domain && error.code == CotEditorError.settingImportFileDuplicated.rawValue {
             // replace error message
-            let themeName = self.settingName(from: fileURL)
+            let name = self.settingName(from: fileURL)
             var userInfo = error.userInfo
-            userInfo[NSLocalizedDescriptionKey] = String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), themeName)
+            userInfo[NSLocalizedDescriptionKey] = String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), name)
             userInfo[NSLocalizedRecoverySuggestionErrorKey] = NSLocalizedString("Do you want to replace it?\nReplaced theme can’t be restored.", comment: "")
             
             throw NSError(domain: CotEditorError.domain, code: CotEditorError.settingImportFileDuplicated.rawValue, userInfo: userInfo)
@@ -233,15 +238,15 @@ final class ThemeManager: CESettingFileManager {
     /// create a new untitled theme
     func createUntitledTheme(completionHandler: ((String, NSError?) -> Void)? = nil) {
         
-        var newThemeName = NSLocalizedString("Untitled", comment: "")
+        var newName = NSLocalizedString("Untitled", comment: "")
         
         // append "Copy n" if "Untitled" already exists
-        if self.urlForUserSetting(withName: newThemeName) != nil {
-            newThemeName = self.copiedSettingName(newThemeName)
+        if self.urlForUserSetting(name: newName) != nil {
+            newName = self.copiedSettingName(newName)
         }
         
-        self.save(themeDictionary: self.plainThemeDictionary, name: newThemeName) { (error: NSError?) in
-            completionHandler?(newThemeName, error)
+        self.save(themeDictionary: self.plainThemeDictionary, name: newName) { (error: NSError?) in
+            completionHandler?(newName, error)
         }
     }
     
@@ -265,7 +270,7 @@ final class ThemeManager: CESettingFileManager {
             
             guard let strongSelf = self else { return }
             
-            let userDirURL = strongSelf.userSettingDirectoryURL()
+            let userDirURL = strongSelf.userSettingDirectoryURL
             let themeNameSet = NSMutableOrderedSet(array: strongSelf.bundledThemeNames)
             
             // load user themes if exists
@@ -273,19 +278,19 @@ final class ThemeManager: CESettingFileManager {
                 let fileURLs = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
                                                                             options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])) ?? []
                 for fileURL in fileURLs {
-                    guard fileURL.pathExtension == self?.filePathExtension() else { continue }
+                    guard fileURL.pathExtension == self?.filePathExtension else { continue }
                     
                     let name = strongSelf.settingName(from: fileURL)
                     themeNameSet.add(name)
                 }
                 
-                let isListUpdated = (themeNameSet.array as! [String] == strongSelf.themeNames)
+                let isListUpdated = (themeNameSet.array as! [String] != strongSelf.themeNames)
                 strongSelf.themeNames = themeNameSet.array as! [String]
                 
                 // cache definitions
                 var themes = [String: ThemeDictionary]()
                 for name in (themeNameSet.array as! [String]) {
-                    if let themeURL = strongSelf.urlForUsedSetting(withName: name) {
+                    if let themeURL = strongSelf.urlForUsedSetting(name: name) {
                         themes[name] = strongSelf.themeDictionary(fileURL: themeURL)
                     }
                 }
@@ -313,7 +318,7 @@ final class ThemeManager: CESettingFileManager {
     /// plain theme to be based on when creating a new theme
     var plainThemeDictionary: ThemeDictionary {
         
-        let url = self.urlForBundledSetting(withName: "_Plain")!
+        let url = self.urlForBundledSetting(name: "_Plain")!
         
         return self.themeDictionary(fileURL: url)!
     }
@@ -333,7 +338,7 @@ extension ThemeManager {
         let themeName = NSLocalizedString("Customized Theme", comment: "")
         
         // don't need to migrate if custom theme file already exists (to avoid overwrite)
-        guard self.urlForUserSetting(withName: themeName) == nil else { return false }
+        guard self.urlForUserSetting(name: themeName) == nil else { return false }
         
         // find customized theme colors from UserDefault
         var theme = self.classicTheme
@@ -368,7 +373,7 @@ extension ThemeManager {
     /// CotEditor 1.5までで使用されていたデフォルトテーマに新たなキーワードを加えたもの
     private var classicTheme: ThemeDictionary {
         
-        let url = self.urlForBundledSetting(withName: "Classic")!
+        let url = self.urlForBundledSetting(name: "Classic")!
         
         return self.themeDictionary(fileURL: url)!
     }

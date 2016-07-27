@@ -415,7 +415,7 @@
 "Bundled styles can’t be renamed." = "内置样式的名称不能改变。";
 
 // Suffix of copied syntax coloring style
-" copy" = " 拷贝";
+"copy" = "拷贝";
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "确定删除语法样式“%@”？";
