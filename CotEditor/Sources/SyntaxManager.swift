@@ -27,6 +27,7 @@
  */
 
 import Foundation
+import YAML
 
 @objc protocol SyntaxHolder {
     

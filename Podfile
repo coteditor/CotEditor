@@ -7,17 +7,11 @@ workspace 'CotEditor'
 abstract_target 'app' do
     project 'CotEditor/CotEditor'
 
-    pod 'YAML-Framework',
-        :git => 'https://github.com/coteditor/YAML.framework.git',
-        :branch => 'coteditor-mod'
     pod 'NSHash'
     pod 'WFColorCode'
 
 
-    target 'CotEditor' do
-        pod 'Sparkle'
-    end
-
+    target 'CotEditor'
     target 'CotEditor -AppStore'
 end
 
@@ -25,9 +19,5 @@ end
 target 'Tests' do
     project 'CotEditor/CotEditor'
 
-    pod 'YAML-Framework',
-        :git => 'https://github.com/coteditor/YAML.framework.git',
-        :branch => 'coteditor-mod'
     pod 'WFColorCode'
-    pod 'Sparkle'
 end
