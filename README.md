@@ -21,7 +21,7 @@ Source Code
 [![License](https://img.shields.io/github/license/coteditor/CotEditor.svg)](https://github.com/coteditor/CotEditor/blob/develop/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/coteditor/CotEditor.svg)](https://github.com/coteditor/CotEditor/releases/latest)
 
-CotEditor is a pure document-based Cocoa application. The source code is written in Swift/Objective-C with ARC enabled.
+CotEditor is a pure document-based Cocoa application written in Swift.
 
 
 ### Development Environment

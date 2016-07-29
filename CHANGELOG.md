@@ -14,6 +14,7 @@ develop
 ### Improvements
 
 - Drop support for __OS X Mountain Lion__ and __Mavericks__.
+- Migrate all source code from Objective-C to Swift.
 - Change the regular expression engine for find panel from the Onigmo to the ICU library.
     - Update line-up of the search options.
 - Inserting single surrogate character is no more valid.
