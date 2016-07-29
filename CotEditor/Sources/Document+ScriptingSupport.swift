@@ -26,7 +26,7 @@
  
  */
 
-import Foundation
+import Cocoa
 
 typealias OSALineEnding = FourCharCode
 private extension OSALineEnding {

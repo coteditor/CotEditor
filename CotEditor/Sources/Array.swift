@@ -25,6 +25,8 @@
  
  */
 
+import Foundation
+
 // element
 extension Array where Element: Equatable {
     

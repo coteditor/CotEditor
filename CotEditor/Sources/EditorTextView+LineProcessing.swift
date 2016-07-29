@@ -25,7 +25,7 @@
  
  */
 
-import Foundation
+import Cocoa
 
 extension EditorTextView {
     
