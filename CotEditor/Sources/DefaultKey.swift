@@ -26,7 +26,7 @@
  
  */
 
-import Foundation
+import AppKit
 
 typealias DefaultKey = String
 extension DefaultKey {

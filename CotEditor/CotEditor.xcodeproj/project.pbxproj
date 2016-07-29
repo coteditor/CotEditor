@@ -626,7 +626,7 @@
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
 		2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encoding.swift"; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTexts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTexts.swift; sourceTree = "<group>"; };
-		2A594C9E1D4BAF100076FEDC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../Carthage/Build/Mac/Sparkle.framework; sourceTree = SOURCE_ROOT; };
+		2A594C9E1D4BAF100076FEDC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		2A5ADE831D2168FC00F6CE26 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2A5ADE871D216D4900F6CE26 /* NSColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
 		2A5B0AF4190723AC00B6A51C /* EditColorCode.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = EditColorCode.tiff; sourceTree = "<group>"; };
@@ -995,9 +995,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A594CA81D4BB5930076FEDC /* Sparkle.framework in Frameworks */,
-				2A7A1D411D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
 				2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */,
+				2A7A1D411D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
+				2A594CA81D4BB5930076FEDC /* Sparkle.framework in Frameworks */,
 				2E99EEA0924F366FF76E5F91 /* libPods-Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1006,9 +1006,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A594C9F1D4BAF100076FEDC /* Sparkle.framework in Frameworks */,
-				2A7A1D3F1D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
 				2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */,
+				2A7A1D3F1D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
+				2A594C9F1D4BAF100076FEDC /* Sparkle.framework in Frameworks */,
 				FC2C7C68214BAB4E05DE36FC /* libPods-app-CotEditor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
