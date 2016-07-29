@@ -45,16 +45,14 @@ extension String {
     /// check if character at the location in UTF16 is escaped with backslash
     func isCharacterEscaped(at location: Int) -> Bool {
         
-        let MaxEscapesCheckLength = 16
-        let escapesCheckLength = min(location, MaxEscapesCheckLength)
+        guard let locationIndex = String.UTF16Index(location).samePosition(in: self) else { return false }
         
-        var locationIndex = self.utf16.index(self.utf16.startIndex, offsetBy: location).samePosition(in: self)!
+        let MaxEscapesCheckLength = 16
+        let seekCharacters = self.substring(to: locationIndex).characters.suffix(MaxEscapesCheckLength)
         
         var numberOfEscapes = 0
-        for _ in 0..<escapesCheckLength {
-            locationIndex = self.index(before: locationIndex)
-            
-            guard self[locationIndex] == "\\" else { break }
+        for character in seekCharacters.reversed() {
+            guard character == "\\" else { break }
             
             numberOfEscapes += 1
         }
