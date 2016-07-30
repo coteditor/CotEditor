@@ -216,7 +216,7 @@ class Document: NSDocument, EncodingHolder {
         let data = try Data(contentsOf: url)  // FILE_READ
         
         // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
-        self.fileHash = (data as NSData).md5()
+        self.fileHash = data.md5
         
         // read file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
@@ -447,7 +447,7 @@ class Document: NSDocument, EncodingHolder {
         if saveOperation != .autosaveElsewhereOperation {
             // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
             if let data = try? Data(contentsOf: url) {  // FILE_READ
-                self.fileHash = (data as NSData).md5()
+                self.fileHash = data.md5
             }
             
             // store file encoding for revert
@@ -725,7 +725,7 @@ class Document: NSDocument, EncodingHolder {
         // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
         var fileHash: Data?
         coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in
-            fileHash = (try? Data(contentsOf: newURL) as NSData)?.md5()  // FILE_READ
+            fileHash = (try? Data(contentsOf: newURL))?.md5  // FILE_READ
         }
         guard fileHash != self.fileHash else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)

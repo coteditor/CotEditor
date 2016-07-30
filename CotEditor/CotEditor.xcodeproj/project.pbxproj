@@ -62,6 +62,7 @@
 		2A2792961D1DBDAC00F3FC5D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* Constants.swift */; };
 		2A2792981D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
 		2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
+		2A2A6A2B1D4D2D9400C3363E /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A6A2A1D4D2D9400C3363E /* CryptoTests.swift */; };
 		2A2D6C191A602D2C002451FF /* RegexReferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */; };
 		2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */; };
 		2A33D07F1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */; };
@@ -116,6 +117,8 @@
 		2A48103A1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
 		2A48103B1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
 		2A48103C1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
+		2A48103E1D4D210300F7D34C /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48103D1D4D210300F7D34C /* Crypto.swift */; };
+		2A48103F1D4D210300F7D34C /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48103D1D4D210300F7D34C /* Crypto.swift */; };
 		2A4CCBB41D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
 		2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
 		2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */; };
@@ -516,8 +519,6 @@
 		8CEF66C60995E4A700C65A84 /* PageGuide_Off.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C40995E4A700C65A84 /* PageGuide_Off.tiff */; };
 		8CEF66C70995E4A700C65A84 /* PageGuide_On.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8CEF66C50995E4A700C65A84 /* PageGuide_On.tiff */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */; };
-		9EA5A949CE2156DE4CB0E10F /* libPods-app-CotEditor -AppStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D6B6F2FBCDF9C1B74A5570 /* libPods-app-CotEditor -AppStore.a */; };
-		FC2C7C68214BAB4E05DE36FC /* libPods-app-CotEditor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EC76D9D46B903A069A4966 /* libPods-app-CotEditor.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -575,6 +576,8 @@
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
+		2A2A6A291D4D2BB400C3363E /* CommonCrypto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CommonCrypto; sourceTree = "<group>"; };
+		2A2A6A2A1D4D2D9400C3363E /* CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
 		2A2D6C181A602D2C002451FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegexReferenceView.xib; sourceTree = "<group>"; };
 		2A2D6C1C1A603781002451FF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RegexReferenceView.strings"; sourceTree = "<group>"; };
 		2A2D6C1E1A603ACA002451FF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
@@ -619,6 +622,7 @@
 		2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		2A476CB01D09D0500088E37A /* FontExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		2A4810391D4D1ADF00F7D34C /* ColorCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ColorCode.framework; path = ../Carthage/Build/Mac/ColorCode.framework; sourceTree = "<group>"; };
+		2A48103D1D4D210300F7D34C /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
 		2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encoding.swift"; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTexts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTexts.swift; sourceTree = "<group>"; };
@@ -852,7 +856,6 @@
 		2ACB53AC1A3E04010040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxTermsEditView.xib; sourceTree = "<group>"; };
 		2ACB53AD1A3E043E0040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxValidationView.xib; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
-		2ACDC0881D171F1E009B72D6 /* CotEditor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CotEditor-Bridging-Header.h"; path = "Sources/CotEditor-Bridging-Header.h"; sourceTree = "<group>"; };
 		2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
 		2ACDC0901D1726BD009B72D6 /* DotImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotImageView.swift; sourceTree = "<group>"; };
@@ -945,14 +948,10 @@
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
-		3E7727543EB50AC65E9738BE /* Pods-app-CotEditor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor.debug.xcconfig"; sourceTree = "<group>"; };
-		4AEC6947578D0EF73538D6D4 /* Pods-app-CotEditor -AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor -AppStore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore.release.xcconfig"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		7CD3DA9878BE30BB0DF9CE52 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81DF558CB239313DB3176921 /* Pods-app-CotEditor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor.release.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor.release.xcconfig"; sourceTree = "<group>"; };
 		8C081B4A07D0A85A0060191A /* GetInfo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = GetInfo.tiff; sourceTree = "<group>"; };
 		8C3E2D4E0808E203009894D1 /* ShiftLeft.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ShiftLeft.tiff; sourceTree = "<group>"; };
 		8C3E2D4F0808E203009894D1 /* ShiftRight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ShiftRight.tiff; sourceTree = "<group>"; };
@@ -968,9 +967,6 @@
 		8CEF66C50995E4A700C65A84 /* PageGuide_On.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PageGuide_On.tiff; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CotEditor-Info.plist"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2D6B6F2FBCDF9C1B74A5570 /* libPods-app-CotEditor -AppStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app-CotEditor -AppStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D3EC76D9D46B903A069A4966 /* libPods-app-CotEditor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app-CotEditor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5A849AA44E5F351B7D93C41 /* Pods-app-CotEditor -AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-CotEditor -AppStore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -981,7 +977,6 @@
 				2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */,
 				2A7A1D401D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
 				2A48103B1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */,
-				9EA5A949CE2156DE4CB0E10F /* libPods-app-CotEditor -AppStore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,7 +999,6 @@
 				2A7A1D3F1D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
 				2A48103A1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */,
 				2A594C9F1D4BAF100076FEDC /* Sparkle.framework in Frameworks */,
-				FC2C7C68214BAB4E05DE36FC /* libPods-app-CotEditor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,17 +1013,6 @@
 				2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		234A213E93629F3A79324102 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3E7727543EB50AC65E9738BE /* Pods-app-CotEditor.debug.xcconfig */,
-				81DF558CB239313DB3176921 /* Pods-app-CotEditor.release.xcconfig */,
-				D5A849AA44E5F351B7D93C41 /* Pods-app-CotEditor -AppStore.debug.xcconfig */,
-				4AEC6947578D0EF73538D6D4 /* Pods-app-CotEditor -AppStore.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		2A009ADB1A5AB96F00C3D542 /* Text View */ = {
@@ -1258,7 +1241,6 @@
 				2AF0740B1D37DE5400770BA6 /* Modules */,
 				BEED9F89D1E364DD05CA42CB /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
-				234A213E93629F3A79324102 /* Pods */,
 			);
 			name = CotEditor;
 			sourceTree = "<group>";
@@ -1291,7 +1273,6 @@
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2ACDC0881D171F1E009B72D6 /* CotEditor-Bridging-Header.h */,
 				2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */,
 				2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */,
 				2A3E84821D07331900070A54 /* updateHelpindex.sh */,
@@ -1457,6 +1438,7 @@
 				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */,
+				2A48103D1D4D210300F7D34C /* Crypto.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1611,6 +1593,7 @@
 				2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */,
 				2A476CB01D09D0500088E37A /* FontExtensionTests.swift */,
 				2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */,
+				2A2A6A2A1D4D2D9400C3363E /* CryptoTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1694,6 +1677,7 @@
 			isa = PBXGroup;
 			children = (
 				2A9BF3B71D37EAFA00E3D3E2 /* ICU */,
+				2A2A6A291D4D2BB400C3363E /* CommonCrypto */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1743,9 +1727,6 @@
 				2A4810391D4D1ADF00F7D34C /* ColorCode.framework */,
 				2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */,
 				2A594C9E1D4BAF100076FEDC /* Sparkle.framework */,
-				D3EC76D9D46B903A069A4966 /* libPods-app-CotEditor.a */,
-				B2D6B6F2FBCDF9C1B74A5570 /* libPods-app-CotEditor -AppStore.a */,
-				7CD3DA9878BE30BB0DF9CE52 /* libPods-Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1757,14 +1738,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor -AppStore" */;
 			buildPhases = (
-				2A6F0D531B5500E100C2D03C /* [CP] Check Pods Manifest.lock */,
 				2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
-				DCACFAE3957B360DC925F673 /* [CP] Embed Pods Frameworks */,
-				196995175ECE5E61C4E1785D /* [CP] Copy Pods Resources */,
 				2A7A1D441D4BD10D001B74B8 /* Carthage */,
 			);
 			buildRules = (
@@ -1800,15 +1778,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */;
 			buildPhases = (
-				360866EE86A144AF8F8698E8 /* [CP] Check Pods Manifest.lock */,
 				2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				2A594C9B1D4BAE320076FEDC /* Carthage */,
-				C40FF196FC931BDEC94F689E /* [CP] Embed Pods Frameworks */,
-				22663AC3ADB1560165C6C02E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2067,36 +2042,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		196995175ECE5E61C4E1785D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		22663AC3ADB1560165C6C02E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2A3E84811D07299E00070A54 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2172,21 +2117,6 @@
 			shellPath = /bin/sh;
 			shellScript = "ruby makeSyntaxMap.rb";
 		};
-		2A6F0D531B5500E100C2D03C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		2A7A1D441D4BD10D001B74B8 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2202,51 +2132,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		360866EE86A144AF8F8698E8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C40FF196FC931BDEC94F689E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor/Pods-app-CotEditor-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DCACFAE3957B360DC925F673 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-app-CotEditor -AppStore/Pods-app-CotEditor -AppStore-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2276,6 +2161,7 @@
 				2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2AA7613B1D457BD500031AAF /* String+Indentation.swift in Sources */,
 				2A78BFAB1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
+				2A48103F1D4D210300F7D34C /* Crypto.swift in Sources */,
 				2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,
 				2AF073F51D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
 				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
@@ -2418,6 +2304,7 @@
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
 				2ABFF6D71D02856A00BE2795 /* KeyBindingsTests.swift in Sources */,
+				2A2A6A2B1D4D2D9400C3363E /* CryptoTests.swift in Sources */,
 				2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */,
 				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
 				2A476CAE1D09C8C80088E37A /* URLExtensionsTests.swift in Sources */,
@@ -2531,6 +2418,7 @@
 				2ACDC0A31D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2A5ADE841D2168FC00F6CE26 /* Array.swift in Sources */,
 				2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
+				2A48103E1D4D210300F7D34C /* Crypto.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
@@ -3178,31 +3066,29 @@
 		};
 		2A6F0E051B5500E100C2D03C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5A849AA44E5F351B7D93C41 /* Pods-app-CotEditor -AppStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)-AppStore/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		2A6F0E061B5500E100C2D03C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AEC6947578D0EF73538D6D4 /* Pods-app-CotEditor -AppStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)-AppStore/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -3234,7 +3120,6 @@
 		};
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E7727543EB50AC65E9738BE /* Pods-app-CotEditor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
@@ -3243,13 +3128,11 @@
 				INFOPLIST_FILE = "CotEditor-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		8C71D95508640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81DF558CB239313DB3176921 /* Pods-app-CotEditor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
@@ -3257,7 +3140,6 @@
 				INFOPLIST_FILE = "CotEditor-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sources/CotEditor-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -3307,6 +3189,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -3356,6 +3239,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				SDKROOT = macosx;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};

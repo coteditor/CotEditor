@@ -402,7 +402,7 @@ extension SyntaxStyle {
         let wholeRange = textStorage.string.nsRange
         
         // use cache if the content of the whole document is the same as the last
-        if let hash = self.highlightCacheHash, let highlights = self.cachedHighlights, hash == (textStorage.string as NSString).md5() {
+        if let hash = self.highlightCacheHash, let highlights = self.cachedHighlights, hash == textStorage.string.md5 {
             self.apply(highlights: highlights, range: wholeRange)
             completionHandler?()
             return
@@ -530,7 +530,7 @@ extension SyntaxStyle {
                     // cache result if whole text was parsed
                     if highlightRange.length == string.utf16.count {
                         strongSelf.cachedHighlights = highlights
-                        strongSelf.highlightCacheHash = (string as NSString).md5()
+                        strongSelf.highlightCacheHash = string.md5
                     }
                     
                     // apply color (or give up if the editor's string is changed from the analized string)
