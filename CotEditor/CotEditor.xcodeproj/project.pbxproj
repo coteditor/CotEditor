@@ -116,7 +116,6 @@
 		2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CB01D09D0500088E37A /* FontExtensionTests.swift */; };
 		2A48103A1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
 		2A48103B1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
-		2A48103C1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
 		2A48103E1D4D210300F7D34C /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48103D1D4D210300F7D34C /* Crypto.swift */; };
 		2A48103F1D4D210300F7D34C /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48103D1D4D210300F7D34C /* Crypto.swift */; };
 		2A4CCBB41D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
@@ -124,7 +123,6 @@
 		2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */; };
 		2A54BE2C1D40EB24000816B0 /* LineEndingTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54BE2B1D40EB24000816B0 /* LineEndingTexts.swift */; };
 		2A594C9F1D4BAF100076FEDC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; };
-		2A594CA81D4BB5930076FEDC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A5ADE841D2168FC00F6CE26 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Array.swift */; };
 		2A5ADE851D2168FC00F6CE26 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Array.swift */; };
@@ -316,7 +314,6 @@
 		2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A7A1D3F1D4BCCEF001B74B8 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
 		2A7A1D401D4BCCEF001B74B8 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
-		2A7A1D411D4BCCEF001B74B8 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
 		2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A80C65E1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
@@ -421,7 +418,6 @@
 		2AC52BDB1D48CC0E007D6371 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */; };
 		2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */; };
 		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
-		2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
 		2ACDC08B1D171F1E009B72D6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */; };
 		2ACDC08C1D171F1E009B72D6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */; };
@@ -977,17 +973,6 @@
 				2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */,
 				2A7A1D401D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
 				2A48103B1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2AC71DDC1BF0BDBC002E1434 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2AC71DF11BF0CFA3002E1434 /* libicucore.tbd in Frameworks */,
-				2A7A1D411D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
-				2A48103C1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */,
-				2A594CA81D4BB5930076FEDC /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1743,7 +1728,7 @@
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
-				2A7A1D441D4BD10D001B74B8 /* Carthage */,
+				2A7A1D441D4BD10D001B74B8 /* Copy Frameworks via Carthage */,
 			);
 			buildRules = (
 			);
@@ -1760,9 +1745,7 @@
 			buildConfigurationList = 2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
 				2AC71DDB1BF0BDBC002E1434 /* Sources */,
-				2AC71DDC1BF0BDBC002E1434 /* Frameworks */,
 				2AC71DDD1BF0BDBC002E1434 /* Resources */,
-				2A594CA61D4BB4F20076FEDC /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -1783,7 +1766,7 @@
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-				2A594C9B1D4BAE320076FEDC /* Carthage */,
+				2A594C9B1D4BAE320076FEDC /* Copy Frameworks via Carthage */,
 			);
 			buildRules = (
 			);
@@ -2055,7 +2038,7 @@
 			shellPath = /bin/sh;
 			shellScript = ./updateHelpindex.sh;
 		};
-		2A594C9B1D4BAE320076FEDC /* Carthage */ = {
+		2A594C9B1D4BAE320076FEDC /* Copy Frameworks via Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2065,24 +2048,7 @@
 				"$(SRCROOT)/../Carthage/Build/Mac/ColorCode.framework",
 				"$(SRCROOT)/../Carthage/Build/Mac/Sparkle.framework",
 			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		2A594CA61D4BB4F20076FEDC /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../Carthage/Build/Mac/YAML.framework",
-				"$(SRCROOT)/../Carthage/Build/Mac/ColorCode.framework",
-				"$(SRCROOT)/../Carthage/Build/Mac/Sparkle.framework",
-			);
-			name = Carthage;
+			name = "Copy Frameworks via Carthage";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2117,7 +2083,7 @@
 			shellPath = /bin/sh;
 			shellScript = "ruby makeSyntaxMap.rb";
 		};
-		2A7A1D441D4BD10D001B74B8 /* Carthage */ = {
+		2A7A1D441D4BD10D001B74B8 /* Copy Frameworks via Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2126,7 +2092,7 @@
 				"$(SRCROOT)/../Carthage/Build/Mac/YAML.framework",
 				"$(SRCROOT)/../Carthage/Build/Mac/ColorCode.framework",
 			);
-			name = Carthage;
+			name = "Copy Frameworks via Carthage";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
