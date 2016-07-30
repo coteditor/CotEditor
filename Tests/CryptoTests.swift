@@ -35,8 +35,9 @@ class CryptoTests: XCTestCase {
         
         let string = "test 😀"
         
-        XCTAssertEqual(string.md5, "6ea90249944d0693f07bc35874f87c5a")
         XCTAssertEqual("", "")
+        XCTAssertEqual(string.md5, "6ea90249944d0693f07bc35874f87c5a")
+        XCTAssertNotEqual(string.md5, "test ".md5)
     }
 
     
