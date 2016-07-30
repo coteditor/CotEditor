@@ -27,6 +27,7 @@
 
 import Foundation
 import AppKit.NSColor
+import ColorCode
 
 
 protocol Themable {
@@ -85,8 +86,8 @@ struct Theme: CustomDebugStringConvertible {
             
             guard let colorCode = subdict?[ThemeKey.Sub.color.rawValue] as? String else { throw ThemeError.novalue }
             
-            var type: WFColorCodeType = .invalid
-            guard let color = NSColor(colorCode: colorCode, codeType: &type),
+            var type: ColorCodeType = .invalid
+            guard let color = NSColor(colorCode: colorCode, type: &type),
                 type == .hex || type == .shortHex else { throw ThemeError.invalid }
             
             return color

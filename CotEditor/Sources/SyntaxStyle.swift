@@ -254,13 +254,13 @@ class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringConverti
     
     var description: String {
         
-        return "<\(self) -\(self.styleName)>"
+        return "<SyntaxStyle -\(self.styleName)>"
     }
     
     
     var debugDescription: String {
         
-        return "<\(self) -\(self.styleName): \(unsafeAddress(of: self))>"
+        return "<SyntaxStyle -\(self.styleName): \(unsafeAddress(of: self))>"
     }
     
     

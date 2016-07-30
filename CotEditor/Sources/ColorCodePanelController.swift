@@ -26,6 +26,7 @@
  */
 
 import Cocoa
+import ColorCode
 
 @objc protocol ColorCodeReceiver {
     
@@ -60,7 +61,7 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         // setup stylesheet color list
         let colorList = NSColorList(name: NSLocalizedString("Stylesheet Keywords", comment: ""))
-        for (keyword, color) in NSColor.stylesheetKeywordColors() {
+        for (keyword, color) in NSColor.stylesheetKeywordColors {
             colorList .setColor(color, forKey: keyword)
         }
         self.stylesheetColorList = colorList
@@ -89,8 +90,8 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         guard let sanitizedCode = code?.trimmingCharacters(in: .whitespacesAndNewlines), !sanitizedCode.isEmpty else { return }
         
-        var codeType: WFColorCodeType = .invalid
-        guard let color = NSColor(colorCode: sanitizedCode, codeType: &codeType) else { return }
+        var codeType: ColorCodeType = .invalid
+        guard let color = NSColor(colorCode: sanitizedCode, type: &codeType) else { return }
         
         UserDefaults.standard.set(codeType.rawValue, forKey: DefaultKey.colorCodeType)
         self.panel?.color = color
@@ -177,12 +178,12 @@ class ColorCodePanelController: NSViewController, NSWindowDelegate {
     /// update color code in the field
     @IBAction func updateCode(_ sender: AnyObject?) {
         
-        let codeType = WFColorCodeType(rawValue: UInt(UserDefaults.standard.integer(forKey: DefaultKey.colorCodeType))) ?? .hex
+        let codeType = ColorCodeType(rawValue: UserDefaults.standard.integer(forKey: DefaultKey.colorCodeType)) ?? .hex
         var color = self.color
         if let unsafeColor = color, ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(unsafeColor.colorSpace) {
             color = unsafeColor.usingColorSpaceName(NSCalibratedRGBColorSpace)
         }
-        var code = color?.colorCode(with: codeType)
+        var code = color?.colorCode(type: codeType)
         
         // keep lettercase if current Hex code is uppercase
         if (codeType == .hex || codeType == .shortHex) && self.colorCode?.range(of: "^#[0-9A-F]{1,6}$", options: .regularExpression) != nil {

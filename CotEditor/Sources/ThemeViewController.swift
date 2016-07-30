@@ -26,6 +26,7 @@
  */
 
 import Cocoa
+import ColorCode
 
 protocol ThemeViewControllerDelegate: class {
     
@@ -122,7 +123,7 @@ class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDeleg
         guard let button = sender as? NSButton, button.state == NSOnState else { return }
         
         let color = NSColor.selectedTextBackgroundColor()
-        let colorCode = color.usingColorSpaceName(NSCalibratedRGBColorSpace)?.colorCode(with: .hex)
+        let colorCode = color.usingColorSpaceName(NSCalibratedRGBColorSpace)?.colorCode(type: .hex)
         
         self.theme?[ThemeKey.selection.rawValue]?[ThemeKey.Sub.color.rawValue] = colorCode
     }

@@ -27,6 +27,7 @@
 
 import Foundation
 import AppKit.NSColor
+import ColorCode
 
 let ThemeExtension = "cottheme"
 
@@ -347,7 +348,7 @@ extension ThemeManager {
                 let rawColor = NSUnarchiver.unarchiveObject(with: oldData),
                 let color = rawColor.usingColorSpaceName(NSCalibratedRGBColorSpace) else { continue }
             
-            theme[modernKey.rawValue]?[ThemeKey.Sub.color.rawValue] = color.colorCode(with: .hex)
+            theme[modernKey.rawValue]?[ThemeKey.Sub.color.rawValue] = color.colorCode(type: .hex)
             if modernKey == .selection {
                 theme[modernKey.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] = false
             }

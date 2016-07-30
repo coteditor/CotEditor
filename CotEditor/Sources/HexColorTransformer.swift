@@ -27,6 +27,7 @@
 
 import Foundation
 import AppKit.NSColor
+import ColorCode
 
 class HexColorTransformer: ValueTransformer {
     
@@ -53,8 +54,8 @@ class HexColorTransformer: ValueTransformer {
             return nil
         }
         
-        var type: WFColorCodeType = .invalid
-        let color = NSColor(colorCode: code, codeType: &type)
+        var type: ColorCodeType = .invalid
+        let color = NSColor(colorCode: code, type: &type)
         
         guard type == .hex || type == .shortHex else { return nil }
         
@@ -69,7 +70,7 @@ class HexColorTransformer: ValueTransformer {
         
         let sanitizedColor = color.usingColorSpaceName(NSCalibratedRGBColorSpace)
         
-        return sanitizedColor?.colorCode(with: .hex)
+        return sanitizedColor?.colorCode(type: .hex)
     }
     
 }
