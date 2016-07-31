@@ -58,9 +58,8 @@ class ThemeTests: XCTestCase {
         XCTAssertEqual(theme.selectionColor, NSColor.selectedTextBackgroundColor())
         
         for type in SyntaxType.all {
-            XCTAssertGreaterThan(theme.syntaxColor(type: type.rawValue)!.hueComponent, 0)
+            XCTAssertGreaterThan(theme.syntaxColor(type: type)!.hueComponent, 0)
         }
-        XCTAssertNil(theme.syntaxColor(type: "foo"))
         
         XCTAssertFalse(theme.isDarkTheme)
     }

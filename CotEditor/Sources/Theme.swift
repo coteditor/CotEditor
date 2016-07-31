@@ -146,15 +146,6 @@ struct Theme: CustomDebugStringConvertible {
     // MARK: Public Methods
     
     /// color for syntax type defined in theme
-    func syntaxColor(type: String) -> NSColor? {
-        
-        guard let syntaxType = SyntaxType(rawValue: type) else { return nil }
-        
-        return self.syntaxColors[syntaxType]
-    }
-    
-    
-    /// color for syntax type defined in theme
     func syntaxColor(type: SyntaxType) -> NSColor? {
         
         return self.syntaxColors[type]
