@@ -181,40 +181,35 @@ class OutlineParseOperation: Operation {
                         // replace matched string with template
                         title = definition.regex.replacementString(for: result, in: string, offset: 0, template: definition.template)
                         
-                        // replace $LN with line number
+                        // replace $LN with line number of the beginning of the matched range
                         if title.contains("$LN") {
-                            // count line number of the beginning of the matched range
-                            var lineCount = 0
-                            var index = 0
-                            while index <= range.location {
-                                index = (string as NSString).lineRange(for: NSRange(location: index, length: 0)).max
-                                lineCount += 1
-                            }
+                            let lineNumber = string.lineNumber(at: range.location)
                             
-                            // replace
-                            title = title.replacingOccurrences(of: "(?<!\\\\)\\$LN", with: String(lineCount), options: .regularExpression)
+                            title = title.replacingOccurrences(of: "(?<!\\\\)\\$LN",
+                                                               with: String(lineNumber),
+                                                               options: .regularExpression)
                         }
-                        
-                        // replace whitespaces
-                        title = title.replacingOccurrences(of: "\n", with: " ")
-                        
-                        let item = OutlineItem(title: title,
-                                               range: range,
-                                               isBold: definition.isBold,
-                                               isItalic: definition.isItalic,
-                                               hasUnderline: definition.hasUnderline)
-                        
-                        // append outline item
-                        outlineItems.append(item)
                     }
+                        
+                    // replace whitespaces
+                    title = title.replacingOccurrences(of: "\n", with: " ")
+                    
+                    let item = OutlineItem(title: title,
+                                           range: range,
+                                           isBold: definition.isBold,
+                                           isItalic: definition.isItalic,
+                                           hasUnderline: definition.hasUnderline)
+                    
+                    // append outline item
+                    outlineItems.append(item)
                     
                     guard !self.isCancelled else { return }
                 })
             
             // sort by location
-            outlineItems.sort(isOrderedBefore: { (item1, item2) -> Bool in
-                return item1.range.location < item2.range.location
-            })
+            outlineItems.sort {
+                $0.range.location < $1.range.location
+            }
             
             self.results = outlineItems
         }
