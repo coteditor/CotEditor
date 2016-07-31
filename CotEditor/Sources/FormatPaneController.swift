@@ -373,7 +373,7 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         let inNewEncoding = UserDefaults.standard.integer(forKey: DefaultKey.encodingInNew)
         self.inOpenEncodingMenu?.selectItem(withTag: inOpenEncoding)
         
-        if (inNewEncoding == UTF8Int) {
+        if inNewEncoding == UTF8Int {
             var index = inNewMenu.indexOfItem(withRepresentedObject: IsUTF8WithBOM)
             
             // -> The normal "UTF-8" is just above "UTF-8 with BOM".

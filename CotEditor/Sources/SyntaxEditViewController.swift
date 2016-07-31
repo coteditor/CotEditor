@@ -134,7 +134,7 @@ class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableVi
         self.isBundledStyle = manager.isBundledSetting(name: name)
         self.isCustomized = manager.isCustomizedBundledSetting(name: name)
         
-        if (self.isBundledStyle) {
+        if self.isBundledStyle {
             self.message = NSLocalizedString("Bundled styles can’t be renamed.", comment: "")
         }
         

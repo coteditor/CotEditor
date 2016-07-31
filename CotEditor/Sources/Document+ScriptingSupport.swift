@@ -303,7 +303,7 @@ extension Document {
                 numberOfReplacements = newWholeString.replaceOccurrences(of: searchString, with: replacementString,
                                                                          options: options, range: targetRange)
             }
-            if (numberOfReplacements > 0) {
+            if numberOfReplacements > 0 {
                 self.editor?.replaceAllString(with: newWholeString as String)
                 self.editor?.selectedRange = NSRange()
             }

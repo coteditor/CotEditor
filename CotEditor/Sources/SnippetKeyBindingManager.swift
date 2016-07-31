@@ -51,9 +51,6 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         self.defaultSnippets = UserDefaults().volatileDomain(forName: UserDefaults.registrationDomain)[DefaultKey.insertCustomTextArray]! as! [String]
         
         super.init()
-        
-        // read user key bindings if available
-        self.keyBindingDict = NSDictionary(contentsOf: self.keyBindingSettingFileURL) as? [String: String] ?? self.defaultKeyBindingDict
     }
     
     

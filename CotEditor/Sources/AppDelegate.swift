@@ -29,6 +29,7 @@
 import Cocoa
 
 enum MainMenu: Int {
+    
     case application
     case file
     case edit
@@ -56,6 +57,7 @@ enum MainMenu: Int {
 
 
 private struct Help {
+    
     static let anchors = [
         "releasenotes",
         "pref_general",

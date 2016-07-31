@@ -106,12 +106,11 @@ class DocumentAnalyzer: NSObject {
         self.filePath = document.fileURL?.path
         self.owner = attrs?[.ownerAccountName] as? String
         self.permission = attrs?[.posixPermissions] as? NSNumber
-        
-        if document.isInViewingMode {
-            self.isReadOnly = false
-        } else {
-            self.isReadOnly = (attrs?[.immutable] as? NSNumber)?.boolValue ?? false
-        }
+        self.isReadOnly = {
+            guard !document.isInViewingMode else { return false }
+            
+            return (attrs?[.immutable] as? NSNumber)?.boolValue ?? false
+        }()
         
         NotificationCenter.default.post(name: DocumentAnalyzer.DidUpdateFileInfoNotification, object: self)
     }
@@ -254,10 +253,10 @@ class DocumentAnalyzer: NSObject {
             
             // apply to UI
             DispatchQueue.main.sync {
-                strongSelf.length = strongSelf.format(count: length, selectedCount: selectedLength)
-                strongSelf.chars = strongSelf.format(count: numberOfChars, selectedCount: numberOfSelectedChars)
-                strongSelf.lines = strongSelf.format(count: numberOfLines, selectedCount: numberOfSelectedLines)
-                strongSelf.words = strongSelf.format(count: numberOfWords, selectedCount: numberOfSelectedWords)
+                strongSelf.length = strongSelf.dynamicType.format(count: length, selectedCount: selectedLength)
+                strongSelf.chars = strongSelf.dynamicType.format(count: numberOfChars, selectedCount: numberOfSelectedChars)
+                strongSelf.lines = strongSelf.dynamicType.format(count: numberOfLines, selectedCount: numberOfSelectedLines)
+                strongSelf.words = strongSelf.dynamicType.format(count: numberOfWords, selectedCount: numberOfSelectedWords)
                 strongSelf.location = String.localizedStringWithFormat("%li", location)
                 strongSelf.line = String.localizedStringWithFormat("%li", line)
                 strongSelf.column = String.localizedStringWithFormat("%li", column)
@@ -270,24 +269,22 @@ class DocumentAnalyzer: NSObject {
     
     
     /// format count number with selection
-    private func format(count: Int, selectedCount: Int) -> String {
+    private static func format(count: Int, selectedCount: Int?) -> String {
         
-        if selectedCount > 0 {
+        if let selectedCount = selectedCount, selectedCount > 0 {
             return String.localizedStringWithFormat("%li (%li)", count, selectedCount)
-        } else {
-            return String.localizedStringWithFormat("%li", count)
         }
+        return String.localizedStringWithFormat("%li", count)
     }
     
     
     /// set update timer for information about the content text
     private func setupEditorInfoUpdateTimer() {
         
-        let interval = TimeInterval(UserDefaults.standard.double(forKey: DefaultKey.infoUpdateInterval))
+        let interval: TimeInterval = UserDefaults.standard.double(forKey: DefaultKey.infoUpdateInterval)
         
         if let timer = self.editorInfoUpdateTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)
-            
         } else {
             self.editorInfoUpdateTimer = Timer.scheduledTimer(timeInterval: interval,
                                                               target: self,

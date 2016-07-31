@@ -54,13 +54,6 @@ final class MenuKeyBindingManager: KeyBindingManager {
         _defaultKeyBindingDict = MenuKeyBindingManager.scanMenuKeyBindingRecurrently(menu: mainMenu)
         
         super.init()
-        
-        // read user key bindings if available
-        if let customDict = NSDictionary(contentsOf: self.keyBindingSettingFileURL) as? [String: String], !customDict.isEmpty {
-            self.keyBindingDict = customDict
-        } else {
-            self.keyBindingDict = self.defaultKeyBindingDict
-        }
     }
     
     

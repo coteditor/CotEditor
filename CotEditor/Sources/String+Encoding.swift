@@ -104,7 +104,7 @@ extension String.Encoding {
 
 extension String {
     
-    /// obtain string from NSData with intelligent encoding detection
+    /// obtain string from Data with intelligent encoding detection
     init(data: Data, suggestedCFEncodings: [CFStringEncoding], usedEncoding: inout String.Encoding?) throws {
         
         // detect encoding from so-called "magic numbers"
@@ -329,7 +329,7 @@ extension Data {
     
     // MARK: Public Methods
     
-    /// return NSData by adding UTF-8 BOM
+    /// return Data by adding UTF-8 BOM
     var addingUTF8BOM: Data {
         
         var data = Data(bytes: UTF8.bom)

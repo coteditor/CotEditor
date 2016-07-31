@@ -1316,11 +1316,14 @@ extension EditorTextView {
     /// display word completion list with a delay
     func complete(after delay: TimeInterval) {
         
-        if let timer = self.completionTimer {
+        if let timer = self.completionTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: delay)
-            
         } else {
-            self.completionTimer = Timer.scheduledTimer(timeInterval: delay, target: self, selector: #selector(completion(timer:)), userInfo: nil, repeats: false)
+            self.completionTimer = Timer.scheduledTimer(timeInterval: delay,
+                                                        target: self,
+                                                        selector: #selector(completion(timer:)),
+                                                        userInfo: nil,
+                                                        repeats: false)
         }
     }
     

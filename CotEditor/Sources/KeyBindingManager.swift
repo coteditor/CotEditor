@@ -43,7 +43,16 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     // MARK: Public Properties
     
-    var keyBindingDict = [String: String]()
+    lazy var keyBindingDict: [String: String] = {
+        
+        if let data = try? Data(contentsOf: self.keyBindingSettingFileURL),
+            let customDict = (try? PropertyListSerialization.propertyList(from: data, format: nil)) as? [String: String],
+            !customDict.isEmpty
+        {
+            return customDict
+        }
+        return self.defaultKeyBindingDict
+    }()
     
     
     

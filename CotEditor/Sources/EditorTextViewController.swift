@@ -163,7 +163,7 @@ class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // do nothing if completion is not suggested from the typed characters
         guard let string = textView.string, charRange.length > 0 else { return [] }
         
-        let candidateWords = NSMutableOrderedSet()
+        let candidateWords = NSMutableOrderedSet()  // [String]
         let defaults = UserDefaults.standard
         let particalWord = (string as NSString).substring(with: charRange)
         

@@ -57,7 +57,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         
         // load test file
         let sourceURL = bundle.urlForResource("sample", withExtension: "html")
-        self.htmlSource = try? NSString(contentsOf: sourceURL!, encoding: String.Encoding.utf8.rawValue) as String
+        self.htmlSource = try? String(contentsOf: sourceURL!, encoding: .utf8)
         
         XCTAssertNotNil(self.htmlSource)
     }
