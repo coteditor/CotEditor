@@ -653,7 +653,7 @@ class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDelegate,
                 index = count - 2
             }
             let newFocusEditorViewController = childViewControllers[index]
-            guard newFocusEditorViewController == currentEditorViewController else { return }
+            guard newFocusEditorViewController != currentEditorViewController else { return }
             
             self.window?.makeFirstResponder(newFocusEditorViewController.textView)
         }

@@ -196,6 +196,8 @@ class EditorTextView: NSTextView, Themable {
         
         super.viewDidMoveToWindow()
         
+        guard let window = self.window else { return }  // do nothing if view was removed from the window
+        
         // apply theme to window
         self.applyTheme()
         
@@ -205,7 +207,7 @@ class EditorTextView: NSTextView, Themable {
         // observe window opacity flag
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
                                                name: .WindowDidChangeOpacity,
-                                               object: self.window!)
+                                               object: window)
     }
     
     
