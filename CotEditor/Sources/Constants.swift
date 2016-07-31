@@ -60,12 +60,14 @@ extension NSNumber {
  - returns: Processed value.
  */ 
 func within<T: Comparable>(_ minimum: T, _ value: T, _ maximum: T) -> T {
+    
     return max(minimum, min(value, maximum))
 }
 
 
 /// debug friendly print with a dog.
 func moof(_ items: Any..., function: String = #function) {
+    
     Swift.print("🐕 \(function): ", terminator: "")
     Swift.debugPrint(items)
 }

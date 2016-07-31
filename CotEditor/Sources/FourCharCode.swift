@@ -29,7 +29,7 @@ import Foundation
 
 extension FourCharCode {
     
-    init (code string: String) {
+    init(code string: String) {
         
         assert(string.utf16.count == 4, "FourCharCode must be made from 4 ASCII characters.")
         

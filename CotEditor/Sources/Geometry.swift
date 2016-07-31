@@ -38,6 +38,7 @@ protocol Scalable {
 extension CGPoint: Scalable {
     
     func scaled(to scale: CGFloat) -> CGPoint {
+        
         return CGPoint(x: scale * self.x, y: scale * self.y)
     }
     
@@ -47,6 +48,7 @@ extension CGPoint: Scalable {
 extension CGSize: Scalable {
     
     func scaled(to scale: CGFloat) -> CGSize {
+        
         return CGSize(width: scale * self.width, height: scale * self.height)
     }
     
@@ -56,6 +58,7 @@ extension CGSize: Scalable {
 extension CGRect: Scalable {
     
     func scaled(to scale: CGFloat) -> CGRect {
+        
         return CGRect(x: scale * self.origin.x, y: scale * self.origin.y, width: scale * self.width, height: scale * self.height)
     }
     
@@ -87,6 +90,7 @@ extension CGSize {
 extension CGRect {
     
     var mid: CGPoint {
+        
         return NSPoint(x: self.midX, y: self.midY)
     }
     

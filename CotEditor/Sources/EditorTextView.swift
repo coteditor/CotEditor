@@ -146,9 +146,11 @@ class EditorTextView: NSTextView, Themable {
         self.isAutomaticDashSubstitutionEnabled = defaults.bool(forKey: DefaultKey.autoLinkDetection)
         
         // set font
-        let fontName = defaults.string(forKey: DefaultKey.fontName)!
-        let fontSize = defaults.cgFloat(forKey: DefaultKey.fontSize)
-        let font = NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize)
+        let font: NSFont? = {
+            let fontName = defaults.string(forKey: DefaultKey.fontName)!
+            let fontSize = defaults.cgFloat(forKey: DefaultKey.fontSize)
+            return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize)
+        }()
         super.font = font
         layoutManager.textFont = font
         layoutManager.usesAntialias = defaults.bool(forKey: DefaultKey.shouldAntialias)

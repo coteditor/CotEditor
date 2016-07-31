@@ -82,16 +82,17 @@ class LayoutManager: NSLayoutManager {
     
     private static let usesTextFontForInvisibles = UserDefaults.standard.bool(forKey: DefaultKey.usesTextFontForInvisibles)
     private static let HiraginoSansName = NSFontManager.shared().availableFonts.contains(FontName.HiraginoSans) ? FontName.HiraginoSans : FontName.HiraKakuProN
-    private static let observedDefaultKeys: [DefaultKey] = [.invisibleSpace,
-                                                            .invisibleTab,
-                                                            .invisibleNewLine,
-                                                            .invisibleFullwidthSpace,
-                                                            
-                                                            .showInvisibleSpace,
-                                                            .showInvisibleTab,
-                                                            .showInvisibleNewLine,
-                                                            .showInvisibleFullwidthSpace,
-                                                            ]
+    private static let observedDefaultKeys: [DefaultKey] = [
+        .invisibleSpace,
+        .invisibleTab,
+        .invisibleNewLine,
+        .invisibleFullwidthSpace,
+        
+        .showInvisibleSpace,
+        .showInvisibleTab,
+        .showInvisibleNewLine,
+        .showInvisibleFullwidthSpace,
+        ]
     
     private var defaultLineHeight: CGFloat = 1.0
     

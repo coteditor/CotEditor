@@ -32,6 +32,7 @@ extension Array where Element: Equatable {
     
     /// Remove first collection element that is equal to the given `element`
     mutating func remove(_ element: Element) {
+        
         if let index = index(of: element) {
             remove(at: index)
         }
@@ -44,6 +45,7 @@ extension IndexableBase {
 
     /// Returns the element at the specified index only if it is within bounds, otherwise nil.
     public subscript(safe index: Index) -> _Element? {
+        
         return index >= startIndex && index < endIndex
             ? self[index]
             : nil

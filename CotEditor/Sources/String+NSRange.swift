@@ -54,6 +54,7 @@ extension String {
     
     /// whole range in NSRange
     var nsRange: NSRange {
+        
         return NSRange(location: 0, length: self.utf16.count)
     }
     
@@ -77,6 +78,7 @@ public func ==(lhs: NSRange, rhs: NSRange) -> Bool {
 extension NSString {
     
     var range: NSRange {
+        
         return NSRange(location: 0, length: self.length)
     }
     
