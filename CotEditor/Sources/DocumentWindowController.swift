@@ -48,7 +48,7 @@ class DocumentWindowController: NSWindowController, NSWindowDelegate {
     // MARK: KVO
     
     /// apply user defaults change
-    override func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutablePointer<Void>?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
         if keyPath == DefaultKey.windowAlpha {
             if let window = self.window as? AlphaWindow {
