@@ -217,16 +217,15 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         //   -> The bundle version (build number) format was changed on CotEditor 2.2.0. due to the iTunes Connect versioning rule.
         //       < 2.2.0 : The Semantic Versioning
         //      >= 2.2.0 : Single Integer
-        var isLatest = true
         let thisVersion = AppInfo.bundleVersion
-        if let lastVersion = UserDefaults.standard.string(forKey: DefaultKey.lastVersion) {
+        let isLatest: Bool = {
+            guard let lastVersion = UserDefaults.standard.string(forKey: DefaultKey.lastVersion) else { return true }
+            
             // if isDigit -> probably semver (semver must be older than 2.2.0)
             let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) != nil)
             
-            if isDigit && Int(thisVersion) < Int(lastVersion) {
-                isLatest = false
-            }
-        }
+            return !isDigit || Int(thisVersion) >= Int(lastVersion)
+        }()
         if isLatest {
             UserDefaults.standard.set(thisVersion, forKey: DefaultKey.lastVersion)
         }
@@ -374,17 +373,18 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         
         // load template file
         let url = Bundle.main.urlForResource("ReportTemplate", withExtension: "md")!
-        guard var template = try? String(contentsOf: url) else { return }
+        guard let template = try? String(contentsOf: url) else { return }
         
         // fill template with user environment info
-        template = template.replacingOccurrences(of: "%BUNDLE_VERSION%", with: AppInfo.bundleVersion)
-        template = template.replacingOccurrences(of: "%SHORT_VERSION%", with: AppInfo.shortVersion)
-        template = template.replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
+        let report = template
+            .replacingOccurrences(of: "%BUNDLE_VERSION%", with: AppInfo.bundleVersion)
+            .replacingOccurrences(of: "%SHORT_VERSION%", with: AppInfo.shortVersion)
+            .replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document
         guard let document = (try? NSDocumentController.shared().openUntitledDocumentAndDisplay(false)) as? Document else { return }
         document.displayName = NSLocalizedString("Bug Report", comment: "document title")
-        document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: template)
+        document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: report)
         document.setSyntaxStyle(name: "Markdown")
         document.makeWindowControllers()
         document.showWindows()

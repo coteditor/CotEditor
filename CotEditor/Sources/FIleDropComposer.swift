@@ -56,29 +56,46 @@ class FileDropComposer {
         
         
         var localizedDescription: String {
+            
+            return NSLocalizedString(self.descriptioin, comment: "")
+        }
+        
+        
+        private var descriptioin: String {
+            
             switch self {
             case .absolutePath:
-                return NSLocalizedString("The dropped file absolute path.", comment: "")
+                return "The dropped file absolute path."
+                
             case .relativePath:
-                return NSLocalizedString("The relative path between dropped file and the document.", comment: "")
+                return "The relative path between dropped file and the document."
+                
             case .filename:
-                return NSLocalizedString("The dropped file’s name include extension (if exists).", comment: "")
+                return "The dropped file’s name include extension (if exists)."
+                
             case .filenameWithoutExtension:
-                return NSLocalizedString("The dropped file’s name without extension.", comment: "")
+                return "The dropped file’s name without extension."
+                
             case .fileExtension:
-                return NSLocalizedString("The dropped file’s extension.", comment: "")
+                return "The dropped file’s extension."
+                
             case .fileExtensionLowercase:
-                return NSLocalizedString("The dropped file’s extension (converted to lowercase).", comment: "")
+                return "The dropped file’s extension (converted to lowercase)."
+                
             case .fileExtensionUppercase:
-                return NSLocalizedString("The dropped file’s extension (converted to uppercase).", comment: "")
+                return "The dropped file’s extension (converted to uppercase)."
+                
             case .directory:
-                return NSLocalizedString("The parent directory name of dropped file.", comment: "")
+                return "The parent directory name of dropped file."
+                
             case .imageWidth:
-                return NSLocalizedString("(If the dropped file is an image) image width.", comment: "")
+                return "(If the dropped file is an image) image width."
+                
             case .imageHeight:
-                return NSLocalizedString("(If the dropped file is an image) image height.", comment: "")
+                return "(If the dropped file is an image) image height."
             }
         }
+        
     }
     
     

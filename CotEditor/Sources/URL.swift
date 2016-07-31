@@ -66,10 +66,7 @@ extension URL {
             break
         }
         
-        var relativeComponents = [String]()
-        for _ in 0..<parentCount {
-            relativeComponents.append("..")
-        }
+        var relativeComponents = [String](repeating: "..", count: parentCount)
         relativeComponents.append(contentsOf: pathComponents[sameCount..<componentsCount])
         
         return NSURL.fileURL(withPathComponents: relativeComponents)?.relativePath

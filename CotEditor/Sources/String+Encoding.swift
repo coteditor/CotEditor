@@ -286,13 +286,15 @@ extension Data {
         guard let string = String(data: self, encoding: .utf8) else { return nil }
         
         let components = string.components(separatedBy: ";")
-        var cfEncoding: UInt32?
-        
-        if let cfEncodingNumber = components[safe: 1] {
-            cfEncoding = UInt32(cfEncodingNumber)
-        } else if let ianaCharSetName = components[safe: 0] {
-            cfEncoding = CFStringConvertIANACharSetNameToEncoding(ianaCharSetName)
-        }
+        let cfEncoding: UInt32? = {
+            if let cfEncodingNumber = components[safe: 1] {
+                return UInt32(cfEncodingNumber)
+            }
+            if let ianaCharSetName = components[safe: 0] {
+                return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName)
+            }
+            return nil
+        }()
         
         guard let unwrappedCFEncoding = cfEncoding, cfEncoding != kCFStringEncodingInvalidId else { return nil }
         

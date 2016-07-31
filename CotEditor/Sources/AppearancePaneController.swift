@@ -94,16 +94,16 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
         
-        var representedTheme: String? = self.selectedThemeName
-        if (isContextualMenu) {
+        let representedTheme: String? = {
+            guard isContextualMenu else {
+                return self.selectedThemeName
+            }
             let clickedRow = self.themeTableView?.clickedRow ?? -1
             
-            if clickedRow == -1 {  // clicked blank area
-                representedTheme = nil
-            } else {
-                representedTheme = self.themeNames[clickedRow]
-            }
-        }
+            guard clickedRow != -1 else { return nil }  // clicked blank area
+            
+            return self.themeNames[clickedRow]
+        }()
         menuItem.representedObject = representedTheme
         
         var isBundled = false

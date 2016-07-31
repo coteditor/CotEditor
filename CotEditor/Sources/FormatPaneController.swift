@@ -91,16 +91,18 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
         
-        var representedStyleName: String? = self.selectedStyleName
-        if (isContextualMenu) {
+        let representedStyleName: String? = {
+            guard isContextualMenu else {
+                return self.selectedStyleName
+            }
+            
             let clickedRow = self.syntaxTableView?.clickedRow ?? -1
             
-            if clickedRow == -1 {  // clicked blank area
-                representedStyleName = nil
-            } else {
-                representedStyleName = self.stylesController!.arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
-            }
-        }
+            guard clickedRow != -1 else { return nil }  // clicked blank area
+            
+            return self.stylesController!.arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
+        }()
+        
         // set style name as representedObject to menu items whose action is related to syntax style
         if NSStringFromSelector(menuItem.action!).contains("Syntax") {
             menuItem.representedObject = representedStyleName

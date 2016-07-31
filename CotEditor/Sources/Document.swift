@@ -280,11 +280,10 @@ class Document: NSDocument, EncodingHolder {
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
         
         // determine syntax style
-        var styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent!)
-        if styleName == nil {
-            styleName = SyntaxManager.shared.styleName(documentContent: string)
-        }
-        styleName = styleName ?? UserDefaults.standard.string(forKey: DefaultKey.syntaxStyle)
+        let styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent!)
+            ?? SyntaxManager.shared.styleName(documentContent: string)
+            ?? UserDefaults.standard.string(forKey: DefaultKey.syntaxStyle)
+        
         self.setSyntaxStyle(name: styleName)
     }
     
