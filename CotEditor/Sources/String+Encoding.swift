@@ -164,7 +164,7 @@ extension String {
             }
         }
         
-        throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadUnknownStringEncodingError, userInfo: nil)
+        throw NSCocoaError.fileReadUnknownStringEncodingError
     }
     
     

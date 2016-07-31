@@ -126,7 +126,7 @@ class DocumentController: NSDocumentController {
             
             // cancel operation
             guard wantsOpen else {
-                throw NSError(domain: NSCocoaErrorDomain, code: NSUserCancelledError, userInfo:nil)
+                throw NSCocoaError.userCancelledError
             }
         }
         
