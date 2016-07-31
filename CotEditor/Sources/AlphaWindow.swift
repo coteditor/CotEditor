@@ -27,6 +27,15 @@
 
 import Cocoa
 
+extension Notification.Name {
+    
+    static let WindowDidChangeOpacity = Notification.Name("WindowDidChangeOpacity")
+}
+
+
+
+// MARK: -
+
 class AlphaWindow: NSWindow {
     
     // MARK: Public Properties
@@ -46,8 +55,6 @@ class AlphaWindow: NSWindow {
             
         }
     }
-    
-    static let WindowOpacityDidChangeNotification = Notification.Name("WindowOpacityDidChangeNotification")
     
     
     // MARK: Private Properties
@@ -92,7 +99,7 @@ class AlphaWindow: NSWindow {
     override var isOpaque: Bool {
         
         didSet {
-            NotificationCenter.default.post(name: AlphaWindow.WindowOpacityDidChangeNotification, object: self)
+            NotificationCenter.default.post(name: .WindowDidChangeOpacity, object: self)
         }
     }
     

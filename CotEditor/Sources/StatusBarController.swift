@@ -114,11 +114,11 @@ class StatusBarController: NSViewController {
             analyzer.needsUpdateStatusEditorInfo = !self.view.isHidden
             
             NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus),
-                                                   name: DocumentAnalyzer.DidUpdateEditorInfoNotification, object: analyzer)
+                                                   name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
             NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus),
-                                                   name: DocumentAnalyzer.DidUpdateFileInfoNotification, object: analyzer)
+                                                   name: .AnalyzerDidUpdateFileInfo, object: analyzer)
             NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus),
-                                                   name: DocumentAnalyzer.DidUpdateModeInfoNotification, object: analyzer)
+                                                   name: .AnalyzerDidUpdateModeInfo, object: analyzer)
             
             self.updateEditorStatus()
             self.updateDocumentStatus()

@@ -29,6 +29,19 @@
 import Foundation
 import YAML
 
+extension Notification.Name {
+    
+    /// Posted when the line-up of syntax styles is updated.  This will be used for syntax style menus.
+    static let SyntaxListDidUpdate = Notification.Name("SyntaxListDidUpdate")
+    
+    /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
+    static let StyntaxDidUpdate = Notification.Name("StyntaxDidUpdate")
+    
+    /// Posted when a syntax style is updated.  Information about new/previous style names are in userInfo.
+    static let SyntaxHistoryDidUpdate = Notification.Name("SyntaxHistoryDidUpdate")
+}
+
+
 @objc protocol SyntaxHolder {
     
     func changeSyntaxStyle(_ sender: AnyObject?)
@@ -43,22 +56,13 @@ enum BundledStyleName {
 }
 
 
+
+// MARK:
+
 final class SyntaxManager: SettingFileManager {
     
     typealias StyleName = String
     typealias StyleDictionary = [String: AnyObject]
-    
-    
-    // MARK: Notification Names
-    
-    /// Posted when the line-up of syntax styles is updated.  This will be used for syntax style menus.
-    static let ListDidUpdateNotification = Notification.Name("SyntaxListDidUpdate")
-    
-    /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
-    static let SyntaxDidUpdateNotification = Notification.Name("StyntaxDidUpdate")
-    
-    /// Posted when a syntax style is updated.  Information about new/previous style name is in userInfo.
-    static let HistoryDidUpdateNotification = Notification.Name("SyntaxHistoryDidUpdate")
     
     
     // MARK: Struct
@@ -194,7 +198,7 @@ final class SyntaxManager: SettingFileManager {
         UserDefaults.standard.set(self.recentStyleNames, forKey: DefaultKey.recentStyleNames)
         
         DispatchQueue.syncOnMain { [weak self] in
-            NotificationCenter.default.post(name: SyntaxManager.HistoryDidUpdateNotification, object: self)
+            NotificationCenter.default.post(name: .SyntaxHistoryDidUpdate, object: self)
         }
         
         return style
@@ -326,7 +330,7 @@ final class SyntaxManager: SettingFileManager {
         self.styleCaches[name] = nil
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: SyntaxManager.SyntaxDidUpdateNotification, object: self,
+            NotificationCenter.default.post(name: .StyntaxDidUpdate, object: self,
                                             userInfo: [SettingFileManager.NotificationKey.old: name,
                                                        SettingFileManager.NotificationKey.new: BundledStyleName.none])
         }
@@ -342,7 +346,7 @@ final class SyntaxManager: SettingFileManager {
         self.styleCaches[name] = self.bundledStyleDictionary(name: name)
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: SyntaxManager.SyntaxDidUpdateNotification, object: self,
+            NotificationCenter.default.post(name: .StyntaxDidUpdate, object: self,
                                             userInfo: [SettingFileManager.NotificationKey.old: name,
                                                        SettingFileManager.NotificationKey.new: name])
         }
@@ -395,7 +399,7 @@ final class SyntaxManager: SettingFileManager {
         
         // update internal cache
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: SyntaxManager.SyntaxDidUpdateNotification, object: self,
+            NotificationCenter.default.post(name: .StyntaxDidUpdate, object: self,
                                             userInfo: [SettingFileManager.NotificationKey.old: oldName,
                                                        SettingFileManager.NotificationKey.new: name])
         }
@@ -564,7 +568,7 @@ final class SyntaxManager: SettingFileManager {
             strongSelf.updateMappingTables()
             
             DispatchQueue.main.sync {
-                NotificationCenter.default.post(name: SyntaxManager.ListDidUpdateNotification, object: self)
+                NotificationCenter.default.post(name: .SyntaxListDidUpdate, object: self)
                 
                 completionHandler?()
             }

@@ -165,9 +165,9 @@ class AppDelegate: NSResponder, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu(self)
         
         // observe setting list updates
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: EncodingManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: SyntaxManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: ThemeManager.ListDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: .EncodingListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: .SyntaxListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: .ThemeListDidUpdate, object: nil)
     }
     
     

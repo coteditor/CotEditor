@@ -81,8 +81,8 @@ class FormatPaneController: NSViewController, NSTableViewDelegate {
         self.setupEncodingMenus()
         self.setupSyntaxStyleMenus()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: EncodingManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: SyntaxManager.ListDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: .EncodingListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: .SyntaxListDidUpdate, object: nil)
     }
     
     

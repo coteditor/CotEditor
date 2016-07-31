@@ -84,8 +84,8 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
         // observe theme list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: ThemeManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: ThemeManager.ThemeDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .ThemeListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: .ThemeDidUpdate, object: nil)
     }
     
     
@@ -250,7 +250,7 @@ class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableVi
             
             // update theme of the current document windows
             //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
-            NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
+            NotificationCenter.default.post(name: .ThemeDidUpdate,
                                             object: self,
                                             userInfo: [SettingFileManager.NotificationKey.old: oldThemeName,
                                                        SettingFileManager.NotificationKey.new: themeName])

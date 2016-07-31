@@ -28,17 +28,21 @@
 
 import Cocoa
 
+extension Notification.Name {
+    
+    static let TextViewDidBecomeFirstResponder = Notification.Name("TextViewDidBecomeFirstResponder")
+}
+
+
 private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 
 private let AutoBalancedClosingBracketAttributeName = "autoBalancedClosingBracket"
 
 
+
+// MARK:
+
 class EditorTextView: NSTextView, Themable {
-    
-    // MARK: Notifications
-    
-    static let DidBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponderNotification")
-    
     
     // MARK: Public Properties
     
@@ -180,7 +184,7 @@ class EditorTextView: NSTextView, Themable {
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
-        NotificationCenter.default.post(name: EditorTextView.DidBecomeFirstResponderNotification, object: self)
+        NotificationCenter.default.post(name: .TextViewDidBecomeFirstResponder, object: self)
         
         return super.becomeFirstResponder()
     }
@@ -200,7 +204,7 @@ class EditorTextView: NSTextView, Themable {
         
         // observe window opacity flag
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: AlphaWindow.WindowOpacityDidChangeNotification,
+                                               name: .WindowDidChangeOpacity,
                                                object: self.window!)
     }
     

@@ -53,7 +53,7 @@ class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDelegate,
         super.init()
         
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
-                                               name: ThemeManager.ThemeDidUpdateNotification,
+                                               name: .ThemeDidUpdate,
                                                object: nil)
     }
     
@@ -344,7 +344,7 @@ class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDelegate,
             
             // observe syntax/theme change
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
-                                                   name: Document.SyntaxStyleDidChangeNotification,
+                                                   name: .DocumentDidChangeSyntaxStyle,
                                                    object: document)
         }
     }

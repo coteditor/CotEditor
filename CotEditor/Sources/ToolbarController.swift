@@ -70,9 +70,9 @@ class ToolbarController: NSObject {
         willSet {
             guard let document = document else { return }
             
-            NotificationCenter.default.removeObserver(self, name: Document.EncodingDidChangeNotification, object: document)
-            NotificationCenter.default.removeObserver(self, name: Document.LineEndingDidChangeNotification, object: document)
-            NotificationCenter.default.removeObserver(self, name: Document.SyntaxStyleDidChangeNotification, object: document)
+            NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeEncoding, object: document)
+            NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeLineEnding, object: document)
+            NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeSyntaxStyle, object: document)
         }
         
         didSet {
@@ -85,11 +85,11 @@ class ToolbarController: NSObject {
             
             // observe document status change
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection),
-                                                   name: Document.EncodingDidChangeNotification, object: document)
+                                                   name: .DocumentDidChangeEncoding, object: document)
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection),
-                                                   name: Document.LineEndingDidChangeNotification, object: document)
+                                                   name: .DocumentDidChangeLineEnding, object: document)
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection),
-                                                   name: Document.SyntaxStyleDidChangeNotification, object: document)
+                                                   name: .DocumentDidChangeSyntaxStyle, object: document)
         }
     }
     
@@ -125,9 +125,9 @@ class ToolbarController: NSObject {
         self.buildSyntaxPopupButton()
         
         // observe popup menu line-up change
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: EncodingManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SyntaxManager.ListDidUpdateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SyntaxManager.HistoryDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: .EncodingListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxHistoryDidUpdate, object: nil)
     }
     
     

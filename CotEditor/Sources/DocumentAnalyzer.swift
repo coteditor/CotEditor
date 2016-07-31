@@ -28,14 +28,18 @@
 
 import Cocoa
 
+extension Notification.Name {
+    
+    static let AnalyzerDidUpdateFileInfo = Notification.Name("AnalyzerDidUpdateFileInfo")
+    static let AnalyzerDidUpdateModeInfo = Notification.Name("AnalyzerDidUpdateModeInfo")
+    static let AnalyzerDidUpdateEditorInfo = Notification.Name("AnalyzerDidUpdateEditorInfo")
+}
+
+
+
+// MARK:
+
 class DocumentAnalyzer: NSObject {
-    
-    // MARK: Notification Names
-    
-    static let DidUpdateFileInfoNotification = Notification.Name("CEAnalyzerDidUpdateFileInfoNotification")
-    static let DidUpdateModeInfoNotification = Notification.Name("CEAnalyzerDidUpdateModeInfoNotification")
-    static let DidUpdateEditorInfoNotification = Notification.Name("CEAnalyzerDidUpdateEditorInfoNotification")
-    
     
     // MARK: Public Properties
     
@@ -112,7 +116,7 @@ class DocumentAnalyzer: NSObject {
             return (attrs?[.immutable] as? NSNumber)?.boolValue ?? false
         }()
         
-        NotificationCenter.default.post(name: DocumentAnalyzer.DidUpdateFileInfoNotification, object: self)
+        NotificationCenter.default.post(name: .AnalyzerDidUpdateFileInfo, object: self)
     }
     
     
@@ -125,7 +129,7 @@ class DocumentAnalyzer: NSObject {
         self.charsetName = String.IANACharSetName(of: document.encoding)
         self.lineEndings = document.lineEnding.name
         
-        NotificationCenter.default.post(name: DocumentAnalyzer.DidUpdateModeInfoNotification, object: self)
+        NotificationCenter.default.post(name: .AnalyzerDidUpdateModeInfo, object: self)
     }
     
     
@@ -262,7 +266,7 @@ class DocumentAnalyzer: NSObject {
                 strongSelf.column = String.localizedStringWithFormat("%li", column)
                 strongSelf.unicode = unicode
                 
-                NotificationCenter.default.post(name: DocumentAnalyzer.DidUpdateEditorInfoNotification, object: strongSelf)
+                NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: strongSelf)
             }
         }
     }

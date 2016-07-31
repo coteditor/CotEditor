@@ -63,7 +63,7 @@ class PrintPaneController: NSViewController {
         self.setupColorMenu()
         
         // observe theme list update
-        NotificationCenter.default.addObserver(self, selector: #selector(setupColorMenu), name: ThemeManager.ListDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupColorMenu), name: .ThemeListDidUpdate, object: nil)
     }
     
     

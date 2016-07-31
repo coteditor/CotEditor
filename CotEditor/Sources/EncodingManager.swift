@@ -28,6 +28,13 @@
 
 import Cocoa
 
+extension Notification.Name {
+    
+    /// Posted when current encoding list menu items is ready to build
+    static let EncodingListDidUpdate = Notification.Name("EncodingListDidUpdate")
+}
+
+
 @objc protocol EncodingHolder {
     
     func changeEncoding(_ sender: AnyObject?)
@@ -42,9 +49,6 @@ final class EncodingManager: NSObject {
     // MARK: Public Properties
     
     static let shared = EncodingManager()
-    
-    /// Posted when current encoding list menu items is ready to build
-    static let ListDidUpdateNotification = Notification.Name("CEEncodingListDidUpdate")
 
     
     // MARK: Private Properties
@@ -179,7 +183,7 @@ final class EncodingManager: NSObject {
         
         // notify that new encoding menu items was created
         DispatchQueue.main.async { [weak self] in
-            NotificationCenter.default.post(name: EncodingManager.ListDidUpdateNotification, object: self)
+            NotificationCenter.default.post(name: .EncodingListDidUpdate, object: self)
         }
     }
     

@@ -29,7 +29,11 @@ import Foundation
 import AppKit.NSColor
 import ColorCode
 
-let ThemeExtension = "cottheme"
+extension Notification.Name {
+    
+    static let ThemeListDidUpdate = Notification.Name("ThemeListDidUpdate")
+    static let ThemeDidUpdate = Notification.Name("ThemeDidUpdate")
+}
 
 
 @objc protocol ThemeHolder {
@@ -37,13 +41,15 @@ let ThemeExtension = "cottheme"
     func changeTheme(_ sender: AnyObject?)
 }
 
+let ThemeExtension = "cottheme"
+
+
+
+// MARK:
 
 final class ThemeManager: SettingFileManager {
     
     // MARK: Public Properties
-    
-    static let ListDidUpdateNotification = Notification.Name("ThemeListDidUpdate")
-    static let ThemeDidUpdateNotification = Notification.Name("ThemeDidUpdate")
     
     static let shared = ThemeManager()
     
@@ -158,7 +164,7 @@ final class ThemeManager: SettingFileManager {
         }
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification, object: self,
+            NotificationCenter.default.post(name: .ThemeDidUpdate, object: self,
                                             userInfo: [SettingFileManager.NotificationKey.old: themeName,
                                                        SettingFileManager.NotificationKey.new: themeName])
             
@@ -179,7 +185,7 @@ final class ThemeManager: SettingFileManager {
         }
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
+            NotificationCenter.default.post(name: .ThemeDidUpdate,
                                             object: self,
                                             userInfo: [SettingFileManager.NotificationKey.old: settingName,
                                                        SettingFileManager.NotificationKey.new: newName])
@@ -196,7 +202,7 @@ final class ThemeManager: SettingFileManager {
             // restore theme of opened documents to default
             let defaultThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
             
-            NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
+            NotificationCenter.default.post(name: .ThemeDidUpdate,
                                             object: self,
                                             userInfo: [SettingFileManager.NotificationKey.old: settingName,
                                                        SettingFileManager.NotificationKey.new: defaultThemeName])
@@ -210,7 +216,7 @@ final class ThemeManager: SettingFileManager {
         try super.restoreSetting(name: settingName)
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: ThemeManager.ThemeDidUpdateNotification,
+            NotificationCenter.default.post(name: .ThemeDidUpdate,
                                             object: self,
                                             userInfo: [SettingFileManager.NotificationKey.old: settingName,
                                                        SettingFileManager.NotificationKey.new: settingName])
@@ -306,7 +312,7 @@ final class ThemeManager: SettingFileManager {
                 DispatchQueue.main.sync {
                     // post notification
                     if isListUpdated {
-                        NotificationCenter.default.post(name: ThemeManager.ListDidUpdateNotification, object: strongSelf)
+                        NotificationCenter.default.post(name: .ThemeListDidUpdate, object: strongSelf)
                     }
                     
                     completionHandler?()
