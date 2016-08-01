@@ -179,7 +179,7 @@ let DefaultSettings: [DefaultKey: AnyObject] = [
     .autoComplete: false,
     
     .lineEndCharCode: 0,
-    .encodingList: DefaultEncodings.map { NSNumber(value: $0) },
+    .encodingList: DefaultEncodings.map { UInt($0) },
     .encodingInNew: CFStringConvertEncodingToNSStringEncoding(CFStringBuiltInEncodings.UTF8.rawValue),
     .encodingInOpen: String.Encoding.autoDetection.rawValue,
     .saveUTF8BOM: false,
