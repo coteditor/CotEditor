@@ -39,6 +39,56 @@ protocol KeyBindingManagerProtocol: class {
 
 
 
+// MARK: Error
+
+struct InvalidKeySpecCharactersError: LocalizedError {
+    
+    enum ErrorKind {
+        case singleType
+        case alreadyTaken
+        case lackingCommandKey
+        case unwantedCommandKey
+    }
+    
+    let kind: ErrorKind
+    let keySpecChars: String
+    
+    
+    var errorDescription: String? {
+        
+        switch self.kind {
+        case .singleType:
+            return NSLocalizedString("Single type is invalid for a shortcut.", comment: "")
+            
+        case .alreadyTaken:
+            return String(format: NSLocalizedString("“%@” is already taken.", comment: ""), self.printableKey)
+            
+        case .lackingCommandKey:
+            return String(format: NSLocalizedString("“%@” does not include the Command key.", comment: ""), self.printableKey)
+            
+        case .unwantedCommandKey:
+            return String(format: NSLocalizedString("“%@” includes the Command key.", comment: ""), self.printableKey)
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        return NSLocalizedString("Please combinate with another keys.", comment: "")
+    }
+    
+    
+    private var printableKey: String {
+        
+        return KeyBindingUtils.printableKeyString(keySpecChars: self.keySpecChars)
+    }
+    
+}
+
+
+
+// MARK: -
+
 class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     // MARK: Public Properties
@@ -130,6 +180,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     
     /// validate new key spec chars are settable
+    /// - throws: InvalidKeySpecCharactersError
     func validate(keySpecChars: String, oldKeySpecChars: String?) throws {
         
         // blank key is always valid
@@ -137,27 +188,14 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         
         // single key is invalid
         guard keySpecChars.characters.count > 1 else {
-            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.invalidKeySpecCharacters.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Single type is invalid for a shortcut.", comment: ""),
-                                     NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Please combinate with another keys.", comment: "")])
+            throw InvalidKeySpecCharactersError(kind: .singleType, keySpecChars: keySpecChars)
         }
         
         // duplication check
         let registeredKeySpecChars = self.keyBindingDict.keys
         guard keySpecChars == oldKeySpecChars || !registeredKeySpecChars.contains(keySpecChars) else {
-            throw self.error(messageFormat: "“%@” is already taken.", keySpecChars: keySpecChars)
+            throw InvalidKeySpecCharactersError(kind: .alreadyTaken, keySpecChars: keySpecChars)
         }
-    }
-    
-    
-    /// create error for keySpecChars validation
-    func error(messageFormat: String, keySpecChars: String) -> NSError {
-        
-        let printableKey = KeyBindingUtils.printableKeyString(keySpecChars: keySpecChars)
-        
-        return NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.invalidKeySpecCharacters.rawValue,
-                       userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString(messageFormat, comment: ""), printableKey),
-                                  NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Please choose another key.", comment: "")])
     }
     
     

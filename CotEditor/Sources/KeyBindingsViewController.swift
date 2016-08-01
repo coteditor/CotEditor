@@ -193,9 +193,9 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
             do {
                 try self.manager.validate(keySpecChars: keySpecChars, oldKeySpecChars: oldKeySpecChars)
                 
-            } catch let error as NSError {
+            } catch let error as InvalidKeySpecCharactersError {
                 success = false
-                self.warningMessage = error.localizedDescription + " " + (error.localizedRecoverySuggestion ?? "")
+                self.warningMessage = error.localizedDescription + " " + (error.recoverySuggestion ?? "")
                 textField.stringValue = oldKeySpecChars ?? ""  // reset view with previous key
                 NSBeep()
                 
@@ -203,7 +203,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
                 DispatchQueue.main.async { [weak self] in
                     self?.beginEditingSelectedKeyCell()
                 }
-            }
+            } catch { }
             
             // update data
             if success {

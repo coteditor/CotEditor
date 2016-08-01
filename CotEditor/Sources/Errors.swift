@@ -52,9 +52,6 @@ enum CotEditorError: Error {
         case settingImportFailed
         case settingImportFileDuplicated
         
-        // key binding manager
-        case invalidKeySpecCharacters = 1400
-        
         // for command-line tool installer
         case applicationNotInApplicationDirectory = 1500
         case applicationNameIsModified

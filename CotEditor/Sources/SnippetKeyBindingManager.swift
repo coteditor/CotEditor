@@ -111,7 +111,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         // command key existance check
         if keySpecChars.contains(ModifierKey.command.keySpecChar) {
-            throw self.error(messageFormat: "“%@” includes the Command key.", keySpecChars: keySpecChars)
+            throw InvalidKeySpecCharactersError(kind: .unwantedCommandKey, keySpecChars: keySpecChars)
         }
     }
     

@@ -100,7 +100,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         // command key existance check
         if !keySpecChars.contains(ModifierKey.command.keySpecChar) {  // "@"
-            throw self.error(messageFormat: "“%@” does not include the Command key.", keySpecChars: keySpecChars)
+            throw InvalidKeySpecCharactersError(kind: .lackingCommandKey, keySpecChars: keySpecChars)
         }
     }
     
