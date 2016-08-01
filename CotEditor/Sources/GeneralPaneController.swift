@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class GeneralPaneController: NSViewController {
+final class GeneralPaneController: NSViewController {
     
     // MARK: Private Properties
     

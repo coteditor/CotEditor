@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class WindowPaneController: NSViewController {
+final class WindowPaneController: NSViewController {
     
     // MARK: Private Properties
     

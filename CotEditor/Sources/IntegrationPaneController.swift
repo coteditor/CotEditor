@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class IntegrationPaneController: NSViewController {
+final class IntegrationPaneController: NSViewController {
     
     // MARK: Private Properties
     

@@ -36,7 +36,7 @@ extension Notification.Name {
 
 // MARK: -
 
-class AlphaWindow: NSWindow {
+final class AlphaWindow: NSWindow {
     
     // MARK: Public Properties
     

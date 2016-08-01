@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class SidebarViewController: NSTabViewController {
+final class SidebarViewController: NSTabViewController {
     
     enum TabIndex: Int {
         

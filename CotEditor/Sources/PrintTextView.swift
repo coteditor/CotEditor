@@ -39,7 +39,7 @@ private let kLineNumberFontName = "AvenirNextCondensed-Regular"
 
 
 
-class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
+final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
 
     // MARK: Public Properties
     

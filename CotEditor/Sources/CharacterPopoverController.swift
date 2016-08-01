@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class CharacterPopoverController: NSViewController, NSPopoverDelegate {
+final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
     
     // MARK: Private Properties
     

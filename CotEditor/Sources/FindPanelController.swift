@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class FindPanelController: NSWindowController {
+final class FindPanelController: NSWindowController {
     
     // MARK: Window Controller Methods
     

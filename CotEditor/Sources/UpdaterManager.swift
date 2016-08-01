@@ -52,7 +52,7 @@ private enum AppCastURL {
 
 // MARK:
 
-class UpdaterManager: NSObject, SUUpdaterDelegate {
+final class UpdaterManager: NSObject, SUUpdaterDelegate {
     
     // MARK: Public Properties
     

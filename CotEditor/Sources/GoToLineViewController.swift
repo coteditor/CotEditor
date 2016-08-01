@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class GoToLineViewController: NSViewController {
+final class GoToLineViewController: NSViewController {
     
     // MARK: Private Properties
     

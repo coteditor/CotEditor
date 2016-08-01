@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class EditorScrollView: NSScrollView {
+final class EditorScrollView: NSScrollView {
     
     // MARK: Lifecycle
     

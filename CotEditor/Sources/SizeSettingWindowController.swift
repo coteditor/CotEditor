@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class SizeSettingWindowController: NSWindowController {
+final class SizeSettingWindowController: NSWindowController {
     
     // MARK: Private Properties
     

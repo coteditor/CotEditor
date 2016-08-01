@@ -34,7 +34,7 @@ private enum PboardType {
 }
 
 
-class DraggableArrayController: NSArrayController, NSTableViewDataSource {
+final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     
     // MARK: Table Data Source Protocol
     

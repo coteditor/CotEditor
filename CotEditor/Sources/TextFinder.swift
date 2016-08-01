@@ -80,7 +80,7 @@ private let MaxHistorySize = 20
 
 // MARK:
 
-class TextFinder: NSResponder, TextFinderSettingsProvider {
+final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     static let shared = TextFinder()
     

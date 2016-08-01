@@ -39,7 +39,7 @@ extension Notification.Name {
 
 // MARK:
 
-class DocumentAnalyzer: NSObject {
+final class DocumentAnalyzer: NSObject {
     
     // MARK: Public Properties
     

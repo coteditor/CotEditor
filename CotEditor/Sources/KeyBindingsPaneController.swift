@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class KeyBindingsPaneController: NSViewController {
+final class KeyBindingsPaneController: NSViewController {
     
     // MARK: Private Properties
     

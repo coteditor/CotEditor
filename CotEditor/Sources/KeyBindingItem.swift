@@ -28,7 +28,7 @@
 import Foundation
 import AppKit.NSTreeNode
 
-class KeyBindingItem: NSObject {
+final class KeyBindingItem: NSObject {
     
     // MARK: Public Properties
     
@@ -61,7 +61,7 @@ class KeyBindingItem: NSObject {
 
 // MARK:
 
-class NamedTreeNode: NSTreeNode {
+final class NamedTreeNode: NSTreeNode {
     
     // MARK: Public Properties
     

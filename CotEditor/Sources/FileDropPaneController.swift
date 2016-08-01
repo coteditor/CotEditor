@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate {
+final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate {
     
     // MARK: Private Properties
     

@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class ProgressViewController: NSViewController {
+final class ProgressViewController: NSViewController {
     
     // MARK: Private Properties
     

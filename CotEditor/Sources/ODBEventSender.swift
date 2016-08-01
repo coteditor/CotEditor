@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class ODBEventSender {
+final class ODBEventSender {
     
     // MARK: Private Properties
     

@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class DocumentController: NSDocumentController {
+final class DocumentController: NSDocumentController {
 
     let autosaveDirectoryURL: URL
     

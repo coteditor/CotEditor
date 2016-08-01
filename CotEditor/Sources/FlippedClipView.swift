@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class FlippedClipView: NSClipView {
+final class FlippedClipView: NSClipView {
     
     // MARK: Clip View Methods
     

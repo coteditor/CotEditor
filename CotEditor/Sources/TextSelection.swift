@@ -69,7 +69,7 @@ private extension OSAUnicodeNormalizationType {
 
 // MARK:
 
-class TextSelection: NSObject {
+final class TextSelection: NSObject {
     
     private weak var document: Document?
     

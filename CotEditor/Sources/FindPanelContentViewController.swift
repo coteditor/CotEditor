@@ -29,7 +29,7 @@ import Cocoa
 
 private let DefaultResultViewHeight: CGFloat = 200.0
 
-class FindPanelContentViewController: NSSplitViewController, TextFinderDelegate {
+final class FindPanelContentViewController: NSSplitViewController, TextFinderDelegate {
     
     // MARK: Private Properties
     

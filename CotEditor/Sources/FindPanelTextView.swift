@@ -28,7 +28,7 @@
 import Cocoa
 
 /// text view that behaves like a NSTextField
-class FindPanelTextView: NSTextView {
+final class FindPanelTextView: NSTextView {
     
     // MARK: Private Properties
     

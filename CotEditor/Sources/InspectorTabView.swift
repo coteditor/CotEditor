@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class InspectorTabView: NSTabView {
+final class InspectorTabView: NSTabView {
     
     // MARK: Private Properties
     

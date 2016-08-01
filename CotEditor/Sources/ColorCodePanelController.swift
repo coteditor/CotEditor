@@ -37,7 +37,7 @@ import ColorCode
 
 // MARK:
 
-class ColorCodePanelController: NSViewController, NSWindowDelegate {
+final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     // MARK: Public Properties
     

@@ -29,7 +29,7 @@
 import Cocoa
 import CoreText
 
-class LayoutManager: NSLayoutManager {
+final class LayoutManager: NSLayoutManager {
     
     // MARK: Public Properties
     

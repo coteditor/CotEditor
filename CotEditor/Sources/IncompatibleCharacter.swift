@@ -28,7 +28,7 @@
 
 import Foundation
 
-class IncompatibleCharacter: NSObject {
+final class IncompatibleCharacter: NSObject {
     // -> inherit NSObject for NSArrayController
     
     let character: String

@@ -79,7 +79,7 @@ enum ModifierKey {
 
 // MARK:
 
-class KeyBindingUtils {
+final class KeyBindingUtils {
     
     /// create keySpecChars to store from keyEquivalent and modifierMask
     static func keySpecChars(keyEquivalent: String, modifierMask: NSEventModifierFlags) -> String {

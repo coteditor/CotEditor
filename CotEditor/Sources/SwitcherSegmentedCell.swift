@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class SwitcherSegmentedCell: NSSegmentedCell {
+final class SwitcherSegmentedCell: NSSegmentedCell {
     
     // MARK: Segmented Cell Methods
     

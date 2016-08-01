@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class PrintPaneController: NSViewController {
+final class PrintPaneController: NSViewController {
     
     // MARK: Private Properties
     

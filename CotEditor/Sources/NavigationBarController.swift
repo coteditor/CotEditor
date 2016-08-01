@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class NavigationBarController: NSViewController {
+final class NavigationBarController: NSViewController {
     
     // MARK: Public Properties
     

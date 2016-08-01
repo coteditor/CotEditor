@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class MigrationWindowController: NSWindowController {
+final class MigrationWindowController: NSWindowController {
     
     // MARK: Public Properties
     

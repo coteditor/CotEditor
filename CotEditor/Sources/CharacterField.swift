@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class CharacterField: NSTextField {
+final class CharacterField: NSTextField {
     
     // MARK: Text Field Methods
     

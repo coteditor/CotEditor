@@ -35,7 +35,7 @@ private let MaxMatchedStringLength = 256
 
 
 
-class FindPanelResultViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+final class FindPanelResultViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
     
     // MARK: Public Properties
     

@@ -62,7 +62,7 @@ extension LineEnding {
 
 
 
-class ToolbarController: NSObject {
+final class ToolbarController: NSObject {
     
     // MARK: Public Properties
     

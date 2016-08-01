@@ -93,7 +93,7 @@ private let ScriptEditorIdentifier = "com.apple.ScriptEditor2"
 // MARK:
 
 @NSApplicationMain
-class AppDelegate: NSResponder, NSApplicationDelegate {
+final class AppDelegate: NSResponder, NSApplicationDelegate {
     
     // MARK: Enums
     

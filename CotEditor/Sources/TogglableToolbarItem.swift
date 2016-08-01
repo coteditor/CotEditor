@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class TogglableToolbarItem: NSToolbarItem {
+final class TogglableToolbarItem: NSToolbarItem {
     
     // MARK: Public Properties
     

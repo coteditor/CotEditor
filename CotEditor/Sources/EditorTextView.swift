@@ -42,7 +42,7 @@ private let AutoBalancedClosingBracketAttributeName = "autoBalancedClosingBracke
 
 // MARK:
 
-class EditorTextView: NSTextView, Themable {
+final class EditorTextView: NSTextView, Themable {
     
     // MARK: Public Properties
     

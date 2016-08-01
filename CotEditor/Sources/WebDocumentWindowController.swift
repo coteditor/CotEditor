@@ -28,7 +28,7 @@
 import Cocoa
 import WebKit
 
-class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
+final class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     
     // MARK: Private Properties
     

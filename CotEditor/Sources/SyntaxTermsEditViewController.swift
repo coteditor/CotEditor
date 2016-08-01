@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class SyntaxTermsEditViewController: NSViewController {
+final class SyntaxTermsEditViewController: NSViewController {
     
     // MARK: Private Properties
     

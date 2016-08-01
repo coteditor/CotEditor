@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class EncodingListViewController: NSViewController, NSTableViewDelegate {
+final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     // MARK: Private Properties
     

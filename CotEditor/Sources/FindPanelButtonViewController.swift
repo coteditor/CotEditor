@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class FindPanelButtonViewController: NSViewController {
+final class FindPanelButtonViewController: NSViewController {
     
     // MARK: Private Properties
     

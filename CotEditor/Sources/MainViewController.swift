@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class MainViewController: NSSplitViewController {
+final class MainViewController: NSSplitViewController {
     
     // MARK: Public Properties
     

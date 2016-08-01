@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class EditorTextViewController: NSViewController, NSTextViewDelegate {
+final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Properties
     @IBOutlet private(set) var textView: EditorTextView?

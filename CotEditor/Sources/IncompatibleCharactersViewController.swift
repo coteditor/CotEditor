@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class IncompatibleCharactersViewController: NSViewController, IncompatibleCharacterScannerDelegate, NSTableViewDelegate {
+final class IncompatibleCharactersViewController: NSViewController, IncompatibleCharacterScannerDelegate, NSTableViewDelegate {
     
     // MARK: Private Properties
     

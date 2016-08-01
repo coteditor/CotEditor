@@ -49,7 +49,7 @@ private let DefaultDisplayingInterval: TimeInterval = 0.1
 private let FadeDuration: TimeInterval = 0.5
 
 
-class HUDController: NSViewController {
+final class HUDController: NSViewController {
     
     // MARK: Public Properties
     

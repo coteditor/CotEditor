@@ -29,7 +29,7 @@
 import XCTest
 @testable import CotEditor
 
-class CharacterInfoTests: XCTestCase {
+final class CharacterInfoTests: XCTestCase {
     
     // MARK: UTF32Char Extension Tests
     

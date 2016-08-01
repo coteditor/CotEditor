@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class DocumentInspectorViewController: NSViewController {
+final class DocumentInspectorViewController: NSViewController {
         
     // MARK: Private Properties
     

@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class ATSTypesetter: NSATSTypesetter {
+final class ATSTypesetter: NSATSTypesetter {
     
     // MARK: ATS Typesetter Methods
     

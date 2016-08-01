@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class FindPanelLayoutManager: NSLayoutManager {
+final class FindPanelLayoutManager: NSLayoutManager {
     
     // MARK: Private Properties
 

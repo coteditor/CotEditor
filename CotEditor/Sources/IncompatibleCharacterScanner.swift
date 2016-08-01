@@ -36,7 +36,7 @@ protocol IncompatibleCharacterScannerDelegate: class {
 
 
 
-class IncompatibleCharacterScanner: CustomDebugStringConvertible {
+final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     
     // MARK: Public Properties
     

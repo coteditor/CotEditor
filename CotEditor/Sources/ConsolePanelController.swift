@@ -30,7 +30,7 @@ import Cocoa
 private let ConsoleFontSize: CGFloat = 11.0
 
 
-class ConsolePanelController: NSWindowController {
+final class ConsolePanelController: NSWindowController {
     
     // MARK: Public Properties
     

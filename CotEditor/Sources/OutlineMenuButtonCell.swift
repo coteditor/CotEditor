@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class OutlineMenuButtonCell: NSPopUpButtonCell {
+final class OutlineMenuButtonCell: NSPopUpButtonCell {
     
     // MARK: Pop Up Button Cell Methods
     

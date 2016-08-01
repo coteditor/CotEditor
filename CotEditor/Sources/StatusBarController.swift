@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class StatusBarController: NSViewController {
+final class StatusBarController: NSViewController {
     
     // MARK: Private Properties
     

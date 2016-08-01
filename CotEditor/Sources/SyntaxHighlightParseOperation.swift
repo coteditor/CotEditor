@@ -115,7 +115,7 @@ private struct QuoteCommentItem {
 
 // MARK:
 
-class SyntaxHighlightParseOperation: Operation {
+final class SyntaxHighlightParseOperation: Operation {
     
     // MARK: Public Properties
     

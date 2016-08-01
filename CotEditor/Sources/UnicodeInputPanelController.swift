@@ -36,7 +36,7 @@ import Cocoa
 
 // MARK:
 
-class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate {
+final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate {
     
     // MARK: Public Properties
     

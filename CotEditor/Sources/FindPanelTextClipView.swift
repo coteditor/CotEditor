@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class FindPanelTextClipView: NSClipView {
+final class FindPanelTextClipView: NSClipView {
     
     // MARK: Private Properties
     

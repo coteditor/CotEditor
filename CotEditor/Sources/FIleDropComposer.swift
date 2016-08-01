@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class FileDropComposer {
+final class FileDropComposer {
     
     /// keys for dicts in DefaultKey.fileDropArray
     enum SettingKey {

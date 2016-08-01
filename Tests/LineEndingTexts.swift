@@ -29,7 +29,7 @@
 import XCTest
 @testable import CotEditor
 
-class LineEndingTexts: XCTestCase {
+class LineEndingTests: XCTestCase {
     
     func testLineEnding() {
         

@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class SyntaxValidationViewController: NSViewController {
+final class SyntaxValidationViewController: NSViewController {
     
     // MARK: Private Properties
     

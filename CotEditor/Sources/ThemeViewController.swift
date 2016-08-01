@@ -37,7 +37,7 @@ protocol ThemeViewControllerDelegate: class {
 
 // MARK:
 
-class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate {
+final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate {
     
     dynamic var theme: ThemeDictionary? {
         willSet (newTheme) {

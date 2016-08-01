@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class DetachablePopoverViewController: NSViewController, NSPopoverDelegate {
+final class DetachablePopoverViewController: NSViewController, NSPopoverDelegate {
     
     // MARK: Popover Delegate
     

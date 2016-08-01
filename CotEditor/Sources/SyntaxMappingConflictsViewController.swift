@@ -28,7 +28,7 @@
 import Cocoa
 
 // data model
-class MappingConflict: NSObject {
+final class MappingConflict: NSObject {
     
     let name: String
     let primaryStyle: String
@@ -46,7 +46,7 @@ class MappingConflict: NSObject {
 
 
 
-class SyntaxMappingConflictsViewController: NSViewController {
+final class SyntaxMappingConflictsViewController: NSViewController {
     
     // MARK: Private Properties
     

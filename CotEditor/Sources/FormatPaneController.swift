@@ -38,7 +38,7 @@ private enum StyleKey: String {
 private let IsUTF8WithBOM = "UTF-8 with BOM"
 
 
-class FormatPaneController: NSViewController, NSTableViewDelegate {
+final class FormatPaneController: NSViewController, NSTableViewDelegate {
 
     // MARK: Private Properties
     

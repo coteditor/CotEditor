@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class WrappingTextField: NSTextField {
+final class WrappingTextField: NSTextField {
     
     // MARK: Text Field Methods
     

@@ -35,7 +35,7 @@ protocol SyntaxStyleDelegate: class {
 
 
 
-class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringConvertible {
+final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringConvertible {
     
     var textStorage: NSTextStorage?
     weak var delegate: SyntaxStyleDelegate?

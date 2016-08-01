@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class EditorSplitView: NSSplitView {
+final class EditorSplitView: NSSplitView {
     
     // MARK: Split View Methods
     

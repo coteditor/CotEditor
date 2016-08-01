@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
+final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
     
     // MARK: Private Properties
     

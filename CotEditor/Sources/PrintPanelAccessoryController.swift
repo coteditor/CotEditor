@@ -50,7 +50,7 @@ let BlackAndWhiteThemeName = NSLocalizedString("Black and White", comment: "")
 
 
 
-class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccessorizing {
+final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccessorizing {
     
     // MARK: Public Properties
     

@@ -87,7 +87,7 @@ func ==(lhs: OutlineDefinition, rhs: OutlineDefinition) -> Bool {
 
 // MARK:
 
-class OutlineParseOperation: Operation {
+final class OutlineParseOperation: Operation {
     
     // MARK: Public Properties
     

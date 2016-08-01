@@ -29,7 +29,7 @@
 import XCTest
 @testable import CotEditor
 
-class IncompatibleCharacterTests: XCTestCase {
+final class IncompatibleCharacterTests: XCTestCase {
     
     func testIncompatibleCharacterScan() {
         let string = "abc\\ \n ¥ \n ~"

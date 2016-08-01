@@ -29,7 +29,7 @@
 import Cocoa
 import AudioToolbox
 
-class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     

@@ -29,7 +29,7 @@
 import Cocoa
 import CoreText
 
-class LineNumberView: NSRulerView {
+final class LineNumberView: NSRulerView {
     
     // MARK: Constants
     
@@ -422,7 +422,7 @@ private func number(at place: Int, number: Int) -> Int {
 // MARK:
 // MARK: Line Selecting
 
-private class DraggingInfo {
+final private class DraggingInfo {
     let index: Int
     let selectedRanges: [NSRange]
     

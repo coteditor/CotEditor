@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class FindPanelSplitView: NSSplitView {
+final class FindPanelSplitView: NSSplitView {
     
     // MARK: Split View Methods
     

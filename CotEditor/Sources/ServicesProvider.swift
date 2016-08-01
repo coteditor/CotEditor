@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class ServicesProvider: NSObject {
+final class ServicesProvider: NSObject {
     
     // MARK: Public Methods
     

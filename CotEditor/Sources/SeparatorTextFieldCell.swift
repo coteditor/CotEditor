@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class SeparatorTextFieldCell: NSTextFieldCell {
+final class SeparatorTextFieldCell: NSTextFieldCell {
     
     // MARK: Private Properties
     

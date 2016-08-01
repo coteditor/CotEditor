@@ -27,7 +27,7 @@
 
 import Foundation
 
-class FilePermissionsFormatter: Formatter {
+final class FilePermissionsFormatter: Formatter {
     
     // MARK: Formatter Function
     

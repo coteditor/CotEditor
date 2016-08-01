@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class EditPaneController: NSViewController {
+final class EditPaneController: NSViewController {
     
     // MARK: Private Properties
     

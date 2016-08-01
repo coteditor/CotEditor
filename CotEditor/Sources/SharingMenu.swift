@@ -51,7 +51,7 @@ private enum SharingServiceType {
 
 
 // implemented as class instead of struct since `representObject` accepsts only AnyObject
-private class SharingServiceObject {
+final private class SharingServiceObject {
     
     let service: NSSharingService
     let items: [AnyObject]
@@ -64,7 +64,7 @@ private class SharingServiceObject {
 }
 
 
-class SharingMenu: NSMenu, NSMenuDelegate {
+final class SharingMenu: NSMenu, NSMenuDelegate {
     
     // MARK: Protocol
     

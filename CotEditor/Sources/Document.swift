@@ -65,7 +65,7 @@ private enum ErrorKey {
 
 // MARK:
 
-class Document: NSDocument, EncodingHolder {
+final class Document: NSDocument, EncodingHolder {
     
     // MARK: Public Properties
     

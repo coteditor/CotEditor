@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class ShortcutKeyField: NSTextField {
+final class ShortcutKeyField: NSTextField {
     
     // MARK: Private Properties
     

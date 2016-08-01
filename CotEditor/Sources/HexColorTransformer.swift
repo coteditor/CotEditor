@@ -29,7 +29,7 @@ import Foundation
 import AppKit.NSColor
 import ColorCode
 
-class HexColorTransformer: ValueTransformer {
+final class HexColorTransformer: ValueTransformer {
     
     // MARK: Value Transformer Methods
     

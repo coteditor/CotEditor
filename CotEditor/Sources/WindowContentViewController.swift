@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class WindowContentViewController: NSSplitViewController {
+final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     

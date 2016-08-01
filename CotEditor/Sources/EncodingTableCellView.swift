@@ -38,7 +38,7 @@ extension NSColor {
 
 // MARK:
 
-class EncodingTableCellView: NSTableCellView {
+final class EncodingTableCellView: NSTableCellView {
     
     /// inverse text color of highlighted cell
     override var backgroundStyle: NSBackgroundStyle {

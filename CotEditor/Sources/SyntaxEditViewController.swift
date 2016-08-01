@@ -85,7 +85,7 @@ private enum PaneIndex: Int {
 
 // MARK:
 
-class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
+final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
     
     // MARK: Private Properties
     

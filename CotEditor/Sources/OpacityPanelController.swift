@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class OpacityPanelController: NSWindowController {
+final class OpacityPanelController: NSWindowController {
     
     // MARK: Public Properties
     

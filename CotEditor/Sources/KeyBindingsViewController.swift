@@ -45,7 +45,7 @@ private enum ColumnIdentifier: String {
 
 
 /// model object for NSArrayController
-class SnippetItem : NSObject {
+final class SnippetItem : NSObject {
     
     dynamic var text: String
     
@@ -287,7 +287,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
 
 // MARK: 
 
-class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
+final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
     
     dynamic var snippets = [SnippetItem]()
     

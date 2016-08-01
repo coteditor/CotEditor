@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
+final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     

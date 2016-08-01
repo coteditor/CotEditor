@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class AntialiasingTextField: NSTextField {
+final class AntialiasingTextField: NSTextField {
     
     // MARK: Public Properties
     

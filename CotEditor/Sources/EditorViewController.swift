@@ -28,7 +28,7 @@
 
 import Cocoa
 
-class EditorViewController: NSSplitViewController {
+final class EditorViewController: NSSplitViewController {
     
     // MARK: Public Properties
     

@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class PopUpToolbarItem: NSToolbarItem {
+final class PopUpToolbarItem: NSToolbarItem {
     
     // MARK: Toolbar Item Methods
     
