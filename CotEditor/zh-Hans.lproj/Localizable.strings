@@ -436,9 +436,9 @@
 "Block comment needs both begin delimiter and end delimiter." = "块注释需要同时有起始符号和终止符号。";
 "Begin string" = "开始字符串";
 "End string" = "结束字符串";
-"RE string" = "正则表达式";
+"Regular expression" = "正则表达式";
 "multiple registered." = "重复注册。";
-"Error: %@" = "错误： %@";
+"Regex Error: %@" = "正则表达式错误： %@";
 
 
 

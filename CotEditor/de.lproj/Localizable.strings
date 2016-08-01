@@ -438,9 +438,9 @@
 "Block comment needs both begin delimiter and end delimiter." = "Block-Kommentare brauchen die beide Anfang- und Endezeichenkette.";
 "Begin string" = "Anfangszeichenkette";
 "End string" = "Endzeichenkette";
-"RE string" = "Regulärer Ausdruck";
+"Regular expression" = "Regulärer Ausdruck";
 "multiple registered." = "Multiple registriert.";
-"Error: %@" = "Fehler: %@";
+"Regex Error: %@" = "Regulärer Ausdruck Fehler: %@";
 
 
 

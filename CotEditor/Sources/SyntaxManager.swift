@@ -491,7 +491,7 @@ final class SyntaxManager: SettingFileManager {
                     } catch let error as NSError {
                         let reason = NSLocalizedString("Regex Error: %@", comment: "") + (error.localizedFailureReason ?? "")
                         results.append(SyntaxValidationResult(localizedType: NSLocalizedString(key, comment: ""),
-                                                              localizedRole: NSLocalizedString("RE string", comment: ""),
+                                                              localizedRole: NSLocalizedString("Regular expression", comment: ""),
                                                               string: definition.beginString,
                                                               localizedFailureReason: reason))
                     }

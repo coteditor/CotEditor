@@ -440,9 +440,10 @@
 "Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始文字と終了文字の両方を必要とします。";
 "Begin string" = "開始文字列";
 "End string" = "終了文字列";
-"RE string" = "正規表現";
+"Regular expression" = "正規表現";
 "multiple registered." = "重複して登録されています。";
-"Error: %@" = "エラー： %@";
+"Regex Error: %@" = "正規表現エラー： %@";
+
 
 
 
