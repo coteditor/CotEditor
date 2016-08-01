@@ -67,7 +67,7 @@ final class LayoutManager: NSLayoutManager {
         }
     }
     
-    var invisiblesColor = NSColor.disabledControlTextColor() {
+    var invisiblesColor = NSColor.disabledControlTextColor {
         didSet {
             self.invisibleLines = self.generateInvisibleLines()
         }
@@ -302,7 +302,7 @@ final class LayoutManager: NSLayoutManager {
         guard lineRange.length > 0 else { return }
         
         let hangingIndent = self.spaceWidth * UserDefaults.standard.cgFloat(forKey: DefaultKey.hangingIndentWidth)
-        let regex = try! RegularExpression(pattern: "^[ \\t]+(?!$)")
+        let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")
         
         // get dummy attributes to make calculation of indent width the same as CElayoutManager's calculation (2016-04)
         var indentAttributes = textView.typingAttributes
@@ -328,7 +328,7 @@ final class LayoutManager: NSLayoutManager {
                 if let width = cache[indentString] {
                     indent += width
                 } else {
-                    let width = AttributedString(string: indentString, attributes: indentAttributes).size().width
+                    let width = NSAttributedString(string: indentString, attributes: indentAttributes).size().width
                     cache[indentString] = width
                     indent += width
                 }
@@ -403,7 +403,7 @@ private extension CTLine {
     /// convenient initializer for CTLine
     class func create(string: String, attributes: [String: AnyObject]) -> CTLine {
         
-        let attrString = AttributedString(string: string, attributes: attributes)
+        let attrString = NSAttributedString(string: string, attributes: attributes)
         return CTLineCreateWithAttributedString(attrString)
     }
  }

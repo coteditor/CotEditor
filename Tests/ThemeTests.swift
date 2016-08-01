@@ -50,12 +50,12 @@ class ThemeTests: XCTestCase {
         let theme = self.loadThemeWithName(themeName)!
         
         XCTAssertEqual(theme.name, themeName)
-        XCTAssertEqual(theme.textColor, NSColor.black().usingColorSpaceName(NSCalibratedRGBColorSpace))
-        XCTAssertEqual(theme.insertionPointColor, NSColor.black().usingColorSpaceName(NSCalibratedRGBColorSpace))
+        XCTAssertEqual(theme.textColor, NSColor.black.usingColorSpaceName(NSCalibratedRGBColorSpace))
+        XCTAssertEqual(theme.insertionPointColor, NSColor.black.usingColorSpaceName(NSCalibratedRGBColorSpace))
         XCTAssertEqualWithAccuracy(theme.invisiblesColor.brightnessComponent, 0.72, accuracy: 0.01)
-        XCTAssertEqual(theme.backgroundColor, NSColor.white().usingColorSpaceName(NSCalibratedRGBColorSpace))
+        XCTAssertEqual(theme.backgroundColor, NSColor.white.usingColorSpaceName(NSCalibratedRGBColorSpace))
         XCTAssertEqualWithAccuracy(theme.lineHighLightColor.brightnessComponent, 0.94, accuracy: 0.01)
-        XCTAssertEqual(theme.selectionColor, NSColor.selectedTextBackgroundColor())
+        XCTAssertEqual(theme.selectionColor, NSColor.selectedTextBackgroundColor)
         
         for type in SyntaxType.all {
             XCTAssertGreaterThan(theme.syntaxColor(type: type)!.hueComponent, 0)
@@ -82,13 +82,13 @@ class ThemeTests: XCTestCase {
         
         XCTAssertNotNil(theme)  // Theme can be created from a lacking dictionary
         XCTAssertFalse(theme!.isValid)  // but flagged as invalid
-        XCTAssertEqual(theme!.textColor, NSColor.gray())  // and unavailable colors are substituted with frayColor().
+        XCTAssertEqual(theme!.textColor, NSColor.gray)  // and unavailable colors are substituted with frayColor().
     }
     
     
     /// test if all of bundled themes are valid
     func testBundledThemes() {
-        let themeDirectoryURL = self.bundle?.urlForResource(ThemeDirectoryName, withExtension: nil)!
+        let themeDirectoryURL = self.bundle?.url(forResource: ThemeDirectoryName, withExtension: nil)!
         let enumerator = FileManager.default.enumerator(at: themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles], errorHandler: nil)!
         
         for url in enumerator.allObjects as! [URL] {
@@ -105,7 +105,7 @@ class ThemeTests: XCTestCase {
     // MARK: Private Methods
     
     func loadThemeWithName(_ name: String) -> Theme? {
-        let url = self.bundle?.urlForResource(name, withExtension: ThemeExtension, subdirectory: ThemeDirectoryName)
+        let url = self.bundle?.url(forResource: name, withExtension: ThemeExtension, subdirectory: ThemeDirectoryName)
         
         return self.loadThemeWithURL(url!)
     }
@@ -114,7 +114,7 @@ class ThemeTests: XCTestCase {
     func loadThemeWithURL(_ url: URL) -> Theme? {
         let data = try? Data(contentsOf: url)
         let jsonDict = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! ThemeDictionary
-        let themeName = try! url.deletingPathExtension().lastPathComponent!
+        let themeName = url.deletingPathExtension().lastPathComponent
         
         XCTAssertNotNil(jsonDict)
         XCTAssertNotNil(themeName)

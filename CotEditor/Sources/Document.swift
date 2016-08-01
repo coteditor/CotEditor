@@ -236,7 +236,7 @@ final class Document: NSDocument, EncodingHolder {
         
         // try reading the `com.apple.TextEncoding` extended attribute
         var xattrEncoding: String.Encoding?
-        if let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path!)[NSFileExtendedAttributes]) as? [String: AnyObject],
+        if let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path)[NSFileExtendedAttributes]) as? [String: AnyObject],
             let xattrEncodingValue = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data {
             xattrEncoding = xattrEncodingValue.decodeXattrEncoding
         }
@@ -251,8 +251,7 @@ final class Document: NSDocument, EncodingHolder {
         } else {
             usedEncoding = self.readingEncoding
             if data.count > 0 {
-                content = try NSString(contentsOf: url, encoding: self.readingEncoding.rawValue) as String  // FILE_READ
-                // -> Use NSString initializer to let it throw NSError if failed
+                content = try String(contentsOf: url, encoding: self.readingEncoding)  // FILE_READ
             } else {
                 content = ""
             }
@@ -285,7 +284,7 @@ final class Document: NSDocument, EncodingHolder {
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
         
         // determine syntax style
-        let styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent!)
+        let styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent)
             ?? SyntaxManager.shared.styleName(documentContent: string)
             ?? UserDefaults.standard.string(forKey: DefaultKey.syntaxStyle)
         
@@ -335,8 +334,8 @@ final class Document: NSDocument, EncodingHolder {
         
         // get data from string to save
         guard var data = string.data(using: encoding, allowLossyConversion: true) else {
-            throw NSError(domain: NSCocoaErrorDomain,
-                          code: NSFileWriteInapplicableStringEncodingError,
+            throw NSError(domain: CocoaError.errorDomain,
+                          code: CocoaError.fileWriteInapplicableStringEncodingError.rawValue,
                           userInfo: [NSStringEncodingErrorKey: encoding.rawValue])
         }
         
@@ -357,7 +356,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// save or autosave the document contents to a file
-    override func save(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, completionHandler: (NSError?) -> Void) {
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, completionHandler: (Error?) -> Void) {
         
         // trim trailing whitespace if needed
         if UserDefaults.standard.bool(forKey: DefaultKey.trimsTrailingWhitespaceOnSave) {
@@ -387,22 +386,20 @@ final class Document: NSDocument, EncodingHolder {
             guard let fileURL = self.fileURL, saveOperation == .autosaveElsewhereOperation else { return url }
             
             let autosaveDirectoryURL = (DocumentController.shared() as! DocumentController).autosaveDirectoryURL
-            var baseFileName = ((try? fileURL.deletingPathExtension()) ?? fileURL).lastPathComponent!
+            var baseFileName = fileURL.deletingPathExtension().lastPathComponent
             if baseFileName.hasPrefix(".") {  // avoid file to be hidden
                 baseFileName.remove(at: baseFileName.startIndex)
             }
             // append a unique string to avoid overwriting another backup file with the same file name.
             let fileName = baseFileName + " (\(self.autosaveIdentifier))"
             
-            guard var newURL = try? autosaveDirectoryURL.appendingPathComponent(fileName) else { return url }
+            var newURL = autosaveDirectoryURL.appendingPathComponent(fileName)
+            let pathExtension = fileURL.pathExtension
             
-            if let pathExtension = fileURL.pathExtension {
-                return (try? newURL.appendingPathExtension(pathExtension)) ?? newURL
-            }
-            return newURL
+            return newURL.appendingPathExtension(pathExtension)
         }()
         
-        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [unowned self] (error: NSError?) in
+        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
             // [note] This completionHandler block will always be invoked on the main thread.
          
             defer {
@@ -413,18 +410,15 @@ final class Document: NSDocument, EncodingHolder {
             
             // apply syntax style that is inferred from the file name
             if saveOperation == .saveAsOperation {
-                if let fileName = url.lastPathComponent,
-                   let styleName = SyntaxManager.shared.styleName(documentFileName: fileName)
-                {
+                let fileName = url.lastPathComponent
+                if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName) {
                     self.setSyntaxStyle(name: styleName)
                 }
             }
             
             if saveOperation != .autosaveElsewhereOperation {
                 // get the latest file attributes
-                if let path = url.path {
-                    self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: path) ?? [:]
-                }
+                self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path) ?? [:]
                 
                 // update file information
                 self.analyzer.invalidateFileInfo()
@@ -642,7 +636,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// recover presented error
-    override func attemptRecovery(fromError error: NSError, optionIndex recoveryOptionIndex: Int, delegate: AnyObject?, didRecoverSelector: Selector?, contextInfo: UnsafeMutablePointer<Void>?) {
+    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int, delegate: AnyObject?, didRecoverSelector: Selector?, contextInfo: UnsafeMutablePointer<Void>?) {
         
         var didRecover = false
         
@@ -722,7 +716,7 @@ final class Document: NSDocument, EncodingHolder {
         var fileModificationDate: Date?
         let coordinator = NSFileCoordinator(filePresenter: self)
         coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in
-            fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path!))?[.modificationDate] as? Date  // FILE_READ
+            fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date  // FILE_READ
         }
         guard fileModificationDate != self.fileModificationDate else { return }
         
@@ -870,7 +864,7 @@ final class Document: NSDocument, EncodingHolder {
         
         guard let fileURL = self.fileURL else {
             // TODO: add userInfo (The outError under this condition will actually not be used, but better not to pass an empty errer pointer.)
-            throw NSError(domain: CotEditorError.domain, code: CotEditorError.reinterpretationFailed.rawValue, userInfo: nil)
+            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.reinterpretationFailed.rawValue, userInfo: nil)
         }
         
         // do nothing if given encoding is the same as current one
@@ -883,10 +877,10 @@ final class Document: NSDocument, EncodingHolder {
             
         } catch let error as NSError {
             self.readingEncoding = self.encoding
-            throw NSError(domain: CotEditorError.domain,
-                          code: CotEditorError.reinterpretationFailed.rawValue,
+            throw NSError(domain: CotEditorError.errorDomain,
+                          code: CotEditorError.Code.reinterpretationFailed.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Can not reinterpret.", comment: ""),
-                                     NSLocalizedRecoverySuggestionErrorKey: String(format: NSLocalizedString("The file “%@” could not be reinterpreted using the new encoding “%@”.", comment: ""), fileURL.lastPathComponent!, String.localizedName(of: encoding)),
+                                     NSLocalizedRecoverySuggestionErrorKey: String(format: NSLocalizedString("The file “%@” could not be reinterpreted using the new encoding “%@”.", comment: ""), fileURL.lastPathComponent, String.localizedName(of: encoding)),
                                      NSStringEncodingErrorKey: encoding.rawValue,
                                      NSUnderlyingErrorKey: error,
                                      NSURLErrorKey: fileURL])
@@ -904,8 +898,8 @@ final class Document: NSDocument, EncodingHolder {
         
         // ask lossy
         guard !askLossy || self.string.canBeConverted(to: encoding) else {
-            let error = NSError(domain: CotEditorError.domain,
-                                code: CotEditorError.lossyEncodingConversion.rawValue,
+            let error = NSError(domain: CotEditorError.errorDomain,
+                                code: CotEditorError.Code.lossyEncodingConversion.rawValue,
                                 userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName),
                                            NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Do you want to change encoding and show incompatible characters?", comment: "'"),
                                            NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Cancel", comment: ""),
@@ -1111,9 +1105,9 @@ final class Document: NSDocument, EncodingHolder {
                 self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
                 
             case NSAlertSecondButtonReturn:  // = Reinterpret
-                if self.isDocumentEdited {
+                if self.isDocumentEdited, let fileURL = self.fileURL {
                     let alert = NSAlert()
-                    alert.messageText = String(format: NSLocalizedString("The file “%@” has unsaved changes.", comment: ""), self.fileURL!.lastPathComponent!)
+                    alert.messageText = String(format: NSLocalizedString("The file “%@” has unsaved changes.", comment: ""), fileURL.lastPathComponent)
                     alert.informativeText = NSLocalizedString("Do you want to discard the changes and reset the file encoding?", comment: "")
                     alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
                     alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
@@ -1266,8 +1260,8 @@ final class Document: NSDocument, EncodingHolder {
             let encodingName = String.localizedName(of: encoding)
             let IANAName = String.localizedName(of: IANACharSetEncoding)
             
-            throw NSError(domain: CotEditorError.domain,
-                          code: CotEditorError.unconvertibleCharacters.rawValue,
+            throw NSError(domain: CotEditorError.errorDomain,
+                          code: CotEditorError.Code.unconvertibleCharacters.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""), encodingName, IANAName),
                                      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Do you want to continue processing?", comment: ""),
                                      NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Cancel", comment: ""),
@@ -1287,8 +1281,8 @@ final class Document: NSDocument, EncodingHolder {
         guard newString.canBeConverted(to: encoding) else {
             let encodingName = String.localizedName(of: encoding)
             
-            throw NSError(domain: CotEditorError.domain,
-                          code: CotEditorError.unconvertibleCharacters.rawValue,
+            throw NSError(domain: CotEditorError.errorDomain,
+                          code: CotEditorError.Code.unconvertibleCharacters.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName),
                                      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Do you want to continue processing?", comment: ""),
                                      NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Show Incompatible Chars", comment: ""),

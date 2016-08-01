@@ -36,7 +36,7 @@ protocol Themable {
 }
 
 
-private enum ThemeError: ErrorProtocol {
+private enum ThemeError: Error {
     
     case novalue
     case invalid
@@ -53,7 +53,7 @@ struct Theme: CustomDebugStringConvertible {
     let textColor: NSColor
     let backgroundColor: NSColor
     let invisiblesColor: NSColor
-    var selectionColor: NSColor { return self.usesSystemSelectionColor ? .selectedTextBackgroundColor() : _selectionColor }
+    var selectionColor: NSColor { return self.usesSystemSelectionColor ? .selectedTextBackgroundColor : _selectionColor }
     let insertionPointColor: NSColor
     let lineHighLightColor: NSColor
     
@@ -97,7 +97,7 @@ struct Theme: CustomDebugStringConvertible {
             do {
                 colors[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
             } catch {
-                colors[key] = .gray()
+                colors[key] = .gray
                 isValid = false
             }
         }
@@ -108,7 +108,7 @@ struct Theme: CustomDebugStringConvertible {
             do {
                 syntaxColors[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
             } catch {
-                syntaxColors[key] = .gray()
+                syntaxColors[key] = .gray
                 isValid = false
             }
         }

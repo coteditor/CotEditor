@@ -111,7 +111,7 @@ extension String {
     /// replace all kind of line ending characters in the string with the desired line ending.
     func replacingLineEndings(with lineEnding: LineEnding?) -> String {
         
-        let regex = try! RegularExpression(pattern: "\\r\\n|[\\n\\r\\u2028\\u2029]")
+        let regex = try! NSRegularExpression(pattern: "\\r\\n|[\\n\\r\\u2028\\u2029]")
         let template = lineEnding?.string ?? ""
         
         return regex.stringByReplacingMatches(in: self, range: self.nsRange, withTemplate: template)

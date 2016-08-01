@@ -31,7 +31,7 @@ import Cocoa
     
     // MARK: Public Properties
     
-    @IBInspectable var fillColor: NSColor = .windowBackgroundColor()
+    @IBInspectable var fillColor: NSColor = .windowBackgroundColor
     
     
     

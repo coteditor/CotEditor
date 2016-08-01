@@ -298,14 +298,14 @@ final class SyntaxHighlightParseOperation: Operation {
         
         guard !regexString.isEmpty else { return [] }
         
-        var options: RegularExpression.Options = .anchorsMatchLines
+        var options: NSRegularExpression.Options = .anchorsMatchLines
         if ignoreCase {
             options.update(with: .caseInsensitive)
         }
         
-        let regex: RegularExpression
+        let regex: NSRegularExpression
         do {
-            try regex = RegularExpression(pattern: regexString, options: options)
+            try regex = NSRegularExpression(pattern: regexString, options: options)
         } catch let error as NSError {
             print("Regex Syntax Error in " + #function + ": " + error.description)
             return []
@@ -314,7 +314,7 @@ final class SyntaxHighlightParseOperation: Operation {
         var ranges = [NSRange]()
         
         regex.enumerateMatches(in: self.string!, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange)
-        { [unowned self] (result: TextCheckingResult?, flags, stop) in
+        { [unowned self] (result: NSTextCheckingResult?, flags, stop) in
             guard !self.isCancelled else {
                 stop.pointee = true
                 return
@@ -334,16 +334,16 @@ final class SyntaxHighlightParseOperation: Operation {
         
         guard !beginString.isEmpty else { return [] }
         
-        var options: RegularExpression.Options = .anchorsMatchLines
+        var options: NSRegularExpression.Options = .anchorsMatchLines
         if ignoreCase {
             options.update(with: .caseInsensitive)
         }
         
-        let beginRegex: RegularExpression
-        let endRegex: RegularExpression
+        let beginRegex: NSRegularExpression
+        let endRegex: NSRegularExpression
         do {
-            try beginRegex = RegularExpression(pattern: beginString, options: options)
-            try endRegex = RegularExpression(pattern: endString, options: options)
+            try beginRegex = NSRegularExpression(pattern: beginString, options: options)
+            try endRegex = NSRegularExpression(pattern: endString, options: options)
         } catch let error as NSError {
             print("Regex Syntax Error in " + #function + ": " + error.description)
             return []
@@ -354,7 +354,7 @@ final class SyntaxHighlightParseOperation: Operation {
         let parseRange = self.parseRange
         
         beginRegex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange)
-        { [unowned self] (result: TextCheckingResult?, flags, stop) in
+        { [unowned self] (result: NSTextCheckingResult?, flags, stop) in
             guard !self.isCancelled else {
                 stop.pointee = true
                 return

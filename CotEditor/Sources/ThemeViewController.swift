@@ -122,7 +122,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
         
         guard let button = sender as? NSButton, button.state == NSOnState else { return }
         
-        let color = NSColor.selectedTextBackgroundColor()
+        let color = NSColor.selectedTextBackgroundColor
         let colorCode = color.usingColorSpaceName(NSCalibratedRGBColorSpace)?.colorCode(type: .hex)
         
         self.theme?[ThemeKey.selection.rawValue]?[ThemeKey.Sub.color.rawValue] = colorCode

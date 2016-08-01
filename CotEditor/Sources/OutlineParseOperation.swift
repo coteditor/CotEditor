@@ -30,7 +30,7 @@ import Foundation
 
 struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
     
-    let regex: RegularExpression
+    let regex: NSRegularExpression
     let template: String
     let isSeparator: Bool
     
@@ -44,14 +44,14 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
         guard let pattern = definition[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
         
         let ignoreCase = (definition[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
-        var options: RegularExpression.Options = .anchorsMatchLines
+        var options: NSRegularExpression.Options = .anchorsMatchLines
         if ignoreCase {
             options.update(with: .caseInsensitive)
         }
         
         // compile to regex object
         do {
-            self.regex = try RegularExpression(pattern: pattern, options: options)
+            self.regex = try NSRegularExpression(pattern: pattern, options: options)
             
         } catch let error as NSError {
             print("Error on outline parsing: " + error.description)
@@ -153,7 +153,7 @@ final class OutlineParseOperation: Operation {
             self.progress.completedUnitCount += 1
             
             definition.regex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds] , range: parseRange, using:
-                { [unowned self] (result: TextCheckingResult?, flags, stop) in
+                { [unowned self] (result: NSTextCheckingResult?, flags, stop) in
                     
                     guard !self.isCancelled else {
                         stop.pointee = true

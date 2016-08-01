@@ -28,7 +28,7 @@
 import Foundation
 
 /// concatenate attributed strings
-func +(lhs: AttributedString, rhs: AttributedString) -> AttributedString {
+func +(lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
     
     let result = NSMutableAttributedString()
     result.append(lhs)

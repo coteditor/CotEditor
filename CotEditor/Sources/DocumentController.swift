@@ -52,10 +52,10 @@ final class DocumentController: NSDocumentController {
         // [caution] This method can be called before the UserDefaults is initialized.
         
         self._accessorySelectedEncoding = UInt(UserDefaults.standard.integer(forKey: DefaultKey.encodingInOpen))
-        self.autosaveDirectoryURL = try! FileManager.default.urlForDirectory(.autosavedInformationDirectory,
-                                                                             in: .userDomainMask,
-                                                                             appropriateFor: nil,
-                                                                             create: true)
+        self.autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                 in: .userDomainMask,
+                                                                 appropriateFor: nil,
+                                                                 create: true)
         
         super.init()
         
@@ -87,8 +87,8 @@ final class DocumentController: NSDocumentController {
         {
             let localizedTypeName = (UTTypeCopyDescription(typeName as CFString)?.takeRetainedValue() as String?) ?? "unknown file type"
             
-            error = NSError(domain: CotEditorError.domain, code: CotEditorError.fileReadBinaryFile.rawValue,
-                            userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("The file “%@” doesn’t appear to be text data.", comment: ""), url.lastPathComponent!),
+            error = NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.fileReadBinaryFile.rawValue,
+                            userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("The file “%@” doesn’t appear to be text data.", comment: ""), url.lastPathComponent),
                                        NSLocalizedRecoverySuggestionErrorKey: String(format: NSLocalizedString("The file is %@.\n\nDo you really want to open the file?", comment: ""), localizedTypeName),
                                        NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Open", comment: ""),
                                                                             NSLocalizedString("Cancel", comment: "")],
@@ -105,9 +105,9 @@ final class DocumentController: NSDocumentController {
         {
             let formatter = ByteCountFormatter()
             
-            error = NSError(domain: CotEditorError.domain, code: CotEditorError.fileReadTooLarge.rawValue,
+            error = NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.fileReadTooLarge.rawValue,
                             userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("The file “%@” has a size of %@.", comment: ""),
-                                                                         url.lastPathComponent!,
+                                                                         url.lastPathComponent,
                                                                          formatter.stringFromByteCount(Int64(fileSize))),
                                        NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", comment: ""),
                                        NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Open", comment: ""),
@@ -126,7 +126,9 @@ final class DocumentController: NSDocumentController {
             
             // cancel operation
             guard wantsOpen else {
-                throw NSCocoaError.userCancelledError
+                throw NSError(domain: CocoaError.errorDomain,
+                              code: CocoaError.userCancelledError.rawValue,
+                              userInfo: nil)
             }
         }
         
@@ -182,7 +184,7 @@ final class DocumentController: NSDocumentController {
     
     
     /// check if file opening is cancelled
-    override func attemptRecovery(fromError error: NSError, optionIndex recoveryOptionIndex: Int) -> Bool {
+    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int) -> Bool {
         
         if error.domain == CotEditorError.domain, let code = CotEditorError(rawValue: error.code) {
             switch code {

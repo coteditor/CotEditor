@@ -188,7 +188,7 @@ private func sanitize(blockName: String) -> String
 /// check which block names will be lozalized (only for test use)
 private func testUnicodeBlockNameLocalization(for language: String = "ja") {
     
-    let bundleURL = Bundle.main.urlForResource(language, withExtension: "lproj")!
+    let bundleURL = Bundle.main.url(forResource: language, withExtension: "lproj")!
     let bundle = Bundle(url: bundleURL)
     
     for index in 0..<UBLOCK_COUNT.rawValue {

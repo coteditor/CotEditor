@@ -74,7 +74,7 @@ final class AlphaWindow: NSWindow {
         //   -> It's actucally a bit dirty way but practically works well.
         //      Without this tweak, the title bar will be dyed in the background color on El Capitan. (2016-01 by 1024p)
         if let windowTitleView = self.standardWindowButton(.closeButton)?.superview {
-            windowTitleView.layer?.backgroundColor = NSColor.windowBackgroundColor().cgColor
+            windowTitleView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
         }
         
         // observe toggling fullscreen

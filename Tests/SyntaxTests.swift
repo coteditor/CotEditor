@@ -48,7 +48,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         let bundle = Bundle(for: self.dynamicType)
         
         // load XML style
-        let styleURL = bundle.urlForResource("HTML", withExtension: StyleExtension, subdirectory: StyleDirectoryName)
+        let styleURL = bundle.url(forResource: "HTML", withExtension: StyleExtension, subdirectory: StyleDirectoryName)
         let data = try? Data(contentsOf: styleURL!)
         let dict = try? YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as? [String: AnyObject]
         self.htmlStyle = SyntaxStyle(dictionary: dict!, name: "HTML")
@@ -56,7 +56,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         XCTAssertNotNil(self.htmlStyle)
         
         // load test file
-        let sourceURL = bundle.urlForResource("sample", withExtension: "html")
+        let sourceURL = bundle.url(forResource: "sample", withExtension: "html")
         self.htmlSource = try? String(contentsOf: sourceURL!, encoding: .utf8)
         
         XCTAssertNotNil(self.htmlSource)

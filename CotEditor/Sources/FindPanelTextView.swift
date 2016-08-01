@@ -113,7 +113,7 @@ final class FindPanelTextView: NSTextView {
         
         // cast input to String
         var str: String = {
-            if let string = string as? AttributedString {
+            if let string = string as? NSAttributedString {
                 return string.string
             }
             return string as! String

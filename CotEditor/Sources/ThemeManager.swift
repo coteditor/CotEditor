@@ -71,9 +71,9 @@ final class ThemeManager: SettingFileManager {
         super.init()
         
         // cache bundled theme names
-        let themeURLs = Bundle.main.urlsForResources(withExtension: self.filePathExtension, subdirectory: self.directoryName) ?? []
+        let themeURLs = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: self.directoryName) ?? []
         for themeURL in themeURLs {
-            if themeURL.lastPathComponent?.hasPrefix("_") ?? false { continue }
+            if themeURL.lastPathComponent.hasPrefix("_") { continue }
             
             self.bundledThemeNames.append(self.settingName(from: themeURL))
         }
@@ -83,7 +83,7 @@ final class ThemeManager: SettingFileManager {
         self.updateCache {
             semaphore.signal()
         }
-        while semaphore.wait(timeout: .now()) == .TimedOut {
+        while semaphore.wait(timeout: .now()) == .timedOut {
             RunLoop.current.run(mode: .defaultRunLoopMode, before: Date.distantFuture)
         }
     }
@@ -230,14 +230,14 @@ final class ThemeManager: SettingFileManager {
         do {
             try super.importSetting(fileURL: fileURL)
             
-        } catch let error as NSError where error.domain == CotEditorError.domain && error.code == CotEditorError.settingImportFileDuplicated.rawValue {
+        } catch let error as NSError where error.domain == CotEditorError.errorDomain && error.code == CotEditorError.Code.settingImportFileDuplicated.rawValue {
             // replace error message
             let name = self.settingName(from: fileURL)
             var userInfo = error.userInfo
             userInfo[NSLocalizedDescriptionKey] = String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), name)
             userInfo[NSLocalizedRecoverySuggestionErrorKey] = NSLocalizedString("Do you want to replace it?\nReplaced theme can’t be restored.", comment: "")
             
-            throw NSError(domain: CotEditorError.domain, code: CotEditorError.settingImportFileDuplicated.rawValue, userInfo: userInfo)
+            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.settingImportFileDuplicated.rawValue, userInfo: userInfo)
         }
     }
     

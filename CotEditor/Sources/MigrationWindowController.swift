@@ -69,7 +69,7 @@ final class MigrationWindowController: NSWindowController {
     
         self.window?.level = Int(CGWindowLevelForKey(.floatingWindow))
         
-        self.slideView?.layer?.backgroundColor = NSColor.white().cgColor
+        self.slideView?.layer?.backgroundColor = NSColor.white.cgColor
         
         self.indicator?.maxValue = 5
         self.indicator?.startAnimation(self)

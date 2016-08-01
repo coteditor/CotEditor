@@ -98,7 +98,7 @@ final class ODBEventSender {
                                                                 returnID: AEReturnID(kAutoGenerateReturnID),
                                                                 transactionID: AETransactionID(kAnyTransactionID))
         
-        let urlData = fileURL.absoluteString?.data(using: .utf8)
+        let urlData = fileURL.absoluteString.data(using: .utf8)
         if let fileDescriptor = NSAppleEventDescriptor(descriptorType: typeFileURL, data: urlData) {
             eventDescriptor.setParam(fileDescriptor, forKeyword: keyDirectObject)
         }

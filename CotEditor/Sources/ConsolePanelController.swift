@@ -89,7 +89,7 @@ final class ConsolePanelController: NSWindowController {
     func append(message: String, title: String) {
         
         let date = self.dateFormatter.string(from: Date())
-        var attrString = AttributedString(string: "[" + date + "] ")
+        var attrString = NSAttributedString(string: "[" + date + "] ")
         
         // append bold title
         let attrTitle = NSMutableAttributedString(string: title)
@@ -97,7 +97,7 @@ final class ConsolePanelController: NSWindowController {
         attrString = attrString + attrTitle
         
         // append indented message
-        let attrMessage = AttributedString(string: "\n" + message + "\n", attributes: [NSParagraphStyleAttributeName: self.messageParagraphStyle])
+        let attrMessage = NSAttributedString(string: "\n" + message + "\n", attributes: [NSParagraphStyleAttributeName: self.messageParagraphStyle])
         attrString = attrString + attrMessage
         
         self.textView?.textStorage?.append(attrString)

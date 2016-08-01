@@ -95,7 +95,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     /// file URL to save custom key bindings file
     var keyBindingSettingFileURL: URL {
         
-        return try! self.userSettingDirectoryURL.appendingPathComponent(self.settingFileName).appendingPathExtension("plist")
+        return self.userSettingDirectoryURL.appendingPathComponent(self.settingFileName).appendingPathExtension("plist")
     }
     
     
@@ -137,7 +137,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         
         // single key is invalid
         guard keySpecChars.characters.count > 1 else {
-            throw NSError(domain: CotEditorError.domain, code: CotEditorError.invalidKeySpecCharacters.rawValue,
+            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.invalidKeySpecCharacters.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Single type is invalid for a shortcut.", comment: ""),
                                      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Please combinate with another keys.", comment: "")])
         }
@@ -155,7 +155,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         
         let printableKey = KeyBindingUtils.printableKeyString(keySpecChars: keySpecChars)
         
-        return NSError(domain: CotEditorError.domain, code: CotEditorError.invalidKeySpecCharacters.rawValue,
+        return NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.invalidKeySpecCharacters.rawValue,
                        userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString(messageFormat, comment: ""), printableKey),
                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Please choose another key.", comment: "")])
     }

@@ -173,9 +173,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 // do nothing if the particle word is an symbol
                 
             } else {
-                let pattern = "(?:^|\\b|(?<=\\W))" + RegularExpression.escapedPattern(for: particalWord) + "\\w+?(?:$|\\b)"
-                if let regex = try? RegularExpression(pattern: pattern) {
-                    regex.enumerateMatches(in: string, range: string.nsRange, using: { (result: TextCheckingResult?, flags, stop) in
+                let pattern = "(?:^|\\b|(?<=\\W))" + NSRegularExpression.escapedPattern(for: particalWord) + "\\w+?(?:$|\\b)"
+                if let regex = try? NSRegularExpression(pattern: pattern) {
+                    regex.enumerateMatches(in: string, range: string.nsRange, using: { (result: NSTextCheckingResult?, flags, stop) in
                         guard let result = result else { return }
                         candidateWords.add((string as NSString).substring(with: result.range))
                     })

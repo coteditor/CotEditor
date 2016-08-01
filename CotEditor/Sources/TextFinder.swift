@@ -47,7 +47,7 @@ struct TextFindResult {
     let range: NSRange
     let lineRange: NSRange
     let lineNumber: UInt
-    let attributedLineString: AttributedString
+    let attributedLineString: NSAttributedString
     
 }
 
@@ -58,7 +58,7 @@ private protocol TextFinderSettingsProvider {
     var isWrap: Bool { get }
     var inSelection: Bool { get }
     var textualOptions: NSString.CompareOptions { get }
-    var regexOptions: RegularExpression.Options { get }
+    var regexOptions: NSRegularExpression.Options { get }
     var closesIndicatorWhenDone: Bool { get }
     var sharesFindString: Bool { get }
     
@@ -250,7 +250,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         let numberOfGroups = regex.numberOfCaptureGroups
         let highlightColors = self.highlightColor.decomposite(into: numberOfGroups + 1)
         
-        let lineRegex = try! RegularExpression(pattern: "\n", options: [])
+        let lineRegex = try! NSRegularExpression(pattern: "\n", options: [])
         let string = textView.string ?? ""
         
         // setup progress sheet
@@ -270,7 +270,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             var lineNumber = 1
             var lineCountedLocation = 0
             
-            self.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: TextCheckingResult?, stop) in
+            self.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
                 
                 guard !progress.isCancelled else {
                     indicator.dismiss(self)
@@ -297,7 +297,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 
                 if numberOfGroups > 0 {
                     for index in 1...numberOfGroups {
-                        guard let range = match?.range(at: index), range.length > 0 else { continue }
+                        guard let range = match?.rangeAt(index), range.length > 0 else { continue }
                         
                         let color = highlightColors[index]
                         
@@ -380,7 +380,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             guard let `self` = self else { return }
             
             var highlights = [HighlightItem]()
-            self.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: TextCheckingResult?, stop) in
+            self.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
                 
                 guard !progress.isCancelled else {
                     indicator.dismiss(self)
@@ -393,7 +393,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 
                 if numberOfGroups > 0 {
                     for index in 1...numberOfGroups {
-                        guard let range = match?.range(at: index), range.length > 0 else { continue }
+                        guard let range = match?.rangeAt(index), range.length > 0 else { continue }
                         let color = highlightColors[index]
                         highlights.append(HighlightItem(range: range, color: color))
                     }
@@ -511,7 +511,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             var locationDelta = 1
             var lengthDelta = 0
             
-            self.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: TextCheckingResult?, stop) in
+            self.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
                 
                 guard !progress.isCancelled else {
                     indicator.dismiss(self)
@@ -647,9 +647,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// regex object with current settings
-    private func regex() -> RegularExpression? {
+    private func regex() -> NSRegularExpression? {
         
-        return try? RegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
+        return try? NSRegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
     }
     
     
@@ -665,7 +665,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         let range = string.nsRange
         
         var matches = [NSRange]()
-        self.enumerateMatchs(in: string, ranges: [range], using: { (matchedRange: NSRange, match: TextCheckingResult?, stop) in
+        self.enumerateMatchs(in: string, ranges: [range], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             matches.append(matchedRange)
             }, scopeCompletionHandler: nil)
         
@@ -743,7 +743,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// enumerate matchs in string using current settings
-    private func enumerateMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, TextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)?) {
+    private func enumerateMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)?) {
         
         if self.usesRegularExpression {
             self.enumerateRegularExpressionMatchs(in: string, ranges: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
@@ -754,7 +754,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// enumerate matchs in string using textual search
-    private func enumerateTextualMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, TextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)?) {
+    private func enumerateTextualMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)?) {
         
         guard let string = string as NSString?, string.length > 0 else { return }
         
@@ -784,7 +784,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// enumerate matchs in string using regular expression
-    private func enumerateRegularExpressionMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, TextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)?) {
+    private func enumerateRegularExpressionMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)?) {
         
         guard let string = string, !string.isEmpty else { return }
         
@@ -831,9 +831,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         // check regular expression syntax
         if self.usesRegularExpression {
             do {
-                let _ = try RegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
+                let _ = try NSRegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
             } catch let error as NSError {
-                let newError = NSError(domain: CotEditorError.domain, code: CotEditorError.regularExpression.rawValue,
+                let newError = NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.regularExpression.rawValue,
                                        userInfo:[NSLocalizedDescriptionKey: NSLocalizedString("Invalid regular expression", comment: ""),
                                                  NSLocalizedRecoverySuggestionErrorKey: error.localizedFailureReason ?? NSNull(),
                                                  NSUnderlyingErrorKey: error])
@@ -925,10 +925,10 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// return value from user defaults
-    private var regexOptions: RegularExpression.Options {
+    private var regexOptions: NSRegularExpression.Options {
         
         let defaults = UserDefaults.standard
-        var options = RegularExpression.Options()
+        var options = NSRegularExpression.Options()
         
         if defaults.bool(forKey: DefaultKey.findIgnoresCase)                { options.update(with: .caseInsensitive) }
         if defaults.bool(forKey: DefaultKey.findRegexIsSingleline)          { options.update(with: .dotMatchesLineSeparators) }

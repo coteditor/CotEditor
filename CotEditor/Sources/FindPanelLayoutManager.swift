@@ -61,7 +61,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
         if defaults.bool(forKey: DefaultKey.showInvisibles) {
             let string = self.textStorage?.string ?? ""
             
-            let color = NSColor.tertiaryLabelColor()
+            let color = NSColor.tertiaryLabelColor
             
             let font = self.font
             let fullWidthFont = NSFont(name: "HiraKakuProN-W3", size: font.pointSize) ?? font
@@ -77,11 +77,11 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let showsFullWidthSpace = defaults.bool(forKey: DefaultKey.showInvisibleFullwidthSpace)
             let showsOtherInvisibles = defaults.bool(forKey: DefaultKey.showOtherInvisibleChars)
             
-            let space = AttributedString(string: Invisible.userSpace, attributes: attributes)
-            let tab = AttributedString(string: Invisible.userTab, attributes: attributes)
-            let newLine = AttributedString(string: Invisible.userNewLine, attributes: attributes)
-            let fullWidthSpace = AttributedString(string: Invisible.userFullWidthSpace, attributes: fullwidthAttributes)
-            let verticalTab = AttributedString(string: Invisible.verticalTab, attributes: attributes)
+            let space = NSAttributedString(string: Invisible.userSpace, attributes: attributes)
+            let tab = NSAttributedString(string: Invisible.userTab, attributes: attributes)
+            let newLine = NSAttributedString(string: Invisible.userNewLine, attributes: attributes)
+            let fullWidthSpace = NSAttributedString(string: Invisible.userFullWidthSpace, attributes: fullwidthAttributes)
+            let verticalTab = NSAttributedString(string: Invisible.verticalTab, attributes: attributes)
             
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.max {
@@ -90,7 +90,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 let utfChar = string.utf16[String.UTF16Index(charIndex)]
                 let character = String(utf16CodeUnits: [utfChar], count: 1)
                 
-                let glyphString: AttributedString
+                let glyphString: NSAttributedString
                 switch character {
                 case " ", "\u{A0}":
                     guard showsSpace else { continue }

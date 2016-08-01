@@ -212,7 +212,7 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// key is pressed
-    override func keyDown(_ event: NSEvent) {
+    override func keyDown(with event: NSEvent) {
         
         // perform snippet insertion if not in the middle of Japanese input
         if !self.hasMarkedText(),
@@ -228,7 +228,7 @@ final class EditorTextView: NSTextView, Themable {
             return
         }
         
-        super.keyDown(event)
+        super.keyDown(with: event)
     }
     
     
@@ -237,9 +237,9 @@ final class EditorTextView: NSTextView, Themable {
         
         // do not use this method for programmatical insertion.
         
-        // cast AttributedString to String in order to make sure input string is plain-text
+        // cast NSAttributedString to String in order to make sure input string is plain-text
         guard var plainString: String = {
-            if let attrString = string as? AttributedString {
+            if let attrString = string as? NSAttributedString {
                 return attrString.string
             }
             if let string = string as? String {
@@ -964,7 +964,7 @@ final class EditorTextView: NSTextView, Themable {
             return
         }
         
-        var selections = [AttributedString]()
+        var selections = [NSAttributedString]()
         var propertyList = [NSNumber]()
         let lineEnding = String((self.documentLineEnding ?? .LF).rawValue)
         
@@ -1009,10 +1009,10 @@ final class EditorTextView: NSTextView, Themable {
             propertyList.append(NSNumber(value: plainText.components(separatedBy: "\n").count))
         }
         
-        var pasteboardString = AttributedString()
+        var pasteboardString = NSAttributedString()
         
         // join attributed strings
-        let attrLineEnding = AttributedString(string: lineEnding)
+        let attrLineEnding = NSAttributedString(string: lineEnding)
         for selection in selections {
             // join with newline string
             if !pasteboardString.string.isEmpty {
@@ -1166,7 +1166,7 @@ final class EditorTextView: NSTextView, Themable {
         self.undoManager?.disableUndoRegistration()
         
         let currentCheckingType = self.enabledTextCheckingTypes
-        self.enabledTextCheckingTypes = TextCheckingResult.CheckingType.link.rawValue
+        self.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
         self.checkTextInDocument(nil)
         self.enabledTextCheckingTypes = currentCheckingType
         

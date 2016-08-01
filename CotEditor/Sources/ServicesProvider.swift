@@ -76,7 +76,7 @@ final class ServicesProvider: NSObject {
             // open file
             NSDocumentController.shared().openDocument(withContentsOf: fileURL,
                                                        display: true,
-                                                       completionHandler: { (document: NSDocument?, documentWasAlreadyOpen: Bool, error: NSError?) in
+                                                       completionHandler: { (document: NSDocument?, documentWasAlreadyOpen: Bool, error: Error?) in
                                                         if let error = error {
                                                             NSAlert(error: error).runModal()
                                                         }

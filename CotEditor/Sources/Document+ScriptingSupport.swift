@@ -49,7 +49,7 @@ extension Document {
                                                    object: textStorage)
             
             // disconnect the delegate after 0.5 sec. (otherwise app may crash)
-            DispatchQueue.main.after(when: .now() + 0.5) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                 if let `self` = self {
                     NotificationCenter.default.removeObserver(self, name: .NSTextStorageDidProcessEditing, object: textStorage)
                 }
@@ -288,8 +288,8 @@ extension Document {
         if isAll {
             let newWholeString = NSMutableString(string: wholeString)
             if isRegex {
-                let options: RegularExpression.Options = ignoresCase ? .caseInsensitive : []
-                guard let regex = try? RegularExpression(pattern: searchString, options: options) else { return .no }
+                let options: NSRegularExpression.Options = ignoresCase ? .caseInsensitive : []
+                guard let regex = try? NSRegularExpression(pattern: searchString, options: options) else { return .no }
                 numberOfReplacements = regex.replaceMatches(in: newWholeString, range: targetRange, withTemplate: replacementString)
                 
             } else {

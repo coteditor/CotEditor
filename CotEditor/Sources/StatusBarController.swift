@@ -32,8 +32,8 @@ final class StatusBarController: NSViewController {
     // MARK: Private Properties
     
     private let byteCountFormatter = ByteCountFormatter()
-    private dynamic var editorStatus: AttributedString?
-    private dynamic var documentStatus: AttributedString?
+    private dynamic var editorStatus: NSAttributedString?
+    private dynamic var documentStatus: NSAttributedString?
     private dynamic var showsReadOnly = false
     
     
@@ -215,24 +215,26 @@ private extension NSMutableAttributedString {
     func appendFormattedState(value: String?, label: String?) {
         
         if self.length > 0 {
-            self.append(AttributedString(string: "   "))
+            self.append(NSAttributedString(string: "   "))
         }
         
         if let label = label {
             let localizedLabel = String(format: NSLocalizedString("%@: ", comment: ""),
                                         NSLocalizedString(label, comment: ""))
-            let attrLabel = AttributedString(string: localizedLabel,
-                                             attributes: [NSForegroundColorAttributeName: NSColor.labelColor()])
+            let attrLabel = NSAttributedString(string: localizedLabel,
+                                               attributes: [NSForegroundColorAttributeName: NSColor.labelColor])
             self.append(attrLabel)
         }
         
-        let attrValue: AttributedString
-        if let value = value {
-            attrValue = AttributedString(string: value)
-        } else {
-            attrValue = AttributedString(string: "-",
-                                         attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor()])
-        }
+        let attrValue: NSAttributedString = {
+            if let value = value {
+                return NSAttributedString(string: value)
+            } else {
+                return NSAttributedString(string: "-",
+                                          attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor])
+            }
+        }()
+        
         self.append(attrValue)
     }
     

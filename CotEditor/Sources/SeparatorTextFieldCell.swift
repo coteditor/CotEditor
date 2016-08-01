@@ -51,7 +51,7 @@ final class SeparatorTextFieldCell: NSTextFieldCell {
         
         NSGraphicsContext.saveGraphicsState()
         
-        NSColor.gridColor().setStroke()
+        NSColor.gridColor.setStroke()
         NSBezierPath.strokeLine(from: NSPoint(x: cellFrame.minX, y: floor(cellFrame.midY) + 0.5),
                                   to: NSPoint(x: cellFrame.maxX, y: floor(cellFrame.midY) + 0.5))
         

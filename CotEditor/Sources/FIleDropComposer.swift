@@ -109,24 +109,14 @@ final class FileDropComposer {
         guard var dropText = self.template(forExtension: pathExtension) else { return nil }
         
         // replace template
-        if let path = droppedFileURL.path {
-            dropText = dropText.replacingOccurrences(of: Token.absolutePath.rawValue, with: path)
-            dropText = dropText.replacingOccurrences(of: Token.relativePath.rawValue, with: droppedFileURL.path(relativeTo: documentURL) ?? path)
-        }
-        if let filename = droppedFileURL.lastPathComponent {
-            dropText = dropText.replacingOccurrences(of: Token.filename.rawValue, with: filename)
-        }
-        if let filename = (try? droppedFileURL.deletingPathExtension())?.lastPathComponent {
-            dropText = dropText.replacingOccurrences(of: Token.filenameWithoutExtension.rawValue, with: filename)
-        }
-        if let pathExtension = pathExtension {
-            dropText = dropText.replacingOccurrences(of: Token.fileExtension.rawValue, with: pathExtension)
-            dropText = dropText.replacingOccurrences(of: Token.fileExtensionLowercase.rawValue, with: pathExtension.lowercased())
-            dropText = dropText.replacingOccurrences(of: Token.fileExtensionUppercase.rawValue, with: pathExtension.uppercased())
-        }
-        if let directory = (try? droppedFileURL.deletingLastPathComponent())?.lastPathComponent {
-            dropText = dropText.replacingOccurrences(of: Token.directory.rawValue, with: directory)
-        }
+        dropText = dropText.replacingOccurrences(of: Token.absolutePath.rawValue, with: droppedFileURL.path)
+        dropText = dropText.replacingOccurrences(of: Token.relativePath.rawValue, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
+        dropText = dropText.replacingOccurrences(of: Token.filename.rawValue, with: droppedFileURL.lastPathComponent)
+        dropText = dropText.replacingOccurrences(of: Token.filenameWithoutExtension.rawValue, with: droppedFileURL.deletingPathExtension().lastPathComponent)
+        dropText = dropText.replacingOccurrences(of: Token.fileExtension.rawValue, with: pathExtension)
+        dropText = dropText.replacingOccurrences(of: Token.fileExtensionLowercase.rawValue, with: pathExtension.lowercased())
+        dropText = dropText.replacingOccurrences(of: Token.fileExtensionUppercase.rawValue, with: pathExtension.uppercased())
+        dropText = dropText.replacingOccurrences(of: Token.directory.rawValue, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
         
         // get image dimension if needed
         //   -> Use NSImageRep because NSImage's `size` returns an DPI applied size.

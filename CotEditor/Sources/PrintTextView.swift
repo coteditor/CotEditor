@@ -137,10 +137,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             let fontSize = round(0.9 * (self.font?.pointSize ?? 12))
             let font = NSFont(name: kLineNumberFontName, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
             let attrs = [NSFontAttributeName: font,
-                         NSForegroundColorAttributeName: self.textColor ?? .textColor()]
+                         NSForegroundColorAttributeName: self.textColor ?? .textColor]
             
             // calculate character width by treating the font as a mono-space font
-            let charSize = AttributedString(string: "8", attributes: attrs).size()
+            let charSize = NSAttributedString(string: "8", attributes: attrs).size()
             
             // adjust values for line number drawing
             let horizontalOrigin = self.textContainerOrigin.x + kLineFragmentPadding - kLineNumberPadding
@@ -151,7 +151,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 // rotate axis
                 NSGraphicsContext.saveGraphicsState()
                 let transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-                NSGraphicsContext.current()?.cgContext.concatCTM(transform)
+                NSGraphicsContext.current()?.cgContext.concatenate(transform)
             }
             
             // get glyph range of which line number should be drawn
@@ -193,14 +193,15 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                     if isVerticalText {
                         numberString = (lineNumber == 1 || lineNumber % 5 == 0) ? numberString : "·"  // draw real number only in every 5 times
                         
-                        point = NSPoint(x: -point.y - (charSize.width * CGFloat(digit) + charSize.height) / 2,
+                        let width = (charSize.width * CGFloat(digit) + charSize.height)
+                        point = NSPoint(x: -point.y - width / 2,
                                         y: point.x - charSize.height)
                     } else {
                         point.x -= CGFloat(digit) * charSize.width   // align right
                     }
                     
                     // draw number
-                    AttributedString(string: numberString, attributes: attrs).draw(at: point)
+                    NSAttributedString(string: numberString, attributes: attrs).draw(at: point)
                 }
             }
             
@@ -212,10 +213,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// return page header attributed string
-    override var pageHeader: AttributedString {
+    override var pageHeader: NSAttributedString {
         
         guard let settings = NSPrintOperation.current()?.printInfo.dictionary(),
-            (settings[PrintSettingKey.printsHeader.rawValue] as? Bool) ?? false else { return AttributedString() }
+            (settings[PrintSettingKey.printsHeader.rawValue] as? Bool) ?? false else { return NSAttributedString() }
         
         let primaryInfoType = PrintInfoType(rawValue: settings[PrintSettingKey.primaryHeaderContent.rawValue] as! Int)!
         let primaryAlignment = AlignmentType(rawValue: settings[PrintSettingKey.primaryHeaderAlignment.rawValue] as! Int)!
@@ -230,10 +231,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// return page footer attributed string
-    override var pageFooter: AttributedString {
+    override var pageFooter: NSAttributedString {
         
         guard let settings = NSPrintOperation.current()?.printInfo.dictionary(),
-            (settings[PrintSettingKey.printsFooter.rawValue] as? Bool) ?? false else { return AttributedString() }
+            (settings[PrintSettingKey.printsFooter.rawValue] as? Bool) ?? false else { return NSAttributedString() }
         
         let primaryInfoType = PrintInfoType(rawValue: settings[PrintSettingKey.primaryFooterContent.rawValue] as! Int)!
         let primaryAlignment = AlignmentType(rawValue: settings[PrintSettingKey.primaryFooterAlignment.rawValue] as! Int)!
@@ -364,9 +365,9 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         let themeName = (settings[PrintSettingKey.theme.rawValue] as? String) ?? BlackAndWhiteThemeName
         if themeName == BlackAndWhiteThemeName {
             layoutManager.removeTemporaryAttribute(NSForegroundColorAttributeName, forCharacterRange: textStorage.string.nsRange)
-            self.textColor = .textColor()
-            self.backgroundColor = .white()
-            layoutManager.invisiblesColor = .gray()
+            self.textColor = .textColor
+            self.backgroundColor = .white
+            layoutManager.invisiblesColor = .gray
             
         } else {
             if let theme = ThemeManager.shared.theme(name: themeName) {
@@ -393,33 +394,33 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// return attributed string for header/footer
-    private func headerFooter(primaryString: String?, primaryAlignment: AlignmentType, secondaryString: String?, secondaryAlignment: AlignmentType) -> AttributedString {
+    private func headerFooter(primaryString: String?, primaryAlignment: AlignmentType, secondaryString: String?, secondaryAlignment: AlignmentType) -> NSAttributedString {
         
         // case: empty
-        guard primaryString != nil || secondaryString != nil else { return AttributedString() }
+        guard primaryString != nil || secondaryString != nil else { return NSAttributedString() }
         
         // case: single content
         if let string = primaryString, secondaryString == nil {
-            return AttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
+            return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
         }
         if let string = secondaryString, primaryString == nil {
-            return AttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+            return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
         }
         guard let primaryString = primaryString, let secondaryString = secondaryString else { fatalError() }
         
         // case: double-sided
         if primaryAlignment == .left && secondaryAlignment == .right {
-            return AttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
+            return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
         }
         if primaryAlignment == .right && secondaryAlignment == .left {
-            return AttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
+            return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
         }
         
         // case: two lines
-        let primaryAttrString = AttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
-        let secondaryAttrString = AttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+        let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
+        let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
         
-        return primaryAttrString + AttributedString(string: "\n") + secondaryAttrString
+        return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
     }
     
     

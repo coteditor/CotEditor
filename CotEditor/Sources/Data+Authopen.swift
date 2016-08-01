@@ -44,11 +44,11 @@ extension Data {
     @available(OSX, unavailable, message: "Sandbox incompatible")
     init?(forceReadFromFileURL fileURL: URL) {
         
-        guard fileURL.isFileURL, let path = fileURL.path else { return nil }
+        guard fileURL.isFileURL else { return nil }
         
         let task = Task()
         task.launchPath = AuthopenPath
-        task.arguments = [path]
+        task.arguments = [fileURL.path]
         task.standardOutput = Pipe()
         
         task.launch()
@@ -58,7 +58,7 @@ extension Data {
             usleep(200)
         }
         
-        self.init(reference: data)
+        self.init(referencing: data)
         
         guard task.terminationStatus == 0 else { return nil }
     }
@@ -68,11 +68,11 @@ extension Data {
     @available(OSX, unavailable, message: "Sandbox incompatible")
     func forceWrite(to fileURL: URL) -> Bool {
         
-        guard fileURL.isFileURL, let path = fileURL.path else { return false }
+        guard fileURL.isFileURL else { return false }
         
         let task = Task()
         task.launchPath = AuthopenPath
-        task.arguments = ["-c", "-c", path]
+        task.arguments = ["-c", "-c", fileURL.path]
         task.standardOutput = Pipe()
         
         task.launch()

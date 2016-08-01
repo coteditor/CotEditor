@@ -115,11 +115,10 @@ class EncodingDetectionTests: XCTestCase {
         var didCatchError = false
         do {
             string = try String(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)
-        } catch let error as NSError {
-            XCTAssertEqual(error.domain, NSCocoaErrorDomain)
-            XCTAssertEqual(error.code, NSFileReadUnknownStringEncodingError)
-            XCTAssertNotNil(error.localizedDescription)
+        } catch let error as CocoaError where error.code == .fileReadUnknownStringEncodingError {
             didCatchError = true
+        } catch let error {
+            XCTFail(error.localizedDescription)
         }
 
         XCTAssertTrue(didCatchError, "String+Encoding didn't throw error.")
@@ -238,7 +237,7 @@ class EncodingDetectionTests: XCTestCase {
     
     func dataForFileName(_ fileName: String) -> Data {
         
-        let fileURL = self.bundle.urlForResource(fileName, withExtension: "txt", subdirectory: "Encodings")
+        let fileURL = self.bundle.url(forResource: fileName, withExtension: "txt", subdirectory: "Encodings")
         let data = try? Data(contentsOf: fileURL!)
         
         XCTAssertNotNil(data)

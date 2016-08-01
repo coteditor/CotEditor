@@ -504,7 +504,7 @@ extension SyntaxStyle {
         var indicator: ProgressViewController?
         if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
             // wait for window becomes visible and sheet-attachable
-            DispatchQueue.global(attributes: .qosBackground).async {
+            DispatchQueue.global(qos: .background).async {
                 while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) {
                     RunLoop.current.limitDate(forMode: .defaultRunLoopMode)
                 }

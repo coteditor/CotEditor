@@ -101,7 +101,7 @@ extension String {
             }
         }()
         
-        let regex = try! RegularExpression(pattern: "(^|\\G)" + indent.before, options: .anchorsMatchLines)
+        let regex = try! NSRegularExpression(pattern: "(^|\\G)" + indent.before, options: .anchorsMatchLines)
         
         return regex.stringByReplacingMatches(in: self, range: self.nsRange, withTemplate: indent.after)
     }

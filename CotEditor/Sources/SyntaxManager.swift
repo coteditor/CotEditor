@@ -117,7 +117,7 @@ final class SyntaxManager: SettingFileManager {
         self.maximumRecentStyleNameCount = defaults.integer(forKey: DefaultKey.maximumRecentStyleCount)
         
         // load bundled style list
-        let url = Bundle.main.urlForResource("SyntaxMap", withExtension: "json")!
+        let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
         self.bundledMap = try! JSONSerialization.jsonObject(with: data) as! [String: [String: [String]]]
         
@@ -309,14 +309,14 @@ final class SyntaxManager: SettingFileManager {
         do {
             try super.importSetting(fileURL: fileURL)
             
-        } catch let error as NSError where error.domain == CotEditorError.domain && error.code == CotEditorError.settingImportFileDuplicated.rawValue {
+        } catch let error as NSError where error.domain == CotEditorError.errorDomain && error.code == CotEditorError.Code.settingImportFileDuplicated.rawValue {
             // replace error message
             let name = self.settingName(from: fileURL)
             var userInfo = error.userInfo
             userInfo[NSLocalizedDescriptionKey] = String(format: NSLocalizedString("A new style named “%@” will be installed, but a custom style with the same name already exists.", comment: ""), name)
             userInfo[NSLocalizedRecoverySuggestionErrorKey] = NSLocalizedString("Do you want to replace it?\nReplaced style can’t be restored.", comment: "")
             
-            throw NSError(domain: CotEditorError.domain, code: CotEditorError.settingImportFileDuplicated.rawValue, userInfo: userInfo)
+            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.settingImportFileDuplicated.rawValue, userInfo: userInfo)
         }
     }
     
@@ -367,10 +367,10 @@ final class SyntaxManager: SettingFileManager {
         }
         
         // sort
-        let descriptors = [SortDescriptor(key: SyntaxDefinitionKey.beginString.rawValue, ascending: true,
-                                          selector: #selector(NSString.caseInsensitiveCompare(_:))),
-                           SortDescriptor(key: SyntaxDefinitionKey.keyString.rawValue, ascending: true,
-                                          selector: #selector(NSString.caseInsensitiveCompare(_:)))]
+        let descriptors = [NSSortDescriptor(key: SyntaxDefinitionKey.beginString.rawValue, ascending: true,
+                                            selector: #selector(NSString.caseInsensitiveCompare(_:))),
+                           NSSortDescriptor(key: SyntaxDefinitionKey.keyString.rawValue, ascending: true,
+                                            selector: #selector(NSString.caseInsensitiveCompare(_:)))]
         let syntaxDictKeys = SyntaxType.all.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue, SyntaxKey.completions.rawValue]
         for key in syntaxDictKeys {
             (styleDictionary[key] as? NSMutableArray)?.sort(using: descriptors)
@@ -463,7 +463,7 @@ final class SyntaxManager: SettingFileManager {
                 
                 if definition.isRegularExpression {
                     do {
-                        let _ = try RegularExpression(pattern: definition.beginString)
+                        let _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch let error as NSError {
                         let reason = NSLocalizedString("Regex Error: %@", comment: "") + (error.localizedFailureReason ?? "")
                         results.append(SyntaxValidationResult(localizedType: NSLocalizedString(key, comment: ""),
@@ -474,7 +474,7 @@ final class SyntaxManager: SettingFileManager {
                     
                     if let endString = definition.endString {
                         do {
-                            let _ = try RegularExpression(pattern: endString)
+                            let _ = try NSRegularExpression(pattern: endString)
                         } catch let error as NSError {
                             let reason = NSLocalizedString("Regex Error: %@", comment: "") + (error.localizedFailureReason ?? "")
                             results.append(SyntaxValidationResult(localizedType: NSLocalizedString(key, comment: ""),
@@ -487,7 +487,7 @@ final class SyntaxManager: SettingFileManager {
                 
                 if key == SyntaxKey.outlineMenu.rawValue {
                     do {
-                        let _ = try RegularExpression(pattern: definition.beginString)
+                        let _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch let error as NSError {
                         let reason = NSLocalizedString("Regex Error: %@", comment: "") + (error.localizedFailureReason ?? "")
                         results.append(SyntaxValidationResult(localizedType: NSLocalizedString(key, comment: ""),
@@ -594,7 +594,7 @@ final class SyntaxManager: SettingFileManager {
             }
             
             for case let url as URL in enumerator {
-                guard let pathExtension = url.pathExtension, [self.filePathExtension, "yml"].contains(pathExtension) else { continue }
+                guard [self.filePathExtension, "yml"].contains(url.pathExtension) else { continue }
                 
                 let styleName = self.settingName(from: url)
                 guard let style = self.styleDictionary(fileURL: url) else { continue }
@@ -711,9 +711,10 @@ extension SyntaxManager {
     /// migrate user syntax styles from CotEditor 1.x format (plist) to CotEditor 2.0 format (yaml)
     func migrateStyles(completionHandler:((Bool) -> Void)?) {
         
+        let oldDirURL = self.userSettingDirectoryURL.deletingLastPathComponent().appendingPathComponent("SyntaxColorings")
+        
         // check if need to migrate
-        guard let oldDirURL = try? self.userSettingDirectoryURL.deletingLastPathComponent().appendingPathComponent("SyntaxColorings"),
-            oldDirURL.isReachable,
+        guard oldDirURL.isReachable,
             self.userSettingDirectoryURL.isReachable else {
                 completionHandler?(false)
                 return

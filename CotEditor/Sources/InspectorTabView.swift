@@ -87,7 +87,7 @@ final class InspectorTabView: NSTabView {
         
         NSGraphicsContext.saveGraphicsState()
         
-        NSColor.gridColor().setStroke()
+        NSColor.gridColor.setStroke()
         NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.ControlHeight + 0.5),
                                   to: NSPoint(x: dirtyRect.maxX, y: self.ControlHeight + 0.5))
         

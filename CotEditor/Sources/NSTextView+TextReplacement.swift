@@ -134,7 +134,7 @@ extension NSTextView {
         textStorage.beginEditing()
         // use backwards enumeration to skip adjustment of applying location
         for (string, range) in zip(strings, ranges).reversed() {
-            let attrString = AttributedString(string: string, attributes: attributes)
+            let attrString = NSAttributedString(string: string, attributes: attributes)
             
             textStorage.replaceCharacters(in: range, with: attrString)
         }
@@ -176,8 +176,8 @@ extension NSTextView {
             cursorLocation = self.selectedRange().location
         }
         
-        let regex = try! RegularExpression(pattern: "[ \\t]+$", options: .anchorsMatchLines)
-        regex.enumerateMatches(in: string, range: string.nsRange) { (result: TextCheckingResult?, flags: RegularExpression.MatchingFlags, stop) in
+        let regex = try! NSRegularExpression(pattern: "[ \\t]+$", options: .anchorsMatchLines)
+        regex.enumerateMatches(in: string, range: string.nsRange) { (result: NSTextCheckingResult?, flags: NSRegularExpression.MatchingFlags, stop) in
             
             guard let range = result?.range, range.max != cursorLocation && NSLocationInRange(cursorLocation, range) else { return }
             

@@ -43,7 +43,7 @@ final class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     
     required init?(documentName: String) {
         
-        guard let fileURL = Bundle.main.urlForResource(documentName, withExtension: "html") else { return nil }
+        guard let fileURL = Bundle.main.url(forResource: documentName, withExtension: "html") else { return nil }
         
         self.fileURL = fileURL
         

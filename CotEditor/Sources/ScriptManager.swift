@@ -80,14 +80,14 @@ final class ScriptManager: NSObject {
         
         // find Application Scripts folder
         do {
-            self.scriptsDirectoryURL = try FileManager.default.urlForDirectory(.applicationScriptsDirectory,
-                                                                                  in: .userDomainMask, appropriateFor: nil, create: true)
+            self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory,
+                                                                   in: .userDomainMask, appropriateFor: nil, create: true)
         } catch _ {
             // fallback directory creation for in case the app is not Sandboxed
             let bundleIdentifier = Bundle.main.bundleIdentifier!
-            let libraryURL = try! FileManager.default.urlForDirectory(.libraryDirectory,
-                                                                                in: .userDomainMask, appropriateFor: nil, create: false)
-            self.scriptsDirectoryURL = try! libraryURL.appendingPathComponent("Application Scripts").appendingPathComponent(bundleIdentifier, isDirectory: true)
+            let libraryURL = try! FileManager.default.url(for: .libraryDirectory,
+                                                          in: .userDomainMask, appropriateFor: nil, create: false)
+            self.scriptsDirectoryURL = libraryURL.appendingPathComponent("Application Scripts").appendingPathComponent(bundleIdentifier, isDirectory: true)
             
             if !self.scriptsDirectoryURL.isReachable {
                 try! FileManager.default.createDirectory(at: self.scriptsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
@@ -139,7 +139,7 @@ final class ScriptManager: NSObject {
             return
         }
         
-        let pathExtension = fileURL.pathExtension!
+        let pathExtension = fileURL.pathExtension
         
         // change behavior if modifier key is pressed
         let modifierFlags = NSEvent.modifierFlags()
@@ -265,7 +265,7 @@ final class ScriptManager: NSObject {
     
         guard let editor = document?.editor else {
             // on no document found
-            throw NSError(domain: CotEditorError.domain, code: CotEditorError.scriptNoTargetDocument.rawValue,
+            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.scriptNoTargetDocument.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No document to get input.", comment: "")])
         }
         
@@ -285,7 +285,7 @@ final class ScriptManager: NSObject {
         let editor = document?.editor
         
         guard editor != nil || type == .pasteBoard else {
-            throw NSError(domain: CotEditorError.domain, code: CotEditorError.scriptNoTargetDocument.rawValue,
+            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.scriptNoTargetDocument.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No document to put output.", comment: "")])
         }
         
@@ -316,12 +316,15 @@ final class ScriptManager: NSObject {
     /// read files and create/add menu items
     private func addChildFileItem(to menu: NSMenu, fromDirctory directoryURL: URL) {
         
-        guard let fileURLs = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: [URLResourceKey.fileResourceTypeKey.rawValue], options: [.skipsPackageDescendants, .skipsHiddenFiles]) else { return }
+        guard let fileURLs = try? FileManager.default.contentsOfDirectory(at: directoryURL,
+                                                                          includingPropertiesForKeys: [.fileResourceTypeKey],
+                                                                          options: [.skipsPackageDescendants, .skipsHiddenFiles])
+            else { return }
         
         for fileURL in fileURLs {
             // ignore files/folders of which name starts with "_"
-            if (fileURL.lastPathComponent?.hasPrefix("_")) ?? false { continue }
-            
+            if fileURL.lastPathComponent.hasPrefix("_") { continue }
+        
             let title = self.scriptName(fromURL: fileURL)
             
             if title == String.separator {
@@ -341,9 +344,7 @@ final class ScriptManager: NSObject {
                 self.addChildFileItem(to: submenu, fromDirctory: fileURL)
                 
             case URLFileResourceType.regular:
-                guard let pathExtension = fileURL.pathExtension,
-                    self.AppleScriptExtensions.contains(pathExtension) ||
-                    self.scriptExtensions.contains(pathExtension) else { continue }
+                guard (self.AppleScriptExtensions + self.scriptExtensions).contains(fileURL.pathExtension) else { continue }
                 
                 let (keyEquivalent, modifierMask) = self.keyEquivalentAndModifierMask(from: fileURL)
                 let item = NSMenuItem(title: title, action: #selector(launchScript(_:)), keyEquivalent: keyEquivalent)
@@ -362,10 +363,10 @@ final class ScriptManager: NSObject {
     /// build menu item title from file/folder name
     private func scriptName(fromURL url: URL) -> String {
         
-        var scriptName = (try! url.deletingPathExtension()).lastPathComponent!
+        var scriptName = url.deletingPathExtension().lastPathComponent
         
         // remove the number prefix ordering
-        let regex = try! RegularExpression(pattern: "^[0-9]+\\)")
+        let regex = try! NSRegularExpression(pattern: "^[0-9]+\\)")
         scriptName = regex.stringByReplacingMatches(in: scriptName, range: scriptName.nsRange, withTemplate: "")
         
         // remove keyboard shortcut definition
@@ -383,7 +384,7 @@ final class ScriptManager: NSObject {
     /// get keyboard shortcut from file name
     private func keyEquivalentAndModifierMask(from fileURL: URL) -> (String, NSEventModifierFlags) {
         
-        guard let keySpecChars = (try? fileURL.deletingPathExtension())?.pathExtension else { return ("", []) }
+        let keySpecChars = fileURL.deletingPathExtension().pathExtension
         
         return KeyBindingUtils.keyEquivalentAndModifierMask(keySpecChars: keySpecChars, requiresCommandKey: true)
     }
@@ -431,7 +432,7 @@ final class ScriptManager: NSObject {
             return
         }
         
-        task.execute(withAppleEvent: nil, completionHandler: { [weak self] (result: NSAppleEventDescriptor?, error: NSError?) in
+        task.execute(withAppleEvent: nil, completionHandler: { [weak self] (result: NSAppleEventDescriptor?, error: Error?) in
             if let error = error {
                 self?.showAlert(message: error.localizedDescription)
             }
@@ -520,9 +521,9 @@ final class ScriptManager: NSObject {
         }
         
         // execute
-        task.execute(withArguments: arguments) { [weak self] (error) in
+        task.execute(withArguments: arguments) { [weak self] error in
             // on user cancel
-            if error?.domain == NSPOSIXErrorDomain && error?.code == Int(ENOTBLK) {
+            if let error = error as? POSIXError, error.code == .ENOTBLK {
                 isCancelled = true
                 return
             }

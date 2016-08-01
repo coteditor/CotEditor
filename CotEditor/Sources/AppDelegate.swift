@@ -129,14 +129,14 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     override init() {
         
         // register default setting values
-        UserDefaults.standard.register(DefaultSettings)
+        UserDefaults.standard.register(defaults: DefaultSettings)
         NSUserDefaultsController.shared().initialValues = DefaultSettings
         
         // setup text finder (avoid awaking in Interface Builder)
         let _ = TextFinder.shared
         
         // register transformers
-        ValueTransformer.setValueTransformer(HexColorTransformer(), forName: "HexColorTransformer" as ValueTransformerName)
+        ValueTransformer.setValueTransformer(HexColorTransformer(), forName: "HexColorTransformer" as NSValueTransformerName)
         
         super.init()
     }
@@ -250,7 +250,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
-        alert.messageText = String(format: NSLocalizedString("“%@” is a CotEditor theme file.", comment: ""), url.lastPathComponent!)
+        alert.messageText = String(format: NSLocalizedString("“%@” is a CotEditor theme file.", comment: ""), url.lastPathComponent)
         alert.informativeText = NSLocalizedString("Do you want to install this theme?", comment: "")
         alert.addButton(withTitle: NSLocalizedString("Install", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("Open as Text File", comment: ""))
@@ -374,7 +374,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     @IBAction func createBugReport(_ sender: AnyObject?) {
         
         // load template file
-        let url = Bundle.main.urlForResource("ReportTemplate", withExtension: "md")!
+        let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md")!
         guard let template = try? String(contentsOf: url) else { return }
         
         // fill template with user environment info

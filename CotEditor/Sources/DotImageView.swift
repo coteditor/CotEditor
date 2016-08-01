@@ -36,7 +36,7 @@ import Cocoa
         
         NSGraphicsContext.saveGraphicsState()
         
-        NSColor.tertiaryLabelColor().setFill()
+        NSColor.tertiaryLabelColor.setFill()
         NSBezierPath(ovalIn: self.bounds).fill()
         
         NSGraphicsContext.restoreGraphicsState()

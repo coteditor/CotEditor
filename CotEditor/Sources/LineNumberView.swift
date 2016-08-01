@@ -174,9 +174,9 @@ final class LineNumberView: NSRulerView {
         let inset = textView.textContainerOrigin
         var transform = CGAffineTransform(scaleX: 1.0, y: -1.0)  // flip
         if isVerticalText {
-            transform = transform.translateBy(x: round(relativePoint.x - scale * inset.y - ascent), y: -ruleThickness)
+            transform = transform.translatedBy(x: round(relativePoint.x - scale * inset.y - ascent), y: -ruleThickness)
         } else {
-            transform = transform.translateBy(x: -lineNumberPadding, y: -relativePoint.y - scale * inset.y - ascent)
+            transform = transform.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - scale * inset.y - ascent)
         }
         context.textMatrix = transform
         
@@ -374,7 +374,7 @@ final class LineNumberView: NSRulerView {
     private var textColor: NSColor {
         
         guard let textColor = self.textView?.textColor else {
-            return .textColor()
+            return .textColor
         }
         if NSWorkspace.shared().accessibilityDisplayShouldIncreaseContrast {
             return textColor
@@ -388,7 +388,7 @@ final class LineNumberView: NSRulerView {
         
         let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
         
-        return isDarkBackground ? .white() : .black()
+        return isDarkBackground ? .white : .black
     }
     
     
@@ -438,7 +438,7 @@ extension LineNumberView {
     // MARK: View Methods
     
     /// start selecting correspondent lines in text view with drag / click event
-    override func mouseDown(_ event: NSEvent) {
+    override func mouseDown(with event: NSEvent) {
         
         guard let textView = self.textView else { return }
         
@@ -456,7 +456,7 @@ extension LineNumberView {
     
     
     /// end selecting correspondent lines in text view with drag event
-    override func mouseUp(_ event: NSEvent) {
+    override func mouseUp(with event: NSEvent) {
         
         self.draggingTimer?.invalidate()
         

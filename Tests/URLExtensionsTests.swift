@@ -39,7 +39,7 @@ class URLExtensionsTests: XCTestCase {
         XCTAssertEqual(url.path(relativeTo: baseUrl), "../bar/file.txt")
         
         XCTAssertNil(url.path(relativeTo: nil))
-        XCTAssertNil(url.path(relativeTo: URL(string: url.path!)!))
+        XCTAssertNil(url.path(relativeTo: URL(string: url.path)!))
     }
 
 }

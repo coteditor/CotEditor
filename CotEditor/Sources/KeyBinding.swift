@@ -42,10 +42,10 @@ enum ModifierKey {
     var mask: NSEventModifierFlags {
         
         switch self {
-        case control: return .control
-        case option:  return .option
-        case shift:   return .shift
-        case command: return .command
+        case .control: return .control
+        case .option:  return .option
+        case .shift:   return .shift
+        case .command: return .command
         }
     }
     
@@ -54,10 +54,10 @@ enum ModifierKey {
     var symbol: String {
         
         switch self {
-        case control: return "^"
-        case option:  return "⌥"
-        case shift:   return "⇧"
-        case command: return "⌘"
+        case .control: return "^"
+        case .option:  return "⌥"
+        case .shift:   return "⇧"
+        case .command: return "⌘"
         }
     }
     
@@ -66,10 +66,10 @@ enum ModifierKey {
     var keySpecChar: String {
         
         switch self {
-        case control: return "^"
-        case option:  return "~"
-        case shift:   return "$"
-        case command: return "@"
+        case .control: return "^"
+        case .option:  return "~"
+        case .shift:   return "$"
+        case .command: return "@"
         }
     }
     

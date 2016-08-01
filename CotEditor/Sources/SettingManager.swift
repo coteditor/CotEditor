@@ -52,7 +52,7 @@ class SettingManager: NSObject, SettingManagerProtocol {
     /// user setting directory URL in Application Support
     var userSettingDirectoryURL: URL {
         
-        return try! self.dynamicType.supportDirectoryURL.appendingPathComponent(self.directoryName)
+        return self.dynamicType.supportDirectoryURL.appendingPathComponent(self.directoryName)
     }
     
     
@@ -74,8 +74,8 @@ class SettingManager: NSObject, SettingManagerProtocol {
     /// application's support directory in user's `Application Suuport/`
     private static var supportDirectoryURL: URL = {
         
-        return try! FileManager.default.urlForDirectory(.applicationSupportDirectory, in: .userDomainMask,
-                                                        appropriateFor: nil, create: false).appendingPathComponent("CotEditor")
+        return try! FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask,
+                                            appropriateFor: nil, create: false).appendingPathComponent("CotEditor")
     }()
     
 }

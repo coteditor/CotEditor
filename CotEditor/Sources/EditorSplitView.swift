@@ -43,7 +43,7 @@ final class EditorSplitView: NSSplitView {
     /// override divider color
     override var dividerColor: NSColor {
         
-        return .windowFrameColor()
+        return .windowFrameColor
     }
     
 }

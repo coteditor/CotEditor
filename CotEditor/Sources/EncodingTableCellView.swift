@@ -28,7 +28,8 @@
 import Cocoa
 
 extension NSColor {
-    class func alternateDisabledControlTextColor() -> NSColor {
+    
+    class var alternateDisabledControlTextColor: NSColor {
         return NSColor(white: 1.0, alpha: 0.75)
     }
 }
@@ -58,13 +59,13 @@ final class EncodingTableCellView: NSTableCellView {
                                             var newColor: NSColor?
                                             
                                             if highlighted && color == nil {
-                                                newColor = .alternateSelectedControlTextColor()
-                                            } else if highlighted && color == .disabledControlTextColor() {
-                                                newColor = .alternateDisabledControlTextColor()
-                                            } else if !highlighted && color == .alternateSelectedControlTextColor() {
+                                                newColor = .alternateSelectedControlTextColor
+                                            } else if highlighted && color == .disabledControlTextColor {
+                                                newColor = .alternateDisabledControlTextColor
+                                            } else if !highlighted && color == .alternateSelectedControlTextColor {
                                                 newColor = nil
-                                            } else if !highlighted && color == .alternateDisabledControlTextColor() {
-                                                newColor = .disabledControlTextColor()
+                                            } else if !highlighted && color == .alternateDisabledControlTextColor {
+                                                newColor = .disabledControlTextColor
                                             } else {
                                                 return
                                             }

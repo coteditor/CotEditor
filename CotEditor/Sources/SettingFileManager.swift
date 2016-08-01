@@ -74,7 +74,7 @@ class SettingFileManager: SettingManager {
     // MARK: Error Recovery Attempting Protocol
     
     /// recover error
-    override func attemptRecovery(fromError error: NSError, optionIndex recoveryOptionIndex: Int) -> Bool {
+    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int) -> Bool {
         
         guard error.domain == CotEditorError.domain,
             let code = CotEditorError(rawValue: error.code) else { return false }
@@ -113,7 +113,7 @@ class SettingFileManager: SettingManager {
     /// create setting name from a URL (don't care if it exists)
     func settingName(from fileURL: URL) -> String {
         
-        return (try? fileURL.deletingPathExtension())?.lastPathComponent ?? "New Setting"
+        return fileURL.deletingPathExtension().lastPathComponent
     }
     
     
@@ -127,7 +127,7 @@ class SettingFileManager: SettingManager {
     /// return a setting file URL in the application's Resources domain or nil if not exists
     func urlForBundledSetting(name: String) -> URL? {
         
-        return Bundle.main.urlForResource(name, withExtension: self.filePathExtension, subdirectory: self.directoryName)
+        return Bundle.main.url(forResource: name, withExtension: self.filePathExtension, subdirectory: self.directoryName)
     }
     
     
@@ -143,7 +143,7 @@ class SettingFileManager: SettingManager {
     /// return a setting file URL in the user's Application Support domain (don't care if it exists)
     func preparedURLForUserSetting(name: String) -> URL {
         
-        return try! self.userSettingDirectoryURL.appendingPathComponent(name).appendingPathExtension(self.filePathExtension)
+        return self.userSettingDirectoryURL.appendingPathComponent(name).appendingPathExtension(self.filePathExtension)
     }
     
     
@@ -167,7 +167,7 @@ class SettingFileManager: SettingManager {
         let baseName = originalName.trimmingCharacters(in: .whitespacesAndNewlines)
         let localizedCopy = " " + NSLocalizedString("copy", comment: "copied file suffix")
         
-        let regex = try! RegularExpression(pattern: localizedCopy + "( [0-9]+)?$")
+        let regex = try! NSRegularExpression(pattern: localizedCopy + "( [0-9]+)?$")
         let copySuffixRange = regex.rangeOfFirstMatch(in: baseName, range: baseName.nsRange)
         
         let copyBaseName: String = {
@@ -212,7 +212,7 @@ class SettingFileManager: SettingManager {
         }()
         
         if let description = description {
-            throw NSError(domain: CotEditorError.domain, code: CotEditorError.invalidName.rawValue,
+            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.invalidName.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: description,
                                      NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Please choose another name.", comment: "")])
         }
@@ -228,7 +228,7 @@ class SettingFileManager: SettingManager {
             try FileManager.default.trashItem(at: url, resultingItemURL: nil)
             
         } catch let error as NSError {
-            throw NSError(domain: CotEditorError.domain, code: CotEditorError.settingDeletionFailed.rawValue,
+            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.settingDeletionFailed.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("“%@” couldn’t be deleted.", comment: ""), name),
                                      NSLocalizedRecoverySuggestionErrorKey: error.localizedRecoverySuggestion ?? NSNull(),
                                      NSURLErrorKey: url,
@@ -313,7 +313,7 @@ class SettingFileManager: SettingManager {
             guard name.caseInsensitiveCompare(importName) == .orderedSame else { continue }
             
             guard self.urlForUserSetting(name: name) == nil else {  // duplicated
-                throw NSError(domain: CotEditorError.domain, code: CotEditorError.settingImportFileDuplicated.rawValue,
+                throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.settingImportFileDuplicated.rawValue,
                               userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("A new setting named “%@” will be installed, but a custom setting with the same name already exists.", comment: ""), importName),
                                          NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Do you want to replace it?\nReplaced setting can’t be restored.", comment: ""),
                                          NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Cancel", comment: ""),
@@ -357,7 +357,7 @@ class SettingFileManager: SettingManager {
         }
         
         if let error = error {
-            throw NSError(domain: CotEditorError.domain, code: CotEditorError.settingImportFailed.rawValue,
+            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.settingImportFailed.rawValue,
                           userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("“%@” couldn’t be imported.", comment: ""), name),
                                      NSLocalizedRecoverySuggestionErrorKey: error.localizedRecoverySuggestion ?? NSNull(),
                                      NSURLErrorKey: fileURL,

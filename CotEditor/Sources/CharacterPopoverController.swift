@@ -74,7 +74,7 @@ final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
         }
         
         self.unicode = codePoint
-        self.characterColor = (info.pictureString != nil) ? .tertiaryLabelColor() : .labelColor()
+        self.characterColor = (info.pictureString != nil) ? .tertiaryLabelColor : .labelColor
         
         super.init(nibName: nil, bundle: nil)
     }

@@ -27,37 +27,38 @@
 
 import Foundation
 
-enum CotEditorError: Int {
+enum CotEditorError: Error {
     
-    static let domain = "com.coteditor.CotEditor.ErrorDomain"
+    static let errorDomain = "com.coteditor.CotEditor.ErrorDomain"
     
-    
-    // general
-    case invalidName = 1000
-    case scriptNoTargetDocument
-    case fileReadTooLarge
-    case fileReadBinaryFile
-    
-    // encoding
-    case IANACharsetNameConflict = 1100
-    case unconvertibleCharacters
-    case reinterpretationFailed
-    case lossyEncodingConversion
-    
-    // text finder
-    case regularExpression = 1200
-    
-    // setting manager
-    case settingDeletionFailed = 1300
-    case settingImportFailed
-    case settingImportFileDuplicated
-    
-    // key binding manager
-    case invalidKeySpecCharacters = 1400
-    
-    // for command-line tool installer
-    case applicationNotInApplicationDirectory = 1500
-    case applicationNameIsModified
-    case ymlinkCreationDenied
+    enum Code: Int {
+        // general
+        case invalidName = 1000
+        case scriptNoTargetDocument
+        case fileReadTooLarge
+        case fileReadBinaryFile
+        
+        // encoding
+        case IANACharsetNameConflict = 1100
+        case unconvertibleCharacters
+        case reinterpretationFailed
+        case lossyEncodingConversion
+        
+        // text finder
+        case regularExpression = 1200
+        
+        // setting manager
+        case settingDeletionFailed = 1300
+        case settingImportFailed
+        case settingImportFileDuplicated
+        
+        // key binding manager
+        case invalidKeySpecCharacters = 1400
+        
+        // for command-line tool installer
+        case applicationNotInApplicationDirectory = 1500
+        case applicationNameIsModified
+        case ymlinkCreationDenied
+    }
     
 }

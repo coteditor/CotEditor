@@ -75,7 +75,7 @@ extension String {
     func rangeForLine(location: Int, length: Int) -> NSRange? {
         
         let wholeLength = self.utf16.count
-        let regex = try! RegularExpression(pattern: "^", options: .anchorsMatchLines)
+        let regex = try! NSRegularExpression(pattern: "^", options: .anchorsMatchLines)
         let matches = regex.matches(in: self as String, range: NSRange(location: 0, length: wholeLength))
         let count = matches.count
         
