@@ -168,7 +168,7 @@ final class DocumentAnalyzer: NSObject {
         
         // calculate on background thread
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let `self` = self else { return }
             
             let defaults = UserDefaults.standard
             
@@ -257,16 +257,16 @@ final class DocumentAnalyzer: NSObject {
             
             // apply to UI
             DispatchQueue.main.sync {
-                strongSelf.length = strongSelf.dynamicType.format(count: length, selectedCount: selectedLength)
-                strongSelf.chars = strongSelf.dynamicType.format(count: numberOfChars, selectedCount: numberOfSelectedChars)
-                strongSelf.lines = strongSelf.dynamicType.format(count: numberOfLines, selectedCount: numberOfSelectedLines)
-                strongSelf.words = strongSelf.dynamicType.format(count: numberOfWords, selectedCount: numberOfSelectedWords)
-                strongSelf.location = String.localizedStringWithFormat("%li", location)
-                strongSelf.line = String.localizedStringWithFormat("%li", line)
-                strongSelf.column = String.localizedStringWithFormat("%li", column)
-                strongSelf.unicode = unicode
+                self.length = self.dynamicType.format(count: length, selectedCount: selectedLength)
+                self.chars = self.dynamicType.format(count: numberOfChars, selectedCount: numberOfSelectedChars)
+                self.lines = self.dynamicType.format(count: numberOfLines, selectedCount: numberOfSelectedLines)
+                self.words = self.dynamicType.format(count: numberOfWords, selectedCount: numberOfSelectedWords)
+                self.location = String.localizedStringWithFormat("%li", location)
+                self.line = String.localizedStringWithFormat("%li", line)
+                self.column = String.localizedStringWithFormat("%li", column)
+                self.unicode = unicode
                 
-                NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: strongSelf)
+                NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: self)
             }
         }
     }

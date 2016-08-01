@@ -275,33 +275,33 @@ final class ThemeManager: SettingFileManager {
         
         DispatchQueue.global().async { [weak self] in
             
-            guard let strongSelf = self else { return }
+            guard let `self` = self else { return }
             
-            let userDirURL = strongSelf.userSettingDirectoryURL
-            let themeNameSet = NSMutableOrderedSet(array: strongSelf.bundledThemeNames)
+            let userDirURL = self.userSettingDirectoryURL
+            let themeNameSet = NSMutableOrderedSet(array: self.bundledThemeNames)
             
             // load user themes if exists
             if userDirURL.isReachable {
                 let fileURLs = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
                                                                             options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])) ?? []
                 for fileURL in fileURLs {
-                    guard fileURL.pathExtension == self?.filePathExtension else { continue }
+                    guard fileURL.pathExtension == self.filePathExtension else { continue }
                     
-                    let name = strongSelf.settingName(from: fileURL)
+                    let name = self.settingName(from: fileURL)
                     themeNameSet.add(name)
                 }
                 
-                let isListUpdated = (themeNameSet.array as! [String] != strongSelf.themeNames)
-                strongSelf.themeNames = themeNameSet.array as! [String]
+                let isListUpdated = (themeNameSet.array as! [String] != self.themeNames)
+                self.themeNames = themeNameSet.array as! [String]
                 
                 // cache definitions
                 var themes = [String: ThemeDictionary]()
                 for name in (themeNameSet.array as! [String]) {
-                    if let themeURL = strongSelf.urlForUsedSetting(name: name) {
-                        themes[name] = strongSelf.themeDictionary(fileURL: themeURL)
+                    if let themeURL = self.urlForUsedSetting(name: name) {
+                        themes[name] = self.themeDictionary(fileURL: themeURL)
                     }
                 }
-                strongSelf.archivedThemes = themes
+                self.archivedThemes = themes
                 
                 // reset user default if not found
                 let defaultThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
@@ -312,7 +312,7 @@ final class ThemeManager: SettingFileManager {
                 DispatchQueue.main.sync {
                     // post notification
                     if isListUpdated {
-                        NotificationCenter.default.post(name: .ThemeListDidUpdate, object: strongSelf)
+                        NotificationCenter.default.post(name: .ThemeListDidUpdate, object: self)
                     }
                     
                     completionHandler?()

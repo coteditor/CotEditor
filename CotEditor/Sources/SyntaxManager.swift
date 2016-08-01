@@ -562,10 +562,10 @@ final class SyntaxManager: SettingFileManager {
     override func updateCache(completionHandler: (() -> Void)?) {
         
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let `self` = self else { return }
             
-            strongSelf.loadUserStyles()
-            strongSelf.updateMappingTables()
+            self.loadUserStyles()
+            self.updateMappingTables()
             
             DispatchQueue.main.sync {
                 NotificationCenter.default.post(name: .SyntaxListDidUpdate, object: self)

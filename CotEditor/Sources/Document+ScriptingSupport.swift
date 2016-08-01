@@ -50,8 +50,8 @@ extension Document {
             
             // disconnect the delegate after 0.5 sec. (otherwise app may crash)
             DispatchQueue.main.after(when: .now() + 0.5) { [weak self] in
-                if let strongSelf = self {
-                    NotificationCenter.default.removeObserver(strongSelf, name: .NSTextStorageDidProcessEditing, object: textStorage)
+                if let `self` = self {
+                    NotificationCenter.default.removeObserver(self, name: .NSTextStorageDidProcessEditing, object: textStorage)
                 }
             }
             
