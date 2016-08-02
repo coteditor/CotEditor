@@ -148,6 +148,13 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
+    /// name of setting file type
+    override var settingFileType: SettingFileType {
+        
+        return .syntaxStyle
+    }
+    
+    
     /// list of names of setting file name (without extension)
     override var settingNames: [StyleName] {
         
@@ -305,19 +312,6 @@ final class SyntaxManager: SettingFileManager {
         }
         
         try super.importSetting(fileURL: fileURL)
-        
-        do {
-            try super.importSetting(fileURL: fileURL)
-            
-        } catch let error as NSError where error.domain == CotEditorError.errorDomain && error.code == CotEditorError.Code.settingImportFileDuplicated.rawValue {
-            // replace error message
-            let name = self.settingName(from: fileURL)
-            var userInfo = error.userInfo
-            userInfo[NSLocalizedDescriptionKey] = String(format: NSLocalizedString("A new style named “%@” will be installed, but a custom style with the same name already exists.", comment: ""), name)
-            userInfo[NSLocalizedRecoverySuggestionErrorKey] = NSLocalizedString("Do you want to replace it?\nReplaced style can’t be restored.", comment: "")
-            
-            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.settingImportFileDuplicated.rawValue, userInfo: userInfo)
-        }
     }
     
     

@@ -28,6 +28,13 @@
 import Foundation
 import AppKit.NSApplication
 
+enum SettingFileType {
+    case syntaxStyle
+    case theme
+}
+
+
+
 class SettingFileManager: SettingManager {
     
     /// general notification's userInfo keys
@@ -44,6 +51,13 @@ class SettingFileManager: SettingManager {
     
     /// path extension for user setting file
     var filePathExtension: String {
+        
+        preconditionFailure()
+    }
+    
+    
+    /// setting file type
+    var settingFileType: SettingFileType {
         
         preconditionFailure()
     }
@@ -67,43 +81,6 @@ class SettingFileManager: SettingManager {
     func updateCache(completionHandler: (() -> Void)?) {
         
         preconditionFailure()
-    }
-    
-    
-    
-    // MARK: Error Recovery Attempting Protocol
-    
-    /// recover error
-    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int) -> Bool {
-        
-        guard error.domain == CotEditorError.domain,
-            let code = CotEditorError(rawValue: error.code) else { return false }
-        
-        switch code {
-        case .settingImportFileDuplicated:
-            switch recoveryOptionIndex {
-            case 0:  // == Cancel
-                break
-                
-            case 1: // == Replace
-                guard let fileURL = error.userInfo[NSURLErrorKey] as? URL else { return false }
-                do {
-                    try self.overwriteSetting(fileURL: fileURL)
-                } catch let anotherError as NSError {
-                    NSApp.presentError(anotherError)
-                    return false
-                }
-                return true
-                
-            default:
-                break
-            }
-            
-        default:
-            break
-        }
-        
-        return false
     }
     
     
@@ -195,31 +172,26 @@ class SettingFileManager: SettingManager {
         // just case difference is OK
         guard settingName.caseInsensitiveCompare(originalName) != .orderedSame else { return }
         
-        let description: String? = {
-            if settingName.isEmpty {  // empty
-                return NSLocalizedString("Name can’t be empty.", comment: "")
-                
-            } else if settingName.contains("/") {  // Containing "/" is invalid for a file name.
-                return NSLocalizedString("You can’t use a name that contains “/”.", comment: "")
-                
-            } else if settingName.hasPrefix(".") {  // Starting with "." is invalid for a file name.
-                return NSLocalizedString("You can’t use a name that begins with a dot “.”.", comment: "")
-                
-            } else if let duplicatedSettingName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) { // already exists
-                return String(format: NSLocalizedString("The name “%@” is already taken.", comment: ""), duplicatedSettingName)
-            }
-            return nil
-        }()
+        if settingName.isEmpty {
+            throw InvalidNameError.empty
+        }
         
-        if let description = description {
-            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.invalidName.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey: description,
-                                     NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Please choose another name.", comment: "")])
+        if settingName.contains("/") {  // Containing "/" is invalid for a file name.
+            throw InvalidNameError.containSlash
+        }
+        
+        if settingName.hasPrefix(".") {  // Starting with "." is invalid for a file name.
+            throw InvalidNameError.startWithDot
+        }
+        
+        if let duplicatedSettingName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
+            throw InvalidNameError.duplicated(name: duplicatedSettingName)
         }
     }
     
     
     /// delete user's setting file for the setting name
+    /// - throws: SettingFileError
     func removeSetting(name: String) throws {
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
@@ -228,11 +200,7 @@ class SettingFileManager: SettingManager {
             try FileManager.default.trashItem(at: url, resultingItemURL: nil)
             
         } catch let error as NSError {
-            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.settingDeletionFailed.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("“%@” couldn’t be deleted.", comment: ""), name),
-                                     NSLocalizedRecoverySuggestionErrorKey: error.localizedRecoverySuggestion ?? NSNull(),
-                                     NSURLErrorKey: url,
-                                     NSUnderlyingErrorKey: error])
+            throw SettingFileError(kind: .deletionFailed, name: name, error: error)
         }
     }
     
@@ -304,6 +272,7 @@ class SettingFileManager: SettingManager {
     
     
     /// import setting at passed-in URL
+    /// - throws: SettingFileError
     func importSetting(fileURL: URL) throws {
         
         let importName = self.settingName(from: fileURL)
@@ -313,13 +282,7 @@ class SettingFileManager: SettingManager {
             guard name.caseInsensitiveCompare(importName) == .orderedSame else { continue }
             
             guard self.urlForUserSetting(name: name) == nil else {  // duplicated
-                throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.settingImportFileDuplicated.rawValue,
-                              userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("A new setting named “%@” will be installed, but a custom setting with the same name already exists.", comment: ""), importName),
-                                         NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Do you want to replace it?\nReplaced setting can’t be restored.", comment: ""),
-                                         NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Cancel", comment: ""),
-                                                                              NSLocalizedString("Replace", comment: "")],
-                                         NSRecoveryAttempterErrorKey: self,
-                                         NSURLErrorKey: fileURL])
+                throw ImportDuplicationError(name: name, url: fileURL, type: self.settingFileType, attempter: self)
             }
         }
         
@@ -331,6 +294,7 @@ class SettingFileManager: SettingManager {
     // MARK: Private Methods
     
     /// force import setting at passed-in URL
+    /// - throws: SettingFileError
     private func overwriteSetting(fileURL: URL) throws {
         
         let name = self.settingName(from: fileURL)
@@ -357,15 +321,143 @@ class SettingFileManager: SettingManager {
         }
         
         if let error = error {
-            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.settingImportFailed.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("“%@” couldn’t be imported.", comment: ""), name),
-                                     NSLocalizedRecoverySuggestionErrorKey: error.localizedRecoverySuggestion ?? NSNull(),
-                                     NSURLErrorKey: fileURL,
-                                     NSUnderlyingErrorKey: error])
+            throw SettingFileError(kind: .importFailed, name: name, error: error)
         }
         
         // update internal cache
         self.updateCache(completionHandler: nil)
+    }
+    
+}
+
+
+
+// MARK: - Error
+
+enum InvalidNameError: LocalizedError {
+    
+    case empty
+    case containSlash
+    case startWithDot
+    case duplicated(name: String)
+    
+    
+    var errorDescription: String? {
+        
+        switch self {
+        case .empty:
+            return NSLocalizedString("Name can’t be empty.", comment: "")
+            
+        case .containSlash:
+            return NSLocalizedString("You can’t use a name that contains “/”.", comment: "")
+            
+        case .startWithDot:
+            return NSLocalizedString("You can’t use a name that begins with a dot “.”.", comment: "")
+            
+        case .duplicated(let name):
+            return String(format: NSLocalizedString("The name “%@” is already taken.", comment: ""), name)
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        return NSLocalizedString("Please choose another name.", comment: "")
+    }
+    
+}
+
+
+
+struct SettingFileError: LocalizedError {
+    
+    enum ErrorKind {
+        case deletionFailed
+        case importFailed
+    }
+    
+    let kind: ErrorKind
+    let name: String
+    let error: NSError
+    
+    
+    var errorDescription: String? {
+        
+        switch self.kind {
+        case .deletionFailed:
+            return String(format: NSLocalizedString("“%@” couldn’t be deleted.", comment: ""), self.name)
+        case .importFailed:
+            return String(format: NSLocalizedString("“%@” couldn’t be imported.", comment: ""), self.name)
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        return self.error.localizedRecoverySuggestion
+    }
+    
+}
+
+
+
+struct ImportDuplicationError: LocalizedError, RecoverableError {
+    
+    let name: String
+    let url: URL
+    let type: SettingFileType
+    let attempter: SettingFileManager
+    
+    
+    var errorDescription: String? {
+        
+        switch self.type {
+        case .syntaxStyle:
+            return String(format: NSLocalizedString("A new style named “%@” will be installed, but a custom style with the same name already exists.", comment: ""), self.name)
+            
+        case .theme:
+            return String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), self.name)
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        switch self.type {
+        case .syntaxStyle:
+            return NSLocalizedString("Do you want to replace it?\nReplaced style can’t be restored.", comment: "")
+            
+        case .theme:
+            return NSLocalizedString("Do you want to replace it?\nReplaced theme can’t be restored.", comment: "")
+        }
+    }
+    
+    
+    var recoveryOptions: [String] {
+        
+        return [NSLocalizedString("Cancel", comment: ""),
+                NSLocalizedString("Replace", comment: "")]
+    }
+    
+    
+    func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
+        
+        switch recoveryOptionIndex {
+        case 0:  // == Cancel
+            return false
+            
+        case 1: // == Replace
+            do {
+                try self.attempter.overwriteSetting(fileURL: self.url)
+            } catch let anotherError {
+                NSApp.presentError(anotherError)
+                return false
+            }
+            return true
+            
+        default:
+            return false
+        }
     }
     
 }

@@ -35,7 +35,7 @@ protocol SettingManagerProtocol {
 
 
 
-class SettingManager: NSObject, SettingManagerProtocol {
+class SettingManager: SettingManagerProtocol {
     
     // MARK: Abstract Properties
     
