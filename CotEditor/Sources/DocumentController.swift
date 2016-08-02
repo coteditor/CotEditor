@@ -77,7 +77,7 @@ final class DocumentController: NSDocumentController {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        var error: NSError?
+        var error: DocumentReadError?
         
         if UTTypeConformsTo(typeName, kUTTypeImage) && !UTTypeEqual(typeName, kUTTypeScalableVectorGraphics) ||   // SVG is plain-text (except SVGZ)
             UTTypeConformsTo(typeName, kUTTypeAudiovisualContent) ||
@@ -85,16 +85,7 @@ final class DocumentController: NSDocumentController {
             UTTypeConformsTo(typeName, kUTTypeZipArchive) ||
             UTTypeConformsTo(typeName, kUTTypeBzip2Archive)
         {
-            let localizedTypeName = (UTTypeCopyDescription(typeName as CFString)?.takeRetainedValue() as String?) ?? "unknown file type"
-            
-            error = NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.fileReadBinaryFile.rawValue,
-                            userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("The file “%@” doesn’t appear to be text data.", comment: ""), url.lastPathComponent),
-                                       NSLocalizedRecoverySuggestionErrorKey: String(format: NSLocalizedString("The file is %@.\n\nDo you really want to open the file?", comment: ""), localizedTypeName),
-                                       NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Open", comment: ""),
-                                                                            NSLocalizedString("Cancel", comment: "")],
-                                       NSRecoveryAttempterErrorKey: self,
-                                       NSURLErrorKey: url,
-                                       NSUnderlyingErrorKey: NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: nil)])
+            error = DocumentReadError(kind: .binaryFile(type: typeName), url: url)
         }
         
         // display alert if file is enorm large
@@ -103,18 +94,7 @@ final class DocumentController: NSDocumentController {
             let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
             fileSize > fileSizeThreshold
         {
-            let formatter = ByteCountFormatter()
-            
-            error = NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.fileReadTooLarge.rawValue,
-                            userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("The file “%@” has a size of %@.", comment: ""),
-                                                                         url.lastPathComponent,
-                                                                         formatter.stringFromByteCount(Int64(fileSize))),
-                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", comment: ""),
-                                       NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Open", comment: ""),
-                                                                            NSLocalizedString("Cancel", comment: "")],
-                                       NSRecoveryAttempterErrorKey: self,
-                                       NSURLErrorKey: url,
-                                       NSUnderlyingErrorKey: NSError(domain: NSCocoaErrorDomain, code: NSFileReadTooLargeError, userInfo: nil)])
+            error = DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
         }
         
         // ask user for opening file
@@ -183,21 +163,6 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// check if file opening is cancelled
-    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int) -> Bool {
-        
-        if error.domain == CotEditorError.domain, let code = CotEditorError(rawValue: error.code) {
-            switch code {
-            case .fileReadBinaryFile, .fileReadTooLarge:
-                return (recoveryOptionIndex == 0)
-            default: break
-            }
-        }
-        
-        return false
-    }
-    
-    
     
     // MARK: Public Methods
     
@@ -256,6 +221,62 @@ final class DocumentController: NSDocumentController {
         DispatchQueue.main.async { [weak self] in
             self?.accessorySelectedEncoding = defaultEncoding
         }
+    }
+    
+}
+
+
+
+// MARK: - Error
+
+private struct DocumentReadError: LocalizedError, RecoverableError {
+    
+    enum ErrorKind {
+        case binaryFile(type: String)
+        case tooLarge(size: Int)
+    }
+    
+    let kind: ErrorKind
+    let url: URL
+    
+    
+    var errorDescription: String? {
+        
+        switch self.kind {
+        case .binaryFile:
+            return String(format: NSLocalizedString("The file “%@” doesn’t appear to be text data.", comment: ""), self.url.lastPathComponent)
+            
+        case .tooLarge(let size):
+            return String(format: NSLocalizedString("The file “%@” has a size of %@.", comment: ""),
+                          self.url.lastPathComponent,
+                          ByteCountFormatter().stringFromByteCount(Int64(size)))
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        switch self.kind {
+        case .binaryFile(let type):
+            let localizedTypeName = (UTTypeCopyDescription(type as CFString)?.takeRetainedValue() as String?) ?? "unknown file type"
+            return String(format: NSLocalizedString("The file is %@.\n\nDo you really want to open the file?", comment: ""), localizedTypeName)
+            
+        case .tooLarge:
+            return NSLocalizedString("Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", comment: "")
+        }
+    }
+    
+    
+    var recoveryOptions: [String] {
+        
+        return [NSLocalizedString("Open", comment: ""),
+                NSLocalizedString("Cancel", comment: "")]
+    }
+    
+    
+    func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
+        
+        return (recoveryOptionIndex == 0)
     }
     
 }

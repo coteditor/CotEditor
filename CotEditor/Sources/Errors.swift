@@ -35,8 +35,6 @@ enum CotEditorError: Error {
         // general
         case invalidName = 1000
         case scriptNoTargetDocument
-        case fileReadTooLarge
-        case fileReadBinaryFile
         
         // text finder
         case regularExpression = 1200
