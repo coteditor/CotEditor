@@ -148,12 +148,12 @@ final class ThemeManager: SettingFileManager {
     
     /// save theme
     @discardableResult
-    func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: ((NSError?) -> Void)? = nil) -> Bool {
+    func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: ((Error?) -> Void)? = nil) -> Bool {
         
         // create directory to save in user domain if not yet exist
         do {
             try self.prepareUserSettingDirectory()
-        } catch let error as NSError {
+        } catch let error {
             completionHandler?(error)
             return false
         }
@@ -165,7 +165,7 @@ final class ThemeManager: SettingFileManager {
             
             try data.write(to: fileURL, options: .atomic)
             
-        } catch let error as NSError {
+        } catch let error {
             completionHandler?(error)
             return false
         }
@@ -232,7 +232,7 @@ final class ThemeManager: SettingFileManager {
     
     
     /// create a new untitled theme
-    func createUntitledTheme(completionHandler: ((String, NSError?) -> Void)? = nil) {
+    func createUntitledTheme(completionHandler: ((String, Error?) -> Void)? = nil) {
         
         var newName = NSLocalizedString("Untitled", comment: "")
         
@@ -241,7 +241,7 @@ final class ThemeManager: SettingFileManager {
             newName = self.copiedSettingName(newName)
         }
         
-        self.save(themeDictionary: self.plainThemeDictionary, name: newName) { (error: NSError?) in
+        self.save(themeDictionary: self.plainThemeDictionary, name: newName) { (error: Error?) in
             completionHandler?(newName, error)
         }
     }

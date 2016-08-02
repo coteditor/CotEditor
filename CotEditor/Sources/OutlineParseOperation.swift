@@ -53,8 +53,8 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
         do {
             self.regex = try NSRegularExpression(pattern: pattern, options: options)
             
-        } catch let error as NSError {
-            print("Error on outline parsing: " + error.description)
+        } catch let error {
+            print("Error on outline parsing: " + error.localizedDescription)
             return nil
         }
         

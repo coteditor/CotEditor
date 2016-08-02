@@ -832,8 +832,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         if self.usesRegularExpression {
             do {
                 let _ = try NSRegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
-            } catch let error as NSError {
-                let newError = TextFinderError.regularExpression(error: error)
+            } catch let error {
+                let failureReason: String? = (error as? LocalizedError)?.failureReason
+                let newError = TextFinderError.regularExpression(reason: failureReason)
                 
                 self.findPanelController.showWindow(self)
                 self.presentError(newError, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
@@ -957,7 +958,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
 
 private enum TextFinderError: LocalizedError {
     
-    case regularExpression(error: NSError)
+    case regularExpression(reason: String?)
     
     
     private var errorDescription: String? {
@@ -969,8 +970,8 @@ private enum TextFinderError: LocalizedError {
     private var recoverySuggestion: String? {
         
         switch self {
-        case .regularExpression(let error):
-            return error.localizedFailureReason
+        case .regularExpression(let reason):
+            return reason
         }
     }
     

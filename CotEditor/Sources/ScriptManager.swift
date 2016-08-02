@@ -427,7 +427,7 @@ final class ScriptManager: NSObject {
         let task: NSUserAppleScriptTask
         do {
             task = try NSUserAppleScriptTask(url: url)
-        } catch let error as NSError {
+        } catch let error {
             self.showAlert(message: error.localizedDescription)
             return
         }
@@ -477,7 +477,7 @@ final class ScriptManager: NSObject {
         let task: NSUserUnixTask
         do {
             task = try NSUserUnixTask(url: url)
-        } catch let error as NSError {
+        } catch let error {
             self.showAlert(message: error.localizedDescription)
             return
         }

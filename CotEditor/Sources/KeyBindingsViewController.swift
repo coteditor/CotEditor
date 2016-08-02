@@ -258,7 +258,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         do {
             try self.manager.saveKeyBindings(outlineTree: self.outlineTree)
-        } catch let error as NSError {
+        } catch let error {
             Swift.print(error)
         }
         

@@ -802,7 +802,7 @@ final class Document: NSDocument, EncodingHolder {
         do {
             try self.reinterpret(encoding: encoding)
             
-        } catch let error as NSError {
+        } catch let error {
             NSBeep()
             if let window = self.windowForSheet {
                 self.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
@@ -1150,7 +1150,7 @@ final class Document: NSDocument, EncodingHolder {
             do {
                 try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
                 
-            } catch let error as NSError {
+            } catch let error {
                 // --> ask directly with a non-sheet NSAlert for the suppression button
                 let alert = NSAlert(error: error)
                 alert.showsSuppressionButton = true
@@ -1175,7 +1175,7 @@ final class Document: NSDocument, EncodingHolder {
         do {
             try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
             
-        } catch let error as NSError {
+        } catch let error {
             self.recoverBlock = completionHandler
             self.presentError(error,
                               modalFor: self.windowForSheet!,

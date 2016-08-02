@@ -222,7 +222,7 @@ class SettingFileManager: SettingManager {
         let newName = self.copiedSettingName(name)
         
         guard let sourceURL = self.urlForUsedSetting(name: name) else {
-            throw NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [:])  // throw a dummy error
+            throw SettingFileError(kind: .noSourceFile, name: name, error: nil)
         }
         
         // create directory to save in user domain if not yet exist
@@ -374,11 +374,12 @@ struct SettingFileError: LocalizedError {
     enum ErrorKind {
         case deletionFailed
         case importFailed
+        case noSourceFile
     }
     
     let kind: ErrorKind
     let name: String
-    let error: NSError
+    let error: NSError?
     
     
     var errorDescription: String? {
@@ -388,13 +389,15 @@ struct SettingFileError: LocalizedError {
             return String(format: NSLocalizedString("“%@” couldn’t be deleted.", comment: ""), self.name)
         case .importFailed:
             return String(format: NSLocalizedString("“%@” couldn’t be imported.", comment: ""), self.name)
+        case .noSourceFile:
+            return String(format: NSLocalizedString("No original file for “%@” was found.", comment: ""), self.name)  // TODO: localize
         }
     }
     
     
     var recoverySuggestion: String? {
         
-        return self.error.localizedRecoverySuggestion
+        return self.error?.localizedRecoverySuggestion
     }
     
 }

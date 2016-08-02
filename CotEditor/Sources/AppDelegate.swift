@@ -264,7 +264,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         do {
             try ThemeManager.shared.importSetting(fileURL: url)
             
-        } catch let error as NSError {
+        } catch let error {
             // ask whether the old theme should be repleced with new one if the same name theme is already exists
             success = NSApp.presentError(error)
         }

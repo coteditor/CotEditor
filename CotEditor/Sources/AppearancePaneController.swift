@@ -290,7 +290,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         do {
             try ThemeManager.shared.renameSetting(name: oldName, to: newName)
             
-        } catch let error as NSError {
+        } catch let error {
             // revert name
             fieldEditor.string = oldName
             
@@ -382,7 +382,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         guard let tableView = self.themeTableView else { return }
         
-        ThemeManager.shared.createUntitledTheme { (themeName: String, error: NSError?) in
+        ThemeManager.shared.createUntitledTheme { (themeName: String, error: Error?) in
             let themeNames = ThemeManager.shared.themeNames
             let row = themeNames.index(of: themeName) ?? 0
             
@@ -554,7 +554,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             do {
                 try ThemeManager.shared.removeSetting(name: name)
                 
-            } catch let error as NSError {
+            } catch let error {
                 alert.window.orderOut(nil)
                 NSBeep()
                 NSAlert(error: error).beginSheetModal(for: window, completionHandler: nil)
@@ -571,7 +571,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         do {
             try ThemeManager.shared.restoreSetting(name: name)
-        } catch let error as NSError {
+        } catch let error {
             self.presentError(error)
         }
     }
@@ -582,7 +582,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         do {
             try ThemeManager.shared.importSetting(fileURL: fileURL)
-        } catch let error as NSError {
+        } catch let error {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)
         }

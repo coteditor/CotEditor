@@ -306,8 +306,8 @@ final class SyntaxHighlightParseOperation: Operation {
         let regex: NSRegularExpression
         do {
             try regex = NSRegularExpression(pattern: regexString, options: options)
-        } catch let error as NSError {
-            print("Regex Syntax Error in " + #function + ": " + error.description)
+        } catch let error {
+            print("Regex Syntax Error in " + #function + ": ", error)
             return []
         }
         
@@ -344,8 +344,8 @@ final class SyntaxHighlightParseOperation: Operation {
         do {
             try beginRegex = NSRegularExpression(pattern: beginString, options: options)
             try endRegex = NSRegularExpression(pattern: endString, options: options)
-        } catch let error as NSError {
-            print("Regex Syntax Error in " + #function + ": " + error.description)
+        } catch let error {
+            print("Regex Syntax Error in " + #function + ": ", error)
             return []
         }
         

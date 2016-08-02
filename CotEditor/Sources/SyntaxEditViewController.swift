@@ -311,8 +311,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         do {
             try SyntaxManager.shared.save(styleDictionary: styleDictionary, name: styleName, oldName: self.originalStyleName)
-        } catch let error as NSError {
-            print(error.description)
+        } catch let error {
+            print(error)
         }
         
         self.dismiss(sender)
@@ -365,9 +365,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         do {
             try SyntaxManager.shared.validate(settingName: styleName, originalName: self.originalStyleName)
-        } catch let error as NSError {
+        } catch let error as InvalidNameError {
             self.isStyleNameValid = false
-            self.message = "⚠️ " + error.localizedDescription + " " + error.localizedRecoverySuggestion!
+            self.message = "⚠️ " + error.localizedDescription + " " + error.recoverySuggestion!
+        } catch {
+            fatalError()
         }
         
         return self.isStyleNameValid
