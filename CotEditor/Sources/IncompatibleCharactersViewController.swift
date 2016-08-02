@@ -37,6 +37,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         return self.representedObject as? IncompatibleCharacterScanner
     }
     
+    private dynamic var incompatibleCharacters: [IncompatibleCharacter] = []
     private dynamic var isCharacterAvailable = false
     private var isVisible = false
     
@@ -107,7 +108,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     /// incompatible characters list was updated
     func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacers: [IncompatibleCharacter]) {
         
-        self.incompatibleCharsController!.content = incompatibleCharacers
+        self.incompatibleCharacters = incompatibleCharacers
         self.isCharacterAvailable = !incompatibleCharacers.isEmpty
         
         var ranges = [NSRange]()

@@ -38,12 +38,6 @@ enum CotEditorError: Error {
         case fileReadTooLarge
         case fileReadBinaryFile
         
-        // encoding
-        case IANACharsetNameConflict = 1100
-        case unconvertibleCharacters
-        case reinterpretationFailed
-        case lossyEncodingConversion
-        
         // text finder
         case regularExpression = 1200
         
@@ -51,11 +45,6 @@ enum CotEditorError: Error {
         case settingDeletionFailed = 1300
         case settingImportFailed
         case settingImportFileDuplicated
-        
-        // for command-line tool installer
-        case applicationNotInApplicationDirectory = 1500
-        case applicationNameIsModified
-        case ymlinkCreationDenied
     }
     
 }

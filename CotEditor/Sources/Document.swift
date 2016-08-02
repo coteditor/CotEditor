@@ -56,11 +56,6 @@ private enum FileExtendedAttributeName {
     static let VerticalText = "com.coteditor.VerticalText"
 }
 
-// error key
-private enum ErrorKey {
-    static let StringEncodingUTF8BOM = "CEStringEncodingUTF8BOMErrorKey"
-}
-
 
 
 // MARK:
@@ -635,48 +630,6 @@ final class Document: NSDocument, EncodingHolder {
     }
     
     
-    /// recover presented error
-    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int, delegate: AnyObject?, didRecoverSelector: Selector?, contextInfo: UnsafeMutablePointer<Void>?) {
-        
-        var didRecover = false
-        
-        if let errorCode = CotEditorError(rawValue: error.code), error.domain == CotEditorError.domain {
-            switch errorCode {
-            case .unconvertibleCharacters:
-                switch recoveryOptionIndex {
-                case 0:  // == Show Incompatible Chars
-                    self.windowController.showIncompatibleCharList()
-                case 1:  // == Save
-                    didRecover = true
-                case 2:  // == Cancel
-                    break
-                default: break
-                }
-                
-            case .lossyEncodingConversion:
-                switch recoveryOptionIndex {
-                case 0:  // == Cancel
-                    // reset to force reverting toolbar selection
-                    NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
-                case 1:  // == Change Encoding
-                    self.changeEncoding(to: String.Encoding(rawValue: error.userInfo[NSStringEncodingErrorKey] as! UInt!),
-                                        withUTF8BOM: error.userInfo[ErrorKey.StringEncodingUTF8BOM] as! Bool,
-                                        askLossy: false, lossy: true)
-                    self.undoManager?.prepare(withInvocationTarget: self.windowController).showIncompatibleCharList()
-                    self.windowController.showIncompatibleCharList()
-                    didRecover = true
-                default: break
-                }
-                
-            default: break
-            }
-        }
-        
-        let context = UnsafeMutablePointer<AnyObject>(contextInfo)
-        let _ = delegate?.perform(didRecoverSelector, with: didRecover, with: context?.pointee)
-    }
-    
-    
     
     // MARK: Protocols
     
@@ -863,8 +816,7 @@ final class Document: NSDocument, EncodingHolder {
     func reinterpret(encoding: String.Encoding) throws {
         
         guard let fileURL = self.fileURL else {
-            // TODO: add userInfo (The outError under this condition will actually not be used, but better not to pass an empty errer pointer.)
-            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.reinterpretationFailed.rawValue, userInfo: nil)
+            throw EncodingError(kind: .reinterpretationFailed(fileURL: self.fileURL), encoding: encoding, withUTF8BOM: false, attempter: self)
         }
         
         // do nothing if given encoding is the same as current one
@@ -875,15 +827,9 @@ final class Document: NSDocument, EncodingHolder {
         do {
             try self.revert(toContentsOf: fileURL, ofType: self.fileType!)
             
-        } catch let error as NSError {
+        } catch {
             self.readingEncoding = self.encoding
-            throw NSError(domain: CotEditorError.errorDomain,
-                          code: CotEditorError.Code.reinterpretationFailed.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Can not reinterpret.", comment: ""),
-                                     NSLocalizedRecoverySuggestionErrorKey: String(format: NSLocalizedString("The file “%@” could not be reinterpreted using the new encoding “%@”.", comment: ""), fileURL.lastPathComponent, String.localizedName(of: encoding)),
-                                     NSStringEncodingErrorKey: encoding.rawValue,
-                                     NSUnderlyingErrorKey: error,
-                                     NSURLErrorKey: fileURL])
+            throw EncodingError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding, withUTF8BOM: false, attempter: self)
         }
     }
     
@@ -898,16 +844,7 @@ final class Document: NSDocument, EncodingHolder {
         
         // ask lossy
         guard !askLossy || self.string.canBeConverted(to: encoding) else {
-            let error = NSError(domain: CotEditorError.errorDomain,
-                                code: CotEditorError.Code.lossyEncodingConversion.rawValue,
-                                userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName),
-                                           NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Do you want to change encoding and show incompatible characters?", comment: "'"),
-                                           NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Cancel", comment: ""),
-                                                                                NSLocalizedString("Change Encoding", comment: "")],
-                                           NSRecoveryAttempterErrorKey: self,
-                                           NSStringEncodingErrorKey: NSNumber(value: encoding.rawValue),
-                                           ErrorKey.StringEncodingUTF8BOM: withUTF8BOM
-                ])
+            let error = EncodingError(kind: .lossyEncodingConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
             
             if let window = self.windowForSheet {
                 window.attachedSheet?.orderOut(self)  // close previous sheet
@@ -1257,17 +1194,7 @@ final class Document: NSDocument, EncodingHolder {
         guard let IANACharSetEncoding = self.scanEncodingFromDeclaration(content: content) else { return }
         
         guard encoding.isCompatible(ianaCharSetEncoding: IANACharSetEncoding) else {
-            let encodingName = String.localizedName(of: encoding)
-            let IANAName = String.localizedName(of: IANACharSetEncoding)
-            
-            throw NSError(domain: CotEditorError.errorDomain,
-                          code: CotEditorError.Code.unconvertibleCharacters.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""), encodingName, IANAName),
-                                     NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Do you want to continue processing?", comment: ""),
-                                     NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Cancel", comment: ""),
-                                                                          NSLocalizedString("Continue Saving", comment: "")],
-                                     NSRecoveryAttempterErrorKey: self,
-                                     NSStringEncodingErrorKey: NSNumber(value: encoding.rawValue)])
+            throw EncodingError(kind: .ianaCharsetNameConflict(ianaEncoding: IANACharSetEncoding), encoding: encoding, withUTF8BOM: false, attempter: self)
         }
     }
     
@@ -1279,17 +1206,7 @@ final class Document: NSDocument, EncodingHolder {
         let newString = content.convertingYenSign(for: encoding)
         
         guard newString.canBeConverted(to: encoding) else {
-            let encodingName = String.localizedName(of: encoding)
-            
-            throw NSError(domain: CotEditorError.errorDomain,
-                          code: CotEditorError.Code.unconvertibleCharacters.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey: String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName),
-                                     NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("Do you want to continue processing?", comment: ""),
-                                     NSLocalizedRecoveryOptionsErrorKey: [NSLocalizedString("Show Incompatible Chars", comment: ""),
-                                                                          NSLocalizedString("Save Available Strings", comment: ""),
-                                                                          NSLocalizedString("Cancel", comment: "")],
-                                     NSRecoveryAttempterErrorKey: self,
-                                     NSStringEncodingErrorKey: NSNumber(value: encoding.rawValue)])
+            throw EncodingError(kind: .unconvertibleCharacters, encoding: encoding, withUTF8BOM: false, attempter: self)
         }
     }
     
@@ -1364,6 +1281,142 @@ final class Document: NSDocument, EncodingHolder {
     func didPresentErrorWithRecovery(didRecover: Bool, block: UnsafeMutablePointer<Void>) {
         self.recoverBlock?(didRecover)
         self.recoverBlock = nil
+    }
+    
+}
+
+
+
+// MARK: - Error
+
+private struct EncodingError: LocalizedError, RecoverableError {
+    
+    enum ErrorKind {
+        case ianaCharsetNameConflict(ianaEncoding: String.Encoding)
+        case unconvertibleCharacters
+        case reinterpretationFailed(fileURL: URL?)  // TODO: not RecoverableError
+        case lossyEncodingConversion
+    }
+    
+    let kind: ErrorKind
+    let encoding: String.Encoding
+    let withUTF8BOM: Bool
+    let attempter: Document  // attempter
+    
+    
+    
+    var errorDescription: String? {
+        
+        switch self.kind {
+        case .ianaCharsetNameConflict(let ianaEncoding):
+            return String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""),
+                          self.encodingName, String.localizedName(of: ianaEncoding))
+        case .unconvertibleCharacters:
+            return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), self.encodingName)
+        case .reinterpretationFailed:
+            return NSLocalizedString("Can not reinterpret.", comment: "")
+        case .lossyEncodingConversion:
+            return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), self.encodingName)
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        switch self.kind {
+        case .ianaCharsetNameConflict:
+            return NSLocalizedString("Do you want to continue processing?", comment: "")
+            
+        case .unconvertibleCharacters:
+            return NSLocalizedString("Do you want to continue processing?", comment: "")
+            
+        case .reinterpretationFailed(let fileURL):
+            guard let fileURL = fileURL else {
+                return NSLocalizedString("The document doesn't have a file to reinterpret.", comment: "")  // TODO: localize
+            }
+            return String(format: NSLocalizedString("The file “%@” could not be reinterpreted using the new encoding “%@”.", comment: ""), fileURL.lastPathComponent, self.encodingName)
+            
+        case .lossyEncodingConversion:
+            return NSLocalizedString("Do you want to change encoding and show incompatible characters?", comment: "'")
+        }
+        
+    }
+    
+    
+    var recoveryOptions: [String] {
+        
+        switch self.kind {
+        case .ianaCharsetNameConflict:
+            return [NSLocalizedString("Cancel", comment: ""),
+                    NSLocalizedString("Continue Saving", comment: "")]
+            
+        case .unconvertibleCharacters:
+            return [NSLocalizedString("Show Incompatible Chars", comment: ""),
+                    NSLocalizedString("Save Available Strings", comment: ""),
+                    NSLocalizedString("Cancel", comment: "")]
+            
+        case .reinterpretationFailed:
+            return []
+            
+        case .lossyEncodingConversion:
+            return [NSLocalizedString("Cancel", comment: ""),
+                    NSLocalizedString("Change Encoding", comment: "")]
+        }
+        
+    }
+    
+    
+    func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
+        
+        let document = self.attempter
+        
+        switch self.kind {
+        case .ianaCharsetNameConflict:
+            switch recoveryOptionIndex {
+            case 0:  // == Cancel
+                return false
+            case 1:  // == Continue Saving
+                return true
+            default:
+                return false
+            }
+        case .unconvertibleCharacters:
+            switch recoveryOptionIndex {
+            case 0:  // == Show Incompatible Chars
+                document.windowController.showIncompatibleCharList()
+                return false
+            case 1:  // == Save
+                return true
+            case 2:  // == Cancel
+                return false
+            default:
+                return false
+            }
+            
+        case .reinterpretationFailed:
+            return false
+            
+        case .lossyEncodingConversion:
+            switch recoveryOptionIndex {
+            case 0:  // == Cancel
+                // reset to force reverting toolbar selection
+                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: document)
+                return false
+            case 1:  // == Change Encoding
+                document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
+                (document.undoManager?.prepare(withInvocationTarget: document.windowController) as? DocumentWindowController)?.showIncompatibleCharList()
+                document.windowController.showIncompatibleCharList()
+                return true
+            default:
+                return false
+            }
+        }
+    }
+    
+    
+    private var encodingName: String {
+        
+        return String.localizedName(of: self.encoding, withUTF8BOM: self.withUTF8BOM)
     }
     
 }
