@@ -35,9 +35,6 @@ enum CotEditorError: Error {
         // general
         case invalidName = 1000
         
-        // text finder
-        case regularExpression = 1200
-        
         // setting manager
         case settingDeletionFailed = 1300
         case settingImportFailed

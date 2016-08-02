@@ -833,10 +833,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             do {
                 let _ = try NSRegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
             } catch let error as NSError {
-                let newError = NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.regularExpression.rawValue,
-                                       userInfo:[NSLocalizedDescriptionKey: NSLocalizedString("Invalid regular expression", comment: ""),
-                                                 NSLocalizedRecoverySuggestionErrorKey: error.localizedFailureReason ?? NSNull(),
-                                                 NSUnderlyingErrorKey: error])
+                let newError = TextFinderError.regularExpression(error: error)
                 
                 self.findPanelController.showWindow(self)
                 self.presentError(newError, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
@@ -950,6 +947,31 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     private var sharesFindString: Bool {
         
         return UserDefaults.standard.bool(forKey: DefaultKey.syncFindPboard)
+    }
+    
+}
+
+
+
+// MARK: - Error
+
+private enum TextFinderError: LocalizedError {
+    
+    case regularExpression(error: NSError)
+    
+    
+    private var errorDescription: String? {
+        
+        return NSLocalizedString("Invalid regular expression", comment: "")
+    }
+    
+    
+    private var recoverySuggestion: String? {
+        
+        switch self {
+        case .regularExpression(let error):
+            return error.localizedFailureReason
+        }
     }
     
 }
