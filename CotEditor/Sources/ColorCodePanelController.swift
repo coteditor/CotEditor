@@ -28,7 +28,7 @@
 import Cocoa
 import ColorCode
 
-@objc protocol ColorCodeReceiver {
+@objc protocol ColorCodeReceiver: class {
     
     func insertColorCode(_ sender: ColorCodePanelController)
 }

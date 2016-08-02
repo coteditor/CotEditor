@@ -35,7 +35,7 @@ extension Notification.Name {
 }
 
 
-@objc protocol EncodingHolder {
+@objc protocol EncodingHolder: class {
     
     func changeEncoding(_ sender: AnyObject?)
 }

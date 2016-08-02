@@ -27,7 +27,7 @@
 
 import Foundation
 
-protocol SettingManagerProtocol {
+protocol SettingManagerProtocol: class {
     
     /// directory name in both Application Support and bundled Resources
     var directoryName: String { get }

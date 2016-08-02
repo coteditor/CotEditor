@@ -36,7 +36,7 @@ extension Notification.Name {
 }
 
 
-@objc protocol ThemeHolder {
+@objc protocol ThemeHolder: class {
     
     func changeTheme(_ sender: AnyObject?)
 }

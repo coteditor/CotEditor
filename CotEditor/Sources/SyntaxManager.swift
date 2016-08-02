@@ -42,7 +42,7 @@ extension Notification.Name {
 }
 
 
-@objc protocol SyntaxHolder {
+@objc protocol SyntaxHolder: class {
     
     func changeSyntaxStyle(_ sender: AnyObject?)
     func recolorAll(_ sender: AnyObject?)

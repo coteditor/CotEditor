@@ -30,7 +30,7 @@ import AppKit.NSColor
 import ColorCode
 
 
-protocol Themable {
+protocol Themable: class {
     
     var theme: Theme? { get }
 }

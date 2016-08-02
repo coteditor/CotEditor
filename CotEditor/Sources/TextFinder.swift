@@ -27,7 +27,7 @@
 
 import Cocoa
 
-@objc protocol TextFinderClientProvider {
+@objc protocol TextFinderClientProvider: class {
     
     func textFinderClient() -> NSTextView?
     
