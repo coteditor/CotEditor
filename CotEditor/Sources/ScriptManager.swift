@@ -261,12 +261,12 @@ final class ScriptManager: NSObject {
     
     
     /// return document content conforming to the input type
+    /// - throws: ScriptError
     private func inputString(type: InputType, document: Document?) throws -> String {
     
         guard let editor = document?.editor else {
             // on no document found
-            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.scriptNoTargetDocument.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No document to get input.", comment: "")])
+            throw ScriptError.noTarget
         }
         
         switch type {
@@ -280,13 +280,13 @@ final class ScriptManager: NSObject {
     
     
     /// apply results conforming to the output type to the frontmost document
+    /// - throws: ScriptError
     private func applyOutput(_ output: String, document: Document?, type: OutputType) throws {
         
         let editor = document?.editor
         
         guard editor != nil || type == .pasteBoard else {
-            throw NSError(domain: CotEditorError.errorDomain, code: CotEditorError.Code.scriptNoTargetDocument.rawValue,
-                          userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No document to put output.", comment: "")])
+            throw ScriptError.noTarget
         }
         
         switch type {
@@ -458,7 +458,7 @@ final class ScriptManager: NSObject {
         if let inputType = self.scanInputType(script) {
             do {
                 input = try self.inputString(type: inputType, document: document)
-            } catch let error as NSError {
+            } catch let error {
                 self.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 return
             }
@@ -514,7 +514,7 @@ final class ScriptManager: NSObject {
             if let output = String(data: data, encoding: .utf8) {
                 do {
                     try self?.applyOutput(output, document: document, type: outputType)
-                } catch let error as NSError {
+                } catch let error {
                     self?.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 }
             }
@@ -546,4 +546,20 @@ final class ScriptManager: NSObject {
         ConsolePanelController.shared.append(message: message, title: scriptName)
     }
 
+}
+
+
+
+// MARK: - Error
+
+private enum ScriptError: Error {
+    
+    case noTarget
+    
+    
+    private var localizedDescription: String {
+        
+        return NSLocalizedString("No document to get input.", comment: "")
+    }
+    
 }

@@ -34,7 +34,6 @@ enum CotEditorError: Error {
     enum Code: Int {
         // general
         case invalidName = 1000
-        case scriptNoTargetDocument
         
         // text finder
         case regularExpression = 1200
