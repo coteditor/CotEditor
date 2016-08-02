@@ -65,18 +65,6 @@ final class SyntaxManager: SettingFileManager {
     typealias StyleDictionary = [String: AnyObject]
     
     
-    // MARK: Struct
-    
-    /// model object for syntax validation result
-    struct SyntaxValidationResult {
-        
-        let localizedType: String
-        let localizedRole: String
-        let string: String
-        let localizedFailureReason: String
-    }
-    
-    
     // MARK: Public Properties
     
     static let shared = SyntaxManager()
@@ -404,112 +392,6 @@ final class SyntaxManager: SettingFileManager {
     var existsMappingConflict: Bool {
         
         return !self.extensionConflicts.isEmpty || !self.filenameConflicts.isEmpty
-    }
-    
-    
-    /// check regular expression syntax and duplicatioin and return errors
-    func validate(styleDictionary: StyleDictionary) -> [SyntaxValidationResult] {
-        
-        var results = [SyntaxValidationResult]()
-        
-        let syntaxDictKeys = SyntaxType.all.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue]
-        
-        var lastBeginString: String?
-        var lastEndString: String?
-        
-        for key in syntaxDictKeys {
-            guard let dictionaries = styleDictionary[key] as? [[String: AnyObject]] else { continue }
-            
-            var definitions = dictionaries.flatMap { HighlightDefinition(definition: $0) }
-            
-            // sort for duplication check
-            definitions.sort {
-                var result = $0.beginString.compare($1.beginString)
-                guard result == .orderedSame else {
-                    return result == .orderedAscending
-                }
-                if let end0 = $0.endString, let end1 = $1.endString {
-                    return end0.compare(end1) == .orderedAscending
-                }
-                if $0.endString != nil {
-                    return true
-                }
-                if $1.endString != nil {
-                    return false
-                }
-                return true
-            }
-            
-            for definition in definitions {
-                defer {
-                    lastBeginString = definition.beginString
-                    lastEndString = definition.endString
-                }
-                
-                guard definition.beginString != lastBeginString || definition.endString != lastEndString else {
-                    results.append(SyntaxValidationResult(localizedType: NSLocalizedString(key, comment: ""),
-                                                          localizedRole: NSLocalizedString("Begin string", comment: ""),
-                                                          string: definition.beginString,
-                                                          localizedFailureReason: NSLocalizedString("multiple registered.", comment: "")))
-                    
-                    continue
-                }
-                
-                if definition.isRegularExpression {
-                    do {
-                        let _ = try NSRegularExpression(pattern: definition.beginString)
-                    } catch let error {
-                        let failureReason = (error as? LocalizedError)?.failureReason ?? ""
-                        let reason = NSLocalizedString("Regex Error: %@", comment: "") + failureReason
-                        results.append(SyntaxValidationResult(localizedType: NSLocalizedString(key, comment: ""),
-                                                              localizedRole: NSLocalizedString("Begin string", comment: ""),
-                                                              string: definition.beginString,
-                                                              localizedFailureReason: reason))
-                    }
-                    
-                    if let endString = definition.endString {
-                        do {
-                            let _ = try NSRegularExpression(pattern: endString)
-                        } catch let error {
-                            let failureReason = (error as? LocalizedError)?.failureReason ?? ""
-                            let reason = NSLocalizedString("Regex Error: %@", comment: "") + failureReason
-                            results.append(SyntaxValidationResult(localizedType: NSLocalizedString(key, comment: ""),
-                                                                  localizedRole: NSLocalizedString("End string", comment: ""),
-                                                                  string: endString,
-                                                                  localizedFailureReason: reason))
-                        }
-                    }
-                }
-                
-                if key == SyntaxKey.outlineMenu.rawValue {
-                    do {
-                        let _ = try NSRegularExpression(pattern: definition.beginString)
-                    } catch let error {
-                        let failureReason = (error as? LocalizedError)?.failureReason ?? ""
-                        let reason = NSLocalizedString("Regex Error: %@", comment: "") + failureReason
-                        results.append(SyntaxValidationResult(localizedType: NSLocalizedString(key, comment: ""),
-                                                              localizedRole: NSLocalizedString("Regular expression", comment: ""),
-                                                              string: definition.beginString,
-                                                              localizedFailureReason: reason))
-                    }
-                }
-            }
-        }
-        
-        // validate block comment delimiter pair
-        let beginDelimiter = styleDictionary[SyntaxKey.commentDelimiters.rawValue]?[DelimiterKey.beginDelimiter.rawValue] as? String
-        let endDelimiter = styleDictionary[SyntaxKey.commentDelimiters.rawValue]?[DelimiterKey.beginDelimiter.rawValue] as? String
-        let beginDelimiterExists = !(beginDelimiter?.isEmpty ?? true)
-        let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
-        if (beginDelimiterExists && !endDelimiterExists) || (!beginDelimiterExists && endDelimiterExists) {
-            let role = beginDelimiterExists ? "Begin string" : "End string"
-            results.append(SyntaxValidationResult(localizedType: NSLocalizedString("comment", comment: ""),
-                                                  localizedRole: NSLocalizedString(role, comment: ""),
-                                                  string: beginDelimiter ?? endDelimiter!,
-                                                  localizedFailureReason: NSLocalizedString("Block comment needs both begin delimiter and end delimiter.", comment: "")))
-        }
-        
-        return results
     }
     
     
