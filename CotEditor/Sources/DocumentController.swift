@@ -127,7 +127,7 @@ final class DocumentController: NSDocumentController {
         // initialize encoding menu and set the accessory view
         if self.openPanelAccessoryView == nil {
             Bundle.main.loadNibNamed("OpenDocumentAccessory", owner: self, topLevelObjects: nil)
-            if #available(OSX 10.11, *) { } else {
+            if #available(macOS 10.11, *) { } else {
                 // real time togging of hidden files visibility works only on El Capitan (and later?)
                 self.showHiddenFilesCheckbox?.removeFromSuperview()
             }
@@ -136,7 +136,7 @@ final class DocumentController: NSDocumentController {
         openPanel.accessoryView = self.openPanelAccessoryView
         
         // force accessory view visible
-        if #available(OSX 10.11, *) {
+        if #available(macOS 10.11, *) {
             openPanel.isAccessoryViewDisclosed = true
         }
         

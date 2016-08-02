@@ -139,7 +139,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     /// set action on swiping theme name
-    @available(OSX 10.11, *)
+    @available(macOS 10.11, *)
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
@@ -284,7 +284,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             
             guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                if #available(OSX 10.11, *) {
+                if #available(macOS 10.11, *) {
                     self.extensionTableView?.rowActionsVisible = false
                 }
                 return

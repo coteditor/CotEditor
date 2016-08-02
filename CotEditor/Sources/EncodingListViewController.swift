@@ -116,7 +116,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     }
     
     
-    @available(OSX 10.11, *)
+    @available(macOS 10.11, *)
     /// set action on swiping row
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
         

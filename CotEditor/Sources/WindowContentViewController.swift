@@ -45,7 +45,7 @@ final class WindowContentViewController: NSSplitViewController {
         super.viewDidLoad()
         
         // set behavior to glow window size on sidebar toggling rather than opening sidebar indraw (only on El Capitan or later)
-        if #available(OSX 10.11, *) {
+        if #available(macOS 10.11, *) {
             self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
         

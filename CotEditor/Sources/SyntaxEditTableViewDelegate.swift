@@ -75,7 +75,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
     
     
     /// set action on swiping theme name
-    @available(OSX 10.11, *)
+    @available(macOS 10.11, *)
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }

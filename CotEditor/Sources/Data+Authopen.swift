@@ -41,7 +41,7 @@ private let AuthopenPath = "/usr/libexec/authopen"
 extension Data {
     
     /// Try reading data at the URL using authopen (Sandobox incompatible)
-    @available(OSX, unavailable, message: "Sandbox incompatible")
+    @available(macOS, unavailable, message: "Sandbox incompatible")
     init?(forceReadFromFileURL fileURL: URL) {
         
         guard fileURL.isFileURL else { return nil }
@@ -65,7 +65,7 @@ extension Data {
     
     
     /// Try writing data to the URL using authopen (Sandobox incompatible)
-    @available(OSX, unavailable, message: "Sandbox incompatible")
+    @available(macOS, unavailable, message: "Sandbox incompatible")
     func forceWrite(to fileURL: URL) -> Bool {
         
         guard fileURL.isFileURL else { return false }
