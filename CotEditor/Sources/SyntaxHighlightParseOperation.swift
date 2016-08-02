@@ -317,7 +317,7 @@ final class SyntaxHighlightParseOperation: Operation {
         var ranges = [NSRange]()
         
         regex.enumerateMatches(in: self.string!, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange)
-        { [unowned self] (result: NSTextCheckingResult?, flags, stop) in
+        { (result: NSTextCheckingResult?, flags, stop) in
             guard !self.isCancelled else {
                 stop.pointee = true
                 return
@@ -357,7 +357,7 @@ final class SyntaxHighlightParseOperation: Operation {
         let parseRange = self.parseRange
         
         beginRegex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange)
-        { [unowned self] (result: NSTextCheckingResult?, flags, stop) in
+        { (result: NSTextCheckingResult?, flags, stop) in
             guard !self.isCancelled else {
                 stop.pointee = true
                 return
@@ -527,7 +527,7 @@ final class SyntaxHighlightParseOperation: Operation {
             var ranges = [NSRange]()
             let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges")
             
-            DispatchQueue.concurrentPerform(iterations: definitions.count, execute: { [unowned self] (i: Int) in
+            DispatchQueue.concurrentPerform(iterations: definitions.count, execute: { (i: Int) in
                 guard !self.isCancelled else { return }
                 
                 let definition = definitions[i]

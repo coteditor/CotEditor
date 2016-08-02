@@ -100,7 +100,7 @@ final class DocumentController: NSDocumentController {
         // ask user for opening file
         if let error = error {
             var wantsOpen = false
-            DispatchQueue.syncOnMain { [unowned self] in
+            DispatchQueue.syncOnMain {
                 wantsOpen = self.presentError(error)
             }
             

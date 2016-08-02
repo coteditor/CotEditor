@@ -154,7 +154,7 @@ final class OutlineParseOperation: Operation {
             self.progress.completedUnitCount += 1
             
             definition.regex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds] , range: parseRange, using:
-                { [unowned self] (result: NSTextCheckingResult?, flags, stop) in
+                { (result: NSTextCheckingResult?, flags, stop) in
                     
                     guard !self.isCancelled else {
                         stop.pointee = true

@@ -165,7 +165,7 @@ final class SyntaxManager: SettingFileManager {
         
         var styleNames = [StyleName]()
         
-        self.propertyAccessQueue.sync { [unowned self] in
+        self.propertyAccessQueue.sync {
             styleNames = self.recentStyleNameSet.array as! [StyleName]
         }
         
@@ -192,7 +192,7 @@ final class SyntaxManager: SettingFileManager {
         }
         UserDefaults.standard.set(self.recentStyleNames, forKey: DefaultKey.recentStyleNames)
         
-        DispatchQueue.syncOnMain { [weak self] in
+        DispatchQueue.syncOnMain {
             NotificationCenter.default.post(name: .SyntaxHistoryDidUpdate, object: self)
         }
         
@@ -493,7 +493,7 @@ final class SyntaxManager: SettingFileManager {
         
         // remove deleted styles
         // -> don't care about style name change just for laziness
-        self.propertyAccessQueue.sync { [unowned self] in
+        self.propertyAccessQueue.sync {
             self.recentStyleNameSet.intersectSet(Set(self.styleNames))
         }
         
@@ -542,7 +542,7 @@ final class SyntaxManager: SettingFileManager {
         let filenameResult = parseMappingSettings(key: SyntaxKey.filenames.rawValue)
         let interpreterResult = parseMappingSettings(key: SyntaxKey.interpreters.rawValue)
         
-        DispatchQueue.syncOnMain { [unowned self] in
+        DispatchQueue.syncOnMain {
             self.extensionToStyle = extensionResult.table
             self.extensionConflicts = extensionResult.conflicts
             self.filenameToStyle = filenameResult.table
