@@ -184,15 +184,17 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// recieve number of found
     func updateResultCount(_ numberOfFound: Int, target: NSTextView) {
         
-        switch numberOfFound {
-        case -1:
-            self.resultMessage = nil
-        case 0:
-            self.resultMessage = NSLocalizedString("Not Found", comment: "")
-        default:
-            self.resultMessage = String(format: NSLocalizedString("%@ Found", comment: ""),
-                                        String.localizedStringWithFormat("%li", numberOfFound))
-        }
+        self.resultMessage = {
+            switch numberOfFound {
+            case -1:
+                return nil
+            case 0:
+                return NSLocalizedString("Not Found", comment: "")
+            default:
+                return String(format: NSLocalizedString("%@ Found", comment: ""),
+                              String.localizedStringWithFormat("%li", numberOfFound))
+            }
+        }()
         
         // dismiss result either client text or find string did change
         self.currentResultMessageTarget = target.layoutManager

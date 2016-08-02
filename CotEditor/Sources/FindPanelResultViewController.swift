@@ -160,15 +160,17 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDelegate
         self.results = results
         
         let documentName = (target.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
-        switch results.count {
-        case 0:
-            self.resultMessage = String(format: NSLocalizedString("No strings found in “%@”.", comment: ""), documentName)
-        case 1:
-            self.resultMessage = String(format: NSLocalizedString("Found one string in “%@”.", comment: ""), documentName)
-        default:
-            let countStr = String.localizedStringWithFormat("%li", results.count)  // localize to add thousand separators
-            self.resultMessage = String(format: NSLocalizedString("Found %@ strings in “%@”.", comment: ""), countStr, documentName)
-        }
+        self.resultMessage = {
+            switch results.count {
+            case 0:
+                return String(format: NSLocalizedString("No strings found in “%@”.", comment: ""), documentName)
+            case 1:
+                return String(format: NSLocalizedString("Found one string in “%@”.", comment: ""), documentName)
+            default:
+                let countStr = String.localizedStringWithFormat("%li", results.count)  // localize to add thousand separators
+                return String(format: NSLocalizedString("Found %@ strings in “%@”.", comment: ""), countStr, documentName)
+            }
+        }()
         
         self.tableView?.reloadData()
     }

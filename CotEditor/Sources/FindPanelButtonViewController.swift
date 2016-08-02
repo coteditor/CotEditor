@@ -104,11 +104,13 @@ final class FindPanelButtonViewController: NSViewController {
     /// toggle replace button behavior and tooltip
     private func invalidateReplaceButtonBehavior() {
         
-        if UserDefaults.standard.bool(forKey: DefaultKey.findNextAfterReplace) {
-            self.replaceButton?.toolTip = NSLocalizedString("Replace the current selection with the replacement text, then find the next match.", comment: "")
-        } else {
-            self.replaceButton?.toolTip = NSLocalizedString("Replace the current selection with the replacement text.", comment: "")
-        }
+        self.replaceButton?.toolTip = {
+            if UserDefaults.standard.bool(forKey: DefaultKey.findNextAfterReplace) {
+                return NSLocalizedString("Replace the current selection with the replacement text, then find the next match.", comment: "")
+            } else {
+                return NSLocalizedString("Replace the current selection with the replacement text.", comment: "")
+            }
+        }()
     }
     
 }

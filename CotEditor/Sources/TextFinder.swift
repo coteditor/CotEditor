@@ -250,7 +250,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         let numberOfGroups = regex.numberOfCaptureGroups
         let highlightColors = self.highlightColor.decomposite(into: numberOfGroups + 1)
         
-        let lineRegex = try! NSRegularExpression(pattern: "\n", options: [])
+        let lineRegex = try! NSRegularExpression(pattern: "\n")
         let string = textView.string ?? ""
         
         // setup progress sheet
@@ -281,13 +281,13 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 
                 // calculate line number
                 let diffRange = NSRange(location: lineCountedLocation, length: matchedRange.location - lineCountedLocation)
-                lineNumber += lineRegex.numberOfMatches(in: string, options: [], range: diffRange)
+                lineNumber += lineRegex.numberOfMatches(in: string, range: diffRange)
                 lineCountedLocation = matchedRange.location
                 
                 // highlight both string in textView and line string for result table
                 let lineRange = (string as NSString).lineRange(for: matchedRange)
-                var inlineRange = matchedRange
-                inlineRange.location -= lineRange.location
+                let inlineRange = NSRange(location: matchedRange.location - lineRange.location,
+                                          length: matchedRange.length)
                 let lineString = (string as NSString).substring(with: lineRange)
                 let lineAttrString = NSMutableAttributedString(string: lineString)
                 
@@ -308,13 +308,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 
                 results.append(TextFindResult(range: matchedRange, lineRange: inlineRange, lineNumber: UInt(lineNumber), attributedLineString: lineAttrString))
                 
+                // progress indicator
                 let informativeFormat = (results.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
                 DispatchQueue.main.async {
                     progress.localizedDescription = informative
                 }
-                }, scopeCompletionHandler: nil)
+                })
             
             guard !progress.isCancelled else { return }
             
@@ -399,13 +400,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                     }
                 }
                 
+                // progress indicator
                 let informativeFormat = (highlights.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
                 DispatchQueue.main.async {
                     progress.localizedDescription = informative
                 }
-                }, scopeCompletionHandler: nil)
+                })
             
             guard !progress.isCancelled else { return }
             
@@ -532,6 +534,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 
                 lengthDelta -= matchedRange.length - replacementString.utf16.count
                 
+                // progress indicator
                 let informativeFormat = (count == 1) ? "%@ string replaced." : "%@ strings replaced."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: count))!)
@@ -572,7 +575,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 self.busyTextViews.remove(textView)
             }
         }
-        
         
         self.appendHistory(self.findString, forKey: DefaultKey.findHistory)
         self.appendHistory(self.replacementString, forKey: DefaultKey.replaceHistory)
@@ -667,7 +669,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         var matches = [NSRange]()
         self.enumerateMatchs(in: string, ranges: [range], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             matches.append(matchedRange)
-            }, scopeCompletionHandler: nil)
+            })
         
         guard !matches.isEmpty else { return 0 }
         
@@ -724,7 +726,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         let replacedString: String
         if self.usesRegularExpression {
             let regex = self.regex()!
-            guard let match = regex.firstMatch(in: string, options: [], range: textView.selectedRange()) else { return false }
+            guard let match = regex.firstMatch(in: string, range: textView.selectedRange()) else { return false }
             
             matchedRange = match.range
             replacedString = regex.replacementString(for: match, in: string, offset: 0, template: self.replacementString ?? "")
@@ -743,7 +745,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// enumerate matchs in string using current settings
-    private func enumerateMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)?) {
+    private func enumerateMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: (@noescape (NSRange) -> Void)? = nil) {
         
         if self.usesRegularExpression {
             self.enumerateRegularExpressionMatchs(in: string, ranges: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
@@ -754,7 +756,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// enumerate matchs in string using textual search
-    private func enumerateTextualMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)?) {
+    private func enumerateTextualMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: (@noescape (NSRange) -> Void)? = nil) {
         
         guard let string = string as NSString?, string.length > 0 else { return }
         
@@ -784,14 +786,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// enumerate matchs in string using regular expression
-    private func enumerateRegularExpressionMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)?) {
+    private func enumerateRegularExpressionMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: (@noescape (NSRange) -> Void)? = nil) {
         
         guard let string = string, !string.isEmpty else { return }
         
         let regex = self.regex()!
         
         for scopeRange in ranges {
-            regex.enumerateMatches(in: string, options: [], range: scopeRange, using: { (result, flags, stop) in
+            regex.enumerateMatches(in: string, range: scopeRange, using: { (result, flags, stop) in
                 guard let result = result else { return }
                 
                 var ioStop = false
@@ -850,11 +852,12 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     /// find string from global domain
     private var findStringInPasteboard: String? {
+        
         get {
             let pasteboard = NSPasteboard(name: NSFindPboard)
             return pasteboard.string(forType: NSStringPboardType)
-            
         }
+        
         set (string) {
             guard let string = string, !string.isEmpty else { return }
             
