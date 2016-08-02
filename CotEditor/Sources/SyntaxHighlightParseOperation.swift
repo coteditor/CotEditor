@@ -33,16 +33,18 @@ struct BlockDelimiters: Equatable, CustomDebugStringConvertible {
     let begin: String
     let end: String
     
-    /// debug description
+    
     var debugDescription: String {
         
         return "<\(BlockDelimiters.self) begin: \(self.begin)  end: \(self.end)>"
     }
     
-}
 
-func ==(lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
-    return lhs.begin == rhs.begin && lhs.end == rhs.end
+    static func ==(lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
+        
+        return lhs.begin == rhs.begin && lhs.end == rhs.end
+    }
+    
 }
 
 
@@ -73,19 +75,20 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
     }
     
     
-    /// debug description
     var debugDescription: String {
         
         return "<\(HighlightDefinition.self) begin: \(self.beginString)  end: \(self.endString)>"
     }
     
-}
-
-func ==(lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
-    return lhs.beginString == rhs.beginString &&
-        lhs.endString == rhs.endString &&
-        lhs.isRegularExpression == rhs.isRegularExpression &&
-        lhs.ignoreCase == rhs.ignoreCase
+    
+    static func ==(lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
+        
+        return lhs.beginString == rhs.beginString &&
+            lhs.endString == rhs.endString &&
+            lhs.isRegularExpression == rhs.isRegularExpression &&
+            lhs.ignoreCase == rhs.ignoreCase
+    }
+    
 }
 
 

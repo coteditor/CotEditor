@@ -35,6 +35,7 @@ struct OutlineItem: Equatable, CustomDebugStringConvertible {
     let isItalic: Bool
     let hasUnderline: Bool
     
+    
     init(title: String, range: NSRange, isBold: Bool = false, isItalic: Bool = false, hasUnderline: Bool = false) {
         
         self.title = title
@@ -49,13 +50,15 @@ struct OutlineItem: Equatable, CustomDebugStringConvertible {
         
         return "<\(self): \(self.title)>"
     }
+  
     
-}
-
-func ==(lhs: OutlineItem, rhs: OutlineItem) -> Bool {
-    return lhs.title == rhs.title &&
-        lhs.range == rhs.range &&
-        lhs.isBold == rhs.isBold &&
-        lhs.isItalic == rhs.isItalic &&
-        lhs.hasUnderline == rhs.hasUnderline
+    static func ==(lhs: OutlineItem, rhs: OutlineItem) -> Bool {
+        
+        return lhs.title == rhs.title &&
+            lhs.range == rhs.range &&
+            lhs.isBold == rhs.isBold &&
+            lhs.isItalic == rhs.isItalic &&
+            lhs.hasUnderline == rhs.hasUnderline
+    }
+    
 }
