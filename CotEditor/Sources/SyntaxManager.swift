@@ -90,7 +90,7 @@ final class SyntaxManager: SettingFileManager {
     private var filenameToStyle = [String: StyleName]()
     private var interpreterToStyle = [String: StyleName]()
     
-    private let propertyAccessQueue = DispatchQueue.global()  // for recentStyleNameSet property
+    private let propertyAccessQueue = DispatchQueue(label: "com.coteditor.CotEditor.recentStyleNameSet")  // for recentStyleNameSet property
     
     
     
@@ -185,10 +185,9 @@ final class SyntaxManager: SettingFileManager {
         let dictionary = self.styleDictionary(name: name)
         let style = SyntaxStyle(dictionary: dictionary, name: name)
         
-        let set = self.recentStyleNameSet
         self.propertyAccessQueue.sync {
-            set.remove(name)
-            set.insert(name, at: 0)
+            self.recentStyleNameSet.remove(name)
+            self.recentStyleNameSet.insert(name, at: 0)
         }
         UserDefaults.standard.set(self.recentStyleNames, forKey: DefaultKey.recentStyleNames)
         
