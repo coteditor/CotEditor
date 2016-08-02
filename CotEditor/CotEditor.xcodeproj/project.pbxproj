@@ -476,8 +476,6 @@
 		2AED70EF1D2E36EF006FFBCE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED70ED1D2E36EF006FFBCE /* MainViewController.swift */; };
 		2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */; };
 		2AEDB4201D462EAB0020AD15 /* String+Sandboxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */; };
-		2AEDB4221D4635CD0020AD15 /* Data+Authopen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */; };
-		2AEDB4231D4635CD0020AD15 /* Data+Authopen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */; };
 		2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E21D33C3AB00770BA6 /* Theme.swift */; };
 		2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E21D33C3AB00770BA6 /* Theme.swift */; };
 		2AF073E61D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E51D33CB6F00770BA6 /* ThemeDictionary.swift */; };
@@ -2118,7 +2116,6 @@
 				2AA45A521D2E938500A1A401 /* NavigationBarController.swift in Sources */,
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
-				2AEDB4231D4635CD0020AD15 /* Data+Authopen.swift in Sources */,
 				2A38FB011D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift in Sources */,
 				2AE3F3191D3F8A1F005B8724 /* AttributedString.swift in Sources */,
 				2A9082E31D32456300228F50 /* NSTextView+Layout.swift in Sources */,
@@ -2436,7 +2433,6 @@
 				2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AA45A511D2E938500A1A401 /* NavigationBarController.swift in Sources */,
-				2AEDB4221D4635CD0020AD15 /* Data+Authopen.swift in Sources */,
 				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */,
