@@ -137,6 +137,7 @@
 
 // Reinterpretion failed alert
 "Can not reinterpret." = "konnte nicht wiederinterpretieren.";
+"The document doesn’t have a file to reinterpret." = "Das Dokument hat keine Datei wiederzuinterpretieren.";
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "Die Datei „%@“ konnte mit der neuen Codierung “%@” nicht wiederinterpretiert werden.";
 
 // Incompatible chars alert
@@ -402,6 +403,7 @@
 /* MARK: CESettingFileManager */
 "“%@” couldn’t be deleted." = "„%@“ konnte nicht gelöscht werden.";
 "“%@” couldn’t be imported." = "„%@“ konnte nicht importiert werden.";
+"No original file for “%@” was found." = "Keine Original-Datei für „%@“ wurde gefunden.";
 
 // Setting file name warnings
 "Please choose another name." = "Bitte wählen Sie einen anderen Namen.";

@@ -137,6 +137,7 @@
 
 // Reinterpretion failed alert
 "Can not reinterpret." = "无法再次解释。";
+"The document doesn’t have a file to reinterpret." = "The document doesn’t have a file to reinterpret.";  // FIXME: added
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件“%@”无法使用“%@”编码再次解释。";
 
 // Incompatible chars alert
@@ -400,6 +401,7 @@
 /* MARK: CESettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”无法删除。";
 "“%@” couldn’t be imported." = "“%@”无法导入。";
+"No original file for “%@” was found." = "No original file for “%@” was found.";  // FIXME: added (%@ is a theme name or syntax style name)
 
 // Setting file name warnings
 "Please choose another name." = "请输入其他名称。";

@@ -390,7 +390,7 @@ struct SettingFileError: LocalizedError {
         case .importFailed:
             return String(format: NSLocalizedString("“%@” couldn’t be imported.", comment: ""), self.name)
         case .noSourceFile:
-            return String(format: NSLocalizedString("No original file for “%@” was found.", comment: ""), self.name)  // TODO: localize
+            return String(format: NSLocalizedString("No original file for “%@” was found.", comment: ""), self.name)
         }
     }
     

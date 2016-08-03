@@ -1332,7 +1332,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             
         case .reinterpretationFailed(let fileURL):
             guard let fileURL = fileURL else {
-                return NSLocalizedString("The document doesn't have a file to reinterpret.", comment: "")  // TODO: localize
+                return NSLocalizedString("The document doesn’t have a file to reinterpret.", comment: "")
             }
             return String(format: NSLocalizedString("The file “%@” could not be reinterpreted using the new encoding “%@”.", comment: ""), fileURL.lastPathComponent, self.encodingName)
             
