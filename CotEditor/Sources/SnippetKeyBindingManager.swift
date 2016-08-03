@@ -71,7 +71,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     
     /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
-    /// @param usesFactoryDefaults   YES for default setting and NO for the current setting
+    /// - parameter usesDefaults:   `true` for default setting and `false` for the current setting
     override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
         let dict = usesDefaults ? self.defaultKeyBindingDict : self.keyBindingDict
