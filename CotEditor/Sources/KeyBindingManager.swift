@@ -106,13 +106,14 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     
     
-    // MARK: Superclass Methods
+    // MARK: Setting Manager Methods
     
     /// directory name in both Application Support and bundled Resources
     override var directoryName: String {
         
         return "KeyBindings"
     }
+    
     
     
     // MARK: Abstract Properties/Methods

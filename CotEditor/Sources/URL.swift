@@ -67,7 +67,7 @@ extension URL {
         }
         
         var relativeComponents = [String](repeating: "..", count: parentCount)
-        relativeComponents.append(contentsOf: pathComponents[sameCount..<componentsCount])
+        relativeComponents += pathComponents[sameCount..<componentsCount]
         
         return NSURL.fileURL(withPathComponents: relativeComponents)?.relativePath
     }

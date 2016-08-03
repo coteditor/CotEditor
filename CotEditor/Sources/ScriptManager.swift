@@ -468,10 +468,10 @@ final class ScriptManager: NSObject {
         let outputType = self.scanOutputType(script)
         
         // prepare file path as argument if available
-        var arguments = [String]()
-        if let path = document?.fileURL?.path {
-            arguments.append(path)
-        }
+        let arguments: [String] = {
+            guard let path = document?.fileURL?.path else { return [] }
+            return [path]
+        }()
         
         // create task
         let task: NSUserUnixTask

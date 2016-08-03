@@ -35,13 +35,6 @@ protocol Themable: class {
     var theme: Theme? { get }
 }
 
-
-private enum ThemeError: Error {
-    
-    case novalue
-    case invalid
-}
-
 struct Theme: CustomDebugStringConvertible {
     
     // MARK: Public Properties
@@ -84,7 +77,7 @@ struct Theme: CustomDebugStringConvertible {
         
         func unarchiveColor(subdict: NSMutableDictionary?) throws -> NSColor {
             
-            guard let colorCode = subdict?[ThemeKey.Sub.color.rawValue] as? String else { throw ThemeError.novalue }
+            guard let colorCode = subdict?[ThemeKey.Sub.color.rawValue] as? String else { throw ThemeError.noValue }
             
             var type: ColorCodeType = .invalid
             guard let color = NSColor(colorCode: colorCode, type: &type),
@@ -151,4 +144,14 @@ struct Theme: CustomDebugStringConvertible {
         return self.syntaxColors[type]
     }
     
+}
+
+
+
+// MARK: - Error
+
+private enum ThemeError: Error {
+    
+    case noValue
+    case invalid
 }

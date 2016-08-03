@@ -238,7 +238,7 @@ final class EditorTextView: NSTextView, Themable {
         // do not use this method for programmatical insertion.
         
         // cast NSAttributedString to String in order to make sure input string is plain-text
-        guard var plainString: String = {
+        guard let plainString: String = {
             if let attrString = string as? NSAttributedString {
                 return attrString.string
             }
@@ -297,20 +297,22 @@ final class EditorTextView: NSTextView, Themable {
                 
             // check if insertion point is in a word
             } else if !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)) {
-                switch firstChar {
-                case "[":
-                    plainString = "[]"
-                case "{":
-                    plainString = "{}"
-                case "(":
-                    plainString = "()"
-                case "\"":
-                    plainString = "\"\""
-                default:
-                    break
-                }
-                
-                super.insertText(plainString, replacementRange: replacementRange)
+                let pairedBrackets: String = {
+                    switch firstChar {
+                    case "[":
+                        return "[]"
+                    case "{":
+                        return "{}"
+                    case "(":
+                        return "()"
+                    case "\"":
+                        return "\"\""
+                    default:
+                        return plainString
+                    }
+                }()
+            
+                super.insertText(pairedBrackets, replacementRange: replacementRange)
                 self.setSelectedRange(NSRange(location: self.selectedRange().location - 1, length: 0))
                 
                 // set flag
@@ -411,11 +413,13 @@ final class EditorTextView: NSTextView, Themable {
             return super.insertNewline(sender)
         }
         
-        var indent = ""
-        if indentRange.location != NSNotFound {
-            let baseIndentRange = NSIntersectionRange(indentRange, NSRange(location: 0, length: selectedRange.location))
-            indent = (string as NSString).substring(with: baseIndentRange)
-        }
+        let indent: String = {
+            if indentRange.location != NSNotFound {
+                let baseIndentRange = NSIntersectionRange(indentRange, NSRange(location: 0, length: selectedRange.location))
+                return (string as NSString).substring(with: baseIndentRange)
+            }
+            return ""
+        }()
         
         // calculation for smart indent
         var shouldIncreaseIndentLevel = false
@@ -1134,8 +1138,7 @@ final class EditorTextView: NSTextView, Themable {
         paragraphStyle.lineHeightMultiple = self.lineHeight
         
         // calculate tab interval
-        if let font = self.font, let displayFont = self.layoutManager?.substituteFont(for: font)
-        {
+        if let font = self.font, let displayFont = self.layoutManager?.substituteFont(for: font) {
             paragraphStyle.tabStops = []
             paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * displayFont.advancement(character: " ").width
         }
@@ -1144,9 +1147,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // add paragraph style also to the typing attributes
         //   -> textColor and font are added automatically.
-        var typingAttributes = self.typingAttributes
-        typingAttributes[NSParagraphStyleAttributeName] = paragraphStyle
-        self.typingAttributes = typingAttributes
+        self.typingAttributes[NSParagraphStyleAttributeName] = paragraphStyle
         
         // tell line height also to scroll view so that scroll view can scroll line by line
         if let lineHeight = (self.layoutManager as? LayoutManager)?.lineHeight {
@@ -1394,7 +1395,7 @@ extension EditorTextView {
         // select (syntax-highlighted) quoted text by double-clicking
         if clickedCharacter == "\"" || clickedCharacter == "'" || clickedCharacter == "`" {
             var highlightRange = NotFoundRange
-            let _ = self.layoutManager?.temporaryAttribute(NSForegroundColorAttributeName, atCharacterIndex: wordRange.location, longestEffectiveRange: &highlightRange, in: string.nsRange)
+            _ = self.layoutManager?.temporaryAttribute(NSForegroundColorAttributeName, atCharacterIndex: wordRange.location, longestEffectiveRange: &highlightRange, in: string.nsRange)
             
             let highlightCharacterRange = string.range(from: highlightRange)!
             let firstHighlightIndex = highlightCharacterRange.lowerBound

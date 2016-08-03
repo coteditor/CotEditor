@@ -132,8 +132,8 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: DefaultSettings)
         NSUserDefaultsController.shared().initialValues = DefaultSettings
         
-        // setup text finder (avoid awaking in Interface Builder)
-        let _ = TextFinder.shared
+        // wake text finder up
+        _ = TextFinder.shared
         
         // register transformers
         ValueTransformer.setValueTransformer(HexColorTransformer(), forName: "HexColorTransformer" as NSValueTransformerName)
@@ -260,24 +260,23 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         guard returnCode == NSAlertFirstButtonReturn else { return false }  // = Open as Text File
         
         // import theme
-        var success = true
         do {
             try ThemeManager.shared.importSetting(fileURL: url)
             
         } catch let error {
             // ask whether the old theme should be repleced with new one if the same name theme is already exists
-            success = NSApp.presentError(error)
+            let success = NSApp.presentError(error)
+            
+            guard success else { return true }  // cancelled
         }
         
         // feedback for succession
-        if success {
-            let themeName = ThemeManager.shared.settingName(from: url)
-            let alert = NSAlert()
-            alert.messageText = String(format: NSLocalizedString("A new theme named “%@” has been successfully installed.", comment: ""), themeName)
-            
-            NSSound(named: "Glass")?.play()
-            alert.runModal()
-        }
+        let themeName = ThemeManager.shared.settingName(from: url)
+        let feedbackAlert = NSAlert()
+        feedbackAlert.messageText = String(format: NSLocalizedString("A new theme named “%@” has been successfully installed.", comment: ""), themeName)
+        
+        NSSound(named: "Glass")?.play()
+        feedbackAlert.runModal()
         
         return true
     }

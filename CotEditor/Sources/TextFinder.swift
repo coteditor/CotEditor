@@ -833,7 +833,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         // check regular expression syntax
         if self.usesRegularExpression {
             do {
-                let _ = try NSRegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
+                _ = try NSRegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
             } catch let error {
                 let failureReason: String? = (error as? LocalizedError)?.failureReason
                 let newError = TextFinderError.regularExpression(reason: failureReason)

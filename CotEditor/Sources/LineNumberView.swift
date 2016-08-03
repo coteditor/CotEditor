@@ -129,8 +129,8 @@ final class LineNumberView: NSRulerView {
         context.setFillColor(textColor.cgColor)
         
         // prepare glyphs
-        var dash: UniChar = "-".character(at: 0)
         var wrappedMarkGlyph = CGGlyph()
+        var dash: UniChar = "-".character(at: 0)
         CTFontGetGlyphsForCharacters(font, &dash, &wrappedMarkGlyph, 1)
         
         var digitGlyphs = [CGGlyph](repeating: 0, count: 10)
@@ -258,14 +258,15 @@ final class LineNumberView: NSRulerView {
             glyphIndex = lineCharacterRange.max
             
             // check if line is selected
-            var isSelected = false
-            for selectedRange in selectedLineRanges {
-                if NSLocationInRange(lineRange.location, selectedRange) &&
-                    (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.max == selectedRange.max)) {
-                    isSelected = true
-                    break
+            let isSelected: Bool = {
+                for selectedRange in selectedLineRanges {
+                    if NSLocationInRange(lineRange.location, selectedRange) &&
+                        (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.max == selectedRange.max)) {
+                        return true
+                    }
                 }
-            }
+                return false
+            }()
             
             while (glyphCount < glyphIndex) {  // handle wrapper lines
                 var range = NotFoundRange

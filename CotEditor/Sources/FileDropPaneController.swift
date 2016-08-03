@@ -63,11 +63,9 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         self.loadSetting()
         
         // set localized glossary to view
-        var glossary = ""
-        for token in FileDropComposer.Token.all {
-            glossary += token.rawValue + "\n" + token.localizedDescription + "\n\n"
+        self.glossaryTextView!.string = FileDropComposer.Token.all.reduce("") { (partialResult: String, token: FileDropComposer.Token) in
+            partialResult + token.rawValue + "\n" + token.localizedDescription + "\n\n"
         }
-        self.glossaryTextView!.string = glossary
         
         // setup token menu
         if let menu = self.tokenInsertionMenu?.menu {
@@ -247,14 +245,11 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         let trimSet = CharacterSet(charactersIn: "./ \t\r\n")
         let extensions = extensionsString.components(separatedBy: ",")
-        var sanitizedExtensions = [String]()
         
         // trim
-        for extension_ in extensions {
-            let sanitizedExtension = extension_.trimmingCharacters(in: trimSet)
-            if !sanitizedExtensions.isEmpty {
-                sanitizedExtensions.append(sanitizedExtension)
-            }
+        let sanitizedExtensions: [String] = extensions.flatMap { extension_ in
+            let trimmed = extension_.trimmingCharacters(in: trimSet)
+            return trimmed.isEmpty ? nil : trimmed
         }
         
         guard !sanitizedExtensions.isEmpty else { return "" }

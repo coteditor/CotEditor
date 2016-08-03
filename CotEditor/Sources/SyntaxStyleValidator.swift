@@ -143,7 +143,7 @@ final class SyntaxStyleValidator {
                 
                 if definition.isRegularExpression {
                     do {
-                        let _ = try NSRegularExpression(pattern: definition.beginString)
+                        _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch let error {
                         results.append(StyleError(kind: .regularExpression(error: error),
                                                   type: key,
@@ -153,7 +153,7 @@ final class SyntaxStyleValidator {
                     
                     if let endString = definition.endString {
                         do {
-                            let _ = try NSRegularExpression(pattern: endString)
+                            _ = try NSRegularExpression(pattern: endString)
                         } catch let error {
                             results.append(StyleError(kind: .regularExpression(error: error),
                                                       type: key,
@@ -165,7 +165,7 @@ final class SyntaxStyleValidator {
                 
                 if key == SyntaxKey.outlineMenu.rawValue {
                     do {
-                        let _ = try NSRegularExpression(pattern: definition.beginString)
+                        _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch let error {
                         results.append(StyleError(kind: .regularExpression(error: error),
                                                   type: key,

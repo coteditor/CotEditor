@@ -55,7 +55,7 @@ final class EncodingTableCellView: NSTableCellView {
                                           in: NSRange(location: 0, length: attrString.length),
                                           using: { (value: AnyObject?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
                                             
-                                            let color = value as! NSColor?
+                                            let color = value as? NSColor
                                             var newColor: NSColor?
                                             
                                             if highlighted && color == nil {

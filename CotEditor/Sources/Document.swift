@@ -131,7 +131,7 @@ final class Document: NSDocument, EncodingHolder {
     // FIXME: override convenience initializer
 //     convenience init(contentsOf url: URL, ofType typeName: String) throws {
 //        
-//        super.init(contentsOf: url, ofType: typeName)
+//        try super.init(contentsOf: url, ofType: typeName)
 //        
 //        // [caution] This method may be called from a background thread due to concurrent-opening.
 //        // This method won't be invoked on Resume. (2015-01-26)
@@ -141,7 +141,7 @@ final class Document: NSDocument, EncodingHolder {
 //        
 //        // check file meta data for text orientation
 //        if UserDefaults.standard.bool(forKey: DefaultKey.savesTextOrientation) {
-//            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path!)  // FILE_READ
+//            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
 //            self.isVerticalText = (attributes?[NSFileExtendedAttributes]?[FileExtendedAttributeName.VerticalText] != nil)
 //        }
 //    }
@@ -230,31 +230,33 @@ final class Document: NSDocument, EncodingHolder {
         }
         
         // try reading the `com.apple.TextEncoding` extended attribute
-        var xattrEncoding: String.Encoding?
-        if let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path)[NSFileExtendedAttributes]) as? [String: AnyObject],
-            let xattrEncodingValue = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data {
-            xattrEncoding = xattrEncodingValue.decodeXattrEncoding
-        }
+        let xattrEncoding: String.Encoding? = {
+            guard
+                let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path)[NSFileExtendedAttributes]) as? [String: AnyObject],
+                let xattrEncodingData = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data
+                else { return nil }
+            
+            return xattrEncodingData.decodeXattrEncoding
+        }()
         self.shouldSaveXattr = (xattrEncoding != nil)
         
-        var content: String
-        var usedEncoding: String.Encoding
-        
+        // decode Data to String
+        let content: String
+        let encoding: String.Encoding
         if self.readingEncoding == String.Encoding.autoDetection {
-            (content, usedEncoding) = try self.string(data: data, xattrEncoding: xattrEncoding)
-            
+            (content, encoding) = try self.string(data: data, xattrEncoding: xattrEncoding)
         } else {
-            usedEncoding = self.readingEncoding
+            encoding = self.readingEncoding
             if data.count > 0 {
-                content = try String(contentsOf: url, encoding: self.readingEncoding)  // FILE_READ
+                content = try String(contentsOf: url, encoding: encoding)  // FILE_READ
             } else {
                 content = ""
             }
         }
         
         // set read values
-        self.encoding = usedEncoding
-        self.hasUTF8BOM = (usedEncoding == .utf8) && data.hasUTF8BOM
+        self.encoding = encoding
+        self.hasUTF8BOM = (encoding == .utf8) && data.hasUTF8BOM
         
         if let lineEnding = content.detectedLineEnding {  // keep default if no line endings are found
             self.lineEnding = lineEnding
@@ -377,7 +379,7 @@ final class Document: NSDocument, EncodingHolder {
         // modify place to create backup file
         //   -> save backup file always in `~/Library/Autosaved Information/` directory
         //      (The default backup URL is the same directory as the fileURL.)
-        var newUrl: URL = {
+        let newUrl: URL = {
             guard let fileURL = self.fileURL, saveOperation == .autosaveElsewhereOperation else { return url }
             
             let autosaveDirectoryURL = (DocumentController.shared() as! DocumentController).autosaveDirectoryURL
@@ -388,10 +390,7 @@ final class Document: NSDocument, EncodingHolder {
             // append a unique string to avoid overwriting another backup file with the same file name.
             let fileName = baseFileName + " (\(self.autosaveIdentifier))"
             
-            var newURL = autosaveDirectoryURL.appendingPathComponent(fileName)
-            let pathExtension = fileURL.pathExtension
-            
-            return newURL.appendingPathExtension(pathExtension)
+            return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
         
         super.save(to: newUrl, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
@@ -699,7 +698,7 @@ final class Document: NSDocument, EncodingHolder {
                 self?.notifyExternalFileUpdate()
             case .revert:
                 if let fileURL = self?.fileURL, let fileType = self?.fileType {
-                    let _ = try? self?.revert(toContentsOf: fileURL, ofType: fileType)
+                    try? self?.revert(toContentsOf: fileURL, ofType: fileType)
                 }
             }
         }
@@ -1057,14 +1056,14 @@ final class Document: NSDocument, EncodingHolder {
                             NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
                             
                         case NSAlertSecondButtonReturn:  // = Discard Changes
-                            let _ = try? self.reinterpret(encoding: encoding)
+                            try? self.reinterpret(encoding: encoding)
                             
                         default: break
                         }
                     })
                     
                 } else {
-                    let _ = try? self.reinterpret(encoding: encoding)
+                    try? self.reinterpret(encoding: encoding)
                     
                 }
                 
@@ -1267,7 +1266,7 @@ final class Document: NSDocument, EncodingHolder {
         alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSModalResponse) in
             
             if returnCode == NSAlertSecondButtonReturn { // == Revert
-                let _ = try? self.revert(toContentsOf: fileURL, ofType: self.fileType!)
+                try? self.revert(toContentsOf: fileURL, ofType: self.fileType!)
             }
             
             self.isExternalUpdateAlertShown = false
@@ -1279,6 +1278,7 @@ final class Document: NSDocument, EncodingHolder {
     /// perform didRecoverBlock after recovering presented error
     private var recoverBlock: ((Bool) -> Void)? = nil
     func didPresentErrorWithRecovery(didRecover: Bool, block: UnsafeMutablePointer<Void>) {
+        
         self.recoverBlock?(didRecover)
         self.recoverBlock = nil
     }

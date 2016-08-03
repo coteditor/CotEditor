@@ -93,23 +93,17 @@ final class EncodingManager: NSObject {
     /// return user's encoding priority list
     var defaultEncodings: [String.Encoding?] {
         
-        var encodings: [String.Encoding?] = []
         let encodingNumbers = UserDefaults.standard.array(forKey: DefaultKey.encodingList) as! [NSNumber]
         
-        for encodingNumber in encodingNumbers {
+        return encodingNumbers.map { encodingNumber in
             let cfEncoding = encodingNumber.uint32Value
             
             if cfEncoding == kCFStringEncodingInvalidId {
-                encodings.append(nil)
-                continue
+                return nil
             }
-          
-            let encoding = String.Encoding(cfEncoding: cfEncoding)
             
-            encodings.append(encoding)
+            return String.Encoding(cfEncoding: cfEncoding)
         }
-        
-        return encodings
     }
     
     
@@ -164,22 +158,17 @@ final class EncodingManager: NSObject {
     /// build encoding menu items
     private func buildEncodingMenuItems() {
         
-        var items = [NSMenuItem]()
-        
-        for encoding in self.defaultEncodings {
+        self._menuItems = self.defaultEncodings.map { encoding in
             guard let encoding = encoding else {
-                items.append(NSMenuItem.separator())
-                continue
+                return NSMenuItem.separator()
             }
             
-            let menuTitle = String.localizedName(of: encoding)
-            
-            let item = NSMenuItem(title: menuTitle, action: nil, keyEquivalent: "")
+            let item = NSMenuItem()
+            item.title = String.localizedName(of: encoding)
             item.tag = Int(encoding.rawValue)
-            items.append(item)
+            
+            return item
         }
-        
-        self._menuItems = items
         
         // notify that new encoding menu items was created
         DispatchQueue.main.async { [weak self] in

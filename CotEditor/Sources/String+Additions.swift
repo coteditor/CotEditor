@@ -48,7 +48,7 @@ extension String {
         guard let locationIndex = String.UTF16Index(location).samePosition(in: self) else { return false }
         
         let MaxEscapesCheckLength = 16
-        let seekCharacters = self.substring(to: locationIndex).characters.suffix(MaxEscapesCheckLength)
+        let seekCharacters = self.substring(to: locationIndex).characters.suffix(MaxEscapesCheckLength)  // FIXME: performance critical
         
         var numberOfEscapes = 0
         for character in seekCharacters.reversed() {

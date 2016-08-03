@@ -380,11 +380,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     private func setup(snippets: [String]) {
         
         // wrap with SnippetItem object for Cocoa-Binding
-        var content = [SnippetItem]()
-        for snippet in snippets {
-            content.append(SnippetItem(snippet))
-        }
-        self.snippets = content
+        self.snippets = snippets.map { SnippetItem($0) }
     }
     
 }

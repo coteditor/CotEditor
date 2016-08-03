@@ -111,10 +111,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         self.incompatibleCharacters = incompatibleCharacers
         self.isCharacterAvailable = !incompatibleCharacers.isEmpty
         
-        var ranges = [NSRange]()
-        for incompatible in incompatibleCharacers {
-            ranges.append(incompatible.range)
-        }
+        let ranges = incompatibleCharacers.map { $0.range }
         
         guard let editor = document.editor else { return }
         

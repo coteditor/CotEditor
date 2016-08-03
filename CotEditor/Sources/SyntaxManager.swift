@@ -598,7 +598,7 @@ extension SyntaxManager {
                 return
         }
         
-        let _ = try? self.prepareUserSettingDirectory()
+        try? self.prepareUserSettingDirectory()
         
         guard let URLs = try? FileManager.default.contentsOfDirectory(at: oldDirURL, includingPropertiesForKeys: nil,
                                                                       options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) else { return }
@@ -655,7 +655,7 @@ extension SyntaxManager {
         guard let yamlData = try? YAMLSerialization.yamlData(with: newStyle, options: kYAMLWriteOptionSingleDocument) else { return false }
         
         coordinator.coordinate(writingItemAt: destURL, error: nil) { (newWritingURL) in
-            let _ = try? yamlData.write(to: newWritingURL, options: .atomic)
+            try? yamlData.write(to: newWritingURL, options: .atomic)
         }
         
         return true

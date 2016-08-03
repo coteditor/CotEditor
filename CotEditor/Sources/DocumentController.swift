@@ -77,25 +77,27 @@ final class DocumentController: NSDocumentController {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        var error: DocumentReadError?
-        
-        if UTTypeConformsTo(typeName, kUTTypeImage) && !UTTypeEqual(typeName, kUTTypeScalableVectorGraphics) ||   // SVG is plain-text (except SVGZ)
-            UTTypeConformsTo(typeName, kUTTypeAudiovisualContent) ||
-            UTTypeConformsTo(typeName, kUTTypeGNUZipArchive) ||
-            UTTypeConformsTo(typeName, kUTTypeZipArchive) ||
-            UTTypeConformsTo(typeName, kUTTypeBzip2Archive)
-        {
-            error = DocumentReadError(kind: .binaryFile(type: typeName), url: url)
-        }
-        
-        // display alert if file is enorm large
-        let fileSizeThreshold = UserDefaults.standard.integer(forKey: DefaultKey.largeFileAlertThreshold)
-        if fileSizeThreshold > 0,
-            let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
-            fileSize > fileSizeThreshold
-        {
-            error = DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
-        }
+        let error: DocumentReadError? = {
+            if UTTypeConformsTo(typeName, kUTTypeImage) && !UTTypeEqual(typeName, kUTTypeScalableVectorGraphics) ||   // SVG is plain-text (except SVGZ)
+                UTTypeConformsTo(typeName, kUTTypeAudiovisualContent) ||
+                UTTypeConformsTo(typeName, kUTTypeGNUZipArchive) ||
+                UTTypeConformsTo(typeName, kUTTypeZipArchive) ||
+                UTTypeConformsTo(typeName, kUTTypeBzip2Archive)
+            {
+                return DocumentReadError(kind: .binaryFile(type: typeName), url: url)
+            }
+            
+            // display alert if file is enorm large
+            let fileSizeThreshold = UserDefaults.standard.integer(forKey: DefaultKey.largeFileAlertThreshold)
+            if fileSizeThreshold > 0,
+                let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
+                fileSize > fileSizeThreshold
+            {
+                return DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
+            }
+            
+            return nil
+        }()
         
         // ask user for opening file
         if let error = error {
@@ -167,6 +169,7 @@ final class DocumentController: NSDocumentController {
     
     /// String.Encoding accessor for encodnig user selected in open panel
     var accessorySelectedEncoding: String.Encoding {
+        
         get {
             return String.Encoding(rawValue: self._accessorySelectedEncoding)
         }

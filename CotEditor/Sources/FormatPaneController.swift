@@ -392,13 +392,12 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         let styleNames = SyntaxManager.shared.styleNames
         
-        var styleStates = [[String: AnyObject]]()
-        for styleName in styleNames {
+        let styleStates: [[String: AnyObject]] = styleNames.map { styleName in
             let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
             let isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: styleName)
             
-            styleStates.append([StyleKey.name.rawValue: styleName,
-                                StyleKey.state.rawValue: (!isBundled || isCustomized)])
+            return [StyleKey.name.rawValue: styleName,
+                    StyleKey.state.rawValue: (!isBundled || isCustomized)]
         }
         
         // update installed style list table

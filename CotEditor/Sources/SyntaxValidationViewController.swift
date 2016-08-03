@@ -50,6 +50,7 @@ final class SyntaxValidationViewController: NSViewController {
     // MARK: Public Methods
     
     /// validate style and insert the results to text view (return: if valid)
+    @discardableResult
     func validateSyntax() -> Bool {
         
         guard let style = self.representedObject as? [String: AnyObject] else { return true }
@@ -82,7 +83,7 @@ final class SyntaxValidationViewController: NSViewController {
     /// start syntax style validation
     @IBAction func startValidation(_ sender: AnyObject?) {
         
-        _ = self.validateSyntax()
+        self.validateSyntax()
     }
     
 }

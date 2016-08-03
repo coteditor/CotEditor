@@ -63,7 +63,7 @@ extension String {
     /**
      Return character range for line location/length allowing negative value.
      
-     - Parameters:
+     - parameters:
          - location: Index of the first line in range. The line location starts not with 0 but with 1.
                      Passing 0 to the location will return NSNotFound.
          - length:   Number of lines to include.

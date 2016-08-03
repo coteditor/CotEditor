@@ -33,7 +33,7 @@ extension UserDefaults {
      Returns the CGFloat value associated with the specified key.
      
      - parameters:
-     - key: A key in the current user's defaults database.
+         - key: A key in the current user's defaults database.
      
      - returns: The CGFloat value associated with the specified key. If the key does not exist, this method returns 0.
      */

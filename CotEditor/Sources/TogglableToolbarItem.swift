@@ -32,6 +32,7 @@ final class TogglableToolbarItem: NSToolbarItem {
     // MARK: Public Properties
     
     var state: Int = NSOnState {
+        
         didSet {
             let base = self.image!.name()!.components(separatedBy: "_").first!
             let suffix = (state == NSOnState) ? "On" : "Off"
