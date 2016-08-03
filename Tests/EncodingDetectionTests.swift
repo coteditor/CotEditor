@@ -225,6 +225,7 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
+    
     // MARK: Private Methods
     
     func encodedStringForFileName(_ fileName: String, usedEncoding: inout String.Encoding?) -> String? {

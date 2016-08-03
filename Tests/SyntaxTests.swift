@@ -42,7 +42,9 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
     var outlineParseExpectation: XCTestExpectation?
     
     
+    
     override func setUp() {
+        
         super.setUp()
         
         let bundle = Bundle(for: self.dynamicType)
@@ -64,6 +66,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
     
     
     func testNoneSytle() {
+        
         let style = SyntaxStyle(dictionary: nil, name: "foo")
         
         XCTAssertEqual(style.styleName, "foo")
@@ -75,6 +78,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
     
     
     func testXMLSytle() {
+        
         guard let style = self.htmlStyle else { return }
         
         XCTAssertEqual(style.styleName, "HTML")
@@ -87,6 +91,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
     
     
     func testOutlineParse() {
+        
         guard let style = self.htmlStyle, let source = self.htmlSource else { return }
         
         // create dummy textView
@@ -104,6 +109,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
     
     
     func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]?) {
+        
         self.outlineParseExpectation?.fulfill()
         
         XCTAssertEqual(outlineItems?.count, 3)

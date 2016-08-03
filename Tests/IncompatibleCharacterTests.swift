@@ -32,6 +32,7 @@ import XCTest
 final class IncompatibleCharacterTests: XCTestCase {
     
     func testIncompatibleCharacterScan() {
+        
         let string = "abc\\ \n ¥ \n ~"
         let encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)))
         let incompatibles = string.scanIncompatibleCharacters(for: encoding)

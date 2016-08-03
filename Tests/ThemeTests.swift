@@ -39,6 +39,7 @@ class ThemeTests: XCTestCase {
     
     
     override func setUp() {
+        
         super.setUp()
         
         self.bundle = Bundle(for: self.dynamicType)
@@ -46,6 +47,7 @@ class ThemeTests: XCTestCase {
     
 
     func testDefaultTheme() {
+        
         let themeName = "Dendrobates"
         let theme = self.loadThemeWithName(themeName)!
         
@@ -66,6 +68,7 @@ class ThemeTests: XCTestCase {
     
     
     func testDarkTheme() {
+        
         let themeName = "Solarized (Dark)"
         let theme = self.loadThemeWithName(themeName)!
         
@@ -75,6 +78,7 @@ class ThemeTests: XCTestCase {
     
     
     func testFail() {
+        
         // zero-length theme name is invalid
         XCTAssertNil(Theme(dictionary: [:], name: ""))
         
@@ -88,6 +92,7 @@ class ThemeTests: XCTestCase {
     
     /// test if all of bundled themes are valid
     func testBundledThemes() {
+        
         let themeDirectoryURL = self.bundle?.url(forResource: ThemeDirectoryName, withExtension: nil)!
         let enumerator = FileManager.default.enumerator(at: themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles], errorHandler: nil)!
         
@@ -105,6 +110,7 @@ class ThemeTests: XCTestCase {
     // MARK: Private Methods
     
     func loadThemeWithName(_ name: String) -> Theme? {
+        
         let url = self.bundle?.url(forResource: name, withExtension: ThemeExtension, subdirectory: ThemeDirectoryName)
         
         return self.loadThemeWithURL(url!)
@@ -112,6 +118,7 @@ class ThemeTests: XCTestCase {
     
     
     func loadThemeWithURL(_ url: URL) -> Theme? {
+        
         let data = try? Data(contentsOf: url)
         let jsonDict = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! ThemeDictionary
         let themeName = url.deletingPathExtension().lastPathComponent
