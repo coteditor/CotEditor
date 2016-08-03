@@ -118,8 +118,8 @@
 /* Class = "NSToolbarItem"; ObjectID = "7dM-wh-XeA"; */
 "7dM-wh-XeA.label" = "Umfärben";  /* Re-Color */
 "7dM-wh-XeA.paletteLabel" = "Alles umfärben";  /* Re-Color All */
-"7dM-wh-XeA.toolTip" = "Ganze Dokument umfärben";  /* Re-color whole document */
+"7dM-wh-XeA.toolTip" = "Ganzes Dokument umfärben";  /* Re-color whole document */
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */
-"hXt-K8-Jwk.ibShadowedToolTip" = "Diese Dokument ist nur zum Lesen.";
+"hXt-K8-Jwk.ibShadowedToolTip" = "Dieses Dokument ist schreibgeschützt.";

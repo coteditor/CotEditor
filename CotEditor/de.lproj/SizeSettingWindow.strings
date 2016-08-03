@@ -26,10 +26,10 @@
  */
 
 /* Class = "NSWindow"; title = "Sample Window for Size"; ObjectID = "127"; */
-"127.title" = "Probefenster zur Größe";
+"127.title" = "Standardgröße-Probefenster";
 
 /* Class = "NSTextFieldCell"; title = "Resize this window.\nThe size of this window will be set as default."; ObjectID = "3399"; */
-"3399.title" = "Ändern Sie die Größe dieses Fensters.\nSie wird als Standard festgelegt werden.";
+"3399.title" = "Ändern Sie die Größe dieses Fensters.\nSie wird als Standardgröße festgelegt werden.";
 
 /* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
 "3402.title" = "Breite:";
@@ -37,6 +37,6 @@
 "3403.title" = "Höhe:";
 
 /* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
-"3397.title" = "Auf Standard zurücksetzen";
+"3397.title" = "Standardgröße festlegen";
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3398"; */
 "3398.title" = "Abbrechen";

@@ -26,13 +26,13 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "s4R-ch-kDY"; */
-"s4R-ch-kDY.title" = "Kurzbefehls für Einfügung des voreingestellten Textes";
+"s4R-ch-kDY.title" = "Kurzbefehle zum Einsetzen vordefinierter Texte";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "150"; */
-"150.title" = "Zum Ändern einer Tastenbelegung wählen Sie ihn aus, klicken auf die Taste-Spalte und dann geben die Tasten ein.";
+"150.title" = "Zum Ändern eines Kurzbefehls wählen Sie ihn aus, klicken in die Taste-Spalte und drücken die Tasten.";
 
 /* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "s9U-jR-zQQ"; */
-"s9U-jR-zQQ.title" = "Die Tasten hier dürfen keine Command-Taste umfassen.";
+"s9U-jR-zQQ.title" = "Keine der Tasten darf die Command-Taste sein.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "88"; */
 "88.headerCell.title" = "Aktion";

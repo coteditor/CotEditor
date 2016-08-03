@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "Neue Dokument öffnen:";
+"zDW-aW-9G8.title" = "Neues Dokument öffnen:";
 
 /* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
 "3298.title" = "Beim Start";
@@ -40,35 +40,35 @@
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "Automatische Sicherung mit Versionen aktivieren";
 /* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
-"sOa-Ea-zt9.title" = "Eine Funktion des Systems, die Ihre Dateien während der Bearbeitung automatisch überschreibt. Selbst wenn es nicht aktiviert, erstellt CotEditor Backups heimlich für den unerwarteten Absturz.";
+"sOa-Ea-zt9.title" = "Eine Systemfunktion, die Ihre Dateien während der Bearbeitung automatisch überschreibt. Auch wenn sie nicht aktiviert ist, erstellt CotEditor verdeckt Backups für den Fall eines unerwarteten Absturzes.";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "Nachfolgende Leerzeichen beim Speichern entfernen";
+"noP-hx-YeQ.title" = "Leerzeichen am Zeilenende beim Speichern entfernen";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "Wenn Dokument durch ein anderes Programm geändert wird:";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "DnS-XJ-7RI"; */
-"DnS-XJ-7RI.title" = "Auflage CotEditors erhalten";
+"DnS-XJ-7RI.title" = "CotEditors Version behalten";
 /* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
-"1qS-Ay-sca.title" = "Erfragen, wie zu lösen";
+"1qS-Ay-sca.title" = "Nachfragen";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
-"FWi-En-qeX.title" = "Zur geänderten Auflage aktualisieren";
+"FWi-En-qeX.title" = "Auf geänderte Version aktualisieren";
 
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "Programm:";
 
 /* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
-"3307.title" = "Suchbegriff mit anderen Programmen teilen";
+"3307.title" = "Suchbegriffe mit anderen Programmen teilen";
 /* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
-"3309.title" = "Einträge des Skripte-Menüs ins Kontextmenü entfalten";
+"3309.title" = "Einträge des Skript-Menüs ins Kontextmenü entfalten";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
-"3306.title" = "Zeilenumbruch als Zeichen zählen";
+"3306.title" = "Zeilenumbrüche als Zeichen zählen";
 /* Class = "NSButtonCell"; title = "Link URLs"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "URLs verlinken";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "Rechtschreibung während der Texteingabe prüfen";
+"3300.title" = "Rechtschreibung während der Eingabe prüfen";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "Übereinstimmende Klammern „()“ „[]“ „{}“ hervorheben";
 /* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
@@ -76,13 +76,13 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
-"geU-63-sAC.title" = "Programmaktualisierung:";
+"geU-63-sAC.title" = "Aktualisierung:";
 
 /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
-"3423.title" = "Aktualisierungen automatisch prüfen";
+"3423.title" = "Automatisch nach Aktualisierungen suchen";
 
 /* Class = "NSButtonCell"; title = "Include pre-releases"; ObjectID = "4aT-ka-sbv"; */
-"4aT-ka-sbv.title" = "Pre-Releases enthalten";
+"4aT-ka-sbv.title" = "Vorabversionen einschließen";
 
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
-"chR-VY-cuI.title" = "Unabhängig von diesem Einstellung werden neue Pre-Releases während der Verwendung einer Pre-Release immer enthalten.";
+"chR-VY-cuI.title" = "Beim Verwenden einer Vorabversion werden ungeachtet dieser Einstellung immer nach neuen Vorabversionen gesucht.";

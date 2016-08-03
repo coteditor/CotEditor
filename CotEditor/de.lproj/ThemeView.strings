@@ -30,7 +30,7 @@
 /* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "Ljk-ky-fQH"; */
 "Ljk-ky-fQH.title" = "Cursor:";
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "IGx-p1-FHi"; */
-"IGx-p1-FHi.title" = "Unsichtbaren:";
+"IGx-p1-FHi.title" = "Unsichtbares:";
 /* Class = "NSTextFieldCell"; title = "Background:"; ObjectID = "tvj-DS-DVt"; */
 "tvj-DS-DVt.title" = "Hintergrund:";
 /* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "yMW-lO-ILw"; */
@@ -66,7 +66,7 @@
 "AIG-rr-79V.title" = "Kommentare:";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show theme file info"; ObjectID = "8zj-4c-Hg4"; */
-"8zj-4c-Hg4.ibShadowedToolTip" = "Info der Themadatei einblenden";
+"8zj-4c-Hg4.ibShadowedToolTip" = "Info der Thema-Datei einblenden";
 
 
 
@@ -89,4 +89,4 @@
 "r9S-sB-zfs.ibShadowedIsNilPlaceholder" = "Nicht definiert";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "Usu-Br-G0a"; */
-"Usu-Br-G0a.ibShadowedToolTip" = "Zur URL springen";
+"Usu-Br-G0a.ibShadowedToolTip" = "URL öffnen";

@@ -36,27 +36,27 @@
 "cTg-d4-zlT.title" = "Die folgenden Migrationen wurden erfolgreich abgeschlossen.";
 
 /* Class = "NSTextFieldCell"; title = "Reset menu key bindings setting."; ObjectID = "BA1-Y2-S7m"; */
-"BA1-Y2-S7m.title" = "Einstellung der Menü-Tastenbelegungen zurückgesetzt";
+"BA1-Y2-S7m.title" = "Einstellung der Menü-Tastenbelegungen zurückgesetzt.";
 /* Class = "NSTextFieldCell"; title = "The settings for menu key bindings have been once restored."; ObjectID = "hk3-rs-RMV"; */
 "hk3-rs-RMV.title" = "Die Einstellungen für die Menü-Tastenbelegungen wurden einmal zurückgesetzt.";
 
 
 /* Class = "NSTextFieldCell"; title = "Migrate coloring settings."; ObjectID = "6hO-yA-SXq"; */
-"6hO-yA-SXq.title" = "Färbungseinstellungen migriert";
+"6hO-yA-SXq.title" = "Färbungseinstellungen migriert.";
 /* Class = "NSTextFieldCell"; title = "An custom theme has been created from the previous user setting."; ObjectID = "wdy-J5-ddL"; */
-"wdy-J5-ddL.title" = "Ein benutzerdefiniretes Thema hat aus der vorherigen Einstellung erstellt.";
+"wdy-J5-ddL.title" = "Ein benutzerdefiniertes Thema wurde aus der vorherigen Einstellung erstellt.";
 
 /* Class = "NSTextFieldCell"; title = "Migrate user syntax styles."; ObjectID = "D4s-ma-Iiu"; */
-"D4s-ma-Iiu.title" = "Benutzer-Syntaxstile migriert";
+"D4s-ma-Iiu.title" = "Benutzer-Syntaxstile migriert.";
 /* Class = "NSTextFieldCell"; title = "The format for syntax style files has been changed from plist to YAML."; ObjectID = "2tb-Wh-X18"; */
 "2tb-Wh-X18.title" = "Das Format für die Syntaxstil-Dateien wurde von plist zu YAML geändert.";
 
 /* Class = "NSTextFieldCell"; title = "In some cases, user needs additonal manual migrations."; ObjectID = "X8Q-Ji-HKU"; */
-"X8Q-Ji-HKU.title" = "In einigen Fällen muss Benutzer zusätzliche Migrationen manuell durchführen.";
+"X8Q-Ji-HKU.title" = "In einigen Fällen müssen zusätzliche Migrationen manuell durchführt werden.";
 /* Class = "NSButton"; ibShadowedToolTip = "See “Specification Changes on CotEditor 2.0” on Help"; ObjectID = "qdh-QQ-qcp"; */
-"qdh-QQ-qcp.ibShadowedToolTip" = "Siehe „Technische Änderungen an CotEditor 2.0“ in der Hilfe";
+"qdh-QQ-qcp.ibShadowedToolTip" = "Siehe „Technische Änderungen in CotEditor 2.0“ in der Hilfe";
 
 /* Class = "NSTextFieldCell"; title = "Learn new features on CotEditor 2.0."; ObjectID = "8u8-rr-so0"; */
-"8u8-rr-so0.title" = "Neue Features von CotEditor 2.0 lernen.";
+"8u8-rr-so0.title" = "Neue Features von CotEditor 2.0 kennenlernen.";
 /* Class = "NSButton"; ibShadowedToolTip = "See “What’s New in CotEditor 2.0” on Help"; ObjectID = "hGz-yb-qTP"; */
 "hGz-yb-qTP.ibShadowedToolTip" = "Siehe „Was ist neu in CotEditor 2.0“ in der Hilfe";
