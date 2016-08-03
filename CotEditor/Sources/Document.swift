@@ -393,7 +393,9 @@ final class Document: NSDocument, EncodingHolder {
             return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
         
-        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
+        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [weak self] (error: Error?) in
+            guard let `self` = self else { return }
+            
             // [note] This completionHandler block will always be invoked on the main thread.
          
             defer {
@@ -1035,7 +1037,9 @@ final class Document: NSDocument, EncodingHolder {
         alert.addButton(withTitle: NSLocalizedString("Reinterpret", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         
-        alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
+            guard let `self` = self else { return }
+            
             switch returnCode {
             case NSAlertFirstButtonReturn:  // = Convert
                 self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
@@ -1263,7 +1267,8 @@ final class Document: NSDocument, EncodingHolder {
         self.windowForSheet?.orderFront(self)
         
         // display alert
-        alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
+            guard let `self` = self else { return }
             
             if returnCode == NSAlertSecondButtonReturn { // == Revert
                 try? self.revert(toContentsOf: fileURL, ofType: self.fileType!)

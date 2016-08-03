@@ -756,11 +756,11 @@ final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDel
     private var isAutoTabExpandEnabled: Bool {
         
         get {
-            if let textView = self.focusedTextView {
-                return textView.isAutomaticTabExpansionEnabled
-            } else {
+            guard let textView = self.focusedTextView else {
                 return UserDefaults.standard.bool(forKey: DefaultKey.autoExpandTab)
             }
+            
+            return textView.isAutomaticTabExpansionEnabled
         }
         
         set (isAutoTabExpandEnabled) {

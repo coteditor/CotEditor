@@ -263,7 +263,6 @@ final class ThemeManager: SettingFileManager {
     override func updateCache(completionHandler: (() -> Void)? = nil) {
         
         DispatchQueue.global().async { [weak self] in
-            
             guard let `self` = self else { return }
             
             let userDirURL = self.userSettingDirectoryURL
