@@ -52,22 +52,15 @@ extension URL {
         let basePathComponents = baseURL.pathComponents ?? []
         
         var sameCount = 0
-        var parentCount = 0
-        let componentsCount = pathComponents.count
-        let baseComponentsCount = basePathComponents.count
-        
         for (baseComponent, component) in zip(basePathComponents, pathComponents) {
-            if baseComponent == component {
-                sameCount += 1
-                continue
-            }
+            guard baseComponent == component else { break }
             
-            parentCount = baseComponentsCount - sameCount - 1
-            break
+            sameCount += 1
         }
         
+        let parentCount =  basePathComponents.count - sameCount - 1
         var relativeComponents = [String](repeating: "..", count: parentCount)
-        relativeComponents += pathComponents[sameCount..<componentsCount]
+        relativeComponents += pathComponents[sameCount..<pathComponents.count]
         
         return NSURL.fileURL(withPathComponents: relativeComponents)?.relativePath
     }
