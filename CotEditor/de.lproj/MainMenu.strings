@@ -113,7 +113,7 @@
 "169.title" = "Bearbeiten";
 
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "158"; */
-"158.title" = "Wiederrufen";
+"158.title" = "Widerrufen";
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "173"; */
 "173.title" = "Wiederholen";
 
@@ -122,7 +122,7 @@
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "157"; */
 "157.title" = "Kopieren";
 /* Class = "NSMenuItem"; title = "Copy as Rich Text"; ObjectID = "j3t-7l-xSy"; */
-"j3t-7l-xSy.title" = "Als formatierten Text Kopieren";
+"j3t-7l-xSy.title" = "Als formatierten Text kopieren";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Einsetzen";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
@@ -135,9 +135,9 @@
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "Backslash eingeben";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
-"633.title" = "Yen Zeichen eingeben";
+"633.title" = "Yen-Zeichen eingeben";
 /* Class = "NSMenuItem"; title = "Input Char in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Zeichen im Unicode Hex eingeben …";
+"tWx-pj-3PL.title" = "Zeichen in Unicode-Hex eingeben …";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Rechtschreibung und Grammatik";
@@ -204,7 +204,7 @@
 "613.title" = "Symbolleiste anpassen …";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
-"681.title" = "Navigationleiste einblenden";
+"681.title" = "Navigationsleiste einblenden";
 /* Class = "NSMenuItem"; title = "Show Line Numbers"; ObjectID = "323"; */
 "323.title" = "Zeilennummern einblenden";
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
@@ -268,7 +268,7 @@
 /* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "424"; */
 "424.title" = "Schriften einblenden";
 /* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "405"; */
-"405.title" = "Großer";
+"405.title" = "Größer";
 /* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "404"; */
 "404.title" = "Kleiner";
 /* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
@@ -348,7 +348,7 @@
 "sFn-3j-pY5.title" = "Zeile löschen";
 
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
-"hBJ-Ge-278.title" = "Nachfolgende Leerzeichen entfernen";
+"hBJ-Ge-278.title" = "Leerzeichen am Zeilenende entfernen";
 
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
 "GXo-ds-ygp.title" = "Transformationen";
@@ -368,9 +368,9 @@
 "594.title" = "Katakana zu Hiragana";
 
 /* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
-"600.title" = "Unicode Normalisierungen";
+"600.title" = "Unicode-Normalisierungen";
 /* Class = "NSMenuItem"; title = "Unicode Normalization"; ObjectID = "599"; */
-"599.title" = "Unicode Normalisierungen";
+"599.title" = "Unicode-Normalisierungen";
 
 /* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
 "601.title" = "NFD";
@@ -417,7 +417,7 @@
 /* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "NwE-Cf-L9F"; */
 "NwE-Cf-L9F.title" = "Weitersuchen";
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
-"wiV-Hh-7xU.title" = "Weitersuchen (Rückwärts)";
+"wiV-Hh-7xU.title" = "Weitersuchen (rückwärts)";
 /* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
 "l33-Nz-UAw.title" = "Auswahl suchen";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
@@ -445,7 +445,7 @@
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "Vorherigen Gliederungspunkt auswählen";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
-"PWZ-Om-OhX.title" = "Nächsten Gliederungspunkt  auswählen";
+"PWZ-Om-OhX.title" = "Nächsten Gliederungspunkt auswählen";
 
 /* Class = "NSMenuItem"; title = "Go To…"; ObjectID = "eIc-Sj-2mO"; */
 "eIc-Sj-2mO.title" = "Gehe zu …";
@@ -502,7 +502,7 @@
 /* Class = "NSMenu"; title = "CotEditor Scripting Manual"; ObjectID = "OLa-Mb-rXS"; */
 "OLa-Mb-rXS.title" = "CotEditor-Skripthandbuch";
 /* Class = "NSMenuItem"; title = "About Script Menu Folder"; ObjectID = "u2o-8v-WPL"; */
-"u2o-8v-WPL.title" = "Über Skripts-Ordner";
+"u2o-8v-WPL.title" = "Über Skript-Ordner";
 /* Class = "NSMenuItem"; title = "Scripting with AppleScript"; ObjectID = "GRD-OA-psD"; */
 "GRD-OA-psD.title" = "Skriptschreiben mit AppleScript";
 /* Class = "NSMenuItem"; title = "Scripting with Other Languages"; ObjectID = "zKW-b0-WR1"; */

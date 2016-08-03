@@ -1,25 +1,25 @@
 
-Füllen Sie die folgende Vorlage, und posten Sie sie auf [GitHub Issues](https://github.com/coteditor/CotEditor/issues) oder senden Sie uns an <coteditor.github@gmail.com>. Bitte beachten Sie, dass der Inhalt der gesendeten E-Mail auf einer Issue-Seite geteilt werden darf.
+Füllen Sie die folgende Vorlage aus und posten Sie sie auf [GitHub Issues](https://github.com/coteditor/CotEditor/issues) oder senden Sie sie uns an <coteditor.github@gmail.com>. Bitte beachten Sie, dass der Inhalt der gesendeten E-Mail auf einer Issue-Seite geteilt werden könnte.
 
 -----------------------------------------------
 
-## Environment
+## Umgebung
 
 - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
 - System: OS X %SYSTEM_VERSION%
-- Language: German
+- Sprache: German
 
 
-## Short Description
+## Kurzbeschreibung
 
-<!-- Setzen Sie hier Ihren Kommentar -->
-
-
-## Steps to Reproduce the Issue
-
-<!-- Setzen Sie hier Ihren Kommentar -->
+<!-- Schreiben Sie hier Ihren Kommentar -->
 
 
-## Expected Result
+## Schritte zur Reproduktion
 
-<!-- Setzen Sie hier Ihren Kommentar -->
+<!-- Schreiben Sie hier Ihren Kommentar -->
+
+
+## Erwartetes Ergebnis
+
+<!-- Schreiben Sie hier Ihren Kommentar -->

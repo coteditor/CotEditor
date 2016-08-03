@@ -1,11 +1,11 @@
 <<<ABSOLUTE-PATH>>>
-Der Absolute Pfad der abgelegten Datei.
+Der absolute Pfad der abgelegten Datei.
 
 <<<RELATIVE-PATH>>>
-Der Relative Pfad zwischen der abgelegten Datei und der Dokument.
+Der relative Pfad zwischen der abgelegten Datei und dem Dokument.
 
 <<<FILENAME>>>
-Der Name der abgelegten Datei Suffix inklusive (falls es existiert).
+Der Name der abgelegten Datei inklusive Suffix (falls es existiert).
 
 <<<FILENAME-NOSUFFIX>>>
 Der Name der abgelegten Datei ohne Suffix.
@@ -20,10 +20,10 @@ Das Suffix der abgelegten Datei (in Kleinbuchstaben umgewandelt).
 Das Suffix der abgelegten Datei (in Großbuchstaben umgewandelt).
 
 <<<DIRECTORY>>>
-Der Übergeordnete Ordnername der abgelegten Datei.
+Der übergeordnete Ordnername der abgelegten Datei.
 
 <<<IMAGEWIDTH>>>
-Die Bildbreite (Gültig, nur wenn die abgelegte Datei ein Bild ist).
+Die Bildbreite (nur wenn die abgelegte Datei ein Bild ist).
 
 <<<IMAGEHEIGHT>>>
-Die Bildhöhe (Gültig, nur wenn die abgelegte Datei ein Bild ist).
+Die Bildhöhe (nur wenn die abgelegte Datei ein Bild ist).

@@ -133,13 +133,13 @@
 /* Class = "NSToolbarItem"; ObjectID = "qhr-mN-25W"; */
 "qhr-mN-25W.label" = "Umfärben";  /* Re-Color */
 "qhr-mN-25W.paletteLabel" = "Alles umfärben";  /* Re-Color All */
-"qhr-mN-25W.toolTip" = "Ganze Dokument umfärben";  /* Re-color whole document */
+"qhr-mN-25W.toolTip" = "Ganzes Dokument umfärben";  /* Re-color whole document */
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "EP1-My-tQo"; */
-"EP1-My-tQo.ibShadowedToolTip" = "Diese Dokument ist nur zum Lesen.";
+"EP1-My-tQo.ibShadowedToolTip" = "Dieses Dokument ist nur zum Lesen.";
 
 
 /* Class = "NSSegmentedCell"; ObjectID = "TPz-kb-PBa"; */
-"TPz-kb-PBa.ibShadowedToolTips[0]" = "Dokument Informationen";  /* Document Inspector */
+"TPz-kb-PBa.ibShadowedToolTips[0]" = "Dokument-Informationen";  /* Document Inspector */
 "TPz-kb-PBa.ibShadowedToolTips[1]" = "Inkompatible Zeichen";  /* Incompatible Characters */

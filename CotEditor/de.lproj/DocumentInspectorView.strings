@@ -39,7 +39,7 @@
 /* Class = "NSTextFieldCell"; title = "Permission"; ObjectID = "N0Y-nO-k3L"; */
 "N0Y-nO-k3L.title" = "Zugriffsrechte";
 /* Class = "NSTextFieldCell"; title = "Full Path"; ObjectID = "zwU-xo-iZu"; */
-"zwU-xo-iZu.title" = "Voll. Pfad";
+"zwU-xo-iZu.title" = "Vollst. Pfad";
 
 
 /* Class = "NSTextFieldCell"; title = "Text Settings"; ObjectID = "8KW-Mc-cRX"; */
@@ -65,7 +65,7 @@
 /* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
 "tZ6-05-eKf.title" = "Wörter";
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
-"ERr-yA-dIa.title" = "Ort";
+"ERr-yA-dIa.title" = "Position";
 /* Class = "NSTextFieldCell"; title = "Current Line"; ObjectID = "f9g-dQ-g3K"; */
 "f9g-dQ-g3K.title" = "Aktuelle Zeile";
 /* Class = "NSTextFieldCell"; title = "Column"; ObjectID = "Wwr-gI-HPc"; */
@@ -81,4 +81,4 @@
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
 "786-4C-69e.ibShadowedIsNilPlaceholder" = "Nicht ausgewählt";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to show Unicode information."; ObjectID = "2ZU-Mi-aJz"; */
-"2ZU-Mi-aJz.ibShadowedToolTip" = "Wählen Sie genau ein Zeichen, um Unicode-Information einzublenden";
+"2ZU-Mi-aJz.ibShadowedToolTip" = "Wählen Sie ein einzelnes Zeichen aus, um Unicode-Information einzublenden";

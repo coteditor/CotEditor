@@ -27,7 +27,7 @@
 
 // Document Types
 "Text document" = "Text-Dokument";
-"Plain text" = "Plain-Text";
+"Plain text" = "Reiner Text";
 "CotEditor Theme" = "CotEditor-Thema";
 "BibTeX" = "BibTeX";
 "Configuration" = "Konfiguration";
@@ -44,7 +44,7 @@
 "Document Type Definition" = "Dokumenttypdefinition";
 "Go script" = "Go-Skript";
 "Haskell script" = "Haskell-Skript";
-"HTML document" = "HTML-Text";
+"HTML document" = "HTML-Dokument";
 "INI" = "INI";
 "Java source" = "Java-Quellcode";
 "JavaScript" = "JavaScript";
