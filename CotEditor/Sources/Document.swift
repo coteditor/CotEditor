@@ -682,9 +682,7 @@ final class Document: NSDocument, EncodingHolder {
         guard fileHash != self.fileHash else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
             // If not, an alert shows up when user saves the file.
-            if let currentFileModificationDate = self.fileModificationDate,
-                fileModificationDate?.compare(currentFileModificationDate) == .orderedDescending
-            {
+            if self.fileModificationDate < fileModificationDate {
                 self.fileModificationDate = fileModificationDate
             }
             return

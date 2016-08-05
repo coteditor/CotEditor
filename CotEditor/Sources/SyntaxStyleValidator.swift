@@ -110,20 +110,10 @@ final class SyntaxStyleValidator {
             
             // sort for duplication check
             definitions.sort {
-                var result = $0.beginString.compare($1.beginString)
-                guard result == .orderedSame else {
-                    return result == .orderedAscending
+                guard $0.beginString == $1.beginString else {
+                    return $0.beginString < $1.beginString
                 }
-                if let end0 = $0.endString, let end1 = $1.endString {
-                    return end0.compare(end1) == .orderedAscending
-                }
-                if $0.endString != nil {
-                    return true
-                }
-                if $1.endString != nil {
-                    return false
-                }
-                return true
+                return $0.endString < $1.endString
             }
             
             for definition in definitions {
