@@ -146,8 +146,8 @@ final class DocumentController: NSDocumentController {
         openPanel.showsHiddenFiles = self.showsHiddenFiles
         openPanel.treatsFilePackagesAsDirectories = self.showsHiddenFiles
         // ->  bind showsHiddenFiles flag with openPanel (for El capitan and leter)
-        openPanel.bind(#keyPath(showsHiddenFiles), to: self, withKeyPath: #keyPath(showsHiddenFiles), options: nil)
-        openPanel.bind(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories), to: self, withKeyPath: #keyPath(showsHiddenFiles), options: nil)
+        openPanel.bind(#keyPath(showsHiddenFiles), to: self, withKeyPath: #keyPath(showsHiddenFiles))
+        openPanel.bind(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories), to: self, withKeyPath: #keyPath(showsHiddenFiles))
         
         // run non-modal open panel
         super.beginOpenPanel(openPanel, forTypes: inTypes) { [weak self] (result: Int) in

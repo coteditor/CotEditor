@@ -74,8 +74,7 @@ final class SyntaxTermsEditViewController: NSViewController {
         
         self.termsController!.bind(NSContentArrayBinding,
                                    to: self,
-                                   withKeyPath: "representedObject." + self.syntaxType.rawValue,
-                                   options: nil)
+                                   withKeyPath: "representedObject." + self.syntaxType.rawValue)
     }
     
 }

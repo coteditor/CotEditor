@@ -67,7 +67,7 @@ final class EncodingManager: NSObject {
         
         self.buildEncodingMenuItems()
         
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.encodingList, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.encodingList, context: nil)
     }
     
     
