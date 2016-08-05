@@ -101,12 +101,12 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     func feedURLString(for updater: SUUpdater!) -> String! {
         
         // force checking beta if the currently runnning one is a beta.
-        var checksBeta = false
-        if self.isPrerelease {
-            checksBeta = true
-        } else {
-            checksBeta = UserDefaults.standard.bool(forKey: DefaultKey.checksUpdatesForBeta)
-        }
+        let checksBeta: Bool = {
+            if self.isPrerelease {
+                return true
+            }
+            return UserDefaults.standard.bool(forKey: DefaultKey.checksUpdatesForBeta)
+        }()
         
         let appCast: AppCastURL = checksBeta ? .beta : .stable
         
