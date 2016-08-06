@@ -81,6 +81,8 @@ final class TextSelection: NSObject {
     required init(document: Document) {
         
         self.document = document
+        
+        super.init()
     }
     
     

@@ -40,6 +40,8 @@ final class MappingConflict: NSObject {
         self.name = name
         self.primaryStyle = primaryStyle
         self.doubledStyles = doubledStyles
+        
+        super.init()
     }
 }
 

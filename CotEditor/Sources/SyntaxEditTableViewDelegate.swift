@@ -125,7 +125,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
             guard rowView.isSelected else { return }
             
             if let view = rowView.view(atColumn: columnIndex) as? NSTableCellView {
-                view.objectValue?.setValue(NSNumber(booleanLiteral: isChecked), forKey: identifier)
+                view.objectValue?.setValue(NSNumber(value: isChecked), forKey: identifier)
             }
         }
     }

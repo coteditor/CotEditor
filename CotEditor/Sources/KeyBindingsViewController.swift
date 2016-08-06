@@ -49,8 +49,11 @@ final class SnippetItem : NSObject {
     
     dynamic var text: String
     
-    init(_ text: String) {
+    required init(_ text: String) {
+        
         self.text = text
+        
+        super.init()
     }
 }
 

@@ -27,7 +27,7 @@
 
 import Cocoa
 
-@objc protocol UnicodeInputReceiver: class  {
+@objc protocol UnicodeInputReceiver: class {
     
     func insertUnicodeCharacter(_ sender: UnicodeInputPanelController)
 }
