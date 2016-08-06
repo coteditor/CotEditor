@@ -157,9 +157,7 @@ final class InspectorTabView: NSTabView {
     /// update private control position
     private func invalidateControlPosition() {
         
-        var frame = self.segmentedControl.frame
-        frame.origin.x = floor((self.frame.width - frame.width) / 2)
-        self.segmentedControl.frame = frame
+        self.segmentedControl.frame.origin.x = floor((self.frame.width - self.segmentedControl.frame.width) / 2)
     }
     
     

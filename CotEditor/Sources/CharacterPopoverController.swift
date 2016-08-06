@@ -46,7 +46,7 @@ final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
     // MARK: Lifecycle
     
     /// default initializer (singleString must be a single character (or a surrogate-pair). If not, return nil.)
-    init?(character: String) {
+    required init?(character: String) {
         
         guard let info = CharacterInfo(string: character) else { return nil }
         

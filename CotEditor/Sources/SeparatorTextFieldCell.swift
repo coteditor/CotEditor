@@ -31,11 +31,10 @@ final class SeparatorTextFieldCell: NSTextFieldCell {
     
     // MARK: Private Properties
     
-    private static let SeparatorString = "-"
-    
     /// whether it is a separator item
     var isSeparator: Bool {
-        return self.stringValue == SeparatorTextFieldCell.SeparatorString
+        
+        return self.stringValue == String.separator
     }
     
     

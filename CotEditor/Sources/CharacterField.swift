@@ -32,8 +32,8 @@ final class CharacterField: NSTextField {
     // MARK: Text Field Methods
     
     /// determine size
-    override var intrinsicContentSize: NSSize
-    {
+    override var intrinsicContentSize: NSSize {
+        
         var size = super.intrinsicContentSize
         let bounds = self.attributedStringValue.boundingRect(with: size, options: .usesFontLeading)
         

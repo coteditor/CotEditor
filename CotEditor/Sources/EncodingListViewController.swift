@@ -89,13 +89,13 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         // styled encoding name
         let encoding = String.Encoding(cfEncoding: cfEncoding)
         let encodingName = String.localizedName(of: encoding)
+        let attrEncodingName = NSAttributedString(string: encodingName)
+        
         let ianaName = (CFStringConvertEncodingToIANACharSetName(cfEncoding) ?? "-") as String
+        let attrIanaName = NSAttributedString(string: " : " + ianaName,
+                                              attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor])
         
-        var attrString = NSAttributedString(string: encodingName)
-        attrString = attrString + NSAttributedString(string: " : " + ianaName,
-                                                     attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor])
-        
-        textField.attributedStringValue = attrString
+        textField.attributedStringValue = attrEncodingName + attrIanaName
     }
     
     
@@ -103,16 +103,17 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         // update enability of "Delete Separator" button
-        for index in self.tableView!.selectedRowIndexes.sorted() {
-            let encoding = self.encodings[index].uint32Value
-            
-            if encoding == kCFStringEncodingInvalidId {
-                self.deleteSeparatorButton?.isEnabled = true
-                return
+        self.deleteSeparatorButton?.isEnabled = {
+            for index in self.tableView!.selectedRowIndexes.sorted() {
+                let encoding = self.encodings[index].uint32Value
+                
+                if encoding == kCFStringEncodingInvalidId {
+                    return true
+                }
             }
-        }
-        
-        self.deleteSeparatorButton?.isEnabled = false
+            
+            return false
+        }()
     }
     
     
