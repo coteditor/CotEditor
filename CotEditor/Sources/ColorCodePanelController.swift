@@ -93,7 +93,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         var codeType: ColorCodeType = .invalid
         guard let color = NSColor(colorCode: sanitizedCode, type: &codeType) else { return }
         
-        UserDefaults.standard.set(codeType.rawValue, forKey: DefaultKey.colorCodeType)
+        self.selectedCodeType = codeType
         self.panel?.color = color
     }
     
@@ -132,7 +132,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         // make positoin of accessory view center
         if let superview = panel.accessoryView?.superview {
             superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[accessory]|",
-                                                                    metrics: [:],
+                                                                    metrics: nil,
                                                                     views: ["accessory": panel.accessoryView!]))
         }
         
@@ -178,11 +178,14 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     /// update color code in the field
     @IBAction func updateCode(_ sender: AnyObject?) {
         
-        let codeType = ColorCodeType(rawValue: UserDefaults.standard.integer(forKey: DefaultKey.colorCodeType)) ?? .hex
-        var color = self.color
-        if let unsafeColor = color, ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(unsafeColor.colorSpace) {
-            color = unsafeColor.usingColorSpaceName(NSCalibratedRGBColorSpace)
-        }
+        let codeType = self.selectedCodeType
+        let color: NSColor? = {
+            if let colorSpace = self.color?.colorSpace, ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(colorSpace) {
+                return self.color?.usingColorSpaceName(NSCalibratedRGBColorSpace)
+            }
+            return self.color
+        }()
+        
         var code = color?.colorCode(type: codeType)
         
         // keep lettercase if current Hex code is uppercase
@@ -191,6 +194,21 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         }
         
         self.colorCode = code
+    }
+    
+    
+    
+    // MARK: Private Accessors
+    
+    /// current color code type selection
+    private var selectedCodeType: ColorCodeType {
+        
+        get {
+            return ColorCodeType(rawValue: UserDefaults.standard.integer(forKey: DefaultKey.colorCodeType)) ?? .hex
+        }
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: DefaultKey.colorCodeType)
+        }
     }
     
 }
