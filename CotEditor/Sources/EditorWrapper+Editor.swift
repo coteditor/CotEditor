@@ -83,7 +83,7 @@ extension EditorWrapper {
     /// selected range in focused text view
     var selectedRange: NSRange {
         get {
-            guard let textView = self.focusedTextView else { return NotFoundRange }
+            guard let textView = self.focusedTextView else { return .notFound }
             
             return textView.string!.convert(range: textView.selectedRange(),
                                             from: .LF, to: self.document?.lineEnding ?? .LF)

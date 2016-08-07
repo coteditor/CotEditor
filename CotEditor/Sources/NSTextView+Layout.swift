@@ -82,7 +82,7 @@ extension NSTextView {
             self.minSize = scrollView.contentSize.scaled(to: 1.0 / scale)
             
             // ensure text layout
-            layoutManager.ensureLayout(forCharacterRange: self.string?.nsRange ?? NotFoundRange)
+            layoutManager.ensureLayout(forCharacterRange: self.string?.nsRange ?? .notFound)
             layoutManager.ensureLayout(for: textContainer)
             self.sizeToFit()
             

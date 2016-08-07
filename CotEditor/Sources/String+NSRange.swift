@@ -61,7 +61,11 @@ extension String {
 }
 
 
+
 extension NSRange: Equatable {
+    
+    static let notFound = NSRange(location: NSNotFound, length: 0)
+    
     
     /// syntax sugar of NSMaxRange
     var max: Int {
@@ -78,12 +82,21 @@ extension NSRange: Equatable {
 }
 
 
+
 extension NSString {
     
     var range: NSRange {
         
         return NSRange(location: 0, length: self.length)
     }
+    
+    
+    /// line range containing a given location
+    func lineRange(at location: Int) -> NSRange {
+        
+        return self.lineRange(for: NSRange(location: location, length: 0))
+    }
+    
     
     
     /// line range adding ability to exclude last line ending character if exists
@@ -100,8 +113,4 @@ extension NSString {
         
         return lineRange
     }
-    
 }
-
-
-let NotFoundRange = NSRange(location: NSNotFound, length: 0)

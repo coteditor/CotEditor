@@ -75,7 +75,7 @@ final class FindPanelTextView: NSTextView {
     override func becomeFirstResponder() -> Bool {
         
         // select whole string on focus (standard NSTextField behavior)
-        self.setSelectedRange(self.string?.nsRange ?? NotFoundRange)
+        self.setSelectedRange(self.string?.nsRange ?? .notFound)
         
         return super.becomeFirstResponder()
     }

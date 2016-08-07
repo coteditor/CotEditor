@@ -123,7 +123,7 @@ final class SyntaxHighlightParseOperation: Operation {
     // MARK: Public Properties
     
     var string: String?
-    var parseRange: NSRange = NotFoundRange
+    var parseRange: NSRange = .notFound
     
     let progress: Progress
     private(set) var results = [SyntaxType: [NSRange]]()

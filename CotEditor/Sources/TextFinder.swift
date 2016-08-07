@@ -447,7 +447,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         guard let textView = self.client else { return }
         
         textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName,
-                                                         forCharacterRange: textView.string?.nsRange ?? NotFoundRange)
+                                                         forCharacterRange: textView.string?.nsRange ?? .notFound)
     }
     
     

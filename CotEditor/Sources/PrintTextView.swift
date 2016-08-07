@@ -172,12 +172,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 }
                 
                 let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-                let lineRange = (string as NSString).lineRange(for: NSRange(location: charIndex, length: 0))  // get NSRange
+                let lineRange = (string as NSString).lineRange(at: charIndex)  // get NSRange
                 let lineCharacterRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
                 glyphIndex = lineCharacterRange.max
                 
                 while glyphCount < glyphIndex {  // handle wrapped lines
-                    var range = NotFoundRange
+                    var range = NSRange.notFound
                     let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphCount, effectiveRange: &range, withoutAdditionalLayout: true)
                     let isWrappedLine = (lastLineNumber == lineNumber)
                     lastLineNumber = lineNumber

@@ -444,7 +444,7 @@ extension SyntaxStyle {
             if let layoutManager = textStorage.layoutManagers.first {
                 var start = highlightRange.location
                 var end = highlightRange.max - 1
-                var effectiveRange = NotFoundRange
+                var effectiveRange = NSRange.notFound
                 
                 if start <= bufferLength {
                     start = 0

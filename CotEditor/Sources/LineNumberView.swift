@@ -115,7 +115,6 @@ final class LineNumberView: NSRulerView {
             string.length > 0 else { return }
         
         let length = string.length
-        let textColor = self.textColor
         let scale = textView.scale
         
         // set graphics context
@@ -129,7 +128,7 @@ final class LineNumberView: NSRulerView {
         
         context.setFont(self.LineNumberFont)
         context.setFontSize(fontSize)
-        context.setFillColor(textColor.cgColor)
+        context.setFillColor(self.textColor.cgColor)
         
         // prepare glyphs
         var wrappedMarkGlyph = CGGlyph()
@@ -259,7 +258,7 @@ final class LineNumberView: NSRulerView {
                 lineNumber += 1
             }
             let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            let lineRange = string.lineRange(for: NSRange(location: charIndex, length: 0))  // get NSRange
+            let lineRange = string.lineRange(at: charIndex)  // get NSRange
             let lineCharacterRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
             glyphIndex = lineCharacterRange.max
             
@@ -275,7 +274,7 @@ final class LineNumberView: NSRulerView {
             }()
             
             while (glyphCount < glyphIndex) {  // handle wrapper lines
-                var range = NotFoundRange
+                var range = NSRange.notFound
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphCount, effectiveRange: &range, withoutAdditionalLayout: true)
                 let isWrappedLine = (lastLineNumber == lineNumber)
                 lastLineNumber = lineNumber
@@ -496,8 +495,8 @@ extension LineNumberView {
         // select lines
         let currentIndex = textView.characterIndex(for: point)
         let clickedIndex = draggingInfo?.index ?? currentIndex
-        let currentLineRange = string.lineRange(for: NSRange(location: currentIndex, length: 0))
-        let clickedLineRange = string.lineRange(for: NSRange(location: clickedIndex, length: 0))
+        let currentLineRange = string.lineRange(at: currentIndex)
+        let clickedLineRange = string.lineRange(at: clickedIndex)
         var range = NSUnionRange(currentLineRange, clickedLineRange)
         
         let affinity: NSSelectionAffinity = (currentIndex < clickedIndex) ? .upstream : .downstream

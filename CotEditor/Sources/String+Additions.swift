@@ -27,6 +27,13 @@
 
 extension String {
     
+    /// range of the line containing a given index
+    func lineRange(at index: Index) -> Range<Index> {
+        
+        return self.lineRange(for: index..<index)
+    }
+    
+    
     /// line range adding ability to exclude last line ending character if exists
     func lineRange(for range: Range<Index>, excludingLastLineEnding: Bool) -> Range<Index> {
         

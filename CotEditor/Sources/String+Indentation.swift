@@ -126,7 +126,7 @@ extension String {
         
         let index = String.UTF16Index(location).samePosition(in: self)!
         
-        let lineRange = self.lineRange(for: index..<index)
+        let lineRange = self.lineRange(at: index)
         var column = self.distance(from: lineRange.lowerBound, to: index)
         
         // count tab width
@@ -141,7 +141,7 @@ extension String {
     /// range of indent characters in line at the location
     func rangeOfIndent(at location: Int) -> NSRange {
         
-        let lineRange = (self as NSString).lineRange(for: NSRange(location: location, length: 0))
+        let lineRange = (self as NSString).lineRange(at: location)
         
         return (self as NSString).range(of: "^[ \\t]+", options: .regularExpression, range: lineRange)
     }
@@ -150,7 +150,7 @@ extension String {
     /// range of indent characters in line at the location
     func rangeOfIndent(at index: String.Index) -> Range<String.Index>? {
         
-        let lineRange = self.lineRange(for: index..<index)
+        let lineRange = self.lineRange(at: index)
         
         return self.range(of: "^[ \\t]+", options: .regularExpression, range: lineRange)
     }

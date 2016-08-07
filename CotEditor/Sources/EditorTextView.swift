@@ -338,7 +338,7 @@ final class EditorTextView: NSTextView, Themable {
             let wholeString = self.string,
             let insretionIndex = String.UTF16Index(self.selectedRange().max).samePosition(in: wholeString)
         {
-            let lineRange = wholeString.lineRange(for: insretionIndex..<insretionIndex)
+            let lineRange = wholeString.lineRange(at: insretionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
             if wholeString.range(of: "^[ \\t]+\\n?$", options: .regularExpression, range: lineRange) != nil {
@@ -982,7 +982,7 @@ final class EditorTextView: NSTextView, Themable {
             if let layoutManager = self.layoutManager {
                 var characterIndex = selectedRange.location
                 while characterIndex < selectedRange.max {
-                    var effectiveRange = NotFoundRange
+                    var effectiveRange = NSRange.notFound
                     guard let color = layoutManager.temporaryAttribute(NSForegroundColorAttributeName,
                                                                        atCharacterIndex: characterIndex,
                                                                        longestEffectiveRange: &effectiveRange,
@@ -1394,7 +1394,7 @@ extension EditorTextView {
         
         // select (syntax-highlighted) quoted text by double-clicking
         if clickedCharacter == "\"" || clickedCharacter == "'" || clickedCharacter == "`" {
-            var highlightRange = NotFoundRange
+            var highlightRange = NSRange.notFound
             _ = self.layoutManager?.temporaryAttribute(NSForegroundColorAttributeName, atCharacterIndex: wordRange.location, longestEffectiveRange: &highlightRange, in: string.nsRange)
             
             let highlightCharacterRange = string.range(from: highlightRange)!

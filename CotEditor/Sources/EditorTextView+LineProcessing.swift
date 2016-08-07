@@ -57,7 +57,7 @@ extension EditorTextView {
         for lineRange in lineRanges {
             let string = textStorage.string as NSString
             
-            let upperLineRange = string.lineRange(for: NSRange(location: lineRange.location - 1, length: 0))
+            let upperLineRange = string.lineRange(at: lineRange.location - 1)
             var lineString = string.substring(with: lineRange)
             var upperLineString = string.substring(with: upperLineRange)
             
@@ -124,7 +124,7 @@ extension EditorTextView {
         for lineRange in lineRanges.reversed() {
             let string = textStorage.string as NSString
             
-            var lowerLineRange = string.lineRange(for: NSRange(location: lineRange.max, length: 0))
+            var lowerLineRange = string.lineRange(at: lineRange.max)
             var lineString = string.substring(with: lineRange)
             var lowerLineString = string.substring(with: lowerLineRange)
             
