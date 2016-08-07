@@ -34,16 +34,24 @@ private enum AppCastURL {
     case stable
     case beta
     
+    static let host = "https://coteditor.com/"
+    
     
     /// URL for app cast
     var URL: String {
-        let host = "https://coteditor.com/"
+        
+        return AppCastURL.host + self.filename
+    }
+    
+    
+    /// filename of app cast
+    private var filename: String {
         
         switch self {
         case .stable:
-            return host + "appcast.xml"
+            return "appcast.xml"
         case .beta:
-            return host + "appcast-beta.xml"
+            return "appcast-beta.xml"
         }
     }
 }
@@ -58,13 +66,14 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     
     static let shared = UpdaterManager()
     
+    
     /// Is the running app a pre-release version?
     let isPrerelease: Bool = {
         
         let version = AppInfo.shortVersion
         let digitSet = CharacterSet(charactersIn: "0123456789.")
         
-        // pre-releases contain non-digit letter
+        // pre-release version contains non-digit letter
         return (version.rangeOfCharacter(from: digitSet.inverted) != nil)
     }()
     
@@ -82,12 +91,14 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
         updater.delegate = self
         
         // insert "Check for Updates…" menu item
-        let menuItem = NSMenuItem(title: NSLocalizedString("Check for Updates…", comment: ""), action: #selector(SUUpdater.checkForUpdates(_:)), keyEquivalent: "")
-        menuItem.target = updater
-        
-        if let applicationMenu = MainMenu.application.menu {
-            applicationMenu.insertItem(menuItem, at: 1)
+        guard let applicationMenu = MainMenu.application.menu else {
+            preconditionFailure("no menu can be found to attach update menu item.")
         }
+        let menuItem = NSMenuItem(title: NSLocalizedString("Check for Updates…", comment: ""),
+                                  action: #selector(SUUpdater.checkForUpdates),
+                                  keyEquivalent: "")
+        menuItem.target = updater
+        applicationMenu.insertItem(menuItem, at: 1)
         
         // lock update check interval to daily
         updater.updateCheckInterval = 60 * 60 * 24
