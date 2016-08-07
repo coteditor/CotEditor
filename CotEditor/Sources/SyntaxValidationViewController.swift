@@ -73,7 +73,7 @@ final class SyntaxValidationViewController: NSViewController {
         
         self.result = message
         
-        return errors.count == 0
+        return errors.isEmpty
     }
     
     

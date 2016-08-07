@@ -421,7 +421,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 
                 indicator.done(buttonTitle: nil)
                 
-                if highlights.count == 0 {
+                if highlights.isEmpty {
                     NSBeep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }

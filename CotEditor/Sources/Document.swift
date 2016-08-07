@@ -247,7 +247,7 @@ final class Document: NSDocument, EncodingHolder {
             (content, encoding) = try self.string(data: data, xattrEncoding: xattrEncoding)
         } else {
             encoding = self.readingEncoding
-            if data.count > 0 {
+            if !data.isEmpty {
                 content = try String(contentsOf: url, encoding: encoding)  // FILE_READ
             } else {
                 content = ""
