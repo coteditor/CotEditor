@@ -106,17 +106,18 @@ final class FileDropComposer {
         
         let pathExtension = droppedFileURL.pathExtension
         
-        guard var dropText = self.template(forExtension: pathExtension) else { return nil }
+        guard let template = self.template(forExtension: pathExtension) else { return nil }
         
         // replace template
-        dropText = dropText.replacingOccurrences(of: Token.absolutePath.rawValue, with: droppedFileURL.path)
-        dropText = dropText.replacingOccurrences(of: Token.relativePath.rawValue, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
-        dropText = dropText.replacingOccurrences(of: Token.filename.rawValue, with: droppedFileURL.lastPathComponent)
-        dropText = dropText.replacingOccurrences(of: Token.filenameWithoutExtension.rawValue, with: droppedFileURL.deletingPathExtension().lastPathComponent)
-        dropText = dropText.replacingOccurrences(of: Token.fileExtension.rawValue, with: pathExtension)
-        dropText = dropText.replacingOccurrences(of: Token.fileExtensionLowercase.rawValue, with: pathExtension.lowercased())
-        dropText = dropText.replacingOccurrences(of: Token.fileExtensionUppercase.rawValue, with: pathExtension.uppercased())
-        dropText = dropText.replacingOccurrences(of: Token.directory.rawValue, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
+        var dropText = template
+            .replacingOccurrences(of: Token.absolutePath.rawValue, with: droppedFileURL.path)
+            .replacingOccurrences(of: Token.relativePath.rawValue, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
+            .replacingOccurrences(of: Token.filename.rawValue, with: droppedFileURL.lastPathComponent)
+            .replacingOccurrences(of: Token.filenameWithoutExtension.rawValue, with: droppedFileURL.deletingPathExtension().lastPathComponent)
+            .replacingOccurrences(of: Token.fileExtension.rawValue, with: pathExtension)
+            .replacingOccurrences(of: Token.fileExtensionLowercase.rawValue, with: pathExtension.lowercased())
+            .replacingOccurrences(of: Token.fileExtensionUppercase.rawValue, with: pathExtension.uppercased())
+            .replacingOccurrences(of: Token.directory.rawValue, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
         
         // get image dimension if needed
         //   -> Use NSImageRep because NSImage's `size` returns an DPI applied size.
@@ -125,8 +126,9 @@ final class FileDropComposer {
             imageRep = NSImageRep(contentsOf: newURL)
         }
         if let imageRep = imageRep {
-            dropText = dropText.replacingOccurrences(of: Token.imageWidth.rawValue, with: String(imageRep.pixelsWide))
-            dropText = dropText.replacingOccurrences(of: Token.imageHeight.rawValue, with: String(imageRep.pixelsHigh))
+            dropText = dropText
+                .replacingOccurrences(of: Token.imageWidth.rawValue, with: String(imageRep.pixelsWide))
+                .replacingOccurrences(of: Token.imageHeight.rawValue, with: String(imageRep.pixelsHigh))
         }
         
         return dropText

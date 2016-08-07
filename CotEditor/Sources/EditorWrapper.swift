@@ -319,12 +319,14 @@ final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDel
             if UserDefaults.standard.bool(forKey: DefaultKey.detectsIndentStyle),
                 let indentStyle = document.textStorage.string.detectedIndentStyle
             {
-                switch indentStyle {
-                case .tab:
-                    self.isAutoTabExpandEnabled = false
-                case .space:
-                    self.isAutoTabExpandEnabled = true
-                }
+                self.isAutoTabExpandEnabled = {
+                    switch indentStyle {
+                    case .tab:
+                        return false
+                    case .space:
+                        return true
+                    }
+                }()
             }
             
             document.textStorage.delegate = self

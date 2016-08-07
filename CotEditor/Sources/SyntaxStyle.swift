@@ -176,7 +176,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
                     let word = definition.beginString.trimmingCharacters(in: .whitespacesAndNewlines)
                     guard
                         let firstChar = word.unicodeScalars.first,
-                        !word.isEmpty && definition.endString == nil && !definition.isRegularExpression else { continue }
+                        definition.endString == nil && !definition.isRegularExpression else { continue }
                     
                     completionWords.append(word)
                     firstCharSet.update(with: firstChar)
@@ -184,16 +184,8 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
             }
         }
         // keep results
-        if !completionWords.isEmpty {
-            self.completionWords = completionWords.sorted()
-        } else {
-            self.completionWords = nil
-        }
-        if !firstCharSet.isEmpty {
-            self.firstCompletionCharacterSet = firstCharSet
-        } else {
-            self.firstCompletionCharacterSet = nil
-        }
+        self.completionWords = !completionWords.isEmpty ? completionWords.sorted() : nil
+        self.firstCompletionCharacterSet = !firstCharSet.isEmpty ? firstCharSet : nil
         
         // create characerSet dict for simple word highlights
         self.simpleWordsCharacterSets = {

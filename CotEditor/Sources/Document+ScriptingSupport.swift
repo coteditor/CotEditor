@@ -101,17 +101,18 @@ extension Document {
             }
         }
         set (lineEndingChar) {
-            let type: LineEnding
-            switch lineEndingChar {
-            case OSALineEnding.LF:
-                type = .LF
-            case OSALineEnding.CR:
-                type = .CR
-            case OSALineEnding.CRLF:
-                type = .CRLF
-            default:
-                type = .LF
-            }
+            let type: LineEnding = {
+                switch lineEndingChar {
+                case OSALineEnding.LF:
+                    return .LF
+                case OSALineEnding.CR:
+                    return .CR
+                case OSALineEnding.CRLF:
+                    return .CRLF
+                default:
+                    return .LF
+                }
+            }()
             self.changeLineEnding(to: type)
         }
     }

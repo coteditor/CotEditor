@@ -171,17 +171,14 @@ private func sanitize(blockName: String) -> String
     // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
     //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
     
-    var sanitized = blockName
-    
-    sanitized = sanitized.replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
-    sanitized = sanitized.replacingOccurrences(of: "Extension-", with: "Ext. ")
-    sanitized = sanitized.replacingOccurrences(of: " And ", with: " and ")
-    sanitized = sanitized.replacingOccurrences(of: " For ", with: " for ")
-    sanitized = sanitized.replacingOccurrences(of: " Mathematical ", with: " Math ")
-    sanitized = sanitized.replacingOccurrences(of: "Supplementary ", with: "Supp. ")
-    sanitized = sanitized.replacingOccurrences(of: "Latin 1", with: "Latin-1")  // only for "Latin-1
-    
-    return sanitized
+    return blockName
+        .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
+        .replacingOccurrences(of: "Extension-", with: "Ext. ")
+        .replacingOccurrences(of: " And ", with: " and ")
+        .replacingOccurrences(of: " For ", with: " for ")
+        .replacingOccurrences(of: " Mathematical ", with: " Math ")
+        .replacingOccurrences(of: "Supplementary ", with: "Supp. ")
+        .replacingOccurrences(of: "Latin 1", with: "Latin-1")  // only for "Latin-1
 }
 
 

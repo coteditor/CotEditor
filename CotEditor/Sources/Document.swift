@@ -1238,8 +1238,8 @@ final class Document: NSDocument, EncodingHolder {
         NotificationCenter.default.removeObserver(self, name: .NSApplicationDidBecomeActive, object: nil)
         
         guard let fileURL = self.fileURL,
-            self.needsShowUpdateAlertWithBecomeKey &&
-                !self.isExternalUpdateAlertShown  // do nothing if alert is already shown
+            self.needsShowUpdateAlertWithBecomeKey,
+            !self.isExternalUpdateAlertShown  // do nothing if alert is already shown
             else { return }
         
         let messageText: String = {

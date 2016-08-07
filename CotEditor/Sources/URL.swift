@@ -58,11 +58,11 @@ extension URL {
             sameCount += 1
         }
         
-        let parentCount =  basePathComponents.count - sameCount - 1
-        var relativeComponents = [String](repeating: "..", count: parentCount)
-        relativeComponents += pathComponents[sameCount..<pathComponents.count]
+        let parentCount = basePathComponents.count - sameCount - 1
+        let sameComponents = [String](repeating: "..", count: parentCount)
+        let diffComponents = pathComponents[sameCount..<pathComponents.count]
         
-        return NSURL.fileURL(withPathComponents: relativeComponents)?.relativePath
+        return NSURL.fileURL(withPathComponents: sameComponents + diffComponents)?.relativePath
     }
     
 }

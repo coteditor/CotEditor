@@ -43,7 +43,7 @@ final class ConsolePanelController: NSWindowController {
     
     private let messageParagraphStyle: NSParagraphStyle = {
         // indent for message body
-        var paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.headIndent = ConsoleFontSize
         paragraphStyle.firstLineHeadIndent = ConsoleFontSize
         return paragraphStyle
