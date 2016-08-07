@@ -98,24 +98,27 @@ final class LineNumberView: NSRulerView {
                                       to: NSPoint(x: dirtyRect.maxX, y: self.frame.maxY - 0.5))
         }
         
-        self.drawHashMarksAndLabels(in: dirtyRect)
-        
         NSGraphicsContext.restoreGraphicsState()
+        
+        self.drawHashMarksAndLabels(in: dirtyRect)
     }
     
     
     /// draw line numbers
     override func drawHashMarksAndLabels(in rect: NSRect) {
         
-        guard let textView = self.textView, let string = textView.string as NSString?, string.length > 0 else { return }
+        guard
+            let textView = self.textView,
+            let string = textView.string as NSString?,
+            let layoutManager = textView.layoutManager,
+            let context = NSGraphicsContext.current()?.cgContext,
+            string.length > 0 else { return }
         
         let length = string.length
         let textColor = self.textColor
-        let layoutManager = textView.layoutManager!
-        let scale = textView.convert(NSMakeSize(1.0, 1.0), to: nil).width
+        let scale = textView.scale
         
         // set graphics context
-        let context = NSGraphicsContext.current()!.cgContext
         context.saveGState()
         
         // setup font
@@ -161,7 +164,7 @@ final class LineNumberView: NSRulerView {
             // use the line number of whole string, namely the possible largest line number
             // -> The view width depends on the number of digits of the total line numbers.
             //    It's quite dengerous to change width of line number view on scrolling dynamically.
-            let digits = max(numberOfDigits(in: self.totalNumberOfLines), self.MinNumberOfDigits)
+            let digits = max(self.totalNumberOfLines.numberOfDigits, self.MinNumberOfDigits)
             ruleThickness = max(CGFloat(digits) * charWidth + 3 * lineNumberPadding, self.MinVerticalThickness)
         }
         ruleThickness = ceil(ruleThickness)
@@ -181,16 +184,12 @@ final class LineNumberView: NSRulerView {
         context.textMatrix = transform
         
         // get multiple selections
-        var selectedLineRanges = [NSRange]()
-        for rangeValue in textView.selectedRanges {
-            let selectedLineRange = string.lineRange(for: rangeValue.rangeValue)
-            selectedLineRanges.append(selectedLineRange)
-        }
+        let selectedLineRanges: [NSRange] = textView.selectedRanges.map { string.lineRange(for: $0.rangeValue) }
         
         /// draw line number block
         func drawLineNumber(_ lineNumber: Int, y: CGFloat, isBold: Bool) {
             
-            let digit = numberOfDigits(in: lineNumber)
+            let digit = lineNumber.numberOfDigits
             
             // calculate base position
             var position: CGPoint = {
@@ -205,7 +204,7 @@ final class LineNumberView: NSRulerView {
             var glyphs = [CGGlyph]()
             var positions = [CGPoint]()
             for index in 0..<digit {
-                let num = number(at: index, number: lineNumber)
+                let num = lineNumber.number(at: index)
                 position.x -= charWidth
                 
                 positions.append(position)
@@ -223,6 +222,13 @@ final class LineNumberView: NSRulerView {
                 // back to the regular font
                 context.setFont(self.LineNumberFont)
             }
+        }
+        
+        /// draw wrapped mark (-)
+        func drawWrappedMark(y: CGFloat) {
+            
+            let position = CGPoint(x: ruleThickness - charWidth, y: y)
+            context.showGlyphs([wrappedMarkGlyph], atPositions: [position], count: 1)
         }
         
         /// draw ticks block for vertical text
@@ -253,7 +259,7 @@ final class LineNumberView: NSRulerView {
                 lineNumber += 1
             }
             let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            let lineRange = string.lineRange(for: NSMakeRange(charIndex, 0))  // get NSRange
+            let lineRange = string.lineRange(for: NSRange(location: charIndex, length: 0))  // get NSRange
             let lineCharacterRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
             glyphIndex = lineCharacterRange.max
             
@@ -280,8 +286,7 @@ final class LineNumberView: NSRulerView {
                 let y = scale * -lineRect.minY
                 
                 if isWrappedLine {
-                    var position = CGPoint(x: ruleThickness - charWidth, y: y)
-                    context.showGlyphs(&wrappedMarkGlyph, atPositions: &position, count: 1)  // draw wrapped mark
+                    drawWrappedMark(y: y)
                     
                 } else {  // new line
                     if isVerticalText {
@@ -302,9 +307,8 @@ final class LineNumberView: NSRulerView {
             let isSelected: Bool = {
                 if let lastSelectedRange = selectedLineRanges.last {
                     return (lastSelectedRange.length == 0) && (length == lastSelectedRange.max)
-                } else {
-                    return false
                 }
+                return false
             }()
             let y = scale * -lineRect.minY
             
@@ -403,19 +407,23 @@ final class LineNumberView: NSRulerView {
 
 
 
-// MARK: Private C Functions
+// MARK: Private Int helpers
 
-/// digits of input number
-private func numberOfDigits(in number: Int) -> Int {
+private extension Int {
     
-    return Int(log10(Double(number))) + 1
-}
-
-
-/// number at the desired place of input number
-private func number(at place: Int, number: Int) -> Int {
+    /// number of digits
+    var numberOfDigits: Int {
+        
+        return Int(log10(Double(self))) + 1
+    }
     
-    return ((number % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place))))
+    
+    /// number at the desired place
+    func number(at place: Int) -> Int {
+        
+        return ((self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place))))
+    }
+    
 }
 
 

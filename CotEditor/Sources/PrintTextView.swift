@@ -172,7 +172,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 }
                 
                 let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-                let lineRange = (string as NSString).lineRange(for: NSMakeRange(charIndex, 0))  // get NSRange
+                let lineRange = (string as NSString).lineRange(for: NSRange(location: charIndex, length: 0))  // get NSRange
                 let lineCharacterRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
                 glyphIndex = lineCharacterRange.max
                 
