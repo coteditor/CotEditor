@@ -138,7 +138,7 @@ final class LineNumberView: NSRulerView {
         CTFontGetGlyphsForCharacters(font, numbers, &digitGlyphs, 10)
         
         // calc character width as monospaced font
-        var advance = CGSize()
+        var advance = CGSize.zero
         CTFontGetAdvancesForGlyphs(font, .horizontal, &digitGlyphs[8], &advance, 1)  // use '8' to get width
         let charWidth = advance.width
         
@@ -170,7 +170,7 @@ final class LineNumberView: NSRulerView {
         }
         
         // adjust text drawing coordinate
-        let relativePoint = self.convert(NSPoint(), from: textView)
+        let relativePoint = self.convert(NSPoint.zero, from: textView)
         let inset = textView.textContainerOrigin
         var transform = CGAffineTransform(scaleX: 1.0, y: -1.0)  // flip
         if isVerticalText {
@@ -444,7 +444,7 @@ extension LineNumberView {
         guard let textView = self.textView else { return }
         
         // get start point
-        let point = self.window!.convertToScreen(NSRect(origin: event.locationInWindow, size: NSSize())).origin
+        let point = self.window!.convertToScreen(NSRect(origin: event.locationInWindow, size: NSSize.zero)).origin
         let index = textView.characterIndex(for: point)
         
         // repeat while dragging
@@ -481,7 +481,7 @@ extension LineNumberView {
         let point = NSEvent.mouseLocation()  // screen based point
         
         // scroll text view if needed
-        let pointedRect = self.window!.convertFromScreen(NSRect(origin: point, size: NSSize()))
+        let pointedRect = self.window!.convertFromScreen(NSRect(origin: point, size: NSSize.zero))
         let targetRect = textView.convert(pointedRect, to: nil)
         textView.scrollToVisible(targetRect)
         

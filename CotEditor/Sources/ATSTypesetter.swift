@@ -74,11 +74,11 @@ final class ATSTypesetter: NSATSTypesetter {
         guard let manager = self.layoutManager as? LayoutManager, manager.showsOtherInvisibles && manager.showsInvisibles else {
             // DON'T invoke super method here. If invoked, it can not continue drawing remaining lines any more on Mountain Lion (and possible other versions except El Capitan).
             // Just passing zero rect is enough if you don't need to draw it.
-            return NSRect()
+            return NSRect.zero
         }
         
         // make blank space to draw a replacement character in LayoutManager later.
-        guard let textFont = manager.textFont else { return NSRect() }
+        guard let textFont = manager.textFont else { return NSRect.zero }
         let invisibleFont = NSFont(name: "Lucida Grande", size: textFont.pointSize) ?? textFont  // use current text font for fallback
         let replacementGlyph = invisibleFont.glyph(withName: "replacement")  // U+FFFD
         let replacementGlyphBounding = invisibleFont.boundingRect(forGlyph: replacementGlyph)

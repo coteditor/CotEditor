@@ -108,7 +108,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 guard let textView = self.textView else { return }
                 
                 let rect = textView.lineHighlightRect
-                textView.lineHighlightRect = NSRect()
+                textView.lineHighlightRect = NSRect.zero
                 if let rect = rect {
                     textView.setNeedsDisplay(rect, avoidAdditionalLayout: true)
                 }
