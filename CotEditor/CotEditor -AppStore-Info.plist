@@ -960,8 +960,8 @@
 	<string>© 2005-2009 nakamuxu
 © 2011, 2014 usami-k
 © 2013-2016 1024jp</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<key>NSMainStoryboardFile</key>
+	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSServices</key>
