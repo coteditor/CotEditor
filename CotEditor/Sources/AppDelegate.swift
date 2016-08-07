@@ -174,28 +174,6 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     
     // MARK: Application Delegate
     
-    /// creates a new document on launch?
-    func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
-        
-        if self.didFinishLaunching {
-            return UserDefaults.standard.bool(forKey: DefaultKey.createNewAtStartup)
-        }
-        
-        return true
-    }
-    
-    
-    /// crates a new document on "Re-Open" AppleEvent
-    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        
-        if UserDefaults.standard.bool(forKey: DefaultKey.reopenBlankWindow) {
-            return true
-        }
-        
-        return flag
-    }
-    
-    
     #if APPSTORE
     #else
     /// setup Sparkle framework
@@ -237,6 +215,17 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         
         // raise didFinishLaunching flag
         self.didFinishLaunching = true
+    }
+    
+    
+    /// creates a new blank document
+    func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+        
+        if self.didFinishLaunching {
+            return UserDefaults.standard.bool(forKey: DefaultKey.reopenBlankWindow)
+        } else {
+            return UserDefaults.standard.bool(forKey: DefaultKey.createNewAtStartup)
+        }
     }
     
     
