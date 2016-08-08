@@ -62,7 +62,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         // setup stylesheet color list
         let colorList = NSColorList(name: NSLocalizedString("Stylesheet Keywords", comment: ""))
         for (keyword, color) in NSColor.stylesheetKeywordColors {
-            colorList .setColor(color, forKey: keyword)
+            colorList.setColor(color, forKey: keyword)
         }
         self.stylesheetColorList = colorList
         
