@@ -507,7 +507,7 @@
 // descriptions about tokens in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
 "The relative path between dropped file and the document." = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
-"The dropped file’s name include extension (if exists)." = "ドロップ元ファイルの、拡張子を含むファイル名";
+"The dropped file’s name including extension (if exists)." = "ドロップ元ファイルの拡張子を含むファイル名";
 "The dropped file’s name without extension." = "ドロップ元ファイルの名前から拡張子を削除した文字列";
 "The dropped file’s extension." = "ドロップ元ファイルの拡張子";
 "The dropped file’s extension (converted to lowercase)." = "ドロップ元ファイルの拡張子（小文字）";

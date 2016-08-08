@@ -57,11 +57,11 @@ final class FileDropComposer {
         
         var localizedDescription: String {
             
-            return NSLocalizedString(self.descriptioin, comment: "")
+            return NSLocalizedString(self.description, comment: "")
         }
         
         
-        private var descriptioin: String {
+        private var description: String {
             
             switch self {
             case .absolutePath:
@@ -71,7 +71,7 @@ final class FileDropComposer {
                 return "The relative path between dropped file and the document."
                 
             case .filename:
-                return "The dropped file’s name include extension (if exists)."
+                return "The dropped file’s name including extension (if exists)."
                 
             case .filenameWithoutExtension:
                 return "The dropped file’s name without extension."
@@ -101,7 +101,7 @@ final class FileDropComposer {
     
     // MARK: Public Methods
     
-    ///
+    /// create file drop text
     class func dropText(forFileURL droppedFileURL: URL, documentURL: URL?) -> String? {
         
         let pathExtension = droppedFileURL.pathExtension
@@ -120,15 +120,17 @@ final class FileDropComposer {
             .replacingOccurrences(of: Token.directory.rawValue, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
         
         // get image dimension if needed
-        //   -> Use NSImageRep because NSImage's `size` returns an DPI applied size.
-        var imageRep: NSImageRep?
-        NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { (newURL: URL) in
-            imageRep = NSImageRep(contentsOf: newURL)
-        }
-        if let imageRep = imageRep {
-            dropText = dropText
-                .replacingOccurrences(of: Token.imageWidth.rawValue, with: String(imageRep.pixelsWide))
-                .replacingOccurrences(of: Token.imageHeight.rawValue, with: String(imageRep.pixelsHigh))
+        //   -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
+        if template.contains(Token.imageWidth.rawValue) || template.contains(Token.imageHeight.rawValue) {
+            var imageRep: NSImageRep?
+            NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { (newURL: URL) in
+                imageRep = NSImageRep(contentsOf: newURL)
+            }
+            if let imageRep = imageRep {
+                dropText = dropText
+                    .replacingOccurrences(of: Token.imageWidth.rawValue, with: String(imageRep.pixelsWide))
+                    .replacingOccurrences(of: Token.imageHeight.rawValue, with: String(imageRep.pixelsHigh))
+            }
         }
         
         return dropText
