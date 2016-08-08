@@ -1001,11 +1001,11 @@ final class EditorTextView: NSTextView, Themable {
             
             // apply document's line ending
             if self.documentLineEnding != .LF {
-                for characterIndex in (0...plainText.utf16.count).reversed() {  // process backwards
-                    if (plainText as NSString).character(at: characterIndex) == "\n".utf16.first! {
-                        let characterRange = NSRange(location: characterIndex, length: 1)
-                        styledText.replaceCharacters(in: characterRange, with: lineEnding)
-                    }
+                for characterIndex in (0..<plainText.utf16.count).reversed() {  // process backwards
+                    guard (plainText as NSString).character(at: characterIndex) == "\n".utf16.first! else { continue }
+                    
+                    let characterRange = NSRange(location: characterIndex, length: 1)
+                    styledText.replaceCharacters(in: characterRange, with: lineEnding)
                 }
             }
             
