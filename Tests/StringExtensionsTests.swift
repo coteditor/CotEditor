@@ -126,6 +126,25 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testLineRange() {
+        
+        let string = "foo\nbar\n"
+        
+        XCTAssertEqual(string.lineRange(for: string.startIndex..<string.endIndex, excludingLastLineEnding: true),
+                       string.startIndex..<string.index(before: string.endIndex))
+        
+        XCTAssertEqual(string.lineRange(for: string.startIndex..<string.index(after: string.startIndex)),
+                       string.startIndex..<string.index(string.startIndex, offsetBy: 4))
+        XCTAssertEqual(string.lineRange(for: string.startIndex..<string.index(after: string.startIndex), excludingLastLineEnding: true),
+                       string.startIndex..<string.index(string.startIndex, offsetBy: 3))
+        
+        let emptyString = ""
+        let emptyRange = emptyString.startIndex..<emptyString.endIndex
+        
+        XCTAssertEqual(emptyString.lineRange(for: emptyRange, excludingLastLineEnding: true), emptyRange)
+    }
+    
+    
     func testUnicodeNormalization() {
         
         XCTAssertEqual("é 神 ㍑".precomposedStringWithCompatibilityMappingWithCasefold, "é 神 リットル")

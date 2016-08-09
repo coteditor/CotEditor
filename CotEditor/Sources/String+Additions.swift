@@ -37,15 +37,13 @@ extension String {
     /// line range adding ability to exclude last line ending character if exists
     func lineRange(for range: Range<Index>, excludingLastLineEnding: Bool) -> Range<Index> {
         
-        var lineRange = self.lineRange(for: range)
+        let lineRange = self.lineRange(for: range)
         
-        guard excludingLastLineEnding else { return lineRange }
+        guard excludingLastLineEnding,
+            let index = self.index(lineRange.upperBound, offsetBy: -1, limitedBy: lineRange.lowerBound),
+            self.characters[index] == "\n" else { return lineRange }
         
-        if self.characters[self.index(before: lineRange.upperBound)] == "\n" {
-            lineRange = lineRange.lowerBound..<self.index(before: lineRange.upperBound)
-        }
-        
-        return lineRange
+        return lineRange.lowerBound..<self.index(before: lineRange.upperBound)
     }
     
     
@@ -54,8 +52,16 @@ extension String {
         
         guard let locationIndex = String.UTF16Index(location).samePosition(in: self) else { return false }
         
-        let MaxEscapesCheckLength = 16
-        let seekCharacters = self.substring(to: locationIndex).characters.suffix(MaxEscapesCheckLength)  // FIXME: performance critical
+        return self.isCharacterEscaped(at: locationIndex)
+    }
+    
+    
+    /// check if character at the index is escaped with backslash
+    func isCharacterEscaped(at index: Index) -> Bool {
+        
+        let MaxEscapesCheckLength = 8
+        let startIndex = self.index(index, offsetBy: -MaxEscapesCheckLength, limitedBy: self.startIndex) ?? self.startIndex
+        let seekCharacters = self.characters[startIndex..<index]
         
         var numberOfEscapes = 0
         for character in seekCharacters.reversed() {
