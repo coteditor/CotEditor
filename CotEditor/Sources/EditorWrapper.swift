@@ -41,14 +41,12 @@ final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDel
     
     override init() {
         
-        let defaults = UserDefaults.standard
-        
-        self.showsInvisibles = defaults.bool(forKey: DefaultKey.showInvisibles)
-        self.showsLineNumber = defaults.bool(forKey: DefaultKey.showLineNumbers)
-        self.showsNavigationBar = defaults.bool(forKey: DefaultKey.showNavigationBar)
-        self.wrapsLines = defaults.bool(forKey: DefaultKey.wrapLines)
-        self.verticalLayoutOrientation = defaults.bool(forKey: DefaultKey.layoutTextVertical)
-        self.showsPageGuide = defaults.bool(forKey: DefaultKey.showPageGuide)
+        self.showsInvisibles = Defaults[.showInvisibles]
+        self.showsLineNumber = Defaults[.showLineNumbers]
+        self.showsNavigationBar = Defaults[.showNavigationBar]
+        self.wrapsLines = Defaults[.wrapLines]
+        self.verticalLayoutOrientation = Defaults[.layoutTextVertical]
+        self.showsPageGuide = Defaults[.showPageGuide]
         
         super.init()
         
@@ -316,7 +314,7 @@ final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDel
             guard let document = document else { return }
             
             // detect indent style
-            if UserDefaults.standard.bool(forKey: DefaultKey.detectsIndentStyle),
+            if Defaults[.detectsIndentStyle],
                 let indentStyle = document.textStorage.string.detectedIndentStyle
             {
                 self.isAutoTabExpandEnabled = {
@@ -673,13 +671,11 @@ final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDel
     /// whether at least one of invisible characters is enabled in the preferences currently
     private var canActivateShowInvisibles: Bool {
         
-        let defaults = UserDefaults.standard
-        
-        return (defaults.bool(forKey: DefaultKey.showInvisibleSpace) ||
-                defaults.bool(forKey: DefaultKey.showInvisibleTab) ||
-                defaults.bool(forKey: DefaultKey.showInvisibleNewLine) ||
-                defaults.bool(forKey: DefaultKey.showInvisibleFullwidthSpace) ||
-                defaults.bool(forKey: DefaultKey.showInvisibles))
+        return (Defaults[.showInvisibleSpace] ||
+                Defaults[.showInvisibleTab] ||
+                Defaults[.showInvisibleNewLine] ||
+                Defaults[.showInvisibleFullwidthSpace] ||
+                Defaults[.showInvisibles])
     }
     
     
@@ -759,7 +755,7 @@ final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDel
         
         get {
             guard let textView = self.focusedTextView else {
-                return UserDefaults.standard.bool(forKey: DefaultKey.autoExpandTab)
+                return Defaults[.autoExpandTab]
             }
             
             return textView.isAutomaticTabExpansionEnabled

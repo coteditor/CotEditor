@@ -49,8 +49,8 @@ final class WindowContentViewController: NSSplitViewController {
             self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
         
-        self.isSidebarShown = UserDefaults.standard.bool(forKey: DefaultKey.showDocumentInspector)
-        self.sidebarThickness = UserDefaults.standard.cgFloat(forKey: DefaultKey.sidebarWidth)
+        self.isSidebarShown = Defaults[.showDocumentInspector]
+        self.sidebarThickness = Defaults[.sidebarWidth]
     }
     
     
@@ -70,7 +70,7 @@ final class WindowContentViewController: NSSplitViewController {
         
         if notification.userInfo?["NSSplitViewDividerIndex"] != nil {  // check wheter the change coused by user's divider dragging
             if self.isSidebarShown {
-                UserDefaults.standard.set(self.sidebarThickness, forKey: DefaultKey.sidebarWidth)
+                Defaults[.sidebarWidth] = self.sidebarThickness
             }
         }
     }

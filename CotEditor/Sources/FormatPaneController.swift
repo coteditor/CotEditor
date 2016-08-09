@@ -217,7 +217,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         let withUTF8BOM = (self.inNewEncodingMenu?.selectedItem?.representedObject as? String) == IsUTF8WithBOM
         
-        UserDefaults.standard.set(withUTF8BOM, forKey: DefaultKey.saveUTF8BOM)
+        Defaults[.saveUTF8BOM] = withUTF8BOM
     }
     
     
@@ -236,7 +236,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             guard returnCode == NSAlertFirstButtonReturn else { return }
             
-            UserDefaults.standard.set(String.Encoding.autoDetection.rawValue, forKey: DefaultKey.encodingInOpen)
+            Defaults[.encodingInOpen] = String.Encoding.autoDetection.rawValue
         }
     }
     
@@ -369,20 +369,20 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         // select menu item for the current setting manually although Cocoa-Bindings are used on these menus
         //   -> Because items were actually added after Cocoa-Binding selected the item.
-        let inOpenEncoding = UserDefaults.standard.integer(forKey: DefaultKey.encodingInOpen)
-        let inNewEncoding = UserDefaults.standard.integer(forKey: DefaultKey.encodingInNew)
-        self.inOpenEncodingMenu?.selectItem(withTag: inOpenEncoding)
+        let inOpenEncoding = Defaults[.encodingInOpen]
+        let inNewEncoding = Defaults[.encodingInNew]
+        self.inOpenEncodingMenu?.selectItem(withTag: Int(inOpenEncoding))
         
-        if inNewEncoding == UTF8Int {
+        if Int(inNewEncoding) == UTF8Int {
             var index = inNewMenu.indexOfItem(withRepresentedObject: IsUTF8WithBOM)
             
             // -> The normal "UTF-8" is just above "UTF-8 with BOM".
-            if !UserDefaults.standard.bool(forKey: DefaultKey.saveUTF8BOM) {
+            if !Defaults[.saveUTF8BOM] {
                 index -= 1
             }
             self.inNewEncodingMenu?.selectItem(at: index)
         } else {
-            self.inNewEncodingMenu?.selectItem(withTag: inNewEncoding)
+            self.inNewEncodingMenu?.selectItem(withTag: Int(inNewEncoding))
         }
     }
     
@@ -414,7 +414,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
             //   -> Because items were actually added after Cocoa-Binding selected the item.
-            var selectedStyle = UserDefaults.standard.string(forKey: DefaultKey.syntaxStyle)!
+            var selectedStyle = Defaults[.syntaxStyle]!
             if !styleNames.contains(selectedStyle) {
                 selectedStyle = BundledStyleName.none
             }
@@ -427,7 +427,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     private dynamic var selectedStyleName: String {
         
         guard let stylesController = self.stylesController?.selectedObjects.first as? [String: AnyObject] else {
-            return UserDefaults.standard.string(forKey: DefaultKey.syntaxStyle)!
+            return Defaults[.syntaxStyle]!
         }
         return stylesController[StyleKey.name.rawValue] as! String
     }

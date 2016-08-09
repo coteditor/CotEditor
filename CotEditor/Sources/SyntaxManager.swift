@@ -99,10 +99,8 @@ final class SyntaxManager: SettingFileManager {
     
     override private init() {
         
-        let defaults = UserDefaults.standard
-        
-        self.recentStyleNameSet = NSMutableOrderedSet(array: defaults.stringArray(forKey: DefaultKey.recentStyleNames)!)
-        self.maximumRecentStyleNameCount = defaults.integer(forKey: DefaultKey.maximumRecentStyleCount)
+        self.recentStyleNameSet = NSMutableOrderedSet(array: Defaults[.recentStyleNames] ?? [])
+        self.maximumRecentStyleNameCount = Defaults[.maximumRecentStyleCount]
         
         // load bundled style list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
@@ -189,7 +187,7 @@ final class SyntaxManager: SettingFileManager {
             self.recentStyleNameSet.remove(name)
             self.recentStyleNameSet.insert(name, at: 0)
         }
-        UserDefaults.standard.set(self.recentStyleNames, forKey: DefaultKey.recentStyleNames)
+        Defaults[.recentStyleNames] = self.recentStyleNames
         
         DispatchQueue.syncOnMain {
             NotificationCenter.default.post(name: .SyntaxHistoryDidUpdate, object: self)
@@ -496,7 +494,7 @@ final class SyntaxManager: SettingFileManager {
             self.recentStyleNameSet.intersectSet(Set(self.styleNames))
         }
         
-        UserDefaults.standard.set(self.recentStyleNames, forKey: DefaultKey.recentStyleNames)
+        Defaults[.recentStyleNames] = self.recentStyleNames
     }
     
     

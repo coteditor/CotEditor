@@ -295,7 +295,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
     /// whether enable parsing syntax
     var canParse: Bool {
         
-        let isHighlightEnabled = UserDefaults.standard.bool(forKey:  DefaultKey.enableSyntaxHighlight)
+        let isHighlightEnabled = Defaults[.enableSyntaxHighlight]
         
         return isHighlightEnabled && !self.isNone
     }
@@ -364,7 +364,7 @@ extension SyntaxStyle {
     /// let parse outline after a delay
     private func setupOutlineMenuUpdateTimer() {
         
-        let interval: TimeInterval = UserDefaults.standard.double(forKey:  DefaultKey.outlineMenuInterval)
+        let interval: TimeInterval = Defaults[.outlineMenuInterval]
         
         if let timer = self.outlineMenuTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)
@@ -389,7 +389,7 @@ extension SyntaxStyle {
     /// update whole document highlights
     func highlightAll(completionHandler: (() -> Void)? = nil) {
         
-        guard UserDefaults.standard.bool(forKey: DefaultKey.enableSyntaxHighlight) else { return }
+        guard Defaults[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
         let wholeRange = textStorage.string.nsRange
@@ -415,14 +415,14 @@ extension SyntaxStyle {
     /// update highlights around passed-in range
     func highlight(around editedRange: NSRange) {
         
-        guard UserDefaults.standard.bool(forKey: DefaultKey.enableSyntaxHighlight) else { return }
+        guard Defaults[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = NSString(string: textStorage.string) as String
         
         let wholeRange = string.nsRange
-        let bufferLength = UserDefaults.standard.integer(forKey: DefaultKey.coloringRangeBufferLength)
+        let bufferLength = Defaults[.coloringRangeBufferLength]
         var highlightRange = editedRange
         
         // highlight whole if string is enough short
@@ -549,7 +549,7 @@ extension SyntaxStyle {
     /// whether need to display highlighting indicator
     private func shouldShowIndicator(for highlightLength: Int) -> Bool {
         
-        let threshold = UserDefaults.standard.integer(forKey: DefaultKey.showColoringIndicatorTextLength)
+        let threshold = Defaults[.showColoringIndicatorTextLength]
         
         // do not show indicator if threshold is 0
         return threshold > 0 && highlightLength > threshold

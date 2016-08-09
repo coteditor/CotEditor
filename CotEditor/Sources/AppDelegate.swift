@@ -129,8 +129,12 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     override init() {
         
         // register default setting values
-        UserDefaults.standard.register(defaults: DefaultSettings)
-        NSUserDefaultsController.shared().initialValues = DefaultSettings
+        var defaults: [String: AnyObject] = [:]
+        for (key, value) in DefaultSettings {
+            defaults[key.rawValue] = value
+        }
+        UserDefaults.standard.register(defaults: defaults)
+        NSUserDefaultsController.shared().initialValues = defaults
         
         // wake text finder up
         _ = TextFinder.shared
@@ -199,7 +203,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         //      >= 2.2.0 : Single Integer
         let thisVersion = AppInfo.bundleVersion
         let isLatest: Bool = {
-            guard let lastVersion = UserDefaults.standard.string(forKey: DefaultKey.lastVersion) else { return true }
+            guard let lastVersion = Defaults[.lastVersion] else { return true }
             
             // if isDigit -> probably semver (semver must be older than 2.2.0)
             let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) != nil)
@@ -207,7 +211,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
             return !isDigit || Int(thisVersion) >= Int(lastVersion)
         }()
         if isLatest {
-            UserDefaults.standard.set(thisVersion, forKey: DefaultKey.lastVersion)
+            Defaults[.lastVersion] = thisVersion
         }
         
         // register Services
@@ -222,9 +226,9 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
         if self.didFinishLaunching {
-            return UserDefaults.standard.bool(forKey: DefaultKey.reopenBlankWindow)
+            return Defaults[.reopenBlankWindow]
         } else {
-            return UserDefaults.standard.bool(forKey: DefaultKey.createNewAtStartup)
+            return Defaults[.createNewAtStartup]
         }
     }
     

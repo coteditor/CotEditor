@@ -71,9 +71,9 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // prepare date formatter
         self.dateFormatter = DateFormatter()
-        self.dateFormatter.dateFormat = UserDefaults.standard.string(forKey: DefaultKey.headerFooterDateFormat)
+        self.dateFormatter.dateFormat = Defaults[.headerFooterDateFormat]
         
-        self.lineHeight = UserDefaults.standard.cgFloat(forKey: DefaultKey.lineHeight)
+        self.lineHeight = Defaults[.lineHeight]
         
         // dirty workaround to obtain auto-generated textContainer (2016-07 on OS X 10.11)
         // cf. http://stackoverflow.com/questions/34616892/
@@ -284,7 +284,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         willSet (newFont) {
             // set tab width
             let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
-            let tabWidth = UserDefaults.standard.integer(forKey: DefaultKey.tabWidth)
+            let tabWidth = Defaults[.tabWidth]
             
             paragraphStyle.tabStops = []
             paragraphStyle.defaultTabInterval = CGFloat(tabWidth) * (newFont?.advancement(character: " ").width ?? 0)
@@ -466,7 +466,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             guard let filePath = self.filePath else {  // print document name instead if document doesn't have file path yet
                 return self.documentName
             }
-            if UserDefaults.standard.bool(forKey: DefaultKey.headerFooterPathAbbreviatingWithTilde) {
+            if Defaults[.headerFooterPathAbbreviatingWithTilde] {
                 return filePath.abbreviatingWithTildeInSandboxedPath
             } else {
                 return filePath

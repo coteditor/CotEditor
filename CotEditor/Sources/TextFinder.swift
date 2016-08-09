@@ -348,7 +348,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             }
         }
         
-        self.appendHistory(self.findString, forKey: DefaultKey.findHistory)
+        self.appendHistory(self.findString, forKey: .findHistory)
     }
     
     
@@ -437,7 +437,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             }
         }
         
-        self.appendHistory(self.findString, forKey: DefaultKey.findHistory)
+        self.appendHistory(self.findString, forKey: .findHistory)
     }
     
     
@@ -463,8 +463,8 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             NSBeep()
         }
         
-        self.appendHistory(self.findString, forKey: DefaultKey.findHistory)
-        self.appendHistory(self.replacementString, forKey: DefaultKey.replaceHistory)
+        self.appendHistory(self.findString, forKey: .findHistory)
+        self.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
@@ -576,8 +576,8 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             }
         }
         
-        self.appendHistory(self.findString, forKey: DefaultKey.findHistory)
-        self.appendHistory(self.replacementString, forKey: DefaultKey.replaceHistory)
+        self.appendHistory(self.findString, forKey: .findHistory)
+        self.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
@@ -592,7 +592,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         self.findString = selectedString
         
         // auto-disable regex
-        UserDefaults.standard.set(false, forKey: DefaultKey.findUsesRegularExpression)
+        Defaults[.findUsesRegularExpression] = false
     }
     
     
@@ -709,7 +709,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         self.delegate?.textFinder(self, didFound: matches.count, textView: textView)
         
-        self.appendHistory(self.findString, forKey: DefaultKey.findHistory)
+        self.appendHistory(self.findString, forKey: .findHistory)
         
         return matches.count
     }
@@ -870,19 +870,19 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// append given string to history with the user defaults key
-    private func appendHistory(_ string: String, forKey key: String) {
+    private func appendHistory(_ string: String, forKey key: DefaultKey<[String]>) {
         
         guard !string.isEmpty else { return }
         
         // append new string to history
-        var history = UserDefaults.standard.stringArray(forKey: key)!
+        var history = Defaults[key] ?? []
         history.remove(string)  // remove duplicated item
         history.append(string)
         if history.count > MaxHistorySize {  // remove overflow
             history.removeFirst(history.count - MaxHistorySize)
         }
         
-        UserDefaults.standard.set(history, forKey: key)
+        Defaults[key] = history
     }
     
     
@@ -892,34 +892,33 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     /// return value from user defaults
     private var usesRegularExpression: Bool {
         
-        return UserDefaults.standard.bool(forKey: DefaultKey.findUsesRegularExpression)
+        return Defaults[.findUsesRegularExpression]
     }
     
     
     /// return value from user defaults
     private var isWrap: Bool {
         
-        return UserDefaults.standard.bool(forKey: DefaultKey.findIsWrap)
+        return Defaults[.findIsWrap]
     }
     
     
     /// return value from user defaults
     private var inSelection: Bool {
         
-        return UserDefaults.standard.bool(forKey: DefaultKey.findInSelection)
+        return Defaults[.findInSelection]
     }
     
     
     /// return value from user defaults
     private var textualOptions: NSString.CompareOptions {
         
-        let defaults = UserDefaults.standard
         var options = NSString.CompareOptions()
         
-        if defaults.bool(forKey: DefaultKey.findIgnoresCase)               { options.update(with: .caseInsensitive) }
-        if defaults.bool(forKey: DefaultKey.findTextIsLiteralSearch)       { options.update(with: .literal) }
-        if defaults.bool(forKey: DefaultKey.findTextIgnoresDiacriticMarks) { options.update(with: .diacriticInsensitive) }
-        if defaults.bool(forKey: DefaultKey.findTextIgnoresWidth)          { options.update(with: .widthInsensitive) }
+        if Defaults[.findIgnoresCase]               { options.update(with: .caseInsensitive) }
+        if Defaults[.findTextIsLiteralSearch]       { options.update(with: .literal) }
+        if Defaults[.findTextIgnoresDiacriticMarks] { options.update(with: .diacriticInsensitive) }
+        if Defaults[.findTextIgnoresWidth]          { options.update(with: .widthInsensitive) }
         
         return options
     }
@@ -928,13 +927,12 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     /// return value from user defaults
     private var regexOptions: NSRegularExpression.Options {
         
-        let defaults = UserDefaults.standard
         var options = NSRegularExpression.Options()
         
-        if defaults.bool(forKey: DefaultKey.findIgnoresCase)                { options.update(with: .caseInsensitive) }
-        if defaults.bool(forKey: DefaultKey.findRegexIsSingleline)          { options.update(with: .dotMatchesLineSeparators) }
-        if defaults.bool(forKey: DefaultKey.findRegexIsMultiline)           { options.update(with: .anchorsMatchLines) }
-        if defaults.bool(forKey: DefaultKey.findRegexUsesUnicodeBoundaries) { options.update(with: .useUnicodeWordBoundaries) }
+        if Defaults[.findIgnoresCase]                { options.update(with: .caseInsensitive) }
+        if Defaults[.findRegexIsSingleline]          { options.update(with: .dotMatchesLineSeparators) }
+        if Defaults[.findRegexIsMultiline]           { options.update(with: .anchorsMatchLines) }
+        if Defaults[.findRegexUsesUnicodeBoundaries] { options.update(with: .useUnicodeWordBoundaries) }
         
         return options
     }
@@ -943,14 +941,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     /// return value from user defaults
     private var closesIndicatorWhenDone: Bool {
         
-        return UserDefaults.standard.bool(forKey: DefaultKey.findClosesIndicatorWhenDone)
+        return Defaults[.findClosesIndicatorWhenDone]
     }
     
     
     /// return if sync search string with other applications
     private var sharesFindString: Bool {
         
-        return UserDefaults.standard.bool(forKey: DefaultKey.syncFindPboard)
+        return Defaults[.syncFindPboard]
     }
     
 }

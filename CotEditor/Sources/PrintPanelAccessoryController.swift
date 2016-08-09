@@ -78,34 +78,32 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     override var representedObject: AnyObject? {
         
         didSet {
-            let defaults = UserDefaults.standard
-            
             // set theme if needed
             self.theme = {
-                if let mode = PrintColorMode(rawValue: defaults.integer(forKey: DefaultKey.printColorIndex))  {
+                if let mode = PrintColorMode(rawValue: Defaults[.printColorIndex])  {
                     switch mode {
                     case .blackWhite:
                         return BlackAndWhiteThemeName
                     case .sameAsDocument:
-                        return defaults.string(forKey: DefaultKey.theme)!
+                        return Defaults[.theme]!
                     }
                 }
-                return defaults.string(forKey: DefaultKey.printTheme)!
+                return Defaults[.printTheme]!
             }()
-            self.lineNumberMode = PrintLineNmuberMode(rawValue: defaults.integer(forKey: DefaultKey.printLineNumIndex)) ?? .no
-            self.invisibleCharsMode = PrintInvisiblesMode(rawValue: defaults.integer(forKey: DefaultKey.printInvisibleCharIndex)) ?? .no
+            self.lineNumberMode = PrintLineNmuberMode(rawValue: Defaults[.printLineNumIndex]) ?? .no
+            self.invisibleCharsMode = PrintInvisiblesMode(rawValue: Defaults[.printInvisibleCharIndex]) ?? .no
             
-            self.printsHeader = defaults.bool(forKey: DefaultKey.printHeader) ?? false
-            self.primaryHeaderContent = PrintInfoType(rawValue: defaults.integer(forKey: DefaultKey.primaryHeaderContent)) ?? .none
-            self.primaryHeaderAlignment = AlignmentType(rawValue: defaults.integer(forKey: DefaultKey.primaryHeaderAlignment)) ?? .left
-            self.secondaryHeaderContent = PrintInfoType(rawValue: defaults.integer(forKey: DefaultKey.secondaryHeaderContent)) ?? .none
-            self.secondaryHeaderAlignment = AlignmentType(rawValue: defaults.integer(forKey: DefaultKey.secondaryHeaderAlignment)) ?? .right
+            self.printsHeader = Defaults[.printHeader] ?? false
+            self.primaryHeaderContent = PrintInfoType(rawValue: Defaults[.primaryHeaderContent]) ?? .none
+            self.primaryHeaderAlignment = AlignmentType(rawValue: Defaults[.primaryHeaderAlignment]) ?? .left
+            self.secondaryHeaderContent = PrintInfoType(rawValue: Defaults[.secondaryHeaderContent]) ?? .none
+            self.secondaryHeaderAlignment = AlignmentType(rawValue: Defaults[.secondaryHeaderAlignment]) ?? .right
             
-            self.printsFooter = defaults.bool(forKey: DefaultKey.printFooter) ?? false
-            self.primaryFooterContent = PrintInfoType(rawValue: defaults.integer(forKey: DefaultKey.primaryFooterContent)) ?? .none
-            self.primaryFooterAlignment = AlignmentType(rawValue: defaults.integer(forKey: DefaultKey.primaryFooterAlignment)) ?? .left
-            self.secondaryFooterContent = PrintInfoType(rawValue: defaults.integer(forKey: DefaultKey.secondaryFooterContent)) ?? .none
-            self.secondaryFooterAlignment = AlignmentType(rawValue: defaults.integer(forKey: DefaultKey.secondaryFooterAlignment)) ?? .right
+            self.printsFooter = Defaults[.printFooter] ?? false
+            self.primaryFooterContent = PrintInfoType(rawValue: Defaults[.primaryFooterContent]) ?? .none
+            self.primaryFooterAlignment = AlignmentType(rawValue: Defaults[.primaryFooterAlignment]) ?? .left
+            self.secondaryFooterContent = PrintInfoType(rawValue: Defaults[.secondaryFooterContent]) ?? .none
+            self.secondaryFooterAlignment = AlignmentType(rawValue: Defaults[.secondaryFooterAlignment]) ?? .right
             
             // apply current theme
             self.updateThemeList()

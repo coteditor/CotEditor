@@ -170,9 +170,7 @@ final class DocumentAnalyzer: NSObject {
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
             
-            let defaults = UserDefaults.standard
-            
-            let countsLineEnding = defaults.bool(forKey: DefaultKey.countLineEndingAsChar)
+            let countsLineEnding = Defaults[.countLineEndingAsChar]
             var location = 0
             var line = 0
             var column = 0
@@ -187,7 +185,7 @@ final class DocumentAnalyzer: NSObject {
                 let hasSelection = !selectedString.isEmpty
                 
                 // count length
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLength) {
+                if needsAll || Defaults[.showStatusBarLength] {
                     let isSingleLineEnding = (String(lineEnding.rawValue).unicodeScalars.count == 1)
                     var tmp = isSingleLineEnding ? string : string.replacingLineEndings(with: lineEnding)
                     length = tmp.utf16.count
@@ -199,7 +197,7 @@ final class DocumentAnalyzer: NSObject {
                 }
                 
                 // count characters
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarChars) {
+                if needsAll || Defaults[.showStatusBarChars] {
                     var tmp = countsLineEnding ? string : string.removingLineEndings
                     numberOfChars = tmp.numberOfComposedCharacters
                     
@@ -210,7 +208,7 @@ final class DocumentAnalyzer: NSObject {
                 }
                 
                 // count lines
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLines) {
+                if needsAll || Defaults[.showStatusBarLines] {
                     numberOfLines = string.numberOfLines
                     if hasSelection {
                         numberOfSelectedLines = selectedString.numberOfLines
@@ -218,7 +216,7 @@ final class DocumentAnalyzer: NSObject {
                 }
                 
                 // count words
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarWords) {
+                if needsAll || Defaults[.showStatusBarWords] {
                     numberOfWords = string.numberOfWords
                     if hasSelection {
                         numberOfSelectedWords = selectedString.numberOfWords
@@ -226,20 +224,20 @@ final class DocumentAnalyzer: NSObject {
                 }
                 
                 // calculate current location
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLocation) {
+                if needsAll || Defaults[.showStatusBarLocation] {
                     let locString = (string as NSString).substring(to: selectedRange.location)
                     let tmp = countsLineEnding ? locString : locString.removingLineEndings
                     location = tmp.numberOfComposedCharacters
                 }
                 
                 // calculate current line
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarLine) {
+                if needsAll || Defaults[.showStatusBarLine] {
                     line = string.lineNumber(at: selectedRange.location)
                     
                 }
                 
                 // calculate current column
-                if needsAll || defaults.bool(forKey: DefaultKey.showStatusBarColumn) {
+                if needsAll || Defaults[.showStatusBarColumn] {
                     let lineRange = (string as NSString).lineRange(for: selectedRange)
                     column = selectedRange.location - lineRange.location  // as length
                     column = (string as NSString).substring(with: NSRange(location: lineRange.location, length: column)).numberOfComposedCharacters
@@ -285,7 +283,7 @@ final class DocumentAnalyzer: NSObject {
     /// set update timer for information about the content text
     private func setupEditorInfoUpdateTimer() {
         
-        let interval: TimeInterval = UserDefaults.standard.double(forKey: DefaultKey.infoUpdateInterval)
+        let interval: TimeInterval = Defaults[.infoUpdateInterval]
         
         if let timer = self.editorInfoUpdateTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)

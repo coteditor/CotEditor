@@ -52,7 +52,7 @@ final class SplitViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        self.splitView.isVertical = UserDefaults.standard.bool(forKey: DefaultKey.splitViewVertical)
+        self.splitView.isVertical = Defaults[.splitViewVertical]
         self.invalidateOpenSplitEditorButtons()
         
         // observe focus change

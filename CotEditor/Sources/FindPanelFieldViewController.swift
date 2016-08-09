@@ -49,8 +49,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.findHistory)
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.replaceHistory)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue)
         
         NotificationCenter.default.removeObserver(self)
     }
@@ -68,8 +68,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.updateReplaceHistoryMenu()
         
         // observe default change for the history menus
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.findHistory, context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.replaceHistory, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue, context: nil)
     }
     
     
@@ -89,9 +89,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         guard let keyPath = keyPath else { return }
         
         switch keyPath {
-        case DefaultKey.findHistory:
+        case DefaultKeys.findHistory.rawValue:
             self.updateFindHistoryMenu()
-        case DefaultKey.replaceHistory:
+        case DefaultKeys.replaceHistory.rawValue:
             self.updateReplaceHistoryMenu()
         default: break
         }
@@ -164,7 +164,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.view.window?.makeKeyAndOrderFront(self)
         
-        UserDefaults.standard.removeObject(forKey: DefaultKey.findHistory)
+        UserDefaults.standard.removeObject(forKey: DefaultKeys.findHistory.rawValue)
         self.updateFindHistoryMenu()
     }
     
@@ -174,7 +174,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.view.window?.makeKeyAndOrderFront(self)
         
-        UserDefaults.standard.removeObject(forKey: DefaultKey.replaceHistory)
+        UserDefaults.standard.removeObject(forKey: DefaultKeys.replaceHistory.rawValue)
         self.updateReplaceHistoryMenu()
     }
     
@@ -209,19 +209,19 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// update find history menu
     private func updateFindHistoryMenu() {
         
-        self.buildHistoryMenu(self.findHistoryMenu!, defaultsKey: DefaultKey.findHistory, action: #selector(selectFindHistory(_:)))
+        self.buildHistoryMenu(self.findHistoryMenu!, defaultsKey: .findHistory, action: #selector(selectFindHistory))
     }
     
     
     /// update replace history menu
     private func updateReplaceHistoryMenu() {
         
-        self.buildHistoryMenu(self.replaceHistoryMenu!, defaultsKey: DefaultKey.replaceHistory, action: #selector(selectReplaceHistory(_:)))
+        self.buildHistoryMenu(self.replaceHistoryMenu!, defaultsKey: .replaceHistory, action: #selector(selectReplaceHistory))
     }
     
     
     /// apply history to UI
-    private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: String, action: Selector) {
+    private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: DefaultKey<[String]>, action: Selector) {
         
         // clear current history items
         for item in menu.items {
@@ -230,7 +230,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             }
         }
         
-        guard let history = UserDefaults.standard.stringArray(forKey: key), !history.isEmpty else { return }
+        guard let history = Defaults[key], !history.isEmpty else { return }
         
         menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
         

@@ -76,7 +76,7 @@ final class EditorTextView: NSTextView, Themable {
     private weak var completionTimer: Timer?
     private var particalCompletionWord: String?
     
-    private let observedDefaultKeys: [DefaultKey] = [
+    private let observedDefaultKeys: [DefaultKeys] = [
         .autoExpandTab,
         .autoIndent,
         .enableSmartIndent,
@@ -103,18 +103,16 @@ final class EditorTextView: NSTextView, Themable {
     
     required init?(coder: NSCoder) {
         
-        let defaults = UserDefaults.standard
-        
-        self.isAutomaticTabExpansionEnabled = defaults.bool(forKey: DefaultKey.autoExpandTab)
-        self.isAutomaticIndentEnabled = defaults.bool(forKey: DefaultKey.autoIndent)
-        self.isSmartIndentEnabled = defaults.bool(forKey: DefaultKey.enableSmartIndent)
-        self.balancesBrackets = defaults.bool(forKey: DefaultKey.balancesBrackets)
+        self.isAutomaticTabExpansionEnabled = Defaults[.autoExpandTab]
+        self.isAutomaticIndentEnabled = Defaults[.autoIndent]
+        self.isSmartIndentEnabled = Defaults[.enableSmartIndent]
+        self.balancesBrackets = Defaults[.balancesBrackets]
         
         // set paragraph style values
-        self.lineHeight = defaults.cgFloat(forKey: DefaultKey.lineHeight)
-        self.tabWidth = defaults.integer(forKey: DefaultKey.tabWidth)
+        self.lineHeight = Defaults[.lineHeight]
+        self.tabWidth = Defaults[.tabWidth]
         
-        self.theme = ThemeManager.shared.theme(name: defaults.string(forKey: DefaultKey.theme)!)
+        self.theme = ThemeManager.shared.theme(name: Defaults[.theme]!)
         // -> will be applied first in `viewDidMoveToWindow()`
         
         super.init(coder: coder)
@@ -143,34 +141,35 @@ final class EditorTextView: NSTextView, Themable {
                                    NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
         
         // setup behaviors
-        self.smartInsertDeleteEnabled = defaults.bool(forKey: DefaultKey.smartInsertAndDelete)
-        self.isContinuousSpellCheckingEnabled = defaults.bool(forKey: DefaultKey.smartInsertAndDelete)
-        self.isAutomaticQuoteSubstitutionEnabled = defaults.bool(forKey: DefaultKey.enableSmartQuotes)
-        self.isAutomaticDashSubstitutionEnabled = defaults.bool(forKey: DefaultKey.enableSmartDashes)
-        self.isAutomaticDashSubstitutionEnabled = defaults.bool(forKey: DefaultKey.autoLinkDetection)
+        self.smartInsertDeleteEnabled = Defaults[.smartInsertAndDelete]
+        self.isContinuousSpellCheckingEnabled = Defaults[.smartInsertAndDelete]
+        self.isAutomaticQuoteSubstitutionEnabled = Defaults[.enableSmartQuotes]
+        self.isAutomaticDashSubstitutionEnabled = Defaults[.enableSmartDashes]
+        self.isAutomaticDashSubstitutionEnabled = Defaults[.autoLinkDetection]
+        self.isContinuousSpellCheckingEnabled = Defaults[.checkSpellingAsType]
         
         // set font
         let font: NSFont? = {
-            let fontName = defaults.string(forKey: DefaultKey.fontName)!
-            let fontSize = defaults.cgFloat(forKey: DefaultKey.fontSize)
+            let fontName = Defaults[.fontName]!
+            let fontSize = Defaults[.fontSize]
             return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize)
         }()
         super.font = font
         layoutManager.textFont = font
-        layoutManager.usesAntialias = defaults.bool(forKey: DefaultKey.shouldAntialias)
+        layoutManager.usesAntialias = Defaults[.shouldAntialias]
         
         self.invalidateDefaultParagraphStyle()
         
         // observe change of defaults
         for key in self.observedDefaultKeys {
-            UserDefaults.standard.addObserver(self, forKeyPath: key, options: .new, context: nil)
+            UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, options: .new, context: nil)
         }
     }
     
     
     deinit {
         for key in self.observedDefaultKeys {
-            UserDefaults.standard.removeObserver(self, forKeyPath: key)
+            UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
         NotificationCenter.default.removeObserver(self)
         
@@ -251,7 +250,7 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // swap '¥' with '\' if needed
-        if UserDefaults.standard.bool(forKey: DefaultKey.swapYenAndBackSlash), plainString.characters.count == 1 {
+        if Defaults[.swapYenAndBackSlash], plainString.characters.count == 1 {
             if plainString == "\\" {
                 return super.insertText("¥", replacementRange: replacementRange)
             } else if plainString == "¥" {
@@ -375,8 +374,8 @@ final class EditorTextView: NSTextView, Themable {
         super.insertText(plainString, replacementRange: replacementRange)
         
         // auto completion
-        if UserDefaults.standard.bool(forKey: DefaultKey.autoComplete) {
-            let delay: TimeInterval = UserDefaults.standard.double(forKey: DefaultKey.autoCompletionDelay)
+        if Defaults[.autoComplete] {
+            let delay: TimeInterval = Defaults[.autoCompletionDelay]
             self.complete(after: delay)
         }
     }
@@ -608,10 +607,10 @@ final class EditorTextView: NSTextView, Themable {
             let textColor = self.textColor,
             let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
-            let column = UserDefaults.standard.cgFloat(forKey: .pageGuideColumn)
+            let column = Defaults[.pageGuideColumn]
             let inset = self.textContainerOrigin.x
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
-            let x = floor(spaceWidth * column + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
+            let x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
             
             NSGraphicsContext.saveGraphicsState()
             
@@ -743,35 +742,35 @@ final class EditorTextView: NSTextView, Themable {
         
         guard let keyPath = keyPath, let newValue = change?[.newKey] else { return }
         
-        switch DefaultKey(keyPath) {
-        case DefaultKey.autoExpandTab:
+        switch keyPath {
+        case DefaultKeys.autoExpandTab.rawValue:
             self.isAutomaticTabExpansionEnabled = newValue as! Bool
             
-        case DefaultKey.autoIndent:
+        case DefaultKeys.autoIndent.rawValue:
             self.isAutomaticIndentEnabled = newValue as! Bool
             
-        case DefaultKey.enableSmartIndent:
+        case DefaultKeys.enableSmartIndent.rawValue:
             self.isSmartIndentEnabled = newValue as! Bool
             
-        case DefaultKey.balancesBrackets:
+        case DefaultKeys.balancesBrackets.rawValue:
             self.balancesBrackets = newValue as! Bool
             
-        case DefaultKey.shouldAntialias:
+        case DefaultKeys.shouldAntialias.rawValue:
             self.usesAntialias = newValue as! Bool
             
-        case DefaultKey.smartInsertAndDelete:
+        case DefaultKeys.smartInsertAndDelete.rawValue:
             self.smartInsertDeleteEnabled = newValue as! Bool
             
-        case DefaultKey.enableSmartQuotes:
+        case DefaultKeys.enableSmartQuotes.rawValue:
             self.isAutomaticQuoteSubstitutionEnabled = newValue as! Bool
             
-        case DefaultKey.enableSmartDashes:
+        case DefaultKeys.enableSmartDashes.rawValue:
             self.isAutomaticDashSubstitutionEnabled = newValue as! Bool
             
-        case DefaultKey.checkSpellingAsType:
+        case DefaultKeys.checkSpellingAsType.rawValue:
             self.isContinuousSpellCheckingEnabled = newValue as! Bool
             
-        case DefaultKey.autoLinkDetection:
+        case DefaultKeys.autoLinkDetection.rawValue:
             self.isAutomaticLinkDetectionEnabled = newValue as! Bool
             if isAutomaticLinkDetectionEnabled {
                 self.detectLinkIfNeeded()
@@ -781,22 +780,22 @@ final class EditorTextView: NSTextView, Themable {
                 }
             }
             
-        case DefaultKey.pageGuideColumn:
+        case DefaultKeys.pageGuideColumn.rawValue:
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
-        case DefaultKey.tabWidth:
+        case DefaultKeys.tabWidth.rawValue:
             self.tabWidth = newValue as! Int
             
-        case DefaultKey.lineHeight:
+        case DefaultKeys.lineHeight.rawValue:
             self.lineHeight = newValue as! CGFloat
             
             // reset visible area
             self.centerSelectionInVisibleArea(self)
             
-        case DefaultKey.enablesHangingIndent, DefaultKey.hangingIndentWidth:
+        case DefaultKeys.enablesHangingIndent.rawValue, DefaultKeys.hangingIndentWidth.rawValue:
             if let textStorage = self.textStorage {
                 let wholeRange = textStorage.string.nsRange
-                if keyPath == DefaultKey.enablesHangingIndent && !(newValue as! Bool) {
+                if keyPath == DefaultKeys.enablesHangingIndent.rawValue && !(newValue as! Bool) {
                     textStorage.addAttribute(NSParagraphStyleAttributeName, value: self.defaultParagraphStyle!, range: wholeRange)
                 } else {
                     (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)

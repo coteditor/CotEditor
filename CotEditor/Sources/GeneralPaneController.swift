@@ -82,7 +82,7 @@ final class GeneralPaneController: NSViewController {
     @IBAction func updateAutosaveSetting(_ sender: AnyObject?) {
         
         let currentSetting = Document.autosavesInPlace()
-        let newSetting = UserDefaults.standard.bool(forKey: DefaultKey.enablesAutosaveInPlace)
+        let newSetting = Defaults[.enablesAutosaveInPlace]
         
         // do nothing if the setting returned to the current one.
         guard currentSetting != newSetting else { return }
@@ -104,7 +104,7 @@ final class GeneralPaneController: NSViewController {
                 break  // do nothing
                 
             case NSAlertThirdButtonReturn:  // = Cancel
-                UserDefaults.standard.set(!newSetting, forKey: DefaultKey.enablesAutosaveInPlace)
+                Defaults[.enablesAutosaveInPlace] = newSetting
                 
             default: break
             }

@@ -48,9 +48,9 @@ extension EditorTextView {
     @IBAction func toggleComment(_ sender: AnyObject?) {
         
         if self.canUncomment(range: self.selectedRange(), partly: false) {
-            self.uncomment(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: DefaultKey.commentsAtLineHead))
+            self.uncomment(types: .both, fromLineHead: Defaults[.appendsCommentSpacer])
         } else {
-            self.commentOut(types: .both, fromLineHead: UserDefaults.standard.bool(forKey: DefaultKey.commentsAtLineHead))
+            self.commentOut(types: .both, fromLineHead: Defaults[.appendsCommentSpacer])
         }
     }
     
@@ -96,7 +96,7 @@ extension EditorTextView {
             let targetRange = self.commentingRange(fromLineHead: fromLineHead)
             else { return }
         
-        let spacer = UserDefaults.standard.bool(forKey: DefaultKey.appendsCommentSpacer) ? " " : ""
+        let spacer = Defaults[.appendsCommentSpacer] ? " " : ""
         var new: (String, NSRange)?
         
         // insert delimiters
@@ -125,7 +125,7 @@ extension EditorTextView {
             let targetRange = self.commentingRange(fromLineHead: fromLineHead),
             !targetRange.isEmpty else { return }
         
-        let spacer = UserDefaults.standard.bool(forKey: DefaultKey.appendsCommentSpacer) ? " " : ""
+        let spacer = Defaults[.appendsCommentSpacer] ? " " : ""
         var new: (String, NSRange)?
         
         if let delimiters = self.blockCommentDelimiters, types.contains(.block) {
@@ -150,7 +150,7 @@ extension EditorTextView {
         
         guard
             let string = self.string,
-            let targetRange = self.commentingRange(fromLineHead: UserDefaults.standard.bool(forKey: DefaultKey.commentsAtLineHead)),
+            let targetRange = self.commentingRange(fromLineHead: Defaults[.appendsCommentSpacer]),
             !targetRange.isEmpty else { return false }
         
         let target = string.substring(with: targetRange)

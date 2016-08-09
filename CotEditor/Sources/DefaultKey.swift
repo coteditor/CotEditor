@@ -28,161 +28,248 @@
 
 import AppKit
 
-typealias DefaultKey = String
-extension DefaultKey {
+let Defaults = UserDefaults.standard
+
+class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
+    
+    let rawValue: String
+    
+    
+    required init(rawValue: String) {
+        
+        self.rawValue = rawValue
+    }
+    
+    
+    init(_ key: String) {
+        
+        self.rawValue = key
+    }
+    
+    
+    var hashValue: Int {
+        
+        return self.rawValue.hashValue
+    }
+    
+    
+    var description: String {
+        
+         return self.rawValue
+    }
+    
+}
+
+class DefaultKey<T>: DefaultKeys { }
+
+
+
+extension UserDefaults {
+    
+    subscript(key: DefaultKey<Bool>) -> Bool {
+        set { self.set(newValue, forKey: key.rawValue) }
+        get { return self.bool(forKey: key.rawValue) }
+    }
+    
+    subscript(key: DefaultKey<Int>) -> Int {
+        set { self.set(newValue, forKey: key.rawValue) }
+        get { return self.integer(forKey: key.rawValue) }
+    }
+    
+    subscript(key: DefaultKey<UInt>) -> UInt {
+        set { self.set(newValue, forKey: key.rawValue) }
+        get { return UInt(self.integer(forKey: key.rawValue)) }
+    }
+    
+    subscript(key: DefaultKey<Double>) -> Double {
+        set { self.set(newValue, forKey: key.rawValue) }
+        get { return self.double(forKey: key.rawValue) }
+    }
+    
+    subscript(key: DefaultKey<CGFloat>) -> CGFloat {
+        set { self.set(newValue, forKey: key.rawValue) }
+        get { return CGFloat(self.double(forKey: key.rawValue)) }
+    }
+    
+    subscript(key: DefaultKey<String>) -> String? {
+        set { self.set(newValue, forKey: key.rawValue) }
+        get { return self.string(forKey: key.rawValue) }
+    }
+    
+    subscript(key: DefaultKey<[String]>) -> [String]? {
+        set { self.set(newValue, forKey: key.rawValue) }
+        get { return self.stringArray(forKey: key.rawValue) }
+    }
+    
+    subscript(key: DefaultKey<[NSNumber]>) -> [NSNumber] {
+        set { self.set(newValue, forKey: key.rawValue) }
+        get { return self.array(forKey: key.rawValue) as? [NSNumber] ?? [] }
+    }
+    
+    subscript(key: DefaultKey<[AnyObject]>) -> [AnyObject]? {
+        set { self.set(newValue, forKey: key.rawValue) }
+        get { return self.array(forKey: key.rawValue) }
+    }
+    
+}
+
+
+
+extension DefaultKeys {
     
     // General
-    static let createNewAtStartup = "createNewAtStartup"
-    static let reopenBlankWindow = "reopenBlankWindow"
-    static let enablesAutosaveInPlace = "enablesAutosaveInPlace"
-    static let trimsTrailingWhitespaceOnSave = "trimsTrailingWhitespaceOnSave"
-    static let documentConflictOption = "documentConflictOption"
-    static let syncFindPboard = "syncFindPboard"
-    static let inlineContextualScriptMenu = "inlineContextualScriptMenu"
-    static let countLineEndingAsChar = "countLineEndingAsChar"
-    static let autoLinkDetection = "autoLinkDetectionKey"
-    static let checkSpellingAsType = "checkSpellingAsType"
-    static let highlightBraces = "highlightBraces"
-    static let highlightLtGt = "highlightLtGt"
-    static let checksUpdatesForBeta = "checksUpdatesForBeta"
+    static let createNewAtStartup = DefaultKey<Bool>("createNewAtStartup")
+    static let reopenBlankWindow = DefaultKey<Bool>("reopenBlankWindow")
+    static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
+    static let trimsTrailingWhitespaceOnSave = DefaultKey<Bool>("trimsTrailingWhitespaceOnSave")
+    static let documentConflictOption = DefaultKey<Int>("documentConflictOption")
+    static let syncFindPboard = DefaultKey<Bool>("syncFindPboard")
+    static let inlineContextualScriptMenu = DefaultKey<Bool>("inlineContextualScriptMenu")
+    static let countLineEndingAsChar = DefaultKey<Bool>("countLineEndingAsChar")
+    static let autoLinkDetection = DefaultKey<Bool>("autoLinkDetectionKey")
+    static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
+    static let highlightBraces = DefaultKey<Bool>("highlightBraces")
+    static let highlightLtGt = DefaultKey<Bool>("highlightLtGt")
+    static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Window
-    static let showNavigationBar = "showNavigationBar"
-    static let showDocumentInspector = "showDocumentInspector"
-    static let showStatusBar = "showStatusArea"
-    static let showLineNumbers = "showLineNumbers"
-    static let showPageGuide = "showPageGuide"
-    static let pageGuideColumn = "pageGuideColumn"
-    static let showStatusBarLines = "showStatusBarLines"
-    static let showStatusBarChars = "showStatusBarChars"
-    static let showStatusBarLength = "showStatusBarLength"
-    static let showStatusBarWords = "showStatusBarWords"
-    static let showStatusBarLocation = "showStatusBarLocation"
-    static let showStatusBarLine = "showStatusBarLine"
-    static let showStatusBarColumn = "showStatusBarColumn"
-    static let showStatusBarEncoding = "showStatusBarEncoding"
-    static let showStatusBarLineEndings = "showStatusBarLineEndings"
-    static let showStatusBarFileSize = "showStatusBarFileSize"
-    static let splitViewVertical = "splitViewVertical"
-    static let windowWidth = "windowWidth"
-    static let windowHeight = "windowHeight"
-    static let windowAlpha = "windowAlpha"
+    static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
+    static let showDocumentInspector = DefaultKey<Bool>("showDocumentInspector")
+    static let showStatusBar = DefaultKey<Bool>("showStatusArea")
+    static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
+    static let showPageGuide = DefaultKey<Bool>("showPageGuide")
+    static let pageGuideColumn = DefaultKey<Int>("pageGuideColumn")
+    static let showStatusBarLines = DefaultKey<Bool>("showStatusBarLines")
+    static let showStatusBarChars = DefaultKey<Bool>("showStatusBarChars")
+    static let showStatusBarLength = DefaultKey<Bool>("showStatusBarLength")
+    static let showStatusBarWords = DefaultKey<Bool>("showStatusBarWords")
+    static let showStatusBarLocation = DefaultKey<Bool>("showStatusBarLocation")
+    static let showStatusBarLine = DefaultKey<Bool>("showStatusBarLine")
+    static let showStatusBarColumn = DefaultKey<Bool>("showStatusBarColumn")
+    static let showStatusBarEncoding = DefaultKey<Bool>("showStatusBarEncoding")
+    static let showStatusBarLineEndings = DefaultKey<Bool>("showStatusBarLineEndings")
+    static let showStatusBarFileSize = DefaultKey<Bool>("showStatusBarFileSize")
+    static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
+    static let windowWidth = DefaultKey<CGFloat>("windowWidth")
+    static let windowHeight = DefaultKey<CGFloat>("windowHeight")
+    static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")
     
     // Appearance
-    static let fontName = "fontName"
-    static let fontSize = "fontSize"
-    static let shouldAntialias = "shouldAntialias"
-    static let lineHeight = "lineHeight"
-    static let highlightCurrentLine = "highlightCurrentLine"
-    static let showInvisibles = "showInvisibles"
-    static let showInvisibleSpace = "showInvisibleSpace"
-    static let invisibleSpace = "invisibleSpace"
-    static let showInvisibleTab = "showInvisibleTab"
-    static let invisibleTab = "invisibleTab"
-    static let showInvisibleNewLine = "showInvisibleNewLine"
-    static let invisibleNewLine = "invisibleNewLine"
-    static let showInvisibleFullwidthSpace = "showInvisibleZenkakuSpace"
-    static let invisibleFullwidthSpace = "invisibleZenkakuSpace"
-    static let showOtherInvisibleChars = "showOtherInvisibleChars"
-    static let theme = "defaultTheme"
+    static let fontName = DefaultKey<String>("fontName")
+    static let fontSize = DefaultKey<CGFloat>("fontSize")
+    static let shouldAntialias = DefaultKey<Bool>("shouldAntialias")
+    static let lineHeight = DefaultKey<CGFloat>("lineHeight")
+    static let highlightCurrentLine = DefaultKey<Bool>("highlightCurrentLine")
+    static let showInvisibles = DefaultKey<Bool>("showInvisibles")
+    static let showInvisibleSpace = DefaultKey<Bool>("showInvisibleSpace")
+    static let invisibleSpace = DefaultKey<Int>("invisibleSpace")
+    static let showInvisibleTab = DefaultKey<Bool>("showInvisibleTab")
+    static let invisibleTab = DefaultKey<Int>("invisibleTab")
+    static let showInvisibleNewLine = DefaultKey<Bool>("showInvisibleNewLine")
+    static let invisibleNewLine = DefaultKey<Int>("invisibleNewLine")
+    static let showInvisibleFullwidthSpace = DefaultKey<Bool>("showInvisibleZenkakuSpace")
+    static let invisibleFullwidthSpace = DefaultKey<Int>("invisibleZenkakuSpace")
+    static let showOtherInvisibleChars = DefaultKey<Bool>("showOtherInvisibleChars")
+    static let theme = DefaultKey<String>("defaultTheme")
     
     // Edit
-    static let smartInsertAndDelete = "smartInsertAndDelete"
-    static let balancesBrackets = "balancesBrackets"
-    static let swapYenAndBackSlash = "swapYenAndBackSlashKey"
-    static let enableSmartQuotes = "enableSmartQuotes"
-    static let enableSmartDashes = "enableSmartDashes"
-    static let autoIndent = "autoIndent"
-    static let tabWidth = "tabWidth"
-    static let autoExpandTab = "autoExpandTab"
-    static let detectsIndentStyle = "detectsIndentStyle"
-    static let appendsCommentSpacer = "appendsCommentSpacer"
-    static let commentsAtLineHead = "commentsAtLineHead"
-    static let wrapLines = "wrapLines"
-    static let enablesHangingIndent = "enableHangingIndent"
-    static let hangingIndentWidth = "hangingIndentWidth"
-    static let completesDocumentWords = "completesDocumentWords"
-    static let completesSyntaxWords = "completesSyntaxWords"
-    static let completesStandartWords = "completesStandardWords"
-    static let autoComplete = "autoComplete"
+    static let smartInsertAndDelete = DefaultKey<Bool>("smartInsertAndDelete")
+    static let balancesBrackets = DefaultKey<Bool>("balancesBrackets")
+    static let swapYenAndBackSlash = DefaultKey<Bool>("swapYenAndBackSlashKey")
+    static let enableSmartQuotes = DefaultKey<Bool>("enableSmartQuotes")
+    static let enableSmartDashes = DefaultKey<Bool>("enableSmartDashes")
+    static let autoIndent = DefaultKey<Bool>("autoIndent")
+    static let tabWidth = DefaultKey<Int>("tabWidth")
+    static let autoExpandTab = DefaultKey<Bool>("autoExpandTab")
+    static let detectsIndentStyle = DefaultKey<Bool>("detectsIndentStyle")
+    static let appendsCommentSpacer = DefaultKey<Bool>("appendsCommentSpacer")
+    static let commentsAtLineHead = DefaultKey<Bool>("commentsAtLineHead")
+    static let wrapLines = DefaultKey<Bool>("wrapLines")
+    static let enablesHangingIndent = DefaultKey<Bool>("enableHangingIndent")
+    static let hangingIndentWidth = DefaultKey<Int>("hangingIndentWidth")
+    static let completesDocumentWords = DefaultKey<Bool>("completesDocumentWords")
+    static let completesSyntaxWords = DefaultKey<Bool>("completesSyntaxWords")
+    static let completesStandartWords = DefaultKey<Bool>("completesStandardWords")
+    static let autoComplete = DefaultKey<Bool>("autoComplete")
     
     // Format
-    static let lineEndCharCode = "defaultLineEndCharCode"
-    static let encodingList = "encodingList"
-    static let encodingInNew = "encodingInNew"
-    static let encodingInOpen = "encodingInOpen"
-    static let saveUTF8BOM = "saveUTF8BOM"
-    static let referToEncodingTag = "referToEncodingTag"
-    static let enableSyntaxHighlight = "doSyntaxColoring"
-    static let syntaxStyle = "defaultColoringStyleName"
+    static let lineEndCharCode = DefaultKey<Int>("defaultLineEndCharCode")
+    static let encodingList = DefaultKey<[NSNumber]>("encodingList")
+    static let encodingInNew = DefaultKey<UInt>("encodingInNew")
+    static let encodingInOpen = DefaultKey<UInt>("encodingInOpen")
+    static let saveUTF8BOM = DefaultKey<Bool>("saveUTF8BOM")
+    static let referToEncodingTag = DefaultKey<Bool>("referToEncodingTag")
+    static let enableSyntaxHighlight = DefaultKey<Bool>("doSyntaxColoring")
+    static let syntaxStyle = DefaultKey<String>("defaultColoringStyleName")
     
     // File Drop
-    static let fileDropArray = "fileDropArray"
+    static let fileDropArray = DefaultKey<[AnyObject]>("fileDropArray")
     
     // Key Bindings
-    static let insertCustomTextArray = "insertCustomTextArray"
+    static let insertCustomTextArray = DefaultKey<[String]>("insertCustomTextArray")
     
     // Print
-    static let setPrintFont = "setPrintFont"
-    static let printFontName = "printFontName"
-    static let printFontSize = "printFontSize"
-    static let printColorIndex = "printColorIndex"
-    static let printTheme = "printTheme"
-    static let printLineNumIndex = "printLineNumIndex"
-    static let printInvisibleCharIndex = "printInvisibleCharIndex"
-    static let printHeader = "printHeader"
-    static let primaryHeaderContent = "headerOneStringIndex"
-    static let primaryHeaderAlignment = "headerOneAlignIndex"
-    static let secondaryHeaderContent = "headerTwoStringIndex"
-    static let secondaryHeaderAlignment = "headerTwoAlignIndex"
-    static let printFooter = "printFooter"
-    static let primaryFooterContent = "footerOneStringIndex"
-    static let primaryFooterAlignment = "footerOneAlignIndex"
-    static let secondaryFooterContent = "footerTwoStringIndex"
-    static let secondaryFooterAlignment = "footerTwoAlignIndex"
+    static let setPrintFont = DefaultKey<Int>("setPrintFont")
+    static let printFontName = DefaultKey<String>("printFontName")
+    static let printFontSize = DefaultKey<CGFloat>("printFontSize")
+    static let printColorIndex = DefaultKey<Int>("printColorIndex")
+    static let printTheme = DefaultKey<String>("printTheme")
+    static let printLineNumIndex = DefaultKey<Int>("printLineNumIndex")
+    static let printInvisibleCharIndex = DefaultKey<Int>("printInvisibleCharIndex")
+    static let printHeader = DefaultKey<Bool>("printHeader")
+    static let primaryHeaderContent = DefaultKey<Int>("headerOneStringIndex")
+    static let primaryHeaderAlignment = DefaultKey<Int>("headerOneAlignIndex")
+    static let secondaryHeaderContent = DefaultKey<Int>("headerTwoStringIndex")
+    static let secondaryHeaderAlignment = DefaultKey<Int>("headerTwoAlignIndex")
+    static let printFooter = DefaultKey<Bool>("printFooter")
+    static let primaryFooterContent = DefaultKey<Int>("footerOneStringIndex")
+    static let primaryFooterAlignment = DefaultKey<Int>("footerOneAlignIndex")
+    static let secondaryFooterContent = DefaultKey<Int>("footerTwoStringIndex")
+    static let secondaryFooterAlignment = DefaultKey<Int>("footerTwoAlignIndex")
     
     
     // find panel
-    static let findHistory = "findHistory"
-    static let replaceHistory = "replaceHistory"
-    static let findUsesRegularExpression = "findUsesRegularExpression"
-    static let findIgnoresCase = "findIgnoresCase"
-    static let findInSelection = "findInSelection"
-    static let findIsWrap = "findIsWrap"
-    static let findNextAfterReplace = "findsNextAfterReplace"
-    static let findClosesIndicatorWhenDone = "findClosesIndicatorWhenDone"
+    static let findHistory = DefaultKey<[String]>("findHistory")
+    static let replaceHistory = DefaultKey<[String]>("replaceHistory")
+    static let findUsesRegularExpression = DefaultKey<Bool>("findUsesRegularExpression")
+    static let findIgnoresCase = DefaultKey<Bool>("findIgnoresCase")
+    static let findInSelection = DefaultKey<Bool>("findInSelection")
+    static let findIsWrap = DefaultKey<Bool>("findIsWrap")
+    static let findNextAfterReplace = DefaultKey<Bool>("findsNextAfterReplace")
+    static let findClosesIndicatorWhenDone = DefaultKey<Bool>("findClosesIndicatorWhenDone")
     
-    static let findTextIsLiteralSearch = "findTextIsLiteralSearch"
-    static let findTextIgnoresDiacriticMarks = "findTextIgnoresDiacriticMarks"
-    static let findTextIgnoresWidth = "findTextIgnoresWidth"
-    static let findRegexIsSingleline = "findRegexIsSingleline"
-    static let findRegexIsMultiline = "findRegexIsMultiline"
-    static let findRegexUsesUnicodeBoundaries = "regexUsesUnicodeBoundaries"
+    static let findTextIsLiteralSearch = DefaultKey<Bool>("findTextIsLiteralSearch")
+    static let findTextIgnoresDiacriticMarks = DefaultKey<Bool>("findTextIgnoresDiacriticMarks")
+    static let findTextIgnoresWidth = DefaultKey<Bool>("findTextIgnoresWidth")
+    static let findRegexIsSingleline = DefaultKey<Bool>("findRegexIsSingleline")
+    static let findRegexIsMultiline = DefaultKey<Bool>("findRegexIsMultiline")
+    static let findRegexUsesUnicodeBoundaries = DefaultKey<Bool>("regexUsesUnicodeBoundaries")
     
     // settings that are not in preferences
-    static let colorCodeType = "colorCodeType"
-    static let sidebarWidth = "sidebarWidth"
-    static let recentStyleNames = "recentStyleNames"
+    static let colorCodeType = DefaultKey<Int>("colorCodeType")
+    static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
+    static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
     
     // hidden settings
-    static let usesTextFontForInvisibles = "usesTextFontForInvisibles"
-    static let headerFooterDateFormat = "headerFooterDateFormat"
-    static let headerFooterPathAbbreviatingWithTilde = "headerFooterPathAbbreviatingWithTilde"
-    static let autoCompletionDelay = "autoCompletionDelay"
-    static let infoUpdateInterval = "infoUpdateInterval"
-    static let outlineMenuInterval = "outlineMenuInterval"
-    static let showColoringIndicatorTextLength = "showColoringIndicatorTextLength"
-    static let coloringRangeBufferLength = "coloringRangeBufferLength"
-    static let largeFileAlertThreshold = "largeFileAlertThreshold"
-    static let autosavingDelay = "autosavingDelay"
-    static let savesTextOrientation = "savesTextOrientation"
-    static let layoutTextVertical = "layoutTextVertical"
-    static let enableSmartIndent = "enableSmartIndent"
-    static let maximumRecentStyleCount = "maximumRecentStyleCount"
+    static let usesTextFontForInvisibles = DefaultKey<Bool>("usesTextFontForInvisibles")
+    static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
+    static let headerFooterPathAbbreviatingWithTilde = DefaultKey<Bool>("headerFooterPathAbbreviatingWithTilde")
+    static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
+    static let infoUpdateInterval = DefaultKey<Double>("infoUpdateInterval")
+    static let outlineMenuInterval = DefaultKey<Double>("outlineMenuInterval")
+    static let showColoringIndicatorTextLength = DefaultKey<Int>("showColoringIndicatorTextLength")
+    static let coloringRangeBufferLength = DefaultKey<Int>("coloringRangeBufferLength")
+    static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")
+    static let autosavingDelay = DefaultKey<Double>("autosavingDelay")
+    static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
+    static let layoutTextVertical = DefaultKey<Bool>("layoutTextVertical")
+    static let enableSmartIndent = DefaultKey<Bool>("enableSmartIndent")
+    static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
     
-    static let lastVersion = "lastVersion"
-
+    static let lastVersion = DefaultKey<String>("lastVersion")
+    
 }
+
 
 
 // MARK: Default Values

@@ -495,6 +495,8 @@
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
 		2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
 		2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
+		2AFB5AE81D597ABB003895A7 /* DefaultEncodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB5AE71D597ABB003895A7 /* DefaultEncodings.swift */; };
+		2AFB5AE91D597ABB003895A7 /* DefaultEncodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB5AE71D597ABB003895A7 /* DefaultEncodings.swift */; };
 		2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB70518D7BC9300118477 /* OpacityPanel.xib */; };
 		2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AFFB72A18D8C7DE00118477 /* OpenDocumentAccessory.xib */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
@@ -942,6 +944,7 @@
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
+		2AFB5AE71D597ABB003895A7 /* DefaultEncodings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultEncodings.swift; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1319,10 +1322,9 @@
 		2A41CB431C391ACE00F9122B /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				2AFB5AEA1D597AFC003895A7 /* Defaults */,
 				2A2792941D1DBDAC00F3FC5D /* Constants.swift */,
-				2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */,
 				2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */,
-				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -1663,6 +1665,16 @@
 				2A2A6A291D4D2BB400C3363E /* CommonCrypto */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		2AFB5AEA1D597AFC003895A7 /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
+				2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */,
+				2AFB5AE71D597ABB003895A7 /* DefaultEncodings.swift */,
+			);
+			name = Defaults;
 			sourceTree = "<group>";
 		};
 		2AFFB72E18D8E87900118477 /* Panel Controllers */ = {
@@ -2145,6 +2157,7 @@
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A5D13201D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
+				2AFB5AE91D597ABB003895A7 /* DefaultEncodings.swift in Sources */,
 				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
 				2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2AED70EF1D2E36EF006FFBCE /* MainViewController.swift in Sources */,
@@ -2329,6 +2342,7 @@
 				2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
 				2A6FD9EA1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
 				2A78BFB61D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */,
+				2AFB5AE81D597ABB003895A7 /* DefaultEncodings.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */,

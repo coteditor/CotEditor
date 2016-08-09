@@ -40,7 +40,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.windowAlpha)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue)
     }
     
     
@@ -50,9 +50,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// apply user defaults change
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
-        if keyPath == DefaultKey.windowAlpha {
+        guard let keyPath = keyPath else { return }
+        
+        if keyPath == DefaultKeys.windowAlpha.rawValue {
             if let window = self.window as? AlphaWindow {
-                window.backgroundAlpha = UserDefaults.standard.cgFloat(forKey: DefaultKey.windowAlpha)
+                window.backgroundAlpha = Defaults[.windowAlpha]
             }
         }
     }
@@ -70,18 +72,17 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.shouldCascadeWindows = true
         
         let window = self.window as! AlphaWindow
-        let defaults = UserDefaults.standard
         
         // set window size
-        let contentSize = NSSize(width: defaults.cgFloat(forKey: DefaultKey.windowWidth),
-                                 height: defaults.cgFloat(forKey: DefaultKey.windowHeight))
+        let contentSize = NSSize(width: Defaults[.windowWidth],
+                                 height: Defaults[.windowHeight])
         window.setContentSize(contentSize)
         
         // setup background
-        window.backgroundAlpha = defaults.cgFloat(forKey: DefaultKey.windowAlpha)
+        window.backgroundAlpha = Defaults[.windowAlpha]
         
         // observe opacity setting change
-        defaults.addObserver(self, forKeyPath: DefaultKey.windowAlpha, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue, context: nil)
     }
     
     

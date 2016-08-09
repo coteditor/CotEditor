@@ -116,7 +116,7 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
             if self.isPrerelease {
                 return true
             }
-            return UserDefaults.standard.bool(forKey: DefaultKey.checksUpdatesForBeta)
+            return Defaults[.checksUpdatesForBeta]
         }()
         
         let appCast: AppCastURL = checksBeta ? .beta : .stable

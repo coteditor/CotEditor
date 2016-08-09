@@ -187,8 +187,8 @@ final class ThemeManager: SettingFileManager {
         
         try super.renameSetting(name: settingName, to: newName)
         
-        if UserDefaults.standard.string(forKey: DefaultKey.theme) == settingName {
-            UserDefaults.standard.set(newName, forKey: DefaultKey.theme)
+        if Defaults[.theme] == settingName {
+            Defaults[.theme] = newName
         }
         
         self.updateCache { [weak self] in
@@ -207,7 +207,7 @@ final class ThemeManager: SettingFileManager {
         
         self.updateCache { [weak self] in
             // restore theme of opened documents to default
-            let defaultThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
+            let defaultThemeName = Defaults[.theme]!
             
             NotificationCenter.default.post(name: .ThemeDidUpdate,
                                             object: self,
@@ -292,9 +292,9 @@ final class ThemeManager: SettingFileManager {
                 self.archivedThemes = themes
                 
                 // reset user default if not found
-                let defaultThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
+                let defaultThemeName = Defaults[.theme]!
                 if !themeNameSet.contains(defaultThemeName) {
-                    UserDefaults.standard.removeObject(forKey: DefaultKey.theme)
+                    UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
                 }
                 
                 DispatchQueue.main.sync {
@@ -357,7 +357,7 @@ extension ThemeManager {
         guard self.save(themeDictionary: theme, name: themeName, completionHandler: nil) else { return false }
         
         // set as default theme
-        UserDefaults.standard.set(themeName, forKey: DefaultKey.theme)
+        Defaults[.theme] = themeName
         
         self.updateCache(completionHandler: nil)
         

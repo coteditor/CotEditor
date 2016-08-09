@@ -67,12 +67,12 @@ final class EncodingManager: NSObject {
         
         self.buildEncodingMenuItems()
         
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.encodingList, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.encodingList.rawValue, context: nil)
     }
     
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.encodingList)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.encodingList.rawValue)
     }
     
     
@@ -81,7 +81,7 @@ final class EncodingManager: NSObject {
     
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
-        if keyPath == DefaultKey.encodingList {
+        if keyPath == DefaultKeys.encodingList.rawValue {
             self.buildEncodingMenuItems()
         }
     }
@@ -93,7 +93,7 @@ final class EncodingManager: NSObject {
     /// return user's encoding priority list
     var defaultEncodings: [String.Encoding?] {
         
-        let encodingNumbers = UserDefaults.standard.array(forKey: DefaultKey.encodingList) as! [NSNumber]
+        let encodingNumbers = Defaults[.encodingList]
         
         return encodingNumbers.map { encodingNumber in
             let cfEncoding = encodingNumber.uint32Value

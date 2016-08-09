@@ -79,7 +79,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         self.themeTableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
         
         // select default theme
-        let themeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
+        let themeName = Defaults[.theme]!
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
@@ -244,9 +244,9 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         // update default theme setting
         // -> skip on the first time because, at the time point, the settings are not yet applied.
         if self.themeViewController != nil {
-            let oldThemeName = UserDefaults.standard.string(forKey: DefaultKey.theme)!
+            let oldThemeName = Defaults[.theme]!
             
-            UserDefaults.standard.set(themeName, forKey: DefaultKey.theme)
+            Defaults[.theme] = themeName
             
             // update theme of the current document windows
             //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
@@ -347,8 +347,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// show font panel
     @IBAction func showFonts(_ sender: AnyObject?) {
         
-        guard let font = NSFont(name: UserDefaults.standard.string(forKey: DefaultKey.fontName)!,
-                                size: UserDefaults.standard.cgFloat(forKey: DefaultKey.fontSize)) else { return }
+        guard let font = NSFont(name: Defaults[.fontName]!,
+                                size: Defaults[.fontSize]) else { return }
         
         self.view.window?.makeFirstResponder(self)
         NSFontManager.shared().setSelectedFont(font, isMultiple: false)
@@ -363,8 +363,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
         
-        UserDefaults.standard.set(newFont.fontName, forKey: DefaultKey.fontName)
-        UserDefaults.standard.set(newFont.pointSize, forKey: DefaultKey.fontSize)
+        Defaults[.fontName] = newFont.fontName
+        Defaults[.fontSize] = newFont.pointSize
         
         self.setupFontFamilyNameAndSize()
     }
@@ -483,9 +483,9 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// display font name and size in the font field
     private func setupFontFamilyNameAndSize() {
         
-        let name = UserDefaults.standard.string(forKey: DefaultKey.fontName)!
-        let size = UserDefaults.standard.cgFloat(forKey: DefaultKey.fontSize)
-        let shouldAntiailias = UserDefaults.standard.bool(forKey: DefaultKey.shouldAntialias)
+        let name = Defaults[.fontName]!
+        let size = Defaults[.fontSize]
+        let shouldAntiailias = Defaults[.shouldAntialias]
         
         guard let font = NSFont(name: name, size: size),
             let displayFont = NSFont(name: name, size: min(size, 13.0)),
@@ -502,7 +502,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView else {
-            return UserDefaults.standard.string(forKey: DefaultKey.theme)!
+            return Defaults[.theme]!
         }
         return self.themeNames[tableView.selectedRow]
     }

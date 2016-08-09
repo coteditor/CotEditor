@@ -39,7 +39,7 @@ final class FindPanelButtonViewController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKey.findNextAfterReplace)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.findNextAfterReplace.rawValue)
     }
     
     
@@ -54,14 +54,14 @@ final class FindPanelButtonViewController: NSViewController {
         self.invalidateReplaceButtonBehavior()
         
         // observe default change for the "Replace" button tooltip
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKey.findNextAfterReplace, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findNextAfterReplace.rawValue, context: nil)
     }
     
     
     /// observed user defaults are changed
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
-        if keyPath == DefaultKey.findNextAfterReplace {
+        if keyPath == DefaultKeys.findNextAfterReplace.rawValue {
             self.invalidateReplaceButtonBehavior()
         }
     }
@@ -74,7 +74,7 @@ final class FindPanelButtonViewController: NSViewController {
     @IBAction func replace(_ sender: AnyObject?) {
         
         // perform "Replace & Find" instead of "Replace"
-        if UserDefaults.standard.bool(forKey: DefaultKey.findNextAfterReplace) {
+        if Defaults[.findNextAfterReplace] {
             TextFinder.shared.replaceAndFind(sender)
         } else {
             TextFinder.shared.replace(sender)
@@ -105,7 +105,7 @@ final class FindPanelButtonViewController: NSViewController {
     private func invalidateReplaceButtonBehavior() {
         
         self.replaceButton?.toolTip = {
-            if UserDefaults.standard.bool(forKey: DefaultKey.findNextAfterReplace) {
+            if Defaults[.findNextAfterReplace] {
                 return NSLocalizedString("Replace the current selection with the replacement text, then find the next match.", comment: "")
             } else {
                 return NSLocalizedString("Replace the current selection with the replacement text.", comment: "")

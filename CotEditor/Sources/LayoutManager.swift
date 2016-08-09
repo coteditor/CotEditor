@@ -80,9 +80,9 @@ final class LayoutManager: NSLayoutManager {
     
     // MARK: Private Properties
     
-    private static let usesTextFontForInvisibles = UserDefaults.standard.bool(forKey: DefaultKey.usesTextFontForInvisibles)
+    private static let usesTextFontForInvisibles = Defaults[.usesTextFontForInvisibles]
     private static let HiraginoSansName = NSFontManager.shared().availableFonts.contains(FontName.HiraginoSans) ? FontName.HiraginoSans : FontName.HiraKakuProN
-    private static let observedDefaultKeys: [DefaultKey] = [
+    private static let observedDefaultKeys: [DefaultKeys] = [
         .invisibleSpace,
         .invisibleTab,
         .invisibleNewLine,
@@ -138,7 +138,7 @@ final class LayoutManager: NSLayoutManager {
         
         // observe change of defaults
         for key in self.dynamicType.observedDefaultKeys {
-            UserDefaults.standard.addObserver(self, forKeyPath: key, context: nil)
+            UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, context: nil)
         }
     }
     
@@ -151,7 +151,7 @@ final class LayoutManager: NSLayoutManager {
     
     deinit {
         for key in self.dynamicType.observedDefaultKeys {
-            UserDefaults.standard.removeObserver(self, forKeyPath: key)
+            UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
     }
     
@@ -162,7 +162,7 @@ final class LayoutManager: NSLayoutManager {
     /// apply change of user setting
     override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
         
-        if let keyPath = keyPath, self.dynamicType.observedDefaultKeys.contains(keyPath) {
+        if let keyPath = keyPath, self.dynamicType.observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
             self.invalidateLayout(forCharacterRange: NSRange(location: 0, length: self.textStorage?.length ?? 0), actualCharacterRange: nil)
@@ -293,7 +293,7 @@ final class LayoutManager: NSLayoutManager {
     /// invalidate indent of wrapped lines
     func invalidateIndent(in range: NSRange) {
         
-        guard UserDefaults.standard.bool(forKey: DefaultKey.enablesHangingIndent) else { return }
+        guard Defaults[.enablesHangingIndent] else { return }
         
         guard let textStorage = self.textStorage, let textView = self.firstTextView else { return }
         
@@ -301,7 +301,7 @@ final class LayoutManager: NSLayoutManager {
         
         guard lineRange.length > 0 else { return }
         
-        let hangingIndent = self.spaceWidth * UserDefaults.standard.cgFloat(forKey: DefaultKey.hangingIndentWidth)
+        let hangingIndent = self.spaceWidth * CGFloat(Defaults[.hangingIndentWidth])
         let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")
         
         // get dummy attributes to make calculation of indent width the same as CElayoutManager's calculation (2016-04)
@@ -354,14 +354,12 @@ final class LayoutManager: NSLayoutManager {
     /// apply invisible settings
     private func applyDefaultInvisiblesSetting() {
         
-        let defaults = UserDefaults.standard
-        
         // showInvisibles will be set from EditorViewController or PrintTextView
-        self.showsSpace = defaults.bool(forKey: DefaultKey.showInvisibleSpace)
-        self.showsTab = defaults.bool(forKey: DefaultKey.showInvisibleTab)
-        self.showsNewLine = defaults.bool(forKey: DefaultKey.showInvisibleNewLine)
-        self.showsFullwidthSpace = defaults.bool(forKey: DefaultKey.showInvisibleFullwidthSpace)
-        self.showsOtherInvisibles = defaults.bool(forKey: DefaultKey.showOtherInvisibleChars)
+        self.showsSpace = Defaults[.showInvisibleSpace]
+        self.showsTab = Defaults[.showInvisibleTab]
+        self.showsNewLine = Defaults[.showInvisibleNewLine]
+        self.showsFullwidthSpace = Defaults[.showInvisibleFullwidthSpace]
+        self.showsOtherInvisibles = Defaults[.showOtherInvisibleChars]
     }
     
     
