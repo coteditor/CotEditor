@@ -533,49 +533,47 @@ final class SyntaxHighlightParseOperation: Operation {
                 let definition = definitions[i]
                 var extractedRanges: [NSRange]?
                 
-                autoreleasepool {
-                    if definition.isRegularExpression {
-                        if let endString = definition.endString, !endString.isEmpty {
-                            extractedRanges = self.ranges(regularExpressionBeginString: definition.beginString,
-                                                          endString: endString,
-                                                          ignoreCase: definition.ignoreCase)
-                        } else {
-                            extractedRanges = self.ranges(regularExpressionString: definition.beginString,
-                                                          ignoreCase: definition.ignoreCase)
-                        }
-                        
+                if definition.isRegularExpression {
+                    if let endString = definition.endString {
+                        extractedRanges = self.ranges(regularExpressionBeginString: definition.beginString,
+                                                      endString: endString,
+                                                      ignoreCase: definition.ignoreCase)
                     } else {
-                        if let endString = definition.endString, !endString.isEmpty {
-                            extractedRanges = self.ranges(beginString: definition.beginString,
-                                                          endString: endString,
-                                                          ignoreCase: definition.ignoreCase)
-                        } else {
-                            let len = definition.beginString.utf16.count
-                            let word = definition.ignoreCase ? definition.beginString.lowercased() : definition.beginString
-                            
-                            wordsQueue.sync {
-                                if definition.ignoreCase {
-                                    if simpleICWordsDict[len] != nil {
-                                        simpleICWordsDict[len]!.append(word)
-                                    } else {
-                                        simpleICWordsDict[len] = [word]
-                                    }
-                                    
+                        extractedRanges = self.ranges(regularExpressionString: definition.beginString,
+                                                      ignoreCase: definition.ignoreCase)
+                    }
+                    
+                } else {
+                    if let endString = definition.endString {
+                        extractedRanges = self.ranges(beginString: definition.beginString,
+                                                      endString: endString,
+                                                      ignoreCase: definition.ignoreCase)
+                    } else {
+                        let len = definition.beginString.utf16.count
+                        let word = definition.ignoreCase ? definition.beginString.lowercased() : definition.beginString
+                        
+                        wordsQueue.sync {
+                            if definition.ignoreCase {
+                                if simpleICWordsDict[len] != nil {
+                                    simpleICWordsDict[len]!.append(word)
                                 } else {
-                                    if simpleWordsDict[len] != nil {
-                                        simpleWordsDict[len]!.append(word)
-                                    } else {
-                                        simpleWordsDict[len] = [word]
-                                    }
+                                    simpleICWordsDict[len] = [word]
+                                }
+                                
+                            } else {
+                                if simpleWordsDict[len] != nil {
+                                    simpleWordsDict[len]!.append(word)
+                                } else {
+                                    simpleWordsDict[len] = [word]
                                 }
                             }
                         }
                     }
-                    
-                    if let extractedRanges = extractedRanges {
-                        rangesQueue.sync {
-                            ranges.append(contentsOf: extractedRanges)
-                        }
+                }
+                
+                if let extractedRanges = extractedRanges, !extractedRanges.isEmpty {
+                    rangesQueue.sync {
+                        ranges.append(contentsOf: extractedRanges)
                     }
                 }
                 
@@ -583,7 +581,7 @@ final class SyntaxHighlightParseOperation: Operation {
                 DispatchQueue.main.async {
                     childProgress.completedUnitCount += 1
                 }
-                })
+            })
             
             guard !self.isCancelled else { return [:] }
             
