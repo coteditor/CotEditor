@@ -212,7 +212,7 @@ private extension NSMutableAttributedString {
     /// append formatted state
     func appendFormattedState(value: String?, label: String?) {
         
-        if self.length > 0 {
+        if !self.string.isEmpty {
             self.append(NSAttributedString(string: "   "))
         }
         

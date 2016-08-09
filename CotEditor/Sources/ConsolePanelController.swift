@@ -94,11 +94,11 @@ final class ConsolePanelController: NSWindowController {
         // append bold title
         let attrTitle = NSMutableAttributedString(string: title)
         attrTitle.applyFontTraits(.boldFontMask, range: NSRange(location: 0, length: title.utf16.count))
-        attrString = attrString + attrTitle
+        attrString += attrTitle
         
         // append indented message
         let attrMessage = NSAttributedString(string: "\n" + message + "\n", attributes: [NSParagraphStyleAttributeName: self.messageParagraphStyle])
-        attrString = attrString + attrMessage
+        attrString += attrMessage
         
         self.textView?.textStorage?.append(attrString)
     }

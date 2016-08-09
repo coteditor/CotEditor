@@ -1019,9 +1019,9 @@ final class EditorTextView: NSTextView, Themable {
         for selection in selections {
             // join with newline string
             if !pasteboardString.string.isEmpty {
-                pasteboardString = pasteboardString + attrLineEnding
+                pasteboardString += attrLineEnding
             }
-            pasteboardString = pasteboardString + selection
+            pasteboardString += selection
         }
         
         // set to paste board

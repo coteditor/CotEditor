@@ -1,6 +1,6 @@
 /*
  
- AttributedString.swift
+ NSAttributedString.swift
  
  CotEditor
  https://coteditor.com
@@ -27,12 +27,23 @@
 
 import Foundation
 
-/// concatenate attributed strings
-func +(lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
+extension NSAttributedString {
     
-    let result = NSMutableAttributedString()
-    result.append(lhs)
-    result.append(rhs)
+    /// concatenate attributed strings
+    static func +(lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
+        
+        let result = NSMutableAttributedString()
+        result.append(lhs)
+        result.append(rhs)
+        
+        return result
+    }
     
-    return result
+    
+    /// concatenate attributed strings
+    static func +=(lhs: inout NSAttributedString, rhs: NSAttributedString) {
+        
+        lhs = lhs + rhs
+    }
+    
 }
