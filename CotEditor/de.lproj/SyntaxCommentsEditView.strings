@@ -29,18 +29,18 @@
 /* Class = "NSTextFieldCell"; title = "Inline comment:"; ObjectID = "b3O-ZW-iIp"; */
 "b3O-ZW-iIp.title" = "Inline-Kommentar:";
 /* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "xWF-yX-yz5"; */
-"xWF-yX-yz5.title" = "Anfang mit:";
+"xWF-yX-yz5.title" = "Beginnt mit:";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "4qu-tU-wgL"; */
 "4qu-tU-wgL.placeholderString" = "Nicht definiert";
 
 /* Class = "NSTextFieldCell"; title = "Block comment:"; ObjectID = "bUT-iW-c0x"; */
 "bUT-iW-c0x.title" = "Block-Kommentar:";
 /* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "508-hG-5PG"; */
-"508-hG-5PG.title" = "Anfang mit:";
+"508-hG-5PG.title" = "Beginnt mit:";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "TSS-rl-L2D"; */
 "TSS-rl-L2D.placeholderString" = "Nicht definiert";
 /* Class = "NSTextFieldCell"; title = "End with:"; ObjectID = "5bm-Fa-IZj"; */
-"5bm-Fa-IZj.title" = "Ende with:";
+"5bm-Fa-IZj.title" = "Endet mit:";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "lMx-HP-1U1"; */
 "lMx-HP-1U1.placeholderString" = "Nicht definiert";
 

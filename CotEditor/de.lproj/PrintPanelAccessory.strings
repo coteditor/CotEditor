@@ -28,23 +28,23 @@
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "eXI-55-yQO"; */
 "eXI-55-yQO.title" = "Farbe:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
-"590.title" = "Schwarz-Weiß";
+"590.title" = "Schwarz/Weiß";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
-"589.title" = "Gleich wie Dokument";
+"589.title" = "Wie Dokument";
 
 /* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
 "716.title" = "Zeilennummern:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
 "420.title" = "Nicht drucken";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
-"419.title" = "Gleich wie Dokument";
+"419.title" = "Wie Dokument";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
 "418.title" = "Drucken";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "Unsichtbaren:";
+"718.title" = "Unsichtbare:";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
-"427.title" = "Gleich wie Dokument";
+"427.title" = "Wie Dokument";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
 "428.title" = "Nicht drucken";
 /* Class = "NSMenuItem"; title = "Print all"; ObjectID = "426"; */
@@ -62,7 +62,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "UJ5-ki-qHL"; */
 "UJ5-ki-qHL.title" = "Syntaxname";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "202"; */
-"202.title" = "Dokumentname";
+"202.title" = "Dokumentenname";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "203"; */
 "203.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "206"; */
@@ -71,9 +71,9 @@
 "200.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Aru-Gd-J0D"; */
-"Aru-Gd-J0D.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"Aru-Gd-J0D.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "Aru-Gd-J0D.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"Aru-Gd-J0D.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+"Aru-Gd-J0D.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
 
 
 /* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
@@ -84,7 +84,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "6RR-gp-tKJ"; */
 "6RR-gp-tKJ.title" = "Syntaxname";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "312"; */
-"312.title" = "Dokumentname";
+"312.title" = "Dokumentenname";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "307"; */
 "307.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "311"; */
@@ -93,9 +93,9 @@
 "310.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "I4t-kQ-lvq"; */
-"I4t-kQ-lvq.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"I4t-kQ-lvq.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "I4t-kQ-lvq.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"I4t-kQ-lvq.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+"I4t-kQ-lvq.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
 
 
 
@@ -110,7 +110,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Ro5-rK-S7p"; */
 "Ro5-rK-S7p.title" = "Syntaxname";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "320"; */
-"320.title" = "Dokumentname";
+"320.title" = "Dokumentenname";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "315"; */
 "315.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "319"; */
@@ -119,9 +119,9 @@
 "318.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "njJ-Ab-dUQ"; */
-"njJ-Ab-dUQ.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"njJ-Ab-dUQ.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "njJ-Ab-dUQ.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+"njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
 
 
 /* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
@@ -132,7 +132,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "i9p-3e-KNC"; */
 "i9p-3e-KNC.title" = "Syntaxname";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "328"; */
-"328.title" = "Dokumentname";
+"328.title" = "Dokumentenname";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "323"; */
 "323.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "327"; */
@@ -141,6 +141,6 @@
 "326.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "xAm-2i-Sw1"; */
-"xAm-2i-Sw1.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"xAm-2i-Sw1.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "xAm-2i-Sw1.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"xAm-2i-Sw1.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+"xAm-2i-Sw1.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */

@@ -29,7 +29,7 @@
 /* Class = "NSTextFieldCell"; title = "Extensions"; ObjectID = "6eS-Hj-xoA"; */
 "6eS-Hj-xoA.title" = "Suffixe";
 /* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "QjK-XG-E4X"; */
-"QjK-XG-E4X.title" = "(Ohne Punkte)";
+"QjK-XG-E4X.title" = "(ohne Punkte)";
 
 /* Class = "NSTextFieldCell"; title = "Filenames"; ObjectID = "IAe-3F-qcV"; */
 "IAe-3F-qcV.title" = "Dateinamen";
@@ -37,6 +37,4 @@
 /* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "Axx-Oq-E9U"; */
 "Axx-Oq-E9U.title" = "Interpreter";
 /* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "dIj-Z5-J2j"; */
-"dIj-Z5-J2j.title" = "Die Interpreter werden angewendet, um die Syntaxstil vom Shebang in der Dokument zu bestimmen.";
-
-
+"dIj-Z5-J2j.title" = "Die Interpreter werden benutzt, um den Syntaxstil vom Shebang im Dokument zu bestimmen.";

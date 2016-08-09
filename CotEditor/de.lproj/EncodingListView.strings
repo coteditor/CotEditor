@@ -26,18 +26,18 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Drag encodings to change the order."; ObjectID = "3395"; */
-"3395.title" = "Ziehen Sie die Kodierungen, um die Reihenfolge zu ändern.";
+"3395.title" = "Ziehen Sie die Codierungen, um die Reihenfolge zu ändern.";
 
 /* Class = "NSTextFieldCell"; title = "This list is for Auto-Detect and the file encoding menu.\nAuto-Detect tries these encodings from the top of the list."; ObjectID = "3394"; */
-"3394.title" = "Diese Liste wird für die Auto-Erkennung und das Codierungsmenü verwendet.\nAuto-Erkennung versucht die Codierungen von oben auf dieser Liste.";
+"3394.title" = "Diese Liste wird für die automatische Erkennung und das Codierungsmenü verwendet.\nDie automatische Erkennung probiert die Codierungen in dieser Liste von oben beginnend durch.";
 
 /* Class = "NSButtonCell"; title = "Add Separator"; ObjectID = "3392"; */
-"3392.title" = "Separater addieren";
+"3392.title" = "Separator hinzufügen";
 /* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
-"3393.title" = "Separater löschen";
+"3393.title" = "Separator löschen";
 
 /* Class = "NSTextFieldCell"; title = "“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”."; ObjectID = "jXZ-7k-86F"; */
-"jXZ-7k-86F.title" = "„Unicode (UTF-8) mit BOM“ wird gerade nach der normalen „Unicode (UTF-8)“ automatisch hinzugefügt.";
+"jXZ-7k-86F.title" = "„Unicode (UTF-8) mit BOM“ wird automatisch direkt nach dem normalen „Unicode (UTF-8)“ hinzugefügt.";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
 "3396.title" = "Auf Standard zurücksetzen";

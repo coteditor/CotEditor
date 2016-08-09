@@ -28,32 +28,32 @@
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
 "C9y-bs-mE1.title" = "Schrift:";
 /* Class = "NSButtonCell"; title = "Same as document’s setting"; ObjectID = "PfG-m4-gpq"; */
-"PfG-m4-gpq.title" = "Gleich wie Dokument";
+"PfG-m4-gpq.title" = "Wie Dokument";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
 "3385.title" = "Auswählen …";
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
 "3388.title" = "Farbe:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
-"1353.title" = "Schwarz-Weiß";
+"1353.title" = "Schwarz/Weiß";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
-"1354.title" = "Gleich wie Dokument";
+"1354.title" = "Wie Dokument";
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
 "3380.title" = "Zeilennummern:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "Nicht drucken";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
-"947.title" = "Gleich wie Dokument";
+"947.title" = "Wie Dokument";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "Drucken";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "3382"; */
-"3382.title" = "Unsichtbaren:";
+"3382.title" = "Unsichtbares:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "Nicht drucken";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
-"953.title" = "Gleich wie Dokument";
+"953.title" = "Wie Dokument";
 /* Class = "NSMenuItem"; title = "Print All"; ObjectID = "954"; */
 "954.title" = "Alles drucken";
 
@@ -70,7 +70,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
 "uuc-7D-Iot.title" = "Syntaxname";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "896"; */
-"896.title" = "Dokumentname";
+"896.title" = "Dokumentenname";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "897"; */
 "897.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
@@ -79,9 +79,9 @@
 "893.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Jap-f3-ehL"; */
-"Jap-f3-ehL.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"Jap-f3-ehL.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "Jap-f3-ehL.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"Jap-f3-ehL.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+"Jap-f3-ehL.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
 
 
 /* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
@@ -92,7 +92,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "plk-U5-NGA"; */
 "plk-U5-NGA.title" = "Syntaxname";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "902"; */
-"902.title" = "Dokumentname";
+"902.title" = "Dokumentenname";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "903"; */
 "903.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
@@ -101,9 +101,9 @@
 "905.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "90p-SJ-bXq"; */
-"90p-SJ-bXq.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"90p-SJ-bXq.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "90p-SJ-bXq.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"90p-SJ-bXq.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+"90p-SJ-bXq.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
 
 
 
@@ -118,7 +118,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
 "Mvg-wT-FTM.title" = "Syntaxname";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "937"; */
-"937.title" = "Dokumentname";
+"937.title" = "Dokumentenname";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "938"; */
 "938.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
@@ -127,9 +127,9 @@
 "940.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Zgh-yF-xd2"; */
-"Zgh-yF-xd2.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"Zgh-yF-xd2.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "Zgh-yF-xd2.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"Zgh-yF-xd2.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+"Zgh-yF-xd2.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
 
 
 /* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3377"; */
@@ -140,7 +140,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "ckJ-Cw-ccE"; */
 "ckJ-Cw-ccE.title" = "Syntaxname";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "929"; */
-"929.title" = "Dokumentname";
+"929.title" = "Dokumentenname";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "930"; */
 "930.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
@@ -149,6 +149,6 @@
 "932.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Pjk-d8-E4v"; */
-"Pjk-d8-E4v.ibShadowedToolTips[0]" = "Linksbündig einrichten";  /* Align Left */
+"Pjk-d8-E4v.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "Pjk-d8-E4v.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"Pjk-d8-E4v.ibShadowedToolTips[2]" = "Rechtsbündig einrichten";  /* Align Right */
+"Pjk-d8-E4v.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */

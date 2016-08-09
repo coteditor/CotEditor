@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Basic Regular Expression Syntax"; ObjectID = "QgQ-JJ-6Nx"; */
-"QgQ-JJ-6Nx.title" = "Grundlegende Grammatik des regulären Ausdrucks";
+"QgQ-JJ-6Nx.title" = "Grundlegende Grammatik regulärer Ausdrücke";
 
 
 
@@ -34,12 +34,12 @@
 
 "3AR-qs-5m4.title" = "Zeichen";  // "Characters"
 
-"RD2-4i-6hI.title" = "irgendein Zeichen";  // "any character"
+"RD2-4i-6hI.title" = "beliebiges Zeichen";  // "any character"
 "9KK-2o-0gf.title" = "Zeilenende (New Line)";  // "new line character"
-"IEP-BD-aIL.title" = "Tabulator Zeichen";  // "tab character"
+"IEP-BD-aIL.title" = "Tabulator-Zeichen";  // "tab character"
 "KDl-AT-6pW.title" = "Buchstabe";  // "word character"
-"Xh9-Al-Lgr.title" = "Wheitspace";  // "whitespace character"
-"nh9-3w-PRK.title" = "kein Wheitspace";  // "non whitespace character"
+"Xh9-Al-Lgr.title" = "Whitespace";  // "whitespace character"
+"nh9-3w-PRK.title" = "kein Whitespace";  // "non whitespace character"
 "U6Y-db-fiT.title" = "Ziffer";  // "decimal number"
 "Ufv-VB-C8Z.title" = "irgendein Zeichen im Bereich A bis Z";  // "any character in range A to Z"
 "11L-Hs-8G7.title" = "irgendein Zeichen nicht im Bereich A bis Z";  // "any character not in range A to Z"
@@ -59,10 +59,10 @@
 "w4Q-Z2-YET.title" = "null- oder einmal";  // "1 or 0 times"
 "2wE-GY-9nf.title" = "null- oder mehrmals";  // "0 or more times"
 "Woe-Vu-PcP.title" = "einmal oder mehrmals";  // "1 or more times"
-"H6L-Hz-GQ7.title" = "mindesten n-mal und maximal m-mal";  // "at least n but not more than m times"
-"MFd-BY-MC4.title" = "mindesten n-mals";  // "at least n times"
-"ga2-ht-6SL.title" = "mindesten nullmal und maximal n-mal";  // "at least 0 but not more than n times"
-"akB-l0-a4P.title" = "n-mals";  // "n times"
+"H6L-Hz-GQ7.title" = "mindestens n-mal und maximal m-mal";  // "at least n but not more than m times"
+"MFd-BY-MC4.title" = "mindestens n-mal";  // "at least n times"
+"ga2-ht-6SL.title" = "mindestens nullmal und maximal n-mal";  // "at least 0 but not more than n times"
+"akB-l0-a4P.title" = "n-mal";  // "n times"
 
 
 
