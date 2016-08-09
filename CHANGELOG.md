@@ -54,6 +54,7 @@ develop
 
 ### Fixes
 
+- Fix German localization (Thanks to J-rg!).
 - Fix “Markdown” and “Verilog” syntax styles.
 - Fix update range of syntax highlight while editing.
 - Fix key binding setting error message.
