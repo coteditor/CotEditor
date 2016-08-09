@@ -85,14 +85,14 @@ extension EditorWrapper {
         get {
             guard let textView = self.focusedTextView else { return .notFound }
             
-            return textView.string!.convert(range: textView.selectedRange(),
-                                            from: .LF, to: self.document?.lineEnding ?? .LF)
+            return textView.string!.convert(from: .LF, to: self.document?.lineEnding ?? .LF,
+                                            range: textView.selectedRange())
         }
         set (selectedRange) {
             guard let textView = self.focusedTextView else { return }
             
-            let range = textView.string!.convert(range: textView.selectedRange(),
-                                                 from: self.document?.lineEnding ?? .LF, to: .LF)
+            let range = textView.string!.convert(from: self.document?.lineEnding ?? .LF, to: .LF,
+                                                 range: textView.selectedRange())
             
             textView.setSelectedRange(range)
         }

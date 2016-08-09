@@ -471,7 +471,7 @@ final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDel
             let color = textStorage.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }
         
         for range in ranges {
-            let viewRange = textStorage.string.convert(range: range, from: lineEnding, to: .LF)
+            let viewRange = textStorage.string.convert(from: lineEnding, to: .LF, range: range)
             
             for manager in textStorage.layoutManagers {
                 manager.addTemporaryAttribute(NSBackgroundColorAttributeName, value: color, forCharacterRange: viewRange)

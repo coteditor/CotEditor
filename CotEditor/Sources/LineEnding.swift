@@ -119,7 +119,7 @@ extension String {
     
     
     /// convert passed-in range as if line endings are changed from fromLineEnding to toLineEnding
-    func convert(range: NSRange, from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding) -> NSRange {
+    func convert(from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding, range: NSRange) -> NSRange {
         
         guard let currentLineEnding = (fromLineEnding ?? self.detectedLineEnding) else { return range }
         
