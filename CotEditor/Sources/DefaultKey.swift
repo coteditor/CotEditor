@@ -60,7 +60,7 @@ class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
     
 }
 
-class DefaultKey<T>: DefaultKeys { }
+final class DefaultKey<T>: DefaultKeys { }
 
 
 
