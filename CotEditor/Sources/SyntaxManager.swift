@@ -435,7 +435,7 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// update internal cache data
-    override func updateCache(completionHandler: (() -> Void)?) {
+    override func updateCache(completionHandler: (() -> Void)? = nil) {
         
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }

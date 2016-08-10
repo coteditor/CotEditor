@@ -78,7 +78,7 @@ class SettingFileManager: SettingManager {
     
     
     /// update internal cache data
-    func updateCache(completionHandler: (() -> Void)?) {
+    func updateCache(completionHandler: (() -> Void)? = nil) {
         
         preconditionFailure()
     }
@@ -231,7 +231,7 @@ class SettingFileManager: SettingManager {
         try FileManager.default.copyItem(at: sourceURL,
                                          to: self.preparedURLForUserSetting(name: newName))
         
-        self.updateCache(completionHandler: nil)
+        self.updateCache()
     }
     
     
@@ -325,7 +325,7 @@ class SettingFileManager: SettingManager {
         }
         
         // update internal cache
-        self.updateCache(completionHandler: nil)
+        self.updateCache()
     }
     
 }

@@ -354,12 +354,12 @@ extension ThemeManager {
         // add description
         theme[DictionaryKey.metadata.rawValue] = NSMutableDictionary(dictionary: [[MetadataKey.description.rawValue]: NSLocalizedString("Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x", comment: "")])
         
-        guard self.save(themeDictionary: theme, name: themeName, completionHandler: nil) else { return false }
+        guard self.save(themeDictionary: theme, name: themeName) else { return false }
         
         // set as default theme
         Defaults[.theme] = themeName
         
-        self.updateCache(completionHandler: nil)
+        self.updateCache()
         
         return true
     }

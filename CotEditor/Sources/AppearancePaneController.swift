@@ -226,7 +226,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     func didUpdate(theme: ThemeDictionary) {
         
         // save
-        ThemeManager.shared.save(themeDictionary: theme, name: self.selectedThemeName, completionHandler: nil)
+        ThemeManager.shared.save(themeDictionary: theme, name: self.selectedThemeName)
     }
     
     
@@ -295,7 +295,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             fieldEditor.string = oldName
             
             // show alert
-            NSAlert(error: error).beginSheetModal(for: self.view.window!, completionHandler: nil)
+            NSAlert(error: error).beginSheetModal(for: self.view.window!)
             return false
         }
         
@@ -557,7 +557,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             } catch let error {
                 alert.window.orderOut(nil)
                 NSBeep()
-                NSAlert(error: error).beginSheetModal(for: window, completionHandler: nil)
+                NSAlert(error: error).beginSheetModal(for: window)
                 return
             }
             

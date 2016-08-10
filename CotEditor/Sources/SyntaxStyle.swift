@@ -467,14 +467,14 @@ extension SyntaxStyle {
             }
         }
         
-        self.highlight(string: string, range: highlightRange, completionHandler: nil)
+        self.highlight(string: string, range: highlightRange)
     }
     
     
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)?) {
+    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) {
         
         guard highlightRange.length > 0 else { return }
         

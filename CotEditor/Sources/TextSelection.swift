@@ -71,7 +71,7 @@ private extension OSAUnicodeNormalizationType {
 
 final class TextSelection: NSObject {
     
-    private weak var document: Document?
+    private weak var document: Document?  // weak to avoid cycle retain
     
     
     

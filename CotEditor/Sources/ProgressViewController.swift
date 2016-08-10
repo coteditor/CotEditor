@@ -66,7 +66,7 @@ final class ProgressViewController: NSViewController {
     // MARK: View Public Methods
     
     /// change button to done
-    func done(buttonTitle title: String?) {
+    func done(buttonTitle title: String? = nil) {
         
         self.button?.title = title ?? NSLocalizedString("OK", comment: "")
         self.button?.action = #selector(dismiss(_:))

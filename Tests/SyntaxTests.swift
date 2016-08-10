@@ -104,7 +104,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         // test outline parsing with delegate
         self.outlineParseExpectation = self.expectation(description: "didParseOutline")
         style.invalidateOutline()
-        self.waitForExpectations(timeout: 1, handler: nil)
+        self.waitForExpectations(timeout: 1)
     }
     
     

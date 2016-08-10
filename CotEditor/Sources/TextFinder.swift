@@ -327,7 +327,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                                                                   value: highlight.color, forCharacterRange: highlight.range)
                 }
                 
-                indicator.done(buttonTitle: nil)
+                indicator.done()
                 
                 if highlights.isEmpty {
                     NSBeep()
@@ -419,7 +419,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                                                                   value: highlight.color, forCharacterRange: highlight.range)
                 }
                 
-                indicator.done(buttonTitle: nil)
+                indicator.done()
                 
                 if highlights.isEmpty {
                     NSBeep()
@@ -553,7 +553,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             guard !progress.isCancelled else { return }
             
             DispatchQueue.main.async {
-                indicator.done(buttonTitle: nil)
+                indicator.done()
                 
                 if count > 0 {
                     // apply found strings to the text view

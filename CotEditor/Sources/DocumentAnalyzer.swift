@@ -73,7 +73,7 @@ final class DocumentAnalyzer: NSObject {
     
     // MARK: Private Properties
     
-    private weak var document: Document?
+    private weak var document: Document?  // weak to avoid cycle retain
     private weak var editorInfoUpdateTimer: Timer?
     
     

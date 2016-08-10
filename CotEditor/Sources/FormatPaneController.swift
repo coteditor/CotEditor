@@ -476,7 +476,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             } catch let error {
                 alert.window.orderOut(nil)
                 NSBeep()
-                NSAlert(error: error).beginSheetModal(for: window, completionHandler: nil)
+                NSAlert(error: error).beginSheetModal(for: window)
                 return
             }
             
