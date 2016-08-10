@@ -38,7 +38,9 @@ final class KeyBindingItem: NSObject {
     /// printable representation of the shortcut key
     var printableKey: String? {
         
-        return KeyBindingUtils.printableKeyString(keySpecChars: self.keySpecChars)
+        guard let keySpecChars = self.keySpecChars else { return nil }
+        
+        return Shortcut(keySpecChars: keySpecChars).description
     }
     
     

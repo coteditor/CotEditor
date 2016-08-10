@@ -344,9 +344,9 @@ final class ScriptManager: NSObject {
             case URLFileResourceType.regular:
                 guard (self.AppleScriptExtensions + self.scriptExtensions).contains(fileURL.pathExtension) else { continue }
                 
-                let (keyEquivalent, modifierMask) = self.keyEquivalentAndModifierMask(from: fileURL)
-                let item = NSMenuItem(title: title, action: #selector(launchScript(_:)), keyEquivalent: keyEquivalent)
-                item.keyEquivalentModifierMask = modifierMask
+                let shortcut = self.shortcut(from: fileURL)
+                let item = NSMenuItem(title: title, action: #selector(launchScript(_:)), keyEquivalent: shortcut.keyEquivalent)
+                item.keyEquivalentModifierMask = shortcut.modifierMask
                 item.representedObject = fileURL
                 item.target = self
                 item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
@@ -380,11 +380,14 @@ final class ScriptManager: NSObject {
     
     
     /// get keyboard shortcut from file name
-    private func keyEquivalentAndModifierMask(from fileURL: URL) -> (String, NSEventModifierFlags) {
+    private func shortcut(from fileURL: URL) -> Shortcut {
         
         let keySpecChars = fileURL.deletingPathExtension().pathExtension
+        let shortcut = Shortcut(keySpecChars: keySpecChars)
         
-        return KeyBindingUtils.keyEquivalentAndModifierMask(keySpecChars: keySpecChars, requiresCommandKey: true)
+        guard shortcut.modifierMask.contains(.command) else { return .none }
+        
+        return shortcut
     }
     
     

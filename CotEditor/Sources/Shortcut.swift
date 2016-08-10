@@ -1,6 +1,6 @@
 /*
  
- KeyBinding.swift
+ Shortcut.swift
  
  CotEditor
  https://coteditor.com
@@ -34,7 +34,6 @@ enum ModifierKey {
     case option
     case shift
     case command
-    
     
     static let all: [ModifierKey] = [.control, .option, .shift, .command]
     
@@ -77,108 +76,109 @@ enum ModifierKey {
 
 
 
-// MARK:
-
-final class KeyBindingUtils {
+struct Shortcut: Hashable, CustomStringConvertible {
     
-    /// create keySpecChars to store from keyEquivalent and modifierMask
-    static func keySpecChars(keyEquivalent: String, modifierMask: NSEventModifierFlags) -> String {
+    let modifierMask: NSEventModifierFlags
+    let keyEquivalent: String
+    
+    static let none = Shortcut(modifierMask: [], keyEquivalent: "")
+    
+    
+    init(modifierMask: NSEventModifierFlags, keyEquivalent: String) {
         
-        guard let keyCharacter = keyEquivalent.unicodeScalars.first else { return "" }
-        
-        let isUppercase = CharacterSet.uppercaseLetters.contains(keyCharacter)
-        
-        var keySpecChars = ""
-        
-        for modifierKey in ModifierKey.all {
-            guard modifierMask.contains(modifierKey.mask) || (modifierKey == .shift && isUppercase) else { continue }
-            // -> For in case that a modifierMask taken from a menu item can lack Shift definition if binding is "aplhabet character + Shift" keys.
+        self.modifierMask = {
+            // -> For in case that a modifierMask taken from a menu item can lack Shift definition if the combination is "Shift + alphabet character" keys.
+            if let keyEquivalentScalar = keyEquivalent.unicodeScalars.last,
+                CharacterSet.uppercaseLetters.contains(keyEquivalentScalar) {
+                return modifierMask.union(.shift)
+            }
             
-            keySpecChars += modifierKey.keySpecChar
-        }
+            return modifierMask
+        }()
         
-        keySpecChars += keyEquivalent
-        
-        return keySpecChars
+        self.keyEquivalent = keyEquivalent
     }
     
     
-    /// return keyEquivalent and modifierMask from keySpecChars to store
-    static func keyEquivalentAndModifierMask(keySpecChars: String, requiresCommandKey: Bool) -> (String, NSEventModifierFlags) {
+    init(keySpecChars: String) {
         
-        guard keySpecChars.characters.count > 1 else { return ("", []) }
-        
-        var modifierMask = NSEventModifierFlags()
-        
-        let splitIndex = keySpecChars.index(before: keySpecChars.endIndex)
-        let keyEquivalent = keySpecChars.substring(from: splitIndex)
-        let modifierCharacters = keySpecChars.substring(to: splitIndex)
-        
-        let isUppercase = CharacterSet.uppercaseLetters.contains(keyEquivalent.unicodeScalars.first!)
-        
-        for modifierKey in ModifierKey.all {
-            guard modifierCharacters.contains(modifierKey.keySpecChar) || (modifierKey == .shift && isUppercase) else { continue }
-
-            modifierMask.update(with: modifierKey.mask)
+        guard keySpecChars.characters.count > 1 else {
+            self.init(modifierMask: [], keyEquivalent: "")
+            return
         }
         
-        guard !requiresCommandKey || modifierMask.contains(.command) else { return ("", []) }
-        guard !modifierMask.isEmpty else { return ("", []) }
+        let splitIndex = keySpecChars.index(before: keySpecChars.endIndex)
+        let modifierCharacters = keySpecChars.substring(to: splitIndex)
+        let keyEquivalent = keySpecChars.substring(from: splitIndex)
         
-        return (keyEquivalent, modifierMask)
+        let modifierMask = ModifierKey.all
+            .filter { key in modifierCharacters.contains(key.keySpecChar) }
+            .reduce(NSEventModifierFlags()) { (mask, key) in mask.union(key.mask) }
+        
+        self.init(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
     }
     
     
-    /// return shortcut string to display from keySpecChars to store
-    static func printableKeyString(keySpecChars: String?) -> String {
+    /// unique string to store in plist
+    var keySpecChars: String {
         
-        guard let keySpecChars = keySpecChars, keySpecChars.characters.count > 1 else { return "" }
+        let modifierCharacters = ModifierKey.all
+            .filter { key in self.modifierMask.contains(key.mask) }
+            .reduce("") { (chars, key) in chars + key.keySpecChar }
         
-        let splitIndex = keySpecChars.index(before: keySpecChars.endIndex)
-        let keyEquivalent = keySpecChars.substring(from: splitIndex)
-        let modifierCharacters = keySpecChars.substring(to: splitIndex)
-        let isUppercase = CharacterSet.uppercaseLetters.contains(keyEquivalent.unicodeScalars.first!)
+        return modifierCharacters + self.keyEquivalent
+    }
+    
+    
+    
+    // MARK: Protocols
+    
+    /// shortcut string to display
+    var description: String {
         
-        let modifierKeyString = self.printableKeyString(modKeySpecChars: modifierCharacters, withShiftKey: isUppercase)
-        let keyString = self.printableKeyString(keyEquivalent: keyEquivalent)
+        return self.printableModifierMask + self.printableKeyEquivalent
+    }
+    
+    
+    var hashValue: Int {
         
-        return modifierKeyString + keyString
+        return self.keySpecChars.hashValue
+    }
+    
+    
+    static func ==(lhs: Shortcut, rhs: Shortcut) -> Bool {
+        
+        return lhs.keySpecChars == rhs.keySpecChars
     }
     
     
     
     // MARK: Private Methods
     
-    /// create printable modifier key string from key binding definition string
-    private static func printableKeyString(modKeySpecChars: String, withShiftKey: Bool) -> String {
+    /// modifier keys string to display
+    private var printableModifierMask: String {
         
-        var keyString = ""
-        
-        for modifierKey in ModifierKey.all {
-            if modKeySpecChars.contains(modifierKey.keySpecChar) || (modifierKey == .shift && withShiftKey) {
-                keyString += modifierKey.symbol
-            }
-        }
-        
-        return keyString
+        return ModifierKey.all
+            .filter { self.modifierMask.contains($0.mask) }
+            .reduce("") { (partical, key) in partical + key.symbol }
     }
     
     
-    /// create string to display from keyboard shortcut in menu
-    private static func printableKeyString(keyEquivalent: String) -> String {
+    /// key equivalent to display
+    private var printableKeyEquivalent: String {
         
-        guard let keyCharacter = keyEquivalent.unicodeScalars.first else { return "" }
+        guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
         
-        if CharacterSet.alphanumerics.contains(keyCharacter) {
-            return keyEquivalent.uppercased()
+        if CharacterSet.alphanumerics.contains(scalar) {
+            return self.keyEquivalent.uppercased()
         }
         
-        return self.printableKeys[keyCharacter] ?? keyEquivalent
+        return Shortcut.printableKeyEquivalents[scalar] ?? self.keyEquivalent
     }
     
     
     /// table for characters that cannot be displayed as is with their printable substitutions
-    private static let printableKeys: [UnicodeScalar: String] = {
+    private static let printableKeyEquivalents: [UnicodeScalar: String] = {
         
         // keys:  unprintable key int
         // value: printable representation

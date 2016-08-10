@@ -132,11 +132,14 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     /// keyEquivalent and modifierMask for passed-in selector
-    func keyEquivalentAndModifierMask(from action: Selector) -> (String, NSEventModifierFlags) {
+    func shortcut(for action: Selector) -> Shortcut {
         
         let keySpecChars = self.keySpecChars(for: action, defaults: false)
+        let shortcut = Shortcut(keySpecChars: keySpecChars)
         
-        return KeyBindingUtils.keyEquivalentAndModifierMask(keySpecChars: keySpecChars, requiresCommandKey: true)
+        guard shortcut.modifierMask.contains(.command) else { return .none }
+        
+        return shortcut
     }
     
     
@@ -211,8 +214,8 @@ final class MenuKeyBindingManager: KeyBindingManager {
             } else {
                 guard let action = menuItem.action else { continue }
                 
-                let key = KeyBindingUtils.keySpecChars(keyEquivalent: menuItem.keyEquivalent,
-                                                        modifierMask: menuItem.keyEquivalentModifierMask)
+                let key = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
+                                   keyEquivalent: menuItem.keyEquivalent).keySpecChars
                 
                 if !key.isEmpty {
                     dictionary[key] = NSStringFromSelector(action)
@@ -253,12 +256,12 @@ final class MenuKeyBindingManager: KeyBindingManager {
             } else {
                 guard let action = menuItem.action else { continue }
                 
-                let (keyEquivalent, modifierMask) = self.keyEquivalentAndModifierMask(from: action)
+                let shortcut = self.shortcut(for: action)
                 
                 // apply only if keyEquivalent exists and the Command key is included
-                if !keyEquivalent.isEmpty && modifierMask.contains(.command) {
-                    menuItem.keyEquivalent = keyEquivalent
-                    menuItem.keyEquivalentModifierMask = modifierMask
+                if shortcut.modifierMask.contains(.command) {
+                    menuItem.keyEquivalent = shortcut.keyEquivalent
+                    menuItem.keyEquivalentModifierMask = shortcut.modifierMask
                 }
             }
         }
@@ -281,7 +284,9 @@ final class MenuKeyBindingManager: KeyBindingManager {
             } else {
                 guard let action = menuItem.action else { continue }
                 
-                let keySpecChars = usesDefaults ? self.keySpecChars(for: action, defaults: true) : KeyBindingUtils.keySpecChars(keyEquivalent: menuItem.keyEquivalent, modifierMask: menuItem.keyEquivalentModifierMask)
+                let keySpecChars = usesDefaults
+                    ? self.keySpecChars(for: action, defaults: true)
+                    : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent).keySpecChars
                 
                 let item = KeyBindingItem(selector: NSStringFromSelector(action), keySpecChars: keySpecChars)
                 node = NamedTreeNode(name: menuItem.title, representedObject: item)

@@ -69,7 +69,7 @@ final class ShortcutKeyField: NSTextField {
             }
             
             // set input shortcut string to field
-            var keySpecChars = KeyBindingUtils.keySpecChars(keyEquivalent: charsIgnoringModifiers, modifierMask: modifierMask)
+            var keySpecChars = Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
             if keySpecChars == "\u{8}" {  // single NSDeleteCharacter should be deleted
                 keySpecChars = ""
             }

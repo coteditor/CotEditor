@@ -80,7 +80,7 @@ struct InvalidKeySpecCharactersError: LocalizedError {
     
     private var printableKey: String {
         
-        return KeyBindingUtils.printableKeyString(keySpecChars: self.keySpecChars)
+        return Shortcut(keySpecChars: self.keySpecChars).description
     }
     
 }
