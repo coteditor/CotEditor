@@ -38,8 +38,8 @@
 /* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "G0x-RZ-DT4"; */
 "G0x-RZ-DT4.title" = "快捷键中必须包含 Command 键。";
 
-/* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
-"9.headerCell.title" = "标题 / 动作";
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "9"; */
+"9.headerCell.title" = "动作";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "10"; */
 "10.headerCell.title" = "按键";
 
