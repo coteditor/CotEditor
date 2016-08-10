@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11191" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11191"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -61,6 +61,7 @@
                             <button toolTip="Split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
                                 <rect key="frame" x="434" y="-2" width="17" height="19"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="Rrb-OZ-odM"/>
                                     <constraint firstAttribute="width" secondItem="syK-XU-x2I" secondAttribute="height" multiplier="1:1" id="fki-al-uAw"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="3a0-fm-GbO">
@@ -113,7 +114,7 @@
                                 </connections>
                             </button>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
-                                <rect key="frame" x="60" y="-1" width="16" height="16"/>
+                                <rect key="frame" x="60" y="-1" width="16" height="17"/>
                             </progressIndicator>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
                                 <rect key="frame" x="82" y="1" width="109" height="14"/>
@@ -164,7 +165,7 @@
                 </viewController>
                 <customObject id="OuY-Pd-2q9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1423" y="-256"/>
+            <point key="canvasLocation" x="1423" y="-256.5"/>
         </scene>
         <!--Editor Text View Controller-->
         <scene sceneID="F5v-F6-xnV">
@@ -210,9 +211,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CloseSplitTemplate" width="15" height="15"/>
+        <image name="CloseSplitTemplate" width="9" height="9"/>
         <image name="DownArrowTemplate" width="8" height="8"/>
-        <image name="OpenSplitTemplate" width="15" height="15"/>
+        <image name="OpenSplitTemplate" width="9" height="9"/>
         <image name="UpArrowTemplate" width="8" height="8"/>
     </resources>
 </document>
