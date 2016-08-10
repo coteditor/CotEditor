@@ -185,18 +185,16 @@ final class ScriptManager: NSObject {
         
         self.addChildFileItem(to: menu, fromDirctory: self.scriptsDirectoryURL)
         
-        let separatorItem = NSMenuItem.separator()
-        separatorItem.tag = MenuItemTag.scriptsDefault.rawValue
-        menu.addItem(separatorItem)
+        menu.addItem(NSMenuItem.separator())
         
         let openMenuItem = NSMenuItem(title: NSLocalizedString("Open Scripts Folder", comment: ""),
-                                      action: #selector(openScriptFolder(_:)),keyEquivalent: "")
+                                      action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
         openMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
         menu.addItem(openMenuItem)
         
         let updateMenuItem = NSMenuItem(title: NSLocalizedString("Update Script Menu", comment: ""),
-                                        action: #selector(buildScriptMenu(_:)),keyEquivalent: "")
+                                        action: #selector(buildScriptMenu), keyEquivalent: "")
         updateMenuItem.target = self
         updateMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
         menu.addItem(updateMenuItem)
