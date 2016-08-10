@@ -46,6 +46,8 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Private Properties
     
+    var isParsingOutline = false  // flag to control outline indicator
+    
     @IBOutlet private weak var outlineMenu: NSPopUpButton?
     @IBOutlet private weak var prevButton: NSButton?
     @IBOutlet private weak var nextButton: NSButton?
@@ -89,6 +91,7 @@ final class NavigationBarController: NSViewController {
         
         didSet {
             // stop outline extracting indicator
+            self.isParsingOutline = false
             self.outlineIndicator!.stopAnimation(self)
             self.outlineLoadingMessage!.isHidden = true
             
@@ -182,7 +185,15 @@ final class NavigationBarController: NSViewController {
     /// start displaying outline indicator
     func showOutlineIndicator() {
         
-        if self.outlineMenu!.isEnabled {
+        guard self.outlineMenu!.isEnabled else { return }
+        
+        self.isParsingOutline = true
+        
+        // display only if it takes longer than 1 sec.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            guard let `self` = self,
+                self.isParsingOutline else { return }
+            
             self.outlineIndicator!.startAnimation(self)
             self.outlineLoadingMessage!.isHidden = false
         }
