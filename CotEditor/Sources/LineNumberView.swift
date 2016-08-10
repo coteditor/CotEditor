@@ -132,17 +132,19 @@ final class LineNumberView: NSRulerView {
         
         // prepare glyphs
         var wrappedMarkGlyph = CGGlyph()
-        var dash: UniChar = "-".character(at: 0)
-        CTFontGetGlyphsForCharacters(font, &dash, &wrappedMarkGlyph, 1)
+        let dash: UniChar = "-".character(at: 0)
+        CTFontGetGlyphsForCharacters(font, [dash], &wrappedMarkGlyph, 1)
         
         var digitGlyphs = [CGGlyph](repeating: 0, count: 10)
         let numbers: [UniChar] = (0...9).map { String($0).utf16.first! }
         CTFontGetGlyphsForCharacters(font, numbers, &digitGlyphs, 10)
         
         // calc character width as monospaced font
-        var advance = CGSize.zero
-        CTFontGetAdvancesForGlyphs(font, .horizontal, &digitGlyphs[8], &advance, 1)  // use '8' to get width
-        let charWidth = advance.width
+        let charWidth: CGFloat = {
+            var advance = CGSize.zero
+            CTFontGetAdvancesForGlyphs(font, .horizontal, &digitGlyphs[8], &advance, 1)  // use '8' to get width
+            return advance.width
+        }()
         
         // prepare frame width
         let lineNumberPadding = round(scale * self.LineNumberPadding)

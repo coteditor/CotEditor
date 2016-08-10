@@ -631,8 +631,9 @@ final class EditorTextView: NSTextView, Themable {
             let textContainer = self.textContainer
         {
             let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-            var glyphRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-            glyphRect = glyphRect.offsetBy(dx: self.textContainerOrigin.x, dy: self.textContainerOrigin.y)
+            let glyphRect = layoutManager
+                .boundingRect(forGlyphRange: glyphRange, in: textContainer)
+                .offsetBy(dx: self.textContainerOrigin.x, dy: self.textContainerOrigin.y)
             
             super.scrollToVisible(glyphRect)  // move minimum distance
             return
@@ -682,7 +683,7 @@ final class EditorTextView: NSTextView, Themable {
                     if !replacementString.isEmpty {
                         replacementString += "\n"
                     }
-                    replacementString.append(path)
+                    replacementString += path
                 }
             }
             
@@ -1061,11 +1062,12 @@ final class EditorTextView: NSTextView, Themable {
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
         }
         
-        guard let popoverController = CharacterPopoverController(character: selectedString),
-            var selectedRect = self.overlayRect(range: self.selectedRange()) else { return }
+        guard
+            let popoverController = CharacterPopoverController(character: selectedString),
+            let selectedRect = self.overlayRect(range: self.selectedRange()) else { return }
         
-        selectedRect.origin.y -= 4
-        popoverController.showPopover(relativeTo: selectedRect, of: self)
+        let positioningRect = selectedRect.offsetBy(dx: 0, dy: -4)
+        popoverController.showPopover(relativeTo: positioningRect, of: self)
         self.showFindIndicator(for: self.selectedRange())
     }
     
@@ -1214,11 +1216,10 @@ private extension NSTextView {
             let textContainer = self.textContainer else { return nil }
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-        var rect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+        let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
         let containerOrigin = self.textContainerOrigin
-        
-        rect.origin.x += containerOrigin.x
-        rect.origin.y += containerOrigin.y
+        let rect = boundingRect.offsetBy(dx: containerOrigin.x,
+                                         dy: containerOrigin.y)
         
         return self.convertToLayer(rect)
     }
@@ -1305,13 +1306,13 @@ extension EditorTextView {
         
         super.insertCompletion(newWord, forPartialWordRange: charRange, movement: newMovement, isFinal: newFlag)
         
-        if didComplete {
-            // slect inside of "()" if completion word has ()
-            var rangeToSelect = (newWord as NSString).range(of: "(?<=\\().*(?=\\))", options: .regularExpression)
-            if rangeToSelect.location != NSNotFound {
-                rangeToSelect.location += charRange.location
-                self.setSelectedRange(rangeToSelect)
-            }
+        guard didComplete else { return }
+        
+        // slect inside of "()" if completion word has ()
+        var rangeToSelect = (newWord as NSString).range(of: "(?<=\\().*(?=\\))", options: .regularExpression)
+        if rangeToSelect.location != NSNotFound {
+            rangeToSelect.location += charRange.location
+            self.setSelectedRange(rangeToSelect)
         }
     }
     

@@ -93,7 +93,7 @@ final class IntegrationPaneController: NSViewController {
 //        let linkDestinationURL = self.linkURL.resolvingSymlinksInPath()
         let linkDestinationURL: URL = {
             let linkDestinationPath = try! FileManager.default.destinationOfSymbolicLink(atPath: self.linkURL.path)
-            return URL.init(fileURLWithPath: linkDestinationPath)
+            return URL(fileURLWithPath: linkDestinationPath)
         }()
         
         // treat symlink as "installed"

@@ -126,14 +126,9 @@ final class NavigationBarController: NSViewController {
                 let titleRange = outlineItem.title.nsRange
                 let attrTitle = NSMutableAttributedString(string: outlineItem.title, attributes: baseAttributes)
                 
-                var fontTraits = NSFontTraitMask()
-                if outlineItem.isBold {
-                    fontTraits.update(with: .boldFontMask)
-                }
-                if outlineItem.isItalic {
-                    fontTraits.update(with: .italicFontMask)
-                }
-                attrTitle.applyFontTraits(fontTraits, range: titleRange)
+                let boldTrait: NSFontTraitMask = outlineItem.isBold ? .boldFontMask : []
+                let italicTrait: NSFontTraitMask = outlineItem.isItalic ? .italicFontMask : []
+                attrTitle.applyFontTraits([boldTrait, italicTrait], range: titleRange)
                 
                 if outlineItem.hasUnderline {
                     attrTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue), range: titleRange)

@@ -87,18 +87,15 @@ final class SyntaxMappingConflictsViewController: NSViewController {
     /// convert conflictDict data for table
     private static func parseConflictDict(conflictDict: [String: [String]]) -> [MappingConflict] {
         
-        var conflicts = [MappingConflict]()
-        
-        for (key, styles) in conflictDict {
+        return conflictDict.map { (key, styles) in
+            
             let primaryStyle = styles.first!
             let doubledStyles = styles.dropFirst().joined(separator: ", ")
             
-            conflicts.append(MappingConflict(name: key,
-                                             primaryStyle: primaryStyle,
-                                             doubledStyles: doubledStyles))
+            return MappingConflict(name: key,
+                                   primaryStyle: primaryStyle,
+                                   doubledStyles: doubledStyles)
         }
-        
-        return conflicts
     }
     
 }

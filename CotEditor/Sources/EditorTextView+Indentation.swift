@@ -161,12 +161,12 @@ extension EditorTextView {
         
         guard let string = self.string, !string.isEmpty else { return }
         
-        var ranges = [NSRange]()
-        if self.selectedRange().length == 0 {  // convert all if nothing selected
-            ranges = [string.nsRange]
-        } else {
-            ranges = self.selectedRanges as! [NSRange]
-        }
+        let ranges: [NSRange] = {
+            if self.selectedRange().length == 0 {  // convert all if nothing selected
+                return [string.nsRange]
+            }
+            return self.selectedRanges as! [NSRange]
+        }()
         
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()

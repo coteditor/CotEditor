@@ -185,7 +185,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         self.warningMessage = nil
         
         // validate input value
-        if keySpecChars == "\u{1b}" {
+        if keySpecChars == "\u{1b}" {  // = ESC key
             // treat esc key as cancel
             
         } else if keySpecChars == item.printableKey {  // not edited

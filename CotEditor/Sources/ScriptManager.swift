@@ -213,10 +213,10 @@ final class ScriptManager: NSObject {
     /// read input type from script
     private func scanInputType(_ string: String) -> InputType? {
         
-        var scannedString: NSString?
         let scanner = Scanner(string: string)
         scanner.caseSensitive = true
         
+        var scannedString: NSString?
         while scanner.isAtEnd {
             scanner.scanUpTo("%%%{CotEditorXInput=", into: nil)
             if scanner.scanString("%%%{CotEditorXInput=", into: nil) {
@@ -226,21 +226,19 @@ final class ScriptManager: NSObject {
             }
         }
         
-        if let scannedString = scannedString {
-            return InputType(rawValue: scannedString as String)
-        } else {
-            return nil
-        }
+        guard let type = scannedString as? String else { return nil }
+        
+        return InputType(rawValue: type)
     }
     
     
     /// read output type from script
     private func scanOutputType(_ string: String) -> OutputType? {
         
-        var scannedString: NSString?
         let scanner = Scanner(string: string)
         scanner.caseSensitive = true
         
+        var scannedString: NSString?
         while scanner.isAtEnd {
             scanner.scanUpTo("%%%{CotEditorXOutput=", into: nil)
             if scanner.scanString("%%%{CotEditorXOutput=", into: nil) {
@@ -250,11 +248,9 @@ final class ScriptManager: NSObject {
             }
         }
         
-        if let scannedString = scannedString {
-            return OutputType(rawValue: scannedString as String)
-        } else {
-            return nil
-        }
+        guard let type = scannedString as? String else { return nil }
+        
+        return OutputType(rawValue: type)
     }
     
     

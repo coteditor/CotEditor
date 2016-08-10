@@ -396,7 +396,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         let themeName = self.targetThemeName(for: sender)
         
-        _ = try? ThemeManager.shared.duplicateSetting(name: themeName)
+        try? ThemeManager.shared.duplicateSetting(name: themeName)
     }
     
     
@@ -443,7 +443,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         savePanel.beginSheetModal(for: self.view.window!) { (result: Int) in
             guard result == NSFileHandlingPanelOKButton else { return }
             
-            _ = try? ThemeManager.shared.exportSetting(name: themeName, to: savePanel.url!)
+            try? ThemeManager.shared.exportSetting(name: themeName, to: savePanel.url!)
         }
     }
     

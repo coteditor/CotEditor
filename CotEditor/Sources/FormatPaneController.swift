@@ -300,7 +300,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         savePanel.beginSheetModal(for: self.view.window!) { (result: Int) in
             guard result == NSFileHandlingPanelOKButton else { return }
             
-            _ = try? SyntaxManager.shared.exportSetting(name: styleName, to: savePanel.url!)
+            try? SyntaxManager.shared.exportSetting(name: styleName, to: savePanel.url!)
         }
     }
     
@@ -374,12 +374,10 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         self.inOpenEncodingMenu?.selectItem(withTag: Int(inOpenEncoding))
         
         if Int(inNewEncoding) == UTF8Int {
-            var index = inNewMenu.indexOfItem(withRepresentedObject: IsUTF8WithBOM)
-            
+            let UTF8WithBomIndex = inNewMenu.indexOfItem(withRepresentedObject: IsUTF8WithBOM)
+            let index = Defaults[.saveUTF8BOM] ? UTF8WithBomIndex : UTF8WithBomIndex - 1
             // -> The normal "UTF-8" is just above "UTF-8 with BOM".
-            if !Defaults[.saveUTF8BOM] {
-                index -= 1
-            }
+            
             self.inNewEncodingMenu?.selectItem(at: index)
         } else {
             self.inNewEncodingMenu?.selectItem(withTag: Int(inNewEncoding))
@@ -414,10 +412,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
             //   -> Because items were actually added after Cocoa-Binding selected the item.
-            var selectedStyle = Defaults[.syntaxStyle]!
-            if !styleNames.contains(selectedStyle) {
-                selectedStyle = BundledStyleName.none
-            }
+            let defaultStyle = Defaults[.syntaxStyle]!
+            let selectedStyle = styleNames.contains(defaultStyle) ? defaultStyle : BundledStyleName.none
+            
             popup.selectItem(withTitle: selectedStyle)
         }
     }

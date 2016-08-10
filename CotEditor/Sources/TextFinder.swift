@@ -798,7 +798,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 
                 var ioStop = false
                 block(result.range, result, &ioStop)
-                stop.pointee = ioStop ? true : false
+                stop.pointee = ObjCBool(ioStop)
             })
             
             scopeCompletionHandler?(scopeRange)

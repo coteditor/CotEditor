@@ -226,28 +226,22 @@ private extension String {
         
         let target = self.substring(with: range)
         
-        var cursorOffset = 0
-        
         let lines = target.components(separatedBy: "\n")
-        var newLines = [String]()
-        for line in lines {
-            var newLine = line
-            if line.hasPrefix(delimiter) {
-                newLine = line.substring(from: line.index(line.startIndex, offsetBy: delimiter.characters.count))
-                cursorOffset -= delimiter.characters.count
-                
-                if !spacer.isEmpty && newLine.hasPrefix(spacer) {
-                    newLine = newLine.substring(from: newLine.index(newLine.startIndex, offsetBy: spacer.characters.count))
-                    cursorOffset -= spacer.characters.count
-                }
-            }
+        let newLines: [String] = lines.map { line in
+            guard line.hasPrefix(delimiter) else { return line }
             
-            newLines.append(newLine)
+            let newLine = line.substring(from: line.index(line.startIndex, offsetBy: delimiter.characters.count))
+            
+            guard !spacer.isEmpty && newLine.hasPrefix(spacer) else { return newLine }
+            
+            return newLine.substring(from: newLine.index(newLine.startIndex, offsetBy: spacer.characters.count))
         }
+        
+        let newString = newLines.joined(separator: "\n")
+        let cursorOffset = target.characters.count - newString.characters.count
         
         guard cursorOffset != 0 else { return nil }
         
-        let newString = newLines.joined(separator: "\n")
         let newSelectedRange = self.seletedRange(range: range, selectedRange: selectedRange, newString: newString, offset: cursorOffset)
         
         return (newString, newSelectedRange)

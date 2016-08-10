@@ -159,7 +159,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
     private var printableModifierMask: String {
         
         return ModifierKey.all
-            .filter { self.modifierMask.contains($0.mask) }
+            .filter { key in self.modifierMask.contains(key.mask) }
             .reduce("") { (partical, key) in partical + key.symbol }
     }
     

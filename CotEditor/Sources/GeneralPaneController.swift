@@ -98,7 +98,7 @@ final class GeneralPaneController: NSViewController {
             
             switch returnCode {
             case NSAlertFirstButtonReturn:  // = Restart Now
-                relaunchApplication(delay: 3.0)
+                NSApp.relaunch(delay: 2.0)
                 
             case NSAlertSecondButtonReturn:  // = Later
                 break  // do nothing
@@ -117,15 +117,19 @@ final class GeneralPaneController: NSViewController {
 
 // MARK: Private Functions
 
-/// relaunch application itself with delay
-private func relaunchApplication(delay: Float) {
+private extension NSApplication {
     
-    let command = String(format: "sleep %f; open \"%@\"", delay, Bundle.main.bundlePath)
+    /// relaunch application itself with delay
+    func relaunch(delay: TimeInterval = 0) {
+        
+        let command = String(format: "sleep %f; open \"%@\"", delay, Bundle.main.bundlePath)
+        
+        let task = Task()
+        task.launchPath = "/bin/sh"
+        task.arguments = ["-c", command]
+        task.launch()
+        
+        self.terminate(nil)
+    }
     
-    let task = Task()
-    task.launchPath = "/bin/sh"
-    task.arguments = ["-c", command]
-    task.launch()
-    
-    NSApp.terminate(nil)
 }

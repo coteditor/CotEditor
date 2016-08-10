@@ -56,22 +56,23 @@ final class SyntaxValidationViewController: NSViewController {
         guard let style = self.representedObject as? [String: AnyObject] else { return true }
         
         let errors = SyntaxStyleValidator.validate(style)
-        var message = ""
         
-        switch errors.count {
-        case 0:
-            message += "✅ " + NSLocalizedString("No error was found.", comment: "syntax style validation result")
-        case 1:
-            message += NSLocalizedString("An error was found!", comment: "syntax style validation result")
-        default:
-            message += String(format: NSLocalizedString("%i errors were found!", comment: "syntax style validation result"), errors.count)
+        let resultMessage: String = {
+            switch errors.count {
+            case 0:
+                return "✅ " + NSLocalizedString("No error was found.", comment: "syntax style validation result")
+            case 1:
+                return NSLocalizedString("An error was found!", comment: "syntax style validation result")
+            default:
+                return String(format: NSLocalizedString("%i errors were found!", comment: "syntax style validation result"), errors.count)
+            }
+        }()
+        
+        let errorMessages = errors.map { error in
+            return "⚠️ " + error.localizedDescription + "\n\t> " + (error.failureReason ?? "")
         }
         
-        for error in errors {
-            message += "\n\n⚠️ " + error.localizedDescription + "\n\t> " + (error.failureReason ?? "")
-        }
-        
-        self.result = message
+        self.result = resultMessage + "\n\n" + errorMessages.joined(separator: "\n\n")
         
         return errors.isEmpty
     }
