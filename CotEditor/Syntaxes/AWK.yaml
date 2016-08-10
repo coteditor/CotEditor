@@ -9,7 +9,7 @@ metadata:
   lastModified: "2015-12-25"
   license: "Same as CotEditor"
   description: "posix-awk"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
 keywords:
 - beginString: "BEGIN"
 - beginString: "break"

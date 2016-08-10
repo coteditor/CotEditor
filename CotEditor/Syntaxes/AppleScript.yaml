@@ -2,7 +2,7 @@ extensions:
 - keyString: "applescript"
 filenames: []
 metadata:
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   author: "1024jp"
   license: "Same as CotEditor"
   lastModified: "2015-12-25"

@@ -9,7 +9,7 @@ interpreters:
 - keyString: "php"
 metadata:
   author: "kaz"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "2.5.1"
   description: "Support PHP4 - PHP5.6.\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"

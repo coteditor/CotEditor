@@ -4,7 +4,7 @@ interpreters:
 - keyString: "ruby"
 metadata:
   author: "Y.Tokutomi"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "2.2.1"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"

@@ -3,7 +3,7 @@
 #  updateHelpindex.sh
 #  
 #  CotEditor
-#  http://coteditor.com
+#  https://coteditor.com
 #  
 #  Created by 1024jp on 2016-06-08.
 #  

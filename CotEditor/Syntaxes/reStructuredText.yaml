@@ -6,7 +6,7 @@ metadata:
   author: "1024jp"
   license: "Same as CotEditor"
   lastModified: "2015-12-25"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
 keywords:
 - beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\n)\\]'\"’‘”“`}>›»](?:(?!\\n\\n)(?:[^*]|\\n))*?(?<![\\\\
     \\t\\n])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"

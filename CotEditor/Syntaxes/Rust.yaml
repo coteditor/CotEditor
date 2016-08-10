@@ -5,7 +5,7 @@ filenames: []
 interpreters:
 - keyString: "rustx"
 metadata:
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   lastModified: "2015-12-25"
   author: "1024jp"
   license: "Same as CotEditor"

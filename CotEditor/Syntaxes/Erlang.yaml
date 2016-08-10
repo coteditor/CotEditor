@@ -6,7 +6,7 @@ metadata:
   author: "1024jp"
   lastModified: "2015-12-25"
   license: "Same as CotEditor"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
 outlineMenu:
 - beginString: "^([\\t ]*)(\\w+)\\s*\\(.*\\)\\s+->"
   keyString: "$1$2"

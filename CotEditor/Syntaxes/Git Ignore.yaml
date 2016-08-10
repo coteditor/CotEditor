@@ -5,7 +5,7 @@ interpreters: []
 metadata:
   version: "1.0.0"
   lastModified: "2015-12-01"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   author: "1024jp"
   license: "Same as CotEditor"
 keywords: []

@@ -6,7 +6,7 @@ extensions:
 - keyString: "h++"
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "1.0.0"
   description: ""
   license: "Same as CotEditor"

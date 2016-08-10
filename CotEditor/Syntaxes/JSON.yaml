@@ -7,7 +7,7 @@ completions: []
 commands: []
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "1.2.1"
   license: "Same as CotEditor"
   lastModified: "2016-02-06"

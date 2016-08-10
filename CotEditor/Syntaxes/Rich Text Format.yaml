@@ -7,7 +7,7 @@ metadata:
   lastModified: "2015-10-15"
   author: "1024jp"
   license: "Same as CotEditor"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
 numbers:
 - beginString: "(?<=\\\\[a-zA-Z]{1,16})-?[0-9]+"
   regularExpression: true

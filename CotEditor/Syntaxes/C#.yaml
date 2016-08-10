@@ -5,7 +5,7 @@ interpreters:
 - keyString: "csharp"
 metadata:
   author: "usami-k"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "1.1.1"
   description: "C# 5.0\nkeywords: Statement,Namespace,Preprocessor\ncommands: Query(LINQ)\ntypes:
     Types\nattributes: Modifiers,MethodParameters,Operator,Conversion,Contextual\nvariables:

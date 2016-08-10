@@ -10,7 +10,7 @@ interpreters:
 metadata:
   version: "2.3.2"
   lastModified: "2016-03-07"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   author: "nanasiya"
   license: "Same as CotEditor"
   description: "Support both Python2 and Python3 (<= 3.5).\n\nMaintained by 1024jp since 2013."

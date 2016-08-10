@@ -9,7 +9,7 @@ interpreters:
 - keyString: "lua"
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "1.1.1"
   description: "general Lisp syntax style for common Lisp and other Lisp dialects"
   license: "Same as CotEditor"

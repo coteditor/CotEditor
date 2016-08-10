@@ -3,7 +3,7 @@ extensions:
 - keyString: "bibtex"
 filenames: []
 metadata:
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   lastModified: "2016-02-28"
   author: "1024jp"
   license: "Same as CotEditor"

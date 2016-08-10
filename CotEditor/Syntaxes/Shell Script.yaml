@@ -16,7 +16,7 @@ interpreters:
 - keyString: "zsh"
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "3.2.0"
   license: "Same as CotEditor"
   lastModified: "2016-02-04"

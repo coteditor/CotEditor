@@ -2,7 +2,7 @@ extensions:
 - keyString: "swift"
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "2.1.0"
   description: "Based on Swift 2.2."
   license: "Same as CotEditor"

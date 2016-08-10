@@ -6,7 +6,7 @@ interpreters:
 - keyString: "tclsh"
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "1.1.1"
   description: "support R5RS and R6RS"
   license: "Same as CotEditor"

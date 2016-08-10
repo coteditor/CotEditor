@@ -8,7 +8,7 @@ metadata:
   author: "1024jp"
   license: "Same as CotEditor"
   lastModified: "2015-10-15"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
 outlineMenu:
 - ignoreCase: true
   beginString: "^([\\t ]*)((const|immutable|shared|static) )?struct +([a-z][a-z0-9_]*)"
