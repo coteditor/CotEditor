@@ -180,15 +180,16 @@ final class MenuKeyBindingManager: KeyBindingManager {
         // specific selectors
         if let action = menuItem.action {
             switch action {
-            case #selector(EncodingHolder.changeEncoding(_:)),
-                 #selector(SyntaxHolder.changeSyntaxStyle(_:)),
-                 #selector(ThemeHolder.changeTheme(_:)),
-                 #selector(EditorWrapper.changeTabWidth(_:)),
-                 #selector(EditorTextView.biggerFont(_:)),
-                 #selector(EditorTextView.smallerFont(_:)),
-                 #selector(ScriptManager.launchScript(_:)),
-                 #selector(NSWindow.makeKeyAndOrderFront(_:)),
-                 #selector(NSApplication.orderFrontCharacterPalette(_:)):  // = "Emoji & Symbols"
+            case #selector(EncodingHolder.changeEncoding),
+                 #selector(SyntaxHolder.changeSyntaxStyle),
+                 #selector(ThemeHolder.changeTheme),
+                 #selector(EditorWrapper.changeTabWidth),
+                 #selector(EditorTextView.biggerFont),
+                 #selector(EditorTextView.smallerFont),
+                 #selector(ScriptManager.launchScript),
+                 #selector(AppDelegate.openHelpAnchor),
+                 #selector(NSWindow.makeKeyAndOrderFront),
+                 #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
                 return false
             default: break
             }
