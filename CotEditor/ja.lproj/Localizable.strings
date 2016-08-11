@@ -61,13 +61,6 @@
 // Window title of bug report
 "Bug Report" = "不具合レポート";
 
-// Migration from v1.x
-"Restoring menu key bindings settings…" = "メニューキーバインド設定をリセット中...";
-"Migrating coloring settings…" = "カラーリング設定を移行中...";
-"Migrating user syntax styles…" = "ユーザシンタックス定義を移行中...";
-"Migration finished." = "設定の移行が終了しました。";
-"Close" = "閉じる";
-
 
 
 /* MARK: Text Finder */
@@ -453,9 +446,6 @@
 // Theme names
 "Untitled" = "名称未設定";
 "Customized Theme" = "カスタムテーマ";
-
-// Theme description meda data for migrated theme
-"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "CotEditor 1.x でのユーザカラーリング設定から自動生成されたテーマ";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";

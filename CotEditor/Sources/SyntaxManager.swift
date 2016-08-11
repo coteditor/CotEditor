@@ -278,17 +278,6 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// return whether contents of given highlight definition is the same as bundled one
-    func isEqualToBundledStyle(_ style: StyleDictionary, name: StyleName) -> Bool {
-        
-        guard self.isBundledSetting(name: name) else { return false }
-        
-        let bundledStyle = self.bundledStyleDictionary(name: name)
-        
-        return NSDictionary(dictionary: style).isEqual(to: bundledStyle)
-    }
-    
-    
     /// import setting at passed-in URL
     override func importSetting(fileURL: URL) throws {
         
@@ -452,6 +441,17 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
+    /// return whether contents of given highlight definition is the same as bundled one
+    private func isEqualToBundledStyle(_ style: StyleDictionary, name: StyleName) -> Bool {
+        
+        guard self.isBundledSetting(name: name) else { return false }
+        
+        let bundledStyle = self.bundledStyleDictionary(name: name)
+        
+        return NSDictionary(dictionary: style).isEqual(to: bundledStyle)
+    }
+    
+    
     /// load style files in user domain and re-build chache and mapping table
     private func loadUserStyles() {
         
@@ -584,41 +584,7 @@ final class SyntaxManager: SettingFileManager {
 
 extension SyntaxManager {
     
-    /// migrate user syntax styles from CotEditor 1.x format (plist) to CotEditor 2.0 format (yaml)
-    func migrateStyles(completionHandler:((Bool) -> Void)?) {
-        
-        let oldDirURL = self.userSettingDirectoryURL.deletingLastPathComponent().appendingPathComponent("SyntaxColorings")
-        
-        // check if need to migrate
-        guard oldDirURL.isReachable,
-            self.userSettingDirectoryURL.isReachable else {
-                completionHandler?(false)
-                return
-        }
-        
-        try? self.prepareUserSettingDirectory()
-        
-        guard let URLs = try? FileManager.default.contentsOfDirectory(at: oldDirURL, includingPropertiesForKeys: nil,
-                                                                      options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) else { return }
-        
-        var success = false
-        for url in URLs {
-            guard self.importLegacyStyle(fileURL: url) else { continue }
-            
-            success = true
-        }
-        
-        if success {
-            self.updateCache(completionHandler: {
-                completionHandler?(true)
-            })
-        } else {
-            completionHandler?(false)
-        }
-    }
-    
-    
-    /// convert list-format syntax style definition to YAML-format and save to user domain
+    /// convert CotEditor 1.x format (plist) syntax style definition to CotEditor 2.0 format (yaml) and save to user domain
     @discardableResult
     func importLegacyStyle(fileURL: URL) -> Bool {
         

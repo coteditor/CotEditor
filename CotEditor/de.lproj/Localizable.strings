@@ -60,13 +60,6 @@
 // Window title of bug report
 "Bug Report" = "Fehlerbericht";
 
-// Migration from v1.x
-"Restoring menu key bindings settings…" = "Die Einstellungen für die Menü-Tastenbelegungen zurücksetzen …";
-"Migrating coloring settings…" = "Farbeinstellungen migrieren …";
-"Migrating user syntax styles…" = "Benutzer-Syntaxstile migrieren …";
-"Migration finished." = "Migration abgeschlossen.";
-"Close" = "Schließen";
-
 
 
 /* MARK: Text Finder */
@@ -450,9 +443,6 @@
 // Theme names
 "Untitled" = "Ohne Titel";
 "Customized Theme" = "Benutzerdefiniertes Thema";
-
-// Theme description meda data for migrated theme
-"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "Aus der vorherigen Einstellung in CotEditor 1.x automatisch migriertes Thema";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefiniertes Thema mit dem selben Namen existiert bereits.";

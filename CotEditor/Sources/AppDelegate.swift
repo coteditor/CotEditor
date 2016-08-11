@@ -107,11 +107,6 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     }
     
     
-    // MARK: Public Properties
-    
-    var migrationWindowController: NSWindowController?  // for extension
-    
-    
     // MARK: Private Properties
     
     private var didFinishLaunching = false
@@ -193,9 +188,6 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         
         // setup KeyBindingManager
         MenuKeyBindingManager.shared.applyKeyBindingsToMainMenu()
-        
-        // migrate user settings if needed
-        self.migrateIfNeeded()
         
         // store latest version
         //   -> The bundle version (build number) format was changed on CotEditor 2.2.0. due to the iTunes Connect versioning rule.

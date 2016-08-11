@@ -60,13 +60,6 @@
 // Window title of bug report
 "Bug Report" = "错误报告";
 
-// Migration from v1.x
-"Restoring menu key bindings settings…" = "正在恢复菜单按键绑定…";
-"Migrating coloring settings…" = "迁移颜色设置…";
-"Migrating user syntax styles…" = "迁移用户语法样式…";
-"Migration finished." = "迁移完成";
-"Close" = "关闭";
-
 
 
 /* MARK: Text Finder */
@@ -448,9 +441,6 @@
 // Theme names
 "Untitled" = "未命名";
 "Customized Theme" = "自定义主题";
-
-// Theme description meda data for migrated theme
-"Auto-generated theme that is migrated from user’s coloring setting on CotEditor 1.x" = "由 CotEditor 1.x 的用户颜色设置中自动生成的主题";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题。";

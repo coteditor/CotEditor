@@ -79,7 +79,6 @@
 		2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
 		2A3A1E771C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
-		2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
 		2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
 		2A3A75A719E77E87001DAB88 /* SyntaxCompletionsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759A19E77E87001DAB88 /* SyntaxCompletionsEditView.xib */; };
 		2A3A75A819E77E87001DAB88 /* SyntaxFileMappingEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759C19E77E87001DAB88 /* SyntaxFileMappingEditView.xib */; };
@@ -225,7 +224,6 @@
 		2A6F0D6F1B5500E100C2D03C /* ThemeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A63122F19C2D3B60088C5C6 /* ThemeView.xib */; };
 		2A6F0D701B5500E100C2D03C /* KeyBindingsPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149DA019016ABB00A9D6EF /* KeyBindingsPane.xib */; };
 		2A6F0D711B5500E100C2D03C /* GeneralPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9E19016ABB00A9D6EF /* GeneralPane.xib */; };
-		2A6F0D721B5500E100C2D03C /* MigrationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */; };
 		2A6F0D731B5500E100C2D03C /* EditPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149D9819016ABB00A9D6EF /* EditPane.xib */; };
 		2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */; };
 		2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A149DA419016ABB00A9D6EF /* WindowPane.xib */; };
@@ -305,10 +303,6 @@
 		2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */; };
 		2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */; };
 		2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */; };
-		2A78BFB61D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB51D1B2BA600A583D2 /* MigrationWindowController.swift */; };
-		2A78BFB71D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB51D1B2BA600A583D2 /* MigrationWindowController.swift */; };
-		2A78BFB91D1B329400A583D2 /* AppDelegate+Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB81D1B329400A583D2 /* AppDelegate+Migration.swift */; };
-		2A78BFBA1D1B329400A583D2 /* AppDelegate+Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB81D1B329400A583D2 /* AppDelegate+Migration.swift */; };
 		2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A7A1D3F1D4BCCEF001B74B8 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
@@ -671,7 +665,6 @@
 		2A6602E61D05DF83003E8D87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		2A6602E81D05DF85003E8D87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
 		2A6602EA1D05DF87003E8D87 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GoToLineView.strings; sourceTree = "<group>"; };
-		2A6907591B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MigrationWindow.strings; sourceTree = "<group>"; };
 		2A69075B1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2A69075D1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
 		2A69075E1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
@@ -733,8 +726,6 @@
 		2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaneController.swift; sourceTree = "<group>"; };
 		2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDocumentWindowController.swift; sourceTree = "<group>"; };
 		2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
-		2A78BFB51D1B2BA600A583D2 /* MigrationWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MigrationWindowController.swift; sourceTree = "<group>"; };
-		2A78BFB81D1B329400A583D2 /* AppDelegate+Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Migration.swift"; sourceTree = "<group>"; };
 		2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
 		2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAML.framework; path = ../Carthage/Build/Mac/YAML.framework; sourceTree = "<group>"; };
 		2A7AC3F11A46484B00F38868 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
@@ -777,7 +768,6 @@
 		2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+JapaneseTransformation.swift"; sourceTree = "<group>"; };
 		2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
 		2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterTests.swift; sourceTree = "<group>"; };
-		2AA0AC5B1A28766A0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MigrationWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC5C1A2876740063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
 		2AA0AC5F1A2876930063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
 		2AA0AC601A28769C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ProgressView.strings"; sourceTree = "<group>"; };
@@ -870,7 +860,6 @@
 		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
 		2AD21FCB1D2E3BE80018C8D1 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		2AD318BF1A462A10001B8112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IntegrationPane.xib; sourceTree = "<group>"; };
-		2AD488391A07FF1A00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MigrationWindow.xib; sourceTree = "<group>"; };
 		2AD4883A1A07FF1A00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpenDocumentAccessory.xib; sourceTree = "<group>"; };
 		2AD4883D1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PrintPanelAccessory.xib; sourceTree = "<group>"; };
 		2AD4883E1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProgressView.xib; sourceTree = "<group>"; };
@@ -898,7 +887,6 @@
 		2AD488571A080A8C00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2AD488591A080C1800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2AD4885A1A080C9500B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
-		2AD4885B1A08115800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MigrationWindow.strings; sourceTree = "<group>"; };
 		2AD4885C1A08131700B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OpacityPanel.strings; sourceTree = "<group>"; };
 		2AD4885E1A08132300B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
 		2AD4885F1A08132800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
@@ -1095,7 +1083,6 @@
 			children = (
 				2A836F7E1D572A5D0044E8EC /* Main.storyboard */,
 				2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */,
-				2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */,
 				2A2D6C1A1A602D7E002451FF /* Text Finder */,
 				2A436DDC1A426EAE00275FD4 /* Document Window */,
 				2AAEA6A01A4342A800A930CA /* Document Accessories */,
@@ -1164,10 +1151,8 @@
 			children = (
 				2A91C31A1D1BFE47007CF8BE /* AppInfo.swift */,
 				2AC2462D1D1BC70C00E46CFA /* AppDelegate.swift */,
-				2A78BFB81D1B329400A583D2 /* AppDelegate+Migration.swift */,
 				2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */,
 				2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */,
-				2A78BFB51D1B2BA600A583D2 /* MigrationWindowController.swift */,
 				2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */,
 			);
 			name = Application;
@@ -1897,7 +1882,6 @@
 				2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */,
 				2A6F0D701B5500E100C2D03C /* KeyBindingsPane.xib in Resources */,
 				2A6F0D711B5500E100C2D03C /* GeneralPane.xib in Resources */,
-				2A6F0D721B5500E100C2D03C /* MigrationWindow.xib in Resources */,
 				2A6F0D731B5500E100C2D03C /* EditPane.xib in Resources */,
 				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictView.xib in Resources */,
 				2A6F0D761B5500E100C2D03C /* WindowPane.xib in Resources */,
@@ -1995,7 +1979,6 @@
 				2A63123119C2D3B60088C5C6 /* ThemeView.xib in Resources */,
 				2A149DAB19016ABB00A9D6EF /* KeyBindingsPane.xib in Resources */,
 				2A149DAA19016ABB00A9D6EF /* GeneralPane.xib in Resources */,
-				2A3A759119E77D4F001DAB88 /* MigrationWindow.xib in Resources */,
 				2A149DA719016ABB00A9D6EF /* EditPane.xib in Resources */,
 				2A6602DB1D05D7C8003E8D87 /* GoToLineView.xib in Resources */,
 				2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictView.xib in Resources */,
@@ -2230,7 +2213,6 @@
 				2A9082F31D32A9B500228F50 /* ThemeManager.swift in Sources */,
 				2A12C7FD1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
 				2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
-				2A78BFBA1D1B329400A583D2 /* AppDelegate+Migration.swift in Sources */,
 				2AD21FCD1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */,
 				2AF073FC1D34587500770BA6 /* CharacterInfo.swift in Sources */,
 				2AD69B891D3E4FCD00FBD998 /* EditorWrapper+Editor.swift in Sources */,
@@ -2268,7 +2250,6 @@
 				2ACDC09E1D172EF7009B72D6 /* WrappingTextField.swift in Sources */,
 				2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
-				2A78BFB71D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */,
 				2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2A9BF3C81D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */,
@@ -2312,7 +2293,6 @@
 				2AF073EB1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
-				2A78BFB91D1B329400A583D2 /* AppDelegate+Migration.swift in Sources */,
 				2A2792951D1DBDAC00F3FC5D /* Constants.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2A9082E91D32539A00228F50 /* EditorTextView+Scaling.swift in Sources */,
@@ -2346,7 +2326,6 @@
 				2A12C7FF1D1843B50069C60B /* SeparatorTextFieldCell.swift in Sources */,
 				2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
 				2A6FD9EA1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
-				2A78BFB61D1B2BA600A583D2 /* MigrationWindowController.swift in Sources */,
 				2AFB5AE81D597ABB003895A7 /* DefaultEncodings.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
@@ -2664,17 +2643,6 @@
 				2A3A1E751C45219800641CE0 /* Base */,
 			);
 			name = HUDView.xib;
-			sourceTree = "<group>";
-		};
-		2A3A758F19E77D4F001DAB88 /* MigrationWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AD488391A07FF1A00B795CB /* Base */,
-				2AD4885B1A08115800B795CB /* ja */,
-				2AA0AC5B1A28766A0063ED1B /* zh-Hans */,
-				2A6907591B8443AA00D0F3A2 /* de */,
-			);
-			name = MigrationWindow.xib;
 			sourceTree = "<group>";
 		};
 		2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */ = {

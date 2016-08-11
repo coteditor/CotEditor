@@ -299,37 +299,3 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
 }
-
-
-
-// MARK:
-
-extension MenuKeyBindingManager {
-    
-    /// ユーザのメニューキーバインディング設定をいったん削除する
-    func resetKeyBindings() -> Bool {
-        
-        // 以前の CotEditor ではユーザがカスタムをしているしていないに関わらずメニューキーバインディングの設定が
-        // ユーザ領域に作成されていたため最初にインストールしたバージョン以降でデフォルトのショートカットやメソッド名が
-        // 変更された場合にそれに追従できなかった。
-        // その負のサイクルを断ち切るために、過去の設定ファイルを一旦削除をする。
-        
-        let url = self.keyBindingSettingFileURL
-        
-        if url.isReachable {
-            do {
-                try FileManager.default.removeItem(at: url)
-            } catch {
-                return false
-            }
-            
-            self.keyBindingDict = self.defaultKeyBindingDict
-            self.applyKeyBindingsToMainMenu()
-            
-            return true
-        }
-        
-        return false
-    }
-    
-}
