@@ -1,6 +1,6 @@
 /*
  
- Constants.swift
+ Utilities.swift
  
  CotEditor
  https://coteditor.com
@@ -25,25 +25,31 @@
  
  */
 
-import AudioToolbox
+import Foundation
 
-// labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
-extension SystemSoundID {
+extension Comparable {
     
-    static let moveToTrash = SystemSoundID(0x10)
+    /**
+     Modify number to be within min/max values.
+     
+     - parameter minimum: Condition which receiver should not smaller than.
+     - parameter minimum: Condition which receiver should not larger than.
+     
+     - returns: Processed value.
+     */
+    func within(min minimum: Self, max maximum: Self) -> Self {
+        
+        return max(minimum, min(self, maximum))
+    }
 }
 
 
-extension String {
+
+/// debug friendly print with a dog.
+func moof(_ items: Any..., function: String = #function) {
     
-    /// constant string representing a separator
-    static let separator = "-"
+    #if DEBUG
+        Swift.print("🐕 \(function): ", terminator: "")
+        Swift.debugPrint(items)
+    #endif
 }
-
-
-extension String.Encoding {
-    
-    /// original special encoding type
-    static let autoDetection = String.Encoding(rawValue: 0)
-}
-

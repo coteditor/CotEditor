@@ -389,3 +389,11 @@ extension Document {
     }
     
 }
+
+
+
+private extension NSNumber {
+
+    @nonobjc static let no = NSNumber(value: false)
+    @nonobjc static let yes = NSNumber(value: true)
+}

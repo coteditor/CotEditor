@@ -315,7 +315,7 @@ final class EditorTextView: NSTextView, Themable {
                 self.setSelectedRange(NSRange(location: self.selectedRange().location - 1, length: 0))
                 
                 // set flag
-                self.textStorage?.addAttribute(AutoBalancedClosingBracketAttributeName, value: NSNumber.no,
+                self.textStorage?.addAttribute(AutoBalancedClosingBracketAttributeName, value: NSNumber(value: false),
                                                range: NSRange(location: self.selectedRange().location, length: 1))
                 
                 return

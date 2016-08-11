@@ -281,7 +281,7 @@ extension String {
 extension Data {
     
     /// decode `com.apple.TextEncoding` extended file attribute to encoding
-    var decodeXattrEncoding: String.Encoding? {
+    var decodingXattrEncoding: String.Encoding? {
         
         // parse value
         guard let string = String(data: self, encoding: .utf8) else { return nil }

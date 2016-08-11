@@ -193,15 +193,15 @@ class EncodingDetectionTests: XCTestCase {
         let utf8Data = "utf-8;134217984".data(using: String.Encoding.utf8)
         
         XCTAssertEqual(String.Encoding.utf8.xattrEncodingData, utf8Data)
-        XCTAssertEqual(utf8Data?.decodeXattrEncoding, String.Encoding.utf8)
-        XCTAssertEqual("utf-8".data(using: String.Encoding.utf8)?.decodeXattrEncoding, String.Encoding.utf8)
+        XCTAssertEqual(utf8Data?.decodingXattrEncoding, String.Encoding.utf8)
+        XCTAssertEqual("utf-8".data(using: String.Encoding.utf8)?.decodingXattrEncoding, String.Encoding.utf8)
         
         
         let eucJPData = "euc-jp;2336".data(using: String.Encoding.utf8)
         
         XCTAssertEqual(String.Encoding.japaneseEUC.xattrEncodingData, eucJPData)
-        XCTAssertEqual(eucJPData?.decodeXattrEncoding, String.Encoding.japaneseEUC)
-        XCTAssertEqual("euc-jp".data(using: String.Encoding.utf8)?.decodeXattrEncoding, String.Encoding.japaneseEUC)
+        XCTAssertEqual(eucJPData?.decodingXattrEncoding, String.Encoding.japaneseEUC)
+        XCTAssertEqual("euc-jp".data(using: String.Encoding.utf8)?.decodingXattrEncoding, String.Encoding.japaneseEUC)
     }
     
     

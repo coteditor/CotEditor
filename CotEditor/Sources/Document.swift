@@ -234,7 +234,7 @@ final class Document: NSDocument, EncodingHolder {
                 let xattrEncodingData = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data
                 else { return nil }
             
-            return xattrEncodingData.decodeXattrEncoding
+            return xattrEncodingData.decodingXattrEncoding
         }()
         self.shouldSaveXattr = (xattrEncoding != nil)
         

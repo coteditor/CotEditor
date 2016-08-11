@@ -68,7 +68,7 @@ extension NSTextView {
                 let textContainer = self.textContainer else { return }
             
             // sanitize scale
-            let scale = within(scrollView.minMagnification, scale, scrollView.maxMagnification)
+            let scale = scale.within(min: scrollView.minMagnification, max: scrollView.maxMagnification)
             
             // scale
             self.scaleUnitSquare(to: self.convert(NSSize.unit, from: nil))  // reset
