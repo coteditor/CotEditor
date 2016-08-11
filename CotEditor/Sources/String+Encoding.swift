@@ -60,9 +60,22 @@ private let ISO2022JP_EscapeSequences: [[UInt8]] = [
 private let MaxDetectionLength = 1024 * 8
 
 
+
 // MARK:
 
+private extension CFStringEncoding {
+    
+    static let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
+    static let shiftJIS_X0213 = CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)
+}
+
+
+
 extension String.Encoding {
+    
+    private static let shiftJIS = String.Encoding(cfEncodings: .shiftJIS)
+    private static let shiftJIS_X0213 = String.Encoding(cfEncodings: .shiftJIS_X0213)
+    
     
     init(cfEncodings: CFStringEncodings) {
         
@@ -85,10 +98,7 @@ extension String.Encoding {
         if encoding == self { return true }
         
         // -> Caution needed on Shift-JIS. See `scanEncodingDeclaration(forTags:upTo:suggestedCFEncodings:)` for details.
-        let ShiftJIS = String.Encoding(cfEncodings: .shiftJIS)
-        let ShiftJIS_X0213 = String.Encoding(cfEncodings: .shiftJIS_X0213)
-        
-        return (encoding == ShiftJIS && self == ShiftJIS_X0213) || (encoding == ShiftJIS_X0213 && self == ShiftJIS)
+        return (encoding == .shiftJIS && self == .shiftJIS_X0213) || (encoding == .shiftJIS_X0213 && self == .shiftJIS)
     }
     
     
@@ -248,14 +258,7 @@ extension String {
             //     「日本語（Shift JIS）」になってしまうため。IANA では大文字小文字を区別しないとしているのでこれはいいのだが、
             //      CFStringConvertEncodingToIANACharSetName() では .shiftJIS と .shiftJIS_X0213 がそれぞれ
             //     「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせるための処理
-            let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
-            let shiftJIS_X0213 = CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)
-            for cfEncoding in suggestedCFEncodings {
-                if cfEncoding == shiftJIS || cfEncoding == shiftJIS_X0213 {
-                    return cfEncoding
-                }
-            }
-            return nil
+            return suggestedCFEncodings.first { $0 == .shiftJIS || $0 == .shiftJIS_X0213 }
             
             }(), cfEncoding != kCFStringEncodingInvalidId else { return nil }
         
@@ -324,7 +327,7 @@ extension String.Encoding {
 
 
 
-// MARK: - UTF8-BOM
+// MARK: - UTF8
 
 extension Data {
     
