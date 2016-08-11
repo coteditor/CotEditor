@@ -50,20 +50,24 @@ final class ScriptManager: NSObject {
     
     // MARK: Private Enum
     
-    private enum OutputType: String {
+    private enum OutputType: String, ScriptToken {
         
         case replaceSelection = "ReplaceSelection"
         case replaceAllText = "ReplaceAllText"
         case insertAfterSelection = "InsertAfterSelection"
         case appendToAllText = "AppendToAllText"
         case pasteBoard = "Pasteboard"
+        
+        static var token = "CotEditorXOutput"
     }
     
     
-    private enum InputType: String {
+    private enum InputType: String, ScriptToken {
         
         case selection = "Selection"
         case allText = "AllText"
+        
+        static var token = "CotEditorXInput"
     }
     
     
@@ -209,50 +213,6 @@ final class ScriptManager: NSObject {
     
     
     // MARK: Private Methods
-    
-    /// read input type from script
-    private func scanInputType(_ string: String) -> InputType? {
-        
-        let scanner = Scanner(string: string)
-        scanner.caseSensitive = true
-        
-        var scannedString: NSString?
-        while scanner.isAtEnd {
-            scanner.scanUpTo("%%%{CotEditorXInput=", into: nil)
-            if scanner.scanString("%%%{CotEditorXInput=", into: nil) {
-                if scanner.scanUpTo("}%%%", into: &scannedString) {
-                    break
-                }
-            }
-        }
-        
-        guard let type = scannedString as? String else { return nil }
-        
-        return InputType(rawValue: type)
-    }
-    
-    
-    /// read output type from script
-    private func scanOutputType(_ string: String) -> OutputType? {
-        
-        let scanner = Scanner(string: string)
-        scanner.caseSensitive = true
-        
-        var scannedString: NSString?
-        while scanner.isAtEnd {
-            scanner.scanUpTo("%%%{CotEditorXOutput=", into: nil)
-            if scanner.scanString("%%%{CotEditorXOutput=", into: nil) {
-                if scanner.scanUpTo("}%%%", into: &scannedString) {
-                    break
-                }
-            }
-        }
-        
-        guard let type = scannedString as? String else { return nil }
-        
-        return OutputType(rawValue: type)
-    }
-    
     
     /// return document content conforming to the input type
     /// - throws: ScriptError
@@ -452,7 +412,7 @@ final class ScriptManager: NSObject {
         
         // read input
         var input: String?
-        if let inputType = self.scanInputType(script) {
+        if let inputType = InputType(scanning: script) {
             do {
                 input = try self.inputString(type: inputType, document: document)
             } catch let error {
@@ -462,7 +422,7 @@ final class ScriptManager: NSObject {
         }
         
         // get output type
-        let outputType = self.scanOutputType(script)
+        let outputType = OutputType(scanning: script)
         
         // prepare file path as argument if available
         let arguments: [String] = {
@@ -559,4 +519,38 @@ private enum ScriptError: Error {
         return NSLocalizedString("No document to get input.", comment: "")
     }
     
+}
+
+
+// MARK: - ScriptToken
+
+private protocol ScriptToken {
+    
+    static var token: String { get }
+    
+    init?(rawValue: String)
+    
+}
+
+private extension ScriptToken {
+    
+    /// read type from script
+    init?(scanning script: String) {
+        
+        let scanner = Scanner(string: script)
+        scanner.caseSensitive = true
+        
+        var scannedString: NSString?
+        while !scanner.isAtEnd {
+            scanner.scanUpTo("%%%{\(Self.token)=", into: nil)
+            if scanner.scanString("%%%{\(Self.token)=", into: nil),
+                scanner.scanUpTo("}%%%", into: &scannedString) {
+                break
+            }
+        }
+        
+        guard let type = scannedString as? String else { return nil }
+        
+        self.init(rawValue: type)
+    }
 }
