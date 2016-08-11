@@ -31,8 +31,8 @@ final class ProgressViewController: NSViewController {
     
     // MARK: Private Properties
     
-    let progress: Progress
-    let message: String
+    private dynamic let progress: Progress
+    private dynamic let message: String
     
     @IBOutlet private weak var button: NSButton?
     
@@ -69,7 +69,7 @@ final class ProgressViewController: NSViewController {
     func done(buttonTitle title: String? = nil) {
         
         self.button?.title = title ?? NSLocalizedString("OK", comment: "")
-        self.button?.action = #selector(dismiss(_:))
+        self.button?.action = #selector(dismiss)
         self.button?.keyEquivalent = "\r"
     }
     
