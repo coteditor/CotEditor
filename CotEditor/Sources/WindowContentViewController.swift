@@ -137,7 +137,9 @@ final class WindowContentViewController: NSSplitViewController {
     private var isSidebarShown: Bool {
         
         set (shown) {
-            self.sidebarViewItem?.isCollapsed = !shown
+            self.siblings.forEach { sibling in
+                sibling.sidebarViewItem?.isCollapsed = !shown
+            }
         }
         get {
             return !(self.sidebarViewItem?.isCollapsed ?? true)
@@ -150,8 +152,21 @@ final class WindowContentViewController: NSSplitViewController {
         
         let isCollapsed = self.isSidebarShown && (index.rawValue == self.sidebarViewController!.selectedTabViewItemIndex)
         
-        self.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
-        self.sidebarViewItem!.animator().isCollapsed = isCollapsed
+        self.siblings.forEach { sibling in
+            sibling.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
+            sibling.sidebarViewItem!.animator().isCollapsed = isCollapsed
+        }
+    }
+    
+    
+    /// window content view controllers in all tabs in the same window
+    private var siblings: [WindowContentViewController]  {
+        
+        if #available(OSX 10.12, *) {
+            return self.view.window?.tabbedWindows?.flatMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
+        } else {
+            return [self]
+        }
     }
     
 }
