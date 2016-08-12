@@ -278,33 +278,33 @@ final class ThemeManager: SettingFileManager {
                     let name = self.settingName(from: fileURL)
                     themeNameSet.add(name)
                 }
-                
-                let isListUpdated = (themeNameSet.array as! [String] != self.themeNames)
-                self.themeNames = themeNameSet.array as! [String]
-                
-                // cache definitions
-                var themes = [String: ThemeDictionary]()
-                for name in (themeNameSet.array as! [String]) {
-                    if let themeURL = self.urlForUsedSetting(name: name) {
-                        themes[name] = self.themeDictionary(fileURL: themeURL)
-                    }
+            }
+            
+            let isListUpdated = (themeNameSet.array as! [String] != self.themeNames)
+            self.themeNames = themeNameSet.array as! [String]
+            
+            // cache definitions
+            var themes = [String: ThemeDictionary]()
+            for name in (themeNameSet.array as! [String]) {
+                if let themeURL = self.urlForUsedSetting(name: name) {
+                    themes[name] = self.themeDictionary(fileURL: themeURL)
                 }
-                self.archivedThemes = themes
-                
-                // reset user default if not found
-                let defaultThemeName = Defaults[.theme]!
-                if !themeNameSet.contains(defaultThemeName) {
-                    UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
+            }
+            self.archivedThemes = themes
+            
+            // reset user default if not found
+            let defaultThemeName = Defaults[.theme]!
+            if !themeNameSet.contains(defaultThemeName) {
+                UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
+            }
+            
+            DispatchQueue.main.sync {
+                // post notification
+                if isListUpdated {
+                    NotificationCenter.default.post(name: .ThemeListDidUpdate, object: self)
                 }
                 
-                DispatchQueue.main.sync {
-                    // post notification
-                    if isListUpdated {
-                        NotificationCenter.default.post(name: .ThemeListDidUpdate, object: self)
-                    }
-                    
-                    completionHandler?()
-                }
+                completionHandler?()
             }
         }
     }
