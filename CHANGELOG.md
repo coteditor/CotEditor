@@ -7,6 +7,7 @@ develop
 
 ### New Features
 
+- Support window tabbing on macOS Sierra.
 - Display recent used syntax styles at the top of the toolbar syntax style popup list.
 - Add indivisual “Block Comment”, “Inline Comment” and “Uncomment” actions in Text menu unlike the “Comment Selection” action changes its behavior intelligently.
 

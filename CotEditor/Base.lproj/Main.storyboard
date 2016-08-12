@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11185.3" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11191" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11185.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11191"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -69,6 +69,16 @@
                                         <menuItem title="New" keyEquivalent="n" id="82">
                                             <connections>
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="82J-OW-zaP"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="New Tab" keyEquivalent="t" id="WCp-4v-OPR">
+                                            <connections>
+                                                <action selector="newDocumentAsTab:" target="Ady-hI-5gd" id="S8W-T4-6Jr"/>
+                                                <binding destination="Voe-Tx-rLC" name="hidden" keyPath="supportsWindowTabbing" id="oPe-r3-ZV7">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="72">
@@ -415,7 +425,8 @@
                                         <menuItem isSeparatorItem="YES" id="748">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Set Editor’s Opacity…" keyEquivalent="T" id="367">
+                                        <menuItem title="Set Editor’s Opacity…" id="367">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showOpacityPanel:" target="Ady-hI-5gd" id="Mop-i1-1f6"/>
                                             </connections>
@@ -478,7 +489,8 @@
                                         <menuItem title="Font" id="410">
                                             <menu key="submenu" title="Font" systemMenu="font" id="418">
                                                 <items>
-                                                    <menuItem title="Show Fonts" keyEquivalent="t" id="424">
+                                                    <menuItem title="Show Fonts" id="424">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="orderFrontFontPanel:" target="1Vq-aI-bgB" id="ClI-kR-koM"/>
                                                         </connections>

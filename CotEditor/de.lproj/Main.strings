@@ -73,6 +73,8 @@
 
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "82"; */
 "82.title" = "Neu";
+/* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
+"WCp-4v-OPR.title" = "Neues Tab";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "Öffnen …";
 /* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */

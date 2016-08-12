@@ -164,6 +164,21 @@ final class DocumentController: NSDocumentController {
     }
     
     
+    /// return enability of actions
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        guard let action = item.action else { return false }
+        
+        if #available(OSX 10.12, *) {
+            if action == #selector(newDocumentAsTab) {
+                return self.currentDocument != nil
+            }
+        }
+        
+        return true
+    }
+    
+    
     
     // MARK: Public Methods
     
@@ -190,6 +205,30 @@ final class DocumentController: NSDocumentController {
         self.openDocument(sender)
     }
     
+    
+    /// open a new document as tab in the existing frontmost window
+    @available(macOS 10.12, *)
+    @IBAction func newDocumentAsTab(_ sender: AnyObject?) {
+        
+        guard let frontmostWindow = self.currentDocument?.windowControllers.first?.window else {
+            return self.newDocument(sender)
+        }
+        
+        let document: NSDocument
+        do {
+            document = try self.openUntitledDocumentAndDisplay(false)
+        } catch let error {
+            self.presentError(error)
+            return
+        }
+        
+        document.makeWindowControllers()
+        
+        guard let documentWindow = document.windowControllers.first?.window else { return }
+        
+        frontmostWindow.addTabbedWindow(documentWindow, ordered: .above)
+        document.showWindows()  // bring to the frontmost
+    }
     
     
     // MARK: Private Methods

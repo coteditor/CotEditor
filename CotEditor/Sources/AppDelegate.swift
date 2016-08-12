@@ -112,6 +112,8 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     private var didFinishLaunching = false
     private lazy var acknowledgementsWindowController = WebDocumentWindowController(documentName: "Acknowledgements")!
     
+    private dynamic let supportsWindowTabbing: Bool
+    
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
@@ -122,6 +124,13 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     // MARK: Lifecycle
     
     override init() {
+        
+        // add tab window
+        if #available(macOS 10.12, *) {
+            self.supportsWindowTabbing = true
+        } else {
+            self.supportsWindowTabbing = false
+        }
         
         // register default setting values
         var defaults: [String: AnyObject] = [:]
