@@ -142,7 +142,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
     
     var hashValue: Int {
         
-        return self.keySpecChars.hashValue
+        return self.modifierMask.rawValue.hashValue ^ self.keyEquivalent.hashValue
     }
     
     
