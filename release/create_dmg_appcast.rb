@@ -108,7 +108,6 @@ file.puts <<APPCAST
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
 	<channel>
 		<title>CotEditor update information</title>
-		<link>https://coteditor.com/releasenotes/appcast.xml</link>
 		<description>CotEditor update information</description>
 #{latest_item}
 		<item>
