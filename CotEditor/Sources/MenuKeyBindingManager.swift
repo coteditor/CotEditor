@@ -162,8 +162,9 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         // specific item types
         if menuItem.isSeparatorItem ||
-           menuItem.isAlternate ||
-           menuItem.title.isEmpty {
+            menuItem.isAlternate ||
+            menuItem.isHidden ||
+            menuItem.title.isEmpty {
             return false
         }
         
