@@ -169,7 +169,7 @@ final class DocumentController: NSDocumentController {
         
         guard let action = item.action else { return false }
         
-        if #available(OSX 10.12, *) {
+        if #available(macOS 10.12, *) {
             if action == #selector(newDocumentAsTab) {
                 return self.currentDocument != nil
             }
