@@ -106,7 +106,7 @@ extension NSTextView {
         let isVertical = (self.layoutOrientation == .vertical)
         let visibleRect = scrollView.documentVisibleRect
         let visibleOrigin = NSPoint(x: visibleRect.minX, y: isVertical ? visibleRect.maxY : visibleRect.minY)
-        let centerFromClipOrigin = point.offsetBy(dx: -visibleOrigin.x, dy: visibleOrigin.y).scaled(to: currentScale)  // from top-left
+        let centerFromClipOrigin = point.offsetBy(dx: -visibleOrigin.x, dy: -visibleOrigin.y).scaled(to: currentScale)  // from top-left
         
         self.scale = scale
         
