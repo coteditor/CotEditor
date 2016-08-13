@@ -425,7 +425,7 @@
 "HgR-ke-6gq.title" = "Alles suchen";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
-"hTx-ef-3T2.title" = "Auswahl für Suchbegriff verwenden";
+"hTx-ef-3T2.title" = "Auswahl als Suchbegriff verwenden";
 /* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
 "kwa-lu-0Fz.title" = "Auswahl als Ersatzbegriff verwenden";
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
