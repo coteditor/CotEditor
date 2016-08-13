@@ -83,7 +83,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
         self.removeAllItems()
         
         guard let document = NSDocumentController.shared().currentDocument as? Document else {
-            let item = NSMenuItem(title: NSLocalizedString("No document", comment: ""), action: nil, keyEquivalent: "")
+            let item = NSMenuItem(title: NSLocalizedString("No Document", comment: ""), action: nil, keyEquivalent: "")
             item.isEnabled = false
             self.addItem(item)
             return
@@ -135,12 +135,12 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
         let excludingServices = excludingServiceTypes.flatMap { type in type.service }
         
         // add menu items dynamically
-        for service in NSSharingService.sharingServices(forItems: items) {
+        for service in NSSharingService.sharingServices(forItems: [item]) {
             guard !excludingServices.contains(service) else { continue }
             
             service.subject = subject
             
-            let menuItem = NSMenuItem(title: service.title, action: #selector(shareFromService(_:)), keyEquivalent: "")
+            let menuItem = NSMenuItem(title: service.title, action: #selector(shareFromService), keyEquivalent: "")
             menuItem.target = self
             menuItem.image = service.image
             menuItem.representedObject = SharingServiceObject(service: service, items: [item])
