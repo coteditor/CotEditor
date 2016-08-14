@@ -173,8 +173,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 
                 let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
                 let lineRange = (string as NSString).lineRange(at: charIndex)  // get NSRange
-                let lineCharacterRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-                glyphIndex = lineCharacterRange.max
+                let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
+                glyphIndex = lineGlyphRange.max
                 
                 while glyphCount < glyphIndex {  // handle wrapped lines
                     var range = NSRange.notFound

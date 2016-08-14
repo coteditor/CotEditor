@@ -261,8 +261,8 @@ final class LineNumberView: NSRulerView {
             }
             let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
             let lineRange = string.lineRange(at: charIndex)  // get NSRange
-            let lineCharacterRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-            glyphIndex = lineCharacterRange.max
+            let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
+            glyphIndex = lineGlyphRange.max
             
             // check if line is selected
             let isSelected: Bool = {
