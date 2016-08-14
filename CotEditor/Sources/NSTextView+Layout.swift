@@ -63,32 +63,36 @@ extension NSTextView {
         }
         
         set (scale) {
-            guard let scrollView = self.enclosingScrollView,
+            guard
                 let layoutManager = self.layoutManager,
                 let textContainer = self.textContainer else { return }
             
             // sanitize scale
-            let scale = scale.within(min: scrollView.minMagnification, max: scrollView.maxMagnification)
+            let scale: CGFloat = {
+                guard let scrollView = self.enclosingScrollView else { return scale }
+                
+                return scale.within(min: scrollView.minMagnification, max: scrollView.maxMagnification)
+            }()
             
             // scale
-            self.scaleUnitSquare(to: self.convert(NSSize.unit, from: nil))  // reset
-            self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
+            let relativeScale = scale / self.scale
+            self.scaleUnitSquare(to: NSSize(width: relativeScale, height: relativeScale))
             
             // ensure bounds origin is {0, 0} for vertical text orientation
-            self.needsDisplay = true
             self.translateOrigin(to: self.bounds.origin)
             
             // reset minimum size for unwrap mode
-            self.minSize = scrollView.contentSize.scaled(to: 1.0 / scale)
+            self.minSize = self.visibleRect.size
             
             // ensure text layout
-            layoutManager.ensureLayout(forCharacterRange: self.string?.nsRange ?? .notFound)
             layoutManager.ensureLayout(for: textContainer)
             self.sizeToFit()
             
             // dummy reselection to force redrawing current line highlight
             let selectedRanges = self.selectedRanges
             self.selectedRanges = selectedRanges
+            
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
         }
     }
     
@@ -112,7 +116,7 @@ extension NSTextView {
         
         // adjust scroller to keep position of the glyph at the passed-in center point
         if self.scale != currentScale {
-            let newCenterFromClipOrigin = centerFromClipOrigin.scaled(to: 1.0 / scale)
+            let newCenterFromClipOrigin = centerFromClipOrigin.scaled(to: 1.0 / self.scale)
             let newCenter = layoutManager.boundingRect(forGlyphRange: NSRange(location: centerGlyphIndex, length: 1), in: textContainer)
             let scrollPoint = NSPoint(x: round(point.x - newCenterFromClipOrigin.x),
                                       y: round(newCenter.midY - newCenterFromClipOrigin.y))
@@ -162,7 +166,8 @@ extension NSTextView {
             textContainer.widthTracksTextView = wrapsLines
             if wrapsLines {
                 let contentSize = scrollView.contentSize
-                textContainer.containerSize = NSSize(width: round(contentSize.width / self.scale), height: CGFloat.greatestFiniteMagnitude)
+                textContainer.containerSize = NSSize(width: round(contentSize.width / self.scale),
+                                                     height: CGFloat.greatestFiniteMagnitude)
                 self.setConstrainedFrameSize(contentSize)
             } else {
                 textContainer.containerSize = NSSize.infinite

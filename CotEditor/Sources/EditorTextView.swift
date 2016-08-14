@@ -588,7 +588,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // reset text wrapping
         if orientation != self.layoutOrientation && self.wrapsLines {
-            self.textContainer?.containerSize = NSSize(width: 0, height: CGFloat.greatestFiniteMagnitude)
+            self.textContainer?.containerSize = NSSize(width: 1, height: CGFloat.greatestFiniteMagnitude)
         }
         
         super.setLayoutOrientation(orientation)
