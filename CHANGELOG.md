@@ -67,6 +67,7 @@ develop
 - Fix update range of syntax highlight while editing.
 - Fix key binding setting error message.
 - Fix an issue where syntax validation result view was editable.
+- Address an issue where editor's drawing area could become wrong after scaling font size by vertical text.
 
 
 
