@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11191" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11191"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ConsolePanelController" customModule="CotEditor" customModuleProvider="target">
@@ -17,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="396" y="264" width="360" height="199"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="5">
                 <rect key="frame" x="0.0" y="0.0" width="360" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -28,15 +28,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="360" height="199"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="bar" incrementalSearchingEnabled="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="8">
+                                <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="bar" incrementalSearchingEnabled="YES" allowsNonContiguousLayout="YES" id="8">
                                     <rect key="frame" x="0.0" y="0.0" width="360" height="199"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="360" height="199"/>
                                     <size key="maxSize" width="360" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="360" height="199"/>
-                                    <size key="maxSize" width="360" height="10000000"/>
                                     <connections>
                                         <outlet property="delegate" destination="-2" id="sXL-Ak-MiS"/>
                                     </connections>
@@ -63,14 +61,14 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="1C6AD1A5-EDE4-4B1D-A2C5-5EC0547B5D5A" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="small" id="fb4-be-4LF">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="98157D51-D311-4D46-A5A4-AB7528D1C3D7" label="Clear Log" paletteLabel="Clear Log" image="TrashTemplate" id="Yei-b2-m1J">
+                    <toolbarItem implicitItemIdentifier="98157D51-D311-4D46-A5A4-AB7528D1C3D7" label="Clear Log" paletteLabel="Clear Log" image="ClearTemplate" id="Yei-b2-m1J">
                         <nil key="toolTip"/>
                         <size key="minSize" width="32" height="28"/>
                         <size key="maxSize" width="32" height="32"/>
                         <button key="view" verticalHuggingPriority="750" id="OHl-Tn-1z3">
-                            <rect key="frame" x="0.0" y="14" width="32" height="28"/>
+                            <rect key="frame" x="13" y="14" width="32" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="TrashTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WNQ-de-ow3">
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="ClearTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WNQ-de-ow3">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -99,6 +97,6 @@
         </textFinder>
     </objects>
     <resources>
-        <image name="TrashTemplate" width="15" height="16"/>
+        <image name="ClearTemplate" width="15" height="16"/>
     </resources>
 </document>
