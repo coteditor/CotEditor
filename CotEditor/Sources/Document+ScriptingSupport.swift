@@ -341,7 +341,8 @@ extension Document {
         
         let location = rangeArray[0]
         let length = max(rangeArray[1], 1)
-        guard let range = self.editor?.range(location: location, length: length), range.length > 0 else { return "" }
+        
+        let range = self.string.range(location: location, length: length)
         
         return (self.editor?.string as NSString?)?.substring(with: range)
     }

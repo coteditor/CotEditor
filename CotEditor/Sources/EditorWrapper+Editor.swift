@@ -28,7 +28,6 @@
 
 import Cocoa
 
-// MARK: Text Editing
 extension EditorWrapper {
     
     /// return string in text view (LF fix)
@@ -38,12 +37,7 @@ extension EditorWrapper {
     }
     
     
-    /// return string in passed-in range
-    func substring(range: NSRange) -> String {
-        
-        return (self.string as NSString).substring(with: range)
-    }
-    
+    /// return current selection
     var substringWithSelection: String? {
         
         guard let selectedRange = self.focusedTextView?.selectedRange else { return nil }
@@ -94,47 +88,6 @@ extension EditorWrapper {
             textView.selectedRange = textView.string!.convert(from: self.document?.lineEnding ?? .LF, to: .LF,
                                                               range: textView.selectedRange)
         }
-    }
-    
-}
-
-
-
-// MARK: Locating
-
-extension EditorWrapper {
-    
-    // MARK: Public Methods
-    
-    /// convert minus location/length to NSRange
-    func range(location: Int, length: Int) -> NSRange {
-        
-        let documentString = self.string.replacingLineEndings(with: self.document?.lineEnding ?? .LF)
-        
-        return documentString.range(location: location, length: length)
-    }
-    
-    
-    /// select characters in focused textView
-    func setSelectedCharacterRange(location: Int, length: Int) {
-        
-        let range = self.range(location: location, length: length)
-        
-        guard range.location != NSNotFound else { return }
-        
-        self.selectedRange = range
-    }
-    
-    
-    /// select lines in focused textView
-    func setSelectedLineRange(location: Int, length: Int) {
-        
-        // you can ignore actuall line ending type and directly comunicate with textView, as this handle just lines
-        guard let textView = self.focusedTextView, let string = textView.string else { return }
-        
-        guard let range = string.rangeForLine(location: location, length: length) else { return }
-        
-        self.selectedRange = range
     }
     
 }

@@ -102,16 +102,14 @@ final class TextSelection: NSObject {
     /// string of the selection (Unicode text)
     var contents: Any? {
         get {
-            guard let document = self.document, let editor = document.editor else { return nil }
-            
-            var string = editor.substringWithSelection!
+            guard
+                let document = self.document,
+                var string = document.editor?.substringWithSelection else { return nil }
             
             // apply line endings
             string = string.replacingLineEndings(with: document.lineEnding)
             
-            let storage = NSTextStorage(string: string)
-            
-            return storage
+            return NSTextStorage(string: string)
         }
         
         set (object) {
@@ -125,7 +123,7 @@ final class TextSelection: NSObject {
                 return
             }
             
-            self.document?.editor?.insert(string: string)
+            self.textView?.insert(string: string)
         }
     }
     
@@ -142,9 +140,14 @@ final class TextSelection: NSObject {
             guard
                 range?.count == 2,
                 let location = range?[0].intValue,
-                let length = range?[1].intValue else { return }
+                let length = range?[1].intValue,
+                let string = self.document?.string else { return }
             
-            self.document?.editor?.setSelectedCharacterRange(location: location, length: length)
+            let range = string.range(location: location, length: length)
+            
+            guard range.location != NSNotFound else { return }
+            
+            self.document?.editor?.selectedRange = range
         }
     }
     
@@ -176,7 +179,12 @@ final class TextSelection: NSObject {
                 return
             }
             
-            self.document?.editor?.setSelectedLineRange(location: location, length: length)
+            // you can ignore actuall line ending type and directly comunicate with textView, as this handle just lines
+            guard let string = self.textView?.string else { return }
+            
+            guard let range = string.rangeForLine(location: location, length: length) else { return }
+            
+            self.document?.editor?.selectedRange = range
         }
     }
     
@@ -338,7 +346,7 @@ final class TextSelection: NSObject {
         
         guard let storage = notification.object as? NSTextStorage else { return }
         
-        self.document?.editor?.insert(string: storage.string)
+        self.textView?.insert(string: storage.string)
         storage.delegate = nil
     }
     
