@@ -234,8 +234,8 @@ extension Document {
         guard !wholeString.isEmpty else { return .no }
         
         // set target range
-        let selectedRange = self.editor?.selectedRange ?? NSRange()
         let targetRange: NSRange = {
+            let selectedRange = self.editor?.selectedRange ?? NSRange()
             if isBackwards {
                 return NSRange(location: 0, length: selectedRange.location)
             }
@@ -259,26 +259,26 @@ extension Document {
             let arguments = command.evaluatedArguments,
             let searchString = arguments["targetString"] as? String, !searchString.isEmpty else { return .no }
         
+        let wholeString = self.string
+        
+        guard !wholeString.isEmpty else { return .no }
+        
+        let replacementString = (arguments["newString"] as? String) ?? ""
         let isRegex = (arguments["regularExpression"] as? NSNumber)?.boolValue ?? false
         let ignoresCase = (arguments["ignoreCase"] as? NSNumber)?.boolValue ?? false
         let isBackwards = (arguments["backwardsSearch"] as? NSNumber)?.boolValue ?? false
         let isWrapSearch = (arguments["wrapSearch"] as? NSNumber)?.boolValue ?? false
         let isAll = (arguments["all"] as? NSNumber)?.boolValue ?? false
         
-        let wholeString = self.string
-        
-        guard !wholeString.isEmpty else { return .no }
-        
-        let replacementString = (arguments["newString"] as? String) ?? ""
-        
         guard isRegex || searchString != replacementString else { return .no }
         
         // set target range
-        let selectedRange = self.editor?.selectedRange ?? NSRange()
         let targetRange: NSRange = {
             if isAll {
                 return wholeString.nsRange
-            } else if isBackwards {
+            }
+            let selectedRange = self.editor?.selectedRange ?? NSRange()
+            if isBackwards {
                 return NSRange(location: 0, length: selectedRange.location)
             }
             return NSRange(location: selectedRange.max, length: string.utf16.count - selectedRange.max)
