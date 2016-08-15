@@ -96,9 +96,7 @@ extension NSTextView {
     
     /// perform simple text replacement
     @discardableResult
-    func replace(with string: String?, range: NSRange, selectedRange: NSRange?, actionName: String?) -> Bool {
-        
-        guard let string = string else { return false }
+    func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String?) -> Bool {
         
         let selectedRanges: [NSRange]? = {
             guard let selectedRange = selectedRange else { return nil }
@@ -144,11 +142,7 @@ extension NSTextView {
         self.didChangeText()
         
         // apply new selection ranges
-        if let selectedRanges = selectedRanges {
-            self.setSelectedRangesWithUndo(selectedRanges)
-        } else {
-            self.setSelectedRangesWithUndo(self.selectedRanges)
-        }
+        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges)
         
         return true
     }
@@ -168,22 +162,18 @@ extension NSTextView {
         
         guard let string = self.string else { return }
         
-        var replacementStrings = [String]()
-        var replacementRanges = [NSRange]()
-        
-        var cursorLocation = NSNotFound
-        if keepingEditingPoint && self.selectedRange().length == 0 {
-            cursorLocation = self.selectedRange().location
-        }
-        
         let regex = try! NSRegularExpression(pattern: "[ \\t]+$", options: .anchorsMatchLines)
-        regex.enumerateMatches(in: string, range: string.nsRange) { (result: NSTextCheckingResult?, flags: NSRegularExpression.MatchingFlags, stop) in
+        let ranges = regex.matches(in: string, range: string.nsRange).map { $0.range }
+        
+        // exclude editing line if needed
+        let replacementRanges: [NSRange] = {
+            guard keepingEditingPoint else { return ranges }
             
-            guard let range = result?.range, range.max != cursorLocation && NSLocationInRange(cursorLocation, range) else { return }
-            
-            replacementRanges.append(range)
-            replacementStrings.append("")
-        }
+            let cursorLocation = self.selectedRange.location
+            return ranges.filter { return $0.max != cursorLocation && !NSLocationInRange(cursorLocation, $0) }
+        }()
+        
+        let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
                      actionName: NSLocalizedString("Trim Trailing Whitespace", comment: ""))
