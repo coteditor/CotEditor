@@ -28,7 +28,7 @@
 
 import Cocoa
 
-final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDelegate, NSTextStorageDelegate {
+final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
     
@@ -197,16 +197,6 @@ final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDel
         }
         
         return true
-    }
-    
-    
-    
-    // MARK: Protocol
-    
-    /// tell text finder in which text view should it find text
-    func textFinderClient() -> NSTextView? {
-        
-        return self.focusedTextView
     }
     
     
@@ -783,4 +773,17 @@ final class EditorWrapper: NSResponder, TextFinderClientProvider, SyntaxStyleDel
         self.invalidateSyntaxHighlight()
     }
     
+}
+
+
+
+// MARK: Protocol
+
+extension EditorWrapper: TextFinderClientProvider {
+    
+    /// tell text finder in which text view should it find text
+    func textFinderClient() -> NSTextView? {
+        
+        return self.focusedTextView
+    }
 }
