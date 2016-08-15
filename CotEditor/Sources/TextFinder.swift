@@ -618,7 +618,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     /// selected string in the current tareget
     private dynamic var selectedString: String? {
         
-        guard let selectedRange = self.client?.selectedRange(),
+        guard let selectedRange = self.client?.selectedRange,
               let string = self.client?.string as NSString? else { return nil }
         
         return string.substring(with: selectedRange)
@@ -663,7 +663,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             let textView = self.client,
             let string = textView.string, !string.isEmpty else { return 0 }
         
-        let startLocation = forward ? textView.selectedRange().max : textView.selectedRange().location
+        let startLocation = forward ? textView.selectedRange.max : textView.selectedRange.location
         let range = string.nsRange
         
         var matches = [NSRange]()
@@ -694,7 +694,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         // found feedback
         if let range = foundRange {
-            textView.setSelectedRange(range)
+            textView.selectedRange = range
             textView.scrollRangeToVisible(range)
             textView.showFindIndicator(for: range)
             
@@ -726,13 +726,13 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         let replacedString: String
         if self.usesRegularExpression {
             let regex = self.regex()!
-            guard let match = regex.firstMatch(in: string, range: textView.selectedRange()) else { return false }
+            guard let match = regex.firstMatch(in: string, range: textView.selectedRange) else { return false }
             
             matchedRange = match.range
             replacedString = regex.replacementString(for: match, in: string, offset: 0, template: self.replacementString ?? "")
             
         } else {
-            matchedRange = (string as NSString).range(of: self.sanitizedFindString, options: self.textualOptions, range: textView.selectedRange())
+            matchedRange = (string as NSString).range(of: self.sanitizedFindString, options: self.textualOptions, range: textView.selectedRange)
             guard matchedRange.location != NSNotFound else { return false }
             replacedString = self.replacementString ?? ""
         }

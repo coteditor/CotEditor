@@ -172,11 +172,11 @@ extension EditorTextView {
         guard let string = self.string as NSString? else { return }
         
         // process whole document if no text selected
-        if self.selectedRange().length == 0 {
-            self.setSelectedRange(string.range)
+        if self.selectedRange.length == 0 {
+            self.selectedRange = string.range
         }
         
-        let lineRange = string.lineRange(for: self.selectedRange(), excludingLastLineEnding: true)
+        let lineRange = string.lineRange(for: self.selectedRange, excludingLastLineEnding: true)
         
         guard lineRange.length > 0 else { return }
         
@@ -201,11 +201,11 @@ extension EditorTextView {
         guard let string = self.string as NSString? else { return }
         
         // process whole document if no text selected
-        if self.selectedRange().length == 0 {
-            self.setSelectedRange(string.range)
+        if self.selectedRange.length == 0 {
+            self.selectedRange = string.range
         }
         
-        let lineRange = string.lineRange(for: self.selectedRange(), excludingLastLineEnding: true)
+        let lineRange = string.lineRange(for: self.selectedRange, excludingLastLineEnding: true)
         
         guard lineRange.length > 0 else { return }
         
@@ -228,11 +228,11 @@ extension EditorTextView {
         guard let string = self.string as NSString? else { return }
         
         // process whole document if no text selected
-        if self.selectedRange().length == 0 {
-            self.setSelectedRange(string.range)
+        if self.selectedRange.length == 0 {
+            self.selectedRange = string.range
         }
         
-        guard self.selectedRange().length > 0 else { return }
+        guard self.selectedRange.length > 0 else { return }
         
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()

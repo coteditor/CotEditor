@@ -223,7 +223,7 @@ final class NavigationBarController: NSViewController {
         
         let textView = self.textView!
         
-        textView.setSelectedRange(range)
+        textView.selectedRange = range
         textView.centerSelectionInVisibleArea(self)
         textView.window?.makeFirstResponder(textView)
     }
@@ -282,7 +282,7 @@ final class NavigationBarController: NSViewController {
         
         guard let popUp = self.outlineMenu, popUp.isEnabled && (popUp.menu!.numberOfItems > 0) else { return }
         
-        let range = self.textView!.selectedRange()
+        let range = self.textView!.selectedRange
         var selectedIndex = 0
         for (index, menuItem) in popUp.menu!.items.enumerated().reversed() {
             guard !menuItem.isSeparatorItem else { continue }

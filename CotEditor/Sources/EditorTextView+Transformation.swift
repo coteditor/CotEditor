@@ -171,7 +171,7 @@ extension EditorTextView {
         
         self.replace(with: strings, ranges: appliedRanges, selectedRanges: newSelectedRanges, actionName: actionName)
         
-        self.scrollRangeToVisible(self.selectedRange())
+        self.scrollRangeToVisible(self.selectedRange)
     }
     
 }

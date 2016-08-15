@@ -67,7 +67,7 @@ extension EditorTextView: ColorCodeReceiver {
         
         ColorCodePanelController.shared.showWindow(self)
         
-        if let selected = (self.string as NSString?)?.substring(with: self.selectedRange()) {
+        if let selected = (self.string as NSString?)?.substring(with: self.selectedRange) {
             ColorCodePanelController.shared.setColor(withCode: selected)
         }
     }
@@ -91,7 +91,7 @@ extension EditorTextView: ColorCodeReceiver {
             self.replaceCharacters(in: range, with: colorCode)
             self.didChangeText()
             self.undoManager?.setActionName(NSLocalizedString("Insert Color Code", comment: ""))
-            self.setSelectedRange(NSRange(location: range.location, length: colorCode.utf16.count))
+            self.selectedRange = NSRange(location: range.location, length: colorCode.utf16.count)
             self.centerSelectionInVisibleArea(self)
         }
     }

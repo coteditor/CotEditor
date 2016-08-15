@@ -158,7 +158,7 @@ final class DocumentAnalyzer: NSObject {
         let string = NSString(string: document.textStorage.string) as String
         let lineEnding = document.lineEnding
         let selectedRange: NSRange = {
-            var range = textView.selectedRange()
+            var range = textView.selectedRange
             // exclude editing range from selected range (2007-05-20)
             if textView.hasMarkedText() {
                 range.length = 0

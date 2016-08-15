@@ -47,7 +47,7 @@ extension EditorTextView {
     /// toggle comment state in selection
     @IBAction func toggleComment(_ sender: AnyObject?) {
         
-        if self.canUncomment(range: self.selectedRange(), partly: false) {
+        if self.canUncomment(range: self.selectedRange, partly: false) {
             self.uncomment(types: .both, fromLineHead: Defaults[.appendsCommentSpacer])
         } else {
             self.commentOut(types: .both, fromLineHead: Defaults[.appendsCommentSpacer])
@@ -92,7 +92,7 @@ extension EditorTextView {
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return }
         
         guard let string = self.string,
-            let selectedRange = string.range(from: self.selectedRange()),
+            let selectedRange = string.range(from: self.selectedRange),
             let targetRange = self.commentingRange(fromLineHead: fromLineHead)
             else { return }
         
@@ -121,7 +121,7 @@ extension EditorTextView {
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return }
         
         guard let string = self.string,
-            let selectedRange = string.range(from: self.selectedRange()),
+            let selectedRange = string.range(from: self.selectedRange),
             let targetRange = self.commentingRange(fromLineHead: fromLineHead),
             !targetRange.isEmpty else { return }
         
@@ -183,7 +183,7 @@ extension EditorTextView {
     /// return commenting target range
     private func commentingRange(fromLineHead: Bool) -> Range<String.Index>? {
         
-        guard let string = self.string, let selectedRange = string.range(from: self.selectedRange()) else { return nil }
+        guard let string = self.string, let selectedRange = string.range(from: self.selectedRange) else { return nil }
         
         return fromLineHead ? string.lineRange(for: selectedRange, excludingLastLineEnding: true) : selectedRange
     }

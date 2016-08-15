@@ -264,7 +264,7 @@ final class EditorTextView: NSTextView, Themable {
             let firstChar = plainString.unicodeScalars.first, self.matchingOpeningBracketsSet.contains(firstChar)
         {
             // wrap selection with brackets if some text is selected
-            if selectedRange().length > 0 {
+            if selectedRange.length > 0 {
                 let wrappingFormat: String = {
                     switch firstChar {
                     case "[":
@@ -282,7 +282,7 @@ final class EditorTextView: NSTextView, Themable {
                 
                 let replacementString: String = {
                     if !wrappingFormat.isEmpty, let wholeString = self.string {
-                        let selectedString = (wholeString as NSString).substring(with: self.selectedRange())
+                        let selectedString = (wholeString as NSString).substring(with: self.selectedRange)
                         return String(format: wrappingFormat, selectedString)
                     }
                     return ""
@@ -312,11 +312,11 @@ final class EditorTextView: NSTextView, Themable {
                 }()
             
                 super.insertText(pairedBrackets, replacementRange: replacementRange)
-                self.setSelectedRange(NSRange(location: self.selectedRange().location - 1, length: 0))
+                self.selectedRange = NSRange(location: self.selectedRange.location - 1, length: 0)
                 
                 // set flag
                 self.textStorage?.addAttribute(AutoBalancedClosingBracketAttributeName, value: NSNumber(value: false),
-                                               range: NSRange(location: self.selectedRange().location, length: 1))
+                                               range: NSRange(location: self.selectedRange.location, length: 1))
                 
                 return
             }
@@ -325,8 +325,8 @@ final class EditorTextView: NSTextView, Themable {
         // just move cursor if closed bracket is already typed
         if self.balancesBrackets && replacementRange.length == 0,
             let firstCharacter = plainString.unicodeScalars.first, self.matchingClosingBracketsSet.contains(firstCharacter), firstCharacter == self.characterAfterInsertion {
-            if self.textStorage?.attribute(AutoBalancedClosingBracketAttributeName, at: self.selectedRange().location, effectiveRange: nil) as? Bool ?? false {
-                self.setSelectedRange(NSRange(location: self.selectedRange().location + 1, length: 0))
+            if self.textStorage?.attribute(AutoBalancedClosingBracketAttributeName, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false {
+                self.selectedRange = NSRange(location: self.selectedRange.location + 1, length: 0)
                 return
             }
         }
@@ -335,7 +335,7 @@ final class EditorTextView: NSTextView, Themable {
         if self.isAutomaticIndentEnabled && self.isSmartIndentEnabled &&
             replacementRange.length == 0 && plainString == "}",
             let wholeString = self.string,
-            let insretionIndex = String.UTF16Index(self.selectedRange().max).samePosition(in: wholeString)
+            let insretionIndex = String.UTF16Index(self.selectedRange.max).samePosition(in: wholeString)
         {
             let lineRange = wholeString.lineRange(at: insretionIndex)
             
@@ -404,7 +404,7 @@ final class EditorTextView: NSTextView, Themable {
             return super.insertNewline(sender)
         }
         
-        let selectedRange = self.selectedRange()
+        let selectedRange = self.selectedRange
         let indentRange = string.rangeOfIndent(at: selectedRange.location)
         
         // don't auto-indent if indent is selected (2008-12-13)
@@ -444,10 +444,10 @@ final class EditorTextView: NSTextView, Themable {
         // smart indent
         if shouldExpandBlock {
             self.insertTab(sender)
-            let selection = self.selectedRange()
+            let selection = self.selectedRange
             super.insertNewline(sender)
             super.insertText(indent, replacementRange: self.rangeForUserTextChange)
-            self.setSelectedRange(selection)
+            self.selectedRange = selection
             
         } else if shouldIncreaseIndentLevel {
             self.insertTab(sender)
@@ -462,9 +462,9 @@ final class EditorTextView: NSTextView, Themable {
             super.deleteBackward(sender)
         }
         
-        guard let string = self.string, self.selectedRange().length == 0 else { return }
+        guard let string = self.string, self.selectedRange.length == 0 else { return }
         
-        let selectedRange = self.selectedRange()
+        let selectedRange = self.selectedRange
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled {
@@ -478,7 +478,7 @@ final class EditorTextView: NSTextView, Themable {
                 if selectedRange.location >= targetLength {
                     let targetRange = NSRange(location: selectedRange.location - targetLength, length: targetLength)
                     if (string as NSString).substring(with: targetRange) == String(repeating: " ", targetLength) {
-                        self.setSelectedRange(targetRange)
+                        self.selectedRange = targetRange
                     }
                 }
             }
@@ -493,7 +493,7 @@ final class EditorTextView: NSTextView, Themable {
             let surroundingCharacters = (string as NSString).substring(with: targetRange)
             
             if ["{}", "[]", "()", "\"\""].contains(surroundingCharacters) {
-                self.setSelectedRange(targetRange)
+                self.selectedRange = targetRange
             }
         }
     }
@@ -510,7 +510,7 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if (self.string as NSString?)?.substring(with: self.selectedRange()).numberOfComposedCharacters == 1 {
+        if (self.string as NSString?)?.substring(with: self.selectedRange).numberOfComposedCharacters == 1 {
             menu.insertItem(withTitle: NSLocalizedString("Inspect Character", comment: ""),
                             action: #selector(showSelectionInfo(_:)),
                             keyEquivalent: "",
@@ -828,15 +828,15 @@ final class EditorTextView: NSTextView, Themable {
              #selector(normalizeUnicodeWithNFKCCF),
              #selector(normalizeUnicodeWithModifiedNFC),
              #selector(normalizeUnicodeWithModifiedNFD):
-            return self.selectedRange().length > 0
+            return self.selectedRange.length > 0
             // -> The color code panel is always valid.
             
         case #selector(showSelectionInfo):
-            let selection = (self.string as NSString?)?.substring(with: self.selectedRange())
+            let selection = (self.string as NSString?)?.substring(with: self.selectedRange)
             return selection?.numberOfComposedCharacters == 1
             
         case #selector(toggleComment):
-            let canComment = self.canUncomment(range: self.selectedRange(), partly: false)
+            let canComment = self.canUncomment(range: self.selectedRange, partly: false)
             let title = canComment ? "Uncomment" : "Comment Out"
             menuItem.title = NSLocalizedString(title, comment: "")
             return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
@@ -848,7 +848,7 @@ final class EditorTextView: NSTextView, Themable {
             return (self.blockCommentDelimiters != nil)
             
         case #selector(uncomment(_:)):
-            return self.canUncomment(range: self.selectedRange(), partly: true)
+            return self.canUncomment(range: self.selectedRange, partly: true)
             
         default: break
         }
@@ -963,7 +963,7 @@ final class EditorTextView: NSTextView, Themable {
     /// copy selection with syntax highlight and font style
     @IBAction func copyWithStyle(_ sender: AnyObject?) {
         
-        guard let string = self.string, self.selectedRange().length > 0 else {
+        guard let string = self.string, self.selectedRange.length > 0 else {
             NSBeep()
             return
         }
@@ -1053,7 +1053,7 @@ final class EditorTextView: NSTextView, Themable {
     /// display character information by popover
     @IBAction func showSelectionInfo(_ sender: AnyObject?) {
         
-        guard var selectedString = (self.string as NSString?)?.substring(with: self.selectedRange()) else { return }
+        guard var selectedString = (self.string as NSString?)?.substring(with: self.selectedRange) else { return }
         
         // apply document's line ending
         if let documentLineEnding = self.documentLineEnding,
@@ -1064,11 +1064,11 @@ final class EditorTextView: NSTextView, Themable {
         
         guard
             let popoverController = CharacterPopoverController(character: selectedString),
-            let selectedRect = self.overlayRect(range: self.selectedRange()) else { return }
+            let selectedRect = self.overlayRect(range: self.selectedRange) else { return }
         
         let positioningRect = selectedRect.offsetBy(dx: 0, dy: -4)
         popoverController.showPopover(relativeTo: positioningRect, of: self)
-        self.showFindIndicator(for: self.selectedRange())
+        self.showFindIndicator(for: self.selectedRange)
     }
     
     
@@ -1186,7 +1186,7 @@ private extension NSTextView {
         
         guard let string = self.string else { return nil }
         
-        let location = self.selectedRange().location - 1
+        let location = self.selectedRange.location - 1
         
         guard location >= 0 else { return nil }
         
@@ -1201,7 +1201,7 @@ private extension NSTextView {
         
         guard let string = self.string else { return nil }
         
-        let location = self.selectedRange().max
+        let location = self.selectedRange.max
         guard let index = string.utf16.index(string.utf16.startIndex, offsetBy: location).samePosition(in: string.unicodeScalars) else { return nil }
         
         return string.unicodeScalars[safe: index]
@@ -1312,7 +1312,7 @@ extension EditorTextView {
         var rangeToSelect = (newWord as NSString).range(of: "(?<=\\().*(?=\\))", options: .regularExpression)
         if rangeToSelect.location != NSNotFound {
             rangeToSelect.location += charRange.location
-            self.setSelectedRange(rangeToSelect)
+            self.selectedRange = rangeToSelect
         }
     }
     
@@ -1345,7 +1345,7 @@ extension EditorTextView {
         
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
-            self.selectedRange().length == 0,  // selected
+            self.selectedRange.length == 0,  // selected
             let nextCharacter = self.characterAfterInsertion, !CharacterSet.alphanumerics.contains(nextCharacter),  // caret is (probably) at the middle of a word
             let lastCharacter = self.characterBeforeInsertion, !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
             else { return }

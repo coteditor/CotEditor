@@ -142,7 +142,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDelegate
         let range = self.results[row].range
         
         DispatchQueue.main.async {
-            textView.setSelectedRange(range)
+            textView.selectedRange = range
             textView.centerSelectionInVisibleArea(nil)
             textView.showFindIndicator(for: range)
         }

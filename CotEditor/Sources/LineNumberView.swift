@@ -540,7 +540,7 @@ extension LineNumberView {
         
         // with Shift key (expand selection)
         if NSEvent.modifierFlags().contains(.shift) {
-            let selectedRange = textView.selectedRange()
+            let selectedRange = textView.selectedRange
             if NSLocationInRange(currentIndex, selectedRange) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
                 if inUpperSelection {  // clicked upper half section of selected range

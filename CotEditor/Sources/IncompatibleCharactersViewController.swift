@@ -135,8 +135,8 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         // focus result
         // -> use textView's `selectedRange` since `range` is incompatible with CR/LF
         if let textView = editor.focusedTextView {
-            textView.scrollRangeToVisible(textView.selectedRange())
-            textView.showFindIndicator(for: textView.selectedRange())
+            textView.scrollRangeToVisible(textView.selectedRange)
+            textView.showFindIndicator(for: textView.selectedRange)
         }
     }
     

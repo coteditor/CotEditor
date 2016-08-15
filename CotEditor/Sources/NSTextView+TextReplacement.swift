@@ -34,12 +34,12 @@ extension NSTextView {
     /// treat programmatic text insertion
     func insert(string: String) {
         
-        let replacementRange = self.selectedRange()
+        let replacementRange = self.selectedRange
         
         guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
         
         self.replaceCharacters(in: replacementRange, with: string)
-        self.setSelectedRange(NSRange(location: replacementRange.location, length: string.utf16.count))
+        self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
         self.undoManager?.setActionName(NSLocalizedString("Insert Text", comment: ""))
         
@@ -50,12 +50,12 @@ extension NSTextView {
     /// insert given string just after current selection and select inserted range
     func insertAfterSelection(string: String) {
         
-        let replacementRange = NSRange(location: self.selectedRange().max, length: 0)
+        let replacementRange = NSRange(location: self.selectedRange.max, length: 0)
         
         guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
         
         self.replaceCharacters(in: replacementRange, with: string)
-        self.setSelectedRange(NSRange(location: replacementRange.location, length: string.utf16.count))
+        self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
         self.undoManager?.setActionName(NSLocalizedString("Insert Text", comment: ""))
         
@@ -71,7 +71,7 @@ extension NSTextView {
         guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
         
         self.replaceCharacters(in: replacementRange, with: string)
-        self.setSelectedRange(NSRange(location: replacementRange.location, length: string.utf16.count))
+        self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
         self.undoManager?.setActionName(NSLocalizedString("Replace Text", comment: ""))
         
@@ -86,7 +86,7 @@ extension NSTextView {
         guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
         
         self.replaceCharacters(in: replacementRange, with: string)
-        self.setSelectedRange(NSRange(location: replacementRange.location, length: string.utf16.count))
+        self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
         self.undoManager?.setActionName(NSLocalizedString("Insert Text", comment: ""))
         

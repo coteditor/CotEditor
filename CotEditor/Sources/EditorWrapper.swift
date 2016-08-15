@@ -608,7 +608,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         self.invalidateSyntaxHighlight()
         
         // adjust visible areas
-        newEditorViewController.textView?.selectedRange = currentEditorViewController.textView!.selectedRange()
+        newEditorViewController.textView?.selectedRange = currentEditorViewController.textView!.selectedRange
         currentEditorViewController.textView?.centerSelectionInVisibleArea(self)
         newEditorViewController.textView?.centerSelectionInVisibleArea(self)
         

@@ -37,7 +37,7 @@ extension EditorTextView {
         guard let string = self.string, self.tabWidth > 0 else { return }
         
         // get range to process
-        let selectedRange = self.selectedRange()
+        let selectedRange = self.selectedRange
         let lineRange = (string as NSString).lineRange(for: selectedRange, excludingLastLineEnding: true)
         
         // create indent string to prepend
@@ -76,7 +76,7 @@ extension EditorTextView {
         guard let string = self.string, self.tabWidth > 0 else { return }
         
         // get range to process
-        let selectedRange = self.selectedRange()
+        let selectedRange = self.selectedRange
         let lineRange = (string as NSString).lineRange(for: selectedRange, excludingLastLineEnding: true)
         
         guard lineRange.length > 0 else { return }  // do nothing with blank line
@@ -162,7 +162,7 @@ extension EditorTextView {
         guard let string = self.string, !string.isEmpty else { return }
         
         let ranges: [NSRange] = {
-            if self.selectedRange().length == 0 {  // convert all if nothing selected
+            if self.selectedRange.length == 0 {  // convert all if nothing selected
                 return [string.nsRange]
             }
             return self.selectedRanges as! [NSRange]

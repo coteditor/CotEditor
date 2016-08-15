@@ -46,7 +46,7 @@ extension EditorWrapper {
     
     var substringWithSelection: String? {
         
-        guard let selectedRange = self.focusedTextView?.selectedRange() else { return nil }
+        guard let selectedRange = self.focusedTextView?.selectedRange else { return nil }
         
         return (self.string as NSString).substring(with: selectedRange)
     }
@@ -86,15 +86,13 @@ extension EditorWrapper {
             guard let textView = self.focusedTextView else { return .notFound }
             
             return textView.string!.convert(from: .LF, to: self.document?.lineEnding ?? .LF,
-                                            range: textView.selectedRange())
+                                            range: textView.selectedRange)
         }
         set (selectedRange) {
             guard let textView = self.focusedTextView else { return }
             
-            let range = textView.string!.convert(from: self.document?.lineEnding ?? .LF, to: .LF,
-                                                 range: textView.selectedRange())
-            
-            textView.setSelectedRange(range)
+            textView.selectedRange = textView.string!.convert(from: self.document?.lineEnding ?? .LF, to: .LF,
+                                                              range: textView.selectedRange)
         }
     }
     
