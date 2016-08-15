@@ -80,6 +80,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
     
     let modifierMask: NSEventModifierFlags
     let keyEquivalent: String
+    let isValid: Bool
     
     static let none = Shortcut(modifierMask: [], keyEquivalent: "")
     
@@ -96,7 +97,10 @@ struct Shortcut: Hashable, CustomStringConvertible {
             return modifierMask
         }()
         
+        let keys = ModifierKey.all.filter { modifierMask.contains($0.mask) }
+        
         self.keyEquivalent = keyEquivalent
+        self.isValid = keyEquivalent.characters.count == 1 && !keys.isEmpty
     }
     
     

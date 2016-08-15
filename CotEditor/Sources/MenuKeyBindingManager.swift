@@ -37,7 +37,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     // MARK: Private Properties
     
-    private let _defaultKeyBindingDict: [String: String]
+    private let _defaultKeyBindings: KeyBindings
     
     
     
@@ -50,7 +50,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
             fatalError("MenuKeyBindingManager should be initialized after MainMenu.xib is loaded.")
         }
         
-        _defaultKeyBindingDict = MenuKeyBindingManager.scanMenuKeyBindingRecurrently(menu: mainMenu)
+        _defaultKeyBindings = MenuKeyBindingManager.scanMenuKeyBindingRecurrently(menu: mainMenu)
         
         super.init()
     }
@@ -66,13 +66,13 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
     
-    override var defaultKeyBindingDict: [String: String] {
+    override var defaultKeyBindings: KeyBindings {
         
-        return _defaultKeyBindingDict
+        return _defaultKeyBindings
     }
     
     
-    /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
+    /// create a KVO-compatible collection for outlineView in preferences from the key binding setting
     /// - parameter usesDefaults:   `true` for default setting and `false` for the current setting
     override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
@@ -134,8 +134,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// keyEquivalent and modifierMask for passed-in selector
     func shortcut(for action: Selector) -> Shortcut {
         
-        let keySpecChars = self.keySpecChars(for: action, defaults: false)
-        let shortcut = Shortcut(keySpecChars: keySpecChars)
+        let shortcut = self.shortcut(for: action, defaults: false)
         
         guard shortcut.modifierMask.contains(.command) else { return .none }
         
@@ -147,13 +146,13 @@ final class MenuKeyBindingManager: KeyBindingManager {
     // Public Methods
 
     /// return key bindings for selector
-    private func keySpecChars(for action: Selector, defaults usesDefaults: Bool) -> String {
+    private func shortcut(for action: Selector, defaults usesDefaults: Bool) -> Shortcut {
         
         let selectorString = NSStringFromSelector(action)
-        let dict = usesDefaults ? self.defaultKeyBindingDict : self.keyBindingDict
-        let definition = dict.first { (key, value) in value == selectorString }
+        let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
+        let definition = keyBindings.first { (key, value) in value == selectorString }
         
-        return definition?.key ?? ""
+        return definition?.key ?? .none
     }
     
     
@@ -201,31 +200,31 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     /// scan all key bindings as well as selector name in passed-in menu
-    private class func scanMenuKeyBindingRecurrently(menu: NSMenu) -> [String: String] {
+    private class func scanMenuKeyBindingRecurrently(menu: NSMenu) -> KeyBindings {
         
-        var dictionary = [String: String]()
+        var keyBindings = KeyBindings()
         
         for menuItem in menu.items {
             guard self.allowsModifying(menuItem) else { continue }
             
             if let submenu = menuItem.submenu {
                 for (key, value) in self.scanMenuKeyBindingRecurrently(menu: submenu) {
-                    dictionary[key] = value
+                    keyBindings[key] = value
                 }
                 
             } else {
                 guard let action = menuItem.action else { continue }
                 
-                let key = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
-                                   keyEquivalent: menuItem.keyEquivalent).keySpecChars
+                let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
+                                        keyEquivalent: menuItem.keyEquivalent)
                 
-                if !key.isEmpty {
-                    dictionary[key] = NSStringFromSelector(action)
+                if shortcut.isValid {
+                    keyBindings[shortcut] = NSStringFromSelector(action)
                 }
             }
         }
         
-        return dictionary
+        return keyBindings
     }
     
     
@@ -286,11 +285,11 @@ final class MenuKeyBindingManager: KeyBindingManager {
             } else {
                 guard let action = menuItem.action else { continue }
                 
-                let keySpecChars = usesDefaults
-                    ? self.keySpecChars(for: action, defaults: true)
-                    : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent).keySpecChars
+                let shortcut = usesDefaults
+                    ? self.shortcut(for: action, defaults: true)
+                    : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 
-                let item = KeyBindingItem(selector: NSStringFromSelector(action), keySpecChars: keySpecChars)
+                let item = KeyBindingItem(selector: NSStringFromSelector(action), keySpecChars: shortcut.keySpecChars)
                 node = NamedTreeNode(name: menuItem.title, representedObject: item)
             }
             tree.append(node)

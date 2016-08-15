@@ -28,11 +28,13 @@
 
 import Cocoa
 
+typealias KeyBindings = [Shortcut: String]
+
 protocol KeyBindingManagerProtocol: class {
     
-    var keyBindingDict: [String: String] { get }
     var settingFileName: String { get }
-    var defaultKeyBindingDict: [String: String] { get }
+    var keyBindings: KeyBindings { get }
+    var defaultKeyBindings: KeyBindings { get }
     
     func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode]
 }
@@ -93,15 +95,16 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     // MARK: Public Properties
     
-    lazy var keyBindingDict: [String: String] = {
+    lazy var keyBindings: KeyBindings = {
         
-        if let data = try? Data(contentsOf: self.keyBindingSettingFileURL),
-            let customDict = (try? PropertyListSerialization.propertyList(from: data, format: nil)) as? [String: String],
-            !customDict.isEmpty
-        {
-            return customDict
+        guard
+            let data = try? Data(contentsOf: self.keyBindingSettingFileURL),
+            let dict = try? KeyBindingSerialization.keyBindings(from: data)
+            else {
+                return self.defaultKeyBindings
         }
-        return self.defaultKeyBindingDict
+        
+        return dict
     }()
     
     
@@ -126,13 +129,13 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     
     /// default key binding
-    var defaultKeyBindingDict: [String: String] {
+    var defaultKeyBindings: KeyBindings {
         
         preconditionFailure()
     }
     
     
-    /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
+    /// create a KVO-compatible collection for outlineView in preferences from the key binding setting
     /// - parameter usesDefaults:   `true` for default setting and `false` for the current setting
     func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
@@ -153,7 +156,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     /// whether key bindings are not customized
     var usesDefaultKeyBindings: Bool {
         
-        return self.keyBindingDict == self.defaultKeyBindingDict
+        return self.keyBindings == self.defaultKeyBindings
     }
     
     
@@ -163,20 +166,20 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
         
-        let plistDict = self.keyBindingDictionary(from: outlineTree)
+        let keyBindings = self.keyBindings(from: outlineTree)
         let fileURL = self.keyBindingSettingFileURL
         
         // write to file
-        if plistDict == self.defaultKeyBindingDict {
+        if keyBindings == self.defaultKeyBindings {
             // just remove setting file if the new setting is exactly the same as the default
             try FileManager.default.removeItem(at: fileURL)
         } else {
-            let data = try PropertyListSerialization.data(fromPropertyList: plistDict, format: .xml, options: 0)
+            let data = try KeyBindingSerialization.data(from: keyBindings)
             try data.write(to: fileURL, options: .atomic)
         }
         
         // store new values
-        self.keyBindingDict = plistDict
+        self.keyBindings = keyBindings
     }
     
     
@@ -193,7 +196,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         }
         
         // duplication check
-        let registeredKeySpecChars = self.keyBindingDict.keys
+        let registeredKeySpecChars = self.keyBindings.keys.map { $0.keySpecChars }
         guard keySpecChars == oldKeySpecChars || !registeredKeySpecChars.contains(keySpecChars) else {
             throw InvalidKeySpecCharactersError(kind: .alreadyTaken, keySpecChars: keySpecChars)
         }
@@ -203,15 +206,15 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     // MARK: Private Methods
     
-    /// create a plist-compatible dictionary to save from outlineView data
-    private func keyBindingDictionary(from outlineTree: [NSTreeNode]) -> [String: String] {
+    /// create a plist-compatible collection to save from outlineView data
+    private func keyBindings(from outlineTree: [NSTreeNode]) -> KeyBindings {
     
-        var dictionary = [String: String]()
+        var keyBindings = KeyBindings()
         
         for node in outlineTree {
             if let children = node.children, !children.isEmpty {
-                for (key, value) in self.keyBindingDictionary(from: children) {
-                    dictionary[key] = value
+                for (key, value) in self.keyBindings(from: children) {
+                    keyBindings[key] = value
                 }
                 
             } else {
@@ -220,11 +223,50 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
                     let keySpecChars = keyItem.keySpecChars,
                     !keySpecChars.isEmpty else { continue }
                 
-                dictionary[keySpecChars] = keyItem.selector
+                let shortcut = Shortcut(keySpecChars: keySpecChars)
+                
+                keyBindings[shortcut] = keyItem.selector
             }
         }
         
-        return dictionary
+        return keyBindings
+    }
+    
+}
+
+
+
+// MARK: -
+
+private final class KeyBindingSerialization {
+    
+    /// create keyBinding dict from the specified data
+    static func keyBindings(from data: Data) throws -> KeyBindings {
+        
+        let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
+        
+        guard let plistDict = plist as? [String: String], !plistDict.isEmpty else {
+            throw NSError(domain: CocoaError.errorDomain, code: CocoaError.propertyListReadCorruptError.rawValue)
+        }
+        
+        return plistDict.reduce([:]) { (dict: KeyBindings, item: (String, String)) in
+            var dict = dict
+            dict[Shortcut(keySpecChars: item.0)] = item.1
+            return dict
+        }
+    }
+    
+    
+    /// create data to store from a keyBinding dict
+    static func data(from keyBindings: KeyBindings) throws -> Data {
+        
+        let plist: [String: String] = keyBindings.reduce([:]) { (dict: [String: String], item: (Shortcut, String)) in
+            var dict = dict
+            dict[item.0.keySpecChars] = item.1
+            return dict
+        }
+        
+        return try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
     }
     
 }

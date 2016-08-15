@@ -38,7 +38,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     // MARK: Private Properties
     
     private let defaultSnippets: [String]
-    private let _defaultKeyBindingDict: [String: String]
+    private let _defaultKeyBindings: KeyBindings
     
     
     
@@ -47,7 +47,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     override private init() {
         
-        _defaultKeyBindingDict = ["$\r": SnippetKeyBindingManager.selectorString(index: 0)]
+        _defaultKeyBindings = [Shortcut(modifierMask: .shift, keyEquivalent: "\r"): SnippetKeyBindingManager.selectorString(index: 0)]
         self.defaultSnippets = Defaults[.insertCustomTextArray] ?? []
         
         super.init()
@@ -64,26 +64,26 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     }
     
     
-    override var defaultKeyBindingDict: [String : String] {
+    override var defaultKeyBindings: KeyBindings {
         
-        return _defaultKeyBindingDict
+        return _defaultKeyBindings
     }
     
     
-    /// create a KVO-compatible dictionary for outlineView in preferences from the key binding setting
+    /// create a KVO-compatible collection for outlineView in preferences from the key binding setting
     /// - parameter usesDefaults:   `true` for default setting and `false` for the current setting
     override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
-        let dict = usesDefaults ? self.defaultKeyBindingDict : self.keyBindingDict
+        let dict = usesDefaults ? self.defaultKeyBindings : self.keyBindings
         
         var tree = [NSTreeNode]()
         
         for index in 0...30 {
             let title = String(format: NSLocalizedString("Insert Text %li", comment: ""), index)
             let selectorString = self.dynamicType.selectorString(index: index)
-            let definition = (dict.first { (key, value) in value == selectorString })
+            let definition = dict.first { (key, value) in value == selectorString }
             
-            let item = KeyBindingItem(selector: selectorString, keySpecChars: definition?.key)
+            let item = KeyBindingItem(selector: selectorString, keySpecChars: definition?.key.keySpecChars)
             let node = NamedTreeNode(name:title, representedObject: item)
             
             tree.append(node)
@@ -126,12 +126,12 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         guard !modifierMask.contains(.deviceIndependentFlagsMask) else { return nil }  // check modifier key is pressed  (just in case)
         
         // selector string for the key press
-        let keySpecChars = Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent).keySpecChars
+        let shortcut = Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
         
-        guard let selectorString = self.keyBindingDict[keySpecChars] else { return nil }
+        guard let selectorString = self.keyBindings[shortcut] else { return nil }
         
         let snippets = self.snippets(defaults: false)
-        guard let index = self.snippetIndex(forSelectorWithString: selectorString), index < snippets.count else { return nil }
+        guard let index = self.dynamicType.snippetIndex(forSelectorWithString: selectorString), index < snippets.count else { return nil }
         
         return snippets[index]
     
@@ -167,7 +167,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     
     /// extract index number of snippet from selector name
-    private func snippetIndex(forSelectorWithString selectorString: String) -> Int? {
+    private static func snippetIndex(forSelectorWithString selectorString: String) -> Int? {
         
         guard !selectorString.isEmpty else { return nil }
         
