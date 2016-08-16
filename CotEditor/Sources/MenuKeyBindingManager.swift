@@ -37,7 +37,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     // MARK: Private Properties
     
-    private let _defaultKeyBindings: KeyBindings
+    private let _defaultKeyBindings: Set<KeyBinding>
     
     
     
@@ -66,7 +66,8 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
     
-    override var defaultKeyBindings: KeyBindings {
+    /// default key bindings
+    override var defaultKeyBindings: Set<KeyBinding> {
         
         return _defaultKeyBindings
     }
@@ -148,11 +149,10 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// return key bindings for selector
     private func shortcut(for action: Selector, defaults usesDefaults: Bool) -> Shortcut {
         
-        let selectorString = NSStringFromSelector(action)
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
-        let definition = keyBindings.first { (key, value) in value == selectorString }
+        let definition = keyBindings.first { $0.action == action }
         
-        return definition?.key ?? .none
+        return definition?.shortcut ?? .none
     }
     
     
@@ -177,7 +177,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
             }
         }
         
-        // specific selectors
+        // specific actions
         if let action = menuItem.action {
             switch action {
             case #selector(EncodingHolder.changeEncoding),
@@ -200,17 +200,15 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     /// scan all key bindings as well as selector name in passed-in menu
-    private class func scanMenuKeyBindingRecurrently(menu: NSMenu) -> KeyBindings {
+    private class func scanMenuKeyBindingRecurrently(menu: NSMenu) -> Set<KeyBinding> {
         
-        var keyBindings = KeyBindings()
+        var keyBindings = Set<KeyBinding>()
         
         for menuItem in menu.items {
             guard self.allowsModifying(menuItem) else { continue }
             
             if let submenu = menuItem.submenu {
-                for (key, value) in self.scanMenuKeyBindingRecurrently(menu: submenu) {
-                    keyBindings[key] = value
-                }
+                keyBindings.formUnion(self.scanMenuKeyBindingRecurrently(menu: submenu))
                 
             } else {
                 guard let action = menuItem.action else { continue }
@@ -219,7 +217,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                                         keyEquivalent: menuItem.keyEquivalent)
                 
                 if shortcut.isValid {
-                    keyBindings[shortcut] = NSStringFromSelector(action)
+                    keyBindings.insert(KeyBinding(action: action, shortcut: shortcut))
                 }
             }
         }
@@ -228,7 +226,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// clear keyboard short cuts in the passed-in menu
+    /// clear keyboard shortcuts in the passed-in menu
     private func clearMenuKeyBindingRecurrently(menu: NSMenu) {
         
         for menuItem in menu.items {

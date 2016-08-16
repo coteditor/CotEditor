@@ -28,15 +28,29 @@
 
 import Cocoa
 
-typealias KeyBindings = [Shortcut: String]
-
-protocol KeyBindingManagerProtocol: class {
+struct KeyBinding: Hashable, CustomStringConvertible {
     
-    var settingFileName: String { get }
-    var keyBindings: KeyBindings { get }
-    var defaultKeyBindings: KeyBindings { get }
+    let action: Selector
+    let shortcut: Shortcut?
     
-    func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode]
+    
+    var description: String {
+        
+        return "<KeyBinding: \(self.action) - \(self.shortcut)>"
+    }
+    
+    
+    var hashValue: Int {
+        
+        return (self.shortcut?.hashValue ?? -1) ^ self.action.hashValue
+    }
+    
+    
+    static func ==(lhs: KeyBinding, rhs: KeyBinding) -> Bool {
+        
+        return lhs.shortcut == rhs.shortcut && lhs.action == lhs.action
+    }
+    
 }
 
 
@@ -91,20 +105,31 @@ struct InvalidKeySpecCharactersError: LocalizedError {
 
 // MARK: -
 
+protocol KeyBindingManagerProtocol: class {
+    
+    var settingFileName: String { get }
+    var keyBindings: Set<KeyBinding> { get }
+    var defaultKeyBindings: Set<KeyBinding> { get }
+    
+    func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode]
+}
+
+
+
 class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     // MARK: Public Properties
     
-    lazy var keyBindings: KeyBindings = {
+    lazy var keyBindings: Set<KeyBinding> = {
         
         guard
             let data = try? Data(contentsOf: self.keyBindingSettingFileURL),
-            let dict = try? KeyBindingSerialization.keyBindings(from: data)
+            let keyBindings = try? KeyBindingSerialization.keyBindings(from: data)
             else {
                 return self.defaultKeyBindings
         }
         
-        return dict
+        return keyBindings
     }()
     
     
@@ -128,8 +153,8 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     }
     
     
-    /// default key binding
-    var defaultKeyBindings: KeyBindings {
+    /// default key bindings
+    var defaultKeyBindings: Set<KeyBinding> {
         
         preconditionFailure()
     }
@@ -196,7 +221,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         }
         
         // duplication check
-        let registeredKeySpecChars = self.keyBindings.keys.map { $0.keySpecChars }
+        let registeredKeySpecChars = self.keyBindings.flatMap { $0.shortcut?.keySpecChars }
         guard keySpecChars == oldKeySpecChars || !registeredKeySpecChars.contains(keySpecChars) else {
             throw InvalidKeySpecCharactersError(kind: .alreadyTaken, keySpecChars: keySpecChars)
         }
@@ -207,15 +232,13 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     // MARK: Private Methods
     
     /// create a plist-compatible collection to save from outlineView data
-    private func keyBindings(from outlineTree: [NSTreeNode]) -> KeyBindings {
+    private func keyBindings(from outlineTree: [NSTreeNode]) -> Set<KeyBinding> {
     
-        var keyBindings = KeyBindings()
+        var keyBindings = Set<KeyBinding>()
         
         for node in outlineTree {
             if let children = node.children, !children.isEmpty {
-                for (key, value) in self.keyBindings(from: children) {
-                    keyBindings[key] = value
-                }
+                keyBindings.formUnion(self.keyBindings(from: children))
                 
             } else {
                 guard
@@ -224,8 +247,10 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
                     !keySpecChars.isEmpty else { continue }
                 
                 let shortcut = Shortcut(keySpecChars: keySpecChars)
+                let action = Selector(keyItem.selector)
+                let keyBinding = KeyBinding(action: action, shortcut: shortcut)
                 
-                keyBindings[shortcut] = keyItem.selector
+                keyBindings.insert(keyBinding)
             }
         }
         
@@ -240,8 +265,8 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
 
 private final class KeyBindingSerialization {
     
-    /// create keyBinding dict from the specified data
-    static func keyBindings(from data: Data) throws -> KeyBindings {
+    /// create keyBinding collection from the specified data
+    static func keyBindings(from data: Data) throws -> Set<KeyBinding> {
         
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
         
@@ -249,20 +274,20 @@ private final class KeyBindingSerialization {
             throw NSError(domain: CocoaError.errorDomain, code: CocoaError.propertyListReadCorruptError.rawValue)
         }
         
-        return plistDict.reduce([:]) { (dict: KeyBindings, item: (String, String)) in
-            var dict = dict
-            dict[Shortcut(keySpecChars: item.0)] = item.1
-            return dict
+        let keyBindings = plistDict.map { (key, value) in
+            return KeyBinding(action: Selector(value), shortcut: Shortcut(keySpecChars: key))
         }
+        
+        return Set<KeyBinding>(keyBindings)
     }
     
     
-    /// create data to store from a keyBinding dict
-    static func data(from keyBindings: KeyBindings) throws -> Data {
+    /// create data to store from a keyBinding collection
+    static func data(from keyBindings: Set<KeyBinding>) throws -> Data {
         
-        let plist: [String: String] = keyBindings.reduce([:]) { (dict: [String: String], item: (Shortcut, String)) in
+        let plist: [String: String] = keyBindings.reduce([:]) { (dict: [String: String], keyBinding: KeyBinding) in
             var dict = dict
-            dict[item.0.keySpecChars] = item.1
+            dict[keyBinding.shortcut!.keySpecChars] = NSStringFromSelector(keyBinding.action)  // TODO: unwrap
             return dict
         }
         
