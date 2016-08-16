@@ -85,7 +85,7 @@ extension String {
             }()
             
             let characterIndex = self.index(self.startIndex, offsetBy: index).samePosition(in: self.utf16)
-            let location = characterIndex.distance(to: self.utf16.startIndex)
+            let location = self.utf16.startIndex.distance(to: characterIndex)
             
             incompatibles.append(IncompatibleCharacter(character: character,
                                                        convertedCharacter: sanitizedConvertedCharacter,

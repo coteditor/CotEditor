@@ -97,7 +97,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     private let isBundledStyle: Bool
     private let isCustomized: Bool
     
-    private var viewControllers = [AnyObject]()  // NSViewController subclass or nil
+    private var viewControllers = [NSViewController?]()
     
     @IBOutlet private weak var box: NSBox?
     @IBOutlet private weak var menuTableView: NSTableView?
@@ -177,22 +177,22 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         }
         
         // setup views
-        var viewControllers = [AnyObject]()
+        var viewControllers = [NSViewController?]()
         for type in SyntaxType.all {
             if type == .comments { break }
             viewControllers.append(SyntaxTermsEditViewController(syntaxType: type))
         }
         viewControllers.append(NSViewController(nibName: "SyntaxCommentsEditView", bundle: nil)!)
-        viewControllers.append(NSNull())  // separator
+        viewControllers.append(nil)  // separator
         viewControllers.append(NSViewController(nibName: "SyntaxOutlineEditView", bundle: nil)!)
         viewControllers.append(NSViewController(nibName: "SyntaxCompletionsEditView", bundle: nil)!)
         viewControllers.append(NSViewController(nibName: "SyntaxFileMappingEditView", bundle: nil)!)
-        viewControllers.append(NSNull())  // separator
+        viewControllers.append(nil)  // separator
         viewControllers.append(NSViewController(nibName: "SyntaxInfoEditView", bundle: nil)!)
         viewControllers.append(SyntaxValidationViewController())
         
         for viewController in viewControllers {
-            guard let viewController = viewController as? NSViewController else { continue }  // skip separator
+            guard let viewController = viewController else { continue }  // skip separator
             
             viewController.representedObject = self.style
         }
@@ -263,8 +263,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     /// jump to style's destribution URL
     @IBAction func jumpToURL(_ sender: AnyObject?) {
         
-        guard let urlString = self.style[DictionaryKey.metadata.rawValue]?[MetadataKey.distributionURL.rawValue] as? String,
-              let url = URL(string: urlString) else {
+        guard
+            let metadata = self.style[DictionaryKey.metadata.rawValue] as? [String: Any],
+            let urlString = metadata[MetadataKey.distributionURL.rawValue] as? String,
+            let url = URL(string: urlString) else {
                 NSBeep()
                 return
         }
@@ -348,8 +350,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         // finish current editing anyway
         self.commitEditing()
         
+        guard let view = self.viewControllers[index]?.view else { return }
+        
         // swap views
-        self.box!.contentView = self.viewControllers[index].view
+        self.box!.contentView = view
     }
     
     

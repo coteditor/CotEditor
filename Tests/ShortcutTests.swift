@@ -38,7 +38,8 @@ class ShortcutTests: XCTestCase {
         XCTAssertEqual(Shortcut(modifierMask: [.control], keyEquivalent: "A").keySpecChars, "^$A")  // uppercase for Shift key
         
         XCTAssertEqual(Shortcut(modifierMask: [], keyEquivalent: "a").keySpecChars, "a")
-        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").keySpecChars, "")
+        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").keySpecChars, "^$")
+        XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").isValid)
     }
     
     
@@ -58,10 +59,10 @@ class ShortcutTests: XCTestCase {
         XCTAssertEqual(Shortcut(keySpecChars: "~@b").description, "⌥⌘B")
         
         // test unprintable keys
-        let F10 = String(UnicodeScalar(NSF10FunctionKey))
+        let F10 = String(UnicodeScalar(NSF10FunctionKey)!)
         XCTAssertEqual(Shortcut(keySpecChars: "@" + F10).description, "⌘F10")
         
-        let delete = String(UnicodeScalar(NSDeleteCharacter))
+        let delete = String(UnicodeScalar(NSDeleteCharacter)!)
         XCTAssertEqual(Shortcut(keySpecChars: "@" + delete).description, "⌘⌦")
     }
 

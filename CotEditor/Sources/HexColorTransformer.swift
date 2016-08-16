@@ -48,7 +48,7 @@ final class HexColorTransformer: ValueTransformer {
     
     
     /// From color code hex to NSColor (String -> NSColor)
-    override func transformedValue(_ value: AnyObject?) -> AnyObject? {
+    override func transformedValue(_ value: Any?) -> Any? {
         
         guard let code = value as? String else {
             return nil
@@ -64,7 +64,7 @@ final class HexColorTransformer: ValueTransformer {
     
     
     /// From NSColor to hex color code string (NSColor -> String)
-    override func reverseTransformedValue(_ value: AnyObject?) -> AnyObject? {
+    override func reverseTransformedValue(_ value: Any?) -> Any? {
         
         guard let color = value as? NSColor else { return "#000000" }
         

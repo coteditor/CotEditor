@@ -56,7 +56,7 @@ final class ConsolePanelController: NSWindowController {
     }()
     
     @IBOutlet private var textView: NSTextView?  // NSTextView cannot be weak
-    @IBOutlet private weak var textFinder: NSTextFinder?
+    @IBOutlet fileprivate weak var textFinder: NSTextFinder?
     
     
     

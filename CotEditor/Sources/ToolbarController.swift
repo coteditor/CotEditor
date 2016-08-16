@@ -149,7 +149,7 @@ final class ToolbarController: NSObject {
         guard let document = self.document else { return }
         
         var tag = Int(document.encoding.rawValue)
-        if document.hasUTF8BOM ?? false {
+        if document.hasUTF8BOM {
             tag *= -1
         }
         

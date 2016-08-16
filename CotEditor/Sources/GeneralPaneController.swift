@@ -124,10 +124,10 @@ private extension NSApplication {
         
         let command = String(format: "sleep %f; open \"%@\"", delay, Bundle.main.bundlePath)
         
-        let task = Task()
-        task.launchPath = "/bin/sh"
-        task.arguments = ["-c", command]
-        task.launch()
+        let process = Process()
+        process.launchPath = "/bin/sh"
+        process.arguments = ["-c", command]
+        process.launch()
         
         self.terminate(nil)
     }

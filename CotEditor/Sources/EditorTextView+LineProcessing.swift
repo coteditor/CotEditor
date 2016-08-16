@@ -45,10 +45,10 @@ extension EditorTextView {
             return
         }
         
-        let selectedRanges = self.selectedRanges as! [NSRange]
+        let selectedRanges = self.selectedRanges as [NSRange]
         
         // register redo for text selection
-        self.undoManager?.prepare(withInvocationTarget: self).setSelectedRangesWithUndo(self.selectedRanges)
+        (self.undoManager?.prepare(withInvocationTarget: self) as! NSTextView).setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
         
         var newSelectedRanges = [NSRange]()
         
@@ -112,10 +112,10 @@ extension EditorTextView {
             return
         }
         
-        let selectedRanges = self.selectedRanges as! [NSRange]
+        let selectedRanges = self.selectedRanges as [NSRange]
         
         // register redo for text selection
-        self.undoManager?.prepare(withInvocationTarget: self).setSelectedRangesWithUndo(self.selectedRanges)
+        (self.undoManager?.prepare(withInvocationTarget: self) as! NSTextView).setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
         
         var newSelectedRanges = [NSRange]()
         
@@ -240,7 +240,7 @@ extension EditorTextView {
         var processedCount = 0
         
         // collect duplicate lines
-        for range in self.selectedRanges as! [NSRange] {
+        for range in self.selectedRanges as [NSRange] {
             let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
             let targetString = string.substring(with: lineRange)
             let lines = targetString.components(separatedBy: .newlines)
@@ -274,7 +274,7 @@ extension EditorTextView {
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()
         
-        let selectedRanges = self.selectedRanges as! [NSRange]
+        let selectedRanges = self.selectedRanges as [NSRange]
         
         // get lines to process
         for selectedRange in selectedRanges {
@@ -329,7 +329,7 @@ extension EditorTextView {
         let lineRanges = NSMutableOrderedSet()  // [NSRange]
         
         // get line ranges to process
-        for selectedRange in self.selectedRanges as! [NSRange] {
+        for selectedRange in self.selectedRanges as [NSRange] {
             let linesRange = string.lineRange(for: selectedRange)
             
             // store each line to process

@@ -47,12 +47,12 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         
         super.setUp()
         
-        let bundle = Bundle(for: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         
         // load XML style
         let styleURL = bundle.url(forResource: "HTML", withExtension: StyleExtension, subdirectory: StyleDirectoryName)
         let data = try? Data(contentsOf: styleURL!)
-        let dict = try? YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as? [String: AnyObject]
+        let dict = try? YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as? [String: Any]
         self.htmlStyle = SyntaxStyle(dictionary: dict!, name: "HTML")
         
         XCTAssertNotNil(self.htmlStyle)

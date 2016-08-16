@@ -58,8 +58,8 @@ final class ThemeManager: SettingFileManager {
     
     // MARK: Private Properties
     
-    var archivedThemes = [String: ThemeDictionary]()
-    var bundledThemeNames = [String]()
+    private var archivedThemes = [String: ThemeDictionary]()
+    private var bundledThemeNames = [String]()
     
     
     
@@ -72,11 +72,9 @@ final class ThemeManager: SettingFileManager {
         
         // cache bundled theme names
         let themeURLs = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: self.directoryName) ?? []
-        for themeURL in themeURLs {
-            if themeURL.lastPathComponent.hasPrefix("_") { continue }
-            
-            self.bundledThemeNames.append(self.settingName(from: themeURL))
-        }
+        self.bundledThemeNames = themeURLs
+            .filter { !$0.lastPathComponent.hasPrefix("_") }
+            .map { self.settingName(from: $0) }
         
         // cache user themes asynchronously but wait until the process will be done
         let semaphore = DispatchSemaphore(value: 0)
@@ -148,7 +146,7 @@ final class ThemeManager: SettingFileManager {
     
     /// save theme
     @discardableResult
-    func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: ((Error?) -> Void)? = nil) -> Bool {
+    func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: (@escaping (Error?) -> Void)? = nil) -> Bool {
         
         // create directory to save in user domain if not yet exist
         do {
@@ -232,7 +230,7 @@ final class ThemeManager: SettingFileManager {
     
     
     /// create a new untitled theme
-    func createUntitledTheme(completionHandler: ((String, Error?) -> Void)? = nil) {
+    func createUntitledTheme(completionHandler: (@escaping (String, Error?) -> Void)? = nil) {
         
         var newName = NSLocalizedString("Untitled", comment: "")
         
@@ -260,7 +258,7 @@ final class ThemeManager: SettingFileManager {
     
     
     /// update internal cache data
-    override func updateCache(completionHandler: (() -> Void)? = nil) {
+    override func updateCache(completionHandler: (@escaping () -> Void)? = nil) {
         
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
@@ -272,25 +270,24 @@ final class ThemeManager: SettingFileManager {
             if userDirURL.isReachable {
                 let fileURLs = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
                                                                             options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])) ?? []
-                for fileURL in fileURLs {
-                    guard fileURL.pathExtension == self.filePathExtension else { continue }
-                    
-                    let name = self.settingName(from: fileURL)
-                    themeNameSet.add(name)
-                }
+                let userThemeNames = fileURLs
+                    .filter { $0.pathExtension == self.filePathExtension }
+                    .map { self.settingName(from: $0) }
+                
+                themeNameSet.addObjects(from: userThemeNames)
             }
             
             let isListUpdated = (themeNameSet.array as! [String] != self.themeNames)
             self.themeNames = themeNameSet.array as! [String]
             
             // cache definitions
-            var themes = [String: ThemeDictionary]()
-            for name in (themeNameSet.array as! [String]) {
-                if let themeURL = self.urlForUsedSetting(name: name) {
-                    themes[name] = self.themeDictionary(fileURL: themeURL)
-                }
+            self.archivedThemes = (themeNameSet.array as! [String]).reduce([:]) { (dict, name) in
+                guard let themeURL = self.urlForUsedSetting(name: name) else { return dict }
+                
+                var dict = dict
+                dict[name] = self.themeDictionary(fileURL: themeURL)
+                return dict
             }
-            self.archivedThemes = themes
             
             // reset user default if not found
             let defaultThemeName = Defaults[.theme]!

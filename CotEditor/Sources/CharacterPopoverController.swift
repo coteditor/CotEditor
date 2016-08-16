@@ -57,12 +57,9 @@ final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
         self.unicodeBlockName = info.isComplex ? nil : unicodes.first?.localizedBlockName
         
         // build Unicode code point string
-        var codePoint = ""
-        for unicode in unicodes {
-            if !codePoint.isEmpty {
-                codePoint += "\n"
-            }
-            codePoint += unicode.codePoint
+        let codePoints: [String] = unicodes.map { unicode in
+            var codePoint = unicode.codePoint
+            
             if let surrogates = unicode.surrogateCodePoints {
                 codePoint += " (" + surrogates.joined(separator: " ") + ")"
             }
@@ -71,9 +68,10 @@ final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
             if unicodes.count > 1, let name = unicode.name {
                 codePoint += "\t" + name
             }
+            return codePoint
         }
         
-        self.unicode = codePoint
+        self.unicode = codePoints.joined(separator: "\n")
         self.characterColor = (info.pictureString != nil) ? .tertiaryLabelColor : .labelColor
         
         super.init(nibName: nil, bundle: nil)

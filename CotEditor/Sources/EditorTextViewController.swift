@@ -98,7 +98,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.highlightCurrentLine.rawValue {
             if (change?[NSKeyValueChangeKey.newKey] as? Bool) ?? false {
@@ -363,7 +363,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard Defaults[.highlightCurrentLine] else { return }
         
-        let interval = self.dynamicType.CurrentLineUpdateInterval
+        let interval = type(of: self).CurrentLineUpdateInterval
         
         if let timer = self.currentLineUpdateTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)

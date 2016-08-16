@@ -230,7 +230,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     private func clearMenuKeyBindingRecurrently(menu: NSMenu) {
         
         for menuItem in menu.items {
-            guard self.dynamicType.allowsModifying(menuItem) else { continue }
+            guard type(of: self).allowsModifying(menuItem) else { continue }
             
             if let submenu = menuItem.submenu {
                 self.clearMenuKeyBindingRecurrently(menu: submenu)
@@ -247,7 +247,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     private func applyMenuKeyBindingRecurrently(menu: NSMenu) {
         
         for menuItem in menu.items {
-            guard self.dynamicType.allowsModifying(menuItem) else { continue }
+            guard type(of: self).allowsModifying(menuItem) else { continue }
             
             if let submenu = menuItem.submenu {
                 self.applyMenuKeyBindingRecurrently(menu: submenu)
@@ -273,7 +273,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         var tree = [NamedTreeNode]()
         
         for menuItem in menu.items {
-            guard self.dynamicType.allowsModifying(menuItem) else { continue }
+            guard type(of: self).allowsModifying(menuItem) else { continue }
             
             let node: NamedTreeNode
             if let submenu = menuItem.submenu {

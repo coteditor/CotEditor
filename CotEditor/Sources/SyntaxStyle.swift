@@ -35,7 +35,7 @@ protocol SyntaxStyleDelegate: class {
 
 
 
-final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringConvertible {
+final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     var textStorage: NSTextStorage?
     weak var delegate: SyntaxStyleDelegate?
@@ -49,7 +49,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
     let completionWords: [String]?  // completion words list
     let firstCompletionCharacterSet: CharacterSet?  // set of the first characters of the completion words
     
-    private(set) var outlineItems: [OutlineItem]? {
+    fileprivate(set) var outlineItems: [OutlineItem]? {
         didSet {
             guard let items = self.outlineItems else { return }
             
@@ -65,18 +65,18 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
     
     // MARK: Private Properties
     
-    private let outlineParseOperationQueue: OperationQueue
-    private let syntaxHighlightParseOperationQueue: OperationQueue
+    fileprivate let outlineParseOperationQueue: OperationQueue
+    fileprivate let syntaxHighlightParseOperationQueue: OperationQueue
     
-    private let hasSyntaxHighlighting: Bool
-    private let highlightDictionary: [SyntaxType: [HighlightDefinition]]?
-    private let simpleWordsCharacterSets: [SyntaxType: CharacterSet]?
-    private let pairedQuoteTypes: [String: SyntaxType]?
-    private let outlineDefinitions: [OutlineDefinition]?
+    fileprivate let hasSyntaxHighlighting: Bool
+    fileprivate let highlightDictionary: [SyntaxType: [HighlightDefinition]]?
+    fileprivate let simpleWordsCharacterSets: [SyntaxType: CharacterSet]?
+    fileprivate let pairedQuoteTypes: [String: SyntaxType]?
+    fileprivate let outlineDefinitions: [OutlineDefinition]?
     
-    private var cachedHighlights: [SyntaxType: [NSRange]]?  // extracted results cache of the last whole string highlighs
-    private var highlightCacheHash: String?  // MD5 hash
-    private weak var outlineMenuTimer: Timer?
+    fileprivate var cachedHighlights: [SyntaxType: [NSRange]]?  // extracted results cache of the last whole string highlighs
+    fileprivate var highlightCacheHash: String?  // MD5 hash
+    fileprivate weak var outlineMenuTimer: Timer?
     
     private static let AllAlphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
     
@@ -85,7 +85,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
     // MARK:
     // MARK: Lifecycle
     
-    required init(dictionary: [String: AnyObject]?, name: String) {
+    required init(dictionary: [String: Any]?, name: String) {
         
         self.styleName = name
         
@@ -134,7 +134,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
         var highlightDictionary = [SyntaxType: [HighlightDefinition]]()
         var quoteTypes = [String: SyntaxType]()
         for type in SyntaxType.all {
-            if let definitionDictionaries = dictionary[type.rawValue] as? [[String: AnyObject]] {
+            if let definitionDictionaries = dictionary[type.rawValue] as? [[String: Any]] {
                 
                 var definitions = [HighlightDefinition]()
                 definitionLoop: for wordDict in definitionDictionaries {
@@ -161,7 +161,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
         // create word-completion data set
         var completionWords = [String]()
         var firstCharSet = CharacterSet()
-        if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: AnyObject]], !completionDicts.isEmpty {
+        if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: Any]], !completionDicts.isEmpty {
             for dict in completionDicts {
                 guard
                     let word = dict[SyntaxDefinitionKey.keyString.rawValue] as? String,
@@ -215,7 +215,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
         
         // parse outline definitions
         self.outlineDefinitions = {
-            guard let definitionDictionaries = dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: AnyObject]] else { return nil }
+            guard let definitionDictionaries = dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]] else { return nil }
             
             var outlineDefinitions = [OutlineDefinition]()
             for definitionDictionary in definitionDictionaries {
@@ -247,12 +247,6 @@ final class SyntaxStyle: Equatable, CustomStringConvertible, CustomDebugStringCo
     var description: String {
         
         return "<SyntaxStyle -\(self.styleName)>"
-    }
-    
-    
-    var debugDescription: String {
-        
-        return "<SyntaxStyle -\(self.styleName): \(unsafeAddress(of: self))>"
     }
     
     
@@ -387,7 +381,7 @@ extension SyntaxStyle {
 extension SyntaxStyle {
     
     /// update whole document highlights
-    func highlightAll(completionHandler: (() -> Void)? = nil) {
+    func highlightAll(completionHandler: (@escaping () -> Void)? = nil) {
         
         guard Defaults[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
@@ -474,7 +468,7 @@ extension SyntaxStyle {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) {
+    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (@escaping () -> Void)? = nil) {
         
         guard highlightRange.length > 0 else { return }
         

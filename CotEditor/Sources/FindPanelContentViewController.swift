@@ -71,12 +71,12 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     
     
     /// avoid showing draggable cursor when result view collapsed
-     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
+    override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
         var effectiveRect = proposedEffectiveRect
         
         if splitView.isSubviewCollapsed(splitView.subviews[dividerIndex + 1]) || dividerIndex == 1 {
-            effectiveRect.size = NSZeroSize
+            effectiveRect.size = .zero
         }
         
         return effectiveRect

@@ -55,7 +55,7 @@ final class WindowContentViewController: NSSplitViewController {
     
     
     /// deliver represented object to child view controllers
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         
         didSet {
             for viewController in self.childViewControllers {

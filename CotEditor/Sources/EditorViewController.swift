@@ -75,9 +75,9 @@ final class EditorViewController: NSSplitViewController {
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
         var effectiveRect = proposedEffectiveRect
-        effectiveRect.size = NSZeroSize
+        effectiveRect.size = .zero
         
-        return super.splitView(splitView, effectiveRect: effectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
+        return effectiveRect
     }
     
     

@@ -104,7 +104,7 @@ final class SyntaxStyleValidator {
         var lastEndString: String?
         
         for key in syntaxDictKeys {
-            guard let dictionaries = styleDictionary[key] as? [[String: AnyObject]] else { continue }
+            guard let dictionaries = styleDictionary[key] as? [[String: Any]] else { continue }
             
             var definitions = dictionaries.flatMap { HighlightDefinition(definition: $0) }
             
@@ -113,7 +113,11 @@ final class SyntaxStyleValidator {
                 guard $0.beginString == $1.beginString else {
                     return $0.beginString < $1.beginString
                 }
-                return $0.endString < $1.endString
+                guard
+                    let endString1 = $1.endString,
+                    let endString0 = $0.endString else { return true }
+                
+                return endString0 < endString1
             }
             
             for definition in definitions {
@@ -167,15 +171,17 @@ final class SyntaxStyleValidator {
         }
         
         // validate block comment delimiter pair
-        let beginDelimiter = styleDictionary[SyntaxKey.commentDelimiters.rawValue]?[DelimiterKey.beginDelimiter.rawValue] as? String
-        let endDelimiter = styleDictionary[SyntaxKey.commentDelimiters.rawValue]?[DelimiterKey.beginDelimiter.rawValue] as? String
-        let beginDelimiterExists = !(beginDelimiter?.isEmpty ?? true)
-        let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
-        if (beginDelimiterExists && !endDelimiterExists) || (!beginDelimiterExists && endDelimiterExists) {
-            results.append(StyleError(kind: .blockComment,
-                                      type: "comment",
-                                      role: beginDelimiterExists ? .begin : .end,
-                                      string: beginDelimiter ?? endDelimiter!))
+        if let commentDelimiters = styleDictionary[SyntaxKey.commentDelimiters.rawValue] as? [String: String] {
+            let beginDelimiter = commentDelimiters[DelimiterKey.beginDelimiter.rawValue]
+            let endDelimiter = commentDelimiters[DelimiterKey.beginDelimiter.rawValue]
+            let beginDelimiterExists = !(beginDelimiter?.isEmpty ?? true)
+            let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
+            if (beginDelimiterExists && !endDelimiterExists) || (!beginDelimiterExists && endDelimiterExists) {
+                results.append(StyleError(kind: .blockComment,
+                                          type: "comment",
+                                          role: beginDelimiterExists ? .begin : .end,
+                                          string: beginDelimiter ?? endDelimiter!))
+            }
         }
         
         return results

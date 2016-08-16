@@ -44,7 +44,7 @@ final class StatusBarController: NSViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
         
-        for key in self.dynamicType.observedDefaultKeys {
+        for key in type(of: self).observedDefaultKeys {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
     }
@@ -61,7 +61,7 @@ final class StatusBarController: NSViewController {
         self.byteCountFormatter.isAdaptive = false
         
         // observe change of defaults
-        for key in self.dynamicType.observedDefaultKeys {
+        for key in type(of: self).observedDefaultKeys {
             UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, context: nil)
         }
     }
@@ -88,11 +88,11 @@ final class StatusBarController: NSViewController {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         guard let keyPath = keyPath else { return }
         
-        if self.dynamicType.observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
+        if type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
             self.updateEditorStatus()
             self.updateDocumentStatus()
         }

@@ -137,7 +137,7 @@ final class LayoutManager: NSLayoutManager {
         self.typesetter = ATSTypesetter()
         
         // observe change of defaults
-        for key in self.dynamicType.observedDefaultKeys {
+        for key in type(of: self).observedDefaultKeys {
             UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, context: nil)
         }
     }
@@ -150,7 +150,7 @@ final class LayoutManager: NSLayoutManager {
     
     
     deinit {
-        for key in self.dynamicType.observedDefaultKeys {
+        for key in type(of: self).observedDefaultKeys {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
     }
@@ -160,9 +160,9 @@ final class LayoutManager: NSLayoutManager {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        if let keyPath = keyPath, self.dynamicType.observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
+        if let keyPath = keyPath, type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
             self.invalidateLayout(forCharacterRange: NSRange(location: 0, length: self.textStorage?.length ?? 0), actualCharacterRange: nil)
@@ -177,12 +177,12 @@ final class LayoutManager: NSLayoutManager {
     override func setExtraLineFragmentRect(_ fragmentRect: NSRect, usedRect: NSRect, textContainer container: NSTextContainer) {
         
         // -> height of the extra line fragment should be the same as normal other fragments that are likewise customized in ATSTypesetter
-        var newFragmentRect = fragmentRect
-        newFragmentRect.size.height = self.lineHeight
-        var newUsedRect = usedRect
-        newUsedRect.size.height = self.lineHeight
+        var fragmentRect = fragmentRect
+        fragmentRect.size.height = self.lineHeight
+        var usedRect = usedRect
+        usedRect.size.height = self.lineHeight
         
-        super.setExtraLineFragmentRect(newFragmentRect, usedRect: newUsedRect, textContainer: container)
+        super.setExtraLineFragmentRect(fragmentRect, usedRect: usedRect, textContainer: container)
     }
     
     
@@ -200,7 +200,7 @@ final class LayoutManager: NSLayoutManager {
         if let context = NSGraphicsContext.current()?.cgContext, self.showsInvisibles {
             
             let string = self.textStorage!.string
-            let isVertical = (self.firstTextView?.layoutOrientation == .vertical) ?? false
+            let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
             
             // flip coordinate if needed
             if NSGraphicsContext.current()?.isFlipped ?? false {
@@ -255,7 +255,7 @@ final class LayoutManager: NSLayoutManager {
                 }
                 
                 // draw character
-                context.setTextPosition(x: point.x, y: point.y)
+                context.textPosition = point
                 CTLineDraw(line, context)
             }
         }
@@ -367,7 +367,7 @@ final class LayoutManager: NSLayoutManager {
     private func generateInvisibleLines() -> InvisibleLines {
         
         let font: NSFont = {
-            if self.dynamicType.usesTextFontForInvisibles {
+            if type(of: self).usesTextFontForInvisibles {
                 return self.textFont!
             } else {
                 let fontSize = self.textFont?.pointSize ?? 0
@@ -375,12 +375,12 @@ final class LayoutManager: NSLayoutManager {
             }
         }()
         
-        let fullWidthFont = NSFont(name: self.dynamicType.HiraginoSansName, size: font.pointSize) ?? font
+        let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: font.pointSize) ?? font
         
-        let attributes = [NSForegroundColorAttributeName: self.invisiblesColor,
-                          NSFontAttributeName: font]
-        let fullWidthAttributes = [NSForegroundColorAttributeName: self.invisiblesColor,
-                                   NSFontAttributeName: fullWidthFont]
+        let attributes: [String: Any] = [NSForegroundColorAttributeName: self.invisiblesColor,
+                                         NSFontAttributeName: font]
+        let fullWidthAttributes: [String: Any] = [NSForegroundColorAttributeName: self.invisiblesColor,
+                                                  NSFontAttributeName: fullWidthFont]
         
         return InvisibleLines(space:          CTLine.create(string: Invisible.userSpace, attributes: attributes),
                               tab:            CTLine.create(string: Invisible.userTab, attributes: attributes),
@@ -399,7 +399,7 @@ final class LayoutManager: NSLayoutManager {
 private extension CTLine {
     
     /// convenient initializer for CTLine
-    class func create(string: String, attributes: [String: AnyObject]) -> CTLine {
+    class func create(string: String, attributes: [String: Any]?) -> CTLine {
         
         let attrString = NSAttributedString(string: string, attributes: attributes)
         return CTLineCreateWithAttributedString(attrString)

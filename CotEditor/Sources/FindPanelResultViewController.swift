@@ -93,7 +93,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDelegate
     
     
     /// return value of cell (required)
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
         guard row < self.results.count else { return nil }
         

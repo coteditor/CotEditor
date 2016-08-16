@@ -32,13 +32,9 @@ final class FilePermissionsFormatter: Formatter {
     // MARK: Formatter Function
     
     /// format permission number to human readable permission expression
-    override func string(for obj: AnyObject?) -> String? {
+    override func string(for obj: Any?) -> String? {
         
-        guard let number = obj as? NSNumber else {
-            return obj?.description
-        }
-        
-        let permission = number.uintValue
+        guard let permission = obj as? UInt else { return nil }
         
         return String(format: "%lo (%@)", permission, humanReadable(permission: permission))
     }

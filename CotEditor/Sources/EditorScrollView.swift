@@ -63,7 +63,7 @@ final class EditorScrollView: NSScrollView {
     // MARK: KVO
     
     /// observed key value did update
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == #keyPath(NSTextView.layoutOrientation) {
             switch self.layoutOrientation {

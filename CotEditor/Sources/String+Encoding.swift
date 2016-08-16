@@ -295,7 +295,7 @@ extension Data {
                 return UInt32(cfEncodingNumber)
             }
             if let ianaCharSetName = components[safe: 0] {
-                return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName)
+                return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
             }
             return nil
         }()
@@ -336,10 +336,7 @@ extension Data {
     /// return Data by adding UTF-8 BOM
     var addingUTF8BOM: Data {
         
-        var data = Data(bytes: UTF8.bom)
-        data.append(self)
-        
-        return data
+        return Data(bytes: UTF8.bom) + self
     }
     
     

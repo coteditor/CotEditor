@@ -52,7 +52,7 @@ extension Data {
     var md5: Data {
         
         var bytes = [UInt8](repeating: 0, count: self.count)
-        self.copyBytes(to: &bytes, count: count)
+        self.copyBytes(to: &bytes, count: self.count)
         let length = CC_LONG(self.count)
         
         var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))

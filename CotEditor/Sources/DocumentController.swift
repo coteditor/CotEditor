@@ -78,11 +78,12 @@ final class DocumentController: NSDocumentController {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         let error: DocumentReadError? = {
-            if UTTypeConformsTo(typeName, kUTTypeImage) && !UTTypeEqual(typeName, kUTTypeScalableVectorGraphics) ||   // SVG is plain-text (except SVGZ)
-                UTTypeConformsTo(typeName, kUTTypeAudiovisualContent) ||
-                UTTypeConformsTo(typeName, kUTTypeGNUZipArchive) ||
-                UTTypeConformsTo(typeName, kUTTypeZipArchive) ||
-                UTTypeConformsTo(typeName, kUTTypeBzip2Archive)
+            let cfTypeName = typeName as CFString
+            if UTTypeConformsTo(cfTypeName, kUTTypeImage) && !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics) ||   // SVG is plain-text (except SVGZ)
+                UTTypeConformsTo(cfTypeName, kUTTypeAudiovisualContent) ||
+                UTTypeConformsTo(cfTypeName, kUTTypeGNUZipArchive) ||
+                UTTypeConformsTo(cfTypeName, kUTTypeZipArchive) ||
+                UTTypeConformsTo(cfTypeName, kUTTypeBzip2Archive)
             {
                 return DocumentReadError(kind: .binaryFile(type: typeName), url: url)
             }
@@ -124,7 +125,7 @@ final class DocumentController: NSDocumentController {
     
     
     /// add encoding menu to open panel
-    override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: (Int) -> Void) {
+    override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
         
         // initialize encoding menu and set the accessory view
         if self.openPanelAccessoryView == nil {
@@ -290,7 +291,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         case .tooLarge(let size):
             return String(format: NSLocalizedString("The file “%@” has a size of %@.", comment: ""),
                           self.url.lastPathComponent,
-                          ByteCountFormatter().stringFromByteCount(Int64(size)))
+                          ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file))
         }
     }
     

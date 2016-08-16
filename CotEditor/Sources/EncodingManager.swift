@@ -79,7 +79,7 @@ final class EncodingManager: NSObject {
     
     // MARK: KVO
     
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.encodingList.rawValue {
             self.buildEncodingMenuItems()
@@ -136,14 +136,14 @@ final class EncodingManager: NSObject {
         menu.removeAllItems()
         
         for item in self.encodingMenuItems {
-            item.action = #selector(EncodingHolder.changeEncoding(_:))
+            item.action = #selector(EncodingHolder.changeEncoding)
             item.target = nil
             menu.addItem(item)
             
             // add "UTF-8 with BOM" item just after the normal UTF-8
             if item.tag == UTF8Tag {
                 let bomItem = NSMenuItem(title: String.localizedNameOfUTF8EncodingWithBOM,
-                                         action: #selector(EncodingHolder.changeEncoding(_:)),
+                                         action: #selector(EncodingHolder.changeEncoding),
                                          keyEquivalent: "")
                 bomItem.tag = -UTF8Tag  // negative value is sign for "with BOM"
                 menu.addItem(bomItem)

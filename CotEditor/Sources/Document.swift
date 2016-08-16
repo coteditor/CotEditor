@@ -68,9 +68,10 @@ final class Document: NSDocument, EncodingHolder {
     private(set) var encoding: String.Encoding
     private(set) var hasUTF8BOM = false
     private(set) var lineEnding: LineEnding
-    private(set) var fileAttributes: [FileAttributeKey: AnyObject]?
+    private(set) var fileAttributes: [FileAttributeKey: Any]?
     private(set) var syntaxStyle: SyntaxStyle
     
+    private(set) var windowController: DocumentWindowController!
     private(set) lazy var selection: TextSelection = TextSelection(document: self)
     private(set) lazy var analyzer: DocumentAnalyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner: IncompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
@@ -78,7 +79,6 @@ final class Document: NSDocument, EncodingHolder {
     
     // MARK: Public Properties
     
-    private var windowController: DocumentWindowController!
     private lazy var printPanelAccessoryController: PrintPanelAccessoryController = PrintPanelAccessoryController()
     @IBOutlet private var savePanelAccessoryView: NSView?
     
@@ -230,7 +230,7 @@ final class Document: NSDocument, EncodingHolder {
         // try reading the `com.apple.TextEncoding` extended attribute
         let xattrEncoding: String.Encoding? = {
             guard
-                let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path)[NSFileExtendedAttributes]) as? [String: AnyObject],
+                let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path)[NSFileExtendedAttributes]) as? [String: Any],
                 let xattrEncodingData = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data
                 else { return nil }
             
@@ -351,7 +351,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// save or autosave the document contents to a file
-    override func save(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, completionHandler: (Error?) -> Void) {
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, completionHandler: @escaping (Error?) -> Void) {
         
         // trim trailing whitespace if needed
         if Defaults[.trimsTrailingWhitespaceOnSave] {
@@ -412,7 +412,7 @@ final class Document: NSDocument, EncodingHolder {
             
             if saveOperation != .autosaveElsewhereOperation {
                 // get the latest file attributes
-                self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path) ?? [:]
+                self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)
                 
                 // update file information
                 self.analyzer.invalidateFileInfo()
@@ -449,12 +449,12 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// customize document's file attributes
-    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String : AnyObject] {
+    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String : Any] {
         
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         // set extended file attributes
-        var extendedAttributes: [String: AnyObject] = (attributes[NSFileExtendedAttributes.rawValue] as? [String: AnyObject]) ?? [:]
+        var extendedAttributes: [String: Any] = (attributes[NSFileExtendedAttributes.rawValue] as? [String: Any]) ?? [:]
         // save encoding to the extended file attributes (com.apple.TextEncoding)
         if saveOperation == .autosaveElsewhereOperation || self.shouldSaveXattr {
             extendedAttributes[FileExtendedAttributeName.Encoding] = self.encoding.xattrEncodingData
@@ -523,7 +523,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// display dialogs about save before closing document
-    override func canClose(withDelegate delegate: AnyObject, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutablePointer<Void>?) {
+    override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
         // disable save dialog if content is empty and not saved
         if self.fileURL == nil && self.textStorage.string.isEmpty {
@@ -549,7 +549,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// setup print setting including print panel
-    override func printOperation(withSettings printSettings: [String : AnyObject]) throws -> NSPrintOperation {
+    override func printOperation(withSettings printSettings: [String : Any]) throws -> NSPrintOperation {
         
         let editor = self.editor!
         
@@ -680,7 +680,9 @@ final class Document: NSDocument, EncodingHolder {
         guard fileHash != self.fileHash else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
             // If not, an alert shows up when user saves the file.
-            if self.fileModificationDate < fileModificationDate {
+            if let lastModificationDate = self.fileModificationDate,
+               let fileModificationDate = fileModificationDate,
+               lastModificationDate < fileModificationDate {
                 self.fileModificationDate = fileModificationDate
             }
             return
@@ -851,7 +853,7 @@ final class Document: NSDocument, EncodingHolder {
         }
         
         // register undo
-        self.undoManager?.prepare(withInvocationTarget: self).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
+        (self.undoManager?.prepare(withInvocationTarget: self) as! Document).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
         self.undoManager?.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
         
         // update encoding
@@ -882,7 +884,7 @@ final class Document: NSDocument, EncodingHolder {
         guard lineEnding != self.lineEnding else { return }
         
         // register undo
-        self.undoManager?.prepare(withInvocationTarget: self).objcChangeLineEnding(to: String(self.lineEnding.rawValue))
+        (self.undoManager?.prepare(withInvocationTarget: self) as! Document).objcChangeLineEnding(to: String(self.lineEnding.rawValue))
         self.undoManager?.setActionName(String(format: NSLocalizedString("Line Endings to “%@”", comment: ""), lineEnding.name))
         
         // update line ending
@@ -925,7 +927,7 @@ final class Document: NSDocument, EncodingHolder {
     // MARK: Action Messages
     
     /// save document
-    @IBAction override func save(_ sender: AnyObject?) {
+    override func save(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
             if continuesSaving {
@@ -936,7 +938,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// save document with new name
-    override func saveAs(_ sender: AnyObject?) {
+    override func saveAs(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
             if continuesSaving {
@@ -1278,7 +1280,7 @@ final class Document: NSDocument, EncodingHolder {
     
     /// perform didRecoverBlock after recovering presented error
     private var recoverBlock: ((Bool) -> Void)? = nil
-    func didPresentErrorWithRecovery(didRecover: Bool, block: UnsafeMutablePointer<Void>) {
+    func didPresentErrorWithRecovery(didRecover: Bool, block: UnsafeMutableRawPointer) {
         
         self.recoverBlock?(didRecover)
         self.recoverBlock = nil

@@ -69,10 +69,10 @@ extension Array {
     /// Return subset at IndexSet
     func elements(at indexes: IndexSet) -> [Element] {
         
-        return indexes.flatMap({ index in
+        return indexes.flatMap { index in
             guard index < self.count else { return nil }
             return self[index]
-        })
+        }
     }
     
 }

@@ -69,7 +69,7 @@ final class DocumentInspectorViewController: NSViewController {
     
     
     /// set analyzer
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         
         willSet (newObject) {
             guard newObject is DocumentAnalyzer else {

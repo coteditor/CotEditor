@@ -66,7 +66,7 @@ final class OpacityPanelController: NSWindowController {
         super.windowDidLoad()
         
         // observe main window change
-        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidChange(_:)), name: .NSWindowDidBecomeMain, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidChange), name: .NSWindowDidBecomeMain, object: nil)
         
         // apply current window value
         let notification = Notification(name: .NSWindowDidBecomeMain, object: NSApp.mainWindow)

@@ -80,7 +80,7 @@ final class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     // MARK: Delegate
     
     /// open external link in default browser
-    func webView(_ webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: URLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
+    func webView(_ webView: WebView!, decidePolicyForNavigationAction actionInformation: [AnyHashable : Any]!, request: URLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
         
         guard let url = request.url, url.host != nil else {
             listener.use()

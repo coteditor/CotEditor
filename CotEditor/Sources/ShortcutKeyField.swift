@@ -32,7 +32,7 @@ final class ShortcutKeyField: NSTextField {
     
     // MARK: Private Properties
     
-    private var keyDownMonitor: AnyObject?
+    private var keyDownMonitor: Any?
     
     
     
@@ -56,9 +56,9 @@ final class ShortcutKeyField: NSTextField {
             //     "delete (forword)" key: the key with printed "Delete" where next to the ten key pad.
             switch Int(charsIgnoringModifiers.utf16.first!) {
             case NSDeleteCharacter:
-                charsIgnoringModifiers = String(UnicodeScalar(NSBackspaceCharacter))
+                charsIgnoringModifiers = String(UnicodeScalar(NSBackspaceCharacter)!)
             case NSDeleteFunctionKey:
-                charsIgnoringModifiers = String(UnicodeScalar(NSDeleteCharacter))
+                charsIgnoringModifiers = String(UnicodeScalar(NSDeleteCharacter)!)
             default: break
             }
             

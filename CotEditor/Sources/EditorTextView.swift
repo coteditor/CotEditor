@@ -73,8 +73,8 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
-    private weak var completionTimer: Timer?
-    private var particalCompletionWord: String?
+    fileprivate weak var completionTimer: Timer?
+    fileprivate var particalCompletionWord: String?
     
     private let observedDefaultKeys: [DefaultKeys] = [
         .autoExpandTab,
@@ -232,7 +232,7 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// on inputting text (NSTextInputClient Protocol)
-    override func insertText(_ string: AnyObject, replacementRange: NSRange) {
+    override func insertText(_ string: Any, replacementRange: NSRange) {
         
         // do not use this method for programmatical insertion.
         
@@ -382,13 +382,13 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// insert tab & expand tab
-    override func insertTab(_ sender: AnyObject?) {
+    override func insertTab(_ sender: Any?) {
         
         if self.isAutomaticTabExpansionEnabled, let string = self.string {
             let tabWidth = self.tabWidth
             let column = string.column(of: self.rangeForUserTextChange.location, tabWidth: tabWidth)
             let length = tabWidth - (column % tabWidth)
-            let spaces = String(repeating: Character(" "), count: length)
+            let spaces = String(repeating: " ", count: length)
             
             return super.insertText(spaces, replacementRange: self.rangeForUserTextChange)
         }
@@ -398,7 +398,7 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// insert new line & perform auto-indent
-    override func insertNewline(_ sender: AnyObject?) {
+    override func insertNewline(_ sender: Any?) {
         
         guard let string = self.string, self.isAutomaticIndentEnabled else {
             return super.insertNewline(sender)
@@ -456,7 +456,7 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// delete & adjust indent
-    override func deleteBackward(_ sender: AnyObject?) {
+    override func deleteBackward(_ sender: Any?) {
         
         defer {
             super.deleteBackward(sender)
@@ -477,7 +477,7 @@ final class EditorTextView: NSTextView, Themable {
                 
                 if selectedRange.location >= targetLength {
                     let targetRange = NSRange(location: selectedRange.location - targetLength, length: targetLength)
-                    if (string as NSString).substring(with: targetRange) == String(repeating: " ", targetLength) {
+                    if (string as NSString).substring(with: targetRange) == String(repeating: " ", count: targetLength) {
                         self.selectedRange = targetRange
                     }
                 }
@@ -563,7 +563,7 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// change font via font panel
-    override func changeFont(_ sender: AnyObject?) {
+    override func changeFont(_ sender: Any?) {
         
         guard let manager = sender as? NSFontManager else { return }
         
@@ -739,7 +739,7 @@ final class EditorTextView: NSTextView, Themable {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         guard let keyPath = keyPath, let newValue = change?[.newKey] else { return }
         
@@ -973,7 +973,7 @@ final class EditorTextView: NSTextView, Themable {
         let lineEnding = String((self.documentLineEnding ?? .LF).rawValue)
         
         // substring all selected attributed strings
-        let selectedRanges = self.selectedRanges as! [NSRange]
+        let selectedRanges = self.selectedRanges as [NSRange]
         for selectedRange in selectedRanges {
             let plainText = (string as NSString).substring(with: selectedRange)
             let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
@@ -1243,12 +1243,17 @@ extension EditorTextView {
             let string = self.string, !string.isEmpty else { return range }
         
         // 入力補完文字列の先頭となりえない文字が出てくるまで補完文字列対象を広げる
-        var begin = range.location
-        while begin > 0 && characterSet.contains(UnicodeScalar((string as NSString).character(at: begin - 1))) {
-            begin -= 1
-        }
+        let unicodeScalars = string.unicodeScalars
         
-        return NSRange(location: begin, length: range.max - begin)
+        guard var beginIndex = String.UTF16Index(range.location).samePosition(in: unicodeScalars) else { return range }
+        
+        while let index = unicodeScalars.index(beginIndex, offsetBy: -1, limitedBy: unicodeScalars.startIndex),
+            characterSet.contains(unicodeScalars[index]) {
+            beginIndex = index
+        }
+        let location = string.utf16.startIndex.distance(to: beginIndex.samePosition(in: string.utf16))
+        
+        return NSRange(location: location, length: range.max - location)
     }
     
     
@@ -1275,7 +1280,6 @@ extension EditorTextView {
         //   -> The flag will be used in EditorTextViewController > `textDidChange`
         if flag, let event = event, event.type == .keyDown && !event.modifierFlags.contains(.command) {
             let inputChar = event.charactersIgnoringModifiers
-            let character = inputChar?.utf16.first
             
             if inputChar == event.characters {  // exclude key-bindings
                 // fix that underscore is treated as the right arrow key
@@ -1283,7 +1287,8 @@ extension EditorTextView {
                     newMovement = NSIllegalTextMovement
                     newFlag = false
                 }
-                if movement == NSIllegalTextMovement && character < 0xF700 && character != UInt16(NSDeleteCharacter) {  // standard key-input
+                if let character = inputChar?.utf16.first,
+                    (movement == NSIllegalTextMovement && character < 0xF700 && character != UInt16(NSDeleteCharacter)) {  // standard key-input
                     self.needsRecompletion = true
                 }
             }

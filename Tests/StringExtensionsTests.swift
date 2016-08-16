@@ -106,7 +106,7 @@ class StringExtensionsTests: XCTestCase {
         
         XCTAssertTrue(NSEqualRanges(testString.range(location: 2, length: 2), NSMakeRange(2, 2)))
         XCTAssertTrue(NSEqualRanges(testString.range(location: -1, length: 1), NSMakeRange(9, 1)))
-        XCTAssertTrue(NSEqualRanges(testString.range(location: 3, length: -2), NSMakeRange(3, "45678".length)))
+        XCTAssertTrue(NSEqualRanges(testString.range(location: 3, length: -2), NSMakeRange(3, "45678".utf16.count)))
         
         
         let linesString = "1\r\n2\r\n3\r\n4"  // 1 based

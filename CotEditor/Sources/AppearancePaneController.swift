@@ -173,7 +173,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// content of table cell
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
         return self.themeNames[row]
     }
@@ -357,7 +357,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// font in font panel did update
-    @IBAction override func changeFont(_ sender: AnyObject?) {
+    override func changeFont(_ sender: Any?) {
         
         guard let fontManager = sender as? NSFontManager else { return }
         
@@ -491,7 +491,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             let displayFont = NSFont(name: name, size: min(size, 13.0)),
             let fontField = self.fontField else { return }
         
-        fontField.stringValue = font.displayName! + " " + String(size)
+        fontField.stringValue = font.displayName! + " " + String(format:"%g", size)
         fontField.font = displayFont
         fontField.disablesAntialiasing = !shouldAntiailias
     }
@@ -509,7 +509,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// return representedObject if sender is menu item, otherwise selection in the list table
-    private func targetThemeName(for sender: AnyObject?) -> String {
+    private func targetThemeName(for sender: Any?) -> String {
         
         if let menuItem = sender as? NSMenuItem {
             return menuItem.representedObject as! String

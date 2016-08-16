@@ -121,11 +121,10 @@ struct Theme: CustomDebugStringConvertible {
         self.usesSystemSelectionColor = (dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool) ?? false
         
         // standardize color space to obtain color values safety
-        let textColor = self.textColor.usingColorSpaceName(NSDeviceRGBColorSpace)
-        let backgroundColor = self.backgroundColor.usingColorSpaceName(NSDeviceRGBColorSpace)
-        
+        let textColor = self.textColor.usingColorSpaceName(NSDeviceRGBColorSpace)!
+        let backgroundColor = self.backgroundColor.usingColorSpaceName(NSDeviceRGBColorSpace)!
         // check if background is dark
-        self.isDarkTheme = backgroundColor?.brightnessComponent < textColor?.brightnessComponent
+        self.isDarkTheme = backgroundColor.brightnessComponent < textColor.brightnessComponent
     }
     
     

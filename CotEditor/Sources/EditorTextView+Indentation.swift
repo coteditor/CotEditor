@@ -41,7 +41,7 @@ extension EditorTextView {
         let lineRange = (string as NSString).lineRange(for: selectedRange, excludingLastLineEnding: true)
         
         // create indent string to prepend
-        let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: Character(" "), count: self.tabWidth) : "\t"
+        let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
         let indentLength = indent.utf16.count
         
         // create shifted string
@@ -165,7 +165,7 @@ extension EditorTextView {
             if self.selectedRange.length == 0 {  // convert all if nothing selected
                 return [string.nsRange]
             }
-            return self.selectedRanges as! [NSRange]
+            return self.selectedRanges as [NSRange]
         }()
         
         var replacementRanges = [NSRange]()

@@ -53,7 +53,7 @@ final class MainViewController: NSSplitViewController {
     
     
     /// deliver document to child view controllers
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         
         didSet {
             guard let document = representedObject as? Document else { return }
@@ -75,9 +75,9 @@ final class MainViewController: NSSplitViewController {
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
         var effectiveRect = proposedEffectiveRect
-        effectiveRect.size = NSZeroSize
+        effectiveRect.size = .zero
         
-        return super.splitView(splitView, effectiveRect: effectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
+        return effectiveRect
     }
     
     
@@ -87,7 +87,7 @@ final class MainViewController: NSSplitViewController {
         guard let action = menuItem.action else { return false }
         
         switch action {
-        case #selector(toggleStatusBar(_:)):
+        case #selector(toggleStatusBar):
             let title = self.isStatusBarShown ? "Hide Status Bar" : "Show Status Bar"
             menuItem.title = NSLocalizedString(title, comment: "")
             

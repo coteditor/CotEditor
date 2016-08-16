@@ -30,7 +30,7 @@ import Foundation
 extension DispatchQueue {
     
     /// synchronously but thread-safely invoke passed-in block on main thread avoiding deadlock
-    static func syncOnMain(execute block: @noescape () -> Void) {
+    static func syncOnMain(execute block: () -> Void) {
         
         if Thread.isMainThread {
             block()

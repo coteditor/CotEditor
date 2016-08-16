@@ -42,7 +42,7 @@ class ThemeTests: XCTestCase {
         
         super.setUp()
         
-        self.bundle = Bundle(for: self.dynamicType)
+        self.bundle = Bundle(for: type(of: self))
     }
     
 

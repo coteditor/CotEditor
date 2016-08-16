@@ -53,7 +53,7 @@ final class SyntaxValidationViewController: NSViewController {
     @discardableResult
     func validateSyntax() -> Bool {
         
-        guard let style = self.representedObject as? [String: AnyObject] else { return true }
+        guard let style = self.representedObject as? [String: Any] else { return true }
         
         let errors = SyntaxStyleValidator.validate(style)
         

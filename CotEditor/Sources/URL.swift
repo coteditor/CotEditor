@@ -48,8 +48,8 @@ extension URL {
         
         guard let baseURL = baseURL, baseURL != self else { return nil }
         
-        let pathComponents = self.pathComponents ?? []
-        let basePathComponents = baseURL.pathComponents ?? []
+        let pathComponents = self.pathComponents
+        let basePathComponents = baseURL.pathComponents
         
         var sameCount = 0
         for (baseComponent, component) in zip(basePathComponents, pathComponents) {

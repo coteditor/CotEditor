@@ -53,7 +53,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         pboard.setData(rows, forType: PboardType.rows)
         
         // store objects to drag to pasteboard
-        let objects = self.arrangedObjects.objects(at: rowIndexes)
+        let objects = (self.arrangedObjects as AnyObject).objects(at: rowIndexes)
         pboard.setPropertyList(objects, forType: PboardType.objects)
         
         return true
@@ -84,8 +84,8 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         guard let data = info.draggingPasteboard().data(forType: PboardType.rows),
               let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet else { return false }
         
-        let draggingItems = info.draggingPasteboard().propertyList(forType: PboardType.objects) as! [AnyObject]
-        let destinationRow = row - sourceRows.count(in: Range(0...row))  // real insertion point after removing items to move
+        let draggingItems = info.draggingPasteboard().propertyList(forType: PboardType.objects) as! [Any]
+        let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move
         let destinationRows = IndexSet(destinationRow..<(destinationRow + draggingItems.count))
         
         // update data

@@ -106,8 +106,8 @@ final class NavigationBarController: NSViewController {
             
             let menu = self.outlineMenu!.menu!
             
-            let baseAttributes = [NSFontAttributeName: menu.font,
-                                  NSParagraphStyleAttributeName: self.menuItemParagraphStyle]
+            let baseAttributes: [String: Any] = [NSFontAttributeName: menu.font,
+                                                 NSParagraphStyleAttributeName: self.menuItemParagraphStyle]
             
             // add headding item
             let headdingItem = NSMenuItem(title: NSLocalizedString("<Outline Menu>", comment: ""), action: #selector(selectOutlineMenuItem), keyEquivalent: "")
@@ -159,7 +159,9 @@ final class NavigationBarController: NSViewController {
     /// can select prev item in outline menu?
     var canSelectPrevItem: Bool {
         
-        return (self.outlineMenu?.indexOfSelectedItem > 1)
+        guard let index = self.outlineMenu?.indexOfSelectedItem else { return false }
+        
+        return (index > 1)
     }
     
     

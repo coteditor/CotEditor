@@ -74,7 +74,7 @@ final class ATSTypesetter: NSATSTypesetter {
         guard let manager = self.layoutManager as? LayoutManager, manager.showsOtherInvisibles && manager.showsInvisibles else {
             // DON'T invoke super method here. If invoked, it can not continue drawing remaining lines any more on Mountain Lion (and possible other versions except El Capitan).
             // Just passing zero rect is enough if you don't need to draw it.
-            return NSRect.zero
+            return .zero
         }
         
         // make blank space to draw a replacement character in LayoutManager later.

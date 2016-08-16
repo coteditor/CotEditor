@@ -36,7 +36,7 @@ extension NSWindow {
         get {
             guard let alphaWindow = self as? AlphaWindow else { return 1.0 }
             
-            return alphaWindow.backgroundAlpha
+            return NSNumber(value: Double(alphaWindow.backgroundAlpha))
         }
         
         set {

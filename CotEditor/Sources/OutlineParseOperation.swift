@@ -39,7 +39,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
     let hasUnderline: Bool
     
     
-    init?(definition: [String: AnyObject]) {
+    init?(definition: [String: Any]) {
         
         guard let pattern = definition[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
         

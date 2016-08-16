@@ -62,7 +62,7 @@ enum BundledStyleName {
 final class SyntaxManager: SettingFileManager {
     
     typealias StyleName = String
-    typealias StyleDictionary = [String: AnyObject]
+    typealias StyleDictionary = [String: Any]
     
     
     // MARK: Public Properties
@@ -331,7 +331,7 @@ final class SyntaxManager: SettingFileManager {
         
         // sanitize -> remove empty mapping dicts
         for key in [SyntaxKey.extensions.rawValue, SyntaxKey.filenames.rawValue, SyntaxKey.filenames.rawValue] {
-            styleDictionary[key]?.remove([:])
+            (styleDictionary[key] as? NSMutableArray)?.remove([:])
         }
         
         // sort
@@ -424,7 +424,7 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// update internal cache data
-    override func updateCache(completionHandler: (() -> Void)? = nil) {
+    override func updateCache(completionHandler: (@escaping () -> Void)? = nil) {
         
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
@@ -602,9 +602,9 @@ extension SyntaxManager {
         guard
             let plistData = data,
             let plist = try? PropertyListSerialization.propertyList(from: plistData, format: nil),
-            let style = plist as? [String: AnyObject] else { return false }
+            let style = plist as? [String: Any] else { return false }
         
-        var newStyle = [String : AnyObject]()
+        var newStyle = [String : Any]()
         
         // format migration
         for (key, value) in style {

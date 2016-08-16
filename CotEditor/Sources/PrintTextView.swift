@@ -307,7 +307,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     // MARK: Layout Manager Delegate
     
-    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [String : AnyObject] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [String : AnyObject]? {
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [String : Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [String : Any]? {
         
         if attrs[NSForegroundColorAttributeName] != nil {
             return attrs
@@ -425,7 +425,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// return attributes for header/footer string
-    private func headerFooterAttributes(for alignment: AlignmentType) -> [String : AnyObject] {
+    private func headerFooterAttributes(for alignment: AlignmentType) -> [String : Any] {
     
         let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
         
@@ -468,9 +468,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             }
             if Defaults[.headerFooterPathAbbreviatingWithTilde] {
                 return filePath.abbreviatingWithTildeInSandboxedPath
-            } else {
-                return filePath
             }
+            return filePath
             
         case .printDate:
             return String(format: NSLocalizedString("", comment: ""), self.dateFormatter.string(from: Date()))

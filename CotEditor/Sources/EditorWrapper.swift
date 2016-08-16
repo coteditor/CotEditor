@@ -142,7 +142,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
             menuItem.state = (self.tabWidth == menuItem.tag) ? NSOnState : NSOffState
             
         case #selector(closeSplitTextView):
-            return (self.splitViewController?.splitViewItems.count > 1)
+            return ((self.splitViewController?.splitViewItems.count ?? 0) > 1)
             
         case #selector(changeTheme):
             menuItem.state = (self.theme?.name == menuItem.title) ? NSOnState : NSOffState

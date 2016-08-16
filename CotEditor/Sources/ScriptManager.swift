@@ -138,7 +138,7 @@ final class ScriptManager: NSObject {
         
         // display alert and endup if file not exists
         guard fileURL.isReachable else {
-            let message = String(format: NSLocalizedString("The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”.", comment: ""), fileURL)
+            let message = String(format: NSLocalizedString("The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”.", comment: ""), fileURL.lastPathComponent)
             self.showAlert(message: message)
             return
         }
@@ -151,7 +151,7 @@ final class ScriptManager: NSObject {
             let identifier = self.AppleScriptExtensions.contains(pathExtension) ? "com.apple.ScriptEditor2" : Bundle.main.bundleIdentifier!
             guard NSWorkspace.shared().open([fileURL], withAppBundleIdentifier: identifier, additionalEventParamDescriptor: nil, launchIdentifiers: nil) else {
                 // display alert if cannot open/select the script file
-                let message = String(format: NSLocalizedString("The script file “%@” couldn’t be opened.", comment: ""), fileURL)
+                let message = String(format: NSLocalizedString("The script file “%@” couldn’t be opened.", comment: ""), fileURL.path)
                 self.showAlert(message: message)
                 return
             }
@@ -170,7 +170,7 @@ final class ScriptManager: NSObject {
         } else if self.scriptExtensions.contains(pathExtension) {
             // display alert if script file doesn't have execution permission
             guard fileURL.isExecutable ?? false else {
-                let message = String(format: NSLocalizedString("The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file.", comment: ""), fileURL)
+                let message = String(format: NSLocalizedString("The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file.", comment: ""), fileURL.lastPathComponent)
                 self.showAlert(message: message)
                 return
             }
@@ -301,7 +301,7 @@ final class ScriptManager: NSObject {
                 guard (self.AppleScriptExtensions + self.scriptExtensions).contains(fileURL.pathExtension) else { continue }
                 
                 let shortcut = self.shortcut(from: fileURL)
-                let item = NSMenuItem(title: title, action: #selector(launchScript(_:)), keyEquivalent: shortcut.keyEquivalent)
+                let item = NSMenuItem(title: title, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
                 item.keyEquivalentModifierMask = shortcut.modifierMask
                 item.representedObject = fileURL
                 item.target = self
@@ -402,7 +402,7 @@ final class ScriptManager: NSObject {
         
         // show an alert and endup if script file cannot read
         guard let script = self.contentStringOfScript(url: url), !script.isEmpty else {
-            self.showAlert(message: String(format: NSLocalizedString("The script “%@” couldn’t be read.", comment: ""), url))
+            self.showAlert(message: String(format: NSLocalizedString("The script “%@” couldn’t be read.", comment: ""), url.lastPathComponent))
             return
         }
         let scriptName = self.scriptName(fromURL: url)

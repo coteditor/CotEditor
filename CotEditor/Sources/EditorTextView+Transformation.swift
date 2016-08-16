@@ -143,9 +143,9 @@ extension EditorTextView {
     // MARK: Private Methods
     
     /// transform all selected strings and register to undo manager
-    private func transformSelection(actionName: String?, block: @noescape (String) -> String) {
+    private func transformSelection(actionName: String?, block: (String) -> String) {
         
-        let selectedRanges = self.selectedRanges as! [NSRange]
+        let selectedRanges = self.selectedRanges as [NSRange]
         var appliedRanges = [NSRange]()
         var strings = [String]()
         var newSelectedRanges = [NSRange]()

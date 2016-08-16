@@ -133,7 +133,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         }
         
         // register default setting values
-        var defaults: [String: AnyObject] = [:]
+        var defaults: [String: Any] = [:]
         for (key, value) in DefaultSettings {
             defaults[key.rawValue] = value
         }
@@ -144,7 +144,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         _ = TextFinder.shared
         
         // register transformers
-        ValueTransformer.setValueTransformer(HexColorTransformer(), forName: "HexColorTransformer" as NSValueTransformerName)
+        ValueTransformer.setValueTransformer(HexColorTransformer(), forName: NSValueTransformerName("HexColorTransformer"))
         
         super.init()
     }
@@ -209,7 +209,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
             // if isDigit -> probably semver (semver must be older than 2.2.0)
             let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) != nil)
             
-            return !isDigit || Int(thisVersion) >= Int(lastVersion)
+            return !isDigit || Int(thisVersion)! >= Int(lastVersion)!
         }()
         if isLatest {
             Defaults[.lastVersion] = thisVersion
@@ -282,7 +282,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     /// activate self and perform "New" menu action
     @IBAction func newDocumentActivatingApplication(_ sender: AnyObject?) {
         
-        NSApp.activateIgnoringOtherApps(true)
+        NSApp.activate(ignoringOtherApps: true)
         NSDocumentController.shared().newDocument(sender)
     }
     
@@ -290,7 +290,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     /// activate self and perform "Open..." menu action
     @IBAction func openDocumentActivatingApplication(_ sender: AnyObject?) {
         
-        NSApp.activateIgnoringOtherApps(true)
+        NSApp.activate(ignoringOtherApps: true)
         NSDocumentController.shared().openDocument(sender)
     }
     
@@ -406,18 +406,18 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         menu.removeAllItems()
         
         // add None
-        menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
         menu.addItem(NSMenuItem.separator())
         
         // add syntax styles
         let styleNames = SyntaxManager.shared.styleNames
         for styleName in styleNames {
-            menu.addItem(withTitle: styleName, action: #selector(SyntaxHolder.changeSyntaxStyle(_:)), keyEquivalent: "")
+            menu.addItem(withTitle: styleName, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
         }
         menu.addItem(NSMenuItem.separator())
         
         // add item to recolor
-        let recolorAction = #selector(SyntaxHolder.recolorAll(_:))
+        let recolorAction = #selector(SyntaxHolder.recolorAll)
         let shortcut = MenuKeyBindingManager.shared.shortcut(for: recolorAction)
         let recoloritem = NSMenuItem(title: NSLocalizedString("Re-Color All", comment: ""), action: recolorAction, keyEquivalent: shortcut.keyEquivalent)
         recoloritem.keyEquivalentModifierMask = shortcut.modifierMask // = default: Cmd + Opt + R
@@ -434,7 +434,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         
         let themeNames = ThemeManager.shared.themeNames
         for themeName in themeNames {
-            menu.addItem(withTitle: themeName, action: #selector(ThemeHolder.changeTheme(_:)), keyEquivalent: "")
+            menu.addItem(withTitle: themeName, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "")
         }
     }
     

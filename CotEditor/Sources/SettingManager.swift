@@ -52,7 +52,7 @@ class SettingManager: SettingManagerProtocol {
     /// user setting directory URL in Application Support
     var userSettingDirectoryURL: URL {
         
-        return self.dynamicType.supportDirectoryURL.appendingPathComponent(self.directoryName)
+        return type(of: self).supportDirectoryURL.appendingPathComponent(self.directoryName)
     }
     
     

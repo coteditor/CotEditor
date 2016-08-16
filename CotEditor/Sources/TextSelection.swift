@@ -100,7 +100,7 @@ final class TextSelection: NSObject {
     // MARK: AppleScript Accessors
     
     /// string of the selection (Unicode text)
-    var contents: AnyObject? {
+    var contents: Any? {
         get {
             guard let document = self.document, let editor = document.editor else { return nil }
             
@@ -150,7 +150,7 @@ final class TextSelection: NSObject {
     
     
     /// line range (location and length) of the selection (list type)
-    var lineRange: AnyObject? {
+    var lineRange: Any? {
         get {
             guard
                 let selectedRange = self.document?.editor?.selectedRange,

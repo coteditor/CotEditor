@@ -180,7 +180,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         let codeType = self.selectedCodeType
         let color: NSColor? = {
-            if let colorSpace = self.color?.colorSpace, ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(colorSpace) {
+            if let colorSpaceName = self.color?.colorSpaceName, ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(colorSpaceName) {
                 return self.color?.usingColorSpaceName(NSCalibratedRGBColorSpace)
             }
             return self.color

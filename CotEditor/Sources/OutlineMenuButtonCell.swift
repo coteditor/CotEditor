@@ -49,11 +49,11 @@ final class OutlineMenuButtonCell: NSPopUpButtonCell {
         self.drawImage(arrowImage, withFrame: imageFrame, in: controlView)
         
         // shift content 1px
-        var newCellFrame = cellFrame
-        newCellFrame.origin.y += 1.0
+        var cellFrame = cellFrame
+        cellFrame.origin.y += 1.0
         
         // draw text
-        super.drawInterior(withFrame: newCellFrame, in: controlView)
+        super.drawInterior(withFrame: cellFrame, in: controlView)
         
         NSGraphicsContext.restoreGraphicsState()
     }

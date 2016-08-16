@@ -98,26 +98,27 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// extension table was edited
     override func controlTextDidEndEditing(_ obj: Notification) {
         
-        guard obj.object is NSTextField else { return }
+        guard obj.object is NSTextField,
+            let controller = self.fileDropController else { return }
         
-        guard let newItem = self.fileDropController?.selectedObjects.first as? [String: String],
+        guard let newItem = controller.selectedObjects.first as? [String: String],
               let extensions = newItem[FileDropComposer.SettingKey.extensions], !extensions.isEmpty else
         {
             // delete row if empty
             // -> set false to flag for in case that the delete button was pressed while editing and the target can be automatically deleted
             self.deletingFileDrop = false
-            self.fileDropController?.remove(self)
+            controller.remove(nil)
             return
         }
         
         // sanitize
-        let newExtensions = self.dynamicType.sanitize(extensionsString: extensions)
+        let newExtensions = type(of: self).sanitize(extensionsString: extensions)
         
         // save if new text valid
         if !newExtensions.isEmpty {
-            self.fileDropController?.selection.setValue(newExtensions, forKey: FileDropComposer.SettingKey.extensions)
+            (controller.selection as AnyObject).setValue(newExtensions, forKey: FileDropComposer.SettingKey.extensions)
         } else if let format = newItem[FileDropComposer.SettingKey.formatString], format.isEmpty {
-            self.fileDropController?.remove(self)
+            controller.remove(nil)
         }
         
         self.saveSetting()
@@ -127,8 +128,9 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// start editing extantion table field just added
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
-        let isLastRow = tableView.numberOfRows - 1 == row
-        guard let content = rowView.view(atColumn: 0)?.textField??.stringValue else { return }
+        guard let content = (rowView.view(atColumn: 0) as? NSTableCellView)?.textField?.stringValue else { return }
+        
+        let isLastRow = (tableView.numberOfRows - 1 == row)
         
         if isLastRow && content.isEmpty {
             tableView.editColumn(0, row: row, with: nil, select: true)
@@ -214,7 +216,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// write back file drop setting to UserDefaults
     private func saveSetting() {
         
-        guard let content = self.fileDropController?.content as? [AnyObject] else { return }
+        guard let content = self.fileDropController?.content as? [Any] else { return }
         
         Defaults[.fileDropArray] = content
     }

@@ -90,7 +90,7 @@ final class ODBEventSender {
         
         let creatorDescriptor = NSAppleEventDescriptor(descriptorType: typeApplSignature,
                                                        bytes: &creatorCode,
-                                                       length: sizeof(OSType.self))
+                                                       length: MemoryLayout<OSType>.size)
         
         let eventDescriptor = NSAppleEventDescriptor.appleEvent(withEventClass: 0,
                                                                 eventID: eventType,

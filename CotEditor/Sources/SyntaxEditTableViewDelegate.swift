@@ -56,7 +56,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
         // find the leftmost text field column
         var column = -1
         for index in 0 ..< rowView.numberOfColumns {
-            if rowView.view(atColumn: index)?.textField != nil {
+            if (rowView.view(atColumn: column) as? NSTableCellView)?.textField != nil {
                 column = index
                 break
             }
@@ -67,7 +67,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
         //   -> Since the string of the selected cell cannot be read at this point.
         DispatchQueue.main.async {
             // start editing automatically if the leftmost cell of the added row is blank
-            if rowView.view(atColumn: column)?.textField??.stringValue == "" {
+            if (rowView.view(atColumn: column) as? NSTableCellView)?.textField?.stringValue == "" {
                 tableView.editColumn(column, row: row, with: nil, select: true)
             }
         }
@@ -125,7 +125,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
             guard rowView.isSelected else { return }
             
             if let view = rowView.view(atColumn: columnIndex) as? NSTableCellView {
-                view.objectValue?.setValue(NSNumber(value: isChecked), forKey: identifier)
+                (view.objectValue as AnyObject).setValue(NSNumber(value: isChecked), forKey: identifier)
             }
         }
     }

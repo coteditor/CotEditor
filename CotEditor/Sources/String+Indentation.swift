@@ -90,7 +90,7 @@ extension String {
     /// standardize indent style
     func standardizingIndent(to indentStyle: IndentStyle, tabWidth: Int) -> String {
         
-        let spaces = String(repeating: Character(" "), count: tabWidth)
+        let spaces = String(repeating: " ", count: tabWidth)
         
         let indent: (before: String, after: String) = {
             switch indentStyle {
@@ -127,14 +127,13 @@ extension String {
         let index = String.UTF16Index(location).samePosition(in: self)!
         
         let lineRange = self.lineRange(at: index)
-        var column = self.distance(from: lineRange.lowerBound, to: index)
+        let column = self.distance(from: lineRange.lowerBound, to: index)
         
         // count tab width
         let beforeInsertion = self.substring(with: lineRange.lowerBound..<index)
         let numberOfTabs = beforeInsertion.components(separatedBy: "\t").count - 1
-        column += numberOfTabs * (tabWidth - 1)
         
-        return column
+        return column + numberOfTabs * (tabWidth - 1)
     }
     
     

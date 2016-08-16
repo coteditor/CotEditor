@@ -30,18 +30,6 @@ import ICU
 
 extension UnicodeScalar {
     
-    /// initialize only if code point is in valid range for a UnicodeScalar
-    init?(codePoint: UInt32) {
-        
-        let surrogateRange = UInt32(0xD800)...UInt32(0xDFFF)  // high- and low-surrogate code points are not valid Unicode scalar values
-        let codeSpaceEdge: UInt32 = 0x10FFFF  // value is outside of Unicode codespace
-        
-        guard !surrogateRange.contains(codePoint) && codePoint <= codeSpaceEdge else { return nil }
-        
-        self.init(codePoint)
-    }
-    
-    
     /// code point string in format like `U+000F`
     var codePoint: String {
         
@@ -166,8 +154,8 @@ extension UTF32Char {
 // MARK: - Block Name Sanitizing
 
 /// sanitize block name for localization
-private func sanitize(blockName: String) -> String
-{
+private func sanitize(blockName: String) -> String {
+    
     // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
     //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
     

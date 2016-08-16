@@ -43,13 +43,13 @@ final class FindPanelLayoutManager: NSLayoutManager {
         
         let lineHeight = self.defaultLineHeight(for: self.font)
         
-        var unihightFragmentRect = fragmentRect
-        unihightFragmentRect.size.height = lineHeight
+        var fragmentRect = fragmentRect
+        fragmentRect.size.height = lineHeight
         
-        var unihightUsedRect = usedRect
-        unihightUsedRect.size.height = lineHeight
+        var usedRect = usedRect
+        usedRect.size.height = lineHeight
         
-        super.setLineFragmentRect(unihightFragmentRect, forGlyphRange: glyphRange, usedRect: unihightUsedRect)
+        super.setLineFragmentRect(fragmentRect, forGlyphRange: glyphRange, usedRect: usedRect)
     }
     
     

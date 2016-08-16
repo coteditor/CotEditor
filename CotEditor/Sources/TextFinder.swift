@@ -196,7 +196,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     // MARK: Action Messages
     
     /// jump to selection in client
-    @IBAction override func centerSelectionInVisibleArea(_ sender: AnyObject?) {
+    override func centerSelectionInVisibleArea(_ sender: Any?) {
         
         self.client?.centerSelectionInVisibleArea(sender)
     }
@@ -487,7 +487,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         let integerFormatter = self.integerFormatter
         let replacementString = self.replacementString
-        let template = replacementString ?? ""
         let scopeRanges = self.scopeRanges
         let inSelection = self.inSelection
         
@@ -525,7 +524,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let replacedString: String = {
                     guard let match = match, let regex = match.regularExpression else { return replacementString }
                     
-                    return regex.replacementString(for: match, in: string, offset: 0, template: template)
+                    return regex.replacementString(for: match, in: string, offset: 0, template: replacementString)
                 }()
                 
                 replacementStrings.append(replacedString)
@@ -631,7 +630,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         guard let textView = self.client else { return [] }
         
         if self.inSelection {
-            return textView.selectedRanges as! [NSRange]
+            return textView.selectedRanges as [NSRange]
         }
         if let range = textView.string?.nsRange {
             return [range]
@@ -729,12 +728,12 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             guard let match = regex.firstMatch(in: string, range: textView.selectedRange) else { return false }
             
             matchedRange = match.range
-            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: self.replacementString ?? "")
+            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: self.replacementString)
             
         } else {
             matchedRange = (string as NSString).range(of: self.sanitizedFindString, options: self.textualOptions, range: textView.selectedRange)
             guard matchedRange.location != NSNotFound else { return false }
-            replacedString = self.replacementString ?? ""
+            replacedString = self.replacementString
         }
         
         // apply replacement to text view
@@ -745,7 +744,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// enumerate matchs in string using current settings
-    private func enumerateMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: (@noescape (NSRange) -> Void)? = nil) {
+    private func enumerateMatchs(in string: String?, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
         
         if self.usesRegularExpression {
             self.enumerateRegularExpressionMatchs(in: string, ranges: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
@@ -756,7 +755,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// enumerate matchs in string using textual search
-    private func enumerateTextualMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: (@noescape (NSRange) -> Void)? = nil) {
+    private func enumerateTextualMatchs(in string: String?, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
         
         guard let string = string as NSString?, string.length > 0 else { return }
         
@@ -786,7 +785,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// enumerate matchs in string using regular expression
-    private func enumerateRegularExpressionMatchs(in string: String?, ranges: [NSRange], using block: @noescape (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: (@noescape (NSRange) -> Void)? = nil) {
+    private func enumerateRegularExpressionMatchs(in string: String?, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
         
         guard let string = string, !string.isEmpty else { return }
         
@@ -890,28 +889,28 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     // MARK: TextFinder Settings Provider Protocol
     
     /// return value from user defaults
-    private var usesRegularExpression: Bool {
+    fileprivate var usesRegularExpression: Bool {
         
         return Defaults[.findUsesRegularExpression]
     }
     
     
     /// return value from user defaults
-    private var isWrap: Bool {
+    fileprivate var isWrap: Bool {
         
         return Defaults[.findIsWrap]
     }
     
     
     /// return value from user defaults
-    private var inSelection: Bool {
+    fileprivate var inSelection: Bool {
         
         return Defaults[.findInSelection]
     }
     
     
     /// return value from user defaults
-    private var textualOptions: NSString.CompareOptions {
+    fileprivate var textualOptions: NSString.CompareOptions {
         
         var options = NSString.CompareOptions()
         
@@ -925,7 +924,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// return value from user defaults
-    private var regexOptions: NSRegularExpression.Options {
+    fileprivate var regexOptions: NSRegularExpression.Options {
         
         var options = NSRegularExpression.Options()
         
@@ -939,14 +938,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// return value from user defaults
-    private var closesIndicatorWhenDone: Bool {
+    fileprivate var closesIndicatorWhenDone: Bool {
         
         return Defaults[.findClosesIndicatorWhenDone]
     }
     
     
     /// return if sync search string with other applications
-    private var sharesFindString: Bool {
+    fileprivate var sharesFindString: Bool {
         
         return Defaults[.syncFindPboard]
     }
@@ -962,13 +961,13 @@ private enum TextFinderError: LocalizedError {
     case regularExpression(reason: String?)
     
     
-    private var errorDescription: String? {
+    var errorDescription: String? {
         
         return NSLocalizedString("Invalid regular expression", comment: "")
     }
     
     
-    private var recoverySuggestion: String? {
+    var recoverySuggestion: String? {
         
         switch self {
         case .regularExpression(let reason):

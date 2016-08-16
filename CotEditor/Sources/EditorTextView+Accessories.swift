@@ -74,7 +74,7 @@ extension EditorTextView: ColorCodeReceiver {
     
     
     /// avoid changing text color by color panel
-    @IBAction override func changeColor(_ sender: AnyObject?) { }
+    override func changeColor(_ sender: Any?) { }
     
     
     

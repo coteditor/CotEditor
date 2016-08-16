@@ -114,7 +114,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
         
         unicodeName = longChar.unicodeName
         
-        guard let scalar = UnicodeScalar(codePoint: longChar) else { return }
+        guard let scalar = UnicodeScalar(longChar) else { return }
         
         isValid = true
         characterString = String(Character(scalar))

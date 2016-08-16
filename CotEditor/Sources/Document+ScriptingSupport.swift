@@ -40,7 +40,7 @@ extension Document {
     // MARK: AppleScript Accessors
     
     /// whole document string (text (NSTextStorage))
-    var scriptTextStorage: AnyObject {
+    var scriptTextStorage: Any {
         get {
             let textStorage = NSTextStorage(string: self.string)
             
@@ -69,7 +69,7 @@ extension Document {
     
     
     /// document string (text (NSTextStorage))
-    var contents: AnyObject {
+    var contents: Any {
         get {
             return self.scriptTextStorage
         }
@@ -147,7 +147,7 @@ extension Document {
     func selectionObject() -> TextSelection {
         return self.selection
     }
-    func setSelectionObject(_ object: AnyObject) {
+    func setSelectionObject(_ object: Any) {
         
         if let string = object as? String {
             self.selection.contents = string
@@ -321,7 +321,6 @@ extension Document {
         }
         
         return NSNumber(value: numberOfReplacements)
-        
     }
     
     
@@ -340,11 +339,10 @@ extension Document {
         guard let rangeArray = arguments?["range"] as? [Int] else { return "" }
         
         let location = rangeArray[0]
-        let length = rangeArray[1] ?? 1
+        let length = max(rangeArray[1], 1)
         guard let range = self.editor?.range(location: location, length: length), range.length > 0 else { return "" }
         
         return (self.editor?.string as NSString?)?.substring(with: range)
-        
     }
     
     

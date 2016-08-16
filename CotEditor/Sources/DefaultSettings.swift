@@ -29,7 +29,7 @@
 import Foundation
 import AppKit.NSFont
 
-let DefaultSettings: [DefaultKeys: AnyObject] = [
+let DefaultSettings: [DefaultKeys: Any] = [
     .createNewAtStartup: true,
     .reopenBlankWindow: true,
     .enablesAutosaveInPlace: false,

@@ -78,12 +78,12 @@ final class AlphaWindow: NSWindow {
         }
         
         // observe toggling fullscreen
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode(_:)), name: .NSWindowWillEnterFullScreen, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode(_:)), name: .NSWindowWillExitFullScreen, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: .NSWindowWillEnterFullScreen, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: .NSWindowWillExitFullScreen, object: self)
         
         // observe toggling Versions browsing
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode(_:)), name: .NSWindowWillEnterVersionBrowser, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode(_:)), name: .NSWindowWillExitVersionBrowser, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: .NSWindowWillEnterVersionBrowser, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: .NSWindowWillExitVersionBrowser, object: self)
     }
     
     

@@ -106,7 +106,7 @@ extension UserDefaults {
         get { return self.array(forKey: key.rawValue) as? [NSNumber] ?? [] }
     }
     
-    subscript(key: DefaultKey<[AnyObject]>) -> [AnyObject]? {
+    subscript(key: DefaultKey<[Any]>) -> [Any]? {
         set { self.set(newValue, forKey: key.rawValue) }
         get { return self.array(forKey: key.rawValue) }
     }
@@ -203,7 +203,7 @@ extension DefaultKeys {
     static let syntaxStyle = DefaultKey<String>("defaultColoringStyleName")
     
     // File Drop
-    static let fileDropArray = DefaultKey<[AnyObject]>("fileDropArray")
+    static let fileDropArray = DefaultKey<[Any]>("fileDropArray")
     
     // Key Bindings
     static let insertCustomTextArray = DefaultKey<[String]>("insertCustomTextArray")

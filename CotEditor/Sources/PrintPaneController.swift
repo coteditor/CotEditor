@@ -82,7 +82,7 @@ final class PrintPaneController: NSViewController {
     
     
     /// font in font panel did update
-    @IBAction override func changeFont(_ sender: AnyObject?) {
+    override func changeFont(_ sender: Any?) {
         
         guard let fontManager = sender as? NSFontManager else { return }
         
@@ -121,7 +121,7 @@ final class PrintPaneController: NSViewController {
               let displayFont = NSFont(name: name, size: min(size, 13.0)),
               let fontField = self.fontField else { return }
         
-        fontField.stringValue = font.displayName! + " " + String(size)
+        fontField.stringValue = font.displayName! + " " + String(format:"%g", size)
         fontField.font = displayFont
     }
     

@@ -78,7 +78,7 @@ class SettingFileManager: SettingManager {
     
     
     /// update internal cache data
-    func updateCache(completionHandler: (() -> Void)? = nil) {
+    func updateCache(completionHandler: (@escaping () -> Void)? = nil) {
         
         preconditionFailure()
     }
@@ -295,7 +295,7 @@ class SettingFileManager: SettingManager {
     
     /// force import setting at passed-in URL
     /// - throws: SettingFileError
-    private func overwriteSetting(fileURL: URL) throws {
+    fileprivate func overwriteSetting(fileURL: URL) throws {
         
         let name = self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: name)

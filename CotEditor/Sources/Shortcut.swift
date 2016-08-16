@@ -226,7 +226,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
         // Int to String
         var printableTable = [UnicodeScalar: String]()
         for (key, value) in table {
-            printableTable[UnicodeScalar(key)] = value
+            printableTable[UnicodeScalar(key)!] = value
         }
         
         return printableTable

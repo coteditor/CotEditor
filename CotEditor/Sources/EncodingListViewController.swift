@@ -91,7 +91,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         let encodingName = String.localizedName(of: encoding)
         let attrEncodingName = NSAttributedString(string: encodingName)
         
-        let ianaName = (CFStringConvertEncodingToIANACharSetName(cfEncoding) ?? "-") as String
+        let ianaName = (CFStringConvertEncodingToIANACharSetName(cfEncoding) as String?) ?? "-"
         let attrIanaName = NSAttributedString(string: " : " + ianaName,
                                               attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor])
         

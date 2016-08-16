@@ -75,7 +75,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     /// printInfo did set (new print sheet wil be displayed)
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         
         didSet {
             // set theme if needed
@@ -93,13 +93,13 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             self.lineNumberMode = PrintLineNmuberMode(rawValue: Defaults[.printLineNumIndex]) ?? .no
             self.invisibleCharsMode = PrintInvisiblesMode(rawValue: Defaults[.printInvisibleCharIndex]) ?? .no
             
-            self.printsHeader = Defaults[.printHeader] ?? false
+            self.printsHeader = Defaults[.printHeader]
             self.primaryHeaderContent = PrintInfoType(rawValue: Defaults[.primaryHeaderContent]) ?? .none
             self.primaryHeaderAlignment = AlignmentType(rawValue: Defaults[.primaryHeaderAlignment]) ?? .left
             self.secondaryHeaderContent = PrintInfoType(rawValue: Defaults[.secondaryHeaderContent]) ?? .none
             self.secondaryHeaderAlignment = AlignmentType(rawValue: Defaults[.secondaryHeaderAlignment]) ?? .right
             
-            self.printsFooter = Defaults[.printFooter] ?? false
+            self.printsFooter = Defaults[.printFooter]
             self.primaryFooterContent = PrintInfoType(rawValue: Defaults[.primaryFooterContent]) ?? .none
             self.primaryFooterAlignment = AlignmentType(rawValue: Defaults[.primaryFooterAlignment]) ?? .left
             self.secondaryFooterContent = PrintInfoType(rawValue: Defaults[.secondaryFooterContent]) ?? .none
@@ -201,14 +201,14 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     /// KVO compatible setter for Cocoa print setting
-    private func setSettingValue(_ value: AnyObject?, forKey key: PrintSettingKey) {
+    private func setSettingValue(_ value: Any?, forKey key: PrintSettingKey) {
         
         self.setValue(value, forKeyPath: self.settingPath(forKey: key))
     }
     
     
     /// KVO compatible getter for Cocoa print setting
-    private func settingValue(forKey key: PrintSettingKey) -> AnyObject? {
+    private func settingValue(forKey key: PrintSettingKey) -> Any? {
         
         return self.value(forKeyPath: self.settingPath(forKey: key))
     }

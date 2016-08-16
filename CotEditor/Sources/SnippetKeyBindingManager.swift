@@ -82,7 +82,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         for index in 0...30 {
             let title = String(format: NSLocalizedString("Insert Text %li", comment: ""), index)
-            let action = self.dynamicType.action(index: index)
+            let action = type(of: self).action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
             let item = KeyBindingItem(selector: NSStringFromSelector(action), keySpecChars: keyBinding?.shortcut?.keySpecChars)
@@ -133,7 +133,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         guard let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }) else { return nil }
         
         let snippets = self.snippets(defaults: false)
-        guard let index = self.dynamicType.snippetIndex(for: keyBinding.action), index < snippets.count else { return nil }
+        guard let index = type(of: self).snippetIndex(for: keyBinding.action), index < snippets.count else { return nil }
         
         return snippets[index]
     

@@ -100,7 +100,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             guard clickedRow != -1 else { return nil }  // clicked blank area
             
-            return self.stylesController!.arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
+            guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
+            
+            return arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
         }()
         
         // set style name as representedObject to menu items whose action is related to syntax style
@@ -178,7 +180,8 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         guard edge == .trailing else { return [] }
         
         // get swiped style
-        let styleName = self.stylesController!.arrangedObjects[row][StyleKey.name.rawValue] as! String
+        let arrangedObjects = self.stylesController!.arrangedObjects as! [[String: Any]]
+        let styleName = arrangedObjects[row][StyleKey.name.rawValue] as! String
         
         // check whether style is deletable
         let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
@@ -390,7 +393,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         let styleNames = SyntaxManager.shared.styleNames
         
-        let styleStates: [[String: AnyObject]] = styleNames.map { styleName in
+        let styleStates: [[String: Any]] = styleNames.map { styleName in
             let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
             let isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: styleName)
             
@@ -423,15 +426,15 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     /// return syntax style name which is currently selected in the list table
     private dynamic var selectedStyleName: String {
         
-        guard let stylesController = self.stylesController?.selectedObjects.first as? [String: AnyObject] else {
+        guard let styleInfo = self.stylesController?.selectedObjects.first as? [String: Any] else {
             return Defaults[.syntaxStyle]!
         }
-        return stylesController[StyleKey.name.rawValue] as! String
+        return styleInfo[StyleKey.name.rawValue] as! String
     }
     
     
     /// return representedObject if sender is menu item, otherwise selection in the list table
-    private func targetStyleName(for sender: AnyObject?) -> String {
+    private func targetStyleName(for sender: Any?) -> String {
         
         if let menuItem = sender as? NSMenuItem {
             return menuItem.representedObject as! String

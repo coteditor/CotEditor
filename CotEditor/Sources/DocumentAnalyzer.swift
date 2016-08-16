@@ -255,10 +255,10 @@ final class DocumentAnalyzer: NSObject {
             
             // apply to UI
             DispatchQueue.main.sync {
-                self.length = self.dynamicType.format(count: length, selectedCount: selectedLength)
-                self.chars = self.dynamicType.format(count: numberOfChars, selectedCount: numberOfSelectedChars)
-                self.lines = self.dynamicType.format(count: numberOfLines, selectedCount: numberOfSelectedLines)
-                self.words = self.dynamicType.format(count: numberOfWords, selectedCount: numberOfSelectedWords)
+                self.length = type(of: self).format(count: length, selectedCount: selectedLength)
+                self.chars = type(of: self).format(count: numberOfChars, selectedCount: numberOfSelectedChars)
+                self.lines = type(of: self).format(count: numberOfLines, selectedCount: numberOfSelectedLines)
+                self.words = type(of: self).format(count: numberOfWords, selectedCount: numberOfSelectedWords)
                 self.location = String.localizedStringWithFormat("%li", location)
                 self.line = String.localizedStringWithFormat("%li", line)
                 self.column = String.localizedStringWithFormat("%li", column)

@@ -50,17 +50,10 @@ private enum SharingServiceType {
 }
 
 
-// implemented as class instead of struct since `representObject` accepsts only AnyObject
-final private class SharingServiceObject {
+private struct SharingServiceContainer {
     
     let service: NSSharingService
-    let items: [AnyObject]
-    
-    
-    required init(service: NSSharingService, items: [AnyObject]) {
-        self.service = service
-        self.items = items
-    }
+    let items: [Any]
 }
 
 
@@ -114,7 +107,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
     /// perform share
     @IBAction func shareFromService(_ sender: AnyObject?) {
         
-        guard let container = sender?.representedObject as? SharingServiceObject else { return }
+        guard let container = sender?.representedObject as? SharingServiceContainer else { return }
         
         container.service.perform(withItems: container.items)
     }
@@ -124,7 +117,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
     // MARK: Private Methods
     
     /// append sharing menu items
-    private func addSharingItems(for item: AnyObject, subject: String, label: String, excludingSercives excludingServiceTypes: [SharingServiceType]) {
+    private func addSharingItems(for item: Any, subject: String, label: String, excludingSercives excludingServiceTypes: [SharingServiceType]) {
         
         // heading (label) item
         let labelItem = NSMenuItem(title: label, action: nil, keyEquivalent: "")
@@ -143,7 +136,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
             let menuItem = NSMenuItem(title: service.title, action: #selector(shareFromService), keyEquivalent: "")
             menuItem.target = self
             menuItem.image = service.image
-            menuItem.representedObject = SharingServiceObject(service: service, items: [item])
+            menuItem.representedObject = SharingServiceContainer(service: service, items: [item])
             
             self.addItem(menuItem)
         }

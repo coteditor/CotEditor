@@ -60,7 +60,7 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
     
     // MARK: Lifecycle
     
-    init?(definition: [String: AnyObject]) {
+    init?(definition: [String: Any]) {
         
         guard let beginString = definition[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
         

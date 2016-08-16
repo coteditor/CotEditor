@@ -32,7 +32,7 @@ final class FindPanelController: NSWindowController {
     // MARK: Window Controller Methods
     
     /// activate find panel
-    override func showWindow(_ sender: AnyObject?) {
+    override func showWindow(_ sender: Any?) {
         
         // select text in find text field
         if self.window?.firstResponder == self.window?.initialFirstResponder {

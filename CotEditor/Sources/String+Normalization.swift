@@ -106,7 +106,7 @@ extension String {
     /// A string made by normalizing the receiver’s contents using the normalization form adopted by HFS+, a.k.a. Apple Modified NFD.
     var decomposedStringWithHFSPlusMapping: String {
         
-        let source: CFString = self
+        let source = self as CFString
         let length = CFStringGetMaximumSizeOfFileSystemRepresentation(source)
         var buffer = [CChar](repeating: 0, count: length)
         

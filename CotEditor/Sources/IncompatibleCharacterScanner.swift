@@ -87,7 +87,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
             let document = self.document,
             self.delegate?.needsUpdateIncompatibleCharacter(document) ?? false else { return }
         
-        let interval = self.dynamicType.UpdateInterval
+        let interval = type(of: self).UpdateInterval
         
         if let timer = self.updateTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)

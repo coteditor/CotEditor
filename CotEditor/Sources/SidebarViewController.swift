@@ -67,7 +67,7 @@ final class SidebarViewController: NSTabViewController {
     
     
     /// deliver passed-in document instance to child view controllers
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         
         didSet {
             guard let document = representedObject as? Document else { return }

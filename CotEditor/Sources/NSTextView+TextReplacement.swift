@@ -117,10 +117,10 @@ extension NSTextView {
         guard !strings.isEmpty, let textStorage = self.textStorage else { return false }
         
         // register redo for text selection
-        self.undoManager?.prepare(withInvocationTarget: self).setSelectedRangesWithUndo(self.selectedRanges)
+        (self.undoManager?.prepare(withInvocationTarget: self) as! NSTextView).setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
         
         // tell textEditor about beginning of the text processing
-        guard self.shouldChangeText(inRanges: ranges, replacementStrings: strings) else { return false }
+        guard self.shouldChangeText(inRanges: ranges as [NSValue], replacementStrings: strings) else { return false }
         
         // set action name
         if let actionName = actionName {
@@ -142,7 +142,7 @@ extension NSTextView {
         self.didChangeText()
         
         // apply new selection ranges
-        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges)
+        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges as [NSRange])
         
         return true
     }
@@ -150,10 +150,10 @@ extension NSTextView {
     
     /// undoable selection change
     @objc(setSelectedRangesWithUndo:)
-    func setSelectedRangesWithUndo(_ ranges: [NSValue]) {
+    func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
         
-        self.selectedRanges = ranges
-        self.undoManager?.prepare(withInvocationTarget: self).setSelectedRangesWithUndo(ranges)
+        self.selectedRanges = ranges as [NSValue]
+        (self.undoManager?.prepare(withInvocationTarget: self) as! NSTextView).setSelectedRangesWithUndo(ranges)
     }
     
     

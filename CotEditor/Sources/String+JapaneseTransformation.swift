@@ -34,34 +34,26 @@ extension String {
     /// transform half-width roman to full-width
     var fullWidthRoman: String {
         
-        var string = ""
-        
-        for scalar in self.unicodeScalars {
-            if String.latinCharacterRange.contains(scalar) {
-                string.append(UnicodeScalar(scalar.value + String.characterWidthDistance))
-            } else {
-                string.append(scalar)
+        return self.unicodeScalars
+            .map { scalar -> UnicodeScalar in
+                guard CharacterSet.fullWidthAvailables.contains(scalar) else { return scalar }
+                
+                return UnicodeScalar(scalar.value + UnicodeScalar.characterWidthDistance)!
             }
-        }
-        
-        return string
+            .reduce("") { (string, scalar) in string + String(scalar) }
     }
     
     
     /// transform full-width roman to half-width
     var halfWidthRoman: String {
         
-        var string = ""
-        
-        for scalar in self.unicodeScalars {
-            if String.fullWidthCharacterRange.contains(scalar) {
-                string.append(UnicodeScalar(scalar.value - String.characterWidthDistance))
-            } else {
-                string.append(scalar)
+        return self.unicodeScalars
+            .map { scalar -> UnicodeScalar in
+                guard CharacterSet.fullWidths.contains(scalar) else { return scalar }
+                
+                return UnicodeScalar(scalar.value - UnicodeScalar.characterWidthDistance)!
             }
-        }
-        
-        return string
+            .reduce("") { (string, scalar) in string + String(scalar) }
     }
     
     
@@ -86,11 +78,19 @@ extension String {
         return string as String
     }
     
+}
+
+
+// MARK: - Private Extensions
+
+private extension CharacterSet {
     
-    // MARK: Private Properties
+    static let fullWidths = CharacterSet(charactersIn: "！"..."～")
+    static let fullWidthAvailables = CharacterSet(charactersIn: "!"..."~")
+}
+
+
+private extension UnicodeScalar {
     
-    private static let latinCharacterRange: ClosedRange<UnicodeScalar> = "!"..."~"
-    private static let fullWidthCharacterRange: ClosedRange<UnicodeScalar> = "！"..."～"
-    private static let characterWidthDistance = UnicodeScalar("！").value - UnicodeScalar("!").value
-    
+    static let characterWidthDistance = UnicodeScalar("！").value - UnicodeScalar("!").value
 }

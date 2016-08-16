@@ -107,7 +107,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     // MARK: Outline View Data Source
     
     /// return number of child items
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
         if let children = self.children(ofItem: item) {
             return children.count
@@ -118,21 +118,21 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     /// return if item is expandable
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
         return (self.children(ofItem: item) != nil)
     }
     
     
     /// return child items
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         return self.children(ofItem: item)![index]
     }
     
     
     /// return suitable item for cell to display
-    func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: AnyObject?) -> AnyObject? {
+    func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
         
         guard let identifier = ColumnIdentifier(tableColumn?.identifier),
               let node = item as? NamedTreeNode else { return "" }
@@ -157,10 +157,9 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         let item = outlineView.item(atRow: row)
         
-        if outlineView.isExpandable(item) {
-            if let textField = rowView.view(atColumn: outlineView.column(withIdentifier: ColumnIdentifier.keySpecChars.rawValue))?.textField {
-                textField?.isEditable = false
-            }
+        if outlineView.isExpandable(item),
+            let view = rowView.view(atColumn: outlineView.column(withIdentifier: ColumnIdentifier.keySpecChars.rawValue)) as? NSTableCellView {
+            view.textField?.isEditable = false
         }
     }
     
@@ -241,14 +240,14 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     // MARK: Private Methods
     
     /// corresponding key binding manager
-    private var manager: KeyBindingManager {
+    fileprivate var manager: KeyBindingManager {
         
         return MenuKeyBindingManager.shared
     }
     
     
     /// return child items of passed-in item
-    private func children(ofItem item: AnyObject?) -> [NSTreeNode]? {
+    private func children(ofItem item: Any?) -> [NSTreeNode]? {
     
         guard let node = item as? NSTreeNode else { return self.outlineTree }
         
@@ -257,7 +256,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     /// save current settings
-    private func saveSettings() {
+    fileprivate func saveSettings() {
         
         do {
             try self.manager.saveKeyBindings(outlineTree: self.outlineTree)
@@ -322,14 +321,14 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     // MARK: Key Bindings View Controller Methods
     
     /// corresponding key binding manager
-    private override var manager: KeyBindingManager {
+    fileprivate override var manager: KeyBindingManager {
         
         return SnippetKeyBindingManager.shared
     }
     
     
     /// save current settings
-    private override func saveSettings() {
+    fileprivate override func saveSettings() {
         
         let snippets = self.snippets.flatMap({ snippet in snippet.text })
         SnippetKeyBindingManager.shared.saveSnippets(snippets)
@@ -353,7 +352,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     // NSOutlineViewDelegate  < outlineView
     
     /// change snippet array controller's selection
-    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: AnyObject) -> Bool {
+    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         
         if let arrayController = self.snippetArrayController {
             let index = outlineView.row(forItem: item)

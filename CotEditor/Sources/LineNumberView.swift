@@ -39,15 +39,16 @@ final class LineNumberView: NSRulerView {
     private let LineNumberPadding: CGFloat = 4.0
     private let FontSizeFactor: CGFloat = 0.9
     
-    private let LineNumberFont = CGFont("AvenirNextCondensed-Regular") ?? CGFont(NSFont.paletteFont(ofSize: 0).fontName)!
-    private let BoldLineNumberFont = CGFont("AvenirNextCondensed-Bold") ?? CGFont(NSFont.paletteFont(ofSize: 0).fontName)!
+    private let LineNumberFont = CGFont("AvenirNextCondensed-Regular" as CFString) ?? CGFont(NSFont.paletteFont(ofSize: 0).fontName as CFString)!
+    private let BoldLineNumberFont = CGFont("AvenirNextCondensed-Bold" as CFString) ?? CGFont(NSFont.paletteFont(ofSize: 0).fontName as CFString)!
     
     
     // MARK: Private Properties
     
     private var totalNumberOfLines = 0
     private var needsRecountTotalNumberOfLines = true
-    private var draggingTimer: Timer?
+    
+    fileprivate var draggingTimer: Timer?
     
     
     
@@ -109,12 +110,12 @@ final class LineNumberView: NSRulerView {
         
         guard
             let textView = self.textView,
-            let string = textView.string as NSString?,
+            let string = textView.string,
             let layoutManager = textView.layoutManager,
             let context = NSGraphicsContext.current()?.cgContext,
-            string.length > 0 else { return }
+            !string.isEmpty else { return }
         
-        let length = string.length
+        let length = (string as NSString).length
         let scale = textView.scale
         
         // set graphics context
@@ -132,7 +133,7 @@ final class LineNumberView: NSRulerView {
         
         // prepare glyphs
         var wrappedMarkGlyph = CGGlyph()
-        let dash: UniChar = "-".character(at: 0)
+        let dash: UniChar = "-".utf16.first!
         CTFontGetGlyphsForCharacters(font, [dash], &wrappedMarkGlyph, 1)
         
         var digitGlyphs = [CGGlyph](repeating: 0, count: 10)
@@ -158,7 +159,7 @@ final class LineNumberView: NSRulerView {
         } else {
             if self.needsRecountTotalNumberOfLines {
                 // -> count only if really needed since the line counting is high workload, especially by large document
-                self.totalNumberOfLines = (string as String).numberOfLines(in: string.range, includingLastLineEnding: true)
+                self.totalNumberOfLines = string.numberOfLines(in: string.range, includingLastLineEnding: true)
                 self.needsRecountTotalNumberOfLines = false
             }
             
@@ -185,7 +186,7 @@ final class LineNumberView: NSRulerView {
         context.textMatrix = transform
         
         // get multiple selections
-        let selectedLineRanges: [NSRange] = textView.selectedRanges.map { string.lineRange(for: $0.rangeValue) }
+        let selectedLineRanges: [NSRange] = textView.selectedRanges.map { (string as NSString).lineRange(for: $0.rangeValue) }
         
         /// draw line number block
         func drawLineNumber(_ lineNumber: Int, y: CGFloat, isBold: Bool) {
@@ -217,7 +218,7 @@ final class LineNumberView: NSRulerView {
             }
             
             // draw
-            context.showGlyphs(glyphs, atPositions: positions, count: digit)
+            context.showGlyphs(glyphs, at: positions)
             
             if isBold {
                 // back to the regular font
@@ -229,7 +230,7 @@ final class LineNumberView: NSRulerView {
         func drawWrappedMark(y: CGFloat) {
             
             let position = CGPoint(x: ruleThickness - charWidth, y: y)
-            context.showGlyphs([wrappedMarkGlyph], atPositions: [position], count: 1)
+            context.showGlyphs([wrappedMarkGlyph], at: [position])
         }
         
         /// draw ticks block for vertical text
@@ -238,8 +239,8 @@ final class LineNumberView: NSRulerView {
             let x = round(y) + 0.5
             
             let tick = CGMutablePath()
-            tick.moveTo(&transform, x: x, y: 0)
-            tick.addLineTo(&transform, x: x, y: tickLength)
+            tick.move(to: CGPoint(x: x, y: 0), transform: transform)
+            tick.addLine(to: CGPoint(x: x, y: y), transform: transform)
             context.addPath(tick)
         }
         
@@ -248,7 +249,7 @@ final class LineNumberView: NSRulerView {
         
         // count up lines until visible
         let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
-        var lineNumber = max((string as String).numberOfLines(in: undisplayedRange, includingLastLineEnding: true), 1)  // start with 1
+        var lineNumber = max(string.numberOfLines(in: undisplayedRange, includingLastLineEnding: true), 1)  // start with 1
         
         // draw visible line numbers
         var glyphCount = glyphRangeToDraw.location
@@ -370,7 +371,7 @@ final class LineNumberView: NSRulerView {
     // MARK: Private Methods
     
     /// return client view casting to textView
-    private var textView: NSTextView? {
+    fileprivate var textView: NSTextView? {
         
         return self.clientView as? NSTextView
     }
@@ -459,7 +460,7 @@ extension LineNumberView {
         // repeat while dragging
         self.draggingTimer = .scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(selectLines(_:)),
                                              userInfo: DraggingInfo(index: index,
-                                                                    selectedRanges: textView.selectedRanges as! [NSRange]), repeats: true)
+                                                                    selectedRanges: textView.selectedRanges as [NSRange]), repeats: true)
         
         self.selectLines(nil)  // for single click event
     }
@@ -484,7 +485,7 @@ extension LineNumberView {
     /// select lines while dragging event
     func selectLines(_ timer: Timer?) {
         
-        guard let textView = self.textView, let string: NSString = textView.string else { return }
+        guard let textView = self.textView, let string = textView.string as NSString? else { return }
         
         let draggingInfo = timer?.userInfo as? DraggingInfo
         let point = NSEvent.mouseLocation()  // screen based point
@@ -505,7 +506,7 @@ extension LineNumberView {
         
         // with Command key (add selection)
         if NSEvent.modifierFlags().contains(.command) {
-            let originalSelectedRanges = draggingInfo?.selectedRanges ?? textView.selectedRanges as! [NSRange]
+            let originalSelectedRanges = draggingInfo?.selectedRanges ?? textView.selectedRanges as [NSRange]
             var selectedRanges = [NSRange]()
             var intersects = false
             
@@ -533,7 +534,7 @@ extension LineNumberView {
                 selectedRanges.append(range)
             }
             
-            textView.setSelectedRanges(selectedRanges, affinity: affinity, stillSelecting: false)
+            textView.setSelectedRanges(selectedRanges as [NSValue], affinity: affinity, stillSelecting: false)
             
             return
         }

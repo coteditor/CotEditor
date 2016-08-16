@@ -74,7 +74,7 @@ final class NamedTreeNode: NSTreeNode {
     // MARK:
     // MARK: Lifecycle
     
-    required init(name: String, representedObject: AnyObject?) {
+    required init(name: String, representedObject: Any?) {
         
         self.name = name
         

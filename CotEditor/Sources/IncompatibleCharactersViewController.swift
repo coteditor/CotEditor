@@ -78,7 +78,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     
     
     /// set delegate
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         
         willSet (newObject) {
             guard newObject is IncompatibleCharacterScanner else {

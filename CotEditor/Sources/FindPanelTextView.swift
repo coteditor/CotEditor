@@ -92,7 +92,7 @@ final class FindPanelTextView: NSTextView {
     
     
     /// perform Find Next with return
-    override func insertNewline(_ sender: AnyObject?) {
+    override func insertNewline(_ sender: Any?) {
         
         // perform Find Next in find string field (standard NSTextField behavior)
         if performsActionOnEnter {
@@ -102,14 +102,14 @@ final class FindPanelTextView: NSTextView {
     
     
     /// jump to the next responder with tab key (standard NSTextField behavior)
-    override func insertTab(_ sender: AnyObject?) {
+    override func insertTab(_ sender: Any?) {
         
         self.window?.makeFirstResponder(self.nextKeyView)
     }
     
     
     /// swap '¥' with '\' if needed
-    override func insertText(_ string: AnyObject, replacementRange: NSRange) {
+    override func insertText(_ string: Any, replacementRange: NSRange) {
         
         // cast input to String
         var str: String = {
