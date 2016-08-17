@@ -12,4 +12,4 @@ script: xcodebuild -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_S
 sudo: false
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -J 'CotEditor'
