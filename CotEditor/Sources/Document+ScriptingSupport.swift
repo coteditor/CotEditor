@@ -192,7 +192,7 @@ extension Document {
             return .yes
         }
         
-        let lossy = (arguments?["Lossy"] as? NSNumber)?.boolValue ?? false
+        let lossy = (arguments?["Lossy"] as? Bool) ?? false
         
         return self.changeEncoding(to: encoding, withUTF8BOM: false, askLossy: false, lossy: lossy) ? .yes : .no
     }
@@ -224,10 +224,10 @@ extension Document {
             let arguments = command.evaluatedArguments,
             let searchString = arguments["targetString"] as? String, !searchString.isEmpty else { return .no }
         
-        let isRegex = (arguments["regularExpression"] as? NSNumber)?.boolValue ?? false
-        let ignoresCase = (arguments["ignoreCase"] as? NSNumber)?.boolValue ?? false
-        let isBackwards = (arguments["backwardsSearch"] as? NSNumber)?.boolValue ?? false
-        let isWrapSearch = (arguments["wrapSearch"] as? NSNumber)?.boolValue ?? false
+        let isRegex = (arguments["regularExpression"] as? Bool) ?? false
+        let ignoresCase = (arguments["ignoreCase"] as? Bool) ?? false
+        let isBackwards = (arguments["backwardsSearch"] as? Bool) ?? false
+        let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         
         let wholeString = self.string
         
@@ -264,11 +264,11 @@ extension Document {
         guard !wholeString.isEmpty else { return .no }
         
         let replacementString = (arguments["newString"] as? String) ?? ""
-        let isRegex = (arguments["regularExpression"] as? NSNumber)?.boolValue ?? false
-        let ignoresCase = (arguments["ignoreCase"] as? NSNumber)?.boolValue ?? false
-        let isBackwards = (arguments["backwardsSearch"] as? NSNumber)?.boolValue ?? false
-        let isWrapSearch = (arguments["wrapSearch"] as? NSNumber)?.boolValue ?? false
-        let isAll = (arguments["all"] as? NSNumber)?.boolValue ?? false
+        let isRegex = (arguments["regularExpression"] as? Bool) ?? false
+        let ignoresCase = (arguments["ignoreCase"] as? Bool) ?? false
+        let isBackwards = (arguments["backwardsSearch"] as? Bool) ?? false
+        let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
+        let isAll = (arguments["all"] as? Bool) ?? false
         
         guard isRegex || searchString != replacementString else { return .no }
         

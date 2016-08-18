@@ -113,7 +113,7 @@ final class DocumentAnalyzer: NSObject {
         self.isReadOnly = {
             guard !document.isInViewingMode else { return false }
             
-            return (attrs?[.immutable] as? NSNumber)?.boolValue ?? false
+            return attrs?[.immutable] as? Bool ?? false
         }()
         
         NotificationCenter.default.post(name: .AnalyzerDidUpdateFileInfo, object: self)

@@ -315,7 +315,7 @@ final class EditorTextView: NSTextView, Themable {
                 self.selectedRange = NSRange(location: self.selectedRange.location - 1, length: 0)
                 
                 // set flag
-                self.textStorage?.addAttribute(AutoBalancedClosingBracketAttributeName, value: NSNumber(value: false),
+                self.textStorage?.addAttribute(AutoBalancedClosingBracketAttributeName, value: false,
                                                range: NSRange(location: self.selectedRange.location, length: 1))
                 
                 return
@@ -969,7 +969,7 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         var selections = [NSAttributedString]()
-        var propertyList = [NSNumber]()
+        var propertyList = [Int]()
         let lineEnding = String((self.documentLineEnding ?? .LF).rawValue)
         
         // substring all selected attributed strings
@@ -1010,7 +1010,7 @@ final class EditorTextView: NSTextView, Themable {
             }
             
             selections.append(styledText)
-            propertyList.append(NSNumber(value: plainText.components(separatedBy: "\n").count))
+            propertyList.append(plainText.components(separatedBy: "\n").count)
         }
         
         var pasteboardString = NSAttributedString()

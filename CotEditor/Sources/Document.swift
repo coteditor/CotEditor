@@ -477,7 +477,7 @@ final class Document: NSDocument, EncodingHolder {
                 permissions = 0644  // ???: Is the default permission really always 644?
             }
             permissions |= S_IXUSR
-            attributes[FileAttributeKey.posixPermissions.rawValue] = NSNumber(value: permissions)
+            attributes[FileAttributeKey.posixPermissions.rawValue] = permissions
         }
         
         return attributes

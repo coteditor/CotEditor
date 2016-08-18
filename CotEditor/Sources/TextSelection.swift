@@ -166,12 +166,12 @@ final class TextSelection: NSObject {
             let location: Int
             let length: Int
             
-            if let number = range as? NSNumber {
-                location = number.intValue
+            if let number = range as? Int {
+                location = number
                 length = 1
-            } else if let range = range as? [NSNumber], range.count == 2 {
-                location = range[0].intValue
-                length = range[1].intValue
+            } else if let range = range as? [Int], range.count == 2 {
+                location = range[0]
+                length = range[1]
             } else {
                 return
             }
@@ -250,10 +250,10 @@ final class TextSelection: NSObject {
     func handleChangeCase(_ command: NSScriptCommand) {
         
         guard
-            let argument = command.evaluatedArguments?["caseType"] as? NSNumber,
+            let argument = command.evaluatedArguments?["caseType"] as? UInt32,
             let textView = self.textView else { return }
         
-        let type = FourCharCode(argument.uint32Value)
+        let type = FourCharCode(argument)
         switch type {
         case OSACaseType.lowercase:
             textView.lowercaseWord(command)
@@ -270,10 +270,10 @@ final class TextSelection: NSObject {
     func handleChangeWidthRoman(_ command: NSScriptCommand) {
         
         guard
-            let argument = command.evaluatedArguments?["widthType"] as? NSNumber,
+            let argument = command.evaluatedArguments?["widthType"] as? UInt32,
             let textView = self.textView else { return }
         
-        let type = FourCharCode(argument.uint32Value)
+        let type = FourCharCode(argument)
         switch type {
         case OSAWidthType.half:
             textView.exchangeHalfwidthRoman(command)
@@ -288,10 +288,10 @@ final class TextSelection: NSObject {
     func handleChangeKanaScript(_ command: NSScriptCommand) {
         
         guard
-            let argument = command.evaluatedArguments?["kanaType"] as? NSNumber,
+            let argument = command.evaluatedArguments?["kanaType"] as? UInt32,
             let textView = self.textView else { return }
         
-        let type = FourCharCode(argument.uint32Value)
+        let type = FourCharCode(argument)
         switch type {
         case OSAKanaType.hiragana:
             textView.exchangeHiragana(command)
@@ -307,10 +307,10 @@ final class TextSelection: NSObject {
     func handleNormalizeUnicode(_ command: NSScriptCommand) {
         
         guard
-            let argument = command.evaluatedArguments?["unfType"] as? NSNumber,
+            let argument = command.evaluatedArguments?["unfType"] as? UInt32,
             let textView = self.textView else { return }
         
-        let type = FourCharCode(argument.uint32Value)
+        let type = FourCharCode(argument)
         switch type {
         case OSAUnicodeNormalizationType.NFC:
             textView.normalizeUnicodeWithNFC(command)

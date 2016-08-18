@@ -131,7 +131,7 @@ final class NavigationBarController: NSViewController {
                 attrTitle.applyFontTraits([boldTrait, italicTrait], range: titleRange)
                 
                 if outlineItem.hasUnderline {
-                    attrTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber(integerLiteral: NSUnderlineStyle.styleSingle.rawValue), range: titleRange)
+                    attrTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: titleRange)
                 }
                 
                 let menuItem = NSMenuItem()
