@@ -145,6 +145,7 @@ final class EditorTextView: NSTextView, Themable {
         self.isAutomaticQuoteSubstitutionEnabled = Defaults[.enableSmartQuotes]
         self.isAutomaticDashSubstitutionEnabled = Defaults[.enableSmartDashes]
         self.isAutomaticDashSubstitutionEnabled = Defaults[.autoLinkDetection]
+        self.isAutomaticLinkDetectionEnabled = Defaults[.autoLinkDetection]
         self.isContinuousSpellCheckingEnabled = Defaults[.checkSpellingAsType]
         
         // set font
@@ -604,7 +605,7 @@ final class EditorTextView: NSTextView, Themable {
     override func readSelection(from pboard: NSPasteboard, type: String) -> Bool {
         
         // apply link to pasted string
-        DispatchQueue.main.async {
+        defer {
             self.detectLinkIfNeeded()
         }
         
