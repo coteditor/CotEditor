@@ -493,7 +493,6 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         } catch let error {
             self.presentError(error)
         }
-        
     }
     
     
@@ -506,6 +505,5 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)
         }
-        
     }
 }

@@ -111,7 +111,6 @@ extension EditorTextView {
         
         self.replace(with: newString, range: string.nsRange(from: targetRange), selectedRange: newSelectedRange,
                      actionName: NSLocalizedString("Comment Out", comment: "action name"))
-        
     }
     
     
@@ -139,7 +138,6 @@ extension EditorTextView {
         
         self.replace(with: newString, range: string.nsRange(from: targetRange), selectedRange: newSelectedRange,
                      actionName: NSLocalizedString("Uncomment", comment: "action name"))
-        
     }
     
     
@@ -189,6 +187,7 @@ extension EditorTextView {
     }
     
 }
+
 
 
 private extension String {

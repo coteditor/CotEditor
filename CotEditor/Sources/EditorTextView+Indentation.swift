@@ -142,7 +142,6 @@ extension EditorTextView {
     @IBAction func convertIndentationToSpaces(_ sender: AnyObject?) {
         
         self.convertIndentation(style: .space)
-        
     }
     
     

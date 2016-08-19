@@ -209,7 +209,6 @@ final class SyntaxManager: SettingFileManager {
         if let pathExtension = fileName.components(separatedBy: ".").last,
             let styleName = self.extensionToStyle[pathExtension] {
             return styleName
-            
         }
         
         return nil

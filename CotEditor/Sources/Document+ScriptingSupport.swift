@@ -154,6 +154,7 @@ extension Document {
         }
     }
     
+    
     /// state of text wrapping (bool)
     var wrapsLines: NSNumber {
         get {

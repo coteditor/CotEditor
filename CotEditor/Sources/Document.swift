@@ -273,7 +273,7 @@ final class Document: NSDocument, EncodingHolder {
         //   - File Open:
         //       - Document > read(from:ofType:)
         //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-        //       - EditorTextViewController > textView:shouldChangeTextInRange:replacementString:
+        //       - EditorTextViewController > textView(_:shouldChangeTextInRange:replacementString:)
         let string = content.replacingLineEndings(with: .LF)
         
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
@@ -428,7 +428,6 @@ final class Document: NSDocument, EncodingHolder {
     override func write(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws {
         
         // [caution] This method may be called from a background thread due to async-saving.
-        
         
         // store current state here, since the main thread will already be unblocked after `data(ofType:)`
         let encoding = self.encoding
@@ -811,6 +810,7 @@ final class Document: NSDocument, EncodingHolder {
         }
     }
     
+    
     /// reinterpret file with the desired encoding
     func reinterpret(encoding: String.Encoding) throws {
         
@@ -962,7 +962,6 @@ final class Document: NSDocument, EncodingHolder {
         
         let sharingServicePicker = NSSharingServicePicker(items: items)
         sharingServicePicker.show(relativeTo: view.bounds, of: view, preferredEdge: .minY)
-        
     }
     
     
@@ -1342,7 +1341,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
         case .lossyEncodingConversion:
             return NSLocalizedString("Do you want to change encoding and show incompatible characters?", comment: "'")
         }
-        
     }
     
     
@@ -1365,7 +1363,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
             return [NSLocalizedString("Cancel", comment: ""),
                     NSLocalizedString("Change Encoding", comment: "")]
         }
-        
     }
     
     

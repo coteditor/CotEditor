@@ -139,7 +139,6 @@ final class DocumentAnalyzer: NSObject {
         guard self.needsUpdateEditorInfo || self.needsUpdateStatusEditorInfo else { return }
         
         self.setupEditorInfoUpdateTimer()
-        
     }
     
     

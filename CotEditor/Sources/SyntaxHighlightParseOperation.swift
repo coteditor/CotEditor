@@ -657,7 +657,6 @@ private func sanitize(highlights: [SyntaxType: [NSRange]]) -> [SyntaxType: [NSRa
         if !sanitizedRanges.isEmpty {
             sanitizedHighlights[type] = sanitizedRanges
         }
-        
     }
     
     return sanitizedHighlights

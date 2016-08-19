@@ -78,6 +78,7 @@ extension NSTextView {
         self.didChangeText()
     }
     
+    
     /// append string at the end of the whole string and select inserted range
     func append(string: String) {
         

@@ -497,7 +497,6 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     @IBAction func toggleLineNumber(_ sender: AnyObject?) {
         
         self.showsLineNumber = !self.showsLineNumber
-        
     }
     
     
@@ -559,7 +558,6 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     @IBAction func toggleAutoTabExpand(_ sender: AnyObject?) {
         
         self.isAutoTabExpandEnabled = !(self.focusedTextView?.isAutomaticTabExpansionEnabled ?? false)
-        
     }
     
     

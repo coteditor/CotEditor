@@ -299,7 +299,6 @@ final class TextSelection: NSObject {
             textView.exchangeKatakana(command)
         default: break
         }
-        
     }
     
     

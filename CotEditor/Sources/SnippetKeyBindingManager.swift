@@ -136,7 +136,6 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         guard let index = type(of: self).snippetIndex(for: keyBinding.action), index < snippets.count else { return nil }
         
         return snippets[index]
-    
     }
     
     

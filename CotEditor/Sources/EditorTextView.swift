@@ -597,6 +597,7 @@ final class EditorTextView: NSTextView, Themable {
         }
     }
     
+    
     /// draw view
     override func draw(_ dirtyRect: NSRect) {
         
@@ -621,6 +622,7 @@ final class EditorTextView: NSTextView, Themable {
             NSGraphicsContext.restoreGraphicsState()
         }
     }
+    
     
     /// scroll to display specific range
     override func scrollRangeToVisible(_ range: NSRange) {
@@ -913,6 +915,7 @@ final class EditorTextView: NSTextView, Themable {
             self.invalidateDefaultParagraphStyle()
         }
     }
+    
     
     /// whether text is antialiased
     var usesAntialias: Bool {

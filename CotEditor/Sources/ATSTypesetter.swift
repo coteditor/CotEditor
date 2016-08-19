@@ -78,7 +78,7 @@ final class ATSTypesetter: NSATSTypesetter {
         }
         
         // make blank space to draw a replacement character in LayoutManager later.
-        guard let textFont = manager.textFont else { return NSRect.zero }
+        guard let textFont = manager.textFont else { return .zero }
         let invisibleFont = NSFont(name: "Lucida Grande", size: textFont.pointSize) ?? textFont  // use current text font for fallback
         let replacementGlyph = invisibleFont.glyph(withName: "replacement")  // U+FFFD
         let replacementGlyphBounding = invisibleFont.boundingRect(forGlyph: replacementGlyph)

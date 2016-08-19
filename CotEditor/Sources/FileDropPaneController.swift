@@ -206,7 +206,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // ask user for deletion
         self.deleteSetting(at: selectedRow)
-        
     }
     
     

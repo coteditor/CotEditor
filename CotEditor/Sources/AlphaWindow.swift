@@ -52,7 +52,6 @@ final class AlphaWindow: NSWindow {
             self.backgroundColor = self.backgroundColor.withAlphaComponent(backgroundAlpha)
             self.isOpaque = (backgroundAlpha == 1.0)
             self.invalidateShadow()
-            
         }
     }
     
