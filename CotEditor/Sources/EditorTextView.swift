@@ -238,13 +238,13 @@ final class EditorTextView: NSTextView, Themable {
         
         // cast NSAttributedString to String in order to make sure input string is plain-text
         guard let plainString: String = {
-            if let attrString = string as? NSAttributedString {
+            switch string {
+            case let attrString as NSAttributedString:
                 return attrString.string
-            }
-            if let string = string as? String {
+            case let string as String:
                 return string
+            default: return nil
             }
-            return nil
             }() else {
                 return super.insertText(string, replacementRange: replacementRange)
         }
@@ -702,7 +702,7 @@ final class EditorTextView: NSTextView, Themable {
     /// Pasetboard 内文字列の改行コードを書類に設定されたものに置換する
     override func writeSelection(to pboard: NSPasteboard, types: [String]) -> Bool {
         
-    let success = super.writeSelection(to: pboard, types: types)
+        let success = super.writeSelection(to: pboard, types: types)
         
         guard let lineEnding = self.documentLineEnding, lineEnding == .LF else { return success }
         
@@ -1239,19 +1239,15 @@ extension EditorTextView {
         
         let range = super.rangeForUserCompletion
         
-        guard let characterSet = self.firstSyntaxCompletionCharacterSet,
-            let string = self.string, !string.isEmpty else { return range }
+        // expand range until hitting to a character that isn't in the word completion candidates
+        guard
+            let characterSet = self.firstSyntaxCompletionCharacterSet,
+            let string = self.string, !string.isEmpty,
+            let beginIndex = String.UTF16Index(range.location).samePosition(in: string),
+            let index = string.rangeOfCharacter(from: characterSet.inverted, options: .backwards, range: string.startIndex..<beginIndex)?.upperBound
+            else { return range }
         
-        // 入力補完文字列の先頭となりえない文字が出てくるまで補完文字列対象を広げる
-        let unicodeScalars = string.unicodeScalars
-        
-        guard var beginIndex = String.UTF16Index(range.location).samePosition(in: unicodeScalars) else { return range }
-        
-        while let index = unicodeScalars.index(beginIndex, offsetBy: -1, limitedBy: unicodeScalars.startIndex),
-            characterSet.contains(unicodeScalars[index]) {
-            beginIndex = index
-        }
-        let location = string.utf16.startIndex.distance(to: beginIndex.samePosition(in: string.utf16))
+        let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
         
         return NSRange(location: location, length: range.max - location)
     }
@@ -1414,8 +1410,8 @@ extension EditorTextView {
         }
         
         // select inside of brackets by double-clicking
-        var braces: (begin: Character, end: Character)
-        var isEndBrace: Bool
+        let braces: (begin: Character, end: Character)
+        let isEndBrace: Bool
         switch clickedCharacter {
         case "(":
             braces = (begin: "(", end: ")")
