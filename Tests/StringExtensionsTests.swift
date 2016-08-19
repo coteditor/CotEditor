@@ -145,6 +145,17 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testRangeOfCharacters() {
+        
+        let set = CharacterSet(charactersIn: "._").inverted
+        let string = "abc.d🐕f_ghij"
+        
+        XCTAssertEqual(string.substring(with: string.rangeOfCharacters(from: set, at: string.startIndex)!), "abc")
+        XCTAssertEqual(string.substring(with: string.rangeOfCharacters(from: set, at: string.index(string.startIndex, offsetBy: 4))!), "d🐕f")
+        XCTAssertEqual(string.substring(with: string.rangeOfCharacters(from: set, at: string.index(before: string.endIndex))!), "ghij")
+    }
+    
+    
     func testUnicodeNormalization() {
         
         XCTAssertEqual("é 神 ㍑".precomposedStringWithCompatibilityMappingWithCasefold, "é 神 リットル")

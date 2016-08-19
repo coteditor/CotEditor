@@ -64,8 +64,7 @@ final class EditorTextView: NSTextView, Themable {
     
     // MARK: Private Properties
     
-    private let matchingOpeningBracketsSet = CharacterSet(charactersIn: "[{(\"")
-    private let matchingClosingBracketsSet = CharacterSet(charactersIn: "]})")  // ignore "
+    private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
     
     private var balancesBrackets = false
     private var isAutomaticIndentEnabled = false
@@ -237,7 +236,9 @@ final class EditorTextView: NSTextView, Themable {
         // do not use this method for programmatical insertion.
         
         // cast NSAttributedString to String in order to make sure input string is plain-text
-        guard let plainString: String = {
+        guard
+            let wholeString = self.string,
+            let plainString: String = {
             switch string {
             case let attrString as NSAttributedString:
                 return attrString.string
@@ -261,32 +262,13 @@ final class EditorTextView: NSTextView, Themable {
         // balance brackets and quotes
         if self.balancesBrackets && replacementRange.length == 0,
             plainString.unicodeScalars.count == 1,
-            let firstChar = plainString.unicodeScalars.first, self.matchingOpeningBracketsSet.contains(firstChar)
+            let firstChar = plainString.characters.first,
+            let pair = self.matchingBracketPairs.first(where: { $0.begin == firstChar })
         {
             // wrap selection with brackets if some text is selected
-            if selectedRange.length > 0 {
-                let wrappingFormat: String = {
-                    switch firstChar {
-                    case "[":
-                        return "[%@]"
-                    case "{":
-                        return "{%@}"
-                    case "(":
-                        return "(%@)"
-                    case "\"":
-                        return "\"%@\""
-                    default:
-                        fatalError()
-                    }
-                }()
-                
-                let replacementString: String = {
-                    if !wrappingFormat.isEmpty, let wholeString = self.string {
-                        let selectedString = (wholeString as NSString).substring(with: self.selectedRange)
-                        return String(format: wrappingFormat, selectedString)
-                    }
-                    return ""
-                }()
+            if self.selectedRange.length > 0 {
+                let selectedString = (wholeString as NSString).substring(with: self.selectedRange)
+                let replacementString = String(pair.begin) + selectedString + String(pair.end)
                 
                 if self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: replacementString) {
                     self.replaceCharacters(in: self.rangeForUserTextChange, with: replacementString)
@@ -296,26 +278,13 @@ final class EditorTextView: NSTextView, Themable {
                 
             // check if insertion point is in a word
             } else if !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)) {
-                let pairedBrackets: String = {
-                    switch firstChar {
-                    case "[":
-                        return "[]"
-                    case "{":
-                        return "{}"
-                    case "(":
-                        return "()"
-                    case "\"":
-                        return "\"\""
-                    default:
-                        return plainString
-                    }
-                }()
+                let pairedBrackets = String(pair.begin) + String(pair.end)
             
                 super.insertText(pairedBrackets, replacementRange: replacementRange)
                 self.selectedRange = NSRange(location: self.selectedRange.location - 1, length: 0)
                 
                 // set flag
-                self.textStorage?.addAttribute(AutoBalancedClosingBracketAttributeName, value: false,
+                self.textStorage?.addAttribute(AutoBalancedClosingBracketAttributeName, value: true,
                                                range: NSRange(location: self.selectedRange.location, length: 1))
                 
                 return
@@ -324,49 +293,31 @@ final class EditorTextView: NSTextView, Themable {
         
         // just move cursor if closed bracket is already typed
         if self.balancesBrackets && replacementRange.length == 0,
-            let firstCharacter = plainString.unicodeScalars.first, self.matchingClosingBracketsSet.contains(firstCharacter), firstCharacter == self.characterAfterInsertion {
-            if self.textStorage?.attribute(AutoBalancedClosingBracketAttributeName, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false {
-                self.selectedRange = NSRange(location: self.selectedRange.location + 1, length: 0)
-                return
-            }
+            let nextCharacter = self.characterAfterInsertion,
+            let firstCharacter = plainString.characters.first, firstCharacter == Character(nextCharacter),
+            BracePair.braces.contains(where: { $0.end == firstCharacter }),  // ignore "
+            self.textStorage?.attribute(AutoBalancedClosingBracketAttributeName, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
+        {
+            self.selectedRange.location += 1
+            return
         }
         
         // smart outdent with '}' charcter
         if self.isAutomaticIndentEnabled && self.isSmartIndentEnabled &&
             replacementRange.length == 0 && plainString == "}",
-            let wholeString = self.string,
             let insretionIndex = String.UTF16Index(self.selectedRange.max).samePosition(in: wholeString)
         {
             let lineRange = wholeString.lineRange(at: insretionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
-            if wholeString.range(of: "^[ \\t]+\\n?$", options: .regularExpression, range: lineRange) != nil {
-                // find correspondent opening-brace
-                var precedingIndex = wholeString.index(before: insretionIndex)
-                var skipMatchingBrace = 0
+            if wholeString.range(of: "^[ \\t]+\\n?$", options: .regularExpression, range: lineRange) != nil,
+                let precedingIndex = wholeString.indexOfBeginBrace(for: BracePair(begin: "{", end: "}"), at: insretionIndex) {
+                let desiredLevel = wholeString.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
+                let currentLevel = wholeString.indentLevel(at: insretionIndex, tabWidth: self.tabWidth)
+                let levelToReduce = currentLevel - desiredLevel
                 
-                braceLoop: while skipMatchingBrace > 0 {
-                    let characterToCheck = wholeString.characters[precedingIndex]
-                    switch characterToCheck {
-                    case "{":
-                        guard skipMatchingBrace > 0 else { break braceLoop }  // found
-                        skipMatchingBrace -= 1
-                    case "}":
-                        skipMatchingBrace += 1
-                    default: break
-                    }
-                    precedingIndex = wholeString.index(before: insretionIndex)
-                }
-                
-                // outdent
-                if precedingIndex != wholeString.startIndex {
-                    let desiredLevel = wholeString.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
-                    let currentLevel = wholeString.indentLevel(at: insretionIndex, tabWidth: self.tabWidth)
-                    let levelToReduce = currentLevel - desiredLevel
-                    
-                    for _ in 0..<levelToReduce {
-                        self.deleteBackward(self)
-                    }
+                for _ in 0..<levelToReduce {
+                    self.deleteBackward(self)
                 }
             }
         }
@@ -400,38 +351,30 @@ final class EditorTextView: NSTextView, Themable {
     /// insert new line & perform auto-indent
     override func insertNewline(_ sender: Any?) {
         
-        guard let string = self.string, self.isAutomaticIndentEnabled else {
-            return super.insertNewline(sender)
+        guard
+            self.isAutomaticIndentEnabled,
+            let string = self.string,
+            let indentRange = string.rangeOfIndent(at: self.selectedRange.location),
+            indentRange != self.selectedRange  // don't auto-indent if indent is selected (2008-12-13)
+            else {
+                return super.insertNewline(sender)
         }
         
-        let selectedRange = self.selectedRange
-        let indentRange = string.rangeOfIndent(at: selectedRange.location)
-        
-        // don't auto-indent if indent is selected (2008-12-13)
-        guard selectedRange != indentRange else {
-            return super.insertNewline(sender)
-        }
-        
-        let indent: String = {
-            if indentRange.location != NSNotFound {
-                let baseIndentRange = NSIntersectionRange(indentRange, NSRange(location: 0, length: selectedRange.location))
-                return (string as NSString).substring(with: baseIndentRange)
-            }
-            return ""
-        }()
+        let baseIndentRange = NSIntersectionRange(indentRange, NSRange(location: 0, length: self.selectedRange.location))
+        let indent = (string as NSString).substring(with: baseIndentRange)
         
         // calculation for smart indent
         var shouldIncreaseIndentLevel = false
         var shouldExpandBlock = false
         if self.isSmartIndentEnabled {
-            let lastChar = self.characterBeforeInsertion
-            let nextChar = self.characterAfterInsertion
+            let lastCharacter = self.characterBeforeInsertion
+            let nextCharacter = self.characterAfterInsertion
             
             // expand idnent block if returned inside `{}`
-            shouldExpandBlock = (lastChar == "{" && nextChar == "}")
+            shouldExpandBlock = (lastCharacter == "{" && nextCharacter == "}")
             
             // increace font indent level if the character just before the return is `:` or `{`
-            shouldIncreaseIndentLevel = (lastChar == ":" || lastChar == "{")
+            shouldIncreaseIndentLevel = (lastCharacter == ":" || lastCharacter == "{")
         }
         
         super.insertNewline(sender)
@@ -464,37 +407,31 @@ final class EditorTextView: NSTextView, Themable {
         
         guard let string = self.string, self.selectedRange.length == 0 else { return }
         
-        let selectedRange = self.selectedRange
+        let location = self.selectedRange.location
         
         // delete tab
-        if self.isAutomaticTabExpansionEnabled {
-            let indentRange = string.rangeOfIndent(at: selectedRange.location)
+        if self.isAutomaticTabExpansionEnabled,
+            let indentRange = string.rangeOfIndent(at: location),
+            indentRange.max >= location
+        {
+            let tabWidth = self.tabWidth
+            let column = string.column(of: location, tabWidth: tabWidth)
+            let targetLength = tabWidth - (column % tabWidth)
+            let targetRange = NSRange(location: location - targetLength, length: targetLength)
             
-            if selectedRange.location <= indentRange.max {
-                let tabWidth = self.tabWidth
-                let column = string.column(of: selectedRange.location, tabWidth: tabWidth)
-                let targetLength = tabWidth - (column % tabWidth)
-                
-                if selectedRange.location >= targetLength {
-                    let targetRange = NSRange(location: selectedRange.location - targetLength, length: targetLength)
-                    if (string as NSString).substring(with: targetRange) == String(repeating: " ", count: targetLength) {
-                        self.selectedRange = targetRange
-                    }
-                }
+            if location >= targetLength,
+                (string as NSString).substring(with: targetRange) == String(repeating: " ", count: targetLength) {
+                self.selectedRange = targetRange
             }
         }
         
         // balance brackets
-        if self.balancesBrackets, selectedRange.location > 0,
-            let characterBeforeInsertion = self.characterBeforeInsertion,
-            selectedRange.location < string.utf16.count && matchingOpeningBracketsSet.contains(characterBeforeInsertion)
+        if self.balancesBrackets,
+            let lastCharacter = self.characterBeforeInsertion,
+            let nextCharacter = self.characterAfterInsertion,
+            self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
         {
-            let targetRange = NSRange(location: selectedRange.location - 1, length: 2)
-            let surroundingCharacters = (string as NSString).substring(with: targetRange)
-            
-            if ["{}", "[]", "()", "\"\""].contains(surroundingCharacters) {
-                self.selectedRange = targetRange
-            }
+            self.selectedRange = NSRange(location: location - 1, length: 2)
         }
     }
     
@@ -565,9 +502,11 @@ final class EditorTextView: NSTextView, Themable {
     /// change font via font panel
     override func changeFont(_ sender: Any?) {
         
-        guard let manager = sender as? NSFontManager else { return }
-        
-        guard let currentFont = self.font, let textStorage = self.textStorage else { return }
+        guard
+            let manager = sender as? NSFontManager,
+            let currentFont = self.font,
+            let textStorage = self.textStorage
+            else { return }
         
         let font = manager.convert(currentFont)
         
@@ -701,7 +640,7 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    /// Pasetboard 内文字列の改行コードを書類に設定されたものに置換する
+    /// convert line endings in pasteboard to document's line ending
     override func writeSelection(to pboard: NSPasteboard, types: [String]) -> Bool {
         
         let success = super.writeSelection(to: pboard, types: types)
@@ -1081,10 +1020,8 @@ final class EditorTextView: NSTextView, Themable {
     /// window's opacity did change
     func didWindowOpacityChange(_ notification: Notification?) {
         
-        let isOpaque = self.window?.isOpaque ?? true
-        
         // let text view have own background if possible
-        self.drawsBackground = isOpaque
+        self.drawsBackground = self.window?.isOpaque ?? true
         
         // redraw visible area
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
@@ -1370,10 +1307,6 @@ extension EditorTextView {
     /// adjust word selection range
     override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
         
-        // This method is partly based on Smultron's SMLTextView by Peter Borg (2006-09-09)
-        // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
-        // Copyright (c) 2004-2006 Peter Borg
-        
         let range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
         
         guard let string = self.string, granularity == .selectByWord, string.utf16.count != proposedCharRange.location else {
@@ -1413,79 +1346,16 @@ extension EditorTextView {
         }
         
         // select inside of brackets by double-clicking
-        let braces: (begin: Character, end: Character)
-        let isEndBrace: Bool
-        switch clickedCharacter {
-        case "(":
-            braces = (begin: "(", end: ")")
-            isEndBrace = false
-        case ")":
-            braces = (begin: "(", end: ")")
-            isEndBrace = true
-            
-        case "{":
-            braces = (begin: "{", end: "}")
-            isEndBrace = false
-        case "}":
-            braces = (begin: "{", end: "}")
-            isEndBrace = true
-            
-        case "[":
-            braces = (begin: "[", end: "]")
-            isEndBrace = false
-        case "]":
-            braces = (begin: "[", end: "]")
-            isEndBrace = true
-            
-        case "<":
-            braces = (begin: "<", end: ">")
-            isEndBrace = false
-        case ">":
-            braces = (begin: "<", end: ">")
-            isEndBrace = true
-            
-        default:
-            return wordRange
-        }
-        
-        var index = characterIndex
-        var skippedBraceCount = 0
-        
-        if isEndBrace {
-            while index > string.startIndex {
-                index = string.index(before: index)
-                
-                switch string.characters[index] {
-                case braces.begin:
-                    guard skippedBraceCount > 0 else {
-                        let location = index.samePosition(in: string.utf16).distance(to: string.utf16.startIndex)
-                        return NSRange(location: location, length: wordRange.location - location + 1)
-                    }
-                    skippedBraceCount -= 1
-                    
-                case braces.end:
-                    skippedBraceCount += 1
-                    
-                default: break
-                }
+        guard let pair = (BracePair.braces + [.ltgt]).first(where: { $0.begin == clickedCharacter || $0.end == clickedCharacter }) else { return wordRange }
+        if pair.end == clickedCharacter {
+            if let index = string.indexOfBeginBrace(for: pair, at: characterIndex) {
+                let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
+                return NSRange(location: location, length: wordRange.location - location + 1)
             }
         } else {
-            while index < string.endIndex {
-                index = string.index(after: index)
-                
-                switch string.characters[index] {
-                case braces.end:
-                    guard skippedBraceCount > 0 else {
-                        let location = index.samePosition(in: string.utf16).distance(to: string.utf16.startIndex)
-                        return NSRange(location: wordRange.location, length: location - wordRange.location + 1)
-                    }
-                    skippedBraceCount -= 1
-                    
-                case braces.begin:
-                    skippedBraceCount += 1
-                    
-                default: break
-                }
+            if let index = string.indexOfEndBrace(for: pair, at: characterIndex) {
+                let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
+                return NSRange(location: wordRange.location, length: location - wordRange.location + 1)
             }
         }
         NSBeep()
@@ -1503,31 +1373,13 @@ extension EditorTextView {
         
         let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
         
-        guard proposedWordRange.length > 1, let string = self.string else { return proposedWordRange }
+        guard proposedWordRange.length > 1, let string = self.string,
+            let proposedRange = string.range(from: proposedWordRange),
+            let locationIndex = String.UTF16Index(location).samePosition(in: string) else { return proposedWordRange }
         
-        var wordRange = proposedWordRange
-        let word = (string as NSString).substring(with: proposedWordRange)
-        let scanner = Scanner(string: word)
-        let breakCharacterSet = CharacterSet(charactersIn: ".:")
+        let wordRange = string.rangeOfCharacters(from: CharacterSet(charactersIn: ".:").inverted, at: locationIndex, range: proposedRange) ?? proposedRange
         
-        while scanner.scanUpToCharacters(from: breakCharacterSet, into: nil) {
-            let breakLocation = scanner.scanLocation
-            
-            if proposedWordRange.location + breakLocation < location {
-                wordRange.location = proposedWordRange.location + breakLocation + 1
-                wordRange.length = proposedWordRange.length - (breakLocation + 1)
-                
-            } else if proposedWordRange.location + breakLocation == location {
-                wordRange = NSRange(location: location, length: 1)
-                break
-            } else {
-                wordRange.length -= proposedWordRange.length - breakLocation
-                break
-            }
-            scanner.scanUpToCharacters(from: breakCharacterSet, into: nil)
-        }
-        
-        return wordRange
+        return string.nsRange(from: wordRange)
     }
     
 }

@@ -138,11 +138,15 @@ extension String {
     
     
     /// range of indent characters in line at the location
-    func rangeOfIndent(at location: Int) -> NSRange {
+    func rangeOfIndent(at location: Int) -> NSRange? {
         
         let lineRange = (self as NSString).lineRange(at: location)
         
-        return (self as NSString).range(of: "^[ \\t]+", options: .regularExpression, range: lineRange)
+        let range = (self as NSString).range(of: "^[ \\t]+", options: .regularExpression, range: lineRange)
+        
+        guard range.location != NSNotFound else { return nil }
+        
+        return range
     }
     
     

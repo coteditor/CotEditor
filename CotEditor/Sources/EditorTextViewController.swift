@@ -108,7 +108,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 guard let textView = self.textView else { return }
                 
                 let rect = textView.lineHighlightRect
-                textView.lineHighlightRect = NSRect.zero
+                textView.lineHighlightRect = .zero
                 if let rect = rect {
                     textView.setNeedsDisplay(rect, avoidAdditionalLayout: true)
                 }
@@ -128,29 +128,18 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         //
         // # Methods Standardizing Line Endings on Text Editing
         //   - File Open:
-        //       - Document > readFromURL:ofType:error:
+        //       - Document > read(from:ofType:)
         //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-        //       - EditorTextViewController > textView:shouldChangeTextInRange:replacementString:
-        
-        guard let replacementString = replacementString else {  // = only attributes changed
-            return true
-        }
-        if replacementString.isEmpty ||  // = text deleted
-            textView.undoManager?.isUndoing ?? false ||  // = undo
-            replacementString == "\n" {
-            return true
-        }
-        
-        // replace all line endings with LF
-        if let lineEnding = replacementString.detectedLineEnding, lineEnding != .LF {
-            let newString = replacementString.replacingLineEndings(with: .LF)
-            
-            textView.replace(with: newString,
-                             range: affectedCharRange,
-                             selectedRange: NSRange(location: affectedCharRange.location + newString.utf16.count, length: 0),
-                             actionName: nil)  // Action name will be set automatically.
-            
-            return false
+        //       - EditorTextViewController > textView(_:shouldChangeTextInRange:replacementString:)
+        if let replacementString = replacementString,  // = only attributes changed
+            !replacementString.isEmpty,  // = text deleted
+            !(textView.undoManager?.isUndoing ?? false),  // = undo
+            let lineEnding = replacementString.detectedLineEnding, lineEnding != .LF
+        {
+            return !textView.replace(with: replacementString.replacingLineEndings(with: .LF),
+                                     range: affectedCharRange,
+                                     selectedRange: nil,
+                                     actionName: nil)  // Action name will be set automatically.
         }
         
         return true
@@ -168,27 +157,22 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // extract words in document and set to candidateWords
         if Defaults[.completesDocumentWords] {
-            if charRange.length == 1 && !CharacterSet.alphanumerics.contains(particalWord.unicodeScalars.first!) {
-                // do nothing if the particle word is an symbol
+            let documentWords: [String] = {
+                // do nothing if the particle word is a symbol
+                guard charRange.length > 1 || CharacterSet.alphanumerics.contains(particalWord.unicodeScalars.first!) else { return [] }
                 
-            } else {
                 let pattern = "(?:^|\\b|(?<=\\W))" + NSRegularExpression.escapedPattern(for: particalWord) + "\\w+?(?:$|\\b)"
-                if let regex = try? NSRegularExpression(pattern: pattern) {
-                    regex.enumerateMatches(in: string, range: string.nsRange, using: { (result: NSTextCheckingResult?, flags, stop) in
-                        guard let result = result else { return }
-                        candidateWords.add((string as NSString).substring(with: result.range))
-                    })
-                }
-            }
+                let regex = try! NSRegularExpression(pattern: pattern)
+                
+                return regex.matches(in: string, range: string.nsRange).map { (string as NSString).substring(with: $0.range) }
+            }()
+            candidateWords.addObjects(from: documentWords)
         }
         
         // copy words defined in syntax style
-        if let syntaxWords = self.syntaxStyle?.completionWords, Defaults[.completesSyntaxWords] {
-            for word in syntaxWords {
-                if word.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil {
-                    candidateWords.add(word)
-                }
-            }
+        if Defaults[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords {
+            let syntaxWords = syntaxCandidateWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
+            candidateWords.addObjects(from: syntaxWords)
         }
         
         // copy the standard words from default completion words
@@ -297,64 +281,35 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard Defaults[.highlightBraces] else { return }
         
-        // The following part is based on Smultron's SMLTextView.m by Peter Borg. (2006-09-09)
-        // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
-        // Copyright (c) 2004-2006 Peter Borg
-        
         guard let string = textView.string, !string.isEmpty else { return }
         
-        let location = textView.selectedRange.location
-        let difference = location - self.lastCursorLocation
-        self.lastCursorLocation = location
+        let cursorLocation = textView.selectedRange.location
+        let difference = cursorLocation - self.lastCursorLocation
+        self.lastCursorLocation = cursorLocation
         
         // The brace will be highlighted only when the cursor moves forward, just like on Xcode. (2006-09-10)
         // If the difference is more than one, they've moved the cursor with the mouse or it has been moved by resetSelectedRange below and we shouldn't check for matching braces then.
         guard difference == 1 else { return }
         
-        var index = string.utf16.startIndex.advanced(by: location).samePosition(in: string)!
-        
         // check the caracter just before the cursor
-        index = string.index(before: index)
+        let lastIndex = string.index(before: String.UTF16Index(cursorLocation).samePosition(in: string)!)
+        let lastCharacter = string.characters[lastIndex]
+        guard let pair: BracePair = (BracePair.braces + [.ltgt]).first(where: { $0.end == lastCharacter }),
+            ((pair != .ltgt) || Defaults[.highlightLtGt])
+            else { return }
         
-        let braces: (begin: Character, end: Character)
-        switch string.characters[index] {
-        case ")":
-            braces = (begin: "(", end: ")")
-        case "}":
-            braces = (begin: "{", end: "}")
-        case "]":
-            braces = (begin: "[", end: "]")
-        case ">":
-            guard Defaults[.highlightLtGt] else { return }
-            braces = (begin: "<", end: ">")
-        default: return
-        }
-        
-        var skippedBraceCount = 0
-        
-        for character in string.characters[string.startIndex..<index].reversed() {
-            index = string.index(before: index)
-            switch character {
-            case braces.begin:
-                if skippedBraceCount == 0 {
-                    let location = index.samePosition(in: string.utf16).distance(to: string.utf16.startIndex)
-                    textView.showFindIndicator(for: NSRange(location: location, length: 1))
-                    return
-                }
-                skippedBraceCount -= 1
-                
-            case braces.end:
-                skippedBraceCount += 1
-                
-            default: break
+        guard let index = string.indexOfBeginBrace(for: pair, at: lastIndex) else {
+            // do not beep when the typed brace is `>`
+            //  -> Since `>` (and `<`) can often be used alone unlike other braces.
+            if pair != .ltgt {
+                NSBeep()
             }
+            return
         }
         
-        // do not beep when the typed brace is `>`
-        //  -> Since `>` (and `<`) can often be used alone unlike other braces.
-        if braces.end != ">" {
-            NSBeep()
-        }
+        let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
+        
+        textView.showFindIndicator(for: NSRange(location: location, length: 1))
     }
     
     
