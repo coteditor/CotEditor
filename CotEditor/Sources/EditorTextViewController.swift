@@ -31,9 +31,9 @@ import Cocoa
 final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Properties
-    @IBOutlet private(set) var textView: EditorTextView?
     
     weak var syntaxStyle: SyntaxStyle? {
+        
         didSet {
             guard let textView = self.textView else { return }
             
@@ -44,9 +44,16 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     var showsLineNumber = false {
+        
         didSet {
             self.scrollView?.rulersVisible = self.showsLineNumber
         }
+    }
+    
+    
+    var textView: EditorTextView? {
+        
+        return self.scrollView?.documentView as? EditorTextView
     }
     
     

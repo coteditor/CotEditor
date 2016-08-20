@@ -240,16 +240,14 @@ final class EditorTextView: NSTextView, Themable {
         guard
             let wholeString = self.string,
             let plainString: String = {
-            switch string {
-            case let attrString as NSAttributedString:
-                return attrString.string
-            case let string as String:
-                return string
-            default: return nil
-            }
-            }() else {
-                return super.insertText(string, replacementRange: replacementRange)
-        }
+                switch string {
+                case let attrString as NSAttributedString:
+                    return attrString.string
+                case let string as String:
+                    return string
+                default: return nil
+                }
+            }() else { return super.insertText(string, replacementRange: replacementRange) }
         
         // swap '¥' with '\' if needed
         if Defaults[.swapYenAndBackSlash], plainString.characters.count == 1 {

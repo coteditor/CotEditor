@@ -80,7 +80,7 @@ final class ServicesProvider: NSObject {
                                                        display: true,
                                                        completionHandler: { (document: NSDocument?, documentWasAlreadyOpen: Bool, error: Error?) in
                                                         if let error = error {
-                                                            NSAlert(error: error).runModal()
+                                                            NSApp.presentError(error)
                                                         }
             })
         }

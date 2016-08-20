@@ -215,7 +215,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         // validate newly input name
         let styleName = field.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        _ = self.validate(styleName: styleName)
+        self.validate(styleName: styleName)
     }
     
     
@@ -358,6 +358,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     
     /// validate passed-in style name and return if valid
+    @discardableResult
     private func validate(styleName: String) -> Bool {
         
         if self.mode == .edit && self.isBundledStyle { return true }  // cannot edit style name

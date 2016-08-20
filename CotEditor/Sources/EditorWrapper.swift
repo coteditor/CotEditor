@@ -32,7 +32,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     // MARK: Private Properties
     
-    @IBOutlet private var splitViewItem: NSSplitViewItem?
+    @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     
     
     
@@ -232,12 +232,11 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     /// update outline menu in navigation bar
     func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]?) {
         
-        guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController],
-            let outlineItems = outlineItems else { return }
+        guard let outlineItems = outlineItems else { return }
         
-        for viewController in childViewControllers {
+        for viewController in self.editorViewControllers {
             viewController.navigationBarController?.outlineItems = outlineItems
-            // -> The selection update will be done in the `setOutlineItems` method above, so you don't need invoke it (2008-05-16)
+            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need invoke it (2008-05-16)
         }
     }
     
@@ -260,12 +259,10 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         
         syntaxStyle.delegate = self
         
-        if let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController]  {
-            for viewController in childViewControllers {
-                viewController.apply(syntax: syntaxStyle)
-                if syntaxStyle.canParse {
-                    viewController.navigationBarController?.showOutlineIndicator()
-                }
+        for viewController in self.editorViewControllers {
+            viewController.apply(syntax: syntaxStyle)
+            if syntaxStyle.canParse {
+                viewController.navigationBarController?.showOutlineIndicator()
             }
         }
         
@@ -298,7 +295,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// setup document
-    var document: Document? {
+    weak var document: Document? {
         
         didSet {
             guard let document = document else { return }
@@ -344,9 +341,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     var showsNavigationBar: Bool {
         
         didSet {
-            guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
-            
-            for viewController in childViewControllers {
+            for viewController in self.editorViewControllers {
                 viewController.setShowsNavigationBar(showsNavigationBar, animate: false)
             }
         }
@@ -357,9 +352,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     var showsLineNumber: Bool {
         
         didSet {
-            guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
-            
-            for viewController in childViewControllers {
+            for viewController in self.editorViewControllers {
                 viewController.showsLineNumber = showsLineNumber
             }
         }
@@ -370,9 +363,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     var wrapsLines: Bool {
         
         didSet {
-            guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
-            
-            for viewController in childViewControllers {
+            for viewController in self.editorViewControllers {
                 viewController.textView?.wrapsLines = wrapsLines
             }
         }
@@ -383,9 +374,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     var showsPageGuide = false {
         
         didSet {
-            guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
-            
-            for viewController in childViewControllers {
+            for viewController in self.editorViewControllers {
                 guard let textView = viewController.textView else { continue }
                 textView.showsPageGuide = showsPageGuide
                 textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: true)
@@ -398,9 +387,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     var showsInvisibles = false {
         
         didSet {
-            guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
-            
-            for viewController in childViewControllers {
+            for viewController in self.editorViewControllers {
                 viewController.textView?.showsInvisibles = showsInvisibles
             }
         }
@@ -411,11 +398,9 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     var verticalLayoutOrientation: Bool {
         
         didSet {
-            guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
-            
             let orientation: NSTextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
             
-            for viewController in childViewControllers {
+            for viewController in self.editorViewControllers {
                 viewController.textView?.setLayoutOrientation(orientation)
             }
         }
@@ -429,9 +414,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
             return self.focusedTextView?.tabWidth ?? 0
         }
         set (tabWidth) {
-            guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
-            
-            for viewController in childViewControllers {
+            for viewController in self.editorViewControllers {
                 viewController.textView?.tabWidth = tabWidth
             }
         }
@@ -505,9 +488,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         
         self.showsNavigationBar = !self.showsNavigationBar
         
-        guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
-        
-        for viewController in childViewControllers {
+        for viewController in self.editorViewControllers {
             viewController.setShowsNavigationBar(self.showsNavigationBar, animate: true)
         }
     }
@@ -530,11 +511,9 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     /// toggle if antialias text in text view
     @IBAction func toggleAntialias(_ sender: AnyObject?) {
         
-        guard
-            let usesAntialias = self.focusedTextView?.usesAntialias,
-            let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
+        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return }
         
-        for viewController in childViewControllers {
+        for viewController in self.editorViewControllers {
             viewController.textView?.usesAntialias = !usesAntialias
         }
     }
@@ -696,7 +675,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         }
         
         // copy textView states
-        if let textView = editorViewController.textView, let baseTextView = baseViewController?.textView {
+        if let baseTextView = baseViewController?.textView, let textView = editorViewController.textView {
             textView.font = baseTextView.font
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
@@ -738,6 +717,13 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     }
     
     
+    /// child editor view controllers
+    private var editorViewControllers: [EditorViewController] {
+        
+        return self.splitViewController?.childViewControllers as? [EditorViewController] ?? []
+    }
+    
+    
     /// whether replace tab with spaces
     private var isAutoTabExpandEnabled: Bool {
         
@@ -750,8 +736,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         }
         
         set (isAutoTabExpandEnabled) {
-            guard let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
-            for viewController in childViewControllers {
+            for viewController in self.editorViewControllers {
                 viewController.textView?.isAutomaticTabExpansionEnabled = isAutoTabExpandEnabled
             }
         }
@@ -761,11 +746,9 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     /// apply theme
     private func setTheme(name: String) {
         
-        guard
-            let theme = ThemeManager.shared.theme(name: name),
-            let childViewControllers = self.splitViewController?.childViewControllers as? [EditorViewController] else { return }
+        guard let theme = ThemeManager.shared.theme(name: name) else { return }
         
-        for viewController in childViewControllers {
+        for viewController in self.editorViewControllers {
             viewController.textView?.theme = theme
         }
         self.invalidateSyntaxHighlight()

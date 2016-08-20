@@ -39,7 +39,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: "RegexReferenceView", bundle: nil)!
     private lazy var preferencesViewController = NSViewController(nibName: "FindPreferencesView", bundle: nil)!
     
-    @IBOutlet private var findTextView: NSTextView?
+    @IBOutlet private var findTextView: NSTextView?  // NSTextView cannot be weak
     @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     

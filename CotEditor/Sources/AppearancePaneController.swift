@@ -541,12 +541,12 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: window) { [weak self] (returnCode: NSModalResponse) in
             
             guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
                 if #available(macOS 10.11, *) {
-                    self.themeTableView?.rowActionsVisible = false
+                    self?.themeTableView?.rowActionsVisible = false
                 }
                 return
             }

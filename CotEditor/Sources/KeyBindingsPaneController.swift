@@ -34,7 +34,7 @@ final class KeyBindingsPaneController: NSViewController {
     private let menuViewController = KeyBindingsViewController()
     private let textViewController = SnippetKeyBindingsViewController()
     
-    @IBOutlet private var tabView: NSTabView?
+    @IBOutlet private weak var tabView: NSTabView?
     
     
     

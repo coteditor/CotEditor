@@ -223,13 +223,12 @@ struct Shortcut: Hashable, CustomStringConvertible {
             0x33:                   "⎋",  // = Escape
         ]
         
-        // Int to String
-        var printableTable = [UnicodeScalar: String]()
-        for (key, value) in table {
-            printableTable[UnicodeScalar(key)!] = value
+        // cast key from Int to UnicodeScalar
+        return table.reduce([:]) { (dict, item) in
+            var dict = dict
+            dict[UnicodeScalar(item.0)!] = item.1
+            return dict
         }
-        
-        return printableTable
     }()
     
 }

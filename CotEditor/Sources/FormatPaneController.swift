@@ -460,12 +460,12 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: window) { [weak self] (returnCode: NSModalResponse) in
             
             guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the style name
                 if #available(macOS 10.11, *) {
-                    self.syntaxTableView?.rowActionsVisible = false
+                    self?.syntaxTableView?.rowActionsVisible = false
                 }
                 return
             }

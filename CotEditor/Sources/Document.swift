@@ -71,7 +71,7 @@ final class Document: NSDocument, EncodingHolder {
     private(set) var fileAttributes: [FileAttributeKey: Any]?
     private(set) var syntaxStyle: SyntaxStyle
     
-    private(set) var windowController: DocumentWindowController!
+    var windowController: DocumentWindowController? { return self.windowControllers.first as? DocumentWindowController }
     private(set) lazy var selection: TextSelection = TextSelection(document: self)
     private(set) lazy var analyzer: DocumentAnalyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner: IncompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
@@ -201,8 +201,8 @@ final class Document: NSDocument, EncodingHolder {
     override func makeWindowControllers() {
         
         let storyboard = NSStoryboard(name: "DocumentWindow", bundle: nil)
-        self.windowController = storyboard.instantiateInitialController() as! DocumentWindowController
-        self.addWindowController(self.windowController)
+        let windowController = storyboard.instantiateInitialController() as! DocumentWindowController
+        self.addWindowController(windowController)
     }
     
     
@@ -241,7 +241,7 @@ final class Document: NSDocument, EncodingHolder {
         // decode Data to String
         let content: String
         let encoding: String.Encoding
-        if self.readingEncoding == String.Encoding.autoDetection {
+        if self.readingEncoding == .autoDetection {
             (content, encoding) = try self.string(data: data, xattrEncoding: xattrEncoding)
         } else {
             encoding = self.readingEncoding
@@ -590,6 +590,7 @@ final class Document: NSDocument, EncodingHolder {
     
     /// printing information associated with the document
     override var printInfo: NSPrintInfo {
+        
         get {
             let printInfo = super.printInfo
             
@@ -766,7 +767,7 @@ final class Document: NSDocument, EncodingHolder {
     /// return document window's editor wrapper
     var editor: EditorWrapper? {
         
-        return self.windowController.editor
+        return self.windowController?.editor
     }
     
     
@@ -954,10 +955,9 @@ final class Document: NSDocument, EncodingHolder {
         guard let view = sender as? NSView else { return }
         
         let items: [URL] = {
-            if let url = self.fileURL {
-                return [url]
-            }
-            return []
+            guard let url = self.fileURL else { return [] }
+            
+            return [url]
         }()
         
         let sharingServicePicker = NSSharingServicePicker(items: items)
@@ -1383,7 +1383,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Chars
-                document.windowController.showIncompatibleCharList()
+                document.windowController?.showIncompatibleCharList()
                 return false
             case 1:  // == Save
                 return true
@@ -1405,7 +1405,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             case 1:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
                 (document.undoManager?.prepare(withInvocationTarget: document.windowController) as? DocumentWindowController)?.showIncompatibleCharList()
-                document.windowController.showIncompatibleCharList()
+                document.windowController?.showIncompatibleCharList()
                 return true
             default:
                 return false

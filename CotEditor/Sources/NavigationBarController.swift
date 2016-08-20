@@ -33,15 +33,21 @@ final class NavigationBarController: NSViewController {
     // MARK: Public Properties
     
     /// observe textView
-    var textView: NSTextView?  // NSTextView cannot be weak
-        {
-        didSet {
-            guard let textView = textView else { return }
+    var textView: NSTextView? {  // NSTextView cannot be weak
+        
+        get {
+            return self._textContainer?.textView
+        }
+        set {
+            self._textContainer = newValue?.textContainer
+            
+            guard let textView = newValue else { return }
             
             // observe text selection change to update outline menu selection
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: .NSTextViewDidChangeSelection, object: textView)
         }
     }
+    private weak var _textContainer: NSTextContainer?
     
     
     // MARK: Private Properties

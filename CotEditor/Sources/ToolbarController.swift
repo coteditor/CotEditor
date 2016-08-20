@@ -66,18 +66,21 @@ final class ToolbarController: NSObject {
     
     // MARK: Public Properties
     
-    var document: Document? {
+    weak var document: Document? {
+        
         willSet {
             guard let document = document else { return }
             
             NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeEncoding, object: document)
             NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeLineEnding, object: document)
             NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeSyntaxStyle, object: document)
+            document.removeObserver(self, forKeyPath: #keyPath(Document.fileURL))
         }
         
         didSet {
             guard let document = document else { return }
             
+            self.invalidateShareButton()
             self.invalidateLineEndingSelection()
             self.invalidateEncodingSelection()
             self.invalidateSyntaxStyleSelection()
@@ -90,6 +93,7 @@ final class ToolbarController: NSObject {
                                                    name: .DocumentDidChangeLineEnding, object: document)
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection),
                                                    name: .DocumentDidChangeSyntaxStyle, object: document)
+            document.addObserver(self, forKeyPath: #keyPath(Document.fileURL), context: nil)
         }
     }
     
@@ -109,13 +113,13 @@ final class ToolbarController: NSObject {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        self.document?.removeObserver(self, forKeyPath: #keyPath(Document.fileURL))
     }
     
     
     
     // MARK: Object Methods
     
-    /// setup UI
     override func awakeFromNib() {
         
         // setup share button
@@ -131,8 +135,23 @@ final class ToolbarController: NSObject {
     }
     
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == #keyPath(Document.fileURL) {
+            self.invalidateShareButton()
+        }
+    }
+    
+    
     
     // MARK: Private Methods
+    
+    /// enable Share button only if document is saved
+    func invalidateShareButton() {
+        
+        self.shareButton?.isEnabled = (self.document?.fileURL != nil)
+    }
+    
     
     /// select item in the encoding popup menu
     func invalidateLineEndingSelection() {
