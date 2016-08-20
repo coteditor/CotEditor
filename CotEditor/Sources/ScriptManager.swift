@@ -41,10 +41,10 @@ final class ScriptManager: NSObject {
     private let scriptsDirectoryURL: URL
     
     /// file extensions for UNIX scripts
-    private var scriptExtensions: [String] = ["sh", "pl", "php", "rb", "py", "js"]
+    private let scriptExtensions: [String] = ["sh", "pl", "php", "rb", "py", "js"]
     
     /// file extensions for AppleScript
-    private var AppleScriptExtensions = ["applescript", "scpt"]
+    private let AppleScriptExtensions = ["applescript", "scpt"]
     
     
     
@@ -104,8 +104,7 @@ final class ScriptManager: NSObject {
         
         // run dummy AppleScript once for quick script launch
         DispatchQueue.main.async {
-            let script = NSAppleScript(source: "tell application \"CotEditor\" to name")
-            script?.executeAndReturnError(nil)
+            NSAppleScript(source: "tell application \"CotEditor\" to name")?.executeAndReturnError(nil)
         }
     }
     
