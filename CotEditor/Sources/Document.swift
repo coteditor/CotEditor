@@ -1068,7 +1068,7 @@ final class Document: NSDocument, EncodingHolder {
         
         guard let string = String.IANACharSetName(of: self.encoding) else { return }
         
-        self.editor?.insert(string: string)
+        self.insert(string: string)
     }
     
     
@@ -1262,6 +1262,19 @@ final class Document: NSDocument, EncodingHolder {
     }
     
 }
+
+
+
+// MARK: - Protocol
+
+extension Document: Editable {
+    
+    var textView: NSTextView? {
+        
+        return self.editor?.focusedTextView
+    }
+}
+
 
 
 

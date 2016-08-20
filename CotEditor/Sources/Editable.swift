@@ -32,20 +32,14 @@ protocol Editable: class {
     
     var textView: NSTextView? { get }
     var lineEnding: LineEnding { get }
+    
+    /// line ending applied document string
+    var string: String { get }
 }
 
 
 
 extension Editable {
-    
-    /// line ending applied document string
-    var string: String {
-    
-        guard let string = self.textView?.string else { return "" }
-        
-        return string.replacingLineEndings(with: self.lineEnding)
-    }
-    
     
     /// line ending applied current selection
     var selectedString: String {

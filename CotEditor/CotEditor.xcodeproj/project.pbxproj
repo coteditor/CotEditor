@@ -1354,6 +1354,7 @@
 				2AD69B841D3E42F700FBD998 /* TextSelection.swift */,
 				2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */,
 				2A5D13181D1EFE4B00D38E6A /* SharingMenu.swift */,
+				2AD69B871D3E4FCD00FBD998 /* Editable.swift */,
 			);
 			name = Document;
 			sourceTree = "<group>";
@@ -1448,7 +1449,6 @@
 			isa = PBXGroup;
 			children = (
 				2AD7B9B41D3E9BD100E5D6D7 /* EditorWrapper.swift */,
-				2AD69B871D3E4FCD00FBD998 /* Editable.swift */,
 				2A6FD9DF1D393F9100A59784 /* SplitViewController.swift */,
 			);
 			name = "Document View";

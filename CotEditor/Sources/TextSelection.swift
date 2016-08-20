@@ -102,7 +102,7 @@ final class TextSelection: NSObject {
     /// string of the selection (Unicode text)
     var contents: Any? {
         get {
-            guard let string = self.document?.editor?.selectedString else { return nil }
+            guard let string = self.document?.selectedString else { return nil }
             
             return NSTextStorage(string: string)
         }
@@ -118,7 +118,7 @@ final class TextSelection: NSObject {
                 }
                 }() else { return }
             
-            self.document?.editor?.insert(string: string)
+            self.document?.insert(string: string)
         }
     }
     
@@ -126,7 +126,7 @@ final class TextSelection: NSObject {
     /// character range (location and length) of the selection
     var range: [NSNumber]? {
         get {
-            guard let range = self.document?.editor?.selectedRange else { return nil }
+            guard let range = self.document?.selectedRange else { return nil }
             
             return [NSNumber(value: range.location),
                     NSNumber(value: range.length)]
@@ -142,7 +142,7 @@ final class TextSelection: NSObject {
             
             guard range.location != NSNotFound else { return }
             
-            self.document?.editor?.selectedRange = range
+            self.document?.selectedRange = range
         }
     }
     
@@ -151,7 +151,7 @@ final class TextSelection: NSObject {
     var lineRange: Any? {
         get {
             guard
-                let selectedRange = self.document?.editor?.selectedRange,
+                let selectedRange = self.document?.selectedRange,
                 let string = self.document?.string else { return nil }
             
             let startLine = string.lineNumber(at: selectedRange.location)
@@ -179,7 +179,7 @@ final class TextSelection: NSObject {
             
             guard let range = string.rangeForLine(location: location, length: length) else { return }
             
-            self.document?.editor?.selectedRange = range
+            self.document?.selectedRange = range
         }
     }
     
@@ -341,7 +341,7 @@ final class TextSelection: NSObject {
         
         guard let storage = notification.object as? NSTextStorage else { return }
         
-        self.document?.editor?.insert(string: storage.string)
+        self.document?.insert(string: storage.string)
         storage.delegate = nil
     }
     

@@ -127,14 +127,14 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard let selectedIncompatible = self.incompatibleCharsController?.selectedObjects.first as? IncompatibleCharacter else { return }
-        guard let editor = self.scanner?.document?.editor else { return }
+        guard let editor = self.scanner?.document else { return }
         
         let range = selectedIncompatible.range
         editor.selectedRange = range
         
         // focus result
         // -> use textView's `selectedRange` since `range` is incompatible with CR/LF
-        if let textView = editor.focusedTextView {
+        if let textView = editor.textView {
             textView.scrollRangeToVisible(textView.selectedRange)
             textView.showFindIndicator(for: textView.selectedRange)
         }

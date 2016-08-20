@@ -60,9 +60,9 @@ extension Document {
         
         set (object) {
             if let textStorage = object as? NSTextStorage {
-                self.editor?.replaceAllString(with: textStorage.string)
+                self.replaceAllString(with: textStorage.string)
             } else if let string = object as? String {
-                self.editor?.replaceAllString(with: string)
+                self.replaceAllString(with: string)
             }
         }
     }
@@ -236,7 +236,7 @@ extension Document {
         
         // set target range
         let targetRange: NSRange = {
-            let selectedRange = self.editor?.selectedRange ?? NSRange()
+            let selectedRange = self.selectedRange
             if isBackwards {
                 return NSRange(location: 0, length: selectedRange.location)
             }
@@ -278,7 +278,7 @@ extension Document {
             if isAll {
                 return wholeString.nsRange
             }
-            let selectedRange = self.editor?.selectedRange ?? NSRange()
+            let selectedRange = self.selectedRange
             if isBackwards {
                 return NSRange(location: 0, length: selectedRange.location)
             }
@@ -306,8 +306,8 @@ extension Document {
                                                                          options: options, range: targetRange)
             }
             if numberOfReplacements > 0 {
-                self.editor?.replaceAllString(with: newWholeString as String)
-                self.editor?.selectedRange = NSRange()
+                self.replaceAllString(with: newWholeString as String)
+                self.selectedRange = NSRange()
             }
             
         } else {
@@ -328,7 +328,7 @@ extension Document {
     /// scroll to make selection visible
     func handleScroll(_ command: NSScriptCommand) {
         
-        self.editor?.focusedTextView?.centerSelectionInVisibleArea(nil)
+        self.textView?.centerSelectionInVisibleArea(nil)
     }
     
     
@@ -344,7 +344,7 @@ extension Document {
         
         let range = self.string.range(location: location, length: length)
         
-        return (self.editor?.string as NSString?)?.substring(with: range)
+        return (self.string as NSString?)?.substring(with: range)
     }
     
     
@@ -356,7 +356,7 @@ extension Document {
         
         guard let textStorage = notification.object as? NSTextStorage else { return }
         
-        self.editor?.replaceAllString(with: textStorage.string)
+        self.replaceAllString(with: textStorage.string)
         
         NotificationCenter.default.removeObserver(self, name: .NSTextStorageDidProcessEditing, object: textStorage)
     }
@@ -383,7 +383,7 @@ extension Document {
         
         guard foundRange.location != NSNotFound else { return false }
         
-        self.editor?.selectedRange = foundRange
+        self.selectedRange = foundRange
         
         return true
     }
