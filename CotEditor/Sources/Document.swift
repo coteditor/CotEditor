@@ -715,10 +715,7 @@ final class Document: NSDocument, EncodingHolder {
             let encodingTag = self.hasUTF8BOM ? -Int(self.encoding.rawValue) : Int(self.encoding.rawValue)
             menuItem.state = (menuItem.tag == encodingTag) ? NSOnState : NSOffState
             
-        case #selector(changeLineEnding(_:)),
-             #selector(changeLineEndingToLF(_:)),
-             #selector(changeLineEndingToCR(_:)),
-             #selector(changeLineEndingToCRLF(_:)):
+        case #selector(changeLineEnding(_:)):
             menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? NSOnState : NSOffState
             
         case #selector(changeSyntaxStyle(_:)):
@@ -973,27 +970,6 @@ final class Document: NSDocument, EncodingHolder {
             let fileURL = self.fileURL else { return }
         
         service.perform(withItems: [fileURL])
-    }
-    
-    
-    /// change line ending to LF
-    @IBAction func changeLineEndingToLF(_ sender: AnyObject?) {
-        
-        self.changeLineEnding(to: .LF)
-    }
-    
-    
-    /// change line ending to CR
-    @IBAction func changeLineEndingToCR(_ sender: AnyObject?) {
-        
-        self.changeLineEnding(to: .CR)
-    }
-    
-    
-    /// change line ending to CR/LF
-    @IBAction func changeLineEndingToCRLF(_ sender: AnyObject?) {
-        
-        self.changeLineEnding(to: .CRLF)
     }
     
     
