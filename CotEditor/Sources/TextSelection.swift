@@ -113,17 +113,17 @@ final class TextSelection: NSObject {
         }
         
         set (object) {
-            let string: String
+            guard let string: String = {
+                switch object {
+                case let storage as NSTextStorage:
+                    return storage.string
+                case let string as String:
+                    return string
+                default: return nil
+                }
+                }() else { return }
             
-            if let storage = object as? NSTextStorage {
-                string = storage.string
-            } else if let stringObject = object as? String {
-                string = stringObject
-            } else {
-                return
-            }
-            
-            self.textView?.insert(string: string)
+            self.document?.editor?.insert(string: string)
         }
     }
     
@@ -346,7 +346,7 @@ final class TextSelection: NSObject {
         
         guard let storage = notification.object as? NSTextStorage else { return }
         
-        self.textView?.insert(string: storage.string)
+        self.document?.editor?.insert(string: storage.string)
         storage.delegate = nil
     }
     

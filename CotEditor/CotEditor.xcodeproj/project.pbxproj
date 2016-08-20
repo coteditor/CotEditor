@@ -450,8 +450,8 @@
 		2AD616D01D3E67160016EFB6 /* ODBEditorSuite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */; };
 		2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B841D3E42F700FBD998 /* TextSelection.swift */; };
 		2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B841D3E42F700FBD998 /* TextSelection.swift */; };
-		2AD69B881D3E4FCD00FBD998 /* EditorWrapper+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B871D3E4FCD00FBD998 /* EditorWrapper+Editor.swift */; };
-		2AD69B891D3E4FCD00FBD998 /* EditorWrapper+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B871D3E4FCD00FBD998 /* EditorWrapper+Editor.swift */; };
+		2AD69B881D3E4FCD00FBD998 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B871D3E4FCD00FBD998 /* Editable.swift */; };
+		2AD69B891D3E4FCD00FBD998 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B871D3E4FCD00FBD998 /* Editable.swift */; };
 		2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
 		2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
 		2AD7B9B51D3E9BD100E5D6D7 /* EditorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9B41D3E9BD100E5D6D7 /* EditorWrapper.swift */; };
@@ -915,7 +915,7 @@
 		2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ODBEditorSuite.swift; sourceTree = "<group>"; };
 		2AD69B841D3E42F700FBD998 /* TextSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSelection.swift; sourceTree = "<group>"; };
-		2AD69B871D3E4FCD00FBD998 /* EditorWrapper+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorWrapper+Editor.swift"; sourceTree = "<group>"; };
+		2AD69B871D3E4FCD00FBD998 /* Editable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
 		2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentAnalyzer.swift; sourceTree = "<group>"; };
 		2AD7B9B41D3E9BD100E5D6D7 /* EditorWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorWrapper.swift; sourceTree = "<group>"; };
 		2AD9039A1BCE86A3004F2B8A /* SpellCheck.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SpellCheck.tiff; sourceTree = "<group>"; };
@@ -1448,7 +1448,7 @@
 			isa = PBXGroup;
 			children = (
 				2AD7B9B41D3E9BD100E5D6D7 /* EditorWrapper.swift */,
-				2AD69B871D3E4FCD00FBD998 /* EditorWrapper+Editor.swift */,
+				2AD69B871D3E4FCD00FBD998 /* Editable.swift */,
 				2A6FD9DF1D393F9100A59784 /* SplitViewController.swift */,
 			);
 			name = "Document View";
@@ -2222,7 +2222,7 @@
 				2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
 				2AD21FCD1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */,
 				2AF073FC1D34587500770BA6 /* CharacterInfo.swift in Sources */,
-				2AD69B891D3E4FCD00FBD998 /* EditorWrapper+Editor.swift in Sources */,
+				2AD69B891D3E4FCD00FBD998 /* Editable.swift in Sources */,
 				2AF0C1261D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,
 				2A6FD9EB1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
@@ -2319,7 +2319,7 @@
 				2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2A5D13101D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
-				2AD69B881D3E4FCD00FBD998 /* EditorWrapper+Editor.swift in Sources */,
+				2AD69B881D3E4FCD00FBD998 /* Editable.swift in Sources */,
 				2AF073E61D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */,
 				2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */,
 				2AA375451D403F110080C27C /* String+Encoding.swift in Sources */,

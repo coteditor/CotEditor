@@ -28,6 +28,22 @@
 
 import Cocoa
 
+extension EditorWrapper: Editable {
+    
+    var textView: NSTextView? {
+        
+        return self.focusedTextView
+    }
+    
+    
+    var lineEnding: LineEnding {
+        
+        return self.document?.lineEnding ?? .LF
+    }
+}
+
+
+
 final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
