@@ -62,7 +62,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// name of file to save custom key bindings in the plist file form (without extension)
     override var settingFileName: String {
         
-        return "MenuKeyBindings"
+        return "Shortcuts"
     }
     
     
@@ -284,11 +284,13 @@ final class MenuKeyBindingManager: KeyBindingManager {
             } else {
                 guard let action = menuItem.action else { continue }
                 
+                let defaultShortcut = self.shortcut(for: action, defaults: true)
+                
                 let shortcut = usesDefaults
-                    ? self.shortcut(for: action, defaults: true)
+                    ? defaultShortcut
                     : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 
-                let item = KeyBindingItem(selector: NSStringFromSelector(action), keySpecChars: shortcut.keySpecChars)
+                let item = KeyBindingItem(action: action, shortcut: shortcut, defaultShortcut: defaultShortcut)
                 node = NamedTreeNode(name: menuItem.title, representedObject: item)
             }
             tree.append(node)
