@@ -36,6 +36,10 @@ final class GeneralPaneController: NSViewController {
     
     @IBOutlet private weak var updaterConstraint: NSLayoutConstraint?
     
+    @IBOutlet private weak var ignoreConflictButton: NSButton?
+    @IBOutlet private weak var notifyConflictButton: NSButton?
+    @IBOutlet private weak var revertConflictButton: NSButton?
+    
     
     
     // MARK:
@@ -54,6 +58,17 @@ final class GeneralPaneController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // select one of document conflict radio buttons
+        let conflictOption = DocumentConflictOption(rawValue: Defaults[.documentConflictOption])!
+        switch conflictOption {
+        case .ignore:
+            self.ignoreConflictButton?.state = NSOnState
+        case .notify:
+            self.notifyConflictButton?.state = NSOnState
+        case .revert:
+            self.revertConflictButton?.state = NSOnState
+        }
         
         // remove updater option on AppStore ver.
         #if APPSTORE
@@ -109,6 +124,15 @@ final class GeneralPaneController: NSViewController {
             default: break
             }
         }
+    }
+    
+    
+    ///
+    @IBAction func updateDocumentConflictSetting(_ sender: AnyObject?) {
+        
+        guard let tag = sender?.tag else { return }
+        
+        Defaults[.documentConflictOption] = tag
     }
     
 }
