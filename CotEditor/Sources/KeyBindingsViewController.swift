@@ -95,9 +95,9 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     /// finish current editing
-    override func viewDidDisappear() {
+    override func viewWillDisappear() {
         
-        super.viewDidDisappear()
+        super.viewWillDisappear()
         
         self.commitEditing()
     }
@@ -109,11 +109,9 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// return number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
-        if let children = self.children(ofItem: item) {
-            return children.count
-        } else {
-            return 0
-        }
+        guard let children = self.children(ofItem: item) else { return 0 }
+        
+        return children.count
     }
     
     
@@ -142,7 +140,8 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
             return node.name
             
         case .keySpecChars:
-            return (node.representedObject as? KeyBindingItem)?.printableKey
+            guard let shortcut = (node.representedObject as? KeyBindingItem)?.shortcut, shortcut.isValid else { return nil }
+            return shortcut.isValid ? shortcut.description : nil
         }
     }
     
@@ -152,14 +151,20 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     // NSOutlineViewDelegate  < outlineView
     
-    /// set if table cell is editable
+    /// initialize table cell view
     func outlineView(_ outlineView: NSOutlineView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
-        let item = outlineView.item(atRow: row)
-        
-        if outlineView.isExpandable(item),
-            let view = rowView.view(atColumn: outlineView.column(withIdentifier: ColumnIdentifier.keySpecChars.rawValue)) as? NSTableCellView {
-            view.textField?.isEditable = false
+        if let view = rowView.view(atColumn: outlineView.column(withIdentifier: ColumnIdentifier.keySpecChars.rawValue)) as? NSTableCellView,
+            let textField = view.textField,
+            let node = outlineView.item(atRow: row) as? NSTreeNode
+        {
+            let keyBinding = node.representedObject as? KeyBindingItem
+            
+            // set if table cell is editable
+            textField.isEditable = (keyBinding != nil)
+            
+            // set default short cut to placeholder
+            textField.placeholderString = keyBinding?.defaultShortcut.description
         }
     }
     
@@ -169,54 +174,50 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// validate and apply new shortcut key input
     override func controlTextDidEndEditing(_ obj: Notification) {
         
-        guard let textField = obj.object as? NSTextField,
-              let outlineView = self.outlineView else { return }
+        guard
+            let textField = obj.object as? NSTextField,
+            let outlineView = self.outlineView else { return }
         
         let row = outlineView.row(for: textField)
+        let column = outlineView.column(for: textField)
         
         guard let node = outlineView.item(atRow: row) as? NSTreeNode, node.isLeaf else { return }
         guard let item = node.representedObject as? KeyBindingItem else { return }
         
-        let oldKeySpecChars = item.keySpecChars
+        let oldKeySpecChars = item.shortcut?.keySpecChars
         let keySpecChars = textField.stringValue
         
         // reset once warning
         self.warningMessage = nil
         
-        // validate input value
-        if keySpecChars == "\u{1b}" {  // = ESC key
-            // treat esc key as cancel
-            
-        } else if keySpecChars == item.printableKey {  // not edited
-            // do nothing
-            
-        } else {
-            var success = true
-            do {
-                try self.manager.validate(keySpecChars: keySpecChars, oldKeySpecChars: oldKeySpecChars)
-                
-            } catch let error as InvalidKeySpecCharactersError {
-                success = false
-                self.warningMessage = error.localizedDescription + " " + (error.recoverySuggestion ?? "")
-                textField.stringValue = oldKeySpecChars ?? ""  // reset view with previous key
-                NSBeep()
-                
-                // make text field edit mode again if invalid
-                DispatchQueue.main.async { [weak self] in
-                    self?.beginEditingSelectedKeyCell()
-                }
-            } catch { }
-            
-            // update data
-            if success {
-                item.keySpecChars = keySpecChars
-                self.saveSettings()
-            }
+        defer {
+            // reset text field display
+            textField.objectValue = item.shortcut?.description
         }
         
-        // reload cell to apply printed form of key spec
-        let column = outlineView.column(for: textField)
-        outlineView.reloadData(forRowIndexes: IndexSet(integer: row), columnIndexes: IndexSet(integer: column))
+        // treat esc key as cancel
+        guard keySpecChars != "\u{1b}" else { return } // = ESC key
+        
+        guard keySpecChars != item.shortcut?.description else { return }  // not edited
+        
+        do {
+            try self.manager.validate(keySpecChars: keySpecChars, oldKeySpecChars: oldKeySpecChars)
+            
+        } catch let error as InvalidKeySpecCharactersError {
+            self.warningMessage = error.localizedDescription + " " + (error.recoverySuggestion ?? "")
+            textField.objectValue = oldKeySpecChars  // reset view with previous key
+            NSBeep()
+            
+            // make text field edit mode again if invalid
+            DispatchQueue.main.async {
+                outlineView.editColumn(column, row: row, with: nil, select: true)
+            }
+            return
+        } catch { }
+        
+        // successfully update data
+        item.shortcut = Shortcut(keySpecChars: keySpecChars)
+        self.saveSettings()
     }
     
     
@@ -265,21 +266,6 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         }
         
         self.restoreble = !self.manager.usesDefaultKeyBindings
-    }
-    
-    
-    /// make selected Key cell edit mode
-    private func beginEditingSelectedKeyCell() {
-        
-        guard let outlineView = self.outlineView else { return }
-        
-        let selectedRow = outlineView.selectedRow
-        
-        guard selectedRow >= 0 else { return }
-        
-        let column = outlineView.column(withIdentifier: ColumnIdentifier.keySpecChars.rawValue)
-        
-        outlineView.editColumn(column, row: selectedRow, with: nil, select: true)
     }
     
 }

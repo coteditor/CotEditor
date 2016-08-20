@@ -290,8 +290,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                     ? defaultShortcut
                     : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 
-                let item = KeyBindingItem(selector: NSStringFromSelector(action), keySpecChars: shortcut.keySpecChars,
-                                          defaultShortcut: defaultShortcut)
+                let item = KeyBindingItem(action: action, shortcut: shortcut, defaultShortcut: defaultShortcut)
                 node = NamedTreeNode(name: menuItem.title, representedObject: item)
             }
             tree.append(node)

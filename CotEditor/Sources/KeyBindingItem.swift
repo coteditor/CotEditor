@@ -28,34 +28,20 @@
 import Foundation
 import AppKit.NSTreeNode
 
-final class KeyBindingItem: NSObject {
+final class KeyBindingItem {
     
     // MARK: Public Properties
     
-    let selector: String
-    var keySpecChars: String?
+    let action: Selector
+    var shortcut: Shortcut?
     let defaultShortcut: Shortcut
     
-    /// printable representation of the shortcut key
-    var printableKey: String? {
+    
+    required init(action: Selector, shortcut: Shortcut?, defaultShortcut: Shortcut) {
         
-        guard let keySpecChars = self.keySpecChars else { return nil }
-        
-        return Shortcut(keySpecChars: keySpecChars).description
-    }
-    
-    
-    
-    // MARK:
-    // MARK: Lifecycle
-    
-    required init(selector: String, keySpecChars: String?, defaultShortcut: Shortcut) {
-        
-        self.selector = selector
-        self.keySpecChars = keySpecChars
+        self.action = action
+        self.shortcut = shortcut
         self.defaultShortcut = defaultShortcut
-        
-        super.init()
     }
     
 }

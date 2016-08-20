@@ -254,12 +254,10 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
             } else {
                 guard
                     let keyItem = node.representedObject as? KeyBindingItem,
-                    let keySpecChars = keyItem.keySpecChars
+                    let shortcut = keyItem.shortcut
                     else { continue }
                 
-                let shortcut = Shortcut(keySpecChars: keySpecChars)
-                let action = Selector(keyItem.selector)
-                let keyBinding = KeyBinding(action: action, shortcut: shortcut.isValid ? shortcut : nil)
+                let keyBinding = KeyBinding(action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)
                 
                 keyBindings.insert(keyBinding)
             }
