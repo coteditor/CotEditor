@@ -34,6 +34,7 @@ final class KeyBindingItem: NSObject {
     
     let selector: String
     var keySpecChars: String?
+    let defaultShortcut: Shortcut
     
     /// printable representation of the shortcut key
     var printableKey: String? {
@@ -48,10 +49,11 @@ final class KeyBindingItem: NSObject {
     // MARK:
     // MARK: Lifecycle
     
-    required init(selector: String, keySpecChars: String?) {
+    required init(selector: String, keySpecChars: String?, defaultShortcut: Shortcut) {
         
         self.selector = selector
         self.keySpecChars = keySpecChars
+        self.defaultShortcut = defaultShortcut
         
         super.init()
     }

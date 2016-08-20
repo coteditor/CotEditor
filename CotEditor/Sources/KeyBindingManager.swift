@@ -124,12 +124,19 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         
         guard
             let data = try? Data(contentsOf: self.keyBindingSettingFileURL),
-            let keyBindings = try? KeyBindingSerialization.keyBindings(from: data)
+            let customKeyBindings = try? KeyBindingSerialization.keyBindings(from: data)
             else {
                 return self.defaultKeyBindings
         }
         
-        return keyBindings
+        let customizedActions = customKeyBindings.map { $0.action }
+        let customizedShortcuts = customKeyBindings.flatMap { $0.shortcut }
+        let defaultKeyBindings = self.defaultKeyBindings
+            .filter { !customizedActions.contains($0.action) && !customizedShortcuts.contains($0.shortcut!) }
+        
+        let keyBindings = (defaultKeyBindings + customKeyBindings).filter { $0.shortcut != nil }
+        
+        return Set(keyBindings)
     }()
     
     
@@ -194,17 +201,21 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         let keyBindings = self.keyBindings(from: outlineTree)
         let fileURL = self.keyBindingSettingFileURL
         
+        let defaultExistsAction = self.defaultKeyBindings.map { $0.action }
+        let diff =  keyBindings.subtracting(self.defaultKeyBindings)
+            .filter { $0.shortcut != nil ||  defaultExistsAction.contains($0.action) }
+        
         // write to file
-        if keyBindings == self.defaultKeyBindings {
+        if diff.isEmpty {
             // just remove setting file if the new setting is exactly the same as the default
             try FileManager.default.removeItem(at: fileURL)
         } else {
-            let data = try KeyBindingSerialization.data(from: keyBindings)
+            let data = try KeyBindingSerialization.data(from: Set(diff))
             try data.write(to: fileURL, options: .atomic)
         }
         
         // store new values
-        self.keyBindings = keyBindings
+        self.keyBindings = Set(keyBindings.filter { $0.shortcut != nil })
     }
     
     
@@ -243,12 +254,12 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
             } else {
                 guard
                     let keyItem = node.representedObject as? KeyBindingItem,
-                    let keySpecChars = keyItem.keySpecChars,
-                    !keySpecChars.isEmpty else { continue }
+                    let keySpecChars = keyItem.keySpecChars
+                    else { continue }
                 
                 let shortcut = Shortcut(keySpecChars: keySpecChars)
                 let action = Selector(keyItem.selector)
-                let keyBinding = KeyBinding(action: action, shortcut: shortcut)
+                let keyBinding = KeyBinding(action: action, shortcut: shortcut.isValid ? shortcut : nil)
                 
                 keyBindings.insert(keyBinding)
             }

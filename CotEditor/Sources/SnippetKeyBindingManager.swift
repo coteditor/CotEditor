@@ -85,7 +85,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
             let action = type(of: self).action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
-            let item = KeyBindingItem(selector: NSStringFromSelector(action), keySpecChars: keyBinding?.shortcut?.keySpecChars)
+            let item = KeyBindingItem(selector: NSStringFromSelector(action), keySpecChars: keyBinding?.shortcut?.keySpecChars, defaultShortcut: .none)
             let node = NamedTreeNode(name:title, representedObject: item)
             
             tree.append(node)
