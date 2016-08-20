@@ -435,37 +435,6 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     }
     
     
-    /// change background color of pased-in ranges (incompatible chars scannar may use this method)
-    func markup(ranges: [NSRange]) {
-        
-        guard
-            let textStorage = self.textStorage,
-            let lineEnding = self.document?.lineEnding,
-            let color = textStorage.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }
-        
-        for range in ranges {
-            let viewRange = textStorage.string.convert(from: lineEnding, to: .LF, range: range)
-            
-            for manager in textStorage.layoutManagers {
-                manager.addTemporaryAttribute(NSBackgroundColorAttributeName, value: color, forCharacterRange: viewRange)
-            }
-        }
-    }
-    
-    
-    /// clear all background highlight (including text finder's highlights)
-    func clearAllMarkup() {
-        
-        guard let textStorage = self.textStorage else { return }
-        
-        let range = textStorage.string.nsRange
-        
-        for manager in textStorage.layoutManagers {
-            manager.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: range)
-        }
-    }
-    
-    
     /// apply text styles from text view
     func invalidateStyleInTextStorage() {
         

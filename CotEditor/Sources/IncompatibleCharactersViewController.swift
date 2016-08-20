@@ -71,7 +71,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     override func viewDidDisappear() {
         
         self.isVisible = false
-        self.scanner?.document?.editor?.clearAllMarkup()
+        self.scanner?.document?.textStorage.clearAllMarkup()
         
         super.viewDidDisappear()
     }
@@ -113,10 +113,8 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         
         let ranges = incompatibleCharacers.map { $0.range }
         
-        guard let editor = document.editor else { return }
-        
-        editor.clearAllMarkup()
-        editor.markup(ranges: ranges)
+        document.textStorage.clearAllMarkup()
+        document.textStorage.markup(ranges: ranges, lineEnding: document.lineEnding)
     }
     
     
@@ -137,6 +135,37 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         if let textView = editor.textView {
             textView.scrollRangeToVisible(textView.selectedRange)
             textView.showFindIndicator(for: textView.selectedRange)
+        }
+    }
+    
+}
+
+
+
+private extension NSTextStorage {
+    
+    /// change background color of pased-in ranges (incompatible chars scannar may use this method)
+    func markup(ranges: [NSRange], lineEnding: LineEnding = .LF) {
+        
+        guard let color = self.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }
+        
+        for range in ranges {
+            let viewRange = self.string.convert(from: lineEnding, to: .LF, range: range)
+            
+            for manager in self.layoutManagers {
+                manager.addTemporaryAttribute(NSBackgroundColorAttributeName, value: color, forCharacterRange: viewRange)
+            }
+        }
+    }
+    
+    
+    /// clear all background highlight (including text finder's highlights)
+    func clearAllMarkup() {
+        
+        let range = self.string.nsRange
+        
+        for manager in self.layoutManagers {
+            manager.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: range)
         }
     }
     
