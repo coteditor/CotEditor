@@ -62,7 +62,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// name of file to save custom key bindings in the plist file form (without extension)
     override var settingFileName: String {
         
-        return "MenuKeyBindings"
+        return "Shortcuts"
     }
     
     

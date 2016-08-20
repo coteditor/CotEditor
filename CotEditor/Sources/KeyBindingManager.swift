@@ -265,17 +265,30 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
 
 private final class KeyBindingSerialization {
     
+    private struct Key {
+        static let action = "action"
+        static let shortcut = "shortcut"
+    }
+    
+    
     /// create keyBinding collection from the specified data
     static func keyBindings(from data: Data) throws -> Set<KeyBinding> {
         
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
         
-        guard let plistDict = plist as? [String: String], !plistDict.isEmpty else {
+        guard let plistDict = plist as? [[String: String]], !plistDict.isEmpty else {
             throw NSError(domain: CocoaError.errorDomain, code: CocoaError.propertyListReadCorruptError.rawValue)
         }
         
-        let keyBindings = plistDict.map { (key, value) in
-            return KeyBinding(action: Selector(value), shortcut: Shortcut(keySpecChars: key))
+        let keyBindings: [KeyBinding] = plistDict.flatMap { item in
+            guard let action = item[Key.action] else { return nil }
+            
+            let shortcut: Shortcut? = {
+                guard let keySpecChars = item[Key.shortcut] else { return nil }
+                return Shortcut(keySpecChars: keySpecChars)
+            }()
+            
+            return KeyBinding(action: Selector(action), shortcut: shortcut)
         }
         
         return Set<KeyBinding>(keyBindings)
@@ -285,11 +298,14 @@ private final class KeyBindingSerialization {
     /// create data to store from a keyBinding collection
     static func data(from keyBindings: Set<KeyBinding>) throws -> Data {
         
-        let plist: [String: String] = keyBindings.reduce([:]) { (dict: [String: String], keyBinding: KeyBinding) in
-            var dict = dict
-            dict[keyBinding.shortcut!.keySpecChars] = NSStringFromSelector(keyBinding.action)  // TODO: unwrap
-            return dict
-        }
+        let plist: [[String: String]] = keyBindings.map { keyBinding in
+            if let shortcut = keyBinding.shortcut {
+                return [Key.action: NSStringFromSelector(keyBinding.action),
+                        Key.shortcut: shortcut.keySpecChars]
+            } else {
+                return [Key.action: NSStringFromSelector(keyBinding.action)]
+            }
+            }.sorted { $0[Key.action]! < $1[Key.action]! }
         
         return try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
     }

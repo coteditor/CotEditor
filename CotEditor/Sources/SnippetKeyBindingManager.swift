@@ -61,7 +61,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// name of file to save custom key bindings in the plist file form (without extension)
     override var settingFileName: String {
         
-        return "TextKeyBindings"
+        return "SnippetKeyBindings"
     }
     
     
