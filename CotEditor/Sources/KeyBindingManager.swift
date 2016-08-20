@@ -48,7 +48,7 @@ struct KeyBinding: Hashable, CustomStringConvertible {
     
     static func ==(lhs: KeyBinding, rhs: KeyBinding) -> Bool {
         
-        return lhs.shortcut == rhs.shortcut && lhs.action == lhs.action
+        return lhs.shortcut == rhs.shortcut && lhs.action == rhs.action
     }
     
 }

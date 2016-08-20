@@ -99,7 +99,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         }
         
         // command key existance check
-        if !keySpecChars.contains(ModifierKey.command.keySpecChar) {  // "@"
+        if !keySpecChars.isEmpty && !keySpecChars.contains(ModifierKey.command.keySpecChar) {
             throw InvalidKeySpecCharactersError(kind: .lackingCommandKey, keySpecChars: keySpecChars)
         }
     }
