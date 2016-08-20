@@ -554,7 +554,7 @@ final class Document: NSDocument, EncodingHolder {
         
         // create printView
         let printView = PrintTextView()
-        printView.setLayoutOrientation(editor.focusedTextView?.layoutOrientation ?? .horizontal)
+        printView.setLayoutOrientation(editor.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.theme = editor.theme
         printView.documentName = self.displayName
         printView.filePath = self.fileURL?.path
@@ -1068,7 +1068,7 @@ final class Document: NSDocument, EncodingHolder {
         
         guard let string = String.IANACharSetName(of: self.encoding) else { return }
         
-        self.editor?.insert(string: string)
+        self.insert(string: string)
     }
     
     
@@ -1262,6 +1262,19 @@ final class Document: NSDocument, EncodingHolder {
     }
     
 }
+
+
+
+// MARK: - Protocol
+
+extension Document: Editable {
+    
+    var textView: NSTextView? {
+        
+        return self.editor?.focusedTextView
+    }
+}
+
 
 
 

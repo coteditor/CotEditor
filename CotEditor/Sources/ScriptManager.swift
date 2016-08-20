@@ -216,16 +216,16 @@ final class ScriptManager: NSObject {
     
     /// return document content conforming to the input type
     /// - throws: ScriptError
-    private func inputString(type: InputType, document: Document?) throws -> String {
+    private func inputString(type: InputType, editor: Editable?) throws -> String {
     
-        guard let editor = document?.editor else {
+        guard let editor = editor else {
             // on no document found
             throw ScriptError.noTarget
         }
         
         switch type {
         case .selection:
-            return editor.substringWithSelection ?? ""
+            return editor.selectedString
             
         case .allText:
             return editor.string
@@ -235,9 +235,7 @@ final class ScriptManager: NSObject {
     
     /// apply results conforming to the output type to the frontmost document
     /// - throws: ScriptError
-    private func applyOutput(_ output: String, document: Document?, type: OutputType) throws {
-        
-        let editor = document?.editor
+    private func applyOutput(_ output: String, editor: Editable?, type: OutputType) throws {
         
         guard editor != nil || type == .pasteBoard else {
             throw ScriptError.noTarget
@@ -414,7 +412,7 @@ final class ScriptManager: NSObject {
         var input: String?
         if let inputType = InputType(scanning: script) {
             do {
-                input = try self.inputString(type: inputType, document: document)
+                input = try self.inputString(type: inputType, editor: document)
             } catch let error {
                 self.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 return
@@ -470,7 +468,7 @@ final class ScriptManager: NSObject {
             guard let data = note.userInfo?[NSFileHandleNotificationDataItem] as? Data else { return }
             if let output = String(data: data, encoding: .utf8) {
                 do {
-                    try self?.applyOutput(output, document: document, type: outputType)
+                    try self?.applyOutput(output, editor: document, type: outputType)
                 } catch let error {
                     self?.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 }
