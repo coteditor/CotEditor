@@ -225,7 +225,7 @@ final class ScriptManager: NSObject {
         
         switch type {
         case .selection:
-            return editor.substringWithSelection ?? ""
+            return editor.selectedString
             
         case .allText:
             return editor.string

@@ -102,12 +102,7 @@ final class TextSelection: NSObject {
     /// string of the selection (Unicode text)
     var contents: Any? {
         get {
-            guard
-                let document = self.document,
-                var string = document.editor?.substringWithSelection else { return nil }
-            
-            // apply line endings
-            string = string.replacingLineEndings(with: document.lineEnding)
+            guard let string = self.document?.editor?.selectedString else { return nil }
             
             return NSTextStorage(string: string)
         }

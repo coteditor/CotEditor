@@ -38,19 +38,24 @@ protocol Editable: class {
 
 extension Editable {
     
-    /// return string in text view (LF fix)
+    /// line ending applied document string
     var string: String {
+    
+        guard let string = self.textView?.string else { return "" }
         
-        return self.textView?.string ?? ""
+        return string.replacingLineEndings(with: self.lineEnding)
     }
     
     
-    /// return current selection
-    var substringWithSelection: String? {
+    /// line ending applied current selection
+    var selectedString: String {
         
-        guard let selectedRange = self.textView?.selectedRange else { return nil }
+        guard let textView = self.textView,
+            let string = textView.string else { return "" }
         
-        return (self.string as NSString).substring(with: selectedRange)
+        let substring = (string as NSString).substring(with: textView.selectedRange)
+        
+        return substring.replacingLineEndings(with: self.lineEnding)
     }
     
     

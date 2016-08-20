@@ -49,6 +49,11 @@ develop
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
 
 
+### Fixes
+
+- Fix an issue where some of script APIs returned always string with LF line endings.
+
+
 
 2.5.7-alpha
 --------------------------
