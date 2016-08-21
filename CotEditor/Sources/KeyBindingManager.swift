@@ -245,26 +245,23 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     /// create a plist-compatible collection to save from outlineView data
     private func keyBindings(from outlineTree: [NSTreeNode]) -> Set<KeyBinding> {
-    
-        var keyBindings = Set<KeyBinding>()
         
-        for node in outlineTree {
-            if let children = node.children, !children.isEmpty {
-                keyBindings.formUnion(self.keyBindings(from: children))
+        let keyBindings: [KeyBinding] = outlineTree
+            .map { node -> [KeyBinding] in
+                if let children = node.children, !children.isEmpty {
+                    return self.keyBindings(from: children).sorted()
+                }
                 
-            } else {
                 guard
                     let keyItem = node.representedObject as? KeyBindingItem,
                     let shortcut = keyItem.shortcut
-                    else { continue }
+                    else { return [] }
                 
-                let keyBinding = KeyBinding(action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)
-                
-                keyBindings.insert(keyBinding)
+                return [KeyBinding(action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)]
             }
-        }
+            .flatMap { $0 }
         
-        return keyBindings
+        return Set(keyBindings)
     }
     
 }

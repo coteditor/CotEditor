@@ -78,20 +78,15 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
         
-        var tree = [NSTreeNode]()
-        
-        for index in 0...30 {
+        return (0...30).map { index in
             let title = String(format: NSLocalizedString("Insert Text %li", comment: ""), index)
             let action = type(of: self).action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
             let item = KeyBindingItem(action: action, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
-            let node = NamedTreeNode(name:title, representedObject: item)
             
-            tree.append(node)
+            return NamedTreeNode(name:title, representedObject: item)
         }
-        
-        return tree
     }
     
     
