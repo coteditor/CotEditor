@@ -47,7 +47,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     override private init() {
         
         guard let mainMenu = NSApp.mainMenu else {
-            fatalError("MenuKeyBindingManager should be initialized after MainMenu.xib is loaded.")
+            fatalError("MenuKeyBindingManager should be initialized after Main.storyboard is loaded.")
         }
         
         _defaultKeyBindings = MenuKeyBindingManager.scanMenuKeyBindingRecurrently(menu: mainMenu)
