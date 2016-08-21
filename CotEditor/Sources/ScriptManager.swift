@@ -534,19 +534,12 @@ private extension ScriptToken {
     /// read type from script
     init?(scanning script: String) {
         
-        let scanner = Scanner(string: script)
-        scanner.caseSensitive = true
+        let pattern = "%%%\\{" + Self.token + "=" + "(.+)" + "\\}%%%"
+        let regex = try! NSRegularExpression(pattern: pattern)
         
-        var scannedString: NSString?
-        while !scanner.isAtEnd {
-            scanner.scanUpTo("%%%{\(Self.token)=", into: nil)
-            if scanner.scanString("%%%{\(Self.token)=", into: nil),
-                scanner.scanUpTo("}%%%", into: &scannedString) {
-                break
-            }
-        }
+        guard let result = regex.firstMatch(in: script, range: script.nsRange) else { return nil }
         
-        guard let type = scannedString as? String else { return nil }
+        let type = (script as NSString).substring(with: result.rangeAt(1))
         
         self.init(rawValue: type)
     }
