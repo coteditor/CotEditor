@@ -40,6 +40,8 @@ class ShortcutTests: XCTestCase {
         XCTAssertEqual(Shortcut(modifierMask: [], keyEquivalent: "a").keySpecChars, "a")
         XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").keySpecChars, "^$")
         XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").isValid)
+        XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").isEmpty)
+        XCTAssertTrue(Shortcut.none.isEmpty)
     }
     
     

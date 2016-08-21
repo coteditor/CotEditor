@@ -52,6 +52,7 @@ final class KeyBindingsPaneController: NSViewController {
     
     /// setup tab views
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.tabView?.tabViewItem(at: 0).view = self.menuViewController.view

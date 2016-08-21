@@ -184,28 +184,30 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         guard let node = outlineView.item(atRow: row) as? NSTreeNode, node.isLeaf else { return }
         guard let item = node.representedObject as? KeyBindingItem else { return }
         
-        let oldKeySpecChars = item.shortcut?.keySpecChars
-        let keySpecChars = textField.stringValue
+        let oldShortcut = item.shortcut
+        let input = textField.stringValue
         
         // reset once warning
         self.warningMessage = nil
         
         defer {
             // reset text field display
-            textField.objectValue = item.shortcut?.description
+            textField.objectValue = oldShortcut?.description
         }
         
         // treat esc key as cancel
-        guard keySpecChars != "\u{1b}" else { return } // = ESC key
+        guard input != "\u{1b}" else { return } // = ESC key
         
-        guard keySpecChars != item.shortcut?.description else { return }  // not edited
+        guard input != item.shortcut?.description else { return }  // not edited
+        
+        let shortcut = Shortcut(keySpecChars: input)
         
         do {
-            try self.manager.validate(keySpecChars: keySpecChars, oldKeySpecChars: oldKeySpecChars)
+            try self.manager.validate(shortcut: shortcut, oldShortcut: oldShortcut)
             
         } catch let error as InvalidKeySpecCharactersError {
             self.warningMessage = error.localizedDescription + " " + (error.recoverySuggestion ?? "")
-            textField.objectValue = oldKeySpecChars  // reset view with previous key
+            textField.objectValue = oldShortcut?.keySpecChars  // reset view with previous key
             NSBeep()
             
             // make text field edit mode again if invalid
@@ -213,10 +215,10 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
                 outlineView.editColumn(column, row: row, with: nil, select: true)
             }
             return
-        } catch { }
+        } catch { assertionFailure("Caught unknown error.") }
         
         // successfully update data
-        item.shortcut = Shortcut(keySpecChars: keySpecChars)
+        item.shortcut = shortcut
         self.saveSettings()
     }
     

@@ -92,15 +92,13 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     /// validate new key spec chars are settable
-    override func validate(keySpecChars: String, oldKeySpecChars: String?) throws {
+    override func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
         
-        do {
-            try super.validate(keySpecChars: keySpecChars, oldKeySpecChars: oldKeySpecChars)
-        }
+        try super.validate(shortcut: shortcut, oldShortcut: oldShortcut)
         
         // command key existance check
-        if !keySpecChars.isEmpty && !keySpecChars.contains(ModifierKey.command.keySpecChar) {
-            throw InvalidKeySpecCharactersError(kind: .lackingCommandKey, keySpecChars: keySpecChars)
+        if !shortcut.isEmpty && !shortcut.modifierMask.contains(.command) {
+            throw InvalidKeySpecCharactersError(kind: .lackingCommandKey, shortcut: shortcut)
         }
     }
     
@@ -203,27 +201,25 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// scan all key bindings as well as selector name in passed-in menu
     private class func scanMenuKeyBindingRecurrently(menu: NSMenu) -> Set<KeyBinding> {
         
-        var keyBindings = Set<KeyBinding>()
-        
-        for menuItem in menu.items {
-            guard self.allowsModifying(menuItem) else { continue }
+        let keyBindings: [KeyBinding] = menu.items.map { menuItem -> [KeyBinding] in
+            guard self.allowsModifying(menuItem) else { return [] }
             
             if let submenu = menuItem.submenu {
-                keyBindings.formUnion(self.scanMenuKeyBindingRecurrently(menu: submenu))
+                return self.scanMenuKeyBindingRecurrently(menu: submenu).sorted()
                 
             } else {
-                guard let action = menuItem.action else { continue }
+                guard let action = menuItem.action else { return [] }
                 
                 let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
                                         keyEquivalent: menuItem.keyEquivalent)
                 
-                if shortcut.isValid {
-                    keyBindings.insert(KeyBinding(action: action, shortcut: shortcut))
-                }
+                guard shortcut.isValid else { return [] }
+                
+                return [KeyBinding(action: action, shortcut: shortcut)]
             }
-        }
+            }.flatMap { $0 }
         
-        return keyBindings
+        return Set(keyBindings)
     }
     
     
@@ -259,10 +255,10 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 let shortcut = self.shortcut(for: action)
                 
                 // apply only if keyEquivalent exists and the Command key is included
-                if shortcut.modifierMask.contains(.command) {
-                    menuItem.keyEquivalent = shortcut.keyEquivalent
-                    menuItem.keyEquivalentModifierMask = shortcut.modifierMask
-                }
+                guard shortcut.modifierMask.contains(.command) else { continue }
+                
+                menuItem.keyEquivalent = shortcut.keyEquivalent
+                menuItem.keyEquivalentModifierMask = shortcut.modifierMask
             }
         }
     }
@@ -271,32 +267,27 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// read key bindings from the menu and create an array data for outlineView in preferences
     private func outlineTree(menu: NSMenu, defaults usesDefaults: Bool) -> [NSTreeNode] {
         
-        var tree = [NamedTreeNode]()
-        
-        for menuItem in menu.items {
-            guard type(of: self).allowsModifying(menuItem) else { continue }
+        return menu.items.flatMap { menuItem in
+            guard type(of: self).allowsModifying(menuItem) else { return nil }
             
-            let node: NamedTreeNode
             if let submenu = menuItem.submenu {
-                node = NamedTreeNode(name: menuItem.title, representedObject: nil)
+                let node = NamedTreeNode(name: menuItem.title)
                 node.mutableChildren.addObjects(from: self.outlineTree(menu: submenu, defaults: usesDefaults))
+                return node
                 
             } else {
-                guard let action = menuItem.action else { continue }
+                guard let action = menuItem.action else { return nil }
                 
                 let defaultShortcut = self.shortcut(for: action, defaults: true)
-                
                 let shortcut = usesDefaults
                     ? defaultShortcut
                     : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 
                 let item = KeyBindingItem(action: action, shortcut: shortcut, defaultShortcut: defaultShortcut)
-                node = NamedTreeNode(name: menuItem.title, representedObject: item)
+                
+                return NamedTreeNode(name: menuItem.title, representedObject: item)
             }
-            tree.append(node)
         }
-        
-        return tree
     }
     
 }

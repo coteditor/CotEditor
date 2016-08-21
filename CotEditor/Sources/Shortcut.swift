@@ -80,7 +80,6 @@ struct Shortcut: Hashable, CustomStringConvertible {
     
     let modifierMask: NSEventModifierFlags
     let keyEquivalent: String
-    let isValid: Bool
     
     static let none = Shortcut(modifierMask: [], keyEquivalent: "")
     
@@ -97,16 +96,13 @@ struct Shortcut: Hashable, CustomStringConvertible {
             return modifierMask
         }()
         
-        let keys = ModifierKey.all.filter { modifierMask.contains($0.mask) }
-        
         self.keyEquivalent = keyEquivalent
-        self.isValid = keyEquivalent.characters.count == 1 && !keys.isEmpty
     }
     
     
     init(keySpecChars: String) {
         
-        guard keySpecChars.characters.count > 1 else {
+        guard !keySpecChars.isEmpty else {
             self.init(modifierMask: [], keyEquivalent: "")
             return
         }
@@ -131,6 +127,23 @@ struct Shortcut: Hashable, CustomStringConvertible {
             .reduce("") { (chars, key) in chars + key.keySpecChar }
         
         return modifierCharacters + self.keyEquivalent
+    }
+    
+    
+    /// whether is empty
+    var isEmpty: Bool {
+        
+        return self.keyEquivalent.isEmpty && self.modifierMask.isEmpty
+    }
+    
+    
+    /// whether key combination is valid for a shortcut
+    /// - note: an empty shortcut is marked as invalid.
+    var isValid: Bool {
+        
+        let keys = ModifierKey.all.filter { self.modifierMask.contains($0.mask) }
+        
+        return self.keyEquivalent.characters.count == 1 && !keys.isEmpty
     }
     
     

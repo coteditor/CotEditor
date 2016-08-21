@@ -70,11 +70,10 @@ final class ShortcutKeyField: NSTextField {
             
             // set input shortcut string to field
             let keySpecChars = Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
-            if keySpecChars == "\u{8}" {  // single NSDeleteCharacter works as delete
-                self?.objectValue = nil
-            } else {
-                self?.stringValue = keySpecChars
-            }
+            self?.objectValue = {
+                guard keySpecChars != "\u{8}" else { return nil }  // single NSDeleteCharacter works as delete
+                return keySpecChars
+            }()
             
             // end editing
             self?.window?.endEditing(for: nil)

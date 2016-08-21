@@ -105,15 +105,13 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     
     /// validate new key spec chars are settable
-    override func validate(keySpecChars: String, oldKeySpecChars: String?) throws {
+    override func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
         
-        do {
-            try super.validate(keySpecChars: keySpecChars, oldKeySpecChars: oldKeySpecChars)
-        }
+        try super.validate(shortcut: shortcut, oldShortcut: oldShortcut)
         
         // command key existance check
-        if keySpecChars.contains(ModifierKey.command.keySpecChar) {
-            throw InvalidKeySpecCharactersError(kind: .unwantedCommandKey, keySpecChars: keySpecChars)
+        if shortcut.modifierMask.contains(.command) {
+            throw InvalidKeySpecCharactersError(kind: .unwantedCommandKey, shortcut: shortcut)
         }
     }
     
