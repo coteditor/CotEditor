@@ -134,25 +134,24 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         var highlightDictionary = [SyntaxType: [HighlightDefinition]]()
         var quoteTypes = [String: SyntaxType]()
         for type in SyntaxType.all {
-            if let definitionDictionaries = dictionary[type.rawValue] as? [[String: Any]] {
+            guard let definitionDictionaries = dictionary[type.rawValue] as? [[String: Any]] else { continue }
+            
+            var definitions = [HighlightDefinition]()
+            definitionLoop: for wordDict in definitionDictionaries {
+                guard let definition = HighlightDefinition(definition: wordDict) else { continue }
                 
-                var definitions = [HighlightDefinition]()
-                definitionLoop: for wordDict in definitionDictionaries {
-                    guard let definition = HighlightDefinition(definition: wordDict) else { continue }
-                    
-                    // check quote
-                    for quote in ["\"\"\"", "'''", "\"", "'", "`"] {
-                        if definition.beginString == quote && definition.endString == quote && !quoteTypes.keys.contains(quote) {
-                            // remove from the normal highlight definition list
-                            quoteTypes[quote] = type
-                            continue definitionLoop
-                        }
+                // check quote
+                for quote in ["\"\"\"", "'''", "\"", "'", "`"] {
+                    if definition.beginString == quote && definition.endString == quote && !quoteTypes.keys.contains(quote) {
+                        // remove from the normal highlight definition list
+                        quoteTypes[quote] = type
+                        continue definitionLoop
                     }
-                    
-                    definitions.append(definition)
                 }
-                highlightDictionary[type] = definitions
+                
+                definitions.append(definition)
             }
+            highlightDictionary[type] = definitions
         }
         self.highlightDictionary = highlightDictionary
         self.pairedQuoteTypes = quoteTypes
@@ -217,15 +216,9 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         self.outlineDefinitions = {
             guard let definitionDictionaries = dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]] else { return nil }
             
-            var outlineDefinitions = [OutlineDefinition]()
-            for definitionDictionary in definitionDictionaries {
-                if let definition = OutlineDefinition(definition: definitionDictionary) {
-                    outlineDefinitions.append(definition)
-                }
-            }
-            guard !outlineDefinitions.isEmpty else { return nil }
+            let definitions = definitionDictionaries.flatMap { OutlineDefinition(definition: $0) }
             
-            return outlineDefinitions
+            return definitions.isEmpty ? nil : definitions
         }()
     }
     

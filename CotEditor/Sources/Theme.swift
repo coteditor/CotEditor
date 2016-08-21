@@ -53,7 +53,7 @@ struct Theme: CustomDebugStringConvertible {
     /// Is background color dark?
     let isDarkTheme: Bool
     
-    /// Is created from a valid theme dict? (Theme itself can be used even invalid since NSColor.grayColor() are substituted for invalid colors.)
+    /// Is created from a valid theme dict? (Theme itself can be used even invalid since NSColor.gray are substituted for invalid colors.)
     let isValid: Bool
     
     
@@ -72,9 +72,6 @@ struct Theme: CustomDebugStringConvertible {
         
         guard !name.isEmpty else { return nil }
         
-        var colors = [ThemeKey: NSColor]()
-        var isValid = true
-        
         func unarchiveColor(subdict: NSMutableDictionary?) throws -> NSColor {
             
             guard let colorCode = subdict?[ThemeKey.Sub.color.rawValue] as? String else { throw ThemeError.noValue }
@@ -86,26 +83,30 @@ struct Theme: CustomDebugStringConvertible {
             return color
         }
         
-        for key in ThemeKey.basicKeys {
+        var isValid = true
+        
+        let colors: [ThemeKey: NSColor] = ThemeKey.basicKeys.reduce([:]) { (dict, key) in
+            var dict = dict
             do {
-                colors[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
+                dict[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
             } catch {
-                colors[key] = .gray
+                dict[key] = .gray
                 isValid = false
             }
+            return dict
         }
         
         // unarchive syntax colors also
-        var syntaxColors = [SyntaxType: NSColor]()
-        for key in SyntaxType.all {
+        self.syntaxColors = SyntaxType.all.reduce([:]) { (dict, key) in
+            var dict = dict
             do {
-                syntaxColors[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
+                dict[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
             } catch {
-                syntaxColors[key] = .gray
+                dict[key] = .gray
                 isValid = false
             }
+            return dict
         }
-        self.syntaxColors = syntaxColors
         
         // set properties
         self.name = name
@@ -118,11 +119,12 @@ struct Theme: CustomDebugStringConvertible {
         self.insertionPointColor = colors[.insertionPoint]!
         self.lineHighLightColor = colors[.lineHighlight]!
         
-        self.usesSystemSelectionColor = (dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool) ?? false
+        self.usesSystemSelectionColor = dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool ?? false
         
         // standardize color space to obtain color values safety
         let textColor = self.textColor.usingColorSpaceName(NSDeviceRGBColorSpace)!
         let backgroundColor = self.backgroundColor.usingColorSpaceName(NSDeviceRGBColorSpace)!
+        
         // check if background is dark
         self.isDarkTheme = backgroundColor.brightnessComponent < textColor.brightnessComponent
     }

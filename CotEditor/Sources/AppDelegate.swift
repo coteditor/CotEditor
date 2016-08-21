@@ -133,9 +133,10 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         }
         
         // register default setting values
-        var defaults: [String: Any] = [:]
-        for (key, value) in DefaultSettings {
-            defaults[key.rawValue] = value
+        let defaults: [String: Any] = DefaultSettings.reduce([:]) { (dict, item) in
+            var dict = dict
+            dict[item.key.rawValue] = item.value
+            return dict
         }
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared().initialValues = defaults

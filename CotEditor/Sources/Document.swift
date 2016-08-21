@@ -675,7 +675,7 @@ final class Document: NSDocument, EncodingHolder {
         // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
         var fileHash: Data?
         coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in
-            fileHash = (try? Data(contentsOf: newURL))?.md5  // FILE_READ
+            fileHash = try? Data(contentsOf: newURL).md5  // FILE_READ
         }
         guard fileHash != self.fileHash else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)

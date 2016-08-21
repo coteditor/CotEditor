@@ -335,12 +335,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     /// menu titles for binding
     var menuTitles: [String] {
         
-        var titles = [String]()
-        for index in 0...PaneIndex.validation.rawValue {
+        return (0...PaneIndex.validation.rawValue).map { index in
             let title = PaneIndex(rawValue: index)!.title
-            titles.append(NSLocalizedString(title, comment: ""))
+            return NSLocalizedString(title, comment: "")
         }
-        return titles
     }
     
     

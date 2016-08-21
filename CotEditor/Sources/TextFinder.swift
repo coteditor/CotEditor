@@ -685,10 +685,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         }
         
         // wrap search
-        var isWrapped = false
-        if foundRange == nil && self.isWrap {
+        let isWrapped = (foundRange == nil && self.isWrap)
+        if isWrapped {
             foundRange = forward ? matches.first : matches.last
-            isWrapped = true
         }
         
         // found feedback

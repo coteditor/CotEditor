@@ -32,21 +32,17 @@ extension NSColor {
     /// create desired number of colors from itself
     func decomposite(into n: Int) -> [NSColor] {
         
-        var colors = [NSColor]()
-        
         let baseHue = self.hueComponent
         let saturation = self.saturationComponent
         let brightness = self.brightnessComponent
         let alpha = self.alphaComponent
         
-        for index in 0..<n {
+        return (0..<n).map { index in
             let advance = CGFloat(index) / CGFloat(n)
             let (_, hue) = modf(baseHue + advance)
             
-            colors.append(NSColor(calibratedHue: hue, saturation: saturation, brightness: brightness, alpha: alpha))
+            return NSColor(calibratedHue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
         }
-        
-        return colors
     }
     
 }
