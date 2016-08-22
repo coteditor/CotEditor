@@ -128,7 +128,7 @@ extension Document {
     /// encoding in IANA CharSet name (Unicode text)
     var IANACharSetName: String {
         
-        return String.IANACharSetName(of: self.encoding) ?? ""
+        return self.encoding.ianaCharSetName ?? ""
     }
     
     

@@ -108,6 +108,15 @@ extension String.Encoding {
         return "¥".canBeConverted(to: self)
     }
     
+    
+    /// IANA charset name for the encoding
+    var ianaCharSetName: String? {
+        
+        let cfEncoding = CFStringConvertNSStringEncodingToEncoding(self.rawValue)
+        
+        return CFStringConvertEncodingToIANACharSetName(cfEncoding) as String?
+    }
+    
 }
 
 
@@ -198,17 +207,6 @@ extension String {
         
         return String(format: NSLocalizedString("%@ with BOM", comment: "Unicode (UTF-8) with BOM"),
                       String.localizedName(of: .utf8))
-    }
-    
-    
-    /// IANA charset name for the given encoding
-    static func IANACharSetName(of encoding: String.Encoding) -> String? {
-        
-        let cfEncoding = CFStringConvertNSStringEncodingToEncoding(encoding.rawValue)
-        
-        guard let name = CFStringConvertEncodingToIANACharSetName(cfEncoding) else { return nil }
-        
-        return name as String
     }
 
     

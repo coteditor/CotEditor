@@ -126,7 +126,7 @@ final class DocumentAnalyzer: NSObject {
         guard let document = self.document else { return }
         
         self.encoding = String.localizedName(of: document.encoding, withUTF8BOM: document.hasUTF8BOM)
-        self.charsetName = String.IANACharSetName(of: document.encoding)
+        self.charsetName = document.encoding.ianaCharSetName
         self.lineEndings = document.lineEnding.name
         
         NotificationCenter.default.post(name: .AnalyzerDidUpdateModeInfo, object: self)

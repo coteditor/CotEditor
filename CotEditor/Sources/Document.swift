@@ -1066,7 +1066,7 @@ final class Document: NSDocument, EncodingHolder {
     /// insert IANA CharSet name to editor's insertion point
     @IBAction func insertIANACharSetName(_ sender: AnyObject?) {
         
-        guard let string = String.IANACharSetName(of: self.encoding) else { return }
+        guard let string = self.encoding.ianaCharSetName else { return }
         
         self.insert(string: string)
     }

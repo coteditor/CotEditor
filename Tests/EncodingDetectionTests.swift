@@ -219,8 +219,8 @@ class EncodingDetectionTests: XCTestCase {
     
     func testIANACharsetName() {
         
-        XCTAssertEqual(String.IANACharSetName(of: .utf8), "utf-8")
-        XCTAssertEqual(String.IANACharSetName(of: .isoLatin1), "iso-8859-1")
+        XCTAssertEqual(String.Encoding.utf8.ianaCharSetName, "utf-8")
+        XCTAssertEqual(String.Encoding.isoLatin1.ianaCharSetName, "iso-8859-1")
     }
     
     
