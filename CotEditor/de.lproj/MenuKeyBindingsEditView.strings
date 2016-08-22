@@ -26,16 +26,16 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "RbS-WH-Pvx"; */
-"RbS-WH-Pvx.title" = "Kurzbefehls für Menüeinträge";
+"RbS-WH-Pvx.title" = "Kurzbefehle für Menüeinträge";
 
 /* Class = "NSTextFieldCell"; title = "(excl. Script menu)"; ObjectID = "ZDf-YZ-208"; */
-"ZDf-YZ-208.title" = "(exkl. Skripte-Menü)";
+"ZDf-YZ-208.title" = "(außer Skript-Menü)";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "144"; */
-"144.title" = "Zum Ändern einer Tastenbelegung wählen Sie ihn aus, klicken auf die Taste-Spalte und dann geben die Tasten ein.";
+"144.title" = "Zum Ändern eines Kurzbefehls wählen Sie ihn aus, klicken in die Taste-Spalte und drücken die Tasten.";
 
 /* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "G0x-RZ-DT4"; */
-"G0x-RZ-DT4.title" = "Die Tasten hier müssen die Command-Taste umfassen.";
+"G0x-RZ-DT4.title" = "Eine der Tasten muss die Command-Taste sein.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
 "9.headerCell.title" = "Titel / Aktion";

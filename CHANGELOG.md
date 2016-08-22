@@ -2,7 +2,21 @@
 Change Log
 ==========================
 
-develop
+2.5.7 (138)
+--------------------------
+
+### Fixes
+
+- Fix German localization (Thanks to J-rg!).
+- Fix “Markdown” and “Verilog” syntax styles.
+- Fix update range of syntax highlight while editing.
+- Fix key binding setting error message.
+- Fix an issue where syntax validation result view was editable.
+- Address an issue where editor's drawing area could become wrong after scaling font size by vertical text.
+
+
+
+2.5.6 (135)
 --------------------------
 
 ### New Features

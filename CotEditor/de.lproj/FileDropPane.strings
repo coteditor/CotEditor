@@ -28,29 +28,29 @@
 /* Class = "NSTextFieldCell"; title = "Extensions:"; ObjectID = "3331"; */
 "3331.title" = "Suffixe:";
 /* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
-"3335.title" = "(Komma getrennte, ohne Punkte)";
+"3335.title" = "(kommagetrennt, ohne Punkte)";
 
 /* Class = "NSTextFieldCell"; title = "Glossary:"; ObjectID = "3337"; */
 "3337.title" = "Glossar:";
 
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "457"; */
-"457.ibShadowedToolTip" = "Addieren";
+"457.ibShadowedToolTip" = "Hinzufügen";
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Delete"; ObjectID = "458"; */
 "458.ibShadowedToolTip" = "Löschen";
 
 
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
-"3332.title" = "Format des Einführungstexts:";
+"3332.title" = "Format des einzufügenden Textes:";
 
 /* Class = "NSMenuItem"; title = "Insert Pre-Formatted String"; ObjectID = "541"; */
 "541.title" = "Vorformatierte Zeichenkette hinzufügen";
 
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file absolute path."; ObjectID = "544"; */
-"544.ibShadowedToolTip" = "Der Absolute Pfad der abgelegten Datei.";
+"544.ibShadowedToolTip" = "Der absolute Pfad der abgelegten Datei.";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The relative path between dropped file and the document."; ObjectID = "546"; */
-"546.ibShadowedToolTip" = "Der Relative Pfad zwischen der abgelegten Datei und der Dokument.";
+"546.ibShadowedToolTip" = "Der relative Pfad zwischen der abgelegten Datei und dem Dokument.";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s name include extension (if exists)."; ObjectID = "542"; */
-"542.ibShadowedToolTip" = "Der Name der abgelegten Datei Suffix inklusive (falls es existiert).";
+"542.ibShadowedToolTip" = "Der Name der abgelegten Datei inklusive Suffix (falls es existiert).";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s name without extension."; ObjectID = "538"; */
 "538.ibShadowedToolTip" = "Der Name der abgelegten Datei ohne Suffix.";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension."; ObjectID = "694"; */
@@ -60,11 +60,11 @@
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension (converted to uppercase)."; ObjectID = "696"; */
 "696.ibShadowedToolTip" = "Das Suffix der abgelegten Datei (in Großbuchstaben umgewandelt).";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "The parent directory name of dropped file."; ObjectID = "539"; */
-"539.ibShadowedToolTip" = "Der Übergeordnete Ordnername der abgelegten Datei.";
+"539.ibShadowedToolTip" = "Der übergeordnete Ordnername der abgelegten Datei.";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image width."; ObjectID = "540"; */
-"540.ibShadowedToolTip" = "Die Bildbreite (Gültig, nur wenn die abgelegte Datei ein Bild ist).";
+"540.ibShadowedToolTip" = "Die Bildbreite (nur wenn die abgelegte Datei ein Bild ist).";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image height."; ObjectID = "537"; */
-"537.ibShadowedToolTip" = "Die Bildhöhe (Gültig, nur wenn die abgelegte Datei ein Bild ist).";
+"537.ibShadowedToolTip" = "Die Bildhöhe (nur wenn die abgelegte Datei ein Bild ist).";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
-"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "Keine Suffix wurde ausgewählt.";
+"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "Kein Suffix ausgewählt.";

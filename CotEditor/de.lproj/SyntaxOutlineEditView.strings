@@ -27,7 +27,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
-"cBA-MO-VzQ.title" = "Regulärer Ausdruck um Gliederungsmenü auszuziehen";
+"cBA-MO-VzQ.title" = "Regulärer Ausdruck um Gliederungsmenü zu extrahieren";
 
 /* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
 "vRg-cd-Ib2.headerCell.title" = "Regulärer Ausdruck";
@@ -40,11 +40,11 @@
 "6hB-wJ-niI.headerCell.title" = "Beschreibung";
 
 /* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "Muster des Menütitles (Leer passt die ganze Zeichenkette)";
+"nnO-qN-dYF.title" = "Muster des Menütitels (Leer entspricht der gesamten Zeichenkette)";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "eX8-7L-AYT"; */
 "eX8-7L-AYT.ibShadowedToolTip" = "Fett";
 /* Class = "NSButton"; ibShadowedToolTip = "Underline"; ObjectID = "rFv-YW-Uea"; */
-"rFv-YW-Uea.ibShadowedToolTip" = "unterstrichen";
+"rFv-YW-Uea.ibShadowedToolTip" = "Unterstrichen";
 /* Class = "NSButton"; ibShadowedToolTip = "Italic"; ObjectID = "5fG-BP-ynf"; */
 "5fG-BP-ynf.ibShadowedToolTip" = "Kursiv";

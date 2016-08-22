@@ -1997,23 +1997,23 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     scale = MAX(0.25, MIN(scale, 4.0));
     
     // scale
-    [self scaleUnitSquareToSize:[self convertSize:NSMakeSize(1.0, 1.0) fromView:nil]];  // reset
-    [self scaleUnitSquareToSize:NSMakeSize(scale, scale)];
+    CGFloat relativeScale = scale / [self scale];
+    [self scaleUnitSquareToSize:NSMakeSize(relativeScale, relativeScale)];
     
     // ensure bounds origin is {0, 0} for vertical text orientation
-    [self setNeedsDisplay:YES];
     [self translateOriginToPoint:[self bounds].origin];
     
     // reset minimum size for unwrap mode
-    [self setMinSize:CEScaleSize([[self enclosingScrollView] contentSize], 1.0 / scale)];
+    [self setMinSize:[self visibleRect].size];
     
     // ensure text layout
-    [[self layoutManager] ensureLayoutForCharacterRange:NSMakeRange(0, [[self string] length])];
     [[self layoutManager] ensureLayoutForTextContainer:[self textContainer]];
     [self sizeToFit];
     
     // dummy reselection to force redrawing current line highlight
     [self setSelectedRanges:[self selectedRanges]];
+    
+    [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:YES];
 }
 
 
@@ -2038,7 +2038,7 @@ static NSCharacterSet *kMatchingClosingBracketsSet;
     
     // adjust scroller to keep position of the glyph at the passed-in center point
     if ([self scale] != currentScale) {
-        centerFromClipOrigin = CEScalePoint(centerFromClipOrigin, 1.0 / scale);
+        centerFromClipOrigin = CEScalePoint(centerFromClipOrigin, 1.0 / [self scale]);
         NSRect newCenter = [[self layoutManager] boundingRectForGlyphRange:NSMakeRange(centerGlyphIndex, 1)
                                                            inTextContainer:[self textContainer]];
         NSPoint scrollPoint = NSMakePoint(round(point.x - centerFromClipOrigin.x),

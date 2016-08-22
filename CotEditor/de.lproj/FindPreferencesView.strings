@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Advanced Find Options"; ObjectID = "Dl6-kv-hhz"; */
-"Dl6-kv-hhz.title" = "Erweitere Suchoptionen";
+"Dl6-kv-hhz.title" = "Erweiterte Suchoptionen";
 
 
 /* Class = "NSButtonCell"; title = "Wrap search around"; ObjectID = "o7S-uI-urg"; */
@@ -49,7 +49,7 @@
 // Regular Expression
 
 /* Class = "NSTextFieldCell"; title = "Regular Expression"; ObjectID = "Xa9-i4-ELR"; */
-"Xa9-i4-ELR.title" = "Regulären Ausdruck";
+"Xa9-i4-ELR.title" = "Regulärer Ausdruck";
 
 /* Class = "NSTextFieldCell"; title = "Syntax:"; ObjectID = "MvA-iq-o2S"; */
 "MvA-iq-o2S.title" = "Syntax:";

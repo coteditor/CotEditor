@@ -45,7 +45,12 @@
                                 <size key="minSize" width="424" height="288"/>
                                 <size key="maxSize" width="426" height="10000000"/>
                                 <connections>
-                                    <binding destination="-2" name="value" keyPath="result" id="pCU-wH-PfC"/>
+                                    <binding destination="-2" name="value" keyPath="result" id="qID-zg-dZb">
+                                        <dictionary key="options">
+                                            <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                            <bool key="NSConditionallySetsEditable" value="NO"/>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </textView>
                         </subviews>

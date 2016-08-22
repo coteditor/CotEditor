@@ -4,10 +4,10 @@ filenames: []
 interpreters: []
 metadata:
   distributionURL: "http://coteditor.com"
-  lastModified: "2016-06-13"
+  lastModified: "2016-06-19"
   author: "1024jp"
   license: "Same as CotEditor"
-  version: "1.0.0"
+  version: "1.0.1"
 keywords:
 - beginString: "always"
 - beginString: "and"
@@ -134,7 +134,7 @@ numbers:
   regularExpression: true
 strings: []
 characters:
-- beginString: "\\b[0-9]+'s?[bdh]"
+- beginString: "[0-9]*'s?[bdh](?=[0-9a-f])"
   regularExpression: true
   ignoreCase: true
   description: "number prefix"

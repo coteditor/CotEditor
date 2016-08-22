@@ -44,7 +44,7 @@
 
 /* MARK: CEAppDelegate */
 // File open accessory's menu item title
-"Auto-Detect" = "Auto-Erkennung";
+"Auto-Detect" = "Automatisch erkennen";
 // Format - Syntax coloring menu item title
 "None" = "Ohne";
 "Re-Color All" = "Alles umfärben";
@@ -54,7 +54,7 @@
 "Do you want to install this theme?" = "Möchten Sie das Thema installieren?";
 "Install" = "Installieren";
 "Open as Text File" = "Als Textdatei öffnen";
-"A new theme named “%@” has been successfully installed." = "Ein neues Thema, das “%@” heißt, wurde erfolgreich installiert.";
+"A new theme named “%@” has been successfully installed." = "Ein neues Thema mit dem Namen „%@“ wurde erfolgreich installiert.";
 
 // Window title of bug report
 "Bug Report" = "Fehlerbericht";
@@ -97,18 +97,18 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Keine Zeichenketten in „%@“ gefunden.";
 "Found one string in “%@”." = "Eine Zeichenkette in „%@“ gefunden.";
-"Found %@ strings in “%@”." = "%@ Zeichenketten “%@” in gefunden.";
+"Found %@ strings in “%@”." = "%@ Zeichenketten „%@” in gefunden.";
 
 
 
 /* MARK: CEDocumentController */
 // binary file alert
-"The file “%@” doesn’t appear to be text data." = "Die Datei “%@” entspricht keiner Textdatei.";
+"The file “%@” doesn’t appear to be text data." = "Die Datei „%@” entspricht keiner Textdatei.";
 "The file is %@.\n\nMöchten Sie die Datei wirklich öffnen?" = "Die Datei ist %@.\n\nMöchten Sie die Datei wirklich öffnen?";
 
 // Large file alert
-"The file “%@” has a size of %@." = "Die Datei „%@“ hat die Größe von %@.";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Wenn eine solche große Datei geöffnet wird, kann das Programm langsam werden oder nicht mehr reagieren.\n\nMöchten Sie die Datei wirklich öffnen?";
+"The file “%@” has a size of %@." = "Die Datei „%@“ hat eine Größe von %@.";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Wenn eine so große Datei geöffnet wird, kann das Programm langsam werden oder nicht mehr reagieren.\n\nMöchten Sie die Datei wirklich öffnen?";
 "Open" = "Öffnen";
 
 
@@ -119,9 +119,9 @@
 "Line Endings to “%@”" = "Zeilenenden zu „%@“";
 // Convert or reinterpret encoding alert
 "File encoding" = "Dateicodierung";
-"Do you want to convert or reinterpret this document using “%@”?" = "Möchten Sie dieses Dokument mit „%@“ umwandeln oder wiederinterpretieren?";
+"Do you want to convert or reinterpret this document using “%@”?" = "Möchten Sie dieses Dokument mit „%@“ umwandeln oder neu interpretieren?";
 "Convert" = "Umwandeln";
-"Reinterpret" = "Wiederinterpretieren";
+"Reinterpret" = "Neu interpretieren";
 
 // Lossy encoding alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
@@ -130,9 +130,9 @@
 "Show Incompatible Chars" = "Inkompatible Zeichen einblenden";
 
 // Uncorresponded IANA charset name alert
-"The encoding is “%@”, but the IANA charset name in text is “%@”." = "Die Codierung ist „%@“, doch der IANA Charset-Name ist „%@“.";
+"The encoding is “%@”, but the IANA charset name in text is “%@”." = "Die Codierung ist „%@“, doch der IANA-Zeichensatzname ist „%@“.";
 "Do you want to continue processing?" = "Möchten Sie mit der Bearbeitung fortfahren?";
-"Do not show this warning for this document again" = "Diese Warnung für dieses Dokument nicht wieder anzeigen";
+"Do not show this warning for this document again" = "Diese Warnung für dieses Dokument nicht erneut anzeigen";
 "Continue Saving" = "Speicherung fortsetzen";
 
 // Encoding change with unsaved changes alert
@@ -141,19 +141,19 @@
 "Discard Changes" = "Änderungen verwerfen";
 
 // Reinterpretion failed alert
-"Can not reinterpret." = "konnte nicht wiederinterpretieren.";
-"The file “%@” could not be reinterpreted using the new encoding “%@”." = "Die Datei „%@“ konnte mit der neuen Codierung “%@” nicht wiederinterpretiert werden.";
+"Can not reinterpret." = "Konnte nicht neu interpretieren.";
+"The file “%@” could not be reinterpreted using the new encoding “%@”." = "Die Datei „%@“ konnte mit der neuen Codierung „%@“ nicht neu interpretiert werden.";
 
 // Incompatible chars alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
-"Do you want to change encoding and show incompatible characters?" = "Möchten Sie die Codierung ändern und die Inkompatible Zeichen zeigen?";
+"Do you want to change encoding and show incompatible characters?" = "Möchten Sie die Codierung ändern und die inkompatiblen Zeichen zeigen?";
 "Change Encoding" = "Codierung wechseln";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
 "The file has been modified by another application." = "Die Datei wurde durch ein anderes Programm geändert.";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Möchten Sie die Auflage CotEditors erhalten oder zur geänderten Auflage aktualisieren?";
-"Keep CotEditor’s Edition" = "Auflage CotEditors erhalten";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Möchten Sie CotEditors Version behalten oder auf die geänderte Version aktualisieren?";
+"Keep CotEditor’s Edition" = "CotEditors Version behalten";
 "Update" = "Aktualisieren";
 
 
@@ -184,18 +184,18 @@
 "On" = "Ein";
 "Off" = "Aus";
 "Don’t Print" = "Nicht drucken";
-"Same as Document’s Setting" = "Gleich wie Dokument";
-"Black and White" = "Schwarz-Weiß";
+"Same as Document’s Setting" = "Wie Dokument";
+"Black and White" = "Schwarz/Weiß";
 "Print" = "Drucken";
 "Print All" = "Alles drucken";
 "Syntax Name" = "Syntaxname";
-"Document Name" = "Dokumentname";
+"Document Name" = "Dokumentenname";
 "File Path" = "Dateipfad";
 "Print Date" = "Druckdatum";
 "Page Number" = "Seitenzahl";
-"Left" = "Linksbündig einrichten";
+"Left" = "Linksbündig ausrichten";
 "Center" = "Zentrieren";
-"Right" = "Rechtsbündig einrichten";
+"Right" = "Rechtsbündig ausrichten";
 
 
 
@@ -227,7 +227,7 @@
 "Delete Duplicate Lines" = "Doppelte Zeilen löschen";
 "Duplicate Line" = "Zeile duplizieren";
 "Delete Line" = "Zeile löschen";
-"Trim Trailing Whitespace" = "Nachfolgende Leerzeichen entfernen";
+"Trim Trailing Whitespace" = "Leerzeichen am Zeilenende entfernen";
 
 // Menu items
 "Comment Selection" = "Auswahl auskommentieren";
@@ -236,7 +236,7 @@
 // Contextual menu items
 "Font" = "Schrift";
 "Text" = "Text";
-"Copy as Rich Text" = "Als formatierten Text Kopieren";
+"Copy as Rich Text" = "Als formatierten Text kopieren";
 "Select All" = "Alles auswählen";
 
 
@@ -247,16 +247,16 @@
 "Show Line Numbers" = "Zeilennummern einblenden";
 "Hide Status Bar" = "Statusleiste ausblenden";
 "Show Status Bar" = "Statusleiste einblenden";
-"Hide Navigation Bar" = "Navigationleiste ausblenden";
-"Show Navigation Bar" = "Navigationleiste einblenden";
+"Hide Navigation Bar" = "Navigationsleiste ausblenden";
+"Show Navigation Bar" = "Navigationsleiste einblenden";
 "Hide Invisible Characters" = "Unsichtbare Zeichen ausblenden";
 "Show Invisible Characters" = "Unsichtbare Zeichen einblenden";
 "Hide Page Guide" = "Seitenhilfslinie ausblenden";
 "Show Page Guide" = "Seitenhilfslinie einblenden";
 "Unwrap Lines" = "Zeilen nicht umbrechen";
 "Wrap Lines" = "Zeilen umbrechen";
-"Use Vertical Orientation" = "Vertikal Orientierung verwenden";
-"Use Horizontal Orientation" = "Horizontal Orientierung verwenden";
+"Use Vertical Orientation" = "Vertikale Orientierung verwenden";
+"Use Horizontal Orientation" = "Horizontale Orientierung verwenden";
 
 // Show invisible char menu item tooltip
 "Show or hide invisible characters in document" = "Unsichtbare Zeichen im Text ein-/ausblenden";
@@ -281,7 +281,7 @@
 "Chars" = "Zeichen";
 "Length" = "Länge";
 "Words" = "Wörter";
-"Location" = "Ort";
+"Location" = "Position";
 "Line" = "Zeile";
 "Column" = "Spalte";
 
@@ -297,8 +297,8 @@
 // Coloring indicator
 "Coloring text…" = "Text färben …";
 "Please wait for a while." = "Bitte etwas Geduld.";
-"Extracting %@…" = "%@ ausziehen …";
-"Applying colors to text" = "Farben auf den Text verwenden";
+"Extracting %@…" = "%@ extrahieren …";
+"Applying colors to text" = "Farben auf den Text anwenden";
 "keywords" = "Schlüsselwörter";
 "commands" = "Befehle";
 "types" = "Typen";
@@ -315,7 +315,7 @@
 
 /* MARK: CEColorCodePanelController */
 // Undo action name
-"Insert Color Code" = "Farbcode Hinzufügen";
+"Insert Color Code" = "Farbcode hinzufügen";
 // color list name
 "Stylesheet Keywords" = "CSS-Schlüsselwörter";
 
@@ -327,20 +327,20 @@
 
 // Hint message for the completion list
 "Completion can be performed manually with: %@ or %@" = "Vervollständigung manuell durchführen mit: %@ oder %@";
-"Select at least one item to enable completion." = "Wählen Sie mindestens ein Element die Vervollständigung zu aktivieren.";
+"Select at least one item to enable completion." = "Wählen Sie mindestens ein Element, um die Vervollständigung zu aktivieren.";
 
 
 // Genearal pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";
-"Do you want to restart CotEditor now?" = "Möchten Sie CotEditor jetzt neustarten?";
-"Restart Now" = "Jetzt neustarten";
+"Do you want to restart CotEditor now?" = "Möchten Sie CotEditor jetzt neu starten?";
+"Restart Now" = "Neu starten";
 "Later" = "Später";
 
 
 // Appearance pane
 // Contextual menu items
-"Rename “%@”" = "“%@” umbenennen";
+"Rename “%@”" = "„%@“ umbenennen";
 "Duplicate “%@”" = "„%@“ duplizieren";
 "Restore “%@”" = "„%@“ zurücksetzen";
 "Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
@@ -349,7 +349,7 @@
 "This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefinierter Stil mit demselben Namen existiert bereits.";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "Möchten Sie es ersetzen?\nErsetzte Thema kann nicht wiederhergestellt werden.";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "Möchten Sie es ersetzen?\nErsetztes Thema kann nicht wiederhergestellt werden.";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Löschen";
@@ -358,10 +358,10 @@
 
 // Format pane
 // encoding menu alert
-"Are you sure you want to change to “%@”?" = "Möchten Sie zu „%@“ wirklich wechseln?";
-"The default “Auto-Detect” is recommended for most cases." = "Die normale „Auto-Erkennung“ wird für die meisten Fälle empfohlen.";
-"Change to “%@”" = "Zu „%@“ Wechseln";
-"Revert to “Auto-Detect”" = "Auf „Auto-Erkennung“ zurücksetzen";
+"Are you sure you want to change to “%@”?" = "Möchten Sie wirklich zu „%@“ wechseln?";
+"The default “Auto-Detect” is recommended for most cases." = "Die automatische Erkennung wird für die meisten Fälle empfohlen.";
+"Change to “%@”" = "Zu „%@“ wechseln";
+"Revert to “Auto-Detect”" = "Auf „Autom. erkennen“ zurücksetzen";
 
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "„%@“ duplizieren …";
@@ -381,8 +381,8 @@
 
 // Integration pane
 // Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target on the running CotEditor." = "Das aktuelle 'cot' symbolische Link zielt nicht auf den laufenden CotEditor.";
-"The current 'cot' symbolic link may target on an invalid path." = "Das aktuelle 'cot' symbolische Link kann auf einen ungültigen Pfad zielen.";
+"The current 'cot' symbolic link doesn’t target on the running CotEditor." = "Der aktuelle 'cot' symbolische Link zielt nicht auf den laufenden CotEditor.";
+"The current 'cot' symbolic link may target on an invalid path." = "Der aktuelle 'cot' symbolische Link könnte auf einen ungültigen Pfad zielen.";
 
 
 
@@ -419,7 +419,7 @@
 "You can’t use a style name that begins with a dot “.”. Please choose another name." = "Stilnamen dürfen nicht mit einem Punkt „.“ beginnen. Bitte wählen Sie einen anderen Namen.";
 
 // Selected syntax style name was original
-"Bundled styles can’t be renamed." = "Gebündelten Stile können nicht umbenannt werden.";
+"Bundled styles can’t be renamed." = "Integrierte Stile können nicht umbenannt werden.";
 
 // Suffix of copied syntax coloring style
 " copy" = " Kopie";
@@ -444,28 +444,28 @@
 "The style “%@” couldn’t be imported." = "Der Stil „%@“ konnte nicht importiert werden.";
 
 // Export syntax style file savePanel label
-"Export As:" = "Exportieren Als:";
+"Export As:" = "Exportieren als:";
 
 // Syntax validation
-"Block comment needs both begin delimiter and end delimiter." = "Block-Kommentare brauchen die beide Anfang- und Endezeichenkette.";
+"Block comment needs both begin delimiter and end delimiter." = "Block-Kommentare brauchen sowohl Anfangs- als auch Endzeichenkette.";
 "Begin string" = "Anfangszeichenkette";
 "End string" = "Endzeichenkette";
 "RE string" = "Regulärer Ausdruck";
-"multiple registered." = "Multiple registriert.";
+"multiple registered." = "Mehrfach registriert.";
 "Error: %@" = "Fehler: %@";
 
 
 
 /* MARK: CEThemeManager */
 // Theme names
-"Untitled" = "Ohne Title";
+"Untitled" = "Ohne Titel";
 "Customized Theme" = "Benutzerdefiniertes Thema";
 
 // Theme name warnings
 "The theme name “%@” is already taken." = "Der Themaname “%@” wird bereits verwendet.";
-"Theme name can’t be empty." = "Themanamen dürfen nicht leer sein.";
-"You can’t use a theme name that contains “/”." = "Themanamen dürfen nicht „/“ enthalten.";
-"You can’t use a theme name that begins with a dot “.”." = "Themanamen dürfen nicht mit einem Punkt „.“ beginnen.";
+"Theme name can’t be empty." = "Themaname darf nicht leer sein.";
+"You can’t use a theme name that contains “/”." = "Themaname darf kein „/“ enthalten.";
+"You can’t use a theme name that begins with a dot “.”." = "Themaname darf nicht mit einem Punkt „.“ beginnen.";
 "Please choose another name." = "Bitte wählen Sie einen anderen Namen.";
 
 // Theme description meda data for migrated theme
@@ -482,26 +482,26 @@
 
 // Warning messages
 "“%@” is already taken. Please choose another key." = "„%@“ wird bereits verwendet. Bitte wählen Sie eine andere Taste.";
-"“%@” does not include the Command key. Please choose another key." = "„%@“ enthaltet die Command-Taste nicht. Bitte wählen Sie eine andere Taste.";
-"“%@” includes the Command key. Please choose another key." = "„%@“ enthaltet die Command-Taste. Bitte wählen Sie eine andere Taste.";
+"“%@” does not include the Command key. Please choose another key." = "„%@“ enthält nicht die Command-Taste. Bitte wählen Sie eine andere Taste.";
+"“%@” includes the Command key. Please choose another key." = "„%@“ enthält die Command-Taste. Bitte wählen Sie eine andere Taste.";
 
 
 
 /* MARK: CEScriptManager */
 // Menu items
-"Open Scripts Folder" = "Skripte-Ordner öffnen";
-"Update Script Menu" = "Skripte-Menü aktualisieren";
+"Open Scripts Folder" = "Skript-Ordner öffnen";
+"Update Script Menu" = "Skript-Menü aktualisieren";
 
 // Script menu item tooltips
-"“Opt + click” to open in Script Editor." = "“Opt + Klicken”, um in Skript-Editor öffnen.";
+"“Opt + click” to open in Script Editor." = "„Opt + Klicken“, um das Skript im Editor zu öffnen.";
 
 // Script error alert message
 "Script Error" = "Skriptfehler";
 
 // Script error alert informatives
-"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "Das Skript „%@“ existiert nicht.\n\nPrüfen Sie es und wählen Sie „Skripte-Menü aktualisieren”.";
+"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "Das Skript „%@“ existiert nicht.\n\nPrüfen Sie es und wählen Sie „Skript-Menü aktualisieren“.";
 "The script file “%@” couldn’t be opened." = "Die Skriptdatei „%@“ konnte nicht geöffnet werden.";
-"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "Das Skript „%@“ kann nicht ausgeführt werden, da Sie nicht den Ausführrecht haben.\n\nPrüfen Sie die Zugriffsrechte der Skriptdatei.";
+"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "Das Skript „%@“ kann nicht ausgeführt werden, da Sie keine Ausführungsrechte haben.\n\nPrüfen Sie die Zugriffsrechte der Skriptdatei.";
 "The script “%@” couldn’t be read." = "Das Skript „%@“ konnte nicht gelesen werden.";
 
 
