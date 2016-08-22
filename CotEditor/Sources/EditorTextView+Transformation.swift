@@ -35,9 +35,7 @@ extension EditorTextView {
     @IBAction func exchangeFullwidthRoman(_ sender: AnyObject?) {
         
         let actionName = NSLocalizedString("To Fullwidth Roman", comment: "")
-        self.transformSelection(actionName: actionName) { (substring) -> String in
-            return substring.fullWidthRoman
-        }
+        self.transformSelection(actionName: actionName) { $0.fullWidthRoman }
     }
     
     
@@ -45,9 +43,7 @@ extension EditorTextView {
     @IBAction func exchangeHalfwidthRoman(_ sender: AnyObject?) {
         
         let actionName = NSLocalizedString("To Halfwidth Roman", comment: "")
-        self.transformSelection(actionName: actionName) { (substring) -> String in
-            return substring.halfWidthRoman
-        }
+        self.transformSelection(actionName: actionName) { $0.halfWidthRoman }
     }
     
     
@@ -55,9 +51,7 @@ extension EditorTextView {
     @IBAction func exchangeKatakana(_ sender: AnyObject?) {
         
         let actionName = NSLocalizedString("Hiragana to Katakana", comment: "")
-        self.transformSelection(actionName: actionName) { (substring) -> String in
-            return substring.katakana
-        }
+        self.transformSelection(actionName: actionName) { $0.katakana }
     }
     
     
@@ -65,9 +59,7 @@ extension EditorTextView {
     @IBAction func exchangeHiragana(_ sender: AnyObject?) {
         
         let actionName = NSLocalizedString("Katakana to Hiragana", comment: "")
-        self.transformSelection(actionName: actionName) { (substring) -> String in
-            return substring.hiragana
-        }
+        self.transformSelection(actionName: actionName) { $0.hiragana }
     }
     
     
@@ -77,45 +69,35 @@ extension EditorTextView {
     /// Unicode normalization (NFD)
     @IBAction func normalizeUnicodeWithNFD(_ sender: AnyObject?) {
         
-        self.transformSelection(actionName: "NFD") { (substring) -> String in
-            return substring.decomposedStringWithCanonicalMapping
-        }
+        self.transformSelection(actionName: "NFD") { $0.decomposedStringWithCanonicalMapping }
     }
     
     
     /// Unicode normalization (NFC)
     @IBAction func normalizeUnicodeWithNFC(_ sender: AnyObject?) {
         
-        self.transformSelection(actionName: "NFC") { (substring) -> String in
-            return substring.precomposedStringWithCanonicalMapping
-        }
+        self.transformSelection(actionName: "NFC") { $0.precomposedStringWithCanonicalMapping }
     }
     
     
     /// Unicode normalization (NFKD)
     @IBAction func normalizeUnicodeWithNFKD(_ sender: AnyObject?) {
         
-        self.transformSelection(actionName: "NFKD") { (substring) -> String in
-            return substring.decomposedStringWithCompatibilityMapping
-        }
+        self.transformSelection(actionName: "NFKD") { $0.decomposedStringWithCompatibilityMapping }
     }
     
     
     /// Unicode normalization (NFKC)
     @IBAction func normalizeUnicodeWithNFKC(_ sender: AnyObject?) {
         
-        self.transformSelection(actionName: "NFKC") { (substring) -> String in
-            return substring.precomposedStringWithCompatibilityMapping
-        }
+        self.transformSelection(actionName: "NFKC") { $0.precomposedStringWithCompatibilityMapping }
     }
     
     
     /// Unicode normalization (NFKC_Casefold)
     @IBAction func normalizeUnicodeWithNFKCCF(_ sender: AnyObject?) {
         
-        self.transformSelection(actionName: "NFKC Casefold") { (substring) -> String in
-            return substring.precomposedStringWithCompatibilityMappingWithCasefold
-        }
+        self.transformSelection(actionName: "NFKC Casefold") { $0.precomposedStringWithCompatibilityMappingWithCasefold }
     }
     
     
@@ -123,9 +105,7 @@ extension EditorTextView {
     @IBAction func normalizeUnicodeWithModifiedNFC(_ sender: AnyObject?) {
         
         let actionName = NSLocalizedString("Modified NFC", comment: "name of an Uniocode normalization type")
-        self.transformSelection(actionName: actionName) { (substring) -> String in
-            return substring.precomposedStringWithHFSPlusMapping
-        }
+        self.transformSelection(actionName: actionName) { $0.precomposedStringWithHFSPlusMapping }
     }
     
     
@@ -133,17 +113,19 @@ extension EditorTextView {
     @IBAction func normalizeUnicodeWithModifiedNFD(_ sender: AnyObject?) {
         
         let actionName = NSLocalizedString("Modified NFD", comment: "name of an Uniocode normalization type")
-        self.transformSelection(actionName: actionName) { (substring) -> String in
-            return substring.decomposedStringWithHFSPlusMapping
-        }
+        self.transformSelection(actionName: actionName) { $0.decomposedStringWithHFSPlusMapping }
     }
     
-    
-    
-    // MARK: Private Methods
+}
+
+
+
+// MARK: Private NSTextView Extension
+
+private extension NSTextView {
     
     /// transform all selected strings and register to undo manager
-    private func transformSelection(actionName: String?, block: (String) -> String) {
+    func transformSelection(actionName: String? = nil, block: (String) -> String) {
         
         let selectedRanges = self.selectedRanges as [NSRange]
         var appliedRanges = [NSRange]()

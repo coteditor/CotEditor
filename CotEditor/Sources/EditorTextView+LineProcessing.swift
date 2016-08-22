@@ -317,12 +317,16 @@ extension EditorTextView {
         self.trimTrailingWhitespace()
     }
     
-    
-    
-    // MARK: Private Methods
+}
+
+
+
+// MARK: Private NSTextView Extension
+
+private extension NSTextView {
     
     /// extract line by line line ranges which selected ranges include
-    private var selectedLineRanges: [NSRange] {
+    var selectedLineRanges: [NSRange] {
         
         guard let string = self.string as NSString? else { return [] }
         
