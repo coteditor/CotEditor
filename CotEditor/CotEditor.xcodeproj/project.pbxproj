@@ -111,15 +111,12 @@
 		2A4682B31D2F6B580005410E /* FIleDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FIleDropComposer.swift */; };
 		2A476CAE1D09C8C80088E37A /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */; };
 		2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CB01D09D0500088E37A /* FontExtensionTests.swift */; };
-		2A48103A1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
-		2A48103B1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
 		2A48103E1D4D210300F7D34C /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48103D1D4D210300F7D34C /* Crypto.swift */; };
 		2A48103F1D4D210300F7D34C /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48103D1D4D210300F7D34C /* Crypto.swift */; };
 		2A4CCBB41D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
 		2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
 		2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */; };
 		2A54BE2C1D40EB24000816B0 /* LineEndingTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54BE2B1D40EB24000816B0 /* LineEndingTexts.swift */; };
-		2A594C9F1D4BAF100076FEDC /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; };
 		2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A5ADE841D2168FC00F6CE26 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Array.swift */; };
 		2A5ADE851D2168FC00F6CE26 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Array.swift */; };
@@ -305,8 +302,6 @@
 		2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */; };
 		2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
-		2A7A1D3F1D4BCCEF001B74B8 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
-		2A7A1D401D4BCCEF001B74B8 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
 		2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A80C65E1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
@@ -419,6 +414,21 @@
 		2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */; };
 		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
+		2ACD68171D6B0E1200496B47 /* ColorCode.framework.dSYM in Copy dSYM files */ = {isa = PBXBuildFile; fileRef = 2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */; };
+		2ACD681C1D6B0E3F00496B47 /* YAML.framework.dSYM in Copy dSYM files */ = {isa = PBXBuildFile; fileRef = 2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */; };
+		2ACD681E1D6B0E4500496B47 /* Sparkle.framework.dSYM in Copy dSYM files */ = {isa = PBXBuildFile; fileRef = 2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */; };
+		2ACD68201D6B0F0100496B47 /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
+		2ACD68231D6B0F0400496B47 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
+		2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; };
+		2ACD68271D6B0F7300496B47 /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
+		2ACD68281D6B0F7300496B47 /* ColorCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2ACD682A1D6B0F7500496B47 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
+		2ACD682B1D6B0F7500496B47 /* YAML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2ACD682D1D6B0F9400496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */; };
+		2ACD682E1D6B0F9600496B47 /* YAML.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */; };
+		2ACD68301D6B113500496B47 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2ACD68311D6B113E00496B47 /* YAML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2ACD68321D6B114400496B47 /* ColorCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACDC08B1D171F1E009B72D6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */; };
 		2ACDC08C1D171F1E009B72D6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */; };
 		2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
@@ -547,6 +557,56 @@
 				2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */,
 			);
 			name = "Copy Command-Line Tools";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2ACD68151D6B0DCF00496B47 /* Copy dSYM files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				2ACD68171D6B0E1200496B47 /* ColorCode.framework.dSYM in Copy dSYM files */,
+				2ACD681C1D6B0E3F00496B47 /* YAML.framework.dSYM in Copy dSYM files */,
+				2ACD681E1D6B0E4500496B47 /* Sparkle.framework.dSYM in Copy dSYM files */,
+			);
+			name = "Copy dSYM files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2ACD68221D6B0F0100496B47 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2ACD68321D6B114400496B47 /* ColorCode.framework in Embed Frameworks */,
+				2ACD68311D6B113E00496B47 /* YAML.framework in Embed Frameworks */,
+				2ACD68301D6B113500496B47 /* Sparkle.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2ACD68291D6B0F7300496B47 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2ACD68281D6B0F7300496B47 /* ColorCode.framework in Embed Frameworks */,
+				2ACD682B1D6B0F7500496B47 /* YAML.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2ACD682C1D6B0F8200496B47 /* Copy dSYM Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				2ACD682D1D6B0F9400496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */,
+				2ACD682E1D6B0F9600496B47 /* YAML.framework.dSYM in Copy dSYM Files */,
+			);
+			name = "Copy dSYM Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -852,6 +912,9 @@
 		2ACB53AC1A3E04010040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxTermsEditView.xib; sourceTree = "<group>"; };
 		2ACB53AD1A3E043E0040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxValidationView.xib; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
+		2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ColorCode.framework.dSYM; path = ../Carthage/Build/Mac/ColorCode.framework.dSYM; sourceTree = "<group>"; };
+		2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = YAML.framework.dSYM; path = ../Carthage/Build/Mac/YAML.framework.dSYM; sourceTree = "<group>"; };
+		2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Sparkle.framework.dSYM; path = ../Carthage/Build/Mac/Sparkle.framework.dSYM; sourceTree = "<group>"; };
 		2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
 		2ACDC0901D1726BD009B72D6 /* DotImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotImageView.swift; sourceTree = "<group>"; };
@@ -968,8 +1031,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */,
-				2A7A1D401D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
-				2A48103B1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */,
+				2ACD68271D6B0F7300496B47 /* ColorCode.framework in Frameworks */,
+				2ACD682A1D6B0F7500496B47 /* YAML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,9 +1041,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */,
-				2A7A1D3F1D4BCCEF001B74B8 /* YAML.framework in Frameworks */,
-				2A48103A1D4D1ADF00F7D34C /* ColorCode.framework in Frameworks */,
-				2A594C9F1D4BAF100076FEDC /* Sparkle.framework in Frameworks */,
+				2ACD68201D6B0F0100496B47 /* ColorCode.framework in Frameworks */,
+				2ACD68231D6B0F0400496B47 /* YAML.framework in Frameworks */,
+				2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1601,6 +1664,16 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		2ACD681F1D6B0E5C00496B47 /* dSYM */ = {
+			isa = PBXGroup;
+			children = (
+				2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */,
+				2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */,
+				2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */,
+			);
+			name = dSYM;
+			sourceTree = "<group>";
+		};
 		2ACFE5891D205CE90005233A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1715,6 +1788,7 @@
 		BEED9F89D1E364DD05CA42CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2ACD681F1D6B0E5C00496B47 /* dSYM */,
 				2A4810391D4D1ADF00F7D34C /* ColorCode.framework */,
 				2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */,
 				2A594C9E1D4BAF100076FEDC /* Sparkle.framework */,
@@ -1734,7 +1808,8 @@
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
-				2A7A1D441D4BD10D001B74B8 /* Copy Frameworks via Carthage */,
+				2ACD68291D6B0F7300496B47 /* Embed Frameworks */,
+				2ACD682C1D6B0F8200496B47 /* Copy dSYM Files */,
 			);
 			buildRules = (
 			);
@@ -1772,7 +1847,8 @@
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-				2A594C9B1D4BAE320076FEDC /* Copy Frameworks via Carthage */,
+				2ACD68221D6B0F0100496B47 /* Embed Frameworks */,
+				2ACD68151D6B0DCF00496B47 /* Copy dSYM files */,
 			);
 			buildRules = (
 			);
@@ -1802,6 +1878,7 @@
 					2A6F0D4E1B5500E100C2D03C = {
 						DevelopmentTeam = HT3Z3A72WZ;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					2AC71DDE1BF0BDBC002E1434 = {
 						CreatedOnToolsVersion = 7.1;
@@ -1812,6 +1889,7 @@
 					8D15AC270486D014006FF6A4 = {
 						DevelopmentTeam = HT3Z3A72WZ;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -2042,23 +2120,6 @@
 			shellPath = /bin/sh;
 			shellScript = ./updateHelpindex.sh;
 		};
-		2A594C9B1D4BAE320076FEDC /* Copy Frameworks via Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../Carthage/Build/Mac/YAML.framework",
-				"$(SRCROOT)/../Carthage/Build/Mac/ColorCode.framework",
-				"$(SRCROOT)/../Carthage/Build/Mac/Sparkle.framework",
-			);
-			name = "Copy Frameworks via Carthage";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 		2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2086,22 +2147,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby makeSyntaxMap.rb";
-		};
-		2A7A1D441D4BD10D001B74B8 /* Copy Frameworks via Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../Carthage/Build/Mac/YAML.framework",
-				"$(SRCROOT)/../Carthage/Build/Mac/ColorCode.framework",
-			);
-			name = "Copy Frameworks via Carthage";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3058,7 +3103,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = ../Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
@@ -3071,7 +3116,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				INFOPLIST_FILE = ../Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
