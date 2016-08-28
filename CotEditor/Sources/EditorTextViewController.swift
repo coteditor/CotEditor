@@ -47,7 +47,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     var showsLineNumber: Bool {
         
         get {
-            return self.scrollView?.rulersVisible ?? true
+            return self.scrollView?.rulersVisible ?? false
         }
         set {
             self.scrollView?.rulersVisible = newValue

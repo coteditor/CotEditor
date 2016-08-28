@@ -106,11 +106,11 @@ final class EditorViewController: NSSplitViewController {
     /// Whether line number view is visible
     var showsLineNumber: Bool {
         
-        set (shown) {
-            self.textViewController?.showsLineNumber = shown
-        }
         get {
             return self.textViewController?.showsLineNumber ?? false
+        }
+        set {
+            self.textViewController?.showsLineNumber = newValue
         }
     }
     
