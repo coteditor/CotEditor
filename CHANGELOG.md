@@ -5,6 +5,14 @@ Change Log
 develop
 --------------------------
 
+### Known Issues
+
+- Some window states aren't restored on window restoration.
+- Crash on showing print panel.
+- Document ignores text orientation state saved in file.
+- Occasionally crash on window opening.
+
+
 ### New Features
 
 - Support window tabbing on macOS Sierra.
