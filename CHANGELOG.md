@@ -8,7 +8,6 @@ develop
 ### Known Issues
 
 - Crash on showing print panel.
-- Document ignores text orientation state saved in file.
 
 
 ### New Features

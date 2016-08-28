@@ -114,8 +114,10 @@ final class DocumentController: NSDocumentController {
             }
         }
         
-        // let super make document
-        let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
+        // make document
+        //   -> See Document's `init(fileURL:ofType:)` for the reason why I don't just invoke super's method.
+//        let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
+        let document = try Document(fileURL: url, ofType: typeName)
         
         // reset encoding menu
         self.resetAccessorySelectedEncoding()

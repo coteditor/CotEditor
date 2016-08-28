@@ -125,24 +125,24 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// initialize instance with existing file
-    
-    // FIXME: override convenience initializer
-//     convenience init(contentsOf url: URL, ofType typeName: String) throws {
-//        
-//        try super.init(contentsOf: url, ofType: typeName)
-//        
-//        // [caution] This method may be called from a background thread due to concurrent-opening.
-//        // This method won't be invoked on Resume. (2015-01-26)
-//        
-//        // set sender of external editor protocol (ODB Editor Suite)
-//        self.odbEventSender = ODBEventSender()
-//        
-//        // check file meta data for text orientation
-//        if Defaults[.savesTextOrientation] {
-//            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
-//            self.isVerticalText = (attributes?[NSFileExtendedAttributes]?[FileExtendedAttributeName.VerticalText] != nil)
-//        }
-//    }
+    convenience init(fileURL url: URL, ofType typeName: String) throws {
+        
+        // Workaround initializer in order to invoke self's (actually super's) `init(contentsOf:ofType:)` inside.
+        
+        try self.init(contentsOf: url, ofType: typeName)
+        
+        // [caution] This method may be called from a background thread due to concurrent-opening.
+        // This method won't be invoked on Resume. (2015-01-26)
+        
+        // set sender of external editor protocol (ODB Editor Suite)
+        self.odbEventSender = ODBEventSender()
+        
+        // check file meta data for text orientation
+        if Defaults[.savesTextOrientation] {
+            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+            self.isVerticalText = ((attributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
+        }
+    }
     
     
     deinit {
