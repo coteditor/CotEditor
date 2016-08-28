@@ -117,7 +117,7 @@ let DefaultSettings: [DefaultKeys: Any] = [
                              "", "", "", "", "", "", "", "", "", "",
                              "", "", "", "", "", "", "", "", "", ""],
     
-    .setPrintFont: 0,
+    .setPrintFont: false,
     .printFontName: NSFont.userFont(ofSize: 0)!.fontName,
     .printFontSize: NSFont.systemFontSize(),
     .printColorIndex: PrintColorMode.blackWhite.rawValue,

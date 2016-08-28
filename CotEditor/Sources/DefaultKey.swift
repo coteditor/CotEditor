@@ -209,7 +209,7 @@ extension DefaultKeys {
     static let insertCustomTextArray = DefaultKey<[String]>("insertCustomTextArray")
     
     // Print
-    static let setPrintFont = DefaultKey<Int>("setPrintFont")
+    static let setPrintFont = DefaultKey<Bool>("setPrintFont")
     static let printFontName = DefaultKey<String>("printFontName")
     static let printFontSize = DefaultKey<CGFloat>("printFontSize")
     static let printColorIndex = DefaultKey<Int>("printColorIndex")
@@ -313,6 +313,12 @@ enum DocumentConflictOption: Int {
     case filePath
     case printDate
     case pageNumber
+    
+    
+    init(_ rawValue: Int?) {
+        
+        self = PrintInfoType(rawValue: rawValue ?? 0) ?? .none
+    }
 }
 
 
@@ -321,6 +327,12 @@ enum DocumentConflictOption: Int {
     case left
     case center
     case right
+    
+    
+    init(_ rawValue: Int?) {
+        
+        self = AlignmentType(rawValue: rawValue ?? 0) ?? .right
+    }
     
     
     var textAlignment: NSTextAlignment {

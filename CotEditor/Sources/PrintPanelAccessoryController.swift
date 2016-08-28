@@ -85,25 +85,25 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                     case .blackWhite:
                         return BlackAndWhiteThemeName
                     case .sameAsDocument:
-                        return Defaults[.theme]!
+                        return Defaults[.theme] ?? BlackAndWhiteThemeName
                     }
                 }
-                return Defaults[.printTheme]!
+                return Defaults[.printTheme] ?? BlackAndWhiteThemeName
             }()
             self.lineNumberMode = PrintLineNmuberMode(rawValue: Defaults[.printLineNumIndex]) ?? .no
             self.invisibleCharsMode = PrintInvisiblesMode(rawValue: Defaults[.printInvisibleCharIndex]) ?? .no
             
             self.printsHeader = Defaults[.printHeader]
-            self.primaryHeaderContent = PrintInfoType(rawValue: Defaults[.primaryHeaderContent]) ?? .none
-            self.primaryHeaderAlignment = AlignmentType(rawValue: Defaults[.primaryHeaderAlignment]) ?? .left
-            self.secondaryHeaderContent = PrintInfoType(rawValue: Defaults[.secondaryHeaderContent]) ?? .none
-            self.secondaryHeaderAlignment = AlignmentType(rawValue: Defaults[.secondaryHeaderAlignment]) ?? .right
+            self.primaryHeaderContent = PrintInfoType(Defaults[.primaryHeaderContent])
+            self.primaryHeaderAlignment = AlignmentType(Defaults[.primaryHeaderAlignment])
+            self.secondaryHeaderContent = PrintInfoType(Defaults[.secondaryHeaderContent])
+            self.secondaryHeaderAlignment = AlignmentType(Defaults[.secondaryHeaderAlignment])
             
             self.printsFooter = Defaults[.printFooter]
-            self.primaryFooterContent = PrintInfoType(rawValue: Defaults[.primaryFooterContent]) ?? .none
-            self.primaryFooterAlignment = AlignmentType(rawValue: Defaults[.primaryFooterAlignment]) ?? .left
-            self.secondaryFooterContent = PrintInfoType(rawValue: Defaults[.secondaryFooterContent]) ?? .none
-            self.secondaryFooterAlignment = AlignmentType(rawValue: Defaults[.secondaryFooterAlignment]) ?? .right
+            self.primaryFooterContent = PrintInfoType(Defaults[.primaryFooterContent])
+            self.primaryFooterAlignment = AlignmentType(Defaults[.primaryFooterAlignment])
+            self.secondaryFooterContent = PrintInfoType(Defaults[.secondaryFooterContent])
+            self.secondaryFooterAlignment = AlignmentType(Defaults[.secondaryFooterAlignment])
             
             // apply current theme
             self.updateThemeList()
@@ -276,7 +276,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var primaryHeaderContent: PrintInfoType {
         
         get {
-            return PrintInfoType(rawValue: (self.settingValue(forKey: .primaryHeaderContent) as? Int) ?? 0) ?? .none
+            return PrintInfoType(self.settingValue(forKey: .primaryHeaderContent) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderContent)
@@ -288,7 +288,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var primaryHeaderAlignment: AlignmentType {
         
         get {
-            return AlignmentType(rawValue: (self.settingValue(forKey: .primaryHeaderAlignment) as? Int) ?? 0) ?? .left
+            return AlignmentType(self.settingValue(forKey: .primaryHeaderAlignment) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderAlignment)
@@ -300,7 +300,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var secondaryHeaderContent: PrintInfoType {
         
         get {
-            return PrintInfoType(rawValue: (self.settingValue(forKey: .secondaryHeaderContent) as? Int) ?? 0) ?? .none
+            return PrintInfoType(self.settingValue(forKey: .secondaryHeaderContent) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderContent)
@@ -312,7 +312,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var secondaryHeaderAlignment: AlignmentType {
         
         get {
-            return AlignmentType(rawValue: (self.settingValue(forKey: .secondaryHeaderAlignment) as? Int) ?? 0) ?? .right
+            return AlignmentType(self.settingValue(forKey: .secondaryHeaderAlignment) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderAlignment)
@@ -336,7 +336,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var primaryFooterContent: PrintInfoType {
         
         get {
-            return PrintInfoType(rawValue: (self.settingValue(forKey: .primaryFooterContent) as? Int) ?? 0) ?? .none
+            return PrintInfoType(self.settingValue(forKey: .primaryFooterContent) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .primaryFooterContent)
@@ -348,7 +348,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var primaryFooterAlignment: AlignmentType {
         
         get {
-            return AlignmentType(rawValue: (self.settingValue(forKey: .primaryFooterAlignment) as? Int) ?? 0) ?? .left
+            return AlignmentType(self.settingValue(forKey: .primaryFooterAlignment) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .primaryFooterAlignment)
@@ -360,7 +360,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var secondaryFooterContent: PrintInfoType {
         
         get {
-            return PrintInfoType(rawValue: (self.settingValue(forKey: .secondaryFooterContent) as? Int) ?? 0) ?? .none
+            return PrintInfoType(self.settingValue(forKey: .secondaryFooterContent) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterContent)
@@ -372,7 +372,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var secondaryFooterAlignment: AlignmentType {
         
         get {
-            return AlignmentType(rawValue: (self.settingValue(forKey: .secondaryFooterAlignment) as? Int) ?? 0) ?? .right
+            return AlignmentType(self.settingValue(forKey: .secondaryFooterAlignment) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterAlignment)
@@ -390,7 +390,7 @@ private func localizedSummaryItem(name: String, description: String) -> [String:
 }
 
 
-extension PrintLineNmuberMode {
+private extension PrintLineNmuberMode {
     
     var description: String {
         switch self {
@@ -405,7 +405,7 @@ extension PrintLineNmuberMode {
 }
 
 
-extension PrintInvisiblesMode {
+private extension PrintInvisiblesMode {
     
     var description: String {
         switch self {
@@ -420,7 +420,7 @@ extension PrintInvisiblesMode {
 }
 
 
-extension PrintInfoType {
+private extension PrintInfoType {
     
     var description: String {
         
@@ -442,7 +442,7 @@ extension PrintInfoType {
 }
 
 
-extension AlignmentType {
+private extension AlignmentType {
     
     var description: String {
         switch self {

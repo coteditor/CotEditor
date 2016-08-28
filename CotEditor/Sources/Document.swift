@@ -564,11 +564,11 @@ final class Document: NSDocument, EncodingHolder {
         
         // set font for printing
         printView.font = {
-            if Defaults[.setPrintFont] == 1 {  // == use printing font
+            if Defaults[.setPrintFont] {  // == use printing font
                 return NSFont(name: Defaults[.printFontName]!,
                               size: Defaults[.printFontSize])
             }
-            return self.editor?.font
+            return editor.font
         }()
         
         // [caution] need to set string after setting other properties

@@ -79,22 +79,19 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         // cf. http://stackoverflow.com/questions/34616892/
         let dummyTextView = NSTextView()
         
-        super.init(frame: dummyTextView.frame, textContainer: dummyTextView.textContainer)
+        super.init(frame: .zero, textContainer: dummyTextView.textContainer)
         
-        // fix text container padding
+        // specify text container padding
         // -> If padding is changed while printing, print area can be cropped due to text wrapping
         self.textContainer?.lineFragmentPadding = kLineFragmentPadding
         
-        // mimic as if view is created with `init()` inizializer (2016-07 on OS X 10.11)
-        self.maxSize = dummyTextView.maxSize
-        self.isHorizontallyResizable = dummyTextView.isHorizontallyResizable
-        self.isVerticallyResizable = dummyTextView.isVerticallyResizable
+        self.maxSize = .infinite
         
         // replace layoutManager
         let layoutManager = LayoutManager()
         layoutManager.delegate = self
         layoutManager.usesScreenFonts = false
-        self.textContainer?.replaceLayoutManager(layoutManager)
+        self.textContainer!.replaceLayoutManager(layoutManager)
     }
     
     
@@ -218,10 +215,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         guard let settings = NSPrintOperation.current()?.printInfo.dictionary(),
             (settings[PrintSettingKey.printsHeader.rawValue] as? Bool) ?? false else { return NSAttributedString() }
         
-        let primaryInfoType = PrintInfoType(rawValue: settings[PrintSettingKey.primaryHeaderContent.rawValue] as! Int)!
-        let primaryAlignment = AlignmentType(rawValue: settings[PrintSettingKey.primaryHeaderAlignment.rawValue] as! Int)!
-        let secondaryInfoType = PrintInfoType(rawValue: settings[PrintSettingKey.secondaryHeaderContent.rawValue] as! Int)!
-        let secondaryAlignment = AlignmentType(rawValue: settings[PrintSettingKey.secondaryHeaderAlignment.rawValue] as! Int)!
+        let primaryInfoType = PrintInfoType(settings[PrintSettingKey.primaryHeaderContent.rawValue] as? Int)
+        let primaryAlignment = AlignmentType(settings[PrintSettingKey.primaryHeaderAlignment.rawValue] as? Int)
+        let secondaryInfoType = PrintInfoType(settings[PrintSettingKey.secondaryHeaderContent.rawValue] as? Int)
+        let secondaryAlignment = AlignmentType(settings[PrintSettingKey.secondaryHeaderAlignment.rawValue] as? Int)
         
         return self.headerFooter(primaryString: self.printInfoString(type: primaryInfoType),
                                  primaryAlignment: primaryAlignment,
@@ -236,10 +233,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         guard let settings = NSPrintOperation.current()?.printInfo.dictionary(),
             (settings[PrintSettingKey.printsFooter.rawValue] as? Bool) ?? false else { return NSAttributedString() }
         
-        let primaryInfoType = PrintInfoType(rawValue: settings[PrintSettingKey.primaryFooterContent.rawValue] as! Int)!
-        let primaryAlignment = AlignmentType(rawValue: settings[PrintSettingKey.primaryFooterAlignment.rawValue] as! Int)!
-        let secondaryInfoType = PrintInfoType(rawValue: settings[PrintSettingKey.secondaryFooterContent.rawValue] as! Int)!
-        let secondaryAlignment = AlignmentType(rawValue: settings[PrintSettingKey.secondaryFooterAlignment.rawValue] as! Int)!
+        let primaryInfoType = PrintInfoType(settings[PrintSettingKey.primaryFooterContent.rawValue] as? Int)
+        let primaryAlignment = AlignmentType(settings[PrintSettingKey.primaryFooterAlignment.rawValue] as? Int)
+        let secondaryInfoType = PrintInfoType(settings[PrintSettingKey.secondaryFooterContent.rawValue] as? Int)
+        let secondaryAlignment = AlignmentType(settings[PrintSettingKey.secondaryFooterAlignment.rawValue] as? Int)
         
         return self.headerFooter(primaryString: self.printInfoString(type: primaryInfoType),
                                  primaryAlignment: primaryAlignment,
@@ -499,7 +496,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             frameSize.height /= printInfo.scalingFactor
         }
         
-        self.setFrameSize(frameSize)
+        self.frame.size = frameSize
         self.sizeToFit()
     }
     
