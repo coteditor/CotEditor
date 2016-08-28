@@ -81,17 +81,6 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     }
     
     
-    /// keys to be restored from the last session
-    override class func restorableStateKeyPaths() -> [String] {
-        
-        return [#keyPath(showsNavigationBar),
-                #keyPath(showsLineNumber),
-                #keyPath(showsPageGuide),
-                #keyPath(showsInvisibles),
-                #keyPath(verticalLayoutOrientation)]
-    }
-    
-    
     /// apply current state to related menu items
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
@@ -338,7 +327,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// visibility of navigation bars
-    var showsNavigationBar: Bool {
+    dynamic var showsNavigationBar: Bool {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -349,7 +338,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// visibility of line numbers view
-    var showsLineNumber: Bool {
+    dynamic var showsLineNumber: Bool {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -360,7 +349,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// if lines soft-wrap at window edge
-    var wrapsLines: Bool {
+    dynamic var wrapsLines: Bool {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -371,7 +360,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// visibility of page guide lines in text view
-    var showsPageGuide = false {
+    dynamic var showsPageGuide = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -384,7 +373,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// visibility of invisible characters
-    var showsInvisibles = false {
+    dynamic var showsInvisibles = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -395,7 +384,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// if text orientation is vertical
-    var verticalLayoutOrientation: Bool {
+    dynamic var verticalLayoutOrientation: Bool {
         
         didSet {
             let orientation: NSTextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal

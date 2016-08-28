@@ -67,7 +67,12 @@ final class MainViewController: NSSplitViewController {
     /// keys to be restored from the last session
     override class func restorableStateKeyPaths() -> [String] {
         
-        return [#keyPath(isStatusBarShown)]
+        return [#keyPath(isStatusBarShown),
+                #keyPath(editor.showsNavigationBar),
+                #keyPath(editor.showsLineNumber),
+                #keyPath(editor.showsPageGuide),
+                #keyPath(editor.showsInvisibles),
+                #keyPath(editor.verticalLayoutOrientation)]
     }
     
     
@@ -111,7 +116,7 @@ final class MainViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// Whether status bar is visible
-    @objc private var isStatusBarShown: Bool {
+    @objc private dynamic var isStatusBarShown: Bool {
         
         get {
             return !(self.statusBarItem?.isCollapsed ?? true)
