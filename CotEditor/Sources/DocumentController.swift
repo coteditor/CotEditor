@@ -176,7 +176,7 @@ final class DocumentController: NSDocumentController {
             }
         }
         
-        return true
+        return super.validateUserInterfaceItem(item)
     }
     
     
@@ -189,8 +189,8 @@ final class DocumentController: NSDocumentController {
         get {
             return String.Encoding(rawValue: self._accessorySelectedEncoding)
         }
-        set (encoding) {
-            self._accessorySelectedEncoding = encoding.rawValue
+        set {
+            self._accessorySelectedEncoding = newValue.rawValue
         }
     }
     

@@ -856,8 +856,8 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             return pasteboard.string(forType: NSStringPboardType)
         }
         
-        set (string) {
-            guard let string = string, !string.isEmpty else { return }
+        set {
+            guard let string = newValue, !string.isEmpty else { return }
             
             let pasteboard = NSPasteboard(name: NSFindPboard)
             

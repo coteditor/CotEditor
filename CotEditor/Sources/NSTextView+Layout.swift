@@ -62,16 +62,16 @@ extension NSTextView {
             return self.convert(NSSize.unit, to: nil).width
         }
         
-        set (scale) {
+        set {
             guard
                 let layoutManager = self.layoutManager,
                 let textContainer = self.textContainer else { return }
             
             // sanitize scale
             let scale: CGFloat = {
-                guard let scrollView = self.enclosingScrollView else { return scale }
+                guard let scrollView = self.enclosingScrollView else { return newValue }
                 
-                return scale.within(min: scrollView.minMagnification, max: scrollView.maxMagnification)
+                return newValue.within(min: scrollView.minMagnification, max: scrollView.maxMagnification)
             }()
             
             // scale

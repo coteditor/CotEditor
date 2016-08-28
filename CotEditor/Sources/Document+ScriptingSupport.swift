@@ -70,6 +70,7 @@ extension Document {
     
     /// document string (text (NSTextStorage))
     var contents: Any {
+        
         get {
             return self.scriptTextStorage
         }
@@ -88,6 +89,7 @@ extension Document {
     
     /// new line code (enum type)
     var lineEndingChar: FourCharCode {
+        
         get {
             switch self.lineEnding {
             case .LF:
@@ -134,6 +136,7 @@ extension Document {
     
     /// syntax style name (Unicode text)
     var coloringStyle: String {
+        
         get {
             return self.syntaxStyle.styleName
         }
@@ -157,6 +160,7 @@ extension Document {
     
     /// state of text wrapping (bool)
     var wrapsLines: NSNumber {
+        
         get {
             return NSNumber(value :self.editor?.wrapsLines ?? false)
         }
@@ -168,6 +172,7 @@ extension Document {
     
     /// tab width (integer)
     var tabWidth: NSNumber {
+        
         get {
             return NSNumber(value: self.editor?.tabWidth ?? 0)
         }

@@ -41,11 +41,11 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDelegate
     
      weak var target: NSTextView? {
         // keep TextContainer as `weak` instaed to avoid handling unsafe_unretained TextView
-        set (target) {
-            self.layoutManager = target?.layoutManager
-        }
         get {
             return self.layoutManager?.firstTextView
+        }
+        set {
+            self.layoutManager = newValue?.layoutManager
         }
     }
     

@@ -113,11 +113,11 @@ final class MainViewController: NSSplitViewController {
     /// Whether status bar is visible
     @objc private var isStatusBarShown: Bool {
         
-        set (shown) {
-            self.statusBarItem?.isCollapsed = !shown
-        }
         get {
             return !(self.statusBarItem?.isCollapsed ?? true)
+        }
+        set {
+            self.statusBarItem?.isCollapsed = !newValue
         }
     }
     

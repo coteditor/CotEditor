@@ -65,7 +65,7 @@ extension Editable {
         set (selectedRange) {
             guard let textView = self.textView else { return }
             
-            textView.selectedRange = textView.string!.convert(from: self.lineEnding, to: .LF, range: textView.selectedRange)
+            textView.selectedRange = textView.string!.convert(from: self.lineEnding, to: .LF, range: selectedRange)
         }
     }
     

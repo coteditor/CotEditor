@@ -67,48 +67,61 @@ final class DefaultKey<T>: DefaultKeys { }
 extension UserDefaults {
     
     subscript(key: DefaultKey<Bool>) -> Bool {
-        set { self.set(newValue, forKey: key.rawValue) }
+        
         get { return self.bool(forKey: key.rawValue) }
+        set { self.set(newValue, forKey: key.rawValue) }
     }
+    
     
     subscript(key: DefaultKey<Int>) -> Int {
-        set { self.set(newValue, forKey: key.rawValue) }
+        
         get { return self.integer(forKey: key.rawValue) }
+        set { self.set(newValue, forKey: key.rawValue) }
     }
+    
     
     subscript(key: DefaultKey<UInt>) -> UInt {
-        set { self.set(newValue, forKey: key.rawValue) }
+        
         get { return UInt(self.integer(forKey: key.rawValue)) }
+        set { self.set(newValue, forKey: key.rawValue) }
     }
+    
     
     subscript(key: DefaultKey<Double>) -> Double {
-        set { self.set(newValue, forKey: key.rawValue) }
+        
         get { return self.double(forKey: key.rawValue) }
+        set { self.set(newValue, forKey: key.rawValue) }
     }
     
+    
     subscript(key: DefaultKey<CGFloat>) -> CGFloat {
-        set { self.set(newValue, forKey: key.rawValue) }
+        
         get { return CGFloat(self.double(forKey: key.rawValue)) }
+        set { self.set(newValue, forKey: key.rawValue) }
     }
     
     subscript(key: DefaultKey<String>) -> String? {
-        set { self.set(newValue, forKey: key.rawValue) }
+        
         get { return self.string(forKey: key.rawValue) }
+        set { self.set(newValue, forKey: key.rawValue) }
     }
     
     subscript(key: DefaultKey<[String]>) -> [String]? {
-        set { self.set(newValue, forKey: key.rawValue) }
+        
         get { return self.stringArray(forKey: key.rawValue) }
+        set { self.set(newValue, forKey: key.rawValue) }
     }
     
     subscript(key: DefaultKey<[NSNumber]>) -> [NSNumber] {
-        set { self.set(newValue, forKey: key.rawValue) }
+        
         get { return self.array(forKey: key.rawValue) as? [NSNumber] ?? [] }
+        set { self.set(newValue, forKey: key.rawValue) }
     }
     
     subscript(key: DefaultKey<[Any]>) -> [Any]? {
-        set { self.set(newValue, forKey: key.rawValue) }
+        
         get { return self.array(forKey: key.rawValue) }
+        set { self.set(newValue, forKey: key.rawValue) }
     }
     
 }

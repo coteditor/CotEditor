@@ -413,9 +413,9 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         get {
             return self.focusedTextView?.tabWidth ?? 0
         }
-        set (tabWidth) {
+        set {
             for viewController in self.editorViewControllers {
-                viewController.textView?.tabWidth = tabWidth
+                viewController.textView?.tabWidth = newValue
             }
         }
     }
@@ -704,9 +704,9 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
             return textView.isAutomaticTabExpansionEnabled
         }
         
-        set (isAutoTabExpandEnabled) {
+        set {
             for viewController in self.editorViewControllers {
-                viewController.textView?.isAutomaticTabExpansionEnabled = isAutoTabExpandEnabled
+                viewController.textView?.isAutomaticTabExpansionEnabled = newValue
             }
         }
     }

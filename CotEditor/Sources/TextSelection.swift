@@ -101,6 +101,7 @@ final class TextSelection: NSObject {
     
     /// string of the selection (Unicode text)
     var contents: Any? {
+        
         get {
             guard let string = self.document?.selectedString else { return nil }
             
@@ -125,6 +126,7 @@ final class TextSelection: NSObject {
     
     /// character range (location and length) of the selection
     var range: [NSNumber]? {
+        
         get {
             guard let range = self.document?.selectedRange else { return nil }
             
@@ -149,6 +151,7 @@ final class TextSelection: NSObject {
     
     /// line range (location and length) of the selection (list type)
     var lineRange: Any? {
+        
         get {
             guard
                 let selectedRange = self.document?.selectedRange,

@@ -124,11 +124,11 @@ final class WindowContentViewController: NSSplitViewController {
     /// sidebar thickness
     private var sidebarThickness: CGFloat {
         
-        set (thickness) {
-            self.sidebarViewController?.view.frame.size.width = thickness
-        }
         get {
             return self.sidebarViewController?.view.frame.width ?? 0
+        }
+        set {
+            self.sidebarViewController?.view.frame.size.width = newValue
         }
     }
     
@@ -136,13 +136,13 @@ final class WindowContentViewController: NSSplitViewController {
     /// whether sidebar is opened
     private var isSidebarShown: Bool {
         
-        set (shown) {
-            self.siblings.forEach { sibling in
-                sibling.sidebarViewItem?.isCollapsed = !shown
-            }
-        }
         get {
             return !(self.sidebarViewItem?.isCollapsed ?? true)
+        }
+        set {
+            self.siblings.forEach { sibling in
+                sibling.sidebarViewItem?.isCollapsed = !newValue
+            }
         }
     }
     

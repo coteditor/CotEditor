@@ -605,9 +605,9 @@ final class Document: NSDocument, EncodingHolder {
             
             return printInfo
         }
-        
-        set (printInfo) {
-            super.printInfo = printInfo
+
+        set {
+            super.printInfo = newValue
         }
     }
     
