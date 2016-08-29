@@ -494,7 +494,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     /// toggle if text view expands tab input
     @IBAction func toggleAutoTabExpand(_ sender: AnyObject?) {
         
-        self.isAutoTabExpandEnabled = !(self.focusedTextView?.isAutomaticTabExpansionEnabled ?? false)
+        self.isAutoTabExpandEnabled = !self.isAutoTabExpandEnabled
     }
     
     
@@ -526,17 +526,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     /// split editor view
     @IBAction func openSplitTextView(_ sender: AnyObject?) {
         
-        // find target EditorViewController
-        var view: NSView? = (sender is NSMenuItem) ? (self.window?.firstResponder as? NSView) : sender as? NSView
-        while view != nil {
-            if view?.identifier == "EditorView" { break }
-            view = view?.superview
-        }
-        guard
-            let editorView = view,
-            let splitViewController = self.splitViewController,
-            let currentEditorViewController = splitViewController.viewController(for: editorView)
-            else { return }
+        guard let currentEditorViewController = self.findTargetEditorViewController(for: sender) else { return }
         
         // end current editing
         NSTextInputContext.current()?.discardMarkedText()
@@ -559,16 +549,9 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     /// close one of split views
     @IBAction func closeSplitTextView(_ sender: AnyObject?) {
         
-        // find target EditorViewController
-        var view: NSView? = (sender is NSMenuItem) ? (self.window?.firstResponder as? NSView) : sender as? NSView
-        while view != nil {
-            if view?.identifier == "EditorView" { break }
-            view = view?.superview
-        }
         guard
-            let editorView = view,
             let splitViewController = self.splitViewController,
-            let currentEditorViewController = splitViewController.viewController(for: editorView)
+            let currentEditorViewController = self.findTargetEditorViewController(for: sender)
             else { return }
         
         // end current editing
@@ -576,15 +559,9 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         
         // move focus to the next text view if the view to close has a focus
         if splitViewController.focusedSubviewController == currentEditorViewController {
-            let childViewControllers = splitViewController.childViewControllers as! [EditorViewController]
+            let childViewControllers = self.editorViewControllers
             let deleteIndex = childViewControllers.index(of: currentEditorViewController) ?? 0
-            let count = childViewControllers.count
-            var index = deleteIndex + 1
-            if index >= count {
-                index = count - 2
-            }
-            let newFocusEditorViewController = childViewControllers[index]
-            guard newFocusEditorViewController != currentEditorViewController else { return }
+            let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.first!
             
             self.window?.makeFirstResponder(newFocusEditorViewController.textView)
         }
@@ -716,6 +693,21 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
             viewController.textView?.theme = theme
         }
         self.invalidateSyntaxHighlight()
+    }
+    
+    
+    /// find target EditorViewController to manage split views for action sender
+    func findTargetEditorViewController(for sender: AnyObject?) -> EditorViewController? {
+        
+        var view: NSView? = (sender is NSMenuItem) ? (self.window?.firstResponder as? NSView) : sender as? NSView
+        while view != nil {
+            if view?.identifier == "EditorView" { break }
+            view = view?.superview
+        }
+        
+        guard let editorView = view else { return nil }
+        
+        return self.splitViewController?.viewController(for: editorView)
     }
     
 }
