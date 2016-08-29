@@ -67,17 +67,6 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     static let shared = UpdaterManager()
     
     
-    /// Is the running app a pre-release version?
-    let isPrerelease: Bool = {
-        
-        let version = AppInfo.shortVersion
-        let digitSet = CharacterSet(charactersIn: "0123456789.")
-        
-        // pre-release version contains non-digit letter
-        return (version.rangeOfCharacter(from: digitSet.inverted) != nil)
-    }()
-    
-    
     
     // MARK:
     // MARK: Lifecycle
@@ -120,12 +109,7 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     func feedURLString(for updater: SUUpdater!) -> String! {
         
         // force checking beta if the currently runnning one is a beta.
-        let checksBeta: Bool = {
-            if self.isPrerelease {
-                return true
-            }
-            return Defaults[.checksUpdatesForBeta]
-        }()
+        let checksBeta: Bool = AppInfo.isPrerelease ? true : Defaults[.checksUpdatesForBeta]
         
         let appCast: AppCastURL = checksBeta ? .beta : .stable
         

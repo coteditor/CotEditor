@@ -33,7 +33,7 @@ enum AppInfo {
     /// application name
     static let bundleName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
     
-    /// human-friendly version expression
+    /// human-friendly version expression (semantic versioning)
     static let shortVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     
     /// build number
@@ -41,6 +41,15 @@ enum AppInfo {
     
     /// help book name
     static let helpBookName = Bundle.main.object(forInfoDictionaryKey: "CFBundleHelpBookName") as! String
+    
+    /// Is the running app a pre-release version?
+    static let isPrerelease: Bool = {
+        
+        let digitSet = CharacterSet(charactersIn: "0123456789.")
+        
+        // pre-release version contains non-digit letter
+        return (AppInfo.shortVersion.rangeOfCharacter(from: digitSet.inverted) != nil)
+    }()
     
     
     enum UTType {
