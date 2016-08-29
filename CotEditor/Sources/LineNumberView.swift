@@ -433,14 +433,10 @@ private extension Int {
 // MARK:
 // MARK: Line Selecting
 
-final private class DraggingInfo {
+private struct DraggingInfo {
+    
     let index: Int
     let selectedRanges: [NSRange]
-    
-    init(index: Int, selectedRanges: [NSRange]) {
-        self.index = index
-        self.selectedRanges = selectedRanges
-    }
 }
 
 
@@ -458,9 +454,9 @@ extension LineNumberView {
         let index = textView.characterIndex(for: point)
         
         // repeat while dragging
-        self.draggingTimer = .scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(selectLines(_:)),
-                                             userInfo: DraggingInfo(index: index,
-                                                                    selectedRanges: textView.selectedRanges as [NSRange]), repeats: true)
+        self.draggingTimer = .scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(selectLines),
+                                             userInfo: DraggingInfo(index: index, selectedRanges: textView.selectedRanges as [NSRange]),
+                                             repeats: true)
         
         self.selectLines(nil)  // for single click event
     }
