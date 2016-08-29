@@ -186,7 +186,7 @@ extension EditorTextView {
         guard lines.count > 1 else { return }
         
         // sort alphabetically ignoring case
-        lines.sort { $0.localizedCompare($1) == .orderedAscending }
+        lines.sort { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         let newString = lines.joined(separator: "\n")
         

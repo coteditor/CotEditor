@@ -107,7 +107,7 @@ final class SyntaxManager: SettingFileManager {
         let data = try! Data(contentsOf: url)
         self.bundledMap = try! JSONSerialization.jsonObject(with: data) as! [String: [String: [String]]]
         
-        self.bundledStyleNames = bundledMap.keys.sorted { $0.localizedCompare($1) == .orderedAscending }
+        self.bundledStyleNames = bundledMap.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         super.init()
         
@@ -485,7 +485,7 @@ final class SyntaxManager: SettingFileManager {
         self.map = map
         
         // sort styles alphabetically
-        self.styleNames = map.keys.sorted { $0.lowercased() < $1.lowercased() }
+        self.styleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // remove deleted styles
         // -> don't care about style name change just for laziness
