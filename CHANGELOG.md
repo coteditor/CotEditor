@@ -8,7 +8,6 @@ develop
 ### Known Issues
 
 - Crash on showing print panel.
-- Occasionally crash on window opening.
 
 
 ### New Features
@@ -23,7 +22,7 @@ develop
 - Drop support for __OS X Mountain Lion__ and __Mavericks__.
 - Migrate all source code from Objective-C to Swift.
 - Update application icon.
-- Change the regular expression engine for find panel from the Onigmo to the ICU library.
+- Change the regular expression engine for find panel from Onigmo to the ICU library.
     - Update line-up of the search options.
 - Inserting single surrogate character is no more valid.
 - Remove “Not writable” alert which displayed on file opening.

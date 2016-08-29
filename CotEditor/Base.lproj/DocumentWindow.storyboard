@@ -287,7 +287,23 @@
         <!--Split View Controller-->
         <scene sceneID="37M-iF-P9Z">
             <objects>
-                <splitViewController id="vcx-nD-eDH" customClass="SplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController"/>
+                <splitViewController id="vcx-nD-eDH" customClass="SplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitView key="splitView" arrangesAllSubviews="NO" dividerStyle="paneSplitter" id="erk-uh-Ad4">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
+                                <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="vcx-nD-eDH" id="eRe-yw-Dla"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="view" destination="erk-uh-Ad4" id="E7R-ea-J9l"/>
+                    </connections>
+                </splitViewController>
                 <customObject id="BD5-7O-H8g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-61" y="1607"/>
