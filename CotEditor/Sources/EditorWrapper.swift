@@ -510,7 +510,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     /// set new theme from menu item
     @IBAction func changeTheme(_ sender: AnyObject?) {
         
-        guard let name = sender?.title, !name.isEmpty else { return }
+        guard let name = sender?.title else { return }
         
         self.setTheme(name: name)
     }
@@ -532,7 +532,11 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
             if view?.identifier == "EditorView" { break }
             view = view?.superview
         }
-        guard let editorView = view, let currentEditorViewController = self.splitViewController?.viewController(for: editorView) else { return }
+        guard
+            let editorView = view,
+            let splitViewController = self.splitViewController,
+            let currentEditorViewController = splitViewController.viewController(for: editorView)
+            else { return }
         
         // end current editing
         NSTextInputContext.current()?.discardMarkedText()
@@ -561,9 +565,11 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
             if view?.identifier == "EditorView" { break }
             view = view?.superview
         }
-        guard let editorView = view, let currentEditorViewController = self.splitViewController?.viewController(for: editorView) else { return }
-        
-        guard let splitViewController = self.splitViewController else { return }
+        guard
+            let editorView = view,
+            let splitViewController = self.splitViewController,
+            let currentEditorViewController = splitViewController.viewController(for: editorView)
+            else { return }
         
         // end current editing
         NSTextInputContext.current()?.discardMarkedText()

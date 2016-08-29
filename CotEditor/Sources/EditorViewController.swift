@@ -74,10 +74,7 @@ final class EditorViewController: NSSplitViewController {
     /// avoid showing draggable cursor
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
-        var effectiveRect = proposedEffectiveRect
-        effectiveRect.size = .zero
-        
-        return effectiveRect
+        return NSRect(origin: proposedEffectiveRect.origin, size: .zero)
     }
     
     

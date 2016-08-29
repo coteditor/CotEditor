@@ -90,9 +90,7 @@ final class StatusBarController: NSViewController {
     /// apply change of user setting
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        guard let keyPath = keyPath else { return }
-        
-        if type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
+        if type(of: self).observedDefaultKeys.contains(where: { $0.rawValue == keyPath }) {
             self.updateEditorStatus()
             self.updateDocumentStatus()
         }
@@ -131,17 +129,17 @@ final class StatusBarController: NSViewController {
     
     /// default keys to observe update
     private static let observedDefaultKeys: [DefaultKeys] = [.showStatusBarLines,
-                                                            .showStatusBarChars,
-                                                            .showStatusBarLength,
-                                                            .showStatusBarWords,
-                                                            .showStatusBarLocation,
-                                                            .showStatusBarLine,
-                                                            .showStatusBarColumn,
-                                                            
-                                                            .showStatusBarEncoding,
-                                                            .showStatusBarLineEndings,
-                                                            .showStatusBarFileSize,
-                                                            ]
+                                                             .showStatusBarChars,
+                                                             .showStatusBarLength,
+                                                             .showStatusBarWords,
+                                                             .showStatusBarLocation,
+                                                             .showStatusBarLine,
+                                                             .showStatusBarColumn,
+                                                             
+                                                             .showStatusBarEncoding,
+                                                             .showStatusBarLineEndings,
+                                                             .showStatusBarFileSize,
+                                                             ]
     
     
     /// update left side text

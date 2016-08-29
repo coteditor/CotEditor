@@ -79,10 +79,7 @@ final class MainViewController: NSSplitViewController {
     /// avoid showing draggable cursor
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
-        var effectiveRect = proposedEffectiveRect
-        effectiveRect.size = .zero
-        
-        return effectiveRect
+        return NSRect(origin: proposedEffectiveRect.origin, size: .zero)
     }
     
     
@@ -116,7 +113,7 @@ final class MainViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// Whether status bar is visible
-    @objc private dynamic var isStatusBarShown: Bool {
+    private dynamic var isStatusBarShown: Bool {
         
         get {
             return !(self.statusBarItem?.isCollapsed ?? true)
