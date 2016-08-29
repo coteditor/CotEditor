@@ -8,6 +8,7 @@ develop
 ### Known Issues
 
 - Crash on showing print panel.
+- Occasionally crash on window opening.
 
 
 ### New Features

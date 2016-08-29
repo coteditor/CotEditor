@@ -112,13 +112,14 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// toggle visibility of navigation bar with fancy animation
-    func setShowsNavigationBar(_ showsNavigationBar: Bool, animate: Bool) {
+    /// Whether navigation bar is visible
+    var showsNavigationBar: Bool {
         
-        if animate {
-            self.navigationBarItem?.animator().isCollapsed = !showsNavigationBar
-        } else {
-            self.navigationBarItem?.isCollapsed = !showsNavigationBar
+        get {
+            return !(self.navigationBarItem?.isCollapsed ?? true)
+        }
+        set {
+            self.navigationBarItem?.isCollapsed = !newValue
         }
     }
     

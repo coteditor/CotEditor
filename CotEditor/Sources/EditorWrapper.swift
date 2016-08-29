@@ -331,7 +331,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         
         didSet {
             for viewController in self.editorViewControllers {
-                viewController.setShowsNavigationBar(showsNavigationBar, animate: false)
+                viewController.showsNavigationBar = showsNavigationBar
             }
         }
     }
@@ -444,11 +444,11 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     /// toggle visibility of navigation bar
     @IBAction func toggleNavigationBar(_ sender: AnyObject?) {
         
+        NSAnimationContext.current().allowsImplicitAnimation = true
+        
         self.showsNavigationBar = !self.showsNavigationBar
         
-        for viewController in self.editorViewControllers {
-            viewController.setShowsNavigationBar(self.showsNavigationBar, animate: true)
-        }
+        NSAnimationContext.current().allowsImplicitAnimation = false
     }
     
     
@@ -628,7 +628,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         self.splitViewController?.addSubview(for: editorViewController, relativeTo: baseViewController)
         
         editorViewController.showsLineNumber = self.showsLineNumber
-        editorViewController.setShowsNavigationBar(self.showsNavigationBar, animate: false)
+        editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.textView?.wrapsLines = self.wrapsLines
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
         editorViewController.textView?.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
