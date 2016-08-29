@@ -80,6 +80,14 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     
     
     // MARK:
+    // MARK: Lifecycle
+    
+    deinit {
+        SUUpdater.shared().delegate = nil
+    }
+    
+    
+    
     // MARK: Public Methods
     
     /// setup Sparkle

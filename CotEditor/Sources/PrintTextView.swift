@@ -101,6 +101,11 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     }
     
     
+    deinit {
+        self.layoutManager?.delegate = nil
+    }
+    
+    
     
     // MARK: Text View Methods
     
