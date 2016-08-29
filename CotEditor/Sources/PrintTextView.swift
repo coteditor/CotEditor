@@ -280,6 +280,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     }
     
     
+    /// workaround against crash on print panel
+    override func drawPageBorder(with borderSize: NSSize) { }
+    
+    
     /// set printing font
     override var font: NSFont? {
         
@@ -474,7 +478,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             return filePath
             
         case .printDate:
-            return String(format: NSLocalizedString("", comment: ""), self.dateFormatter.string(from: Date()))
+            return String(format: NSLocalizedString("Printed on %@", comment: ""), self.dateFormatter.string(from: Date()))
             
         case .pageNumber:
             guard let pageNumber = NSPrintOperation.current()?.currentPage else { return nil }
@@ -501,8 +505,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             frameSize.height /= printInfo.scalingFactor
         }
         
+        // resize frame
         self.frame.size = frameSize
         self.sizeToFit()
+        self.frame = self.layoutManager!.usedRect(for: self.textContainer!)
     }
     
 }

@@ -193,9 +193,9 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         // select "Black and White" if there is nothing to select
         if themeNames.contains(self.theme) {
-            popUp.selectItem(at: 0)
-        } else {
             popUp.selectItem(withTitle: self.theme)
+        } else {
+            popUp.selectItem(at: 0)
         }
     }
     
