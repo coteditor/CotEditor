@@ -2,18 +2,20 @@
   "images" : [
     {
       "idiom" : "mac",
-      "scale" : "1x",
-      "filename" : "icon_32x32.png"
+      "filename" : "General.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "mac",
-      "scale" : "2x",
-      "filename" : "icon_32x32@2x.png"
+      "filename" : "General@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
     "version" : 1,
-    "author" : "xcode",
+    "author" : "xcode"
+  },
+  "properties" : {
     "template-rendering-intent" : "original"
   }
 }

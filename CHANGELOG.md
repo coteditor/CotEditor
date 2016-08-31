@@ -39,6 +39,7 @@ develop
 - Remove feature that changes the line height of current document from the “Format” menu.
     - From this, `line spacing` property on AppleScript is also deprecated.
 - Remove  “Set as Default” button in the editor opacity panel.
+- Update preferences icons.
 - Update key binding setting format.
     - Not compatible with previous key bindings setting. Please customize again in the preferences window.
 - Change specification not to treat full-width spaces as indent.
