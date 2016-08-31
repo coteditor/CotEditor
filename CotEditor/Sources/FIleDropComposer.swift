@@ -145,7 +145,10 @@ final class FileDropComposer {
         
         guard let fileExtension = fileExtension else { return nil }
         
-        let definitions = Defaults[.fileDropArray] as! [[String: String]]
+        guard let definitions = Defaults[.fileDropArray] as? [[String: String]] else {
+            assertionFailure("invalid file drop setting")
+            return nil
+        }
         
         for definition in definitions {
             guard let extensions = definition[SettingKey.extensions]?.components(separatedBy: ", ") else { continue }

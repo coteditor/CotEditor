@@ -102,7 +102,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             
             guard clickedRow != -1 else { return nil }  // clicked blank area
             
-            return self.themeNames[clickedRow]
+            return self.themeNames[safe: clickedRow]
         }()
         menuItem.representedObject = representedTheme
         
@@ -175,7 +175,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// content of table cell
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        return self.themeNames[row]
+        return self.themeNames[safe: row]
     }
     
     

@@ -39,7 +39,7 @@ final class IncompatibleCharacterTests: XCTestCase {
         
         XCTAssertEqual(incompatibles?.count, 2)
         
-        guard let backslash = incompatibles?[0] else {
+        guard let backslash = incompatibles?.first else {
             return XCTFail()
         }
         XCTAssertEqual(backslash.character, "\\")

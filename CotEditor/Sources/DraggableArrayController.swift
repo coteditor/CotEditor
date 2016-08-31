@@ -81,10 +81,11 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         guard info.draggingSource() as? NSTableView == tableView else { return false }
         
         // obtain original rows from paste board
-        guard let data = info.draggingPasteboard().data(forType: PboardType.rows),
-              let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet else { return false }
+        guard
+            let data = info.draggingPasteboard().data(forType: PboardType.rows),
+            let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet,
+            let draggingItems = info.draggingPasteboard().propertyList(forType: PboardType.objects) as? [Any] else { return false }
         
-        let draggingItems = info.draggingPasteboard().propertyList(forType: PboardType.objects) as! [Any]
         let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move
         let destinationRows = IndexSet(destinationRow..<(destinationRow + draggingItems.count))
         

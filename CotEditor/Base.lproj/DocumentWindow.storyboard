@@ -288,7 +288,7 @@
         <scene sceneID="37M-iF-P9Z">
             <objects>
                 <splitViewController id="vcx-nD-eDH" customClass="SplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <splitView key="splitView" arrangesAllSubviews="NO" dividerStyle="paneSplitter" id="erk-uh-Ad4">
+                    <splitView key="splitView" dividerStyle="paneSplitter" id="erk-uh-Ad4">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <userDefinedRuntimeAttributes>
