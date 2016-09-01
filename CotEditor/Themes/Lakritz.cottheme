@@ -21,14 +21,14 @@
   "keywords" : {
     "color" : "#fed80a"
   },
-  "attributes" : {
-    "color" : "#eba129"
-  },
   "commands" : {
     "color" : "#be6ef0"
   },
   "types" : {
     "color" : "#fc76d1"
+  },
+  "attributes" : {
+    "color" : "#eba129"
   },
   "variables" : {
     "color" : "#e24f56"
