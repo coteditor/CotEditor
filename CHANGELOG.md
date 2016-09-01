@@ -5,11 +5,6 @@ Change Log
 develop
 --------------------------
 
-### Known Issues
-
-- Crash on showing print panel.
-
-
 ### New Features
 
 - Support window tabbing on macOS Sierra.

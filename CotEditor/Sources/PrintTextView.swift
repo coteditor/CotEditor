@@ -280,10 +280,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     }
     
     
-    /// workaround against crash on print panel
-    override func drawPageBorder(with borderSize: NSSize) { }
-    
-    
     /// set printing font
     override var font: NSFont? {
         
@@ -315,11 +311,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [String : Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [String : Any]? {
         
-        if attrs[NSForegroundColorAttributeName] != nil {
-            return attrs
-        }
-        
-        return nil
+        return attrs
     }
     
     
