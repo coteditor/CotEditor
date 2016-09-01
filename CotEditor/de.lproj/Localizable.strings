@@ -92,7 +92,7 @@
 /* MARK: Document Controller */
 // binary file alert
 "The file “%@” doesn’t appear to be text data." = "Die Datei „%@” entspricht keiner Textdatei.";
-"The file is %@.\n\nMöchten Sie die Datei wirklich öffnen?" = "Die Datei ist %@.\n\nMöchten Sie die Datei wirklich öffnen?";
+"The file is %@.\n\nDo you really want to open the file?" = "Die Datei ist %@.\n\nMöchten Sie die Datei wirklich öffnen?";
 
 // Large file alert
 "The file “%@” has a size of %@." = "Die Datei „%@“ hat eine Größe von %@.";
