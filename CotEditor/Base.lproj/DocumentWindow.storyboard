@@ -15,7 +15,7 @@
                         <rect key="contentRect" x="10" y="280" width="600" height="550"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
                         <value key="minSize" type="size" width="400" height="200"/>
-                        <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="small" id="peS-bo-gb4">
+                        <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="peS-bo-gb4" customClass="DocumentToolbar" customModule="CotEditor" customModuleProvider="target">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="82E9CC78-BD07-4AD5-983F-5059E7871ECC" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="9p6-Sj-QjF" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="48" height="24"/>
@@ -62,10 +62,10 @@
                                     </popUpButton>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="B616AE88-EC2F-48EB-8098-8A12F994F9B8" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" tag="3" id="rHo-eU-O5x" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="120" height="24"/>
-                                    <size key="maxSize" width="120" height="26"/>
+                                    <size key="minSize" width="100" height="24"/>
+                                    <size key="maxSize" width="110" height="26"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="RTF-Xf-Dgz">
-                                        <rect key="frame" x="0.0" y="14" width="120" height="24"/>
+                                        <rect key="frame" x="0.0" y="14" width="110" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" id="hb4-gd-uwc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -74,54 +74,39 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="E131E030-51BC-4112-A9A5-7EE14C0930EB" explicitItemIdentifier="shareItemID" label="Share" paletteLabel="Share" toolTip="Share document file" tag="23" image="NSShareTemplate" id="UZV-t9-t0E">
-                                    <size key="minSize" width="32" height="32"/>
-                                    <size key="maxSize" width="36" height="32"/>
-                                    <button key="view" verticalHuggingPriority="750" tag="23" id="qhf-yr-4GF">
-                                        <rect key="frame" x="1" y="14" width="36" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSShareTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5uE-n2-UaS">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="share:" target="klO-m3-n5X" id="Tsr-qN-Ggm"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="1E34F982-260D-4449-97B5-0214372CEB81" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="Get Info" toolTip="Show document information" tag="4" image="GetInfo" id="uXf-pD-u6A">
+                                <toolbarItem implicitItemIdentifier="1E34F982-260D-4449-97B5-0214372CEB81" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="Get Info" toolTip="Show document information" tag="4" image="GetInfo" id="uXf-pD-u6A" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="getInfo:" target="klO-m3-n5X" id="hAx-X6-Mra"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D8B8253F-8F6E-4371-B384-927861F6E143" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible characters with current encoding" tag="5" image="IncompatibleChars" id="xle-wq-mIH">
+                                <toolbarItem implicitItemIdentifier="D8B8253F-8F6E-4371-B384-927861F6E143" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible characters with current encoding" tag="5" image="IncompatibleChars" id="xle-wq-mIH" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleIncompatibleCharList:" target="klO-m3-n5X" id="KOI-wf-RAx"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="bP0-GL-SND"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="hbb-MD-j6g"/>
-                                <toolbarItem implicitItemIdentifier="91A2D44B-F0E2-4BBD-81F0-A97429A3A26D" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="3" image="BiggerFont" id="yOr-Yw-6Of">
+                                <toolbarItem implicitItemIdentifier="47B6BDDC-E0CC-4997-B3A0-62224DC378F6" explicitItemIdentifier="printItemID" label="Print" paletteLabel="Print" toolTip="Print" tag="-1" image="Print" id="hbb-MD-j6g" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="bP0-GL-SND" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target"/>
+                                <toolbarItem implicitItemIdentifier="91A2D44B-F0E2-4BBD-81F0-A97429A3A26D" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="3" image="BiggerFont" id="yOr-Yw-6Of" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="biggerFont:" target="klO-m3-n5X" id="Qxf-nb-yEk"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="33987450-ECC0-4D28-A6A7-627443C9DBD4" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="4" image="SmallerFont" id="IKo-gw-WgI">
+                                <toolbarItem implicitItemIdentifier="33987450-ECC0-4D28-A6A7-627443C9DBD4" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="4" image="SmallerFont" id="IKo-gw-WgI" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="smallerFont:" target="klO-m3-n5X" id="zf1-wD-OA4"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="588E0016-D65A-482E-A324-E481FBD5A80C" explicitItemIdentifier="shiftLeftItemID" label="Shift Left" paletteLabel="Shift Left" toolTip="Shift lines to left" tag="10" image="ShiftLeft" id="04y-0n-oxo">
+                                <toolbarItem implicitItemIdentifier="588E0016-D65A-482E-A324-E481FBD5A80C" explicitItemIdentifier="shiftLeftItemID" label="Shift Left" paletteLabel="Shift Left" toolTip="Shift lines to left" tag="10" image="ShiftLeft" id="04y-0n-oxo" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="shiftLeft:" target="klO-m3-n5X" id="f1L-ZB-cUJ"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="21534716-8B5C-416F-B38A-A0D761209B75" explicitItemIdentifier="shiftRightItemID" label="Shift Right" paletteLabel="Shift Right" toolTip="Shift lines to right" tag="11" image="ShiftRight" id="4F2-cX-AQu">
+                                <toolbarItem implicitItemIdentifier="21534716-8B5C-416F-B38A-A0D761209B75" explicitItemIdentifier="shiftRightItemID" label="Shift Right" paletteLabel="Shift Right" toolTip="Shift lines to right" tag="11" image="ShiftRight" id="4F2-cX-AQu" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="shiftRight:" target="klO-m3-n5X" id="HgA-15-2qQ"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="EC10CF9A-2435-4088-9EC4-F357F7BA7611" explicitItemIdentifier="toggleCommentItemID" label="Comment" paletteLabel="Toggle Comment" toolTip="Comment-out or uncomment selection" tag="12" image="Comment" id="fW9-Xn-I9b">
+                                <toolbarItem implicitItemIdentifier="EC10CF9A-2435-4088-9EC4-F357F7BA7611" explicitItemIdentifier="toggleCommentItemID" label="Comment" paletteLabel="Toggle Comment" toolTip="Comment-out or uncomment selection" tag="12" image="Comment" id="fW9-Xn-I9b" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleComment:" target="klO-m3-n5X" id="YdZ-m0-PoD"/>
                                     </connections>
@@ -151,20 +136,35 @@
                                         <action selector="toggleLayoutOrientation:" target="klO-m3-n5X" id="1ee-vK-XVD"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8C717A30-BD51-43A3-9F26-961DB811A614" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammer panel" tag="24" image="SpellCheck" id="Ply-Nr-aOE">
+                                <toolbarItem implicitItemIdentifier="8C717A30-BD51-43A3-9F26-961DB811A614" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammer panel" tag="24" image="SpellCheck" id="Ply-Nr-aOE" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="showGuessPanel:" target="klO-m3-n5X" id="7jm-Sv-aTP"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="3AA6CFD8-CE8A-4D11-8076-C1B6978FDC55" explicitItemIdentifier="editColorCodeItemID" label="Color Code" paletteLabel="Edit Color Code" toolTip="Open Color Code Editor and set selection as color code" tag="21" image="EditColorCode" id="Yx1-Tq-tfo">
+                                <toolbarItem implicitItemIdentifier="3AA6CFD8-CE8A-4D11-8076-C1B6978FDC55" explicitItemIdentifier="editColorCodeItemID" label="Color Code" paletteLabel="Edit Color Code" toolTip="Open Color Code Editor and set selection as color code" tag="21" image="EditColorCode" id="Yx1-Tq-tfo" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="editColorCode:" target="klO-m3-n5X" id="WpU-Mq-bEr"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="0C87F6F6-874B-4387-8B28-0F224BD65480" explicitItemIdentifier="syntaxReColorAllItemID" label="Recolor" paletteLabel="Re-Color All" toolTip="Re-color whole document" tag="22" image="RecolorAll" id="7dM-wh-XeA">
+                                <toolbarItem implicitItemIdentifier="0C87F6F6-874B-4387-8B28-0F224BD65480" explicitItemIdentifier="syntaxReColorAllItemID" label="Recolor" paletteLabel="Re-Color All" toolTip="Re-color whole document" tag="22" image="RecolorAll" id="7dM-wh-XeA" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="recolorAll:" target="klO-m3-n5X" id="8hR-fV-Pbf"/>
                                     </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="7E6B6879-917A-4550-8F9F-EC1083962B8D" explicitItemIdentifier="shareItemID" label="Share" paletteLabel="Share" toolTip="Share document file" tag="23" image="Share" id="UZV-t9-t0E">
+                                    <size key="minSize" width="24" height="24"/>
+                                    <size key="maxSize" width="36" height="32"/>
+                                    <button key="view" verticalHuggingPriority="750" tag="23" id="qhf-yr-4GF">
+                                        <rect key="frame" x="1" y="14" width="36" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Share" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="5uE-n2-UaS">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="share:" target="klO-m3-n5X" id="Tsr-qN-Ggm"/>
+                                        </connections>
+                                    </button>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="rdu-Aa-b3o"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="XZj-vq-8Py"/>
@@ -176,6 +176,9 @@
                                 <toolbarItem reference="XZj-vq-8Py"/>
                                 <toolbarItem reference="uXf-pD-u6A"/>
                             </defaultToolbarItems>
+                            <connections>
+                                <outlet property="window" destination="gE4-1J-3li" id="e04-WO-QGs"/>
+                            </connections>
                         </toolbar>
                         <connections>
                             <outlet property="delegate" destination="0UB-Lz-R6c" id="8BJ-UL-MGj"/>
@@ -366,22 +369,23 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AutoTabExpand_On" width="32" height="32"/>
-        <image name="BiggerFont" width="32" height="32"/>
-        <image name="Comment" width="32" height="32"/>
-        <image name="EditColorCode" width="32" height="32"/>
-        <image name="GetInfo" width="32" height="32"/>
-        <image name="IncompatibleChars" width="32" height="32"/>
-        <image name="InvisibleChars_On" width="32" height="32"/>
+        <image name="AutoTabExpand_On" width="24" height="24"/>
+        <image name="BiggerFont" width="24" height="24"/>
+        <image name="Comment" width="24" height="24"/>
+        <image name="EditColorCode" width="24" height="24"/>
+        <image name="GetInfo" width="24" height="24"/>
+        <image name="IncompatibleChars" width="24" height="24"/>
+        <image name="InvisibleChars_On" width="24" height="24"/>
         <image name="LockedTemplate" width="16" height="16"/>
-        <image name="NSShareTemplate" width="11" height="16"/>
-        <image name="PageGuide_On" width="32" height="32"/>
-        <image name="RecolorAll" width="32" height="32"/>
-        <image name="ShiftLeft" width="32" height="32"/>
-        <image name="ShiftRight" width="32" height="32"/>
-        <image name="SmallerFont" width="32" height="32"/>
-        <image name="SpellCheck" width="32" height="32"/>
-        <image name="VerticalOrientation_On" width="32" height="32"/>
-        <image name="WrapLines_On" width="32" height="32"/>
+        <image name="PageGuide_On" width="24" height="24"/>
+        <image name="Print" width="24" height="24"/>
+        <image name="RecolorAll" width="24" height="24"/>
+        <image name="Share" width="24" height="24"/>
+        <image name="ShiftLeft" width="24" height="24"/>
+        <image name="ShiftRight" width="24" height="24"/>
+        <image name="SmallerFont" width="24" height="24"/>
+        <image name="SpellCheck" width="24" height="24"/>
+        <image name="VerticalOrientation_On" width="24" height="24"/>
+        <image name="WrapLines_On" width="24" height="24"/>
     </resources>
 </document>

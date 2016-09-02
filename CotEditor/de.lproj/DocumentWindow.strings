@@ -40,11 +40,6 @@
 "rHo-eU-O5x.paletteLabel" = "Syntaxstil";  /* Syntax Style */
 "rHo-eU-O5x.toolTip" = "Syntaxstil ändern";  /* Change syntax style */
 
-/* Class = "NSToolbarItem"; ObjectID = "UZV-t9-t0E"; */
-"UZV-t9-t0E.label" = "Bereitstellen";  /* Share */
-"UZV-t9-t0E.paletteLabel" = "Bereitstellen";  /* Share */
-"UZV-t9-t0E.toolTip" = "Dokumentdatei bereitstellen";  /* Share document file */
-
 /* Class = "NSToolbarItem"; ObjectID = "uXf-pD-u6A"; */
 "uXf-pD-u6A.label" = "Informationen";  /* Get Info */
 "uXf-pD-u6A.paletteLabel" = "Informationen";  /* Get Info */
@@ -54,6 +49,11 @@
 "xle-wq-mIH.label" = "Inkompatible Zeichen";  /* Incompatible Chars */
 "xle-wq-mIH.paletteLabel" = "Inkompatible Zeichen einblenden";  /* Show Incompatible Chars */
 "xle-wq-mIH.toolTip" = "Inkompatible Zeichen für den ausgewählte Codierung einblenden";  /* Show incompatible characters for selected encoding */
+
+/* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
+"hbb-MD-j6g.label" = "Drucken";  /* Print */
+"hbb-MD-j6g.paletteLabel" = "Drucken";  /* Print */
+"hbb-MD-j6g.toolTip" = "Dokument drucken";  /* Print document */
 
 /* Class = "NSToolbarItem"; ObjectID = "yOr-Yw-6Of"; */
 "yOr-Yw-6Of.label" = "Größer";  /* Bigger */
@@ -70,10 +70,10 @@
 "04y-0n-oxo.paletteLabel" = "Ausrücken";  /* Shift Left */
 "04y-0n-oxo.toolTip" = "Zeilen nach Links verschieben";  /* Shift lines to left */
 
-/* Class = "NSToolbarItem"; ObjectID = "f4F2-cX-AQu"; */
-"f4F2-cX-AQu.label" = "Einrücken";  /* Shift Right */
-"f4F2-cX-AQu.paletteLabel" = "Einrücken";  /* Shift Right */
-"f4F2-cX-AQu.toolTip" = "Zeilen nach Rechts verschieben";  /* Shift lines to right */
+/* Class = "NSToolbarItem"; ObjectID = "4F2-cX-AQu"; */
+"4F2-cX-AQu.label" = "Einrücken";  /* Shift Right */
+"4F2-cX-AQu.paletteLabel" = "Einrücken";  /* Shift Right */
+"4F2-cX-AQu.toolTip" = "Zeilen nach Rechts verschieben";  /* Shift lines to right */
 
 /* Class = "NSToolbarItem"; ObjectID = "fW9-Xn-I9b"; */
 "fW9-Xn-I9b.label" = "Kommentar";  /* Comment */
@@ -119,6 +119,11 @@
 "7dM-wh-XeA.label" = "Umfärben";  /* Re-Color */
 "7dM-wh-XeA.paletteLabel" = "Alles umfärben";  /* Re-Color All */
 "7dM-wh-XeA.toolTip" = "Ganzes Dokument umfärben";  /* Re-color whole document */
+
+/* Class = "NSToolbarItem"; ObjectID = "UZV-t9-t0E"; */
+"UZV-t9-t0E.label" = "Bereitstellen";  /* Share */
+"UZV-t9-t0E.paletteLabel" = "Bereitstellen";  /* Share */
+"UZV-t9-t0E.toolTip" = "Dokumentdatei bereitstellen";  /* Share document file */
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */

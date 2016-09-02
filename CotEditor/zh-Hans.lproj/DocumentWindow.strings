@@ -41,11 +41,6 @@
 "rHo-eU-O5x.paletteLabel" = "语法样式";  /* Syntax Style */
 "rHo-eU-O5x.toolTip" = "改变语法样式";  /* Change syntax style */
 
-/* Class = "NSToolbarItem"; ObjectID = "UZV-t9-t0E"; */
-"UZV-t9-t0E.label" = "共享";  /* Share */
-"UZV-t9-t0E.paletteLabel" = "共享";  /* Share */
-"UZV-t9-t0E.toolTip" = "共享文档文件";  /* Share document file */
-
 /* Class = "NSToolbarItem"; ObjectID = "uXf-pD-u6A"; */
 "uXf-pD-u6A.label" = "显示简介";  /* Get Info */
 "uXf-pD-u6A.paletteLabel" = "显示简介";  /* Get Info */
@@ -55,6 +50,11 @@
 "xle-wq-mIH.label" = "不兼容字符";  /* Incompatible Chars */
 "xle-wq-mIH.paletteLabel" = "显示不兼容字符";  /* Show Incompatible Chars */
 "xle-wq-mIH.toolTip" = "显示选中编码的不兼容字符";  /* Show incompatible characters for selected encoding */
+
+/* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
+"hbb-MD-j6g.label" = "打印";  /* Print */
+"hbb-MD-j6g.paletteLabel" = "打印";  /* Print */
+"hbb-MD-j6g.toolTip" = "打印文稿";  /* Print document */
 
 /* Class = "NSToolbarItem"; ObjectID = "yOr-Yw-6Of"; */
 "yOr-Yw-6Of.label" = "放大";  /* Bigger */
@@ -71,10 +71,10 @@
 "04y-0n-oxo.paletteLabel" = "向左缩进";  /* Shift Left */
 "04y-0n-oxo.toolTip" = "将选中行左移";  /* Shift lines to left */
 
-/* Class = "NSToolbarItem"; ObjectID = "f4F2-cX-AQu"; */
-"f4F2-cX-AQu.label" = "向右缩进";  /* Shift Right */
-"f4F2-cX-AQu.paletteLabel" = "向右缩进";  /* Shift Right */
-"f4F2-cX-AQu.toolTip" = "将选中行右移";  /* Shift lines to right */
+/* Class = "NSToolbarItem"; ObjectID = "4F2-cX-AQu"; */
+"4F2-cX-AQu.label" = "向右缩进";  /* Shift Right */
+"4F2-cX-AQu.paletteLabel" = "向右缩进";  /* Shift Right */
+"4F2-cX-AQu.toolTip" = "将选中行右移";  /* Shift lines to right */
 
 /* Class = "NSToolbarItem"; ObjectID = "fW9-Xn-I9b"; */
 "fW9-Xn-I9b.label" = "注释";  /* Comment */
@@ -120,6 +120,11 @@
 "7dM-wh-XeA.label" = "重新着色";  /* Re-Color */
 "7dM-wh-XeA.paletteLabel" = "全部重新着色";  /* Re-Color All */
 "7dM-wh-XeA.toolTip" = "为整个文档重新着色";  /* Re-color whole document */
+
+/* Class = "NSToolbarItem"; ObjectID = "UZV-t9-t0E"; */
+"UZV-t9-t0E.label" = "共享";  /* Share */
+"UZV-t9-t0E.paletteLabel" = "共享";  /* Share */
+"UZV-t9-t0E.toolTip" = "共享文档文件";  /* Share document file */
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */

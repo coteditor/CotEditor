@@ -40,11 +40,6 @@
 "rHo-eU-O5x.paletteLabel" = "シンタックス";  /* Syntax Style */
 "rHo-eU-O5x.toolTip" = "シンタックススタイルを変更";  /* Change syntax style */
 
-/* Class = "NSToolbarItem"; ObjectID = "UZV-t9-t0E"; */
-"UZV-t9-t0E.label" = "共有";  /* Share */
-"UZV-t9-t0E.paletteLabel" = "共有";  /* Share */
-"UZV-t9-t0E.toolTip" = "書類ファイルを共有";  /* Share document file */
-
 /* Class = "NSToolbarItem"; ObjectID = "uXf-pD-u6A"; */
 "uXf-pD-u6A.label" = "情報を見る";  /* Get Info */
 "uXf-pD-u6A.paletteLabel" = "情報を見る";  /* Get Info */
@@ -54,6 +49,11 @@
 "xle-wq-mIH.label" = "非互換文字";  /* Incompatible Chars */
 "xle-wq-mIH.paletteLabel" = "非互換文字を表示";  /* Show Incompatible Chars */
 "xle-wq-mIH.toolTip" = "エンコーディングと非互換の文字を表示";  /* Show incompatible characters with selected encoding */
+
+/* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
+"hbb-MD-j6g.label" = "プリント";  /* Print */
+"hbb-MD-j6g.paletteLabel" = "プリント";  /* Print */
+"hbb-MD-j6g.toolTip" = "書類をプリント";  /* Print document */
 
 /* Class = "NSToolbarItem"; ObjectID = "yOr-Yw-6Of"; */
 "yOr-Yw-6Of.label" = "大きく";  /* Bigger */
@@ -70,10 +70,10 @@
 "04y-0n-oxo.paletteLabel" = "左へシフト";  /* Shift Left */
 "04y-0n-oxo.toolTip" = "行を左へシフト";  /* Shift lines to left */
 
-/* Class = "NSToolbarItem"; ObjectID = "f4F2-cX-AQu"; */
-"f4F2-cX-AQu.label" = "右へシフト";  /* Shift Right */
-"f4F2-cX-AQu.paletteLabel" = "右へシフト";  /* Shift Right */
-"f4F2-cX-AQu.toolTip" = "行を右へシフト";  /* Shift lines to right */
+/* Class = "NSToolbarItem"; ObjectID = "4F2-cX-AQu"; */
+"4F2-cX-AQu.label" = "右へシフト";  /* Shift Right */
+"4F2-cX-AQu.paletteLabel" = "右へシフト";  /* Shift Right */
+"4F2-cX-AQu.toolTip" = "行を右へシフト";  /* Shift lines to right */
 
 /* Class = "NSToolbarItem"; ObjectID = "fW9-Xn-I9b"; */
 "fW9-Xn-I9b.label" = "コメント";  /* Comment */
@@ -119,6 +119,11 @@
 "7dM-wh-XeA.label" = "再カラーリング";  /* Re-Color */
 "7dM-wh-XeA.paletteLabel" = "再カラーリング";  /* Re-Color All */
 "7dM-wh-XeA.toolTip" = "書類全体を再カラーリング";  /* Re-color whole document */
+
+/* Class = "NSToolbarItem"; ObjectID = "UZV-t9-t0E"; */
+"UZV-t9-t0E.label" = "共有";  /* Share */
+"UZV-t9-t0E.paletteLabel" = "共有";  /* Share */
+"UZV-t9-t0E.toolTip" = "書類ファイルを共有";  /* Share document file */
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */

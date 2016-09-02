@@ -1,11 +1,11 @@
 /*
  
- ToggleToolbarItem.swift
+ SmallToolbarItem.swift
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2016-05-26.
+ Created by 1024jp on 2016-09-05.
  
  ------------------------------------------------------------------------------
  
@@ -27,22 +27,17 @@
 
 import Cocoa
 
-final class TogglableToolbarItem: SmallToolbarItem {
+class SmallToolbarItem: NSToolbarItem {
     
-    // MARK: Public Properties
+    // MARK: Toolbar Item Properties
     
-    var state: Int = NSOnState {
+    override var minSize: NSSize {
         
-        didSet {
-            guard let base = self.image?.name()?.components(separatedBy: "_").first else {
-                assertionFailure("TogglableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.")
-                return
-            }
-            
-            let suffix = (state == NSOnState) ? "On" : "Off"
-            if let image = NSImage(named: base + "_" + suffix) {
-                self.image = image
-            }
+        get {
+            return NSSize(width: 24, height: 24)
+        }
+        set {
+            super.minSize = newValue
         }
     }
     
