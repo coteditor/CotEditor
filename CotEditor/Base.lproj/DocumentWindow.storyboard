@@ -263,9 +263,6 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="2gA-dj-5gh" id="l9d-Qk-87h"/>
-                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="editor" destination="pVC-2A-ptR" id="oYe-qw-s7B"/>
@@ -288,20 +285,17 @@
         <scene sceneID="37M-iF-P9Z">
             <objects>
                 <splitViewController id="vcx-nD-eDH" customClass="SplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <splitView key="splitView" dividerStyle="paneSplitter" id="erk-uh-Ad4">
+                    <splitView key="splitView" dividerStyle="paneSplitter" id="erk-uh-Ad4" customClass="EditorSplitView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="vcx-nD-eDH" id="eRe-yw-Dla"/>
-                        </connections>
                     </splitView>
                     <connections>
-                        <outlet property="view" destination="erk-uh-Ad4" id="E7R-ea-J9l"/>
+                        <outlet property="view" destination="erk-uh-Ad4" id="ikc-a5-gMe"/>
                     </connections>
                 </splitViewController>
                 <customObject id="BD5-7O-H8g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
