@@ -35,6 +35,7 @@ develop
     - From this, `line spacing` property on AppleScript is also deprecated.
 - Remove  “Set as Default” button in the editor opacity panel.
 - Update preferences icons.
+- Use small size toolbar icons as default.
 - Update key binding setting format.
     - Not compatible with previous key bindings setting. Please customize again in the preferences window.
 - Change specification not to treat full-width spaces as indent.
