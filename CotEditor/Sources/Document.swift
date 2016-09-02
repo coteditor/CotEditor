@@ -956,20 +956,9 @@ final class Document: NSDocument, EncodingHolder {
             
             return [url]
         }()
-        
         let sharingServicePicker = NSSharingServicePicker(items: items)
+        
         sharingServicePicker.show(relativeTo: view.bounds, of: view, preferredEdge: .minY)
-    }
-    
-    
-    /// share document
-    @IBAction func shareFromService(_ sender: AnyObject?) {
-        
-        guard
-            let service = sender?.representedObject as? NSSharingService,
-            let fileURL = self.fileURL else { return }
-        
-        service.perform(withItems: [fileURL])
     }
     
     

@@ -63,6 +63,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
     
     /// set delegate to itself
     override func awakeFromNib() {
+        
         self.delegate = self
     }
     
