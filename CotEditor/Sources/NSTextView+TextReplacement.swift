@@ -86,8 +86,7 @@ extension NSTextView {
     
     
     /// undoable selection change
-    @objc(setSelectedRangesWithUndo:)
-    func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
+    @objc func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
         
         self.selectedRanges = ranges as [NSValue]
         (self.undoManager?.prepare(withInvocationTarget: self) as! NSTextView).setSelectedRangesWithUndo(ranges)

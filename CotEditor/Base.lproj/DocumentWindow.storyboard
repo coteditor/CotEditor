@@ -19,9 +19,9 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="82E9CC78-BD07-4AD5-983F-5059E7871ECC" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="9p6-Sj-QjF" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="48" height="24"/>
-                                    <size key="maxSize" width="64" height="26"/>
+                                    <size key="maxSize" width="66" height="26"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="rSf-Ar-e7V">
-                                        <rect key="frame" x="5" y="14" width="64" height="24"/>
+                                        <rect key="frame" x="4" y="14" width="66" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="kY9-3e-rsd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

@@ -5,6 +5,12 @@ Change Log
 develop
 --------------------------
 
+### Known issues
+
+- Crash on changing encoding/line endings.
+- Occasionally crash on turning line number view on.
+
+
 ### New Features
 
 - Support window tabbing on macOS Sierra.
