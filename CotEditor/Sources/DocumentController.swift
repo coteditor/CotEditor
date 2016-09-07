@@ -110,7 +110,7 @@ final class DocumentController: NSDocumentController {
             // cancel operation
             guard wantsOpen else {
                 throw NSError(domain: CocoaError.errorDomain,
-                              code: CocoaError.userCancelledError.rawValue)
+                              code: CocoaError.userCancelled.rawValue)
             }
         }
         

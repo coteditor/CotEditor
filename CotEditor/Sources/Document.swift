@@ -330,7 +330,7 @@ final class Document: NSDocument, EncodingHolder {
         // get data from string to save
         guard var data = string.data(using: encoding, allowLossyConversion: true) else {
             throw NSError(domain: CocoaError.errorDomain,
-                          code: CocoaError.fileWriteInapplicableStringEncodingError.rawValue,
+                          code: CocoaError.fileWriteInapplicableStringEncoding.rawValue,
                           userInfo: [NSStringEncodingErrorKey: encoding.rawValue])
         }
         
@@ -1105,7 +1105,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// check if can save safety with the current encoding and ask if not
-    private func askSavingSafety(completionHandler:((Bool) -> Void)) {
+    private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
         
         let content = self.string
         let encoding = self.encoding

@@ -78,7 +78,7 @@ class SettingFileManager: SettingManager {
     
     
     /// update internal cache data
-    func updateCache(completionHandler: (@escaping () -> Void)? = nil) {
+    func updateCache(completionHandler: (() -> Void)? = nil) {
         
         preconditionFailure()
     }

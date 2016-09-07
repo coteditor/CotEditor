@@ -69,7 +69,7 @@ final class ServicesProvider: NSObject {
             // process only plain-text files
             guard NSWorkspace.shared().type(UTI, conformsToType: kUTTypeText as String) else {
                 let error = NSError(domain: CocoaError.errorDomain,
-                                    code: CocoaError.fileReadCorruptFileError.rawValue,
+                                    code: CocoaError.fileReadCorruptFile.rawValue,
                                     userInfo: [NSURLErrorKey: fileURL])
                 NSApp.presentError(error)
                 continue
