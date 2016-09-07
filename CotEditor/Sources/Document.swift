@@ -851,8 +851,10 @@ final class Document: NSDocument, EncodingHolder {
         }
         
         // register undo
-        (self.undoManager?.prepare(withInvocationTarget: self) as! Document).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
-        self.undoManager?.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
+        if let undoManager = self.undoManager {
+        (undoManager.prepare(withInvocationTarget: self) as AnyObject).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
+        undoManager.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
+        }
         
         // update encoding
         self.encoding = encoding
@@ -882,8 +884,10 @@ final class Document: NSDocument, EncodingHolder {
         guard lineEnding != self.lineEnding else { return }
         
         // register undo
-        (self.undoManager?.prepare(withInvocationTarget: self) as! Document).objcChangeLineEnding(to: String(self.lineEnding.rawValue))
-        self.undoManager?.setActionName(String(format: NSLocalizedString("Line Endings to “%@”", comment: ""), lineEnding.name))
+        if let undoManager = self.undoManager {
+            (undoManager.prepare(withInvocationTarget: self) as AnyObject).objcChangeLineEnding(to: String(self.lineEnding.rawValue))
+            undoManager.setActionName(String(format: NSLocalizedString("Line Endings to “%@”", comment: ""), lineEnding.name))
+        }
         
         // update line ending
         self.lineEnding = lineEnding

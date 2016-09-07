@@ -7,8 +7,8 @@ develop
 
 ### Known issues
 
-- Crash on changing encoding/line endings.
 - Occasionally crash on turning line number view on.
+- Occasionally crash on window close.
 
 
 ### New Features
