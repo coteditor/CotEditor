@@ -54,6 +54,21 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
+    /// view is ready to display
+    override func viewDidAppear() {
+        
+        // note: This method will not be invoked on window tab change.
+        
+        super.viewDidAppear()
+        
+        // adjust sidebar visibility if this new window was just added to an existing window
+        if let other = self.siblings.first(where: { $0 != self }) {
+            self.isSidebarShown = other.isSidebarShown
+            self.sidebarThickness = other.sidebarThickness
+        }
+    }
+    
+    
     /// deliver represented object to child view controllers
     override var representedObject: Any? {
         
