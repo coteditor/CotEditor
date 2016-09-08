@@ -45,7 +45,7 @@ extension EditorTextView {
     // MARK: Action Messages
     
     /// toggle comment state in selection
-    @IBAction func toggleComment(_ sender: AnyObject?) {
+    @IBAction func toggleComment(_ sender: Any?) {
         
         if self.canUncomment(range: self.selectedRange, partly: false) {
             self.uncomment(types: .both, fromLineHead: Defaults[.appendsCommentSpacer])
@@ -56,28 +56,28 @@ extension EditorTextView {
     
     
     /// comment out selection appending comment delimiters
-    @IBAction func commentOut(_ sender: AnyObject?) {
+    @IBAction func commentOut(_ sender: Any?) {
         
         self.commentOut(types: .both, fromLineHead: false)
     }
     
     
     /// comment out selection appending block comment delimiters
-    @IBAction func blockCommentOut(_ sender: AnyObject?) {
+    @IBAction func blockCommentOut(_ sender: Any?) {
         
         self.commentOut(types: .block, fromLineHead: false)
     }
     
     
     /// comment out selection appending inline comment delimiters
-    @IBAction func inlineCommentOut(_ sender: AnyObject?) {
+    @IBAction func inlineCommentOut(_ sender: Any?) {
         
         self.commentOut(types: .inline, fromLineHead: false)
     }
     
     
     /// uncomment selection removing comment delimiters
-    @IBAction func uncomment(_ sender: AnyObject?) {
+    @IBAction func uncomment(_ sender: Any?) {
         
         self.uncomment(types: .both, fromLineHead: false)
     }

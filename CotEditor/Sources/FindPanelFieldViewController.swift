@@ -114,7 +114,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     // MARK: Action Messages
     
     /// show regular expression reference as popover
-    @IBAction func showRegexHelp(_ sender: AnyObject?) {
+    @IBAction func showRegexHelp(_ sender: Any?) {
         
         if self.presentedViewControllers?.contains(self.regexReferenceViewController) ?? false {
             self.dismissViewController(self.regexReferenceViewController)
@@ -128,7 +128,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// show find panel preferences as popover
-    @IBAction func showPreferences(_ sender: AnyObject?) {
+    @IBAction func showPreferences(_ sender: Any?) {
         
         if self.presentedViewControllers?.contains(self.preferencesViewController) ?? false {
             self.dismissViewController(self.preferencesViewController)
@@ -142,7 +142,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// set selected history string to find field
-    @IBAction func selectFindHistory(_ sender: AnyObject?) {
+    @IBAction func selectFindHistory(_ sender: NSMenuItem?) {
         
         guard let string = sender?.representedObject as? String else { return }
         
@@ -151,7 +151,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// set selected history string to replacement field
-    @IBAction func selectReplaceHistory(_ sender: AnyObject?) {
+    @IBAction func selectReplaceHistory(_ sender: NSMenuItem?) {
         
         guard let string = sender?.representedObject as? String else { return }
         
@@ -160,7 +160,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// restore find history via UI
-    @IBAction func clearFindHistory(_ sender: AnyObject?) {
+    @IBAction func clearFindHistory(_ sender: Any?) {
         
         self.view.window?.makeKeyAndOrderFront(self)
         
@@ -170,7 +170,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// restore replace history via UI
-    @IBAction func clearReplaceHistory(_ sender: AnyObject?) {
+    @IBAction func clearReplaceHistory(_ sender: Any?) {
         
         self.view.window?.makeKeyAndOrderFront(self)
         

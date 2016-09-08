@@ -345,7 +345,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     // MARK: Action Messages
     
     /// show font panel
-    @IBAction func showFonts(_ sender: AnyObject?) {
+    @IBAction func showFonts(_ sender: Any?) {
         
         guard let font = NSFont(name: Defaults[.fontName]!,
                                 size: Defaults[.fontSize]) else { return }
@@ -357,7 +357,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// font in font panel did update
-    override func changeFont(_ sender: Any?) {
+    @IBAction override func changeFont(_ sender: Any?) {
         
         guard let fontManager = sender as? NSFontManager else { return }
         
@@ -371,14 +371,14 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// update font name field with new setting
-    @IBAction func updateFontField(_ sender: AnyObject?) {
+    @IBAction func updateFontField(_ sender: Any?) {
         
         self.setupFontFamilyNameAndSize()
     }
     
     
     /// add theme
-    @IBAction func addTheme(_ sender: AnyObject?) {
+    @IBAction func addTheme(_ sender: Any?) {
         
         guard let tableView = self.themeTableView else { return }
         
@@ -392,7 +392,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// duplicate selected theme
-    @IBAction func duplicateTheme(_ sender: AnyObject?) {
+    @IBAction func duplicateTheme(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
         
@@ -401,7 +401,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// start renaming theme
-    @IBAction func renameTheme(_ sender: AnyObject?) {
+    @IBAction func renameTheme(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
         let row = self.themeNames.index(of: themeName) ?? 0
@@ -411,7 +411,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// delete selected theme
-    @IBAction func deleteTheme(_ sender: AnyObject?) {
+    @IBAction func deleteTheme(_ sender: Any?) {
      
         let themeName = self.targetThemeName(for: sender)
         
@@ -420,7 +420,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// restore selected theme to original bundled one
-    @IBAction func restoreTheme(_ sender: AnyObject?) {
+    @IBAction func restoreTheme(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
         
@@ -429,7 +429,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// export selected theme
-    @IBAction func exportTheme(_ sender: AnyObject?) {
+    @IBAction func exportTheme(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
         
@@ -449,7 +449,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// import theme file via open panel
-    @IBAction func importTheme(_ sender: AnyObject?) {
+    @IBAction func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
         openPanel.prompt = NSLocalizedString("", comment: "")
@@ -467,7 +467,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// open directory in Application Support in Finder where the selected theme exists
-    @IBAction func revealThemeInFinder(_ sender: AnyObject?) {
+    @IBAction func revealThemeInFinder(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
         

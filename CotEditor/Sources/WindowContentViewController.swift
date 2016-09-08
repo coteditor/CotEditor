@@ -98,14 +98,14 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: Action Messages
     
     /// toggle visibility of document inspector
-    @IBAction func getInfo(_ sender: AnyObject?) {
+    @IBAction func getInfo(_ sender: Any?) {
         
         self.toggleVisibilityOfSidebarTabItem(index: .documentInspector)
     }
     
     
     /// toggle visibility of incompatible chars list view
-    @IBAction func toggleIncompatibleCharList(_ sender: AnyObject?) {
+    @IBAction func toggleIncompatibleCharList(_ sender: Any?) {
         
         self.toggleVisibilityOfSidebarTabItem(index: .incompatibleCharacters)
     }

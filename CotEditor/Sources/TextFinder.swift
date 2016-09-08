@@ -196,21 +196,21 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     // MARK: Action Messages
     
     /// jump to selection in client
-    override func centerSelectionInVisibleArea(_ sender: Any?) {
+    @IBAction override func centerSelectionInVisibleArea(_ sender: Any?) {
         
         self.client?.centerSelectionInVisibleArea(sender)
     }
     
     
     /// activate find panel
-    @IBAction func showFindPanel(_ sender: AnyObject?) {
+    @IBAction func showFindPanel(_ sender: Any?) {
         
         self.findPanelController.showWindow(sender)
     }
     
     
     /// find next matched string
-    @IBAction func findNext(_ sender: AnyObject?) {
+    @IBAction func findNext(_ sender: Any?) {
         
         // find backwards if Shift key pressed
         let isShiftPressed = NSEvent.modifierFlags().contains(.shift)
@@ -220,14 +220,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// find previous matched string
-    @IBAction func findPrevious(_ sender: AnyObject?) {
+    @IBAction func findPrevious(_ sender: Any?) {
         
         self.find(forward: false)
     }
     
     
     /// perform find action with the selected string
-    @IBAction func findSelectedText(_ sender: AnyObject?) {
+    @IBAction func findSelectedText(_ sender: Any?) {
         
         self.useSelectionForFind(sender)
         self.findNext(sender)
@@ -235,7 +235,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// find all matched string in the target and show results in a table
-    @IBAction func findAll(_ sender: AnyObject?) {
+    @IBAction func findAll(_ sender: Any?) {
         
         guard self.checkIsReadyToFind(),
             let textView = self.client else { return }
@@ -353,7 +353,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// highlight all matched strings
-    @IBAction func highlight(_ sender: AnyObject?) {
+    @IBAction func highlight(_ sender: Any?) {
         
         guard self.checkIsReadyToFind(),
             let textView = self.client else { return }
@@ -442,7 +442,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// remove all of current highlights in the frontmost textView
-    @IBAction func unhighlight(_ sender: AnyObject?) {
+    @IBAction func unhighlight(_ sender: Any?) {
         
         guard let textView = self.client else { return }
         
@@ -452,7 +452,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// replace matched string in selection with replacementStirng
-    @IBAction func replace(_ sender: AnyObject?) {
+    @IBAction func replace(_ sender: Any?) {
         
         guard self.checkIsReadyToFind() else { return }
         
@@ -469,7 +469,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// replace matched string with replacementStirng and select the next match
-    @IBAction func replaceAndFind(_ sender: AnyObject?) {
+    @IBAction func replaceAndFind(_ sender: Any?) {
         
         guard self.checkIsReadyToFind() else { return }
         
@@ -479,7 +479,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// replace all matched strings with given string
-    @IBAction func replaceAll(_ sender: AnyObject?) {
+    @IBAction func replaceAll(_ sender: Any?) {
         
         guard self.checkIsReadyToFind(),
             let textView = self.client,
@@ -581,7 +581,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// set selected string to find field
-    @IBAction func useSelectionForFind(_ sender: AnyObject?) {
+    @IBAction func useSelectionForFind(_ sender: Any?) {
         
         guard let selectedString = self.selectedString else {
             NSBeep()
@@ -596,7 +596,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// set selected string to replace field
-    @IBAction func useSelectionForReplace(_ sender: AnyObject?) {
+    @IBAction func useSelectionForReplace(_ sender: Any?) {
         
         self.replacementString = self.selectedString ?? ""
     }

@@ -79,7 +79,7 @@ class DocumentToolbar: NSToolbar {
     
     
     /// display toolbar customization sheet
-    override func runCustomizationPalette(_ sender: Any?) {
+    @IBAction override func runCustomizationPalette(_ sender: Any?) {
         
         super.runCustomizationPalette(sender)
         

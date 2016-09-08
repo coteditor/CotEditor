@@ -94,7 +94,7 @@ final class GeneralPaneController: NSViewController {
     // MARK: Action Messages
     
     /// "Enable Auto Save and Versions" checkbox was clicked
-    @IBAction func updateAutosaveSetting(_ sender: AnyObject?) {
+    @IBAction func updateAutosaveSetting(_ sender: Any?) {
         
         let currentSetting = Document.autosavesInPlace()
         let newSetting = Defaults[.enablesAutosaveInPlace]

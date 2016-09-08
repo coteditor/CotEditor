@@ -281,7 +281,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     // MARK: Action Messages
     
     /// activate self and perform "New" menu action
-    @IBAction func newDocumentActivatingApplication(_ sender: AnyObject?) {
+    @IBAction func newDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)
         NSDocumentController.shared().newDocument(sender)
@@ -289,7 +289,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     
     
     /// activate self and perform "Open..." menu action
-    @IBAction func openDocumentActivatingApplication(_ sender: AnyObject?) {
+    @IBAction func openDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)
         NSDocumentController.shared().openDocument(sender)
@@ -297,42 +297,42 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     
     
     /// Show preferences window
-    @IBAction func showPreferences(_ sender: AnyObject?) {
+    @IBAction func showPreferences(_ sender: Any?) {
         
         PreferencesWindowController.shared.showWindow(sender)
     }
     
     
     /// Show console panel
-    @IBAction func showConsolePanel(_ sender: AnyObject?) {
+    @IBAction func showConsolePanel(_ sender: Any?) {
         
         ConsolePanelController.shared.showWindow(sender)
     }
     
     
     /// show color code editor panel
-    @IBAction func showColorCodePanel(_ sender: AnyObject?) {
+    @IBAction func showColorCodePanel(_ sender: Any?) {
         
         ColorCodePanelController.shared.showWindow(sender)
     }
     
     
     /// show editor opacity panel
-    @IBAction func showOpacityPanel(_ sender: AnyObject?) {
+    @IBAction func showOpacityPanel(_ sender: Any?) {
         
         OpacityPanelController.shared.showWindow(sender)
     }
     
     
     /// show acknowlegements
-    @IBAction func showAcknowledgements(_ sender: AnyObject?) {
+    @IBAction func showAcknowledgements(_ sender: Any?) {
         
         self.acknowledgementsWindowController.showWindow(sender)
     }
     
     
     /// open OSAScript dictionary in Script Editor
-    @IBAction func openAppleScriptDictionary(_ sender: AnyObject?) {
+    @IBAction func openAppleScriptDictionary(_ sender: Any?) {
         
         let appURL = Bundle.main.bundleURL
         
@@ -351,21 +351,21 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     
     
     /// open web site (coteditor.com) in default web browser
-    @IBAction func openWebSite(_ sender: AnyObject?) {
+    @IBAction func openWebSite(_ sender: Any?) {
         
         NSWorkspace.shared().open(AppWebURL.website.url)
     }
     
     
     /// open bug report page in default web browser
-    @IBAction func reportBug(_ sender: AnyObject?) {
+    @IBAction func reportBug(_ sender: Any?) {
         
         NSWorkspace.shared().open(AppWebURL.issueTracker.url)
     }
     
     
     /// open new bug report window
-    @IBAction func createBugReport(_ sender: AnyObject?) {
+    @IBAction func createBugReport(_ sender: Any?) {
         
         // load template file
         let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md")!

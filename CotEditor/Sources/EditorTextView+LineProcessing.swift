@@ -32,7 +32,7 @@ extension EditorTextView {
     // MARK: Action Messages
     
     /// move selected line up
-    @IBAction func moveLineUp(_ sender: AnyObject?) {
+    @IBAction func moveLineUp(_ sender: Any?) {
         
         guard let textStorage = self.textStorage else { return }
         
@@ -99,7 +99,7 @@ extension EditorTextView {
     
     
     /// move selected line down
-    @IBAction func moveLineDown(_ sender: AnyObject?) {
+    @IBAction func moveLineDown(_ sender: Any?) {
         
         guard let textStorage = self.textStorage else { return }
         
@@ -167,7 +167,7 @@ extension EditorTextView {
     
     
     /// sort selected lines (only in the first selection) ascending
-    @IBAction func sortLinesAscending(_ sender: AnyObject?) {
+    @IBAction func sortLinesAscending(_ sender: Any?) {
         
         guard let string = self.string as NSString? else { return }
         
@@ -196,7 +196,7 @@ extension EditorTextView {
     
     
     /// reverse selected lines (only in the first selection)
-    @IBAction func reverseLines(_ sender: AnyObject?) {
+    @IBAction func reverseLines(_ sender: Any?) {
         
         guard let string = self.string as NSString? else { return }
         
@@ -223,7 +223,7 @@ extension EditorTextView {
     
     
     /// delete duplicate lines in selection
-    @IBAction func deleteDuplicateLine(_ sender: AnyObject?) {
+    @IBAction func deleteDuplicateLine(_ sender: Any?) {
         
         guard let string = self.string as NSString? else { return }
         
@@ -267,7 +267,7 @@ extension EditorTextView {
     
     
     /// duplicate selected lines below
-    @IBAction func duplicateLine(_ sender: AnyObject?) {
+    @IBAction func duplicateLine(_ sender: Any?) {
         
         guard let string = self.string as NSString? else { return }
         
@@ -297,7 +297,7 @@ extension EditorTextView {
     
     
     /// remove selected lines
-    @IBAction func deleteLine(_ sender: AnyObject?) {
+    @IBAction func deleteLine(_ sender: Any?) {
         
         let replacementRanges = self.selectedLineRanges
         
@@ -312,7 +312,7 @@ extension EditorTextView {
     
     
     /// trim all trailing whitespace
-    @IBAction func trimTrailingWhitespace(_ sender: AnyObject?) {
+    @IBAction func trimTrailingWhitespace(_ sender: Any?) {
         
         self.trimTrailingWhitespace()
     }

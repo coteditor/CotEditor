@@ -106,7 +106,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
     // MARK: Action Messages
     
     /// perform share
-    @IBAction func shareFromService(_ sender: AnyObject?) {
+    @IBAction func shareFromService(_ sender: NSMenuItem?) {
         
         guard let container = sender?.representedObject as? SharingServiceContainer else { return }
         

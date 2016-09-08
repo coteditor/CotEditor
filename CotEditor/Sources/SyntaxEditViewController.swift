@@ -245,7 +245,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     // MARK: Action Messages
     
     /// restore current settings in editor to default
-    @IBAction func setToFactoryDefaults(_ sender: AnyObject?) {
+    @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
         guard let style = SyntaxManager.shared.bundledStyleDictionary(name: self.originalStyleName) else { return }
         
@@ -261,7 +261,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     
     /// jump to style's destribution URL
-    @IBAction func jumpToURL(_ sender: AnyObject?) {
+    @IBAction func jumpToURL(_ sender: Any?) {
         
         guard
             let metadata = self.style[DictionaryKey.metadata.rawValue] as? [String: Any],
@@ -276,7 +276,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     
     /// save edit and close editor
-    @IBAction func save(_ sender: AnyObject?) {
+    @IBAction func save(_ sender: Any?) {
         
         // fix current input
         self.commitEditing()
@@ -322,7 +322,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     
     /// discard edit and close editor
-    @IBAction func cancel(_ sender: AnyObject?) {
+    @IBAction func cancel(_ sender: Any?) {
         
         self.discardEditing()
         self.dismiss(sender)

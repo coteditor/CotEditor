@@ -238,7 +238,7 @@ final class NavigationBarController: NSViewController {
     
     
     /// select previous outline menu item
-    @IBAction func selectPrevItemOfOutlineMenu(_ sender: AnyObject?) {
+    @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
         
         guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
         
@@ -254,7 +254,7 @@ final class NavigationBarController: NSViewController {
     
     
     /// select next outline menu item
-    @IBAction func selectNextItemOfOutlineMenu(_ sender: AnyObject?) {
+    @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
         
         guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
         

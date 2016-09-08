@@ -929,7 +929,7 @@ final class Document: NSDocument, EncodingHolder {
     // MARK: Action Messages
     
     /// save document
-    override func save(_ sender: Any?) {
+    @IBAction override func save(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
             if continuesSaving {
@@ -940,7 +940,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// save document with new name
-    override func saveAs(_ sender: Any?) {
+    @IBAction override func saveAs(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
             if continuesSaving {
@@ -951,7 +951,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// show Share Service menu
-    @IBAction func share(_ sender: AnyObject?) {
+    @IBAction func share(_ sender: Any?) {
         
         guard let view = sender as? NSView else { return }
         
@@ -1057,7 +1057,7 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// insert IANA CharSet name to editor's insertion point
-    @IBAction func insertIANACharSetName(_ sender: AnyObject?) {
+    @IBAction func insertIANACharSetName(_ sender: Any?) {
         
         guard let string = self.encoding.ianaCharSetName else { return }
         

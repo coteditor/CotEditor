@@ -60,7 +60,7 @@ final class SizeSettingWindowController: NSWindowController {
     // MARK: Action Messages
     
     /// close window without save
-    @IBAction func cancel(_ sender: AnyObject?) {
+    @IBAction func cancel(_ sender: Any?) {
         
         self.userDefaultsController.revert(sender)
         
@@ -70,7 +70,7 @@ final class SizeSettingWindowController: NSWindowController {
     
     
     /// save window size to the user defaults and close window
-    @IBAction func save(_ sender: AnyObject?) {
+    @IBAction func save(_ sender: Any?) {
         
         self.userDefaultsController.save(sender)
         

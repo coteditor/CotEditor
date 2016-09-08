@@ -82,7 +82,7 @@ final class SyntaxValidationViewController: NSViewController {
     // MARK: Action Messages
     
     /// start syntax style validation
-    @IBAction func startValidation(_ sender: AnyObject?) {
+    @IBAction func startValidation(_ sender: Any?) {
         
         self.validateSyntax()
     }

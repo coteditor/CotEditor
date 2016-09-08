@@ -78,7 +78,7 @@ final class ProgressViewController: NSViewController {
     // MARK: View Action Messages
     
     /// cancel current process
-    @IBAction func cancel(_ sender: AnyObject?) {
+    @IBAction func cancel(_ sender: Any?) {
         
         self.progress.cancel()
         

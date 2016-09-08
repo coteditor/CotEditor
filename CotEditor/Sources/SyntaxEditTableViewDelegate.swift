@@ -99,7 +99,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
     
     // MARK: Action Messages
     
-    @IBAction func didCheckboxClicked(_ sender: AnyObject?) {
+    @IBAction func didCheckboxClicked(_ sender: Any?) {
         
         // To perform this action,
         // checkbox (NSButton) and column (NSTableColumn) must have the same identifier as the style dict key

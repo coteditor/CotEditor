@@ -49,7 +49,7 @@ final class WindowPaneController: NSViewController {
     // MARK: Action Messages
     
     /// opaque setting did update
-    @IBAction func changeEditorOpaque(_ sender: AnyObject?) {
+    @IBAction func changeEditorOpaque(_ sender: NSControl?) {
         
         guard let sender = sender else { return }
         
@@ -58,7 +58,7 @@ final class WindowPaneController: NSViewController {
     
     
     /// open sample window for window size setting
-    @IBAction func openSizeSampleWindow(_ sender: AnyObject?) {
+    @IBAction func openSizeSampleWindow(_ sender: Any?) {
         
         let sampleWindowController = SizeSettingWindowController()
         

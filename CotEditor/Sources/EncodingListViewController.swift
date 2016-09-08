@@ -145,7 +145,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     // MARK: Action Messages
     
     /// "OK" button was clicked
-    @IBAction func save(_ sender: AnyObject?) {
+    @IBAction func save(_ sender: Any?) {
         
         // write back current encoding list userDefaults
         Defaults[.encodingList] = self.encodings
@@ -155,7 +155,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     
     /// restore encoding setting to default
-    @IBAction func revertDefaultEncodings(_ sender: AnyObject?) {
+    @IBAction func revertDefaultEncodings(_ sender: Any?) {
         
         self.encodings = self.defaultEncodings
         self.tableView?.reloadData()
@@ -163,7 +163,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     
     /// add separator below the selection
-    @IBAction func addSeparator(_ sender: AnyObject?) {
+    @IBAction func addSeparator(_ sender: Any?) {
         
         let index = self.tableView!.selectedRow + 1
         
@@ -172,7 +172,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     
     /// remove separator
-    @IBAction func deleteSeparator(_ sender: AnyObject?) {
+    @IBAction func deleteSeparator(_ sender: Any?) {
         
         let indexes = self.tableView!.selectedRowIndexes
         

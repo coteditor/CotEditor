@@ -227,7 +227,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     // MARK: Action Messages
     
     /// restore key binding setting to default
-    @IBAction func setToFactoryDefaults(_ sender: AnyObject?) {
+    @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
         self.outlineTree = self.manager.outlineTree(defaults: true)
         
@@ -326,7 +326,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     
     
     /// restore key binding setting to default
-    override func setToFactoryDefaults(_ sender: AnyObject?) {
+    @IBAction override func setToFactoryDefaults(_ sender: Any?) {
         
         self.setup(snippets: SnippetKeyBindingManager.shared.snippets(defaults: true))
         

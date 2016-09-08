@@ -118,7 +118,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     // MARK: Action Messages
     
     /// apply system highlight color to color well
-    @IBAction func applySystemSelectionColor(_ sender: AnyObject?) {
+    @IBAction func applySystemSelectionColor(_ sender: Any?) {
         
         guard let button = sender as? NSButton, button.state == NSOnState else { return }
         
@@ -130,7 +130,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     
     
     /// show medatada of theme file via popover
-    @IBAction func showMedatada(_ sender: AnyObject?) {
+    @IBAction func showMedatada(_ sender: Any?) {
         
         guard let button = sender as? NSButton else { return }
         
@@ -139,7 +139,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     
     
     /// jump to theme's destribution URL
-    @IBAction func jumpToURL(_ sender: AnyObject?) {
+    @IBAction func jumpToURL(_ sender: Any?) {
         
         guard let address =  self.theme?[DictionaryKey.metadata.rawValue]?[MetadataKey.distributionURL.rawValue] as? String,
               let url = URL(string: address) else

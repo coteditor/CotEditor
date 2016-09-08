@@ -71,7 +71,7 @@ final class PrintPaneController: NSViewController {
     // MARK: Action Messages
     
     /// show font panel
-    @IBAction func showFonts(_ sender: AnyObject?) {
+    @IBAction func showFonts(_ sender: Any?) {
         guard let font = NSFont(name: Defaults[.printFontName]!,
                                 size: Defaults[.printFontSize]) else { return }
         
@@ -82,7 +82,7 @@ final class PrintPaneController: NSViewController {
     
     
     /// font in font panel did update
-    override func changeFont(_ sender: Any?) {
+    @IBAction override func changeFont(_ sender: Any?) {
         
         guard let fontManager = sender as? NSFontManager else { return }
         
@@ -96,7 +96,7 @@ final class PrintPaneController: NSViewController {
     
     
     /// color setting did update
-    @IBAction func changePrintTheme(_ sender: AnyObject?) {
+    @IBAction func changePrintTheme(_ sender: Any?) {
         
         guard let popup = sender as? NSPopUpButton else { return }
         

@@ -32,7 +32,7 @@ extension EditorTextView {
     // MARK: Action Messages
     
     /// increase indent level
-    @IBAction func shiftRight(_ sender: AnyObject?) {
+    @IBAction func shiftRight(_ sender: Any?) {
         
         guard let string = self.string, self.tabWidth > 0 else { return }
         
@@ -71,7 +71,7 @@ extension EditorTextView {
     
     
     /// decrease indent level
-    @IBAction func shiftLeft(_ sender: AnyObject?) {
+    @IBAction func shiftLeft(_ sender: Any?) {
         
         guard let string = self.string, self.tabWidth > 0 else { return }
         
@@ -139,14 +139,14 @@ extension EditorTextView {
     
     
     /// standardize inentation in selection to spaces
-    @IBAction func convertIndentationToSpaces(_ sender: AnyObject?) {
+    @IBAction func convertIndentationToSpaces(_ sender: Any?) {
         
         self.convertIndentation(style: .space)
     }
     
     
     /// standardize inentation in selection to tabs
-    @IBAction func convertIndentationToTabs(_ sender: AnyObject?) {
+    @IBAction func convertIndentationToTabs(_ sender: Any?) {
         
         self.convertIndentation(style: .tab)
     }

@@ -435,14 +435,14 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     // MARK: Action Messages
     
     /// toggle visibility of line number view
-    @IBAction func toggleLineNumber(_ sender: AnyObject?) {
+    @IBAction func toggleLineNumber(_ sender: Any?) {
         
         self.showsLineNumber = !self.showsLineNumber
     }
     
     
     /// toggle visibility of navigation bar
-    @IBAction func toggleNavigationBar(_ sender: AnyObject?) {
+    @IBAction func toggleNavigationBar(_ sender: Any?) {
         
         NSAnimationContext.current().allowsImplicitAnimation = true
         
@@ -453,21 +453,21 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// toggle if lines wrap at window edge
-    @IBAction func toggleLineWrap(_ sender: AnyObject?) {
+    @IBAction func toggleLineWrap(_ sender: Any?) {
         
         self.wrapsLines = !self.wrapsLines
     }
     
     
     /// toggle text layout orientation (vertical/horizontal)
-    @IBAction func toggleLayoutOrientation(_ sender: AnyObject?) {
+    @IBAction func toggleLayoutOrientation(_ sender: Any?) {
         
         self.verticalLayoutOrientation = !self.verticalLayoutOrientation
     }
     
     
     /// toggle if antialias text in text view
-    @IBAction func toggleAntialias(_ sender: AnyObject?) {
+    @IBAction func toggleAntialias(_ sender: Any?) {
         
         guard let usesAntialias = self.focusedTextView?.usesAntialias else { return }
         
@@ -478,21 +478,21 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// toggle visibility of invisible characters in text view
-    @IBAction func toggleInvisibleChars(_ sender: AnyObject?) {
+    @IBAction func toggleInvisibleChars(_ sender: Any?) {
         
         self.showsInvisibles = !self.showsInvisibles
     }
     
     
     /// toggle visibility of page guide line in text view
-    @IBAction func togglePageGuide(_ sender: AnyObject?) {
+    @IBAction func togglePageGuide(_ sender: Any?) {
         
         self.showsPageGuide = !self.showsPageGuide
     }
     
     
     /// toggle if text view expands tab input
-    @IBAction func toggleAutoTabExpand(_ sender: AnyObject?) {
+    @IBAction func toggleAutoTabExpand(_ sender: Any?) {
         
         self.isAutoTabExpandEnabled = !self.isAutoTabExpandEnabled
     }
@@ -517,14 +517,14 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// re-color whole document
-    @IBAction func recolorAll(_ sender: AnyObject?) {
+    @IBAction func recolorAll(_ sender: Any?) {
         
         self.invalidateSyntaxHighlight()
     }
     
     
     /// split editor view
-    @IBAction func openSplitTextView(_ sender: AnyObject?) {
+    @IBAction func openSplitTextView(_ sender: Any?) {
         
         guard let currentEditorViewController = self.findTargetEditorViewController(for: sender) else { return }
         
@@ -547,7 +547,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// close one of split views
-    @IBAction func closeSplitTextView(_ sender: AnyObject?) {
+    @IBAction func closeSplitTextView(_ sender: Any?) {
         
         guard
             let splitViewController = self.splitViewController,
@@ -697,7 +697,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// find target EditorViewController to manage split views for action sender
-    func findTargetEditorViewController(for sender: AnyObject?) -> EditorViewController? {
+    func findTargetEditorViewController(for sender: Any?) -> EditorViewController? {
         
         var view: NSView? = (sender is NSMenuItem) ? (self.window?.firstResponder as? NSView) : sender as? NSView
         while view != nil {

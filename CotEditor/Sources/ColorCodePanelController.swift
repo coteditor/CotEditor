@@ -117,7 +117,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     // MARK: Action Messages
     
     /// on show color panel
-    @IBAction func showWindow(_ sender: AnyObject?) {
+    @IBAction func showWindow(_ sender: Any?) {
         
         // setup the shared color panel
         let panel = NSColorPanel.shared()
@@ -147,7 +147,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     
     /// insert color code to the selection of the frontmost document
-    @IBAction func insertCodeToDocument(_ sender: AnyObject?) {
+    @IBAction func insertCodeToDocument(_ sender: Any?) {
         
         guard self.colorCode != nil else { return }
         
@@ -169,14 +169,14 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     
     /// set color from the color code field in the panel
-    @IBAction func applayColorCode(_ sender: AnyObject?) {
+    @IBAction func applayColorCode(_ sender: Any?) {
         
         self.setColor(withCode: self.colorCode)
     }
     
     
     /// update color code in the field
-    @IBAction func updateCode(_ sender: AnyObject?) {
+    @IBAction func updateCode(_ sender: Any?) {
         
         let codeType = self.selectedCodeType
         let color: NSColor? = {

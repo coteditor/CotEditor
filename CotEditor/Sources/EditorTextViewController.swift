@@ -269,7 +269,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: Action Messages
     
     /// show Go To sheet
-    @IBAction func gotoLocation(_ sender: AnyObject?) {
+    @IBAction func gotoLocation(_ sender: Any?) {
         
         let viewController = GoToLineViewController(textView: self.textView!)
         

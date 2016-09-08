@@ -79,7 +79,7 @@ final class PreferencesWindowController: NSWindowController, NSWindowDelegate {
     // MARK: Action Messages
     
     /// switch panes from toolbar
-    @IBAction func switchView(_ sender: AnyObject?) {
+    @IBAction func switchView(_ sender: Any?) {
         
         guard let window = self.window,
               let toolbarItem = sender as? NSToolbarItem else { return }

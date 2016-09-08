@@ -180,7 +180,7 @@ final class ScriptManager: NSObject {
     
     
     /// build Script menu
-    @IBAction func buildScriptMenu(_ sender: AnyObject?) {
+    @IBAction func buildScriptMenu(_ sender: Any?) {
         
         let menu = MainMenu.script.menu!
         
@@ -205,7 +205,7 @@ final class ScriptManager: NSObject {
     
     
     /// open Script Menu folder in Finder
-    @IBAction func openScriptFolder(_ sender: AnyObject?) {
+    @IBAction func openScriptFolder(_ sender: Any?) {
         
         NSWorkspace.shared().activateFileViewerSelecting([self.scriptsDirectoryURL])
     }

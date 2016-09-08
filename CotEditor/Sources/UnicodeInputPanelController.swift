@@ -125,7 +125,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     // MARK: Action Message
     
     /// input unicode character to the frontmost document
-    @IBAction func insertToDocument(_ sender: AnyObject?) {
+    @IBAction func insertToDocument(_ sender: Any?) {
         
         guard self.characterString?.isEmpty ?? false else { return }
         

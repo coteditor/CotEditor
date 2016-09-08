@@ -105,7 +105,7 @@ final class ConsolePanelController: NSWindowController {
     
     
     /// flush console
-    @IBAction func cleanConsole(_ sender: AnyObject?) {
+    @IBAction func cleanConsole(_ sender: Any?) {
         
         self.textView?.string = ""
     }
@@ -121,28 +121,28 @@ final class ConsolePanelController: NSWindowController {
 extension ConsolePanelController {
     
     /// bridge find action to NSTextFinder
-    @IBAction func showFindPanel(_ sender: AnyObject?) {
+    @IBAction func showFindPanel(_ sender: Any?) {
         
         self.textFinder?.performAction(.showFindInterface)
     }
     
     
     /// bridge find action to NSTextFinder
-    @IBAction func findNext(_ sender: AnyObject?) {
+    @IBAction func findNext(_ sender: Any?) {
         
         self.textFinder?.performAction(.nextMatch)
     }
     
     
     /// bridge find action to NSTextFinder
-    @IBAction func findPrevious(_ sender: AnyObject?) {
+    @IBAction func findPrevious(_ sender: Any?) {
         
         self.textFinder?.performAction(.previousMatch)
     }
     
     
     /// bridge find action to NSTextFinder
-    @IBAction func useSelectionForFind(_ sender: AnyObject?) {
+    @IBAction func useSelectionForFind(_ sender: Any?) {
         
         self.textFinder?.performAction(.setSearchString)
     }

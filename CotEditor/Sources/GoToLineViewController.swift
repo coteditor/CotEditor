@@ -72,7 +72,7 @@ final class GoToLineViewController: NSViewController {
     // MARK: Action Messages
     
     /// apply
-    @IBAction func ok(_ sender: AnyObject?) {
+    @IBAction func ok(_ sender: Any?) {
         
         guard self.selectLocation() else {
             NSBeep()

@@ -71,7 +71,7 @@ final class FindPanelButtonViewController: NSViewController {
     // MARK: Action Messages
     
     /// replace next matched string with given string
-    @IBAction func replace(_ sender: AnyObject?) {
+    @IBAction func replace(_ sender: Any?) {
         
         // perform "Replace & Find" instead of "Replace"
         if Defaults[.findNextAfterReplace] {
@@ -83,7 +83,7 @@ final class FindPanelButtonViewController: NSViewController {
     
     
     /// perform segmented Find Next/Previous button
-    @IBAction func clickSegmentedFindButton(_ sender: AnyObject?) {
+    @IBAction func clickSegmentedFindButton(_ sender: Any?) {
         
         guard let segmentedControl = sender as? NSSegmentedControl else { return }
         

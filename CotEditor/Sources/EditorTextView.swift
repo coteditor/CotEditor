@@ -902,7 +902,7 @@ final class EditorTextView: NSTextView, Themable {
     // MARK: Action Messages
     
     /// copy selection with syntax highlight and font style
-    @IBAction func copyWithStyle(_ sender: AnyObject?) {
+    @IBAction func copyWithStyle(_ sender: Any?) {
         
         guard let string = self.string, self.selectedRange.length > 0 else {
             NSBeep()
@@ -978,21 +978,21 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// input an Yen sign (¥)
-    @IBAction func inputYenMark(_ sender: AnyObject?) {
+    @IBAction func inputYenMark(_ sender: Any?) {
         
         super.insertText("¥", replacementRange: self.rangeForUserTextChange)
     }
     
     
     ///input a backslash (/)
-    @IBAction func inputBackSlash(_ sender: AnyObject?) {
+    @IBAction func inputBackSlash(_ sender: Any?) {
         
         super.insertText("\\", replacementRange: self.rangeForUserTextChange)
     }
     
     
     /// display character information by popover
-    @IBAction func showSelectionInfo(_ sender: AnyObject?) {
+    @IBAction func showSelectionInfo(_ sender: Any?) {
         
         guard var selectedString = (self.string as NSString?)?.substring(with: self.selectedRange) else { return }
         

@@ -216,7 +216,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     // MARK: Action Messages
     
     /// save also availability of UTF-8 BOM
-    @IBAction func changeEncodingInNewDocument(_ sender: AnyObject?) {
+    @IBAction func changeEncodingInNewDocument(_ sender: Any?) {
         
         let withUTF8BOM = (self.inNewEncodingMenu?.selectedItem?.representedObject as? String) == IsUTF8WithBOM
         
@@ -225,7 +225,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// recommend user to use "Auto-Detect" on changing encoding setting
-    @IBAction func checkSelectedItemOfInOpenEncodingMenu(_ sender: AnyObject?) {
+    @IBAction func checkSelectedItemOfInOpenEncodingMenu(_ sender: Any?) {
         
         guard let newTitle = self.inOpenEncodingMenu?.selectedItem?.title, newTitle != NSLocalizedString("Auto-Detect", comment: "") else { return }
         
@@ -245,14 +245,14 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// show encoding list edit sheet
-    @IBAction func openEncodingEditSheet(_ sender: AnyObject?) {
+    @IBAction func openEncodingEditSheet(_ sender: Any?) {
         
         self.presentViewControllerAsSheet(EncodingListViewController())
     }
     
     
     /// show syntax mapping conflict error sheet
-    @IBAction func openSyntaxMappingConflictSheet(_ sender: AnyObject?) {
+    @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
         self.presentViewControllerAsSheet(SyntaxMappingConflictsViewController())
     }
@@ -271,7 +271,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// delete selected syntax style
-    @IBAction func deleteSyntaxStyle(_ sender: AnyObject?) {
+    @IBAction func deleteSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
         
@@ -280,7 +280,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// restore selected syntax style to original bundled one
-    @IBAction func restoreSyntaxStyle(_ sender: AnyObject?) {
+    @IBAction func restoreSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
         
@@ -289,7 +289,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// export selected syntax style
-    @IBAction func exportSyntaxStyle(_ sender: AnyObject?) {
+    @IBAction func exportSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
         
@@ -309,7 +309,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// import syntax style file via open panel
-    @IBAction func importSyntaxStyle(_ sender: AnyObject?) {
+    @IBAction func importSyntaxStyle(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
         openPanel.prompt = NSLocalizedString("", comment: "")
@@ -327,7 +327,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// open directory in Application Support in Finder where the selected style exists
-    @IBAction func revealSyntaxStyleInFinder(_ sender: AnyObject?) {
+    @IBAction func revealSyntaxStyleInFinder(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
         

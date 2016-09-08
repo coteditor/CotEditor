@@ -61,7 +61,7 @@ final class EditPaneController: NSViewController {
     // MARK: Action Messages
     
     /// completion list condition was changed
-    @IBAction func updateCompletionListWords(_ sender: AnyObject?) {
+    @IBAction func updateCompletionListWords(_ sender: Any?) {
         
         self.updateCompletionHintMessage()
     }

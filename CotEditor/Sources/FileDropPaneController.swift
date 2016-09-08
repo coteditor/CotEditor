@@ -169,7 +169,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     // MARK: Action Messages
     
     /// preset token insertion menu was selected
-    @IBAction func insertToken(_ sender: AnyObject?) {
+    @IBAction func insertToken(_ sender: Any?) {
         
         guard let menuItem = sender as? NSMenuItem else { return }
         guard let textView = self.formatTextView else { return }
@@ -186,7 +186,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     /// add file drop setting
-    @IBAction func addSetting(_ sender: AnyObject?) {
+    @IBAction func addSetting(_ sender: Any?) {
         
         self.commitEditing()
         
@@ -195,7 +195,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     /// remove selected file drop setting
-    @IBAction func removeSetting(_ sender: AnyObject?) {
+    @IBAction func removeSetting(_ sender: Any?) {
         
         guard let selectedRow = self.extensionTableView?.selectedRow, selectedRow != -1 else { return }
         

@@ -32,7 +32,7 @@ extension EditorTextView {
     // MARK: Action Messages (Transformations)
     
     /// transform half-width roman characters in selection to full-width
-    @IBAction func exchangeFullwidthRoman(_ sender: AnyObject?) {
+    @IBAction func exchangeFullwidthRoman(_ sender: Any?) {
         
         let actionName = NSLocalizedString("To Fullwidth Roman", comment: "")
         self.transformSelection(actionName: actionName) { $0.fullWidthRoman }
@@ -40,7 +40,7 @@ extension EditorTextView {
     
     
     /// transform full-width roman characters in selection to half-width
-    @IBAction func exchangeHalfwidthRoman(_ sender: AnyObject?) {
+    @IBAction func exchangeHalfwidthRoman(_ sender: Any?) {
         
         let actionName = NSLocalizedString("To Halfwidth Roman", comment: "")
         self.transformSelection(actionName: actionName) { $0.halfWidthRoman }
@@ -48,7 +48,7 @@ extension EditorTextView {
     
     
     /// transform Hiragana in selection to Katakana
-    @IBAction func exchangeKatakana(_ sender: AnyObject?) {
+    @IBAction func exchangeKatakana(_ sender: Any?) {
         
         let actionName = NSLocalizedString("Hiragana to Katakana", comment: "")
         self.transformSelection(actionName: actionName) { $0.katakana }
@@ -56,7 +56,7 @@ extension EditorTextView {
     
     
     /// transform Katakana in selection to Hiragana
-    @IBAction func exchangeHiragana(_ sender: AnyObject?) {
+    @IBAction func exchangeHiragana(_ sender: Any?) {
         
         let actionName = NSLocalizedString("Katakana to Hiragana", comment: "")
         self.transformSelection(actionName: actionName) { $0.hiragana }
@@ -67,42 +67,42 @@ extension EditorTextView {
     // MARK: Action Messages (Unicode Normalizations)
     
     /// Unicode normalization (NFD)
-    @IBAction func normalizeUnicodeWithNFD(_ sender: AnyObject?) {
+    @IBAction func normalizeUnicodeWithNFD(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFD") { $0.decomposedStringWithCanonicalMapping }
     }
     
     
     /// Unicode normalization (NFC)
-    @IBAction func normalizeUnicodeWithNFC(_ sender: AnyObject?) {
+    @IBAction func normalizeUnicodeWithNFC(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFC") { $0.precomposedStringWithCanonicalMapping }
     }
     
     
     /// Unicode normalization (NFKD)
-    @IBAction func normalizeUnicodeWithNFKD(_ sender: AnyObject?) {
+    @IBAction func normalizeUnicodeWithNFKD(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFKD") { $0.decomposedStringWithCompatibilityMapping }
     }
     
     
     /// Unicode normalization (NFKC)
-    @IBAction func normalizeUnicodeWithNFKC(_ sender: AnyObject?) {
+    @IBAction func normalizeUnicodeWithNFKC(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFKC") { $0.precomposedStringWithCompatibilityMapping }
     }
     
     
     /// Unicode normalization (NFKC_Casefold)
-    @IBAction func normalizeUnicodeWithNFKCCF(_ sender: AnyObject?) {
+    @IBAction func normalizeUnicodeWithNFKCCF(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFKC Casefold") { $0.precomposedStringWithCompatibilityMappingWithCasefold }
     }
     
     
     /// Unicode normalization (Modified NFC)
-    @IBAction func normalizeUnicodeWithModifiedNFC(_ sender: AnyObject?) {
+    @IBAction func normalizeUnicodeWithModifiedNFC(_ sender: Any?) {
         
         let actionName = NSLocalizedString("Modified NFC", comment: "name of an Uniocode normalization type")
         self.transformSelection(actionName: actionName) { $0.precomposedStringWithHFSPlusMapping }
@@ -110,7 +110,7 @@ extension EditorTextView {
     
     
     /// Unicode normalization (Modified NFD)
-    @IBAction func normalizeUnicodeWithModifiedNFD(_ sender: AnyObject?) {
+    @IBAction func normalizeUnicodeWithModifiedNFD(_ sender: Any?) {
         
         let actionName = NSLocalizedString("Modified NFD", comment: "name of an Uniocode normalization type")
         self.transformSelection(actionName: actionName) { $0.decomposedStringWithHFSPlusMapping }

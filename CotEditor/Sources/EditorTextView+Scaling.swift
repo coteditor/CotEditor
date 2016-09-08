@@ -78,21 +78,21 @@ extension EditorTextView {
     // MARK: Action Messages
     
     /// scale up
-    @IBAction func biggerFont(_ sender: AnyObject?) {
+    @IBAction func biggerFont(_ sender: Any?) {
         
         self.setScaleKeepingVisibleArea(self.scale * 1.1)
     }
     
     
     /// scale down
-    @IBAction func smallerFont(_ sender: AnyObject?) {
+    @IBAction func smallerFont(_ sender: Any?) {
         
         self.setScaleKeepingVisibleArea(self.scale / 1.1)
     }
     
     
     /// reset scale and font to default
-    @IBAction func resetFont(_ sender: AnyObject?) {
+    @IBAction func resetFont(_ sender: Any?) {
         
         let name = Defaults[.fontName]!
         let size = Defaults[.fontSize]

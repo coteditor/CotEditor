@@ -103,7 +103,7 @@ final class MainViewController: NSSplitViewController {
     // MARK: Action Messages
     
     /// toggle visibility of status bar with fancy animation
-    @IBAction func toggleStatusBar(_ sender: AnyObject?) {
+    @IBAction func toggleStatusBar(_ sender: Any?) {
         
         self.statusBarItem?.animator().isCollapsed = self.isStatusBarShown
     }

@@ -201,7 +201,7 @@ final class DocumentController: NSDocumentController {
     // MARK: Action Messages
     
     /// reset selection of the encoding menu
-    @IBAction func openHiddenDocument(_ sender: AnyObject?) {
+    @IBAction func openHiddenDocument(_ sender: Any?) {
         
         self.showsHiddenFiles = true
         
@@ -211,7 +211,7 @@ final class DocumentController: NSDocumentController {
     
     /// open a new document as tab in the existing frontmost window
     @available(macOS 10.12, *)
-    @IBAction func newDocumentAsTab(_ sender: AnyObject?) {
+    @IBAction func newDocumentAsTab(_ sender: Any?) {
         
         guard let frontmostWindow = self.currentDocument?.windowControllers.first?.window else {
             return self.newDocument(sender)

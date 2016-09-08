@@ -135,14 +135,14 @@ final class EditorViewController: NSSplitViewController {
     // MARK: Action Messages
     
     /// select previous outline menu item (bridge action from menu bar)
-    @IBAction func selectPrevItemOfOutlineMenu(_ sender: AnyObject?) {
+    @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
         
         self.navigationBarController?.selectPrevItemOfOutlineMenu(sender)
     }
     
     
     /// select next outline menu item (bridge action from menu bar)
-    @IBAction func selectNextItemOfOutlineMenu(_ sender: AnyObject?) {
+    @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
         
         self.navigationBarController?.selectNextItemOfOutlineMenu(sender)
     }

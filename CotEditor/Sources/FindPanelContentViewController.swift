@@ -107,7 +107,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     // MARK: Action Messages
     
     /// close opening find result view
-    @IBAction func closeResultView(_ sender: AnyObject?) {
+    @IBAction func closeResultView(_ sender: Any?) {
         
         self.setResultShown(false, animate: true)
     }

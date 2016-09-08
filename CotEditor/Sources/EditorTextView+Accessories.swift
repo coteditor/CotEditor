@@ -32,7 +32,7 @@ extension EditorTextView: UnicodeInputReceiver {
     // MARK: Action Messages
     
     /// show Unicode input panel
-    @IBAction func showUnicodeInputPanel(_ sender: AnyObject?) {
+    @IBAction func showUnicodeInputPanel(_ sender: Any?) {
         
         UnicodeInputPanelController.shared.showWindow(self)
     }
@@ -63,7 +63,7 @@ extension EditorTextView: ColorCodeReceiver {
     // MARK: Action Messages
     
     /// show Unicode input panel
-    @IBAction func editColorCode(_ sender: AnyObject?) {
+    @IBAction func editColorCode(_ sender: Any?) {
         
         ColorCodePanelController.shared.showWindow(self)
         
@@ -74,7 +74,7 @@ extension EditorTextView: ColorCodeReceiver {
     
     
     /// avoid changing text color by color panel
-    override func changeColor(_ sender: Any?) { }
+    @IBAction override func changeColor(_ sender: Any?) { }
     
     
     
