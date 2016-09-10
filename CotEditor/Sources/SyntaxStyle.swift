@@ -137,16 +137,19 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
             guard let definitionDictionaries = dictionary[type.rawValue] as? [[String: Any]] else { continue }
             
             var definitions = [HighlightDefinition]()
-            definitionLoop: for wordDict in definitionDictionaries {
+            for wordDict in definitionDictionaries {
                 guard let definition = HighlightDefinition(definition: wordDict) else { continue }
                 
                 // check quote
-                for quote in ["\"\"\"", "'''", "\"", "'", "`"] {
-                    if definition.beginString == quote && definition.endString == quote && !quoteTypes.keys.contains(quote) {
-                        // remove from the normal highlight definition list
-                        quoteTypes[quote] = type
-                        continue definitionLoop
-                    }
+                if !definition.isRegularExpression, definition.beginString == definition.endString,
+                    definition.beginString.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
+                    Set(definition.beginString.characters).count == 1,  // consists of the same characters
+                    !quoteTypes.keys.contains(definition.beginString)  // not registered yet
+                {
+                    quoteTypes[definition.beginString] = type
+                    
+                    // remove from the normal highlight definition list
+                    continue
                 }
                 
                 definitions.append(definition)

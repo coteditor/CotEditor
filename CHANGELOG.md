@@ -44,6 +44,8 @@ develop
 - Update key binding setting format.
     - Not compatible with previous key bindings setting. Please customize again in the preferences window.
 - Update “Swift” syntax style to Swift 3.0.
+- Update “Coffee Script” syntax style for the block regular epression.
+- Improve syntax highlighting algorithm with symbols.
 - Change specification not to treat full-width spaces as indent.
 - Open sidebar inward on Yosemite.
 - Make indent deletion more naturally.
