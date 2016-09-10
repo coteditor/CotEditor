@@ -8,7 +8,6 @@ develop
 ### Known issues
 
 - Some window states are not restored.
-- Bottom window corners.
 
 
 ### New Features

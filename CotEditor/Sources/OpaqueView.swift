@@ -1,6 +1,6 @@
 /*
  
- BackgroundView.swift
+ OpaqueView.swift
  
  CotEditor
  https://coteditor.com
@@ -27,15 +27,8 @@
 
 import Cocoa
 
-@IBDesignable class BackgroundView: NSView {
+final class OpaqueView: NSView {
     
-    // MARK: Public Properties
-    
-    @IBInspectable var fillColor: NSColor = .windowBackgroundColor
-    
-    
-    
-    // MARK:
     // MARK: View Methods
     
     /// draw inside
@@ -43,14 +36,16 @@ import Cocoa
         
         NSGraphicsContext.saveGraphicsState()
         
-        self.fillColor.setFill()
+        NSColor.windowBackgroundColor.setFill()
         NSBezierPath.fill(dirtyRect)
         
         NSGraphicsContext.restoreGraphicsState()
+        
+        super.draw(dirtyRect)
     }
     
     
-    /// whether it's an opaque view
+    /// make view opaque
     override var isOpaque: Bool {
         
         return true

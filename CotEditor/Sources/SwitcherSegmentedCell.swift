@@ -66,7 +66,7 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
             
             // tint drawn icon template
             NSColor.alternateSelectedControlColor.setFill()
-            NSRectFillUsingOperation(frame, NSCompositeSourceIn)
+            NSRectFillUsingOperation(frame, .sourceAtop)
             
             NSGraphicsContext.restoreGraphicsState()
             

@@ -49,6 +49,7 @@ final class InspectorTabView: NSTabView {
         self.segmentedControl.cell = SwitcherSegmentedCell()
         self.segmentedControl.segmentStyle = .texturedSquare
         self.segmentedControl.frame.origin.y = floor((self.ControlHeight - self.segmentedControl.intrinsicContentSize.height) / 2)
+        self.segmentedControl.wantsLayer = true
         self.segmentedControl.action = #selector(InspectorTabView.selectTabViewItemWithSegmentedControl)
         self.segmentedControl.target = self
         self.addSubview(self.segmentedControl)

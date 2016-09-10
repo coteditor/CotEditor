@@ -408,8 +408,8 @@
 		2ACD68301D6B113500496B47 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACD68311D6B113E00496B47 /* YAML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACD68321D6B114400496B47 /* ColorCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2ACDC08B1D171F1E009B72D6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */; };
-		2ACDC08C1D171F1E009B72D6 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */; };
+		2ACDC08B1D171F1E009B72D6 /* OpaqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* OpaqueView.swift */; };
+		2ACDC08C1D171F1E009B72D6 /* OpaqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08A1D171F1E009B72D6 /* OpaqueView.swift */; };
 		2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
 		2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
 		2ACDC0911D1726BD009B72D6 /* DotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotImageView.swift */; };
@@ -875,7 +875,7 @@
 		2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ColorCode.framework.dSYM; path = ../Carthage/Build/Mac/ColorCode.framework.dSYM; sourceTree = "<group>"; };
 		2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = YAML.framework.dSYM; path = ../Carthage/Build/Mac/YAML.framework.dSYM; sourceTree = "<group>"; };
 		2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Sparkle.framework.dSYM; path = ../Carthage/Build/Mac/Sparkle.framework.dSYM; sourceTree = "<group>"; };
-		2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		2ACDC08A1D171F1E009B72D6 /* OpaqueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpaqueView.swift; sourceTree = "<group>"; };
 		2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
 		2ACDC0901D1726BD009B72D6 /* DotImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotImageView.swift; sourceTree = "<group>"; };
 		2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineMenuButtonCell.swift; sourceTree = "<group>"; };
@@ -1133,9 +1133,9 @@
 			isa = PBXGroup;
 			children = (
 				2ADD36991CFCADAD00F3175D /* Inspector Tab View */,
-				2ACDC08A1D171F1E009B72D6 /* BackgroundView.swift */,
-				2ACDC0901D1726BD009B72D6 /* DotImageView.swift */,
+				2ACDC08A1D171F1E009B72D6 /* OpaqueView.swift */,
 				2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */,
+				2ACDC0901D1726BD009B72D6 /* DotImageView.swift */,
 				2AE52F171D17468B00D60A32 /* EditorSplitView.swift */,
 				2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */,
 				2ACDC09C1D172EF7009B72D6 /* WrappingTextField.swift */,
@@ -2059,7 +2059,7 @@
 				2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,
 				2AF073F51D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
 				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
-				2ACDC08C1D171F1E009B72D6 /* BackgroundView.swift in Sources */,
+				2ACDC08C1D171F1E009B72D6 /* OpaqueView.swift in Sources */,
 				2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */,
@@ -2345,7 +2345,7 @@
 				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A6FD9F61D3AE29E00A59784 /* SyntaxStyle.swift in Sources */,
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
-				2ACDC08B1D171F1E009B72D6 /* BackgroundView.swift in Sources */,
+				2ACDC08B1D171F1E009B72D6 /* OpaqueView.swift in Sources */,
 				2A5D13221D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */,
 				2A6FD9E71D394F5900A59784 /* LayoutManager.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Utilities.swift in Sources */,
