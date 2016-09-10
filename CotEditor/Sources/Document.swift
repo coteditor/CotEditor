@@ -601,7 +601,7 @@ final class Document: NSDocument, EncodingHolder {
             printInfo.rightMargin = kHorizontalPrintMargin
             printInfo.topMargin = kVerticalPrintMargin
             printInfo.bottomMargin = kVerticalPrintMargin
-            printInfo.dictionary().setValue(true, forKey: NSPrintHeaderAndFooter)
+            printInfo.dictionary()[NSPrintHeaderAndFooter] = true
             
             return printInfo
         }
