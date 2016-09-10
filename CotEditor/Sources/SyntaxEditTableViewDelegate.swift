@@ -108,13 +108,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
               let identifier = checkbox.identifier else { return }
         
         // find tableView
-        var superview = checkbox.superview
-        while superview != nil {
-            if superview is NSTableView {
-                break
-            }
-            superview = superview?.superview
-        }
+        let superview = sequence(first: checkbox, next: { $0.superview }).first { (view: NSView) -> Bool in view is NSTableView }
         
         guard let tableView = superview as? NSTableView, tableView.numberOfSelectedRows > 1 else { return }
         
@@ -125,7 +119,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
             guard rowView.isSelected else { return }
             
             if let view = rowView.view(atColumn: columnIndex) as? NSTableCellView {
-                (view.objectValue as AnyObject).setValue(NSNumber(value: isChecked), forKey: identifier)
+                (view.objectValue as AnyObject?)?.setValue(NSNumber(value: isChecked), forKey: identifier)
             }
         }
     }

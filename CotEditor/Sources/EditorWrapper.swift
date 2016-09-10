@@ -699,13 +699,10 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     /// find target EditorViewController to manage split views for action sender
     func findTargetEditorViewController(for sender: Any?) -> EditorViewController? {
         
-        var view: NSView? = (sender is NSMenuItem) ? (self.window?.firstResponder as? NSView) : sender as? NSView
-        while view != nil {
-            if view?.identifier == "EditorView" { break }
-            view = view?.superview
-        }
-        
-        guard let editorView = view else { return nil }
+        guard
+            let view = (sender is NSMenuItem) ? (self.window?.firstResponder as? NSView) : sender as? NSView,
+            let editorView = sequence(first: view, next: { $0.superview }).first(where: { $0.identifier == "EditorView" })
+            else { return nil }
         
         return self.splitViewController?.viewController(for: editorView)
     }
