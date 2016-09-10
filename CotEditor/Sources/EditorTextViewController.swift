@@ -65,7 +65,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: Private Properties
     
     private static let CurrentLineUpdateInterval = 0.01
-    private var currentLineUpdateTimer: Timer?
+    private weak var currentLineUpdateTimer: Timer?
     private var lastCursorLocation = 0
     
     private enum MenuItemTag: Int {

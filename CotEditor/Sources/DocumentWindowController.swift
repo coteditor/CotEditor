@@ -88,6 +88,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     /// apply passed-in document instance to window
     override var document: AnyObject? {
+        
         didSet {
             guard let document = document as? Document else { return }
             
@@ -102,13 +103,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     // MARK: Public Methods
-    
-    /// pass editor instance to document
-    var editor: EditorWrapper? {
-        
-        return (self.contentViewController as? WindowContentViewController)?.editor
-    }
-    
     
     /// show incompatible char list
     func showIncompatibleCharList() {

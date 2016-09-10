@@ -764,7 +764,7 @@ final class Document: NSDocument, EncodingHolder {
     /// return document window's editor wrapper
     var editor: EditorWrapper? {
         
-        return self.windowController?.editor
+        return (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.editor
     }
     
     

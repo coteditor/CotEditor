@@ -48,7 +48,7 @@ final class LineNumberView: NSRulerView {
     private var totalNumberOfLines = 0
     private var needsRecountTotalNumberOfLines = true
     
-    fileprivate var draggingTimer: Timer?
+    fileprivate weak var draggingTimer: Timer?
     
     
     
