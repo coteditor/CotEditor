@@ -7,8 +7,8 @@ develop
 
 ### Known issues
 
-- Occasionally crash on turning line number view on.
-- Occasionally crash on window close.
+- Some window states are not restored.
+- Bottom window corners.
 
 
 ### New Features

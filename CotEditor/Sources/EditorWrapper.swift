@@ -81,6 +81,17 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     }
     
     
+    /// keys to be restored from the last session
+    override class func restorableStateKeyPaths() -> [String] {
+        
+        return [#keyPath(showsNavigationBar),
+                #keyPath(showsLineNumber),
+                #keyPath(showsPageGuide),
+                #keyPath(showsInvisibles),
+                #keyPath(verticalLayoutOrientation)]
+    }
+    
+    
     /// apply current state to related menu items
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
