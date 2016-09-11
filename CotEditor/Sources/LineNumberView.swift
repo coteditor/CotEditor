@@ -240,7 +240,7 @@ final class LineNumberView: NSRulerView {
             
             let tick = CGMutablePath()
             tick.move(to: CGPoint(x: x, y: 0), transform: transform)
-            tick.addLine(to: CGPoint(x: x, y: y), transform: transform)
+            tick.addLine(to: CGPoint(x: x, y: tickLength), transform: transform)
             context.addPath(tick)
         }
         
@@ -322,7 +322,7 @@ final class LineNumberView: NSRulerView {
         
         // draw vertical text tics
         if isVerticalText {
-            context.setStrokeColor(textColor.withAlphaComponent(0.6).cgColor)
+            context.setStrokeColor(textColor.withAlphaComponent(0.3).cgColor)
             context.strokePath()
         }
         

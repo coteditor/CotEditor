@@ -8,7 +8,6 @@ develop
 ### Known issues
 
 - Some window states are not restored.
-- Line number view on vertical text layout.
 - Height of navigation/status bar is movable.
 
 

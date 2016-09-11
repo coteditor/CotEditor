@@ -591,7 +591,12 @@ final class EditorTextView: NSTextView, Themable {
             self.textContainer?.containerSize = NSSize(width: 1, height: CGFloat.greatestFiniteMagnitude)
         }
         
+        // -> needs send kvo notification manually on Swift? (2016-09-12 on macOS 10.12 SDK)
+        self.willChangeValue(forKey: #keyPath(layoutOrientation))
+        
         super.setLayoutOrientation(orientation)
+        
+        self.didChangeValue(forKey: #keyPath(layoutOrientation))
         
         // enable non-contiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
         //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.

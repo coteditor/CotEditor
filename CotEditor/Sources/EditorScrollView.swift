@@ -74,6 +74,9 @@ final class EditorScrollView: NSScrollView {
                 self.hasVerticalRuler = false
                 self.hasHorizontalRuler = true
             }
+            
+            // invalidate line number view background
+            self.window?.display()
         }
     }
     
