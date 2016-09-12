@@ -75,7 +75,7 @@ if IS_SANDBOXED then
 			<sparkle:releaseNotesLink xml:lang="en">https://coteditor.com/releasenotes/#{version}.en.html</sparkle:releaseNotesLink>
 			<sparkle:releaseNotesLink xml:lang="ja">https://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
 			<pubDate>#{date}</pubDate>
-			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
+			<sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
 			<sparkle:shortVersionString>#{version}</sparkle:shortVersionString>
 			<sparkle:version>#{build_number}</sparkle:version>
 			<link>https://coteditor.com/</link>
@@ -89,7 +89,7 @@ else
 			<sparkle:releaseNotesLink xml:lang="en">https://coteditor.com/releasenotes/#{version}.en.html</sparkle:releaseNotesLink>
 			<sparkle:releaseNotesLink xml:lang="ja">https://coteditor.com/releasenotes/#{version}.ja.html</sparkle:releaseNotesLink>
 			<pubDate>#{date}</pubDate>
-			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
+			<sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
 			<enclosure url="https://github.com/coteditor/CotEditor/releases/download/#{version}/CotEditor_#{version}.dmg"
 			           sparkle:shortVersionString="#{version}"
 			           sparkle:version="#{build_number}"
@@ -109,7 +109,19 @@ file.puts <<APPCAST
 	<channel>
 		<title>CotEditor update information</title>
 		<description>CotEditor update information</description>
+		
 #{latest_item}
+		<item>
+			<title>CotEditor 2.5.7</title>
+			<sparkle:releaseNotesLink xml:lang="en">https://coteditor.com/releasenotes/2.5.7.en.html</sparkle:releaseNotesLink>
+			<sparkle:releaseNotesLink xml:lang="ja">https://coteditor.com/releasenotes/2.5.7.ja.html</sparkle:releaseNotesLink>
+			<pubDate>Mon, 22 Aug 2016 20:37:38 +0900</pubDate>
+			<sparkle:minimumSystemVersion>10.8</sparkle:minimumSystemVersion>
+			<sparkle:shortVersionString>2.5.7</sparkle:shortVersionString>
+			<sparkle:version>138</sparkle:version>
+			<link>https://coteditor.com/</link>
+		</item>
+		
 		<item>
 			<title>CotEditor 2.0.3</title>
 			<sparkle:releaseNotesLink xml:lang="en">https://coteditor.com/releasenotes/2.0.3.en.html</sparkle:releaseNotesLink>
