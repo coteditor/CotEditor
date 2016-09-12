@@ -189,8 +189,10 @@ private extension SnippetKeyBindingManager {
     func migrateIfNeeded() {
         
         guard
-            !self.keyBindingSettingFileURL.isReachable,
-            false  // TODO: impelement
+            let lastVersionString = Defaults[.lastVersion],
+            let lastVersion = Int(lastVersionString),
+            lastVersion < AppVersion.version3_0,
+            !self.keyBindingSettingFileURL.isReachable
             else { return }
         
         self.migrate()
