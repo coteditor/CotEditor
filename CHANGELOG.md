@@ -7,50 +7,54 @@ develop
 
 ### Known issues
 
+- “What's New on CotEditor 3.0” is not yet prepared.
 - Some window states are not restored.
-- Height of navigation/status bar is movable.
 
 
 ### New Features
 
 - Support window tabbing on macOS Sierra.
 - Display recent used syntax styles at the top of the toolbar syntax style popup list.
-- Add indivisual “Block Comment”, “Inline Comment” and “Uncomment” actions in Text menu unlike the “Comment Selection” action changes its behavior intelligently.
+- Add individual “Block Comment”, “Inline Comment” and “Uncomment” actions in Text menu unlike the “Comment Selection” action changes its behavior intelligently.
 
 
 ### Improvements
 
-- Drop support for __OS X Mountain Lion__ and __Mavericks__.
+- Support __macOS Sierra__ and drop support for __OS X Mountain Lion__ and __Mavericks__.
 - Migrate all source code from Objective-C to Swift.
 - Update application icon.
-- Change the regular expression engine for find panel from Onigmo to the ICU library.
+- Update find panel search algorithm:
+    - Change the regular expression engine from Onigmo to the ICU library.
+        - From this, the reference symbol of matches is changed from `\1` style to `$1`.
     - Update line-up of the search options.
 - Inserting single surrogate character is no more valid.
-- Remove “Not writable” alert which displayed on file opening.
+- Update document window toolbar.
+- Update preferences icons.
+- Update key binding setting format.
+    - Not compatible with previous key bindings setting. Please customize again in the preferences window.
 - New acknowledgements window.
-- Add help buttons to syntax style editor.
+- Update “Swift” syntax style to Swift 3.0.
+- Update “Coffee Script” syntax style for the block regular expression.
+- Improve syntax highlighting algorithm with symbols.
 - New “Go To Line” panel.
-- Remove less important text actions:
+- Remove the following less important text actions:
     - Insert Encoding Name with “charset=”
     - Insert Encoding Name with “encoding=”
-- Remove less important toolbar items:
+- Remove the following less important toolbar items:
     - Show / Hide Navigation Bar
     - Show / Hide Line Numbers
     - Show / Hide Status Bar
-- Remove feature that changes the line height of current document from the “Format” menu.
+- Remove the feature that changes the line height of current document from the “Format” menu.
     - From this, `line spacing` property on AppleScript is also deprecated.
+- Remove “Not writable” alert which displayed on file opening.
 - Remove “Set as Default” button in the editor opacity panel.
-- Update preferences icons and toolbar.
-- Update key binding setting format.
-    - Not compatible with previous key bindings setting. Please customize again in the preferences window.
-- Update “Swift” syntax style to Swift 3.0.
-- Update “Coffee Script” syntax style for the block regular epression.
-- Improve syntax highlighting algorithm with symbols.
 - Change specification not to treat full-width spaces as indent.
 - Open sidebar inward on Yosemite.
+- Add help buttons to syntax style editor.
 - Make indent deletion more naturally.
 - Remove byte count display in document inspector.
-- Display dialogs while changing file encoding as a document-modal sheet.
+- Display also an accurate file size in document inspector.
+- Display dialogs for changing file encoding as a document-modal sheet.
 - Display also an accurate file size in document inspector.
 - Move scripting manual into help contents.
 - Make window size setting window translucent.
