@@ -48,6 +48,10 @@ extension Comparable {
 /// debug friendly print with a dog.
 func moof(_ items: Any..., function: String = #function) {
     
-    Swift.print("🐕 \(function): ", terminator: "")
-    Swift.debugPrint(items)
+    Swift.print("🐕 \(function) ", terminator: "")
+    if items.isEmpty {
+        Swift.print("")
+    } else {
+        Swift.debugPrint(items)
+    }
 }
