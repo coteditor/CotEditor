@@ -222,7 +222,7 @@ private extension NSMutableAttributedString {
             let localizedLabel = String(format: NSLocalizedString("%@: ", comment: ""),
                                         NSLocalizedString(label, comment: ""))
             let attrLabel = NSAttributedString(string: localizedLabel,
-                                               attributes: [NSForegroundColorAttributeName: NSColor.labelColor])
+                                               attributes: [NSForegroundColorAttributeName: NSColor(white: 0.4, alpha: 1)])
             self.append(attrLabel)
         }
         
