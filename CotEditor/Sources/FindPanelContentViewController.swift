@@ -78,7 +78,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         let effectiveRect = super.splitView(splitView, effectiveRect: proposedEffectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
         
         if splitView.isSubviewCollapsed(splitView.subviews[dividerIndex + 1]) || dividerIndex == 1 {
-            return NSRect(origin: effectiveRect.origin, size: .zero)
+            return .zero
         }
         
         return effectiveRect

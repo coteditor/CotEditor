@@ -83,7 +83,10 @@ final class WindowContentViewController: NSSplitViewController {
     /// store current sidebar width
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         
-        super.splitViewDidResizeSubviews(notification)
+        if #available(macOS 10.11, *) {
+            // -> Calling super's method crashes the app on Yosemite.
+            super.splitViewDidResizeSubviews(notification)
+        }
         
         if notification.userInfo?["NSSplitViewDividerIndex"] != nil {  // check wheter the change coused by user's divider dragging
             if self.isSidebarShown {

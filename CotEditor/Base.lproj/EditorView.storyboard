@@ -21,6 +21,9 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="sY9-RN-jMg" id="8K4-oR-PFD"/>
+                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="navigationBarItem" destination="1jV-uy-ka5" id="zJG-DA-wzB"/>

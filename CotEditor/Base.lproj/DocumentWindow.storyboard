@@ -218,6 +218,9 @@
                                 <color key="value" name="gridColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="O3C-zL-JF9" id="0X5-EI-Y68"/>
+                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="mainViewItem" destination="NAv-oU-Mey" id="KOX-e9-wco"/>
@@ -235,8 +238,8 @@
             <objects>
                 <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="SidebarViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
-                    <tabView key="tabView" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
-                        <rect key="frame" x="252" y="0.0" width="140" height="300"/>
+                    <tabView key="tabView" misplaced="YES" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
+                        <rect key="frame" x="252" y="0.0" width="200" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
@@ -265,6 +268,9 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="2gA-dj-5gh" id="fAD-sJ-czY"/>
+                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="editor" destination="pVC-2A-ptR" id="oYe-qw-s7B"/>
@@ -294,6 +300,9 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="vcx-nD-eDH" id="MXw-Hi-a9d"/>
+                        </connections>
                     </splitView>
                 </splitViewController>
                 <customObject id="BD5-7O-H8g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
