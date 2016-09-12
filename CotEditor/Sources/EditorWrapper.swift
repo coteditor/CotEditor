@@ -28,6 +28,9 @@
 
 import Cocoa
 
+private let MaximumNumberOfSplitEditors = 8
+
+
 final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
@@ -536,6 +539,11 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     /// split editor view
     @IBAction func openSplitTextView(_ sender: Any?) {
+        
+        guard (self.splitViewController?.splitViewItems.count ?? 0) < MaximumNumberOfSplitEditors else {
+            NSBeep()
+            return
+        }
         
         guard let currentEditorViewController = self.findTargetEditorViewController(for: sender) else { return }
         

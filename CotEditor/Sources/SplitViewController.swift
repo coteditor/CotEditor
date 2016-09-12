@@ -69,6 +69,13 @@ final class SplitViewController: NSSplitViewController {
     }
     
     
+    /// workaround for a crash on macOS Sierra (2016-09)
+    override func splitView(_ splitView: NSSplitView, shouldHideDividerAt dividerIndex: Int) -> Bool {
+        
+        return false
+    }
+    
+    
     /// apply current state to related menu items
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
@@ -114,6 +121,8 @@ final class SplitViewController: NSSplitViewController {
     func addSubview(for editorViewController: EditorViewController, relativeTo otherEditorViewController: EditorViewController?) {
         
         let splitViewItem = NSSplitViewItem(viewController: editorViewController)
+        
+        splitViewItem.holdingPriority = 251
         
         if let otherEditorViewController = otherEditorViewController {
             if let baseIndex = self.childViewControllers.index(of: otherEditorViewController) {
