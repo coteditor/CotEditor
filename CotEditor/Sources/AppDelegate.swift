@@ -199,6 +199,17 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         // setup KeyBindingManager
         MenuKeyBindingManager.shared.applyKeyBindingsToMainMenu()
         
+        // register Services
+        NSApp.servicesProvider = ServicesProvider()
+        
+        // raise didFinishLaunching flag
+        self.didFinishLaunching = true
+    }
+    
+    
+    /// store last version before termination
+    func applicationWillTerminate(_ notification: Notification) {
+        
         // store latest version
         //   -> The bundle version (build number) format was changed on CotEditor 2.2.0. due to the iTunes Connect versioning rule.
         //       < 2.2.0 : The Semantic Versioning
@@ -215,12 +226,6 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         if isLatest {
             Defaults[.lastVersion] = thisVersion
         }
-        
-        // register Services
-        NSApp.servicesProvider = ServicesProvider()
-        
-        // raise didFinishLaunching flag
-        self.didFinishLaunching = true
     }
     
     
