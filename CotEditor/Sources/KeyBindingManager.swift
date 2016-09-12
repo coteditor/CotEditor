@@ -270,7 +270,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
 
 // MARK: -
 
-private struct KeyBindingSerialization {
+struct KeyBindingSerialization {
     
     private struct Key {
         

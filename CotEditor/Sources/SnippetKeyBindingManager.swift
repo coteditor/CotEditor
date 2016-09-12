@@ -52,6 +52,8 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         self.defaultSnippets = Defaults[.insertCustomTextArray] ?? []
         
         super.init()
+        
+        self.migrateIfNeeded()
     }
     
     
@@ -175,4 +177,61 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         return Int((selectorString as NSString).substring(with: numberRange))
     }
 
+}
+
+
+
+// MARK: Migration
+
+private extension SnippetKeyBindingManager {
+    
+    /// migrate snippet settings if needed
+    func migrateIfNeeded() {
+        
+        guard
+            !self.keyBindingSettingFileURL.isReachable,
+            false  // TODO: impelement
+            else { return }
+        
+        self.migrate()
+    }
+    
+    
+    /// migrate snippet shortcuts file to CotEditor 3 format (2016-09)
+    private func migrate() {
+        
+        let legacySettingsURL = self.userSettingDirectoryURL.appendingPathComponent("TextKeyBindings.plist")
+        
+        // -> just abort if failed
+        guard
+            legacySettingsURL.isReachable,
+            let legacyData = try? Data(contentsOf: legacySettingsURL),
+            let keyBindings = try? KeyBindingSerialization.keyBindings(migratingFrom: legacyData),
+            let data = try? KeyBindingSerialization.data(from: keyBindings)
+            else { return }
+        
+        // save new format file
+        try? data.write(to: self.keyBindingSettingFileURL, options: .atomic)
+    }
+    
+}
+
+
+
+private extension KeyBindingSerialization {
+    
+    /// load legacy format (<= CotEditor 2) key bindings setting
+    static func keyBindings(migratingFrom data: Data) throws -> [KeyBinding] {
+        
+        let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
+        
+        guard let plistDict = plist as? [String: String], !plistDict.isEmpty else {
+            throw NSError(domain: CocoaError.errorDomain, code: CocoaError.propertyListReadCorrupt.rawValue)
+        }
+        
+        let keyBindings = plistDict.map { KeyBinding(action: Selector($0.value), shortcut: Shortcut(keySpecChars: $0.key)) }
+        
+        return Set(keyBindings).sorted()
+    }
+    
 }
