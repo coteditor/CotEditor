@@ -80,11 +80,6 @@
 "fW9-Xn-I9b.paletteLabel" = "Aus-/Unkommentieren";  /* Toggle Comment */
 "fW9-Xn-I9b.toolTip" = "Auswahl aus-/unkommentieren";  /* Comment-out or uncomment selection */
 
-/* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
-"c9C-af-Zcg.label" = "Tab. Expandieren";  /* Expand Tabs */
-"c9C-af-Zcg.paletteLabel" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle Auto Tab Expand */
-"c9C-af-Zcg.toolTip" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle auto tab expand */
-
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "Unsichtbare Zeichen";  /* Invisible Chars */
 "xbD-Up-YfQ.paletteLabel" = "Unsichtbare Zeichen ein-/ausblenden";  /* Show / Hide Invisible Chars */
@@ -104,6 +99,11 @@
 "1cW-FV-40L.label" = "Textausrichtung";  /* Orientation */
 "1cW-FV-40L.paletteLabel" = "Textausrichtung";  /* Toggle Text Orientation */
 "1cW-FV-40L.toolTip" = "Text vertikal/horizontal ausrichten";  /* Toggle text orientation */
+
+/* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
+"c9C-af-Zcg.label" = "Tab. Expandieren";  /* Expand Tabs */
+"c9C-af-Zcg.paletteLabel" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle Auto Tab Expand */
+"c9C-af-Zcg.toolTip" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle auto tab expand */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Rechtschreibprüfung";  /* Spell Check */

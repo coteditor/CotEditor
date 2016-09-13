@@ -80,11 +80,6 @@
 "fW9-Xn-I9b.paletteLabel" = "コメントを切替";  /* Toggle Comment */
 "fW9-Xn-I9b.toolTip" = "選択範囲をコメントアウト／コメント解除";  /* Comment-out or uncomment selection */
 
-/* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
-"c9C-af-Zcg.label" = "タブを展開";  /* Expand Tabs */
-"c9C-af-Zcg.paletteLabel" = "自動タブ展開を切替";  /* Toggle Auto Tab Expand */
-"c9C-af-Zcg.toolTip" = "自動タブ展開を切替";  /* Toggle auto tab expand */
-
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "不可視文字";  /* Invisible Chars */
 "xbD-Up-YfQ.paletteLabel" = "不可視文字を表示／隠す";  /* Show / Hide Invisible Chars */
@@ -104,6 +99,11 @@
 "1cW-FV-40L.label" = "縦書き／横書き";  /* Orientation */
 "1cW-FV-40L.paletteLabel" = "縦書き／横書きを切替";  /* Toggle Text Orientation */
 "1cW-FV-40L.toolTip" = "縦書き／横書きを切替";  /* Toggle text orientation */
+
+/* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
+"c9C-af-Zcg.label" = "タブを展開";  /* Expand Tabs */
+"c9C-af-Zcg.paletteLabel" = "自動タブ展開を切替";  /* Toggle Auto Tab Expand */
+"c9C-af-Zcg.toolTip" = "自動タブ展開を切替";  /* Toggle auto tab expand */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "スペルチェック";  /* Spell Check */
