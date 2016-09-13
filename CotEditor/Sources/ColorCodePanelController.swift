@@ -122,7 +122,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         // setup the shared color panel
         let panel = NSColorPanel.shared()
         panel.accessoryView = self.view
-        panel.showsAlpha = false
+        panel.showsAlpha = true
         panel.isRestorable = false
         
         panel.delegate = self

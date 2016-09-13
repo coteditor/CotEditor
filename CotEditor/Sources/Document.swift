@@ -412,7 +412,7 @@ final class Document: NSDocument, EncodingHolder {
             
             if saveOperation != .autosaveElsewhereOperation {
                 // get the latest file attributes
-                self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)
+                self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
                 
                 // update file information
                 self.analyzer.invalidateFileInfo()

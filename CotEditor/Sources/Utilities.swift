@@ -45,10 +45,12 @@ extension Comparable {
 
 
 
-/// debug friendly print with a dog.
+/// debug friendly print with a dog/cow.
 func moof(_ items: Any..., function: String = #function) {
     
-    Swift.print("🐕 \(function) ", terminator: "")
+    let icon = Thread.isMainThread ? "🐕" : "🐄"
+    
+    Swift.print(icon + " \(function) ", terminator: "")
     if items.isEmpty {
         Swift.print("")
     } else {

@@ -300,8 +300,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                         guard let range = match?.rangeAt(index), range.length > 0 else { continue }
                         
                         let color = highlightColors[index]
+                        let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
                         
-                        lineAttrString.addAttribute(NSBackgroundColorAttributeName, value: color, range: range)
+                        lineAttrString.addAttribute(NSBackgroundColorAttributeName, value: color, range: inlineRange)
                         highlights.append(HighlightItem(range: range, color: color))
                     }
                 }

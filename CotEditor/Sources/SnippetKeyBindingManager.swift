@@ -228,7 +228,7 @@ private extension KeyBindingSerialization {
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
         
         guard let plistDict = plist as? [String: String], !plistDict.isEmpty else {
-            throw NSError(domain: CocoaError.errorDomain, code: CocoaError.propertyListReadCorrupt.rawValue)
+            throw CocoaError(.propertyListReadCorrupt)
         }
         
         let keyBindings = plistDict.map { KeyBinding(action: Selector($0.value), shortcut: Shortcut(keySpecChars: $0.key)) }
