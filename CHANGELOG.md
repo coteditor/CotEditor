@@ -7,7 +7,6 @@ develop
 
 ### Known issues
 
-- “What's New on CotEditor 3.0” is not yet prepared.
 - Some window states are not restored.
 
 
