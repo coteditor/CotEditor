@@ -183,8 +183,7 @@ extension String {
             }
         }
         
-        throw NSError(domain: CocoaError.errorDomain,
-                      code: CocoaError.fileReadUnknownStringEncoding.rawValue)
+        throw CocoaError(.fileReadUnknownStringEncoding)
     }
     
     

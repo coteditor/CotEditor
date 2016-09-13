@@ -287,7 +287,7 @@ struct KeyBindingSerialization {
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
         
         guard let plistDict = plist as? [[String: String]], !plistDict.isEmpty else {
-            throw NSError(domain: CocoaError.errorDomain, code: CocoaError.propertyListReadCorrupt.rawValue)
+            throw CocoaError(.propertyListReadCorrupt)
         }
         
         let keyBindings: [KeyBinding] = plistDict.flatMap { item in
