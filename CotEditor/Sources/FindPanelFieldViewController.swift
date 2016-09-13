@@ -33,7 +33,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     private dynamic let textFinder = TextFinder.shared
     
-    private dynamic var resultMessage: String?  // binding
+    private dynamic var findResultMessage: String?  // binding
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
     private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: "RegexReferenceView", bundle: nil)!
@@ -106,7 +106,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         guard notification.object is NSTextView else { return }
         
-        self.invalidateNumberOfFound(nil)
+        self.clearNumberOfFound()
     }
     
     
@@ -184,7 +184,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// recieve number of found
     func updateResultCount(_ numberOfFound: Int, target: NSTextView) {
         
-        self.resultMessage = {
+        self.clearNumberOfFound()
+        
+        self.findResultMessage = {
             switch numberOfFound {
             case -1:
                 return nil
@@ -198,8 +200,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // dismiss result either client text or find string did change
         self.currentResultMessageTarget = target.layoutManager
-        NotificationCenter.default.addObserver(self, selector: #selector(invalidateNumberOfFound), name: .NSTextStorageDidProcessEditing, object: target.textStorage)
-        NotificationCenter.default.addObserver(self, selector: #selector(invalidateNumberOfFound), name: .NSWindowWillClose, object: target.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: .NSTextStorageDidProcessEditing, object: target.textStorage)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: .NSWindowWillClose, object: target.window)
     }
 
     
@@ -246,9 +248,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// number of found in find string field becomes no more valid
-    func invalidateNumberOfFound(_ notification: Notification?) {
+    func clearNumberOfFound(_ notification: Notification? = nil) {
         
-        self.resultMessage = nil
+        self.findResultMessage = nil
         
         // -> specify the object to remove osberver to avoid removing the windowWillClose notification (via delegate) from find panel itself.
         if let target = self.currentResultMessageTarget?.firstTextView {
