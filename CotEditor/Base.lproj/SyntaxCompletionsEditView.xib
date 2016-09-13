@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CESyntaxKeywordsEditViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="SyntaxTermsEditViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -80,7 +79,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="tAA-fO-ymu">
                         <rect key="frame" x="-100" y="-100" width="317" height="15"/>
@@ -94,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3F8-YV-QQ6" customClass="CEWrappingTextField">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3F8-YV-QQ6" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
                     <rect key="frame" x="10" y="314" width="430" height="14"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If no word, the completion list will be generated from coloring settings." id="fJg-PK-TBB">
                         <font key="font" metaFont="smallSystem"/>
@@ -128,16 +126,28 @@
                         <binding destination="SKZ-Xe-n9z" name="enabled" keyPath="canRemove" id="DV6-sv-Du1"/>
                     </connections>
                 </button>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="20" translatesAutoresizingMaskIntoConstraints="NO" id="eST-UC-Ayr">
+                    <rect key="frame" x="415" y="9" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oOZ-0a-aOK">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-1" id="Xsy-CU-t3r"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="cti-PX-cUI" secondAttribute="bottom" constant="12" id="1aB-HD-fSW"/>
                 <constraint firstItem="hML-7o-Nlt" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="3oo-YY-3Q4"/>
                 <constraint firstItem="Wgl-Fa-zXY" firstAttribute="centerY" secondItem="cti-PX-cUI" secondAttribute="centerY" id="926-TO-ORW"/>
                 <constraint firstItem="Wgl-Fa-zXY" firstAttribute="leading" secondItem="cti-PX-cUI" secondAttribute="trailing" constant="-1" id="FJo-NW-8Es"/>
+                <constraint firstAttribute="bottom" secondItem="eST-UC-Ayr" secondAttribute="bottom" constant="12" id="Mp9-Nx-oHu"/>
                 <constraint firstItem="cti-PX-cUI" firstAttribute="leading" secondItem="hML-7o-Nlt" secondAttribute="leading" id="Xc3-fH-nOL"/>
                 <constraint firstItem="3F8-YV-QQ6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="Yvv-Ow-D2u"/>
                 <constraint firstAttribute="trailing" secondItem="hML-7o-Nlt" secondAttribute="trailing" constant="12" id="cI1-OU-di3"/>
                 <constraint firstItem="cti-PX-cUI" firstAttribute="height" secondItem="Wgl-Fa-zXY" secondAttribute="height" id="h8a-3z-E71"/>
+                <constraint firstAttribute="trailing" secondItem="eST-UC-Ayr" secondAttribute="trailing" constant="12" id="kN4-UY-PXx"/>
                 <constraint firstAttribute="trailing" secondItem="3F8-YV-QQ6" secondAttribute="trailing" constant="12" id="lAL-Th-gVR"/>
                 <constraint firstItem="hML-7o-Nlt" firstAttribute="top" secondItem="3F8-YV-QQ6" secondAttribute="bottom" constant="8" symbolic="YES" id="mUq-R8-eNx"/>
                 <constraint firstItem="cti-PX-cUI" firstAttribute="width" secondItem="Wgl-Fa-zXY" secondAttribute="width" id="p9O-Fr-hgc"/>
@@ -154,7 +164,7 @@
                 <binding destination="-2" name="contentArray" keyPath="representedObject.completions" id="qsX-ND-083"/>
             </connections>
         </arrayController>
-        <customObject id="i4g-IP-54D" customClass="CESyntaxEditTableViewDelegate">
+        <customObject id="i4g-IP-54D" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="SKZ-Xe-n9z" id="SMF-Ny-5wG"/>
             </connections>

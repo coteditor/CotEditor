@@ -3,7 +3,7 @@
  makeSyntaxMap.rb
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-11-03.
  

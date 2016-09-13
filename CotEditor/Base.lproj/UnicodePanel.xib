@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
     </dependencies>
     <objects>
-        <customObject id="-2" customClass="CEUnicodeInputPanelController">
+        <customObject id="-2" customClass="UnicodeInputPanelController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="window" destination="Y41-ro-Xeo" id="PWB-vA-Xu7"/>
             </connections>
@@ -31,7 +30,7 @@
                             </allowedInputSourceLocales>
                         </textFieldCell>
                         <connections>
-                            <binding destination="-2" name="value" keyPath="unicode" id="wVY-6I-8j7">
+                            <binding destination="-2" name="value" keyPath="codePoint" id="Lk1-2Z-Zx5">
                                 <dictionary key="options">
                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                     <string key="NSNullPlaceholder">U+1F600</string>
@@ -55,10 +54,10 @@ DQ
                         </buttonCell>
                         <connections>
                             <action selector="insertToDocument:" target="-2" id="kxS-dD-7R4"/>
-                            <binding destination="-2" name="enabled" keyPath="valid" id="XcT-s6-szS"/>
+                            <binding destination="-2" name="enabled" keyPath="isValid" id="WL3-7G-6Zb"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="gA5-1J-lea" customClass="CEWrappingTextField">
+                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="gA5-1J-lea" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="43" y="50" width="179" height="14"/>
                         <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" title="GRINNING FACE" id="uTL-Ct-HCw">
                             <font key="font" metaFont="smallSystem"/>
@@ -66,14 +65,14 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="-2" name="value" keyPath="character.name" id="rz0-Df-N9T">
+                            <binding destination="-2" name="hidden" keyPath="codePoint" id="efx-De-iSm">
                                 <dictionary key="options">
-                                    <string key="NSNullPlaceholder">Invalid code</string>
+                                    <string key="NSValueTransformerName">NSIsNil</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="-2" name="hidden" keyPath="unicode.length" id="VP2-7w-0rq">
+                            <binding destination="-2" name="value" keyPath="unicodeName" id="3kK-Ug-bH8">
                                 <dictionary key="options">
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    <string key="NSNullPlaceholder">Invalid code</string>
                                 </dictionary>
                             </binding>
                         </connections>
@@ -86,7 +85,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="-2" name="value" keyPath="character.string" id="HAg-qi-yxV">
+                            <binding destination="-2" name="value" keyPath="characterString" id="PG0-CO-irt">
                                 <dictionary key="options">
                                     <string key="NSNullPlaceholder">⬚</string>
                                 </dictionary>
@@ -108,9 +107,6 @@ DQ
                     <constraint firstItem="gA5-1J-lea" firstAttribute="leading" secondItem="iYt-Yd-KXc" secondAttribute="trailing" constant="8" symbolic="YES" id="z5c-jb-0eI"/>
                 </constraints>
             </view>
-            <connections>
-                <outlet property="delegate" destination="-2" id="3EJ-ju-Wzb"/>
-            </connections>
             <point key="canvasLocation" x="448" y="556"/>
         </window>
     </objects>

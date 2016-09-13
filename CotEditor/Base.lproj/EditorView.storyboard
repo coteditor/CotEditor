@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Editor View Controller-->
+        <scene sceneID="2xt-bf-vnD">
+            <objects>
+                <splitViewController id="sY9-RN-jMg" customClass="EditorViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem holdingPriority="260" id="1jV-uy-ka5"/>
+                        <splitViewItem id="Z56-OS-hF0"/>
+                    </splitViewItems>
+                    <splitView key="splitView" identifier="EditorView" dividerStyle="thin" id="Kyz-NV-ro4">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
+                                <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="sY9-RN-jMg" id="8K4-oR-PFD"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="navigationBarItem" destination="1jV-uy-ka5" id="zJG-DA-wzB"/>
+                        <outlet property="textViewItem" destination="Z56-OS-hF0" id="VpW-uJ-gc9"/>
+                        <outlet property="view" destination="Kyz-NV-ro4" id="mQ0-Bl-WL7"/>
+                        <segue destination="KjS-UJ-AjC" kind="relationship" relationship="splitItems" id="Nqj-N0-7ZS"/>
+                        <segue destination="u5I-Fh-D97" kind="relationship" relationship="splitItems" id="eh9-vi-q1P"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="ciY-UL-XS6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="753" y="-75"/>
+        </scene>
+        <!--Navigation Bar Controller-->
+        <scene sceneID="JxK-9F-xcJ">
+            <objects>
+                <viewController id="KjS-UJ-AjC" customClass="NavigationBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" verticalCompressionResistancePriority="249" id="Fb7-9r-keA" customClass="OpaqueView" customModule="CotEditor" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
+                                <rect key="frame" x="31" y="-2" width="21" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="21" id="NdS-0U-G6w"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="NIe-Yu-BHr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectPrevItemOfOutlineMenu:" target="KjS-UJ-AjC" id="86A-SI-44q"/>
+                                </connections>
+                            </button>
+                            <button toolTip="Split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
+                                <rect key="frame" x="434" y="-2" width="17" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="Rrb-OZ-odM"/>
+                                    <constraint firstAttribute="width" secondItem="syK-XU-x2I" secondAttribute="height" multiplier="1:1" id="fki-al-uAw"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="3a0-fm-GbO">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openSplitTextView:" target="OuY-Pd-2q9" id="gJ1-uN-P5E"/>
+                                </connections>
+                            </button>
+                            <button toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
+                                <rect key="frame" x="350" y="-2" width="21" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="21" id="rrS-MJ-wb5"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="0aN-qE-Zpz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectNextItemOfOutlineMenu:" target="KjS-UJ-AjC" id="b7v-Xr-hG7"/>
+                                </connections>
+                            </button>
+                            <popUpButton verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
+                                <rect key="frame" x="51" y="-2" width="300" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="EMV-iW-vsD"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Noe-z9-zXZ" customClass="OutlineMenuButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <menu key="menu" id="EeX-Bi-kba">
+                                        <items>
+                                            <menuItem title="&lt;Outline Item&gt;" id="fgm-Hv-H3C"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <button toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
+                                <rect key="frame" x="418" y="-2" width="17" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Bmo-XE-CCn" secondAttribute="height" multiplier="1:1" id="IhJ-DE-v24"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="HiZ-3C-J5P">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="closeSplitTextView:" target="OuY-Pd-2q9" id="JQI-M6-ZSI"/>
+                                </connections>
+                            </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
+                                <rect key="frame" x="60" y="-1" width="16" height="17"/>
+                            </progressIndicator>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
+                                <rect key="frame" x="82" y="1" width="109" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Extracting Outline..." id="aUE-uy-XLQ">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" constant="-1" id="0Ge-40-6cs"/>
+                            <constraint firstItem="htM-ug-ofP" firstAttribute="centerY" secondItem="Fb7-9r-keA" secondAttribute="centerY" id="1t0-zI-rPl"/>
+                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="6cS-JS-uMe"/>
+                            <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" constant="-1" id="Kke-Sl-ibg"/>
+                            <constraint firstItem="syK-XU-x2I" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="-1" id="Lx9-yU-pBc"/>
+                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="BUj-TD-scp" secondAttribute="trailing" constant="-1" id="PLF-Ig-I6B"/>
+                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="Pdl-aM-DT9"/>
+                            <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="-1" id="YT4-Oj-3Yn"/>
+                            <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="Fb7-9r-keA" secondAttribute="leading" constant="31" id="llJ-3L-8Cd"/>
+                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="lnf-XI-Uu9"/>
+                            <constraint firstItem="Svt-vI-TEc" firstAttribute="leading" secondItem="htM-ug-ofP" secondAttribute="trailing" constant="8" symbolic="YES" id="ltj-Xb-WMJ"/>
+                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MlW-Dz-FOk" secondAttribute="trailing" constant="-1" id="n4T-Zc-kHb"/>
+                            <constraint firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" constant="-1" id="oZh-rX-9Nd"/>
+                            <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="qXY-wb-kbw"/>
+                            <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" constant="-1" id="sNu-uV-dSg"/>
+                            <constraint firstItem="htM-ug-ofP" firstAttribute="leading" secondItem="Fb7-9r-keA" secondAttribute="leading" constant="60" id="stA-Uo-0Ms"/>
+                            <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" constant="-1" id="uPK-py-Bfo"/>
+                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="uo6-wO-fJZ" secondAttribute="trailing" constant="-1" id="unz-gv-aLb"/>
+                            <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="vXG-JU-O6t"/>
+                            <constraint firstItem="Svt-vI-TEc" firstAttribute="centerY" secondItem="Fb7-9r-keA" secondAttribute="centerY" id="zxj-gI-io3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeSplitButton" destination="Bmo-XE-CCn" id="l36-HV-WaO"/>
+                        <outlet property="nextButton" destination="MlW-Dz-FOk" id="3UB-j6-5wR"/>
+                        <outlet property="openSplitButton" destination="syK-XU-x2I" id="rpx-m0-Ia5"/>
+                        <outlet property="outlineIndicator" destination="htM-ug-ofP" id="9bf-eJ-GwB"/>
+                        <outlet property="outlineLoadingMessage" destination="Svt-vI-TEc" id="dqn-f5-EZW"/>
+                        <outlet property="outlineMenu" destination="uo6-wO-fJZ" id="E2p-BI-hLI"/>
+                        <outlet property="prevButton" destination="BUj-TD-scp" id="cCC-oU-Smh"/>
+                    </connections>
+                </viewController>
+                <customObject id="OuY-Pd-2q9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1423" y="-256.5"/>
+        </scene>
+        <!--Editor Text View Controller-->
+        <scene sceneID="F5v-F6-xnV">
+            <objects>
+                <viewController id="u5I-Fh-D97" customClass="EditorTextViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <scrollView key="view" identifier="editorScrollView" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="1UU-Ev-81X" customClass="EditorScrollView" customModule="CotEditor" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <clipView key="contentView" drawsBackground="NO" id="BHe-gR-oOG">
+                            <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView identifier="coreTextView" importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="450" height="284"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="u5I-Fh-D97" id="PIc-cS-58P"/>
+                                    </connections>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1uy-9I-jAW">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="pXl-He-aXd">
+                            <rect key="frame" x="434" y="0.0" width="16" height="284"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                </viewController>
+                <customObject id="Yzz-IO-9Qh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1423" y="105"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="CloseSplitTemplate" width="9" height="9"/>
+        <image name="DownArrowTemplate" width="8" height="8"/>
+        <image name="OpenSplitTemplate" width="9" height="9"/>
+        <image name="UpArrowTemplate" width="8" height="8"/>
+    </resources>
+</document>

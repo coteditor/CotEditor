@@ -3,7 +3,7 @@
  SyntaxOutlineEditView.strings (German)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-09-07.
  
@@ -39,8 +39,10 @@
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
 "6hB-wJ-niI.headerCell.title" = "Beschreibung";
 
-/* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "Muster des Menütitels (Leer entspricht der gesamten Zeichenkette)";
+/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "Muster des Menütitels";
+/* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
+"rqP-22-G2u.title" = "(Leer entspricht der gesamten Zeichenkette)";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "eX8-7L-AYT"; */
 "eX8-7L-AYT.ibShadowedToolTip" = "Fett";

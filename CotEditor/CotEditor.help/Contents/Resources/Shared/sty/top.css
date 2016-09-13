@@ -4,15 +4,15 @@
  Help Style Sheet for Top Page
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  © 2006-2014 CotEditor Project
 */
 
 
 body {
-	font: 10pt/1.5 'Helvetica Neue', sans-serif;
-	color: hsla(0,0%,0%,0.8);
+	font: 300 10pt/1.5 -apple-system-font, 'Helvetica Neue', sans-serif;
+	color: hsla(0, 0%, 0%, 0.8);
 	margin: 0;
 	padding: 1.5em;
 }
@@ -21,7 +21,7 @@ a {
 	text-decoration: none;
 }
 a:link {
-	color: hsl(206,50%,50%);
+	color: hsl(206, 50%, 50%);
 }
 a:hover {
 	text-decoration: underline;
@@ -39,7 +39,7 @@ section#rightbox {
 	width: 260px;
 	padding-left: 30px;
 	margin-left: 20px;
-	border-left: 1px solid hsl(0,0%,85%);
+	border-left: 1px solid hsl(0, 0%, 85%);
 }
 
 #leftbox h1 {
@@ -51,7 +51,7 @@ section#rightbox {
 dt {
 	font-size: 120%;
 	font-weight: normal;
-	margin-top: 1em;
+	margin-top: 0.8em;
 }
 dd {
 	margin-left: 0;

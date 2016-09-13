@@ -4,7 +4,7 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2016-03-15.
  
@@ -27,6 +27,7 @@
  */
 
 import XCTest
+@testable import CotEditor
 
 let ThemeDirectoryName = "Themes"
 let ThemeExtension = "cottheme"
@@ -34,114 +35,98 @@ let ThemeExtension = "cottheme"
 
 class ThemeTests: XCTestCase {
     
-    var bundle: NSBundle?
+    var bundle: Bundle?
     
     
     override func setUp() {
+        
         super.setUp()
         
-        self.bundle = NSBundle(forClass: self.dynamicType)
+        self.bundle = Bundle(for: type(of: self))
     }
     
 
     func testDefaultTheme() {
+        
         let themeName = "Dendrobates"
         let theme = self.loadThemeWithName(themeName)!
         
         XCTAssertEqual(theme.name, themeName)
-        XCTAssertEqual(theme.textColor, NSColor.blackColor().colorUsingColorSpaceName(NSCalibratedRGBColorSpace))
-        XCTAssertEqual(theme.insertionPointColor, NSColor.blackColor().colorUsingColorSpaceName(NSCalibratedRGBColorSpace))
+        XCTAssertEqual(theme.textColor, NSColor.black.usingColorSpaceName(NSCalibratedRGBColorSpace))
+        XCTAssertEqual(theme.insertionPointColor, NSColor.black.usingColorSpaceName(NSCalibratedRGBColorSpace))
         XCTAssertEqualWithAccuracy(theme.invisiblesColor.brightnessComponent, 0.72, accuracy: 0.01)
-        XCTAssertEqual(theme.backgroundColor, NSColor.whiteColor().colorUsingColorSpaceName(NSCalibratedRGBColorSpace))
+        XCTAssertEqual(theme.backgroundColor, NSColor.white.usingColorSpaceName(NSCalibratedRGBColorSpace))
         XCTAssertEqualWithAccuracy(theme.lineHighLightColor.brightnessComponent, 0.94, accuracy: 0.01)
-        XCTAssertEqual(theme.selectionColor, NSColor.selectedTextBackgroundColor())
-        XCTAssertGreaterThan(theme.keywordsColor.hueComponent, 0)
-        XCTAssertGreaterThan(theme.commandsColor.hueComponent, 0)
-        XCTAssertGreaterThan(theme.typesColor.hueComponent, 0)
-        XCTAssertGreaterThan(theme.attributesColor.hueComponent, 0)
-        XCTAssertGreaterThan(theme.variablesColor.hueComponent, 0)
-        XCTAssertGreaterThan(theme.valuesColor.hueComponent, 0)
-        XCTAssertGreaterThan(theme.numbersColor.hueComponent, 0)
-        XCTAssertGreaterThan(theme.stringsColor.hueComponent, 0)
-        XCTAssertGreaterThan(theme.charactersColor.hueComponent, 0)
-        XCTAssertGreaterThan(theme.commandsColor.hueComponent, 0)
+        XCTAssertEqual(theme.selectionColor, NSColor.selectedTextBackgroundColor)
         
-        XCTAssertEqualWithAccuracy(theme.weakTextColor.brightnessComponent, 0.3, accuracy: 0.01)
-        XCTAssertEqualWithAccuracy(theme.markupColor.brightnessComponent, 0.5, accuracy: 0.01)
+        for type in SyntaxType.all {
+            XCTAssertGreaterThan(theme.syntaxColor(type: type)!.hueComponent, 0)
+        }
         
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeKeywordsKey), theme.keywordsColor)
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeCommandsKey), theme.commandsColor)
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeTypesKey), theme.typesColor)
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeAttributesKey), theme.attributesColor)
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeVariablesKey), theme.variablesColor)
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeValuesKey), theme.valuesColor)
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeNumbersKey), theme.numbersColor)
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeStringsKey), theme.stringsColor)
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeCharactersKey), theme.charactersColor)
-        XCTAssertEqual(theme.syntaxColorForType(CEThemeCommandsKey), theme.commandsColor)
-        XCTAssertNil(theme.syntaxColorForType("foo"))
-        
-        XCTAssertFalse(theme.darkTheme)
+        XCTAssertFalse(theme.isDarkTheme)
     }
     
     
     func testDarkTheme() {
+        
         let themeName = "Solarized (Dark)"
         let theme = self.loadThemeWithName(themeName)!
         
         XCTAssertEqual(theme.name, themeName)
-        XCTAssertTrue(theme.darkTheme)
+        XCTAssertTrue(theme.isDarkTheme)
     }
     
     
     func testFail() {
-        // zero-length theme name is invalid
-        XCTAssertNil(CETheme(dictinonary: ["foo": ["dog": "cow"]], name: ""))
         
-        let theme = CETheme(dictinonary: ["foo": ["dog": "cow"]], name: "Broken Theme")
+        // zero-length theme name is invalid
+        XCTAssertNil(Theme(dictionary: [:], name: ""))
+        
+        let theme = Theme(dictionary: [:], name: "Broken Theme")
         
         XCTAssertNotNil(theme)  // Theme can be created from a lacking dictionary
-        XCTAssertFalse(theme!.valid)  // but flagged as invalid
-        XCTAssertEqual(theme!.textColor, NSColor.grayColor())  // and unavailable colors are substituted with frayColor().
+        XCTAssertFalse(theme!.isValid)  // but flagged as invalid
+        XCTAssertEqual(theme!.textColor, NSColor.gray)  // and unavailable colors are substituted with frayColor().
     }
     
     
     /// test if all of bundled themes are valid
     func testBundledThemes() {
-        let themeDirectoryURL = self.bundle?.URLForResource(ThemeDirectoryName, withExtension: nil)!
-        let enumerator = NSFileManager.defaultManager().enumeratorAtURL(themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.SkipsSubdirectoryDescendants, .SkipsHiddenFiles], errorHandler: nil)!
         
-        for url in enumerator.allObjects as! [NSURL] {
+        let themeDirectoryURL = self.bundle?.url(forResource: ThemeDirectoryName, withExtension: nil)!
+        let enumerator = FileManager.default.enumerator(at: themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])!
+        
+        for url in enumerator.allObjects as! [URL] {
             guard url.pathExtension == ThemeExtension else { continue }
             
             let theme = self.loadThemeWithURL(url)
             
             XCTAssertNotNil(theme)
-            XCTAssert(theme!.keywordsColor.isKindOfClass(NSColor))
-            XCTAssert(theme!.valid)
+            XCTAssert(theme!.isValid)
         }
     }
     
     
     // MARK: Private Methods
     
-    func loadThemeWithName(name: String) -> CETheme? {
-        let url = self.bundle?.URLForResource(name, withExtension: ThemeExtension, subdirectory: ThemeDirectoryName)
+    func loadThemeWithName(_ name: String) -> Theme? {
+        
+        let url = self.bundle?.url(forResource: name, withExtension: ThemeExtension, subdirectory: ThemeDirectoryName)
         
         return self.loadThemeWithURL(url!)
     }
     
     
-    func loadThemeWithURL(url: NSURL) -> CETheme? {
-        let data = NSData(contentsOfURL: url)
-        let jsonDict = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! [String: [NSObject: AnyObject]]
-        let themeName = url.URLByDeletingPathExtension!.lastPathComponent!
+    func loadThemeWithURL(_ url: URL) -> Theme? {
+        
+        let data = try? Data(contentsOf: url)
+        let jsonDict = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! ThemeDictionary
+        let themeName = url.deletingPathExtension().lastPathComponent
         
         XCTAssertNotNil(jsonDict)
         XCTAssertNotNil(themeName)
         
-        return CETheme(dictinonary: jsonDict, name: themeName)
-        
+        return Theme(dictionary: jsonDict, name: themeName)
     }
 
 }

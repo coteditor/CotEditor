@@ -3,7 +3,7 @@
  EditorView.strings (German)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-08-19.
  
@@ -25,11 +25,11 @@
  
  */
 
-/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
-"MlW-Dz-FOk.ibShadowedToolTip" = "Zum vorherigen Gliederungspunkt springen";
-
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "BUj-TD-scp"; */
-"BUj-TD-scp.ibShadowedToolTip" = "Zum nächsten Gliederungspunkt springen";
+"BUj-TD-scp.ibShadowedToolTip" = "Zum vorherigen Gliederungspunkt springen";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
+"MlW-Dz-FOk.ibShadowedToolTip" = "Zum nächsten Gliederungspunkt springen";
 
 
 /* Class = "NSTextFieldCell"; title = "Extracting Outline..."; ObjectID = "aUE-uy-XLQ"; */

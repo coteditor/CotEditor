@@ -60,7 +60,7 @@
 	<tr><th><code>Discard</code></th><td>To do nothing (default).</td></tr>
 </table>
 
-<ul style="margin-top: 1em;">
+<ul>
 	<li>Without parameters, CotEditor does nothing just like when you put “Discard.”</li>
 	<li>A script should output the text data for CotEditor on STDOUT (standard out).</li>
 	<li>The character encoding of the text that CotEditor receives must be UTF-8.</li>
@@ -69,7 +69,7 @@
 <h2>Example</h2>
 <p>The following Python script prepends “&gt;” character to every line in the selection of the frontmost document.</p>
 
-<pre><code><span class="comment">#!/usr/bin/env python
+<pre class="source"><code><span class="comment">#!/usr/bin/env python
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%</span>
 

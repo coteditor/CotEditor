@@ -3,7 +3,7 @@
  FindPanel.strings (German)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-08-19.
  
@@ -73,7 +73,7 @@
 
 /* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
 "W4Z-S2-wvv.title" = "Ersetzen";
-// Note: The tooltip for "Replace button is set the in CEFindPanelController.
+// Note: The tooltip for "Replace button is set the in FindPanelController.
 
 /* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
 "u6p-Hz-aK5.ibShadowedToolTips[0]" = "Vorherige Übereinstimmung suchen.";  /* "Find previous match." */

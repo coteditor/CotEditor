@@ -1,0 +1,47 @@
+/*
+ 
+ EncodingListView.strings (Japanese)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2014-11-04.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2014-2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order."; ObjectID = "3395"; */
+"3395.title" = "ドラッグしてエンコーディングを並び替えてください。";
+
+/* Class = "NSTextFieldCell"; title = "This list is for Auto-Detect and the file encoding menu.\nAuto-Detect tries these encodings from the top of the list."; ObjectID = "3394"; */
+"3394.title" = "このリストは自動認識やメニューで使われます。\n自動認識では、上にあるものから順に判別します。";
+
+/* Class = "NSButtonCell"; title = "Add Separator"; ObjectID = "3392"; */
+"3392.title" = "区切り線を追加";
+/* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
+"3393.title" = "区切り線を削除";
+
+/* Class = "NSTextFieldCell"; title = "“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”."; ObjectID = "jXZ-7k-86F"; */
+"jXZ-7k-86F.title" = "“Unicode（UTF-8）BOM 付き”は“Unicode（UTF-8）”の次に自動的に追加されます。";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
+"3396.title" = "デフォルトに戻す";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3390"; */
+"3390.title" = "キャンセル";
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "3391"; */
+"3391.title" = "OK";

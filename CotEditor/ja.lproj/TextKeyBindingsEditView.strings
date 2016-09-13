@@ -3,13 +3,13 @@
  TextKeyBindingEditSheet.strings (Japanese)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-11-04.
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
 "152.title" = "挿入文字列：";
-/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "jTj-QW-dQw"; */
-"jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "アクションを選択してください。";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "mIh-YA-eHt"; */
+"mIh-YA-eHt.ibShadowedNoSelectionPlaceholder" = "アクションを選択してください。";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "153"; */
 "153.title" = "デフォルトに戻す";

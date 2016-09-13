@@ -2,6 +2,75 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Known issues
+
+- Some window states are not restored.
+
+
+### New Features
+
+- Support window tabbing on macOS Sierra.
+- Display recent used syntax styles at the top of the toolbar syntax style popup list.
+- Add individual “Block Comment”, “Inline Comment” and “Uncomment” actions in Text menu unlike the “Comment Selection” action changes its behavior intelligently.
+
+
+### Improvements
+
+- Support __macOS Sierra__ and drop support for __OS X Mountain Lion__ and __Mavericks__.
+- Migrate all source code from Objective-C to Swift.
+- Update application icon.
+- Update find panel search algorithm:
+    - Change the regular expression engine from Onigmo to the ICU library.
+        - From this, the reference symbol of matches is changed from `\1` style to `$1`.
+    - Update line-up of the search options.
+- Inserting single surrogate character is no more valid.
+- Update document window toolbar.
+- Update preferences icons.
+- Update key binding setting format.
+    - Not compatible with previous key bindings setting. Please customize again in the preferences window.
+- New acknowledgements window.
+- Update “Swift” syntax style to Swift 3.0.
+- Update “Coffee Script” syntax style for the block regular expression.
+- Improve syntax highlighting algorithm with symbols.
+- New “Go To Line” panel.
+- Remove the following less important text actions:
+    - Insert Encoding Name with “charset=”
+    - Insert Encoding Name with “encoding=”
+- Remove the following less important toolbar items:
+    - Show / Hide Navigation Bar
+    - Show / Hide Line Numbers
+    - Show / Hide Status Bar
+- Remove the feature that changes the line height of current document from the “Format” menu.
+    - From this, `line spacing` property on AppleScript is also deprecated.
+- Remove “Not writable” alert which displayed on file opening.
+- Remove “Set as Default” button in the editor opacity panel.
+- Change specification not to treat full-width spaces as indent.
+- Open sidebar inward on Yosemite.
+- Add help buttons to syntax style editor.
+- Make indent deletion more naturally.
+- Remove byte count display in document inspector.
+- Display also an accurate file size in document inspector.
+- Display dialogs for changing file encoding as a document-modal sheet.
+- Display also an accurate file size in document inspector.
+- Move scripting manual into help contents.
+- Make window size setting window translucent.
+- Avoid expanding status bar into side inspector.
+- Improve line height calculation.
+- Keep visible area after toggling text-wrapping.
+- Improve scrolling with line number view drag.
+- Better syntax highlighting while editing.
+- Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
+
+
+### Fixes
+
+- Fix an issue where some of script APIs returned always string with LF line endings.
+
+
+
 2.5.7 (138)
 --------------------------
 
@@ -47,6 +116,7 @@ Change Log
 - Fix an issue where the selected marks of line height / tab width in the Format menu disappeared.
 - Fix an issue where unselected last line number could be highlighted if the text orientation is vertical.
 - Fix an issue where invisible characters were drawn off to the side if the text orientation is vertical.
+- Fix an issue where tab width was reset to default when split editor.
 - Fix an issue where documents were marked as “Edited” just after document duplication if line ending is not the default one.
 - Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted.
 - Fix an issue where “Find All” result view did not open on OS X Mountain Lion.

@@ -4,10 +4,10 @@ interpreters:
 - keyString: "coffee"
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.com"
-  version: "1.2.1"
+  distributionURL: "https://coteditor.com"
+  version: "1.3.0"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2016-09-10"
 outlineMenu:
 - beginString: "^([\\t ]*\\w+): (.*)->"
   keyString: "$1"
@@ -29,6 +29,8 @@ characters:
   endString: "'"
 - beginString: "'''"
   endString: "'''"
+- beginString: "///"
+  endString: "///"
 comments: []
 values:
 - beginString: "false"

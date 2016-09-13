@@ -7,7 +7,7 @@ metadata:
   author: "1024jp"
   license: "Same as CotEditor"
   lastModified: "2015-12-25"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
 outlineMenu:
 - beginString: "^([\\t ]*)<Directory(?:Match)?[\\t ]+\"?(.*?)\"?>"
   keyString: "$1Directory:  $2"

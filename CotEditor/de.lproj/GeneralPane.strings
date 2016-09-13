@@ -3,7 +3,7 @@
  GenearalPane.strings (German)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-08-19.
  
@@ -48,12 +48,12 @@
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "Wenn Dokument durch ein anderes Programm geändert wird:";
 
-/* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "DnS-XJ-7RI"; */
-"DnS-XJ-7RI.title" = "CotEditors Version behalten";
-/* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "1qS-Ay-sca"; */
-"1qS-Ay-sca.title" = "Nachfragen";
-/* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "FWi-En-qeX"; */
-"FWi-En-qeX.title" = "Auf geänderte Version aktualisieren";
+/* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
+"sBH-MX-cTd.title" = "CotEditors Version behalten";
+/* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "IkZ-EO-BSv"; */
+"IkZ-EO-BSv.title" = "Nachfragen";
+/* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "rpa-Di-f4s"; */
+"rpa-Di-f4s.title" = "Auf geänderte Version aktualisieren";
 
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */

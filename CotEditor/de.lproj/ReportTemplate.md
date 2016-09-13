@@ -6,7 +6,7 @@ Füllen Sie die folgende Vorlage aus und posten Sie sie auf [GitHub Issues](http
 ## Umgebung
 
 - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
-- System: OS X %SYSTEM_VERSION%
+- System: macOS %SYSTEM_VERSION%
 - Sprache: German
 
 

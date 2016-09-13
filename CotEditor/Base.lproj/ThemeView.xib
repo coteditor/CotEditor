@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEThemeViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="ThemeViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="popover" destination="3ZW-ti-l9p" id="5df-aJ-bIt"/>
                 <outlet property="view" destination="8Mv-NZ-wYH" id="BCv-jM-YWI"/>
@@ -15,15 +14,15 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <objectController id="h6Y-ET-p1K" userLabel="Theme Controller">
             <connections>
-                <binding destination="-2" name="contentObject" keyPath="representedObject" id="35s-ND-JCw"/>
+                <binding destination="-2" name="contentObject" keyPath="theme" id="MGE-N6-ihw"/>
             </connections>
         </objectController>
         <customView id="8Mv-NZ-wYH" userLabel="Theme View">
-            <rect key="frame" x="0.0" y="0.0" width="342" height="295"/>
+            <rect key="frame" x="0.0" y="0.0" width="342" height="290"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="X1h-s1-vOe">
-                    <rect key="frame" x="24" y="142" width="67" height="17"/>
+                    <rect key="frame" x="24" y="139" width="67" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Keywords:" id="IU8-bd-gBv">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -31,7 +30,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-Sx-bRs">
-                    <rect key="frame" x="23" y="61" width="68" height="17"/>
+                    <rect key="frame" x="23" y="58" width="68" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Attributes:" id="RQL-fz-3aq">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -39,7 +38,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="5M7-jw-5vd">
-                    <rect key="frame" x="27" y="34" width="64" height="17"/>
+                    <rect key="frame" x="27" y="31" width="64" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Variables:" id="ZIr-1E-qZJ">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -47,7 +46,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="751" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="FHd-6m-dWf">
-                    <rect key="frame" x="14" y="115" width="77" height="17"/>
+                    <rect key="frame" x="14" y="112" width="77" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Commands:" id="81x-je-JUf">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -55,7 +54,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="Xjv-GT-ZUL">
-                    <rect key="frame" x="213" y="115" width="63" height="17"/>
+                    <rect key="frame" x="213" y="112" width="63" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Numbers:" id="3wF-uc-Tfq">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -63,7 +62,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="8yb-9K-ShW">
-                    <rect key="frame" x="201" y="61" width="75" height="17"/>
+                    <rect key="frame" x="201" y="58" width="75" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Characters:" id="hbk-iX-4VK">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -71,7 +70,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="IR6-vs-wd8">
-                    <rect key="frame" x="202" y="34" width="74" height="17"/>
+                    <rect key="frame" x="202" y="31" width="74" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Comments:" id="AIG-rr-79V">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -79,7 +78,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="8JO-9v-VnC">
-                    <rect key="frame" x="42" y="236" width="49" height="17"/>
+                    <rect key="frame" x="42" y="231" width="49" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Cursor:" id="Ljk-ky-fQH">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -87,18 +86,18 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="lJB-fN-OKp">
-                    <rect key="frame" x="97" y="233" width="44" height="23"/>
+                    <rect key="frame" x="97" y="228" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.insertionPoint.color" id="EQT-og-ZSx">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.insertionPoint.color" id="fqR-V8-jcD">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="gao-00-mX9">
-                    <rect key="frame" x="27" y="209" width="64" height="17"/>
+                    <rect key="frame" x="27" y="204" width="64" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Invisibles:" id="IGx-p1-FHi">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -106,7 +105,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-Gl-M0L">
-                    <rect key="frame" x="57" y="263" width="34" height="17"/>
+                    <rect key="frame" x="57" y="258" width="34" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Text:" id="kvy-vf-yva">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -114,60 +113,60 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I5D-KF-7Az">
-                    <rect key="frame" x="97" y="260" width="44" height="23"/>
+                    <rect key="frame" x="97" y="255" width="44" height="23"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="0Pe-cc-8c0"/>
                         <constraint firstAttribute="height" constant="23" id="G8l-4b-vkT"/>
                     </constraints>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.text.color" id="QyH-kf-cu1">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.text.color" id="aRP-8Y-vUE">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gjr-XD-Cv5">
-                    <rect key="frame" x="97" y="206" width="44" height="23"/>
+                    <rect key="frame" x="97" y="201" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.invisibles.color" id="XkT-T3-v4u">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.invisibles.color" id="eLc-cl-dLJ">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Mh4-u1-6ML">
-                    <rect key="frame" x="282" y="260" width="44" height="23"/>
+                    <rect key="frame" x="282" y="255" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.background.color" id="VOW-gT-kig">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.background.color" id="76E-is-0nX">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="u73-Ob-J8v">
-                    <rect key="frame" x="282" y="233" width="44" height="23"/>
+                    <rect key="frame" x="282" y="228" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.lineHighlight.color" id="ICi-MS-957">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.lineHighlight.color" id="3xf-hz-5y0">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Y4q-YH-jrD">
-                    <rect key="frame" x="282" y="206" width="44" height="23"/>
+                    <rect key="frame" x="282" y="201" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.color" id="j0D-XA-Nos">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.selection.color" id="v8r-oj-p4o">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                         <binding destination="h6Y-ET-p1K" name="enabled" keyPath="selection.selection.usesSystemSetting" id="LiX-Z7-p1X">
@@ -178,7 +177,7 @@
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="BcY-Zf-mza">
-                    <rect key="frame" x="195" y="263" width="81" height="17"/>
+                    <rect key="frame" x="195" y="258" width="81" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Background:" id="tvj-DS-DVt">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -186,7 +185,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="arh-qx-kON">
-                    <rect key="frame" x="193" y="236" width="83" height="17"/>
+                    <rect key="frame" x="193" y="231" width="83" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Current Line:" id="yMW-lO-ILw">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -194,7 +193,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="f4v-zr-M1o">
-                    <rect key="frame" x="211" y="209" width="65" height="17"/>
+                    <rect key="frame" x="211" y="204" width="65" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Selection:" id="PbY-c2-p4V">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -202,7 +201,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="9VW-40-zzi">
-                    <rect key="frame" x="14" y="167" width="49" height="17"/>
+                    <rect key="frame" x="14" y="164" width="49" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Syntax" usesSingleLineMode="YES" id="F64-8o-JYC">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -210,29 +209,29 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="rn5-5c-jI6">
-                    <rect key="frame" x="282" y="112" width="44" height="23"/>
+                    <rect key="frame" x="282" y="109" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.numbers.color" id="llu-6g-zfy">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.numbers.color" id="w3F-IL-Gzz">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="i3Z-85-3qp">
-                    <rect key="frame" x="282" y="58" width="44" height="23"/>
+                    <rect key="frame" x="282" y="55" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.characters.color" id="Q1I-qE-gnE">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.characters.color" id="yXY-pV-vSx">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="snC-SX-rEl">
-                    <rect key="frame" x="225" y="88" width="51" height="17"/>
+                    <rect key="frame" x="225" y="85" width="51" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Strings:" id="n04-r3-95l">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -240,62 +239,62 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="joc-k5-xEa">
-                    <rect key="frame" x="282" y="85" width="44" height="23"/>
+                    <rect key="frame" x="282" y="82" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.strings.color" id="jhb-EJ-SsH">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.strings.color" id="zWs-gF-xJD">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="QGS-SR-oFV">
-                    <rect key="frame" x="282" y="31" width="44" height="23"/>
+                    <rect key="frame" x="282" y="28" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.comments.color" id="K0W-hU-8xJ">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.comments.color" id="JPf-C7-avg">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="w0B-KD-9pH">
-                    <rect key="frame" x="97" y="139" width="44" height="23"/>
+                    <rect key="frame" x="97" y="136" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.keywords.color" id="UBj-Aj-Cb2">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.keywords.color" id="EdR-pJ-jbU">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="I0Y-Yr-Tq6">
-                    <rect key="frame" x="97" y="112" width="44" height="23"/>
+                    <rect key="frame" x="97" y="109" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.commands.color" id="Hff-x0-bdf">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.commands.color" id="afG-qt-lO2">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="O1G-QZ-X3X">
-                    <rect key="frame" x="97" y="58" width="44" height="23"/>
+                    <rect key="frame" x="97" y="55" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.attributes.color" id="72O-BS-CDL">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.attributes.color" id="Bzq-T3-sTh">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="44n-Y9-D7v">
-                    <rect key="frame" x="46" y="88" width="45" height="17"/>
+                    <rect key="frame" x="46" y="85" width="45" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Types:" id="ILi-Jt-MUc">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -303,29 +302,29 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Op7-tR-smw">
-                    <rect key="frame" x="97" y="85" width="44" height="23"/>
+                    <rect key="frame" x="97" y="82" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.types.color" id="C0V-b8-VBw">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.types.color" id="IKs-lv-4xk">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="TVR-mt-U7J">
-                    <rect key="frame" x="97" y="31" width="44" height="23"/>
+                    <rect key="frame" x="97" y="28" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.variables.color" id="8GM-ew-ISU">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.variables.color" id="dha-92-KiK">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="160" translatesAutoresizingMaskIntoConstraints="NO" id="89v-hc-bub">
-                    <rect key="frame" x="228" y="142" width="48" height="17"/>
+                    <rect key="frame" x="228" y="139" width="48" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Values:" id="cVK-ET-QiD">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -333,18 +332,18 @@
                     </textFieldCell>
                 </textField>
                 <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="vgC-hV-Bju">
-                    <rect key="frame" x="282" y="139" width="44" height="23"/>
+                    <rect key="frame" x="282" y="136" width="44" height="23"/>
                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
-                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.values.color" id="Y8q-JG-2Ug">
+                        <binding destination="h6Y-ET-p1K" name="value" keyPath="selection.values.color" id="sCc-j4-2NY">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">CEHexColorTransformer</string>
+                                <string key="NSValueTransformerName">HexColorTransformer</string>
                             </dictionary>
                         </binding>
                     </connections>
                 </colorWell>
                 <button horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="38b-e6-B7J">
-                    <rect key="frame" x="211" y="186" width="113" height="18"/>
+                    <rect key="frame" x="211" y="181" width="113" height="18"/>
                     <buttonCell key="cell" type="check" title="Use system color" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="0ZP-Zp-oBu">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -464,7 +463,7 @@
                 <constraint firstItem="lJB-fN-OKp" firstAttribute="top" secondItem="I5D-KF-7Az" secondAttribute="bottom" constant="4" id="ogn-yR-z1C"/>
                 <constraint firstItem="I5D-KF-7Az" firstAttribute="width" secondItem="TVR-mt-U7J" secondAttribute="width" id="otD-GB-YJs"/>
                 <constraint firstItem="TVR-mt-U7J" firstAttribute="leading" secondItem="5M7-jw-5vd" secondAttribute="trailing" constant="8" symbolic="YES" id="pRh-W1-MHq"/>
-                <constraint firstItem="9VW-40-zzi" firstAttribute="top" secondItem="gjr-XD-Cv5" secondAttribute="bottom" constant="22" id="pTp-xY-cf2"/>
+                <constraint firstItem="9VW-40-zzi" firstAttribute="top" secondItem="gjr-XD-Cv5" secondAttribute="bottom" constant="20" id="pTp-xY-cf2"/>
                 <constraint firstItem="i3Z-85-3qp" firstAttribute="top" secondItem="joc-k5-xEa" secondAttribute="bottom" constant="4" id="pVp-Hj-VN8"/>
                 <constraint firstItem="rn5-5c-jI6" firstAttribute="centerY" secondItem="Xjv-GT-ZUL" secondAttribute="centerY" id="q8n-fI-GRL"/>
                 <constraint firstItem="vgC-hV-Bju" firstAttribute="height" secondItem="I5D-KF-7Az" secondAttribute="height" id="rgx-C3-FPB"/>
@@ -552,7 +551,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="bundled" id="son-UD-yny">
+                        <binding destination="-2" name="editable" keyPath="isBundled" id="ziP-dj-zQn">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
@@ -573,7 +572,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="bundled" id="6yq-SV-Tjg">
+                        <binding destination="-2" name="editable" keyPath="isBundled" id="h6j-DC-7uR">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
@@ -594,7 +593,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="bundled" id="hFg-IT-hrN">
+                        <binding destination="-2" name="editable" keyPath="isBundled" id="weM-y6-ddI">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
@@ -607,7 +606,7 @@
                         <outlet property="delegate" destination="-2" id="cKk-OC-tfK"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="751" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="14" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r9S-sB-zfs" customClass="CEWrappingTextField">
+                <textField verticalHuggingPriority="751" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="14" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r9S-sB-zfs" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
                     <rect key="frame" x="85" y="10" width="204" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="CXy-zY-h7y"/>
@@ -619,7 +618,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="editable" keyPath="bundled" id="huM-gg-K23">
+                        <binding destination="-2" name="editable" keyPath="isBundled" id="VYO-VD-Lmw">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>

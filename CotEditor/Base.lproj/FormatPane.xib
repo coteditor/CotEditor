@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEFormatPaneController">
+        <customObject id="-2" userLabel="File's Owner" customClass="FormatPaneController" customModule="CotEditor" customModuleProvider="target">
             <connections>
-                <outlet property="encodingMenuInNew" destination="80" id="eqc-w1-QrX"/>
-                <outlet property="encodingMenuInOpen" destination="76" id="8DX-cy-t6W"/>
+                <outlet property="inNewEncodingMenu" destination="80" id="zx6-Xh-shz"/>
+                <outlet property="inOpenEncodingMenu" destination="76" id="BLx-k8-gba"/>
                 <outlet property="stylesController" destination="Qfx-DD-EBP" id="g9W-3p-vV2"/>
                 <outlet property="syntaxStyleDeleteButton" destination="dI1-Dk-Mce" id="WhQ-fH-VAB"/>
                 <outlet property="syntaxStylesDefaultPopup" destination="727" id="aKL-mF-XGI"/>
@@ -59,7 +58,7 @@
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="16">
                             <items>
-                                <menuItem title="OS X / Unix (LF)" id="15"/>
+                                <menuItem title="macOS / Unix (LF)" id="15"/>
                                 <menuItem title="Classic Mac OS (CR)" tag="1" id="14"/>
                                 <menuItem title="Windows (CR/LF)" tag="2" id="12"/>
                             </items>
@@ -94,7 +93,7 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <action selector="checkSelectedItemOfEncodingMenuInOpen:" target="-2" id="tKD-WQ-wzk"/>
+                        <action selector="checkSelectedItemOfInOpenEncodingMenu:" target="-2" id="daD-tJ-DQb"/>
                         <binding destination="26" name="selectedTag" keyPath="values.encodingInOpen" id="98"/>
                     </connections>
                 </popUpButton>
@@ -150,7 +149,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="i9j-3p-xYF">
-                                <rect key="frame" x="0.0" y="0.0" width="278" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="278" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -173,7 +172,7 @@
                                                 <rect key="frame" x="1" y="1" width="275" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView toolTip="This style is customized." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cbJ-XK-bnG" customClass="CEDotView">
+                                                    <imageView toolTip="This style is customized." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cbJ-XK-bnG" customClass="DotImageView" customModule="CotEditor" customModuleProvider="target">
                                                         <rect key="frame" x="5" y="5" width="4" height="4"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="cbJ-XK-bnG" secondAttribute="height" multiplier="1:1" id="AEz-Hi-Fyq"/>
@@ -224,7 +223,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="AZ7-Fe-3Vq"/>
@@ -283,17 +281,11 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eoL-rv-xwG">
+                <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="eoL-rv-xwG">
                     <rect key="frame" x="20" y="221" width="500" height="5"/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <font key="titleFont" metaFont="system"/>
                 </box>
-                <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-dB-keR">
+                <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-dB-keR">
                     <rect key="frame" x="20" y="329" width="500" height="5"/>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <font key="titleFont" metaFont="system"/>
                 </box>
                 <button toolTip="Add empty style" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Hma-8v-2gu">
                     <rect key="frame" x="166" y="19" width="28" height="23"/>

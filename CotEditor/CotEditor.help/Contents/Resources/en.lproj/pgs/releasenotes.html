@@ -24,8 +24,101 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.0.0</h1>
+	<p>release: <time>2016-09-13</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Support window tabbing on macOS Sierra.</li>
+	<li>Display recent used syntax styles at the top of the toolbar syntax style popup list.</li>
+	<li>Add individual “Block Comment”, “Inline Comment” and “Uncomment” actions in Text menu unlike the “Comment Selection” action changes its behavior intelligently.</li>
+</ul>
+
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Support <strong>macOS Sierra</strong> and drop support for <strong>OS X Mountain Lion</strong> and <strong>Mavericks</strong>.</li>
+	<li>Migrate all source code from Objective-C to Swift.</li>
+	<li>Update application icon.</li>
+	<li>Update find panel search algorithm:
+	<ul>
+		<li>Change the regular expression engine from Onigmo to the ICU library.
+		<ul>
+			<li>From this, the reference symbol of matches is changed from <code>\1</code> style to <code>$1</code>.</li>
+		</ul></li>
+		<li>Update line-up of the search options.</li>
+	</ul></li>
+	<li>Inserting single surrogate character is no more valid.</li>
+	<li>Update toolbar.</li>
+	<li>Update preferences icons.</li>
+	<li>Update key binding setting format.
+	<ul>
+		<li>Not compatible with previous key bindings setting. Please customize again in the preferences window.</li>
+	</ul></li>
+	<li>New acknowledgements window.</li>
+	<li>Update “Swift” syntax style to Swift 3.0.</li>
+	<li>Update “Coffee Script” syntax style for the block regular expression.</li>
+	<li>Improve syntax highlighting algorithm with symbols.</li>
+	<li>New “Go To Line” panel.</li>
+	<li>Remove the following less important text actions:
+	<ul>
+		<li>Insert Encoding Name with “charset=”</li>
+		<li>Insert Encoding Name with “encoding=”</li>
+	</ul></li>
+	<li>Remove the following less important toolbar items:
+	<ul>
+		<li>Show / Hide Navigation Bar</li>
+		<li>Show / Hide Line Numbers</li>
+		<li>Show / Hide Status Bar</li>
+	</ul></li>
+	<li>Remove the feature that changes the line height of current document from the “Format” menu.
+	<ul>
+		<li>From this, <code>line spacing</code> property on AppleScript is also deprecated.</li>
+	</ul></li>
+	<li>Remove “Not writable” alert which displayed on file opening.</li>
+	<li>Remove “Set as Default” button in the editor opacity panel.</li>
+	<li>Change specification not to treat full-width spaces as indent.</li>
+	<li>Open sidebar inward on Yosemite.</li>
+	<li>Add help buttons to syntax style editor.</li>
+	<li>Make indent deletion more naturally.</li>
+	<li>Remove byte count display in document inspector.</li>
+	<li>Display also an accurate file size in document inspector.</li>
+	<li>Display dialogs for changing file encoding as a document-modal sheet.</li>
+	<li>Move scripting manual into help contents.</li>
+	<li>Make window size setting window translucent.</li>
+	<li>Avoid expanding status bar into side inspector.</li>
+	<li>Improve line height calculation.</li>
+	<li>Keep visible area after toggling text-wrapping.</li>
+	<li>Improve scrolling with line number view drag.</li>
+	<li>Better syntax highlighting while editing.</li>
+	<li>Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+    <li>Fix an issue where some of script APIs returned always string with LF line endings.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 2.5.7</h1>
-	<p>release: <time>2016-08</time></p>
+	<p>release: <time>2016-08-22</time></p>
 </header>
 
 

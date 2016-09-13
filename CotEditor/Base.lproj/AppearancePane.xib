@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" customClass="CEAppearancePaneController">
+        <customObject id="-2" customClass="AppearancePaneController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="box" destination="htB-OO-KPY" id="Rpo-zq-R2I"/>
                 <outlet property="fontField" destination="385" id="n5f-3y-xKI"/>
@@ -19,7 +18,7 @@
         <customObject id="-3" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="26" userLabel="Shared User Defaults Controller"/>
         <customView horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="744" userLabel="Appearance Pane">
-            <rect key="frame" x="0.0" y="0.0" width="550" height="598"/>
+            <rect key="frame" x="0.0" y="0.0" width="550" height="593"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="2154">
@@ -32,8 +31,8 @@
                         <action selector="openHelpAnchor:" target="-1" id="RdO-wW-H7B"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="385" customClass="CEAntialiasingTextField">
-                    <rect key="frame" x="103" y="556" width="280" height="22"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="385" customClass="AntialiasingTextField" customModule="CotEditor" customModuleProvider="target">
+                    <rect key="frame" x="103" y="551" width="280" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="4zH-Fv-QUF"/>
                         <constraint firstAttribute="width" constant="280" id="vyL-3O-dlj"/>
@@ -48,7 +47,7 @@
                     </connections>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="809">
-                    <rect key="frame" x="101" y="532" width="100" height="18"/>
+                    <rect key="frame" x="101" y="527" width="100" height="18"/>
                     <buttonCell key="cell" type="check" title="Anti-Aliasing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3290">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -59,7 +58,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="387">
-                    <rect key="frame" x="385" y="550" width="90" height="32"/>
+                    <rect key="frame" x="385" y="545" width="90" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="78" id="8cj-Zi-DRd"/>
                     </constraints>
@@ -72,7 +71,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cM2-sa-5cF">
-                    <rect key="frame" x="62" y="559" width="35" height="17"/>
+                    <rect key="frame" x="62" y="554" width="35" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Font:" usesSingleLineMode="YES" id="Z85-S9-uID">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -80,7 +79,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DSq-u9-gbq">
-                    <rect key="frame" x="22" y="500" width="75" height="17"/>
+                    <rect key="frame" x="22" y="495" width="75" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Line height:" usesSingleLineMode="YES" id="r1c-v3-qW1">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -88,13 +87,13 @@
                     </textFieldCell>
                 </textField>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICn-lI-aHs">
-                    <rect key="frame" x="20" y="53" width="160" height="296"/>
+                    <rect key="frame" x="20" y="53" width="160" height="291"/>
                     <clipView key="contentView" id="I0F-fo-Lco">
-                        <rect key="frame" x="1" y="0.0" width="158" height="295"/>
+                        <rect key="frame" x="1" y="0.0" width="158" height="290"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Pqo-DS-No8" viewBased="YES" id="YME-hT-ryc">
-                                <rect key="frame" x="0.0" y="0.0" width="158" height="272"/>
+                            <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Pqo-DS-No8" viewBased="YES" id="YME-hT-ryc">
+                                <rect key="frame" x="0.0" y="0.0" width="158" height="267"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="4"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -244,29 +243,29 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="htB-OO-KPY">
-                    <rect key="frame" x="188" y="53" width="342" height="296"/>
+                    <rect key="frame" x="188" y="53" width="342" height="291"/>
                     <view key="contentView" id="qHH-O2-P8t">
-                        <rect key="frame" x="1" y="1" width="340" height="294"/>
+                        <rect key="frame" x="1" y="1" width="340" height="289"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <color key="borderColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>
                     <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                 </box>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XpC-pt-aaH">
-                    <rect key="frame" x="152" y="494" width="19" height="27"/>
-                    <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="10" doubleValue="1" id="mv9-Cu-Cfr"/>
+                    <rect key="frame" x="152" y="489" width="19" height="27"/>
+                    <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" minValue="0.10000000000000001" maxValue="10" doubleValue="1" id="mv9-Cu-Cfr"/>
                     <connections>
-                        <binding destination="26" name="value" keyPath="values.lineSpacing" id="kPV-Sp-fwX"/>
+                        <binding destination="26" name="value" keyPath="values.lineHeight" id="JoA-Tl-z8T"/>
                     </connections>
                 </stepper>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nOa-Ha-LsB">
-                    <rect key="frame" x="103" y="497" width="48" height="22"/>
+                    <rect key="frame" x="103" y="492" width="48" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="She-Ie-Rji"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="1.2" drawsBackground="YES" usesSingleLineMode="YES" id="aoR-VK-BH0">
                         <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2" minimumFractionDigits="1" maximumFractionDigits="2" id="Ti0-Sh-Wj8">
-                            <real key="minimum" value="0.0"/>
+                            <real key="minimum" value="0.10000000000000001"/>
                             <real key="maximum" value="10"/>
                         </numberFormatter>
                         <font key="font" metaFont="system"/>
@@ -277,15 +276,11 @@
                         </allowedInputSourceLocales>
                     </textFieldCell>
                     <connections>
-                        <binding destination="26" name="value" keyPath="values.lineSpacing" id="KNy-EW-UTe">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">CELineHeightTransformer</string>
-                            </dictionary>
-                        </binding>
+                        <binding destination="26" name="value" keyPath="values.lineHeight" id="hos-Bf-0yB"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-mR-rbr">
-                    <rect key="frame" x="174" y="500" width="38" height="17"/>
+                    <rect key="frame" x="174" y="495" width="38" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="times" usesSingleLineMode="YES" id="VLD-jj-zzl">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -293,7 +288,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="uBk-sz-rYS">
-                    <rect key="frame" x="101" y="466" width="179" height="18"/>
+                    <rect key="frame" x="101" y="461" width="179" height="18"/>
                     <buttonCell key="cell" type="check" title="Change background color" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ba7-dE-zXz">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -303,7 +298,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-jB-Clt">
-                    <rect key="frame" x="18" y="467" width="79" height="17"/>
+                    <rect key="frame" x="18" y="462" width="79" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Current line:" usesSingleLineMode="YES" id="oKu-Fu-hRU">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -311,7 +306,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="OnK-cQ-YK6">
-                    <rect key="frame" x="121" y="413" width="60" height="18"/>
+                    <rect key="frame" x="121" y="408" width="60" height="18"/>
                     <buttonCell key="cell" type="check" title="Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="gcF-OM-SV0">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -322,7 +317,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AfB-mI-d7n">
-                    <rect key="frame" x="185" y="408" width="55" height="26"/>
+                    <rect key="frame" x="185" y="403" width="55" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="ZzE-EW-tR8"/>
                     </constraints>
@@ -350,7 +345,7 @@
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WZR-iW-nxi">
-                    <rect key="frame" x="185" y="385" width="55" height="26"/>
+                    <rect key="frame" x="185" y="380" width="55" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="1td-wJ-bRI">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -375,7 +370,7 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="SOi-NW-xmI">
-                    <rect key="frame" x="121" y="390" width="45" height="18"/>
+                    <rect key="frame" x="121" y="385" width="45" height="18"/>
                     <buttonCell key="cell" type="check" title="Tab" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="XSb-uU-5QP">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -386,7 +381,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="LjJ-9t-vsV">
-                    <rect key="frame" x="121" y="367" width="180" height="18"/>
+                    <rect key="frame" x="121" y="362" width="180" height="18"/>
                     <buttonCell key="cell" type="check" title="Other Invisible Characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sxg-F3-ely">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -397,7 +392,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4Ee-6Q-Tha">
-                    <rect key="frame" x="33" y="437" width="64" height="17"/>
+                    <rect key="frame" x="33" y="432" width="64" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" usesSingleLineMode="YES" id="oAZ-6U-Ba8">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -405,7 +400,7 @@
                     </textFieldCell>
                 </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="u6H-cj-EcO">
-                    <rect key="frame" x="263" y="413" width="93" height="18"/>
+                    <rect key="frame" x="263" y="408" width="93" height="18"/>
                     <buttonCell key="cell" type="check" title="Line Ending" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Ont-7L-Uf5">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -416,7 +411,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RxQ-Af-7MB">
-                    <rect key="frame" x="388" y="408" width="55" height="26"/>
+                    <rect key="frame" x="388" y="403" width="55" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="sn9-bx-Qs8">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -441,7 +436,7 @@
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b7I-Nn-rWh">
-                    <rect key="frame" x="388" y="386" width="55" height="26"/>
+                    <rect key="frame" x="388" y="381" width="55" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="Y1n-AS-Mqa">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -466,7 +461,7 @@
                     </connections>
                 </popUpButton>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="CsR-eH-CJ1">
-                    <rect key="frame" x="263" y="390" width="121" height="18"/>
+                    <rect key="frame" x="263" y="385" width="121" height="18"/>
                     <buttonCell key="cell" type="check" title="Fullwidth-Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Bf2-rS-2zu">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -477,7 +472,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="huV-RR-zD5">
-                    <rect key="frame" x="101" y="436" width="178" height="18"/>
+                    <rect key="frame" x="101" y="431" width="178" height="18"/>
                     <buttonCell key="cell" type="check" title="Show invisible Characters" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gqy-Io-eUU">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>

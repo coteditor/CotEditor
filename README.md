@@ -2,40 +2,42 @@
 CotEditor
 =============================
 
-CotEditor is a lightweight plain-text editor for OS X.
+CotEditor is a lightweight plain-text editor for macOS.
 
-__Requirement__: OS X Mountain Lion or higher
+__Requirement__: OS X Yosemite or higher
 
-__Web Site__: <http://coteditor.com>
+__Web Site__: <https://coteditor.com>
 
-__Mac App Store__: <http://appstore.com/mac/CotEditor>
+__Mac App Store__: <https://appstore.com/mac/CotEditor>
 
-![screenshot](screenshot.png)
+<img src="screenshot@2x.png" width="750"/>
 
 
 
-About Source Code
+Source Code
 -----------------------------
 
 [![Build Status](https://travis-ci.org/coteditor/CotEditor.svg?branch=develop)](https://travis-ci.org/coteditor/CotEditor)
 [![License](https://img.shields.io/github/license/coteditor/CotEditor.svg)](https://github.com/coteditor/CotEditor/blob/develop/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/coteditor/CotEditor.svg)](https://github.com/coteditor/CotEditor/releases/latest)
 
-It's a pure document-based Cocoa application. The source code is written in Objective-C with ARC enabled.
+CotEditor is a pure document-based Cocoa application written in Swift.
 
 
 ### Development Environment
 
 - OS X 10.11 El Capitan
-- Xcode 7.3
+- Xcode 8.0
+- Swift 3
+- Sandbox enabled
 
 
 
 How to Build
 -----------------------------
 
-0. Install [CocoaPods](http://cocoapods.org) if you don't have it.
-1. On terminal, move to the project root directory and run `pod install`.
+0. Install [Carthage](https://github.com/Carthage/Carthage) if you don't have it yet.
+1. On terminal, move to the project root directory and run `carthage update --platform macOS`.
 2. Open CotEditor.xcworkspace in Xcode.
 3. build.
 

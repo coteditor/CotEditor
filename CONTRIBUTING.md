@@ -64,37 +64,48 @@ Coding Style Guide
 
 Please follow the style of the existing codes in CotEditor.
 
-- Use always the [modern Objective-C](https://developer.apple.com/library/mac/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html).
 - Leave reasonable comments.
-- Prefer using the classic bracket style to access properties.
-	```ObjC
-	// use
-	[self setFoo:@"foo"];
-	NSString *foo = [self foo];
-	
-	// instead of
-	self.foo = @"foo";
-	NSString *foo = self.foo;
-	```
-- Leave the opening-curly-bracket `{` in the same line as long as the condition statement is a single line, otherwise put it in a new line.
-	```ObjC
-	// single line
-	if (foo > 0) {
-		// your code
-	}
-	
-	// multiple lines
-	if ((foo > 0) &&
-	    (foo < 100))
-	{
-		// your code
+- Never omit `self`.
+- Make classes `final` by default.
+- Insert a blank line after class/function statement line.
+	```Swift
+	/// say moof.
+	func moof() {
+		
+		print("moof")
 	}
 	```
-- Don't omit curly brackets even the contents is a single line.
-	```ObjC
-	// use
-	if (!foo) { return; }
-	
-	// instead of
-	if (!foo) return;
+- Use `\`self\`` to unwrap weak self in block instead of strongSelf.
+	```Swift
+	// OK
+    DispatchQueue.main.async { [weak self] in
+        let `self` = self else { return }
+        
+        // ...
+    }
+    
+    // NG
+    DispatchQueue.main.async { [weak self] in
+        let strongSelf = self else { return }
+        
+        // ...
+    }
+	```
+- Don't declare `@IBOutlet` properties with `!`.
+	```Swift
+	// OK
+    @IBOutlet private weak var button: NSButton?
+    
+    // NG
+    @IBOutlet private weak var button: NSButton!
+	```
+- Write `guard` statement in oneline if just return a simple value.
+	```Swift
+	// prefer
+    guard let foo = foo else { return nil }
+    
+    // instead of
+    guard let foo = foo else {
+        return nil
+    }
 	```

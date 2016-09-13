@@ -3,13 +3,13 @@
  Unicode.strings (Japanese)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-11-19.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -179,7 +179,7 @@
 "Samaritan" = "サマリア文字";
 "Old Italic" = "古代イタリアの文字";
 "CJK Symbols and Punctuation" = "CJK 記号と句読点";
-"Half-width and Full-width Forms" = "半角・全角形";
+"Halfwidth and Fullwidth Forms" = "半角・全角形";  // Half-width -> halfwidth
 "Kangxi Radicals" = "康熙部首";
 "Buginese" = "ブギ文字";
 "Phoenician" = "フェニキア文字";
@@ -254,3 +254,8 @@
 "Gujarati" = "グジャラート文字";
 "Tai Xuan Jing Symbols" = "太玄経の記号";
 "Kana Supplement" = "かな補助";
+
+"No Block" = "ブロックなし";
+
+// Unicode category names
+"No Category" = "カテゴリなし";

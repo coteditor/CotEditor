@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11198.2"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="CEGeneralPaneController">
+        <customObject id="-2" userLabel="File's Owner" customClass="GeneralPaneController" customModule="CotEditor" customModuleProvider="target">
             <connections>
+                <outlet property="ignoreConflictButton" destination="aeF-NU-eIe" id="ifc-ry-YM7"/>
+                <outlet property="notifyConflictButton" destination="Yus-N4-zui" id="ugC-j3-yfZ"/>
+                <outlet property="revertConflictButton" destination="5y3-9G-q2y" id="Jrc-ih-fJf"/>
                 <outlet property="updaterConstraint" destination="jUr-eF-2JP" id="I33-tq-BbT"/>
                 <outlet property="view" destination="743" id="NV1-KF-qM5"/>
             </connections>
@@ -135,35 +137,6 @@
                         <binding destination="26" name="value" keyPath="values.highlightLtGt" id="HQu-wV-b4e"/>
                     </connections>
                 </button>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBP-bG-qE5">
-                    <rect key="frame" x="169" y="315" width="361" height="60"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="205" height="20"/>
-                    <size key="intercellSpacing" width="4" height="0.0"/>
-                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="9ML-3o-nUc">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="radio" title="Keep CotEditor’s edition" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="DnS-XJ-7RI">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="Ask how to resolve" imagePosition="left" alignment="left" inset="2" id="1qS-Ay-sca">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="Update to modified edition" imagePosition="left" alignment="left" inset="2" id="FWi-En-qeX">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
-                    <connections>
-                        <binding destination="26" name="selectedIndex" keyPath="values.documentConflictOption" id="WqF-eE-TOQ"/>
-                    </connections>
-                </matrix>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o08-Ku-C4x">
                     <rect key="frame" x="18" y="379" width="316" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="When document is modified by another application:" usesSingleLineMode="YES" id="x4n-2n-I3p">
@@ -270,10 +243,39 @@
                         <binding destination="26" name="value" keyPath="values.trimsTrailingWhitespaceOnSave" id="6Ak-HI-Eqd"/>
                     </connections>
                 </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="aeF-NU-eIe">
+                    <rect key="frame" x="168" y="356" width="169" height="18"/>
+                    <buttonCell key="cell" type="radio" title="Keep CotEditor’s edition" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sBH-MX-cTd">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateDocumentConflictSetting:" target="-2" id="UUB-Vb-Xdz"/>
+                    </connections>
+                </button>
+                <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yus-N4-zui">
+                    <rect key="frame" x="168" y="335" width="136" height="18"/>
+                    <buttonCell key="cell" type="radio" title="Ask how to resolve" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="IkZ-EO-BSv">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateDocumentConflictSetting:" target="-2" id="E2M-4t-xin"/>
+                    </connections>
+                </button>
+                <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="5y3-9G-q2y">
+                    <rect key="frame" x="168" y="314" width="184" height="18"/>
+                    <buttonCell key="cell" type="radio" title="Update to modified edition" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="rpa-Di-f4s">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateDocumentConflictSetting:" target="-2" id="wrz-pM-e4R"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="d4d-Es-nTn" firstAttribute="top" secondItem="1030" secondAttribute="bottom" constant="8" id="25H-DC-VkS"/>
-                <constraint firstAttribute="trailing" secondItem="iBP-bG-qE5" secondAttribute="trailing" constant="20" symbolic="YES" id="2Qh-fm-o8R"/>
                 <constraint firstAttribute="trailing" secondItem="1832" secondAttribute="trailing" constant="20" symbolic="YES" id="4no-Le-Zal"/>
                 <constraint firstItem="jQj-mP-yhk" firstAttribute="baseline" secondItem="1036" secondAttribute="baseline" id="5SA-y4-4I5"/>
                 <constraint firstItem="0GW-6U-afs" firstAttribute="leading" secondItem="3422" secondAttribute="leading" id="5Yj-FP-ehY"/>
@@ -281,6 +283,7 @@
                 <constraint firstItem="Kpr-hw-rGR" firstAttribute="leading" secondItem="VW6-N4-s4i" secondAttribute="leading" constant="-20" id="62i-BS-5G0"/>
                 <constraint firstItem="d4d-Es-nTn" firstAttribute="leading" secondItem="1036" secondAttribute="leading" id="6Ue-cS-yMF"/>
                 <constraint firstItem="594" firstAttribute="leading" secondItem="bTW-FZ-qkl" secondAttribute="trailing" constant="8" symbolic="YES" id="8od-3Q-chH"/>
+                <constraint firstItem="aeF-NU-eIe" firstAttribute="top" secondItem="o08-Ku-C4x" secondAttribute="bottom" constant="6" id="94O-8e-vLk"/>
                 <constraint firstItem="o08-Ku-C4x" firstAttribute="leading" secondItem="743" secondAttribute="leading" constant="20" symbolic="YES" id="9GQ-Jt-y5u"/>
                 <constraint firstItem="106" firstAttribute="leading" secondItem="bTW-FZ-qkl" secondAttribute="trailing" constant="8" symbolic="YES" id="B8v-SQ-jVs"/>
                 <constraint firstItem="m9P-m9-cpw" firstAttribute="trailing" secondItem="bTW-FZ-qkl" secondAttribute="trailing" id="CqR-vB-KOl"/>
@@ -290,17 +293,20 @@
                 <constraint firstItem="jQj-mP-yhk" firstAttribute="trailing" secondItem="bTW-FZ-qkl" secondAttribute="trailing" id="G5b-5X-0j7"/>
                 <constraint firstItem="596" firstAttribute="leading" secondItem="jQj-mP-yhk" secondAttribute="trailing" constant="8" symbolic="YES" id="GN1-zE-VBX"/>
                 <constraint firstItem="1030" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="743" secondAttribute="leading" constant="20" symbolic="YES" id="Hs5-xc-hrY"/>
-                <constraint firstItem="594" firstAttribute="leading" secondItem="iBP-bG-qE5" secondAttribute="leading" id="Is2-e7-EDj"/>
-                <constraint firstItem="iBP-bG-qE5" firstAttribute="top" secondItem="o08-Ku-C4x" secondAttribute="bottom" constant="4" id="Jsp-vC-mwk"/>
                 <constraint firstItem="3422" firstAttribute="top" secondItem="VW6-N4-s4i" secondAttribute="bottom" constant="20" id="Kav-tM-Beg"/>
                 <constraint firstItem="3422" firstAttribute="leading" secondItem="m9P-m9-cpw" secondAttribute="trailing" constant="8" symbolic="YES" id="KeM-Td-IjG"/>
                 <constraint firstItem="596" firstAttribute="top" secondItem="d4d-Es-nTn" secondAttribute="bottom" constant="8" id="LPI-tR-Lod"/>
+                <constraint firstItem="5y3-9G-q2y" firstAttribute="top" secondItem="Yus-N4-zui" secondAttribute="bottom" constant="5" id="LSc-ep-Mpg"/>
+                <constraint firstItem="Yus-N4-zui" firstAttribute="leading" secondItem="aeF-NU-eIe" secondAttribute="leading" id="M23-Ue-xvM"/>
                 <constraint firstItem="m9P-m9-cpw" firstAttribute="baseline" secondItem="3422" secondAttribute="baseline" id="MJy-z5-MlA"/>
                 <constraint firstItem="0GW-6U-afs" firstAttribute="top" secondItem="3422" secondAttribute="bottom" constant="8" id="NAP-Kr-4wA"/>
                 <constraint firstItem="106" firstAttribute="baseline" secondItem="bTW-FZ-qkl" secondAttribute="baseline" id="Nmv-s7-W6H"/>
                 <constraint firstAttribute="bottom" secondItem="1832" secondAttribute="bottom" constant="20" symbolic="YES" id="O8a-WJ-l1a"/>
                 <constraint firstItem="2739" firstAttribute="leading" secondItem="jQj-mP-yhk" secondAttribute="trailing" constant="8" symbolic="YES" id="TLW-AM-cja"/>
+                <constraint firstItem="5y3-9G-q2y" firstAttribute="leading" secondItem="aeF-NU-eIe" secondAttribute="leading" id="TOH-Nh-AWw"/>
                 <constraint firstItem="VW6-N4-s4i" firstAttribute="top" secondItem="Kpr-hw-rGR" secondAttribute="bottom" constant="8" id="TU6-Tm-rDL"/>
+                <constraint firstItem="Yus-N4-zui" firstAttribute="top" secondItem="aeF-NU-eIe" secondAttribute="bottom" constant="5" id="VOc-9w-vbb"/>
+                <constraint firstItem="aeF-NU-eIe" firstAttribute="leading" secondItem="106" secondAttribute="leading" id="Wbi-RY-8we"/>
                 <constraint firstItem="o08-Ku-C4x" firstAttribute="top" secondItem="e4O-hs-fQf" secondAttribute="bottom" constant="20" id="aFV-UW-W1w"/>
                 <constraint firstItem="74H-Nx-1dR" firstAttribute="top" secondItem="JLc-Rx-CzI" secondAttribute="bottom" constant="4" id="adk-rF-3lR"/>
                 <constraint firstAttribute="trailing" secondItem="5j1-wb-DHR" secondAttribute="trailing" constant="20" symbolic="YES" id="cLY-22-v8b"/>
@@ -310,13 +316,13 @@
                 <constraint firstItem="bTW-FZ-qkl" firstAttribute="top" secondItem="743" secondAttribute="top" constant="20" symbolic="YES" id="gBf-f3-J19"/>
                 <constraint firstItem="mNl-A3-oZJ" firstAttribute="baseline" secondItem="JLc-Rx-CzI" secondAttribute="baseline" id="gX8-Kk-vRx"/>
                 <constraint firstItem="1030" firstAttribute="top" secondItem="2739" secondAttribute="bottom" constant="8" id="gbD-2O-xNi"/>
+                <constraint firstItem="1036" firstAttribute="top" secondItem="5y3-9G-q2y" secondAttribute="bottom" constant="20" id="gy4-vx-RiI"/>
                 <constraint firstItem="bTW-FZ-qkl" firstAttribute="leading" secondItem="743" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="i53-pI-uqV"/>
                 <constraint firstItem="m9P-m9-cpw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="743" secondAttribute="leading" constant="20" symbolic="YES" id="jUr-eF-2JP"/>
                 <constraint firstItem="e4O-hs-fQf" firstAttribute="leading" secondItem="JLc-Rx-CzI" secondAttribute="leading" id="jmF-L3-V4B"/>
                 <constraint firstItem="JLc-Rx-CzI" firstAttribute="top" secondItem="594" secondAttribute="bottom" constant="20" id="lQG-YG-A4c"/>
                 <constraint firstItem="Kpr-hw-rGR" firstAttribute="leading" secondItem="1036" secondAttribute="leading" id="oib-9L-hmE"/>
                 <constraint firstItem="Kpr-hw-rGR" firstAttribute="top" secondItem="596" secondAttribute="bottom" constant="8" id="puJ-dV-4pD"/>
-                <constraint firstItem="1036" firstAttribute="top" secondItem="iBP-bG-qE5" secondAttribute="bottom" constant="20" id="qhA-2t-9A3"/>
                 <constraint firstItem="594" firstAttribute="top" secondItem="106" secondAttribute="bottom" constant="8" id="rY7-Qc-ezs"/>
                 <constraint firstItem="5j1-wb-DHR" firstAttribute="top" secondItem="0GW-6U-afs" secondAttribute="bottom" constant="4" id="raV-1K-hkt"/>
                 <constraint firstAttribute="trailing" secondItem="74H-Nx-1dR" secondAttribute="trailing" constant="20" symbolic="YES" id="wHF-PP-cDn"/>

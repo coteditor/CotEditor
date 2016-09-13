@@ -3,14 +3,14 @@
  TextKeyBindingEditSheet.strings (Simplified Chinese)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-12-12.
  Localized by onevcat
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,8 +42,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
 "152.title" = "插入文本：";
-/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select action."; ObjectID = "jTj-QW-dQw"; */
-"jTj-QW-dQw.ibShadowedNoSelectionPlaceholder" = "选择动作。";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "mIh-YA-eHt"; */
+"mIh-YA-eHt.ibShadowedNoSelectionPlaceholder" = "选择动作。";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "153"; */
 "153.title" = "恢复默认";

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="11129.15"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="WebDocumentWindowController" customModule="CotEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="webView" destination="eAE-ob-zji" id="RWG-VD-42W"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="kUp-tJ-aLO"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="480"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <webView translatesAutoresizingMaskIntoConstraints="NO" id="eAE-ob-zji">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12" minimumFontSize="10" plugInsEnabled="NO" javaEnabled="NO" javaScriptEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO">
+                            <nil key="identifier"/>
+                        </webPreferences>
+                        <connections>
+                            <outlet property="policyDelegate" destination="-2" id="3Rp-LH-yIj"/>
+                        </connections>
+                    </webView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="eAE-ob-zji" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="Fce-0C-bQn"/>
+                    <constraint firstItem="eAE-ob-zji" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="KGX-Z4-lH8"/>
+                    <constraint firstAttribute="trailing" secondItem="eAE-ob-zji" secondAttribute="trailing" id="Uny-Ei-zoK"/>
+                    <constraint firstAttribute="bottom" secondItem="eAE-ob-zji" secondAttribute="bottom" id="vDZ-JX-SZD"/>
+                </constraints>
+            </view>
+            <connections>
+                <binding destination="-2" name="title" keyPath="webView.mainFrameTitle" id="pub-Ad-EnU"/>
+            </connections>
+        </window>
+    </objects>
+</document>

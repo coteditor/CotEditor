@@ -3,7 +3,7 @@ extensions:
 - keyString: "h"
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   license: "Same as CotEditor"
   lastModified: "2016-05-17"
   description: "based on C99"

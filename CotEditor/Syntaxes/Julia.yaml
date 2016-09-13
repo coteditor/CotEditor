@@ -9,7 +9,7 @@ metadata:
   author: "1024jp"
   license: "Same as CotEditor"
   description: "Based on Julia 0.4.5"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
 comments: []
 outlineMenu:
 - beginString: "\\bfunction\\s+\\w+\\(.*\\)"

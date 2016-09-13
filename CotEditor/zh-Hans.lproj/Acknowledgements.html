@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8"/>
+    <title>致谢</title>
+    <style>
+        *     { margin: 0 }
+        body  { font:12px/1.4 sans-serif; padding: 8px 16px }
+        h1    { font-size: 18px; margin: 10px 0 }
+        h2    { font-size: 14px; margin: 0 0 0.2em }
+        h3    { font-size: 13px; margin: 0 0 0.1em }
+        em    { font-weight: 600; font-style: normal }
+        
+        ul    { padding-left: 1.5em }
+        ul li { margin: 0 0 0.4em; list-style-type: circle }
+        
+        a:link,
+        a:visited      { color: hsl(90,45%,45%) }
+        a:not([href])  { color: #888 }
+        a:hover        { text-decoration: none }
+        
+        section        { margin: 2em 0 3em; }
+        blockquote pre { font: 90%/1.3 sans-serif; color: #777;
+                         margin: 1em 0.5em; white-space: pre-wrap;
+                         border-left: 3px solid #eee; padding-left: 1em }
+        h3 span        { font-size: 90%; font-weight: normal; color: #777 }
+        
+        #Libraries    h3::before { content: '📦 ' }
+        #InfoSource   h2::before { content: '📚 ' }
+        #Contributors h2::before { content: '👥 ' }
+        #Project      h2::before { content: '🔨 ' }
+    </style>
+</head>
+
+<body>
+<h1>致谢</h1>
+
+<p>CotEditor 在开发中使用了下面这些出色的技术。我们对于那些允许我们使用他们宝贵的程序/信息来开发 CotEditor 的人致以最诚挚的感谢。</p>
+
+
+<section id="Libraries">
+<section>
+<h3>Sparkle <span>(only on non-AppStore ver.)</span></h3>
+<p><a href="http://sparkle-project.org">http://sparkle-project.org</a></p>
+<p>感谢 Andy Matuschak 等人的软件升级框架 Sparkle。Sparkle 是遵循如下 <em>MIT 许可证</em>发布的。</p>
+
+<blockquote><pre>
+© 2006-2013 Andy Matuschak
+© 2009-2013 Elgato Systems GmbH.
+© 2011-2014 Kornel Lesiński
+© 2014 C.W. Betts
+© 2014 Petroules Corporation, Sparkle Project contributors
+© 2014 Big Nerd Ranch
+All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+=================
+EXTERNAL LICENSES
+=================
+
+bspatch.c and bsdiff.c, from bsdiff 4.3 &lt;http://www.daemonology.net/bsdiff/&gt;:
+    Copyright (c) 2003-2005 Colin Percival.
+
+sais.c and sais.c, from sais-lite (2010/08/07) &lt;https://sites.google.com/site/yuta256/sais&gt;:
+    Copyright (c) 2008-2010 Yuta Mori.
+
+SUDSAVerifier.m:
+    Copyright (c) 2011 Mark Hamlin.
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted providing that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</pre></blockquote>
+</section>
+
+
+<section>
+<h3>YAML.framework</h3>
+<p><a href="https://github.com/mirek/YAML.framework">https://github.com/mirek/YAML.framework</a></p>
+<p>感谢 Mirek Rusin 的 YAML.framework，这是一个 LibYAML 的 Objective-C 版本转换。CotEditor 使用的是经过部分改变的版本。YAML.framework 是遵循如下 <em>MIT 许可证</em>发布的。</p>
+
+<blockquote><pre>
+Copyright (c) 2010 Mirek Rusin (YAML.framework)
+              2006 Kirill Simonov (LibYAML)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></blockquote>
+</section>
+
+
+<section>
+<h3>Solarized</h3>
+<p><a href="http://ethanschoonover.com/solarized">http://ethanschoonover.com/solarized</a></p>
+<p>感谢 Ethan Schoonover 的 Solarized 颜色主题。CotEditor 的预设主题 “Solarized (Light)” 和 “Solarized (Dark)” 是基于这个颜色主题的。Solarized 是遵循如下 <em>MIT 许可证</em>发布的。</p>
+
+<blockquote><pre>
+Copyright (c) 2011 Ethan Schoonover
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></blockquote>
+</section>
+
+
+<section>
+<h3>WFColorCode</h3>
+<p><a href="https://github.com/1024jp/WFColorCode">https://github.com/1024jp/WFColorCode</a></p>
+<p>WFColorCode 是由 1024jp 开发的，并遵循如下 <em>MIT 许可证</em>发布。</p>
+
+<blockquote><pre>
+© 2014-2016 1024jp
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></blockquote>
+</section>
+</section>
+
+
+<section id="InfoSource">
+<h2>其他信息</h2>
+<ul>
+    <li>感谢 James S. Derry &lt;<a href="http://www.balthisar.com">http://www.balthisar.com</a>&gt; 的 JSDTextView，CotEditor 的’行号显示是基于其开发的。JSDTextView 可以在<em>公共域名</em>上访问到。</li>
+    <li>感谢 Peter Borg &lt;<a href="http://smultron.sourceforge.net/">http://smultron.sourceforge.net</a>&gt; 的 Smultron，CotEditor 的某些功能，比如自定义 tab 宽度，显示不可见字符，选择括号内内容以及外部编辑器接口等，是基于其实现的。Smultron version 2.x 遵守 <em>BSD 许可证</em>。</li>
+    <li>感谢 FUJIDANA &lt;<a>http://blogs.dion.ne.jp/fujidana/archives/4169016.html</a>&gt; 的 FJDDetectEncoding，CotEditor 的’编码自动检测 (ISO 2022-JP, UTF-8, UTF-16) 是基于其开发的。FJDDetectEncoding  遵守 <em>BSD 许可证</em>。</li>
+    <li>感谢 Daisuke Kamiyama &lt;<a href="http://www.mimikaki.net/">http://www.mimikaki.net</a>&gt; 的 mi，提供了 CotEditor's 文件拖拽功能用到的预格式化字符串。</li>
+    <li>感谢 hetima &lt;<a href="http://hetima.com/">http://hetima.com</a>&gt; 提供获取修饰键事件的方法 &lt;<a>http://hetima.com/pblog/article.php?id=48</a>&gt;.</li>
+    <li>感谢 Ivan Vasic 的 NSString+Sandboxing，它发布在 <a href="https://gist.github.com/ivasic/4702892">https://gist.github.com/ivasic/4702892</a>.</li>
+</ul>
+</section>
+
+
+<section id="Contributors">
+<h2>贡献者</h2>
+<p>CotEditor 包含了以下人员提供的数据和信息。我们在此对帮助过我们的人致以感谢。</p>
+
+<ul>
+    <li>本地化：<ul>
+        <li>简体中文<br/>
+            Wei Wang (onevcat) &lt;<a href="http://onev.cat">http://onev.cat</a>&gt;</li>
+    </ul></li>
+    
+    <li>语法风格文件:<ul>
+        <li>METAFONT<br/>
+            M.Daimon &lt;<a href="https://github.com/VoD">https://github.com/VoD</a>&gt;</li>
+    </ul></li>
+    
+    <li>自动缩进改进:<ul>
+        <li>Naotaka Morimoto &lt;<a href="http://www.naotaka.com/">http://www.naotaka.com</a>&gt;</li>
+    </ul></li>
+    
+    <li>字符显示器改进，NFKC Casefold, 修改 NFC, 修改 NFD 标准化支持:<ul>
+        <li>Yusuke Terada &lt;<a href="http://doratex.hatenablog.jp/">http://doratex.hatenablog.jp</a>&gt;</li>
+    </ul></li>
+</ul>
+
+<section>
+<h3>Contributors on the original CotEditor (&gt;= 1.0)</h3>
+<ul>
+    <li>本地化：<ul>
+        <li>英文 (文稿和帮助文件)<br/>
+            Y. Yamamoto</li>
+    </ul></li>
+    
+    <li>语法风格文件:<ul>
+        <li>PHP<br/>
+            kaz &lt;<a href="https://github.com/kaz6120">https://github.com/kaz6120</a>&gt;</li>
+        <li>LaTeX<br/>
+            Yuhei Kuratomi &lt;<a>http://www.tomapd.net</a>&gt;</li>
+        <li>Ruby<br/>
+            Y. Tokutomi &lt;<a href="http://tommy1969.bitbucket.org">http://tommy1969.bitbucket.org</a>&gt;</li>
+        <li>Haskell<br/>
+            konn &lt;<a href="http://konn-san.com">http://konn-san.com</a>&gt;</li>
+        <li>Python<br/>
+            nanasiya &lt;<a>http://mahonet.info/~nanasiya/</a>&gt;</li>
+    </ul></li>
+    
+    <li>本地化技术支持，原始的日语本地化和帮助文件 (ja):<ul>
+        <li>Hiroto Sakai &lt;<a href="http://www.fan.gr.jp/~sakai/">http://www.fan.gr.jp/~sakai/</a>&gt;</li>
+    </ul></li>
+    
+    <li>更好的行号显示，文本颜色和自动补全:<ul>
+        <li>Hetima &lt;<a href="http://hetima.com/">http://hetima.com</a>&gt;</li>
+    </ul></li>
+    
+    <li>更好的 “补全弹出”:<ul>
+        <li>Haruka Kataoka &lt;<a href="http://drumsoft.com/">http://drumsoft.com</a>&gt;</li>
+    </ul></li>
+</ul>
+</section>
+</section>
+
+
+<section id="Project">
+<h2>CotEditor 项目</h2>
+<p>CotEditor 最早由 nakamuxu &lt;<a href="http://www.aynimac.com">http://www.aynimac.com</a>&gt;开发, 现在由 1024jp &lt;<a href="http://wolfrosch.com">http://wolfrosch.com</a>&gt; 和 usami-k &lt;<a href="http://about.me/usami.kosuke">http://about.me/usami.kosuke</a>&gt;开发。</p>
+</section>
+</body>
+</html>

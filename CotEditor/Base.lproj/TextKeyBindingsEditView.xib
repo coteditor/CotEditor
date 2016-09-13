@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
     </dependencies>
     <objects>
-        <customObject id="-2" customClass="CEKeyBindingsViewController">
+        <customObject id="-2" customClass="SnippetKeyBindingsViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="outlineView" destination="86" id="cXw-yD-mOE"/>
                 <outlet property="snippetArrayController" destination="98" id="hVp-m9-i69"/>
@@ -746,12 +745,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <binding destination="98" name="editable" keyPath="selection.insertCustomText" id="XT8-AO-JtU">
+                                    <binding destination="98" name="editable" keyPath="selection.text" id="KGk-A7-joa">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNotNil</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="98" name="value" keyPath="selection.insertCustomText" id="jTj-QW-dQw">
+                                    <binding destination="98" name="value" keyPath="selection.text" id="mIh-YA-eHt">
                                         <dictionary key="options">
                                             <string key="NSNoSelectionPlaceholder">Select Action</string>
                                         </dictionary>
@@ -858,7 +857,7 @@
                                                 <rect key="frame" x="348" y="1" width="112" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SmM-E6-XQB" customClass="CEShortcutKeyField">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SmM-E6-XQB" customClass="ShortcutKeyField" customModule="CotEditor" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="112" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="⇧↩" id="7wq-d4-P1R">
                                                             <font key="font" metaFont="system"/>
@@ -961,10 +960,13 @@
                 <constraint firstItem="63" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="8" symbolic="YES" id="sUU-aa-YPD"/>
             </constraints>
         </view>
-        <arrayController objectClassName="NSString" avoidsEmptySelection="NO" id="98" userLabel="Snippet Array Controller">
+        <arrayController objectClassName="SnippetItem" avoidsEmptySelection="NO" id="98" userLabel="Snippet Array Controller">
             <declaredKeys>
-                <string>insertCustomText</string>
+                <string>text</string>
             </declaredKeys>
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="snippets" id="cpT-Dn-yXl"/>
+            </connections>
         </arrayController>
     </objects>
 </document>

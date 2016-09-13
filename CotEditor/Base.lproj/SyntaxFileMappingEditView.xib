@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -344,7 +343,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="751" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="42" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7PY-LQ-Ob7" customClass="CEWrappingTextField">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="751" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="42" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7PY-LQ-Ob7" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
                     <rect key="frame" x="192" y="80" width="247" height="42"/>
                     <textFieldCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="The interpreters are used to determine the syntax style from the shebang in the document." id="dIj-Z5-J2j">
                         <font key="font" metaFont="smallSystem"/>
@@ -360,6 +359,16 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="21" translatesAutoresizingMaskIntoConstraints="NO" id="iih-Rl-QSe">
+                    <rect key="frame" x="415" y="9" width="25" height="25"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aW1-zI-Foe">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openHelpAnchor:" target="-1" id="Wt9-Ci-18N"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="HZ3-ju-Ncb" firstAttribute="top" secondItem="O23-4c-28w" secondAttribute="bottom" constant="8" symbolic="YES" id="0Hs-3X-h8w"/>
@@ -388,7 +397,9 @@
                 <constraint firstItem="XyR-V7-rSB" firstAttribute="trailing" secondItem="O23-4c-28w" secondAttribute="trailing" id="Tp5-dx-SmQ"/>
                 <constraint firstItem="VLS-ei-tHV" firstAttribute="leading" secondItem="6Z1-wd-M5s" secondAttribute="trailing" constant="-1" id="WLF-Be-guz"/>
                 <constraint firstItem="A85-6P-taZ" firstAttribute="leading" secondItem="HZ3-ju-Ncb" secondAttribute="trailing" constant="-1" id="X9t-F3-uVh"/>
+                <constraint firstAttribute="bottom" secondItem="iih-Rl-QSe" secondAttribute="bottom" constant="12" id="cNN-KL-kDh"/>
                 <constraint firstItem="VLS-ei-tHV" firstAttribute="width" secondItem="y6D-zC-QG4" secondAttribute="width" id="ctp-U0-Xbb"/>
+                <constraint firstAttribute="trailing" secondItem="iih-Rl-QSe" secondAttribute="trailing" constant="12" id="ev7-1u-EKF"/>
                 <constraint firstItem="XyR-V7-rSB" firstAttribute="top" secondItem="I7p-Lu-lyM" secondAttribute="bottom" constant="8" symbolic="YES" id="fhT-c6-DQG"/>
                 <constraint firstItem="y6D-zC-QG4" firstAttribute="leading" secondItem="XyR-V7-rSB" secondAttribute="leading" id="gqo-Sn-Zjc"/>
                 <constraint firstItem="y6D-zC-QG4" firstAttribute="centerY" secondItem="1zA-Gt-YkJ" secondAttribute="centerY" id="gst-ci-nNA"/>
@@ -433,7 +444,7 @@
                 <binding destination="-2" name="contentObject" keyPath="representedObject" id="jmY-UA-VTK"/>
             </connections>
         </objectController>
-        <arrayController clearsFilterPredicateOnInsertion="NO" id="4o4-Do-zNT" userLabel="Extensions Controller" customClass="CEDraggableArrayController">
+        <arrayController clearsFilterPredicateOnInsertion="NO" id="4o4-Do-zNT" userLabel="Extensions Controller" customClass="DraggableArrayController" customModule="CotEditor" customModuleProvider="target">
             <declaredKeys>
                 <string>keyString</string>
             </declaredKeys>
@@ -457,17 +468,17 @@
                 <binding destination="x4x-57-b26" name="contentArray" keyPath="selection.interpreters" id="oBh-2N-vcl"/>
             </connections>
         </arrayController>
-        <customObject id="d7s-my-ran" customClass="CESyntaxEditTableViewDelegate">
+        <customObject id="d7s-my-ran" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="4o4-Do-zNT" id="3Se-9O-qZt"/>
             </connections>
         </customObject>
-        <customObject id="A1s-0g-450" customClass="CESyntaxEditTableViewDelegate">
+        <customObject id="A1s-0g-450" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="GNq-TE-e6o" id="IYP-VP-dWx"/>
             </connections>
         </customObject>
-        <customObject id="T80-vh-snI" customClass="CESyntaxEditTableViewDelegate">
+        <customObject id="T80-vh-snI" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="b1i-d7-DoG" id="TRE-Uh-zQr"/>
             </connections>

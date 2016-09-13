@@ -1,15 +1,19 @@
 # ref. http://docs.travis-ci.com/user/languages/objective-c/
 
 language: objective-c
-osx_image: xcode7.3
-xcode_workspace: CotEditor.xcworkspace
-xcode_scheme:
-  - CotEditor
-  - CotEditor -AppStore
-before_install:
-  - gem install cocoapods
-script: xcodebuild -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+osx_image: xcode8
 
-# enable container-based infrastructure
-sudo: false
-cache: cocoapods
+xcode_workspace: CotEditor.xcworkspace
+xcode_scheme: CotEditor
+
+before_install:
+  - gem install xcpretty
+  - gem install xcpretty-travis-formatter
+  - carthage update --platform OSX
+script:
+  set -o pipefail &&
+  xcodebuild clean test
+  -workspace "$TRAVIS_XCODE_WORKSPACE"
+  -scheme "$TRAVIS_XCODE_SCHEME"
+  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+  | xcpretty -f `xcpretty-travis-formatter`

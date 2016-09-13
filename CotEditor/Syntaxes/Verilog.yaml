@@ -3,7 +3,7 @@ extensions:
 filenames: []
 interpreters: []
 metadata:
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   lastModified: "2016-06-19"
   author: "1024jp"
   license: "Same as CotEditor"

@@ -3,14 +3,14 @@
  SyntaxOutlineEditView.strings (Simplified Chinese)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-12-14.
  Localized by onevcat.
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,12 +39,14 @@
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
 "6hB-wJ-niI.headerCell.title" = "描述";
 
-/* Class = "NSTextFieldCell"; title = "Menu title pattern (blank matches the whole string)"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "菜单标题样式（留空匹配整个字符串）";
+/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "菜单标题样式";
+/* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
+"rqP-22-G2u.title" = "（留空匹配整个字符串）";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "eX8-7L-AYT"; */
-"eX8-7L-AYT.ibShadowedToolTip" = "Bold";
+"eX8-7L-AYT.ibShadowedToolTip" = "粗体";
 /* Class = "NSButton"; ibShadowedToolTip = "Underline"; ObjectID = "rFv-YW-Uea"; */
-"rFv-YW-Uea.ibShadowedToolTip" = "Underline";
+"rFv-YW-Uea.ibShadowedToolTip" = "加下划线";
 /* Class = "NSButton"; ibShadowedToolTip = "Italic"; ObjectID = "5fG-BP-ynf"; */
-"5fG-BP-ynf.ibShadowedToolTip" = "Italic";
+"5fG-BP-ynf.ibShadowedToolTip" = "斜体";

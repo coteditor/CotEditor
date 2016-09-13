@@ -3,14 +3,14 @@
  FileDropPane.strings (Simplified Chinese)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-12-12.
  Localized by onevcat
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -44,27 +44,6 @@
 "3332.title" = "按格式插入：";
 /* Class = "NSMenuItem"; title = "Insert Pre-Formatted String"; ObjectID = "541"; */
 "541.title" = "插入预先定义的字符串";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file absolute path."; ObjectID = "544"; */
-"544.ibShadowedToolTip" = "拖拽的文件绝对路径";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The relative path between dropped file and the document."; ObjectID = "546"; */
-"546.ibShadowedToolTip" = "拖拽的文件与编辑中文档的相对路径";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s name include extension (if exists)."; ObjectID = "542"; */
-"542.ibShadowedToolTip" = "拖拽的文件的文件名以及扩展名（如果存在）";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s name without extension."; ObjectID = "538"; */
-"538.ibShadowedToolTip" = "不带扩展名的文件名";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension."; ObjectID = "694"; */
-"694.ibShadowedToolTip" = "拖拽的文件的扩展名";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension (converted to lowercase)."; ObjectID = "695"; */
-"695.ibShadowedToolTip" = "拖拽的文件的扩展名（转换为小写）";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The dropped file’s extension (converted to uppercase)."; ObjectID = "696"; */
-"696.ibShadowedToolTip" = "拖拽的文件的扩展名（转换为大写）";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "The parent directory name of dropped file."; ObjectID = "539"; */
-"539.ibShadowedToolTip" = "拖拽的文件的上级目录";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image width."; ObjectID = "540"; */
-"540.ibShadowedToolTip" = "图片宽度（如果拖拽文件是图像）";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "(if the dropped file is Image) image height."; ObjectID = "537"; */
-"537.ibShadowedToolTip" = "图片高度（如果拖拽文件是图像）";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "没有选中扩展名。";

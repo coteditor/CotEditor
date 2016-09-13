@@ -60,7 +60,7 @@
 	<tr><th><code>Discard</code></th><td>何もしない（デフォルト）</td></tr>
 </table>
 
-<ul style="margin-top: 1em;">
+<ul>
 	<li>コメントを記述しなかった場合、「Discard」となります。</li>
 	<li>CotEditor に渡すテキストは、標準出力としてください。</li>
 	<li>CotEditor に返すテキストの文字エンコーディングは UTF-8 でなければなりません。</li>
@@ -69,7 +69,7 @@
 <h2>例</h2>
 <p>以下の Python スクリプトは最前面書類の選択範囲内のすべての行の行頭に“&gt;”を追加します。</p>
 
-<pre><code><span class="comment">#!/usr/bin/env python
+<pre class="source"><code><span class="comment">#!/usr/bin/env python
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%</span>
 

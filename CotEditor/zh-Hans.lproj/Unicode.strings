@@ -3,13 +3,13 @@
  Unicode.strings (Simplified Chinese)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-11-19.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -179,7 +179,7 @@
 "Samaritan" = "撒马利亚文";
 "Old Italic" = "旧斜体";
 "CJK Symbols and Punctuation" = "CJK 符号和标点符号";
-"Half-width and Full-width Forms" = "半形和全形";
+"Halfwidth and Fullwidth Forms" = "半形和全形";  // Half-width -> halfwidth
 "Kangxi Radicals" = "康熙字根";
 "Buginese" = "布吉文";
 "Phoenician" = "腓尼基文";
@@ -254,3 +254,9 @@
 "Gujarati" = "古吉拉特文";
 "Tai Xuan Jing Symbols" = "太玄经符号";
 "Kana Supplement" = "假名补充";
+
+"No Block" = "无 Block";
+
+
+// Unicode category names
+"No Category" = "未分类";

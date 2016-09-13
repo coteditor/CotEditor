@@ -4,7 +4,7 @@ extensions:
 - keyString: "shtml"
 metadata:
   author: "1024jp"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "2.1.1"
   license: "Same as CotEditor"
   lastModified: "2015-12-25"

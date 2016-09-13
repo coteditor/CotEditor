@@ -1,0 +1,742 @@
+/*
+ 
+ EditorWrapper.swift
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by nakamuxu on 2004-12-08.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2004-2007 nakamuxu
+ © 2014-2016 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+import Cocoa
+
+private let MaximumNumberOfSplitEditors = 8
+
+
+final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSTextStorageDelegate {
+    
+    // MARK: Private Properties
+    
+    @IBOutlet private weak var splitViewItem: NSSplitViewItem?
+    
+    
+    
+    // MARK:
+    // MARK: Lifecycle
+    
+    override init() {
+        
+        self.showsInvisibles = Defaults[.showInvisibles]
+        self.showsLineNumber = Defaults[.showLineNumbers]
+        self.showsNavigationBar = Defaults[.showNavigationBar]
+        self.wrapsLines = Defaults[.wrapLines]
+        self.verticalLayoutOrientation = Defaults[.layoutTextVertical]
+        self.showsPageGuide = Defaults[.showPageGuide]
+        
+        super.init()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
+                                               name: .ThemeDidUpdate,
+                                               object: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        
+        self.textStorage?.delegate = nil
+    }
+    
+    
+    
+    // MARK: Responder Methods
+    
+    /// join to responder chain
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        self.window?.nextResponder = self
+    }
+    
+    
+    /// keys to be restored from the last session
+    override class func restorableStateKeyPaths() -> [String] {
+        
+        return [#keyPath(showsNavigationBar),
+                #keyPath(showsLineNumber),
+                #keyPath(showsPageGuide),
+                #keyPath(showsInvisibles),
+                #keyPath(verticalLayoutOrientation)]
+    }
+    
+    
+    /// apply current state to related menu items
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        
+        guard let action = menuItem.action else { return false }
+        
+        switch action {
+        case #selector(recolorAll):
+            return self.syntaxStyle?.canParse ?? false
+            
+        case #selector(toggleLineNumber):
+            let title = self.showsLineNumber ? "Hide Line Numbers" : "Show Line Numbers"
+            menuItem.title = NSLocalizedString(title, comment: "")
+            
+        case #selector(toggleNavigationBar):
+            let title = self.showsNavigationBar ? "Hide Navigation Bar" : "Show Navigation Bar"
+            menuItem.title = NSLocalizedString(title, comment: "")
+            
+        case #selector(toggleLineWrap):
+            let title = self.wrapsLines ? "Unwrap Lines" : "Wrap Lines"
+            menuItem.title = NSLocalizedString(title, comment: "")
+            
+        case #selector(toggleLayoutOrientation):
+            let title = self.verticalLayoutOrientation ? "Use Horizontal Orientation" : "Use Vertical Orientation"
+            menuItem.title = NSLocalizedString(title, comment: "")
+            
+        case #selector(togglePageGuide):
+            let title = self.showsPageGuide ? "Hide Page Guide" : "Show Page Guide"
+            menuItem.title = NSLocalizedString(title, comment: "")
+            
+        case #selector(toggleInvisibleChars):
+            let title = self.showsPageGuide ? "Hide Invisible Characters" : "Show Invisible Characters"
+            menuItem.title = NSLocalizedString(title, comment: "")
+            // disable button if item cannot be enable
+            if self.canActivateShowInvisibles {
+                menuItem.toolTip = NSLocalizedString("Show or hide invisible characters in document", comment: "")
+            } else {
+                menuItem.toolTip = NSLocalizedString("To show invisible characters, set them in Preferences", comment: "")
+                return false
+            }
+            
+        case #selector(toggleAutoTabExpand):
+            menuItem.state = self.isAutoTabExpandEnabled ? NSOnState : NSOffState
+            
+        case #selector(toggleAntialias):
+            menuItem.state = (self.focusedTextView?.usesAntialias ?? false) ? NSOnState : NSOffState
+            
+        case #selector(changeTabWidth):
+            menuItem.state = (self.tabWidth == menuItem.tag) ? NSOnState : NSOffState
+            
+        case #selector(closeSplitTextView):
+            return ((self.splitViewController?.splitViewItems.count ?? 0) > 1)
+            
+        case #selector(changeTheme):
+            menuItem.state = (self.theme?.name == menuItem.title) ? NSOnState : NSOffState
+            
+        default: break
+        }
+        
+        return true
+    }
+    
+    
+    /// apply current state to related toolbar items
+    override func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        
+        guard let action = item.action else { return false }
+        
+        switch action {
+        case #selector(recolorAll):
+            return self.syntaxStyle?.canParse ?? false
+            
+        default: break
+        }
+        
+        // validate button image state
+        if let imageItem = item as? TogglableToolbarItem {
+            switch action {
+            case #selector(toggleLineWrap):
+                imageItem.state = self.wrapsLines ? NSOnState : NSOffState
+                
+            case #selector(toggleLayoutOrientation):
+                imageItem.state = self.verticalLayoutOrientation ? NSOnState : NSOffState
+                
+            case #selector(togglePageGuide):
+                imageItem.state = self.showsPageGuide ? NSOnState : NSOffState
+                
+            case #selector(toggleInvisibleChars):
+                imageItem.state = self.showsInvisibles ? NSOnState : NSOffState
+                
+                // disable button if item cannot be enabled
+                if self.canActivateShowInvisibles {
+                    imageItem.toolTip = NSLocalizedString("Show or hide invisible characters in document", comment: "")
+                } else {
+                    imageItem.toolTip = NSLocalizedString("To show invisible characters, set them in Preferences", comment: "")
+                    return false
+                }
+                
+            case #selector(toggleAutoTabExpand):
+                imageItem.state = self.isAutoTabExpandEnabled ? NSOnState : NSOffState
+                
+            default: break
+            }
+        }
+        
+        return true
+    }
+    
+    
+    
+    // MARK: Delegate
+    
+    /// text did edit
+    override func textStorageDidProcessEditing(_ notification: Notification) {
+        
+        // ignore if only attributes did change
+        guard let textStorage = notification.object as? NSTextStorage,
+            textStorage.editedMask.contains(.editedCharacters) else { return }
+        
+        // update editor information
+        // -> In case, if "Replace All" performed without moving caret.
+        self.document?.analyzer.invalidateEditorInfo()
+        
+        // parse syntax
+        self.syntaxStyle?.invalidateOutline()
+        if let syntaxStyle = self.syntaxStyle, syntaxStyle.canParse {
+            // perform highlight in the next run loop to give layoutManager time to update temporary attribute
+            let updateRange = textStorage.editedRange
+            DispatchQueue.main.async {
+                syntaxStyle.highlight(around: updateRange)
+            }
+        }
+        
+        // update incompatible chars list
+        self.document?.incompatibleCharacterScanner.invalidate()
+    }
+    
+    
+    /// update outline menu in navigation bar
+    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]?) {
+        
+        guard let outlineItems = outlineItems else { return }
+        
+        for viewController in self.editorViewControllers {
+            viewController.navigationBarController?.outlineItems = outlineItems
+            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need invoke it (2008-05-16)
+        }
+    }
+    
+    
+    
+    // MARK: Notifications
+    
+    /// selection did change
+    func textViewDidChangeSelection(_ notification: NSNotification?) {
+        
+        // update document information
+        self.document?.analyzer.invalidateEditorInfo()
+    }
+    
+    
+    /// document updated syntax style
+    func didChangeSyntaxStyle(_ notification: NSNotification?) {
+        
+        guard let syntaxStyle = self.syntaxStyle else { return }
+        
+        syntaxStyle.delegate = self
+        
+        for viewController in self.editorViewControllers {
+            viewController.apply(syntax: syntaxStyle)
+            if syntaxStyle.canParse {
+                viewController.navigationBarController?.showOutlineIndicator()
+            }
+        }
+        
+        syntaxStyle.invalidateOutline()
+        self.invalidateSyntaxHighlight()
+    }
+    
+    
+    /// theme did update
+    func didUpdateTheme(_ notification: NSNotification?) {
+        
+        guard
+            let oldName = notification?.userInfo?[SettingFileManager.NotificationKey.old] as? String,
+            let newName = notification?.userInfo?[SettingFileManager.NotificationKey.new] as? String else { return }
+        
+        if oldName == self.theme?.name {
+            self.setTheme(name: newName)
+        }
+    }
+    
+    
+    
+    // MARK: Public Methods
+    
+    /// return textView focused on
+    var focusedTextView: EditorTextView? {
+        
+        return self.splitViewController?.focusedSubviewController?.textView
+    }
+    
+    
+    /// setup document
+    weak var document: Document? {
+        
+        didSet {
+            guard let document = document else { return }
+            
+            // detect indent style
+            if Defaults[.detectsIndentStyle],
+                let indentStyle = document.textStorage.string.detectedIndentStyle
+            {
+                self.isAutoTabExpandEnabled = {
+                    switch indentStyle {
+                    case .tab:
+                        return false
+                    case .space:
+                        return true
+                    }
+                }()
+            }
+            
+            document.textStorage.delegate = self
+            document.syntaxStyle.delegate = self
+            
+            let editorViewController = self.createEditor(baseViewController: nil)
+            
+            // start parcing syntax highlights and outline menu
+            if document.syntaxStyle.canParse {
+                editorViewController.navigationBarController?.showOutlineIndicator()
+            }
+            document.syntaxStyle.invalidateOutline()
+            self.invalidateSyntaxHighlight()
+            
+            // focus text view
+            self.window?.makeFirstResponder(editorViewController.textView)
+            
+            // observe syntax/theme change
+            NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
+                                                   name: .DocumentDidChangeSyntaxStyle,
+                                                   object: document)
+        }
+    }
+    
+    
+    /// visibility of navigation bars
+    dynamic var showsNavigationBar: Bool {
+        
+        didSet {
+            for viewController in self.editorViewControllers {
+                viewController.showsNavigationBar = showsNavigationBar
+            }
+        }
+    }
+    
+    
+    /// visibility of line numbers view
+    dynamic var showsLineNumber: Bool {
+        
+        didSet {
+            for viewController in self.editorViewControllers {
+                viewController.showsLineNumber = showsLineNumber
+            }
+        }
+    }
+    
+    
+    /// if lines soft-wrap at window edge
+    dynamic var wrapsLines: Bool {
+        
+        didSet {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.wrapsLines = wrapsLines
+            }
+        }
+    }
+    
+    
+    /// visibility of page guide lines in text view
+    dynamic var showsPageGuide = false {
+        
+        didSet {
+            for viewController in self.editorViewControllers {
+                guard let textView = viewController.textView else { continue }
+                textView.showsPageGuide = showsPageGuide
+                textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: true)
+            }
+        }
+    }
+    
+    
+    /// visibility of invisible characters
+    dynamic var showsInvisibles = false {
+        
+        didSet {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.showsInvisibles = showsInvisibles
+            }
+        }
+    }
+    
+    
+    /// if text orientation is vertical
+    dynamic var verticalLayoutOrientation: Bool {
+        
+        didSet {
+            let orientation: NSTextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
+            
+            for viewController in self.editorViewControllers {
+                viewController.textView?.setLayoutOrientation(orientation)
+            }
+        }
+    }
+    
+    
+    /// textView's tab width
+    var tabWidth: Int {
+        
+        get {
+            return self.focusedTextView?.tabWidth ?? 0
+        }
+        set {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.tabWidth = newValue
+            }
+        }
+    }
+    
+    
+    /// body font
+    var font: NSFont? {
+        
+        return self.focusedTextView?.font
+    }
+    
+    
+    /// coloring theme
+    var theme: Theme? {
+        
+        return self.focusedTextView?.theme
+    }
+    
+    
+    /// apply text styles from text view
+    func invalidateStyleInTextStorage() {
+        
+        self.focusedTextView?.invalidateStyle()
+    }
+    
+    
+    
+    // MARK: Action Messages
+    
+    /// toggle visibility of line number view
+    @IBAction func toggleLineNumber(_ sender: Any?) {
+        
+        self.showsLineNumber = !self.showsLineNumber
+    }
+    
+    
+    /// toggle visibility of navigation bar
+    @IBAction func toggleNavigationBar(_ sender: Any?) {
+        
+        NSAnimationContext.current().allowsImplicitAnimation = true
+        
+        self.showsNavigationBar = !self.showsNavigationBar
+        
+        NSAnimationContext.current().allowsImplicitAnimation = false
+    }
+    
+    
+    /// toggle if lines wrap at window edge
+    @IBAction func toggleLineWrap(_ sender: Any?) {
+        
+        self.wrapsLines = !self.wrapsLines
+    }
+    
+    
+    /// toggle text layout orientation (vertical/horizontal)
+    @IBAction func toggleLayoutOrientation(_ sender: Any?) {
+        
+        self.verticalLayoutOrientation = !self.verticalLayoutOrientation
+    }
+    
+    
+    /// toggle if antialias text in text view
+    @IBAction func toggleAntialias(_ sender: Any?) {
+        
+        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return }
+        
+        for viewController in self.editorViewControllers {
+            viewController.textView?.usesAntialias = !usesAntialias
+        }
+    }
+    
+    
+    /// toggle visibility of invisible characters in text view
+    @IBAction func toggleInvisibleChars(_ sender: Any?) {
+        
+        self.showsInvisibles = !self.showsInvisibles
+    }
+    
+    
+    /// toggle visibility of page guide line in text view
+    @IBAction func togglePageGuide(_ sender: Any?) {
+        
+        self.showsPageGuide = !self.showsPageGuide
+    }
+    
+    
+    /// toggle if text view expands tab input
+    @IBAction func toggleAutoTabExpand(_ sender: Any?) {
+        
+        self.isAutoTabExpandEnabled = !self.isAutoTabExpandEnabled
+    }
+    
+    
+    /// change tab width from the main menu
+    @IBAction func changeTabWidth(_ sender: AnyObject?) {
+        
+        guard let tabWidth = sender?.tag else { return }
+        
+        self.tabWidth = tabWidth
+    }
+    
+    
+    /// set new theme from menu item
+    @IBAction func changeTheme(_ sender: AnyObject?) {
+        
+        guard let name = sender?.title else { return }
+        
+        self.setTheme(name: name)
+    }
+    
+    
+    /// re-color whole document
+    @IBAction func recolorAll(_ sender: Any?) {
+        
+        self.invalidateSyntaxHighlight()
+    }
+    
+    
+    /// split editor view
+    @IBAction func openSplitTextView(_ sender: Any?) {
+        
+        guard (self.splitViewController?.splitViewItems.count ?? 0) < MaximumNumberOfSplitEditors else {
+            NSBeep()
+            return
+        }
+        
+        guard let currentEditorViewController = self.findTargetEditorViewController(for: sender) else { return }
+        
+        // end current editing
+        NSTextInputContext.current()?.discardMarkedText()
+        
+        let newEditorViewController = self.createEditor(baseViewController: currentEditorViewController)
+        
+        newEditorViewController.navigationBarController?.outlineItems = self.syntaxStyle?.outlineItems ?? []
+        self.invalidateSyntaxHighlight()
+        
+        // adjust visible areas
+        newEditorViewController.textView?.selectedRange = currentEditorViewController.textView!.selectedRange
+        currentEditorViewController.textView?.centerSelectionInVisibleArea(self)
+        newEditorViewController.textView?.centerSelectionInVisibleArea(self)
+        
+        // move focus to the new editor
+        self.window?.makeFirstResponder(newEditorViewController.textView)
+    }
+    
+    
+    /// close one of split views
+    @IBAction func closeSplitTextView(_ sender: Any?) {
+        
+        guard
+            let splitViewController = self.splitViewController,
+            let currentEditorViewController = self.findTargetEditorViewController(for: sender)
+            else { return }
+        
+        // end current editing
+        NSTextInputContext.current()?.discardMarkedText()
+        
+        // move focus to the next text view if the view to close has a focus
+        if splitViewController.focusedSubviewController == currentEditorViewController {
+            let childViewControllers = self.editorViewControllers
+            let deleteIndex = childViewControllers.index(of: currentEditorViewController) ?? 0
+            let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.first!
+            
+            self.window?.makeFirstResponder(newFocusEditorViewController.textView)
+        }
+        
+        // close
+        if let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController) {
+            splitViewController.removeSplitViewItem(splitViewItem)
+        }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// whether at least one of invisible characters is enabled in the preferences currently
+    private var canActivateShowInvisibles: Bool {
+        
+        return (Defaults[.showInvisibleSpace] ||
+                Defaults[.showInvisibleTab] ||
+                Defaults[.showInvisibleNewLine] ||
+                Defaults[.showInvisibleFullwidthSpace] ||
+                Defaults[.showInvisibles])
+    }
+    
+    
+    /// re-highlight whole content
+    private func invalidateSyntaxHighlight() {
+        
+        self.syntaxStyle?.highlightAll()
+    }
+    
+    
+    /// create and set-up new (split) editor view
+    private func createEditor(baseViewController: EditorViewController?) -> EditorViewController {
+        
+        let storyboard = NSStoryboard(name: "EditorView", bundle: nil)
+        let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
+        editorViewController.textStorage = self.textStorage
+        
+        // instert new editorView just below the editorView that the pressed button belongs to or has focus
+        self.splitViewController?.addSubview(for: editorViewController, relativeTo: baseViewController)
+        
+        editorViewController.showsLineNumber = self.showsLineNumber
+        editorViewController.showsNavigationBar = self.showsNavigationBar
+        editorViewController.textView?.wrapsLines = self.wrapsLines
+        editorViewController.textView?.showsInvisibles = self.showsInvisibles
+        editorViewController.textView?.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
+        editorViewController.textView?.showsPageGuide = self.showsPageGuide
+        
+        if let syntaxStyle = self.syntaxStyle {
+            editorViewController.apply(syntax: syntaxStyle)
+        }
+        
+        // copy textView states
+        if let baseTextView = baseViewController?.textView, let textView = editorViewController.textView {
+            textView.font = baseTextView.font
+            textView.theme = baseTextView.theme
+            textView.tabWidth = baseTextView.tabWidth
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
+                                               name: .NSTextViewDidChangeSelection,
+                                               object: editorViewController.textView)
+        
+        return editorViewController
+    }
+    
+    
+    /// split view controller
+    private var splitViewController: SplitViewController? {
+        
+        return self.splitViewItem?.viewController as? SplitViewController
+    }
+    
+    
+    /// window
+    private var window: NSWindow? {
+        
+        return self.splitViewController?.view.window
+    }
+    
+    
+    /// text storage
+    private var textStorage: NSTextStorage? {
+        
+        return self.document?.textStorage
+    }
+    
+    
+    /// document's syntax style
+    private var syntaxStyle: SyntaxStyle? {
+        
+        return self.document?.syntaxStyle
+    }
+    
+    
+    /// child editor view controllers
+    private var editorViewControllers: [EditorViewController] {
+        
+        return self.splitViewController?.childViewControllers as? [EditorViewController] ?? []
+    }
+    
+    
+    /// whether replace tab with spaces
+    private var isAutoTabExpandEnabled: Bool {
+        
+        get {
+            guard let textView = self.focusedTextView else {
+                return Defaults[.autoExpandTab]
+            }
+            
+            return textView.isAutomaticTabExpansionEnabled
+        }
+        
+        set {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.isAutomaticTabExpansionEnabled = newValue
+            }
+        }
+    }
+    
+    
+    /// apply theme
+    private func setTheme(name: String) {
+        
+        guard let theme = ThemeManager.shared.theme(name: name) else { return }
+        
+        for viewController in self.editorViewControllers {
+            viewController.textView?.theme = theme
+        }
+        self.invalidateSyntaxHighlight()
+    }
+    
+    
+    /// find target EditorViewController to manage split views for action sender
+    func findTargetEditorViewController(for sender: Any?) -> EditorViewController? {
+        
+        guard
+            let view = (sender is NSMenuItem) ? (self.window?.firstResponder as? NSView) : sender as? NSView,
+            let editorView = sequence(first: view, next: { $0.superview }).first(where: { $0.identifier == "EditorView" })
+            else { return nil }
+        
+        return self.splitViewController?.viewController(for: editorView)
+    }
+    
+}
+
+
+
+// MARK: Protocol
+
+extension EditorWrapper: TextFinderClientProvider {
+    
+    /// tell text finder in which text view should it find text
+    func textFinderClient() -> NSTextView? {
+        
+        return self.focusedTextView
+    }
+}

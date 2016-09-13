@@ -6,7 +6,7 @@ Fill the following template, and post it on [GitHub Issues](https://github.com/c
 ## Environment
 
 - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
-- System: OS X %SYSTEM_VERSION%
+- System: macOS %SYSTEM_VERSION%
 - Language: English
 
 

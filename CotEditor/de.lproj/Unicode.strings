@@ -3,13 +3,13 @@
  Unicode.strings (German)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-11-19.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -179,7 +179,7 @@
 "Samaritan" = "Samaritanisch";
 "Old Italic" = "Altitalienisch";
 "CJK Symbols and Punctuation" = "CJK Symbole und Satzzeichen";
-"Half-width and Full-width Forms" = "ASCII-Zeichen";
+"Halfwidth and Fullwidth Forms" = "ASCII-Zeichen";  // Half-width -> halfwidth
 "Kangxi Radicals" = "Kangxi Radikale";
 "Buginese" = "Buginesisch";
 "Phoenician" = "Phönizisch";
@@ -254,3 +254,8 @@
 "Gujarati" = "Gujarati";
 "Tai Xuan Jing Symbols" = "Tai Xuan Jing Symbole";
 "Kana Supplement" = "Ergänzungen zu Kana";
+
+"No Block" = "Kein Block";
+
+// Unicode category names
+"No Category" = "Keine Kategorie";

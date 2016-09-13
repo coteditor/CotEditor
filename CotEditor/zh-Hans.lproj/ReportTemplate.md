@@ -6,7 +6,7 @@
 ## 环境
 
 - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
-- 系统: OS X %SYSTEM_VERSION%
+- 系统: macOS %SYSTEM_VERSION%
 - 语言: 简体中文
 
 

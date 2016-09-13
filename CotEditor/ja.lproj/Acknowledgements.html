@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"/>
+    <title>謝辞</title>
+    <style>
+        *     { margin: 0 }
+        body  { font:12px/1.4 sans-serif; padding: 8px 16px }
+        h1    { font-size: 18px; margin: 10px 0 }
+        h2    { font-size: 14px; margin: 0 0 0.2em }
+        h3    { font-size: 13px; margin: 0 0 0.1em }
+        em    { font-weight: 600; font-style: normal }
+        
+        ul    { padding-left: 1.5em }
+        ul li { margin: 0 0 0.4em; list-style-type: circle }
+        
+        a:link,
+        a:visited      { color: hsl(90,45%,45%) }
+        a:not([href])  { color: #888 }
+        a:hover        { text-decoration: none }
+        
+        section        { margin: 2em 0 3em; }
+        blockquote pre { font: 90%/1.3 sans-serif; color: #777;
+                         margin: 1em 0.5em; white-space: pre-wrap;
+                         border-left: 3px solid #eee; padding-left: 1em }
+        h3 span        { font-size: 90%; font-weight: normal; color: #777 }
+        
+        #Libraries    h3::before { content: '📦 ' }
+        #InfoSource   h2::before { content: '📚 ' }
+        #Contributors h2::before { content: '👥 ' }
+        #Project      h2::before { content: '🔨 ' }
+    </style>
+</head>
+
+<body>
+<h1>謝辞</h1>
+
+<p>CotEditor には下記の素晴らしい技術が使われています。有益なソフトウェア／情報の公開と提供に深く感謝いたします。</p>
+
+
+<section id="Libraries">
+<section>
+<h3>Sparkle <span>(only on non-AppStore ver.)</span></h3>
+<p><a href="http://sparkle-project.org">http://sparkle-project.org</a></p>
+<p>ソフトウェアのアップデート通知に Andy Matuschak らによる Sparkle を使用させていただきました。Sparkle は <em>MIT ライセンス</em>で配布されています。</p>
+
+<blockquote><pre>
+© 2006-2013 Andy Matuschak
+© 2009-2013 Elgato Systems GmbH.
+© 2011-2014 Kornel Lesiński
+© 2014 C.W. Betts
+© 2014 Petroules Corporation, Sparkle Project contributors
+© 2014 Big Nerd Ranch
+All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+=================
+EXTERNAL LICENSES
+=================
+
+bspatch.c and bsdiff.c, from bsdiff 4.3 &lt;http://www.daemonology.net/bsdiff/&gt;:
+    Copyright (c) 2003-2005 Colin Percival.
+
+sais.c and sais.c, from sais-lite (2010/08/07) &lt;https://sites.google.com/site/yuta256/sais&gt;:
+    Copyright (c) 2008-2010 Yuta Mori.
+
+SUDSAVerifier.m:
+    Copyright (c) 2011 Mark Hamlin.
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted providing that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</pre></blockquote>
+</section>
+
+
+<section>
+<h3>YAML.framework</h3>
+<p><a href="https://github.com/mirek/YAML.framework">https://github.com/mirek/YAML.framework</a></p>
+<p>LibYAML の Objective-C ラッパーである Mirek Rusin による YAML.framework を一部 CotEditor 用に改変した上で使用させて頂きました。YAML.framework は <em>MIT ライセンス</em>で配付されています。</p>
+
+<blockquote><pre>
+Copyright (c) 2010 Mirek Rusin (YAML.framework)
+              2006 Kirill Simonov (LibYAML)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></blockquote>
+</section>
+
+
+<section>
+<h3>Solarized</h3>
+<p><a href="http://ethanschoonover.com/solarized">http://ethanschoonover.com/solarized</a></p>
+<p>CotEditor のプリセットテーマとして同梱されている “Solarized (Light)” と “Solarized (Dark)” の配色は、Ethan Schoonover による Solarized カラースキームをベースにさせていただきました。Solarized は <em>MIT ライセンス</em>で配布されています。</p>
+
+<blockquote><pre>
+Copyright (c) 2011 Ethan Schoonover
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></blockquote>
+</section>
+
+
+<section>
+<h3>WFColorCode</h3>
+<p><a href="https://github.com/1024jp/WFColorCode">https://github.com/1024jp/WFColorCode</a></p>
+<p>WFColorCode は 1024jp によって作成され <em>MIT ライセンス</em>で配付されています。</p>
+
+<blockquote><pre>
+© 2014-2016 1024jp
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre></blockquote>
+</section>
+</section>
+
+
+<section id="InfoSource">
+<h2>その他の情報ソース</h2>
+<ul>
+    <li>行番号表示機能は James S. Derry による JSDTextView &lt;<a href="http://www.balthisar.com">http://www.balthisar.com</a>&gt; をベースに使わせていただきました。JSDTextView は<em>パブリックドメイン</em>で配布されています。</li>
+    <li>タブ幅の設定／カッコ内の選択／エンコーディング宣言の走査などは Peter Borg による Smultron 2 &lt;<a href="http://smultron.sourceforge.net/">http://smultron.sourceforge.net</a>&gt; を参考にさせていただきました。Smultron 2 は <em>BSD ライセンス</em>で配布されていました。</li>
+    <li>テキストエンコーディングの自動認識での ISO 2022-JP、UTF-8 および UTF-16 の判定コードは、藤棚工房別棟 －徒然－ &lt;<a>http://blogs.dion.ne.jp/fujidana/archives/4169016.html</a>&gt; の記事「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました（<a>http://blogs.dion.ne.jp/fujidana/archives/4169016.html</a>）」で公開されている FJDDetectEncoding を参考にさせていただきました。FJDDetectEncoding は <em>BSD ライセンス</em>で公開されていました。</li>
+    <li>ファイルドロップでの文字列挿入機能の、生成定義文字列は上山大輔による mi &lt;<a href="http://www.mimikaki.net/">http://www.mimikaki.net</a>&gt; の挿入文字列定義フォーマットを参考にさせていただいてます。</li>
+    <li>ヘチマコンピュータ &lt;<a href="http://hetima.com/">http://hetima.com</a>&gt; で公開されていたメニュークリック時のモディファイアキー取得機能 &lt;<a>http://hetima.com/pblog/article.php?id=48</a>&gt; を使用させていただいてます。</li>
+    <li><a href="https://gist.github.com/ivasic/4702892">https://gist.github.com/ivasic/4702892</a> に掲載されている NSString+Sandboxing カテゴリのコードを使用させて頂きました。</li>
+</ul>
+</section>
+
+
+<section id="Contributors">
+<h2>協力者</h2>
+<p>CotEditor は以下の方々から提供して頂いたソースを含んでいます。</p>
+
+<ul>
+    <li>ローカライズ：<ul>
+        <li>簡体中国語<br/>
+            Wei Wang (onevcat) &lt;<a href="http://onev.cat">http://onev.cat</a>&gt;</li>
+    </ul></li>
+    
+    <li>シンタックススタイル定義の提供：<ul>
+        <li>METAFONT<br/>
+            M.Daimon &lt;<a href="https://github.com/VoD">https://github.com/VoD</a>&gt;</li>
+    </ul></li>
+    
+    <li>オートインデント機能の強化：<ul>
+        <li>Naotaka Morimoto &lt;<a href="http://www.naotaka.com/">http://www.naotaka.com</a>&gt;</li>
+    </ul></li>
+    
+    <li>文字情報インスペクタの強化、NFKC Casefold, 修正 NFC, 修正 NFD 正規形式の追加：<ul>
+        <li>Yusuke Terada &lt;<a href="http://doratex.hatenablog.jp/">http://doratex.hatenablog.jp</a>&gt;</li>
+    </ul></li>
+</ul>
+
+<section>
+<h3>オリジナル CotEditor (&gt;= 1.0) の協力者</h3>
+
+<ul>
+    <li>ローカライズ：<ul>
+        <li>英語 （ドキュメントとヘルプ）<br/>
+            Y. Yamamoto</li>
+    </ul></li>
+    
+    <li>シンタックススタイル定義の提供：<ul>
+        <li>PHP<br/>
+            kaz &lt;<a href="https://github.com/kaz6120">https://github.com/kaz6120</a>&gt;</li>
+        <li>LaTeX<br/>
+            Yuhei Kuratomi &lt;<a>http://www.tomapd.net</a>&gt;</li>
+        <li>Ruby<br/>
+            Y. Tokutomi &lt;<a href="http://tommy1969.bitbucket.org">http://tommy1969.bitbucket.org</a>&gt;</li>
+        <li>Haskell<br/>
+            konn &lt;<a href="http://konn-san.com">http://konn-san.com</a>&gt;</li>
+        <li>Python<br/>
+            nanasiya &lt;<a>http://mahonet.info/~nanasiya/</a>&gt;</li>
+    </ul></li>
+    
+    <li>アプリケーションのローカライズ作業について技術情報並びにベース日本語化辞書、日本語ヘルプファイル：<ul>
+        <li>Hiroto Sakai &lt;<a href="http://www.fan.gr.jp/~sakai/">http://www.fan.gr.jp/~sakai/</a>&gt;</li>
+    </ul></li>
+    
+    <li>行番号表示機能の強化：<ul>
+        <li>Hetima &lt;<a href="http://hetima.com/">http://hetima.com</a>&gt;</li>
+    </ul></li>
+    
+    <li>入力補完機能の強化：<ul>
+        <li>片岡ハルカ &lt;<a href="http://drumsoft.com/">http://drumsoft.com</a>&gt;</li>
+    </ul></li>
+</ul>
+</section>
+</section>
+
+
+<section id="Project">
+<h2>CotEditor プロジェクト</h2>
+<p>CotEditor は nakamuxu &lt;<a href="http://www.aynimac.com">http://www.aynimac.com</a>&gt; によって生み出され、現在は 1024jp &lt;<a href="http://wolfrosch.com">http://wolfrosch.com</a>&gt; と usami-k &lt;<a href="http://about.me/usami.kosuke">http://about.me/usami.kosuke</a>&gt; によって開発されています。</p>
+</section>
+</body>
+</html>

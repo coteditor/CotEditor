@@ -4,7 +4,7 @@ extensions:
 - keyString: "sty"
 - keyString: "cls"
 metadata:
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   author: "Yuhei Kuratomi"
   license: "Same as CotEditor"
   lastModified: "2015-12-25"

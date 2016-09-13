@@ -3,7 +3,7 @@
  MenuKeyBindingEditSheet.strings (German)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-08-19.
  
@@ -37,8 +37,8 @@
 /* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "G0x-RZ-DT4"; */
 "G0x-RZ-DT4.title" = "Eine der Tasten muss die Command-Taste sein.";
 
-/* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
-"9.headerCell.title" = "Titel / Aktion";
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "9"; */
+"9.headerCell.title" = "Aktion";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "10"; */
 "10.headerCell.title" = "Taste";
 

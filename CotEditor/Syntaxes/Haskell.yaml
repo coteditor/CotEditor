@@ -4,7 +4,7 @@ extensions:
 interpreters:
 - keyString: "runhaskell"
 metadata:
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   author: "konn"
   license: "Same as CotEditor"
   lastModified: "2015-12-25"

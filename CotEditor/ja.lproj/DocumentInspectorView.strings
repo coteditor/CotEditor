@@ -3,13 +3,13 @@
  DocumentInfoView.strings (Japanese)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-12-18.
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2016 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,8 +53,8 @@
 "aId-DL-y8T.title" = "バイト長";
 
 
-/* Class = "NSTextFieldCell"; title = "Count and Location"; ObjectID = "cbf-0f-9rd"; */
-"cbf-0f-9rd.title" = "カウントと位置";
+/* Class = "NSTextFieldCell"; title = "Count"; ObjectID = "cbf-0f-9rd"; */
+"cbf-0f-9rd.title" = "カウント";
 
 /* Class = "NSTextFieldCell"; title = "Lines"; ObjectID = "yRM-Y0-4Oq"; */
 "yRM-Y0-4Oq.title" = "行数";
@@ -64,6 +64,10 @@
 "H0d-Eg-DcW.title" = "文字長";
 /* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
 "tZ6-05-eKf.title" = "単語数";
+
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
+"nXT-Oq-0l6.title" = "位置";
+
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
 "ERr-yA-dIa.title" = "位置";
 /* Class = "NSTextFieldCell"; title = "Current Line"; ObjectID = "f9g-dQ-g3K"; */

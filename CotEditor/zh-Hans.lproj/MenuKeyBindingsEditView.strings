@@ -3,7 +3,7 @@
  MenuKeyBindingEditSheet.strings (Simplified Chinese)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2014-12-12.
  Localized by onevcat
@@ -38,8 +38,8 @@
 /* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "G0x-RZ-DT4"; */
 "G0x-RZ-DT4.title" = "快捷键中必须包含 Command 键。";
 
-/* Class = "NSTableColumn"; headerCell.title = "Title / Action"; ObjectID = "9"; */
-"9.headerCell.title" = "标题 / 动作";
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "9"; */
+"9.headerCell.title" = "动作";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "10"; */
 "10.headerCell.title" = "按键";
 

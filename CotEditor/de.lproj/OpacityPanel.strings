@@ -3,7 +3,7 @@
  OpacityPanel.strings (German)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-08-19.
  
@@ -27,6 +27,3 @@
 
 /* Class = "NSPanel"; title = "Editor Opacity"; ObjectID = "jtp-g5-bGX"; */
 "jtp-g5-bGX.title" = "Deckkraft des Editors";
-
-/* Class = "NSButtonCell"; title = "Set as Default"; ObjectID = "QFp-iC-k4v"; */
-"QFp-iC-k4v.title" = "Als Standard einstellen";

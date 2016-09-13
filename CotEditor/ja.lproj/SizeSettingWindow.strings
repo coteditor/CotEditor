@@ -1,0 +1,42 @@
+/*
+ 
+ SizeSettingWindow.strings (Japanese)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2014-11-04.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2014 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSWindow"; title = "Sample Window for Size"; ObjectID = "127"; */
+"127.title" = "ウインドウサイズを決定";
+
+/* Class = "NSTextFieldCell"; title = "Resize this window.\nThe size of this window will be set as default."; ObjectID = "3399"; */
+"3399.title" = "このウインドウのサイズを調整してください。このウインドウサイズがデフォルトとして使用されます。";
+
+/* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
+"3402.title" = "幅：";
+/* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
+"3403.title" = "高さ：";
+
+/* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
+"3397.title" = "デフォルトに設定";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3398"; */
+"3398.title" = "キャンセル";

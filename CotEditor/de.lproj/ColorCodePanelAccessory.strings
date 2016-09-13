@@ -3,7 +3,7 @@
  ColorCodePanelAccessory.strings (German)
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-08-19.
  
@@ -46,4 +46,4 @@
 /* Class = "NSMenuItem"; title = "CSS HSLa"; ObjectID = "k4U-AQ-5ws"; */
 "k4U-AQ-5ws.title" = "CSS HSLa";
 /* Class = "NSMenuItem"; title = "CSS Keyword"; ObjectID = "dY5-ZH-n6l"; */
-"dY5-ZH-n6l.title" = "CSS Schlüsselwort;
+"dY5-ZH-n6l.title" = "CSS Schlüsselwort";

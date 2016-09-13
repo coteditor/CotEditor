@@ -3,7 +3,7 @@ extensions:
 filenames: []
 metadata:
   author: "CotEditor Project"
-  distributionURL: "http://coteditor.com"
+  distributionURL: "https://coteditor.com"
   version: "2.0.3"
   description: "Support partly CSS3."
   license: "Same as CotEditor"

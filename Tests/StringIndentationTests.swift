@@ -4,13 +4,13 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-11-24.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,37 +27,69 @@
  */
 
 import XCTest
+@testable import CotEditor
 
 class StringIndentationTests: XCTestCase {
     
     // MARK: Indentation Style Detection Tests
     
     func testIndentStyleDetection() {
+        
         let string = "\t\tfoo\tbar"
         
-        XCTAssertEqual(string.detectIndentStyle(), CEIndentStyle.NotFound)
+        XCTAssertNil(string.detectedIndentStyle)
     }
     
     
     // MARK: Indentation Style Standardization Tests
     
     func testIndentStyleStandardizationToTab() {
+        
         let string = "     foo    bar\n  "
         
-        // NotFound
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.NotFound, tabWidth: 2), string)
-        
         // spaces to tab
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Tab, tabWidth: 2), "\t\t foo    bar\n\t")
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Space, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndent(to: .tab, tabWidth: 2), "\t\t foo    bar\n\t")
+        XCTAssertEqual(string.standardizingIndent(to: .space, tabWidth: 2), string)
     }
     
     
     func testIndentStyleStandardizationToSpace() {
+        
         let string = "\t\tfoo\tbar"
         
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Space, tabWidth: 2), "    foo\tbar")
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Tab, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndent(to: .space, tabWidth: 2), "    foo\tbar")
+        XCTAssertEqual(string.standardizingIndent(to: .tab, tabWidth: 2), string)
+    }
+    
+    
+    // MARK: Other Tests
+    
+    func testIndentLevelDetection() {
+        
+        XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth:0), 0)
+        
+        XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth:4), 1)
+        XCTAssertEqual("    foo".indentLevel(at: 4, tabWidth:2), 2)
+        XCTAssertEqual("\tfoo".indentLevel(at: 4, tabWidth:2), 1)
+        
+        // tab-space mix
+        XCTAssertEqual("  \t foo".indentLevel(at: 4, tabWidth:2), 2)
+        XCTAssertEqual("   \t foo".indentLevel(at: 4, tabWidth:2), 3)
+        
+        // multiline
+        XCTAssertEqual("    foo\n  bar".indentLevel(at: 10, tabWidth:2), 1)
     }
 
+}
+
+
+private extension String {
+    
+    func indentLevel(at location: Int, tabWidth: Int) -> Int {
+        
+        let index = self.index(self.startIndex, offsetBy: location)
+        
+        return self.indentLevel(at: index, tabWidth: tabWidth)
+    }
+    
 }

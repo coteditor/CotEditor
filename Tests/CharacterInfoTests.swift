@@ -4,13 +4,13 @@
  Tests
  
  CotEditor
- http://coteditor.com
+ https://coteditor.com
  
  Created by 1024jp on 2015-11-19.
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,143 +27,154 @@
  */
 
 import XCTest
+@testable import CotEditor
 
-class CharacterInfoTests: XCTestCase {
+final class CharacterInfoTests: XCTestCase {
     
-    // MARK: - CEUnicodeCharacter Tests
+    // MARK: UTF32Char Extension Tests
     
-    func testSingleChar() {
-        let character = CEUnicodeCharacter(character: UTF32Char("あ"))
+    func testSingleSurrogate() {
         
-        XCTAssertEqual(CChar32(character.character), CChar32("あ"))
-        XCTAssertEqual(character.unicode, "U+3042")
-        XCTAssertEqual(character.string, "あ")
-        XCTAssertFalse(character.surrogatePair)
-        XCTAssertNil(character.surrogateUnicodes)
-        XCTAssertEqual(character.name, "HIRAGANA LETTER A")
-        XCTAssertEqual(character.categoryName, "Other Letter")
-        XCTAssertEqual(character.blockName, "Hiragana")
-        XCTAssertNotNil(character.localizedBlockName)
+        let character = UTF32Char(0xD83D)
+        
+        XCTAssertEqual(character.unicodeName, "<lead surrogate-D83D>")
+        XCTAssertEqual(character.categoryName, "Surrogate")
+        XCTAssertEqual(character.blockName, "High Surrogates")
+        
+        XCTAssertNil(UnicodeScalar(character))
     }
     
     
-    func testSingleSurrogate() {
-        let character = CEUnicodeCharacter(character: UTF32Char(0xD83D))
+    
+    // MARK: - UnicodeCharacter Tests
+    
+    func testSingleChar() {
         
-        XCTAssertEqual(character.unicode, "U+D83D")
-        XCTAssertEqual(character.name, "<lead surrogate-D83D>")
-        XCTAssertEqual(character.categoryName, "Surrogate")
-        XCTAssertEqual(character.blockName, "High Surrogates")
+        let unicode = UnicodeScalar("あ")!
+        
+        XCTAssertEqual(unicode.codePoint, "U+3042")
+        XCTAssertFalse(unicode.isSurrogatePair)
+        XCTAssertNil(unicode.surrogateCodePoints)
+        XCTAssertEqual(unicode.name, "HIRAGANA LETTER A")
+        XCTAssertEqual(unicode.categoryName, "Other Letter")
+        XCTAssertEqual(unicode.blockName, "Hiragana")
+        XCTAssertNotNil(unicode.localizedBlockName)
     }
     
     
     func testSurrogateEmoji() {
-        let character = CEUnicodeCharacter(character: UTF32Char("😀"))
         
-        XCTAssertEqual(CChar32(character.character), CChar32("😀"))
-        XCTAssertEqual(character.unicode, "U+1F600")
-        XCTAssertEqual(character.string, "😀")
-        XCTAssertTrue(character.surrogatePair)
-        XCTAssertEqual(character.surrogateUnicodes!, ["U+D83D", "U+DE00"])
-        XCTAssertEqual(character.name, "GRINNING FACE")
-        XCTAssertEqual(character.categoryName, "Other Symbol")
-        XCTAssertEqual(character.blockName, "Emoticons")
-        XCTAssertNotNil(character.localizedBlockName)
+        let unicode = UnicodeScalar("😀")!
+        
+        XCTAssertEqual(unicode.codePoint, "U+1F600")
+        XCTAssertTrue(unicode.isSurrogatePair)
+        XCTAssertEqual(unicode.surrogateCodePoints!, ["U+D83D", "U+DE00"])
+        XCTAssertEqual(unicode.name, "GRINNING FACE")
+        XCTAssertEqual(unicode.categoryName, "Other Symbol")
+        XCTAssertEqual(unicode.blockName, "Emoticons")
+        XCTAssertNotNil(unicode.localizedBlockName)
     }
     
     
     func testUnicodeBlockNameWithHyphen() {
-        let character = CEUnicodeCharacter(character: UTF32Char("﷽"))
         
-        XCTAssertEqual(character.unicode, "U+FDFD")
+        let character = UnicodeScalar("﷽")!
+        
+        XCTAssertEqual(character.codePoint, "U+FDFD")
         XCTAssertEqual(character.name, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
         XCTAssertEqual(character.localizedBlockName, "Arabic Presentation Forms-A")
     }
     
     
     func testUnicodeControlPictures() {
+        
         // test NULL
-        let nullCharacter = CEUnicodeCharacter(character: UTF32Char(0x0000))
-        let nullPictureCharacter = CEUnicodeCharacter(character: UTF32Char(0x2400))
+        let nullCharacter = UnicodeScalar(0x0000)!
+        let nullPictureCharacter = UnicodeScalar(0x2400)!
         XCTAssertEqual(nullCharacter.name, "NULL")
         XCTAssertEqual(nullPictureCharacter.name, "SYMBOL FOR NULL")
-        XCTAssertEqual(nullCharacter.pictureCharacter, unichar(nullPictureCharacter.character))
+        XCTAssertEqual(nullCharacter.pictureRepresentation, nullPictureCharacter)
         
         // test SPACE
-        let spaceCharacter = CEUnicodeCharacter(character: UTF32Char(0x0020))
-        let spacePictureCharacter = CEUnicodeCharacter(character: UTF32Char(0x2420))
+        let spaceCharacter = UnicodeScalar(0x0020)!
+        let spacePictureCharacter = UnicodeScalar(0x2420)!
         XCTAssertEqual(spaceCharacter.name, "SPACE")
         XCTAssertEqual(spacePictureCharacter.name, "SYMBOL FOR SPACE")
-        XCTAssertEqual(spaceCharacter.pictureCharacter, unichar(spacePictureCharacter.character))
+        XCTAssertEqual(spaceCharacter.pictureRepresentation, spacePictureCharacter)
         
         // test DELETE
-        XCTAssertEqual(Int(CEDeleteCharacter), NSDeleteCharacter)
-        let deleteCharacter = CEUnicodeCharacter(character: UTF32Char(NSDeleteCharacter))
-        let deletePictureCharacter = CEUnicodeCharacter(character: UTF32Char("␡"))
+        XCTAssertEqual(Int(ControlCharacter.deleteCharacter), NSDeleteCharacter)
+        let deleteCharacter = UnicodeScalar(NSDeleteCharacter)!
+        let deletePictureCharacter = UnicodeScalar("␡")!
         XCTAssertEqual(deleteCharacter.name, "DELETE")
         XCTAssertEqual(deletePictureCharacter.name, "SYMBOL FOR DELETE")
-        XCTAssertEqual(deleteCharacter.pictureCharacter, unichar(deletePictureCharacter.character))
+        XCTAssertEqual(deleteCharacter.pictureRepresentation, deletePictureCharacter)
         
         // test one after the last C0 control character
-        let exclamationCharacter = CEUnicodeCharacter(character: UTF32Char(0x0021))
+        let exclamationCharacter = UnicodeScalar(0x0021)!
         XCTAssertEqual(exclamationCharacter.name, "EXCLAMATION MARK")
-        XCTAssertEqual(exclamationCharacter.pictureCharacter, 0)
+        XCTAssertNil(exclamationCharacter.pictureRepresentation)
     }
     
     
-    // MARK: - CECharacterInfo Tests
+    // MARK: - CharacterInfo Tests
     
     func testMultiCharString() {
-        XCTAssertNil(CECharacterInfo(string: "foo"))
+        
+        XCTAssertNil(CharacterInfo(string: "foo"))
     }
     
     
     func testSingleCharWithVSInfo() {
-        guard let charInfo = CECharacterInfo(string: "☺︎") else {
+        
+        guard let charInfo = CharacterInfo(string: "☺︎") else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(charInfo.string, "☺︎")
-        XCTAssertFalse(charInfo.complexChar)
-        XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+263A", "U+FE0E"])
-        XCTAssertEqual(charInfo.unicodes.map{$0.name}, ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
-        XCTAssertEqual(charInfo.prettyDescription, "WHITE SMILING FACE (Text Style)")
+        XCTAssertFalse(charInfo.isComplex)
+        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+263A", "U+FE0E"])
+        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.name! }, ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
+        XCTAssertEqual(charInfo.localizedDescription, "WHITE SMILING FACE (Text Style)")
     }
     
     
     func testCombiningCharacterInfo() {
-        guard let charInfo = CECharacterInfo(string: "1️⃣") else {
+        
+        guard let charInfo = CharacterInfo(string: "1️⃣") else {
             XCTFail()
             return
         }
         
-        XCTAssertTrue(charInfo.complexChar)
-        XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+0031", "U+FE0F", "U+20E3"])
-        XCTAssertEqual(charInfo.prettyDescription, "<a letter consisting of 3 characters>")
+        XCTAssertTrue(charInfo.isComplex)
+        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+0031", "U+FE0F", "U+20E3"])
+        XCTAssertEqual(charInfo.localizedDescription, "<a letter consisting of 3 characters>")
     }
     
     
     func testNationalIndicatorInfo() {
-        guard let charInfo = CECharacterInfo(string: "🇯🇵") else {
+        
+        guard let charInfo = CharacterInfo(string: "🇯🇵") else {
             XCTFail()
             return
         }
         
-        XCTAssertTrue(charInfo.complexChar)
-        XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+1F1EF", "U+1F1F5"])
+        XCTAssertTrue(charInfo.isComplex)
+        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+1F1EF", "U+1F1F5"])
     }
     
     
     func testControlCharacterInfo() {
-        guard let charInfo = CECharacterInfo(string: " ") else {
+        
+        guard let charInfo = CharacterInfo(string: " ") else {
             XCTFail()
             return
         }
         
         XCTAssertEqual(charInfo.string, " ")
         XCTAssertEqual(charInfo.pictureString, "␠")
-        XCTAssertEqual(charInfo.unicodes.map{$0.name}, ["SPACE"])
+        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.name! }, ["SPACE"])
     }
 
 }

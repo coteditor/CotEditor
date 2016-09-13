@@ -2,13 +2,13 @@
   "images" : [
     {
       "idiom" : "mac",
-      "scale" : "1x",
-      "filename" : "icon_32x32.png"
+      "filename" : "KeyBindings.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "mac",
-      "scale" : "2x",
-      "filename" : "icon_32x32@2x.png"
+      "filename" : "KeyBindings@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
