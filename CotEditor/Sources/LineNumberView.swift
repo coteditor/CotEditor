@@ -239,7 +239,7 @@ final class LineNumberView: NSRulerView {
             let x = round(y) + 0.5
             
             let tick = CGMutablePath()
-            tick.move(to: CGPoint(x: x, y: 0), transform: transform)
+            tick.move(to: CGPoint(x: x, y: 1), transform: transform)
             tick.addLine(to: CGPoint(x: x, y: tickLength), transform: transform)
             context.addPath(tick)
         }

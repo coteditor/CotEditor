@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -244,12 +244,12 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="fdE-8e-ywb" name="value" keyPath="resultMessage" id="Gg9-1T-XnK"/>
-                                    <binding destination="fdE-8e-ywb" name="hidden" keyPath="resultMessage" id="hlw-jh-DOq">
+                                    <binding destination="fdE-8e-ywb" name="hidden" keyPath="findResultMessage" id="sQe-Kg-hZn">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNil</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="fdE-8e-ywb" name="value" keyPath="findResultMessage" id="XCX-xt-29G"/>
                                 </connections>
                             </textField>
                         </subviews>
