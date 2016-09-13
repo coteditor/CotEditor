@@ -1810,7 +1810,7 @@
 						TestTargetID = 8D15AC270486D014006FF6A4;
 					};
 					8D15AC270486D014006FF6A4 = {
-						DevelopmentTeam = HT3Z3A72WZ;
+						DevelopmentTeam = 4EB5AU9763;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
