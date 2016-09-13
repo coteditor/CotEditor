@@ -75,7 +75,7 @@
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "82"; */
 "82.title" = "新建";
 /* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
-"WCp-4v-OPR.title" = "New Tab";  // FIXME: new
+"WCp-4v-OPR.title" = "新标签";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "打开…";
 /* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
@@ -311,17 +311,17 @@
 "579.title" = "文本";
 
 /* Class = "NSMenuItem"; title = "Comment"; ObjectID = "EYa-d3-sUR"; */
-"EYa-d3-sUR.title" = "Comment";  // FIXME: new
+"EYa-d3-sUR.title" = "注释";
 /* Class = "NSMenu"; title = "Comment"; ObjectID = "yph-qH-qNE"; */
-"yph-qH-qNE.title" = "Comment";  // FIXME: new
+"yph-qH-qNE.title" = "注释";
 /* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "Toggle Comment";  // FIXME: new
+"LLy-Yx-tXI.title" = "切换注释";
 /* Class = "NSMenuItem"; title = "Inline Comment"; ObjectID = "F6P-7N-LSf"; */
-"F6P-7N-LSf.title" = "Inline Comment";  // FIXME: new
+"F6P-7N-LSf.title" = "行注释";
 /* Class = "NSMenuItem"; title = "Block Comment"; ObjectID = "U5v-4k-2tq"; */
-"U5v-4k-2tq.title" = "Block Comment";  // FIXME: new
+"U5v-4k-2tq.title" = "块注释";
 /* Class = "NSMenuItem"; title = "Uncomment"; ObjectID = "dob-yj-jf3"; */
-"dob-yj-jf3.title" = "Uncomment";  // FIXME: new
+"dob-yj-jf3.title" = "取消注释";
 
 /* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
 "4h9-iu-ehP.title" = "缩进";
@@ -396,9 +396,9 @@
 "NU7-EI-1Ct.title" = "修改 NFD (HFS+)";
 
 /* Class = "NSMenuItem"; title = "Insert IANA Charset Name"; ObjectID = "663"; */
-"663.title" = "插入编码名字";  // FIXME: updated
+"663.title" = "插入 IANA 字符集名字";
 /* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
-"663.ibShadowedToolTip" = "插入编码名字以 IANA 字符集";
+"663.ibShadowedToolTip" = "插入作为 IANA 字符集的编码名字";
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "检视文字";
@@ -450,7 +450,7 @@
 "PWZ-Om-OhX.title" = "选择下一个大纲项目";
 
 /* Class = "NSMenuItem"; title = "Go to Line…"; ObjectID = "eIc-Sj-2mO"; */
-"eIc-Sj-2mO.title" = "跳转…";  // FIXME: tweaked
+"eIc-Sj-2mO.title" = "跳转到行…";
 
 
 

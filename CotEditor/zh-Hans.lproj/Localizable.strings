@@ -130,7 +130,7 @@
 
 // Reinterpretion failed alert
 "Can not reinterpret." = "无法再次解释。";
-"The document doesn’t have a file to reinterpret." = "The document doesn’t have a file to reinterpret.";  // FIXME: added
+"The document doesn’t have a file to reinterpret." = "该文档没有用来再次解释的文件。";
 "The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件“%@”无法使用“%@”编码再次解释。";
 
 // Incompatible chars alert
@@ -394,7 +394,7 @@
 /* MARK: CESettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”无法删除。";
 "“%@” couldn’t be imported." = "“%@”无法导入。";
-"No original file for “%@” was found." = "No original file for “%@” was found.";  // FIXME: added (%@ is a theme name or syntax style name)
+"No original file for “%@” was found." = "无法找到 “%@” 的源文件。";
 
 // Setting file name warnings
 "Please choose another name." = "请输入其他名称。";
@@ -460,8 +460,8 @@
 "“%@” does not include the Command key." = "“%@”中没有包含 Command 键。";
 "“%@” includes the Command key." = "“%@”包含了 Command 键。";
 "Please choose another key." = "请选择其他按键。";
-"Single type is invalid for a shortcut." = "Single type is invalid for a shortcut.";  // FIXME: new
-"Please combinate with another keys." = "Please combinate with another keys.";  // FIXME: new
+"Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
+"Please combinate with another keys." = "请与其他键组合使用。";
 
 
 
@@ -471,11 +471,11 @@
 "Update Script Menu" = "更新脚本菜单";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "“Option + click” to open script in editor.";  // FIXME: new
+"“Option + click” to open script in editor." = "使用 “Option + 单击” 在编辑器中打开脚本。";
 
 // No script target document errors
-"No document to get input." = "No document to get input.";  // FIXME: new
-"No document to put output." = "No document to put output.";  // FIXME: new
+"No document to get input." = "没有输入文档。";
+"No document to put output." = "没有输出文档。";
 
 // Script error alert message
 "Script Error" = "脚本错误";
