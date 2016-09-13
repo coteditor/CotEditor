@@ -10,6 +10,10 @@ develop
 - Some window states are not restored.
 
 
+
+3.0.0-beta (142)
+--------------------------
+
 ### New Features
 
 - Support window tabbing on macOS Sierra.
