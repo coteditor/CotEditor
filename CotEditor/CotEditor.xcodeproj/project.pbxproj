@@ -493,7 +493,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2AC71DE41BF0BDBC002E1434 /* PBXContainerItemProxy */ = {
+		2AB0E3E01D8974D00027FF46 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 			proxyType = 1;
@@ -1754,7 +1754,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				2AC71DE51BF0BDBC002E1434 /* PBXTargetDependency */,
+				2AB0E3E11D8974D00027FF46 /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = CotEditorTests;
@@ -1799,7 +1799,6 @@
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					2A6F0D4E1B5500E100C2D03C = {
-						DevelopmentTeam = HT3Z3A72WZ;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -2386,10 +2385,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2AC71DE51BF0BDBC002E1434 /* PBXTargetDependency */ = {
+		2AB0E3E11D8974D00027FF46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D15AC270486D014006FF6A4 /* CotEditor */;
-			targetProxy = 2AC71DE41BF0BDBC002E1434 /* PBXContainerItemProxy */;
+			targetProxy = 2AB0E3E01D8974D00027FF46 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2964,6 +2963,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)-AppStore/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
@@ -2978,6 +2978,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)-AppStore/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
@@ -2990,6 +2991,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = ../Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3002,6 +3004,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = ../Tests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
