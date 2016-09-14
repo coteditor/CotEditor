@@ -44,34 +44,18 @@ extension String {
             return self
         }
         
-        let utf8Source = self.cString(using: .utf8)
-        let length = Int32(strlen(utf8Source)) * 256
+        let source = self.utf16.map { $0 }
+        let sourceLength = Int32(source.count)
+        var destination = [UChar](repeating: 0, count: Int(sourceLength))
         
-        var utf16Source = [UChar](repeating: 0, count: Int(length))
-        u_strFromUTF8(&utf16Source, length, nil, utf8Source, -1, &error)
+        let destLength = unorm2_normalize(normalizer, source, sourceLength, &destination, sourceLength * 64, &error)
         
-        guard U_SUCCESS(error) else {
-            debugPrint("u_strFromUTF8 failed: ", u_errorName(error))
-            return self
-        }
-        
-        var utf16Destination = [UChar](repeating: 0, count: Int(length))
-        unorm2_normalize(normalizer, utf16Source, -1, &utf16Destination, length,
-         &error)
         guard U_SUCCESS(error) else {
             debugPrint("unorm2_normalize failed: ", u_errorName(error))
             return self
         }
         
-        var utf8Destination = [CChar](repeating: 0, count: Int(length))
-        u_strToUTF8(&utf8Destination, length, nil, utf16Destination, -1, &error)
-        
-        guard U_SUCCESS(error) else {
-            debugPrint("u_strToUTF8 failed: ", u_errorName(error))
-            return self
-        }
-        
-        return String(cString: utf8Destination)
+        return String(utf16CodeUnits: destination, count: Int(destLength))
     }
     
     
