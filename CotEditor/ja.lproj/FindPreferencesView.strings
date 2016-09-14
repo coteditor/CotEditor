@@ -81,5 +81,5 @@
 
 /* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "rTR-zE-Wff"; */
 "rTR-zE-Wff.title" = "置換文字列のエスケープ文字を解釈";
-/* Class = "NSButton"; ibShadowedToolTip = "Unescape special characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Unescape meta characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
 "PLV-vr-cdI.ibShadowedToolTip" = "置換文字列のバックスラッシュをエスケープ文字として解釈";

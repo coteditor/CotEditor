@@ -80,5 +80,5 @@
 
 /* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "rTR-zE-Wff"; */
 "rTR-zE-Wff.title" = "Ersetzungstext maskieren";
-/* Class = "NSButton"; ibShadowedToolTip = "Unescape special characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Unescape meta characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
 "PLV-vr-cdI.ibShadowedToolTip" = "Backslash im Ersetzungstext als Maskierungszeichen interpretieren.";

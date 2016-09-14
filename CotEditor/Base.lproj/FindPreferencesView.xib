@@ -129,7 +129,7 @@
                         <binding destination="hNo-st-CW5" name="value" keyPath="values.findTextIgnoresDiacriticMarks" id="BLc-dO-pM2"/>
                     </connections>
                 </button>
-                <button toolTip="Unescape special characters with backslash in replacement string." translatesAutoresizingMaskIntoConstraints="NO" id="PLV-vr-cdI">
+                <button toolTip="Unescape meta characters with backslash in replacement string." translatesAutoresizingMaskIntoConstraints="NO" id="PLV-vr-cdI">
                     <rect key="frame" x="17" y="17" width="177" height="18"/>
                     <buttonCell key="cell" type="check" title="Unescape replacement string" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="rTR-zE-Wff">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
