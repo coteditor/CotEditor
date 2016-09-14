@@ -5,14 +5,19 @@ Change Log
 develop
 --------------------------
 
+### Known issues
+
+- Some window states are not restored.
+
+
 ### Improvements
 
 - [beta] Add option “Unescape replacement string” to find panel (On by default).
 
 
-### Known issues
+### Fixes
 
-- Some window states are not restored.
+- Fix an issue find string is not shared to other appliations after quitting CotEditor.
 
 
 

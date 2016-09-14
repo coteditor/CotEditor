@@ -125,6 +125,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         // observe application activation to sync find string with other apps
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .NSApplicationDidBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .NSApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .NSApplicationWillTerminate, object: nil)
     }
     
     
