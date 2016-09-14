@@ -77,3 +77,8 @@
 "5oj-ch-YiX.title" = "Unicode-Wortgrenzen verwenden";
 /* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "VMh-Tq-bq0"; */
 "VMh-Tq-bq0.ibShadowedToolTip" = "Unicode TR#29 verwenden, um Wortgrenzen zu spezifizieren.";
+
+/* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "rTR-zE-Wff"; */
+"rTR-zE-Wff.title" = "Ersetzungstext maskieren";
+/* Class = "NSButton"; ibShadowedToolTip = "Unescape special characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
+"PLV-vr-cdI.ibShadowedToolTip" = "Backslash im Ersetzungstext als Maskierungszeichen interpretieren.";

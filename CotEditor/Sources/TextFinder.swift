@@ -59,6 +59,7 @@ private protocol TextFinderSettingsProvider {
     var inSelection: Bool { get }
     var textualOptions: NSString.CompareOptions { get }
     var regexOptions: NSRegularExpression.Options { get }
+    var unescapesReplacementString: Bool { get }
     var closesIndicatorWhenDone: Bool { get }
     var sharesFindString: Bool { get }
     
@@ -487,7 +488,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             let string = textView.string else { return }
         
         let integerFormatter = self.integerFormatter
-        let replacementString = self.replacementString
+        let replacementString = (self.usesRegularExpression && self.unescapesReplacementString)
+            ? self.replacementString.unescaped
+            : self.replacementString
         let scopeRanges = self.scopeRanges
         let inSelection = self.inSelection
         
@@ -727,8 +730,10 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             let regex = self.regex()!
             guard let match = regex.firstMatch(in: string, range: textView.selectedRange) else { return false }
             
+            let tempalte = self.unescapesReplacementString ? self.replacementString.unescaped : self.replacementString
+            
             matchedRange = match.range
-            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: self.replacementString)
+            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: tempalte)
             
         } else {
             matchedRange = (string as NSString).range(of: self.sanitizedFindString, options: self.textualOptions, range: textView.selectedRange)
@@ -934,6 +939,13 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         if Defaults[.findRegexUsesUnicodeBoundaries] { options.update(with: .useUnicodeWordBoundaries) }
         
         return options
+    }
+    
+    
+    /// return value from user defaults
+    fileprivate var unescapesReplacementString: Bool {
+        
+        return Defaults[.findRegexUnescapesReplacementString]
     }
     
     
