@@ -149,6 +149,7 @@ let DefaultSettings: [DefaultKeys: Any] = [
     .findRegexIsSingleline: false,
     .findRegexIsMultiline: true,
     .findRegexUsesUnicodeBoundaries: false,
+    .findRegexUnescapesReplacementString: true,
     
     // ------ settings not in preferences window ------
     .colorCodeType: 1,

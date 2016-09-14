@@ -78,3 +78,8 @@
 "5oj-ch-YiX.title" = "使用 Unicode 字词边界";
 /* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "VMh-Tq-bq0"; */
 "VMh-Tq-bq0.ibShadowedToolTip" = "使用 Unicode TR#29 指定字词边界";
+
+/* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "rTR-zE-Wff"; */
+"rTR-zE-Wff.title" = "Unescape replacement string";  // FIXME: added
+/* Class = "NSButton"; ibShadowedToolTip = "Unescape special characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
+"PLV-vr-cdI.ibShadowedToolTip" = "Unescape special characters with backslash in replacement string.";  // FIXME: added
