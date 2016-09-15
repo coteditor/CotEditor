@@ -654,7 +654,7 @@ final class Document: NSDocument, EncodingHolder {
         
         // [caution] This method can be called from any thread.
         
-        guard let fileURL = self.fileURL else { return }
+        super.presentedItemDidChange()
         
         let option = DocumentConflictOption(rawValue: Defaults[.documentConflictOption]) ?? .notify
         
@@ -663,6 +663,8 @@ final class Document: NSDocument, EncodingHolder {
         
         // don't check twice if document is already marked as modified
         guard !self.needsShowUpdateAlertWithBecomeKey else { return }
+        
+        guard let fileURL = self.fileURL else { return }
         
         // ignore if file's modificationDate is the same as document's modificationDate
         var fileModificationDate: Date?
