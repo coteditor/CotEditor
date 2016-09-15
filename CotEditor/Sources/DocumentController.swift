@@ -250,7 +250,7 @@ final class DocumentController: NSDocumentController {
         menu.addItem(autoDetectItem)
         menu.addItem(NSMenuItem.separator())
         
-        let items = EncodingManager.shared.encodingMenuItems
+        let items = EncodingManager.shared.createEncodingMenuItems()
         for item in items {
             menu.addItem(item)
         }

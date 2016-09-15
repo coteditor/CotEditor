@@ -18,6 +18,7 @@ develop
 ### Fixes
 
 - Fix an issue find string is not shared to other applications after quitting CotEditor.
+- [beta] Fix some memory leaks.
 
 
 
