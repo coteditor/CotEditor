@@ -316,7 +316,7 @@ final class LayoutManager: NSLayoutManager {
         
         // process line by line
         textStorage.beginEditing()
-        (textStorage.string as NSString).enumerateSubstrings(in: range, options: .byLines) { (substring: String?, substringRange, enclosingRange, stop) in
+        (textStorage.string as NSString).enumerateSubstrings(in: lineRange, options: .byLines) { (substring: String?, substringRange, enclosingRange, stop) in
             guard let substring = substring else  { return }
             
             var indent = hangingIndent
