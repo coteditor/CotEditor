@@ -17,7 +17,7 @@ develop
 
 ### Fixes
 
-- Fix an issue find string is not shared to other appliations after quitting CotEditor.
+- Fix an issue find string is not shared to other applications after quitting CotEditor.
 
 
 

@@ -178,18 +178,18 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     func applicationDidBecomeActive(_ notification: Notification) {
         
         if self.sharesFindString {
-            if let sharedFindString = self.findStringInPasteboard {
+            if let sharedFindString = NSPasteboard.findString {
                 self.findString = sharedFindString
             }
         }
     }
     
     
-    /// sync search string on activating application
+    /// sync search string on deactivating application
     func applicationWillResignActive(_ notification: Notification) {
         
         if self.sharesFindString {
-            self.findStringInPasteboard = self.findString
+            NSPasteboard.findString = self.findString
         }
     }
     
@@ -855,25 +855,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     }
     
     
-    /// find string from global domain
-    private var findStringInPasteboard: String? {
-        
-        get {
-            let pasteboard = NSPasteboard(name: NSFindPboard)
-            return pasteboard.string(forType: NSStringPboardType)
-        }
-        
-        set {
-            guard let string = newValue, !string.isEmpty else { return }
-            
-            let pasteboard = NSPasteboard(name: NSFindPboard)
-            
-            pasteboard.declareTypes([NSStringPboardType], owner: nil)
-            pasteboard.setString(string, forType: NSStringPboardType)
-        }
-    }
-    
-    
     /// append given string to history with the user defaults key
     private func appendHistory(_ string: String, forKey key: DefaultKey<[String]>) {
         
@@ -985,6 +966,32 @@ private enum TextFinderError: LocalizedError {
         switch self {
         case .regularExpression(let reason):
             return reason
+        }
+    }
+    
+}
+
+
+
+// MARK: Pasteboard
+
+private extension NSPasteboard {
+    
+    /// find string from global domain
+    class var findString: String? {
+        
+        get {
+            let pasteboard = NSPasteboard(name: NSFindPboard)
+            return pasteboard.string(forType: NSStringPboardType)
+        }
+        
+        set {
+            guard let string = newValue, !string.isEmpty else { return }
+            
+            let pasteboard = NSPasteboard(name: NSFindPboard)
+            
+            pasteboard.declareTypes([NSStringPboardType], owner: nil)
+            pasteboard.setString(string, forType: NSStringPboardType)
         }
     }
     
