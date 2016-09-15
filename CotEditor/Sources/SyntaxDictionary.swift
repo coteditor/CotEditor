@@ -68,6 +68,9 @@ enum SyntaxKey: String {
     case commentDelimiters
     case outlineMenu
     case completions
+    
+    
+    static let mappingKeys: [SyntaxKey] = [.extensions, .filenames, .interpreters]
 }
 
 
