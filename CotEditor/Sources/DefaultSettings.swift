@@ -26,7 +26,6 @@
  
  */
 
-import Foundation
 import AppKit.NSFont
 
 let DefaultSettings: [DefaultKeys: Any] = [

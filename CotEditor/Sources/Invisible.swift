@@ -25,8 +25,6 @@
  
  */
 
-import Foundation
-
 enum Invisible {
     
     static let spaces = ["·", "°", "ː", "␣"]
