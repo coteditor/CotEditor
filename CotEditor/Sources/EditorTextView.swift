@@ -1082,7 +1082,7 @@ final class EditorTextView: NSTextView, Themable {
         //      if the first character of the document is drawn with another font (typically by a composite font).
         //   -> Round line height for workaround to avoid expanding current line highlight when line height is 1.0. (2016-09 on macOS Sierra 10.12)
         paragraphStyle.lineHeightMultiple = self.lineHeight.rounded(to: 5)
-        moof(self.lineHeight.rounded(to: 5))
+        
         // calculate tab interval
         if let font = self.font, let displayFont = self.layoutManager?.substituteFont(for: font) {
             paragraphStyle.tabStops = []
