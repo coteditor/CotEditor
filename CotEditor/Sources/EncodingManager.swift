@@ -77,7 +77,6 @@ final class EncodingManager: NSObject {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.encodingList.rawValue {
-            moof()
             DispatchQueue.main.async { [weak self] in
                 NotificationCenter.default.post(name: .EncodingListDidUpdate, object: self)
             }
