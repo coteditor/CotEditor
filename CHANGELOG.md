@@ -13,6 +13,7 @@ develop
 ### Improvements
 
 - [beta] Add option “Unescape replacement string” to find panel (On by default).
+- [beta] Improve drawing of font fields in preferences.
 
 
 ### Fixes

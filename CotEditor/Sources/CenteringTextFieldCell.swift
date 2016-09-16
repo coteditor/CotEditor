@@ -1,11 +1,11 @@
 /*
  
- AntialiasingTextField.swift
+ CenteringTextFieldCell.swift
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2016-05-08.
+ Created by 1024jp on 2016-09-16.
  
  ------------------------------------------------------------------------------
  
@@ -27,35 +27,25 @@
 
 import Cocoa
 
-final class AntialiasingTextField: NSTextField {
+final class CenteringTextFieldCell: NSTextFieldCell {
     
-    // MARK: Public Properties
-    
-    var disablesAntialiasing = false {
+    /// rect of content text
+    override func titleRect(forBounds rect: NSRect) -> NSRect {
         
-        didSet {
-            self.needsDisplay = true
-        }
+        var titleRect = super.titleRect(forBounds: rect)
+        let titleSize = self.attributedStringValue.size()
+        
+        titleRect.origin.y = floor(rect.minY + (rect.height - titleSize.height) / 2)
+        titleRect.size.height = rect.height - titleRect.origin.y
+        
+        return titleRect
     }
     
     
-    
-    // MARK:
-    // MARK: Text Field Methods
-    
-    /// control antialiasing of text
-    override func draw(_ dirtyRect: NSRect) {
+    /// draw inside of field
+    override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         
-        if self.disablesAntialiasing {
-            NSGraphicsContext.saveGraphicsState()
-            NSGraphicsContext.current()?.shouldAntialias = false
-        }
-        
-        super.draw(dirtyRect)
-        
-        if self.disablesAntialiasing {
-            NSGraphicsContext.restoreGraphicsState()
-        }
+        self.attributedStringValue.draw(in: self.titleRect(forBounds: cellFrame))
     }
     
 }
