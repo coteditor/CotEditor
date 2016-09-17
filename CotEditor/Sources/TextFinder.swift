@@ -335,9 +335,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 if highlights.isEmpty {
                     NSBeep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
-                } else {
-                    self.delegate?.textFinder(self, didFinishFindingAll: findString, results: results, textView: textView)
                 }
+                
+                self.delegate?.textFinder(self, didFinishFindingAll: findString, results: results, textView: textView)
                 
                 // -> close also if matched since result view will be shown when succeed
                 if !results.isEmpty || self.closesIndicatorWhenDone {

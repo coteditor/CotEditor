@@ -12,6 +12,7 @@ develop
 
 ### Improvements
 
+- Display “Not Found” in the find string field in the find panel also when “Find All” failed.
 - [beta] Add option “Unescape replacement string” to find panel (On by default).
 - [beta] Improve drawing of font fields in preferences.
 
