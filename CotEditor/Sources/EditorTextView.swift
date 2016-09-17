@@ -352,11 +352,16 @@ final class EditorTextView: NSTextView, Themable {
         
         guard
             self.isAutomaticIndentEnabled,
-            let string = self.string,
-            let indentRange = string.rangeOfIndent(at: self.selectedRange.location),
-            indentRange != self.selectedRange  // don't auto-indent if indent is selected (2008-12-13)
+            let string = self.string
             else {
                 return super.insertNewline(sender)
+        }
+        
+        let indentRange = string.rangeOfIndent(at: self.selectedRange.location)
+        
+        // don't auto-indent if indent is selected (2008-12-13)
+        guard indentRange.length == 0 || indentRange != self.selectedRange else {
+            return super.insertNewline(sender)
         }
         
         let baseIndentRange = NSIntersectionRange(indentRange, NSRange(location: 0, length: self.selectedRange.location))
@@ -410,8 +415,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
-            let indentRange = string.rangeOfIndent(at: location),
-            indentRange.max >= location
+            string.rangeOfIndent(at: location).max >= location
         {
             let tabWidth = self.tabWidth
             let column = string.column(of: location, tabWidth: tabWidth)
