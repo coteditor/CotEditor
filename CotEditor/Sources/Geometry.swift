@@ -25,7 +25,7 @@
  
  */
 
-import Foundation
+import CoreGraphics
 
 // MARK: Scalable
 
@@ -91,7 +91,7 @@ extension CGRect {
     
     var mid: CGPoint {
         
-        return NSPoint(x: self.midX, y: self.midY)
+        return CGPoint(x: self.midX, y: self.midY)
     }
     
 }
