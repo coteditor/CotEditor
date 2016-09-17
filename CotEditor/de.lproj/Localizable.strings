@@ -470,7 +470,6 @@
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "Skript-Ordner öffnen";
-"Update Script Menu" = "Skript-Menü aktualisieren";
 
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "„Option + Klicken“, um das Skript im Editor zu öffnen.";

@@ -468,7 +468,6 @@
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "打开脚本文件夹";
-"Update Script Menu" = "更新脚本菜单";
 
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "使用 “Option + 单击” 在编辑器中打开脚本。";

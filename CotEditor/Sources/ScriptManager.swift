@@ -28,12 +28,11 @@
 
 import Cocoa
 
-final class ScriptManager: NSObject {
+final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Public Properties
     
     static let shared = ScriptManager()
-    
     
     
     // MARK: Private Properties
@@ -45,6 +44,8 @@ final class ScriptManager: NSObject {
     
     /// file extensions for AppleScript
     private let AppleScriptExtensions = ["applescript", "scpt"]
+    
+    private var didChangeFolder = false
     
     
     
@@ -100,11 +101,57 @@ final class ScriptManager: NSObject {
         
         super.init()
         
-        self.buildScriptMenu(self)
+        self.buildScriptMenu()
+        
+        // observe for script folder change
+        NSFileCoordinator.addFilePresenter(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .NSApplicationDidBecomeActive, object: NSApp)
         
         // run dummy AppleScript once for quick script launch
         DispatchQueue.main.async {
             NSAppleScript(source: "tell application \"CotEditor\" to name")?.executeAndReturnError(nil)
+        }
+    }
+    
+    
+    deinit {
+        NSFileCoordinator.removeFilePresenter(self)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    
+    // MARK: File Presenter Protocol
+    
+    var presentedItemOperationQueue = OperationQueue()
+    
+    
+    var presentedItemURL: URL? {
+        
+        return self.scriptsDirectoryURL
+    }
+    
+    
+    /// script folder did change
+    func presentedSubitemDidChange(at url: URL) {
+        
+        // [caution] This method can be called from any thread.
+        
+        self.didChangeFolder = true
+        
+        if NSApp.isActive {
+            DispatchQueue.main.async { [weak self] in
+                self?.buildScriptMenu()
+            }
+        }
+    }
+    
+    
+    /// update script menu if needed
+    func applicationDidBecomeActive(_ notification: Notification) {
+        
+        if self.didChangeFolder {
+            self.buildScriptMenu()
         }
     }
     
@@ -124,6 +171,27 @@ final class ScriptManager: NSObject {
         }
         
         return (menu.numberOfItems > 0) ? menu : nil
+    }
+    
+    
+    /// build Script menu
+    func buildScriptMenu() {
+        
+        let menu = MainMenu.script.menu!
+        
+        menu.removeAllItems()
+        
+        self.addChildFileItem(to: menu, fromDirctory: self.scriptsDirectoryURL)
+        
+        menu.addItem(NSMenuItem.separator())
+        
+        let openMenuItem = NSMenuItem(title: NSLocalizedString("Open Scripts Folder", comment: ""),
+                                      action: #selector(openScriptFolder), keyEquivalent: "")
+        openMenuItem.target = self
+        openMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
+        menu.addItem(openMenuItem)
+        
+        self.didChangeFolder = false
     }
     
     
@@ -176,31 +244,6 @@ final class ScriptManager: NSObject {
             
             self.runShellScript(url: fileURL)
         }
-    }
-    
-    
-    /// build Script menu
-    @IBAction func buildScriptMenu(_ sender: Any?) {
-        
-        let menu = MainMenu.script.menu!
-        
-        menu.removeAllItems()
-        
-        self.addChildFileItem(to: menu, fromDirctory: self.scriptsDirectoryURL)
-        
-        menu.addItem(NSMenuItem.separator())
-        
-        let openMenuItem = NSMenuItem(title: NSLocalizedString("Open Scripts Folder", comment: ""),
-                                      action: #selector(openScriptFolder), keyEquivalent: "")
-        openMenuItem.target = self
-        openMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
-        menu.addItem(openMenuItem)
-        
-        let updateMenuItem = NSMenuItem(title: NSLocalizedString("Update Script Menu", comment: ""),
-                                        action: #selector(buildScriptMenu), keyEquivalent: "")
-        updateMenuItem.target = self
-        updateMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
-        menu.addItem(updateMenuItem)
     }
     
     
