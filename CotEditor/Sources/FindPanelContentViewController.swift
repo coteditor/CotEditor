@@ -183,6 +183,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
             !resultView.isHidden && resultView.visibleRect.isEmpty else { return }
         
         self.resultSplitViewItem?.isCollapsed = true
+        self.view.needsDisplay = true
     }
     
 }
