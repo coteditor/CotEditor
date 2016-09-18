@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Fix an issue find string is not shared with other applications after quitting CotEditor.
+
+
+
 2.5.7 (138)
 --------------------------
 

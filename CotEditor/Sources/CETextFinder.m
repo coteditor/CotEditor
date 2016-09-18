@@ -203,6 +203,11 @@ static const NSUInteger kMaxHistorySize = 20;
                                                  selector:@selector(applicationWillResignActive:)
                                                      name:NSApplicationWillResignActiveNotification
                                                    object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationWillResignActive:)
+                                                     name:NSApplicationWillTerminateNotification
+                                                   object:nil];
     }
     return self;
 }
