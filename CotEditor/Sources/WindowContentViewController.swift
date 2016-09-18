@@ -44,6 +44,10 @@ final class WindowContentViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
+        // -> needs layer to mask rounded window corners
+        //                to redraw line number view background by thickness increase
+        self.view.wantsLayer = true
+        
         // set behavior to glow window size on sidebar toggling rather than opening sidebar indraw (only on El Capitan or later)
         if #available(macOS 10.11, *) {
             self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
