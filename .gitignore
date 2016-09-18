@@ -30,6 +30,8 @@ project.xcworkspace
 #
 Pods/
 
+Carthage/
+
 ### OSX ###
 .DS_Store
 .AppleDouble
