@@ -100,16 +100,4 @@ final class DocumentWindowController: NSWindowController {
         }
     }
     
-    
-    
-    // MARK: Public Methods
-    
-    /// show incompatible char list
-    func showIncompatibleCharList() {
-        
-        guard let contentViewController = self.contentViewController as? WindowContentViewController else { return }
-        
-        contentViewController.showSidebarPane(index: .incompatibleCharacters)
-    }
-    
 }

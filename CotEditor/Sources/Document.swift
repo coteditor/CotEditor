@@ -71,7 +71,6 @@ final class Document: NSDocument, EncodingHolder {
     private(set) var fileAttributes: [FileAttributeKey: Any]?
     private(set) var syntaxStyle: SyntaxStyle
     
-    var windowController: DocumentWindowController? { return self.windowControllers.first as? DocumentWindowController }
     private(set) lazy var selection: TextSelection = TextSelection(document: self)
     private(set) lazy var analyzer: DocumentAnalyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner: IncompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
@@ -201,7 +200,8 @@ final class Document: NSDocument, EncodingHolder {
     override func makeWindowControllers() {
         
         let storyboard = NSStoryboard(name: "DocumentWindow", bundle: nil)
-        let windowController = storyboard.instantiateInitialController() as! DocumentWindowController
+        let windowController = storyboard.instantiateInitialController() as! NSWindowController
+        
         self.addWindowController(windowController)
     }
     
@@ -1353,6 +1353,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
         let document = self.attempter
+        let windowContentController = document.windowControllers.first?.contentViewController as? WindowContentViewController
         
         switch self.kind {
         case .ianaCharsetNameConflict:
@@ -1367,7 +1368,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Chars
-                document.windowController?.showIncompatibleCharList()
+                windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 return false
             case 1:  // == Save
                 return true
@@ -1388,8 +1389,8 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 return false
             case 1:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
-                (document.undoManager?.prepare(withInvocationTarget: document.windowController) as? DocumentWindowController)?.showIncompatibleCharList()
-                document.windowController?.showIncompatibleCharList()
+                (document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController)?.showSidebarPane(index: .incompatibleCharacters)
+                windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 return true
             default:
                 return false
