@@ -28,6 +28,15 @@
 #import "CEBorderView.h"
 
 
+@interface CEBorderView () <CALayerDelegate>
+
+@end
+
+
+
+
+#pragma mark -
+
 @implementation CEBorderView
 
 #pragma mark Superclass Methods

@@ -49,10 +49,10 @@ NSString *_Nonnull const CEWindowOpacityDidChangeNotification = @"CEWindowOpacit
 
 // ------------------------------------------------------
 /// initialize
-- (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
+- (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
 // ------------------------------------------------------
 {
-    self = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
+    self = [super initWithContentRect:contentRect styleMask:style backing:bufferingType defer:flag];
     if (self) {
         _backgroundAlpha = 1.0;
         

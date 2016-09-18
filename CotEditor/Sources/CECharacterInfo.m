@@ -72,7 +72,7 @@ static const UTF32Char kType6EmojiModifierChar = 0x1F3FF;  // Emoji Modifier Fit
 
 //------------------------------------------------------
 /// disable superclass's designated initializer
-- (nullable instancetype)init
+- (nonnull instancetype)init
 //------------------------------------------------------
 {
     @throw nil;
