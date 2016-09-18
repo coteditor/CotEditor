@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
@@ -180,9 +180,6 @@
                                 <outlet property="window" destination="gE4-1J-3li" id="e04-WO-QGs"/>
                             </connections>
                         </toolbar>
-                        <connections>
-                            <outlet property="delegate" destination="0UB-Lz-R6c" id="8BJ-UL-MGj"/>
-                        </connections>
                     </window>
                     <connections>
                         <outlet property="toolbarController" destination="6RX-So-XzC" id="Kgi-2B-Fq3"/>

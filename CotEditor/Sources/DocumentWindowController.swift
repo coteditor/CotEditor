@@ -28,7 +28,7 @@
 
 import Cocoa
 
-final class DocumentWindowController: NSWindowController, NSWindowDelegate {
+final class DocumentWindowController: NSWindowController {
     
     // MARK: Private Properties
     
