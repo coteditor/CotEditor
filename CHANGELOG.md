@@ -5,11 +5,6 @@ Change Log
 develop
 --------------------------
 
-### Known issues
-
-- Some window states are not restored.
-
-
 ### Improvements
 
 - Auto-sync Script menu with script folder.
@@ -27,6 +22,7 @@ develop
 - [beta] Fix an issue where divider in the find panel remains after closing result view.
 - [beta] Fix an issue where smart indent didn't worked.
 - [beta] Fix an issue where inputting character with unicode hex didn't work.
+- [beta] Fix an issue where some window states were not restored.
 - [beta] Fix some memory leaks.
 
 

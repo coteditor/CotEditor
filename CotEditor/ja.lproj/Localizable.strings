@@ -235,7 +235,7 @@
 
 
 
-/* MARK: EditorWrapper */
+/* MARK: DocumentViewController */
 // Menu items
 "Hide Line Numbers" = "行番号を隠す";
 "Show Line Numbers" = "行番号を表示";

@@ -162,10 +162,10 @@ extension Document {
     var wrapsLines: NSNumber {
         
         get {
-            return NSNumber(value :self.editor?.wrapsLines ?? false)
+            return NSNumber(value :self.viewController?.wrapsLines ?? false)
         }
         set (wrapsLine) {
-            self.editor?.wrapsLines = wrapsLines.boolValue
+            self.viewController?.wrapsLines = wrapsLines.boolValue
         }
     }
     
@@ -174,10 +174,10 @@ extension Document {
     var tabWidth: NSNumber {
         
         get {
-            return NSNumber(value: self.editor?.tabWidth ?? 0)
+            return NSNumber(value: self.viewController?.tabWidth ?? 0)
         }
         set (tabWidth) {
-            self.editor?.tabWidth = tabWidth.intValue
+            self.viewController?.tabWidth = tabWidth.intValue
         }
     }
     

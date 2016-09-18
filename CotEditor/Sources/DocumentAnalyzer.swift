@@ -150,7 +150,7 @@ final class DocumentAnalyzer: NSObject {
         
         guard
             let document = self.document,
-            let textView = document.editor?.focusedTextView else { return }
+            let textView = document.viewController?.focusedTextView else { return }
         
         let needsAll = self.needsUpdateEditorInfo
         

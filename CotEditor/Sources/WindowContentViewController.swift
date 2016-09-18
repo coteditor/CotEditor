@@ -31,7 +31,7 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
-    @IBOutlet private weak var mainViewItem: NSSplitViewItem?
+    @IBOutlet private weak var documentViewItem: NSSplitViewItem?
     @IBOutlet private weak var sidebarViewItem: NSSplitViewItem?
     
     
@@ -100,9 +100,9 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: Public Methods
     
     /// deliver editor to outer view controllers
-    var editor: EditorWrapper? {
+    var documentViewController: DocumentViewController? {
         
-        return (self.mainViewItem?.viewController as? MainViewController)?.editor
+        return self.documentViewItem?.viewController as? DocumentViewController
     }
     
     

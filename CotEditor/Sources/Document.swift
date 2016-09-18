@@ -431,7 +431,7 @@ final class Document: NSDocument, EncodingHolder {
         
         // store current state here, since the main thread will already be unblocked after `data(ofType:)`
         let encoding = self.encoding
-        self.isVerticalText = self.editor?.verticalLayoutOrientation ?? false
+        self.isVerticalText = self.viewController?.verticalLayoutOrientation ?? false
         
         try super.write(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
@@ -550,17 +550,17 @@ final class Document: NSDocument, EncodingHolder {
     /// setup print setting including print panel
     override func printOperation(withSettings printSettings: [String : Any]) throws -> NSPrintOperation {
         
-        let editor = self.editor!
+        let viewController = self.viewController!
         
         // create printView
         let printView = PrintTextView()
-        printView.setLayoutOrientation(editor.verticalLayoutOrientation ? .vertical : .horizontal)
-        printView.theme = editor.theme
+        printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
+        printView.theme = viewController.theme
         printView.documentName = self.displayName
         printView.filePath = self.fileURL?.path
         printView.syntaxName = self.syntaxStyle.styleName
-        printView.documentShowsInvisibles = editor.showsInvisibles
-        printView.documentShowsLineNumber = editor.showsLineNumber
+        printView.documentShowsInvisibles = viewController.showsInvisibles
+        printView.documentShowsLineNumber = viewController.showsLineNumber
         
         // set font for printing
         printView.font = {
@@ -568,7 +568,7 @@ final class Document: NSDocument, EncodingHolder {
                 return NSFont(name: Defaults[.printFontName]!,
                               size: Defaults[.printFontSize])
             }
-            return editor.font
+            return viewController.font
         }()
         
         // [caution] need to set string after setting other properties
@@ -623,7 +623,7 @@ final class Document: NSDocument, EncodingHolder {
         document.hasUTF8BOM = self.hasUTF8BOM
         
         // apply text orientation
-        document.editor?.verticalLayoutOrientation = self.editor?.verticalLayoutOrientation ?? self.isVerticalText
+        document.viewController?.verticalLayoutOrientation = self.viewController?.verticalLayoutOrientation ?? self.isVerticalText
         
         return document
     }
@@ -764,18 +764,18 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// return document window's editor wrapper
-    var editor: EditorWrapper? {
+    var viewController: DocumentViewController? {
         
-        return (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.editor
+        return (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.documentViewController
     }
     
     
     /// transfer file information to UI
     func applyContentToWindow() {
         
-        guard let editor = self.editor else { return }
+        guard let viewController = self.viewController else { return }
         
-        editor.invalidateStyleInTextStorage()
+        viewController.invalidateStyleInTextStorage()
         
         // update status bar and document inspector
         self.analyzer.invalidateFileInfo()
@@ -786,7 +786,7 @@ final class Document: NSDocument, EncodingHolder {
         self.incompatibleCharacterScanner.invalidate()
         
         // apply text orientation
-        editor.verticalLayoutOrientation = self.isVerticalText
+        viewController.verticalLayoutOrientation = self.isVerticalText
     }
     
     
@@ -1266,7 +1266,7 @@ extension Document: Editable {
     
     var textView: NSTextView? {
         
-        return self.editor?.focusedTextView
+        return self.viewController?.focusedTextView
     }
 }
 
