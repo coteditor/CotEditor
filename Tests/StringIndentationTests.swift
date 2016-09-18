@@ -35,7 +35,7 @@ class StringIndentationTests: XCTestCase {
     func testIndentStyleDetection() {
         let string = "\t\tfoo\tbar"
         
-        XCTAssertEqual(string.detectIndentStyle(), CEIndentStyle.NotFound)
+        XCTAssertEqual(string.detectIndentStyle(), CEIndentStyle.notFound)
     }
     
     
@@ -45,19 +45,19 @@ class StringIndentationTests: XCTestCase {
         let string = "     foo    bar\n  "
         
         // NotFound
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.NotFound, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndentStyle(to: .notFound, tabWidth: 2), string)
         
         // spaces to tab
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Tab, tabWidth: 2), "\t\t foo    bar\n\t")
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Space, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndentStyle(to: .tab, tabWidth: 2), "\t\t foo    bar\n\t")
+        XCTAssertEqual(string.standardizingIndentStyle(to: .space, tabWidth: 2), string)
     }
     
     
     func testIndentStyleStandardizationToSpace() {
         let string = "\t\tfoo\tbar"
         
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Space, tabWidth: 2), "    foo\tbar")
-        XCTAssertEqual(string.stringByStandardizingIndentStyleTo(.Tab, tabWidth: 2), string)
+        XCTAssertEqual(string.standardizingIndentStyle(to: .space, tabWidth: 2), "    foo\tbar")
+        XCTAssertEqual(string.standardizingIndentStyle(to: .tab, tabWidth: 2), string)
     }
 
 }

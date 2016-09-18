@@ -30,21 +30,21 @@ import XCTest
 
 class XattrTests: XCTestCase {
     
-    let testFileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("com.coteditor.CotEditor.test.txt")
+    let testFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("com.coteditor.CotEditor.test.txt")
     
     
     override func setUp() {
         super.setUp()
        
-        if let data = "🐕".dataUsingEncoding(NSUTF8StringEncoding) {
-            data.writeToURL(self.testFileURL, atomically: true)
+        if let data = "🐕".data(using: String.Encoding.utf8) {
+            try? data.write(to: self.testFileURL, options: [.atomic])
         }
     }
     
     
     override func tearDown() {
         
-        try! NSFileManager.defaultManager().removeItemAtURL(self.testFileURL)
+        try! FileManager.default.removeItem(at: self.testFileURL)
         
         super.tearDown()
     }
@@ -54,17 +54,17 @@ class XattrTests: XCTestCase {
     
     func testEncodingReadWrite() {
         let fileURL = self.testFileURL
-        let encoding = NSUTF16StringEncoding  // This may not be the same as the real file encoding.
+        let encoding = String.Encoding.utf16  // This may not be the same as the real file encoding.
         
         // try getting xattr before set (should fail)
-        XCTAssertEqual(fileURL.getXattrEncoding(), UInt(NSNotFound))
+        XCTAssertEqual((fileURL as NSURL).getXattrEncoding(), UInt(NSNotFound))
         
         // set xattr
-        if !fileURL.setXattrEncoding(encoding) {
+        if !(fileURL as NSURL).setXattrEncoding(encoding.rawValue) {
             XCTFail("Failed setting xattr encoding.")
         }
         
-        XCTAssertEqual(fileURL.getXattrEncoding(), encoding)
+        XCTAssertEqual((fileURL as NSURL).getXattrEncoding(), encoding.rawValue)
     }
     
     
@@ -73,18 +73,18 @@ class XattrTests: XCTestCase {
         let xattrName = "test"
         
         // unset key returns false
-        XCTAssertFalse(fileURL.getXattrBoolForName(xattrName))
+        XCTAssertFalse((fileURL as NSURL).getXattrBool(forName: xattrName))
         
         // write `true`
-        if !fileURL.setXattrBool(true, forName: xattrName) {
+        if !(fileURL as NSURL).setXattrBool(true, forName: xattrName) {
             XCTFail("Failed setting xattr boolean.")
         }
         
-        XCTAssertTrue(fileURL.getXattrBoolForName(xattrName))
+        XCTAssertTrue((fileURL as NSURL).getXattrBool(forName: xattrName))
         
         // overwrite
-        fileURL.setXattrBool(false, forName: xattrName)
-        XCTAssertFalse(fileURL.getXattrBoolForName(xattrName))
+        (fileURL as NSURL).setXattrBool(false, forName: xattrName)
+        XCTAssertFalse((fileURL as NSURL).getXattrBool(forName: xattrName))
     }
 
 }

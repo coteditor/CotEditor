@@ -38,7 +38,7 @@ class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(CChar32(character.character), CChar32("あ"))
         XCTAssertEqual(character.unicode, "U+3042")
         XCTAssertEqual(character.string, "あ")
-        XCTAssertFalse(character.surrogatePair)
+        XCTAssertFalse(character.isSurrogatePair)
         XCTAssertNil(character.surrogateUnicodes)
         XCTAssertEqual(character.name, "HIRAGANA LETTER A")
         XCTAssertEqual(character.categoryName, "Other Letter")
@@ -63,7 +63,7 @@ class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(CChar32(character.character), CChar32("😀"))
         XCTAssertEqual(character.unicode, "U+1F600")
         XCTAssertEqual(character.string, "😀")
-        XCTAssertTrue(character.surrogatePair)
+        XCTAssertTrue(character.isSurrogatePair)
         XCTAssertEqual(character.surrogateUnicodes!, ["U+D83D", "U+DE00"])
         XCTAssertEqual(character.name, "GRINNING FACE")
         XCTAssertEqual(character.categoryName, "Other Symbol")
@@ -125,7 +125,7 @@ class CharacterInfoTests: XCTestCase {
         }
         
         XCTAssertEqual(charInfo.string, "☺︎")
-        XCTAssertFalse(charInfo.complexChar)
+        XCTAssertFalse(charInfo.isComplexChar)
         XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+263A", "U+FE0E"])
         XCTAssertEqual(charInfo.unicodes.map{$0.name}, ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
         XCTAssertEqual(charInfo.prettyDescription, "WHITE SMILING FACE (Text Style)")
@@ -138,7 +138,7 @@ class CharacterInfoTests: XCTestCase {
             return
         }
         
-        XCTAssertTrue(charInfo.complexChar)
+        XCTAssertTrue(charInfo.isComplexChar)
         XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+0031", "U+FE0F", "U+20E3"])
         XCTAssertEqual(charInfo.prettyDescription, "<a letter consisting of 3 characters>")
     }
@@ -150,7 +150,7 @@ class CharacterInfoTests: XCTestCase {
             return
         }
         
-        XCTAssertTrue(charInfo.complexChar)
+        XCTAssertTrue(charInfo.isComplexChar)
         XCTAssertEqual(charInfo.unicodes.map{$0.unicode}, ["U+1F1EF", "U+1F1F5"])
     }
     
