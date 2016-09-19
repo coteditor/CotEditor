@@ -270,7 +270,7 @@ final class ThemeManager: SettingFileManager {
             if userDirURL.isReachable {
                 let fileURLs = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
                                                                             options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])) ?? []
-                let userThemeNames = fileURLs.lazy
+                let userThemeNames = fileURLs
                     .filter { $0.pathExtension == self.filePathExtension }
                     .map { self.settingName(from: $0) }
                 
