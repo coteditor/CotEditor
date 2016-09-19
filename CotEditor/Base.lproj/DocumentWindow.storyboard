@@ -216,12 +216,13 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <outlet property="delegate" destination="O3C-zL-JF9" id="0X5-EI-Y68"/>
+                            <outlet property="delegate" destination="O3C-zL-JF9" id="Em3-YX-NAi"/>
                         </connections>
                     </splitView>
                     <connections>
                         <outlet property="documentViewItem" destination="NAv-oU-Mey" id="lPe-qQ-5LB"/>
                         <outlet property="sidebarViewItem" destination="faM-S9-Ldc" id="txW-VA-3vb"/>
+                        <outlet property="view" destination="Xj1-1i-hd5" id="63h-kR-c67"/>
                         <segue destination="2gA-dj-5gh" kind="relationship" relationship="splitItems" id="49u-wK-kqV"/>
                         <segue destination="7te-2x-zAq" kind="relationship" relationship="splitItems" id="sB5-Yd-23U"/>
                     </connections>
@@ -266,12 +267,13 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <outlet property="delegate" destination="2gA-dj-5gh" id="fAD-sJ-czY"/>
+                            <outlet property="delegate" destination="2gA-dj-5gh" id="9wJ-so-YQl"/>
                         </connections>
                     </splitView>
                     <connections>
                         <outlet property="splitViewItem" destination="tZe-bg-feG" id="WmM-B8-IB0"/>
                         <outlet property="statusBarItem" destination="lfq-9K-fZM" id="qBF-wb-f69"/>
+                        <outlet property="view" destination="0PU-mC-e2a" id="jMA-Kg-ICu"/>
                         <segue destination="vcx-nD-eDH" kind="relationship" relationship="splitItems" id="cYB-og-7Al"/>
                         <segue destination="NBJ-8W-V9X" kind="relationship" relationship="splitItems" id="eHg-OY-YEn"/>
                     </connections>
@@ -293,9 +295,12 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <outlet property="delegate" destination="vcx-nD-eDH" id="MXw-Hi-a9d"/>
+                            <outlet property="delegate" destination="vcx-nD-eDH" id="OJI-6d-2bg"/>
                         </connections>
                     </splitView>
+                    <connections>
+                        <outlet property="view" destination="erk-uh-Ad4" id="2BL-Xk-wfu"/>
+                    </connections>
                 </splitViewController>
                 <customObject id="BD5-7O-H8g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
