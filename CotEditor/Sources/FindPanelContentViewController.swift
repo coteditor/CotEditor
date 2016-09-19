@@ -64,7 +64,8 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     /// collapse result view by dragging divider
      override func splitViewDidResizeSubviews(_ notification: Notification) {
         
-        super.splitViewDidResizeSubviews(notification)
+        // calling super's splitViewDidResizeSubviews() make app crash on Yosemite (2016-09 on macOS 10.12 SDK)
+//        super.splitViewDidResizeSubviews(notification)
         
         guard !self.isUncollapsing else { return }
         

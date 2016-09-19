@@ -19,6 +19,7 @@ develop
 - Fix an issue find string is not shared with other applications after quitting CotEditor.
 - Address an issue with drawing area of zoomed character view in character inspector popover.
 - [beta] Fix an issue where current line highlight was occasionally too wide when line height is 1.0.
+- [beta] Fix an issue where the result view in the find panel expands wrong way on Yosemite.
 - [beta] Fix an issue where divider in the find panel remains after closing result view.
 - [beta] Fix an issue where smart indent didn't worked.
 - [beta] Fix an issue where inputting character with unicode hex didn't work.

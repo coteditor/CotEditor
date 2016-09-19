@@ -10,7 +10,7 @@
                 <windowController showSeguePresentationStyle="single" id="2Yd-sK-nho" customClass="FindPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="findPanel" title="Find &amp; Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="findPanel" animationBehavior="default" id="Wal-Sg-6d6" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
-                        <rect key="contentRect" x="425" y="461" width="460" height="270"/>
+                        <rect key="contentRect" x="425" y="461" width="460" height="197"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
                     </window>
                     <connections>
@@ -19,7 +19,7 @@
                 </windowController>
                 <customObject id="kPu-9e-gED" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="198" y="268"/>
+            <point key="canvasLocation" x="198" y="347"/>
         </scene>
         <!--Content View Controller-->
         <scene sceneID="7vp-sv-2MQ">
@@ -30,8 +30,8 @@
                         <splitViewItem canCollapse="YES" collapsed="YES" id="QW9-eM-ZIB"/>
                         <splitViewItem id="aiM-dr-0gg"/>
                     </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" id="jKV-b0-yX6" customClass="FindPanelSplitView" customModule="CotEditor" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="460" height="300"/>
+                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="jKV-b0-yX6" customClass="FindPanelSplitView" customModule="CotEditor" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="460" height="197"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <outlet property="delegate" destination="YRm-Np-TJD" id="IQ7-vJ-l3k"/>
