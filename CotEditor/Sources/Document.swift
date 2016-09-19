@@ -99,6 +99,8 @@ final class Document: NSDocument, EncodingHolder {
     
     override init() {
         
+        // [caution] This method may be called from a background thread due to concurrent-opening.
+        
         let uuid = UUID().uuidString
         self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: UniqueFileIDLength))
         
@@ -126,12 +128,12 @@ final class Document: NSDocument, EncodingHolder {
     /// initialize instance with existing file
     convenience init(fileURL url: URL, ofType typeName: String) throws {
         
+        // [caution] This method may be called from a background thread due to concurrent-opening.
+        // This method won't be invoked on Resume. (2015-01-26)
+        
         // Workaround initializer in order to invoke self's (actually super's) `init(contentsOf:ofType:)` inside.
         
         try self.init(contentsOf: url, ofType: typeName)
-        
-        // [caution] This method may be called from a background thread due to concurrent-opening.
-        // This method won't be invoked on Resume. (2015-01-26)
         
         // set sender of external editor protocol (ODB Editor Suite)
         self.odbEventSender = ODBEventSender()
@@ -318,6 +320,8 @@ final class Document: NSDocument, EncodingHolder {
     /// create Data object to save
     override func data(ofType typeName: String) throws -> Data {
         
+        // [caution] This method may be called from a background thread due to async-saving.
+        
         let encoding = self.encoding
         let needsUTF8BOM = (encoding == .utf8) && self.hasUTF8BOM
         
@@ -449,6 +453,8 @@ final class Document: NSDocument, EncodingHolder {
     
     /// customize document's file attributes
     override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String : Any] {
+        
+        // [caution] This method may be called from a background thread due to async-saving.
         
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
