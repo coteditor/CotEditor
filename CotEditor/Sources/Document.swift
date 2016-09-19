@@ -121,7 +121,11 @@ final class Document: NSDocument, EncodingHolder {
         self.hasUndoManager = true
         
         // observe sytnax style update
-        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: .StyntaxDidUpdate, object: nil)
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(self.syntaxDidUpdate), name: .StyntaxDidUpdate, object: nil)
+        }
     }
     
     
