@@ -62,7 +62,7 @@ private enum FileExtendedAttributeName {
 
 final class Document: NSDocument, EncodingHolder {
     
-    // MARK: Public Properties
+    // MARK: Readonly Properties
     
     let textStorage = NSTextStorage()
     private(set) var encoding: String.Encoding
@@ -76,7 +76,7 @@ final class Document: NSDocument, EncodingHolder {
     private(set) lazy var incompatibleCharacterScanner: IncompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
     
     
-    // MARK: Public Properties
+    // MARK: Private Properties
     
     private lazy var printPanelAccessoryController: PrintPanelAccessoryController = PrintPanelAccessoryController()
     @IBOutlet private var savePanelAccessoryView: NSView?
@@ -121,11 +121,7 @@ final class Document: NSDocument, EncodingHolder {
         self.hasUndoManager = true
         
         // observe sytnax style update
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(self.syntaxDidUpdate), name: .StyntaxDidUpdate, object: nil)
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: .StyntaxDidUpdate, object: nil)
     }
     
     
