@@ -57,13 +57,8 @@ final class FilePermissionsFormatter: Formatter {
 private func humanReadable(permission: UInt) -> String {
     
     let units = ["---", "--x", "-w-", "-wx", "r--", "r-x", "rw-", "rwx"]
-    var result = "-"  // Document is always file.
     
-    for i in (0...2).reversed() {
-        let digit = (Int(permission) >> (i * 3)) & 0x7
-        
-        result = result + units[digit]
-    }
-    
-    return result
+    return (0...2).reversed().lazy
+        .map { (Int(permission) >> ($0 * 3)) & 0x7 }
+        .reduce("-") { (string, digit) in string + units[digit] }  // Document is always file.
 }

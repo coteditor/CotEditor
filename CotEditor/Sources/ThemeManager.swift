@@ -72,7 +72,7 @@ final class ThemeManager: SettingFileManager {
         
         // cache bundled theme names
         let themeURLs = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: self.directoryName) ?? []
-        self.bundledThemeNames = themeURLs
+        self.bundledThemeNames = themeURLs.lazy
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
         
@@ -270,7 +270,7 @@ final class ThemeManager: SettingFileManager {
             if userDirURL.isReachable {
                 let fileURLs = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
                                                                             options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])) ?? []
-                let userThemeNames = fileURLs
+                let userThemeNames = fileURLs.lazy
                     .filter { $0.pathExtension == self.filePathExtension }
                     .map { self.settingName(from: $0) }
                 

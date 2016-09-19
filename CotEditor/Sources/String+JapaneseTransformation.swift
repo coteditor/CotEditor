@@ -34,7 +34,7 @@ extension String {
     /// transform half-width roman to full-width
     var fullWidthRoman: String {
         
-        return self.unicodeScalars
+        return self.unicodeScalars.lazy
             .map { scalar -> UnicodeScalar in
                 guard CharacterSet.fullWidthAvailables.contains(scalar) else { return scalar }
                 
@@ -47,7 +47,7 @@ extension String {
     /// transform full-width roman to half-width
     var halfWidthRoman: String {
         
-        return self.unicodeScalars
+        return self.unicodeScalars.lazy
             .map { scalar -> UnicodeScalar in
                 guard CharacterSet.fullWidths.contains(scalar) else { return scalar }
                 
