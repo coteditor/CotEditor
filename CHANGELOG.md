@@ -12,6 +12,7 @@ develop
     - Open sideview outward also on Yosemite.
     - Sync states of sidebar among tabs in a window more correctly.
     - Fix some unwanted behavior around sidebar.
+- [beta] Update help contents.
 
 
 ### Fixes
