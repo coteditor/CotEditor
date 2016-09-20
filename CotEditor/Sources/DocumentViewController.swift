@@ -261,6 +261,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         guard let textStorage = notification.object as? NSTextStorage,
             textStorage.editedMask.contains(.editedCharacters) else { return }
         
+        // don't update when input text is not yet fixed.
+        guard !(self.focusedTextView?.hasMarkedText() ?? false) else { return }
+        
         // update editor information
         // -> In case, if "Replace All" performed without moving caret.
         self.document?.analyzer.invalidateEditorInfo()

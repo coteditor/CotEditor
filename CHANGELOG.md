@@ -22,6 +22,7 @@ develop
 - [beta] Fix an issue where the result view in the find panel expands wrong way on Yosemite.
 - [beta] Fix an issue where divider in the find panel remains after closing result view.
 - [beta] Fix an issue where smart indent didn't worked.
+- [beta] Fix an issue where syntax highlighting flicked while inputting Japanese text.
 - [beta] Fix an issue where inputting character with unicode hex didn't work.
 - [beta] Fix an issue where text view drawing remained in line number view when text view scaled up.
 - [beta] Fix an issue where bottom window corners weren't rounded under the specific conditions.
