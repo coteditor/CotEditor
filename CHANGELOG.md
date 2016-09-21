@@ -37,6 +37,8 @@ develop
 ### New Features
 
 - Support window tabbing on macOS Sierra.
+    - Add “New Tab” action to File menu.
+    - Sync sidebar visibility among tabs in a window.
 - Display recent used syntax styles at the top of the toolbar syntax style popup list.
 - Add individual “Block Comment”, “Inline Comment” and “Uncomment” actions in Text menu unlike the “Comment Selection” action changes its behavior intelligently.
 
