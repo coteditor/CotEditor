@@ -8,6 +8,7 @@ develop
 ### Fixes
 
 - [beta] Fix an issue where initial window position was not stored.
+- [beta] Fix another memory leaks.
 
 
 
