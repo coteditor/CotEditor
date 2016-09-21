@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where initial window position was not stored.
+
+
+
 3.0.0-beta.2 (144)
 --------------------------
 
