@@ -209,7 +209,7 @@
                     </splitViewItems>
                     <splitView key="splitView" autosaveName="windowContentSplitView" dividerStyle="thin" vertical="YES" id="Xj1-1i-hd5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
                                 <color key="value" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -235,7 +235,7 @@
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" misplaced="YES" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="252" y="0.0" width="200" height="300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
                     </tabView>
@@ -257,7 +257,7 @@
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" id="0PU-mC-e2a">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -282,7 +282,7 @@
                 <splitViewController showSeguePresentationStyle="single" id="vcx-nD-eDH" customClass="SplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitView key="splitView" dividerStyle="paneSplitter" id="erk-uh-Ad4" customClass="EditorSplitView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -303,7 +303,7 @@
                 <viewController showSeguePresentationStyle="single" id="NBJ-8W-V9X" customClass="StatusBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="JZo-9i-3gf" customClass="OpaqueView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="19"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView hidden="YES" toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hXt-K8-Jwk">
                                 <rect key="frame" x="8" y="2" width="16" height="16"/>
