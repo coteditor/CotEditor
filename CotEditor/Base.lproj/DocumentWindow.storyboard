@@ -215,9 +215,6 @@
                                 <color key="value" name="gridColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="O3C-zL-JF9" id="Em3-YX-NAi"/>
-                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="documentViewItem" destination="NAv-oU-Mey" id="lPe-qQ-5LB"/>
@@ -256,7 +253,7 @@
                 <splitViewController showSeguePresentationStyle="single" id="2gA-dj-5gh" customClass="DocumentViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="tZe-bg-feG"/>
-                        <splitViewItem collapsed="YES" holdingPriority="260" id="lfq-9K-fZM"/>
+                        <splitViewItem collapsed="YES" holdingPriority="750" id="lfq-9K-fZM"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" id="0PU-mC-e2a">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="300"/>
@@ -266,9 +263,6 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="2gA-dj-5gh" id="9wJ-so-YQl"/>
-                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="splitViewItem" destination="tZe-bg-feG" id="WmM-B8-IB0"/>
@@ -294,9 +288,6 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="vcx-nD-eDH" id="OJI-6d-2bg"/>
-                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="view" destination="erk-uh-Ad4" id="2BL-Xk-wfu"/>

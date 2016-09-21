@@ -48,6 +48,11 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         
         super.viewDidLoad()
         
+        // workaround for OS X Yosemite (on macOS 10.12 SDK)
+        if NSAppKitVersionNumber < Double(NSAppKitVersionNumber10_11) {
+            self.splitView.delegate = self
+        }
+        
         TextFinder.shared.delegate = self
     }
     

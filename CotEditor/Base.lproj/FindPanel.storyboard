@@ -33,9 +33,6 @@
                     <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="jKV-b0-yX6" customClass="FindPanelSplitView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="197"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <outlet property="delegate" destination="YRm-Np-TJD" id="IQ7-vJ-l3k"/>
-                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="fieldSplitViewItem" destination="fLf-rT-Hpl" id="Ysg-ma-MQV"/>

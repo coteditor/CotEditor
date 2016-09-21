@@ -57,6 +57,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         
         super.viewDidLoad()
         
+        // workaround for OS X Yosemite (on macOS 10.12 SDK)
+        if NSAppKitVersionNumber < Double(NSAppKitVersionNumber10_11) {
+            self.splitView.delegate = self
+        }
+        
         // setup status bar
         self.isStatusBarShown = Defaults[.showStatusBar]
         self.showsInvisibles = Defaults[.showInvisibles]

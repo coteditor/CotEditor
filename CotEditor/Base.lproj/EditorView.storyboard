@@ -10,7 +10,7 @@
             <objects>
                 <splitViewController id="sY9-RN-jMg" customClass="EditorViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem holdingPriority="260" id="1jV-uy-ka5"/>
+                        <splitViewItem holdingPriority="750" id="1jV-uy-ka5"/>
                         <splitViewItem id="Z56-OS-hF0"/>
                     </splitViewItems>
                     <splitView key="splitView" identifier="EditorView" dividerStyle="thin" id="Kyz-NV-ro4">
@@ -21,9 +21,6 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="sY9-RN-jMg" id="0Gk-2F-DgB"/>
-                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="navigationBarItem" destination="1jV-uy-ka5" id="zJG-DA-wzB"/>
