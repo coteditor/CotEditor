@@ -58,7 +58,7 @@ private func humanReadable(permission: UInt) -> String {
     
     let units = ["---", "--x", "-w-", "-wx", "r--", "r-x", "rw-", "rwx"]
     
-    return (0...2).reversed().lazy
-        .map { (Int(permission) >> ($0 * 3)) & 0x7 }
-        .reduce("-") { (string, digit) in string + units[digit] }  // Document is always file.
+    return (0...2).reversed()
+        .map { index -> Int in return (Int(permission) >> (index * 3)) & 0x7 }
+        .reduce("-") { (string, digit) -> String in return string + units[digit] }  // Document is always file.
 }
