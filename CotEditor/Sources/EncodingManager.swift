@@ -44,28 +44,23 @@ extension Notification.Name {
 
 // MARK:
 
+private let UTF8Tag = Int(String.Encoding.utf8.rawValue)
+
+
 final class EncodingManager: NSObject {
     
     // MARK: Public Properties
     
     static let shared = EncodingManager()
-
-    
-    // MARK: Private Properties
-    
-    private let UTF8Tag = Int(String.Encoding.utf8.rawValue)
-    private var _menuItems = [NSMenuItem]()
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override private init() {
         
         super.init()
-        
-        self.buildEncodingMenuItems()
         
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.encodingList.rawValue, context: nil)
     }
@@ -82,7 +77,9 @@ final class EncodingManager: NSObject {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.encodingList.rawValue {
-            self.buildEncodingMenuItems()
+            DispatchQueue.main.async { [weak self] in
+                NotificationCenter.default.post(name: .EncodingListDidUpdate, object: self)
+            }
         }
     }
     
@@ -124,9 +121,19 @@ final class EncodingManager: NSObject {
     
     
     /// return copied encoding menu items
-    var encodingMenuItems: [NSMenuItem] {
+    func createEncodingMenuItems() -> [NSMenuItem] {
         
-        return self._menuItems.map { $0.copy() as! NSMenuItem }
+        return self.defaultEncodings.map { encoding in
+            guard let encoding = encoding else {
+                return NSMenuItem.separator()
+            }
+            
+            let item = NSMenuItem()
+            item.title = String.localizedName(of: encoding)
+            item.tag = Int(encoding.rawValue)
+            
+            return item
+        }
     }
     
     
@@ -135,7 +142,7 @@ final class EncodingManager: NSObject {
         
         menu.removeAllItems()
         
-        for item in self.encodingMenuItems {
+        for item in self.createEncodingMenuItems() {
             item.action = #selector(EncodingHolder.changeEncoding)
             item.target = nil
             menu.addItem(item)
@@ -148,31 +155,6 @@ final class EncodingManager: NSObject {
                 bomItem.tag = -UTF8Tag  // negative value is sign for "with BOM"
                 menu.addItem(bomItem)
             }
-        }
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// build encoding menu items
-    private func buildEncodingMenuItems() {
-        
-        self._menuItems = self.defaultEncodings.map { encoding in
-            guard let encoding = encoding else {
-                return NSMenuItem.separator()
-            }
-            
-            let item = NSMenuItem()
-            item.title = String.localizedName(of: encoding)
-            item.tag = Int(encoding.rawValue)
-            
-            return item
-        }
-        
-        // notify that new encoding menu items was created
-        DispatchQueue.main.async { [weak self] in
-            NotificationCenter.default.post(name: .EncodingListDidUpdate, object: self)
         }
     }
     

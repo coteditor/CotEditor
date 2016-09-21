@@ -62,7 +62,7 @@ private enum FileExtendedAttributeName {
 
 final class Document: NSDocument, EncodingHolder {
     
-    // MARK: Public Properties
+    // MARK: Readonly Properties
     
     let textStorage = NSTextStorage()
     private(set) var encoding: String.Encoding
@@ -71,13 +71,12 @@ final class Document: NSDocument, EncodingHolder {
     private(set) var fileAttributes: [FileAttributeKey: Any]?
     private(set) var syntaxStyle: SyntaxStyle
     
-    var windowController: DocumentWindowController? { return self.windowControllers.first as? DocumentWindowController }
     private(set) lazy var selection: TextSelection = TextSelection(document: self)
     private(set) lazy var analyzer: DocumentAnalyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner: IncompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
     
     
-    // MARK: Public Properties
+    // MARK: Private Properties
     
     private lazy var printPanelAccessoryController: PrintPanelAccessoryController = PrintPanelAccessoryController()
     @IBOutlet private var savePanelAccessoryView: NSView?
@@ -99,6 +98,8 @@ final class Document: NSDocument, EncodingHolder {
     // MARK: Lifecycle
     
     override init() {
+        
+        // [caution] This method may be called from a background thread due to concurrent-opening.
         
         let uuid = UUID().uuidString
         self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: UniqueFileIDLength))
@@ -127,12 +128,12 @@ final class Document: NSDocument, EncodingHolder {
     /// initialize instance with existing file
     convenience init(fileURL url: URL, ofType typeName: String) throws {
         
+        // [caution] This method may be called from a background thread due to concurrent-opening.
+        // This method won't be invoked on Resume. (2015-01-26)
+        
         // Workaround initializer in order to invoke self's (actually super's) `init(contentsOf:ofType:)` inside.
         
         try self.init(contentsOf: url, ofType: typeName)
-        
-        // [caution] This method may be called from a background thread due to concurrent-opening.
-        // This method won't be invoked on Resume. (2015-01-26)
         
         // set sender of external editor protocol (ODB Editor Suite)
         self.odbEventSender = ODBEventSender()
@@ -201,7 +202,8 @@ final class Document: NSDocument, EncodingHolder {
     override func makeWindowControllers() {
         
         let storyboard = NSStoryboard(name: "DocumentWindow", bundle: nil)
-        let windowController = storyboard.instantiateInitialController() as! DocumentWindowController
+        let windowController = storyboard.instantiateInitialController() as! NSWindowController
+        
         self.addWindowController(windowController)
     }
     
@@ -318,6 +320,8 @@ final class Document: NSDocument, EncodingHolder {
     /// create Data object to save
     override func data(ofType typeName: String) throws -> Data {
         
+        // [caution] This method may be called from a background thread due to async-saving.
+        
         let encoding = self.encoding
         let needsUTF8BOM = (encoding == .utf8) && self.hasUTF8BOM
         
@@ -431,7 +435,7 @@ final class Document: NSDocument, EncodingHolder {
         
         // store current state here, since the main thread will already be unblocked after `data(ofType:)`
         let encoding = self.encoding
-        self.isVerticalText = self.editor?.verticalLayoutOrientation ?? false
+        self.isVerticalText = self.viewController?.verticalLayoutOrientation ?? false
         
         try super.write(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
@@ -449,6 +453,8 @@ final class Document: NSDocument, EncodingHolder {
     
     /// customize document's file attributes
     override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String : Any] {
+        
+        // [caution] This method may be called from a background thread due to async-saving.
         
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
@@ -550,17 +556,17 @@ final class Document: NSDocument, EncodingHolder {
     /// setup print setting including print panel
     override func printOperation(withSettings printSettings: [String : Any]) throws -> NSPrintOperation {
         
-        let editor = self.editor!
+        let viewController = self.viewController!
         
         // create printView
         let printView = PrintTextView()
-        printView.setLayoutOrientation(editor.verticalLayoutOrientation ? .vertical : .horizontal)
-        printView.theme = editor.theme
+        printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
+        printView.theme = viewController.theme
         printView.documentName = self.displayName
         printView.filePath = self.fileURL?.path
         printView.syntaxName = self.syntaxStyle.styleName
-        printView.documentShowsInvisibles = editor.showsInvisibles
-        printView.documentShowsLineNumber = editor.showsLineNumber
+        printView.documentShowsInvisibles = viewController.showsInvisibles
+        printView.documentShowsLineNumber = viewController.showsLineNumber
         
         // set font for printing
         printView.font = {
@@ -568,7 +574,7 @@ final class Document: NSDocument, EncodingHolder {
                 return NSFont(name: Defaults[.printFontName]!,
                               size: Defaults[.printFontSize])
             }
-            return editor.font
+            return viewController.font
         }()
         
         // [caution] need to set string after setting other properties
@@ -623,7 +629,7 @@ final class Document: NSDocument, EncodingHolder {
         document.hasUTF8BOM = self.hasUTF8BOM
         
         // apply text orientation
-        document.editor?.verticalLayoutOrientation = self.editor?.verticalLayoutOrientation ?? self.isVerticalText
+        document.viewController?.verticalLayoutOrientation = self.viewController?.verticalLayoutOrientation ?? self.isVerticalText
         
         return document
     }
@@ -654,7 +660,7 @@ final class Document: NSDocument, EncodingHolder {
         
         // [caution] This method can be called from any thread.
         
-        guard let fileURL = self.fileURL else { return }
+        super.presentedItemDidChange()
         
         let option = DocumentConflictOption(rawValue: Defaults[.documentConflictOption]) ?? .notify
         
@@ -663,6 +669,8 @@ final class Document: NSDocument, EncodingHolder {
         
         // don't check twice if document is already marked as modified
         guard !self.needsShowUpdateAlertWithBecomeKey else { return }
+        
+        guard let fileURL = self.fileURL else { return }
         
         // ignore if file's modificationDate is the same as document's modificationDate
         var fileModificationDate: Date?
@@ -762,18 +770,18 @@ final class Document: NSDocument, EncodingHolder {
     
     
     /// return document window's editor wrapper
-    var editor: EditorWrapper? {
+    var viewController: DocumentViewController? {
         
-        return (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.editor
+        return (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.documentViewController
     }
     
     
     /// transfer file information to UI
     func applyContentToWindow() {
         
-        guard let editor = self.editor else { return }
+        guard let viewController = self.viewController else { return }
         
-        editor.invalidateStyleInTextStorage()
+        viewController.invalidateStyleInTextStorage()
         
         // update status bar and document inspector
         self.analyzer.invalidateFileInfo()
@@ -784,7 +792,7 @@ final class Document: NSDocument, EncodingHolder {
         self.incompatibleCharacterScanner.invalidate()
         
         // apply text orientation
-        editor.verticalLayoutOrientation = self.isVerticalText
+        viewController.verticalLayoutOrientation = self.isVerticalText
     }
     
     
@@ -1264,7 +1272,7 @@ extension Document: Editable {
     
     var textView: NSTextView? {
         
-        return self.editor?.focusedTextView
+        return self.viewController?.focusedTextView
     }
 }
 
@@ -1351,6 +1359,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
         let document = self.attempter
+        let windowContentController = document.windowControllers.first?.contentViewController as? WindowContentViewController
         
         switch self.kind {
         case .ianaCharsetNameConflict:
@@ -1365,7 +1374,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Chars
-                document.windowController?.showIncompatibleCharList()
+                windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 return false
             case 1:  // == Save
                 return true
@@ -1386,8 +1395,8 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 return false
             case 1:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
-                (document.undoManager?.prepare(withInvocationTarget: document.windowController) as? DocumentWindowController)?.showIncompatibleCharList()
-                document.windowController?.showIncompatibleCharList()
+                (document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController)?.showSidebarPane(index: .incompatibleCharacters)
+                windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 return true
             default:
                 return false

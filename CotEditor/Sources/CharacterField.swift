@@ -35,14 +35,59 @@ final class CharacterField: NSTextField {
     override var intrinsicContentSize: NSSize {
         
         var size = super.intrinsicContentSize
-        let bounds = self.attributedStringValue.boundingRect(with: size, options: .usesFontLeading)
+        let textBounds = self.attributedStringValue.bounds.integral
         
         if let font = self.font {
             size.width = max(font.pointSize, size.width)
         }
-        size.height = ceil(bounds.height)
+        size.height = max(size.height, textBounds.height) + 1
         
         return size
+    }
+    
+}
+
+
+
+final class CharacterFieldCell: NSTextFieldCell {
+    
+    /// rect of content text
+    override func titleRect(forBounds rect: NSRect) -> NSRect {
+        
+        var titleRect = super.titleRect(forBounds: rect)
+        let textBounds = self.attributedStringValue.bounds.integral
+        
+        titleRect.origin.y = -textBounds.minY
+        titleRect.size.height = max(textBounds.height, titleRect.height)
+        
+        return titleRect
+    }
+    
+    
+    /// draw inside of field
+    override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+        
+        self.attributedStringValue.draw(in: self.titleRect(forBounds: cellFrame))
+    }
+    
+}
+
+
+
+extension NSAttributedString {
+    
+    var bounds: NSRect {
+        
+        let layoutManager = NSLayoutManager()
+        let textStorage = NSTextStorage(attributedString: self)
+        let textContainer = NSTextContainer(containerSize: .infinite)
+        
+        layoutManager.addTextContainer(textContainer)
+        textStorage.addLayoutManager(layoutManager)
+        
+        let glyphRange = layoutManager.glyphRange(for: textContainer)
+        
+        return layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
     }
     
 }

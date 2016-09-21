@@ -1,11 +1,11 @@
 /*
  
- EditorWrapper.swift
+ DocumentViewController.swift
  
  CotEditor
  https://coteditor.com
  
- Created by nakamuxu on 2004-12-08.
+ Created by 1024jp on 2016-06-05.
  
  ------------------------------------------------------------------------------
  
@@ -31,39 +31,17 @@ import Cocoa
 private let MaximumNumberOfSplitEditors = 8
 
 
-final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSTextStorageDelegate {
+final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
+    @IBOutlet private weak var statusBarItem: NSSplitViewItem?
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
-    
-    override init() {
-        
-        self.showsInvisibles = Defaults[.showInvisibles]
-        self.showsLineNumber = Defaults[.showLineNumbers]
-        self.showsNavigationBar = Defaults[.showNavigationBar]
-        self.wrapsLines = Defaults[.wrapLines]
-        self.verticalLayoutOrientation = Defaults[.layoutTextVertical]
-        self.showsPageGuide = Defaults[.showPageGuide]
-        
-        super.init()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
-                                               name: .ThemeDidUpdate,
-                                               object: nil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -73,21 +51,37 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     
-    // MARK: Responder Methods
+    // MARK: Split View Controller Methods
     
-    /// join to responder chain
-    override func awakeFromNib() {
+    override func viewDidLoad() {
         
-        super.awakeFromNib()
+        super.viewDidLoad()
         
-        self.window?.nextResponder = self
+        // workaround for OS X Yosemite (on macOS 10.12 SDK)
+        if NSAppKitVersionNumber < Double(NSAppKitVersionNumber10_11) {
+            self.splitView.delegate = self
+        }
+        
+        // setup status bar
+        self.isStatusBarShown = Defaults[.showStatusBar]
+        self.showsInvisibles = Defaults[.showInvisibles]
+        self.showsLineNumber = Defaults[.showLineNumbers]
+        self.showsNavigationBar = Defaults[.showNavigationBar]
+        self.wrapsLines = Defaults[.wrapLines]
+        self.verticalLayoutOrientation = Defaults[.layoutTextVertical]
+        self.showsPageGuide = Defaults[.showPageGuide]
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
+                                               name: .ThemeDidUpdate,
+                                               object: nil)
     }
     
     
     /// keys to be restored from the last session
     override class func restorableStateKeyPaths() -> [String] {
         
-        return [#keyPath(showsNavigationBar),
+        return [#keyPath(isStatusBarShown),
+                #keyPath(showsNavigationBar),
                 #keyPath(showsLineNumber),
                 #keyPath(showsPageGuide),
                 #keyPath(showsInvisibles),
@@ -95,12 +89,71 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     }
     
     
-    /// apply current state to related menu items
+    /// deliver document to child view controllers
+    override var representedObject: Any? {
+        
+        didSet {
+            guard let document = representedObject as? Document else { return }
+            
+            (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
+            
+            // detect indent style
+            if Defaults[.detectsIndentStyle],
+                let indentStyle = document.textStorage.string.detectedIndentStyle
+            {
+                self.isAutoTabExpandEnabled = {
+                    switch indentStyle {
+                    case .tab:
+                        return false
+                    case .space:
+                        return true
+                    }
+                }()
+            }
+            
+            document.textStorage.delegate = self
+            document.syntaxStyle.delegate = self
+            
+            let editorViewController = self.createEditor(baseViewController: nil)
+            
+            // start parcing syntax highlights and outline menu
+            if document.syntaxStyle.canParse {
+                editorViewController.navigationBarController?.showOutlineIndicator()
+            }
+            document.syntaxStyle.invalidateOutline()
+            self.invalidateSyntaxHighlight()
+            
+            // focus text view
+            self.view.window?.makeFirstResponder(editorViewController.textView)
+            
+            // observe syntax/theme change
+            NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
+                                                   name: .DocumentDidChangeSyntaxStyle,
+                                                   object: document)
+        }
+    }
+    
+    
+    /// avoid showing draggable cursor
+    override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
+        
+        // -> must call super's delegate method anyway.
+        super.splitView(splitView, effectiveRect: proposedEffectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
+        
+        return .zero
+    }
+    
+    
+    /// validate menu items
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         guard let action = menuItem.action else { return false }
         
         switch action {
+        case #selector(toggleStatusBar):
+            let title = self.isStatusBarShown ? "Hide Status Bar" : "Show Status Bar"
+            menuItem.title = NSLocalizedString(title, comment: "")
+            
         case #selector(recolorAll):
             return self.syntaxStyle?.canParse ?? false
             
@@ -213,6 +266,9 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         guard let textStorage = notification.object as? NSTextStorage,
             textStorage.editedMask.contains(.editedCharacters) else { return }
         
+        // don't update when input text is not yet fixed.
+        guard !(self.focusedTextView?.hasMarkedText() ?? false) else { return }
+        
         // update editor information
         // -> In case, if "Replace All" performed without moving caret.
         self.document?.analyzer.invalidateEditorInfo()
@@ -290,6 +346,13 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     // MARK: Public Methods
     
+    /// setup document
+    var document: Document? {
+        
+        return self.representedObject as? Document
+    }
+    
+    
     /// return textView focused on
     var focusedTextView: EditorTextView? {
         
@@ -297,51 +360,22 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     }
     
     
-    /// setup document
-    weak var document: Document? {
+    /// coloring theme
+    var theme: Theme? {
         
-        didSet {
-            guard let document = document else { return }
-            
-            // detect indent style
-            if Defaults[.detectsIndentStyle],
-                let indentStyle = document.textStorage.string.detectedIndentStyle
-            {
-                self.isAutoTabExpandEnabled = {
-                    switch indentStyle {
-                    case .tab:
-                        return false
-                    case .space:
-                        return true
-                    }
-                }()
-            }
-            
-            document.textStorage.delegate = self
-            document.syntaxStyle.delegate = self
-            
-            let editorViewController = self.createEditor(baseViewController: nil)
-            
-            // start parcing syntax highlights and outline menu
-            if document.syntaxStyle.canParse {
-                editorViewController.navigationBarController?.showOutlineIndicator()
-            }
-            document.syntaxStyle.invalidateOutline()
-            self.invalidateSyntaxHighlight()
-            
-            // focus text view
-            self.window?.makeFirstResponder(editorViewController.textView)
-            
-            // observe syntax/theme change
-            NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
-                                                   name: .DocumentDidChangeSyntaxStyle,
-                                                   object: document)
-        }
+        return self.focusedTextView?.theme
+    }
+    
+    
+    /// body font
+    var font: NSFont? {
+        
+        return self.focusedTextView?.font
     }
     
     
     /// visibility of navigation bars
-    dynamic var showsNavigationBar: Bool {
+    dynamic var showsNavigationBar = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -352,7 +386,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// visibility of line numbers view
-    dynamic var showsLineNumber: Bool {
+    dynamic var showsLineNumber = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -363,7 +397,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// if lines soft-wrap at window edge
-    dynamic var wrapsLines: Bool {
+    dynamic var wrapsLines = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -398,7 +432,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// if text orientation is vertical
-    dynamic var verticalLayoutOrientation: Bool {
+    dynamic var verticalLayoutOrientation = false {
         
         didSet {
             let orientation: NSTextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
@@ -424,20 +458,6 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     }
     
     
-    /// body font
-    var font: NSFont? {
-        
-        return self.focusedTextView?.font
-    }
-    
-    
-    /// coloring theme
-    var theme: Theme? {
-        
-        return self.focusedTextView?.theme
-    }
-    
-    
     /// apply text styles from text view
     func invalidateStyleInTextStorage() {
         
@@ -448,6 +468,13 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     // MARK: Action Messages
     
+    /// toggle visibility of status bar with fancy animation
+    @IBAction func toggleStatusBar(_ sender: Any?) {
+        
+        self.statusBarItem?.animator().isCollapsed = self.isStatusBarShown
+    }
+    
+    
     /// toggle visibility of line number view
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
@@ -455,7 +482,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     }
     
     
-    /// toggle visibility of navigation bar
+    /// toggle visibility of navigation bar with fancy animation
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
         NSAnimationContext.current().allowsImplicitAnimation = true
@@ -561,7 +588,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
         newEditorViewController.textView?.centerSelectionInVisibleArea(self)
         
         // move focus to the new editor
-        self.window?.makeFirstResponder(newEditorViewController.textView)
+        self.view.window?.makeFirstResponder(newEditorViewController.textView)
     }
     
     
@@ -582,7 +609,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
             let deleteIndex = childViewControllers.index(of: currentEditorViewController) ?? 0
             let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.first!
             
-            self.window?.makeFirstResponder(newFocusEditorViewController.textView)
+            self.view.window?.makeFirstResponder(newFocusEditorViewController.textView)
         }
         
         // close
@@ -599,10 +626,22 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     private var canActivateShowInvisibles: Bool {
         
         return (Defaults[.showInvisibleSpace] ||
-                Defaults[.showInvisibleTab] ||
-                Defaults[.showInvisibleNewLine] ||
-                Defaults[.showInvisibleFullwidthSpace] ||
-                Defaults[.showInvisibles])
+            Defaults[.showInvisibleTab] ||
+            Defaults[.showInvisibleNewLine] ||
+            Defaults[.showInvisibleFullwidthSpace] ||
+            Defaults[.showInvisibles])
+    }
+    
+    
+    /// Whether status bar is visible
+    private dynamic var isStatusBarShown: Bool {
+        
+        get {
+            return !(self.statusBarItem?.isCollapsed ?? true)
+        }
+        set {
+            self.statusBarItem?.isCollapsed = !newValue
+        }
     }
     
     
@@ -653,13 +692,6 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     private var splitViewController: SplitViewController? {
         
         return self.splitViewItem?.viewController as? SplitViewController
-    }
-    
-    
-    /// window
-    private var window: NSWindow? {
-        
-        return self.splitViewController?.view.window
     }
     
     
@@ -716,10 +748,10 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
     
     
     /// find target EditorViewController to manage split views for action sender
-    func findTargetEditorViewController(for sender: Any?) -> EditorViewController? {
+    private func findTargetEditorViewController(for sender: Any?) -> EditorViewController? {
         
         guard
-            let view = (sender is NSMenuItem) ? (self.window?.firstResponder as? NSView) : sender as? NSView,
+            let view = (sender is NSMenuItem) ? (self.view.window?.firstResponder as? NSView) : sender as? NSView,
             let editorView = sequence(first: view, next: { $0.superview }).first(where: { $0.identifier == "EditorView" })
             else { return nil }
         
@@ -732,7 +764,7 @@ final class EditorWrapper: NSResponder, SyntaxStyleDelegate, ThemeHolder, NSText
 
 // MARK: Protocol
 
-extension EditorWrapper: TextFinderClientProvider {
+extension DocumentViewController: TextFinderClientProvider {
     
     /// tell text finder in which text view should it find text
     func textFinderClient() -> NSTextView? {

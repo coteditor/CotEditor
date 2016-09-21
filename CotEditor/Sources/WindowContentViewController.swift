@@ -31,7 +31,7 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
-    @IBOutlet private weak var mainViewItem: NSSplitViewItem?
+    @IBOutlet private weak var documentViewItem: NSSplitViewItem?
     @IBOutlet private weak var sidebarViewItem: NSSplitViewItem?
     
     
@@ -43,6 +43,15 @@ final class WindowContentViewController: NSSplitViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // workaround for OS X Yosemite (on macOS 10.12 SDK)
+        if NSAppKitVersionNumber < Double(NSAppKitVersionNumber10_11) {
+            self.splitView.delegate = self
+        }
+        
+        // -> needs layer to mask rounded window corners
+        //                to redraw line number view background by thickness increase
+        self.view.wantsLayer = true
         
         // set behavior to glow window size on sidebar toggling rather than opening sidebar indraw (only on El Capitan or later)
         if #available(macOS 10.11, *) {
@@ -100,9 +109,9 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: Public Methods
     
     /// deliver editor to outer view controllers
-    var editor: EditorWrapper? {
+    var documentViewController: DocumentViewController? {
         
-        return (self.mainViewItem?.viewController as? MainViewController)?.editor
+        return self.documentViewItem?.viewController as? DocumentViewController
     }
     
     

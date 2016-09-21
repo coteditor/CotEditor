@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
@@ -10,7 +10,7 @@
                 <windowController showSeguePresentationStyle="single" id="2Yd-sK-nho" customClass="FindPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="findPanel" title="Find &amp; Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="findPanel" animationBehavior="default" id="Wal-Sg-6d6" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
-                        <rect key="contentRect" x="425" y="461" width="460" height="270"/>
+                        <rect key="contentRect" x="425" y="461" width="460" height="197"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
                     </window>
                     <connections>
@@ -19,7 +19,7 @@
                 </windowController>
                 <customObject id="kPu-9e-gED" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="198" y="268"/>
+            <point key="canvasLocation" x="198" y="347"/>
         </scene>
         <!--Content View Controller-->
         <scene sceneID="7vp-sv-2MQ">
@@ -30,13 +30,14 @@
                         <splitViewItem canCollapse="YES" collapsed="YES" id="QW9-eM-ZIB"/>
                         <splitViewItem id="aiM-dr-0gg"/>
                     </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" id="jKV-b0-yX6" customClass="FindPanelSplitView" customModule="CotEditor" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="460" height="300"/>
+                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="jKV-b0-yX6" customClass="FindPanelSplitView" customModule="CotEditor" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="460" height="197"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </splitView>
                     <connections>
                         <outlet property="fieldSplitViewItem" destination="fLf-rT-Hpl" id="Ysg-ma-MQV"/>
                         <outlet property="resultSplitViewItem" destination="QW9-eM-ZIB" id="vT0-nW-yHp"/>
+                        <outlet property="view" destination="jKV-b0-yX6" id="5oC-io-XFV"/>
                         <segue destination="fdE-8e-ywb" kind="relationship" relationship="splitItems" id="JbM-yi-0lo"/>
                         <segue destination="2MH-SD-abc" kind="relationship" relationship="splitItems" id="Nvl-ZW-Th5"/>
                         <segue destination="gbq-TJ-lot" kind="relationship" relationship="splitItems" id="LIf-yS-NOX"/>
@@ -244,12 +245,12 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="fdE-8e-ywb" name="value" keyPath="findResultMessage" id="XCX-xt-29G"/>
                                     <binding destination="fdE-8e-ywb" name="hidden" keyPath="findResultMessage" id="sQe-Kg-hZn">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNil</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="fdE-8e-ywb" name="value" keyPath="findResultMessage" id="XCX-xt-29G"/>
                                 </connections>
                             </textField>
                         </subviews>

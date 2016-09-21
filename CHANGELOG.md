@@ -5,14 +5,40 @@ Change Log
 develop
 --------------------------
 
-### Known issues
+### Improvements
 
-- Some window states are not restored.
+- Auto-sync Script menu with script folder.
+    - Now, you don't need anymore to update script menu after script folder modification.
+- Display “Not Found” in the find string field in the find panel also when “Find All” failed.
+- [beta] Add option “Unescape replacement string” to find panel (On by default).
+- [beta] Improve drawing of font fields in preferences.
 
+
+### Fixes
+
+- Fix an issue find string is not shared with other applications after quitting CotEditor.
+- Address an issue with drawing area of zoomed character view in character inspector popover.
+- [beta] Fix an issue where current line highlight was occasionally too wide when line height is 1.0.
+- [beta] Fix an issue where the result view in the find panel expands wrong way on Yosemite.
+- [beta] Fix an issue where divider in the find panel remains after closing result view.
+- [beta] Fix an issue where smart indent didn't worked.
+- [beta] Fix an issue where syntax highlighting flicked while inputting Japanese text.
+- [beta] Fix an issue where inputting character with unicode hex didn't work.
+- [beta] Fix an issue where text view drawing remained in line number view when text view scaled up.
+- [beta] Fix an issue where bottom window corners weren't rounded under the specific conditions.
+- [beta] Fix an issue where some window states were not restored.
+- [beta] Fix some memory leaks.
+
+
+
+3.0.0-beta (142)
+--------------------------
 
 ### New Features
 
 - Support window tabbing on macOS Sierra.
+    - Add “New Tab” action to File menu.
+    - Sync sidebar visibility among tabs in a window.
 - Display recent used syntax styles at the top of the toolbar syntax style popup list.
 - Add individual “Block Comment”, “Inline Comment” and “Uncomment” actions in Text menu unlike the “Comment Selection” action changes its behavior intelligently.
 

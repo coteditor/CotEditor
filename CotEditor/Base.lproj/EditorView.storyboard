@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -10,7 +10,7 @@
             <objects>
                 <splitViewController id="sY9-RN-jMg" customClass="EditorViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem holdingPriority="260" id="1jV-uy-ka5"/>
+                        <splitViewItem holdingPriority="750" id="1jV-uy-ka5"/>
                         <splitViewItem id="Z56-OS-hF0"/>
                     </splitViewItems>
                     <splitView key="splitView" identifier="EditorView" dividerStyle="thin" id="Kyz-NV-ro4">
@@ -21,9 +21,6 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="sY9-RN-jMg" id="8K4-oR-PFD"/>
-                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="navigationBarItem" destination="1jV-uy-ka5" id="zJG-DA-wzB"/>

@@ -235,7 +235,7 @@
 
 
 
-/* MARK: EditorWrapper */
+/* MARK: DocumentViewController */
 // Menu items
 "Hide Line Numbers" = "行番号を隠す";
 "Show Line Numbers" = "行番号を表示";
@@ -473,7 +473,6 @@
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "スクリプトフォルダを開く";
-"Update Script Menu" = "スクリプトメニューを更新";
 
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "スクリプトをエディタで開くには、“Option + クリック”してください。";

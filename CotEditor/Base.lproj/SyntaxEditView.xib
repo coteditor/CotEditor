@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -69,11 +69,11 @@
                         <rect key="frame" x="1" y="1" width="138" height="327"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="1Wa-et-npE">
-                                <rect key="frame" x="0.0" y="0.0" width="138" height="0.0"/>
+                            <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="1Wa-et-npE">
+                                <rect key="frame" x="0.0" y="0.0" width="138" height="327"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="6" height="2"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn editable="NO" width="132" minWidth="40" maxWidth="1000" id="KTi-9b-zQV">
@@ -119,7 +119,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <constraints>
                         <constraint firstAttribute="width" constant="140" id="zeJ-SS-aCI"/>
@@ -132,14 +131,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <box autoresizesSubviews="NO" verticalCompressionResistancePriority="250" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WhA-dU-Us9">
+                <box autoresizesSubviews="NO" verticalCompressionResistancePriority="250" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WhA-dU-Us9">
                     <rect key="frame" x="165" y="49" width="468" height="335"/>
                     <view key="contentView" id="wan-rW-iPG">
                         <rect key="frame" x="1" y="1" width="466" height="333"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8JS-kM-ddu">
                     <rect key="frame" x="14" y="13" width="152" height="32"/>

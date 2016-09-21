@@ -52,6 +52,11 @@ final class SplitViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
+        // workaround for OS X Yosemite (on macOS 10.12 SDK)
+        if NSAppKitVersionNumber < Double(NSAppKitVersionNumber10_11) {
+            self.splitView.delegate = self
+        }
+        
         self.splitView.isVertical = Defaults[.splitViewVertical]
         self.invalidateOpenSplitEditorButtons()
         
@@ -183,14 +188,17 @@ final class SplitViewController: NSSplitViewController {
         
         guard count > 1 else { return }
         
-        var index = self.childViewControllers.index(of: self.focusedSubviewController!) ?? 0
-        index += onNext ? 1 : -1
-        
-        if index < 0 {
-            index = count - 1
-        } else if index >= count {
-            index = 0
-        }
+        let focusIndex = self.childViewControllers.index(of: self.focusedSubviewController!) ?? 0
+        let index: Int = {
+            switch focusIndex {
+            case 0 where !onNext:
+                return count - 1
+            case count - 1 where onNext:
+                return 0
+            default:
+                return focusIndex + (onNext ? 1 : -1)
+            }
+        }()
         
         guard let nextEditorViewController = self.childViewControllers[index] as? EditorViewController else { return }
         

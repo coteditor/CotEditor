@@ -27,7 +27,7 @@
 
 import Cocoa
 
-final class PreferencesWindowController: NSWindowController, NSWindowDelegate {
+final class PreferencesWindowController: NSWindowController {
     
     // MARK: Public Properties
     

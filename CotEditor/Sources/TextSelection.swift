@@ -354,7 +354,7 @@ final class TextSelection: NSObject {
     
     private var textView: EditorTextView? {
         
-        return self.document?.editor?.focusedTextView
+        return self.document?.viewController?.focusedTextView
     }
     
 }

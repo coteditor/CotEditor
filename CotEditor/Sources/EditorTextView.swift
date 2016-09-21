@@ -352,11 +352,16 @@ final class EditorTextView: NSTextView, Themable {
         
         guard
             self.isAutomaticIndentEnabled,
-            let string = self.string,
-            let indentRange = string.rangeOfIndent(at: self.selectedRange.location),
-            indentRange != self.selectedRange  // don't auto-indent if indent is selected (2008-12-13)
+            let string = self.string
             else {
                 return super.insertNewline(sender)
+        }
+        
+        let indentRange = string.rangeOfIndent(at: self.selectedRange.location)
+        
+        // don't auto-indent if indent is selected (2008-12-13)
+        guard indentRange.length == 0 || indentRange != self.selectedRange else {
+            return super.insertNewline(sender)
         }
         
         let baseIndentRange = NSIntersectionRange(indentRange, NSRange(location: 0, length: self.selectedRange.location))
@@ -410,8 +415,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
-            let indentRange = string.rangeOfIndent(at: location),
-            indentRange.max >= location
+            string.rangeOfIndent(at: location).max >= location
         {
             let tabWidth = self.tabWidth
             let column = string.column(of: location, tabWidth: tabWidth)
@@ -1080,7 +1084,8 @@ final class EditorTextView: NSTextView, Themable {
         //   -> The actual line height will be calculated in LayoutManager and ATSTypesetter based on this line height multiple.
         //      Because the default Cocoa Text System calculate line height differently
         //      if the first character of the document is drawn with another font (typically by a composite font).
-        paragraphStyle.lineHeightMultiple = self.lineHeight
+        //   -> Round line height for workaround to avoid expanding current line highlight when line height is 1.0. (2016-09 on macOS Sierra 10.12)
+        paragraphStyle.lineHeightMultiple = self.lineHeight.rounded(to: 5)
         
         // calculate tab interval
         if let font = self.font, let displayFont = self.layoutManager?.substituteFont(for: font) {

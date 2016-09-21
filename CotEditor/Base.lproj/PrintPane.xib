@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PrintPaneController" customModule="CotEditor" customModuleProvider="target">
@@ -119,7 +119,7 @@
                         <constraint firstAttribute="width" constant="240" id="OeK-6f-UNf"/>
                         <constraint firstAttribute="height" constant="22" id="OfU-j2-cBT"/>
                     </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="Font Name 12" drawsBackground="YES" id="3384">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="Font Name 12" drawsBackground="YES" id="3384" customClass="CenteringTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

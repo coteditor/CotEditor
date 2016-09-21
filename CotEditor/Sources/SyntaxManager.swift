@@ -69,26 +69,27 @@ final class SyntaxManager: SettingFileManager {
     
     static let shared = SyntaxManager()
     
-    private(set) var styleNames = [StyleName]()
+    private(set) var styleNames: [StyleName] = []
     
     /// conflict error dicts
-    private(set) var extensionConflicts = [String: [StyleName]]()
-    private(set) var filenameConflicts = [String: [StyleName]]()
+    private(set) var extensionConflicts: [String: [StyleName]] = [:]
+    private(set) var filenameConflicts: [String: [StyleName]] = [:]
     
     
     // MARK: Private Properties
     
     private var recentStyleNameSet = NSMutableOrderedSet()
     private let maximumRecentStyleNameCount: Int
-    private var styleCaches = [StyleName: StyleDictionary]()
-    private var map = [StyleName: [String: [String]]]()
+    
+    private var styleCaches: [StyleName: StyleDictionary] = [:]
+    private var map: [StyleName: [String: [String]]] = [:]
     
     private let bundledStyleNames: [StyleName]
     private let bundledMap: [StyleName: [String: [String]]]
     
-    private var extensionToStyle = [String: StyleName]()
-    private var filenameToStyle = [String: StyleName]()
-    private var interpreterToStyle = [String: StyleName]()
+    private var extensionToStyle: [String: StyleName] = [:]
+    private var filenameToStyle: [String: StyleName] = [:]
+    private var interpreterToStyle: [String: StyleName] = [:]
     
     private let propertyAccessQueue = DispatchQueue(label: "com.coteditor.CotEditor.recentStyleNameSet")  // for recentStyleNameSet property
     
@@ -105,9 +106,10 @@ final class SyntaxManager: SettingFileManager {
         // load bundled style list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
-        self.bundledMap = try! JSONSerialization.jsonObject(with: data) as! [String: [String: [String]]]
+        let map = try! JSONSerialization.jsonObject(with: data) as! [StyleName: [String: [String]]]
         
-        self.bundledStyleNames = bundledMap.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        self.bundledMap = map
+        self.bundledStyleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         super.init()
         
@@ -235,9 +237,7 @@ final class SyntaxManager: SettingFileManager {
     /// file extension list corresponding to style name
     func extensions(name: StyleName) -> [String] {
         
-        guard let extensions = self.map[name]?[SyntaxKey.extensions.rawValue], !extensions.isEmpty else { return [] }
-        
-        return extensions
+        return self.map[name]?[SyntaxKey.extensions.rawValue] ?? []
     }
     
     
@@ -508,13 +508,15 @@ final class SyntaxManager: SettingFileManager {
             styleNames.append(name)
         }
         
-        func parseMappingSettings(key: String) -> (table: [String: StyleName], conflicts: [String: [StyleName]]) {
+        func parseMappingSettings(key: SyntaxKey) -> (table: [String: StyleName], conflicts: [String: [StyleName]]) {
             
             var table = [String: StyleName]()
             var conflicts = [String: [StyleName]]()
             
             for styleName in styleNames {
-                for item in self.map[styleName]?[key] ?? [] {
+                guard let items = self.map[styleName]?[key.rawValue] else { continue }
+                
+                for item in items {
                     guard let addedStyleName = table[item] else {
                         // add to table if not yet registered
                         table[item] = styleName
@@ -534,9 +536,9 @@ final class SyntaxManager: SettingFileManager {
             return (table: table, conflicts: conflicts)
         }
         
-        let extensionResult = parseMappingSettings(key: SyntaxKey.extensions.rawValue)
-        let filenameResult = parseMappingSettings(key: SyntaxKey.filenames.rawValue)
-        let interpreterResult = parseMappingSettings(key: SyntaxKey.interpreters.rawValue)
+        let extensionResult = parseMappingSettings(key: .extensions)
+        let filenameResult = parseMappingSettings(key: .filenames)
+        let interpreterResult = parseMappingSettings(key: .interpreters)
         
         DispatchQueue.syncOnMain {
             self.extensionToStyle = extensionResult.table

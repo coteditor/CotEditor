@@ -59,6 +59,7 @@ private protocol TextFinderSettingsProvider {
     var inSelection: Bool { get }
     var textualOptions: NSString.CompareOptions { get }
     var regexOptions: NSRegularExpression.Options { get }
+    var unescapesReplacementString: Bool { get }
     var closesIndicatorWhenDone: Bool { get }
     var sharesFindString: Bool { get }
     
@@ -124,6 +125,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         // observe application activation to sync find string with other apps
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .NSApplicationDidBecomeActive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .NSApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .NSApplicationWillTerminate, object: nil)
     }
     
     
@@ -176,18 +178,18 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     func applicationDidBecomeActive(_ notification: Notification) {
         
         if self.sharesFindString {
-            if let sharedFindString = self.findStringInPasteboard {
+            if let sharedFindString = NSPasteboard.findString {
                 self.findString = sharedFindString
             }
         }
     }
     
     
-    /// sync search string on activating application
+    /// sync search string on deactivating application
     func applicationWillResignActive(_ notification: Notification) {
         
         if self.sharesFindString {
-            self.findStringInPasteboard = self.findString
+            NSPasteboard.findString = self.findString
         }
     }
     
@@ -333,9 +335,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 if highlights.isEmpty {
                     NSBeep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
-                } else {
-                    self.delegate?.textFinder(self, didFinishFindingAll: findString, results: results, textView: textView)
                 }
+                
+                self.delegate?.textFinder(self, didFinishFindingAll: findString, results: results, textView: textView)
                 
                 // -> close also if matched since result view will be shown when succeed
                 if !results.isEmpty || self.closesIndicatorWhenDone {
@@ -487,7 +489,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             let string = textView.string else { return }
         
         let integerFormatter = self.integerFormatter
-        let replacementString = self.replacementString
+        let replacementString = (self.usesRegularExpression && self.unescapesReplacementString)
+            ? self.replacementString.unescaped
+            : self.replacementString
         let scopeRanges = self.scopeRanges
         let inSelection = self.inSelection
         
@@ -727,8 +731,10 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             let regex = self.regex()!
             guard let match = regex.firstMatch(in: string, range: textView.selectedRange) else { return false }
             
+            let tempalte = self.unescapesReplacementString ? self.replacementString.unescaped : self.replacementString
+            
             matchedRange = match.range
-            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: self.replacementString)
+            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: tempalte)
             
         } else {
             matchedRange = (string as NSString).range(of: self.sanitizedFindString, options: self.textualOptions, range: textView.selectedRange)
@@ -849,25 +855,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     }
     
     
-    /// find string from global domain
-    private var findStringInPasteboard: String? {
-        
-        get {
-            let pasteboard = NSPasteboard(name: NSFindPboard)
-            return pasteboard.string(forType: NSStringPboardType)
-        }
-        
-        set {
-            guard let string = newValue, !string.isEmpty else { return }
-            
-            let pasteboard = NSPasteboard(name: NSFindPboard)
-            
-            pasteboard.declareTypes([NSStringPboardType], owner: nil)
-            pasteboard.setString(string, forType: NSStringPboardType)
-        }
-    }
-    
-    
     /// append given string to history with the user defaults key
     private func appendHistory(_ string: String, forKey key: DefaultKey<[String]>) {
         
@@ -938,6 +925,13 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// return value from user defaults
+    fileprivate var unescapesReplacementString: Bool {
+        
+        return Defaults[.findRegexUnescapesReplacementString]
+    }
+    
+    
+    /// return value from user defaults
     fileprivate var closesIndicatorWhenDone: Bool {
         
         return Defaults[.findClosesIndicatorWhenDone]
@@ -972,6 +966,32 @@ private enum TextFinderError: LocalizedError {
         switch self {
         case .regularExpression(let reason):
             return reason
+        }
+    }
+    
+}
+
+
+
+// MARK: Pasteboard
+
+private extension NSPasteboard {
+    
+    /// find string from global domain
+    class var findString: String? {
+        
+        get {
+            let pasteboard = NSPasteboard(name: NSFindPboard)
+            return pasteboard.string(forType: NSStringPboardType)
+        }
+        
+        set {
+            guard let string = newValue, !string.isEmpty else { return }
+            
+            let pasteboard = NSPasteboard(name: NSFindPboard)
+            
+            pasteboard.declareTypes([NSStringPboardType], owner: nil)
+            pasteboard.setString(string, forType: NSStringPboardType)
         }
     }
     

@@ -171,7 +171,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         self.buildEncodingMenu()
         self.buildSyntaxMenu()
         self.buildThemeMenu()
-        ScriptManager.shared.buildScriptMenu(self)
+        ScriptManager.shared.buildScriptMenu()
         
         // observe setting list updates
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: .EncodingListDidUpdate, object: nil)

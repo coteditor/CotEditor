@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A319" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
@@ -180,9 +180,6 @@
                                 <outlet property="window" destination="gE4-1J-3li" id="e04-WO-QGs"/>
                             </connections>
                         </toolbar>
-                        <connections>
-                            <outlet property="delegate" destination="0UB-Lz-R6c" id="8BJ-UL-MGj"/>
-                        </connections>
                     </window>
                     <connections>
                         <outlet property="toolbarController" destination="6RX-So-XzC" id="Kgi-2B-Fq3"/>
@@ -218,13 +215,11 @@
                                 <color key="value" name="gridColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="O3C-zL-JF9" id="0X5-EI-Y68"/>
-                        </connections>
                     </splitView>
                     <connections>
-                        <outlet property="mainViewItem" destination="NAv-oU-Mey" id="KOX-e9-wco"/>
+                        <outlet property="documentViewItem" destination="NAv-oU-Mey" id="lPe-qQ-5LB"/>
                         <outlet property="sidebarViewItem" destination="faM-S9-Ldc" id="txW-VA-3vb"/>
+                        <outlet property="view" destination="Xj1-1i-hd5" id="63h-kR-c67"/>
                         <segue destination="2gA-dj-5gh" kind="relationship" relationship="splitItems" id="49u-wK-kqV"/>
                         <segue destination="7te-2x-zAq" kind="relationship" relationship="splitItems" id="sB5-Yd-23U"/>
                     </connections>
@@ -252,13 +247,13 @@
             </objects>
             <point key="canvasLocation" x="845" y="1128"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Document View Controller-->
         <scene sceneID="og9-Gf-wXr">
             <objects>
-                <splitViewController showSeguePresentationStyle="single" id="2gA-dj-5gh" customClass="MainViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController showSeguePresentationStyle="single" id="2gA-dj-5gh" customClass="DocumentViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="tZe-bg-feG"/>
-                        <splitViewItem collapsed="YES" holdingPriority="260" id="lfq-9K-fZM"/>
+                        <splitViewItem collapsed="YES" holdingPriority="750" id="lfq-9K-fZM"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" id="0PU-mC-e2a">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="300"/>
@@ -268,23 +263,16 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="2gA-dj-5gh" id="fAD-sJ-czY"/>
-                        </connections>
                     </splitView>
                     <connections>
-                        <outlet property="editor" destination="pVC-2A-ptR" id="oYe-qw-s7B"/>
+                        <outlet property="splitViewItem" destination="tZe-bg-feG" id="WmM-B8-IB0"/>
                         <outlet property="statusBarItem" destination="lfq-9K-fZM" id="qBF-wb-f69"/>
+                        <outlet property="view" destination="0PU-mC-e2a" id="jMA-Kg-ICu"/>
                         <segue destination="vcx-nD-eDH" kind="relationship" relationship="splitItems" id="cYB-og-7Al"/>
                         <segue destination="NBJ-8W-V9X" kind="relationship" relationship="splitItems" id="eHg-OY-YEn"/>
                     </connections>
                 </splitViewController>
                 <customObject id="2dq-fC-hEQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="pVC-2A-ptR" customClass="EditorWrapper" customModule="CotEditor" customModuleProvider="target">
-                    <connections>
-                        <outlet property="splitViewItem" destination="tZe-bg-feG" id="Z4A-fU-OYK"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="302" y="1128"/>
         </scene>
@@ -300,14 +288,14 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="vcx-nD-eDH" id="MXw-Hi-a9d"/>
-                        </connections>
                     </splitView>
+                    <connections>
+                        <outlet property="view" destination="erk-uh-Ad4" id="2BL-Xk-wfu"/>
+                    </connections>
                 </splitViewController>
                 <customObject id="BD5-7O-H8g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-61" y="1607"/>
+            <point key="canvasLocation" x="190" y="1607"/>
         </scene>
         <!--Status Bar Controller-->
         <scene sceneID="uT8-5A-k2A">
@@ -364,7 +352,7 @@
                 </viewController>
                 <customObject id="wKh-dn-8NK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="505" y="1467.5"/>
+            <point key="canvasLocation" x="695" y="1467"/>
         </scene>
     </scenes>
     <resources>

@@ -41,6 +41,14 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testUnescaping() {
+        
+        XCTAssertEqual("foo\\\\\\nbar".unescaped, "foo\\\nbar")
+        XCTAssertEqual("\\foo\\\\\\0bar\\".unescaped, "foo\\\u{0}bar")
+        XCTAssertEqual("\\\\\\\\foo".unescaped, "\\\\foo")
+    }
+    
+    
     func testComposedCharactersCount() {
         
         XCTAssertEqual("foo".numberOfComposedCharacters, 3)

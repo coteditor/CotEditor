@@ -257,6 +257,7 @@ extension DefaultKeys {
     static let findRegexIsSingleline = DefaultKey<Bool>("findRegexIsSingleline")
     static let findRegexIsMultiline = DefaultKey<Bool>("findRegexIsMultiline")
     static let findRegexUsesUnicodeBoundaries = DefaultKey<Bool>("regexUsesUnicodeBoundaries")
+    static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
     
     // settings that are not in preferences
     static let colorCodeType = DefaultKey<Int>("colorCodeType")

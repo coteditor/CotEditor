@@ -346,7 +346,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         guard let inOpenMenu = self.inOpenEncodingMenu?.menu,
             let inNewMenu = self.inNewEncodingMenu?.menu else { return }
         
-        let menuItems = EncodingManager.shared.encodingMenuItems
+        let menuItems = EncodingManager.shared.createEncodingMenuItems()
         
         inOpenMenu.removeAllItems()
         inNewMenu.removeAllItems()
@@ -358,7 +358,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         let UTF8Int = Int(String.Encoding.utf8.rawValue)
         for item in menuItems {
-            inOpenMenu.addItem(item.copy() as! NSMenuItem)
+            inOpenMenu.addItem(item)
             inNewMenu.addItem(item.copy() as! NSMenuItem)
             
             // add "UTF-8 with BOM" item only to "In New" menu

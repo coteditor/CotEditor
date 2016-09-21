@@ -25,7 +25,7 @@
 <article>
 <header>
 	<h1>CotEditor 3.0.0</h1>
-	<p>release: <time>2016-09-13</time></p>
+	<p>release: <time>2016-09</time></p>
 </header>
 
 
@@ -33,7 +33,11 @@
 <h2>New Features</h2>
 
 <ul>
-	<li>Support window tabbing on macOS Sierra.</li>
+	<li>Support window tabbing on macOS Sierra:
+	<ul>
+		<li>Add “New Tab” action to File menu.</li>
+		<li>Sync sidebar visibility among tabs in a window.</li>
+	</ul></li>
 	<li>Display recent used syntax styles at the top of the toolbar syntax style popup list.</li>
 	<li>Add individual “Block Comment”, “Inline Comment” and “Uncomment” actions in Text menu unlike the “Comment Selection” action changes its behavior intelligently.</li>
 </ul>
@@ -63,11 +67,16 @@
 	<ul>
 		<li>Not compatible with previous key bindings setting. Please customize again in the preferences window.</li>
 	</ul></li>
+	<li>Auto-sync Script menu with script folder.
+	<ul>
+		<li>Now, you don't need anymore to update script menu after script folder modification.</li>
+	</ul></li>
 	<li>New acknowledgements window.</li>
 	<li>Update “Swift” syntax style to Swift 3.0.</li>
 	<li>Update “Coffee Script” syntax style for the block regular expression.</li>
 	<li>Improve syntax highlighting algorithm with symbols.</li>
 	<li>New “Go To Line” panel.</li>
+	<li>Display “Not Found” in the find string field in the find panel also when “Find All” failed.</li>
 	<li>Remove the following less important text actions:
 	<ul>
 		<li>Insert Encoding Name with “charset=”</li>
@@ -108,7 +117,9 @@
 <h2>Fixes</h2>
 
 <ul>
+    <li>Fix an issue find string is not shared with other applications after quitting CotEditor.</li>
     <li>Fix an issue where some of script APIs returned always string with LF line endings.</li>
+    <li>Address an issue with drawing area of zoomed character view in character inspector popover.</li>
 </ul>
 </section>
 </article>

@@ -29,6 +29,28 @@ import Foundation
 
 extension String {
     
+    /// unescape backslashes
+    var unescaped: String {
+        
+        // -> According to the following sentence in the Swift 3 documentation, these are the all combinations with backslash.
+        //    > The escaped special characters \0 (null character), \\ (backslash), \t (horizontal tab), \n (line feed), \r (carriage return), \" (double quote) and \' (single quote)
+        let entities = ["\0": "\\0",
+                        "\t": "\\t",
+                        "\n": "\\n",
+                        "\r": "\\r",
+                        "\"": "\\\"",
+                        "\'": "\\'",
+                        ]
+        
+        return entities
+            .reduce(self) { (string, entity) in
+                string.replacingOccurrences(of: entity.value, with: entity.key)
+            }
+            .replacingOccurrences(of: "\\\\(?!\\\\)", with: "", options: .regularExpression)  // remove all single backslash
+            .replacingOccurrences(of: "\\\\", with: "\\")
+    }
+    
+    
     /// range of the line containing a given index
     func lineRange(at index: Index) -> Range<Index> {
         

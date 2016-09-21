@@ -233,7 +233,7 @@
 
 
 
-/* MARK: EditorWrapper */
+/* MARK: DocumentViewController */
 // Menu items
 "Hide Line Numbers" = "Zeilennummern ausblenden";
 "Show Line Numbers" = "Zeilennummern einblenden";
@@ -470,14 +470,13 @@
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "Skript-Ordner öffnen";
-"Update Script Menu" = "Skript-Menü aktualisieren";
 
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "„Option + Klicken“, um das Skript im Editor zu öffnen.";
 
 // No script target document errors
-"No document to get input." = "No document to get input.";  // FIXME: new
-"No document to put output." = "No document to put output.";  // FIXME: new
+"No document to get input." = "Kein Dokument, die Eingabe zu erhalten.";
+"No document to put output." = "Kein Dokument, die Ausgabe zu setzen.";
 
 // Script error alert message
 "Script Error" = "Skriptfehler";

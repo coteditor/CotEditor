@@ -112,7 +112,9 @@ extension String {
         
         guard tabWidth > 0 else { return 0 }  // avoid to divide with zero
         
-        guard let indentRange = self.rangeOfIndent(at: index) else { return 0 }
+        let indentRange = self.rangeOfIndent(at: index)
+        
+        guard !indentRange.isEmpty else { return 0 }
         
         let indent = self.substring(with: indentRange)
         let numberOfTabs = indent.components(separatedBy: "\t").count - 1
@@ -138,24 +140,30 @@ extension String {
     
     
     /// range of indent characters in line at the location
-    func rangeOfIndent(at location: Int) -> NSRange? {
+    func rangeOfIndent(at location: Int) -> NSRange {
         
         let lineRange = (self as NSString).lineRange(at: location)
         
         let range = (self as NSString).range(of: "^[ \\t]+", options: .regularExpression, range: lineRange)
         
-        guard range.location != NSNotFound else { return nil }
+        guard range.location != NSNotFound else {
+            return NSRange(location: location, length: 0)
+        }
         
         return range
     }
     
     
     /// range of indent characters in line at the location
-    func rangeOfIndent(at index: String.Index) -> Range<String.Index>? {
+    func rangeOfIndent(at index: String.Index) -> Range<String.Index> {
         
         let lineRange = self.lineRange(at: index)
         
-        return self.range(of: "^[ \\t]+", options: .regularExpression, range: lineRange)
+        guard let indentRange = self.range(of: "^[ \\t]+", options: .regularExpression, range: lineRange) else {
+            return index..<index
+        }
+        
+        return indentRange
     }
     
 }

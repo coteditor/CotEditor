@@ -48,6 +48,11 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         
         super.viewDidLoad()
         
+        // workaround for OS X Yosemite (on macOS 10.12 SDK)
+        if NSAppKitVersionNumber < Double(NSAppKitVersionNumber10_11) {
+            self.splitView.delegate = self
+        }
+        
         TextFinder.shared.delegate = self
     }
     
@@ -64,7 +69,8 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     /// collapse result view by dragging divider
      override func splitViewDidResizeSubviews(_ notification: Notification) {
         
-        super.splitViewDidResizeSubviews(notification)
+        // calling super's splitViewDidResizeSubviews() make app crash on Yosemite (2016-09 on macOS 10.12 SDK)
+//        super.splitViewDidResizeSubviews(notification)
         
         guard !self.isUncollapsing else { return }
         
@@ -93,6 +99,9 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         
         // set to result table
         self.fieldViewController?.updateResultCount(results.count, target: textView)
+        
+        guard !results.isEmpty else { return }
+        
         self.resultViewController?.setResults(results, findString: findString, target: textView)
         
         self.setResultShown(true, animate: true)
@@ -183,6 +192,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
             !resultView.isHidden && resultView.visibleRect.isEmpty else { return }
         
         self.resultSplitViewItem?.isCollapsed = true
+        self.view.needsDisplay = true
     }
     
 }

@@ -182,7 +182,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                  #selector(SyntaxHolder.changeSyntaxStyle),
                  #selector(ThemeHolder.changeTheme),
                  #selector(Document.changeLineEnding(_:)),
-                 #selector(EditorWrapper.changeTabWidth),
+                 #selector(DocumentViewController.changeTabWidth),
                  #selector(EditorTextView.biggerFont),
                  #selector(EditorTextView.smallerFont),
                  #selector(ScriptManager.launchScript),
