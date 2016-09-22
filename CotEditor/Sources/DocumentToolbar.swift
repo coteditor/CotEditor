@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class DocumentToolbar: NSToolbar {
+class DocumentToolbar: NSToolbar, NSWindowDelegate {
     
     // MARK: Private Properties
     
@@ -83,10 +83,34 @@ class DocumentToolbar: NSToolbar {
         
         super.runCustomizationPalette(sender)
         
-        guard
-            let window = self.window,
-            let sheet = window.attachedSheet,
-            let views = sheet.contentView?.subviews else { return }
+        // fallback for removing "Use small size" button in `window(:willPositionSheet:using)`
+        if let sheet = self.window?.attachedSheet  {
+            self.removeSmallSizeButton(in: sheet)
+        }
+    }
+    
+    
+    
+    // MARK: Window Delegate
+    
+    /// remove "Use small size" button before showing the customization sheet
+    func window(_ window: NSWindow, willPositionSheet sheet: NSWindow, using rect: NSRect) -> NSRect {
+        
+        if sheet.className == "NSToolbarConfigPanel" {
+            self.removeSmallSizeButton(in: sheet)
+        }
+        
+        return rect
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// remove "Use small size" button in the customization sheet
+    private func removeSmallSizeButton(in sheet: NSWindow) {
+        
+        guard let views = sheet.contentView?.subviews else { return }
         
         let toggleButton: NSButton? = views.lazy
             .flatMap { $0 as? NSButton }

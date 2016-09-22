@@ -180,6 +180,9 @@
                                 <outlet property="window" destination="gE4-1J-3li" id="e04-WO-QGs"/>
                             </connections>
                         </toolbar>
+                        <connections>
+                            <outlet property="delegate" destination="peS-bo-gb4" id="D8z-kt-PO3"/>
+                        </connections>
                     </window>
                     <connections>
                         <outlet property="toolbarController" destination="6RX-So-XzC" id="Kgi-2B-Fq3"/>
