@@ -460,23 +460,15 @@ final class SyntaxManager: SettingFileManager {
         // load user styles
         if let enumerator = FileManager.default.enumerator(at: directoryURL, includingPropertiesForKeys: nil,
                                                            options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
-            
-            /// collect values which has "keyString" key in key section in style dictionary
-            func keyStrings(in style: StyleDictionary, key: SyntaxKey) -> [String] {
-                
-                guard let dictionaries = style[key.rawValue] as? [[String: String]] else { return [] }
-                return dictionaries.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] }
-            }
-            
             for case let url as URL in enumerator {
                 guard [self.filePathExtension, "yml"].contains(url.pathExtension) else { continue }
                 
                 let styleName = self.settingName(from: url)
                 guard let style = self.styleDictionary(fileURL: url) else { continue }
                 
-                map[styleName] = [SyntaxKey.extensions.rawValue: keyStrings(in: style, key: .extensions),
-                                  SyntaxKey.filenames.rawValue: keyStrings(in: style, key: .filenames),
-                                  SyntaxKey.interpreters.rawValue: keyStrings(in: style, key: .interpreters)]
+                map[styleName] = [SyntaxKey.extensions.rawValue: type(of: self).keyStrings(in: style, key: .extensions),
+                                  SyntaxKey.filenames.rawValue: type(of: self).keyStrings(in: style, key: .filenames),
+                                  SyntaxKey.interpreters.rawValue: type(of: self).keyStrings(in: style, key: .interpreters)]
                 
                 // cache style since it's already loaded
                 self.styleCaches[styleName] = style
@@ -494,6 +486,14 @@ final class SyntaxManager: SettingFileManager {
         }
         
         Defaults[.recentStyleNames] = self.recentStyleNames
+    }
+    
+    
+    /// collect values which has "keyString" key in key section in style dictionary
+    private static func keyStrings(in style: StyleDictionary, key: SyntaxKey) -> [String] {
+        
+        guard let dictionaries = style[key.rawValue] as? [[String: String]] else { return [] }
+        return dictionaries.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] }
     }
     
     

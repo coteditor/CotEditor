@@ -305,12 +305,11 @@ final class LayoutManager: NSLayoutManager {
         let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")
         
         // get dummy attributes to make calculation of indent width the same as CElayoutManager's calculation (2016-04)
-        var indentAttributes = textView.typingAttributes
         let defaultParagraphStyle = textView.defaultParagraphStyle ?? NSParagraphStyle.default()
-        let typingParagraphStyle = (indentAttributes[NSParagraphStyleAttributeName] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
+        let typingParagraphStyle = (textView.typingAttributes[NSParagraphStyleAttributeName] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
         typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
-        indentAttributes[NSParagraphStyleAttributeName] = typingParagraphStyle?.copy()
-        indentAttributes[NSFontAttributeName] = self.substituteFont(for: self.textFont)
+        let indentAttributes: [String: Any] = [NSFontAttributeName :self.substituteFont(for: self.textFont),
+                                               NSParagraphStyleAttributeName: typingParagraphStyle ?? NSNull()]
         
         var cache = [String: CGFloat]()
         

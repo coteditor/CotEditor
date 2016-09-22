@@ -2,7 +2,18 @@
 Change Log
 ==========================
 
-develop
+3.0.0-beta.3 (146)
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where application froze when text search is wrapped.
+- [beta] Fix an issue where initial window position was not stored.
+- [beta] Fix another memory leaks.
+
+
+
+3.0.0-beta.2 (144)
 --------------------------
 
 ### Improvements

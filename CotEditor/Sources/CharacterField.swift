@@ -74,7 +74,7 @@ final class CharacterFieldCell: NSTextFieldCell {
 
 
 
-extension NSAttributedString {
+private extension NSAttributedString {
     
     var bounds: NSRect {
         

@@ -100,7 +100,8 @@ final class ATSTypesetter: NSATSTypesetter {
         
         let index = string.utf16.startIndex.advanced(by: charIndex).samePosition(in: string)!
         
-        for character in string.substring(to: index).characters.reversed() {
+        // -> Don't use `characters` instead of `unicodeScalars` because of a memory leak (2016-09 macOS 10.12).
+        for character in string.substring(to: index).unicodeScalars.reversed() {
             if character == "\n" { return false }  // the line ended before hitting to any indent characters
             if character != " " && character != "\t" { return true }  // hit to non-indent character
         }

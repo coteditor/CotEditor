@@ -123,7 +123,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: File Presenter Protocol
     
-    var presentedItemOperationQueue = OperationQueue()
+    var presentedItemOperationQueue = OperationQueue.main
     
     
     var presentedItemURL: URL? {
@@ -135,14 +135,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// script folder did change
     func presentedSubitemDidChange(at url: URL) {
         
-        // [caution] This method can be called from any thread.
-        
         self.didChangeFolder = true
         
         if NSApp.isActive {
-            DispatchQueue.main.async { [weak self] in
-                self?.buildScriptMenu()
-            }
+            self.buildScriptMenu()
         }
     }
     

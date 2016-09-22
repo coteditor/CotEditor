@@ -8,7 +8,7 @@
         <scene sceneID="sAX-Gn-44h">
             <objects>
                 <windowController id="0UB-Lz-R6c" customClass="DocumentWindowController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Untitled" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="document" id="gE4-1J-3li" userLabel="Window" customClass="AlphaWindow" customModule="CotEditor" customModuleProvider="target">
+                    <window key="window" title="Untitled" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" id="gE4-1J-3li" userLabel="Window" customClass="AlphaWindow" customModule="CotEditor" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
@@ -180,6 +180,9 @@
                                 <outlet property="window" destination="gE4-1J-3li" id="e04-WO-QGs"/>
                             </connections>
                         </toolbar>
+                        <connections>
+                            <outlet property="delegate" destination="peS-bo-gb4" id="D8z-kt-PO3"/>
+                        </connections>
                     </window>
                     <connections>
                         <outlet property="toolbarController" destination="6RX-So-XzC" id="Kgi-2B-Fq3"/>
