@@ -70,7 +70,7 @@ final class DocumentWindowController: NSWindowController {
         
         // -> It's set as false by default if the window controller was invoked from a storyboard.
         self.shouldCascadeWindows = true
-        self.window?.setFrameAutosaveName("document")
+        self.windowFrameAutosaveName = "document"
         
         let window = self.window as! AlphaWindow
         
