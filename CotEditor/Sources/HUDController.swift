@@ -177,7 +177,7 @@ private extension NSView {
         animation.isRemovedOnCompletion = false
         self.layer?.add(animation, forKey: AnimationIdentifier.fadeOut)
         
-        CATransaction.completionBlock()
+        CATransaction.commit()
     }
     
 }

@@ -7,6 +7,7 @@ develop
 
 ### Fixes
 
+- [beta] Fix an issue where application freezed when text search is wrapped.
 - [beta] Fix an issue where initial window position was not stored.
 - [beta] Fix another memory leaks.
 
