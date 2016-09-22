@@ -58,7 +58,7 @@ class DocumentToolbar: NSToolbar {
         
         guard
             let superview = self.window?.contentView?.superview,
-            let contextMenu = superview.menu ?? superview.subviews.last?.menu  // second one is for OS X 10.10 Mavericks
+            let contextMenu = superview.menu ?? superview.subviews.last?.menu  // second one is for OS X 10.10 Yosemite
             else { return }
         
         // find "Use Small Size" menu item
