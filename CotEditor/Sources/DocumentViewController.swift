@@ -97,6 +97,18 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             
             (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
             
+            document.textStorage.delegate = self
+            document.syntaxStyle.delegate = self
+            
+            let editorViewController = self.createEditor(baseViewController: nil)
+            
+            // start parcing syntax highlights and outline menu
+            if document.syntaxStyle.canParse {
+                editorViewController.navigationBarController?.showOutlineIndicator()
+            }
+            document.syntaxStyle.invalidateOutline()
+            self.invalidateSyntaxHighlight()
+            
             // detect indent style
             if Defaults[.detectsIndentStyle],
                 let indentStyle = document.textStorage.string.detectedIndentStyle
@@ -110,18 +122,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
                     }
                 }()
             }
-            
-            document.textStorage.delegate = self
-            document.syntaxStyle.delegate = self
-            
-            let editorViewController = self.createEditor(baseViewController: nil)
-            
-            // start parcing syntax highlights and outline menu
-            if document.syntaxStyle.canParse {
-                editorViewController.navigationBarController?.showOutlineIndicator()
-            }
-            document.syntaxStyle.invalidateOutline()
-            self.invalidateSyntaxHighlight()
             
             // focus text view
             self.view.window?.makeFirstResponder(editorViewController.textView)
@@ -678,6 +678,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             textView.font = baseTextView.font
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
+            textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),

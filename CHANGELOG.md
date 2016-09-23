@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where auto indent sytle detection didn't work.
+
+
+
 3.0.0-beta.3 (146)
 --------------------------
 
