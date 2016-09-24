@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Enable Autosave and Versions by default.
+
+
 ### Fixes
 
 - [beta] Fix an issue where auto indent sytle detection didn't work.
