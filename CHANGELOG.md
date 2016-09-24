@@ -8,6 +8,7 @@ develop
 ### Improvements
 
 - Enable Autosave and Versions by default.
+- [beta] Improve sideview behavior.
 
 
 ### Fixes
