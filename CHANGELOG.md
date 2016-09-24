@@ -9,6 +9,9 @@ develop
 
 - Enable Autosave and Versions by default.
 - [beta] Improve sideview behavior.
+    - Open sideview outward also on Yosemite.
+    - Sync states of sidebar among tabs in a window more correctly.
+    - Fix some unwanted behavior around sidebar.
 
 
 ### Fixes

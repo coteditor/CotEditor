@@ -60,8 +60,8 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
         
-        self.isSidebarShown = Defaults[.showDocumentInspector]
         self.sidebarThickness = Defaults[.sidebarWidth]
+        self.isSidebarShown = Defaults[.showDocumentInspector]
         
         self.sidebarViewController?.delegate = self
     }
@@ -203,14 +203,44 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         get {
             return !(self.sidebarViewItem?.isCollapsed ?? true)
         }
-        set {
+        set (shown) {
+            // workaround for OS X Yosemite (on macOS 10.12 SDK)
+            guard #available(macOS 10.11, *) else {
+                guard self.sidebarViewItem?.isCollapsed == shown,
+                    let window = self.view.window else { return }
+                
+                let maxPosition = self.splitView.maxPossiblePositionOfDivider(at: 0)
+                
+                NSAnimationContext.current().allowsImplicitAnimation = false
+                self.sidebarViewItem?.isCollapsed = !shown
+                
+                guard !window.styleMask.contains(.fullScreen) else { return }
+                
+                // don't adjust window size on the initial setting
+                if window.isVisible {
+                    // update window size manually
+                    let sidebarThickness = self.sidebarThickness + self.splitView.dividerThickness
+                    var windowFrame = window.frame
+                    windowFrame.size.width += shown ? sidebarThickness : -sidebarThickness
+                    window.setFrame(windowFrame, display: false)
+                }
+                
+                if shown {
+                    let position = maxPosition - (window.isVisible ? 0 : self.sidebarThickness)
+                    self.splitView.setPosition(position, ofDividerAt: 0)
+                    self.splitView.adjustSubviews()
+                }
+                
+                return
+            }
+            
             // update current tab possibly with an animation
-            self.sidebarViewItem?.isCollapsed = !newValue
+            self.sidebarViewItem?.isCollapsed = !shown
             
             // and then update background tabs
             self.siblings.lazy
                 .filter { $0 != self }
-                .forEach { $0.sidebarViewItem?.isCollapsed = !newValue }
+                .forEach { $0.sidebarViewItem?.isCollapsed = !shown }
         }
     }
     
