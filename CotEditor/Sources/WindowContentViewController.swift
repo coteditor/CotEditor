@@ -93,7 +93,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     }
     
     
-    /// store current sidebar width
+    /// divider position did change
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         
         if #available(macOS 10.11, *) {
@@ -102,8 +102,22 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         }
         
         if notification.userInfo?["NSSplitViewDividerIndex"] != nil {  // check wheter the change coused by user's divider dragging
+            // store current sidebar width
             if self.isSidebarShown {
                 Defaults[.sidebarWidth] = self.sidebarThickness
+            }
+            
+            // sync divider position among window tabs
+            if !self.isSynchronizingTabs,
+                let position = self.documentViewController?.view.frame.width
+            {
+                self.isSynchronizingTabs = true
+                
+                self.siblings.lazy
+                    .filter { $0 != self }
+                    .forEach { $0.splitView.setPosition(position, ofDividerAt: 0) }
+                
+                self.isSynchronizingTabs = false
             }
         }
     }
