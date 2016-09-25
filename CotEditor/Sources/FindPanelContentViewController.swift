@@ -70,7 +70,10 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
      override func splitViewDidResizeSubviews(_ notification: Notification) {
         
         // calling super's splitViewDidResizeSubviews() make app crash on Yosemite (2016-09 on macOS 10.12 SDK)
-//        super.splitViewDidResizeSubviews(notification)
+        if #available(macOS 10.11, *) {
+            // -> Calling super's method crashes the app on Yosemite.
+            super.splitViewDidResizeSubviews(notification)
+        }
         
         guard !self.isUncollapsing else { return }
         

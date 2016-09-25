@@ -17,6 +17,7 @@ develop
 ### Fixes
 
 - [beta] Fix an issue where auto indent sytle detection didn't work.
+- [beta] Fix an issue where the find panel was occasionally collapsed.
 - [beta] And some trivial fixes.
 
 
