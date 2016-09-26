@@ -660,7 +660,7 @@ final class Document: NSDocument, EncodingHolder {
         
         // [caution] This method can be called from any thread.
         
-        // [caution] DO NOT invoke super. super.presentedItemDidChange() reverts document automatically if autosavesInPlace is enable.
+        // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enable.
 //        super.presentedItemDidChange()
         
         let option = DocumentConflictOption(rawValue: Defaults[.documentConflictOption]) ?? .notify
