@@ -141,7 +141,6 @@ final class EditorTextView: NSTextView, Themable {
         
         // setup behaviors
         self.smartInsertDeleteEnabled = Defaults[.smartInsertAndDelete]
-        self.isContinuousSpellCheckingEnabled = Defaults[.smartInsertAndDelete]
         self.isAutomaticQuoteSubstitutionEnabled = Defaults[.enableSmartQuotes]
         self.isAutomaticDashSubstitutionEnabled = Defaults[.enableSmartDashes]
         self.isAutomaticLinkDetectionEnabled = Defaults[.autoLinkDetection]
