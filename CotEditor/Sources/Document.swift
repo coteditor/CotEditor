@@ -215,6 +215,19 @@ final class Document: NSDocument, EncodingHolder {
     }
     
     
+    /// URL of document file
+    override var fileURL: URL? {
+        
+        didSet {
+            guard self.fileURL != oldValue else { return }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.analyzer.invalidateFileInfo()
+            }
+        }
+    }
+    
+    
     /// return preferred file extension corresponding the current syntax style
     override func fileNameExtension(forType typeName: String, saveOperation: NSSaveOperationType) -> String? {
         
@@ -637,23 +650,6 @@ final class Document: NSDocument, EncodingHolder {
     
     
     // MARK: Protocols
-    
-    /// file location has changed
-    override func presentedItemDidMove(to newURL: URL) {
-        
-        // [caution] This method can be called from any thread.
-        
-        super.presentedItemDidMove(to: newURL)
-        
-        DispatchQueue.main.async { [weak self] in
-            // -> `fileURL` property will be updated automatically after this `presentedItemDidMoveToURL:`.
-            //    However, we don't know when exactly, therefore update it manually before update documentAnalyzer. (2016-05-19 / OS X 10.11.5)
-            self?.fileURL = newURL
-            
-            self?.analyzer.invalidateFileInfo()
-        }
-    }
-    
     
     /// file has been modified by an external process
     override func presentedItemDidChange() {
