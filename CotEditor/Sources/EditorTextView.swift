@@ -144,7 +144,6 @@ final class EditorTextView: NSTextView, Themable {
         self.isContinuousSpellCheckingEnabled = Defaults[.smartInsertAndDelete]
         self.isAutomaticQuoteSubstitutionEnabled = Defaults[.enableSmartQuotes]
         self.isAutomaticDashSubstitutionEnabled = Defaults[.enableSmartDashes]
-        self.isAutomaticDashSubstitutionEnabled = Defaults[.autoLinkDetection]
         self.isAutomaticLinkDetectionEnabled = Defaults[.autoLinkDetection]
         self.isContinuousSpellCheckingEnabled = Defaults[.checkSpellingAsType]
         
