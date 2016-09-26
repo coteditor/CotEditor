@@ -198,6 +198,13 @@ final class Document: NSDocument, EncodingHolder {
     }
     
     
+    /// enable asynchronous saving
+    override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
+        
+        return saveOperation == .autosaveElsewhereOperation || saveOperation == .autosaveInPlaceOperation
+    }
+    
+    
     /// make custom windowControllers
     override func makeWindowControllers() {
         
@@ -205,6 +212,51 @@ final class Document: NSDocument, EncodingHolder {
         let windowController = storyboard.instantiateInitialController() as! NSWindowController
         
         self.addWindowController(windowController)
+    }
+    
+    
+    /// return preferred file extension corresponding the current syntax style
+    override func fileNameExtension(forType typeName: String, saveOperation: NSSaveOperationType) -> String? {
+        
+        if let pathExtension = self.fileURL?.pathExtension {
+            return pathExtension
+        }
+        
+        let styleName = self.syntaxStyle.styleName
+        let extensions = SyntaxManager.shared.extensions(name: styleName)
+        
+        return extensions.first
+    }
+    
+    
+    /// revert to saved file contents
+    override func revert(toContentsOf url: URL, ofType typeName: String) throws {
+        
+        // once force-close all sheets
+        //   -> Presented errors will be displayed again after the revert automatically (since OS X 10.10).
+        self.windowForSheet?.sheets.forEach { $0.close() }
+        
+        try super.revert(toContentsOf: url, ofType: typeName)
+        
+        // apply to UI
+        self.applyContentToWindow()
+    }
+    
+    
+    /// setup duplicated document
+    override func duplicate() throws -> NSDocument {
+        
+        let document = try super.duplicate() as! Document
+        
+        document.setSyntaxStyle(name: self.syntaxStyle.styleName)
+        document.lineEnding = self.lineEnding
+        document.encoding = self.encoding
+        document.hasUTF8BOM = self.hasUTF8BOM
+        
+        // apply text orientation
+        document.viewController?.verticalLayoutOrientation = self.viewController?.verticalLayoutOrientation ?? self.isVerticalText
+        
+        return document
     }
     
     
@@ -289,34 +341,6 @@ final class Document: NSDocument, EncodingHolder {
     }
     
     
-    /// revert to saved file contents
-    override func revert(toContentsOf url: URL, ofType typeName: String) throws {
-        
-        // once force-close all sheets
-        //   -> Presented errors will be displayed again after the revert automatically (since OS X 10.10).
-        self.windowForSheet?.sheets.forEach { $0.close() }
-        
-        try super.revert(toContentsOf: url, ofType: typeName)
-        
-        // apply to UI
-        self.applyContentToWindow()
-    }
-    
-    
-    /// return preferred file extension corresponding the current syntax style
-    override func fileNameExtension(forType typeName: String, saveOperation: NSSaveOperationType) -> String? {
-        
-        if let pathExtension = self.fileURL?.pathExtension {
-            return pathExtension
-        }
-        
-        let styleName = self.syntaxStyle.styleName
-        let extensions = SyntaxManager.shared.extensions(name: styleName)
-        
-        return extensions.first
-    }
-    
-    
     /// create Data object to save
     override func data(ofType typeName: String) throws -> Data {
         
@@ -344,13 +368,6 @@ final class Document: NSDocument, EncodingHolder {
         }
         
         return data
-    }
-    
-    
-    /// enable asynchronous saving
-    override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
-        
-        return saveOperation == .autosaveElsewhereOperation || saveOperation == .autosaveInPlaceOperation
     }
     
     
@@ -615,23 +632,6 @@ final class Document: NSDocument, EncodingHolder {
         set {
             super.printInfo = newValue
         }
-    }
-    
-    
-    /// setup duplicated document
-    override func duplicate() throws -> NSDocument {
-        
-        let document = try super.duplicate() as! Document
-        
-        document.setSyntaxStyle(name: self.syntaxStyle.styleName)
-        document.lineEnding = self.lineEnding
-        document.encoding = self.encoding
-        document.hasUTF8BOM = self.hasUTF8BOM
-        
-        // apply text orientation
-        document.viewController?.verticalLayoutOrientation = self.viewController?.verticalLayoutOrientation ?? self.isVerticalText
-        
-        return document
     }
     
     
