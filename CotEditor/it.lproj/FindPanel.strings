@@ -1,0 +1,119 @@
+/*
+ 
+ FindPanel.strings (Italian)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+// Find Panel
+
+/* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
+"Wal-Sg-6d6.title" = "Trova e sostituisci";
+
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
+"3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "Cerca";
+/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
+"hxw-DS-gxQ.ibShadowedToolTip" = "Inserire il testo da cercare.";
+
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
+"VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "Sostituisci";
+/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
+"qiQ-tb-XCa.ibShadowedToolTip" = "Inserire il testo con cui sostituire il testo trovato.";
+
+/* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
+"brT-HP-GVL.title" = "Espressione regolare";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "8My-G5-daT"; */
+"8My-G5-daT.ibShadowedToolTip" = "Selezionare per la ricerca di un’espressione regolare.";
+
+/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
+"4wg-Cz-ozb.title" = "Ignora maiuscole/minuscole";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
+"GvT-tD-Cbk.ibShadowedToolTip" = "Selezionare per ignorare maiuscole/minuscole nella ricerca.";
+
+/* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
+"9bc-9Q-fhd.title" = "Nella selezione";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
+"tu7-IT-dA3.ibShadowedToolTip" = "Selezionare per ricercare testo solo all’interno della selezione.";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
+"i2l-7Z-Zmf.ibShadowedToolTip" = "Mostra un riferimento rapido per la sintassi delle espressioni regolari.";
+
+
+// Buttons
+
+/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
+"XLZ-92-VVF.title" = "Cerca tutto";
+/* Class = "NSButton"; ibShadowedToolTip = "List all matches."; ObjectID = "OCv-Y5-8XR"; */
+"OCv-Y5-8XR.ibShadowedToolTip" = "Mostra tutti i risultati di ricerca.";
+
+/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
+"5gU-5y-iLn.title" = "Sostituisci tutto";
+/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
+"RR6-rj-B8P.ibShadowedToolTip" = "Applica il testo sostitutivo a tutti i risultati di ricerca.";
+
+/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
+"W4Z-S2-wvv.title" = "Sostituisci";
+// Note: The tooltip for "Replace button is set the in FindPanelController.
+
+/* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
+"u6p-Hz-aK5.ibShadowedToolTips[0]" = "Cerca l’occorrenza precedente.";  /* "Find previous match." */
+"u6p-Hz-aK5.ibShadowedToolTips[1]" = "Cerca l’occorrenza successivo.";  /* "Find next match." */
+
+/* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
+"cdV-rY-hCN.title" = "Ricerche recenti";
+/* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
+"vE8-oK-xlC.title" = "Cancella ricerche recenti";
+
+/* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
+"7cw-iQ-0LM.title" = "Sostituzioni recenti";
+/* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
+"vfK-an-Qnl.title" = "Cancella sostituzioni recenti";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibShadowedToolTip" = "Imposta opzioni avanzate";
+
+
+// Find Result
+
+/* Class = "NSButton"; UeN.ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
+"oC1-bN-UeN.ibShadowedToolTip" = "Chiudi i risultati di ricerca.";
+
+/* Class = "BindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
+"2MH-SD-x1y.ibShadowedDisplayPattern" = "Trova stringa: %{value1}@";
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
+"CPd-0W-bKv.headerCell.title" = "Riga";
+/* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
+"PJ8-wp-pdK.headerCell.title" = "Stringa trovata";
+
+/* Class = "NSButtonCell"; title = "Live Update"; ObjectID = "pqE-XD-1Fq"; */
+"pqE-XD-1Fq.title" = "Aggiornamento automatico";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to update find result when document is edited."; ObjectID = "PEV-3w-HeQ"; */
+"PEV-3w-HeQ.ibShadowedToolTip" = "Seleziona per aggiornare i risultati di ricerca quando il documento viene modificato.";
+
+
+// Regex Quick Reference
+
+/* Class = "IBNSViewController"; title = "Quick Reference of Regular Expression"; ObjectID = "uMF-F8-Wjs"; */
+"uMF-F8-Wjs.title" = "Riferimento rapido ad un’espressione regolare";

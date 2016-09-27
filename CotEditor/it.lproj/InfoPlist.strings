@@ -1,0 +1,74 @@
+﻿/*
+ 
+ InfoPlist.strings (Italian)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+// Document Types
+"Text document" = "Documento di testo";
+"Plain text" = "Testo semplice";
+"CotEditor Theme" = "Tema CotEditor";
+"BibTeX" = "BibTeX";
+"Configuration" = "Configurazione";
+"C header" = " Intestazione C";
+"C source" = "Codice C";
+"C++ source" = "Codice C++";
+"C++ header" = "Intestazione C++";
+"C# source" = "Codice C#";
+"CoffeeScript" = "CoffeeScript";
+"Cascading Style Sheet" = "CSS";
+"Dart script" = "Script Dart";
+"D source" = "Codice D";
+"Diff" = "Diff";
+"Document Type Definition" = "Definizione del tipo di documento (DTD)";
+"Go script" = "Script Go";
+"Haskell script" = "Script Haskell";
+"HTML document" = "Documento HTML";
+"INI" = "INI";
+"Java source" = "Codice Java";
+"JavaScript" = "JavaScript";
+"JSON" = "JSON";
+"Julia script" = "Script Julia";
+"Lisp script" = "Script Lisp";
+"Lua script" = "Script Lua";
+"Markdown document" = "Documento Markdown";
+"Perl script" = "Script Perl";
+"PHP script" = "Script PHP";
+"Python script" = "Script Python";
+"reStructured Text document" = "Documento di testo riStrutturato";
+"Ruby script" = "Script Ruby";
+"Rust script" = "Script Rust";
+"Scalable Vector Graphics" = "SVG";
+"Scala script" = "Script Scala";
+"Scheme script" = "Script Schema";
+"Shell script" = "Script Shell";
+"SQL source" = "Codice SQL";
+"Swift source" = "Codice Swift";
+"TeX" = "TeX";
+"Textile document" = "Documento Textile";
+"Tcl source" = "Codice Tcl";
+"Verilog source" = "Codice Verilog";
+"XML document" = "Documento XML";
+"YAML" = "YAML";

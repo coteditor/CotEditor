@@ -1,0 +1,90 @@
+/*
+ 
+ EditPane.strings (Italian)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
+"SqI-BC-ar9.title" = "Sostituzione:";
+/* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
+"3302.title" = "Copia/Incolla intelligente";
+/* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "Inserisci automaticamente parentesi e virgolette di chiusura";
+/* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
+"3303.title" = "Inverti i tasti “¥” e “\\”";
+/* Class = "NSTextFieldCell"; title = "Smart"; ObjectID = "6I3-dM-2QV"; */
+"6I3-dM-2QV.title" = "Intelligente";
+/* Class = "NSButtonCell"; title = " Quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Virgolette";
+/* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
+"nr1-0X-aBY.title" = "Trattini";
+
+
+/* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
+"9bX-ei-1x8.title" = "Rientro:";
+/* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
+"3285.title" = "Rientro automatico";
+/* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
+"3283.title" = "Converti le tabulazioni in spazi";
+/* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
+"3287.title" = "Ampiezza rientro:";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
+"as9-us-CuG.title" = "spazi";
+/* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
+"Cte-hW-0M3.title" = "Rileva il tipo di rientro all’apertura del documento";
+
+
+/* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
+"EDl-AJ-1dK.title" = "Commento:";
+/* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
+"6Dw-5M-Gv0.title" = "Aggiungi uno spazio al delimitatore del commento";
+/* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
+"Byi-E9-owf.title" = "Sempre dall’inizio della riga";
+
+
+/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
+"P1I-gs-RgX.title" = "A capo automatico:";
+/* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
+"3274.title" = "Manda le righe a capo";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = " Fai rientrare le righe a capo di";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "spazi";
+
+
+/* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
+"gDN-SU-sZH.title" = "Completamento:";
+
+/* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
+"dLj-Kh-KtX.title" = "La lista di completamento include:";
+/* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
+"EJZ-N6-54G.title" = "Parole del documento";
+/* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
+"1v9-7i-9RL.title" = "Parole definite nello stile della sintassi";
+/* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
+"c5j-0N-f2R.title" = "Parole standard";
+
+/* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
+"J1B-wA-rdr.title" = "Suggerisci completamento durante l’inserimento";

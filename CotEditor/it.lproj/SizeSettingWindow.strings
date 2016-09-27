@@ -1,0 +1,43 @@
+/*
+ 
+ SizeSettingWindow.strings (Italian)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSWindow"; title = "Sample Window for Size"; ObjectID = "127"; */
+"127.title" = "Finestra di esempio per le dimensioni";
+
+/* Class = "NSTextFieldCell"; title = "Resize this window.\nThe size of this window will be set as default."; ObjectID = "3399"; */
+"3399.title" = "Ridimensionare questa finestra.\nLe dimensioni di questa finestra saranno impostate come default.";
+
+/* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
+"3402.title" = "Ampiezza:";
+/* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
+"3403.title" = "Altezza:";
+
+/* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
+"3397.title" = "Imposta come default";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3398"; */
+"3398.title" = "Annulla";
