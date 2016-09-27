@@ -22,6 +22,7 @@ develop
 - [beta] Fix an issue where document could silently updated by an external document file update even if user doesn't set to “Update to modified version”.
 - [beta] Fix an issue where smart dashes substitution state could be set wrongly.
 - [beta] Fix an issue where auto indent sytle detection didn't work.
+- [beta] Fix an issue where file were treated as dropped-files instead of just inserting filenames when files are copied-and-pasted from Finder.
 - [beta] Fix an issue where the find panel was occasionally collapsed.
 - [beta] And some trivial fixes.
 

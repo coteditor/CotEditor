@@ -615,7 +615,8 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // on file drop
-        if let filePaths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String] {
+        if type == NSFilenamesPboardType,
+            let filePaths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String] {
             let documentURL = self.document?.fileURL
             var replacementString = ""
             
