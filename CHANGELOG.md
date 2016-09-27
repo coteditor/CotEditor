@@ -18,6 +18,7 @@ develop
 ### Fixes
 
 - [beta] Fix an issue where application could crash on document file sync.
+- [beta] Fix an issue where application could crash on termination.
 - [beta] Fix an issue where smart dashes substitution state could be set wrongly.
 - [beta] Fix an issue where auto indent sytle detection didn't work.
 - [beta] Fix an issue where the find panel was occasionally collapsed.

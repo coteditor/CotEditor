@@ -374,8 +374,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     }
     
     
+    /// Whether status bar is visible
+    var isStatusBarShown: Bool = false {
+        
+        didSet {
+            self.statusBarItem?.isCollapsed = !self.isStatusBarShown
+        }
+    }
+    
+    
     /// visibility of navigation bars
-    dynamic var showsNavigationBar = false {
+    var showsNavigationBar = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -386,7 +395,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of line numbers view
-    dynamic var showsLineNumber = false {
+    var showsLineNumber = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -397,7 +406,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// if lines soft-wrap at window edge
-    dynamic var wrapsLines = false {
+    var wrapsLines = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -408,7 +417,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of page guide lines in text view
-    dynamic var showsPageGuide = false {
+    var showsPageGuide = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -421,7 +430,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of invisible characters
-    dynamic var showsInvisibles = false {
+    var showsInvisibles = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -432,7 +441,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// if text orientation is vertical
-    dynamic var verticalLayoutOrientation = false {
+    var verticalLayoutOrientation = false {
         
         didSet {
             let orientation: NSTextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
@@ -630,18 +639,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             Defaults[.showInvisibleNewLine] ||
             Defaults[.showInvisibleFullwidthSpace] ||
             Defaults[.showInvisibles])
-    }
-    
-    
-    /// Whether status bar is visible
-    private dynamic var isStatusBarShown: Bool {
-        
-        get {
-            return !(self.statusBarItem?.isCollapsed ?? true)
-        }
-        set {
-            self.statusBarItem?.isCollapsed = !newValue
-        }
     }
     
     
