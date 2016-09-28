@@ -6,7 +6,7 @@ metadata:
   version: "3.0.0"
   description: "Based on Swift 3.0."
   license: "Same as CotEditor"
-  lastModified: "2016-09-09"
+  lastModified: "2016-09-29"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
@@ -325,6 +325,7 @@ keywords:
 - beginString: "extension"
 - beginString: "fallthrough"
 - beginString: "final"
+- beginString: "fileprivate"
 - beginString: "for"
 - beginString: "func"
 - beginString: "get"
