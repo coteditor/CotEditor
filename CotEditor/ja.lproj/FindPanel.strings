@@ -31,13 +31,13 @@
 "Wal-Sg-6d6.title" = "検索と置換";
 
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "RMK-P4-pYn"; */
-"RMK-P4-pYn.ibShadowedIsNilPlaceholder" = "検索";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
+"3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "検索";
 /* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
 "hxw-DS-gxQ.ibShadowedToolTip" = "検索するテキストを入力";
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "MRv-ox-jgD"; */
-"MRv-ox-jgD.ibShadowedIsNilPlaceholder" = "置換";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
+"VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "置換";
 /* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibShadowedToolTip" = "見つかったテキストと入れ替えるテキストを入力";
 
