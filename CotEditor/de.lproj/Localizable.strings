@@ -71,7 +71,7 @@
 "%@ strings found." = "%@ Zeichenketten gefunden.";
 "%@ string replaced." = "%@ Zeichenkette ersetzt.";
 "%@ strings replaced." = "%@ Zeichenketten ersetzt.";
-"Invalid regular expression" =  "Ungültiger regulärer Ausdruck";
+"Invalid regular expression" = "Ungültiger regulärer Ausdruck";
 
 
 /* MARK: FindPanelController */

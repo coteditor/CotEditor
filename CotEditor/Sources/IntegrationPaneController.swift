@@ -116,4 +116,5 @@ final class IntegrationPaneController: NSViewController {
         
         return true
     }
+    
 }

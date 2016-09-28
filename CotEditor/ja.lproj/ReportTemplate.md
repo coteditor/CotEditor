@@ -3,7 +3,7 @@
 
 -----------------------------------------------
 
-## 環境 
+## 環境
 
 - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
 - システム: macOS %SYSTEM_VERSION%

@@ -331,7 +331,7 @@ develop
 
 - Add independent “Unicode (UTF-8) with BOM” encoding to encoding list.
     - Respect the existence of the UTF-8 BOM in opened files.
-    - Enable switching the document encoding between with and without BOM from the toolbar popup button and the “Format” menu. 
+    - Enable switching the document encoding between with and without BOM from the toolbar popup button and the “Format” menu.
         - The “Unicode (UTF-8) with BOM” item will be automatically added to just after the normal “Unicode (UTF-8)”.
 - Now, the execute permission can be given to the file to save from the save panel.
 - Add spelling auto correction option (in “Edit” pane).
@@ -348,7 +348,7 @@ develop
     - Now font-size change applies only to the focused editor.
     - Enable pinch-zoom to make font smaller than default font size.
     - Font size changing doesn't affect the actual font anymore but just scale characters visibly.
-    - Fix an issue where font-size changing could remove hanging indent. 
+    - Fix an issue where font-size changing could remove hanging indent.
     - Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.
 - Separate the “Enable smart quotes and dashes” into “Enable smart quotes” and “Enable smart dashes” (in “Edit” pane).
 - Apply the following text actions to whole document if no text is selected:
@@ -738,7 +738,7 @@ develop
 - Update “INI” syntax style:
     - Add “url” to extension list.
 - Update “JavaScript” syntax style:
-    - Add “z” to attributes. 
+    - Add “z” to attributes.
 - Temporary hide the “Live Update” checkbox in the find panel since this feature by OgreKit framework has actually not worked correctly in the latest versions.
 - Update Onigmo regular expression engine to 5.15.0.
 
@@ -766,7 +766,7 @@ develop
 ### Improvements
 
 - Update “JSON” syntax style:
-    - Add “geojson” to extension list. 
+    - Add “geojson” to extension list.
 
 
 ### Fixes
@@ -818,7 +818,7 @@ develop
 - Remove sample scripts.
     - You can get them online on [Archives](http://coteditor.com/archives) page.
 - Update documents.
-- [beta] Improve side inspector switcher. 
+- [beta] Improve side inspector switcher.
 
 
 ### Fixes
@@ -860,7 +860,7 @@ develop
       You may need to modify paths in this command depending on where you've installed CotEditor/cot.
 - Improve Color Code Editor:
     - Add stylesheet keyword to color code type.
-    - Add stylesheet keyword color list to editor panel. 
+    - Add stylesheet keyword color list to editor panel.
     - Make editor panel resizable.
 - Now syntax style is automatically set to “XML” on file opening if no appropriate style can be found but the file content starts with a XML declaration.
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
@@ -881,7 +881,7 @@ develop
 - Fix an issue where application could crash after when closing multiple split views.
 - Fix an issue where application crashed by clicking header of empty table in syntax editor sheet.
 - Fix an issue where warning on Integration pane didn't disappear even after the problem resolved.
-- Fix an issue where unwanted invisible character mark were drawn when tab drawing is turned off and other invisibles drawing is turned on. 
+- Fix an issue where unwanted invisible character mark were drawn when tab drawing is turned off and other invisibles drawing is turned on.
 - Add some missing localized strings in Japanese.
 - [El Capitan] Fix an issue where color code view did not display on El Capitan.
 - [beta] Fix an issue where the strings that were inserted via script or tools could be styled wrong.
@@ -900,7 +900,7 @@ develop
 - New setting option for the behavior on document modification by external process (in General pane).
 - Share button in toolbar (Customize toolbar to use it).
 - Save text orientation state to the file and restore it when the file is opened.
-    - __for advanced users__: In this feature, CotEditor saves an *extended attribute* which named `com.coteditor.VerticalText` to the file *only when* the editor's text orientation is vertical. You can even disable the feature running the command `defaults write com.coteditor.CotEditor savesTextOrientation -bool NO` in Terminal. 
+    - __for advanced users__: In this feature, CotEditor saves an *extended attribute* which named `com.coteditor.VerticalText` to the file *only when* the editor's text orientation is vertical. You can even disable the feature running the command `defaults write com.coteditor.CotEditor savesTextOrientation -bool NO` in Terminal.
 - Line number view for vertical text orientation.
 - Print with vertical text orientation.
 - Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file content for in case when syntax style cannot be determined from the file name.
@@ -945,7 +945,7 @@ develop
 - Fix an issue where the full path display in the document inspector did not update after the document file moved.
 - Fix an issue where the find panel could not find matched strings when the find string includes CR or CR/LF line endings.
 - Fix an issue where line numbers were not drawn completely on OS X 10.8 when scroll bars are set as always shown.
-- Fix an issue where some ligatured characters were drawn at a wrong position when the line height for composite font is fixed. 
+- Fix an issue where some ligatured characters were drawn at a wrong position when the line height for composite font is fixed.
 - Improve general stability.
 
 
@@ -1136,7 +1136,7 @@ develop
 2.1.0-beta
 --------------------------
 
-### New Features 
+### New Features
 
 - `cot` command-line tool.
 - New AppleScript property `tab width` for document object.
@@ -1206,7 +1206,7 @@ develop
 2.0.3
 --------------------------
 
-### New Features 
+### New Features
 
 - Add Chinese (Simplified) localization. (Thanks to Wei Wang!)
 - Add feature to scale font size up by pinch gesture.
@@ -1440,11 +1440,11 @@ develop
     - 現在行をハイライトしているときのファイルオープンおよびカーソル移動のパフォーマンスを大幅に改善
     - 不可視文字描画のパフォーマンスを大幅に改善 (約4倍)
     - 行番号表示のパフォーマンスを大幅に改善 (約6倍)
-    - Mountain Lion 以降のビュー不透明時および、Yosemite 以降でスクロールのもたつきを改善 
+    - Mountain Lion 以降のビュー不透明時および、Yosemite 以降でスクロールのもたつきを改善
     - ファイルオープンの高速化のため、エンコーディング宣言の走査を文書前方2,000文字のみに制限
 - シンタックス定義ファイルのフォーマットを plist (XML) から YAML に変更
     - ユーザのカスタム定義の移行は、初回 CotEditor 2.0 起動時に自動で行なわれます。
-    - 新しい形式の定義ファイルは `~/Library/Application Support/CotEditor/Syntaxes/` に保存されます。以前の plist 形式の定義ファイルは `SyntaxColorings/` ファイルに残されたままになりますが CotEditor 2.0 はこれを使用しないので、必要なければ削除しても構いません。 
+    - 新しい形式の定義ファイルは `~/Library/Application Support/CotEditor/Syntaxes/` に保存されます。以前の plist 形式の定義ファイルは `SyntaxColorings/` ファイルに残されたままになりますが CotEditor 2.0 はこれを使用しないので、必要なければ削除しても構いません。
 - シンタックス定義で RE (正規表現) を無効にしていても IC (大文字小文字を無視) を有効にできるように変更
 - アウトライン抽出に用いる正規表現ライブラリを OniGmo (OgreKit) から ICU (NSRegularExpression) に変更
     - マッチした文字列全体を表す `$&` 定義の削除（代わりに `$0` を使ってください）

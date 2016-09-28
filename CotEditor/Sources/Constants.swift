@@ -46,4 +46,3 @@ extension String.Encoding {
     /// original special encoding type
     static let autoDetection = String.Encoding(rawValue: 0)
 }
-

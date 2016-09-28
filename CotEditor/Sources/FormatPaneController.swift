@@ -506,4 +506,5 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             self.presentError(error)
         }
     }
+    
 }

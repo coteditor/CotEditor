@@ -38,7 +38,7 @@ final class StatusBarController: NSViewController {
     
     
     
-    // MARK: 
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

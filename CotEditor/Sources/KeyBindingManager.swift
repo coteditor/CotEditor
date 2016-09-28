@@ -202,7 +202,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         let fileURL = self.keyBindingSettingFileURL
         
         let defaultExistsAction = self.defaultKeyBindings.map { $0.action }
-        let diff =  keyBindings.subtracting(self.defaultKeyBindings)
+        let diff = keyBindings.subtracting(self.defaultKeyBindings)
             .filter { $0.shortcut != nil ||  defaultExistsAction.contains($0.action) }
         
         // write to file

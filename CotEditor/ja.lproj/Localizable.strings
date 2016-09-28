@@ -72,7 +72,7 @@
 "%@ strings found." = "%@ 件見つかりました。";
 "%@ string replaced." = "%@ 件置換しました。";
 "%@ strings replaced." = "%@ 件置換しました。";
-"Invalid regular expression" =  "無効な正規表現です。";
+"Invalid regular expression" = "無効な正規表現です。";
 
 
 /* MARK: FindPanelController */
