@@ -480,7 +480,7 @@
 "Script Error" = "脚本错误";
 
 // Script error alert informatives
-"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "脚本“%@”不存在。\n\n请确认文件是否存在，并使用“更新脚本菜单”进行更新。";
+"The script “%@” does not exist." = "脚本“%@”不存在。";
 "%@\nErrorNumber: %i" = "%@\n错误号：%i";
 "The script file “%@” couldn’t be opened." = "无法打开脚本文件“%@”。";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "由于没有执行权限，无法执行脚本“%@”。\n\n请确认脚本文件的权限。";

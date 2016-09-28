@@ -203,7 +203,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         // display alert and endup if file not exists
         guard fileURL.isReachable else {
-            let message = String(format: NSLocalizedString("The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”.", comment: ""), fileURL.lastPathComponent)
+            let message = String(format: NSLocalizedString("The script “%@” does not exist.", comment: ""), fileURL.lastPathComponent)
             self.showAlert(message: message)
             return
         }

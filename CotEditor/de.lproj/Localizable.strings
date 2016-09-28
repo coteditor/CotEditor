@@ -482,7 +482,7 @@
 "Script Error" = "Skriptfehler";
 
 // Script error alert informatives
-"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "Das Skript „%@“ existiert nicht.\n\nPrüfen Sie es und wählen Sie „Skript-Menü aktualisieren“.";
+"The script “%@” does not exist." = "Das Skript „%@“ existiert nicht.";
 "The script file “%@” couldn’t be opened." = "Die Skriptdatei „%@“ konnte nicht geöffnet werden.";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "Das Skript „%@“ kann nicht ausgeführt werden, da Sie keine Ausführungsrechte haben.\n\nPrüfen Sie die Zugriffsrechte der Skriptdatei.";
 "The script “%@” couldn’t be read." = "Das Skript „%@“ konnte nicht gelesen werden.";
