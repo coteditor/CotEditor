@@ -141,10 +141,8 @@ final class EditorTextView: NSTextView, Themable {
         
         // setup behaviors
         self.smartInsertDeleteEnabled = Defaults[.smartInsertAndDelete]
-        self.isContinuousSpellCheckingEnabled = Defaults[.smartInsertAndDelete]
         self.isAutomaticQuoteSubstitutionEnabled = Defaults[.enableSmartQuotes]
         self.isAutomaticDashSubstitutionEnabled = Defaults[.enableSmartDashes]
-        self.isAutomaticDashSubstitutionEnabled = Defaults[.autoLinkDetection]
         self.isAutomaticLinkDetectionEnabled = Defaults[.autoLinkDetection]
         self.isContinuousSpellCheckingEnabled = Defaults[.checkSpellingAsType]
         
@@ -617,7 +615,8 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // on file drop
-        if let filePaths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String] {
+        if type == NSFilenamesPboardType,
+            let filePaths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String] {
             let documentURL = self.document?.fileURL
             var replacementString = ""
             

@@ -236,15 +236,12 @@
             <objects>
                 <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="SidebarViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
-                    <tabView key="tabView" misplaced="YES" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
+                    <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="252" y="0.0" width="200" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
                     </tabView>
-                    <connections>
-                        <outlet property="view" destination="wzn-c5-29x" id="9lx-vQ-Qu5"/>
-                    </connections>
                 </tabViewController>
                 <customObject id="u7b-LP-b38" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

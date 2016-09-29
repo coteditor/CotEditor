@@ -60,8 +60,8 @@
 
 // Regular Expression
 
-/* Class = "NSTextFieldCell"; title = "Regular Expression"; ObjectID = "Xa9-i4-ELR"; */
-"Xa9-i4-ELR.title" = "正規表現";
+/* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "Xa9-i4-ELR"; */
+"Xa9-i4-ELR.title" = "正規表現検索";
 
 
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */

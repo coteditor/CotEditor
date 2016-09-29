@@ -27,9 +27,11 @@
 
 import Cocoa
 
-final class WindowContentViewController: NSSplitViewController {
+final class WindowContentViewController: NSSplitViewController, TabViewControllerDelegate {
     
     // MARK: Private Properties
+    
+    private var isSynchronizingTabs = false
     
     @IBOutlet private weak var documentViewItem: NSSplitViewItem?
     @IBOutlet private weak var sidebarViewItem: NSSplitViewItem?
@@ -58,8 +60,10 @@ final class WindowContentViewController: NSSplitViewController {
             self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
         
-        self.isSidebarShown = Defaults[.showDocumentInspector]
         self.sidebarThickness = Defaults[.sidebarWidth]
+        self.isSidebarShown = Defaults[.showDocumentInspector]
+        
+        self.sidebarViewController?.delegate = self
     }
     
     
@@ -72,8 +76,8 @@ final class WindowContentViewController: NSSplitViewController {
         
         // adjust sidebar visibility if this new window was just added to an existing window
         if let other = self.siblings.first(where: { $0 != self }) {
-            self.isSidebarShown = other.isSidebarShown
             self.sidebarThickness = other.sidebarThickness
+            self.setSidebarShown(other.isSidebarShown, index: other.sidebarViewController!.selectedTabIndex)
         }
     }
     
@@ -89,7 +93,7 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// store current sidebar width
+    /// divider position did change
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         
         if #available(macOS 10.11, *) {
@@ -98,14 +102,46 @@ final class WindowContentViewController: NSSplitViewController {
         }
         
         if notification.userInfo?["NSSplitViewDividerIndex"] != nil {  // check wheter the change coused by user's divider dragging
+            // store current sidebar width
             if self.isSidebarShown {
                 Defaults[.sidebarWidth] = self.sidebarThickness
+            }
+            
+            // sync divider position among window tabs
+            if !self.isSynchronizingTabs,
+                let position = self.documentViewController?.view.frame.width
+            {
+                self.isSynchronizingTabs = true
+                
+                self.siblings.lazy
+                    .filter { $0 != self }
+                    .forEach { $0.splitView.setPosition(position, ofDividerAt: 0) }
+                
+                self.isSynchronizingTabs = false
             }
         }
     }
     
-
-
+    
+    
+    // MARK: Sidebar View Controller Delegate
+    
+    /// synchronize sidebar pane among window tabs
+    func tabViewController(_ viewController: NSTabViewController, didSelect tabViewIndex: Int) {
+        
+        guard !self.isSynchronizingTabs else { return }
+        
+        self.isSynchronizingTabs = true
+        
+        self.siblings.lazy
+            .filter { $0 != self }
+            .forEach { $0.sidebarViewController?.selectedTabViewItemIndex = tabViewIndex }
+        
+        self.isSynchronizingTabs = false
+    }
+    
+    
+    
     // MARK: Public Methods
     
     /// deliver editor to outer view controllers
@@ -118,8 +154,7 @@ final class WindowContentViewController: NSSplitViewController {
     /// display desired sidebar pane
     func showSidebarPane(index: SidebarViewController.TabIndex) {
         
-        self.sidebarViewController?.tabView.selectTabViewItem(at: index.rawValue)
-        self.sidebarViewItem?.animator().isCollapsed = false
+        self.setSidebarShown(true, index: index, animate: true)
     }
     
     
@@ -144,9 +179,9 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// split view item to view controller
-    private var sidebarViewController: NSTabViewController? {
+    private var sidebarViewController: SidebarViewController? {
         
-        return self.sidebarViewItem?.viewController as? NSTabViewController
+        return self.sidebarViewItem?.viewController as? SidebarViewController
     }
     
     
@@ -168,23 +203,71 @@ final class WindowContentViewController: NSSplitViewController {
         get {
             return !(self.sidebarViewItem?.isCollapsed ?? true)
         }
-        set {
+        set (shown) {
+            // workaround for OS X Yosemite (on macOS 10.12 SDK)
+            guard #available(macOS 10.11, *) else {
+                guard self.sidebarViewItem?.isCollapsed == shown,
+                    let window = self.view.window else { return }
+                
+                let maxPosition = self.splitView.maxPossiblePositionOfDivider(at: 0)
+                
+                NSAnimationContext.current().allowsImplicitAnimation = false
+                self.sidebarViewItem?.isCollapsed = !shown
+                
+                guard !window.styleMask.contains(.fullScreen) else { return }
+                
+                // don't adjust window size on the initial setting
+                if window.isVisible {
+                    // update window size manually
+                    let sidebarThickness = self.sidebarThickness + self.splitView.dividerThickness
+                    var windowFrame = window.frame
+                    windowFrame.size.width += shown ? sidebarThickness : -sidebarThickness
+                    window.setFrame(windowFrame, display: false)
+                }
+                
+                if shown {
+                    let position = maxPosition - (window.isVisible ? 0 : self.sidebarThickness)
+                    self.splitView.setPosition(position, ofDividerAt: 0)
+                    self.splitView.adjustSubviews()
+                }
+                
+                return
+            }
+            
+            // update current tab possibly with an animation
+            self.sidebarViewItem?.isCollapsed = !shown
+            
+            // and then update background tabs
+            self.siblings.lazy
+                .filter { $0 != self }
+                .forEach { $0.sidebarViewItem?.isCollapsed = !shown }
+        }
+    }
+    
+    
+    /// set visibility and tab of sidebar
+    private func setSidebarShown(_ shown: Bool, index: SidebarViewController.TabIndex? = nil, animate: Bool = false) {
+        
+        if let index = index {
             self.siblings.forEach { sibling in
-                sibling.sidebarViewItem?.isCollapsed = !newValue
+                sibling.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
             }
         }
+        
+        if animate { NSAnimationContext.current().allowsImplicitAnimation = true }
+        
+        self.isSidebarShown = shown
+        
+        if animate { NSAnimationContext.current().allowsImplicitAnimation = false }
     }
     
     
     /// toggle visibility of pane in sidebar
     private func toggleVisibilityOfSidebarTabItem(index: SidebarViewController.TabIndex) {
         
-        let isCollapsed = self.isSidebarShown && (index.rawValue == self.sidebarViewController!.selectedTabViewItemIndex)
+        let shown = !self.isSidebarShown || (index.rawValue != self.sidebarViewController!.selectedTabViewItemIndex)
         
-        self.siblings.forEach { sibling in
-            sibling.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
-            sibling.sidebarViewItem!.animator().isCollapsed = isCollapsed
-        }
+        self.setSidebarShown(shown, index: index, animate: true)
     }
     
     

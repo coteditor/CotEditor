@@ -29,9 +29,13 @@ import Cocoa
 
 final class InspectorTabView: NSTabView {
     
+    // MARK: Public Properties
+    
+    let segmentedControl = NSSegmentedControl()
+    
+    
     // MARK: Private Properties
     
-    private let segmentedControl = NSSegmentedControl()
     private let ControlHeight: CGFloat = 28.0
     
     
@@ -49,9 +53,6 @@ final class InspectorTabView: NSTabView {
         self.segmentedControl.cell = SwitcherSegmentedCell()
         self.segmentedControl.segmentStyle = .texturedSquare
         self.segmentedControl.frame.origin.y = floor((self.ControlHeight - self.segmentedControl.intrinsicContentSize.height) / 2)
-        self.segmentedControl.wantsLayer = true
-        self.segmentedControl.action = #selector(InspectorTabView.selectTabViewItemWithSegmentedControl)
-        self.segmentedControl.target = self
         self.addSubview(self.segmentedControl)
         
         self.rebuildSegmentedControl()
@@ -130,13 +131,6 @@ final class InspectorTabView: NSTabView {
     
     
     // MARK: Private Methods
-    
-    /// switch tab from the private control
-    func selectTabViewItemWithSegmentedControl(_ sender: NSSegmentedControl) {
-        
-        super.selectTabViewItem(at: sender.selectedSegment)
-    }
-    
     
     /// update selection of the private control
     private func invalidateControlSelection() {

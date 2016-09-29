@@ -461,10 +461,10 @@
 /* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
 "24.title" = "窗口";
 
-/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
-"203.title" = "缩放";
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
 "23.title" = "最小化";
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
+"203.title" = "缩放";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "前置全部窗口";

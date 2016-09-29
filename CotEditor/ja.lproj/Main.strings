@@ -460,10 +460,10 @@
 /* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
 "24.title" = "ウインドウ";
 
-/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
-"203.title" = "拡大／縮小";
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
 "23.title" = "しまう";
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
+"203.title" = "拡大／縮小";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "すべてを手前に移動";

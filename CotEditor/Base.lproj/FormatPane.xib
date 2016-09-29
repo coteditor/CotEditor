@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -237,7 +237,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="734">
+                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="734">
                     <rect key="frame" x="33" y="164" width="127" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Default syntax style:" usesSingleLineMode="YES" id="3329">
                         <font key="font" metaFont="system"/>
@@ -392,10 +392,12 @@
                 <constraint firstItem="80" firstAttribute="leading" secondItem="79" secondAttribute="trailing" constant="8" symbolic="YES" id="AGp-lv-YXm"/>
                 <constraint firstItem="430" firstAttribute="leading" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="AHi-5U-uDl"/>
                 <constraint firstItem="dI1-Dk-Mce" firstAttribute="width" secondItem="Q0c-oI-um3" secondAttribute="width" id="AON-7g-MeA"/>
+                <constraint firstItem="77" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="BgV-AA-aDD"/>
                 <constraint firstItem="877" firstAttribute="top" secondItem="76" secondAttribute="bottom" constant="8" symbolic="YES" id="Cd7-pB-gfO"/>
                 <constraint firstItem="Hma-8v-2gu" firstAttribute="leading" secondItem="Gmu-7H-gv5" secondAttribute="leading" id="Cqx-eg-bYO"/>
                 <constraint firstItem="13" firstAttribute="baseline" secondItem="17" secondAttribute="baseline" id="DDJ-Nr-HqN"/>
                 <constraint firstItem="79" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" id="Ede-5o-Fvg"/>
+                <constraint firstItem="734" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="Esi-fI-iD7"/>
                 <constraint firstAttribute="bottom" secondItem="Hma-8v-2gu" secondAttribute="bottom" constant="20" symbolic="YES" id="GPf-Ti-dfF"/>
                 <constraint firstItem="dI1-Dk-Mce" firstAttribute="leading" secondItem="Hma-8v-2gu" secondAttribute="trailing" constant="-1" id="Hh2-X7-20g"/>
                 <constraint firstItem="710" firstAttribute="leading" secondItem="430" secondAttribute="trailing" constant="8" symbolic="YES" id="IWg-w8-Hsl"/>
@@ -415,11 +417,13 @@
                 <constraint firstItem="13" firstAttribute="leading" secondItem="17" secondAttribute="trailing" constant="8" symbolic="YES" id="VAd-6a-K7f"/>
                 <constraint firstItem="76" firstAttribute="width" secondItem="80" secondAttribute="width" id="VGb-0d-IRF"/>
                 <constraint firstItem="17" firstAttribute="top" secondItem="745" secondAttribute="top" constant="20" symbolic="YES" id="XM9-Yz-e4D"/>
+                <constraint firstItem="79" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="Xtp-Yd-Tai"/>
                 <constraint firstItem="Gmu-7H-gv5" firstAttribute="top" secondItem="727" secondAttribute="bottom" constant="12" id="ZIk-le-bgD"/>
                 <constraint firstItem="79" firstAttribute="baseline" secondItem="80" secondAttribute="baseline" id="ahk-VG-Rkf"/>
-                <constraint firstItem="XBA-8h-9hb" firstAttribute="leading" secondItem="745" secondAttribute="leading" constant="20" id="auc-ch-dSx"/>
+                <constraint firstItem="XBA-8h-9hb" firstAttribute="leading" secondItem="745" secondAttribute="leading" priority="750" constant="20" id="auc-ch-dSx"/>
                 <constraint firstItem="mI2-B3-2Dr" firstAttribute="leading" secondItem="dI1-Dk-Mce" secondAttribute="trailing" constant="-1" id="eVq-oK-0ma"/>
                 <constraint firstItem="44" firstAttribute="leading" secondItem="76" secondAttribute="trailing" constant="12" id="fkf-DX-XIS"/>
+                <constraint firstItem="17" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="745" secondAttribute="leading" constant="20" symbolic="YES" id="giB-8m-BOW"/>
                 <constraint firstItem="76" firstAttribute="top" secondItem="80" secondAttribute="bottom" constant="12" id="kZX-KV-FSh"/>
                 <constraint firstItem="727" firstAttribute="leading" secondItem="13" secondAttribute="leading" id="neP-RT-EpQ"/>
                 <constraint firstItem="710" firstAttribute="baseline" secondItem="430" secondAttribute="baseline" id="oAx-4E-BLj"/>

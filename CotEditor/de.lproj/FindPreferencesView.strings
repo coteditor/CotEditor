@@ -40,7 +40,7 @@
 // Textual Search
 
 /* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "d1L-6X-N8c"; */
-"d1L-6X-N8c.title" = "Textuelles Suchen";
+"d1L-6X-N8c.title" = "Textuelles Suche";
 
 /* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "mY4-am-wla"; */
 "mY4-am-wla.title" = "Zeichen streng unterscheiden";
@@ -60,8 +60,8 @@
 
 // Regular Expression
 
-/* Class = "NSTextFieldCell"; title = "Regular Expression"; ObjectID = "Xa9-i4-ELR"; */
-"Xa9-i4-ELR.title" = "Regulärer Ausdruck";
+/* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "Xa9-i4-ELR"; */
+"Xa9-i4-ELR.title" = "Regulärer-Ausdruck-Suche";
 
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
 "nqr-AM-oJQ.title" = "Punkt passt auf Zeilenumbruch";

@@ -27,6 +27,12 @@
 
 import Cocoa
 
+protocol TabViewControllerDelegate: class {
+    
+    func tabViewController(_ viewController: NSTabViewController, didSelect tabViewIndex: Int)
+}
+
+
 final class SidebarViewController: NSTabViewController {
     
     enum TabIndex: Int {
@@ -34,6 +40,13 @@ final class SidebarViewController: NSTabViewController {
         case documentInspector
         case incompatibleCharacters
     }
+    
+    
+    // MARK: Public Properties
+    
+    weak var delegate: TabViewControllerDelegate?
+    var selectedTabIndex: TabIndex { return TabIndex(rawValue: self.selectedTabViewItemIndex) ?? .documentInspector }
+    
     
     // MARK: Private Properties
     
@@ -63,6 +76,11 @@ final class SidebarViewController: NSTabViewController {
         
         self.documentInspectorTabViewItem = documentInspectorTabViewItem
         self.incompatibleCharactersTabViewItem = incompatibleCharactersTabViewItem
+        
+        // bind segmentedControl manually  (2016-09 on macOS 10.12)
+        if let segmentedControl = (self.tabView as? InspectorTabView)?.segmentedControl {
+            segmentedControl.bind(NSSelectedIndexBinding, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
+        }
     }
     
     
@@ -74,6 +92,14 @@ final class SidebarViewController: NSTabViewController {
             
             self.documentInspectorTabViewItem?.viewController?.representedObject = document.analyzer
             self.incompatibleCharactersTabViewItem?.viewController?.representedObject = document.incompatibleCharacterScanner
+        }
+    }
+    
+    
+    override var selectedTabViewItemIndex: Int {
+        
+        didSet {
+            self.delegate?.tabViewController(self, didSelect: self.selectedTabViewItemIndex)
         }
     }
     

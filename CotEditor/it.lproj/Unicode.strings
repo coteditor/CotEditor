@@ -1,0 +1,261 @@
+/*
+ 
+ Unicode.strings (Italian)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+
+"<a letter consisting of %d characters>" = "<una lettera composta di %d caratteri>";
+
+
+// Variation selectors
+"Emoji Style" = "Stile Emoji";
+"Text Style" = "Stile Testo";
+" I-II" = "Tono Pelle I-II";
+"Skin Tone III" = "Tono Pelle III";
+"Skin Tone IV" = "Tono Pelle IV";
+"Skin Tone V" = "Tono Pelle V";
+"Skin Tone VI" = "Tono Pelle VI";
+"Variant" = "Variante";
+
+
+// Unicode block names
+// -> auto-generated from CharacterPaletteIM.lg in Apple's glossaries
+"Cuneiform" = "Cuneiforme";
+"Variation Selectors" = "Selettori di variazione";
+"Latin Extended-B" = "Latino Esteso B";
+"Brahmi" = "Brahmi";
+"Enclosed Alphanumerics" = "Alfanumerici inclusi";
+"Linear B Syllabary" = "Sillabario lineare B";
+"Ugaritic" = "Ugaritico";
+"Bamum Supplement" = "Integrazione Bamum";
+"Alphabetic Presentation Forms" = "Presentazioni alfabetiche";
+"Mongolian" = "Mongolo";
+"CJK Radicals Supplement" = "Radicali CJK supplementari";
+"Arabic" = "Arabo";
+"Control Pictures" = "Immagini controllo";
+"Inscriptional Parthian" = "Iscrizione Parthian";
+"Phaistos Disc" = "Disco di Faisto";
+"Geometric Shapes" = "Forme geometriche";
+"Geometric Shapes Extended" = "Forme geometriche (esteso)";  // from "Geometric Shapes"
+"CJK Unified Ideographs" = "Ideogrammi unificati CJK";
+"Greek and Coptic" = "Greco e copto";
+"Ancient Greek Musical Notation" = "Notazione musicale greca antica";
+"Basic Latin" = "Latino semplice";
+"Inscriptional Pahlavi" = "Iscrizione Pahlavi";
+"Braille Patterns" = "Modelli Braille";
+"Javanese" = "Giavanese";
+"Old South Arabian" = "Arabo antico meridionale";
+"Hebrew" = "Ebraico";
+"Specials" = "Speciali";
+"Variation Selectors Supplement" = "Supplemento selettori variazione";
+"Miscellaneous Technical" = "Simboli tecnici vari";
+"Aegean Numbers" = "Numeri Egeo";
+"General Punctuation" = "Punteggiatura generale";
+"Latin Extended-D" = "Latino esteso D";
+"CJK Compatibility Ideographs" = "Ideogrammi compatibilità CJK";
+"Bopomofo" = "Bopomofo";
+"Canadian Aboriginal Syllabics" = "Sillabici canadese aborigeno";
+"Buhid" = "Buhid";
+"Bengali" = "Bengalese";
+"New Tai Lue" = "Nuovo Tai Lue";
+"Linear B Ideograms" = "Ideogrammi lineari B";
+"Supp. Private Use Area-A" = "Area ad uso privato suppl. A";
+"Ethiopic" = "Etiope";
+"Vertical Forms" = "Moduli verticali";
+"Block Elements" = "Elementi blocco";
+"Currency Symbols" = "Simboli valute";
+"Bamum" = "Bamum";
+"Superscripts and Subscripts" = "Apici e pedici";
+"Arabic Presentation Forms-A" = "Presentazione Arabo A";
+"Shavian" = "Shavian";
+"CJK Unified Ideographs Ext. B" = "Ideogrammi unificati CJK Est. B";
+"Enclosed Ideographic Supplement" = "Supplemento ideografico incluso";
+"Ancient Symbols" = "Simboli antichi";
+"Cyrillic Extended-B" = "Cirillico esteso-B";
+"Saurashtra" = "Saurashtra";
+"Vedic Extensions" = "Estensioni Vedic";
+"Cyrillic" = "Cirillico";
+"Arrows" = "Frecce";
+"Thai" = "Tailandese";
+"Supplemental Arrows-B" = "Frecce supplementari B";
+"Supplemental Arrows-C" = "Frecce supplementari C";  // added
+"Ancient Greek Numbers" = "Numeri greci antichi";
+"Cham" = "Cham";
+"Tai Tham" = "Tai Tham";
+"Bopomofo Extended" = "Bopomofo esteso";
+"Phonetic Extensions Supplement" = "Integrazione estensioni fonetiche";
+"Ol Chiki" = "Ol Chiki";
+"Cuneiform Numbers and Punctuation" = "Numeri e punteggiatura cuneiforme";
+"Phags-pa" = "Phags-pa";
+"Devanagari Extended" = "Devanagari esteso";
+"Devanagari" = "Devanagari";
+"Greek Extended" = "Greco esteso";
+"Thaana" = "Thaana";
+"Telugu" = "Telugu";
+"Hiragana" = "Hiragana";
+"CJK Compatibility Ideographs Supplement." = "Ideogrammi compatibilità CJK suppl.";  // Supp. -> Supplement
+"Katakana" = "Katakana";
+"Mathematical Operators" = "Operatori matematici";
+"Mahjong Tiles" = "Tessere Mahjong";
+"Batak" = "Batak";
+"Vai" = "Vai";
+"Phonetic Extensions" = "Estensioni fonetiche";
+"Malayalam" = "Malayalam";
+"Optical Character Recognition" = "Riconosc. caratteri (OCR)";
+"Hangul Jamo Extended-A" = "Hangul Jamo esteso-A";
+"Supplemental Math Operators" = "Operatori matematici suppl.";
+"Common Indic Number Forms" = "Formati numerici Common Indic";
+"Enclosed Alphanumeric Supplement" = "Supplemento alfanumerico incluso";
+"Kaithi" = "Kaithi";
+"Imperial Aramaic" = "Aramaico imperiale";
+"Modifier Tone Letters" = "Modificatori di tono";
+"Kayah Li" = "Kayah Li";
+"Tamil" = "Tamil";
+"Small Form Variants" = "Varianti di forma piccola";
+"CJK Unified Ideographs Ext. D" = "Ideogrammi unificati CJK Est. D";
+"Tifinagh" = "Tifinagh";
+"Miscellaneous Symbols and Pictographs" = "Simboli e pittogrammi vari";  // And -> and
+"Miscellaneous Math Symbols-B" = "Simboli matematici vari B";
+"Yi Radicals" = "Radicali Yi";
+"Lydian" = "Lydian";
+"Unified Canadian Aboriginal Syllabics" = "Scrittura sillabica aborigena canadese unificata";  // added based on "Unified Canadian Aboriginal Syllabics Extended"
+"Unified Canadian Aboriginal Syllabics Extended" = "Scrittura sillabica aborigena canadese unificata estesa";
+"Private Use Area" = "Area ad uso privato";
+"Glagolitic" = "Glagolitico";
+"Osmanya" = "Osmanya";
+"Yijing Hexagram Symbols" = "Simboli Yijing Hexagram";
+"Latin Extended-A" = "Latino Esteso A";
+"Cyrillic Supplement" = "Cirillico supplementare";
+"Box Drawing" = "Disegno riquadri";
+"Letterlike Symbols" = "Simboli alfabetici";
+"Sinhala" = "Sinhala";
+"Supplemental Punctuation" = "Integrazione punteggiatura";
+"Mathematical Alphanumeric Symbols" = "Simboli matematici alfanumerici";  // Math -> Mathematical
+"Cypriot Syllabary" = "Sillabario cipriota";
+"Gurmukhi" = "Gurmukhi";
+"Gothic" = "Gotico";
+"Cherokee" = "Cherokee";
+"CJK Compatibility Forms" = "Forme compatibilità CJK";
+"Latin Extended-C" = "Latino esteso C";
+"Old Turkic" = "Turco antico";
+"Domino Tiles" = "Tessere Domino";
+"Khmer Symbols" = "Simboli khmer";
+"Khmer" = "Khmer";
+"Syloti Nagri" = "Syloti Nagri";
+"Runic" = "Runico";
+"Enclosed CJK Letters and Months" = "Lettere e mesi CJK inclusi";
+"Byzantine Musical Symbols" = "Simboli musicali bizantini";
+"CJK Strokes" = "Tratti CJK";
+"Miscellaneous Symbols" = "Simboli vari";
+"Tai Le" = "Tai Le";
+"Katakana Phonetic Extensions" = "Estensioni fonetiche katakana";
+"Tagalog" = "Tagalog";
+"Kharoshthi" = "Kharoshthi";
+"Dingbats" = "Dingbats";
+"Sundanese" = "Sundanese";
+"Samaritan" = "Samaritano";
+"Old Italic" = "Corsivo antico";
+"CJK Symbols and Punctuation" = "Simboli e punteggiatura CJK";
+"Halfwidth and Full-width Forms" = "Forme larghe e mezza larghezza";  // Half-width -> halfwidth
+"Kangxi Radicals" = "Radicali kangxi";
+"Buginese" = "Bugi";
+"Phoenician" = "Fenicio";
+"Tagbanwa" = "Tagbanwa";
+"Ethiopic Supplement" = "Integrazione etiopico";
+"Lisu" = "Lisu";
+"IPA Extensions" = "Estensioni IPA";
+"Yi Syllables" = "Sillabe Yi";
+"Kannada" = "Kannada";
+"Egyptian Hieroglyphs" = "Geroglifici egiziani";
+"Myanmar Extended-A" = "Myanmar esteso-A";
+"Rumi Numeral Symbols" = "Simboli numerici Rumi";
+"Hangul Jamo" = "Hangul Jamo";
+"Lepcha" = "Lepcha";
+"Meetei Mayek" = "Meetei Mayek";
+"Hangul Syllables" = "Sillabe hangul";
+"Arabic Supplement" = "Supplement arabo";
+"Kanbun" = "Kanbun";
+"Variation Selectors Supp." = "Selettori di variazione suppl.";
+"Supp. Private Use Area-B" = "Area ad uso privato suppl. B";
+"Combining Diacritical Marks" = "Combinazione segni diacritici";
+"Combining Diacritical Marks for Symbols" = "Combinazione segni diacritici per simboli";  // added based on "Combining Diacritical Marks"
+"Latin-1 Supplement" = "Latino-1 supplementare";
+"Deseret" = "Deseret";
+"Hangul Compatibility Jamo" = "Hangul compatibilità jamo";
+"N'Ko" = "N'ko";
+"Arabic Presentation Forms-B" = "Presentazione Arabo B";
+"Combining Marks for Symbols" = "Combinazione segni per simboli";
+"CJK Unified Ideographs Ext. A" = "Ideogrammi unificati CJK Est. A";
+"Cyrillic Extended-A" = "Cirillico esteso-A";
+"Armenian" = "Armeno";
+"Ethiopic Extended" = "Etiopico esteso";
+"Lycian" = "Lycian";
+"Syriac" = "Siriaco";
+"Coptic" = "Copto";
+"Limbu" = "Limbu";
+"Avestan" = "Avestan";
+"Old Persian" = "Persiano antico";
+"Ogham" = "Ogham";
+"Supplemental Arrows-A" = "Frecce supplementari A";
+"CJK Unified Ideographs Ext. C" = "Ideogrammi unificati CJK Est. C";
+"Ideographic Description Characters" = "Descrizione ideogrammi";  // Desc. -> Description
+"Rejang" = "Rejang";
+"Alchemical Symbols" = "Simboli alchemici";
+"Tags" = "Tag";
+"Emoticons" = "Emoticon";
+"Balinese" = "Balinese";
+"Myanmar" = "Myanmar";
+"Musical Symbols" = "Simboli musicali";
+"Ethiopic Extended-A" = "Etiopico esteso-A";
+"Mandaic" = "Mandaico";
+"Spacing Modifier Letters" = "Modificatori di spaziatura";
+"Carian" = "Carian";
+"Number Forms" = "Forme numeriche";
+"CJK Compatibility" = "Compatibilità CJK";
+"Playing Cards" = "Carte da gioco";
+"Miscellaneous Symbols and Arrows" = "Simboli e frecce vari";
+"Transport and Map Symbols" = "Simboli trasporto e mappe";  // And -> and
+"Lao" = "Lao";
+"Hangul Jamo Extended-B" = "Hangul Jamo esteso-B";
+"Tibetan" = "Tibetano";
+"Georgian Supplement" = "Integrazione georgiano";
+"Tai Viet" = "Tai Viet";
+"Combining Diacritical Marks Supplement" = "Integrazione combinazione segni diacritici";
+"Hanunoo" = "Hanunoo";
+"Oriya" = "Oriya";
+"Latin Extended Additional" = "Latino esteso supplementare";
+"Georgian" = "Georgiano";
+"Miscellaneous Math Symbols-A" = "Simboli matematici vari A";
+"Combining Half Marks" = "Combinazione mezzi segni";
+"Counting Rod Numerals" = "Conto con numerazione rod";
+"Gujarati" = "Gujarati";
+"Tai Xuan Jing Symbols" = "Simboli Tai Xuan Jing";
+"Kana Supplement" = "Integrazione Kana";
+
+"No Block" = "Nessun Blocco";
+
+// Unicode category names
+"No Category" = "Nessuna Categoria";

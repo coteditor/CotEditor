@@ -72,7 +72,7 @@
 "%@ strings found." = "%@ 件見つかりました。";
 "%@ string replaced." = "%@ 件置換しました。";
 "%@ strings replaced." = "%@ 件置換しました。";
-"Invalid regular expression" =  "無効な正規表現です。";
+"Invalid regular expression" = "無効な正規表現です。";
 
 
 /* MARK: FindPanelController */
@@ -485,7 +485,7 @@
 "Script Error" = "スクリプトエラー";
 
 // Script error alert informatives
-"The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”." = "スクリプト“%@”は存在しません。\n\nファイルを確認し、“スクリプトメニューを更新”してください。";
+"The script “%@” does not exist." = "スクリプト“%@”は存在しません。";
 "The script file “%@” couldn’t be opened." = "スクリプトファイル“%@”を開けませんでした。";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "実行権がないため、スクリプト„%@“を実行できません。\n\nスクリプトファイルのアクセス権を確認してください。";
 "The script “%@” couldn’t be read." = "スクリプト“%@”を読み込めませんでした。";

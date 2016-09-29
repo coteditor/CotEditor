@@ -276,7 +276,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
 
 
 
-// MARK: 
+// MARK: -
 
 final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
     

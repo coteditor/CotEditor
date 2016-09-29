@@ -1,0 +1,131 @@
+/*
+ 
+ DocumentWindow.strings (Italian)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSToolbarItem"; ObjectID = "9p6-Sj-QjF"; */
+"9p6-Sj-QjF.label" = "Fine riga";  /* Line Endings */
+"9p6-Sj-QjF.paletteLabel" = "Fine riga";  /* Line Endings */
+"9p6-Sj-QjF.toolTip" = "Modifica fine riga";  /* Change line endings */
+
+/* Class = "NSToolbarItem"; ObjectID = "VL4-m8-9uC"; */
+"VL4-m8-9uC.label" = "Codifica file";  /* File Encoding */
+"VL4-m8-9uC.paletteLabel" = "Codifica file";  /* File Encoding */
+"VL4-m8-9uC.toolTip" = "Modifica codifica file";  /* Change file encoding */
+
+/* Class = "NSToolbarItem"; ObjectID = "rHo-eU-O5x"; */
+"rHo-eU-O5x.label" = "Stile sintassi";  /* Syntax Style */
+"rHo-eU-O5x.paletteLabel" = "Stile sintassi";  /* Syntax Style */
+"rHo-eU-O5x.toolTip" = "Modifica stile sintassi";  /* Change syntax style */
+
+/* Class = "NSToolbarItem"; ObjectID = "uXf-pD-u6A"; */
+"uXf-pD-u6A.label" = "Ottieni informazioni";  /* Get Info */
+"uXf-pD-u6A.paletteLabel" = "Ottieni informazioni";  /* Get Info */
+"uXf-pD-u6A.toolTip" = "Mostra informazioni sul documento";  /* Show document information */
+
+/* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
+"xle-wq-mIH.label" = "Caratteri incompatibili";  /* Incompatible Chars */
+"xle-wq-mIH.paletteLabel" = "Mostra caratteri incompatibili";  /* Show Incompatible Chars */
+"xle-wq-mIH.toolTip" = "Mostra i caratteri incompatibili con la codifica selezionata";  /* Show incompatible characters for selected encoding */
+
+/* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
+"hbb-MD-j6g.label" = "Stampa";  /* Print */
+"hbb-MD-j6g.paletteLabel" = "Stampa";  /* Print */
+"hbb-MD-j6g.toolTip" = "Stampa documento";  /* Print document */
+
+/* Class = "NSToolbarItem"; ObjectID = "yOr-Yw-6Of"; */
+"yOr-Yw-6Of.label" = "Più grande";  /* Bigger */
+"yOr-Yw-6Of.paletteLabel" = "Font più grande";  /* Bigger Font */
+"yOr-Yw-6Of.toolTip" = "Aumenta la dimensione del font";  /* Increase font size */
+
+/* Class = "NSToolbarItem"; ObjectID = "IKo-gw-WgI"; */
+"IKo-gw-WgI.label" = "Più piccolo";  /* Smaller */
+"IKo-gw-WgI.paletteLabel" = "Font più piccolo";  /* Smaller Font */
+"IKo-gw-WgI.toolTip" = "Diminuisce la dimensione del font";  /* Decrease font size */
+
+/* Class = "NSToolbarItem"; ObjectID = "04y-0n-oxo"; */
+"04y-0n-oxo.label" = "Scorri a sinistra";  /* Shift Left */
+"04y-0n-oxo.paletteLabel" = "Scorri a sinistra";  /* Shift Left */
+"04y-0n-oxo.toolTip" = "Scorre le righe verso sinistra";  /* Shift lines to left */
+
+/* Class = "NSToolbarItem"; ObjectID = "4F2-cX-AQu"; */
+"4F2-cX-AQu.label" = "Scorri a destra";  /* Shift Right */
+"4F2-cX-AQu.paletteLabel" = "Scorri a destra";  /* Shift Right */
+"4F2-cX-AQu.toolTip" = "Scorre le righe verso destra";  /* Shift lines to right */
+
+/* Class = "NSToolbarItem"; ObjectID = "fW9-Xn-I9b"; */
+"fW9-Xn-I9b.label" = "Commento";  /* Comment */
+"fW9-Xn-I9b.paletteLabel" = "Attiva/Disattiva commento";  /* Toggle Comment */
+"fW9-Xn-I9b.toolTip" = "Commenta o de-commenta la selezione";  /* Comment-out or uncomment selection */
+
+/* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
+"xbD-Up-YfQ.label" = "Caratteri invisibili";  /* Invisible Chars */
+"xbD-Up-YfQ.paletteLabel" = "Mostra/Nascondi caratteri invisibili";  /* Show / Hide Invisible Chars */
+"xbD-Up-YfQ.toolTip" = "Mostra/Nasconde la guida in linea della pagina";  /* Show or hide invisible characters in text */
+
+/* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
+"GS6-aA-mgz.label" = "Guida della pagina";  /* Page Guide */
+"GS6-aA-mgz.paletteLabel" = "Mostra/Nascondi la guida della pagina";  /* Show / Hide Page Guide */
+"GS6-aA-mgz.toolTip" = "Mostra/Nascondi la guida della pagina";  /* Show or hide page guide line */
+
+/* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
+"mGD-5P-MDq.label" = "A capo automatico";  /* Wrap Lines */
+"mGD-5P-MDq.paletteLabel" = "Abilita/Disabilita a capo automatico";  /* Toggle Wrap Lines */
+"mGD-5P-MDq.toolTip" = "Abilita/Disabilita il ritorno a capo automatico";  /* Toggle wrap lines */
+
+/* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
+"1cW-FV-40L.label" = "Orientamento";  /* Orientation */
+"1cW-FV-40L.paletteLabel" = "Seleziona orientamento testo";  /* Toggle Text Orientation */
+"1cW-FV-40L.toolTip" = "Seleziona orientamento orizzontale o verticale del testo";  /* Toggle text orientation */
+
+/* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
+"c9C-af-Zcg.label" = "Espandi Tab";  /* Expand Tabs */
+"c9C-af-Zcg.paletteLabel" = "Abilita/Disabilita l’espansione automatica dei Tab";  /* Toggle Auto Tab Expand */
+"c9C-af-Zcg.toolTip" = "Abilita/Disabilita l’espansione automatica dei Tab";  /* Toggle auto tab expand */
+
+/* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
+"Ply-Nr-aOE.label" = "Controllo ortografia";  /* Spell Check */
+"Ply-Nr-aOE.paletteLabel" = "Controllo ortografia";  /* Spell Check */
+"Ply-Nr-aOE.toolTip" = "Mostra il pannello per il controllo dell’ortografia e della grammatica";  /* Show spelling and grammer panel */
+
+/* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
+"Yx1-Tq-tfo.label" = "Codice colore";  /* Color Code */
+"Yx1-Tq-tfo.paletteLabel" = "Modifica codice colore";  /* Edit Color Code */
+"Yx1-Tq-tfo.toolTip" = "Apri l’editor dei codici colore ed imposta la selezione come codice del colore";  /* Open Color Code Editor and set selection as color code */
+
+/* Class = "NSToolbarItem"; ObjectID = "7dM-wh-XeA"; */
+"7dM-wh-XeA.label" = "Ricolora";  /* Re-Color */
+"7dM-wh-XeA.paletteLabel" = "Ricolora tutto";  /* Re-Color All */
+"7dM-wh-XeA.toolTip" = "Ricolora l’intero documento";  /* Re-color whole document */
+
+/* Class = "NSToolbarItem"; ObjectID = "UZV-t9-t0E"; */
+"UZV-t9-t0E.label" = "Condividi";  /* Share */
+"UZV-t9-t0E.paletteLabel" = "Condividi";  /* Share */
+"UZV-t9-t0E.toolTip" = "Condivide documento";  /* Share document file */
+
+
+/* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */
+"hXt-K8-Jwk.ibShadowedToolTip" = "Questo documento è di sola lettura.";

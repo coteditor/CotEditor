@@ -77,7 +77,7 @@ final class EditPaneController: NSViewController {
            !Defaults[.completesSyntaxWords] &&
            !Defaults[.completesStandartWords]
         {
-            self.completionHintMessage =  "⚠️ " + NSLocalizedString("Select at least one item to enable completion.", comment: "")
+            self.completionHintMessage = "⚠️ " + NSLocalizedString("Select at least one item to enable completion.", comment: "")
         } else {
             self.completionHintMessage = String(format: NSLocalizedString("Completion can be performed manually with: %@ or %@", comment: ""), "Esc", "⌘.")
         }

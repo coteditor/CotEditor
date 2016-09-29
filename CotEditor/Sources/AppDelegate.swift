@@ -82,6 +82,7 @@ private struct Help {
         "about_complist_settings",  // 20
         "about_file_mapping",
         "about_styleinfo_settings",
+        "howto_findpanel",
     ]
 }
 

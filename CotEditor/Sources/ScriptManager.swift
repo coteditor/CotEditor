@@ -179,7 +179,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         self.addChildFileItem(to: menu, fromDirctory: self.scriptsDirectoryURL)
         
-        menu.addItem(NSMenuItem.separator())
+        if !menu.items.isEmpty {
+            menu.addItem(NSMenuItem.separator())
+        }
         
         let openMenuItem = NSMenuItem(title: NSLocalizedString("Open Scripts Folder", comment: ""),
                                       action: #selector(openScriptFolder), keyEquivalent: "")
@@ -201,7 +203,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         // display alert and endup if file not exists
         guard fileURL.isReachable else {
-            let message = String(format: NSLocalizedString("The script “%@” does not exist.\n\nCheck it and select “Update Script Menu”.", comment: ""), fileURL.lastPathComponent)
+            let message = String(format: NSLocalizedString("The script “%@” does not exist.", comment: ""), fileURL.lastPathComponent)
             self.showAlert(message: message)
             return
         }

@@ -198,6 +198,13 @@ final class Document: NSDocument, EncodingHolder {
     }
     
     
+    /// enable asynchronous saving
+    override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
+        
+        return saveOperation == .autosaveElsewhereOperation || saveOperation == .autosaveInPlaceOperation
+    }
+    
+    
     /// make custom windowControllers
     override func makeWindowControllers() {
         
@@ -205,6 +212,64 @@ final class Document: NSDocument, EncodingHolder {
         let windowController = storyboard.instantiateInitialController() as! NSWindowController
         
         self.addWindowController(windowController)
+    }
+    
+    
+    /// URL of document file
+    override var fileURL: URL? {
+        
+        didSet {
+            guard self.fileURL != oldValue else { return }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.analyzer.invalidateFileInfo()
+            }
+        }
+    }
+    
+    
+    /// return preferred file extension corresponding the current syntax style
+    override func fileNameExtension(forType typeName: String, saveOperation: NSSaveOperationType) -> String? {
+        
+        if let pathExtension = self.fileURL?.pathExtension {
+            return pathExtension
+        }
+        
+        let styleName = self.syntaxStyle.styleName
+        let extensions = SyntaxManager.shared.extensions(name: styleName)
+        
+        return extensions.first
+    }
+    
+    
+    /// revert to saved file contents
+    override func revert(toContentsOf url: URL, ofType typeName: String) throws {
+        
+        // once force-close all sheets
+        //   -> Presented errors will be displayed again after the revert automatically (since OS X 10.10).
+        self.windowForSheet?.sheets.forEach { $0.close() }
+        
+        try super.revert(toContentsOf: url, ofType: typeName)
+        
+        // apply to UI
+        self.applyContentToWindow()
+    }
+    
+    
+    /// setup duplicated document
+    override func duplicate() throws -> NSDocument {
+        
+        let document = try super.duplicate() as! Document
+        
+        document.setSyntaxStyle(name: self.syntaxStyle.styleName)
+        document.lineEnding = self.lineEnding
+        document.encoding = self.encoding
+        document.hasUTF8BOM = self.hasUTF8BOM
+        
+        // apply text orientation
+        document.viewController?.verticalLayoutOrientation = self.viewController?.verticalLayoutOrientation ?? self.isVerticalText
+        
+        return document
     }
     
     
@@ -289,34 +354,6 @@ final class Document: NSDocument, EncodingHolder {
     }
     
     
-    /// revert to saved file contents
-    override func revert(toContentsOf url: URL, ofType typeName: String) throws {
-        
-        // once force-close all sheets
-        //   -> Presented errors will be displayed again after the revert automatically (since OS X 10.10).
-        self.windowForSheet?.sheets.forEach { $0.close() }
-        
-        try super.revert(toContentsOf: url, ofType: typeName)
-        
-        // apply to UI
-        self.applyContentToWindow()
-    }
-    
-    
-    /// return preferred file extension corresponding the current syntax style
-    override func fileNameExtension(forType typeName: String, saveOperation: NSSaveOperationType) -> String? {
-        
-        if let pathExtension = self.fileURL?.pathExtension {
-            return pathExtension
-        }
-        
-        let styleName = self.syntaxStyle.styleName
-        let extensions = SyntaxManager.shared.extensions(name: styleName)
-        
-        return extensions.first
-    }
-    
-    
     /// create Data object to save
     override func data(ofType typeName: String) throws -> Data {
         
@@ -344,13 +381,6 @@ final class Document: NSDocument, EncodingHolder {
         }
         
         return data
-    }
-    
-    
-    /// enable asynchronous saving
-    override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
-        
-        return saveOperation == .autosaveElsewhereOperation || saveOperation == .autosaveInPlaceOperation
     }
     
     
@@ -618,49 +648,16 @@ final class Document: NSDocument, EncodingHolder {
     }
     
     
-    /// setup duplicated document
-    override func duplicate() throws -> NSDocument {
-        
-        let document = try super.duplicate() as! Document
-        
-        document.setSyntaxStyle(name: self.syntaxStyle.styleName)
-        document.lineEnding = self.lineEnding
-        document.encoding = self.encoding
-        document.hasUTF8BOM = self.hasUTF8BOM
-        
-        // apply text orientation
-        document.viewController?.verticalLayoutOrientation = self.viewController?.verticalLayoutOrientation ?? self.isVerticalText
-        
-        return document
-    }
-    
-    
     
     // MARK: Protocols
-    
-    /// file location has changed
-    override func presentedItemDidMove(to newURL: URL) {
-        
-        // [caution] This method can be called from any thread.
-        
-        super.presentedItemDidMove(to: newURL)
-        
-        DispatchQueue.main.async { [weak self] in
-            // -> `fileURL` property will be updated automatically after this `presentedItemDidMoveToURL:`.
-            //    However, we don't know when exactly, therefore update it manually before update documentAnalyzer. (2016-05-19 / OS X 10.11.5)
-            self?.fileURL = newURL
-            
-            self?.analyzer.invalidateFileInfo()
-        }
-    }
-    
     
     /// file has been modified by an external process
     override func presentedItemDidChange() {
         
         // [caution] This method can be called from any thread.
         
-        super.presentedItemDidChange()
+        // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enable.
+//        super.presentedItemDidChange()
         
         let option = DocumentConflictOption(rawValue: Defaults[.documentConflictOption]) ?? .notify
         

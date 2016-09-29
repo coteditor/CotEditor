@@ -30,13 +30,13 @@
 /* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
 "Wal-Sg-6d6.title" = "Suchen & Ersetzen";
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "RMK-P4-pYn"; */
-"RMK-P4-pYn.ibShadowedIsNilPlaceholder" = "Suchen";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
+"3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "Suchen";
 /* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
 "hxw-DS-gxQ.ibShadowedToolTip" = "Geben Sie den Suchbegriff ein.";
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "MRv-ox-jgD"; */
-"MRv-ox-jgD.ibShadowedIsNilPlaceholder" = "Ersetzen";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
+"VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "Ersetzen";
 /* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibShadowedToolTip" = "Ersetzungstext für den gefundenen Suchbegriff eingeben.";
 
