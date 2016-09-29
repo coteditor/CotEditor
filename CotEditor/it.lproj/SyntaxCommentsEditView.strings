@@ -1,0 +1,67 @@
+/*
+ 
+ SyntaxCommentsEditView.strings (Italian)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+
+/* Class = "NSTextFieldCell"; title = "Inline comment:"; ObjectID = "b3O-ZW-iIp"; */
+"b3O-ZW-iIp.title" = "Commento in linea:";
+/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "xWF-yX-yz5"; */
+"xWF-yX-yz5.title" = "Inizia con:";
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "4qu-tU-wgL"; */
+"4qu-tU-wgL.placeholderString" = "Non definito";
+
+/* Class = "NSTextFieldCell"; title = "Block comment:"; ObjectID = "bUT-iW-c0x"; */
+"bUT-iW-c0x.title" = "Commento blocco:";
+/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "508-hG-5PG"; */
+"508-hG-5PG.title" = "Inizia con:";
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "TSS-rl-L2D"; */
+"TSS-rl-L2D.placeholderString" = "Non definito";
+/* Class = "NSTextFieldCell"; title = "End with:"; ObjectID = "5bm-Fa-IZj"; */
+"5bm-Fa-IZj.title" = "Finisce con:";
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "lMx-HP-1U1"; */
+"lMx-HP-1U1.placeholderString" = "Non definito";
+
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "a3u-7k-1dd"; */
+"a3u-7k-1dd.ibShadowedIsNilPlaceholder" = "Non definito";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "Pcv-9r-6km"; */
+"Pcv-9r-6km.ibShadowedIsNilPlaceholder" = "Non definito";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "dwo-oN-tBR"; */
+"dwo-oN-tBR.ibShadowedIsNilPlaceholder" = "Non definito";
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "1an-HZ-pD7"; */
+"1an-HZ-pD7.headerCell.title" = "Inizio stringa";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "XJa-sc-hM6"; */
+"XJa-sc-hM6.headerCell.title" = "Fine stringa";
+/* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "XJj-U2-0se"; */
+"XJj-U2-0se.headerCell.title" = "RE";  /* RE */
+"XJj-U2-0se.headerToolTip" = "Espressione regolare";  /* Regular Expression */
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "oI5-31-pDw"; */
+"oI5-31-pDw.headerCell.title" = "IC";  /* IC */
+"oI5-31-pDw.headerToolTip" = "Ignora maiuscole/minuscole";  /* Ignore Case (case-insensitive) */
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Bla-xg-t6E"; */
+"Bla-xg-t6E.headerCell.title" = "Descrizione";

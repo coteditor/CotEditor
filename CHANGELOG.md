@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add Italian localization (thanks to Agostino Maiello!).
+
+
 ### Improvements
 
 - Enable Autosave and Versions by default.

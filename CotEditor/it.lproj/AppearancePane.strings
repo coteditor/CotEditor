@@ -1,0 +1,87 @@
+/*
+ 
+ AppearancePane.strings (Italian)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
+"Z85-S9-uID.title" = "Font:";
+/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
+"3289.title" = "Select…";
+/* Class = "NSButtonCell"; title = "Anti-Aliasing"; ObjectID = "3290"; */
+"3290.title" = "Anti-Aliasing";
+
+/* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
+"r1c-v3-qW1.title" = "Altezza riga:";
+/* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
+"VLD-jj-zzl.title" = "volte";
+
+/* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
+"oKu-Fu-hRU.title" = "Riga attuale:";
+/* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
+"ba7-dE-zXz.title" = "Modifica colore di sfondo";
+
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
+"oAZ-6U-Ba8.title" = "Invisibili:";
+/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "gqy-Io-eUU"; */
+"gqy-Io-eUU.title" = "Mostra invisibili";
+/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
+"gcF-OM-SV0.title" = "Spazio";
+/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
+"XSb-uU-5QP.title" = "Tab";
+/* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "Ont-7L-Uf5"; */
+"Ont-7L-Uf5.title" = "Termine riga";
+/* Class = "NSButtonCell"; title = "Fullwidth-Space"; ObjectID = "Bf2-rS-2zu"; */
+"Bf2-rS-2zu.title" = "A tutta ampiezza";
+/* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "sxg-F3-ely"; */
+"sxg-F3-ely.title" = "Altri caratteri invisibili";
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
+"Avf-y8-wXG.headerCell.title" = "Tema";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
+"4B4-mq-8Fs.title" = "Export…";
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
+"gcs-B8-kPL.title" = "Import…";
+
+
+/* contextual menu */
+/* Class = "NSMenuItem"; title = "New Theme"; ObjectID = "sJb-7g-2FN"; */
+"sJb-7g-2FN.title" = "Nuovo tema";
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "nWy-OL-CGi"; */
+"nWy-OL-CGi.title" = "Rinomina";
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "9LW-xw-HBP"; */
+"9LW-xw-HBP.title" = "Duplica";
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "vTP-Fc-iBF"; */
+"vTP-Fc-iBF.title" = "Ripristina";
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "WNG-Ai-RdG"; */
+"WNG-Ai-RdG.title" = "Elimina";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "ueG-D7-DSV"; */
+"ueG-D7-DSV.title" = "Esporta…";
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "UMs-gY-YHE"; */
+"UMs-gY-YHE.title" = "Mostra nel Finder";
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "52n-xG-4ZL"; */
+"52n-xG-4ZL.title" = "Importa…";

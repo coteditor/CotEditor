@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
@@ -156,7 +156,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hZV-47-otb">
                         <rect key="frame" x="-100" y="-100" width="317" height="15"/>
@@ -204,7 +203,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHn-ch-mKE">
+                <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHn-ch-mKE">
                     <rect key="frame" x="10" y="67" width="112" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Menu title pattern" usesSingleLineMode="YES" id="nnO-qN-dYF">
                         <font key="font" metaFont="system"/>
@@ -253,7 +252,7 @@
                         <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.underline" id="e91-xE-cUI"/>
                     </connections>
                 </button>
-                <box title="Box" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="SWD-Hc-Qt1">
+                <box boxType="custom" borderType="none" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="SWD-Hc-Qt1">
                     <rect key="frame" x="87" y="22" width="6" height="1"/>
                     <view key="contentView" id="5Ai-MU-ivP">
                         <rect key="frame" x="0.0" y="0.0" width="6" height="1"/>
@@ -262,7 +261,6 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="LlT-Ii-3C6"/>
                     </constraints>
-                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                 </box>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="19" translatesAutoresizingMaskIntoConstraints="NO" id="I4O-YH-ALG">
@@ -277,7 +275,7 @@
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qm1-Hn-B3D">
                     <rect key="frame" x="126" y="67" width="176" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(blank matches the whole string)" id="rqP-22-G2u">
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="(blank matches the whole string)" id="rqP-22-G2u">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

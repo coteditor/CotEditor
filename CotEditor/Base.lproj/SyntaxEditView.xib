@@ -93,9 +93,8 @@
                                                 <rect key="frame" x="3" y="1" width="132" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dg7-ML-g7m">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dg7-ML-g7m">
                                                         <rect key="frame" x="0.0" y="0.0" width="132" height="17"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Keywords" id="2yS-5b-mse" customClass="SeparatorTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -106,6 +105,12 @@
                                                         </connections>
                                                     </textField>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="dg7-ML-g7m" secondAttribute="trailing" constant="2" id="CEQ-TW-aWr"/>
+                                                    <constraint firstAttribute="bottom" secondItem="dg7-ML-g7m" secondAttribute="bottom" id="Khx-hd-N4N"/>
+                                                    <constraint firstItem="dg7-ML-g7m" firstAttribute="top" secondItem="eHZ-mr-V8X" secondAttribute="top" id="PJ5-g6-M7W"/>
+                                                    <constraint firstItem="dg7-ML-g7m" firstAttribute="leading" secondItem="eHZ-mr-V8X" secondAttribute="leading" constant="2" id="nRH-bm-b4L"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="dg7-ML-g7m" id="gdF-U3-1P2"/>
                                                 </connections>

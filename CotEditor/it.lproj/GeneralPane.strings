@@ -1,0 +1,89 @@
+/*
+ 
+ GenearalPane.strings (Italian)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2016 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "Apri nuovo documento:";
+
+/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
+"3298.title" = "All’avvio";
+/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
+"3299.title" = "Quando CotEditor viene avviato";
+
+
+/* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
+"Ki4-3Y-AZL.title" = "Salva documento:";
+
+/* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
+"SGo-FL-Pax.title" = "Abilita il salvataggio automatico delle versioni";
+/* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
+"sOa-Ea-zt9.title" = "Questa funzione registra automaticamente i documenti durante la loro lavorazione. Anche se non è attiva, CotEditor crea comunque dei backup, in caso di blocco dell’applicazione.";
+/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "Rimuovi gli spazi bianchi a fine riga al salvataggio";
+
+
+/* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
+"x4n-2n-I3p.title" = "Quando il documento è modificato da un’altra applicazione:";
+
+/* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
+"sBH-MX-cTd.title" = "Mantieni la versione di CotEditor";
+/* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "IkZ-EO-BSv"; */
+"IkZ-EO-BSv.title" = "Chiedi cosa fare";
+/* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "rpa-Di-f4s"; */
+"rpa-Di-f4s.title" = "Aggiorna usando la versione modificata";
+
+
+/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "Programma:";
+
+/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
+"3307.title" = "Condividi il testo trovato con altre applicazioni";
+/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
+"3309.title" = "Inserisci menu degli script nel menu contestuale";
+/* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
+"3306.title" = "Conteggia ogni fine riga come un carattere";
+/* Class = "NSButtonCell"; title = "Link URLs"; ObjectID = "tPy-Ox-YpP"; */
+"tPy-Ox-YpP.title" = "Link URL";
+/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
+"3300.title" = "Controlla ortografia durante la digitazione";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
+"RrC-LL-hid.title" = "Evidenzia le parentesi “()” “[]” “{}” accoppiate";
+/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
+"al9-WE-Rqy.title" = "Evidenzia “<>”";
+
+
+/* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
+"geU-63-sAC.title" = "Aggiornamento software:";
+
+/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
+"3423.title" = "Controlla automaticamente gli aggiornamenti";
+
+/* Class = "NSButtonCell"; title = "Include pre-releases"; ObjectID = "4aT-ka-sbv"; */
+"4aT-ka-sbv.title" = "Includi versioni preliminari";
+
+/* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
+"chR-VY-cuI.title" = "Indipendentemente da questa impostazione, se si sta usando una versione preliminare le successive versioni preliminari saranno sempre incluse negli aggiornamenti.";
