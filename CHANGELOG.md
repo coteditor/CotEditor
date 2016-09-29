@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- [beta] Fix syntax highlight parsing range while editing.
+
+
+
 3.0.0-rc (148)
 --------------------------
 
