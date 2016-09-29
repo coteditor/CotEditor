@@ -398,7 +398,7 @@
 /* Class = "NSMenuItem"; title = "Insert IANA Charset Name"; ObjectID = "663"; */
 "663.title" = "Inserisci nome set di caratteri IANA";
 /* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
-"663.ibShadowedToolTip" = "Insert il nome della codifica come set di caratteri IANA";
+"663.ibShadowedToolTip" = "Inserisci il nome della codifica come set di caratteri IANA";
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "Ispeziona carattere";
