@@ -538,7 +538,7 @@ final class Document: NSDocument, EncodingHolder {
         self.allowedFileTypes = nil
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
         if let pathExtension = self.fileNameExtension(forType: self.fileType!, saveOperation: .saveOperation) {
-            // bind allowedFileTypes flag with savePanel (for El capitan and leter)
+            // bind allowedFileTypes flag with savePanel
             // -> So that initial filename selection excludes file extension.
             self.allowedFileTypes = [pathExtension]
             savePanel.bind(#keyPath(NSSavePanel.allowedFileTypes), to: self, withKeyPath: #keyPath(allowedFileTypes))
