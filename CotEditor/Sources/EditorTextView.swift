@@ -178,6 +178,13 @@ final class EditorTextView: NSTextView, Themable {
     
     // MARK: Text View Methods
     
+    /// keys to be restored from the last session
+    override class func restorableStateKeyPaths() -> [String] {
+        
+        return [#keyPath(layoutOrientation)]
+    }
+    
+    
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
