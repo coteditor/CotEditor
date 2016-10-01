@@ -181,7 +181,9 @@ final class EditorTextView: NSTextView, Themable {
     /// keys to be restored from the last session
     override class func restorableStateKeyPaths() -> [String] {
         
-        return [#keyPath(layoutOrientation)]
+        return [#keyPath(layoutOrientation),
+                #keyPath(font),
+                #keyPath(tabWidth)]
     }
     
     

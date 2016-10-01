@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Make text font, theme and tab width restorable from the last session.
+
+
 ### Fixes
 
 - [beta] Fix an issue where application crashed after user turned the “Give execute permission” checkbox in the save panel on.

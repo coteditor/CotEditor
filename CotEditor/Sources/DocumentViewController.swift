@@ -89,6 +89,28 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     }
     
     
+    /// store UI state
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        if let themeName = self.theme?.name {
+            coder.encode(themeName, forKey: "theme")
+        }
+        
+        super.encodeRestorableState(with: coder)
+    }
+    
+    
+    /// resume UI state
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if let themeName = coder.decodeObject(forKey: "theme") as? String {
+            self.setTheme(name: themeName)
+        }
+    }
+    
+    
     /// deliver document to child view controllers
     override var representedObject: Any? {
         
@@ -378,6 +400,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     var isStatusBarShown: Bool = false {
         
         didSet {
+            assert(self.statusBarItem != nil)
             self.statusBarItem?.isCollapsed = !self.isStatusBarShown
         }
     }
@@ -742,6 +765,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             viewController.textView?.theme = theme
         }
         self.invalidateSyntaxHighlight()
+        self.invalidateRestorableState()
     }
     
     
