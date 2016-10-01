@@ -7,7 +7,7 @@ develop
 
 ### Fixes
 
-- [beta] Fix an issue where application could crash after user turned the “Give executable permission” checkbox in the save panel on.
+- [beta] Fix an issue where application crashed after user turned the “Give execute permission” checkbox in the save panel on.
 - [beta] Improve general stability.
 
 
