@@ -397,11 +397,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// Whether status bar is visible
-    var isStatusBarShown: Bool = false {
+    var isStatusBarShown: Bool {
         
-        didSet {
+        get {
+            return !(self.statusBarItem?.isCollapsed ?? true)
+        }
+        set {
             assert(self.statusBarItem != nil)
-            self.statusBarItem?.isCollapsed = !self.isStatusBarShown
+            self.statusBarItem?.isCollapsed = !newValue
         }
     }
     
@@ -503,7 +506,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// toggle visibility of status bar with fancy animation
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
-        self.statusBarItem?.animator().isCollapsed = self.isStatusBarShown
+        NSAnimationContext.current().allowsImplicitAnimation = true
+        
+        self.isStatusBarShown = !self.isStatusBarShown
+        
+        NSAnimationContext.current().allowsImplicitAnimation = false
     }
     
     
