@@ -82,6 +82,17 @@ extension NSRange: Equatable {
 }
 
 
+extension NSRange: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        
+        let location: Any = (self.location == NSNotFound) ? "NSNotFound" : self.location
+        
+        return "{\(location), \(self.length)}"
+    }
+}
+
+
 
 extension NSString {
     

@@ -529,15 +529,26 @@ final class Document: NSDocument, EncodingHolder {
     /// prepare save panel
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
-        // reset file types, otherwise:
-        //   - alert dialog will be displayed if user inputs another extension.
-        //   - cannot save without extension.
-        savePanel.allowedFileTypes = nil
-        
         // disable hide extension checkbox
         // -> Because it doesn't work.
         savePanel.isExtensionHidden = false
         savePanel.canSelectHiddenExtension = false
+        
+        // set default file extension in hacky way (2016-10 on macOS 10.12 SDK for macOS 10.10 - 10.12)
+        self.allowedFileTypes = nil
+        savePanel.allowedFileTypes = nil  // nil allows setting any extension
+        if let pathExtension = self.fileNameExtension(forType: self.fileType!, saveOperation: .saveOperation) {
+            // bind allowedFileTypes flag with savePanel (for El capitan and leter)
+            // -> So that initial filename selection excludes file extension.
+            self.allowedFileTypes = [pathExtension]
+            savePanel.bind(#keyPath(NSSavePanel.allowedFileTypes), to: self, withKeyPath: #keyPath(allowedFileTypes))
+            
+            //disable and unbind `allowedFileTypes` immediately in the next runloop to allow set other extensions
+            DispatchQueue.main.async { [weak self] in
+                self?.allowedFileTypes = nil
+                savePanel.unbind(#keyPath(NSSavePanel.allowedFileTypes))
+            }
+        }
         
         // set accessory view
         if self.savePanelAccessoryView == nil {
@@ -545,16 +556,9 @@ final class Document: NSDocument, EncodingHolder {
         }
         savePanel.accessoryView = self.savePanelAccessoryView
         
-        // append file extension as a part of the file name
-        // -> NSSaveAsOperation will remove the current file extension from file name in the nameField
-        //    as we set nil to `setAllowedFileTypes:` just above.
-        //    So, we need to set it again manually.
-        if let pathExtension = self.fileNameExtension(forType: self.fileType!, saveOperation: .saveOperation) {
-            savePanel.nameFieldStringValue = savePanel.nameFieldStringValue + "." + pathExtension
-        }
-        
         return super.prepareSavePanel(savePanel)
     }
+    private dynamic var allowedFileTypes: [String]? = nil
     
     
     /// display dialogs about save before closing document

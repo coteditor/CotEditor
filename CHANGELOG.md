@@ -2,6 +2,20 @@
 Change Log
 ==========================
 
+3.0.0-rc.2 (150)
+--------------------------
+
+### Improvements
+
+- Exclude file extension from the initial selection in document save panel.
+
+
+### Fixes
+
+- [beta] Fix syntax highlight parsing range while editing.
+
+
+
 3.0.0-rc (148)
 --------------------------
 
