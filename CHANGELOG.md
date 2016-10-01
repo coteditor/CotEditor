@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where application could crash after user turned the “Give executable permission” checkbox in the save panel on.
+- [beta] Improve general stability.
+
+
+
 3.0.0-rc.2 (150)
 --------------------------
 
