@@ -156,29 +156,24 @@ extension NSTextView {
             let visibleRange = self.visibleRange
             let isVertical = (self.layoutOrientation == .vertical)
             
-            // adjust coordinates in horitonzal text layout mode
-            // -> `setLayoutOrientation` swaps horizontal and vertical coordinates automatically and intelligently.
-            if isVertical {
-                self.setLayoutOrientation(.horizontal)
-            }
-            
-            scrollView.hasHorizontalScroller = !wrapsLines
             textContainer.widthTracksTextView = wrapsLines
             if wrapsLines {
                 let contentSize = scrollView.contentSize
-                textContainer.containerSize = NSSize(width: round(contentSize.width / self.scale),
+                textContainer.containerSize = NSSize(width: contentSize.width.divided(by: self.scale).rounded(),
                                                      height: CGFloat.greatestFiniteMagnitude)
                 self.setConstrainedFrameSize(contentSize)
             } else {
                 textContainer.containerSize = NSSize.infinite
             }
-            self.autoresizingMask = wrapsLines ? .viewWidthSizable : .viewNotSizable
-            self.isHorizontallyResizable = !wrapsLines
-            
-            // restore vertical layout
+            self.autoresizingMask = wrapsLines ? (isVertical ? .viewHeightSizable : .viewWidthSizable) : .viewNotSizable
             if isVertical {
-                self.setLayoutOrientation(.vertical)
+                scrollView.hasVerticalScroller = !wrapsLines
+                self.isVerticallyResizable = !wrapsLines
+            } else {
+                scrollView.hasHorizontalScroller = !wrapsLines
+                self.isHorizontallyResizable = !wrapsLines
             }
+            self.sizeToFit()
             
             if let visibleRange = visibleRange {
                 self.scrollRangeToVisible(visibleRange)
