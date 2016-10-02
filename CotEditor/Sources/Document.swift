@@ -543,7 +543,7 @@ final class Document: NSDocument, EncodingHolder {
             self.allowedFileTypes = [pathExtension]
             savePanel.bind(#keyPath(NSSavePanel.allowedFileTypes), to: self, withKeyPath: #keyPath(allowedFileTypes))
             
-            //disable and unbind `allowedFileTypes` immediately in the next runloop to allow set other extensions
+            // disable and unbind `allowedFileTypes` immediately in the next runloop to allow set other extensions
             DispatchQueue.main.async { [weak self] in
                 self?.allowedFileTypes = nil
                 savePanel.unbind(#keyPath(NSSavePanel.allowedFileTypes))
