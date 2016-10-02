@@ -20,6 +20,7 @@ develop
 - [beta] Fix an issue where key binding modification in pereferences could fail.
 - [beta] Fix an issue where submenus in the Script menu displayed in the menu key bindings setting view.
 - [beta] Fix an issue where “Comment always from line head” option didn't reflect user state.
+- [beta] Fix selection after uncomment when “Append a space to comment delimiter” option is disabled.
 - [beta] Fix text wrapping behavior with vertical orientation.
 - [beta] Improve general stability.
 

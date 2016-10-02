@@ -237,7 +237,7 @@ private extension String {
         }
         
         let newString = newLines.joined(separator: "\n")
-        let cursorOffset = target.characters.count - newString.characters.count
+        let cursorOffset = -(target.characters.count - newString.characters.count)
         
         guard cursorOffset != 0 else { return nil }
         
@@ -257,7 +257,7 @@ private extension String {
         let trimFrom = target.index(target.startIndex, offsetBy: delimiters.begin.characters.count)
         let trimTo = target.index(target.endIndex, offsetBy: -delimiters.end.characters.count)
         var newString = target.substring(with: trimFrom..<trimTo)
-        var cursorOffset = delimiters.begin.characters.count
+        var cursorOffset = -delimiters.begin.characters.count
         
         if !spacer.isEmpty && newString.hasPrefix(spacer) && newString.hasSuffix(spacer) {
             let trimFrom = newString.index(newString.startIndex, offsetBy: spacer.characters.count)
