@@ -504,11 +504,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// toggle visibility of status bar with fancy animation
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
-        NSAnimationContext.current().allowsImplicitAnimation = true
-        
-        self.isStatusBarShown = !self.isStatusBarShown
-        
-        NSAnimationContext.current().allowsImplicitAnimation = false
+        NSAnimationContext.current().withAnimation {
+            self.isStatusBarShown = !self.isStatusBarShown
+        }
     }
     
     
@@ -522,11 +520,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// toggle visibility of navigation bar with fancy animation
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
-        NSAnimationContext.current().allowsImplicitAnimation = true
-        
-        self.showsNavigationBar = !self.showsNavigationBar
-        
-        NSAnimationContext.current().allowsImplicitAnimation = false
+        NSAnimationContext.current().withAnimation {
+            self.showsNavigationBar = !self.showsNavigationBar
+        }
     }
     
     
