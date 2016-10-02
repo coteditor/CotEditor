@@ -18,7 +18,7 @@
                         <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="peS-bo-gb4" customClass="DocumentToolbar" customModule="CotEditor" customModuleProvider="target">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="82E9CC78-BD07-4AD5-983F-5059E7871ECC" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="9p6-Sj-QjF" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="48" height="24"/>
+                                    <size key="minSize" width="64" height="24"/>
                                     <size key="maxSize" width="66" height="26"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="rSf-Ar-e7V">
                                         <rect key="frame" x="4" y="14" width="66" height="24"/>
@@ -146,7 +146,7 @@
                                         <action selector="editColorCode:" target="klO-m3-n5X" id="WpU-Mq-bEr"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="0C87F6F6-874B-4387-8B28-0F224BD65480" explicitItemIdentifier="syntaxReColorAllItemID" label="Recolor" paletteLabel="Re-Color All" toolTip="Re-color whole document" tag="22" image="RecolorAll" id="7dM-wh-XeA" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="0C87F6F6-874B-4387-8B28-0F224BD65480" explicitItemIdentifier="syntaxReColorAllItemID" label="Re-Color" paletteLabel="Re-Color All" toolTip="Re-color whole document" tag="22" image="RecolorAll" id="7dM-wh-XeA" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="recolorAll:" target="klO-m3-n5X" id="8hR-fV-Pbf"/>
                                     </connections>

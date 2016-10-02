@@ -92,7 +92,7 @@
 "GS6-aA-mgz.toolTip" = "Mostra/Nascondi la guida della pagina";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
-"mGD-5P-MDq.label" = "A capo automatico";  /* Wrap Lines */
+"mGD-5P-MDq.label" = "Aapo automatico";  /* Wrap Lines */
 "mGD-5P-MDq.paletteLabel" = "Abilita/Disabilita a capo automatico";  /* Toggle Wrap Lines */
 "mGD-5P-MDq.toolTip" = "Abilita/Disabilita il ritorno a capo automatico";  /* Toggle wrap lines */
 
