@@ -16,6 +16,7 @@ develop
 - [beta] Fix an issue where toggling status bar visibility didn't work.
 - [beta] Fix an issue where text layout orientation was not restored from the last session.
 - [beta] Fix an issue where key binding modification in pereferences could fail.
+- [beta] Fix an issue where submenus in the Script menu displayed in the menu key bindings setting view.
 - [beta] Fix text wrapping behavior with vertical orientation.
 - [beta] Improve general stability.
 
