@@ -27,7 +27,7 @@
 
 import Cocoa
 
-extension NSColor {
+private extension NSColor {
     
     class var alternateDisabledControlTextColor: NSColor {
         return NSColor(white: 1.0, alpha: 0.75)
@@ -51,31 +51,30 @@ final class EncodingTableCellView: NSTableCellView {
             let attrString = textField.attributedStringValue
             let mutableAttrString = attrString.mutableCopy() as! NSMutableAttributedString
             
-            attrString.enumerateAttribute(NSForegroundColorAttributeName,
-                                          in: NSRange(location: 0, length: attrString.length),
-                                          using: { (value: Any?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
-                                            
-                                            let color = value as? NSColor
-                                            var newColor: NSColor?
-                                            
-                                            if highlighted && color == nil {
-                                                newColor = .alternateSelectedControlTextColor
-                                            } else if highlighted && color == .disabledControlTextColor {
-                                                newColor = .alternateDisabledControlTextColor
-                                            } else if !highlighted && color == .alternateSelectedControlTextColor {
-                                                newColor = nil
-                                            } else if !highlighted && color == .alternateDisabledControlTextColor {
-                                                newColor = .disabledControlTextColor
-                                            } else {
-                                                return
-                                            }
-                                            
-                                            if let newColor = newColor {
-                                                mutableAttrString.addAttribute(NSForegroundColorAttributeName, value: newColor, range: range)
-                                            } else {
-                                                mutableAttrString.removeAttribute(NSForegroundColorAttributeName, range: range)
-                                            }
-            })
+            attrString.enumerateAttribute(NSForegroundColorAttributeName, in: NSRange(location: 0, length: attrString.length))
+            { (value: Any?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
+                
+                let color = value as? NSColor
+                var newColor: NSColor?
+                
+                if highlighted && color == nil {
+                    newColor = .alternateSelectedControlTextColor
+                } else if highlighted && color == .disabledControlTextColor {
+                    newColor = .alternateDisabledControlTextColor
+                } else if !highlighted && color == .alternateSelectedControlTextColor {
+                    newColor = nil
+                } else if !highlighted && color == .alternateDisabledControlTextColor {
+                    newColor = .disabledControlTextColor
+                } else {
+                    return
+                }
+                
+                if let newColor = newColor {
+                    mutableAttrString.addAttribute(NSForegroundColorAttributeName, value: newColor, range: range)
+                } else {
+                    mutableAttrString.removeAttribute(NSForegroundColorAttributeName, range: range)
+                }
+            }
             
             textField.attributedStringValue = mutableAttrString
         }
