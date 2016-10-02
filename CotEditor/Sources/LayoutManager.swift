@@ -311,7 +311,7 @@ final class LayoutManager: NSLayoutManager {
         let defaultParagraphStyle = textView.defaultParagraphStyle ?? NSParagraphStyle.default()
         let typingParagraphStyle = (textView.typingAttributes[NSParagraphStyleAttributeName] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
         typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
-        var indentAttributes: [String: Any] = [NSFontAttributeName :self.substituteFont(for: self.textFont)]
+        var indentAttributes: [String: Any] = [NSFontAttributeName: self.substituteFont(for: self.textFont)]
         indentAttributes[NSParagraphStyleAttributeName] = typingParagraphStyle
         
         var cache = [String: CGFloat]()
