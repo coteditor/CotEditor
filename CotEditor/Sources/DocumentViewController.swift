@@ -447,9 +447,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         
         didSet {
             for viewController in self.editorViewControllers {
-                guard let textView = viewController.textView else { continue }
-                textView.showsPageGuide = showsPageGuide
-                textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: true)
+                viewController.textView?.showsPageGuide = showsPageGuide
             }
         }
     }

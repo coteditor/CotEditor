@@ -12,6 +12,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where page guide remained after toggling page guide visibility.
 - [beta] Fix an issue where application crashed after user turned the “Give execute permission” checkbox in the save panel on.
 - [beta] Fix an issue where toggling status bar visibility didn't work.
 - [beta] Fix an issue where text layout orientation was not restored from the last session.

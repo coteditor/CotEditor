@@ -46,7 +46,6 @@ final class EditorTextView: NSTextView, Themable {
     
     // MARK: Public Properties
     
-    var showsPageGuide = false
     var isAutomaticTabExpansionEnabled = false
     
     var lineHighlightRect: NSRect?
@@ -868,6 +867,15 @@ final class EditorTextView: NSTextView, Themable {
             
             // apply to view
             self.invalidateDefaultParagraphStyle()
+        }
+    }
+    
+    
+    /// whether draws page guide
+    var showsPageGuide = false {
+        
+        didSet {
+            self.setNeedsDisplay(self.bounds, avoidAdditionalLayout: true)
         }
     }
     
