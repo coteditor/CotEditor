@@ -146,7 +146,7 @@ final class ThemeManager: SettingFileManager {
     
     /// save theme
     @discardableResult
-    func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: ((Error?) -> Void)? = nil) -> Bool {
+    func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: ((Error?) -> Void)? = nil) -> Bool {  // @escaping
         
         // create directory to save in user domain if not yet exist
         do {
@@ -230,7 +230,7 @@ final class ThemeManager: SettingFileManager {
     
     
     /// create a new untitled theme
-    func createUntitledTheme(completionHandler: ((String, Error?) -> Void)? = nil) {
+    func createUntitledTheme(completionHandler: ((String, Error?) -> Void)? = nil) {  // @escaping
         
         var newName = NSLocalizedString("Untitled", comment: "")
         
@@ -258,7 +258,7 @@ final class ThemeManager: SettingFileManager {
     
     
     /// update internal cache data
-    override func updateCache(completionHandler: (() -> Void)? = nil) {
+    override func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
         
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
