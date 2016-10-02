@@ -48,9 +48,9 @@ extension EditorTextView {
     @IBAction func toggleComment(_ sender: Any?) {
         
         if self.canUncomment(range: self.selectedRange, partly: false) {
-            self.uncomment(types: .both, fromLineHead: Defaults[.appendsCommentSpacer])
+            self.uncomment(types: .both, fromLineHead: Defaults[.commentsAtLineHead])
         } else {
-            self.commentOut(types: .both, fromLineHead: Defaults[.appendsCommentSpacer])
+            self.commentOut(types: .both, fromLineHead: Defaults[.commentsAtLineHead])
         }
     }
     
@@ -148,7 +148,7 @@ extension EditorTextView {
         
         guard
             let string = self.string,
-            let targetRange = self.commentingRange(fromLineHead: Defaults[.appendsCommentSpacer]),
+            let targetRange = self.commentingRange(fromLineHead: Defaults[.commentsAtLineHead]),
             !targetRange.isEmpty else { return false }
         
         let target = string.substring(with: targetRange)
