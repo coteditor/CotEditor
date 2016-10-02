@@ -165,7 +165,10 @@ final class LayoutManager: NSLayoutManager {
         if let keyPath = keyPath, type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
-            self.invalidateLayout(forCharacterRange: NSRange(location: 0, length: self.textStorage?.length ?? 0), actualCharacterRange: nil)
+            
+            if let textView = self.firstTextView {
+                textView.setNeedsDisplay(textView.bounds, avoidAdditionalLayout: false)
+            }
         }
     }
     
