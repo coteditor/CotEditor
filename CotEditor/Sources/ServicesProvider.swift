@@ -32,7 +32,7 @@ final class ServicesProvider: NSObject {
     // MARK: Public Methods
     
     /// open new document with string via Services
-    func openSelection(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>?) {
+    func openSelection(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>) {
         
         guard let selection = pboard.string(forType: NSPasteboardTypeString) else { return }
         
@@ -54,25 +54,22 @@ final class ServicesProvider: NSObject {
     
     
     /// open files via Services
-    func openFile(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>?) {
+    func openFile(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>) {
         
-        guard let items = pboard.pasteboardItems else { return }
+        guard let paths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String] else { return }
         
-        for item in items {
-            guard let type = item.availableType(from: [kUTTypeFileURL as String, kUTTypeText as String]) else { continue }
-            guard let path = item.string(forType: type) else { continue }
+        for path in paths {
             let fileURL = URL(fileURLWithPath: path)
             
-            // get file UTI
-            guard let UTI = try! fileURL.resourceValues(forKeys: Set([.typeIdentifierKey])).typeIdentifier else { continue }
-            
             // process only plain-text files
-            guard NSWorkspace.shared().type(UTI, conformsToType: kUTTypeText as String) else {
-                let error = NSError(domain: CocoaError.errorDomain,
-                                    code: CocoaError.fileReadCorruptFile.rawValue,
-                                    userInfo: [NSURLErrorKey: fileURL])
-                NSApp.presentError(error)
-                continue
+            guard let UTI = (try? fileURL.resourceValues(forKeys: Set([.typeIdentifierKey])))?.typeIdentifier,
+                NSWorkspace.shared().type(UTI, conformsToType: kUTTypeText as String)
+                else {
+                    let error = NSError(domain: CocoaError.errorDomain,
+                                        code: CocoaError.fileReadCorruptFile.rawValue,
+                                        userInfo: [NSURLErrorKey: fileURL])
+                    NSApp.presentError(error)
+                    continue
             }
             
             // open file
