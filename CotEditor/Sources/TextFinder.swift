@@ -513,7 +513,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             var selectedRanges = [NSRange]()
             var count = 0
             
-            // variables to calcurate new selection ranges
+            // variables to calculate new selection ranges
             var locationDelta = 1
             var lengthDelta = 0
             

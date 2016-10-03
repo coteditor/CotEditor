@@ -246,7 +246,7 @@ final class LayoutManager: NSLayoutManager {
                     line = self.invisibleLines.replacement
                 }
                 
-                // calcurate position to draw glyph
+                // calculate position to draw glyph
                 let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
                 var point = lineOrigin.offsetBy(dx: origin.x + glyphLocation.x,
