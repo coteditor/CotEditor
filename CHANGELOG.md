@@ -24,6 +24,7 @@ develop
 - [beta] Fix an issue where “Comment always from line head” option didn't reflect user state.
 - [beta] Fix selection after uncomment when “Append a space to comment delimiter” option is disabled.
 - [beta] Fix text wrapping behavior with vertical orientation.
+- [beta] Adress an issue where the find panel was occasionally collapsed on first load.
 - [beta] And some trivial fixes.
 
 

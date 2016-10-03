@@ -54,6 +54,8 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         }
         
         TextFinder.shared.delegate = self
+        
+        self.setResultShown(false, animate: false)
     }
     
     
