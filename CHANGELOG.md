@@ -8,6 +8,7 @@ develop
 ### Improvements
 
 - Make text font, theme and tab width restorable from the last session.
+- [beta] Make seek-bound for find text using regex more naturally.
 
 
 ### Fixes
