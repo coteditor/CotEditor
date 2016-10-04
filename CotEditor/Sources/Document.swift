@@ -722,7 +722,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     /// open existing document file (alternative methods for `init(contentsOf:ofType:)`)
     func didMakeDocumentForExisitingFile(url: URL) {
-        moof()
+        
         // [caution] This method may be called from a background thread due to concurrent-opening.
         // This method won't be invoked on Resume. (2015-01-26)
         
