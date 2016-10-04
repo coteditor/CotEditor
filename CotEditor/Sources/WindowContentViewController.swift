@@ -255,6 +255,11 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             }
         }
         
+        guard NSAppKitVersionNumber >= Double(NSAppKitVersionNumber10_11) else {
+            self.isSidebarShown = shown
+            return
+        }
+        
         NSAnimationContext.current().withAnimation(animate) {
             self.isSidebarShown = shown
         }

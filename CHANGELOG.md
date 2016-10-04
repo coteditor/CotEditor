@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Fix an issue where sidebar couldn't be opened on Yosemite.
+
+
+
 3.0.0 (154)
 --------------------------
 
