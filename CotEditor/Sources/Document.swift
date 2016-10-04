@@ -60,7 +60,7 @@ private enum FileExtendedAttributeName {
 
 // MARK:
 
-final class Document: NSDocument, EncodingHolder {
+final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Readonly Properties
     
@@ -122,27 +122,6 @@ final class Document: NSDocument, EncodingHolder {
         
         // observe sytnax style update
         NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: .StyntaxDidUpdate, object: nil)
-    }
-    
-    
-    /// initialize instance with existing file
-    convenience init(fileURL url: URL, ofType typeName: String) throws {
-        
-        // [caution] This method may be called from a background thread due to concurrent-opening.
-        // This method won't be invoked on Resume. (2015-01-26)
-        
-        // Workaround initializer in order to invoke self's (actually super's) `init(contentsOf:ofType:)` inside.
-        
-        try self.init(contentsOf: url, ofType: typeName)
-        
-        // set sender of external editor protocol (ODB Editor Suite)
-        self.odbEventSender = ODBEventSender()
-        
-        // check file meta data for text orientation
-        if Defaults[.savesTextOrientation] {
-            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
-            self.isVerticalText = ((attributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
-        }
     }
     
     
@@ -735,6 +714,23 @@ final class Document: NSDocument, EncodingHolder {
         }
         
         return super.validateMenuItem(menuItem)
+    }
+    
+    
+    /// open existing document file (alternative methods for `init(contentsOf:ofType:)`)
+    func didMakeDocumentForExisitingFile(url: URL) {
+        moof()
+        // [caution] This method may be called from a background thread due to concurrent-opening.
+        // This method won't be invoked on Resume. (2015-01-26)
+        
+        // check file meta data for text orientation
+        if Defaults[.savesTextOrientation] {
+            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+            self.isVerticalText = ((attributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
+        }
+        
+        // set sender of external editor protocol (ODB Editor Suite)
+        self.odbEventSender = ODBEventSender()
     }
     
     

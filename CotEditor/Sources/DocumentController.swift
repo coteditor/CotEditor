@@ -28,6 +28,12 @@
 
 import Cocoa
 
+protocol AdditionalDocumentPreparing: class {
+    
+    func didMakeDocumentForExisitingFile(url: URL)
+}
+
+
 final class DocumentController: NSDocumentController {
 
     let autosaveDirectoryURL: URL
@@ -114,9 +120,11 @@ final class DocumentController: NSDocumentController {
         }
         
         // make document
-        //   -> See Document's `init(fileURL:ofType:)` for the reason why I don't just invoke super's method.
-//        let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
-        let document = try Document(fileURL: url, ofType: typeName)
+        let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
+        
+        if let delegate = document as? AdditionalDocumentPreparing {
+            delegate.didMakeDocumentForExisitingFile(url: url)
+        }
         
         // reset encoding menu
         self.resetAccessorySelectedEncoding()
