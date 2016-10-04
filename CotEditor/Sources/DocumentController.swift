@@ -215,10 +215,6 @@ final class DocumentController: NSDocumentController {
     @available(macOS 10.12, *)
     @IBAction func newDocumentAsTab(_ sender: Any?) {
         
-        guard let frontmostWindow = self.currentDocument?.windowControllers.first?.window else {
-            return self.newDocument(sender)
-        }
-        
         let document: NSDocument
         do {
             document = try self.openUntitledDocumentAndDisplay(false)
@@ -228,11 +224,8 @@ final class DocumentController: NSDocumentController {
         }
         
         document.makeWindowControllers()
-        
-        guard let documentWindow = document.windowControllers.first?.window else { return }
-        
-        frontmostWindow.addTabbedWindow(documentWindow, ordered: .above)
-        document.showWindows()  // bring to the frontmost
+        document.windowControllers.first?.window?.tabbingMode = .preferred
+        document.showWindows()
     }
     
     
