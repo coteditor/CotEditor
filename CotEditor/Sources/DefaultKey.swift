@@ -133,6 +133,7 @@ extension DefaultKeys {
     // General
     static let createNewAtStartup = DefaultKey<Bool>("createNewAtStartup")
     static let reopenBlankWindow = DefaultKey<Bool>("reopenBlankWindow")
+    static let windowTabbing = DefaultKey<Int>("windowTabbing")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let trimsTrailingWhitespaceOnSave = DefaultKey<Bool>("trimsTrailingWhitespaceOnSave")
     static let documentConflictOption = DefaultKey<Int>("documentConflictOption")

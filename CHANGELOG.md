@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### New Features
+
+- On macOS Sierra, add an option to set window tabbing behavior (in Window pane).
+
+
+
 3.0.3 (165)
 --------------------------
 

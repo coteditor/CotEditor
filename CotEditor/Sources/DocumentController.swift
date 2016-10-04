@@ -225,9 +225,10 @@ final class DocumentController: NSDocumentController {
             return
         }
         
+        AlphaWindow.tabbingPreference = .manual
         document.makeWindowControllers()
-        document.windowControllers.first?.window?.tabbingMode = .disallowed
         document.showWindows()
+        AlphaWindow.tabbingPreference = nil
     }
     
     
