@@ -377,7 +377,7 @@ extension SyntaxStyle {
 extension SyntaxStyle {
     
     /// update whole document highlights
-    func highlightAll(completionHandler: (() -> Void)? = nil) {
+    func highlightAll(completionHandler: (() -> Void)? = nil) {  // @escaping
         
         guard Defaults[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
@@ -464,7 +464,7 @@ extension SyntaxStyle {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) {
+    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) {  // @escaping
         
         guard highlightRange.length > 0 else { return }
         

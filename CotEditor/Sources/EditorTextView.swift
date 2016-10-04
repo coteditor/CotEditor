@@ -46,7 +46,6 @@ final class EditorTextView: NSTextView, Themable {
     
     // MARK: Public Properties
     
-    var showsPageGuide = false
     var isAutomaticTabExpansionEnabled = false
     
     var lineHighlightRect: NSRect?
@@ -177,6 +176,15 @@ final class EditorTextView: NSTextView, Themable {
     
     
     // MARK: Text View Methods
+    
+    /// keys to be restored from the last session
+    override class func restorableStateKeyPaths() -> [String] {
+        
+        return [#keyPath(layoutOrientation),
+                #keyPath(font),
+                #keyPath(tabWidth)]
+    }
+    
     
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
@@ -859,6 +867,15 @@ final class EditorTextView: NSTextView, Themable {
             
             // apply to view
             self.invalidateDefaultParagraphStyle()
+        }
+    }
+    
+    
+    /// whether draws page guide
+    var showsPageGuide = false {
+        
+        didSet {
+            self.setNeedsDisplay(self.bounds, avoidAdditionalLayout: true)
         }
     }
     

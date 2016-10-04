@@ -69,8 +69,8 @@
 
 "RAi-kK-gW5.title" = "扩展分组";  // "Extended Groups"
 
-"8Hg-0T-mMw.title" = "look-ahead";  // "前向"
-"Fic-V5-VYk.title" = "look-behind";  // "后向"
+"8Hg-0T-mMw.title" = "前向";  // "look-ahead"
+"Fic-V5-VYk.title" = "后向";  // "look-behind"
 
 
 

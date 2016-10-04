@@ -89,6 +89,28 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     }
     
     
+    /// store UI state
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        if let themeName = self.theme?.name {
+            coder.encode(themeName, forKey: "theme")
+        }
+        
+        super.encodeRestorableState(with: coder)
+    }
+    
+    
+    /// resume UI state
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if let themeName = coder.decodeObject(forKey: "theme") as? String {
+            self.setTheme(name: themeName)
+        }
+    }
+    
+    
     /// deliver document to child view controllers
     override var representedObject: Any? {
         
@@ -375,10 +397,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// Whether status bar is visible
-    var isStatusBarShown: Bool = false {
+    var isStatusBarShown: Bool {
         
-        didSet {
-            self.statusBarItem?.isCollapsed = !self.isStatusBarShown
+        get {
+            return !(self.statusBarItem?.isCollapsed ?? true)
+        }
+        set {
+            assert(self.statusBarItem != nil)
+            self.statusBarItem?.isCollapsed = !newValue
         }
     }
     
@@ -421,9 +447,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         
         didSet {
             for viewController in self.editorViewControllers {
-                guard let textView = viewController.textView else { continue }
-                textView.showsPageGuide = showsPageGuide
-                textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: true)
+                viewController.textView?.showsPageGuide = showsPageGuide
             }
         }
     }
@@ -480,7 +504,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// toggle visibility of status bar with fancy animation
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
-        self.statusBarItem?.animator().isCollapsed = self.isStatusBarShown
+        NSAnimationContext.current().withAnimation {
+            self.isStatusBarShown = !self.isStatusBarShown
+        }
     }
     
     
@@ -494,11 +520,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// toggle visibility of navigation bar with fancy animation
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
-        NSAnimationContext.current().allowsImplicitAnimation = true
-        
-        self.showsNavigationBar = !self.showsNavigationBar
-        
-        NSAnimationContext.current().allowsImplicitAnimation = false
+        NSAnimationContext.current().withAnimation {
+            self.showsNavigationBar = !self.showsNavigationBar
+        }
     }
     
     
@@ -742,6 +766,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             viewController.textView?.theme = theme
         }
         self.invalidateSyntaxHighlight()
+        self.invalidateRestorableState()
     }
     
     

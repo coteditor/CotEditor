@@ -165,7 +165,10 @@ final class LayoutManager: NSLayoutManager {
         if let keyPath = keyPath, type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
-            self.invalidateLayout(forCharacterRange: NSRange(location: 0, length: self.textStorage?.length ?? 0), actualCharacterRange: nil)
+            
+            if let textView = self.firstTextView {
+                textView.setNeedsDisplay(textView.bounds, avoidAdditionalLayout: false)
+            }
         }
     }
     
@@ -243,7 +246,7 @@ final class LayoutManager: NSLayoutManager {
                     line = self.invisibleLines.replacement
                 }
                 
-                // calcurate position to draw glyph
+                // calculate position to draw glyph
                 let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
                 var point = lineOrigin.offsetBy(dx: origin.x + glyphLocation.x,
@@ -308,8 +311,8 @@ final class LayoutManager: NSLayoutManager {
         let defaultParagraphStyle = textView.defaultParagraphStyle ?? NSParagraphStyle.default()
         let typingParagraphStyle = (textView.typingAttributes[NSParagraphStyleAttributeName] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
         typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
-        let indentAttributes: [String: Any] = [NSFontAttributeName :self.substituteFont(for: self.textFont),
-                                               NSParagraphStyleAttributeName: typingParagraphStyle ?? NSNull()]
+        var indentAttributes: [String: Any] = [NSFontAttributeName: self.substituteFont(for: self.textFont)]
+        indentAttributes[NSParagraphStyleAttributeName] = typingParagraphStyle
         
         var cache = [String: CGFloat]()
         

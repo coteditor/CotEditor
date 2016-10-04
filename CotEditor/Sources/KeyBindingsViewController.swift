@@ -220,6 +220,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         // successfully update data
         item.shortcut = shortcut
         self.saveSettings()
+        self.outlineView?.reloadData(forRowIndexes: IndexSet(integer: row), columnIndexes: IndexSet(integer: column))
     }
     
     

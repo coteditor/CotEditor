@@ -169,9 +169,9 @@ final class MenuKeyBindingManager: KeyBindingManager {
         if let tag = MainMenu.MenuItemTag(rawValue: menuItem.tag) {
             switch tag {
             case .services,
-                 .sharingService:
+                 .sharingService,
+                 .scriptDirectory:
                 return false
-            default: break
             }
         }
         

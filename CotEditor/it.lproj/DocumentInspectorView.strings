@@ -40,7 +40,7 @@
 /* Class = "NSTextFieldCell"; title = "Permission"; ObjectID = "N0Y-nO-k3L"; */
 "N0Y-nO-k3L.title" = "Permessi";
 /* Class = "NSTextFieldCell"; title = "Full Path"; ObjectID = "zwU-xo-iZu"; */
-"zwU-xo-iZu.title" = "Percorso completo";
+"zwU-xo-iZu.title" = "Percorso";
 
 
 /* Class = "NSTextFieldCell"; title = "Text Settings"; ObjectID = "8KW-Mc-cRX"; */

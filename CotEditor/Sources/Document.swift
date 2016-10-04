@@ -79,7 +79,7 @@ final class Document: NSDocument, EncodingHolder {
     // MARK: Private Properties
     
     private lazy var printPanelAccessoryController: PrintPanelAccessoryController = PrintPanelAccessoryController()
-    @IBOutlet private var savePanelAccessoryView: NSView?
+    @IBOutlet private weak var savePanelAccessoryView: NSView?
     
     private var readingEncoding: String.Encoding  // encoding to read document file
     private var needsShowUpdateAlertWithBecomeKey = false
@@ -509,10 +509,10 @@ final class Document: NSDocument, EncodingHolder {
                 permissions = ((try? FileManager.default.attributesOfItem(atPath: originalPath))?[.posixPermissions] as? UInt16) ?? 0  // FILE_READ
             }
             if permissions == 0 {
-                permissions = 0644  // ???: Is the default permission really always 644?
+                permissions = 0o644  // ???: Is the default permission really always 644?
             }
             permissions |= S_IXUSR
-            attributes[FileAttributeKey.posixPermissions.rawValue] = permissions
+            attributes[FileAttributeKey.posixPermissions.rawValue] = NSNumber(value: permissions)
         }
         
         return attributes
@@ -538,12 +538,12 @@ final class Document: NSDocument, EncodingHolder {
         self.allowedFileTypes = nil
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
         if let pathExtension = self.fileNameExtension(forType: self.fileType!, saveOperation: .saveOperation) {
-            // bind allowedFileTypes flag with savePanel (for El capitan and leter)
+            // bind allowedFileTypes flag with savePanel
             // -> So that initial filename selection excludes file extension.
             self.allowedFileTypes = [pathExtension]
             savePanel.bind(#keyPath(NSSavePanel.allowedFileTypes), to: self, withKeyPath: #keyPath(allowedFileTypes))
             
-            //disable and unbind `allowedFileTypes` immediately in the next runloop to allow set other extensions
+            // disable and unbind `allowedFileTypes` immediately in the next runloop to allow set other extensions
             DispatchQueue.main.async { [weak self] in
                 self?.allowedFileTypes = nil
                 savePanel.unbind(#keyPath(NSSavePanel.allowedFileTypes))

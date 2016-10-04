@@ -2,6 +2,33 @@
 Change Log
 ==========================
 
+3.0.0 (154)
+--------------------------
+
+### Improvements
+
+- Make text font, theme and tab width restorable from the last session.
+- [beta] Make seek-bound for find text using regex more naturally.
+
+
+### Fixes
+
+- Fix an issue where page guide remained after toggling page guide visibility.
+- [beta] Fix an issue where application crashed after user turned the “Give execute permission” checkbox in the save panel on.
+- [beta] Fix an issue where application crashed when file opens via Service.
+- [beta] Fix an issue where toggling status bar visibility didn't work.
+- [beta] Fix an issue where text layout orientation was not restored from the last session.
+- [beta] Fix an issue where key binding modification in pereferences could fail.
+- [beta] Fix an issue where submenus in the Script menu displayed in the menu key bindings setting view.
+- [beta] Fix an issue where invisible settings were not applied to editors immediately.
+- [beta] Fix an issue where “Comment always from line head” option didn't reflect user state.
+- [beta] Fix selection after uncomment when “Append a space to comment delimiter” option is disabled.
+- [beta] Fix text wrapping behavior with vertical orientation.
+- [beta] Adress an issue where the find panel was occasionally collapsed on first load.
+- [beta] And some trivial fixes.
+
+
+
 3.0.0-rc.2 (150)
 --------------------------
 

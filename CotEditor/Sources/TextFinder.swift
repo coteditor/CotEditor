@@ -513,7 +513,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             var selectedRanges = [NSRange]()
             var count = 0
             
-            // variables to calcurate new selection ranges
+            // variables to calculate new selection ranges
             var locationDelta = 1
             var lengthDelta = 0
             
@@ -667,32 +667,30 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             let textView = self.client,
             let string = textView.string, !string.isEmpty else { return 0 }
         
-        let startLocation = forward ? textView.selectedRange.max : textView.selectedRange.location
-        let range = string.nsRange
-        
-        var matches = [NSRange]()
-        self.enumerateMatchs(in: string, ranges: [range], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
-            matches.append(matchedRange)
+        func matchedRanges(in range: NSRange) -> [NSRange] {
+            var matches = [NSRange]()
+            self.enumerateMatchs(in: string, ranges: [range], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+                matches.append(matchedRange)
             })
-        
-        guard !matches.isEmpty else { return 0 }
-        
-        var foundRange: NSRange?
-        var lastMatchedRange: NSRange?
-        
-        for matchedRange in matches {
-            if matchedRange.location >= startLocation {
-                foundRange = forward ? matchedRange : lastMatchedRange
-                break
-            }
-            
-            lastMatchedRange = matchedRange
+            return matches
         }
+        
+        let startLocation = forward ? textView.selectedRange.max : textView.selectedRange.location
+        let forwardMatches = matchedRanges(in: NSRange(location: startLocation,
+                                                       length: string.utf16.count - startLocation))
+        let wrappedMatches = matchedRanges(in: NSRange(location: 0,
+                                                       length: startLocation))
+        
+        let count = forwardMatches.count + wrappedMatches.count
+        
+        guard count > 0 else { return 0 }
+        
+        var foundRange: NSRange? = forward ? forwardMatches.first : wrappedMatches.last
         
         // wrap search
         let isWrapped = (foundRange == nil && self.isWrap)
         if isWrapped {
-            foundRange = forward ? matches.first : matches.last
+            foundRange = forward ? wrappedMatches.first : forwardMatches.last
         }
         
         // found feedback
@@ -710,11 +708,11 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             NSBeep()
         }
         
-        self.delegate?.textFinder(self, didFound: matches.count, textView: textView)
+        self.delegate?.textFinder(self, didFound: count, textView: textView)
         
         self.appendHistory(self.findString, forKey: .findHistory)
         
-        return matches.count
+        return count
     }
     
     

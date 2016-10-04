@@ -56,6 +56,8 @@
 		2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */ = {isa = PBXBuildFile; fileRef = 2A18A5BE1C4A746A00BAD817 /* Encodings */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
+		2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
+		2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
 		2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
 		2A2792951D1DBDAC00F3FC5D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* Constants.swift */; };
@@ -594,6 +596,7 @@
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
+		2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAnimationContext.swift; sourceTree = "<group>"; };
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
@@ -1476,6 +1479,7 @@
 				2A9082EB1D325BEC00228F50 /* UserDefaults.swift */,
 				2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */,
 				2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */,
+				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */,
@@ -2215,6 +2219,7 @@
 				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2A6FD9F71D3AE29E00A59784 /* SyntaxStyle.swift in Sources */,
 				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
+				2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A4257B41D2309AB0086DAAD /* OpacityPanelController.swift in Sources */,
@@ -2311,6 +2316,7 @@
 				2A4CB9921D79F38A000D6ADA /* DocumentToolbar.swift in Sources */,
 				2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */,
+				2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2ABCD69D1D872D0A00437DD5 /* AppVersion.swift in Sources */,
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */,
@@ -3162,15 +3168,21 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = Modules/;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3213,14 +3225,20 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = Modules/;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

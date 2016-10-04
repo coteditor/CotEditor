@@ -945,11 +945,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.0-rc.2</string>
+	<string>3.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>150</string>
+	<string>154</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
