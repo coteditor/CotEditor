@@ -142,6 +142,9 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared().initialValues = defaults
         
+        // instantiate DocumentController
+        _ = DocumentController()
+        
         // wake text finder up
         _ = TextFinder.shared
         

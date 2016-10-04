@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11198.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -1076,7 +1076,6 @@ CA
                         <outlet property="themesMenu" destination="165-HJ-Xty" id="R7w-wo-SVO"/>
                     </connections>
                 </customObject>
-                <customObject id="mHc-wS-DxX" customClass="DocumentController" customModule="CotEditor" customModuleProvider="target"/>
                 <customObject id="1Vq-aI-bgB" customClass="NSFontManager"/>
                 <menu id="XYx-Cu-L71" userLabel="Dock Menu">
                     <items>

@@ -9,6 +9,7 @@ develop
 
 - Fix an issue where sidebar couldn't be opened on Yosemite.
 - Fix an issue where application crashed when folder is dropped to the application icon.
+- Improve general stability.
 
 
 

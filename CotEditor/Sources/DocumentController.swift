@@ -55,8 +55,6 @@ final class DocumentController: NSDocumentController {
     
     override init() {
         
-        // [caution] This method can be called before the UserDefaults is initialized.
-        
         self._accessorySelectedEncoding = Defaults[.encodingInOpen]
         self.autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
                                                                  in: .userDomainMask,
