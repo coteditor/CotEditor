@@ -248,6 +248,12 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard let textView = notification.object as? NSTextView else { return }
         
+        // only on focused editor
+        guard
+            let layoutManager = textView.layoutManager,
+            let window = textView.window,
+            layoutManager.layoutManagerOwnsFirstResponder(in: window) else { return }
+        
         // highlight the current line
         // -> For the selection change, call `updateCurrentLineRect` directly rather than setting currentLineUpdateTimer
         //    in order to provide a quick feedback of change to users.
