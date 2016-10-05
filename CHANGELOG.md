@@ -10,6 +10,7 @@ develop
 - Fix an issue where sidebar couldn't be opened on Yosemite.
 - Fix an issue where key bindings of recent documents were customizable.
 - Fix an issue where application crashed when a folder is dropped to the application icon.
+- Fix an issue where matched brackets in unfocused split editors were highlighted without the need while editing one of split editors.
 - Improve general stability.
 
 
