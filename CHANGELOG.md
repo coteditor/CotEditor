@@ -2,7 +2,16 @@
 Change Log
 ==========================
 
-3.0.1 (159)
+develop
+--------------------------
+
+### Fixes
+
+- Fix an issue where text completion list did occasionally not displayed.
+
+
+
+3.0.1 (160)
 --------------------------
 
 ### Fixes

@@ -1311,9 +1311,10 @@ extension EditorTextView {
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
             self.selectedRange.length == 0,  // selected
-            let nextCharacter = self.characterAfterInsertion, !CharacterSet.alphanumerics.contains(nextCharacter),  // caret is (probably) at the middle of a word
             let lastCharacter = self.characterBeforeInsertion, !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
             else { return }
+        
+        if let nextCharacter = self.characterAfterInsertion, CharacterSet.alphanumerics.contains(nextCharacter) { return }  // caret is (probably) at the middle of a word
         
         self.complete(self)
     }
