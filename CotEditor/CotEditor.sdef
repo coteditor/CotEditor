@@ -86,22 +86,22 @@
                 <cocoa key="fileName"/>
             </property>
             <responds-to command="convert">
-                <cocoa method="handleConvertScriptCommand:"/>
+                <cocoa method="handleConvert:"/>
             </responds-to>
             <responds-to command="find">
-                <cocoa method="handleFindScriptCommand:"/>
+                <cocoa method="handleFind:"/>
             </responds-to>
             <responds-to command="reinterpret">
-                <cocoa method="handleReinterpretScriptCommand:"/>
+                <cocoa method="handleReinterpret:"/>
             </responds-to>
             <responds-to command="replace">
-                <cocoa method="handleReplaceScriptCommand:"/>
+                <cocoa method="handleReplace:"/>
             </responds-to>
             <responds-to command="scroll to caret">
-                <cocoa method="handleScrollScriptCommand:"/>
+                <cocoa method="handleScroll:"/>
             </responds-to>
             <responds-to command="string">
-                <cocoa method="handleStringScriptCommand:"/>
+                <cocoa method="handleString:"/>
             </responds-to>
         </class-extension>
         
@@ -117,43 +117,43 @@
                 <type type="integer" list="yes"/>
             </property>
             <responds-to command="change case">
-                <cocoa method="handleChangeCaseScriptCommand:"/>
+                <cocoa method="handleChangeCase:"/>
             </responds-to>
             <responds-to command="change kana">
-                <cocoa method="handleChangeKanaScriptCommand:"/>
+                <cocoa method="handleChangeKana:"/>
             </responds-to>
             <responds-to command="change roman width">
-                <cocoa method="handleChangeWidthRomanScriptCommand:"/>
+                <cocoa method="handleChangeWidthRoman:"/>
             </responds-to>
             <responds-to command="shift left">
-                <cocoa method="handleShiftLeftScriptCommand:"/>
+                <cocoa method="handleShiftLeft:"/>
             </responds-to>
             <responds-to command="shift right">
-                <cocoa method="handleShiftRightScriptCommand:"/>
+                <cocoa method="handleShiftRight:"/>
             </responds-to>
             <responds-to command="move line up">
-                <cocoa method="handleMoveLineUpScriptCommand:"/>
+                <cocoa method="handleMoveLineUp:"/>
             </responds-to>
             <responds-to command="move line down">
-                <cocoa method="handleMoveLineDownScriptCommand:"/>
+                <cocoa method="handleMoveLineDown:"/>
             </responds-to>
             <responds-to command="sort lines">
-                <cocoa method="handleSortLinesAscendingScriptCommand:"/>
+                <cocoa method="handleSortLinesAscending:"/>
             </responds-to>
             <responds-to command="reverse lines">
-                <cocoa method="handleReverseLinesScriptCommand:"/>
+                <cocoa method="handleReverseLines:"/>
             </responds-to>
             <responds-to command="delete duplicate line">
-                <cocoa method="handleDeleteDuplicateLineScriptCommand:"/>
+                <cocoa method="handleDeleteDuplicateLine:"/>
             </responds-to>
             <responds-to command="comment out">
-                <cocoa method="handleCommentOutScriptCommand:"/>
+                <cocoa method="handleCommentOut:"/>
             </responds-to>
             <responds-to command="uncomment">
-                <cocoa method="handleUncommentScriptCommand:"/>
+                <cocoa method="handleUncomment:"/>
             </responds-to>
             <responds-to command="normalize unicode">
-                <cocoa method="handleNormalizeUnicodeScriptCommand:"/>
+                <cocoa method="handleNormalizeUnicode:"/>
             </responds-to>
         </class>
         

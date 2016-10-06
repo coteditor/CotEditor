@@ -596,11 +596,6 @@ final class EditorTextView: NSTextView, Themable {
     /// change text layout orientation
     override func setLayoutOrientation(_ orientation: NSTextLayoutOrientation) {
         
-        // reset text wrapping
-        if orientation != self.layoutOrientation && self.wrapsLines {
-            self.textContainer?.containerSize = NSSize(width: 1, height: CGFloat.greatestFiniteMagnitude)
-        }
-        
         // -> needs send kvo notification manually on Swift? (2016-09-12 on macOS 10.12 SDK)
         self.willChangeValue(forKey: #keyPath(layoutOrientation))
         

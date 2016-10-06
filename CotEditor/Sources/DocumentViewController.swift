@@ -683,12 +683,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         // instert new editorView just below the editorView that the pressed button belongs to or has focus
         self.splitViewController?.addSubview(for: editorViewController, relativeTo: baseViewController)
         
-        editorViewController.showsLineNumber = self.showsLineNumber
-        editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.textView?.wrapsLines = self.wrapsLines
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
         editorViewController.textView?.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
         editorViewController.textView?.showsPageGuide = self.showsPageGuide
+        editorViewController.showsNavigationBar = self.showsNavigationBar
+        editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
         if let syntaxStyle = self.syntaxStyle {
             editorViewController.apply(syntax: syntaxStyle)
