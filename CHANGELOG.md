@@ -7,6 +7,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where application could crash on running an AppleScript/JXA.
 - Fix an issue where find panel position was not saved.
 - Fix an issue where no beep sound was made when there was no match on find/replace.
 
