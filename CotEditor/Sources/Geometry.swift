@@ -84,6 +84,11 @@ extension CGSize {
     static let unit = CGSize(width: 1, height: 1)
     static let infinite = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
     
+    
+    var rotated: CGSize {
+        
+        return CGSize(width: self.height, height: self.width)
+    }
 }
 
 
