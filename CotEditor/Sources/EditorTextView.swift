@@ -596,6 +596,10 @@ final class EditorTextView: NSTextView, Themable {
     /// change text layout orientation
     override func setLayoutOrientation(_ orientation: NSTextLayoutOrientation) {
         
+        guard self.layoutOrientation != orientation else { return }
+        
+        self.minSize = self.minSize.rotated
+        
         // -> needs send kvo notification manually on Swift? (2016-09-12 on macOS 10.12 SDK)
         self.willChangeValue(forKey: #keyPath(layoutOrientation))
         
