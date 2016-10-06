@@ -130,6 +130,8 @@
 "171.title" = "Incolla";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Elimina";
+/* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
+"Qa9-dA-CF1.title" = "Completa";
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
 "172.title" = "Seleziona tutto";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */

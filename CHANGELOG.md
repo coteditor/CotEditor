@@ -5,9 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Add “Complete” action to “Edit” menu.
+    - On macOS Sierra, the default shortcut for completion action was changed to `⌥⎋`.
+
+
 ### Fixes
 
-- Fix an issue where text completion list did occasionally not displayed.
+- Fix an issue where text completion list didn't occasionally display.
 
 
 

@@ -129,6 +129,8 @@
 "171.title" = "Einsetzen";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Löschen";
+/* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
+"Qa9-dA-CF1.title" = "Vervollständigen";
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
 "172.title" = "Alles auswählen";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */

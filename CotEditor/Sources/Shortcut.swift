@@ -233,7 +233,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
             0x08:                   "⌫",  // = Backspace, (delete backword)
             0x03:                   "⌅",  // = Enter
             0x31:                   "⇤",  // = Backtab
-            0x33:                   "⎋",  // = Escape
+            0x1b:                   "⎋",  // = Escape
         ]
         
         // cast key from Int to UnicodeScalar

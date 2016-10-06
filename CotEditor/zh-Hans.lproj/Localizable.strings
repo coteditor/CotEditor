@@ -307,13 +307,6 @@
 "Stylesheet Keywords" = "样式表关键字";
 
 
-
-/* MARK: CEPreferencesWindowController */
-// Hint message for the completion list
-"Completion can be performed manually with: %@ or %@" = "补全可以通过 %@ 或 %@ 手动完成";
-"Select at least one item to enable completion." = "至少选择一个条目来激活补全。";
-
-
 // Genearal pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "变更将在下次启动时生效。";

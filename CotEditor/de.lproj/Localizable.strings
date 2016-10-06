@@ -308,13 +308,6 @@
 "Stylesheet Keywords" = "CSS-Schlüsselwörter";
 
 
-
-/* MARK: CEPreferencesWindowController */
-// Hint message for the completion list
-"Completion can be performed manually with: %@ or %@" = "Vervollständigung manuell durchführen mit: %@ oder %@";
-"Select at least one item to enable completion." = "Wählen Sie mindestens ein Element, um die Vervollständigung zu aktivieren.";
-
-
 // Genearal pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";

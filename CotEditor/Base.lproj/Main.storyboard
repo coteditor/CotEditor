@@ -200,6 +200,15 @@
                                                 <action selector="delete:" target="Ady-hI-5gd" id="Ftk-bU-BQH"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Complete" id="Qa9-dA-CF1">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                            <connections>
+                                                <action selector="complete:" target="Ady-hI-5gd" id="xdV-uV-Chm"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Select All" keyEquivalent="a" id="172">
                                             <connections>
                                                 <action selector="selectAll:" target="Ady-hI-5gd" id="Rho-pS-oPz"/>

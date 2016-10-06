@@ -131,6 +131,8 @@
 "171.title" = "粘贴";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "删除";
+/* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
+"Qa9-dA-CF1.title" = "联想";
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
 "172.title" = "全选";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */

@@ -135,7 +135,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         let shortcut = self.shortcut(for: action, defaults: false)
         
-        guard shortcut.modifierMask.contains(.command) else { return .none }
+        guard !shortcut.keyEquivalent.isEmpty, !shortcut.modifierMask.isEmpty else { return .none }
         
         return shortcut
     }
@@ -256,8 +256,8 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 
                 let shortcut = self.shortcut(for: action)
                 
-                // apply only if keyEquivalent exists and the Command key is included
-                guard shortcut.modifierMask.contains(.command) else { return }
+                // apply only if both keyEquivalent and modifierMask exist
+                guard !shortcut.keyEquivalent.isEmpty, !shortcut.modifierMask.isEmpty else { return }
                 
                 menuItem.keyEquivalent = shortcut.keyEquivalent
                 menuItem.keyEquivalentModifierMask = shortcut.modifierMask
