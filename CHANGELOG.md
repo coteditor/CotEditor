@@ -7,6 +7,15 @@ develop
 
 ### Fixes
 
+- Fix an issue where find panel position was not saved.
+
+
+
+3.0.1 (158)
+--------------------------
+
+### Fixes
+
 - Fix an issue where sidebar couldn't be opened on Yosemite.
 - Fix an issue where key bindings of recent documents were customizable.
 - Fix an issue where application crashed when a folder is dropped to the application icon.
