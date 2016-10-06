@@ -2,14 +2,20 @@
 Change Log
 ==========================
 
-3.0.1 (158)
+3.0.1 (159)
 --------------------------
 
 ### Fixes
 
+- Fix an issue where application could crash on split editors under specific conditions. 
+- Fix an issue where application could crash on running an AppleScript/JXA.
 - Fix an issue where sidebar couldn't be opened on Yosemite.
 - Fix an issue where key bindings of recent documents were customizable.
 - Fix an issue where application crashed when a folder is dropped to the application icon.
+- Fix an issue where find panel position was not saved.
+- Fix an issue where no beep sound was made when there was no match on find/replace.
+- Fix an issue where application could freeze after replace large document.
+- Fix an issue where editable area didn't spread to the full width after changing text orientation when content is empty.
 - Fix an issue where matched brackets in unfocused split editors were highlighted without the need while editing one of split editors.
 - Improve general stability.
 

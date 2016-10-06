@@ -147,7 +147,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         super.restoreState(with: coder)
         
         if coder.containsValue(forKey: SerializationKey.readingEncoding) {
-            self.readingEncoding = String.Encoding(rawValue: UInt(coder.decodeInteger(forKey: SerializationKey.readingEncoding)))
+            let encoding = String.Encoding(rawValue: UInt(coder.decodeInteger(forKey: SerializationKey.readingEncoding)))
+            if String.availableStringEncodings.contains(encoding) {
+                self.readingEncoding = encoding
+            }
         }
         if let identifier = coder.decodeObject(forKey: SerializationKey.autosaveIdentifier) as? String {
             self.autosaveIdentifier = identifier

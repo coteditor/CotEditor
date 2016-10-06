@@ -488,7 +488,9 @@ extension SyntaxStyle {
         if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
             // wait for window becomes visible and sheet-attachable
             DispatchQueue.global(qos: .background).async {
-                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) {
+                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) ||
+                       (storage.layoutManagers.first?.firstTextView?.window?.attachedSheet != nil)
+                {
                     RunLoop.current.limitDate(forMode: .defaultRunLoopMode)
                 }
                 

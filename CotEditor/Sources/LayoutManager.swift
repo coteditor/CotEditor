@@ -300,6 +300,9 @@ final class LayoutManager: NSLayoutManager {
         
         guard let textStorage = self.textStorage, let textView = self.firstTextView else { return }
         
+        // only on focused editor
+        if let window = textView.window, !self.layoutManagerOwnsFirstResponder(in: window) { return }
+        
         let lineRange = (textStorage.string as NSString).lineRange(for: range)
         
         guard lineRange.length > 0 else { return }

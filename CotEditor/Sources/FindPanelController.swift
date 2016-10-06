@@ -31,6 +31,14 @@ final class FindPanelController: NSWindowController {
     
     // MARK: Window Controller Methods
     
+    override func windowDidLoad() {
+        
+        super.windowDidLoad()
+        
+        self.windowFrameAutosaveName = "findPanel"
+    }
+    
+    
     /// activate find panel
     @IBAction override func showWindow(_ sender: Any?) {
         

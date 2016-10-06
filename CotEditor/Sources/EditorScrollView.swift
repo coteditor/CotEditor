@@ -76,7 +76,7 @@ final class EditorScrollView: NSScrollView {
             }
             
             // invalidate line number view background
-            self.window?.display()
+            self.window?.viewsNeedDisplay = true
         }
     }
     
