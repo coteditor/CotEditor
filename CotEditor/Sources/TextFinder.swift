@@ -681,10 +681,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         let wrappedMatches = matchedRanges(in: NSRange(location: 0,
                                                        length: startLocation))
         
-        let count = forwardMatches.count + wrappedMatches.count
-        
-        guard count > 0 else { return 0 }
-        
         var foundRange: NSRange? = forward ? forwardMatches.first : wrappedMatches.last
         
         // wrap search
@@ -707,6 +703,8 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         } else {
             NSBeep()
         }
+        
+        let count = forwardMatches.count + wrappedMatches.count
         
         self.delegate?.textFinder(self, didFound: count, textView: textView)
         
