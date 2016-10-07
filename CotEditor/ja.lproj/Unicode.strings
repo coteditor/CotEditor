@@ -28,6 +28,9 @@
 
 "<a letter consisting of %d characters>" = "<%d字から成る文字>";
 
+// placeholder for invalid values
+"No Block" = "ブロックなし";
+"No Category" = "カテゴリなし";
 
 // Variation selectors
 "Emoji Style" = "絵文字スタイル";
@@ -254,8 +257,3 @@
 "Gujarati" = "グジャラート文字";
 "Tai Xuan Jing Symbols" = "太玄経の記号";
 "Kana Supplement" = "かな補助";
-
-"No Block" = "ブロックなし";
-
-// Unicode category names
-"No Category" = "カテゴリなし";

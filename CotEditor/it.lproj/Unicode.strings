@@ -29,6 +29,9 @@
 
 "<a letter consisting of %d characters>" = "<una lettera composta di %d caratteri>";
 
+// placeholder for invalid values
+"No Block" = "Nessun Blocco";
+"No Category" = "Nessuna Categoria";
 
 // Variation selectors
 "Emoji Style" = "Stile Emoji";
@@ -254,8 +257,3 @@
 "Gujarati" = "Gujarati";
 "Tai Xuan Jing Symbols" = "Simboli Tai Xuan Jing";
 "Kana Supplement" = "Integrazione Kana";
-
-"No Block" = "Nessun Blocco";
-
-// Unicode category names
-"No Category" = "Nessuna Categoria";
