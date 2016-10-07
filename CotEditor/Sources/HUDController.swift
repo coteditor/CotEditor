@@ -113,10 +113,8 @@ final class HUDController: NSViewController {
     func show(in clientView: NSView) {
         
         // remove previous HUD
-        for subview in clientView.subviews {
-            if subview.identifier == HUDIdentifier {
-                subview.fadeOut(duration: FadeDuration / 2.0, delay: 0)  // fade quickly
-            }
+        for subview in clientView.subviews where subview.identifier == HUDIdentifier {
+            subview.fadeOut(duration: FadeDuration / 2.0, delay: 0)  // fade quickly
         }
         
         clientView.addSubview(self.view)

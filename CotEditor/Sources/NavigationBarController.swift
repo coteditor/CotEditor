@@ -176,12 +176,9 @@ final class NavigationBarController: NSViewController {
         
         guard let menu = self.outlineMenu else { return false }
         
-        for menuItem in menu.itemArray[(menu.indexOfSelectedItem + 1)..<menu.numberOfItems] {
-            if !menuItem.isSeparatorItem {
-                return true
-            }
-        }
-        return false
+        let nextRange = (menu.indexOfSelectedItem + 1)..<menu.numberOfItems
+        
+        return menu.itemArray[nextRange].contains { !$0.isSeparatorItem }
     }
     
     

@@ -88,10 +88,8 @@ final class PreferencesWindowController: NSWindowController {
         let newView = self.viewControllers[toolbarItem.tag].view
         
         // remove current view from the main view
-        if let subviews = window.contentView?.subviews {
-            for view in subviews {
-                view.removeFromSuperviewWithoutNeedingDisplay()
-            }
+        for view in window.contentView?.subviews ?? [] {
+            view.removeFromSuperviewWithoutNeedingDisplay()
         }
         
         // set window title

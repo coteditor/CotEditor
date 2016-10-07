@@ -266,15 +266,10 @@ final class LineNumberView: NSRulerView {
             glyphIndex = lineGlyphRange.max
             
             // check if line is selected
-            let isSelected: Bool = {
-                for selectedRange in selectedLineRanges {
-                    if NSLocationInRange(lineRange.location, selectedRange) &&
-                        (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.max == selectedRange.max)) {
-                        return true
-                    }
-                }
-                return false
-            }()
+            let isSelected = selectedLineRanges.contains { selectedRange in
+                return (NSLocationInRange(lineRange.location, selectedRange) &&
+                    (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.max == selectedRange.max)))
+            }
             
             while (glyphCount < glyphIndex) {  // handle wrapper lines
                 var range = NSRange.notFound
