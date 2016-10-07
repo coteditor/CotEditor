@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -76,7 +76,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         self.lineHeight = Defaults[.lineHeight]
         
         // dirty workaround to obtain auto-generated textContainer (2016-07 on OS X 10.11)
-        // cf. http://stackoverflow.com/questions/34616892/
+        // cf. https://stackoverflow.com/questions/34616892/
         let dummyTextView = NSTextView()
         
         super.init(frame: .zero, textContainer: dummyTextView.textContainer)
