@@ -3,23 +3,23 @@ Füllen Sie die folgende Vorlage aus und posten Sie sie auf [GitHub Issues](http
 
 -----------------------------------------------
 
-## Umgebung
+## Environment (Umgebung)
 
 - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
 - System: macOS %SYSTEM_VERSION%
-- Sprache: German
+- Language: German
 
 
-## Kurzbeschreibung
-
-<!-- Schreiben Sie hier Ihren Kommentar -->
-
-
-## Schritte zur Reproduktion
+## Short Description (Kurzbeschreibung)
 
 <!-- Schreiben Sie hier Ihren Kommentar -->
 
 
-## Erwartetes Ergebnis
+## Steps to Reproduce the Issue (Schritte zur Reproduktion)
+
+<!-- Schreiben Sie hier Ihren Kommentar -->
+
+
+## Expected Result (Erwartetes Ergebnis)
 
 <!-- Schreiben Sie hier Ihren Kommentar -->

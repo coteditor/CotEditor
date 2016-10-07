@@ -6,6 +6,7 @@
  https://coteditor.com
  
  Created by onevcat on 2014-11-27.
+ Localized by onevcat
  
  ------------------------------------------------------------------------------
  
@@ -43,10 +44,7 @@
 
 
 /* MARK: AppDelegate */
-// File open accessory's menu item title
-"Auto-Detect" = "自动检测";
 // Format - Syntax coloring menu item title
-"None" = "无";
 "Recently Used" = "最近使用";
 "Re-Color All" = "全部重新着色";
 
@@ -78,7 +76,7 @@
 "Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
 "Not Found" = "未找到";
-"%@ found" = "找到 %@ 项";
+"%@ found" = "找到 %@ 项";  // %@ is number of founds
 
 
 /* MARK: FindPanelResultViewController */
@@ -90,7 +88,10 @@
 
 
 /* MARK: Document Controller */
-// binary file alert
+// File open accessory's menu item title
+"Auto-Detect" = "自动检测";
+
+// Binary file alert
 "The file “%@” doesn’t appear to be text data." = "文件 “%@” 不是文本数据";
 "The file is %@.\n\nDo you really want to open the file?" = "文件 %@.\n\n确定要打开该文件？";
 
@@ -105,6 +106,7 @@
 // Undo action names
 "Encoding to “%@”" = "编码变更为“%@”";
 "Line Endings to “%@”" = "行尾变更为“%@”";
+
 // Convert or reinterpret encoding alert
 "File encoding" = "文件编码";
 "Do you want to convert or reinterpret this document using “%@”?" = "要使用“%@”进行转换或者再次解释吗？";
@@ -148,19 +150,20 @@
 
 
 /* MARK: Document Window */
-// sidebar pane switcher tooltips
+// Sidebar pane switcher tooltips
 "Document Inspector" = "文稿信息";
 "Incompatible Characters" = "不兼容字符";
 
 
 
-/* MARK: CEPrintTextView */
+/* MARK: PrintTextView */
 // header/footer
-"Printed on %@" = "打印：%@";
+"Printed on %@" = "打印：%@";  // %@ is date
 
 
 
-/* MARK: CEPrintAccessoryViewController */
+/* MARK: PrintAccessoryViewController */
+// Summary item names
 "Color" = "颜色";
 "Line Number" = "行号";
 "Invisible Characters" = "不可见字符";
@@ -249,20 +252,20 @@
 "Use Vertical Orientation" = "纵向显示";
 "Use Horizontal Orientation" = "横向显示";
 
-// Show invisible char menu item tooltip
+// Tooltip for "Show Invisible Characters" menu item
 "Show or hide invisible characters in document" = "显示或隐藏文档中的不可见字符";
 "To show invisible characters, set them in Preferences" = "要显示不可见字符，请在偏好设置中进行设定";
 
 
 
-/* MARK: CESplitView */
+/* MARK: SplitViewController */
 // Menu items
 "Stack Editors Horizontally" = "横向分隔编辑器";
 "Stack Editors Vertically" = "纵向分隔编辑器";
 
 
 
-/* MARK: CEStatusBarView */
+/* MARK: StatusBarController */
 "%@: " = "%@：";
 "Lines" = "行数";
 "Chars" = "字符数";
@@ -303,7 +306,7 @@
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "插入颜色代码";
-// color list name
+// Color list name
 "Stylesheet Keywords" = "样式表关键字";
 
 
@@ -331,7 +334,7 @@
 
 
 // Format pane
-// encoding menu alert
+// Encoding menu alert
 "Are you sure you want to change to “%@”?" = "确定要变更至“%@”吗？";
 "The default “Auto-Detect” is recommended for most cases." = "在绝大多数情况下，推荐使用默认的“自动检测”。";
 "Change to “%@”" = "“变更至%@”";
@@ -344,7 +347,7 @@
 
 
 // File Drop pane
-// File Drop setting deletion alert
+// File drop setting deletion alert
 "Are you sure you want to delete the file drop setting for “%@”?" = "确定删除文件拖拽设置“%@”？";
 "Deleted setting can’t be restored." = "设置删除后无法恢复。";
 
@@ -357,6 +360,7 @@
 // Warnings on Integration pane
 "The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
 "The current 'cot' symbolic link may target on an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
+
 
 
 /* MARK: SyntaxEditViewController */
@@ -384,7 +388,7 @@
 
 
 
-/* MARK: CESettingFileManager */
+/* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”无法删除。";
 "“%@” couldn’t be imported." = "“%@”无法导入。";
 "No original file for “%@” was found." = "无法找到 “%@” 的源文件。";
@@ -398,7 +402,10 @@
 
 
 
-/* MARK: CESyntaxManager */
+/* MARK: SyntaxManager */
+// Style name
+"None" = "无";
+
 // Selected syntax style name was original
 "Bundled styles can’t be renamed." = "内置样式的名称不能改变。";
 
@@ -442,10 +449,10 @@
 
 
 /* MARK: KeyBindingManager */
-// label for text menu keybindings action
+// Label for text menu keybindings action
 "Insert Text %@" = "插入文本 %@";
 
-// keybord key name
+// Keybord key name
 "Space" = "空格键";
 
 // Warning messages
@@ -474,15 +481,14 @@
 
 // Script error alert informatives
 "The script “%@” does not exist." = "脚本“%@”不存在。";
-"%@\nErrorNumber: %i" = "%@\n错误号：%i";
 "The script file “%@” couldn’t be opened." = "无法打开脚本文件“%@”。";
 "The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "由于没有执行权限，无法执行脚本“%@”。\n\n请确认脚本文件的权限。";
 "The script “%@” couldn’t be read." = "无法读取脚本“%@”。";
 
 
 
-// MARK: File Drop
-// descriptions about tokens in the file drop feature
+/* MARK: FileDropComposer */
+// Descriptions about tokens in the file drop feature
 "The dropped file absolute path." = "拖拽的文件绝对路径";
 "The relative path between dropped file and the document." = "拖拽的文件与编辑中文档的相对路径";
 "The dropped file’s name including extension (if exists)." = "拖拽的文件的文件名以及扩展名（如果存在）";
@@ -496,7 +502,6 @@
 
 
 
-/* NSString Categories */
+/* String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
-// No need to be tranlated since "UTF-8 with BOM" is acceptable in zh-Hans.
-"%@ with BOM" = "%@ with BOM";
+"%@ with BOM" = "%@ with BOM";  // No need to be tranlated since "UTF-8 with BOM" is acceptable in zh-Hans.

@@ -44,10 +44,7 @@
 
 
 /* MARK: AppDelegate */
-// File open accessory's menu item title
-"Auto-Detect" = "Rilevamento automatico";
 // Format - Syntax coloring menu item title
-"None" = "Nessuno";
 "Recently Used" = "Usati di recente";
 "Re-Color All" = "Ricolora tutto";
 
@@ -79,7 +76,7 @@
 "Replace the current selection with the replacement text, then find the next match." = "Sostituisci la selezione attuale con il testo sostitutivo, poi passa al risultato successivo.";
 "Replace the current selection with the replacement text." = "Sostituisci la selezione attuale con il testo sostitutivo.";
 "Not Found" = "Non trovato";
-"%@ found" = "%@ trovati";
+"%@ found" = "%@ trovati";  // %@ is number of founds
 
 
 /* MARK: FindPanelResultViewController */
@@ -91,7 +88,10 @@
 
 
 /* MARK: Document Controller */
-// binary file alert
+// File open accessory's menu item title
+"Auto-Detect" = "Rilevamento automatico";
+
+// Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Il file “%@” non sembra essere di testo.";
 "The file is %@.\n\nDo you really want to open the file?" = "Si desidera veramente aprire il file %@?";
 
@@ -106,6 +106,7 @@
 // Undo action names
 "Encoding to “%@”" = "Codifica in “%@”";
 "Line Endings to “%@”" = "Termine riga a “%@”";
+
 // Convert or reinterpret encoding alert
 "File encoding" = "Codifica file";
 "Do you want to convert or reinterpret this document using “%@”?" = "Si desidera convertire o reinterpretare il documento usando “%@”?";
@@ -149,19 +150,19 @@
 
 
 /* MARK: Document Window */
-// sidebar pane switcher tooltips
+// Sidebar pane switcher tooltips
 "Document Inspector" = "Ispettore del documento";
 "Incompatible Characters" = "Caratteri incompatibili";
 
 
 
-/* MARK: CEPrintTextView */
+/* MARK: PrintTextView */
 // header/footer
-"Printed on %@" = "Stampato su %@";
+"Printed on %@" = "Stampato su %@";  // %@ is date
 
 
 
-/* MARK: CEPrintAccessoryViewController */
+/* MARK: PrintAccessoryViewController */
 // Summary item names
 "Color" = "Colore";
 "Line Number" = "Numero riga";
@@ -251,20 +252,20 @@
 "Use Vertical Orientation" = "Usa orientamento verticale";
 "Use Horizontal Orientation" = "Usa orientamento orizzontale";
 
-// Show invisible char menu item tooltip
+// Tooltip for "Show Invisible Characters" menu item
 "Show or hide invisible characters in document" = "Mostra o nascondi i caratteri invisibili nel documento";
 "To show invisible characters, set them in Preferences" = "Per visualizzare i caratteri invisibili, impostarli nelle Preferenze";
 
 
 
-/* MARK: CESplitView */
+/* MARK: SplitViewController */
 // Menu items
 "Stack Editors Horizontally" = "Affianca gli editor orizzontalmente";
 "Stack Editors Vertically" = "Affianca gli editor verticalmente";
 
 
 
-/* MARK: CEStatusBarView */
+/* MARK: StatusBarController */
 "%@: " = "%@: ";
 "Lines" = "Righe";
 "Chars" = "Caratteri";
@@ -305,7 +306,7 @@
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "Inserire codice colore";
-// color list name
+// Color list name
 "Stylesheet Keywords" = "Parole chiave CSS";
 
 
@@ -333,7 +334,7 @@
 
 
 // Format pane
-// encoding menu alert
+// Encoding menu alert
 "Are you sure you want to change to “%@”?" = "Si è sicuri di voler cambiare in “%@”?";
 "The default “Auto-Detect” is recommended for most cases." = "Nella maggior parte dei casi si consiglia di utilizzare la funzione di default di “Rilevamento Automatico”.";
 "Change to “%@”" = "Cambia in “%@”";
@@ -346,7 +347,7 @@
 
 
 // File Drop pane
-// File Drop setting deletion alert
+// File drop setting deletion alert
 "Are you sure you want to delete the file drop setting for “%@”?" = "Si è sicuri di voler cancellare l’impostazione di “%@” per il File Drop?";
 "Deleted setting can’t be restored." = "Le impostazioni eliminate non potranno essere recuperate.";
 
@@ -387,7 +388,7 @@
 
 
 
-/* MARK: CESettingFileManager */
+/* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "Impossibile cancellare “%@”.";
 "“%@” couldn’t be imported." = "Non è stato possibile importare “%@”.";
 "No original file for “%@” was found." = "Nessun file originale trovato per “%@”.";
@@ -401,7 +402,10 @@
 
 
 
-/* MARK: CESyntaxManager */
+/* MARK: SyntaxManager */
+// Style name
+"None" = "Nessuno";
+
 // Selected syntax style name was original
 "Bundled styles can’t be renamed." = "Gli stili inclusi nel programma non possono essere rinominati.";
 
@@ -445,10 +449,10 @@
 
 
 /* MARK: KeyBindingManager */
-// label for text menu keybindings action
+// Label for text menu keybindings action
 "Insert Text %@" = "Inserisci testo %@";
 
-// keybord key name
+// Keybord key name
 "Space" = "Spazio";
 
 // Warning messages
@@ -483,8 +487,8 @@
 
 
 
-// MARK: File Drop
-// descriptions about tokens in the file drop feature
+/* MARK: FileDropComposer */
+// Descriptions about tokens in the file drop feature
 "The dropped file absolute path." = "Percorso assoluto del file trascinato.";
 "The relative path between dropped file and the document." = "Percorso relativo tra il file trascinato ed il documento.";
 "The dropped file’s name including extension (if exists)." = "Il nome del file trascinato include l’estensione (se presente).";
@@ -498,6 +502,6 @@
 
 
 
-/* NSString Categories */
+/* String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "%@ con BOM";
