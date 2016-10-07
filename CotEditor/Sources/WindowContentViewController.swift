@@ -241,7 +241,10 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             // and then update background tabs
             self.siblings.lazy
                 .filter { $0 != self }
-                .forEach { $0.sidebarViewItem?.isCollapsed = !shown }
+                .forEach {
+                    $0.sidebarViewItem?.isCollapsed = !shown
+                    $0.sidebarThickness = self.sidebarThickness
+            }
         }
     }
     
