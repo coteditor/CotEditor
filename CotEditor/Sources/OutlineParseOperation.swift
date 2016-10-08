@@ -148,7 +148,9 @@ final class OutlineParseOperation: AsynchronousOperation {
         var outlineItems = [OutlineItem]()
         
         for definition in self.definitions {
-            self.progress.completedUnitCount += 1
+            DispatchQueue.syncOnMain {
+                self.progress.completedUnitCount += 1
+            }
             
             definition.regex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds] , range: parseRange, using:
                 { (result: NSTextCheckingResult?, flags, stop) in

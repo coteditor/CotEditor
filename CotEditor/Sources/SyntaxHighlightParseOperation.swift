@@ -150,7 +150,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        self.progress = Progress(totalUnitCount: Int64(definitions.count))
+        self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))
         
         super.init()
         
@@ -201,6 +201,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             var scannedString: NSString?
             scanner.scanUpToCharacters(from: charSet, into: nil)
             guard
+                !scanner.isAtEnd,
                 scanner.scanCharacters(from: charSet, into: &scannedString),
                 let word = scannedString as? String else { break }
             
@@ -496,15 +497,12 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         let totalProgress = self.progress
         
         for syntaxType in SyntaxType.all {
+            guard let definitions = self.definitions[syntaxType] else { continue }
+            
             // update indicator sheet message
             totalProgress.becomeCurrent(withPendingUnitCount: 1)
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 totalProgress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
-            }
-            
-            guard let definitions = self.definitions[syntaxType] else {
-                totalProgress.resignCurrent()
-                continue
             }
             
             let childProgress = Progress(totalUnitCount: definitions.count + 10)  // + 10 for simple words
@@ -555,7 +553,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                 }
                 
                 // progress indicator
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     childProgress.completedUnitCount += 1
                 }
             }
@@ -573,14 +571,16 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             highlights[syntaxType] = ranges
             
             // progress indicator
-            childProgress.completedUnitCount = childProgress.totalUnitCount
+            DispatchQueue.syncOnMain {
+                childProgress.completedUnitCount = childProgress.totalUnitCount
+            }
             totalProgress.resignCurrent()
         }  // end-for (syntaxType)
         
         guard !self.isCancelled else { return [:] }
         
         // comments and quoted text
-        DispatchQueue.main.async {
+        DispatchQueue.syncOnMain {
             totalProgress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
                                                         NSLocalizedString("comments and quoted texts", comment: ""))
         }
@@ -597,7 +597,9 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         
         let sanitized = sanitize(highlights: highlights)
         
-        totalProgress.completedUnitCount += 1  // = total - 1
+        DispatchQueue.syncOnMain {
+            totalProgress.completedUnitCount += 1  // = total - 1
+        }
         
         return sanitized
     }

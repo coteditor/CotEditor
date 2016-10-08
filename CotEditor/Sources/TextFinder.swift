@@ -315,14 +315,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let informativeFormat = (results.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     progress.localizedDescription = informative
                 }
                 })
             
             guard !progress.isCancelled else { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 // highlight
                 textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: string.nsRange)
                 for highlight in highlights {
@@ -407,14 +407,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let informativeFormat = (highlights.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     progress.localizedDescription = informative
                 }
                 })
             
             guard !progress.isCancelled else { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 // highlight
                 textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: string.nsRange)
                 for highlight in highlights {
@@ -542,7 +542,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let informativeFormat = (count == 1) ? "%@ string replaced." : "%@ strings replaced."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: count))!)
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     progress.localizedDescription = informative
                 }
                 
@@ -556,7 +556,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             
             guard !progress.isCancelled else { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 indicator.done()
                 
                 if count > 0 {

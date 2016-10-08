@@ -13,7 +13,9 @@ develop
 
 ### Fixes
 
+- Fix an issue where application could crash while editing text on Yosemite.
 - Fix an issue where text completion list didn't occasionally display.
+- Fix an issue where syntax highlighting progress indicator was always full.
 - Improve general stability.
 
 
