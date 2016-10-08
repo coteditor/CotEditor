@@ -190,7 +190,7 @@ final class SyntaxHighlightParseOperation: Operation {
     // MARK: Private Methods
     
     /// extract ranges of passed-in words with Scanner by considering non-word characters around words
-    private func ranges(simpleWords wordsDict: [Int: [String]], ignoreCaseWords: [Int: [String]], charSet: CharacterSet) -> [NSRange] {
+    private func ranges(simpleWords words: [String], ignoreCaseWords: [String], charSet: CharacterSet) -> [NSRange] {
         
         var ranges = [NSRange]()
         
@@ -201,26 +201,18 @@ final class SyntaxHighlightParseOperation: Operation {
         while !scanner.isAtEnd && scanner.scanLocation < self.parseRange.max {
             guard !self.isCancelled else { return [] }
             
-            var scanningString: NSString?
+            var scannedString: NSString?
             scanner.scanUpToCharacters(from: charSet, into: nil)
             guard
-                scanner.scanCharacters(from: charSet, into: &scanningString),
-                let scannedString = scanningString as? String else { break }
+                scanner.scanCharacters(from: charSet, into: &scannedString),
+                let word = scannedString as? String else { break }
             
-            let length = scannedString.utf16.count
-            var words: [String] = wordsDict[length] ?? []
-            var isFound = words.contains(scannedString)
+            let length = word.utf16.count
             
-            if !isFound {
-                words = ignoreCaseWords[length] ?? []
-                isFound = words.contains(scannedString.lowercased())
-            }
+            guard words.contains(word) || ignoreCaseWords.contains(word.lowercased()) else { continue }
             
-            if isFound {
-                let location = scanner.scanLocation
-                let range = NSRange(location: location - length, length: length)
-                ranges.append(range)
-            }
+            let range = NSRange(location: scanner.scanLocation - length, length: length)
+            ranges.append(range)
         }
         
         return ranges
@@ -520,14 +512,14 @@ final class SyntaxHighlightParseOperation: Operation {
             
             let childProgress = Progress(totalUnitCount: definitions.count + 10)  // + 10 for simple words
             
-            var simpleWordsDict = [Int: [String]]()
-            var simpleICWordsDict = [Int: [String]]()
-            let wordsQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.words")
+            var simpleWords = [String]()
+            var simpleICWords = [String]()
+            let wordsQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.words." + syntaxType.rawValue)
             
             var ranges = [NSRange]()
-            let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges")
+            let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
             
-            DispatchQueue.concurrentPerform(iterations: definitions.count, execute: { (i: Int) in
+            DispatchQueue.concurrentPerform(iterations: definitions.count) { (i: Int) in
                 guard !self.isCancelled else { return }
                 
                 let definition = definitions[i]
@@ -549,23 +541,11 @@ final class SyntaxHighlightParseOperation: Operation {
                                                       endString: endString,
                                                       ignoreCase: definition.ignoreCase)
                     } else {
-                        let len = definition.beginString.utf16.count
-                        let word = definition.ignoreCase ? definition.beginString.lowercased() : definition.beginString
-                        
                         wordsQueue.sync {
                             if definition.ignoreCase {
-                                if simpleICWordsDict[len] != nil {
-                                    simpleICWordsDict[len]!.append(word)
-                                } else {
-                                    simpleICWordsDict[len] = [word]
-                                }
-                                
+                                simpleICWords.append(definition.beginString.lowercased())
                             } else {
-                                if simpleWordsDict[len] != nil {
-                                    simpleWordsDict[len]!.append(word)
-                                } else {
-                                    simpleWordsDict[len] = [word]
-                                }
+                                simpleWords.append(definition.beginString)
                             }
                         }
                     }
@@ -573,7 +553,7 @@ final class SyntaxHighlightParseOperation: Operation {
                 
                 if let extractedRanges = extractedRanges, !extractedRanges.isEmpty {
                     rangesQueue.sync {
-                        ranges.append(contentsOf: extractedRanges)
+                        ranges += extractedRanges
                     }
                 }
                 
@@ -581,16 +561,15 @@ final class SyntaxHighlightParseOperation: Operation {
                 DispatchQueue.main.async {
                     childProgress.completedUnitCount += 1
                 }
-            })
+            }
             
             guard !self.isCancelled else { return [:] }
             
             // extract simple words
-            if !simpleWordsDict.isEmpty || !simpleICWordsDict.isEmpty {
-                let extractedRanges = self.ranges(simpleWords: simpleWordsDict,
-                                                  ignoreCaseWords: simpleICWordsDict,
-                                                  charSet: self.simpleWordsCharacterSets![syntaxType]!)
-                ranges.append(contentsOf: extractedRanges)
+            if let charSet = self.simpleWordsCharacterSets?[syntaxType], !charSet.isEmpty {
+                ranges += self.ranges(simpleWords: simpleWords,
+                                      ignoreCaseWords: simpleICWords,
+                                      charSet: charSet)
             }
             
             // store range array
