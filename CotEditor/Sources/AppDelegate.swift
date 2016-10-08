@@ -44,6 +44,7 @@ enum MainMenu: Int {
     
     enum MenuItemTag: Int {
         case services = 999  // not to list up in "Menu Key Bindings" setting
+        case recentDocumentsDirectory = 2999  // not to list up in "Menu Key Bindings" setting
         case sharingService = 1999
         case scriptDirectory = 8999  // not to list up in "Menu Key Bindings" setting
     }

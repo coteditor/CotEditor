@@ -169,6 +169,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         if let tag = MainMenu.MenuItemTag(rawValue: menuItem.tag) {
             switch tag {
             case .services,
+                 .recentDocumentsDirectory,
                  .sharingService,
                  .scriptDirectory:
                 return false
@@ -188,8 +189,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),
                  #selector(NSWindow.makeKeyAndOrderFront),
-                 #selector(NSApplication.orderFrontCharacterPalette),  // = "Emoji & Symbols"
-                 #selector(CocoaPrivateAction._openRecentDocument):
+                 #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
                  return false
             default: break
             }
@@ -290,12 +290,4 @@ final class MenuKeyBindingManager: KeyBindingManager {
         }
     }
     
-}
-
-
-
-/// Dummy protocol declaration for Apple's private actions
-@objc private protocol CocoaPrivateAction: class {
-    
-    func _openRecentDocument(_ sender: Any?)
 }

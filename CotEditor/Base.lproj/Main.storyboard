@@ -92,7 +92,7 @@
                                                 <action selector="openHiddenDocument:" target="Ady-hI-5gd" id="LYf-tT-TIQ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open Recent" id="124">
+                                        <menuItem title="Open Recent" tag="2999" id="124">
                                             <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
                                                 <items>
                                                     <menuItem title="Clear Menu" id="126">
