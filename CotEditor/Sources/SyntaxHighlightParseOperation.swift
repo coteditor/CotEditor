@@ -118,7 +118,7 @@ private struct QuoteCommentItem {
 
 // MARK:
 
-final class SyntaxHighlightParseOperation: Operation {
+final class SyntaxHighlightParseOperation: AsynchronousOperation {
     
     // MARK: Public Properties
     
@@ -165,13 +165,6 @@ final class SyntaxHighlightParseOperation: Operation {
     
     // MARK: Operation Methods
     
-    /// runs asynchronous
-    override var isAsynchronous: Bool {
-        
-        return true
-    }
-    
-    
     /// is ready to run
     override var isReady: Bool {
         
@@ -181,6 +174,10 @@ final class SyntaxHighlightParseOperation: Operation {
     
     /// parse string in background and return extracted highlight ranges per syntax types
     override func main() {
+        
+        defer {
+            self.finish()
+        }
         
         self.results = self.extractHighlights()
     }

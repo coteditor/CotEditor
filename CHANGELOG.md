@@ -14,6 +14,7 @@ develop
 ### Fixes
 
 - Fix an issue where text completion list didn't occasionally display.
+- Improve general stability.
 
 
 

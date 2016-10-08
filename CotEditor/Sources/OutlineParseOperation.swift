@@ -88,7 +88,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
 
 // MARK:
 
-final class OutlineParseOperation: Operation {
+final class OutlineParseOperation: AsynchronousOperation {
     
     // MARK: Public Properties
     
@@ -126,13 +126,6 @@ final class OutlineParseOperation: Operation {
     
     // MARK: Operation Methods
     
-    /// runs asynchronous
-    override var isAsynchronous: Bool {
-        
-        return true
-    }
-    
-    
     /// is ready to run
     override var isReady: Bool {
         
@@ -142,6 +135,10 @@ final class OutlineParseOperation: Operation {
     
     /// parse string in background and return extracted outline items
     override func main() {
+        
+        defer {
+            self.finish()
+        }
         
         guard !self.definitions.isEmpty else { return }
         
