@@ -175,17 +175,6 @@
 /* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "PSn-PG-o9k"; */
 "PSn-PG-o9k.title" = "文本替换";
 
-/* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "RjK-uM-ocT"; */
-"RjK-uM-ocT.title" = "转换";
-/* Class = "NSMenu"; title = "Transformations"; ObjectID = "pOV-vg-ih4"; */
-"pOV-vg-ih4.title" = "转换";
-/* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "RX2-gg-n33"; */
-"RX2-gg-n33.title" = "变为大写";
-/* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
-"ZrR-aL-1eB.title" = "变为小写";
-/* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
-"LC4-lg-eO0.title" = "首字母大写";
-
 /* Class = "NSMenuItem"; title = "Speech"; ObjectID = "gBe-fO-wVv"; */
 "gBe-fO-wVv.title" = "语音";
 /* Class = "NSMenu"; title = "Speech"; ObjectID = "HZ8-G2-f8d"; */
@@ -364,6 +353,13 @@
 "GXo-ds-ygp.title" = "转换";
 /* Class = "NSMenu"; title = "Transformations"; ObjectID = "b36-nH-7po"; */
 "b36-nH-7po.title" = "转换";
+
+/* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "RX2-gg-n33"; */
+"RX2-gg-n33.title" = "变为大写";
+/* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
+"ZrR-aL-1eB.title" = "变为小写";
+/* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
+"LC4-lg-eO0.title" = "首字母大写";
 
 /* Class = "NSMenuItem"; title = "ASCII to Fullwidth ASCII"; ObjectID = "586"; */
 "586.title" = "ASCII 到全宽 ASCII";
