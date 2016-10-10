@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -130,6 +130,8 @@
 "171.title" = "Incolla";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Elimina";
+/* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
+"Qa9-dA-CF1.title" = "Completa";
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
 "172.title" = "Seleziona tutto";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
@@ -171,17 +173,6 @@
 "cIp-rb-QPk.title" = "Trattini smart";
 /* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "PSn-PG-o9k"; */
 "PSn-PG-o9k.title" = "Sostituzione testo";
-
-/* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "RjK-uM-ocT"; */
-"RjK-uM-ocT.title" = "Trasformazioni";
-/* Class = "NSMenu"; title = "Transformations"; ObjectID = "pOV-vg-ih4"; */
-"pOV-vg-ih4.title" = "Trasformazioni";
-/* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "RX2-gg-n33"; */
-"RX2-gg-n33.title" = "Scrivi in lettere maiuscole";
-/* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
-"ZrR-aL-1eB.title" = "Scrivi in lettere minuscole";
-/* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
-"LC4-lg-eO0.title" = "Usa maiuscole";
 
 /* Class = "NSMenuItem"; title = "Speech"; ObjectID = "gBe-fO-wVv"; */
 "gBe-fO-wVv.title" = "Voce";
@@ -362,6 +353,13 @@
 "GXo-ds-ygp.title" = "Trasformazioni";
 /* Class = "NSMenu"; title = "Transformations"; ObjectID = "b36-nH-7po"; */
 "b36-nH-7po.title" = "Trasformazioni";
+
+/* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "RX2-gg-n33"; */
+"RX2-gg-n33.title" = "Scrivi in lettere maiuscole";
+/* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
+"ZrR-aL-1eB.title" = "Scrivi in lettere minuscole";
+/* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
+"LC4-lg-eO0.title" = "Usa maiuscole";
 
 /* Class = "NSMenuItem"; title = "ASCII to Fullwidth ASCII"; ObjectID = "586"; */
 "586.title" = "Da ASCII ad ASCII a tutta larghezza";

@@ -92,7 +92,7 @@
                                                 <action selector="openHiddenDocument:" target="Ady-hI-5gd" id="LYf-tT-TIQ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open Recent" id="124">
+                                        <menuItem title="Open Recent" tag="2999" id="124">
                                             <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
                                                 <items>
                                                     <menuItem title="Clear Menu" id="126">
@@ -200,6 +200,15 @@
                                                 <action selector="delete:" target="Ady-hI-5gd" id="Ftk-bU-BQH"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Complete" id="Qa9-dA-CF1">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                            <connections>
+                                                <action selector="complete:" target="Ady-hI-5gd" id="xdV-uV-Chm"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Select All" keyEquivalent="a" id="172">
                                             <connections>
                                                 <action selector="selectAll:" target="Ady-hI-5gd" id="Rho-pS-oPz"/>
@@ -302,31 +311,6 @@
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="toggleAutomaticTextReplacement:" target="Ady-hI-5gd" id="CVX-7M-Klo"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
-                                        </menuItem>
-                                        <menuItem title="Transformations" id="RjK-uM-ocT">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Transformations" id="pOV-vg-ih4">
-                                                <items>
-                                                    <menuItem title="Make Upper Case" id="RX2-gg-n33">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="uppercaseWord:" target="Ady-hI-5gd" id="87O-Lp-DK4"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Make Lower Case" id="ZrR-aL-1eB">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="lowercaseWord:" target="Ady-hI-5gd" id="nhQ-EY-7og"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Capitalize" id="LC4-lg-eO0">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="capitalizeWord:" target="Ady-hI-5gd" id="xxx-C9-kVj"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -729,6 +713,25 @@ CA
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Transformations" id="b36-nH-7po">
                                                 <items>
+                                                    <menuItem title="Make Upper Case" id="RX2-gg-n33">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="uppercaseWord:" target="Ady-hI-5gd" id="87O-Lp-DK4"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Make Lower Case" id="ZrR-aL-1eB">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="lowercaseWord:" target="Ady-hI-5gd" id="nhQ-EY-7og"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Capitalize" id="LC4-lg-eO0">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="capitalizeWord:" target="Ady-hI-5gd" id="xxx-C9-kVj"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="HuN-8a-yXL"/>
                                                     <menuItem title="ASCII to Fullwidth ASCII" id="586">
                                                         <attributedString key="attributedTitle"/>
                                                         <connections>
