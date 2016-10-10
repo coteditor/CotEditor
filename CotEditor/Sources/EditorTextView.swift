@@ -771,20 +771,8 @@ final class EditorTextView: NSTextView, Themable {
         guard let action = menuItem.action else { return false }
         
         switch action {
-        case #selector(copyWithStyle),
-             #selector(exchangeFullwidthRoman),
-             #selector(exchangeHalfwidthRoman),
-             #selector(exchangeKatakana),
-             #selector(exchangeHiragana),
-             #selector(normalizeUnicodeWithNFD),
-             #selector(normalizeUnicodeWithNFC),
-             #selector(normalizeUnicodeWithNFKD),
-             #selector(normalizeUnicodeWithNFKC),
-             #selector(normalizeUnicodeWithNFKCCF),
-             #selector(normalizeUnicodeWithModifiedNFC),
-             #selector(normalizeUnicodeWithModifiedNFD):
+        case #selector(copyWithStyle):
             return self.selectedRange.length > 0
-            // -> The color code panel is always valid.
             
         case #selector(showSelectionInfo):
             let selection = (self.string as NSString?)?.substring(with: self.selectedRange)

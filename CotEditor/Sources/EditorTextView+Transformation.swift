@@ -127,6 +127,11 @@ private extension NSTextView {
     /// transform all selected strings and register to undo manager
     func transformSelection(actionName: String? = nil, block: (String) -> String) {
         
+        // transform word contains cursor if nothing is selected
+        if self.selectedRange.length == 0 {
+            self.selectWord(self)
+        }
+        
         let selectedRanges = self.selectedRanges as [NSRange]
         var appliedRanges = [NSRange]()
         var strings = [String]()

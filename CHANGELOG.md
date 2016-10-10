@@ -9,7 +9,8 @@ develop
 
 - Add “Complete” action to “Edit” menu.
     - On macOS Sierra, the default shortcut for completion action was changed to `⌥⎋`.
-- Move action items in the menu “Edit” >  “Transformations” to  “Text” >  “Transformations”. 
+- Move action items in the menu “Edit” >  “Transformations” to  “Text” >  “Transformations”.
+- Transform word contains the cursor if nothing is selected on tranformation or Unicode normalization actions.
 
 
 ### Fixes
