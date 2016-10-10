@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -118,7 +118,7 @@ private struct QuoteCommentItem {
 
 // MARK:
 
-final class SyntaxHighlightParseOperation: Operation {
+final class SyntaxHighlightParseOperation: AsynchronousOperation {
     
     // MARK: Public Properties
     
@@ -150,7 +150,7 @@ final class SyntaxHighlightParseOperation: Operation {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        self.progress = Progress(totalUnitCount: Int64(definitions.count))
+        self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))
         
         super.init()
         
@@ -165,13 +165,6 @@ final class SyntaxHighlightParseOperation: Operation {
     
     // MARK: Operation Methods
     
-    /// runs asynchronous
-    override var isAsynchronous: Bool {
-        
-        return true
-    }
-    
-    
     /// is ready to run
     override var isReady: Bool {
         
@@ -182,6 +175,10 @@ final class SyntaxHighlightParseOperation: Operation {
     /// parse string in background and return extracted highlight ranges per syntax types
     override func main() {
         
+        defer {
+            self.finish()
+        }
+        
         self.results = self.extractHighlights()
     }
     
@@ -190,7 +187,7 @@ final class SyntaxHighlightParseOperation: Operation {
     // MARK: Private Methods
     
     /// extract ranges of passed-in words with Scanner by considering non-word characters around words
-    private func ranges(simpleWords wordsDict: [Int: [String]], ignoreCaseWords: [Int: [String]], charSet: CharacterSet) -> [NSRange] {
+    private func ranges(simpleWords words: [String], ignoreCaseWords: [String], charSet: CharacterSet) -> [NSRange] {
         
         var ranges = [NSRange]()
         
@@ -201,26 +198,19 @@ final class SyntaxHighlightParseOperation: Operation {
         while !scanner.isAtEnd && scanner.scanLocation < self.parseRange.max {
             guard !self.isCancelled else { return [] }
             
-            var scanningString: NSString?
+            var scannedString: NSString?
             scanner.scanUpToCharacters(from: charSet, into: nil)
             guard
-                scanner.scanCharacters(from: charSet, into: &scanningString),
-                let scannedString = scanningString as? String else { break }
+                !scanner.isAtEnd,
+                scanner.scanCharacters(from: charSet, into: &scannedString),
+                let word = scannedString as? String else { break }
             
-            let length = scannedString.utf16.count
-            var words: [String] = wordsDict[length] ?? []
-            var isFound = words.contains(scannedString)
+            let length = word.utf16.count
             
-            if !isFound {
-                words = ignoreCaseWords[length] ?? []
-                isFound = words.contains(scannedString.lowercased())
-            }
+            guard words.contains(word) || ignoreCaseWords.contains(word.lowercased()) else { continue }
             
-            if isFound {
-                let location = scanner.scanLocation
-                let range = NSRange(location: location - length, length: length)
-                ranges.append(range)
-            }
+            let range = NSRange(location: scanner.scanLocation - length, length: length)
+            ranges.append(range)
         }
         
         return ranges
@@ -507,27 +497,24 @@ final class SyntaxHighlightParseOperation: Operation {
         let totalProgress = self.progress
         
         for syntaxType in SyntaxType.all {
+            guard let definitions = self.definitions[syntaxType] else { continue }
+            
             // update indicator sheet message
             totalProgress.becomeCurrent(withPendingUnitCount: 1)
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 totalProgress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
-            }
-            
-            guard let definitions = self.definitions[syntaxType] else {
-                totalProgress.resignCurrent()
-                continue
             }
             
             let childProgress = Progress(totalUnitCount: definitions.count + 10)  // + 10 for simple words
             
-            var simpleWordsDict = [Int: [String]]()
-            var simpleICWordsDict = [Int: [String]]()
-            let wordsQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.words")
+            var simpleWords = [String]()
+            var simpleICWords = [String]()
+            let wordsQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.words." + syntaxType.rawValue)
             
             var ranges = [NSRange]()
-            let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges")
+            let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
             
-            DispatchQueue.concurrentPerform(iterations: definitions.count, execute: { (i: Int) in
+            DispatchQueue.concurrentPerform(iterations: definitions.count) { (i: Int) in
                 guard !self.isCancelled else { return }
                 
                 let definition = definitions[i]
@@ -549,23 +536,11 @@ final class SyntaxHighlightParseOperation: Operation {
                                                       endString: endString,
                                                       ignoreCase: definition.ignoreCase)
                     } else {
-                        let len = definition.beginString.utf16.count
-                        let word = definition.ignoreCase ? definition.beginString.lowercased() : definition.beginString
-                        
                         wordsQueue.sync {
                             if definition.ignoreCase {
-                                if simpleICWordsDict[len] != nil {
-                                    simpleICWordsDict[len]!.append(word)
-                                } else {
-                                    simpleICWordsDict[len] = [word]
-                                }
-                                
+                                simpleICWords.append(definition.beginString.lowercased())
                             } else {
-                                if simpleWordsDict[len] != nil {
-                                    simpleWordsDict[len]!.append(word)
-                                } else {
-                                    simpleWordsDict[len] = [word]
-                                }
+                                simpleWords.append(definition.beginString)
                             }
                         }
                     }
@@ -573,38 +548,39 @@ final class SyntaxHighlightParseOperation: Operation {
                 
                 if let extractedRanges = extractedRanges, !extractedRanges.isEmpty {
                     rangesQueue.sync {
-                        ranges.append(contentsOf: extractedRanges)
+                        ranges += extractedRanges
                     }
                 }
                 
                 // progress indicator
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     childProgress.completedUnitCount += 1
                 }
-            })
+            }
             
             guard !self.isCancelled else { return [:] }
             
             // extract simple words
-            if !simpleWordsDict.isEmpty || !simpleICWordsDict.isEmpty {
-                let extractedRanges = self.ranges(simpleWords: simpleWordsDict,
-                                                  ignoreCaseWords: simpleICWordsDict,
-                                                  charSet: self.simpleWordsCharacterSets![syntaxType]!)
-                ranges.append(contentsOf: extractedRanges)
+            if let charSet = self.simpleWordsCharacterSets?[syntaxType], !charSet.isEmpty {
+                ranges += self.ranges(simpleWords: simpleWords,
+                                      ignoreCaseWords: simpleICWords,
+                                      charSet: charSet)
             }
             
             // store range array
             highlights[syntaxType] = ranges
             
             // progress indicator
-            childProgress.completedUnitCount = childProgress.totalUnitCount
+            DispatchQueue.syncOnMain {
+                childProgress.completedUnitCount = childProgress.totalUnitCount
+            }
             totalProgress.resignCurrent()
         }  // end-for (syntaxType)
         
         guard !self.isCancelled else { return [:] }
         
         // comments and quoted text
-        DispatchQueue.main.async {
+        DispatchQueue.syncOnMain {
             totalProgress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
                                                         NSLocalizedString("comments and quoted texts", comment: ""))
         }
@@ -621,7 +597,9 @@ final class SyntaxHighlightParseOperation: Operation {
         
         let sanitized = sanitize(highlights: highlights)
         
-        totalProgress.completedUnitCount += 1  // = total - 1
+        DispatchQueue.syncOnMain {
+            totalProgress.completedUnitCount += 1  // = total - 1
+        }
         
         return sanitized
     }

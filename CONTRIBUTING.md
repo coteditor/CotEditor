@@ -28,13 +28,25 @@ By adding code, please follow our coding style guide below.
 
 Fixing/updating existing localizations is always welcome. The project team may add `FIXME:` tag as a comment in the localized strings files, if there are updated strings to be localized.
 
-By localization, use OS X standard terms. It might be helpful for you to study native Apple applications like TextEdit.app or the System Preferences to know how Apple localizes terms in their apps.
+If your localization makes the Autolayout destroy, try first making the sentence shorter. However if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the xib file to layout your localized terms correctly.
 
-If your localization makes the Autolayout destroy, just tell us about it with a screenshot when you make a pull-request. We'll update the xib file to layout your localized terms correctly.
+#### Good references for localization
+
+By localization, use macOS standard terms. It might be helpful to study native Apple applications like TextEdit.app or the System Preferences to know how Apple localizes terms in their apps.
+
+Especially, follow the terms in the following applications.
+
+- Menu item titles in TextEdit.app
+- Find panel in Pages.app
+- Some setting messages in ScriptEditor.app
+
+Refer also to the Apple's guidelines about terminology. They are about English, but also useful for localization.
+
+- [Terminology and Wording -macOS Human Interface Guidelines](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/OSXHIGuidelines/TerminologyWording.html#//apple_ref/doc/uid/20000957-CH15-SW1)
 
 #### Submit a new localization
 
-We recommend to copy .strings files in CotEditor/ja.lproj/ directory in order to use them as templates, because Japanese localization is always up-to-date and well organized.
+Copy one of whole .lproj directory and use it as a template. We recommend to use `CotEditor/ja.lproj/` or `de.lproj/` directory, because they are always up-to-date and well organized.
 Note that you don't need to localize the Unicode block names in the `Unicode.strings` file.
 
 
@@ -64,6 +76,7 @@ Coding Style Guide
 
 Please follow the style of the existing codes in CotEditor.
 
+- Respect the existing coding style.
 - Leave reasonable comments.
 - Never omit `self`.
 - Make classes `final` by default.
@@ -93,7 +106,7 @@ Please follow the style of the existing codes in CotEditor.
 	```
 - Don't declare `@IBOutlet` properties with `!`.
 	```Swift
-	// OK
+    // OK
     @IBOutlet private weak var button: NSButton?
     
     // NG
@@ -101,7 +114,7 @@ Please follow the style of the existing codes in CotEditor.
 	```
 - Write `guard` statement in oneline if just return a simple value.
 	```Swift
-	// prefer
+    // prefer
     guard let foo = foo else { return nil }
     
     // instead of

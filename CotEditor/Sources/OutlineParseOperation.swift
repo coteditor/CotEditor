@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -88,7 +88,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
 
 // MARK:
 
-final class OutlineParseOperation: Operation {
+final class OutlineParseOperation: AsynchronousOperation {
     
     // MARK: Public Properties
     
@@ -126,13 +126,6 @@ final class OutlineParseOperation: Operation {
     
     // MARK: Operation Methods
     
-    /// runs asynchronous
-    override var isAsynchronous: Bool {
-        
-        return true
-    }
-    
-    
     /// is ready to run
     override var isReady: Bool {
         
@@ -143,6 +136,10 @@ final class OutlineParseOperation: Operation {
     /// parse string in background and return extracted outline items
     override func main() {
         
+        defer {
+            self.finish()
+        }
+        
         guard !self.definitions.isEmpty else { return }
         
         let parseRange = self.parseRange
@@ -151,7 +148,9 @@ final class OutlineParseOperation: Operation {
         var outlineItems = [OutlineItem]()
         
         for definition in self.definitions {
-            self.progress.completedUnitCount += 1
+            DispatchQueue.syncOnMain {
+                self.progress.completedUnitCount += 1
+            }
             
             definition.regex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds] , range: parseRange, using:
                 { (result: NSTextCheckingResult?, flags, stop) in

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
@@ -234,19 +234,8 @@
                         <binding destination="26" name="value" keyPath="values.completesStandardWords" id="kjP-Da-g0b"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="btC-lZ-pQ7">
-                    <rect key="frame" x="115" y="73" width="417" height="14"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Completion can be performed manually with: Esc or ⌘." id="dmb-pc-4M5">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="value" keyPath="completionHintMessage" id="XIv-Zf-aQ7"/>
-                    </connections>
-                </textField>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="C2I-Ub-oUU">
-                    <rect key="frame" x="115" y="49" width="227" height="18"/>
+                    <rect key="frame" x="115" y="71" width="227" height="18"/>
                     <buttonCell key="cell" type="check" title="Suggest completions while typing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="J1B-wA-rdr">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -341,20 +330,29 @@
                         <binding destination="26" name="value" keyPath="values.enableSmartQuotes" id="yWg-yp-nfz"/>
                     </connections>
                 </button>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="btC-lZ-pQ7">
+                    <rect key="frame" x="115" y="51" width="417" height="14"/>
+                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="⚠️ Select at least one item to enable completion." id="dmb-pc-4M5">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="isValidCompletion" id="Tsd-w5-YRd"/>
+                    </connections>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="S9y-ho-0e9" firstAttribute="leading" secondItem="cjn-9F-Q4K" secondAttribute="trailing" constant="8" symbolic="YES" id="097-Gz-7if"/>
                 <constraint firstAttribute="bottom" secondItem="z5v-7l-1C4" secondAttribute="bottom" constant="20" symbolic="YES" id="0Ke-Pr-SYk"/>
                 <constraint firstItem="Vf0-M7-9ji" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="0n7-K8-sdI"/>
                 <constraint firstItem="mWb-Dy-J7g" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="1gk-l0-W8e"/>
-                <constraint firstItem="z5v-7l-1C4" firstAttribute="top" secondItem="C2I-Ub-oUU" secondAttribute="bottom" constant="10" id="2SF-DL-MKh"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="160" secondAttribute="leading" id="2YC-uB-api"/>
                 <constraint firstItem="282" firstAttribute="baseline" secondItem="283" secondAttribute="baseline" id="2eo-GD-Kfb"/>
                 <constraint firstItem="3e2-dM-agj" firstAttribute="bottom" secondItem="S9y-ho-0e9" secondAttribute="bottom" id="2jS-LF-YXG"/>
                 <constraint firstItem="C2I-Ub-oUU" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="3eN-aj-0ZB"/>
                 <constraint firstItem="S9y-ho-0e9" firstAttribute="baseline" secondItem="cjn-9F-Q4K" secondAttribute="baseline" id="4qQ-re-z8C"/>
                 <constraint firstItem="t0Y-p1-xOb" firstAttribute="leading" secondItem="lO2-uf-OLD" secondAttribute="leading" id="5d4-UU-RBZ"/>
-                <constraint firstItem="C2I-Ub-oUU" firstAttribute="top" secondItem="btC-lZ-pQ7" secondAttribute="bottom" constant="8" id="72F-Be-lUx"/>
                 <constraint firstItem="MUG-vA-30T" firstAttribute="leading" secondItem="W1V-E2-PcB" secondAttribute="trailing" constant="8" symbolic="YES" id="9fM-Zn-Ko0"/>
                 <constraint firstItem="lO2-uf-OLD" firstAttribute="top" secondItem="Dte-ly-fKQ" secondAttribute="bottom" constant="8" symbolic="YES" id="Axl-g5-SRk"/>
                 <constraint firstItem="Dte-ly-fKQ" firstAttribute="leading" secondItem="btC-lZ-pQ7" secondAttribute="leading" id="CyA-0F-v2g"/>
@@ -365,6 +363,7 @@
                 <constraint firstItem="844" firstAttribute="top" secondItem="mWb-Dy-J7g" secondAttribute="bottom" constant="8" id="HZx-MZ-Q0V"/>
                 <constraint firstItem="oXk-4y-elJ" firstAttribute="baseline" secondItem="Dte-ly-fKQ" secondAttribute="baseline" id="I8r-SF-1u9"/>
                 <constraint firstItem="283" firstAttribute="top" secondItem="160" secondAttribute="bottom" constant="8" id="IM6-11-CAa"/>
+                <constraint firstItem="btC-lZ-pQ7" firstAttribute="top" secondItem="C2I-Ub-oUU" secondAttribute="bottom" constant="8" symbolic="YES" id="Kc2-M0-2im"/>
                 <constraint firstItem="644" firstAttribute="leading" secondItem="IXD-kJ-dvh" secondAttribute="trailing" constant="8" symbolic="YES" id="Kcl-7N-AbQ"/>
                 <constraint firstItem="cjn-9F-Q4K" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="Lix-GC-NQA"/>
                 <constraint firstItem="t0Y-p1-xOb" firstAttribute="leading" secondItem="w2P-Vr-ZDY" secondAttribute="leading" id="MaU-8f-QTA"/>
@@ -380,11 +379,11 @@
                 <constraint firstItem="209" firstAttribute="leading" secondItem="4B0-Kj-mzX" secondAttribute="trailing" constant="8" symbolic="YES" id="UcK-lH-Or0"/>
                 <constraint firstItem="160" firstAttribute="leading" secondItem="283" secondAttribute="leading" id="VwP-1c-FdO"/>
                 <constraint firstItem="4B0-Kj-mzX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s6I-DY-Ii0" secondAttribute="leading" constant="20" symbolic="YES" id="Wny-Wk-nNJ"/>
+                <constraint firstItem="C2I-Ub-oUU" firstAttribute="top" secondItem="w2P-Vr-ZDY" secondAttribute="bottom" constant="8" id="YAv-6T-LyE"/>
                 <constraint firstItem="mWb-Dy-J7g" firstAttribute="top" secondItem="644" secondAttribute="bottom" constant="8" id="Z6X-B5-ROj"/>
                 <constraint firstItem="aZf-lI-jGQ" firstAttribute="leading" secondItem="644" secondAttribute="leading" id="Zgo-o6-Vjl"/>
                 <constraint firstItem="3e2-dM-agj" firstAttribute="leading" secondItem="S9y-ho-0e9" secondAttribute="trailing" constant="8" symbolic="YES" id="bAb-KD-VNK"/>
                 <constraint firstItem="cjn-9F-Q4K" firstAttribute="top" secondItem="844" secondAttribute="bottom" constant="8" id="cXA-Ki-aPS"/>
-                <constraint firstItem="btC-lZ-pQ7" firstAttribute="top" secondItem="w2P-Vr-ZDY" secondAttribute="bottom" constant="8" symbolic="YES" id="dKt-0g-uDe"/>
                 <constraint firstItem="69" firstAttribute="leading" secondItem="fR5-Ie-WnP" secondAttribute="trailing" constant="8" symbolic="YES" id="e18-6y-ozt"/>
                 <constraint firstItem="w2P-Vr-ZDY" firstAttribute="top" secondItem="t0Y-p1-xOb" secondAttribute="bottom" constant="8" id="e1S-pc-Nus"/>
                 <constraint firstItem="N9e-hF-BPy" firstAttribute="leading" secondItem="iub-4d-NyY" secondAttribute="trailing" constant="8" symbolic="YES" id="eJ7-3F-ASx"/>

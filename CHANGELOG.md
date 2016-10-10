@@ -2,7 +2,27 @@
 Change Log
 ==========================
 
-3.0.1 (159)
+develop
+--------------------------
+
+### Improvements
+
+- Add “Complete” action to “Edit” menu.
+    - On macOS Sierra, the default shortcut for completion action was changed to `⌥⎋`.
+- Move action items in the menu “Edit” >  “Transformations” to  “Text” >  “Transformations”.
+- Transform word contains the cursor if nothing is selected on tranformation or Unicode normalization actions.
+
+
+### Fixes
+
+- Fix an issue where application could crash while editing text on Yosemite.
+- Fix an issue where text completion list didn't occasionally display.
+- Fix an issue where syntax highlighting progress indicator was always full.
+- Improve general stability.
+
+
+
+3.0.1 (160)
 --------------------------
 
 ### Fixes

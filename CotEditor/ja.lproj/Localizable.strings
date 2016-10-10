@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -44,10 +44,7 @@
 
 
 /* MARK: AppDelegate */
-// File open accessory's menu item title
-"Auto-Detect" = "自動認識";
 // Format - Syntax coloring menu item title
-"None" = "なし";
 "Recently Used" = "最近使った項目";
 "Re-Color All" = "再カラーリング";
 
@@ -79,7 +76,7 @@
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次のマッチを検索";
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
 "Not Found" = "見つかりません";
-"%@ found" = "%@ 件見つかりました";
+"%@ found" = "%@ 件見つかりました";  // %@ is number of founds
 
 
 /* MARK: FindPanelResultViewController */
@@ -91,7 +88,10 @@
 
 
 /* MARK: Document Controller */
-// binary file alert
+// File open accessory's menu item title
+"Auto-Detect" = "自動認識";
+
+// Binary file alert
 "The file “%@” doesn’t appear to be text data." = "ファイル“%@”はテキストデータではないようです。";
 "The file is %@.\n\nDo you really want to open the file?" = "このファイルは%@です。\n\n本当にファイルを開きますか？";
 
@@ -150,19 +150,19 @@
 
 
 /* MARK: Document Window */
-// sidebar pane switcher tooltips
+// Sidebar pane switcher tooltips
 "Document Inspector" = "書類情報";
 "Incompatible Characters" = "非互換文字";
 
 
 
-/* MARK: CEPrintTextView */
+/* MARK: PrintTextView */
 // header/footer
-"Printed on %@" = "プリント：%@";
+"Printed on %@" = "プリント：%@";  // %@ is date
 
 
 
-/* MARK: CEPrintAccessoryViewController */
+/* MARK: PrintAccessoryViewController */
 // Summary item names
 "Color" = "カラー";
 "Line Number" = "行番号";
@@ -252,20 +252,20 @@
 "Use Vertical Orientation" = "縦書きで表示";
 "Use Horizontal Orientation" = "横書きで表示";
 
-// Show invisible char menu item tooltip
+// Tooltip for "Show Invisible Characters" menu item
 "Show or hide invisible characters in document" = "書類中の不可視文字を表示／隠す";
 "To show invisible characters, set them in Preferences" = "不可視文字を表示させるには、環境設定を変更してください";
 
 
 
-/* MARK: CESplitView */
+/* MARK: SplitViewController */
 // Menu items
 "Stack Editors Horizontally" = "分割エディタを横に配置";
 "Stack Editors Vertically" = "分割エディタを縦に配置";
 
 
 
-/* MARK: CEStatusBarView */
+/* MARK: StatusBarController */
 "%@: " = "%@：";
 "Lines" = "行数";
 "Chars" = "文字数";
@@ -306,15 +306,8 @@
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "カラーコードを挿入";
-// color list name
+// Color list name
 "Stylesheet Keywords" = "スタイルシートキーワード";
-
-
-
-/* MARK: CEPreferencesWindowController */
-// Hint message for the completion list
-"Completion can be performed manually with: %@ or %@" = "入力補完候補リストの表示： %@ もしくは %@";
-"Select at least one item to enable completion." = "入力補完を有効にするためには1つ以上の項目を選択する必要があります。";
 
 
 // Genearal pane
@@ -341,7 +334,7 @@
 
 
 // Format pane
-// encoding menu alert
+// Encoding menu alert
 "Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか？";
 "The default “Auto-Detect” is recommended for most cases." = "ほとんどの場合、デフォルトの“自動認識”が推奨されます。";
 "Change to “%@”" = "“%@”へ変更";
@@ -354,7 +347,7 @@
 
 
 // File Drop pane
-// File Drop setting deletion alert
+// File drop setting deletion alert
 "Are you sure you want to delete the file drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか？";
 "Deleted setting can’t be restored." = "削除した設定は元に戻せません。";
 
@@ -395,7 +388,7 @@
 
 
 
-/* MARK: CESettingFileManager */
+/* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”を削除できませんでした。";
 "“%@” couldn’t be imported." = "“%@”を読み込めませんでした。";
 "No original file for “%@” was found." = "“%@”のオリジナルファイルが見つかりませんでした。";
@@ -409,7 +402,10 @@
 
 
 
-/* MARK: CESyntaxManager */
+/* MARK: SyntaxManager */
+// Style name
+"None" = "なし";
+
 // Selected syntax style name was original
 "Bundled styles can’t be renamed." = "バンドルされているスタイルの名前は変更できません。";
 
@@ -441,7 +437,6 @@
 
 
 
-
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "名称未設定";
@@ -454,10 +449,10 @@
 
 
 /* MARK: KeyBindingManager */
-// label for text menu keybindings action
+// Label for text menu keybindings action
 "Insert Text %@" = "テキストを挿入 %@";
 
-// keybord key name
+// Keybord key name
 "Space" = "スペース";
 
 // Warning messages
@@ -492,8 +487,8 @@
 
 
 
-// MARK: File Drop
-// descriptions about tokens in the file drop feature
+/* MARK: FileDropComposer */
+// Descriptions about tokens in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
 "The relative path between dropped file and the document." = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
 "The dropped file’s name including extension (if exists)." = "ドロップ元ファイルの拡張子を含むファイル名";
@@ -507,6 +502,6 @@
 
 
 
-/* NSString Categories */
+/* String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "%@BOM 付き";
