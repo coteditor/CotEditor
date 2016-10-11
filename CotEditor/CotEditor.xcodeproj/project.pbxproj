@@ -483,6 +483,8 @@
 		2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */; };
 		2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */; };
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
+		2AF999DC1DA94F2700B36D79 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999DB1DA94F2700B36D79 /* AsynchronousOperation.swift */; };
+		2AF999DD1DA94F2700B36D79 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF999DB1DA94F2700B36D79 /* AsynchronousOperation.swift */; };
 		2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
 		2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
 		2AFB5AE81D597ABB003895A7 /* DefaultEncodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB5AE71D597ABB003895A7 /* DefaultEncodings.swift */; };
@@ -1014,6 +1016,7 @@
 		2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2AF999DB1DA94F2700B36D79 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
 		2AFB5AE71D597ABB003895A7 /* DefaultEncodings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultEncodings.swift; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1176,6 +1179,7 @@
 			isa = PBXGroup;
 			children = (
 				2A885E321D5C3A1B00288723 /* Utilities.swift */,
+				2AF999DB1DA94F2700B36D79 /* AsynchronousOperation.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A41CB3A1C39068200F9122B /* Value Transformers */,
 			);
@@ -2151,6 +2155,7 @@
 				2AE52F201D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				2AA375481D40BDCB0080C27C /* LineEnding.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
+				2AF999DD1DA94F2700B36D79 /* AsynchronousOperation.swift in Sources */,
 				2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
 				2ABF0DC81D7D33880049B151 /* SmallToolbarItem.swift in Sources */,
@@ -2404,6 +2409,7 @@
 				2AAD61FC1D2BD102008FE772 /* String+Additions.swift in Sources */,
 				2A8C338C1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2A5D13251D1F9D4100D38E6A /* TogglableToolbarItem.swift in Sources */,
+				2AF999DC1DA94F2700B36D79 /* AsynchronousOperation.swift in Sources */,
 				2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
 				2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
 				2A6FD9ED1D3A85D700A59784 /* String+NSRange.swift in Sources */,
@@ -3055,7 +3061,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)-AppStore/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
@@ -3070,7 +3075,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)-AppStore/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
 				OTHER_SWIFT_FLAGS = "-D APPSTORE";
@@ -3112,7 +3116,6 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "CotEditor-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -3135,6 +3138,7 @@
 		8C71D95808640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
@@ -3155,6 +3159,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/Mac",
@@ -3193,6 +3198,7 @@
 		8C71D95908640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
@@ -3214,6 +3220,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/Mac",

@@ -15,7 +15,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,6 +28,9 @@
 
 "<a letter consisting of %d characters>" = "<%d字から成る文字>";
 
+// placeholder for invalid values
+"No Block" = "ブロックなし";
+"No Category" = "カテゴリなし";
 
 // Variation selectors
 "Emoji Style" = "絵文字スタイル";
@@ -254,8 +257,3 @@
 "Gujarati" = "グジャラート文字";
 "Tai Xuan Jing Symbols" = "太玄経の記号";
 "Kana Supplement" = "かな補助";
-
-"No Block" = "ブロックなし";
-
-// Unicode category names
-"No Category" = "カテゴリなし";

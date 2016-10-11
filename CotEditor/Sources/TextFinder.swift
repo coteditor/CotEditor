@@ -15,7 +15,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -315,14 +315,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let informativeFormat = (results.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     progress.localizedDescription = informative
                 }
                 })
             
             guard !progress.isCancelled else { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 // highlight
                 textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: string.nsRange)
                 for highlight in highlights {
@@ -407,14 +407,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let informativeFormat = (highlights.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     progress.localizedDescription = informative
                 }
                 })
             
             guard !progress.isCancelled else { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 // highlight
                 textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: string.nsRange)
                 for highlight in highlights {
@@ -542,7 +542,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let informativeFormat = (count == 1) ? "%@ string replaced." : "%@ strings replaced."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: count))!)
-                DispatchQueue.main.async {
+                DispatchQueue.main.sync {
                     progress.localizedDescription = informative
                 }
                 
@@ -556,7 +556,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             
             guard !progress.isCancelled else { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 indicator.done()
                 
                 if count > 0 {
@@ -681,10 +681,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         let wrappedMatches = matchedRanges(in: NSRange(location: 0,
                                                        length: startLocation))
         
-        let count = forwardMatches.count + wrappedMatches.count
-        
-        guard count > 0 else { return 0 }
-        
         var foundRange: NSRange? = forward ? forwardMatches.first : wrappedMatches.last
         
         // wrap search
@@ -707,6 +703,8 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         } else {
             NSBeep()
         }
+        
+        let count = forwardMatches.count + wrappedMatches.count
         
         self.delegate?.textFinder(self, didFound: count, textView: textView)
         

@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -135,7 +135,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         let shortcut = self.shortcut(for: action, defaults: false)
         
-        guard shortcut.modifierMask.contains(.command) else { return .none }
+        guard !shortcut.keyEquivalent.isEmpty, !shortcut.modifierMask.isEmpty else { return .none }
         
         return shortcut
     }
@@ -169,6 +169,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         if let tag = MainMenu.MenuItemTag(rawValue: menuItem.tag) {
             switch tag {
             case .services,
+                 .recentDocumentsDirectory,
                  .sharingService,
                  .scriptDirectory:
                 return false
@@ -189,7 +190,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                  #selector(AppDelegate.openHelpAnchor),
                  #selector(NSWindow.makeKeyAndOrderFront),
                  #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
-                return false
+                 return false
             default: break
             }
         }
@@ -255,8 +256,8 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 
                 let shortcut = self.shortcut(for: action)
                 
-                // apply only if keyEquivalent exists and the Command key is included
-                guard shortcut.modifierMask.contains(.command) else { return }
+                // apply only if both keyEquivalent and modifierMask exist
+                guard !shortcut.keyEquivalent.isEmpty, !shortcut.modifierMask.isEmpty else { return }
                 
                 menuItem.keyEquivalent = shortcut.keyEquivalent
                 menuItem.keyEquivalentModifierMask = shortcut.modifierMask

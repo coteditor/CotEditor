@@ -2,6 +2,36 @@
 Change Log
 ==========================
 
+3.0.1 (161)
+--------------------------
+
+### Improvements
+
+- Add “Complete” action to “Edit” menu.
+- On macOS Sierra, the default shortcut for completion action was changed to `⌥⎋`.
+- Move action items in the menu “Edit” > “Transformations” to “Text” >  “Transformations”.
+- Transform word contains the cursor if nothing is selected on tranformation or Unicode normalization actions.
+
+
+### Fixes
+
+- Fix an issue where application could crash while editing text on Yosemite.
+- Fix an issue where application could crash on split editors under specific conditions.
+- Fix an issue where application could crash on running an AppleScript/JXA.
+- Fix an issue where text completion list didn't occasionally display.
+- Fix an issue where syntax highlighting progress indicator was always full.
+- Fix an issue where sidebar couldn't be opened on Yosemite.
+- Fix an issue where key bindings of recent documents were customizable.
+- Fix an issue where application crashed when a folder is dropped to the application icon.
+- Fix an issue where find panel position was not saved.
+- Fix an issue where no beep sound was made when there was no match on find/replace.
+- Fix an issue where application could freeze after replace large document.
+- Fix an issue where editable area didn't spread to the full width after changing text orientation when content is empty.
+- Fix an issue where matched brackets in unfocused split editors were highlighted without the need while editing one of split editors.
+- Improve general stability.
+
+
+
 3.0.0 (154)
 --------------------------
 

@@ -15,7 +15,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -241,7 +241,10 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             // and then update background tabs
             self.siblings.lazy
                 .filter { $0 != self }
-                .forEach { $0.sidebarViewItem?.isCollapsed = !shown }
+                .forEach {
+                    $0.sidebarViewItem?.isCollapsed = !shown
+                    $0.sidebarThickness = self.sidebarThickness
+            }
         }
     }
     
@@ -253,6 +256,11 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             self.siblings.forEach { sibling in
                 sibling.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
             }
+        }
+        
+        guard NSAppKitVersionNumber >= Double(NSAppKitVersionNumber10_11) else {
+            self.isSidebarShown = shown
+            return
         }
         
         NSAnimationContext.current().withAnimation(animate) {

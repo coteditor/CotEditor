@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -60,7 +60,7 @@ private enum FileExtendedAttributeName {
 
 // MARK:
 
-final class Document: NSDocument, EncodingHolder {
+final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Readonly Properties
     
@@ -125,27 +125,6 @@ final class Document: NSDocument, EncodingHolder {
     }
     
     
-    /// initialize instance with existing file
-    convenience init(fileURL url: URL, ofType typeName: String) throws {
-        
-        // [caution] This method may be called from a background thread due to concurrent-opening.
-        // This method won't be invoked on Resume. (2015-01-26)
-        
-        // Workaround initializer in order to invoke self's (actually super's) `init(contentsOf:ofType:)` inside.
-        
-        try self.init(contentsOf: url, ofType: typeName)
-        
-        // set sender of external editor protocol (ODB Editor Suite)
-        self.odbEventSender = ODBEventSender()
-        
-        // check file meta data for text orientation
-        if Defaults[.savesTextOrientation] {
-            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
-            self.isVerticalText = ((attributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
-        }
-    }
-    
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -168,7 +147,10 @@ final class Document: NSDocument, EncodingHolder {
         super.restoreState(with: coder)
         
         if coder.containsValue(forKey: SerializationKey.readingEncoding) {
-            self.readingEncoding = String.Encoding(rawValue: UInt(coder.decodeInteger(forKey: SerializationKey.readingEncoding)))
+            let encoding = String.Encoding(rawValue: UInt(coder.decodeInteger(forKey: SerializationKey.readingEncoding)))
+            if String.availableStringEncodings.contains(encoding) {
+                self.readingEncoding = encoding
+            }
         }
         if let identifier = coder.decodeObject(forKey: SerializationKey.autosaveIdentifier) as? String {
             self.autosaveIdentifier = identifier
@@ -735,6 +717,23 @@ final class Document: NSDocument, EncodingHolder {
         }
         
         return super.validateMenuItem(menuItem)
+    }
+    
+    
+    /// open existing document file (alternative methods for `init(contentsOf:ofType:)`)
+    func didMakeDocumentForExisitingFile(url: URL) {
+        
+        // [caution] This method may be called from a background thread due to concurrent-opening.
+        // This method won't be invoked on Resume. (2015-01-26)
+        
+        // check file meta data for text orientation
+        if Defaults[.savesTextOrientation] {
+            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+            self.isVerticalText = ((attributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
+        }
+        
+        // set sender of external editor protocol (ODB Editor Suite)
+        self.odbEventSender = ODBEventSender()
     }
     
     

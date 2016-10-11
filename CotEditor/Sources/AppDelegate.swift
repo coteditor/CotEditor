@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -44,6 +44,7 @@ enum MainMenu: Int {
     
     enum MenuItemTag: Int {
         case services = 999  // not to list up in "Menu Key Bindings" setting
+        case recentDocumentsDirectory = 2999  // not to list up in "Menu Key Bindings" setting
         case sharingService = 1999
         case scriptDirectory = 8999  // not to list up in "Menu Key Bindings" setting
     }
@@ -141,6 +142,9 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         }
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared().initialValues = defaults
+        
+        // instantiate DocumentController
+        _ = DocumentController()
         
         // wake text finder up
         _ = TextFinder.shared

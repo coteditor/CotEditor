@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -596,10 +596,9 @@ final class EditorTextView: NSTextView, Themable {
     /// change text layout orientation
     override func setLayoutOrientation(_ orientation: NSTextLayoutOrientation) {
         
-        // reset text wrapping
-        if orientation != self.layoutOrientation && self.wrapsLines {
-            self.textContainer?.containerSize = NSSize(width: 1, height: CGFloat.greatestFiniteMagnitude)
-        }
+        guard self.layoutOrientation != orientation else { return }
+        
+        self.minSize = self.minSize.rotated
         
         // -> needs send kvo notification manually on Swift? (2016-09-12 on macOS 10.12 SDK)
         self.willChangeValue(forKey: #keyPath(layoutOrientation))
@@ -772,20 +771,8 @@ final class EditorTextView: NSTextView, Themable {
         guard let action = menuItem.action else { return false }
         
         switch action {
-        case #selector(copyWithStyle),
-             #selector(exchangeFullwidthRoman),
-             #selector(exchangeHalfwidthRoman),
-             #selector(exchangeKatakana),
-             #selector(exchangeHiragana),
-             #selector(normalizeUnicodeWithNFD),
-             #selector(normalizeUnicodeWithNFC),
-             #selector(normalizeUnicodeWithNFKD),
-             #selector(normalizeUnicodeWithNFKC),
-             #selector(normalizeUnicodeWithNFKCCF),
-             #selector(normalizeUnicodeWithModifiedNFC),
-             #selector(normalizeUnicodeWithModifiedNFD):
+        case #selector(copyWithStyle):
             return self.selectedRange.length > 0
-            // -> The color code panel is always valid.
             
         case #selector(showSelectionInfo):
             let selection = (self.string as NSString?)?.substring(with: self.selectedRange)
@@ -1312,9 +1299,10 @@ extension EditorTextView {
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
             self.selectedRange.length == 0,  // selected
-            let nextCharacter = self.characterAfterInsertion, !CharacterSet.alphanumerics.contains(nextCharacter),  // caret is (probably) at the middle of a word
             let lastCharacter = self.characterBeforeInsertion, !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
             else { return }
+        
+        if let nextCharacter = self.characterAfterInsertion, CharacterSet.alphanumerics.contains(nextCharacter) { return }  // caret is (probably) at the middle of a word
         
         self.complete(self)
     }

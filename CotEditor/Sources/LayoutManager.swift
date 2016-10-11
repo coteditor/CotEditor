@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -299,6 +299,9 @@ final class LayoutManager: NSLayoutManager {
         guard Defaults[.enablesHangingIndent] else { return }
         
         guard let textStorage = self.textStorage, let textView = self.firstTextView else { return }
+        
+        // only on focused editor
+        if let window = textView.window, !self.layoutManagerOwnsFirstResponder(in: window) { return }
         
         let lineRange = (textStorage.string as NSString).lineRange(for: range)
         

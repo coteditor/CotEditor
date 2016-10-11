@@ -15,7 +15,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,6 +30,14 @@ import Cocoa
 final class FindPanelController: NSWindowController {
     
     // MARK: Window Controller Methods
+    
+    override func windowDidLoad() {
+        
+        super.windowDidLoad()
+        
+        self.windowFrameAutosaveName = "findPanel"
+    }
+    
     
     /// activate find panel
     @IBAction override func showWindow(_ sender: Any?) {

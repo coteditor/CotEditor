@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,6 +27,12 @@
  */
 
 import Cocoa
+
+protocol AdditionalDocumentPreparing: class {
+    
+    func didMakeDocumentForExisitingFile(url: URL)
+}
+
 
 final class DocumentController: NSDocumentController {
 
@@ -48,8 +54,6 @@ final class DocumentController: NSDocumentController {
     // MARK: Lifecycle
     
     override init() {
-        
-        // [caution] This method can be called before the UserDefaults is initialized.
         
         self._accessorySelectedEncoding = Defaults[.encodingInOpen]
         self.autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
@@ -114,9 +118,11 @@ final class DocumentController: NSDocumentController {
         }
         
         // make document
-        //   -> See Document's `init(fileURL:ofType:)` for the reason why I don't just invoke super's method.
-//        let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
-        let document = try Document(fileURL: url, ofType: typeName)
+        let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
+        
+        if let delegate = document as? AdditionalDocumentPreparing {
+            delegate.didMakeDocumentForExisitingFile(url: url)
+        }
         
         // reset encoding menu
         self.resetAccessorySelectedEncoding()
@@ -215,10 +221,6 @@ final class DocumentController: NSDocumentController {
     @available(macOS 10.12, *)
     @IBAction func newDocumentAsTab(_ sender: Any?) {
         
-        guard let frontmostWindow = self.currentDocument?.windowControllers.first?.window else {
-            return self.newDocument(sender)
-        }
-        
         let document: NSDocument
         do {
             document = try self.openUntitledDocumentAndDisplay(false)
@@ -228,11 +230,8 @@ final class DocumentController: NSDocumentController {
         }
         
         document.makeWindowControllers()
-        
-        guard let documentWindow = document.windowControllers.first?.window else { return }
-        
-        frontmostWindow.addTabbedWindow(documentWindow, ordered: .above)
-        document.showWindows()  // bring to the frontmost
+        document.windowControllers.first?.window?.tabbingMode = .preferred
+        document.showWindows()
     }
     
     

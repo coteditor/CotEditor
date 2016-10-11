@@ -16,7 +16,7 @@
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
  
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
  
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -488,7 +488,9 @@ extension SyntaxStyle {
         if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
             // wait for window becomes visible and sheet-attachable
             DispatchQueue.global(qos: .background).async {
-                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) {
+                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) ||
+                       (storage.layoutManagers.first?.firstTextView?.window?.attachedSheet != nil)
+                {
                     RunLoop.current.limitDate(forMode: .defaultRunLoopMode)
                 }
                 
