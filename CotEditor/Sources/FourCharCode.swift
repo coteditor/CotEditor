@@ -25,7 +25,7 @@
  
  */
 
-import Foundation
+import Darwin
 
 extension FourCharCode {
     

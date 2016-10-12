@@ -1282,6 +1282,42 @@
 			name = "Keybindings Edit Pane";
 			sourceTree = "<group>";
 		};
+		2A359E001DAEA0EE00FEF7AA /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
+				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
+				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
+				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
+			);
+			name = AppKit;
+			sourceTree = "<group>";
+		};
+		2A359E011DAEA0FC00FEF7AA /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				2A9082E41D324D9A00228F50 /* Geometry.swift */,
+				2A5ADE831D2168FC00F6CE26 /* Array.swift */,
+				2A8DA9461D28ED93003D0C4B /* URL.swift */,
+				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
+				2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */,
+				2AA761341D45634400031AAF /* String+Counting.swift */,
+				2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */,
+				2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */,
+				2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */,
+				2AAD61EF1D2B0856008FE772 /* String+Range.swift */,
+				2AA761391D457BD500031AAF /* String+Indentation.swift */,
+				2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */,
+				2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */,
+				2A9082EB1D325BEC00228F50 /* UserDefaults.swift */,
+				2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */,
+				2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */,
+				2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */,
+				2A48103D1D4D210300F7D34C /* Crypto.swift */,
+			);
+			name = Foundation;
+			sourceTree = "<group>";
+		};
 		2A37F4AAFDCFA73011CA2CEA /* CotEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -1470,28 +1506,8 @@
 		2A5ADE861D21690300F6CE26 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2A9082E41D324D9A00228F50 /* Geometry.swift */,
-				2A5ADE831D2168FC00F6CE26 /* Array.swift */,
-				2A8DA9461D28ED93003D0C4B /* URL.swift */,
-				2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */,
-				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
-				2AA761341D45634400031AAF /* String+Counting.swift */,
-				2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */,
-				2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */,
-				2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */,
-				2AAD61EF1D2B0856008FE772 /* String+Range.swift */,
-				2AA761391D457BD500031AAF /* String+Indentation.swift */,
-				2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */,
-				2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */,
-				2A9082EB1D325BEC00228F50 /* UserDefaults.swift */,
-				2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */,
-				2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */,
-				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
-				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
-				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
-				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
-				2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */,
-				2A48103D1D4D210300F7D34C /* Crypto.swift */,
+				2A359E011DAEA0FC00FEF7AA /* Foundation */,
+				2A359E001DAEA0EE00FEF7AA /* AppKit */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
