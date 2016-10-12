@@ -2,6 +2,13 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fix error message of syntax style valitation.
+
+
+
 3.0.1 (161)
 --------------------------
 
