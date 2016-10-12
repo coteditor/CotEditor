@@ -83,7 +83,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
         
         super.viewWillDisappear()
         
-        self.commitEditing()
+        self.endEditing()
     }
     
     

@@ -87,7 +87,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// finish current editing
     override func viewWillDisappear() {
         
-        self.commitEditing()
+        self.endEditing()
+        
         self.saveSetting()
     }
     
@@ -188,7 +189,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// add file drop setting
     @IBAction func addSetting(_ sender: Any?) {
         
-        self.commitEditing()
+        self.endEditing()
         
         self.fileDropController?.add(self)
     }
@@ -202,7 +203,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         // raise flag for in case that the delete button was pressed while editing and the target can be automatically deleted
         self.deletingFileDrop = true
         
-        self.commitEditing()
+        self.endEditing()
         
         // ask user for deletion
         self.deleteSetting(at: selectedRow)
