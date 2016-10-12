@@ -496,8 +496,7 @@ extension SyntaxStyle {
                 
                 // attach the indicator as a sheet
                 DispatchQueue.main.sync {
-                    // do nothing if highlighting is already finished
-                    guard !operation.isFinished else { return }
+                    guard !operation.isFinished && !operation.isCancelled else { return }
                     
                     guard let contentViewController = storage.layoutManagers.first?.firstTextView?.window?.windowController?.contentViewController else { return }
                     indicator = ProgressViewController(progress: operation.progress, message: NSLocalizedString("Coloring text…", comment: ""))

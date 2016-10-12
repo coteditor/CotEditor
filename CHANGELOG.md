@@ -7,6 +7,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where application could rarely freeze after replace large document.
 - Fix an issue where new value of last edited text field in preferences was occasionally discarded.
 - Fix error message of syntax style valitation.
 
