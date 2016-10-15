@@ -104,7 +104,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let uuid = UUID().uuidString
         self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: UniqueFileIDLength))
         
-        self.encoding = String.Encoding(rawValue: Defaults[.encodingInNew])
+        let encoding = String.Encoding(rawValue: Defaults[.encodingInNew])
+        self.encoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
         if self.encoding == .utf8 {
             self.hasUTF8BOM = Defaults[.saveUTF8BOM]
         }

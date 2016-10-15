@@ -11,6 +11,7 @@ develop
 - Fix an issue where new syntax style could't be created.
 - Fix an issue where new value of last edited text field in preferences was occasionally discarded.
 - Fix a possible crash on application termination.
+- Fix a possible crash on opening document.
 - Fix error message of syntax style valitation.
 
 
