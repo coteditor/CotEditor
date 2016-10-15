@@ -477,6 +477,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         self.replace()
         self.find(forward: true)
+        
+        self.appendHistory(self.findString, forKey: .findHistory)
+        self.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
