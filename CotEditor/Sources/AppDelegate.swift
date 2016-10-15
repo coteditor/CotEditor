@@ -224,7 +224,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
             guard let lastVersion = Defaults[.lastVersion] else { return true }
             
             // if isDigit -> probably semver (semver must be older than 2.2.0)
-            let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) != nil)
+            let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) == nil)
             
             return !isDigit || Int(thisVersion)! >= Int(lastVersion)!
         }()
