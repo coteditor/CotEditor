@@ -244,12 +244,11 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         let integerFormatter = self.integerFormatter
         let findString = self.sanitizedFindString
-        let regex = self.regex()!
         let scopeRanges = self.scopeRanges
         
         self.busyTextViews.insert(textView)
         
-        let numberOfGroups = regex.numberOfCaptureGroups
+        let numberOfGroups = self.regex()?.numberOfCaptureGroups ?? 0
         let highlightColors = self.highlightColor.decomposite(into: numberOfGroups + 1)
         
         let lineRegex = try! NSRegularExpression(pattern: "\n")

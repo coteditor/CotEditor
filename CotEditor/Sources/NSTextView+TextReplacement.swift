@@ -54,7 +54,9 @@ extension NSTextView {
         guard !strings.isEmpty, let textStorage = self.textStorage else { return false }
         
         // register redo for text selection
-        (self.undoManager?.prepare(withInvocationTarget: self) as! NSTextView).setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+        if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
+            undoClient.setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+        }
         
         // tell textEditor about beginning of the text processing
         guard self.shouldChangeText(inRanges: ranges as [NSValue], replacementStrings: strings) else { return false }
@@ -88,8 +90,12 @@ extension NSTextView {
     /// undoable selection change
     @objc func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
         
-        self.selectedRanges = ranges as [NSValue]
-        (self.undoManager?.prepare(withInvocationTarget: self) as! NSTextView).setSelectedRangesWithUndo(ranges)
+        guard let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView else {
+            assertionFailure("failed preparing undo.")
+            return
+        }
+        
+        undoClient.setSelectedRangesWithUndo(ranges as [NSRange])
     }
     
     

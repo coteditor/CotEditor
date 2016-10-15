@@ -13,6 +13,7 @@ develop
 - Fix a possible crash on application termination.
 - Fix a possible crash on opening document.
 - Fix error message of syntax style valitation.
+- Improve general stability.
 
 
 
