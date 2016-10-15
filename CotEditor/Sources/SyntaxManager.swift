@@ -321,7 +321,7 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// save style
-    func save(styleDictionary: StyleDictionary, name: StyleName, oldName: StyleName) throws {
+    func save(styleDictionary: StyleDictionary, name: StyleName, oldName: StyleName?) throws {
         
         guard !name.isEmpty else { return }
         
@@ -347,7 +347,7 @@ final class SyntaxManager: SettingFileManager {
         let saveURL = self.preparedURLForUserSetting(name: name)
         
         // move old file to new place to overwrite when style name is also changed
-        if name != oldName {
+        if let oldName = oldName, name != oldName {
             try self.renameSetting(name: oldName, to: name)
         }
         

@@ -311,8 +311,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             styleDictionary[key] = value
         }
         
+        let oldName: String? = (self.mode == .new) ? nil : self.originalStyleName
+        
         do {
-            try SyntaxManager.shared.save(styleDictionary: styleDictionary, name: styleName, oldName: self.originalStyleName)
+            try SyntaxManager.shared.save(styleDictionary: styleDictionary, name: styleName, oldName: oldName)
         } catch let error {
             print(error)
         }
