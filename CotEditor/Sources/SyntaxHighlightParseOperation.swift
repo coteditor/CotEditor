@@ -501,8 +501,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             
             // update indicator sheet message
             totalProgress.becomeCurrent(withPendingUnitCount: 1)
-            DispatchQueue.main.sync {
-                totalProgress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
+            DispatchQueue.main.async { [weak totalProgress] in
+                totalProgress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             }
             
             let childProgress = Progress(totalUnitCount: definitions.count + 10)  // + 10 for simple words
@@ -553,8 +553,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                 }
                 
                 // progress indicator
-                DispatchQueue.main.sync {
-                    childProgress.completedUnitCount += 1
+                DispatchQueue.main.async { [weak childProgress] in
+                    childProgress?.completedUnitCount += 1
                 }
             }
             
