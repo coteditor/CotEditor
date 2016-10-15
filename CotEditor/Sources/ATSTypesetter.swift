@@ -98,7 +98,10 @@ final class ATSTypesetter: NSATSTypesetter {
         // check if the character is the first non-whitespace character after indent
         guard let string = self.attributedString?.string else { return true }
         
-        let index = string.utf16.startIndex.advanced(by: charIndex).samePosition(in: string)!
+        guard let index = string.utf16.startIndex.advanced(by: charIndex).samePosition(in: string) else {
+            assertionFailure("failed to obtain last character index in ATS Typesetter")
+            return true
+        }
         
         // -> Don't use `characters` instead of `unicodeScalars` because of a memory leak (2016-09 macOS 10.12).
         for character in string.substring(to: index).unicodeScalars.reversed() {
