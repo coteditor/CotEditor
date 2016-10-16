@@ -278,20 +278,20 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
         
         alert.beginSheetModal(for: self.view.window!) { [weak self] (returnCode: NSModalResponse) in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
             guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
                 if #available(macOS 10.11, *) {
-                    self.extensionTableView?.rowActionsVisible = false
+                    strongSelf.extensionTableView?.rowActionsVisible = false
                 }
                 return
             }
-            guard self.deletingFileDrop else { return }
+            guard strongSelf.deletingFileDrop else { return }
             
-            self.fileDropController?.remove(atArrangedObjectIndex: row)
-            self.saveSetting()
-            self.deletingFileDrop = false
+            strongSelf.fileDropController?.remove(atArrangedObjectIndex: row)
+            strongSelf.saveSetting()
+            strongSelf.deletingFileDrop = false
         }
     }
     

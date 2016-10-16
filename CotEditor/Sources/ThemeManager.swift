@@ -261,31 +261,31 @@ final class ThemeManager: SettingFileManager {
     override func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
         
         DispatchQueue.global().async { [weak self] in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
-            let userDirURL = self.userSettingDirectoryURL
-            let themeNameSet = NSMutableOrderedSet(array: self.bundledThemeNames)
+            let userDirURL = strongSelf.userSettingDirectoryURL
+            let themeNameSet = NSMutableOrderedSet(array: strongSelf.bundledThemeNames)
             
             // load user themes if exists
             if userDirURL.isReachable {
                 let fileURLs = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
                                                                             options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])) ?? []
                 let userThemeNames = fileURLs
-                    .filter { $0.pathExtension == self.filePathExtension }
-                    .map { self.settingName(from: $0) }
+                    .filter { $0.pathExtension == strongSelf.filePathExtension }
+                    .map { strongSelf.settingName(from: $0) }
                 
                 themeNameSet.addObjects(from: userThemeNames)
             }
             
-            let isListUpdated = (themeNameSet.array as! [String] != self.themeNames)
-            self.themeNames = themeNameSet.array as! [String]
+            let isListUpdated = (themeNameSet.array as! [String] != strongSelf.themeNames)
+            strongSelf.themeNames = themeNameSet.array as! [String]
             
             // cache definitions
-            self.archivedThemes = (themeNameSet.array as! [String]).reduce([:]) { (dict, name) in
-                guard let themeURL = self.urlForUsedSetting(name: name) else { return dict }
+            strongSelf.archivedThemes = (themeNameSet.array as! [String]).reduce([:]) { (dict, name) in
+                guard let themeURL = strongSelf.urlForUsedSetting(name: name) else { return dict }
                 
                 var dict = dict
-                dict[name] = self.themeDictionary(fileURL: themeURL)
+                dict[name] = strongSelf.themeDictionary(fileURL: themeURL)
                 return dict
             }
             
@@ -298,7 +298,7 @@ final class ThemeManager: SettingFileManager {
             DispatchQueue.main.sync {
                 // post notification
                 if isListUpdated {
-                    NotificationCenter.default.post(name: .ThemeListDidUpdate, object: self)
+                    NotificationCenter.default.post(name: .ThemeListDidUpdate, object: strongSelf)
                 }
                 
                 completionHandler?()

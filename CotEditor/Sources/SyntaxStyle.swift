@@ -55,9 +55,9 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
             
             // inform delegate about outline items update
             DispatchQueue.main.async { [weak self] in
-                guard let `self` = self else { return }
+                guard let strongSelf = self else { return }
                 
-                self.delegate?.syntaxStyle(self, didParseOutline: items)
+                strongSelf.delegate?.syntaxStyle(strongSelf, didParseOutline: items)
             }
         }
     }
@@ -506,27 +506,27 @@ extension SyntaxStyle {
         }
         
         operation.completionBlock = { [weak self, weak operation] in
-            guard let `self` = self, let operation = operation else { return }
+            guard let strongSelf = self, let operation = operation else { return }
             let highlights = operation.results
             
             DispatchQueue.main.async {
                 if !operation.isCancelled {
                     // cache result if whole text was parsed
                     if highlightRange.length == string.utf16.count {
-                        self.cachedHighlights = highlights
-                        self.highlightCacheHash = string.md5
+                        strongSelf.cachedHighlights = highlights
+                        strongSelf.highlightCacheHash = string.md5
                     }
                     
                     // apply color (or give up if the editor's string is changed from the analized string)
-                    if self.textStorage?.string == string {
+                    if strongSelf.textStorage?.string == string {
                         // update indicator message
                         operation.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
-                        self.apply(highlights: highlights, range: highlightRange)
+                        strongSelf.apply(highlights: highlights, range: highlightRange)
                     }
                 }
                 
                 // clean up indicator sheet
-                indicator?.dismiss(self)
+                indicator?.dismiss(strongSelf)
                 
                 // do the rest things
                 completionHandler?()

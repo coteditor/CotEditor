@@ -94,22 +94,6 @@ Please follow the style of the existing codes in CotEditor.
 		print("moof")
 	}
 	```
-- Use `` `self` `` to unwrap weak self in block instead of strongSelf.
-	```Swift
-	// OK
-    DispatchQueue.main.async { [weak self] in
-        let `self` = self else { return }
-        
-        // ...
-    }
-    
-    // NG
-    DispatchQueue.main.async { [weak self] in
-        let strongSelf = self else { return }
-        
-        // ...
-    }
-	```
 - Don't declare `@IBOutlet` properties with `!`.
 	```Swift
     // OK
