@@ -10,11 +10,11 @@ develop
 - Fix an issue where application could rarely freeze after replacing large document.
 - Fix an issue where new syntax style could't be created.
 - Fix an issue where new value of last edited text field in preferences was occasionally discarded.
-- Fix an issue where replacement string was not registered to the repalcement history.
+- Fix an issue where replacement string was not registered to the replacement history.
 - Fix an issue where horizontal scroll bars in the find panel fields were disappeared.
 - Fix a possible crash on application termination.
 - Fix a possible crash on opening document.
-- Fix error message of syntax style valitation.
+- Fix error message of syntax style validation.
 - Improve general stability.
 
 
