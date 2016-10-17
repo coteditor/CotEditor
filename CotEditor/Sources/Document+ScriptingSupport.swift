@@ -321,7 +321,7 @@ extension Document {
                 success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: wholeString.nsRange)
             }
             if success {
-                self.selection.contents = replacementString  // CETextSelection's `setContents:` accepts also NSString for its argument
+                self.selection.contents = replacementString  // TextSelection's `setContents:` accepts also String for its argument
                 numberOfReplacements = 1
             }
         }

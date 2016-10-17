@@ -310,7 +310,7 @@ final class LayoutManager: NSLayoutManager {
         let hangingIndent = self.spaceWidth * CGFloat(Defaults[.hangingIndentWidth])
         let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")
         
-        // get dummy attributes to make calculation of indent width the same as CElayoutManager's calculation (2016-04)
+        // get dummy attributes to make calculation of indent width the same as layoutManager's calculation (2016-04)
         let defaultParagraphStyle = textView.defaultParagraphStyle ?? NSParagraphStyle.default()
         let typingParagraphStyle = (textView.typingAttributes[NSParagraphStyleAttributeName] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
         typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
