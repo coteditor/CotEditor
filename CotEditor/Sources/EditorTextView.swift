@@ -117,7 +117,6 @@ final class EditorTextView: NSTextView, Themable {
         
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
-        layoutManager.usesScreenFonts = true
         layoutManager.allowsNonContiguousLayout = true
         self.textContainer!.replaceLayoutManager(layoutManager)
         
@@ -1091,9 +1090,9 @@ final class EditorTextView: NSTextView, Themable {
         paragraphStyle.lineHeightMultiple = self.lineHeight.rounded(to: 5)
         
         // calculate tab interval
-        if let font = self.font, let displayFont = self.layoutManager?.substituteFont(for: font) {
+        if let font = self.font {
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * displayFont.advancement(character: " ").width
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.advancement(character: " ").width
         }
         
         self.defaultParagraphStyle = paragraphStyle

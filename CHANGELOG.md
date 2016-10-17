@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Adjust glyph size calculation.
+
+
 ### Fixes
 
 - Fix an issue where document icons were blurry in non-Retina display.

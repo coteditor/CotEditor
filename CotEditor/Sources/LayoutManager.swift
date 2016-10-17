@@ -60,8 +60,7 @@ final class LayoutManager: NSLayoutManager {
             }
             
             // cache width of space char for hanging indent width calculation
-            let drawingFont = self.substituteFont(for: textFont)
-            self.spaceWidth = drawingFont.advancement(character: " ").width
+            self.spaceWidth = textFont.advancement(character: " ").width
             
             self.invisibleLines = self.generateInvisibleLines()
         }
@@ -312,10 +311,15 @@ final class LayoutManager: NSLayoutManager {
         
         // get dummy attributes to make calculation of indent width the same as layoutManager's calculation (2016-04)
         let defaultParagraphStyle = textView.defaultParagraphStyle ?? NSParagraphStyle.default()
-        let typingParagraphStyle = (textView.typingAttributes[NSParagraphStyleAttributeName] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
-        typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
-        var indentAttributes: [String: Any] = [NSFontAttributeName: self.substituteFont(for: self.textFont)]
-        indentAttributes[NSParagraphStyleAttributeName] = typingParagraphStyle
+        let indentAttributes: [String: Any] = {
+            let typingParagraphStyle = (textView.typingAttributes[NSParagraphStyleAttributeName] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
+            typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
+            
+            var attributes: [String: Any] = [:]
+            attributes[NSFontAttributeName] = self.textFont
+            attributes[NSParagraphStyleAttributeName] = typingParagraphStyle
+            return attributes
+        }()
         
         var cache = [String: CGFloat]()
         

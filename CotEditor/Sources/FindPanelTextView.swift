@@ -63,7 +63,6 @@ final class FindPanelTextView: NSTextView {
         
         // set subclassed layout manager for invisible characters
         let layoutManager = FindPanelLayoutManager()
-        layoutManager.usesScreenFonts = true
         self.textContainer?.replaceLayoutManager(layoutManager)
     }
     
