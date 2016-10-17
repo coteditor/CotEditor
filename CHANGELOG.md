@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Fix an issue where document icons were blurry in non-Retina display.
+
+
+
 3.0.2 (163)
 --------------------------
 
