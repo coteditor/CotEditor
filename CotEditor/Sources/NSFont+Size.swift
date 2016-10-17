@@ -25,7 +25,7 @@
  
  */
 
-import Cocoa
+import AppKit
 
 extension NSFont {
     

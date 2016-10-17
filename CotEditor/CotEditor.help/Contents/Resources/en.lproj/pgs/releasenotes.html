@@ -25,8 +25,34 @@
 
 <article>
 <header>
-	<h1>CotEditor 3.0.1</h1>
+	<h1>CotEditor 3.0.2</h1>
 	<p>release: <time>2016-10</time></p>
+</header>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where application could rarely freeze after replacing large document.</li>
+	<li>Fix an issue where new syntax style could't be created.</li>
+	<li>Fix an issue where new value of last edited text field in preferences was occasionally discarded.</li>
+	<li>Fix an issue where replacement string was not registered to the replacement history.</li>
+	<li>Fix an issue where horizontal scroll bars in the find panel fields were disappeared.</li>
+	<li>Fix a possible crash on application termination.</li>
+	<li>Fix a possible crash on opening document.</li>
+	<li>Fix error message of syntax style validation.</li>
+	<li>Improve general stability.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 3.0.1</h1>
+	<p>release: <time>2016-10-11</time></p>
 </header>
 
 
@@ -421,11 +447,11 @@
 <h2>Improvements</h2>
 
 <ul>
-    <li>Change underline style of outline items.</li>
-    <li>Update “JavaScript” syntax style:
+	<li>Change underline style of outline items.</li>
+	<li>Update “JavaScript” syntax style:
     <ul>
-        <li>Improve outline definitions to support the class syntax sugar introduced in ECMAScript 6.</li>
-        <li>Better coloring for “get” and “set”.</li>
+		<li>Improve outline definitions to support the class syntax sugar introduced in ECMAScript 6.</li>
+		<li>Better coloring for “get” and “set”.</li>
     </ul></li>
 </ul>
 </section>
@@ -523,14 +549,14 @@
 <h2>Fixes</h2>
 
 <ul>
-    <li>Fix an issue where printing area could be cropped.</li>
-    <li>Fix an issue where the background of navigation/status bars were not drawn under a specific condition.</li>
-    <li>Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwrapped.</li>
-    <li>Fix an issue where document could not be drawn until the end of the file on legacy OS if the file contains control characters.</li>
-    <li>Fix an issue on Mavericks and earlier where the application hung up if tried to print line numbers by vertical text layout on printing.</li>
-    <li>Fix an issue where line numbers could be drawn at a bit shifted position or even cropped on printing.</li>
-    <li>Fix XML document icon.</li>
-    <li>Fix some unlocalized text.</li>
+	<li>Fix an issue where printing area could be cropped.</li>
+	<li>Fix an issue where the background of navigation/status bars were not drawn under a specific condition.</li>
+	<li>Fix an issue where the numbers in the line number view could be drawn in a wrong place if the editor is vertical text mode and unwrapped.</li>
+	<li>Fix an issue where document could not be drawn until the end of the file on legacy OS if the file contains control characters.</li>
+	<li>Fix an issue on Mavericks and earlier where the application hung up if tried to print line numbers by vertical text layout on printing.</li>
+	<li>Fix an issue where line numbers could be drawn at a bit shifted position or even cropped on printing.</li>
+	<li>Fix XML document icon.</li>
+	<li>Fix some unlocalized text.</li>
 </ul>
 </section>
 </article>
@@ -782,11 +808,11 @@
 <h2>Improvements</h2>
 
 <ul>
-    <li>Improve line numbers view for multiple selections.</li>
-    <li>Now, “Select Line” action works with multiple selections.</li>
-    <li>Close character inspector when text selection was changed.</li>
-    <li>Reproduce previous selection by undoing line actions.</li>
-    <li>Improve syntax highlighting performance.</li>
+	<li>Improve line numbers view for multiple selections.</li>
+	<li>Now, “Select Line” action works with multiple selections.</li>
+	<li>Close character inspector when text selection was changed.</li>
+	<li>Reproduce previous selection by undoing line actions.</li>
+	<li>Improve syntax highlighting performance.</li>
 </ul>
 </section>
 
@@ -795,11 +821,11 @@
 <h2>Fixes</h2>
 
 <ul>
-    <li>Fix an issue where comment-out action didn't work on CotEditor 2.3.3.</li>
-    <li>Fix an issue where window title bar was dyed in the editor's background color on El Capitan.</li>
-    <li>Fix an issue where text selection after move multiple lines was broken.</li>
-    <li>Fix an issue where <code>^</code> or <code>$</code> anchors in the regular expression via AppleScript didn't work with document that has non-LF line endings.</li>
-    <li>Fix an issue where syntax highlighting indicator became occasionally unclosable under the specific condition on document opening.</li>
+	<li>Fix an issue where comment-out action didn't work on CotEditor 2.3.3.</li>
+	<li>Fix an issue where window title bar was dyed in the editor's background color on El Capitan.</li>
+	<li>Fix an issue where text selection after move multiple lines was broken.</li>
+	<li>Fix an issue where <code>^</code> or <code>$</code> anchors in the regular expression via AppleScript didn't work with document that has non-LF line endings.</li>
+	<li>Fix an issue where syntax highlighting indicator became occasionally unclosable under the specific condition on document opening.</li>
 </ul>
 </section>
 </article>
@@ -817,7 +843,7 @@
 <h2>New Features</h2>
 
 <ul>
-    <li>Add “Share” menu to File menu.</li>
+	<li>Add “Share” menu to File menu.</li>
 </ul>
 </section>
 
@@ -826,40 +852,40 @@
 <h2>Improvements</h2>
 
 <ul>
-    <li>Now, you can force-disable window restoration from the last session if you hold Shift key while launch.</li>
-    <li>Improve “Input Character in Unicode Hex” panel:
+	<li>Now, you can force-disable window restoration from the last session if you hold Shift key while launch.</li>
+	<li>Improve “Input Character in Unicode Hex” panel:
     <ul>
-        <li>Display proposed character info.</li>
-        <li>Allow also taking a 1 to 3 digits point code.</li>
-        <li>Avoid auto-closing panel after enter character.</li>
+		<li>Display proposed character info.</li>
+		<li>Allow also taking a 1 to 3 digits point code.</li>
+		<li>Avoid auto-closing panel after enter character.</li>
     </ul></li>
-    <li>Improve character inspector:
+	<li>Improve character inspector:
     <ul>
-        <li>Display more comprehensible name for control characters (e.g. <code>&lt;control-0000&gt;</code> to <code>NULL</code>).</li>
-        <li>Display a alternate visible symbol in the zoomed character area for C0 control characters.</li>
+		<li>Display more comprehensible name for control characters (e.g. <code>&lt;control-0000&gt;</code> to <code>NULL</code>).</li>
+		<li>Display a alternate visible symbol in the zoomed character area for C0 control characters.</li>
     </ul></li>
-    <li>Improve installed syntax style list in preferences:
+	<li>Improve installed syntax style list in preferences:
     <ul>
-        <li>Add dot mark to style names in the list to represent the state if the style is customized.</li>
-        <li>Enable restoring modified syntax style directly from the list without opening the style editor.</li>
+		<li>Add dot mark to style names in the list to represent the state if the style is customized.</li>
+		<li>Enable restoring modified syntax style directly from the list without opening the style editor.</li>
     </ul></li>
-    <li>Now, the current line number is drawn in bold font, and always drawn in vertical text mode.</li>
-    <li>Select whole text wrapped with quotation marks by double-clicking one of the quotation marks if it is already syntax-highlighted.</li>
-    <li>Keep text selection after inserting color code from the color code panel.</li>
-    <li>Add “description” field also to outline setting in syntax style editor.
+	<li>Now, the current line number is drawn in bold font, and always drawn in vertical text mode.</li>
+	<li>Select whole text wrapped with quotation marks by double-clicking one of the quotation marks if it is already syntax-highlighted.</li>
+	<li>Keep text selection after inserting color code from the color code panel.</li>
+	<li>Add “description” field also to outline setting in syntax style editor.
     <ul>
-        <li>From this, update most of bundled syntax styles.</li>
+		<li>From this, update most of bundled syntax styles.</li>
     </ul></li>
-    <li>Add jump to URL button to the style info in the syntax style editor.</li>
-    <li>Improve drawing of “Other” invisible characters.</li>
-    <li>Improve behavior on Replace/Replace All actions.</li>
-    <li>Improve text encoding detection to redress the tendency: a binary file was interpreted as ISO-2022-JP.</li>
-    <li>Revert style of popup menus in toolbar on Marvericks and earlier.</li>
-    <li>Update line number font.</li>
-    <li>Update default fonts.</li>
-    <li>Tweak preferences layout.</li>
-    <li>Tweak Chinese localization.</li>
-    <li>Improve general stability.</li>
+	<li>Add jump to URL button to the style info in the syntax style editor.</li>
+	<li>Improve drawing of “Other” invisible characters.</li>
+	<li>Improve behavior on Replace/Replace All actions.</li>
+	<li>Improve text encoding detection to redress the tendency: a binary file was interpreted as ISO-2022-JP.</li>
+	<li>Revert style of popup menus in toolbar on Marvericks and earlier.</li>
+	<li>Update line number font.</li>
+	<li>Update default fonts.</li>
+	<li>Tweak preferences layout.</li>
+	<li>Tweak Chinese localization.</li>
+	<li>Improve general stability.</li>
 </ul>
 </section>
 
@@ -868,14 +894,14 @@
 <h2>Fixes</h2>
 
 <ul>
-    <li>Fix an issue where the application tended to crash by trying opening binary file.</li>
-    <li>Fix an issue where line breaks between paths of dropped files were missing.</li>
-    <li>Fix an issue where the application crashed when a single character that is a part of surrogate pair is inspected.</li>
-    <li>Fix an issue where snippet key bindings could not be customized on Mavericks and earlier.</li>
-    <li>Fix an issue where syntax highlight was not updated after reinterpreting encoding.</li>
-    <li>Fix an issue where panels could lost target document.</li>
-    <li>Fix layout of character popup on Mavericks and earlier.</li>
-    <li>Fix an issue where “Recolor All” action was always enabled even if syntax style is “None.”</li>
+	<li>Fix an issue where the application tended to crash by trying opening binary file.</li>
+	<li>Fix an issue where line breaks between paths of dropped files were missing.</li>
+	<li>Fix an issue where the application crashed when a single character that is a part of surrogate pair is inspected.</li>
+	<li>Fix an issue where snippet key bindings could not be customized on Mavericks and earlier.</li>
+	<li>Fix an issue where syntax highlight was not updated after reinterpreting encoding.</li>
+	<li>Fix an issue where panels could lost target document.</li>
+	<li>Fix layout of character popup on Mavericks and earlier.</li>
+	<li>Fix an issue where “Recolor All” action was always enabled even if syntax style is “None.”</li>
 </ul>
 </section>
 </article>

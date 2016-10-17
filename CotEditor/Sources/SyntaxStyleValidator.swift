@@ -53,7 +53,7 @@ final class SyntaxStyleValidator {
         
         var errorDescription: String? {
             
-            return NSLocalizedString(self.type, comment: "") + " [" + self.localizedRole + "] :" + self.string
+            return NSLocalizedString(self.type, comment: "") + " [" + self.localizedRole + "]: " + self.string
         }
         
         
@@ -64,8 +64,7 @@ final class SyntaxStyleValidator {
                 return NSLocalizedString("multiple registered.", comment: "")
                 
             case .regularExpression(let error):
-                let failureReason = (error as? LocalizedError)?.failureReason ?? ""
-                return NSLocalizedString("Regex Error: %@", comment: "") + failureReason
+                return NSLocalizedString("Regex Error: ", comment: "") + error.localizedDescription
             
             case .blockComment:
                 return NSLocalizedString("Block comment needs both begin delimiter and end delimiter.", comment: "")

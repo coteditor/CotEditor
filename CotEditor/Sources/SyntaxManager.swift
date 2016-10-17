@@ -321,7 +321,7 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// save style
-    func save(styleDictionary: StyleDictionary, name: StyleName, oldName: StyleName) throws {
+    func save(styleDictionary: StyleDictionary, name: StyleName, oldName: StyleName?) throws {
         
         guard !name.isEmpty else { return }
         
@@ -347,7 +347,7 @@ final class SyntaxManager: SettingFileManager {
         let saveURL = self.preparedURLForUserSetting(name: name)
         
         // move old file to new place to overwrite when style name is also changed
-        if name != oldName {
+        if let oldName = oldName, name != oldName {
             try self.renameSetting(name: oldName, to: name)
         }
         
@@ -426,13 +426,13 @@ final class SyntaxManager: SettingFileManager {
     override func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
         
         DispatchQueue.global().async { [weak self] in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
-            self.loadUserStyles()
-            self.updateMappingTables()
+            strongSelf.loadUserStyles()
+            strongSelf.updateMappingTables()
             
             DispatchQueue.main.sync {
-                NotificationCenter.default.post(name: .SyntaxListDidUpdate, object: self)
+                NotificationCenter.default.post(name: .SyntaxListDidUpdate, object: strongSelf)
                 
                 completionHandler?()
             }

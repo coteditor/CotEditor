@@ -244,12 +244,11 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         let integerFormatter = self.integerFormatter
         let findString = self.sanitizedFindString
-        let regex = self.regex()!
         let scopeRanges = self.scopeRanges
         
         self.busyTextViews.insert(textView)
         
-        let numberOfGroups = regex.numberOfCaptureGroups
+        let numberOfGroups = self.regex()?.numberOfCaptureGroups ?? 0
         let highlightColors = self.highlightColor.decomposite(into: numberOfGroups + 1)
         
         let lineRegex = try! NSRegularExpression(pattern: "\n")
@@ -264,7 +263,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         documentViewController.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
             var results = [TextFindResult]()
             var highlights = [HighlightItem]()
@@ -272,11 +271,11 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             var lineNumber = 1
             var lineCountedLocation = 0
             
-            self.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+            strongSelf.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
                 
                 guard !progress.isCancelled else {
-                    indicator.dismiss(self)
-                    self.busyTextViews.remove(textView)
+                    indicator.dismiss(strongSelf)
+                    strongSelf.busyTextViews.remove(textView)
                     stop = true
                     return
                 }
@@ -337,17 +336,17 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
-                self.delegate?.textFinder(self, didFinishFindingAll: findString, results: results, textView: textView)
+                strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: findString, results: results, textView: textView)
                 
                 // -> close also if matched since result view will be shown when succeed
-                if !results.isEmpty || self.closesIndicatorWhenDone {
+                if !results.isEmpty || strongSelf.closesIndicatorWhenDone {
                     indicator.dismiss(nil)
-                    if let panel = self.findPanelController.window, panel.isVisible {
+                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
                 
-                self.busyTextViews.remove(textView)
+                strongSelf.busyTextViews.remove(textView)
             }
         }
         
@@ -381,14 +380,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         documentViewController.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
             var highlights = [HighlightItem]()
-            self.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+            strongSelf.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
                 
                 guard !progress.isCancelled else {
-                    indicator.dismiss(self)
-                    self.busyTextViews.remove(textView)
+                    indicator.dismiss(strongSelf)
+                    strongSelf.busyTextViews.remove(textView)
                     stop = true
                     return
                 }
@@ -429,14 +428,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
-                if self.closesIndicatorWhenDone {
+                if strongSelf.closesIndicatorWhenDone {
                     indicator.dismiss(nil)
-                    if let panel = self.findPanelController.window, panel.isVisible {
+                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
                 
-                self.busyTextViews.remove(textView)
+                strongSelf.busyTextViews.remove(textView)
             }
         }
         
@@ -478,6 +477,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         self.replace()
         self.find(forward: true)
+        
+        self.appendHistory(self.findString, forKey: .findHistory)
+        self.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
@@ -506,7 +508,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         documentViewController.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
             var replacementStrings = [String]()
             var replacementRanges = [NSRange]()
@@ -517,11 +519,11 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             var locationDelta = 1
             var lengthDelta = 0
             
-            self.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+            strongSelf.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
                 
                 guard !progress.isCancelled else {
-                    indicator.dismiss(self)
-                    self.busyTextViews.remove(textView)
+                    indicator.dismiss(strongSelf)
+                    strongSelf.busyTextViews.remove(textView)
                     stop = true
                     return
                 }
@@ -569,14 +571,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
-                if self.closesIndicatorWhenDone {
+                if strongSelf.closesIndicatorWhenDone {
                     indicator.dismiss(nil)
-                    if let panel = self.findPanelController.window, panel.isVisible {
+                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
                 
-                self.busyTextViews.remove(textView)
+                strongSelf.busyTextViews.remove(textView)
             }
         }
         

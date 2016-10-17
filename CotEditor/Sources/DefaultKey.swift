@@ -82,7 +82,7 @@ extension UserDefaults {
     
     subscript(key: DefaultKey<UInt>) -> UInt {
         
-        get { return UInt(self.integer(forKey: key.rawValue)) }
+        get { return UInt(exactly: self.integer(forKey: key.rawValue)) ?? 0 }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     

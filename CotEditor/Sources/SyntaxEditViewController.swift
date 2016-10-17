@@ -279,7 +279,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     @IBAction func save(_ sender: Any?) {
         
         // fix current input
-        self.commitEditing()
+        self.endEditing()
         
         // trim spaces/tab/newlines in style name
         let styleName = self.styleNameField?.stringValue.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
@@ -311,8 +311,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             styleDictionary[key] = value
         }
         
+        let oldName: String? = (self.mode == .new) ? nil : self.originalStyleName
+        
         do {
-            try SyntaxManager.shared.save(styleDictionary: styleDictionary, name: styleName, oldName: self.originalStyleName)
+            try SyntaxManager.shared.save(styleDictionary: styleDictionary, name: styleName, oldName: oldName)
         } catch let error {
             print(error)
         }
@@ -346,7 +348,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     private func swapView(index: Int) {
         
         // finish current editing anyway
-        self.commitEditing()
+        self.endEditing()
         
         guard let view = self.viewControllers[index]?.view else { return }
         

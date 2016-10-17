@@ -48,7 +48,9 @@ extension EditorTextView {
         let selectedRanges = self.selectedRanges as [NSRange]
         
         // register redo for text selection
-        (self.undoManager?.prepare(withInvocationTarget: self) as! NSTextView).setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+        if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
+            undoClient.setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+        }
         
         var newSelectedRanges = [NSRange]()
         
@@ -115,7 +117,9 @@ extension EditorTextView {
         let selectedRanges = self.selectedRanges as [NSRange]
         
         // register redo for text selection
-        (self.undoManager?.prepare(withInvocationTarget: self) as! NSTextView).setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+        if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
+            undoClient.setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+        }
         
         var newSelectedRanges = [NSRange]()
         

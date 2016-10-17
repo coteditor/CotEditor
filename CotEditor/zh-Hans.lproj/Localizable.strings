@@ -433,7 +433,7 @@
 "End string" = "结束字符串";
 "Regular expression" = "正则表达式";
 "multiple registered." = "重复注册。";
-"Regex Error: %@" = "正则表达式错误： %@";
+"Regex Error: " = "正则表达式错误：";
 
 
 

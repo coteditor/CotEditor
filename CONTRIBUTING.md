@@ -5,7 +5,7 @@ Contributing Guidelines
 General Feedback
 --------------------------
 
-Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/issues). You can write your feedback either in English or in Japanese.
+Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/issues). You can write your feedback either in English (recommended) or in Japanese.
 
 Bug reports __must__ include your environment. You can generate a bug report template automatically in CotEditor selecting "Help" > "Create Bug Report…" in the menu.
 
@@ -44,15 +44,21 @@ Refer also to the Apple's guidelines about terminology. They are about English, 
 
 - [Terminology and Wording -macOS Human Interface Guidelines](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/OSXHIGuidelines/TerminologyWording.html#//apple_ref/doc/uid/20000957-CH15-SW1)
 
-#### Submit a new localization
+#### Submitting a new localization
 
 Copy one of whole .lproj directory and use it as a template. We recommend to use `CotEditor/ja.lproj/` or `de.lproj/` directory, because they are always up-to-date and well organized.
 Note that you don't need to localize the Unicode block names in the `Unicode.strings` file.
 
+Continuous maintenance of the localization is recommended when providing a new localization. Please tell us if you can work with us. We'll call you every time before releasing a new version when we have new strings to be localized, so that you can keep all your localized strings up to date.
+Currently, we have maintainers for:
+
+- Simplified Chinese
+- Italian
+
 
 ### Syntax Styles
 
-#### Add a new bundled syntax style
+#### Adding a new bundled syntax style
 
 Put just your new syntax stye into `/CotEditor/syntaxes/` directory. You don't need to modify `SyntaxMap.json` file. It's generated automatically on build.
 
@@ -63,12 +69,12 @@ If the syntax language is relatively minor, we recommend you to distribute it as
 
 ### Themes
 
-We aren't accepting pull-requests adding bundled theme at the moment. You can distribute it as an additional theme by your own way, and add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Themes).
+We aren't accepting pull-requests adding bundled theme at the moment. You can distribute yours as an additional theme by your own way, and add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Themes).
 
 
 ### Graphics Resources
 
-We aren't accepting pull-requests for image resources. [1024jp](https://github.com/1024jp) is enjoying to create and brush-up the graphics ;). Please just point out on the Issues page if graphic resource has some kind of mistake to be fixed.
+We aren't accepting pull-requests for image resources. [1024jp](https://github.com/1024jp) enjoys creating and brushing up the graphics ;). Please just point out on the Issues page if graphic resource has some kind of mistake to be fixed.
 
 
 Coding Style Guide
@@ -79,7 +85,7 @@ Please follow the style of the existing codes in CotEditor.
 - Respect the existing coding style.
 - Leave reasonable comments.
 - Never omit `self`.
-- Make classes `final` by default.
+- Add `final` to classes by default.
 - Insert a blank line after class/function statement line.
 	```Swift
 	/// say moof.
@@ -87,22 +93,6 @@ Please follow the style of the existing codes in CotEditor.
 		
 		print("moof")
 	}
-	```
-- Use `\`self\`` to unwrap weak self in block instead of strongSelf.
-	```Swift
-	// OK
-    DispatchQueue.main.async { [weak self] in
-        let `self` = self else { return }
-        
-        // ...
-    }
-    
-    // NG
-    DispatchQueue.main.async { [weak self] in
-        let strongSelf = self else { return }
-        
-        // ...
-    }
 	```
 - Don't declare `@IBOutlet` properties with `!`.
 	```Swift
@@ -112,7 +102,7 @@ Please follow the style of the existing codes in CotEditor.
     // NG
     @IBOutlet private weak var button: NSButton!
 	```
-- Write `guard` statement in oneline if just return a simple value.
+- Write `guard` statement in one-line if just return a simple value.
 	```Swift
     // prefer
     guard let foo = foo else { return nil }

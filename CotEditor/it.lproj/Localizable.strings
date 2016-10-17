@@ -433,7 +433,7 @@
 "End string" = "Fine stringa";
 "Regular expression" = "Espressione regolare";
 "multiple registered." = "Termine registrato più volte.";
-"Regex Error: %@" = "Errore Regex: %@";
+"Regex Error: " = "Errore Regex: ";
 
 
 

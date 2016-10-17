@@ -433,7 +433,7 @@
 "End string" = "終了文字列";
 "Regular expression" = "正規表現";
 "multiple registered." = "重複して登録されています。";
-"Regex Error: %@" = "正規表現エラー： %@";
+"Regex Error: " = "正規表現エラー：";
 
 
 

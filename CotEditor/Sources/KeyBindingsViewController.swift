@@ -99,7 +99,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         super.viewWillDisappear()
         
-        self.commitEditing()
+        self.endEditing()
     }
     
     

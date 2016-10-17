@@ -104,7 +104,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let uuid = UUID().uuidString
         self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: UniqueFileIDLength))
         
-        self.encoding = String.Encoding(rawValue: Defaults[.encodingInNew])
+        let encoding = String.Encoding(rawValue: Defaults[.encodingInNew])
+        self.encoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
         if self.encoding == .utf8 {
             self.hasUTF8BOM = Defaults[.saveUTF8BOM]
         }
@@ -408,7 +409,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }()
         
         super.save(to: newUrl, ofType: typeName, for: saveOperation) { [weak self] (error: Error?) in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
             // [note] This completionHandler block will always be invoked on the main thread.
          
@@ -422,19 +423,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if saveOperation == .saveAsOperation {
                 let fileName = url.lastPathComponent
                 if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName) {
-                    self.setSyntaxStyle(name: styleName)
+                    strongSelf.setSyntaxStyle(name: styleName)
                 }
             }
             
             if saveOperation != .autosaveElsewhereOperation {
                 // get the latest file attributes
-                self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+                strongSelf.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
                 
                 // update file information
-                self.analyzer.invalidateFileInfo()
+                strongSelf.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
-                self.odbEventSender?.sendModifiedEvent(fileURL: url, operation: saveOperation)
+                strongSelf.odbEventSender?.sendModifiedEvent(fileURL: url, operation: saveOperation)
             }
         }
     }
@@ -1012,42 +1013,42 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         
         alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
             switch returnCode {
             case NSAlertFirstButtonReturn:  // = Convert
-                self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
+                strongSelf.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
                 
             case NSAlertSecondButtonReturn:  // = Reinterpret
-                if self.isDocumentEdited, let fileURL = self.fileURL {
+                if strongSelf.isDocumentEdited, let fileURL = strongSelf.fileURL {
                     let alert = NSAlert()
                     alert.messageText = String(format: NSLocalizedString("The file “%@” has unsaved changes.", comment: ""), fileURL.lastPathComponent)
                     alert.informativeText = NSLocalizedString("Do you want to discard the changes and reset the file encoding?", comment: "")
                     alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
                     alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
                     
-                    self.windowForSheet!.attachedSheet?.orderOut(self)  // close previous sheet
-                    alert.beginSheetModal(for: self.windowForSheet!, completionHandler: { (returnCode: NSModalResponse) in
+                    strongSelf.windowForSheet!.attachedSheet?.orderOut(strongSelf)  // close previous sheet
+                    alert.beginSheetModal(for: strongSelf.windowForSheet!, completionHandler: { (returnCode: NSModalResponse) in
                         switch returnCode {
                         case NSAlertFirstButtonReturn:  // = Cancel
                             // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                            NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
+                            NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
                             
                         case NSAlertSecondButtonReturn:  // = Discard Changes
-                            try? self.reinterpret(encoding: encoding)
+                            try? strongSelf.reinterpret(encoding: encoding)
                             
                         default: break
                         }
                     })
                     
                 } else {
-                    try? self.reinterpret(encoding: encoding)
+                    try? strongSelf.reinterpret(encoding: encoding)
                     
                 }
                 
             case NSAlertThirdButtonReturn:  // = Cancel
                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
+                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
                 
             default: break
             }
@@ -1242,14 +1243,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // display alert
         alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
-            if returnCode == NSAlertSecondButtonReturn { // == Revert
-                try? self.revert(toContentsOf: fileURL, ofType: self.fileType!)
+            if returnCode == NSAlertSecondButtonReturn, let fileType = strongSelf.fileType { // == Revert
+                try? strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
             }
             
-            self.isExternalUpdateAlertShown = false
-            self.needsShowUpdateAlertWithBecomeKey = false
+            strongSelf.isExternalUpdateAlertShown = false
+            strongSelf.needsShowUpdateAlertWithBecomeKey = false
         }
     }
     

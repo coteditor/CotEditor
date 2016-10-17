@@ -191,11 +191,11 @@ final class NavigationBarController: NSViewController {
         
         // display only if it takes longer than 1 sec.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            guard let `self` = self,
-                self.isParsingOutline else { return }
+            guard let strongSelf = self,
+                strongSelf.isParsingOutline else { return }
             
-            self.outlineIndicator!.startAnimation(self)
-            self.outlineLoadingMessage!.isHidden = false
+            strongSelf.outlineIndicator!.startAnimation(strongSelf)
+            strongSelf.outlineLoadingMessage!.isHidden = false
         }
     }
     
