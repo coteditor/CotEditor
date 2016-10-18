@@ -8,6 +8,7 @@ develop
 ### Improvements
 
 - Adjust glyph size calculation.
+- Improve performance of Find All and Replace All.
 
 
 ### Fixes
