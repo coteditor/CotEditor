@@ -306,14 +306,14 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     }
     
     
-    /// Show preferences window
+    /// show preferences window
     @IBAction func showPreferences(_ sender: Any?) {
         
         PreferencesWindowController.shared.showWindow(sender)
     }
     
     
-    /// Show console panel
+    /// show console panel
     @IBAction func showConsolePanel(_ sender: Any?) {
         
         ConsolePanelController.shared.showWindow(sender)
