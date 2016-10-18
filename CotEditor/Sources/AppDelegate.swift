@@ -187,6 +187,60 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
+    /// drop multiple files
+    func application(_ sender: NSApplication, openFiles filenames: [String]) {
+        
+        let isAutomaticTabbing: Bool = {
+            if #available(macOS 10.12, *) {
+                return (AlphaWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
+            }
+            return false
+        }()
+        
+        var remainingDocumentCount = filenames.count
+        var firstWindowOpened = false
+        
+        for filename in filenames {
+            guard !self.application(sender, openFile: filename) else {
+                remainingDocumentCount -= 1
+                continue
+            }
+            
+            let url = URL(fileURLWithPath: filename)
+            
+            DocumentController.shared().openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
+                defer {
+                    remainingDocumentCount -= 1
+                }
+                
+                if let error = error {
+                    NSApp.presentError(error)
+                    
+                    let cancelled = (error as? CocoaError)?.errorCode == CocoaError.userCancelled.rawValue
+                    NSApp.reply(toOpenOrPrint: cancelled ? .cancel : .failure)
+                }
+                
+                // on first window opened
+                // -> The first document needs to open a new window.
+                if #available(macOS 10.12, *), isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
+                    AlphaWindow.tabbingPreference = .always
+                    firstWindowOpened = true
+                }
+            }
+        }
+        
+        // reset tabbing setting
+        if #available(macOS 10.12, *), isAutomaticTabbing {
+            // wait until finish
+            while remainingDocumentCount > 0 {
+                RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+            }
+            
+            AlphaWindow.tabbingPreference = nil
+        }
+    }
+    
+    
     /// open file
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         

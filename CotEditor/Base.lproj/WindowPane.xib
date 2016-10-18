@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="WindowPaneController" customModule="CotEditor" customModuleProvider="target">
@@ -416,7 +417,7 @@
                                 <menuItem title="Respect System Setting" state="on" tag="-1" id="Guj-Kc-zf2"/>
                                 <menuItem isSeparatorItem="YES" id="csK-TU-Ecg"/>
                                 <menuItem title="Always" tag="1" id="OJs-2q-bg5"/>
-                                <menuItem title="In Full Screen Only" tag="2" id="10Z-Xd-CLV">
+                                <menuItem title="Automatically" tag="2" id="10Z-Xd-CLV">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                 </menuItem>
                                 <menuItem title="Manually" id="o1f-vR-aFm"/>
