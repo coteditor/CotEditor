@@ -106,14 +106,10 @@ final class DocumentController: NSDocumentController {
         
         // ask user for opening file
         if let error = error {
-            var wantsOpen = false
-            DispatchQueue.syncOnMain {
-                wantsOpen = self.presentError(error)
-            }
-            
-            // cancel operation
-            guard wantsOpen else {
-                throw CocoaError(.userCancelled)
+            try DispatchQueue.syncOnMain {
+                let wantsOpen = self.presentError(error)
+                
+                guard wantsOpen else { throw CocoaError(.userCancelled) }
             }
         }
         
