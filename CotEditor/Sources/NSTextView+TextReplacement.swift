@@ -90,6 +90,8 @@ extension NSTextView {
     /// undoable selection change
     @objc func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
         
+        self.selectedRanges = ranges as [NSValue]
+        
         guard let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView else {
             assertionFailure("failed preparing undo.")
             return
