@@ -17,6 +17,7 @@ develop
 - Fix an issue where document icons were blurry in non-Retina display.
 - Fix an issue where status bar layout collapsed if status line overflows.
 - Fix an issue where document theme reloaded unnecessarily on the first time Appearances pane display.
+- Improve general stability.
 
 
 

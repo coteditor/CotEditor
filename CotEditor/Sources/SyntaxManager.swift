@@ -91,7 +91,7 @@ final class SyntaxManager: SettingFileManager {
     private var filenameToStyle: [String: StyleName] = [:]
     private var interpreterToStyle: [String: StyleName] = [:]
     
-    private let propertyAccessQueue = DispatchQueue(label: "com.coteditor.CotEditor.recentStyleNameSet")  // for recentStyleNameSet property
+    private let propertyAccessQueue = DispatchQueue(label: "com.coteditor.CotEditor.SyntaxManager.property")  // like @synchronized(self)
     
     
     
@@ -163,10 +163,8 @@ final class SyntaxManager: SettingFileManager {
     /// return recently used style history as an array
     var recentStyleNames: [StyleName] {
         
-        var styleNames = [StyleName]()
-        
-        self.propertyAccessQueue.sync {
-            styleNames = self.recentStyleNameSet.array as! [StyleName]
+        let styleNames: [StyleName] = self.propertyAccessQueue.sync {
+            return self.recentStyleNameSet.array as! [StyleName]
         }
         
         return Array(styleNames.prefix(self.maximumRecentStyleNameCount))
@@ -191,7 +189,7 @@ final class SyntaxManager: SettingFileManager {
         }
         Defaults[.recentStyleNames] = self.recentStyleNames
         
-        DispatchQueue.syncOnMain {
+        DispatchQueue.main.async { [weak self] in
             NotificationCenter.default.post(name: .SyntaxHistoryDidUpdate, object: self)
         }
         
@@ -204,12 +202,12 @@ final class SyntaxManager: SettingFileManager {
         
         guard let fileName = fileName else { return nil }
         
-        if let styleName = self.filenameToStyle[fileName] {
+        if let styleName = self.propertyAccessQueue.sync(execute: { self.filenameToStyle })[fileName] {
             return styleName
         }
         
         if let pathExtension = fileName.components(separatedBy: ".").last,
-            let styleName = self.extensionToStyle[pathExtension] {
+            let styleName = self.propertyAccessQueue.sync(execute: { self.extensionToStyle })[pathExtension] {
             return styleName
         }
         
@@ -221,8 +219,8 @@ final class SyntaxManager: SettingFileManager {
     func styleName(documentContent content: String) -> String? {
         
         if let interpreter = self.scanInterpreterFromShebang(in: content),
-            let syntaxStyle = self.interpreterToStyle[interpreter] {
-            return syntaxStyle
+            let styleName = self.propertyAccessQueue.sync(execute: { self.interpreterToStyle })[interpreter] {
+            return styleName
         }
         
         // check XML declaration
@@ -540,13 +538,15 @@ final class SyntaxManager: SettingFileManager {
         let filenameResult = parseMappingSettings(key: .filenames)
         let interpreterResult = parseMappingSettings(key: .interpreters)
         
-        DispatchQueue.syncOnMain {
+        
+        self.propertyAccessQueue.sync {
             self.extensionToStyle = extensionResult.table
-            self.extensionConflicts = extensionResult.conflicts
             self.filenameToStyle = filenameResult.table
-            self.filenameConflicts = filenameResult.conflicts
             self.interpreterToStyle = interpreterResult.table
         }
+        
+        self.extensionConflicts = extensionResult.conflicts
+        self.filenameConflicts = filenameResult.conflicts
     }
     
     

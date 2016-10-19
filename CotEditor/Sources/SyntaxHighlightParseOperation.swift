@@ -571,7 +571,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             highlights[syntaxType] = ranges
             
             // progress indicator
-            DispatchQueue.syncOnMain {
+            DispatchQueue.main.async { [weak childProgress] in
+                guard let childProgress = childProgress else { return }
                 childProgress.completedUnitCount = childProgress.totalUnitCount
             }
             totalProgress.resignCurrent()
