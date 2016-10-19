@@ -343,6 +343,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         for viewController in self.editorViewControllers {
             viewController.apply(syntax: syntaxStyle)
             if syntaxStyle.canParse {
+                viewController.navigationBarController?.outlineItems = []
                 viewController.navigationBarController?.showOutlineIndicator()
             }
         }
