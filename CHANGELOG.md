@@ -236,6 +236,7 @@ develop
 - Improve scrolling with line number view drag.
 - Better syntax highlighting while editing.
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
+- Update build environment to macOS Sierra +  Xcode 8 (SDK macOS 10.12).
 
 
 ### Fixes
