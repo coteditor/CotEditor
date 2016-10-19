@@ -9,6 +9,7 @@ develop
 
 - Adjust glyph size calculation.
 - Improve performance of Find All and Replace All.
+- Update “Swift” syntax style to add some missing keywords.
 
 
 ### Fixes
