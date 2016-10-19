@@ -326,7 +326,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     // MARK: Notifications
     
     /// selection did change
-    func textViewDidChangeSelection(_ notification: NSNotification?) {
+    func textViewDidChangeSelection(_ notification: Notification?) {
         
         // update document information
         self.document?.analyzer.invalidateEditorInfo()
@@ -334,7 +334,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// document updated syntax style
-    func didChangeSyntaxStyle(_ notification: NSNotification?) {
+    func didChangeSyntaxStyle(_ notification: Notification?) {
         
         guard let syntaxStyle = self.syntaxStyle else { return }
         
@@ -354,7 +354,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// theme did update
-    func didUpdateTheme(_ notification: NSNotification?) {
+    func didUpdateTheme(_ notification: Notification?) {
         
         guard
             let oldName = notification?.userInfo?[SettingFileManager.NotificationKey.old] as? String,
