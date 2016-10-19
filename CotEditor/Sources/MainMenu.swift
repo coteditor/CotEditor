@@ -1,11 +1,11 @@
 /*
  
- Constants.swift
+ MainMenu.swift
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2016-06-25.
+ Created by 1024jp on 2016-10-19.
  
  ------------------------------------------------------------------------------
  
@@ -25,30 +25,33 @@
  
  */
 
-import AudioToolbox
+import Cocoa
 
-// labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
-extension SystemSoundID {
+enum MainMenu: Int {
     
-    static let moveToTrash = SystemSoundID(0x10)
-}
-
-
-extension String {
+    case application
+    case file
+    case edit
+    case view
+    case format
+    case text
+    case find
+    case window
+    case script
+    case help
     
-    /// constant string representing a separator
-    static let separator = "-"
-}
-
-
-extension String.Encoding {
     
-    /// original special encoding type
-    static let autoDetection = String.Encoding(rawValue: 0)
-}
-
-
-enum BundleIdentifier {
+    enum MenuItemTag: Int {
+        
+        case services = 999  // not to list up in "Menu Key Bindings" setting
+        case recentDocumentsDirectory = 2999  // not to list up in "Menu Key Bindings" setting
+        case sharingService = 1999
+        case scriptDirectory = 8999  // not to list up in "Menu Key Bindings" setting
+    }
     
-    static let ScriptEditor = "com.apple.ScriptEditor2"
+    
+    var menu: NSMenu? {
+        
+        return NSApp.mainMenu?.item(at: self.rawValue)?.submenu
+    }
 }

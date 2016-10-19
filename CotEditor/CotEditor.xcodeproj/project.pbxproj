@@ -301,6 +301,10 @@
 		2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2A885E331D5C3A1B00288723 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Utilities.swift */; };
 		2A885E341D5C3A1B00288723 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Utilities.swift */; };
+		2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
+		2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
+		2A8961951DB76B0100E9E0EC /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961941DB76B0100E9E0EC /* Help.swift */; };
+		2A8961961DB76B0100E9E0EC /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961941DB76B0100E9E0EC /* Help.swift */; };
 		2A8C338C1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */; };
 		2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */; };
 		2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */; };
@@ -829,6 +833,8 @@
 		2A836F8B1D5734870044E8EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2A83E2391BA1E65A0069CDFE /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		2A885E321D5C3A1B00288723 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		2A8961911DB76A3400E9E0EC /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		2A8961941DB76B0100E9E0EC /* Help.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterScanner.swift; sourceTree = "<group>"; };
 		2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacter.swift; sourceTree = "<group>"; };
 		2A8DA9431D286C53003D0C4B /* ScriptManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptManager.swift; sourceTree = "<group>"; };
@@ -1224,8 +1230,9 @@
 		2A15832F18E3A4AB00601026 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				2A91C31A1D1BFE47007CF8BE /* AppInfo.swift */,
 				2AC2462D1D1BC70C00E46CFA /* AppDelegate.swift */,
+				2A91C31A1D1BFE47007CF8BE /* AppInfo.swift */,
+				2A8961911DB76A3400E9E0EC /* MainMenu.swift */,
 				2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */,
 				2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */,
 				2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */,
@@ -1423,6 +1430,7 @@
 				2A2792941D1DBDAC00F3FC5D /* Constants.swift */,
 				2ABCD69C1D872D0A00437DD5 /* AppVersion.swift */,
 				2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */,
+				2A8961941DB76B0100E9E0EC /* Help.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -2139,6 +2147,7 @@
 				2A4CB9931D79F38A000D6ADA /* DocumentToolbar.swift in Sources */,
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A6FD9E11D393F9100A59784 /* SplitViewController.swift in Sources */,
+				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
 				2A18560C1D47FA37008FA79E /* TextFinder.swift in Sources */,
 				2AA749C71D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
@@ -2194,6 +2203,7 @@
 				2A64F2491D26327C001B229F /* KeyBindingManager.swift in Sources */,
 				2A33D0821D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
 				2A479C831D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
+				2A8961961DB76B0100E9E0EC /* Help.swift in Sources */,
 				2AAD61ED1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
 				2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2AA45A4F1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */,
@@ -2351,6 +2361,7 @@
 				2A4CCBB41D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */,
 				2A18560B1D47FA37008FA79E /* TextFinder.swift in Sources */,
 				2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
+				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,
 				2AAD61F01D2B0856008FE772 /* String+Range.swift in Sources */,
 				2A9082EC1D325BEC00228F50 /* UserDefaults.swift in Sources */,
 				2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
@@ -2366,6 +2377,7 @@
 				2A5ADE881D216D4900F6CE26 /* NSColor.swift in Sources */,
 				2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
 				2AA7613A1D457BD500031AAF /* String+Indentation.swift in Sources */,
+				2A8961951DB76B0100E9E0EC /* Help.swift in Sources */,
 				2A9BF3C71D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
