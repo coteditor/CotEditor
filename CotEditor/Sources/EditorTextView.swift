@@ -320,8 +320,10 @@ final class EditorTextView: NSTextView, Themable {
                 let currentLevel = wholeString.indentLevel(at: insretionIndex, tabWidth: self.tabWidth)
                 let levelToReduce = currentLevel - desiredLevel
                 
-                for _ in 0..<levelToReduce {
-                    self.deleteBackward(self)
+                if levelToReduce > 0 {
+                    for _ in 0..<levelToReduce {
+                        self.deleteBackward(nil)
+                    }
                 }
             }
         }

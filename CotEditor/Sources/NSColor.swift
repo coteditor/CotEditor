@@ -32,6 +32,8 @@ extension NSColor {
     /// create desired number of colors from itself
     func decomposite(into n: Int) -> [NSColor] {
         
+        guard n > 0 else { return [] }
+        
         let baseHue = self.hueComponent
         let saturation = self.saturationComponent
         let brightness = self.brightnessComponent
