@@ -476,14 +476,15 @@
 "No document to get input." = "Nessun documento da cui ottenere dati.";
 "No document to put output." = "Nessun documento dove salvare il risultato.";
 
-// Script error alert message
-"Script Error" = "Errore nello script";
-
-// Script error alert informatives
+// Script file error description
 "The script “%@” does not exist." = "Lo script “%@” non esiste.";
 "The script file “%@” couldn’t be opened." = "Impossibile aprire il file dello script “%@”.";
-"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "Impossibile eseguire lo script “%@”, perché non hai i permessi di esecuzione.\n\nVerificare i permessi dello script.";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "Impossibile eseguire lo script “%@”, perché non hai i permessi di esecuzione.";
 "The script “%@” couldn’t be read." = "Impossibile leggere lo script “%@”.";
+
+// Script file error recovery suggestions
+"Check the script file." = "Verificare il file dello script.";
+"Check permission of the script file." = "Verificare i permessi dello script.";
 
 
 

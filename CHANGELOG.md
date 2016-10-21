@@ -18,6 +18,7 @@ develop
 - Adjust glyph size calculation.
 - Improve performance of Find All and Replace All.
 - Update “Swift” syntax style to add some missing keywords.
+- Improve error message on script error.
 
 
 ### Fixes
@@ -27,6 +28,7 @@ develop
 - Fix an issue where document icons were blurry in non-Retina display.
 - Fix an issue where status bar layout collapsed if status line overflows.
 - Fix an issue where document theme reloaded unnecessarily on the first time Appearances pane display.
+- Fix an issue where application could crash when script was failed.
 - Improve general stability.
 
 

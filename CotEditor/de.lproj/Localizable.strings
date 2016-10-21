@@ -475,14 +475,15 @@
 "No document to get input." = "Kein Dokument, die Eingabe zu erhalten.";
 "No document to put output." = "Kein Dokument, die Ausgabe zu setzen.";
 
-// Script error alert message
-"Script Error" = "Skriptfehler";
-
-// Script error alert informatives
+// Script file error description
 "The script “%@” does not exist." = "Das Skript „%@“ existiert nicht.";
 "The script file “%@” couldn’t be opened." = "Die Skriptdatei „%@“ konnte nicht geöffnet werden.";
-"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "Das Skript „%@“ kann nicht ausgeführt werden, da Sie keine Ausführungsrechte haben.\n\nPrüfen Sie die Zugriffsrechte der Skriptdatei.";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "Das Skript „%@“ kann nicht ausgeführt werden, da Sie keine Ausführungsrechte haben.";
 "The script “%@” couldn’t be read." = "Das Skript „%@“ konnte nicht gelesen werden.";
+
+// Script file error recovery suggestions
+"Check the script file." = "Prüfen Sie die Skriptdatei.";
+"Check permission of the script file." = "Prüfen Sie die Zugriffsrechte der Skriptdatei.";
 
 
 

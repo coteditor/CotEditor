@@ -476,14 +476,15 @@
 "No document to get input." = "入力元となる書類が見つかりませんでした。";
 "No document to put output." = "結果を出力する書類が見つかりませんでした。";
 
-// Script error alert message
-"Script Error" = "スクリプトエラー";
-
-// Script error alert informatives
+// Script file error description
 "The script “%@” does not exist." = "スクリプト“%@”は存在しません。";
 "The script file “%@” couldn’t be opened." = "スクリプトファイル“%@”を開けませんでした。";
-"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "実行権がないため、スクリプト„%@“を実行できません。\n\nスクリプトファイルのアクセス権を確認してください。";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "実行権がないため、スクリプト„%@“を実行できません。";
 "The script “%@” couldn’t be read." = "スクリプト“%@”を読み込めませんでした。";
+
+// Script file error recovery suggestions
+"Check the script file." = "スクリプトファイルを確認してください。";
+"Check permission of the script file." = "スクリプトファイルのアクセス権を確認してください。";
 
 
 

@@ -199,48 +199,12 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// launch script (invoked by menu item)
     @IBAction func launchScript(_ sender: AnyObject?) {
         
-        guard let fileURL = sender?.representedObject as? URL else { return }
+        guard let url = sender?.representedObject as? URL else { return }
         
-        // display alert and endup if file not exists
-        guard fileURL.isReachable else {
-            let message = String(format: NSLocalizedString("The script “%@” does not exist.", comment: ""), fileURL.lastPathComponent)
-            self.showAlert(message: message)
-            return
-        }
-        
-        let pathExtension = fileURL.pathExtension
-        
-        // change behavior if modifier key is pressed
-        let modifierFlags = NSEvent.modifierFlags()
-        if modifierFlags == .option {  // open script file in editor if the Option key is pressed
-            let identifier = self.AppleScriptExtensions.contains(pathExtension) ? "com.apple.ScriptEditor2" : Bundle.main.bundleIdentifier!
-            guard NSWorkspace.shared().open([fileURL], withAppBundleIdentifier: identifier, additionalEventParamDescriptor: nil, launchIdentifiers: nil) else {
-                // display alert if cannot open/select the script file
-                let message = String(format: NSLocalizedString("The script file “%@” couldn’t be opened.", comment: ""), fileURL.path)
-                self.showAlert(message: message)
-                return
-            }
-            return
-            
-        } else if modifierFlags == [.option, .shift] {  // reveal on Finder if the Option+Shift keys are pressed
-            NSWorkspace.shared().activateFileViewerSelecting([fileURL])
-            return
-        }
-        
-        // run AppleScript
-        if self.AppleScriptExtensions.contains(pathExtension) {
-            self.runAppleScript(url: fileURL)
-            
-        // run Shell Script
-        } else if self.scriptExtensions.contains(pathExtension) {
-            // display alert if script file doesn't have execution permission
-            guard fileURL.isExecutable ?? false else {
-                let message = String(format: NSLocalizedString("The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file.", comment: ""), fileURL.lastPathComponent)
-                self.showAlert(message: message)
-                return
-            }
-            
-            self.runShellScript(url: fileURL)
+        do {
+            try self.runScript(url: url)
+        } catch let error {
+            NSApp.presentError(error)
         }
     }
     
@@ -260,7 +224,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
         guard let editor = editor else {
             // on no document found
-            throw ScriptError.noTarget
+            throw ScriptError.noInputTarget
         }
         
         switch type {
@@ -278,7 +242,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private func applyOutput(_ output: String, editor: Editable?, type: OutputType) throws {
         
         guard editor != nil || type == .pasteBoard else {
-            throw ScriptError.noTarget
+            throw ScriptError.noOutputTarget
         }
         
         switch type {
@@ -317,7 +281,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             // ignore files/folders of which name starts with "_"
             if fileURL.lastPathComponent.hasPrefix("_") { continue }
         
-            let title = self.scriptName(fromURL: fileURL)
+            let title = self.scriptName(from: fileURL)
             
             if title == String.separator {
                 menu.addItem(NSMenuItem.separator())
@@ -353,13 +317,12 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     /// build menu item title from file/folder name
-    private func scriptName(fromURL url: URL) -> String {
+    private func scriptName(from url: URL) -> String {
         
-        var scriptName = url.deletingPathExtension().lastPathComponent
+        let filename = url.deletingPathExtension().lastPathComponent
         
         // remove the number prefix ordering
-        let regex = try! NSRegularExpression(pattern: "^[0-9]+\\)")
-        scriptName = regex.stringByReplacingMatches(in: scriptName, range: scriptName.nsRange, withTemplate: "")
+        var scriptName = filename.replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)
         
         // remove keyboard shortcut definition
         let specChars = ModifierKey.all.map { $0.keySpecChar }
@@ -385,20 +348,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// display alert message
-    private func showAlert(message: String) {
-        
-        let alert = NSAlert()
-        alert.messageText = NSLocalizedString("Script Error", comment: "")
-        alert.informativeText = message
-        alert.alertStyle = NSCriticalAlertStyle
-        
-        DispatchQueue.main.async {
-            alert.runModal()
-        }
-    }
-    
-    
     /// read content of script file
     private func contentStringOfScript(url: URL) -> String? {
         
@@ -416,34 +365,70 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// run AppleScript
-    private func runAppleScript(url: URL) {
+    /// run script file at url
+    /// - throws: ScriptFileError
+    private func runScript(url fileURL: URL) throws {
         
-        let task: NSUserAppleScriptTask
-        do {
-            task = try NSUserAppleScriptTask(url: url)
-        } catch let error {
-            self.showAlert(message: error.localizedDescription)
+        // display alert and endup if file not exists
+        guard fileURL.isReachable else {
+            throw ScriptFileError(kind: .existance, url: fileURL)
+        }
+        
+        let pathExtension = fileURL.pathExtension
+        
+        // change behavior if modifier key is pressed
+        let modifierFlags = NSEvent.modifierFlags()
+        if modifierFlags == .option {  // open script file in editor if the Option key is pressed
+            let identifier = self.AppleScriptExtensions.contains(pathExtension) ? BundleIdentifier.ScriptEditor : Bundle.main.bundleIdentifier!
+            guard NSWorkspace.shared().open([fileURL], withAppBundleIdentifier: identifier, additionalEventParamDescriptor: nil, launchIdentifiers: nil) else {
+                // display alert if cannot open/select the script file
+                throw ScriptFileError(kind: .open, url: fileURL)
+            }
+            return
+            
+        } else if modifierFlags == [.option, .shift] {  // reveal on Finder if the Option+Shift keys are pressed
+            NSWorkspace.shared().activateFileViewerSelecting([fileURL])
             return
         }
         
+        // run AppleScript
+        if self.AppleScriptExtensions.contains(pathExtension) {
+            try self.runAppleScript(url: fileURL)
+            
+            // run Shell Script
+        } else if self.scriptExtensions.contains(pathExtension) {
+            try self.runShellScript(url: fileURL)
+        }
+    }
+    
+    
+    /// run AppleScriptrunAppleScript
+    /// - throws: Error by NSUserScriptTask
+    private func runAppleScript(url: URL) throws {
+        
+        let task = try NSUserAppleScriptTask(url: url)
+        
         task.execute(withAppleEvent: nil, completionHandler: { [weak self] (result: NSAppleEventDescriptor?, error: Error?) in
             if let error = error {
-                self?.showAlert(message: error.localizedDescription)
+                self?.writeToConsole(message: error.localizedDescription, scriptURL: url)
             }
-            })
+        })
     }
     
     
     /// run UNIX script
-    private func runShellScript(url: URL) {
+    /// - throws: ScriptFileError or Error by NSUserScriptTask
+    private func runShellScript(url: URL) throws {
+        
+        // display alert if script file doesn't have execution permission
+        guard url.isExecutable ?? false else {
+            throw ScriptFileError(kind: .permission, url: url)
+        }
         
         // show an alert and endup if script file cannot read
         guard let script = self.contentStringOfScript(url: url), !script.isEmpty else {
-            self.showAlert(message: String(format: NSLocalizedString("The script “%@” couldn’t be read.", comment: ""), url.lastPathComponent))
-            return
+            throw ScriptFileError(kind: .read, url: url)
         }
-        let scriptName = self.scriptName(fromURL: url)
         
         // hold target document
         weak var document = NSDocumentController.shared().currentDocument as? Document
@@ -454,7 +439,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             do {
                 input = try self.inputString(type: inputType, editor: document)
             } catch let error {
-                self.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
+                self.writeToConsole(message: error.localizedDescription, scriptURL: url)
                 return
             }
         }
@@ -469,13 +454,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         }()
         
         // create task
-        let task: NSUserUnixTask
-        do {
-            task = try NSUserUnixTask(url: url)
-        } catch let error {
-            self.showAlert(message: error.localizedDescription)
-            return
-        }
+        let task = try NSUserUnixTask(url: url)
         
         // set pipes
         let inPipe = Pipe()
@@ -510,7 +489,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 do {
                     try self?.applyOutput(output, editor: document, type: outputType)
                 } catch let error {
-                    self?.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
+                    self?.writeToConsole(message: error.localizedDescription, scriptURL: url)
                 }
             }
         }
@@ -526,19 +505,21 @@ final class ScriptManager: NSObject, NSFilePresenter {
             //set error message to the sconsole
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
             if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
-                DispatchQueue.main.async {
-                    self?.writeToConsole(message: message, scriptName: scriptName)
-                }
+                self?.writeToConsole(message: message, scriptURL: url)
             }
         }
     }
     
     
     /// append message to console panel and show it
-    private func writeToConsole(message: String, scriptName: String) {
+    private func writeToConsole(message: String, scriptURL: URL) {
         
-        ConsolePanelController.shared.showWindow(self)
-        ConsolePanelController.shared.append(message: message, title: scriptName)
+        let scriptName = self.scriptName(from: scriptURL)
+        
+        DispatchQueue.main.async {
+            ConsolePanelController.shared.showWindow(nil)
+            ConsolePanelController.shared.append(message: message, title: scriptName)
+        }
     }
 
 }
@@ -549,12 +530,59 @@ final class ScriptManager: NSObject, NSFilePresenter {
 
 private enum ScriptError: Error {
     
-    case noTarget
+    case noInputTarget
+    case noOutputTarget
     
     
-    private var localizedDescription: String {
+    var localizedDescription: String {
         
-        return NSLocalizedString("No document to get input.", comment: "")
+        switch self {
+        case .noInputTarget:
+            return NSLocalizedString("No document to get input.", comment: "")
+        case .noOutputTarget:
+            return NSLocalizedString("No document to put output.", comment: "")
+        }
+    }
+    
+}
+
+
+private struct ScriptFileError: LocalizedError {
+    
+    enum ErrorKind {
+        case existance
+        case read
+        case open
+        case permission
+    }
+    
+    let kind: ErrorKind
+    let url: URL
+    
+    
+    var errorDescription: String? {
+        
+        switch self.kind {
+        case .existance:
+            return String(format: NSLocalizedString("The script “%@” does not exist.", comment: ""), self.url.lastPathComponent)
+        case .read:
+            return String(format: NSLocalizedString("The script “%@” couldn’t be read.", comment: ""), self.url.lastPathComponent)
+        case .open:
+            return String(format: NSLocalizedString("The script file “%@” couldn’t be opened.", comment: ""), self.url.path)
+        case .permission:
+            return String(format: NSLocalizedString("The script “%@” can’t be executed because you don’t have the execute permission.", comment: ""), self.url.lastPathComponent)
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        switch self.kind {
+        case .permission:
+            return NSLocalizedString("Check permission of the script file.", comment: "")
+        default:
+            return NSLocalizedString("Check the script file.", comment: "")
+        }
     }
     
 }
