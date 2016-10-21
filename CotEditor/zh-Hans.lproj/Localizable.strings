@@ -472,6 +472,10 @@
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "使用 “Option + 单击” 在编辑器中打开脚本。";
 
+
+
+/* MARK: Script */
+
 // No script target document errors
 "No document to get input." = "没有输入文档。";
 "No document to put output." = "没有输出文档。";

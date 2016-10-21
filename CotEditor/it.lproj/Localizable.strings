@@ -472,6 +472,10 @@
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "“Alt/Opt + Click” per aprire nell’editor degli script.";
 
+
+
+/* MARK: Script */
+
 // No script target document errors
 "No document to get input." = "Nessun documento da cui ottenere dati.";
 "No document to put output." = "Nessun documento dove salvare il risultato.";
