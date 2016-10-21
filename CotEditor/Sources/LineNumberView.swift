@@ -176,12 +176,12 @@ final class LineNumberView: NSRulerView {
         
         // adjust text drawing coordinate
         let relativePoint = self.convert(NSPoint.zero, from: textView)
-        let inset = textView.textContainerOrigin
+        let inset = textView.textContainerOrigin.scaled(to: scale)
         var transform = CGAffineTransform(scaleX: 1.0, y: -1.0)  // flip
         if isVerticalText {
-            transform = transform.translatedBy(x: round(relativePoint.x - scale * inset.y - ascent), y: -ruleThickness)
+            transform = transform.translatedBy(x: round(relativePoint.x - inset.y - ascent), y: -ruleThickness)
         } else {
-            transform = transform.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - scale * inset.y - ascent)
+            transform = transform.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - inset.y - ascent)
         }
         context.textMatrix = transform
         
@@ -230,6 +230,7 @@ final class LineNumberView: NSRulerView {
         func drawWrappedMark(y: CGFloat) {
             
             let position = CGPoint(x: ruleThickness - charWidth, y: y)
+            
             context.showGlyphs([wrappedMarkGlyph], at: [position])
         }
         
