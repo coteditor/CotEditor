@@ -63,10 +63,13 @@ let DefaultEncodings: [UInt32] = [
     
     UInt32(CFStringEncodings.macArabic.rawValue),  // Arabic (Mac OS)
     UInt32(CFStringEncodings.isoLatinArabic.rawValue),  // Arabic (ISO 8859-6)
+    UInt32(CFStringEncodings.windowsArabic.rawValue), // Arabic (Windows)
     UInt32(CFStringEncodings.macGreek.rawValue),  // Greek (Mac OS)
     UInt32(CFStringEncodings.isoLatinGreek.rawValue),  // Greek (ISO 8859-7)
+    UInt32(CFStringEncodings.windowsGreek.rawValue),  // Greek (Windows)
     UInt32(CFStringEncodings.macHebrew.rawValue),  // Hebrew (Mac OS)
     UInt32(CFStringEncodings.isoLatinHebrew.rawValue),  // Hebrew (ISO 8859-8)
+    UInt32(CFStringEncodings.windowsHebrew.rawValue),  // Hebrew (Windows)
     UInt32(CFStringEncodings.macCyrillic.rawValue),  // Cyrillic (Mac OS)
     UInt32(CFStringEncodings.isoLatinCyrillic.rawValue),  // Cyrillic (ISO 8859-5)
     UInt32(CFStringEncodings.windowsCyrillic.rawValue),  // Cyrillic (Windows)

@@ -5,6 +5,14 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):
+    - Arabic (Windows)
+    - Greek (Windows)
+    - Hebrew (Windows)
+
+
 ### Improvements
 
 - Adjust glyph size calculation.
