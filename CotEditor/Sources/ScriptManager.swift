@@ -150,7 +150,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         menu.removeAllItems()
         
-        self.addChildFileItem(to: menu, fromDirctory: self.scriptsDirectoryURL)
+        self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
         if !menu.items.isEmpty {
             menu.addItem(NSMenuItem.separator())
@@ -214,25 +214,25 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Private Methods
     
     /// read files and create/add menu items
-    private func addChildFileItem(to menu: NSMenu, fromDirctory directoryURL: URL) {
+    private func addChildFileItem(to menu: NSMenu, in directoryURL: URL) {
         
-        guard let fileURLs = try? FileManager.default.contentsOfDirectory(at: directoryURL,
-                                                                          includingPropertiesForKeys: [.fileResourceTypeKey],
-                                                                          options: [.skipsPackageDescendants, .skipsHiddenFiles])
+        guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL,
+                                                                      includingPropertiesForKeys: [.fileResourceTypeKey],
+                                                                      options: [.skipsPackageDescendants, .skipsHiddenFiles])
             else { return }
         
-        for fileURL in fileURLs {
+        for url in urls {
             // ignore files/folders of which name starts with "_"
-            if fileURL.lastPathComponent.hasPrefix("_") { continue }
+            if url.lastPathComponent.hasPrefix("_") { continue }
         
-            let title = self.scriptName(from: fileURL)
+            let title = self.scriptName(from: url)
             
             if title == String.separator {
                 menu.addItem(NSMenuItem.separator())
                 continue
             }
             
-            guard let resourceType = (try? fileURL.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
+            guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
             
             switch resourceType {
             case URLFileResourceType.directory:
@@ -241,15 +241,15 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
                 menu.addItem(item)
                 item.submenu = submenu
-                self.addChildFileItem(to: submenu, fromDirctory: fileURL)
+                self.addChildFileItem(to: submenu, in: url)
                 
             case URLFileResourceType.regular:
-                guard (AppleScript.extensions + ShellScript.extensions).contains(fileURL.pathExtension) else { continue }
+                guard (AppleScript.extensions + ShellScript.extensions).contains(url.pathExtension) else { continue }
                 
-                let shortcut = self.shortcut(from: fileURL)
+                let shortcut = self.shortcut(from: url)
                 let item = NSMenuItem(title: title, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
                 item.keyEquivalentModifierMask = shortcut.modifierMask
-                item.representedObject = fileURL
+                item.representedObject = url
                 item.target = self
                 item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
                 menu.addItem(item)
@@ -269,11 +269,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
         var scriptName = filename.replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)
         
         // remove keyboard shortcut definition
-        let specChars = ModifierKey.all.map { $0.keySpecChar }
-        if let firstExtensionChar = scriptName.components(separatedBy: ".").last?.characters.first,
-            specChars.contains(String(firstExtensionChar))
+        if let keySpecChars = scriptName.components(separatedBy: ".").last,
+            ModifierKey.all.contains(where: { keySpecChars.hasPrefix($0.keySpecChar) })
         {
-            scriptName = scriptName.components(separatedBy: ".").first!
+            scriptName = scriptName.components(separatedBy: ".").first ?? scriptName
         }
         
         return scriptName
@@ -281,9 +280,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     /// get keyboard shortcut from file name
-    private func shortcut(from fileURL: URL) -> Shortcut {
+    private func shortcut(from url: URL) -> Shortcut {
         
-        let keySpecChars = fileURL.deletingPathExtension().pathExtension
+        let keySpecChars = url.deletingPathExtension().pathExtension
         let shortcut = Shortcut(keySpecChars: keySpecChars)
         
         guard !shortcut.modifierMask.isEmpty else { return .none }
