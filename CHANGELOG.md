@@ -17,6 +17,8 @@ develop
 
 - Adjust glyph size calculation.
 - Improve performance of Find All and Replace All.
+- Disable customizing key bindings for window tabbing actions.
+    - Because it's impossible to handle them correctly.
 - Update “Swift” syntax style to add some missing keywords.
 - Improve error message on script error.
 
