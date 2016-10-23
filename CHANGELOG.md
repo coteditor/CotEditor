@@ -31,6 +31,7 @@ develop
 - Fix an issue where status bar layout collapsed if status line overflows.
 - Fix an issue where document theme reloaded unnecessarily on the first time Appearances pane display.
 - Fix an issue where application could crash when script was failed.
+- Fix an issue where scrolling to the end of document with `⌘`+`↓` shortcut didn't scroll to the end.
 - Improve general stability.
 
 

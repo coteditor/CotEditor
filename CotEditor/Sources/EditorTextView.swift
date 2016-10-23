@@ -577,7 +577,8 @@ final class EditorTextView: NSTextView, Themable {
     override func scrollRangeToVisible(_ range: NSRange) {
         
         // scroll line by line if an arrow key is pressed
-        if NSEvent.modifierFlags().contains(NSNumericPadKeyMask),
+        if NSEvent.modifierFlags().contains(.numericPad),
+            !NSEvent.modifierFlags().contains(.command),  // Command + Arrow is scroll to the end of contents
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
