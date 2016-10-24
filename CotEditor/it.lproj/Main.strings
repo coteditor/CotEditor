@@ -514,7 +514,7 @@
 "822.title" = "Note di rilascio";
 /* Class = "NSMenuItem"; title = "What’s New in CotEditor 3.0"; ObjectID = "DCW-Ij-540"; */
 "DCW-Ij-540.title" = "Cosa c’è di nuovo in CotEditor 3.0";
-/* Class = "NSMenuItem"; title = "Acknowledgements"; ObjectID = "824"; */
+/* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "Ringraziamenti";
 
 /* Class = "NSMenuItem"; title = "Create Bug Report…"; ObjectID = "iHn-Ed-A8u"; */

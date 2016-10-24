@@ -1036,10 +1036,10 @@ CA
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="bTD-Xs-Jm8"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Acknowledgements" id="824">
+                                        <menuItem title="Acknowledgments" id="824">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="showAcknowledgements:" target="Voe-Tx-rLC" id="wPZ-rk-6yX"/>
+                                                <action selector="showAcknowledgments:" target="Voe-Tx-rLC" id="wPZ-rk-6yX"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
