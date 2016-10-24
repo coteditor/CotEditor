@@ -82,7 +82,7 @@ final class ThemeManager: SettingFileManager {
             semaphore.signal()
         }
         while semaphore.wait(timeout: .now()) == .timedOut {
-            RunLoop.current.run(mode: .defaultRunLoopMode, before: Date.distantFuture)
+            RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
         }
     }
     
@@ -298,7 +298,7 @@ final class ThemeManager: SettingFileManager {
             DispatchQueue.main.sync {
                 // post notification
                 if isListUpdated {
-                    NotificationCenter.default.post(name: .ThemeListDidUpdate, object: strongSelf)
+                    NotificationCenter.default.post(name: .ThemeListDidUpdate, object: self)
                 }
                 
                 completionHandler?()

@@ -28,72 +28,6 @@
 
 import Cocoa
 
-enum MainMenu: Int {
-    
-    case application
-    case file
-    case edit
-    case view
-    case format
-    case text
-    case find
-    case window
-    case script
-    case help
-    
-    
-    enum MenuItemTag: Int {
-        case services = 999  // not to list up in "Menu Key Bindings" setting
-        case recentDocumentsDirectory = 2999  // not to list up in "Menu Key Bindings" setting
-        case sharingService = 1999
-        case scriptDirectory = 8999  // not to list up in "Menu Key Bindings" setting
-    }
-    
-    
-    var menu: NSMenu? {
-        
-        return NSApp.mainMenu?.item(at: self.rawValue)?.submenu
-    }
-}
-
-
-private struct Help {
-    
-    static let anchors = [
-        "releasenotes",
-        "pref_general",
-        "pref_window",
-        "pref_appearance",
-        "pref_edit",
-        "pref_format",  // 5
-        "pref_filedrop",
-        "pref_keybindings",
-        "pref_print",
-        "whats_new",
-        "specification_changes",  // 10
-        "howto_customize_scriptmenu",
-        "about_applescript",
-        "about_unixscript",
-        "pref_integration",
-        "about_file_mapping",  // 15
-        "about_cot",
-        "about_syntaxstyle",
-        "about_comment_settings",
-        "about_outlinemenu_settings",
-        "about_complist_settings",  // 20
-        "about_file_mapping",
-        "about_styleinfo_settings",
-        "howto_findpanel",
-    ]
-}
-
-
-// constants
-private let ScriptEditorIdentifier = "com.apple.ScriptEditor2"
-
-
-// MARK:
-
 @NSApplicationMain
 final class AppDelegate: NSResponder, NSApplicationDelegate {
     
@@ -306,14 +240,14 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     }
     
     
-    /// Show preferences window
+    /// show preferences window
     @IBAction func showPreferences(_ sender: Any?) {
         
         PreferencesWindowController.shared.showWindow(sender)
     }
     
     
-    /// Show console panel
+    /// show console panel
     @IBAction func showConsolePanel(_ sender: Any?) {
         
         ConsolePanelController.shared.showWindow(sender)
@@ -346,7 +280,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         
         let appURL = Bundle.main.bundleURL
         
-        NSWorkspace.shared().open([appURL], withAppBundleIdentifier: ScriptEditorIdentifier,
+        NSWorkspace.shared().open([appURL], withAppBundleIdentifier: BundleIdentifier.ScriptEditor,
                                   additionalEventParamDescriptor: nil, launchIdentifiers: nil)
     }
     

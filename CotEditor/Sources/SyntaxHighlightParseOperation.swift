@@ -571,7 +571,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             highlights[syntaxType] = ranges
             
             // progress indicator
-            DispatchQueue.syncOnMain {
+            DispatchQueue.main.async { [weak childProgress] in
+                guard let childProgress = childProgress else { return }
                 childProgress.completedUnitCount = childProgress.totalUnitCount
             }
             totalProgress.resignCurrent()
@@ -580,9 +581,9 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         guard !self.isCancelled else { return [:] }
         
         // comments and quoted text
-        DispatchQueue.syncOnMain {
-            totalProgress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
-                                                        NSLocalizedString("comments and quoted texts", comment: ""))
+        DispatchQueue.main.async { [weak totalProgress] in
+            totalProgress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
+                                                         NSLocalizedString("comments and quoted texts", comment: ""))
         }
         let commentAndQuoteRanges = self.extractCommentsWithQuotes()
         for (key, value) in commentAndQuoteRanges {
@@ -597,8 +598,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         
         let sanitized = sanitize(highlights: highlights)
         
-        DispatchQueue.syncOnMain {
-            totalProgress.completedUnitCount += 1  // = total - 1
+        DispatchQueue.main.async { [weak totalProgress] in
+            totalProgress?.completedUnitCount += 1  // = total - 1
         }
         
         return sanitized

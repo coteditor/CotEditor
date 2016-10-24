@@ -2,7 +2,40 @@
 Change Log
 ==========================
 
-develop
+3.0.3 (165)
+--------------------------
+
+### New Features
+
+- Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):
+    - Arabic (Windows)
+    - Greek (Windows)
+    - Hebrew (Windows)
+
+
+### Improvements
+
+- Adjust glyph size calculation.
+- Improve performance of Find All and Replace All.
+- Disable customizing key bindings for window tabbing actions (Because it's impossible to handle them correctly.)
+- Update “Swift” syntax style to add some missing keywords.
+- Improve error message on script error.
+
+
+### Fixes
+
+- Fix an issue where default syntax style didn't highlight document until the first save.
+- Fix an issue where selection range after some text actions was wrong.
+- Fix an issue where document icons were blurry in non-Retina display.
+- Fix an issue where status bar layout collapsed if status line overflows.
+- Fix an issue where document theme reloaded unnecessarily on the first time Appearances pane display.
+- Fix an issue where application could crash when script was failed.
+- Fix an issue where scrolling to the end of document with `⌘`+`↓` shortcut didn't scroll to the end.
+- Improve general stability.
+
+
+
+3.0.2 (163)
 --------------------------
 
 ### Fixes
@@ -219,6 +252,7 @@ develop
 - Improve scrolling with line number view drag.
 - Better syntax highlighting while editing.
 - Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.
+- Update build environment to macOS Sierra +  Xcode 8 (SDK macOS 10.12).
 
 
 ### Fixes

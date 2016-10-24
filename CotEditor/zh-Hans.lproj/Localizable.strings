@@ -472,18 +472,23 @@
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "使用 “Option + 单击” 在编辑器中打开脚本。";
 
+
+
+/* MARK: Script */
+
 // No script target document errors
 "No document to get input." = "没有输入文档。";
 "No document to put output." = "没有输出文档。";
 
-// Script error alert message
-"Script Error" = "脚本错误";
-
-// Script error alert informatives
+// Script file error description
 "The script “%@” does not exist." = "脚本“%@”不存在。";
 "The script file “%@” couldn’t be opened." = "无法打开脚本文件“%@”。";
-"The script “%@” can’t be executed because you don’t have the execute permission.\n\nCheck permission of the script file." = "由于没有执行权限，无法执行脚本“%@”。\n\n请确认脚本文件的权限。";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "由于没有执行权限，无法执行脚本“%@”。";
 "The script “%@” couldn’t be read." = "无法读取脚本“%@”。";
+
+// Script file error recovery suggestions
+"Check the script file." = "请确认脚本文件。";
+"Check permission of the script file." = "请确认脚本文件的权限。";
 
 
 

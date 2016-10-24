@@ -111,6 +111,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         self.lineEnding = LineEnding(index: Defaults[.lineEndCharCode]) ?? .LF
         self.syntaxStyle = SyntaxManager.shared.style(name: Defaults[.syntaxStyle]) ?? SyntaxStyle()
+        self.syntaxStyle.textStorage = self.textStorage
         
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
@@ -920,9 +921,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change syntax style with style name
     func setSyntaxStyle(name: String?) {
         
-        guard let name = name, !name.isEmpty else { return }
-        
-        guard let syntaxStyle = SyntaxManager.shared.style(name: name), syntaxStyle != self.syntaxStyle else { return }
+        guard
+            let name = name, !name.isEmpty,
+            let syntaxStyle = SyntaxManager.shared.style(name: name),
+            syntaxStyle != self.syntaxStyle
+            else { return }
         
         self.syntaxStyle.cancelAllParses()
         

@@ -243,9 +243,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         // update default theme setting
         // -> skip on the first time because, at the time point, the settings are not yet applied.
-        if self.themeViewController != nil {
-            let oldThemeName = Defaults[.theme]!
-            
+        if self.themeViewController != nil, let oldThemeName = Defaults[.theme], oldThemeName != themeName {
             Defaults[.theme] = themeName
             
             // update theme of the current document windows

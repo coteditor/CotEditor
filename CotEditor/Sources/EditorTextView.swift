@@ -117,7 +117,6 @@ final class EditorTextView: NSTextView, Themable {
         
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
-        layoutManager.usesScreenFonts = true
         layoutManager.allowsNonContiguousLayout = true
         self.textContainer!.replaceLayoutManager(layoutManager)
         
@@ -321,8 +320,10 @@ final class EditorTextView: NSTextView, Themable {
                 let currentLevel = wholeString.indentLevel(at: insretionIndex, tabWidth: self.tabWidth)
                 let levelToReduce = currentLevel - desiredLevel
                 
-                for _ in 0..<levelToReduce {
-                    self.deleteBackward(self)
+                if levelToReduce > 0 {
+                    for _ in 0..<levelToReduce {
+                        self.deleteBackward(nil)
+                    }
                 }
             }
         }
@@ -576,7 +577,8 @@ final class EditorTextView: NSTextView, Themable {
     override func scrollRangeToVisible(_ range: NSRange) {
         
         // scroll line by line if an arrow key is pressed
-        if NSEvent.modifierFlags().contains(NSNumericPadKeyMask),
+        if NSEvent.modifierFlags().contains(.numericPad),
+            !NSEvent.modifierFlags().contains(.command),  // Command + Arrow is scroll to the end of contents
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
@@ -1091,9 +1093,9 @@ final class EditorTextView: NSTextView, Themable {
         paragraphStyle.lineHeightMultiple = self.lineHeight.rounded(to: 5)
         
         // calculate tab interval
-        if let font = self.font, let displayFont = self.layoutManager?.substituteFont(for: font) {
+        if let font = self.font {
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * displayFont.advancement(character: " ").width
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.advancement(character: " ").width
         }
         
         self.defaultParagraphStyle = paragraphStyle

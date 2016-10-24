@@ -46,3 +46,9 @@ extension String.Encoding {
     /// original special encoding type
     static let autoDetection = String.Encoding(rawValue: 0)
 }
+
+
+enum BundleIdentifier {
+    
+    static let ScriptEditor = "com.apple.ScriptEditor2"
+}

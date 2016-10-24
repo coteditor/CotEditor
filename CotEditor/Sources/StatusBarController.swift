@@ -176,6 +176,11 @@ final class StatusBarController: NSViewController {
             status.appendFormattedState(value: info.column, label: "Column")
         }
         
+        // truncate tail
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = .byTruncatingTail
+        status.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: status.string.nsRange)
+        
         self.editorStatus = status
     }
     

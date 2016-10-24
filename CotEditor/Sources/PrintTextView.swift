@@ -90,7 +90,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         // replace layoutManager
         let layoutManager = LayoutManager()
         layoutManager.delegate = self
-        layoutManager.usesScreenFonts = false
         self.textContainer!.replaceLayoutManager(layoutManager)
     }
     

@@ -314,8 +314,8 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let informativeFormat = (results.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
-                DispatchQueue.main.sync {
-                    progress.localizedDescription = informative
+                DispatchQueue.main.async { [weak progress] in
+                    progress?.localizedDescription = informative
                 }
                 })
             
@@ -406,8 +406,8 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let informativeFormat = (highlights.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
-                DispatchQueue.main.sync {
-                    progress.localizedDescription = informative
+                DispatchQueue.main.async { [weak progress] in
+                    progress?.localizedDescription = informative
                 }
                 })
             
@@ -544,8 +544,8 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let informativeFormat = (count == 1) ? "%@ string replaced." : "%@ strings replaced."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
                                          integerFormatter.string(from: NSNumber(integerLiteral: count))!)
-                DispatchQueue.main.sync {
-                    progress.localizedDescription = informative
+                DispatchQueue.main.async { [weak progress] in
+                    progress?.localizedDescription = informative
                 }
                 
                 }, scopeCompletionHandler: { (scopeRange: NSRange) in
