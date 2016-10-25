@@ -213,6 +213,25 @@ final class DocumentController: NSDocumentController {
     }
     
     
+    /// open a new document as new window
+    @available(macOS 10.12, *)
+    @IBAction func newDocumentAsWindow(_ sender: Any?) {
+        
+        let document: NSDocument
+        do {
+            document = try self.openUntitledDocumentAndDisplay(false)
+        } catch let error {
+            self.presentError(error)
+            return
+        }
+        
+        AlphaWindow.tabbingPreference = .manual
+        document.makeWindowControllers()
+        document.showWindows()
+        AlphaWindow.tabbingPreference = nil
+    }
+    
+    
     /// open a new document as tab in the existing frontmost window
     @available(macOS 10.12, *)
     @IBAction func newDocumentAsTab(_ sender: Any?) {

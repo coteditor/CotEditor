@@ -43,12 +43,15 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     }
     
     
+    // MARK: Public Properties
+    
+    dynamic let supportsWindowTabbing: Bool  // binded also in Window pref pane
+    
+    
     // MARK: Private Properties
     
     private var didFinishLaunching = false
     private lazy var acknowledgmentsWindowController = WebDocumentWindowController(documentName: "Acknowledgments")!
-    
-    private dynamic let supportsWindowTabbing: Bool
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?

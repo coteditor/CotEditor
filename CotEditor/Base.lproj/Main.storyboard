@@ -71,6 +71,16 @@
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="82J-OW-zaP"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="New Window" keyEquivalent="N" id="cTV-Rh-597">
+                                            <connections>
+                                                <action selector="newDocumentAsWindow:" target="Ady-hI-5gd" id="O1V-BQ-IdO"/>
+                                                <binding destination="Voe-Tx-rLC" name="hidden" keyPath="supportsWindowTabbing" id="wEu-ms-ha8">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="New Tab" keyEquivalent="t" id="WCp-4v-OPR">
                                             <connections>
                                                 <action selector="newDocumentAsTab:" target="Ady-hI-5gd" id="S8W-T4-6Jr"/>
@@ -81,6 +91,7 @@
                                                 </binding>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="ahO-Ic-gXg"/>
                                         <menuItem title="Open…" keyEquivalent="o" id="72">
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="hxD-kB-kqu"/>
