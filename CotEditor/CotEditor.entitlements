@@ -12,5 +12,9 @@
 	<true/>
 	<key>com.apple.security.print</key>
 	<true/>
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<array>
+		<string>com.red-sweater.marsedit</string>
+	</array>
 </dict>
 </plist>

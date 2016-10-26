@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Fix an issue where MarsEdit didn't update its contents after closing the document in CotEditor.
+
+
+
 3.0.3 (165)
 --------------------------
 

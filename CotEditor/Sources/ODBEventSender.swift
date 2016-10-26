@@ -25,89 +25,80 @@
  
  */
 
-import Cocoa
+import Foundation
+
+enum ODBEventType {
+    
+    case modified
+    case newLocation
+    case closed
+    
+    
+    var eventID: AEEventID {
+        
+        switch self {
+        case .modified: return kAEModifiedFile
+        case .newLocation: return keyNewLocation
+        case .closed: return kAEClosedFile
+        }
+    }
+    
+}
+
+
+
+// MARK: -
 
 final class ODBEventSender {
     
     // MARK: Private Properties
     
-    private let fileSender: NSAppleEventDescriptor?
-    private let fileToken: NSAppleEventDescriptor?
+    private let senderData: Data
+    private let token: NSAppleEventDescriptor?
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
-    init() {
+    init?(event descriptor: NSAppleEventDescriptor) {
         
-        let descriptor = NSAppleEventManager.shared().currentAppleEvent
+        guard
+            let sender = descriptor.paramDescriptor(forKeyword: keyFileSender),
+            sender.typeCodeValue != 0
+            else { return nil }
         
-        var fileSender, fileToken: NSAppleEventDescriptor?
-        
-        fileSender = descriptor?.paramDescriptor(forKeyword: keyFileSender)
-        
-        if fileSender != nil {
-            fileToken = descriptor?.paramDescriptor(forKeyword: keyFileSenderToken)
-            
-        } else {
-            let aePropDescriptor = descriptor?.paramDescriptor(forKeyword: keyAEPropData)
-            fileSender = aePropDescriptor?.paramDescriptor(forKeyword: keyFileSender)
-            fileToken = aePropDescriptor?.paramDescriptor(forKeyword: keyFileSenderToken)
-        }
-        
-        self.fileSender = fileSender
-        self.fileToken = (fileSender != nil) ? fileToken : nil
+        self.senderData = sender.data
+        self.token = descriptor.paramDescriptor(forKeyword: keyFileSenderToken)
     }
     
     
     
     // MARK: Public Methods
     
-    /// notify the file update to the file client
-    func sendModifiedEvent(fileURL: URL, operation: NSSaveOperationType)  {
-        
-        let type = (operation == .saveAsOperation) ? keyNewLocation : kAEModifiedFile
-        
-        self.sendEvent(type: type, fileURL: fileURL)
-    }
-    
-    
-    /// nofity the file closing to the file client
-    func sendCloseEvent(fileURL: URL) {
-        
-        self.sendEvent(type: kAEClosedFile, fileURL: fileURL)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
     /// send a notification to the file client
-    private func sendEvent(type eventType: AEEventID, fileURL: URL) {
+    @discardableResult
+    func sendEvent(type: ODBEventType, fileURL: URL) -> Bool {
         
-        guard var creatorCode = self.fileSender?.typeCodeValue, creatorCode != 0 else { return }
-        
-        let creatorDescriptor = NSAppleEventDescriptor(descriptorType: typeApplSignature,
-                                                       bytes: &creatorCode,
-                                                       length: MemoryLayout<OSType>.size)
-        
-        let eventDescriptor = NSAppleEventDescriptor.appleEvent(withEventClass: 0,
-                                                                eventID: eventType,
-                                                                targetDescriptor: creatorDescriptor,
-                                                                returnID: AEReturnID(kAutoGenerateReturnID),
-                                                                transactionID: AETransactionID(kAnyTransactionID))
+        let target = NSAppleEventDescriptor(descriptorType: typeApplSignature, data: self.senderData)
+        let event = NSAppleEventDescriptor.appleEvent(withEventClass: kODBEditorSuite,
+                                                      eventID: type.eventID,
+                                                      targetDescriptor: target,
+                                                      returnID: AEReturnID(kAutoGenerateReturnID),
+                                                      transactionID: AETransactionID(kAnyTransactionID))
         
         let urlData = fileURL.absoluteString.data(using: .utf8)
         if let fileDescriptor = NSAppleEventDescriptor(descriptorType: typeFileURL, data: urlData) {
-            eventDescriptor.setParam(fileDescriptor, forKeyword: keyDirectObject)
+            event.setParam(fileDescriptor, forKeyword: keyDirectObject)
         }
         
-        if let fileToken = self.fileToken {
-            eventDescriptor.setParam(fileToken, forKeyword: keySenderToken)
+        if let token = self.token {
+            event.setParam(token, forKeyword: keySenderToken)
         }
         
-        AESendMessage(eventDescriptor.aeDesc, nil, AESendMode(kAENoReply), kAEDefaultTimeout)
+        let err = AESendMessage(event.aeDesc, nil, AESendMode(kAENoReply), kAEDefaultTimeout)
+        
+        return (err == noErr)
     }
     
 }
