@@ -27,29 +27,28 @@
 
 import Foundation
 
-enum ODBEventType {
+final class ODBEventSender {
     
-    case modified
-    case newLocation
-    case closed
+    // MARK: Enum
     
-    
-    var eventID: AEEventID {
+    enum EventType {
         
-        switch self {
-        case .modified: return kAEModifiedFile
-        case .newLocation: return keyNewLocation
-        case .closed: return kAEClosedFile
+        case modified
+        case newLocation
+        case closed
+        
+        
+        var eventID: AEEventID {
+            
+            switch self {
+            case .modified: return kAEModifiedFile
+            case .newLocation: return keyNewLocation
+            case .closed: return kAEClosedFile
+            }
         }
+        
     }
     
-}
-
-
-
-// MARK: -
-
-final class ODBEventSender {
     
     // MARK: Private Properties
     
@@ -78,7 +77,7 @@ final class ODBEventSender {
     
     /// send a notification to the file client
     @discardableResult
-    func sendEvent(type: ODBEventType, fileURL: URL) -> Bool {
+    func sendEvent(type: EventType, fileURL: URL) -> Bool {
         
         let target = NSAppleEventDescriptor(descriptorType: typeApplSignature, data: self.senderData)
         let event = NSAppleEventDescriptor.appleEvent(withEventClass: kODBEditorSuite,
