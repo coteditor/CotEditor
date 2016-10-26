@@ -436,7 +436,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 strongSelf.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
-                let odbEventType: ODBEventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
+                let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
                 strongSelf.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
         }
