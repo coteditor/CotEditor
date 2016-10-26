@@ -436,7 +436,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 strongSelf.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
-                strongSelf.odbEventSender?.sendModifiedEvent(fileURL: url, operation: saveOperation)
+                let odbEventType: ODBEventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
+                strongSelf.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
         }
     }
@@ -564,7 +565,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // send file close notification for the external editor protocol (ODB Editor Suite)
         if let fileURL = self.fileURL {
-            self.odbEventSender?.sendCloseEvent(fileURL: fileURL)
+            self.odbEventSender?.sendEvent(type: .closed, fileURL: fileURL)
         }
         
         super.close()
@@ -733,9 +734,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
             self.isVerticalText = ((attributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
         }
+    }
+    
+    
+    /// setup ODB editor event sender
+    func registerDocumnentOpenEvent(_ event: NSAppleEventDescriptor) {
         
-        // set sender of external editor protocol (ODB Editor Suite)
-        self.odbEventSender = ODBEventSender()
+        self.odbEventSender = ODBEventSender(event: event)
     }
     
     

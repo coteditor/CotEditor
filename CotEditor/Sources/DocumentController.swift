@@ -31,6 +31,7 @@ import Cocoa
 protocol AdditionalDocumentPreparing: class {
     
     func didMakeDocumentForExisitingFile(url: URL)
+    func registerDocumnentOpenEvent(_ event: NSAppleEventDescriptor)
 }
 
 
@@ -75,6 +76,22 @@ final class DocumentController: NSDocumentController {
     
     
     // MARK: Document Controller Methods
+    
+    /// listen document open event of the ODB editor protocol
+    override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
+        
+        // -> Need to fetch AppleEvent at this moment.
+        let openEvent = NSAppleEventManager.shared().currentAppleEvent
+        
+        super.openDocument(withContentsOf: url, display: displayDocument) { (document, documentWasAlreadyOpen, error) in
+            if let openEvent = openEvent {
+                (document as? AdditionalDocumentPreparing)?.registerDocumnentOpenEvent(openEvent)
+            }
+            
+            completionHandler(document, documentWasAlreadyOpen, error)
+        }
+    }
+    
     
     /// check file before creating a new document instance
     override func makeDocument(withContentsOf url: URL, ofType typeName: String) throws -> NSDocument {

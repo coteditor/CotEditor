@@ -10,6 +10,11 @@ develop
 - On macOS Sierra, add an option to set window tabbing behavior (in Window pane).
 
 
+### Fixes
+
+- Fix an issue where MarsEdit didn't update its contents after closing the document in CotEditor.
+
+
 
 3.0.3 (165)
 --------------------------
