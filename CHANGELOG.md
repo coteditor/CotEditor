@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- Update build environment to Xcode 8.1 (SDK macOS 10.12.1).
+
+
 ### Fixes
 
 - Fix an issue where scripts didn't put results on the document/console.
