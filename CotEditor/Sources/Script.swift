@@ -122,11 +122,11 @@ final class AppleScript: Script {
         
         let task = try NSUserAppleScriptTask(url: self.url)
         
-        task.execute(withAppleEvent: nil, completionHandler: { [weak self] (result: NSAppleEventDescriptor?, error: Error?) in
+        task.execute(withAppleEvent: nil) { [weak self] (result: NSAppleEventDescriptor?, error: Error?) in
             if let error = error {
                 self?.writeToConsole(message: error.localizedDescription)
             }
-            })
+        }
     }
     
 }
@@ -254,17 +254,22 @@ final class ShellScript: Script {
         }
         
         // execute
-        task.execute(withArguments: arguments) { [weak self] error in
+        var strongSelf: Script? = self  // -> prolong the script life until completion
+        task.execute(withArguments: arguments) { error in
+            defer {
+                strongSelf = nil
+            }
+            
             // on user cancel
             if let error = error as? POSIXError, error.code == .ENOTBLK {
                 isCancelled = true
                 return
             }
             
-            //set error message to the sconsole
+            // put error message on the sconsole
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
             if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
-                self?.writeToConsole(message: message)
+                strongSelf?.writeToConsole(message: message)
             }
         }
     }

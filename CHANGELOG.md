@@ -7,6 +7,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where scripts didn't put results on the document/console.
 - Fix an issue where MarsEdit didn't update its contents after closing the document in CotEditor.
 
 
