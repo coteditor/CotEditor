@@ -364,9 +364,11 @@ final class SyntaxManager: SettingFileManager {
         
         // update internal cache
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: .StyntaxDidUpdate, object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: oldName,
-                                                       SettingFileManager.NotificationKey.new: name])
+            if let oldName = oldName {
+                NotificationCenter.default.post(name: .StyntaxDidUpdate, object: self,
+                                                userInfo: [SettingFileManager.NotificationKey.old: oldName,
+                                                           SettingFileManager.NotificationKey.new: name])
+            }
         }
     }
     

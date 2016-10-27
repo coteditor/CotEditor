@@ -98,7 +98,7 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
         applicationMenu.insertItem(menuItem, at: 1)
         
         // lock update check interval to daily
-        updater.updateCheckInterval = 60 * 60 * 24
+        updater.updateCheckInterval = TimeInterval(60 * 60 * 24)
     }
     
     

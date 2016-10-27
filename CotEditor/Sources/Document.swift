@@ -497,7 +497,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 permissions = 0o644  // ???: Is the default permission really always 644?
             }
             permissions |= S_IXUSR
-            attributes[FileAttributeKey.posixPermissions.rawValue] = NSNumber(value: permissions)
+            attributes[FileAttributeKey.posixPermissions.rawValue] = permissions
         }
         
         return attributes
@@ -1404,8 +1404,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 return false
             case 1:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
-                (document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController)?.showSidebarPane(index: .incompatibleCharacters)
-                windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+                if let windowContentController = windowContentController {
+                    (document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController)?.showSidebarPane(index: .incompatibleCharacters)
+                    windowContentController.showSidebarPane(index: .incompatibleCharacters)
+                }
                 return true
             default:
                 return false
