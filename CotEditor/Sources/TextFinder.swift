@@ -46,7 +46,7 @@ struct TextFindResult {
     
     let range: NSRange
     let lineRange: NSRange
-    let lineNumber: UInt
+    let lineNumber: Int
     let attributedLineString: NSAttributedString
     
 }
@@ -290,9 +290,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 let inlineRange = NSRange(location: matchedRange.location - lineRange.location,
                                           length: matchedRange.length)
                 let lineString = (string as NSString).substring(with: lineRange)
-                let lineAttrString = NSMutableAttributedString(string: lineString)
+                let attrLineString = NSMutableAttributedString(string: lineString)
                 
-                lineAttrString.addAttribute(NSBackgroundColorAttributeName, value: highlightColors.first!, range: inlineRange)
+                attrLineString.addAttribute(NSBackgroundColorAttributeName, value: highlightColors.first!, range: inlineRange)
                 
                 highlights.append(HighlightItem(range: matchedRange, color: highlightColors.first!))
                 
@@ -303,12 +303,12 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                         let color = highlightColors[index]
                         let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
                         
-                        lineAttrString.addAttribute(NSBackgroundColorAttributeName, value: color, range: inlineRange)
+                        attrLineString.addAttribute(NSBackgroundColorAttributeName, value: color, range: inlineRange)
                         highlights.append(HighlightItem(range: range, color: color))
                     }
                 }
                 
-                results.append(TextFindResult(range: matchedRange, lineRange: inlineRange, lineNumber: UInt(lineNumber), attributedLineString: lineAttrString))
+                results.append(TextFindResult(range: matchedRange, lineRange: inlineRange, lineNumber: lineNumber, attributedLineString: attrLineString))
                 
                 // progress indicator
                 let informativeFormat = (results.count == 1) ? "%@ string found." : "%@ strings found."
