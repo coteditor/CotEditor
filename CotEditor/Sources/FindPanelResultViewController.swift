@@ -40,14 +40,15 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDelegate
     // MARK: Public Properties
     
      weak var target: NSTextView? {
-        // keep TextContainer as `weak` instaed to avoid handling unsafe_unretained TextView
+        // keep LayoutManager as `weak` instaed to avoid handling unsafe_unretained TextView
         get {
-            return self.layoutManager?.firstTextView
+            return _layoutManager?.firstTextView
         }
         set {
-            self.layoutManager = newValue?.layoutManager
+            _layoutManager = newValue?.layoutManager
         }
     }
+    private weak var _layoutManager: NSLayoutManager?
     
     
     // MARK: Private Properties
@@ -55,8 +56,6 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDelegate
     private var results = [TextFindResult]()
     private dynamic var findString: String?
     private dynamic var resultMessage: String?
-    
-    private weak var layoutManager: NSLayoutManager?
     
     @IBOutlet private weak var disclosureButton: NSButton?
     @IBOutlet private weak var tableView: NSTableView?
