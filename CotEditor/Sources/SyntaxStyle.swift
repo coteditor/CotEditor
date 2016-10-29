@@ -491,7 +491,7 @@ extension SyntaxStyle {
                 while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) ||
                        (storage.layoutManagers.first?.firstTextView?.window?.attachedSheet != nil)
                 {
-                    RunLoop.current.limitDate(forMode: .defaultRunLoopMode)
+                    usleep(100)
                 }
                 
                 // attach the indicator as a sheet
