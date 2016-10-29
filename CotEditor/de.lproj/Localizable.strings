@@ -155,6 +155,13 @@
 
 
 
+/* MARK: Touch Bar */
+// Touch bar item labels
+"Shift" = "Rücken";
+"Comment" = "Kommentieren";
+
+
+
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "Gedruckt am %@";  // %@ is date

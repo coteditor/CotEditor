@@ -138,6 +138,20 @@ extension EditorTextView {
     }
     
     
+    /// shift selection from segmented control button
+    @IBAction func shift(_ sender: NSSegmentedControl) {
+        
+        switch sender.selectedSegment {
+        case 0:
+            self.shiftLeft(sender)
+        case 1:
+            self.shiftRight(sender)
+        default:
+            assertionFailure("Segmented shift button must have only 2 segments.")
+        }
+    }
+    
+    
     /// standardize inentation in selection to spaces
     @IBAction func convertIndentationToSpaces(_ sender: Any?) {
         
