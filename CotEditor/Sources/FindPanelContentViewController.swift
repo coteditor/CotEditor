@@ -54,8 +54,6 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         }
         
         TextFinder.shared.delegate = self
-        
-        self.setResultShown(false, animate: false)
     }
     
     
@@ -159,15 +157,13 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         let resultView = resultViewItem.viewController.view
         let height = resultView.bounds.height
         
-        guard (shown && resultView.isHidden) || (!shown || height <= DefaultResultViewHeight) else { return }
-        
         // resize panel frame
         let diff: CGFloat = {
             if shown {
                 if resultViewItem.isCollapsed {
                     return DefaultResultViewHeight
                 } else {
-                    return DefaultResultViewHeight - height
+                    return max(DefaultResultViewHeight - height, 0)
                 }
             } else {
                 return -height

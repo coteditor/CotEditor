@@ -93,6 +93,7 @@ final class FindPanelButtonViewController: NSViewController {
         case 1:
             TextFinder.shared.findNext(sender)
         default:
+            assertionFailure("Number of the find button segments must be 2.")
             break
         }
     }
