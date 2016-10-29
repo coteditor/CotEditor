@@ -33,11 +33,10 @@ extension String {
     /// hash value in MD5
     var md5: String {
         
-        guard let bytes = self.cString(using: .utf8) else { return "" }
-        let length = CC_LONG(self.lengthOfBytes(using: .utf8))
+        guard let data = self.data(using: .utf8) else { return "" }
         
         var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-        CC_MD5(bytes, length, &hash)
+        CC_MD5(data.bytes, CC_LONG(data.count), &hash)
         
         return hash.reduce("") { $0 + String(format: "%02x", $1) }
     }
@@ -51,14 +50,18 @@ extension Data {
     /// hash value in MD5
     var md5: Data {
         
-        var bytes = [UInt8](repeating: 0, count: self.count)
-        self.copyBytes(to: &bytes, count: self.count)
-        let length = CC_LONG(self.count)
-        
         var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-        CC_MD5(bytes, length, &hash)
+        CC_MD5(self.bytes, CC_LONG(self.count), &hash)
         
         return Data(bytes: hash, count: hash.count)
+    }
+    
+    
+    fileprivate var bytes: [UInt8] {
+        
+        var bytes = [UInt8](repeating: 0, count: self.count)
+        self.copyBytes(to: &bytes, count: self.count)
+        return bytes
     }
     
 }
