@@ -428,7 +428,8 @@ extension SyntaxStyle {
                     highlightRange = NSUnionRange(highlightRange, visibleRange)
                 }
             }
-            highlightRange = (string as NSString).lineRange(for: highlightRange)
+            
+            highlightRange = (string as NSString).lineRange(for: NSIntersectionRange(wholeRange, highlightRange))
             
             // expand highlight area if the character just before/after the highlighting area is the same color
             if let layoutManager = textStorage.layoutManagers.first {

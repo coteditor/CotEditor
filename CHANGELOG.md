@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where scripts didn't put results on the document/console.
+- Improve general stability.
 
 
 
