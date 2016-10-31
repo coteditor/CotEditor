@@ -2,7 +2,16 @@
 Change Log
 ==========================
 
-develop
+3.0.5 (168)
+--------------------------
+
+### Fixes
+
+- Fix an issue where scripts didn't put results on the document/console.
+
+
+
+3.0.4 (167)
 --------------------------
 
 ### Improvements

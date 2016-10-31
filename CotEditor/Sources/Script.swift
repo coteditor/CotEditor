@@ -82,9 +82,7 @@ class Script {
     // MARK: Private Methods
     
     /// append message to console panel and show it
-    fileprivate func writeToConsole(message: String) {
-        
-        let scriptName = self.name
+    fileprivate static func writeToConsole(message: String, scriptName: String) {
         
         DispatchQueue.main.async {
             ConsolePanelController.shared.showWindow(nil)
@@ -121,10 +119,11 @@ final class AppleScript: Script {
         }
         
         let task = try NSUserAppleScriptTask(url: self.url)
+        let scriptName = self.name
         
-        task.execute(withAppleEvent: nil) { [weak self] (result: NSAppleEventDescriptor?, error: Error?) in
+        task.execute(withAppleEvent: nil) { (result: NSAppleEventDescriptor?, error: Error?) in
             if let error = error {
-                self?.writeToConsole(message: error.localizedDescription)
+                Script.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
             }
         }
     }
@@ -183,7 +182,7 @@ final class ShellScript: Script {
             throw ScriptFileError(kind: .permission, url: self.url)
         }
         guard let script = self.content, !script.isEmpty else {
-            throw ScriptFileError(kind: .read, url: url)
+            throw ScriptFileError(kind: .read, url: self.url)
         }
         
         // fetch target document
@@ -195,7 +194,7 @@ final class ShellScript: Script {
             do {
                 input = try self.readInputString(type: inputType, editor: document)
             } catch let error {
-                self.writeToConsole(message: error.localizedDescription)
+                Script.writeToConsole(message: error.localizedDescription, scriptName: self.name)
                 return
             }
         } else {
@@ -212,7 +211,7 @@ final class ShellScript: Script {
         }()
         
         // create task
-        let task = try NSUserUnixTask(url: url)
+        let task = try NSUserUnixTask(url: self.url)
         
         // set pipes
         let inPipe = Pipe()
@@ -223,43 +222,39 @@ final class ShellScript: Script {
         task.standardError = errPipe.fileHandleForWriting
         
         // set input data asynchronously if available
-        if let input = input, !input.isEmpty {
+        if let data = input?.data(using: .utf8) {
             inPipe.fileHandleForWriting.writeabilityHandler = { (handle: FileHandle) in
-                let data = input.data(using: .utf8)!
                 handle.write(data)
                 handle.closeFile()
             }
         }
         
+        let scriptName = self.name
         var isCancelled = false  // user cancel state
         
         // read output asynchronously for safe with huge output
-        outPipe.fileHandleForReading.readToEndOfFileInBackgroundAndNotify()
-        var observer: NSObjectProtocol?
-        observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: nil) { [weak self] (note: Notification) in
-            NotificationCenter.default.removeObserver(observer!)
-            
-            guard !isCancelled else { return }
-            guard let outputType = outputType else { return }
-            
-            guard
-                let data = note.userInfo?[NSFileHandleNotificationDataItem] as? Data,
-                let output = String(data: data, encoding: .utf8) else { return }
-            
-            do {
-                try self?.applyOutput(output, editor: document, type: outputType)
-            } catch let error {
-                self?.writeToConsole(message: error.localizedDescription)
+        if let outputType = outputType {
+            outPipe.fileHandleForReading.readToEndOfFileInBackgroundAndNotify()
+            var observer: NSObjectProtocol?
+            observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: nil) { (note: Notification) in
+                NotificationCenter.default.removeObserver(observer!)
+                
+                guard
+                    !isCancelled,
+                    let data = note.userInfo?[NSFileHandleNotificationDataItem] as? Data,
+                    let output = String(data: data, encoding: .utf8)
+                    else { return }
+                
+                do {
+                    try ShellScript.applyOutput(output, editor: document, type: outputType)
+                } catch let error {
+                    Script.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
+                }
             }
         }
         
         // execute
-        var strongSelf: Script? = self  // -> prolong the script life until completion
         task.execute(withArguments: arguments) { error in
-            defer {
-                strongSelf = nil
-            }
-            
             // on user cancel
             if let error = error as? POSIXError, error.code == .ENOTBLK {
                 isCancelled = true
@@ -269,7 +264,7 @@ final class ShellScript: Script {
             // put error message on the sconsole
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
             if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
-                strongSelf?.writeToConsole(message: message)
+                Script.writeToConsole(message: message, scriptName: scriptName)
             }
         }
     }
@@ -314,31 +309,38 @@ final class ShellScript: Script {
     
     /// apply results conforming to the output type to the frontmost document
     /// - throws: ScriptError
-    private func applyOutput(_ output: String, editor: Editable?, type: OutputType) throws {
+    private static func applyOutput(_ output: String, editor: Editable?, type: OutputType) throws {
         
-        guard editor != nil || type == .pasteBoard else {
-            throw ScriptError.noOutputTarget
-        }
-        
-        switch type {
-        case .replaceSelection:
-            editor!.insert(string: output)
-            
-        case .replaceAllText:
-            editor!.replaceAllString(with: output)
-            
-        case .insertAfterSelection:
-            editor!.insertAfterSelection(string: output)
-            
-        case .appendToAllText:
-            editor!.append(string: output)
-            
-        case .pasteBoard:
+        if type == .pasteBoard {
             let pasteboard = NSPasteboard.general()
             pasteboard.declareTypes([NSStringPboardType], owner: nil)
             guard pasteboard.setString(output, forType: NSStringPboardType) else {
                 NSBeep()
                 return
+            }
+            return
+        }
+        
+        guard let editor = editor else {
+            throw ScriptError.noOutputTarget
+        }
+        
+        DispatchQueue.main.async {
+            switch type {
+            case .replaceSelection:
+                editor.insert(string: output)
+                
+            case .replaceAllText:
+                editor.replaceAllString(with: output)
+                
+            case .insertAfterSelection:
+                editor.insertAfterSelection(string: output)
+                
+            case .appendToAllText:
+                editor.append(string: output)
+                
+            case .pasteBoard:
+                assertionFailure()
             }
         }
     }
