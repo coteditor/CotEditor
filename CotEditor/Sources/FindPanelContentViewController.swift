@@ -54,8 +54,6 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         }
         
         TextFinder.shared.delegate = self
-        
-        self.setResultShown(false, animate: false)
     }
     
     
@@ -110,7 +108,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         self.resultViewController?.setResults(results, findString: findString, target: textView)
         
         self.setResultShown(true, animate: true)
-        self.view.window?.windowController?.showWindow(self)
+        self.splitView.window?.windowController?.showWindow(self)
     }
     
     
@@ -151,33 +149,34 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     /// toggle result view visibility with/without animation
     private func setResultShown(_ shown: Bool, animate: Bool) {
         
-        guard let resultView = self.resultViewController?.view,
-              let panel = self.view.window else { return }
+        guard
+            let resultViewItem = self.resultSplitViewItem,
+            let panel = self.splitView.window
+            else { return }
         
+        let resultView = resultViewItem.viewController.view
         let height = resultView.bounds.height
         
-        guard (shown && resultView.isHidden) || (!shown || height <= DefaultResultViewHeight) else { return }
-        
         // resize panel frame
-        var panelFrame = panel.frame
         let diff: CGFloat = {
             if shown {
-                if self.resultSplitViewItem!.isCollapsed {
+                if resultViewItem.isCollapsed {
                     return DefaultResultViewHeight
                 } else {
-                    return DefaultResultViewHeight - height
+                    return max(DefaultResultViewHeight - height, 0)
                 }
             } else {
-                return  -height
+                return -height
             }
         }()
+        var panelFrame = panel.frame
         panelFrame.size.height += diff
         panelFrame.origin.y -= diff
         
         // uncollapse if needed
         if shown {
             self.isUncollapsing = true
-            self.resultSplitViewItem?.isCollapsed = !shown
+            resultViewItem.isCollapsed = !shown
             resultView.isHidden = false
         }
         
@@ -197,7 +196,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
             !resultView.isHidden && resultView.visibleRect.isEmpty else { return }
         
         self.resultSplitViewItem?.isCollapsed = true
-        self.view.needsDisplay = true
+        self.splitView.needsDisplay = true
     }
     
 }

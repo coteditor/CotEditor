@@ -436,7 +436,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 strongSelf.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
-                strongSelf.odbEventSender?.sendModifiedEvent(fileURL: url, operation: saveOperation)
+                let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
+                strongSelf.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
         }
     }
@@ -496,7 +497,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 permissions = 0o644  // ???: Is the default permission really always 644?
             }
             permissions |= S_IXUSR
-            attributes[FileAttributeKey.posixPermissions.rawValue] = NSNumber(value: permissions)
+            attributes[FileAttributeKey.posixPermissions.rawValue] = permissions
         }
         
         return attributes
@@ -564,7 +565,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // send file close notification for the external editor protocol (ODB Editor Suite)
         if let fileURL = self.fileURL {
-            self.odbEventSender?.sendCloseEvent(fileURL: fileURL)
+            self.odbEventSender?.sendEvent(type: .closed, fileURL: fileURL)
         }
         
         super.close()
@@ -733,9 +734,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
             self.isVerticalText = ((attributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
         }
+    }
+    
+    
+    /// setup ODB editor event sender
+    func registerDocumnentOpenEvent(_ event: NSAppleEventDescriptor) {
         
-        // set sender of external editor protocol (ODB Editor Suite)
-        self.odbEventSender = ODBEventSender()
+        self.odbEventSender = ODBEventSender(event: event)
     }
     
     
@@ -1399,8 +1404,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 return false
             case 1:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
-                (document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController)?.showSidebarPane(index: .incompatibleCharacters)
-                windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+                if let windowContentController = windowContentController {
+                    (document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController)?.showSidebarPane(index: .incompatibleCharacters)
+                    windowContentController.showSidebarPane(index: .incompatibleCharacters)
+                }
                 return true
             default:
                 return false

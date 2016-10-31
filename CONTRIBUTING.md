@@ -14,7 +14,7 @@ Bug reports __must__ include your environment. You can generate a bug report tem
 Pull-Request
 --------------------------
 
-- Make a topic branch, instead commit to the master or develop branch.
+- Make a topic branch, instead of committing to the master or develop branch.
 
 
 ### General Code Improvements
@@ -26,15 +26,15 @@ By adding code, please follow our coding style guide below.
 
 ### Localization
 
-Fixing/updating existing localizations is always welcome. The project team may add `FIXME:` tag as a comment in the localized strings files, if there are updated strings to be localized.
+Fixing/updating existing localizations is always welcome. The project team may add `FIXME:` tag as a comment in the localized strings files if there are updated strings to be localized.
 
-If your localization makes the Autolayout destroy, try first making the sentence shorter. However if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the xib file to layout your localized terms correctly.
+If your localization makes the Autolayout destroy, try first making the sentence shorter. However, if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the xib file to layout your localized terms correctly.
 
 #### Good references for localization
 
 By localization, use macOS standard terms. It might be helpful to study native Apple applications like TextEdit.app or the System Preferences to know how Apple localizes terms in their apps.
 
-Especially, follow the terms in the following applications.
+Especially, follow the terms of the following applications.
 
 - Menu item titles in TextEdit.app
 - Find panel in Pages.app
@@ -46,10 +46,10 @@ Refer also to the Apple's guidelines about terminology. They are about English, 
 
 #### Submitting a new localization
 
-Copy one of whole .lproj directory and use it as a template. We recommend to use `CotEditor/ja.lproj/` or `de.lproj/` directory, because they are always up-to-date and well organized.
+Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/ja.lproj/` or `de.lproj/` directory because they are always up-to-date and well organized.
 Note that you don't need to localize the Unicode block names in the `Unicode.strings` file.
 
-Continuous maintenance of the localization is recommended when providing a new localization. Please tell us if you can work with us. We'll call you every time before releasing a new version when we have new strings to be localized, so that you can keep all your localized strings up to date.
+Continuous maintenance of the localization is recommended when providing a new localization. Please tell us if you can work with us. We'll call you every time before releasing a new version when we have new strings to be localized so that you can keep all your localized strings up to date.
 Currently, we have maintainers for:
 
 - Simplified Chinese
@@ -60,7 +60,7 @@ Currently, we have maintainers for:
 
 #### Adding a new bundled syntax style
 
-Put just your new syntax stye into `/CotEditor/syntaxes/` directory. You don't need to modify `SyntaxMap.json` file. It's generated automatically on build.
+Put just your new syntax style into `/CotEditor/syntaxes/` directory. You don't need to modify `SyntaxMap.json` file. It's generated automatically on the build.
 
 The license for the bundled syntax styles should be "Same as CotEditor".
 
@@ -74,7 +74,7 @@ We aren't accepting pull-requests adding bundled theme at the moment. You can di
 
 ### Graphics Resources
 
-We aren't accepting pull-requests for image resources. [1024jp](https://github.com/1024jp) enjoys creating and brushing up the graphics ;). Please just point out on the Issues page if graphic resource has some kind of mistake to be fixed.
+We aren't accepting pull-requests for image resources. [1024jp](https://github.com/1024jp) enjoys creating and brushing up the graphics ;). Please just point out on the Issues page if a graphic resource has some kind of mistake to be fixed.
 
 
 Coding Style Guide

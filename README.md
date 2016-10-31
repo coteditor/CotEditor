@@ -27,8 +27,8 @@ CotEditor is a pure document-based Cocoa application written in Swift.
 ### Development Environment
 
 - macOS 10.12 Sierra
-- Xcode 8.0
-- Swift 3
+- Xcode 8.1
+- Swift 3.0.1
 - Sandbox enabled
 
 
@@ -37,7 +37,7 @@ How to Build
 -----------------------------
 
 0. Install [Carthage](https://github.com/Carthage/Carthage) if you don't have it yet.
-1. On terminal, move to the project root directory and run `carthage update --platform macOS`.
+1. On Terminal, move to the project root directory and run `carthage update --platform macOS`.
 2. Open CotEditor.xcworkspace in Xcode.
 3. build.
 

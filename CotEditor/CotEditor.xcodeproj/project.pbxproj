@@ -291,8 +291,8 @@
 		2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A80C65E1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C65F1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
-		2A80C6681CEE540F00AA664D /* Acknowledgements.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgements.html */; };
-		2A80C6691CEE540F00AA664D /* Acknowledgements.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgements.html */; };
+		2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
+		2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
 		2A80C66E1CEE556600AA664D /* WebDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */; };
 		2A80C66F1CEE556600AA664D /* WebDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */; };
 		2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
@@ -825,9 +825,9 @@
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6601CEE351200AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6611CEE351400AA664D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/Credits.html; sourceTree = "<group>"; };
-		2A80C6671CEE540F00AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Acknowledgements.html; sourceTree = "<group>"; };
-		2A80C66A1CEE541400AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Acknowledgements.html; sourceTree = "<group>"; };
-		2A80C66B1CEE541600AA664D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgements.html"; sourceTree = "<group>"; };
+		2A80C6671CEE540F00AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Acknowledgments.html; sourceTree = "<group>"; };
+		2A80C66A1CEE541400AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Acknowledgments.html; sourceTree = "<group>"; };
+		2A80C66B1CEE541600AA664D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
 		2A80C66D1CEE556600AA664D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WebDocumentWindow.xib; sourceTree = "<group>"; };
 		2A836F7F1D572A5D0044E8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A836F891D5734810044E8EC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
@@ -1390,7 +1390,7 @@
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
 				2AA2E0111BFE12620087BDD6 /* Unicode.strings */,
 				2A80C65C1CEE33C100AA664D /* Credits.html */,
-				2A80C6661CEE540F00AA664D /* Acknowledgements.html */,
+				2A80C6661CEE540F00AA664D /* Acknowledgments.html */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
@@ -1871,7 +1871,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
 					2A3E847D1D07296200070A54 = {
@@ -1935,7 +1935,7 @@
 				2A6F0D981B5500E100C2D03C /* container-migration.plist in Resources */,
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
 				2A80C65F1CEE33C100AA664D /* Credits.html in Resources */,
-				2A80C6691CEE540F00AA664D /* Acknowledgements.html in Resources */,
+				2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
 				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
@@ -2011,7 +2011,7 @@
 				2A61B7FE1B52D14400CE3AFB /* container-migration.plist in Resources */,
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
 				2A80C65E1CEE33C100AA664D /* Credits.html in Resources */,
-				2A80C6681CEE540F00AA664D /* Acknowledgements.html in Resources */,
+				2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
@@ -2958,14 +2958,14 @@
 			name = Credits.html;
 			sourceTree = "<group>";
 		};
-		2A80C6661CEE540F00AA664D /* Acknowledgements.html */ = {
+		2A80C6661CEE540F00AA664D /* Acknowledgments.html */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2A80C6671CEE540F00AA664D /* en */,
 				2A80C66A1CEE541400AA664D /* ja */,
 				2A80C66B1CEE541600AA664D /* zh-Hans */,
 			);
-			name = Acknowledgements.html;
+			name = Acknowledgments.html;
 			sourceTree = "<group>";
 		};
 		2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */ = {
@@ -3193,6 +3193,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -3231,7 +3232,7 @@
 				SDKROOT = macosx;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -3253,6 +3254,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -3289,7 +3291,7 @@
 				SDKROOT = macosx;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};

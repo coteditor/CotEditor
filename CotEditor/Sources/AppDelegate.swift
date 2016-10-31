@@ -46,7 +46,7 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     // MARK: Private Properties
     
     private var didFinishLaunching = false
-    private lazy var acknowledgementsWindowController = WebDocumentWindowController(documentName: "Acknowledgements")!
+    private lazy var acknowledgmentsWindowController = WebDocumentWindowController(documentName: "Acknowledgments")!
     
     private dynamic let supportsWindowTabbing: Bool
     
@@ -269,9 +269,9 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     
     
     /// show acknowlegements
-    @IBAction func showAcknowledgements(_ sender: Any?) {
+    @IBAction func showAcknowledgments(_ sender: Any?) {
         
-        self.acknowledgementsWindowController.showWindow(sender)
+        self.acknowledgmentsWindowController.showWindow(sender)
     }
     
     

@@ -25,8 +25,38 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.0.4</h1>
+	<p>release: <time>2016-11</time></p>
+</header>
+
+
+<section>
+<h3>Improvements</h3>
+
+<ul>
+	<li>Update build environment to Xcode 8.1 (SDK macOS 10.12.1).</li>
+</ul>
+</section>
+
+
+<section>
+<h3>Fixes</h3>
+
+<ul>
+	<li>Fix an issue where scripts didn't put results on the document/console.</li>
+	<li>Fix an issue where find all results didn't open anymore under the specific conditions.</li>
+	<li>Fix an issue where MarsEdit didn't update its contents after closing the document in CotEditor.</li>
+	<li>Improve general stability.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.0.3</h1>
-	<p>release: <time>2016-10</time></p>
+	<p>release: <time>2016-10-25</time></p>
 </header>
 
 
@@ -66,7 +96,7 @@
 	<li>Fix an issue where document icons were blurry in non-Retina display.</li>
 	<li>Fix an issue where status bar layout collapsed if status line overflows.</li>
 	<li>Fix an issue where document theme reloaded unnecessarily on the first time Appearances pane display.</li>
-	<li>Fix an issue where application could crash when script was failed.</li>
+	<li>Fix an issue where the application could crash when script was failed.</li>
 	<li>Fix an issue where scrolling to the end of document with <kbd>⌘</kbd>+<kbd>↓</kbd> shortcut didn't scroll to the end.</li>
 	<li>Improve general stability.</li>
 </ul>
@@ -86,8 +116,8 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where application could rarely freeze after replacing large document.</li>
-	<li>Fix an issue where new syntax style could't be created.</li>
+	<li>Fix an issue where the application could rarely freeze after replacing large document.</li>
+	<li>Fix an issue where new syntax style couldn't be created.</li>
 	<li>Fix an issue where new value of last edited text field in preferences was occasionally discarded.</li>
 	<li>Fix an issue where replacement string was not registered to the replacement history.</li>
 	<li>Fix an issue where horizontal scroll bars in the find panel fields were disappeared.</li>
@@ -117,7 +147,7 @@
 		<li>On macOS Sierra, the default shortcut for completion action was changed to <kbd>⌥⎋</kbd>.</li>
 	</ul></li>
 	<li>Move action items in the menu “Edit” &gt; “Transformations” to “Text” &gt;  “Transformations”.</li>
-	<li>Transform word contains the cursor if nothing is selected on tranformation or Unicode normalization actions.</li>
+	<li>Transform word contains the cursor if nothing is selected on transformation or Unicode normalization actions.</li>
 </ul>
 </section>
 
@@ -126,17 +156,17 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where application could crash while editing text on Yosemite.</li>
-	<li>Fix an issue where application could crash on split editors under specific conditions.</li>
-	<li>Fix an issue where application could crash on running an AppleScript/JXA.</li>
+	<li>Fix an issue where the application could crash while editing text on Yosemite.</li>
+	<li>Fix an issue where the application could crash on split editors under specific conditions.</li>
+	<li>Fix an issue where the application could crash on running an AppleScript/JXA.</li>
 	<li>Fix an issue where sidebar couldn't be opened on Yosemite.</li>
 	<li>Fix an issue where text completion list didn't occasionally display.</li>
 	<li>Fix an issue where syntax highlighting progress indicator was always full.</li>
 	<li>Fix an issue where key bindings of recent documents were customizable.</li>
-	<li>Fix an issue where application crashed when a folder is dropped to the application icon.</li>
+	<li>Fix an issue where the application crashed when a folder is dropped to the application icon.</li>
 	<li>Fix an issue where find panel position was not saved.</li>
 	<li>Fix an issue where no beep sound was made when there was no match on find/replace.</li>
-	<li>Fix an issue where application could freeze after replace large document.</li>
+	<li>Fix an issue where the application could freeze after replace large document.</li>
 	<li>Fix an issue where editable area didn't spread to the full width after changing text orientation when content is empty.</li>
 	<li>Fix an issue where matched brackets in unfocused split editors were highlighted without the need while editing one of split editors.</li>
 	<li>Improve general stability.</li>
@@ -189,7 +219,7 @@
 	<li>Inserting single surrogate character is no more valid.</li>
 	<li>Update toolbar.</li>
 	<li>Update preferences icons.</li>
-	<li>Exclude file extension from the initial selection in document save panel.</li>
+	<li>Exclude file extension from the initial selection in the document save panel.</li>
 	<li>Update key binding setting format.
 	<ul>
 		<li>Not compatible with previous key bindings setting. Please customize again in the preferences window.</li>
@@ -198,7 +228,7 @@
 	<ul>
 		<li>Now, you don't need anymore to update script menu after script folder modification.</li>
 	</ul></li>
-	<li>New acknowledgements window.</li>
+	<li>New acknowledgments window.</li>
 	<li>Update “Swift” syntax style to Swift 3.0.</li>
 	<li>Update “Coffee Script” syntax style for the block regular expression.</li>
 	<li>Improve syntax highlighting algorithm with symbols.</li>
@@ -235,7 +265,7 @@
 	<li>Keep visible area after toggling text-wrapping.</li>
 	<li>Improve scrolling with line number view drag.</li>
 	<li>Better syntax highlighting while editing.</li>
-	<li>Enable activate “Show Invisibles” action even if all of invisible characters were set as not shown when the document was opened.</li>
+	<li>Enable activate “Show Invisibles” action even if all of the invisible characters were set as not shown when the document was opened.</li>
 	<li>Update build environment to macOS Sierra +  Xcode 8 (SDK macOS 10.12).</li>
 </ul>
 </section>
@@ -303,7 +333,7 @@
 <ul>
 	<li>Update “Markdown” syntax style:
 	<ul>
-		<li>Support strikethrough with <code>~~</code> that is defined in the GitHub favored Markdown.</li>
+		<li>Support strikethrough with <code>~~</code> that is defined in the GitHub flavored Markdown.</li>
 		<li>Support emphasis with triple <code>*</code> and <code>_</code>.</li>
 	</ul></li>
 	<li>Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.</li>
@@ -331,7 +361,7 @@
 	<li>Fix an issue where documents were marked as “Edited” just after document duplication if line ending is not the default one.</li>
 	<li>Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted.</li>
 	<li>Fix an issue where “Find All” result view did not open on OS X Mountain Lion.</li>
-	<li>Fix an issue where incompatible character markup could broken if undo/redo lossy encoding change continuously.</li>
+	<li>Fix an issue where incompatible character markup could break if undo/redo lossy encoding change continuously.</li>
 	<li>Fix an issue where keybindings of some submenu containers were customizable.</li>
 	<li>Fix an issue where tab width could be set as <code>0</code>.</li>
 	<li>Fix an issue where tab width changing via AppleScript changes only the tab width in the focused editor rather than all split editors.</li>
@@ -403,7 +433,7 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where application didn't work on Mavericks and earlier.</li>
+	<li>Fix an issue where the application didn't work on Mavericks and earlier.</li>
 	<li>Fix an issue where syntax was occasionally parsed twice on window restoration.</li>
 </ul>
 </section>
@@ -434,7 +464,7 @@
 	<ul>
 		<li>Remove “Fix line height with composite font” option, and now, the height of lines is always uniform.</li>
 		<li>Update line-height calculation to fix that the line height by “Fix line height with composite font” option was a bit higher than actual line height of the used font.<ul>
-			<li>From this change, the line hight will get reduced than the previous versions. Please reset the line-height to your favorite number on the Appearance pane in the preferences.</li>
+			<li>From this change, the line height will get reduced than the previous versions. Please reset the line-height to your favorite number on the Appearance pane in the preferences.</li>
 		</ul></li>
 		<li>Improve line-height calculation.</li>
 	</ul></li>
@@ -456,11 +486,11 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where wordwrap broke mid-word when a line is indented.</li>
+	<li>Fix an issue where word-wrap broke mid-word when a line is indented.</li>
 	<li>Fix an issue where hanging indent reset if font is changed.</li>
 	<li>Fix an issue where some highlight definitions in Comments, Strings or Characters types were ignored.</li>
 	<li>Fix an issue where syntax was always highlighted even if syntax highlight is disabled.</li>
-	<li>Fix an issue where application crashed if empty character is input from the Unicode hex panel.</li>
+	<li>Fix an issue where the application crashed if empty character is input from the Unicode hex panel.</li>
 	<li>Fix an issue where syntax highlight was rarely not updated when style definition is modified.</li>
 	<li>Fix line numbers position when text scaled.</li>
 </ul>
@@ -480,8 +510,8 @@
 
 <ul>
 	<li>Fix an issue where invisible characters could not be hide.</li>
-	<li>Fix an issue where application could crash if the “Replace All” button was clicked continuous.</li>
-	<li>Fix an issue where application crashed on closing default window size setting window.</li>
+	<li>Fix an issue where the application could crash if the “Replace All” button was clicked continuous.</li>
+	<li>Fix an issue where the application crashed on closing default window size setting window.</li>
 	<li>Fix line-wrapping behavior when the line contains a long unbreakable word.</li>
 </ul>
 </section>
@@ -514,7 +544,7 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where application could crash on opening empty file.</li>
+	<li>Fix an issue where the application could crash on opening empty file.</li>
 	<li>Fix an issue where <code>cot</code> command could fail creating new empty file.</li>
 	<li>Fix an issue where selected line numbers were not drawn in bold font.</li>
 </ul>
@@ -569,7 +599,7 @@
 		<li>Fix an issue where layout of split editors will be broken if the font of one of the other split editors is changed.</li>
 	</ul></li>
 	<li>Separate the “Enable smart quotes and dashes” into “Enable smart quotes” and “Enable smart dashes” (in “Edit” pane).</li>
-	<li>Apply the following text actions to whole document if no text is selected:
+	<li>Apply the following text actions to the whole document if no text is selected:
 	<ul>
 		<li>Indentation &gt; Convert Indentation to Tab / Spaces</li>
 		<li>Lines &gt; Sort</li>
@@ -802,7 +832,7 @@
 		<li>Change advanced find option setting from popup menu to popover.</li>
 		<li>On Yosemite and later, a visual feedback is shown when the search wrapped.</li>
 		<li>Keep selected range after “Replace All” with in-selection option.</li>
-		<li>Display total number of found in find panel on simple find actions.</li>
+		<li>Display a total number of found in find panel on simple find actions.</li>
 		<li>Now, “Find All” and “Replace All” actions are able to process multiple selections.</li>
 		<li>Add Python syntax to the regular expression syntax options.</li>
 		<li>Revert “Use selection for Replace” action to allow using an empty string.</li>
@@ -823,7 +853,7 @@
 	</ul></li>
 	<li>Take a safety measure for in case the key binding setting file is corrupt.</li>
 	<li>Truncate outline label in the navigation bar by appending ellipsis if it overflows.</li>
-	<li>Move some options position within “General” pane and “Edit” pane in preferences window.</li>
+	<li>Move some options position within “General” pane and “Edit” pane in the preferences window.</li>
 	<li>Rename the main text input area in window from “View” to “Editor”.</li>
 </ul>
 </section>
@@ -841,7 +871,7 @@
 	<li>Fix an issue where the scroll bar style didn't change to light color on dark background theme.</li>
 	<li>Fix an issue where the character inspector didn't show up on Mavericks and earlier.</li>
 	<li>Fix an issue where split orientation setting wasn't applied.</li>
-	<li>Fix an issue where “Jump to Selection” action didn't jump to selection in editor if other text box is focused.</li>
+	<li>Fix an issue where “Jump to Selection” action didn't jump to selection in editor if another text box is focused.</li>
 	<li>Fix an issue where some table cells didn't change their text color when selected.</li>
 	<li>Fix tiny memory leaks.</li>
 </ul>
@@ -910,12 +940,12 @@
     <ul>
 		<li>Display proposed character info.</li>
 		<li>Allow also taking a 1 to 3 digits point code.</li>
-		<li>Avoid auto-closing panel after enter character.</li>
+		<li>Avoid auto-closing panel after entering character.</li>
     </ul></li>
 	<li>Improve character inspector:
     <ul>
 		<li>Display more comprehensible name for control characters (e.g. <code>&lt;control-0000&gt;</code> to <code>NULL</code>).</li>
-		<li>Display a alternate visible symbol in the zoomed character area for C0 control characters.</li>
+		<li>Display an alternate visible symbol in the zoomed character area for C0 control characters.</li>
     </ul></li>
 	<li>Improve installed syntax style list in preferences:
     <ul>
@@ -933,7 +963,7 @@
 	<li>Improve drawing of “Other” invisible characters.</li>
 	<li>Improve behavior on Replace/Replace All actions.</li>
 	<li>Improve text encoding detection to redress the tendency: a binary file was interpreted as ISO-2022-JP.</li>
-	<li>Revert style of popup menus in toolbar on Marvericks and earlier.</li>
+	<li>Revert style of popup menus in toolbar on Mavericks and earlier.</li>
 	<li>Update line number font.</li>
 	<li>Update default fonts.</li>
 	<li>Tweak preferences layout.</li>
@@ -952,7 +982,7 @@
 	<li>Fix an issue where the application crashed when a single character that is a part of surrogate pair is inspected.</li>
 	<li>Fix an issue where snippet key bindings could not be customized on Mavericks and earlier.</li>
 	<li>Fix an issue where syntax highlight was not updated after reinterpreting encoding.</li>
-	<li>Fix an issue where panels could lost target document.</li>
+	<li>Fix an issue where panels could lose target document.</li>
 	<li>Fix layout of character popup on Mavericks and earlier.</li>
 	<li>Fix an issue where “Recolor All” action was always enabled even if syntax style is “None.”</li>
 </ul>
@@ -985,7 +1015,7 @@
 	<li>Improve character inspector:
 	<ul>
 		<li>Display also Unicode block if selected letter consists of one character.</li>
-		<li>Display unicode names of each character if selected letter consist of multiple characters.</li>
+		<li>Display Unicode names of each character if selected letter consist of multiple characters.</li>
 		<li>Fix drawing area of zoomed character view.</li>
 		<li>Fix some other trivial issues.</li>
 	</ul></li>
@@ -1072,7 +1102,7 @@
 <ul>
 	<li>Fix an issue where some type of script file cannot be opened because of “unidentified developer” alert even it was made on CotEditor.</li>
 	<li>Fix an issue where unwanted completion list was displayed by auto-completion when after typing a symbol character.</li>
-	<li>Fix an issue where application could crash if the width of line number view will change.</li>
+	<li>Fix an issue where the application could crash if the width of line number view will change.</li>
 </ul>
 </section>
 </article>
@@ -1125,7 +1155,7 @@
 	<li>Update “R” syntax style:<ul>
 		<li>Add “Rscript” to interpreters.</li>
 	</ul></li>
-	<li>Temporary hide the “Live Update” checkbox in the find panel since this feature by OgreKit framework has actually not worked correctly in the latest versions.</li>
+	<li>Temporarily hide the “Live Update” checkbox in the find panel since this feature by OgreKit framework has actually not worked correctly in the latest versions.</li>
 	<li>Bundle cot command to <code>CotEditor.app/Contents/SharedSupport/bin/</code> again.</li>
 	<li>Update Onigmo regular expression engine to 5.15.0.</li>
 </ul>
@@ -1137,13 +1167,13 @@
 
 <ul>
 	<li>Fix an issue where no file path was inserted if file type of the dropped file was not registered to the file drop setting.</li>
-	<li>Fix an issue where application could be launched on unsupported system versions.</li>
+	<li>Fix an issue where the application could be launched on unsupported system versions.</li>
 	<li>Fix an issue where the baseline of new line invisible characters was wrong if line is empty.</li>
 	<li>Fix syntax highlighting issue with multiple lines.</li>
 	<li>Fix an issue where text view drawing was distorted while resizing window.</li>
-	<li>Fix an issue where application could crash on window restoration.</li>
+	<li>Fix an issue where the application could crash on window restoration.</li>
 	<li>Fix some typos in syntax styles “Julia” and “SQL”.</li>
-	<li>Address an issue where syntax highlighted control character was sometime not colored in the invisible color.</li>
+	<li>Address an issue where syntax highlighted control character was sometimes not colored in the invisible color.</li>
 </ul>
 </section>
 </article>
@@ -1183,8 +1213,8 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where the baseline of invisible characters were wrong by some fonts.</li>
-	<li>Fix an issue where application could crash after modifying theme name on El Capitan.</li>
+	<li>Fix an issue where the baseline of invisible characters was wrong by some fonts.</li>
+	<li>Fix an issue where the application could crash after modifying theme name on El Capitan.</li>
 	<li>Fix an issue where submenu disclosure arrows in the menu key binding editor did occasionally disappear.</li>
 	<li>Fix timing to update search string to system-wide shared find string.</li>
 	<li>Fix an issue under the specific conditions where the migration window showed up every time on launch.</li>
@@ -1205,7 +1235,7 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where application could crash on typing Japanese text if hanging indentation is enabled.</li>
+	<li>Fix an issue where the application could crash on typing Japanese text if hanging indentation is enabled.</li>
 </ul>
 </section>
 </article>
@@ -1273,7 +1303,7 @@
 	</ul></li>
 	<li>Move scripts folder location from <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> to <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code> due of the Sandbox requirement.
 	<ul>
-		<li>Users need to migrate their script to the new folder manually, since CotEditor doesn't have the write permission to the new location.</li>
+		<li>Users need to migrate their script to the new folder manually since CotEditor doesn't have the write permission to the new location.</li>
 	</ul></li>
 	<li>Improve print document:
 	<ul>
@@ -1287,7 +1317,7 @@
 		<li>Add stylesheet keyword color list to editor panel.</li>
 		<li>Make editor panel resizable.</li>
 	</ul></li>
-	<li>Now syntax style is automatically set to “XML” on file opening if no appropriate style can be found but the file content starts with a XML declaration.</li>
+	<li>Now syntax style is automatically set to “XML” on file opening if no appropriate style can be found but the file content starts with an XML declaration.</li>
 	<li>Update “Swift” syntax style:
 	<ul>
 		<li>Add new terms available in Swift 2.0.</li>
@@ -1320,7 +1350,7 @@
 	</ul></li>
 	<li><span class="label">non-AppStore ver.</span>: Add option to check pre-release versions.
 	<ul>
-		<li>New pre-releases are always subject of the update check no matter the user setting if the current running CotEditor is a pre-release version.</li>
+		<li>New pre-releases are always subject to the update check no matter the user setting if the current running CotEditor is a pre-release version.</li>
 	</ul></li>
 	<li><span class="label">non-AppStore ver.</span>: Update Sparkle framework to version 1.11.0.</li>
 </ul>
@@ -1332,18 +1362,18 @@
 
 <ul>
 	<li>Fix an issue where theme color was occasionally not applied to the preview in the print panel.</li>
-	<li>Fix an issue where application crashed when type a part of surrogate pair character.</li>
+	<li>Fix an issue where the application crashed when type a part of surrogate pair character.</li>
 	<li>Fix an issue where invisibles which are a surrogate pair occasionally did not display.</li>
 	<li>Fix an issue where the full path display in the document inspector did not update after the document file moved.</li>
 	<li>Fix an issue where the find panel could not find matched strings when the find string includes CR or CR/LF line endings.</li>
 	<li>Fix an issue where warning on Integration pane didn't disappear even after the problem resolved.</li>
-	<li>Fix an issue where application crashed by clicking header of empty table in syntax editor sheet.</li>
+	<li>Fix an issue where the application crashed by clicking header of empty table in syntax editor sheet.</li>
 	<li>Fix an issue where line numbers were not drawn completely on OS X 10.8 when scroll bars are set as always shown.</li>
 	<li>Fix an issue where the command-line tool could rarely not be installed from Integration pane.</li>
-	<li>Fix an issue where application could crash after when closing multiple split views.</li>
+	<li>Fix an issue where the application could crash after when closing multiple split views.</li>
 	<li>Fix an issue where the toolbar button state of the text orientation was not updated on window restoration.</li>
 	<li>Fix an issue where some ligatured characters were drawn at a wrong position when the line height for composite font is fixed.</li>
-	<li>Fix an issue where unwanted invisible character mark were drawn when tab drawing is turned off and other invisibles drawing is turned on.</li>
+	<li>Fix an issue where unwanted invisible character marks were drawn when tab drawing is turned off and other invisibles drawing is turned on.</li>
 	<li>Add some missing localized strings in Japanese.</li>
 	<li>Improve general stability.</li>
 </ul>
@@ -1436,7 +1466,7 @@
 
 <ul>
 	<li>Address an issue where the application could hang up on document saving.</li>
-	<li>Fix an issue where the autosaving could sometime be disabled.</li>
+	<li>Fix an issue where the autosaving could sometimes be disabled.</li>
 	<li>Fix an issue where the layout of the text fields in the find panel could rarely be broken.</li>
 	<li>Fix an issue where the auto-update notifier did not recognize a new stable version from specific beta version numbers.</li>
 	<li>Fix an issue where some 3rd-party text editors for OS X cannot interpret files which were created by CotEditor.</li>
@@ -1507,7 +1537,7 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where application could hang up on saving backup file.</li>
+	<li>Fix an issue where the application could hang up on saving backup file.</li>
 	<li>Fix an issue where unwanted find panel was shown when perform “Use Selection for Find” or “Use Selection for Replace” action.</li>
 </ul>
 </section>
@@ -1527,7 +1557,7 @@
 
 <ul>
 	<li>Fix an issue where octal file permission in the document inspector was wrong.</li>
-	<li>Fix an issue where application could hang up on text editing.</li>
+	<li>Fix an issue where the application could hang up on text editing.</li>
 	<li>Improve general stability.</li>
 </ul>
 </section>
@@ -1581,7 +1611,7 @@
 	<li>Improve auto-tab-expand behavior with intent that tab characters and spaces are mixed.</li>
 	<li>Add hidden “Reveal in Finder” menu item to syntax style action menu in Preferences (visible with <kbd>Option</kbd> key).</li>
 	<li>Improve CotEditor Script to apply the result to the document that was frontmost when the script was launched.</li>
-	<li>Close Preferences window with <kbd>esc</kbd> key.</li>
+	<li>Close Preferences window with <kbd>ESC</kbd> key.</li>
 	<li>Character inspector popover becomes detachable (on Yosemite and later).</li>
 	<li>Update about Console Panel:
 	<ul>
@@ -1593,7 +1623,7 @@
 	<li>Make key bindings for panel windows customizable.</li>
 	<li>Change to save <code>com.apple.TextEncoding</code> xattr only if the file already has the encoding xattr or it's a new document.</li>
 	<li>Move removed themes/styles to Trash instead delete them immediately.</li>
-	<li>Now, Utility actions perform with multiple selection.</li>
+	<li>Now, Utility actions perform with multiple selections.</li>
 	<li>Avoid showing not-writable alert on Resume again.</li>
 	<li>Delay timing to save text key bindings setting.</li>
 	<li>Localize document types.</li>
@@ -1615,7 +1645,7 @@
 	<li>Fix an issue that the preferred file encoding for encoding detection could be set wrong after running file open panel.</li>
 	<li>Fix an issue that incompatible character markup positions were wrong by CR/LF line endings.</li>
 	<li>Fix duplication check in key bindings editor.</li>
-	<li>Fix “Restore Defaults” button enability on text key bindings edit sheet.</li>
+	<li>Fix “Restore Defaults” button ability on text key bindings edit sheet.</li>
 	<li>Fix possible crashes on input.</li>
 	<li>Fix an issue that application could crash after closing split view.</li>
 	<li>Fix an issue that application could crash after switching theme in preferences.</li>
@@ -1626,10 +1656,10 @@
 	<li>Fix an issue that text font could occasionally change after pasting or inputting text from other application.</li>
 	<li>Fix an issue that number of selected lines displayed less than actual count if last selected lines are blank.</li>
 	<li>Fix an issue that Unicode character insertion was occasionally failed.</li>
-	<li>Fix an issue that syntax highlights were removed after perform Unhighlight.</li>
+	<li>Fix an issue that syntax highlights were removed after performing Unhighlight.</li>
 	<li>Fix timing to display sheets on file open.</li>
 	<li>Fix an issue that selection of line endings menu and encoding menu in toolbar did not update on undo/redo</li>
-	<li>Fix an issue where “Go To” dialog could duplicate and then most of controls were disabled.</li>
+	<li>Fix an issue where “Go To” dialog could duplicate and then most of the controls were disabled.</li>
 	<li>Fix an issue that checkmark in line height menu was not displayed.</li>
 	<li>Fix an issue where some document icons were not applied under the specific environments.</li>
 	<li>Fix some missing localizations in simplified Chinese. (Thanks to Wei Wang!)</li>
@@ -1663,7 +1693,7 @@
 
 <ul>
 	<li>Add “Traditional Chinese (Big 5 HKSCS)”, “Traditional Chinese (Big 5-E)” and “Traditional Chinese (Big 5)” to encoding list.</li>
-	<li>Add “show invisible characters” option to set visibility of all invisible characters at once.
+	<li>Add “show invisible characters” option to set the visibility of all invisible characters at once.
 		<ul>
 		<li>From this, invisibles visibility of displayed windows can be toggled even all invisibles are hidden as default.</li>
 	</ul></li>
@@ -1671,7 +1701,7 @@
 	<li>Now, window states will resume from the last session.</li>
 	<li>Change default syntax style from “None” to “Plain Text”.</li>
 	<li>Improve syntax highlighting performance.</li>
-	<li>Remove delay when a AppleScript/JavaScript is run for the first time after application launch.</li>
+	<li>Remove delay when an AppleScript/JavaScript is run for the first time after application launch.</li>
 	<li>Update “CSS” syntax style:
 		<ul>
 		<li>Add several keywords. (Thanks to Nathan Rutzky!)</li>
@@ -1693,7 +1723,7 @@
 	<li>Fix page guide position and tab width.</li>
 	<li>Fix an issue that “Go” button in “Go To” sheet didn't work by clicking.</li>
 	<li>Fix an issue that line endings menu in toolbar whose document had been newly created was always set to “LF”.</li>
-	<li>Fix an issue that cancelation of syntax extracting didn't work immediately under the specific conditions.</li>
+	<li>Fix an issue that cancellation of syntax extracting didn't work immediately under the specific conditions.</li>
 	<li>Fix an issue that selecting inside of brackets by double-clicking didn't work.</li>
 	<li>Fix an issue that script execution with large size output could cause application hang up.</li>
 	<li>Fix a possible issue that syntax highlighting while text editing could cause application crash.</li>
@@ -1752,7 +1782,7 @@
 
 <ul>
 	<li>Display an alert if the opening file is larger than 100 MB.</li>
-	<li>Change default value for “Comment always from line head” option to enable.</li>
+	<li>Change the default value for “Comment always from line head” option to enable.</li>
 	<li>Rename labels for line endings.</li>
 	<li>Update “Python” syntax style:
 	<ul>
@@ -1768,7 +1798,7 @@
 	</ul></li>
 	<li>Update “JavaScript” syntax style:
 	<ul>
-		<li>Highlight shebang as comment.</li>
+		<li>Highlight shebang as a comment.</li>
 	</ul></li>
 	<li>Update documents for scripting with AppleScript.</li>
 	<li>Update sample scripts.</li>
@@ -1789,11 +1819,11 @@
 	<li>Fix an issue that quoted texts and block comments at the end of document weren't highlighted.</li>
 	<li>Fix an issue that text kerning was too narrow with non-antialiasing text (thanks to tsawada2-san).</li>
 	<li>Fix an issue that text view scrolls to the opposite side when line number view is dragged.</li>
-	<li>Fix an issue that <code>contents</code> property of document property could’t be set via AppleScript.</li>
+	<li>Fix an issue that <code>contents</code> property of document property couldn't be set via AppleScript.</li>
 	<li>Fix an issue that word selection didn't expand correctly under the specific conditions.</li>
 	<li>Fix an issue that current line highlight didn't update after font size change.</li>
 	<li>Fix an issue that navigation/status bars are shown for a moment on window creation even they are set as hidden.</li>
-	<li>Fix an issue that new added row in file drop setting occasionally disappear immediately.</li>
+	<li>Fix an issue that newly added row in file drop setting occasionally disappear immediately.</li>
 	<li>Fix some Japanese localizations.</li>
 </ul>
 </section>
