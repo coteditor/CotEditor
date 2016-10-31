@@ -10,6 +10,10 @@ develop
 - On macOS Sierra, add an option to set window tabbing behavior (in Window pane).
 
 
+
+3.0.4 (167)
+--------------------------
+
 ### Improvements
 
 - Update build environment to Xcode 8.1 (SDK macOS 10.12.1).
