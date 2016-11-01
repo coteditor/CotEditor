@@ -274,7 +274,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             strongSelf.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
                 
                 guard !progress.isCancelled else {
-                    indicator.dismiss(strongSelf)
+                    DispatchQueue.main.async {
+                        indicator.dismiss(nil)
+                    }
                     strongSelf.busyTextViews.remove(textView)
                     stop = true
                     return
@@ -386,7 +388,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             strongSelf.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
                 
                 guard !progress.isCancelled else {
-                    indicator.dismiss(strongSelf)
+                    DispatchQueue.main.async {
+                        indicator.dismiss(nil)
+                    }
                     strongSelf.busyTextViews.remove(textView)
                     stop = true
                     return
@@ -522,7 +526,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             strongSelf.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
                 
                 guard !progress.isCancelled else {
-                    indicator.dismiss(strongSelf)
+                    DispatchQueue.main.async {
+                        indicator.dismiss(nil)
+                    }
                     strongSelf.busyTextViews.remove(textView)
                     stop = true
                     return
