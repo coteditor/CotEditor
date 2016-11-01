@@ -389,10 +389,10 @@
 "598.title" = "NFKC";
 /* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
 "zuR-3K-9fs.title" = "NFKC Casefold";
-/* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.title" = "修正 NFC (HFS+)";
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
 "NU7-EI-1Ct.title" = "修正 NFD (HFS+)";
+/* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
+"n6C-Km-BM9.title" = "修正 NFC (HFS+)";
 
 /* Class = "NSMenuItem"; title = "Insert IANA Charset Name"; ObjectID = "663"; */
 "663.title" = "IANA エンコーディング名を挿入";
