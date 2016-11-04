@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where scripts didn't put results on the document/console.
+- Fix an issue where editor was occasionally stacked under the window toolbar on macOS 10.12.
 - Fix an issue where MarsEdit via the App Store didn't update its contents after closing the document in CotEditor.
 - Improve general stability.
 
