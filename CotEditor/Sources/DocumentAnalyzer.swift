@@ -253,7 +253,7 @@ final class DocumentAnalyzer: NSObject {
             }
             
             // apply to UI
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 strongSelf.length = type(of: strongSelf).format(count: length, selectedCount: selectedLength)
                 strongSelf.chars = type(of: strongSelf).format(count: numberOfChars, selectedCount: numberOfSelectedChars)
                 strongSelf.lines = type(of: strongSelf).format(count: numberOfLines, selectedCount: numberOfSelectedLines)
