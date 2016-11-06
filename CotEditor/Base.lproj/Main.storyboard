@@ -16,7 +16,7 @@
                                         <menuItem title="About CotEditor" id="58">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="hnw-xV-0zn" id="8UO-tR-BUg"/>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="42B-vI-A6l"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="202">
@@ -38,18 +38,18 @@
                                         </menuItem>
                                         <menuItem title="Hide CotEditor" keyEquivalent="h" id="134">
                                             <connections>
-                                                <action selector="hide:" target="hnw-xV-0zn" id="YlO-dZ-JRF"/>
+                                                <action selector="hide:" target="Ady-hI-5gd" id="JrT-Ri-zBE"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Hide Others" keyEquivalent="h" id="145">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
-                                                <action selector="hideOtherApplications:" target="hnw-xV-0zn" id="Ctk-lU-SKU"/>
+                                                <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="bsM-lz-R6Y"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Show All" id="150">
                                             <connections>
-                                                <action selector="unhideAllApplications:" target="hnw-xV-0zn" id="ZbU-zL-who"/>
+                                                <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="kIn-Hg-MXT"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="149">
@@ -57,7 +57,7 @@
                                         </menuItem>
                                         <menuItem title="Quit CotEditor" keyEquivalent="q" id="136">
                                             <connections>
-                                                <action selector="terminate:" target="hnw-xV-0zn" id="EAO-vG-5Qf"/>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="e2R-9T-s5O"/>
                                             </connections>
                                         </menuItem>
                                     </items>

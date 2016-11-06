@@ -29,7 +29,7 @@
 import Cocoa
 
 @NSApplicationMain
-final class AppDelegate: NSResponder, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Enums
     
