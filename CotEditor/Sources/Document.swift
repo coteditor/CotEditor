@@ -688,7 +688,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             case .ignore:
                 break
             case .notify:
-                // notify and show dialog later
                 self?.notifyExternalFileUpdate()
             case .revert:
                 if let fileURL = self?.fileURL, let fileType = self?.fileType {

@@ -206,7 +206,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Methods
     
-    /// String.Encoding accessor for encodnig user selected in open panel
+    /// String.Encoding accessor for encoding user selected in open panel
     var accessorySelectedEncoding: String.Encoding {
         
         get {
