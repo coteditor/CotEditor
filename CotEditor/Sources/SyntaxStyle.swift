@@ -30,7 +30,7 @@ import Cocoa
 
 protocol SyntaxStyleDelegate: class {
     
-    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]?)
+    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem])
 }
 
 
@@ -49,9 +49,9 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     let completionWords: [String]?  // completion words list
     let firstCompletionCharacterSet: CharacterSet?  // set of the first characters of the completion words
     
-    fileprivate(set) var outlineItems: [OutlineItem]? {
+    fileprivate(set) var outlineItems: [OutlineItem] = [] {
         didSet {
-            guard let items = self.outlineItems else { return }
+            let items = self.outlineItems
             
             // inform delegate about outline items update
             DispatchQueue.main.async { [weak self] in
@@ -293,6 +293,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     /// cancel all syntax parse
     func cancelAllParses() {
+        
         self.outlineParseOperationQueue.cancelAllOperations()
         self.syntaxHighlightParseOperationQueue.cancelAllOperations()
     }
@@ -301,8 +302,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
 
 
 
-// MARK:
-// MARK: Outline
+// MARK: - Outline
 
 extension SyntaxStyle {
     
@@ -310,9 +310,7 @@ extension SyntaxStyle {
     func invalidateOutline() {
         
         guard self.canParse else {
-            if self.outlineItems == nil {
-                self.outlineItems = []
-            }
+            self.outlineItems = []
             return
         }
         
@@ -324,7 +322,7 @@ extension SyntaxStyle {
     // MARK: Private Methods
     
     /// parse outline
-    @objc func parseOutline() {
+    @objc private func parseOutline() {
         
         self.outlineMenuTimer?.invalidate()
         
@@ -371,8 +369,7 @@ extension SyntaxStyle {
 
 
 
-// MARK:
-// MARK: Syntax Highlight
+// MARK: - Syntax Highlight
 
 extension SyntaxStyle {
     
@@ -392,10 +389,9 @@ extension SyntaxStyle {
         }
         
         // make sure that string is immutable
-        // [Caution] DO NOT use [string copy] here instead of `stringWithString:`.
-        //           It still returns a mutable object, NSBigMutableString,
-        //           and it can cause crash when the mutable string is given to RegularExpression instance.
-        //           (2015-08, with OS X 10.10 SDK)
+        //   -> `string` of NSTextStorage is actually a mutable object
+        //      and it can cause crash when the mutable string is given to NSRegularExpression instance.
+        //      (2016-11, macOS 10.12.1 SDK)
         let string = NSString(string: textStorage.string) as String
         
         self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
@@ -486,19 +482,18 @@ extension SyntaxStyle {
         // show highlighting indicator for large string
         var indicator: ProgressViewController?
         if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
-            // wait for window becomes visible and sheet-attachable
+            // wait for window becomes ready
             DispatchQueue.global(qos: .background).async {
-                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) ||
-                       (storage.layoutManagers.first?.firstTextView?.window?.attachedSheet != nil)
-                {
+                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) {
                     usleep(100)
                 }
                 
                 // attach the indicator as a sheet
                 DispatchQueue.main.sync {
-                    guard !operation.isFinished && !operation.isCancelled else { return }
+                    guard !operation.isFinished && !operation.isCancelled,
+                        let contentViewController = storage.layoutManagers.first?.firstTextView?.window?.windowController?.contentViewController
+                        else { return }
                     
-                    guard let contentViewController = storage.layoutManagers.first?.firstTextView?.window?.windowController?.contentViewController else { return }
                     indicator = ProgressViewController(progress: operation.progress, message: NSLocalizedString("Coloring text…", comment: ""))
                     contentViewController.presentViewControllerAsSheet(indicator!)
                 }

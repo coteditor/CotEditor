@@ -311,9 +311,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// update outline menu in navigation bar
-    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]?) {
-        
-        guard let outlineItems = outlineItems else { return }
+    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]) {
         
         for viewController in self.editorViewControllers {
             viewController.navigationBarController?.outlineItems = outlineItems

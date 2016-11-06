@@ -108,24 +108,21 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
     }
     
     
-    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]?) {
+    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]) {
         
         self.outlineParseExpectation?.fulfill()
         
-        XCTAssertEqual(outlineItems?.count, 3)
+        XCTAssertEqual(outlineItems.count, 3)
         
-        XCTAssertEqual(syntaxStyle.outlineItems!, outlineItems!)
+        XCTAssertEqual(syntaxStyle.outlineItems, outlineItems)
         
-        if let item = outlineItems?[1] {
-            XCTAssertEqual(item.title, "   h2: 🐕🐄")
-            XCTAssertEqual(item.range.location, 354)
-            XCTAssertEqual(item.range.length, 13)
-            XCTAssertFalse(item.isBold)
-            XCTAssertFalse(item.isItalic)
-            XCTAssertFalse(item.hasUnderline)
-        } else {
-            XCTFail()
-        }
+        let item = outlineItems[1]
+        XCTAssertEqual(item.title, "   h2: 🐕🐄")
+        XCTAssertEqual(item.range.location, 354)
+        XCTAssertEqual(item.range.length, 13)
+        XCTAssertFalse(item.isBold)
+        XCTAssertFalse(item.isItalic)
+        XCTAssertFalse(item.hasUnderline)
     }
     
 }
