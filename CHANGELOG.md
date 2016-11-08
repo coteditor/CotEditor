@@ -10,6 +10,11 @@ develop
 - On macOS Sierra, add an option to set window tabbing behavior (in Window pane).
 
 
+### Improvements
+
+- Display the IANA charset name conflict alert as a document-modal sheet.
+
+
 ### Fixes
 
 - Fix an issue where the alert about the conflict with IANA charset name was not displayed.

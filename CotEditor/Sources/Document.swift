@@ -1136,19 +1136,20 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 try self.checkSavingSafetyWithIANACharSetName(content: content, encoding: encoding)
                 
             } catch let error {
-                // --> ask directly with a non-sheet NSAlert for the suppression button
+                // --> ask directly with a NSAlert for the suppression button
                 let alert = NSAlert(error: error)
                 alert.showsSuppressionButton = true
                 alert.suppressionButton?.title = NSLocalizedString("Do not show this warning for this document again", comment: "")
                 
-                let result = alert.runModal()
+                let result = alert.runModal(for: self.windowForSheet!)
+                
                 // do not show the alert in this document again
                 if alert.suppressionButton?.state == NSOnState {
                     self.suppressesIANACharsetConflictAlert = true
                 }
                 
                 switch result {
-                case NSAlertFirstButtonReturn:  // == Cancel
+                case NSAlertSecondButtonReturn:  // == Cancel
                     completionHandler(false)
                     return
                 default: break  // == Continue Saving
@@ -1347,8 +1348,8 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         switch self.kind {
         case .ianaCharsetNameConflict:
-            return [NSLocalizedString("Cancel", comment: ""),
-                    NSLocalizedString("Continue Saving", comment: "")]
+            return [NSLocalizedString("Continue Saving", comment: ""),
+                    NSLocalizedString("Cancel", comment: "")]
             
         case .unconvertibleCharacters:
             return [NSLocalizedString("Show Incompatible Chars", comment: ""),
@@ -1359,8 +1360,8 @@ private struct EncodingError: LocalizedError, RecoverableError {
             return []
             
         case .lossyEncodingConversion:
-            return [NSLocalizedString("Cancel", comment: ""),
-                    NSLocalizedString("Change Encoding", comment: "")]
+            return [NSLocalizedString("Change Encoding", comment: ""),
+                    NSLocalizedString("Cancel", comment: "")]
         }
     }
     
@@ -1373,11 +1374,12 @@ private struct EncodingError: LocalizedError, RecoverableError {
         switch self.kind {
         case .ianaCharsetNameConflict:
             switch recoveryOptionIndex {
-            case 0:  // == Cancel
-                return false
-            case 1:  // == Continue Saving
+            case 0:  // == Continue Saving
                 return true
+            case 1:  // == Cancel
+                return false
             default:
+                assertionFailure()
                 return false
             }
         case .unconvertibleCharacters:
@@ -1390,6 +1392,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             case 2:  // == Cancel
                 return false
             default:
+                assertionFailure()
                 return false
             }
             
@@ -1398,18 +1401,19 @@ private struct EncodingError: LocalizedError, RecoverableError {
             
         case .lossyEncodingConversion:
             switch recoveryOptionIndex {
-            case 0:  // == Cancel
-                // reset to force reverting toolbar selection
-                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: document)
-                return false
-            case 1:  // == Change Encoding
+            case 0:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
                 if let windowContentController = windowContentController {
                     (document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController)?.showSidebarPane(index: .incompatibleCharacters)
                     windowContentController.showSidebarPane(index: .incompatibleCharacters)
                 }
                 return true
+            case 1:  // == Cancel
+                // reset to force reverting toolbar selection
+                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: document)
+                return false
             default:
+                assertionFailure()
                 return false
             }
         }
