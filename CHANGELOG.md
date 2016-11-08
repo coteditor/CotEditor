@@ -12,6 +12,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where the alert about the conflict with IANA charset name was not displayed.
 - Fix an issue where MarsEdit via the App Store didn't update its contents after closing the document in CotEditor.
 
 

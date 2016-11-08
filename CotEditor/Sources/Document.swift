@@ -1133,7 +1133,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // check encoding declaration in the document and alert if incompatible with saving encoding
         if !self.suppressesIANACharsetConflictAlert {
             do {
-                try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
+                try self.checkSavingSafetyWithIANACharSetName(content: content, encoding: encoding)
                 
             } catch let error {
                 // --> ask directly with a non-sheet NSAlert for the suppression button
@@ -1167,6 +1167,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                               delegate: self,
                               didPresent: #selector(didPresentErrorWithRecovery(didRecover:block:)),
                               contextInfo: nil)
+            return
         }
         
         completionHandler(true)
@@ -1176,10 +1177,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// check compatibility of saving encoding with the encoding decralation in document
     private func checkSavingSafetyWithIANACharSetName(content: String, encoding: String.Encoding) throws {
         
-        guard let IANACharSetEncoding = self.scanEncodingFromDeclaration(content: content) else { return }
+        guard let ianaCharSetEncoding = self.scanEncodingFromDeclaration(content: content) else { return }
         
-        guard encoding.isCompatible(ianaCharSetEncoding: IANACharSetEncoding) else {
-            throw EncodingError(kind: .ianaCharsetNameConflict(ianaEncoding: IANACharSetEncoding), encoding: encoding, withUTF8BOM: false, attempter: self)
+        guard encoding.isCompatible(ianaCharSetEncoding: ianaCharSetEncoding) else {
+            throw EncodingError(kind: .ianaCharsetNameConflict(ianaEncoding: ianaCharSetEncoding), encoding: encoding, withUTF8BOM: false, attempter: self)
         }
     }
     
