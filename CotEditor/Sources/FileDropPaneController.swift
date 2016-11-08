@@ -45,6 +45,12 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     // MARK:
     // MARK: Lifecycle
     
+    deinit {
+        self.formatTextView?.delegate = nil
+        self.glossaryTextView?.delegate = nil
+    }
+    
+    
     override var nibName: String? {
         
         return "FileDropPane"

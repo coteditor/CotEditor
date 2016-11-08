@@ -87,6 +87,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         if let layoutManager = self.textView?.layoutManager {
             self.textView?.textStorage?.removeLayoutManager(layoutManager)
         }
+        
+        self.textView?.delegate = nil
     }
     
     
