@@ -409,7 +409,7 @@ extension SyntaxStyle {
         
         let wholeRange = string.nsRange
         let bufferLength = Defaults[.coloringRangeBufferLength]
-        var highlightRange = editedRange
+        var highlightRange = NSIntersectionRange(editedRange, wholeRange)  // in case that wholeRange length is changed from editedRange
         
         // highlight whole if string is enough short
         if wholeRange.length <= bufferLength {
@@ -501,7 +501,13 @@ extension SyntaxStyle {
         }
         
         operation.completionBlock = { [weak self, weak operation] in
-            guard let strongSelf = self, let operation = operation else { return }
+            guard let strongSelf = self, let operation = operation else {
+                DispatchQueue.main.async {
+                    indicator?.dismiss(self)
+                }
+                return
+            }
+            
             let highlights = operation.results
             
             DispatchQueue.main.async {
