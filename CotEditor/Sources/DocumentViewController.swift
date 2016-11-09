@@ -647,6 +647,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         // close
         if let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController) {
             splitViewController.removeSplitViewItem(splitViewItem)
+        
+            if let textView = currentEditorViewController.textView {
+                NotificationCenter.default.removeObserver(self, name: .NSTextViewDidChangeSelection, object: textView)
+            }
         }
     }
     
