@@ -62,8 +62,8 @@ final class ServicesProvider: NSObject {
             let fileURL = URL(fileURLWithPath: path)
             
             // process only plain-text files
-            guard let UTI = (try? fileURL.resourceValues(forKeys: Set([.typeIdentifierKey])))?.typeIdentifier,
-                NSWorkspace.shared().type(UTI, conformsToType: kUTTypeText as String)
+            guard let uti = (try? fileURL.resourceValues(forKeys: Set([.typeIdentifierKey])))?.typeIdentifier,
+                NSDocumentController.shared().documentClass(forType: uti) != nil
                 else {
                     let error = NSError(domain: CocoaError.errorDomain,
                                         code: CocoaError.fileReadCorruptFile.rawValue,
