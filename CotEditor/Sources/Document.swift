@@ -327,6 +327,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         //       - EditorTextViewController > textView(_:shouldChangeTextInRange:replacementString:)
         let string = content.replacingLineEndings(with: .LF)
         
+        assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
         
         // determine syntax style
@@ -372,6 +373,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, completionHandler: @escaping (Error?) -> Void) {
         
         // trim trailing whitespace if needed
+        assert(Thread.isMainThread)
         if Defaults[.trimsTrailingWhitespaceOnSave] {
             let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
             
@@ -412,7 +414,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         super.save(to: newUrl, ofType: typeName, for: saveOperation) { [weak self] (error: Error?) in
             guard let strongSelf = self else { return }
             
-            // [note] This completionHandler block will always be invoked on the main thread.
+            assert(Thread.isMainThread)
          
             defer {
                 completionHandler(error)
