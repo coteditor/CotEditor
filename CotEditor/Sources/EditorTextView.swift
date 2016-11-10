@@ -754,7 +754,11 @@ final class EditorTextView: NSTextView, Themable {
             if let textStorage = self.textStorage {
                 let wholeRange = textStorage.string.nsRange
                 if keyPath == DefaultKeys.enablesHangingIndent.rawValue && !(newValue as! Bool) {
-                    textStorage.addAttribute(NSParagraphStyleAttributeName, value: self.defaultParagraphStyle!, range: wholeRange)
+                    if let paragraphStyle = self.defaultParagraphStyle {
+                        textStorage.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: wholeRange)
+                    } else {
+                        textStorage.removeAttribute(NSParagraphStyleAttributeName, range: wholeRange)
+                    }
                 } else {
                     (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
                 }

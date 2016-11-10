@@ -121,7 +121,9 @@ final class PrintPaneController: NSViewController {
               let displayFont = NSFont(name: name, size: min(size, 13.0)),
               let fontField = self.fontField else { return }
         
-        fontField.stringValue = font.displayName! + " " + String(format:"%g", size)
+        let displayName = font.displayName ?? font.fontName
+        
+        fontField.stringValue = displayName + " " + String(format:"%g", size)
         fontField.font = displayFont
     }
     

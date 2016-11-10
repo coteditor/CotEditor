@@ -199,9 +199,10 @@ final class LayoutManager: NSLayoutManager {
         }
         
         // draw invisibles
-        if let context = NSGraphicsContext.current()?.cgContext, self.showsInvisibles {
-            
-            let string = self.textStorage!.string
+        if self.showsInvisibles,
+            let context = NSGraphicsContext.current()?.cgContext,
+            let string = self.textStorage?.string
+        {
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
             
             // flip coordinate if needed

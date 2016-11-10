@@ -524,7 +524,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // set default file extension in hacky way (2016-10 on macOS 10.12 SDK for macOS 10.10 - 10.12)
         self.allowedFileTypes = nil
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
-        if let pathExtension = self.fileNameExtension(forType: self.fileType!, saveOperation: .saveOperation) {
+        if let fileType = self.fileType,
+           let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation) {
             // bind allowedFileTypes flag with savePanel
             // -> So that initial filename selection excludes file extension.
             self.allowedFileTypes = [pathExtension]
@@ -1030,7 +1031,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.addButton(withTitle: NSLocalizedString("Reinterpret", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         
-        alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
+        let documentWindow = self.windowForSheet!
+        alert.beginSheetModal(for: documentWindow) { [weak self] (returnCode: NSModalResponse) in
             guard let strongSelf = self else { return }
             
             switch returnCode {
@@ -1045,8 +1047,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
                     alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
                     
-                    strongSelf.windowForSheet!.attachedSheet?.orderOut(strongSelf)  // close previous sheet
-                    alert.beginSheetModal(for: strongSelf.windowForSheet!, completionHandler: { (returnCode: NSModalResponse) in
+                    documentWindow.attachedSheet?.orderOut(strongSelf)  // close previous sheet
+                    alert.beginSheetModal(for: documentWindow, completionHandler: { (returnCode: NSModalResponse) in
                         switch returnCode {
                         case NSAlertFirstButtonReturn:  // = Cancel
                             // reset toolbar selection for in case if the operation was invoked from the toolbar popup
@@ -1118,7 +1120,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             }
         }
         
-        return (string, usedEncoding!)
+        guard let encoding = usedEncoding else {
+            throw CocoaError(.fileReadUnknownStringEncoding)
+        }
+        
+        return (string, encoding)
     }
     
     

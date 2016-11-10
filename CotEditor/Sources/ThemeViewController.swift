@@ -90,7 +90,9 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     /// theme is modified
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        self.delegate?.didUpdate(theme: self.theme!)
+        if let theme = self.theme {
+            self.delegate?.didUpdate(theme: theme)
+        }
     }
     
     
@@ -108,7 +110,9 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     func popoverDidClose(_ obj: Notification) {
         
         if self.isMetadataEdited {
-            self.delegate?.didUpdate(theme: self.theme!)
+            if let theme = self.theme {
+                self.delegate?.didUpdate(theme: theme)
+            }
             self.isMetadataEdited = false
         }
     }
