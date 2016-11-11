@@ -281,7 +281,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // try reading the `com.apple.TextEncoding` extended attribute
         let xattrEncoding: String.Encoding? = {
             guard
-                let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path)[NSFileExtendedAttributes]) as? [String: Any],
+                let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path)[NSFileExtendedAttributes]) as? [String: Any],  // FILE_READ
                 let xattrEncodingData = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data
                 else { return nil }
             
