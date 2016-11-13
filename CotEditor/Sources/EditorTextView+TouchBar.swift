@@ -78,3 +78,18 @@ extension EditorTextView {
     }
     
 }
+
+
+
+@available(macOS 10.12.1, *)
+extension EditorTextViewController {
+    
+    /// suggest candidates for automatic text completion
+    func textView(_ textView: NSTextView, candidatesForSelectedRange selectedRange: NSRange) -> [Any]? {
+        
+        var index = 0
+        guard let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index), !candidates.isEmpty else { return nil }
+        
+        return candidates
+    }
+}
