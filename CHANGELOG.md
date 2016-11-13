@@ -8,6 +8,7 @@ develop
 ### New Features
 
 - On macOS Sierra, add an option to set window tabbing behavior (in Window pane).
+- Support Touch Bar on the new MacBook Pro.
 
 
 ### Improvements
