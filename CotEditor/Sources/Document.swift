@@ -492,7 +492,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if self.isExecutable && saveOperation != .autosaveElsewhereOperation {
             var permissions = (attributes[FileAttributeKey.posixPermissions.rawValue] as? UInt16) ?? 0
             if let originalURL = absoluteOriginalContentsURL, permissions == 0 {
-                permissions = ((try? FileManager.default.attributesOfItem(atPath: originalURL.path))?[.posixPermissions] as? UInt16) ?? 0  // FILE_READ(REAL)
+                let coordinator = NSFileCoordinator(filePresenter: self)
+                coordinator.coordinate(readingItemAt: originalURL, options: .withoutChanges, error: nil) { (newURL) in
+                    permissions = ((try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.posixPermissions] as? UInt16) ?? 0  // FILE_READ
+                }
             }
             if permissions == 0 {
                 permissions = 0o644  // ???: Is the default permission really always 644?
