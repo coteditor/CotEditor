@@ -1456,9 +1456,9 @@
 				2A6FD9E91D3A819500A59784 /* EditorTextView+Commenting.swift */,
 				2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */,
 				2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */,
+				2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */,
 				2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */,
 				2A9082E11D32456300228F50 /* NSTextView+Layout.swift */,
-				2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */,
 			);
