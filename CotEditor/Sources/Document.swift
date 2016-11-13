@@ -263,25 +263,24 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         let data = try Data(contentsOf: url)  // FILE_READ
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
         
         // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
         self.fileHash = data.md5
         
-        // read file attributes only if `fileURL` exists
+        // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
-        //    for example on resuming of an unsaved document.
-        if let filePath = self.fileURL?.path {
-            if let attributes = try? FileManager.default.attributesOfItem(atPath: filePath) {  // FILE_READ
-                self.fileAttributes = attributes
-                let posixPermissions = (attributes[.posixPermissions] as? UInt16) ?? 0
-                self.isExecutable = (posixPermissions & S_IXUSR) != 0
-            }
+        //    for example on resuming an unsaved document.
+        if self.fileURL != nil {
+            self.fileAttributes = attributes
+            let posixPermissions = (attributes[.posixPermissions] as? UInt16) ?? 0
+            self.isExecutable = (posixPermissions & S_IXUSR) != 0
         }
         
         // try reading the `com.apple.TextEncoding` extended attribute
         let xattrEncoding: String.Encoding? = {
             guard
-                let extendedAttributes = (try? FileManager.default.attributesOfItem(atPath: url.path)[NSFileExtendedAttributes]) as? [String: Any],  // FILE_READ
+                let extendedAttributes = attributes[NSFileExtendedAttributes] as? [String: Any],
                 let xattrEncodingData = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data
                 else { return nil }
             
@@ -431,9 +430,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             }
             
             if saveOperation != .autosaveElsewhereOperation {
-                // get the latest file attributes
-                strongSelf.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
-                
                 // update file information
                 strongSelf.analyzer.invalidateFileInfo()
                 
@@ -457,6 +453,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         try super.write(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         if saveOperation != .autosaveElsewhereOperation {
+            // get the latest file attributes
+            self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+            
             // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
             if let data = try? Data(contentsOf: url) {  // FILE_READ
                 self.fileHash = data.md5
@@ -492,8 +491,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // give the execute permission if user requested
         if self.isExecutable && saveOperation != .autosaveElsewhereOperation {
             var permissions = (attributes[FileAttributeKey.posixPermissions.rawValue] as? UInt16) ?? 0
-            if let originalPath = absoluteOriginalContentsURL?.path, permissions == 0 {
-                permissions = ((try? FileManager.default.attributesOfItem(atPath: originalPath))?[.posixPermissions] as? UInt16) ?? 0  // FILE_READ
+            if let originalURL = absoluteOriginalContentsURL, permissions == 0 {
+                permissions = ((try? FileManager.default.attributesOfItem(atPath: originalURL.path))?[.posixPermissions] as? UInt16) ?? 0  // FILE_READ(REAL)
             }
             if permissions == 0 {
                 permissions = 0o644  // ???: Is the default permission really always 644?
@@ -741,9 +740,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // This method won't be invoked on Resume. (2015-01-26)
         
         // check file meta data for text orientation
+        assert(self.fileAttributes != nil)
         if Defaults[.savesTextOrientation] {
-            let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
-            self.isVerticalText = ((attributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
+            self.isVerticalText = ((self.fileAttributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
         }
     }
     
