@@ -159,7 +159,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels
 "Shift" = "Shift";  // FIXME: added
-"Comment" = "Comment";  // FIXME: added
+"Comment" = "注释";
 "Text Size" = "Text Size";  // FIXME: added
 "Actual Size" = "Actual Size";  // FIXME: added
 

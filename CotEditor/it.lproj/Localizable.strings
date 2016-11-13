@@ -159,9 +159,9 @@
 /* MARK: Touch Bar */
 // Touch bar item labels
 "Shift" = "Shift";  // FIXME: added
-"Comment" = "Comment";  // FIXME: added
+"Comment" = "Commento";
 "Text Size" = "Text Size";  // FIXME: added
-"Actual Size" = "Actual Size";  // FIXME: added
+"Actual Size" = "Dimensioni reali";
 
 
 

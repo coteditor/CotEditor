@@ -75,9 +75,9 @@
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "82"; */
 "82.title" = "新建";
 /* Class = "NSMenuItem"; title = "New Window"; ObjectID = "cTV-Rh-597"; */
-"cTV-Rh-597.title" = "New Window";  // FIXME: added
+"cTV-Rh-597.title" = "新建窗口";
 /* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
-"WCp-4v-OPR.title" = "新标签";
+"WCp-4v-OPR.title" = "新建标签";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "打开…";
 /* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */

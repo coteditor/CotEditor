@@ -75,7 +75,7 @@
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "82"; */
 "82.title" = "Nuovo";
 /* Class = "NSMenuItem"; title = "New Window"; ObjectID = "cTV-Rh-597"; */
-"cTV-Rh-597.title" = "New Window";  // FIXME: added
+"cTV-Rh-597.title" = "Nouva finestra";
 /* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
 "WCp-4v-OPR.title" = "Nuovo pannello";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
