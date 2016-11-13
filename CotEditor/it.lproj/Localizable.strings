@@ -160,6 +160,8 @@
 // Touch bar item labels
 "Shift" = "Shift";  // FIXME: added
 "Comment" = "Comment";  // FIXME: added
+"Text Size" = "Text Size";  // FIXME: added
+"Actual Size" = "Actual Size";  // FIXME: added
 
 
 

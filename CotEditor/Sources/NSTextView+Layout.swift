@@ -53,6 +53,12 @@ extension NSTextView {
 
 // cf. https://developer.apple.com/library/mac/qa/qa1346/_index.html
 
+extension Notification.Name {
+    
+    static let TextViewDidChangeScale = Notification.Name("TextViewDidChangeScale")
+}
+
+
 extension NSTextView {
     
     /// current zooming scale
@@ -75,8 +81,8 @@ extension NSTextView {
             }()
             
             // scale
-            let relativeScale = scale / self.scale
-            self.scaleUnitSquare(to: NSSize(width: relativeScale, height: relativeScale))
+            self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
+            self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
             
             // ensure bounds origin is {0, 0} for vertical text orientation
             self.translateOrigin(to: self.bounds.origin)
@@ -93,6 +99,8 @@ extension NSTextView {
             self.selectedRanges = selectedRanges
             
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            
+            NotificationCenter.default.post(name: .TextViewDidChangeScale, object: self)
         }
     }
     

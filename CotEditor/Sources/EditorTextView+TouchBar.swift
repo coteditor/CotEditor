@@ -37,6 +37,7 @@ fileprivate extension NSTouchBarItemIdentifier {
     
     static let shift = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.shift")
     static let comment = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.comment")
+    static let textSize = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.textSize")
 }
 
 
@@ -49,8 +50,8 @@ extension EditorTextView {
         let touchBar = super.makeTouchBar() ?? NSTouchBar()
         
         touchBar.customizationIdentifier = .touchBar
-        touchBar.defaultItemIdentifiers += [.fixedSpaceSmall, .shift, .comment]
-        touchBar.customizationAllowedItemIdentifiers += [.shift, .comment]
+        touchBar.defaultItemIdentifiers += [.fixedSpaceSmall, .shift, .comment, .textSize, .otherItemsProxy]
+        touchBar.customizationAllowedItemIdentifiers += [.shift, .comment, .textSize]
         
         return touchBar
     }
@@ -58,23 +59,30 @@ extension EditorTextView {
     
     override func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
         
-        let item = NSCustomTouchBarItem(identifier: identifier)
-        
         switch identifier {
         case NSTouchBarItemIdentifier.shift:
+            let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Shift", comment: "touch bar item")
             item.view = NSSegmentedControl(images: [#imageLiteral(resourceName: "ShiftLeftTemplate"), #imageLiteral(resourceName: "ShiftRightTemplate")], trackingMode: .momentary,
                                            target: self, action: #selector(shift(_:)))
+            return item
             
         case NSTouchBarItemIdentifier.comment:
+            let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Comment", comment: "touch bar item")
             item.view = NSButton(image: #imageLiteral(resourceName: "CommentTemplate"), target: self, action: #selector(toggleComment(_:)))
+            return item
+            
+        case NSTouchBarItemIdentifier.textSize:
+            let item = NSPopoverTouchBarItem(identifier: identifier)
+            item.customizationLabel = NSLocalizedString("Text Size", comment: "touch bar item")
+            item.collapsedRepresentationImage = #imageLiteral(resourceName: "TextSizeTemplate")
+            item.popoverTouchBar = TextSizeTouchBar(textView: self)
+            return item
             
         default:
             return super.touchBar(touchBar, makeItemForIdentifier: identifier)
         }
-        
-        return item
     }
     
 }
@@ -92,4 +100,5 @@ extension EditorTextViewController {
         
         return candidates
     }
+    
 }
