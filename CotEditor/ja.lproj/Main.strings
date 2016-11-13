@@ -196,7 +196,7 @@
 /* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
 "612.title" = "ツールバーを隠す";
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
-"613.title" = "ツールバーをカスタマイズ...";
+"613.title" = "ツールバーをカスタマイズ…";  // Use … for auto-adding "Customize Touchbar…" below
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "ナビゲーションバーを表示";

@@ -197,7 +197,7 @@
 /* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
 "612.title" = "隐藏工具栏";
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
-"613.title" = "自定义工具栏…";
+"613.title" = "自定工具栏…";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "显示导航栏";
