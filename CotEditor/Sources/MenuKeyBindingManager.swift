@@ -197,7 +197,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         // window tabbing actions
         // -> Because they cannot be set correctly.
-        if #available(OSX 10.12, *) {
+        if #available(macOS 10.12, *) {
             if let action = menuItem.action {
                 switch action {
                 case #selector(NSWindow.selectNextTab(_:)),
