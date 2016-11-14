@@ -77,8 +77,8 @@
 "Replace the current selection with the replacement text." = "Sostituisci la selezione attuale con il testo sostitutivo.";
 "Not Found" = "Non trovato";
 "%@ found" = "%@ trovati";  // %@ is number of founds
-"Not Replaced" = "Not Replaced";  // FIXME: added
-"%@ replaced" = "%@ replaced";  // %@ is number of replaced  // FIXME: added
+"Not Replaced" = "Non sostituiti";
+"%@ replaced" = "%@ sostituzioni";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
@@ -160,9 +160,9 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels
-"Shift" = "Shift";  // FIXME: added
+"Shift" = "Scorri";
 "Comment" = "Commento";
-"Text Size" = "Text Size";  // FIXME: added
+"Text Size" = "Dimensione testo";
 "Actual Size" = "Dimensioni reali";
 
 
