@@ -77,8 +77,8 @@
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
 "Not Found" = "未找到";
 "%@ found" = "找到 %@ 项";  // %@ is number of founds
-"Not Replaced" = "Not Replaced";  // FIXME: added
-"%@ replaced" = "%@ replaced";  // %@ is number of replaced  // FIXME: added
+"Not Replaced" = "没有进行替换";
+"%@ replaced" = "%@ 处被替换";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
@@ -160,10 +160,10 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels
-"Shift" = "Shift";  // FIXME: added
+"Shift" = "Shift";
 "Comment" = "注释";
-"Text Size" = "Text Size";  // FIXME: added
-"Actual Size" = "Actual Size";  // FIXME: added
+"Text Size" = "文本尺寸";
+"Actual Size" = "实际尺寸";
 
 
 
