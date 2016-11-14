@@ -77,6 +77,8 @@
 "Replace the current selection with the replacement text." = "Sostituisci la selezione attuale con il testo sostitutivo.";
 "Not Found" = "Non trovato";
 "%@ found" = "%@ trovati";  // %@ is number of founds
+"Not Replaced" = "Not Replaced";  // FIXME: added
+"%@ replaced" = "%@ replaced";  // %@ is number of replaced  // FIXME: added
 
 
 /* MARK: FindPanelResultViewController */

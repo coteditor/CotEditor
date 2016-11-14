@@ -119,6 +119,13 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     }
     
     
+    /// recieve number of replaced
+    func textFinder(_ textFinder: TextFinder, didReplace numberOfReplaced: Int, textView: NSTextView) {
+        
+        self.fieldViewController?.updateReplacedCount(numberOfReplaced, target: textView)
+    }
+    
+    
     
     // MARK: Action Messages
     

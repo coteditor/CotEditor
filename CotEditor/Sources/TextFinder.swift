@@ -38,6 +38,7 @@ protocol TextFinderDelegate: class {
     
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView)
+    func textFinder(_ textFinder: TextFinder, didReplace numberOfReplaced: Int, textView: NSTextView)
     
 }
 
@@ -583,6 +584,8 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                         panel.makeKey()
                     }
                 }
+                
+                strongSelf.delegate?.textFinder(strongSelf, didReplace: count, textView: textView)
                 
                 strongSelf.busyTextViews.remove(textView)
             }

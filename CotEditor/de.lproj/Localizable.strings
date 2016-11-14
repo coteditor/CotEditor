@@ -76,6 +76,8 @@
 "Replace the current selection with the replacement text." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen.";
 "Not Found" = "Nicht gefunden";
 "%@ found" = "%@ gefunden";  // %@ is number of founds
+"Not Replaced" = "見つかりません";
+"%@ replaced" = "%@ 件置換しました";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */

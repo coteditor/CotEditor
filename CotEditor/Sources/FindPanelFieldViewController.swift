@@ -34,12 +34,14 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private dynamic let textFinder = TextFinder.shared
     
     private dynamic var findResultMessage: String?  // binding
+    private dynamic var replacementResultMessage: String?  // binding
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
     private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: "RegexReferenceView", bundle: nil)!
     private lazy var preferencesViewController = NSViewController(nibName: "FindPreferencesView", bundle: nil)!
     
     @IBOutlet private var findTextView: NSTextView?  // NSTextView cannot be weak
+    @IBOutlet private var replacementTextView: NSTextView?  // NSTextView cannot be weak
     @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     
@@ -106,9 +108,17 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// find string did change
     func textDidChange(_ notification: Notification) {
         
-        guard notification.object is NSTextView else { return }
+        guard let textView = notification.object as? NSTextView else { return }
         
-        self.clearNumberOfFound()
+        switch textView {
+        case self.findTextView!:
+            self.clearNumberOfReplaced()
+            self.clearNumberOfFound()
+        case self.replacementTextView!:
+            self.clearNumberOfReplaced()
+        default:
+            break
+        }
     }
     
     
@@ -205,6 +215,27 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: .NSTextStorageDidProcessEditing, object: target.textStorage)
         NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: .NSWindowWillClose, object: target.window)
     }
+    
+    
+    /// recieve number of replaced
+    func updateReplacedCount(_ numberOfReplaced: Int, target: NSTextView) {
+        
+        self.clearNumberOfReplaced()
+        
+        self.replacementResultMessage = {
+            switch numberOfReplaced {
+            case -1:
+                return nil
+            case 0:
+                return NSLocalizedString("Not Replaced", comment: "")
+            default:
+                return String(format: NSLocalizedString("%@ Replaced", comment: ""),
+                              String.localizedStringWithFormat("%li", numberOfReplaced))
+            }
+        }()
+        
+          // TODO: implement
+    }
 
     
     
@@ -259,6 +290,13 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             NotificationCenter.default.removeObserver(self, name: .NSTextStorageDidProcessEditing, object: target.textStorage)
             NotificationCenter.default.removeObserver(self, name: .NSWindowWillClose, object: target.window)
         }
+    }
+    
+    
+    /// number of replaced in replacement string field becomes no more valid
+    func clearNumberOfReplaced(_ notification: Notification? = nil) {
+        
+        self.replacementResultMessage = nil
     }
     
 }

@@ -13,6 +13,7 @@ develop
 
 ### Improvements
 
+- Display the number of replaced in the replacement string field after Replace All in the find panel.
 - Display the IANA charset name conflict alert as a document-modal sheet.
 
 
