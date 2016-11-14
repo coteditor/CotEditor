@@ -37,7 +37,7 @@ import Cocoa
 protocol TextFinderDelegate: class {
     
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView)
-    func textFinder(_ textFinder: TextFinder, didFound numberOfFound: Int, textView: NSTextView)
+    func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView)
     
 }
 
@@ -714,7 +714,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         let count = forwardMatches.count + wrappedMatches.count
         
-        self.delegate?.textFinder(self, didFound: count, textView: textView)
+        self.delegate?.textFinder(self, didFind: count, textView: textView)
         
         self.appendHistory(self.findString, forKey: .findHistory)
         
