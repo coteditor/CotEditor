@@ -233,8 +233,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                               String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
-        
-          // TODO: implement
     }
 
     
