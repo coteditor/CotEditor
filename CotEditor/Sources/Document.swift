@@ -196,6 +196,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let windowController = storyboard.instantiateInitialController() as! NSWindowController
         
         self.addWindowController(windowController)
+        
+        self.applyContentToWindow()
     }
     
     
@@ -796,26 +798,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// transfer file information to UI
-    func applyContentToWindow() {
-        
-        guard let viewController = self.viewController else { return }
-        
-        viewController.invalidateStyleInTextStorage()
-        
-        // update status bar and document inspector
-        self.analyzer.invalidateFileInfo()
-        self.analyzer.invalidateModeInfo()
-        self.analyzer.invalidateEditorInfo()
-        
-        // update incompatible characters if pane is visible
-        self.incompatibleCharacterScanner.invalidate()
-        
-        // apply text orientation
-        viewController.verticalLayoutOrientation = self.isVerticalText
-    }
-    
-    
     
     // string encoding
     
@@ -1098,6 +1080,25 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     // MARK: Private Methods
+    
+    /// transfer file information to UI
+    private func applyContentToWindow() {
+        
+        guard let viewController = self.viewController else { return }
+        
+        // update status bar and document inspector
+        self.analyzer.invalidateFileInfo()
+        self.analyzer.invalidateModeInfo()
+        self.analyzer.invalidateEditorInfo()
+        
+        // update incompatible characters if pane is visible
+        self.incompatibleCharacterScanner.invalidate()
+        
+        // update view
+        viewController.invalidateStyleInTextStorage()
+        viewController.verticalLayoutOrientation = self.isVerticalText
+    }
+    
     
     /// read String from Dada detecting file encoding automatically
     private func string(data: Data, xattrEncoding: String.Encoding?) throws -> (String, String.Encoding) {

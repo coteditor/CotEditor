@@ -96,9 +96,6 @@ final class DocumentWindowController: NSWindowController {
             self.toolbarController!.document = document
             self.contentViewController!.representedObject = document
             
-            // apply document state to UI
-            document.applyContentToWindow()
-            
             // FIXME: workaround for that contentView origin can stack into toolbar on Sierra (2016-09 on macOS 10.12)
             // -> cf. https://github.com/coteditor/CotEditor/issues/600
             if let window = self.window {
