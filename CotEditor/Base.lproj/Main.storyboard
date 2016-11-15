@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -791,14 +791,14 @@ CA
                                                             <action selector="normalizeUnicodeWithNFKCCF:" target="Ady-hI-5gd" id="iSp-un-Dje"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Modified NFC (HFS+)" tag="4" id="n6C-Km-BM9">
-                                                        <connections>
-                                                            <action selector="normalizeUnicodeWithModifiedNFC:" target="Ady-hI-5gd" id="ZQc-l2-VW9"/>
-                                                        </connections>
-                                                    </menuItem>
                                                     <menuItem title="Modified NFD (HFS+)" tag="4" id="NU7-EI-1Ct">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithModifiedNFD:" target="Ady-hI-5gd" id="u6J-AC-xDH"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Modified NFC (HFS+)" tag="4" id="n6C-Km-BM9">
+                                                        <connections>
+                                                            <action selector="normalizeUnicodeWithModifiedNFC:" target="Ady-hI-5gd" id="ZQc-l2-VW9"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
