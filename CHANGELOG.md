@@ -9,7 +9,7 @@ develop
 
 - Improve window tabbing on macOS Sierra:
     - Add an option to set window tabbing behavior (in Window pane).
-    - Open dropped multiple files in a single window with tabs when the window tabbing behavior is set as “Automatically” (or “In Full Screen Only” in system-wide).
+    - Open multiple files in a single window with tabs when the window tabbing behavior is set as “Automatically” (or “In Full Screen Only” in system-wide).
 - Support Touch Bar on the new MacBook Pro.
 
 
@@ -21,10 +21,10 @@ develop
 
 ### Fixes
 
-- Fix an issue where the application could crash on large amount of text change.
+- Fix an issue where the application could crash on a large amount of text change.
 - Fix an issue where the application crashed when try to save a document with Non-lossy ASCII encoding.
 - Fix an issue where some kind of files could not be opened via Service.
-- Fix an issue where text fields in find panel cut of the end of long lines.
+- Fix an issue where text fields in find panel cut off the end of long lines.
 - Fix an issue where the alert about the conflict with IANA charset name was not displayed.
 - Fix syntax highlight of quoted text of which quotation delimiter consists of multiple characters.
 - Improve general stability.
