@@ -23,8 +23,20 @@ develop
 - Fix an issue where the application could crash on large text change.
 - Fix an issue where some kind of files could not be opened via Service.
 - Fix an issue where the application crashed when try to save a document with Non-lossy ASCII encoding.
-- Fix an issue where MarsEdit via the App Store didn't update its contents after closing the document in CotEditor.
 - Fix syntax highlight of quoted text of which quotation delimiter consists of multiple characters.
+- Improve general stability.
+
+
+
+3.0.5 (170)
+--------------------------
+
+### Fixes
+
+- Fix an issue where scripts didn't put results on the document/console.
+- Fix an issue where the editor area was occasionally stacked under the window toolbar on macOS 10.12.
+- Fix an issue where MarsEdit via the App Store didn't update its contents after closing the document in CotEditor.
+- Improve general stability.
 
 
 
