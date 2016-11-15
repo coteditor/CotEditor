@@ -7,10 +7,10 @@ develop
 
 ### New Features
 
-- Support Touch Bar on the new MacBook Pro.
 - Improve window tabbing on macOS Sierra:
     - Add an option to set window tabbing behavior (in Window pane).
-    - Open dropped multiple files in a single window with tabs when the window tabbing behavior is set as “Automatically”.
+    - Open dropped multiple files in a single window with tabs when the window tabbing behavior is set as “Automatically” (or “In Full Screen Only” in system-wide).
+- Support Touch Bar on the new MacBook Pro.
 
 
 ### Improvements
