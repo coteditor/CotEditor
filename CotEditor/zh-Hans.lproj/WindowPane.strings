@@ -33,8 +33,8 @@
 "Guj-Kc-zf2.title" = "使用系统设定";
 /* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
 "OJs-2q-bg5.title" = "总是";  // The same as the popup menu selection in the System Preferences > "Dock"
-/* Class = "NSMenuItem"; title = "In Full Screen Only"; ObjectID = "10Z-Xd-CLV"; */
-"10Z-Xd-CLV.title" = "仅全屏模式";  // The same as the popup menu selection in the System Preferences > "Dock"
+/* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
+"10Z-Xd-CLV.title" = "自动";
 /* Class = "NSMenuItem"; title = "Manually"; ObjectID = "o1f-vR-aFm"; */
 "o1f-vR-aFm.title" = "手动";  // The same as the popup menu selection in the System Preferences > "Dock"
 
