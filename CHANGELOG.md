@@ -24,6 +24,7 @@ develop
 - Fix an issue where the application could crash on large amount of text change.
 - Fix an issue where the application crashed when try to save a document with Non-lossy ASCII encoding.
 - Fix an issue where some kind of files could not be opened via Service.
+- Fix an issue where text fields in find panel cut of the end of long lines.
 - Fix an issue where the alert about the conflict with IANA charset name was not displayed.
 - Fix syntax highlight of quoted text of which quotation delimiter consists of multiple characters.
 - Improve general stability.
