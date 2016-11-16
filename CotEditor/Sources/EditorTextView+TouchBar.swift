@@ -27,13 +27,13 @@
 
 import Cocoa
 
-fileprivate extension NSTouchBarCustomizationIdentifier {
+private extension NSTouchBarCustomizationIdentifier {
     
-    static let touchBar = NSTouchBarCustomizationIdentifier("com.coteditor.CotEditor.touchbar")
+    static let textView = NSTouchBarCustomizationIdentifier("com.coteditor.CotEditor.touchBar.textView")
 }
 
 
-fileprivate extension NSTouchBarItemIdentifier {
+extension NSTouchBarItemIdentifier {
     
     static let shift = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.shift")
     static let comment = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.comment")
@@ -49,7 +49,7 @@ extension EditorTextView {
         
         let touchBar = super.makeTouchBar() ?? NSTouchBar()
         
-        touchBar.customizationIdentifier = .touchBar
+        touchBar.customizationIdentifier = .textView
         touchBar.defaultItemIdentifiers += [.fixedSpaceSmall, .shift, .comment, .textSize, .otherItemsProxy]
         touchBar.customizationAllowedItemIdentifiers += [.shift, .comment, .textSize]
         
@@ -82,6 +82,25 @@ extension EditorTextView {
             
         default:
             return super.touchBar(touchBar, makeItemForIdentifier: identifier)
+        }
+    }
+    
+    
+    
+    // MARK: Public Methods
+    
+    func validateTouchBarItem(identifier: NSTouchBarItemIdentifier) {
+        
+        guard
+            let item = self.touchBar?.item(forIdentifier: identifier),
+            let button = item.view as? NSButton
+            else { return }
+        
+        switch identifier {
+        case NSTouchBarItemIdentifier.comment:
+            button.isEnabled = (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
+            
+        default: break
         }
     }
     

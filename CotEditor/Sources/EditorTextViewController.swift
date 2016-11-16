@@ -40,6 +40,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             textView.inlineCommentDelimiter = syntaxStyle?.inlineCommentDelimiter
             textView.blockCommentDelimiters = syntaxStyle?.blockCommentDelimiters
             textView.firstSyntaxCompletionCharacterSet = syntaxStyle?.firstCompletionCharacterSet
+            
+            if #available(OSX 10.12.1, *) {
+                textView.validateTouchBarItem(identifier: .comment)
+            }
         }
     }
     

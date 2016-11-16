@@ -159,7 +159,11 @@
 
 
 /* MARK: Touch Bar */
-// Touch bar item labels
+// Touch bar item labels -Document View
+"Invisibles" = "不可視文字";
+"Wrap Lines" = "行を折り返す";
+
+// Touch bar item labels -Text View
 "Shift" = "シフト";
 "Comment" = "コメント";
 "Text Size" = "文字サイズ";
