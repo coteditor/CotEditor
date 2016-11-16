@@ -437,6 +437,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             for viewController in self.editorViewControllers {
                 viewController.textView?.wrapsLines = wrapsLines
             }
+            
+            if #available(OSX 10.12.1, *) {
+                self.validateTouchBarItem(identifier: .wrapLines)
+            }
         }
     }
     
@@ -458,6 +462,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         didSet {
             for viewController in self.editorViewControllers {
                 viewController.textView?.showsInvisibles = showsInvisibles
+            }
+            
+            if #available(OSX 10.12.1, *) {
+                self.validateTouchBarItem(identifier: .invisibles)
             }
         }
     }
@@ -529,6 +537,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
         self.wrapsLines = !self.wrapsLines
+        
+        // workaround for change via touch bar (2016-11 macOS 10.12.1 SDK)
+        self.view.window?.toolbar?.validateVisibleItems()
     }
     
     
@@ -554,6 +565,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func toggleInvisibleChars(_ sender: Any?) {
         
         self.showsInvisibles = !self.showsInvisibles
+        
+        // workaround for change via touch bar (2016-11 macOS 10.12.1 SDK)
+        self.view.window?.toolbar?.validateVisibleItems()
     }
     
     

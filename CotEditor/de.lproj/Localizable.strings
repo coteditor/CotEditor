@@ -158,7 +158,11 @@
 
 
 /* MARK: Touch Bar */
-// Touch bar item labels
+// Touch bar item labels -Document View
+"Invisibles" = "Unsichtbares";
+"Wrap Lines" = "Zeilen umbrechen";
+
+// Touch bar item labels -Text View
 "Shift" = "Rücken";
 "Comment" = "Kommentieren";
 "Text Size" = "Schriftgröße";

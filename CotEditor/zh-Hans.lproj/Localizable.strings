@@ -159,7 +159,11 @@
 
 
 /* MARK: Touch Bar */
-// Touch bar item labels
+// Touch bar item labels -Document View
+"Invisibles" = "不可见字符";
+"Wrap Lines" = "换行";
+
+// Touch bar item labels -Text View
 "Shift" = "Shift";
 "Comment" = "注释";
 "Text Size" = "文本尺寸";
