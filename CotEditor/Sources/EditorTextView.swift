@@ -771,10 +771,10 @@ final class EditorTextView: NSTextView, Themable {
     
     // MARK: Protocol
     
-    /// apply current state to related menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    /// apply current state to related menu items and toolbar items
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = menuItem.action else { return false }
+        guard let action = item.action else { return false }
         
         switch action {
         case #selector(copyWithStyle):
@@ -785,9 +785,11 @@ final class EditorTextView: NSTextView, Themable {
             return selection?.numberOfComposedCharacters == 1
             
         case #selector(toggleComment):
-            let canComment = self.canUncomment(range: self.selectedRange, partly: false)
-            let title = canComment ? "Uncomment" : "Comment Out"
-            menuItem.title = NSLocalizedString(title, comment: "")
+            if let menuItem = item as? NSMenuItem {
+                let canComment = self.canUncomment(range: self.selectedRange, partly: false)
+                let title = canComment ? "Uncomment" : "Comment Out"
+                menuItem.title = NSLocalizedString(title, comment: "")
+            }
             return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
             
         case #selector(inlineCommentOut):
@@ -802,23 +804,7 @@ final class EditorTextView: NSTextView, Themable {
         default: break
         }
         
-        return super.validateMenuItem(menuItem)
-    }
-    
-    
-    /// apply current state to related toolbar items
-    override func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
-        
-        guard let action = item.action else { return false }
-        
-        switch action {
-        case #selector(toggleComment):
-            return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
-            
-        default: break
-        }
-        
-        return true
+        return super.validateUserInterfaceItem(item)
     }
     
     
