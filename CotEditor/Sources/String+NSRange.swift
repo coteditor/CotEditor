@@ -118,7 +118,7 @@ extension NSString {
         guard excludingLastLineEnding else { return lineRange }
         
         // ignore last line ending
-        if self.character(at: lineRange.max - 1) == "\n".utf16.first! {
+        if lineRange.length > 0, self.character(at: lineRange.max - 1) == "\n".utf16.first! {
             lineRange.length -= 1
         }
         

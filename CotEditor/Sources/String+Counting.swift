@@ -52,7 +52,9 @@ extension String {
         guard !self.isEmpty else { return 0 }
         
         let range = CFRange(location: 0, length: CFStringGetLength(self as CFString))
-        guard let tokenizer = CFStringTokenizerCreate(nil, self as CFString, range, kCFStringTokenizerUnitWord, nil) else { return 0 }
+        let locale = CFLocaleCopyCurrent()
+        
+        guard let tokenizer = CFStringTokenizerCreate(nil, self as CFString, range, kCFStringTokenizerUnitWord, locale) else { return 0 }
         
         var count = 0
         while !CFStringTokenizerAdvanceToNextToken(tokenizer).isEmpty {

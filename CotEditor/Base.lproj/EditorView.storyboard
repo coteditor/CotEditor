@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Editor View Controller-->
@@ -25,7 +26,6 @@
                     <connections>
                         <outlet property="navigationBarItem" destination="1jV-uy-ka5" id="zJG-DA-wzB"/>
                         <outlet property="textViewItem" destination="Z56-OS-hF0" id="VpW-uJ-gc9"/>
-                        <outlet property="view" destination="Kyz-NV-ro4" id="mQ0-Bl-WL7"/>
                         <segue destination="KjS-UJ-AjC" kind="relationship" relationship="splitItems" id="Nqj-N0-7ZS"/>
                         <segue destination="u5I-Fh-D97" kind="relationship" relationship="splitItems" id="eh9-vi-q1P"/>
                     </connections>

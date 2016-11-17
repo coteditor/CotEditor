@@ -57,6 +57,11 @@ final class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     }
     
     
+    deinit {
+        self.webView?.policyDelegate = nil
+    }
+    
+    
     override var windowNibName: String? {
         
         return "WebDocumentWindow"
@@ -70,7 +75,7 @@ final class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     override func windowDidLoad() {
         
         super.windowDidLoad()
-    
+        
         let request = URLRequest(url: self.fileURL)
         self.webView?.mainFrame.load(request)
     }

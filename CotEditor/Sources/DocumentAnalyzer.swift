@@ -166,9 +166,7 @@ final class DocumentAnalyzer: NSObject {
         }()
         
         // calculate on background thread
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
-            
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             let countsLineEnding = Defaults[.countLineEndingAsChar]
             var location = 0
             var line = 0
@@ -186,23 +184,23 @@ final class DocumentAnalyzer: NSObject {
                 // count length
                 if needsAll || Defaults[.showStatusBarLength] {
                     let isSingleLineEnding = (String(lineEnding.rawValue).unicodeScalars.count == 1)
-                    var tmp = isSingleLineEnding ? string : string.replacingLineEndings(with: lineEnding)
-                    length = tmp.utf16.count
+                    let stringForCounting = isSingleLineEnding ? string : string.replacingLineEndings(with: lineEnding)
+                    length = stringForCounting.utf16.count
                     
                     if hasSelection {
-                        tmp = isSingleLineEnding ? selectedString : selectedString.replacingLineEndings(with: lineEnding)
-                        selectedLength = tmp.utf16.count
+                        let stringForCounting = isSingleLineEnding ? selectedString : selectedString.replacingLineEndings(with: lineEnding)
+                        selectedLength = stringForCounting.utf16.count
                     }
                 }
                 
                 // count characters
                 if needsAll || Defaults[.showStatusBarChars] {
-                    var tmp = countsLineEnding ? string : string.removingLineEndings
-                    numberOfChars = tmp.numberOfComposedCharacters
+                    let stringForCounting = countsLineEnding ? string : string.removingLineEndings
+                    numberOfChars = stringForCounting.numberOfComposedCharacters
                     
                     if hasSelection {
-                        tmp = countsLineEnding ? selectedString : selectedString.removingLineEndings
-                        numberOfSelectedChars = tmp.numberOfComposedCharacters
+                        let stringForCounting = countsLineEnding ? selectedString : selectedString.removingLineEndings
+                        numberOfSelectedChars = stringForCounting.numberOfComposedCharacters
                     }
                 }
                 
@@ -225,8 +223,8 @@ final class DocumentAnalyzer: NSObject {
                 // calculate current location
                 if needsAll || Defaults[.showStatusBarLocation] {
                     let locString = (string as NSString).substring(to: selectedRange.location)
-                    let tmp = countsLineEnding ? locString : locString.removingLineEndings
-                    location = tmp.numberOfComposedCharacters
+                    let stringForCounting = countsLineEnding ? locString : locString.removingLineEndings
+                    location = stringForCounting.numberOfComposedCharacters
                 }
                 
                 // calculate current line
@@ -254,6 +252,8 @@ final class DocumentAnalyzer: NSObject {
             
             // apply to UI
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
+                
                 strongSelf.length = type(of: strongSelf).format(count: length, selectedCount: selectedLength)
                 strongSelf.chars = type(of: strongSelf).format(count: numberOfChars, selectedCount: numberOfSelectedChars)
                 strongSelf.lines = type(of: strongSelf).format(count: numberOfLines, selectedCount: numberOfSelectedLines)

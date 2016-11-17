@@ -42,6 +42,8 @@ final class FindPanelController: NSWindowController {
     /// activate find panel
     @IBAction override func showWindow(_ sender: Any?) {
         
+        super.showWindow(sender)
+        
         // select text in find text field
         if self.window?.firstResponder == self.window?.initialFirstResponder {
             // force reset firstResponder to invoke becomeFirstResponder in FindPanelTextView every time
@@ -49,8 +51,6 @@ final class FindPanelController: NSWindowController {
             self.window?.makeFirstResponder(nil)
         }
         self.window?.makeFirstResponder(self.window?.initialFirstResponder)
-        
-        super.showWindow(sender)
     }
     
 }

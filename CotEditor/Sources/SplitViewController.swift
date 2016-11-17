@@ -130,9 +130,13 @@ final class SplitViewController: NSSplitViewController {
         splitViewItem.holdingPriority = 251
         
         if let otherEditorViewController = otherEditorViewController {
-            if let baseIndex = self.childViewControllers.index(of: otherEditorViewController) {
-                self.insertSplitViewItem(splitViewItem, at: baseIndex + 1)
+            guard let baseIndex = self.childViewControllers.index(of: otherEditorViewController) else {
+                assertionFailure("The base editor view is not belong to the same window.")
+                return
             }
+            
+            self.insertSplitViewItem(splitViewItem, at: baseIndex + 1)
+            
         } else {
             self.addSplitViewItem(splitViewItem)
         }
@@ -145,12 +149,9 @@ final class SplitViewController: NSSplitViewController {
     /// find viewController for given subview
     func viewController(for subview: NSView) -> EditorViewController? {
         
-        for viewController in self.childViewControllers {
-            if let viewController = viewController as? EditorViewController, viewController.view == subview {
-                return viewController
-            }
-        }
-        return nil
+        return self.childViewControllers.lazy
+            .flatMap { $0 as? EditorViewController }
+            .first { $0.splitView == subview }
     }
     
     

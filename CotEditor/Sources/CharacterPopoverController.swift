@@ -126,7 +126,7 @@ final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
         popover.delegate = self
         popover.behavior = .semitransient
         popover.show(relativeTo: positioningRect, of: parentView, preferredEdge: .minY)
-        parentView.window!.makeFirstResponder(parentView)
+        parentView.window?.makeFirstResponder(parentView)
         
         // auto-close popover if selection is changed.
         if let textView = parentView as? NSTextView {

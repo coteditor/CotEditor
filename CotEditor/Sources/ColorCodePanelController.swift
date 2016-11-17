@@ -133,7 +133,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         if let superview = panel.accessoryView?.superview {
             superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[accessory]|",
                                                                     metrics: nil,
-                                                                    views: ["accessory": panel.accessoryView!]))
+                                                                    views: ["accessory": self.view]))
         }
         
         panel.attachColorList(self.stylesheetColorList)

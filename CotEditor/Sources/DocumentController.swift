@@ -206,7 +206,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Methods
     
-    /// String.Encoding accessor for encodnig user selected in open panel
+    /// String.Encoding accessor for encoding user selected in open panel
     var accessorySelectedEncoding: String.Encoding {
         
         get {
@@ -227,6 +227,25 @@ final class DocumentController: NSDocumentController {
         self.showsHiddenFiles = true
         
         self.openDocument(sender)
+    }
+    
+    
+    /// open a new document as new window
+    @available(macOS 10.12, *)
+    @IBAction func newDocumentAsWindow(_ sender: Any?) {
+        
+        let document: NSDocument
+        do {
+            document = try self.openUntitledDocumentAndDisplay(false)
+        } catch let error {
+            self.presentError(error)
+            return
+        }
+        
+        AlphaWindow.tabbingPreference = .manual
+        document.makeWindowControllers()
+        document.showWindows()
+        AlphaWindow.tabbingPreference = nil
     }
     
     

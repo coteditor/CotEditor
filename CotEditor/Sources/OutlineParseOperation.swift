@@ -152,59 +152,58 @@ final class OutlineParseOperation: AsynchronousOperation {
                 self?.progress.completedUnitCount += 1
             }
             
-            definition.regex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds] , range: parseRange, using:
-                { (result: NSTextCheckingResult?, flags, stop) in
-                    
-                    guard !self.isCancelled else {
-                        stop.pointee = true
-                        return
-                    }
-                    guard let result = result else { return }
-                    
-                    let range = result.range
-                    
-                    // separator item
-                    if definition.isSeparator {
-                        let item = OutlineItem(title: definition.template, range: range)
-                        outlineItems.append(item)
-                        return
-                    }
-                    
-                    // menu item title
-                    var title: String
-                    
-                    if definition.template.isEmpty {
-                        // no pattern definition
-                        title = (string as NSString).substring(with: range)
-                        
-                    } else {
-                        // replace matched string with template
-                        title = definition.regex.replacementString(for: result, in: string, offset: 0, template: definition.template)
-                        
-                        // replace $LN with line number of the beginning of the matched range
-                        if title.contains("$LN") {
-                            let lineNumber = string.lineNumber(at: range.location)
-                            
-                            title = title.replacingOccurrences(of: "(?<!\\\\)\\$LN",
-                                                               with: String(lineNumber),
-                                                               options: .regularExpression)
-                        }
-                    }
-                        
-                    // replace whitespaces
-                    title = title.replacingOccurrences(of: "\n", with: " ")
-                    
-                    let item = OutlineItem(title: title,
-                                           range: range,
-                                           isBold: definition.isBold,
-                                           isItalic: definition.isItalic,
-                                           hasUnderline: definition.hasUnderline)
-                    
-                    // append outline item
+            definition.regex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange) { (result: NSTextCheckingResult?, flags, stop) in
+                
+                guard !self.isCancelled else {
+                    stop.pointee = true
+                    return
+                }
+                guard let result = result else { return }
+                
+                let range = result.range
+                
+                // separator item
+                if definition.isSeparator {
+                    let item = OutlineItem(title: definition.template, range: range)
                     outlineItems.append(item)
+                    return
+                }
+                
+                // menu item title
+                var title: String
+                
+                if definition.template.isEmpty {
+                    // no pattern definition
+                    title = (string as NSString).substring(with: range)
                     
-                    guard !self.isCancelled else { return }
-                })
+                } else {
+                    // replace matched string with template
+                    title = definition.regex.replacementString(for: result, in: string, offset: 0, template: definition.template)
+                    
+                    // replace $LN with line number of the beginning of the matched range
+                    if title.contains("$LN") {
+                        let lineNumber = string.lineNumber(at: range.location)
+                        
+                        title = title.replacingOccurrences(of: "(?<!\\\\)\\$LN",
+                                                           with: String(lineNumber),
+                                                           options: .regularExpression)
+                    }
+                }
+                
+                // replace whitespaces
+                title = title.replacingOccurrences(of: "\n", with: " ")
+                
+                let item = OutlineItem(title: title,
+                                       range: range,
+                                       isBold: definition.isBold,
+                                       isItalic: definition.isItalic,
+                                       hasUnderline: definition.hasUnderline)
+                
+                // append outline item
+                outlineItems.append(item)
+                
+                guard !self.isCancelled else { return }
+            }
             
             // sort by location
             outlineItems.sort {

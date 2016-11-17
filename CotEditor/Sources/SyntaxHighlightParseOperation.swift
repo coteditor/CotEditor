@@ -430,6 +430,9 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         // sort by location  // ???: performance critial
         positions.sort {
             if $0.location == $1.location {
+                if ($0.role.rawValue == $1.role.rawValue) {
+                    return $0.length > $1.length
+                }
                 return $0.role.rawValue < $1.role.rawValue
             }
             return $0.location < $1.location

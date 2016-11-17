@@ -133,3 +133,32 @@ final class AlphaWindow: NSWindow {
     }
 
 }
+
+
+
+// MARK: Window Tabbing
+
+@available(OSX 10.12, *)
+extension AlphaWindow {
+    
+    /// settable window user tabbing preference (Don't forget to set to `nil` after use.)
+    static var tabbingPreference: NSWindowUserTabbingPreference?
+    
+    
+    
+    // MARK: Window Methods
+    
+    override class var userTabbingPreference: NSWindowUserTabbingPreference {
+        
+        if let tabbingPreference = self.tabbingPreference {
+            return tabbingPreference
+        }
+        
+        if let tabbingPreference = NSWindowUserTabbingPreference(rawValue: Defaults[.windowTabbing]), tabbingPreference.rawValue >= 0 {  // -1 obays system setting
+            return tabbingPreference
+        }
+        
+        return super.userTabbingPreference
+    }
+    
+}

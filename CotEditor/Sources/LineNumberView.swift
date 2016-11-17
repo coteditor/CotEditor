@@ -112,6 +112,7 @@ final class LineNumberView: NSRulerView {
             let textView = self.textView,
             let string = textView.string,
             let layoutManager = textView.layoutManager,
+            let textContainer = textView.textContainer,
             let context = NSGraphicsContext.current()?.cgContext,
             !string.isEmpty else { return }
         
@@ -246,7 +247,7 @@ final class LineNumberView: NSRulerView {
         }
         
         // get glyph range of which line number should be drawn
-        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: self.scrollView!.documentVisibleRect, in: textView.textContainer!)
+        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: self.scrollView!.documentVisibleRect, in: textContainer)
         
         // count up lines until visible
         let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
@@ -443,10 +444,13 @@ extension LineNumberView {
     /// start selecting correspondent lines in text view with drag / click event
     override func mouseDown(with event: NSEvent) {
         
-        guard let textView = self.textView else { return }
+        guard
+            let window = self.window,
+            let textView = self.textView
+            else { return }
         
         // get start point
-        let point = self.window!.convertToScreen(NSRect(origin: event.locationInWindow, size: NSSize.zero)).origin
+        let point = window.convertToScreen(NSRect(origin: event.locationInWindow, size: NSSize.zero)).origin
         let index = textView.characterIndex(for: point)
         
         // repeat while dragging
@@ -477,13 +481,17 @@ extension LineNumberView {
     /// select lines while dragging event
     func selectLines(_ timer: Timer?) {
         
-        guard let textView = self.textView, let string = textView.string as NSString? else { return }
+        guard
+            let window = self.window,
+            let textView = self.textView,
+            let string = textView.string as NSString?
+            else { return }
         
         let draggingInfo = timer?.userInfo as? DraggingInfo
         let point = NSEvent.mouseLocation()  // screen based point
         
         // scroll text view if needed
-        let pointedRect = self.window!.convertFromScreen(NSRect(origin: point, size: NSSize.zero))
+        let pointedRect = window.convertFromScreen(NSRect(origin: point, size: NSSize.zero))
         let targetRect = textView.convert(pointedRect, to: nil)
         textView.scrollToVisible(targetRect)
         

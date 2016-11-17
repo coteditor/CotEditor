@@ -74,6 +74,8 @@
 
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "82"; */
 "82.title" = "Nuovo";
+/* Class = "NSMenuItem"; title = "New Window"; ObjectID = "cTV-Rh-597"; */
+"cTV-Rh-597.title" = "Nouva finestra";
 /* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
 "WCp-4v-OPR.title" = "Nuovo pannello";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
@@ -193,9 +195,9 @@
 "324.title" = "Vista";
 
 /* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
-"612.title" = "Nascondi barra degli strumenti";
+"612.title" = "Nascondi la barra strumenti";
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
-"613.title" = "Personalizza barra degli strumenti…";
+"613.title" = "Personalizza la barra strumenti…";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "Mostra barra di navigazione";

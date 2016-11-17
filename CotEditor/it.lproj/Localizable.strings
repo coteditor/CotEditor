@@ -77,6 +77,8 @@
 "Replace the current selection with the replacement text." = "Sostituisci la selezione attuale con il testo sostitutivo.";
 "Not Found" = "Non trovato";
 "%@ found" = "%@ trovati";  // %@ is number of founds
+"Not Replaced" = "Non sostituiti";
+"%@ replaced" = "%@ sostituzioni";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
@@ -153,6 +155,19 @@
 // Sidebar pane switcher tooltips
 "Document Inspector" = "Ispettore del documento";
 "Incompatible Characters" = "Caratteri incompatibili";
+
+
+
+/* MARK: Touch Bar */
+// Touch bar item labels -Document View
+"Invisibles" = "Invisibili";
+"Wrap Lines" = "Aapo automatico";
+
+// Touch bar item labels -Text View
+"Shift" = "Scorri";
+"Comment" = "Commento";
+"Text Size" = "Dimensione testo";
+"Actual Size" = "Dimensioni reali";
 
 
 

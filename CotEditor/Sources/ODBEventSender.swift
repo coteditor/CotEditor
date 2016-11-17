@@ -63,6 +63,7 @@ final class ODBEventSender {
     init?(event descriptor: NSAppleEventDescriptor) {
         
         guard
+            descriptor.aeDesc != nil,  // check if event is safe for calling `paramDescriptor(forKeyword:)`
             let sender = descriptor.paramDescriptor(forKeyword: keyFileSender),
             sender.typeCodeValue != 0
             else { return nil }

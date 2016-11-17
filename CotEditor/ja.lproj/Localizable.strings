@@ -77,6 +77,8 @@
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
 "Not Found" = "見つかりません";
 "%@ found" = "%@ 件見つかりました";  // %@ is number of founds
+"Not Replaced" = "見つかりません";
+"%@ replaced" = "%@ 件置換しました";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
@@ -153,6 +155,19 @@
 // Sidebar pane switcher tooltips
 "Document Inspector" = "書類情報";
 "Incompatible Characters" = "非互換文字";
+
+
+
+/* MARK: Touch Bar */
+// Touch bar item labels -Document View
+"Invisibles" = "不可視文字";
+"Wrap Lines" = "行を折り返す";
+
+// Touch bar item labels -Text View
+"Shift" = "シフト";
+"Comment" = "コメント";
+"Text Size" = "文字サイズ";
+"Actual Size" = "等倍";
 
 
 

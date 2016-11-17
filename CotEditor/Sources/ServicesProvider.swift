@@ -61,25 +61,11 @@ final class ServicesProvider: NSObject {
         for path in paths {
             let fileURL = URL(fileURLWithPath: path)
             
-            // process only plain-text files
-            guard let UTI = (try? fileURL.resourceValues(forKeys: Set([.typeIdentifierKey])))?.typeIdentifier,
-                NSWorkspace.shared().type(UTI, conformsToType: kUTTypeText as String)
-                else {
-                    let error = NSError(domain: CocoaError.errorDomain,
-                                        code: CocoaError.fileReadCorruptFile.rawValue,
-                                        userInfo: [NSURLErrorKey: fileURL])
+            NSDocumentController.shared().openDocument(withContentsOf: fileURL, display: true) { (document: NSDocument?, documentWasAlreadyOpen: Bool, error: Error?) in
+                if let error = error {
                     NSApp.presentError(error)
-                    continue
+                }
             }
-            
-            // open file
-            NSDocumentController.shared().openDocument(withContentsOf: fileURL,
-                                                       display: true,
-                                                       completionHandler: { (document: NSDocument?, documentWasAlreadyOpen: Bool, error: Error?) in
-                                                        if let error = error {
-                                                            NSApp.presentError(error)
-                                                        }
-            })
         }
     }
     

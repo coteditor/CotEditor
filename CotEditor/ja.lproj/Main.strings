@@ -73,6 +73,8 @@
 
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "82"; */
 "82.title" = "新規";
+/* Class = "NSMenuItem"; title = "New Window"; ObjectID = "cTV-Rh-597"; */
+"cTV-Rh-597.title" = "新規ウインドウ";
 /* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
 "WCp-4v-OPR.title" = "新規タブ";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
@@ -194,7 +196,7 @@
 /* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
 "612.title" = "ツールバーを隠す";
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
-"613.title" = "ツールバーをカスタマイズ...";
+"613.title" = "ツールバーをカスタマイズ…";  // Use … for auto-adding "Customize Touchbar…" below
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "ナビゲーションバーを表示";

@@ -77,6 +77,8 @@
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
 "Not Found" = "未找到";
 "%@ found" = "找到 %@ 项";  // %@ is number of founds
+"Not Replaced" = "没有进行替换";
+"%@ replaced" = "%@ 处被替换";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
@@ -153,6 +155,19 @@
 // Sidebar pane switcher tooltips
 "Document Inspector" = "文稿信息";
 "Incompatible Characters" = "不兼容字符";
+
+
+
+/* MARK: Touch Bar */
+// Touch bar item labels -Document View
+"Invisibles" = "不可见字符";
+"Wrap Lines" = "换行";
+
+// Touch bar item labels -Text View
+"Shift" = "Shift";
+"Comment" = "注释";
+"Text Size" = "文本尺寸";
+"Actual Size" = "实际尺寸";
 
 
 

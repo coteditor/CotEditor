@@ -93,10 +93,10 @@ final class EditorViewController: NSSplitViewController {
         
         switch action {
         case #selector(selectPrevItemOfOutlineMenu):
-            return self.navigationBarController!.canSelectPrevItem
+            return self.navigationBarController?.canSelectPrevItem ?? false
             
         case #selector(selectNextItemOfOutlineMenu):
-            return self.navigationBarController!.canSelectNextItem
+            return self.navigationBarController?.canSelectNextItem ?? false
             
         default: break
         }

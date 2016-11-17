@@ -29,7 +29,7 @@
 import Cocoa
 
 @NSApplicationMain
-final class AppDelegate: NSResponder, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Enums
     
@@ -43,12 +43,15 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
     }
     
     
+    // MARK: Public Properties
+    
+    dynamic let supportsWindowTabbing: Bool  // binded also in Window pref pane
+    
+    
     // MARK: Private Properties
     
     private var didFinishLaunching = false
     private lazy var acknowledgmentsWindowController = WebDocumentWindowController(documentName: "Acknowledgments")!
-    
-    private dynamic let supportsWindowTabbing: Bool
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
@@ -141,6 +144,11 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
         // register Services
         NSApp.servicesProvider = ServicesProvider()
         
+        // setup touchbar
+        if #available(macOS 10.12.1, *) {
+            NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
+        }
+        
         // raise didFinishLaunching flag
         self.didFinishLaunching = true
     }
@@ -175,6 +183,60 @@ final class AppDelegate: NSResponder, NSApplicationDelegate {
             return Defaults[.reopenBlankWindow]
         } else {
             return Defaults[.createNewAtStartup]
+        }
+    }
+    
+    
+    /// drop multiple files
+    func application(_ sender: NSApplication, openFiles filenames: [String]) {
+        
+        let isAutomaticTabbing: Bool = {
+            if #available(macOS 10.12, *) {
+                return (AlphaWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
+            }
+            return false
+        }()
+        
+        var remainingDocumentCount = filenames.count
+        var firstWindowOpened = false
+        
+        for filename in filenames {
+            guard !self.application(sender, openFile: filename) else {
+                remainingDocumentCount -= 1
+                continue
+            }
+            
+            let url = URL(fileURLWithPath: filename)
+            
+            DocumentController.shared().openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
+                defer {
+                    remainingDocumentCount -= 1
+                }
+                
+                if let error = error {
+                    NSApp.presentError(error)
+                    
+                    let cancelled = (error as? CocoaError)?.errorCode == CocoaError.userCancelled.rawValue
+                    NSApp.reply(toOpenOrPrint: cancelled ? .cancel : .failure)
+                }
+                
+                // on first window opened
+                // -> The first document needs to open a new window.
+                if #available(macOS 10.12, *), isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
+                    AlphaWindow.tabbingPreference = .always
+                    firstWindowOpened = true
+                }
+            }
+        }
+        
+        // reset tabbing setting
+        if #available(macOS 10.12, *), isAutomaticTabbing {
+            // wait until finish
+            while remainingDocumentCount > 0 {
+                RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+            }
+            
+            AlphaWindow.tabbingPreference = nil
         }
     }
     

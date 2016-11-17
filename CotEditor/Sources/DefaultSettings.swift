@@ -31,6 +31,7 @@ import AppKit.NSFont
 let DefaultSettings: [DefaultKeys: Any] = [
     .createNewAtStartup: true,
     .reopenBlankWindow: true,
+    .windowTabbing: -1,  // = Respect System Setting
     .enablesAutosaveInPlace: true,
     .trimsTrailingWhitespaceOnSave: false,
     .documentConflictOption: DocumentConflictOption.revert.rawValue,

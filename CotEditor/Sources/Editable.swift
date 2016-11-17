@@ -57,15 +57,21 @@ extension Editable {
     var selectedRange: NSRange {
         
         get {
-            guard let textView = self.textView else { return .notFound }
+            guard
+                let textView = self.textView,
+                let string = textView.string
+                else { return .notFound }
             
-            return textView.string!.convert(from: .LF, to: self.lineEnding, range: textView.selectedRange)
+            return string.convert(from: .LF, to: self.lineEnding, range: textView.selectedRange)
         }
         
         set (selectedRange) {
-            guard let textView = self.textView else { return }
+            guard
+                let textView = self.textView,
+                let string = textView.string
+                else { return }
             
-            textView.selectedRange = textView.string!.convert(from: self.lineEnding, to: .LF, range: selectedRange)
+            textView.selectedRange = string.convert(from: self.lineEnding, to: .LF, range: selectedRange)
         }
     }
     

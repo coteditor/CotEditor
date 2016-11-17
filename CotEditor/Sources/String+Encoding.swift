@@ -312,10 +312,11 @@ extension String.Encoding {
         
         let cfEncoding = CFStringConvertNSStringEncodingToEncoding(self.rawValue)
         
-        guard cfEncoding != kCFStringEncodingInvalidId else { return nil }
+        guard cfEncoding != kCFStringEncodingInvalidId,
+            let ianaCharSetName = CFStringConvertEncodingToIANACharSetName(cfEncoding)
+            else { return nil }
         
-        let ianaCharSetName = CFStringConvertEncodingToIANACharSetName(cfEncoding) as String
-        let string = String(format:"%@;%u", ianaCharSetName, cfEncoding)
+        let string = String(format:"%@;%u", ianaCharSetName as String, cfEncoding)
         
         return string.data(using: .utf8)
     }

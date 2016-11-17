@@ -40,6 +40,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             textView.inlineCommentDelimiter = syntaxStyle?.inlineCommentDelimiter
             textView.blockCommentDelimiters = syntaxStyle?.blockCommentDelimiters
             textView.firstSyntaxCompletionCharacterSet = syntaxStyle?.firstCompletionCharacterSet
+            
+            if #available(OSX 10.12.1, *) {
+                textView.validateTouchBarItem(identifier: .comment)
+            }
         }
     }
     
@@ -87,6 +91,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         if let layoutManager = self.textView?.layoutManager {
             self.textView?.textStorage?.removeLayoutManager(layoutManager)
         }
+        
+        self.textView?.delegate = nil
     }
     
     
@@ -277,9 +283,15 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// show Go To sheet
     @IBAction func gotoLocation(_ sender: Any?) {
         
-        let viewController = GoToLineViewController(textView: self.textView!)
+        guard
+            let textView = self.textView,
+            let viewController = GoToLineViewController(textView: textView)
+            else {
+                NSBeep()
+                return
+        }
         
-        self.presentViewControllerAsSheet(viewController!)
+        self.presentViewControllerAsSheet(viewController)
     }
     
     
