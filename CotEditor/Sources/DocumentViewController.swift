@@ -438,7 +438,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
                 viewController.textView?.wrapsLines = wrapsLines
             }
             
-            if #available(OSX 10.12.1, *) {
+            if #available(macOS 10.12.1, *), NSClassFromString("NSTouchBar") != nil {
                 self.validateTouchBarItem(identifier: .wrapLines)
             }
         }
@@ -464,7 +464,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
                 viewController.textView?.showsInvisibles = showsInvisibles
             }
             
-            if #available(OSX 10.12.1, *) {
+            if #available(macOS 10.12.1, *), NSClassFromString("NSTouchBar") != nil {
                 self.validateTouchBarItem(identifier: .invisibles)
             }
         }
