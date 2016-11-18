@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Improvements
+
+- Add tooltips to the line endings menu in the toolbar.
+
+
+
 3.1.1 (174)
 --------------------------
 

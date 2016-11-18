@@ -29,17 +29,17 @@
                                             <font key="font" metaFont="smallSystem"/>
                                             <menu key="menu" id="iVj-97-fkw">
                                                 <items>
-                                                    <menuItem title="LF" id="YT7-vd-3ih">
+                                                    <menuItem title="LF" toolTip="Unix / macOS" id="YT7-vd-3ih">
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="klO-m3-n5X" id="dsp-6O-Llc"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="CR" tag="1" id="J48-tF-WBo">
+                                                    <menuItem title="CR" tag="1" toolTip="Classic Mac OS" id="J48-tF-WBo">
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="klO-m3-n5X" id="jwd-mj-L9c"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="CR / LF" tag="2" id="Zo1-Cc-YBm">
+                                                    <menuItem title="CR / LF" tag="2" toolTip="Windows" id="Zo1-Cc-YBm">
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="klO-m3-n5X" id="95s-4v-57Y"/>
                                                         </connections>

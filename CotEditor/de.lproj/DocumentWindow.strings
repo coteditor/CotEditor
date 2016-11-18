@@ -30,6 +30,13 @@
 "9p6-Sj-QjF.paletteLabel" = "Zeilenenden";  /* Line Endings */
 "9p6-Sj-QjF.toolTip" = "Zeilenenden ändern";  /* Change line endings */
 
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix / macOS"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "Unix / macOS";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.ibShadowedToolTip" = "Klassisches Mac OS";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
+
 /* Class = "NSToolbarItem"; ObjectID = "VL4-m8-9uC"; */
 "VL4-m8-9uC.label" = "Codierung";  /* File Encoding */
 "VL4-m8-9uC.paletteLabel" = "Codierung";  /* File Encoding */
