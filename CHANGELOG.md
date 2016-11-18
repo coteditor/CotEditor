@@ -12,7 +12,9 @@ develop
 
 ### Fixes
 
-- Fix a possible issue where application could crash when changing document's encoding lossy.
+- Fix a possible crash on changing document's encoding lossy.
+- Fix an issue where editor views didn't update after changing the visibility of the other invisible characters.
+
 
 
 3.1.1 (174)

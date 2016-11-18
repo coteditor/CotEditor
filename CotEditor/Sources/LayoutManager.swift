@@ -91,6 +91,8 @@ final class LayoutManager: NSLayoutManager {
         .showInvisibleTab,
         .showInvisibleNewLine,
         .showInvisibleFullwidthSpace,
+        
+        .showOtherInvisibleChars,
         ]
     
     private var defaultLineHeight: CGFloat = 1.0
@@ -164,6 +166,10 @@ final class LayoutManager: NSLayoutManager {
         if let keyPath = keyPath, type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
+            
+            if keyPath == DefaultKeys.showOtherInvisibleChars.rawValue {
+                self.invalidateLayout(forCharacterRange: self.attributedString().string.nsRange, actualCharacterRange: nil)
+            }
             
             if let textView = self.firstTextView {
                 textView.setNeedsDisplay(textView.bounds, avoidAdditionalLayout: false)
