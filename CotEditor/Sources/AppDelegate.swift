@@ -87,7 +87,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         _ = TextFinder.shared
         
         // register transformers
-        ValueTransformer.setValueTransformer(HexColorTransformer(), forName: NSValueTransformerName("HexColorTransformer"))
+        ValueTransformer.setValueTransformer(HexColorTransformer(), forName: HexColorTransformer.name)
         
         super.init()
     }
