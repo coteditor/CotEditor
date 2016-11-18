@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.1.1 (174)
+--------------------------
+
+### Fixes
+
+- Fix a critical issue on CotEditor 3.1.0 where documents can't be opened under some specific environments.
+
+
+
 3.1.0 (172)
 --------------------------
 
