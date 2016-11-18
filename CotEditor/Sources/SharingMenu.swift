@@ -35,11 +35,15 @@ private enum SharingServiceType {
     case postOnTwitter
     case composeMessage
     
+    
     var service: NSSharingService? {
+        
         return NSSharingService(named: self.name)
     }
     
+    
     private var name: String {
+        
         switch self {
         case .addToNotes: return "com.apple.Notes.SharingExtension"
         case .addToRemainder: return "com.apple.reminders.RemindersShareExtension"
@@ -47,6 +51,7 @@ private enum SharingServiceType {
         case .composeMessage: return NSSharingServiceNameComposeMessage
         }
     }
+    
 }
 
 

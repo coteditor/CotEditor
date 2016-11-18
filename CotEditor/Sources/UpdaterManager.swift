@@ -28,7 +28,6 @@
 import Cocoa
 import Sparkle
 
-
 private enum AppCastURL {
     
     case stable
