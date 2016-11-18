@@ -1424,7 +1424,9 @@ private struct EncodingError: LocalizedError, RecoverableError {
             case 0:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
                 if let windowContentController = windowContentController {
-                    (document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController)?.showSidebarPane(index: .incompatibleCharacters)
+                    if let undoClient = document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController {
+                        undoClient.showSidebarPane(index: .incompatibleCharacters)
+                    }
                     windowContentController.showSidebarPane(index: .incompatibleCharacters)
                 }
                 return true

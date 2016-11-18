@@ -10,6 +10,10 @@ develop
 - Add tooltips to the line endings menu in the toolbar.
 
 
+### Fixes
+
+- Fix a possible issue where application could crash when changing document's encoding lossy.
+
 
 3.1.1 (174)
 --------------------------
