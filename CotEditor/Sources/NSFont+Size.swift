@@ -45,7 +45,11 @@ extension NSFont {
         textStorage.font = self
         let layoutManager = NSLayoutManager()
         layoutManager.textStorage = textStorage
-        let glyph = layoutManager.glyph(at: 0)
+        
+        var isValid: ObjCBool = false
+        let glyph = layoutManager.glyph(at: 0, isValidIndex: &isValid)
+        
+        guard isValid.boolValue else { return .zero }
         
         return self.advancement(forGlyph: glyph)
     }

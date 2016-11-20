@@ -991,7 +991,7 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    ///input a backslash (/)
+    ///input a backslash (\\)
     @IBAction func inputBackSlash(_ sender: Any?) {
         
         super.insertText("\\", replacementRange: self.rangeForUserTextChange)

@@ -247,7 +247,8 @@ final class LineNumberView: NSRulerView {
         }
         
         // get glyph range of which line number should be drawn
-        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: self.scrollView!.documentVisibleRect, in: textContainer)
+        let visibleRect = self.scrollView?.documentVisibleRect ?? textView.frame
+        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
         
         // count up lines until visible
         let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))

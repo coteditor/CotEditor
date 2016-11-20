@@ -48,19 +48,19 @@ final class LayoutManager: NSLayoutManager {
     
     var usesAntialias = true
     
-    var textFont: NSFont! {
+    var textFont: NSFont? {
         // keep body text font to avoid the issue where the line hight can be different by composite font
         // -> DO NOT use `self.firstTextView.font`, because it may return another font in case for example:
         //    Japansete text is input nevertheless the font that user specified dosen't support it.
         didSet {
             // cache metric values to fix line height
-            if let textFont = textFont {
+            if let textFont = self.textFont {
                 self.defaultLineHeight = self.defaultLineHeight(for: textFont)
                 self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
+                
+                // cache width of space char for hanging indent width calculation
+                self.spaceWidth = textFont.advancement(character: " ").width
             }
-            
-            // cache width of space char for hanging indent width calculation
-            self.spaceWidth = textFont.advancement(character: " ").width
             
             self.invisibleLines = self.generateInvisibleLines()
         }
@@ -383,8 +383,8 @@ final class LayoutManager: NSLayoutManager {
     private func generateInvisibleLines() -> InvisibleLines {
         
         let font: NSFont = {
-            if type(of: self).usesTextFontForInvisibles {
-                return self.textFont!
+            if type(of: self).usesTextFontForInvisibles, let textFont = self.textFont {
+                return textFont
             } else {
                 let fontSize = self.textFont?.pointSize ?? 0
                 return NSFont(name: "LucidaGrande", size: fontSize) ?? NSFont.systemFont(ofSize: fontSize)
