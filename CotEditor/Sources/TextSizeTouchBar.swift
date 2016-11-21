@@ -93,8 +93,8 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
             item.slider.doubleValue = Double(self.textView.scale)
             item.slider.maxValue = 5.0
             item.slider.minValue = 0.2
-            item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSize"))
-            item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSize"))
+            item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSizeTemplate"))
+            item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSizeTemplate"))
             item.target = self
             item.action = #selector(textSizeSliderChanged(_:))
             self.slider = item.slider
