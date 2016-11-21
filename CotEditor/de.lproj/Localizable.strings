@@ -132,9 +132,9 @@
 "Discard Changes" = "Änderungen verwerfen";
 
 // Reinterpretion failed alert
-"Can not reinterpret." = "Konnte nicht neu interpretieren.";
 "The document doesn’t have a file to reinterpret." = "Das Dokument hat keine Datei zum Neuinterpretieren.";
-"The file “%@” could not be reinterpreted using the new encoding “%@”." = "Die Datei „%@“ konnte mit der neuen Codierung „%@“ nicht neu interpretiert werden.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "Die Datei „%@“ konnte nicht mithilfe der Codierung „%@“ neu interpretiert werden.";
+"The file may have been saved using a different text encoding, or it may not be a text file." = "Die Datei wurde möglicherweise mit einer anderen Textcodierung gesichert order es handelt sich nicht um eine Textdatei";
 
 // Incompatible chars alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";

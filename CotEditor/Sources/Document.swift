@@ -703,11 +703,24 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             switch option {
             case .ignore:
                 break
+                
             case .notify:
                 self?.notifyExternalFileUpdate()
+                
             case .revert:
-                if let fileURL = self?.fileURL, let fileType = self?.fileType {
-                    try? self?.revert(toContentsOf: fileURL, ofType: fileType)
+                guard let strongSelf = self,
+                    let fileURL = strongSelf.fileURL,
+                    let fileType = strongSelf.fileType
+                    else { return }
+                
+                do {
+                    try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
+                } catch let error {
+                    if let window = self?.windowForSheet {
+                        strongSelf.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
+                    } else {
+                        strongSelf.presentError(error)
+                    }
                 }
             }
         }
@@ -823,7 +836,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     func reinterpret(encoding: String.Encoding) throws {
         
         guard let fileURL = self.fileURL else {
-            throw EncodingError(kind: .reinterpretationFailed(fileURL: self.fileURL), encoding: encoding, withUTF8BOM: false, attempter: self)
+            self.readingEncoding = self.encoding
+            throw ReinterpretationError(kind: .noFile, encoding: encoding)
         }
         
         // do nothing if given encoding is the same as current one
@@ -836,14 +850,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
         } catch {
             self.readingEncoding = self.encoding
-            throw EncodingError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding, withUTF8BOM: false, attempter: self)
+            throw ReinterpretationError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding)
         }
     }
     
     
     /// change string encoding registering process to the undo manager
     @discardableResult
-    func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) -> Bool {  // TODO: throw?
+    func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) -> Bool {
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return true }
         
@@ -856,6 +870,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if let window = self.windowForSheet {
                 window.attachedSheet?.orderOut(self)  // close previous sheet
                 self.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
+            } else {
+                self.presentError(error)
             }
             return false
         }
@@ -1024,6 +1040,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 strongSelf.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
                 
             case NSAlertSecondButtonReturn:  // = Reinterpret
+                // ask user if document is edited
                 if strongSelf.isDocumentEdited, let fileURL = strongSelf.fileURL {
                     let alert = NSAlert()
                     alert.messageText = String(format: NSLocalizedString("The file “%@” has unsaved changes.", comment: ""), fileURL.lastPathComponent)
@@ -1032,23 +1049,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
                     
                     documentWindow.attachedSheet?.orderOut(strongSelf)  // close previous sheet
-                    alert.beginSheetModal(for: documentWindow, completionHandler: { (returnCode: NSModalResponse) in
-                        switch returnCode {
-                        case NSAlertFirstButtonReturn:  // = Cancel
-                            // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                            NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
-                            
-                        case NSAlertSecondButtonReturn:  // = Discard Changes
-                            try? strongSelf.reinterpret(encoding: encoding)
-                            
-                        default: break
-                        }
-                    })
+                    let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
                     
-                } else {
-                    try? strongSelf.reinterpret(encoding: encoding)
-                    
+                    guard returnCode != NSAlertFirstButtonReturn else {  // = Cancel
+                        // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+                        NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
+                        return
+                    }
                 }
+                
+                // reinterpret
+                strongSelf.reinterpretAndShowError(encoding: encoding)
                 
             case NSAlertThirdButtonReturn:  // = Cancel
                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
@@ -1308,15 +1319,53 @@ extension Document: Editable {
 
 
 
-
 // MARK: - Error
+
+private struct ReinterpretationError: LocalizedError {
+    
+    enum ErrorKind {
+        case noFile
+        case reinterpretationFailed(fileURL: URL)
+    }
+    
+    let kind: ErrorKind
+    let encoding: String.Encoding
+    
+    
+    
+    var errorDescription: String? {
+        
+        switch self.kind {
+        case .noFile:
+            return NSLocalizedString("The document doesn’t have a file to reinterpret.", comment: "")
+            
+        case .reinterpretationFailed(let fileURL):
+            return String(format: NSLocalizedString("The file “%@” couldn’t be reinterpreted using text encoding “%@”.", comment: ""),
+                          fileURL.lastPathComponent, String.localizedName(of: self.encoding))
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        switch self.kind {
+        case .noFile:
+            return nil
+            
+        case .reinterpretationFailed:
+            return NSLocalizedString("The file may have been saved using a different text encoding, or it may not be a text file.", comment: "")
+        }
+    }
+    
+}
+
+
 
 private struct EncodingError: LocalizedError, RecoverableError {
     
     enum ErrorKind {
         case ianaCharsetNameConflict(ianaEncoding: String.Encoding)
         case unconvertibleCharacters
-        case reinterpretationFailed(fileURL: URL?)  // TODO: not RecoverableError
         case lossyEncodingConversion
     }
     
@@ -1333,10 +1382,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
         case .ianaCharsetNameConflict(let ianaEncoding):
             return String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""),
                           self.encodingName, String.localizedName(of: ianaEncoding))
+            
         case .unconvertibleCharacters:
             return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), self.encodingName)
-        case .reinterpretationFailed:
-            return NSLocalizedString("Can not reinterpret.", comment: "")
+            
         case .lossyEncodingConversion:
             return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), self.encodingName)
         }
@@ -1351,12 +1400,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
             
         case .unconvertibleCharacters:
             return NSLocalizedString("Do you want to continue processing?", comment: "")
-            
-        case .reinterpretationFailed(let fileURL):
-            guard let fileURL = fileURL else {
-                return NSLocalizedString("The document doesn’t have a file to reinterpret.", comment: "")
-            }
-            return String(format: NSLocalizedString("The file “%@” could not be reinterpreted using the new encoding “%@”.", comment: ""), fileURL.lastPathComponent, self.encodingName)
             
         case .lossyEncodingConversion:
             return NSLocalizedString("Do you want to change encoding and show incompatible characters?", comment: "'")
@@ -1375,9 +1418,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
             return [NSLocalizedString("Show Incompatible Chars", comment: ""),
                     NSLocalizedString("Save Available Strings", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
-            
-        case .reinterpretationFailed:
-            return []
             
         case .lossyEncodingConversion:
             return [NSLocalizedString("Change Encoding", comment: ""),
@@ -1402,6 +1442,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 assertionFailure()
                 return false
             }
+            
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Chars
@@ -1415,9 +1456,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 assertionFailure()
                 return false
             }
-            
-        case .reinterpretationFailed:
-            return false
             
         case .lossyEncodingConversion:
             switch recoveryOptionIndex {

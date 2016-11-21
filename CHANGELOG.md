@@ -14,6 +14,7 @@ develop
 
 - Fix a possible crash on changing document's encoding lossy.
 - Fix an issue where editor views didn't update after changing the body font or the visibility of the other invisible characters.
+- Fix an issue where no error message raised when an text encoding reinterpretation failed.
 
 
 
