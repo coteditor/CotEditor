@@ -60,7 +60,9 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
         
-        self.sidebarThickness = Defaults[.sidebarWidth]
+        if Defaults[.sidebarWidth] >= 100 {
+            self.sidebarThickness = Defaults[.sidebarWidth]
+        }
         self.isSidebarShown = Defaults[.showDocumentInspector]
         
         self.sidebarViewController?.delegate = self
@@ -192,7 +194,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             return self.sidebarViewController?.view.frame.width ?? 0
         }
         set {
-            self.sidebarViewController?.view.frame.size.width = newValue
+            self.sidebarViewController?.view.frame.size.width = max(newValue, 0)  // avoid having a negative value
         }
     }
     
