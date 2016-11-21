@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Change the outline navigation arrows direction in the navigation bar if text orientation is vertical.
 - Add tooltips to the line endings menu in the toolbar.
 
 
