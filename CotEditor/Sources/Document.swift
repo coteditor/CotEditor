@@ -716,11 +716,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 do {
                     try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
                 } catch let error {
-                    if let window = self?.windowForSheet {
-                        strongSelf.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
-                    } else {
-                        strongSelf.presentError(error)
-                    }
+                    strongSelf.presentErrorAsSheet(error)
                 }
             }
         }
@@ -823,11 +819,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
         } catch let error {
             NSBeep()
-            if let window = self.windowForSheet {
-                self.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
-            } else {
-                self.presentError(error)
-            }
+            self.presentErrorAsSheet(error)
         }
     }
     
@@ -864,16 +856,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
         
         // ask lossy
-        guard !askLossy || self.string.canBeConverted(to: encoding) else {
-            let error = EncodingError(kind: .lossyEncodingConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
-            
-            if let window = self.windowForSheet {
-                window.attachedSheet?.orderOut(self)  // close previous sheet
-                self.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
-            } else {
-                self.presentError(error)
+        if askLossy {
+            guard self.string.canBeConverted(to: encoding) else {
+                let error = EncodingError(kind: .lossyEncodingConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
+                self.presentErrorAsSheet(error)
+                return false
             }
-            return false
         }
         
         // register undo
@@ -1193,12 +1181,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
             
         } catch let error {
-            self.recoverBlock = completionHandler
-            self.presentError(error,
-                              modalFor: self.windowForSheet!,
-                              delegate: self,
-                              didPresent: #selector(didPresentErrorWithRecovery(didRecover:block:)),
-                              contextInfo: nil)
+            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
             return
         }
         
@@ -1294,15 +1277,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
     }
     
-    
-    /// perform didRecoverBlock after recovering presented error
-    private var recoverBlock: ((Bool) -> Void)? = nil
-    func didPresentErrorWithRecovery(didRecover: Bool, block: UnsafeMutableRawPointer) {
-        
-        self.recoverBlock?(didRecover)
-        self.recoverBlock = nil
-    }
-    
 }
 
 
@@ -1315,6 +1289,54 @@ extension Document: Editable {
         
         return self.viewController?.focusedTextView
     }
+    
+}
+
+
+
+// MARK: - Error Handling Extension
+
+fileprivate extension NSDocument {
+    
+    typealias RecoveryHandler = ((Bool) -> Void)
+    
+    
+    /// present an error alert as document modal sheet
+    func presentErrorAsSheet(_ error: Error, recoveryHandler: RecoveryHandler? = nil) {
+        
+        guard let window = self.windowForSheet else {
+            let didRecover = self.presentError(error)
+            recoveryHandler?(didRecover)
+            return
+        }
+        
+        // close previous sheet if exists
+        window.attachedSheet?.orderOut(self)
+        
+        if let recoveryHandler = recoveryHandler {
+            let block = UnsafeMutablePointer<RecoveryHandler>.allocate(capacity: 1)
+            block.pointee = recoveryHandler
+            
+            self.presentError(error, modalFor: window,
+                              delegate: self,
+                              didPresent: #selector(didPresentErrorWithRecovery(didRecover:contextInfo:)),
+                              contextInfo: UnsafeMutableRawPointer(mutating: block))
+            
+        } else {
+            self.presentError(error, modalFor: window,
+                              delegate: nil, didPresent: nil, contextInfo: nil)
+        }
+    }
+    
+    
+    /// perform didRecoverBlock after recovering presented error
+    @objc private func didPresentErrorWithRecovery(didRecover: Bool, contextInfo: UnsafeMutableRawPointer?) {
+        
+        if let recoveryHandler = contextInfo?.assumingMemoryBound(to: RecoveryHandler.self).pointee {
+            recoveryHandler(didRecover)
+        }
+    }
+    
 }
 
 
