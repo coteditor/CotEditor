@@ -129,7 +129,7 @@
 
 // Encoding change with unsaved changes alert
 "The file “%@” has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
-"Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコードをリセットしてもよろしいですか？";
+"Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコーディングをリセットしてもよろしいですか？";
 "Discard Changes" = "変更内容を破棄";
 
 // Reinterpretion failed alert
