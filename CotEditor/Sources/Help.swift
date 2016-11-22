@@ -53,4 +53,6 @@ struct Help {
         "about_styleinfo_settings",
         "howto_findpanel",
         ]
+    
+    private init() { }
 }

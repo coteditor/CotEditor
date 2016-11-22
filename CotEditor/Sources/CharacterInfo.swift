@@ -40,6 +40,8 @@ extension UnicodeScalar {
         static let type4  = UnicodeScalar(0x1F3FD)!  // 🏽 Medium
         static let type5  = UnicodeScalar(0x1F3FE)!  // 🏾 Medium Dark
         static let type6  = UnicodeScalar(0x1F3FF)!  // 🏿 Dark
+        
+        private init() { }
     }
     
     
