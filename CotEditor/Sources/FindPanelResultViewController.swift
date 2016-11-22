@@ -178,9 +178,12 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDelegate
     /// remove current highlight by Find All
     private func unhighlight() {
         
-        guard let textView = self.target else { return }
+        guard
+            let textView = self.target,
+            let range = textView.string?.nsRange
+            else { return }
         
-        textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: textView.string!.nsRange)
+        textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: range)
     }
     
 }

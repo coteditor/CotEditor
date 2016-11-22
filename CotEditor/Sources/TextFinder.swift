@@ -451,10 +451,12 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     /// remove all of current highlights in the frontmost textView
     @IBAction func unhighlight(_ sender: Any?) {
         
-        guard let textView = self.client else { return }
+        guard
+            let textView = self.client,
+            let range = textView.string?.nsRange
+            else { return }
         
-        textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName,
-                                                         forCharacterRange: textView.string?.nsRange ?? .notFound)
+        textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: range)
     }
     
     
