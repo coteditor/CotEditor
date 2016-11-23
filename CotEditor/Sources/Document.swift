@@ -413,31 +413,29 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }()
         
         super.save(to: newUrl, ofType: typeName, for: saveOperation) { [weak self] (error: Error?) in
-            guard let strongSelf = self else { return }
-            
-            assert(Thread.isMainThread)
-         
             defer {
                 completionHandler(error)
             }
             
             guard error == nil else { return }
             
+            assert(Thread.isMainThread)
+            
             // apply syntax style that is inferred from the file name
             if saveOperation == .saveAsOperation {
                 let fileName = url.lastPathComponent
                 if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName) {
-                    strongSelf.setSyntaxStyle(name: styleName)
+                    self?.setSyntaxStyle(name: styleName)
                 }
             }
             
             if saveOperation != .autosaveElsewhereOperation {
                 // update file information
-                strongSelf.analyzer.invalidateFileInfo()
+                self?.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
                 let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
-                strongSelf.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
+                self?.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
         }
     }
