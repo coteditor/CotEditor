@@ -16,6 +16,7 @@ develop
 - Fix a possible crash on changing document's encoding lossy.
 - Fix an issue where editor views didn't update after changing the body font or the visibility of the other invisible characters.
 - Fix an issue where no error message raised when an text encoding reinterpretation failed.
+- Fix an issue where the current line highlight also highligts the last line when the cursor is in the second last line.
 
 
 

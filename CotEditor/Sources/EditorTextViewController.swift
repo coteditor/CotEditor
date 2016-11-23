@@ -377,7 +377,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             let string = textView.string else { return }
         
         // calculate current line rect
-        let lineRange = (string as NSString).lineRange(for: textView.selectedRange)
+        let lineRange = (string as NSString).lineRange(for: textView.selectedRange, excludingLastLineEnding: true)
         let glyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
         var rect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
         rect.origin.x = textContainer.lineFragmentPadding
