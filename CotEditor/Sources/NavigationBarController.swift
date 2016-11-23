@@ -35,13 +35,8 @@ final class NavigationBarController: NSViewController {
     /// observe textView
     var textView: NSTextView? {  // NSTextView cannot be weak
         
-        get {
-            return self._textContainer?.textView
-        }
-        set {
-            self._textContainer = newValue?.textContainer
-            
-            guard let textView = newValue else { return }
+        didSet {
+            guard let textView = self.textView else { return }
             
             self.updateTextOrientation(to: textView.layoutOrientation)
             
@@ -51,7 +46,6 @@ final class NavigationBarController: NSViewController {
             textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .new, context: nil)
         }
     }
-    private weak var _textContainer: NSTextContainer?
     
     
     // MARK: Private Properties
@@ -73,7 +67,7 @@ final class NavigationBarController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

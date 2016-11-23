@@ -40,9 +40,19 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
     
     // MARK: Private Properties
     
-    private let textView: NSTextView
     private weak var slider: NSSlider?
     private weak var actualSizeButton: NSButton?
+    
+    private var textView: NSTextView? {  // NSTextView cannot be weak
+        
+        get {
+            return _textContainer?.textView
+        }
+        set {
+            _textContainer = newValue?.textContainer
+        }
+    }
+    private weak var _textContainer: NSTextContainer?
     
     
     
@@ -51,9 +61,9 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
     
     init(textView: NSTextView) {
         
-        self.textView = textView
-        
         super.init()
+        
+        self.textView = textView
         
         self.delegate = self
         self.defaultItemIdentifiers = [.textSizeActual, .textSizeSlider]
@@ -90,7 +100,7 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
             
         case NSTouchBarItemIdentifier.textSizeSlider:
             let item = NSSliderTouchBarItem(identifier: identifier)
-            item.slider.doubleValue = Double(self.textView.scale)
+            item.slider.doubleValue = Double(self.textView?.scale ?? 1.0)
             item.slider.maxValue = 5.0
             item.slider.minValue = 0.2
             item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSizeTemplate"))
@@ -119,7 +129,7 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
         
         let scale = CGFloat(sliderItem.slider.doubleValue)
         
-        self.textView.setScaleKeepingVisibleArea(scale)
+        self.textView?.setScaleKeepingVisibleArea(scale)
     }
     
     
@@ -128,7 +138,7 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
         
         self.slider?.doubleValue = 1.0
         
-        self.textView.setScaleKeepingVisibleArea(1.0)
+        self.textView?.setScaleKeepingVisibleArea(1.0)
     }
     
     
@@ -137,7 +147,7 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
     
     func invalidateActualSizeButton() {
         
-        let isActualSize = self.textView.scale == 1.0
+        let isActualSize = self.textView?.scale == 1.0
         
         self.actualSizeButton?.isEnabled = !isActualSize
     }
