@@ -65,7 +65,7 @@ let DefaultSettings: [DefaultKeys: Any] = [
     .windowHeight: 620.0,
     .windowAlpha: 1.0,
     
-    .fontName: NSFont.userFont(ofSize: 0)!.fontName,
+    .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
     .fontSize: NSFont.systemFontSize(),
     .shouldAntialias: true,
     .lineHeight: 1.2,
@@ -118,7 +118,7 @@ let DefaultSettings: [DefaultKeys: Any] = [
                              "", "", "", "", "", "", "", "", "", ""],
     
     .setPrintFont: false,
-    .printFontName: NSFont.userFont(ofSize: 0)!.fontName,
+    .printFontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
     .printFontSize: NSFont.systemFontSize(),
     .printColorIndex: PrintColorMode.blackWhite.rawValue,
     .printLineNumIndex: PrintLineNmuberMode.no.rawValue,
