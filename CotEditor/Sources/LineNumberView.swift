@@ -123,10 +123,11 @@ final class LineNumberView: NSRulerView {
         context.saveGState()
         
         // setup font
-        let masterFontSize = scale * (textView.font?.pointSize ?? NSFont.systemFontSize())
+        let masterFont = textView.font ?? NSFont.systemFont(ofSize: 0)
+        let masterFontSize = scale * masterFont.pointSize
+        let masterAscent = scale * masterFont.ascender
         let fontSize = min(round(self.FontSizeFactor * masterFontSize), masterFontSize)
         let font = CTFontCreateWithGraphicsFont(self.lineNumberFont, fontSize, nil, nil)
-        let ascent = CTFontGetAscent(font)
         
         context.setFont(self.lineNumberFont)
         context.setFontSize(fontSize)
@@ -180,9 +181,9 @@ final class LineNumberView: NSRulerView {
         let inset = textView.textContainerOrigin.scaled(to: scale)
         var transform = CGAffineTransform(scaleX: 1.0, y: -1.0)  // flip
         if isVerticalText {
-            transform = transform.translatedBy(x: round(relativePoint.x - inset.y - ascent), y: -ruleThickness)
+            transform = transform.translatedBy(x: round(relativePoint.x - inset.y - masterAscent), y: -ruleThickness)
         } else {
-            transform = transform.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - inset.y - ascent)
+            transform = transform.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - inset.y - masterAscent)
         }
         context.textMatrix = transform
         
@@ -444,9 +445,9 @@ private enum LineNumberFont {
     private var systemFont: NSFont {
         
         if #available(macOS 10.11, *) {
-            return NSFont.monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
+            return .monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
         } else {
-            return NSFont.paletteFont(ofSize: 0)
+            return .paletteFont(ofSize: 0)
         }
     }
     
