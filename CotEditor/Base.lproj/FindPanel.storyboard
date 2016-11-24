@@ -526,7 +526,7 @@
                                     <action selector="replace:" target="gbq-TJ-lot" id="6JE-YN-i3u"/>
                                 </connections>
                             </button>
-                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v89-ki-GCc">
+                            <segmentedControl verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="v89-ki-GCc">
                                 <rect key="frame" x="371" y="18" width="71" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="u6p-Hz-aK5">
                                     <font key="font" metaFont="system"/>
