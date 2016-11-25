@@ -50,8 +50,7 @@ final class FilePermissionsFormatter: Formatter {
 
 
 
-// MARK:
-// MARK: Private Function
+// MARK: - Private Function
 
 /// create human-readable permission expression from integer
 private func humanReadable(permission: UInt) -> String {
@@ -60,5 +59,5 @@ private func humanReadable(permission: UInt) -> String {
     
     return (0...2).reversed()
         .map { index -> Int in return (Int(permission) >> (index * 3)) & 0x7 }
-        .reduce("-") { (string, digit) -> String in return string + units[digit] }  // Document is always file.
+        .reduce("-") { (string: String, digit: Int) -> String in return string + units[digit] }  // Document is always file.
 }
