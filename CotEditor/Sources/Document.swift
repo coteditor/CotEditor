@@ -497,8 +497,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             var permissions = (attributes[FileAttributeKey.posixPermissions.rawValue] as? UInt16) ?? 0
             if let originalURL = absoluteOriginalContentsURL, permissions == 0 {
                 let coordinator = NSFileCoordinator(filePresenter: self)
-                coordinator.coordinate(readingItemAt: originalURL, options: .withoutChanges, error: nil) { (newURL) in
-                    permissions = ((try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.posixPermissions] as? UInt16) ?? 0  // FILE_READ
+                coordinator.coordinate(readingItemAt: originalURL, options: .withoutChanges, error: nil) { (newURL) in  // FILE_READ
+                    permissions = ((try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.posixPermissions] as? UInt16) ?? 0
                 }
             }
             if permissions == 0 {
@@ -676,20 +676,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard let fileURL = self.fileURL else { return }
         
-        // ignore if file's modificationDate is the same as document's modificationDate
+        var didChange = false
         var fileModificationDate: Date?
         let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in
-            fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date  // FILE_READ
+        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [weak self] (newURL) in  // FILE_READ
+            // ignore if file's modificationDate is the same as document's modificationDate
+            fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
+            guard fileModificationDate != self?.fileModificationDate else { return }
+            
+            // ignore if file's MD5 hash is the same as the stored hash
+            let data = try? Data(contentsOf: newURL)
+            guard data?.md5 != self?.fileHash else { return }
+            
+            didChange = true
         }
-        guard fileModificationDate != self.fileModificationDate else { return }
         
-        // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
-        var fileHash: Data?
-        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in
-            fileHash = try? Data(contentsOf: newURL).md5  // FILE_READ
-        }
-        guard fileHash != self.fileHash else {
+        guard didChange else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
             // If not, an alert shows up when user saves the file.
             if let lastModificationDate = self.fileModificationDate,
