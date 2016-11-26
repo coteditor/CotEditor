@@ -84,7 +84,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var readingEncoding: String.Encoding  // encoding to read document file
     private var needsShowUpdateAlertWithBecomeKey = false
     private var isExternalUpdateAlertShown = false
-    private var fileHash: Data?  // MD5
+    private var fileData: Data?
     private var isVerticalText = false
     private var odbEventSender: ODBEventSender?
     private var shouldSaveXattr = true
@@ -267,8 +267,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let data = try Data(contentsOf: url)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
         
-        // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
-        self.fileHash = data.md5
+        // store file data in order to check the file content identity in `presentedItemDidChange()`
+        self.fileData = data
         
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
@@ -460,9 +460,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // get the latest file attributes
             self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
             
-            // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
+            // store file data in order to check the file content identity in `presentedItemDidChange()`
             if let data = try? Data(contentsOf: url) {  // FILE_READ
-                self.fileHash = data.md5
+                self.fileData = data
             }
             
             // store file encoding for revert
@@ -684,9 +684,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
             guard fileModificationDate != self?.fileModificationDate else { return }
             
-            // ignore if file's MD5 hash is the same as the stored hash
+            // ignore if file contents is the same as the stored file data
             let data = try? Data(contentsOf: newURL)
-            guard data?.md5 != self?.fileHash else { return }
+            guard data != self?.fileData else { return }
             
             didChange = true
         }
