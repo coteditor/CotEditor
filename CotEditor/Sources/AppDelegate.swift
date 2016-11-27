@@ -283,19 +283,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// update touch bar items
-    func applicationDidUpdate(_ notification: Notification) {
-        
-        if #available(macOS 10.12.1, *) {
-            for window in NSApp.windows {
-                for responder in sequence(first: window.firstResponder, next: { $0.nextResponder }) {
-                    responder.validateTouchBarItems()
-                }
-            }
-        }
-    }
-    
-    
     
     // MARK: Action Messages
     
