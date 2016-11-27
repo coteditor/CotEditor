@@ -162,23 +162,3 @@ extension AlphaWindow {
     }
     
 }
-
-
-
-// MARK: Touch Bar Validation
-
-extension AlphaWindow {
-    
-    /// validate touch bar items
-    override func update() {
-        
-        super.update()
-        
-        if #available(macOS 10.12.1, *) {
-            for responder in sequence(first: self.firstResponder, next: { $0.nextResponder }) {
-                responder.validateTouchBarItems()
-            }
-        }
-    }
-    
-}
