@@ -85,25 +85,6 @@ extension EditorTextView {
         }
     }
     
-    
-    
-    // MARK: Public Methods
-    
-    func validateTouchBarItem(identifier: NSTouchBarItemIdentifier) {
-        
-        guard
-            let item = self.touchBar?.item(forIdentifier: identifier),
-            let button = item.view as? NSButton
-            else { return }
-        
-        switch identifier {
-        case NSTouchBarItemIdentifier.comment:
-            button.isEnabled = (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
-            
-        default: break
-        }
-    }
-    
 }
 
 

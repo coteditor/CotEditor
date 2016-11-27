@@ -384,6 +384,8 @@
 		2AA7613B1D457BD500031AAF /* String+Indentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA761391D457BD500031AAF /* String+Indentation.swift */; };
 		2AA7E97D1DBAAC950083B7ED /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7E97C1DBAAC950083B7ED /* Script.swift */; };
 		2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7E97C1DBAAC950083B7ED /* Script.swift */; };
+		2AAA39B41DEAAEC40093FF2C /* NSCustomTouchBarItem+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA39B31DEAAEC40093FF2C /* NSCustomTouchBarItem+Validation.swift */; };
+		2AAA39B51DEAE52C0093FF2C /* NSCustomTouchBarItem+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA39B31DEAAEC40093FF2C /* NSCustomTouchBarItem+Validation.swift */; };
 		2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */; };
 		2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */; };
 		2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
@@ -915,6 +917,7 @@
 		2AA761341D45634400031AAF /* String+Counting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Counting.swift"; sourceTree = "<group>"; };
 		2AA761391D457BD500031AAF /* String+Indentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Indentation.swift"; sourceTree = "<group>"; };
 		2AA7E97C1DBAAC950083B7ED /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		2AAA39B31DEAAEC40093FF2C /* NSCustomTouchBarItem+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCustomTouchBarItem+Validation.swift"; sourceTree = "<group>"; };
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -1318,6 +1321,7 @@
 				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
 				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
 				2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */,
+				2AAA39B31DEAAEC40093FF2C /* NSCustomTouchBarItem+Validation.swift */,
 			);
 			name = AppKit;
 			sourceTree = "<group>";
@@ -2226,6 +2230,7 @@
 				2ACDC0951D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,
 				2A9BF3CC1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */,
+				2AAA39B51DEAE52C0093FF2C /* NSCustomTouchBarItem+Validation.swift in Sources */,
 				2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */,
 				2A9082EA1D32539A00228F50 /* EditorTextView+Scaling.swift in Sources */,
 				2A64F2491D26327C001B229F /* KeyBindingManager.swift in Sources */,
@@ -2361,6 +2366,7 @@
 				2A5D13101D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2AD69B881D3E4FCD00FBD998 /* Editable.swift in Sources */,
+				2AAA39B41DEAAEC40093FF2C /* NSCustomTouchBarItem+Validation.swift in Sources */,
 				2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
 				2AF073E61D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */,
 				2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */,

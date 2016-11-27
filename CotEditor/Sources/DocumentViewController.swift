@@ -437,10 +437,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             for viewController in self.editorViewControllers {
                 viewController.textView?.wrapsLines = wrapsLines
             }
-            
-            if #available(macOS 10.12.1, *), NSClassFromString("NSTouchBar") != nil {
-                self.validateTouchBarItem(identifier: .wrapLines)
-            }
         }
     }
     
@@ -462,10 +458,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         didSet {
             for viewController in self.editorViewControllers {
                 viewController.textView?.showsInvisibles = showsInvisibles
-            }
-            
-            if #available(macOS 10.12.1, *), NSClassFromString("NSTouchBar") != nil {
-                self.validateTouchBarItem(identifier: .invisibles)
             }
         }
     }
