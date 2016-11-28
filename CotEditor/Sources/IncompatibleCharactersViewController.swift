@@ -28,7 +28,7 @@
 
 import Cocoa
 
-final class IncompatibleCharactersViewController: NSViewController, IncompatibleCharacterScannerDelegate, NSTableViewDelegate {
+final class IncompatibleCharactersViewController: NSViewController, IncompatibleCharacterScannerDelegate {
     
     // MARK: Private Properties
     
@@ -119,13 +119,16 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     
     
     
-    // MARK: Table View Delegate
+    // MARK: Action Messages
     
     /// select correspondent char in text view
-    func tableViewSelectionDidChange(_ notification: Notification) {
+    @IBAction func selectCharacter(_ table: NSTableView) {
         
-        guard let selectedIncompatible = self.incompatibleCharsController?.selectedObjects.first as? IncompatibleCharacter else { return }
-        guard let editor = self.scanner?.document else { return }
+        guard
+            table.clickedRow > -1,  // invalid click
+            let incompatibles = self.incompatibleCharsController?.arrangedObjects as? [IncompatibleCharacter],
+            let selectedIncompatible = incompatibles[safe: table.clickedRow],
+            let editor = self.scanner?.document else { return }
         
         let range = selectedIncompatible.range
         editor.selectedRange = range

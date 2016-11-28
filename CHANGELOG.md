@@ -10,7 +10,8 @@ develop
 - Change the outline navigation arrows direction in the navigation bar if text orientation is vertical.
 - Add tooltips to the line endings menu in the toolbar.
 - Improve calculation of the vertical position of line numbers.
-- Upate default settings about visibility of invisible characters. 
+- Upate default settings about visibility of invisible characters.
+- Tweak incompatible character list behavior to highlight the correspondent character in the editor every time when click a row in the list table.
 
 
 ### Fixes
