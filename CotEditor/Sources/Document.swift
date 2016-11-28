@@ -395,51 +395,47 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             layoutManager.textViewForBeginningOfSelection?.breakUndoCoalescing()
         }
         
-        // -> wrap the file access part with `performAsynchronousFileAccess()` just like Apple's TextEdit does.
-        self.performAsynchronousFileAccess { fileAccessCompletionHandler in
-            // modify place to create backup file
-            //   -> save backup file always in `~/Library/Autosaved Information/` directory
-            //      (The default backup URL is the same directory as the fileURL.)
-            let newUrl: URL = {
-                guard let fileURL = self.fileURL, saveOperation == .autosaveElsewhereOperation else { return url }
-                
-                let autosaveDirectoryURL = (DocumentController.shared() as! DocumentController).autosaveDirectoryURL
-                var baseFileName = fileURL.deletingPathExtension().lastPathComponent
-                if baseFileName.hasPrefix(".") {  // avoid file to be hidden
-                    baseFileName.remove(at: baseFileName.startIndex)
-                }
-                // append a unique string to avoid overwriting another backup file with the same file name.
-                let fileName = baseFileName + " (\(self.autosaveIdentifier))"
-                
-                return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
-            }()
+        // modify place to create backup file
+        //   -> save backup file always in `~/Library/Autosaved Information/` directory
+        //      (The default backup URL is the same directory as the fileURL.)
+        let newUrl: URL = {
+            guard let fileURL = self.fileURL, saveOperation == .autosaveElsewhereOperation else { return url }
             
-            super.save(to: newUrl, ofType: typeName, for: saveOperation) { [weak self] (error: Error?) in
-                defer {
-                    completionHandler(error)
-                    fileAccessCompletionHandler()
+            let autosaveDirectoryURL = (DocumentController.shared() as! DocumentController).autosaveDirectoryURL
+            var baseFileName = fileURL.deletingPathExtension().lastPathComponent
+            if baseFileName.hasPrefix(".") {  // avoid file to be hidden
+                baseFileName.remove(at: baseFileName.startIndex)
+            }
+            // append a unique string to avoid overwriting another backup file with the same file name.
+            let fileName = baseFileName + " (\(self.autosaveIdentifier))"
+            
+            return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
+        }()
+        
+        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [weak self] (error: Error?) in
+            defer {
+                completionHandler(error)
+            }
+            
+            guard error == nil else { return }
+            
+            assert(Thread.isMainThread)
+            
+            // apply syntax style that is inferred from the file name
+            if saveOperation == .saveAsOperation {
+                let fileName = url.lastPathComponent
+                if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName) {
+                    self?.setSyntaxStyle(name: styleName)
                 }
+            }
+            
+            if saveOperation != .autosaveElsewhereOperation {
+                // update file information
+                self?.analyzer.invalidateFileInfo()
                 
-                guard error == nil else { return }
-                
-                assert(Thread.isMainThread)
-                
-                // apply syntax style that is inferred from the file name
-                if saveOperation == .saveAsOperation {
-                    let fileName = url.lastPathComponent
-                    if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName) {
-                        self?.setSyntaxStyle(name: styleName)
-                    }
-                }
-                
-                if saveOperation != .autosaveElsewhereOperation {
-                    // update file information
-                    self?.analyzer.invalidateFileInfo()
-                    
-                    // send file update notification for the external editor protocol (ODB Editor Suite)
-                    let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
-                    self?.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
-                }
+                // send file update notification for the external editor protocol (ODB Editor Suite)
+                let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
+                self?.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
         }
     }
