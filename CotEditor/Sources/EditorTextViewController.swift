@@ -313,7 +313,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         self.lastCursorLocation = cursorLocation
         
         // The brace will be highlighted only when the cursor moves forward, just like on Xcode. (2006-09-10)
-        // If the difference is more than one, they've moved the cursor with the mouse or it has been moved by resetSelectedRange below and we shouldn't check for matching braces then.
+        // -> If the difference is more than one, the cursor would be moved with the mouse or programmatically
+        //    and we shouldn't check for matching braces then.
         guard difference == 1 else { return }
         
         // check the caracter just before the cursor
