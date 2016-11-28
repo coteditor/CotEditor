@@ -418,8 +418,8 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <action selector="selectMatch:" target="2MH-SD-abc" id="4dQ-fO-lpL"/>
                                                 <outlet property="dataSource" destination="2MH-SD-abc" id="VHa-uw-db2"/>
-                                                <outlet property="delegate" destination="2MH-SD-abc" id="Usy-BL-NgK"/>
                                             </connections>
                                         </tableView>
                                     </subviews>

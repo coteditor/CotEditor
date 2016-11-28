@@ -122,12 +122,12 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     // MARK: Action Messages
     
     /// select correspondent char in text view
-    @IBAction func selectCharacter(_ table: NSTableView) {
+    @IBAction func selectCharacter(_ tableView: NSTableView) {
         
         guard
-            table.clickedRow > -1,  // invalid click
+            tableView.clickedRow > -1,  // invalid click
             let incompatibles = self.incompatibleCharsController?.arrangedObjects as? [IncompatibleCharacter],
-            let selectedIncompatible = incompatibles[safe: table.clickedRow],
+            let selectedIncompatible = incompatibles[safe: tableView.clickedRow],
             let editor = self.scanner?.document else { return }
         
         let range = selectedIncompatible.range
