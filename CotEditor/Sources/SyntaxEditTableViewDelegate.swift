@@ -39,9 +39,9 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
     // MARK:
     // MARK: Delegate
     
+    /// selection did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        /// selection did change
         guard let tableView = notification.object as? NSTableView else { return }
         
         let row = tableView.selectedRow
