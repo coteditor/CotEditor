@@ -200,7 +200,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             menuItem.title = NSLocalizedString(title, comment: "")
             
         case #selector(toggleInvisibleChars):
-            let title = self.showsPageGuide ? "Hide Invisible Characters" : "Show Invisible Characters"
+            let title = self.showsInvisibles ? "Hide Invisible Characters" : "Show Invisible Characters"
             menuItem.title = NSLocalizedString(title, comment: "")
             // disable button if item cannot be enable
             if self.canActivateShowInvisibles {

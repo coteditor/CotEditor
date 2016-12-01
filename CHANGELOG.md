@@ -21,6 +21,7 @@ develop
 - Fix an issue where editor views didn't update after changing the body font or the visibility of the other invisible characters.
 - Fix an issue where no error message raised when an text encoding reinterpretation failed.
 - Fix an issue where the current line highlight also highlights the last line when the cursor is in the second last line.
+- Fix an issue where the title of the menu item toggling invisible charater visibility didn't reflect the frontmost window state.
 - Address an issue with drawing area of zoomed character view in character inspector popover.
 
 
