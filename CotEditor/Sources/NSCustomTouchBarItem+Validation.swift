@@ -38,7 +38,7 @@ protocol TouchBarItemValidations: class {
 @available(macOS 10.12.1, *)
 extension NSTouchBar {
     
-    @nonobjc static var needsAutomaticValidation = false
+    @nonobjc static var isAutomaticValidationEnabled = false
     
     
     

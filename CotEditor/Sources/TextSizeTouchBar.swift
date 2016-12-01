@@ -35,7 +35,7 @@ fileprivate extension NSTouchBarItemIdentifier {
 
 
 
-@available(OSX 10.12.1, *)
+@available(macOS 10.12.1, *)
 class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
     
     // MARK: Private Properties

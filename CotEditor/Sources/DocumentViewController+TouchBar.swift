@@ -50,7 +50,7 @@ extension DocumentViewController: NSTouchBarDelegate {
         
         let touchBar = NSTouchBar()
         
-        NSTouchBar.needsAutomaticValidation = true
+        NSTouchBar.isAutomaticValidationEnabled = true
         
         touchBar.delegate = self
         touchBar.customizationIdentifier = .documentView
