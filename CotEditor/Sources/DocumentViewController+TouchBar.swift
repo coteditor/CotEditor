@@ -50,6 +50,8 @@ extension DocumentViewController: NSTouchBarDelegate {
         
         let touchBar = NSTouchBar()
         
+        NSTouchBar.needsAutomaticValidation = true
+        
         touchBar.delegate = self
         touchBar.customizationIdentifier = .documentView
         touchBar.defaultItemIdentifiers = [.otherItemsProxy, .fixedSpaceSmall, .invisibles, .wrapLines]

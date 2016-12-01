@@ -38,6 +38,10 @@ protocol TouchBarItemValidations: class {
 @available(macOS 10.12.1, *)
 extension NSTouchBar {
     
+    @nonobjc static var needsAutomaticValidation = false
+    
+    
+    
     /// validate currently visible touch bar items
     func validateVisibleItems() {
         

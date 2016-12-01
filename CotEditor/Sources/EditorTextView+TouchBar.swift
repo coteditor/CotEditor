@@ -49,6 +49,8 @@ extension EditorTextView {
         
         let touchBar = super.makeTouchBar() ?? NSTouchBar()
         
+        NSTouchBar.needsAutomaticValidation = true
+        
         touchBar.customizationIdentifier = .textView
         touchBar.defaultItemIdentifiers += [.fixedSpaceSmall, .shift, .comment, .textSize, .otherItemsProxy]
         touchBar.customizationAllowedItemIdentifiers += [.shift, .comment, .textSize]

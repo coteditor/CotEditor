@@ -475,9 +475,11 @@ extension AppDelegate {
     /// check necessity of touch bar validation and schedule with a delay if needed
     fileprivate func validateTouchBarIfNeeded() {
         
-        guard NSClassFromString("NSTouchBar") != nil else { return }  // run-time check
-        
-        guard let event = NSApp.currentEvent else { return }
+        guard
+            NSClassFromString("NSTouchBar") != nil,  // run-time check
+            NSTouchBar.needsAutomaticValidation,
+            let event = NSApp.currentEvent
+            else { return }
         
         // skip validation for specific events
         //   -> Just like NSToolbar does. See Apple's API reference for NSToolbar's `validateVisibleItems()`.
@@ -523,7 +525,7 @@ extension AppDelegate {
     /// validate current touch bar
     func validateTouchBar(timer: Timer?) {
         
-        touchBarValidationTimer?.invalidate()
+        self.touchBarValidationTimer?.invalidate()
         
         guard let window = NSApp.mainWindow else { return }
         
