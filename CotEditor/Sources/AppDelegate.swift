@@ -465,6 +465,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 @available(macOS 10.12.1, *)
 extension AppDelegate {
     
+    private enum TouchBarValidationDelay: TimeInterval {
+        
+        case normal = 0.1
+        case lazy = 0.85
+    }
+    
+    
     fileprivate func validateTouchBarIfNeeded() {
         
         guard NSClassFromString("NSTouchBar") != nil else { return }  // run-time check
@@ -474,6 +481,7 @@ extension AppDelegate {
         // skip validation for specific events
         //   -> Just like NSToolbar does. See Apple's API reference for NSToolbar's `validateVisibleItems()`.
         //      cf. https://developer.apple.com/reference/appkit/nstoolbar/1516947-validatevisibleitems
+        var isLazy: Bool = false
         switch event.type {
         case .leftMouseDragged,
              .rightMouseDragged,
@@ -486,22 +494,27 @@ extension AppDelegate {
              .mouseMoved:
             return
             
-        default: break
+        case .keyUp,
+             .flagsChanged:
+            isLazy = true
+            
+        default:
+            break
         }
         
-        // add to schedule
+        // schedule validation with delay
         // -> A tiny delay makes sense:
         //      1. To wait change state.
         //      2. To gather multiple events.
-        let delay: TimeInterval = 0.1  // sec.
         if let timer = self.touchBarValidationTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: delay)
+            timer.fireDate = Date(timeIntervalSinceNow: TouchBarValidationDelay.normal.rawValue)
         } else {
-            self.touchBarValidationTimer = Timer.scheduledTimer(timeInterval: delay,
-                                                           target: self,
-                                                           selector: #selector(validateTouchBar(timer:)),
-                                                           userInfo: nil,
-                                                           repeats: false)
+            let delay: TouchBarValidationDelay = isLazy ? .lazy : .normal
+            self.touchBarValidationTimer = Timer.scheduledTimer(timeInterval: delay.rawValue,
+                                                                target: self,
+                                                                selector: #selector(validateTouchBar(timer:)),
+                                                                userInfo: nil,
+                                                                repeats: false)
         }
     }
     
