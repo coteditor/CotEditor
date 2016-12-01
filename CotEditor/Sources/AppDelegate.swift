@@ -484,7 +484,7 @@ extension AppDelegate {
         // skip validation for specific events
         //   -> Just like NSToolbar does. See Apple's API reference for NSToolbar's `validateVisibleItems()`.
         //      cf. https://developer.apple.com/reference/appkit/nstoolbar/1516947-validatevisibleitems
-        var isLazy: Bool = false
+        let delay: TouchBarValidationDelay
         switch event.type {
         case .leftMouseDragged,
              .rightMouseDragged,
@@ -499,10 +499,10 @@ extension AppDelegate {
             
         case .keyUp,
              .flagsChanged:
-            isLazy = true
+            delay = .lazy
             
         default:
-            break
+            delay = .normal
         }
         
         // schedule validation with delay
@@ -510,9 +510,8 @@ extension AppDelegate {
         //      1. To wait change state.
         //      2. To gather multiple events.
         if let timer = self.touchBarValidationTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: TouchBarValidationDelay.normal.rawValue)
+            timer.fireDate = Date(timeIntervalSinceNow: delay.rawValue)
         } else {
-            let delay: TouchBarValidationDelay = isLazy ? .lazy : .normal
             self.touchBarValidationTimer = Timer.scheduledTimer(timeInterval: delay.rawValue,
                                                                 target: self,
                                                                 selector: #selector(validateTouchBar(timer:)),
