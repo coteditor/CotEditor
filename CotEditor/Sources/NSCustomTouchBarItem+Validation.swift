@@ -55,6 +55,7 @@ extension NSTouchBar {
 @available(macOS 10.12.1, *)
 extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
     
+    /// validate item if content view is NSControl
     fileprivate func validate() {
         
         // validate content control

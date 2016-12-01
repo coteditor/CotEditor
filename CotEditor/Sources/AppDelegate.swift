@@ -472,6 +472,7 @@ extension AppDelegate {
     }
     
     
+    /// check necessity of touch bar validation and schedule with a delay if needed
     fileprivate func validateTouchBarIfNeeded() {
         
         guard NSClassFromString("NSTouchBar") != nil else { return }  // run-time check
@@ -519,6 +520,7 @@ extension AppDelegate {
     }
     
     
+    /// validate current touch bar
     func validateTouchBar(timer: Timer?) {
         
         touchBarValidationTimer?.invalidate()
