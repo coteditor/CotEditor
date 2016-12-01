@@ -36,17 +36,13 @@ protocol TouchBarItemValidations: class {
 
 
 @available(macOS 10.12.1, *)
-extension NSTouchBarProvider {
+extension NSTouchBar {
     
-    func validateTouchBarItems() {
+    /// validate currently visible touch bar items
+    func validateVisibleItems() {
         
-        guard NSClassFromString("NSTouchBar") != nil else { return }  // run-time check
-        
-        guard let touchBar = self.touchBar else { return }
-        
-        // validate currently visible touch bar items
-        for identifier in touchBar.itemIdentifiers {
-            guard let item = touchBar.item(forIdentifier: identifier) as? NSCustomTouchBarItem else { continue }
+        for identifier in self.itemIdentifiers {
+            guard let item = self.item(forIdentifier: identifier) as? NSCustomTouchBarItem else { continue }
             
             item.validate()
         }
@@ -55,10 +51,11 @@ extension NSTouchBarProvider {
 }
 
 
+
 @available(macOS 10.12.1, *)
 extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
     
-    func validate() {
+    fileprivate func validate() {
         
         // validate content control
         if let control = self.control,
