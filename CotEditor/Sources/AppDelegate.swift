@@ -53,8 +53,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var didFinishLaunching = false
     private lazy var acknowledgmentsWindowController = WebDocumentWindowController(documentName: "Acknowledgments")!
     
-    fileprivate weak var touchBarValidationTimer: Timer?
-    
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
@@ -102,7 +100,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     deinit {
-        self.touchBarValidationTimer?.invalidate()
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -286,15 +283,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// validate touch bar items
-    func applicationDidUpdate(_ notification: Notification) {
-        
-        if #available(macOS 10.12.1, *) {
-            self.validateTouchBarIfNeeded()
-        }
-    }
-    
-    
     
     // MARK: Action Messages
     
@@ -454,84 +442,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let themeNames = ThemeManager.shared.themeNames
         for themeName in themeNames {
             menu.addItem(withTitle: themeName, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "")
-        }
-    }
-    
-}
-
-
-
-// MARK: - Touch Bar Validation
-
-@available(macOS 10.12.1, *)
-extension AppDelegate {
-    
-    private enum TouchBarValidationDelay: TimeInterval {
-        
-        case normal = 0.1
-        case lazy = 0.85
-    }
-    
-    
-    /// check necessity of touch bar validation and schedule with a delay if needed
-    fileprivate func validateTouchBarIfNeeded() {
-        
-        guard
-            NSClassFromString("NSTouchBar") != nil,  // run-time check
-            NSTouchBar.isAutomaticValidationEnabled,
-            let event = NSApp.currentEvent
-            else { return }
-        
-        // skip validation for specific events
-        //   -> Just like NSToolbar does. See Apple's API reference for NSToolbar's `validateVisibleItems()`.
-        //      cf. https://developer.apple.com/reference/appkit/nstoolbar/1516947-validatevisibleitems
-        let isLazy: Bool
-        switch event.type {
-        case .leftMouseDragged,
-             .rightMouseDragged,
-             .otherMouseDragged,
-             .mouseEntered,
-             .mouseExited,
-             .scrollWheel,
-             .cursorUpdate,
-             .keyDown,
-             .mouseMoved:
-            return
-            
-        case .keyUp,
-             .flagsChanged:
-            isLazy = true
-            
-        default:
-            isLazy = false
-        }
-        
-        // schedule validation with delay
-        // -> A tiny delay makes sense:
-        //      1. To wait change state.
-        //      2. To gather multiple events.
-        if let timer = self.touchBarValidationTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: TouchBarValidationDelay.normal.rawValue)
-        } else {
-            let delay: TouchBarValidationDelay = isLazy ? .lazy : .normal
-            self.touchBarValidationTimer = Timer.scheduledTimer(timeInterval: delay.rawValue,
-                                                                target: self,
-                                                                selector: #selector(validateTouchBar(timer:)),
-                                                                userInfo: nil,
-                                                                repeats: false)
-        }
-    }
-    
-    
-    /// validate current touch bar
-    func validateTouchBar(timer: Timer?) {
-        
-        self.touchBarValidationTimer?.invalidate()
-        
-        guard let window = NSApp.mainWindow else { return }
-        
-        for responder in sequence(first: window.firstResponder, next: { $0.nextResponder }) {
-            responder.touchBar?.validateVisibleItems()
         }
     }
     
