@@ -33,7 +33,7 @@ final class IntegrationPaneController: NSViewController {
     
     private static let commandURL = Bundle.main.sharedSupportURL!.appendingPathComponent("bin/cot").standardizedFileURL
     
-    private static let preferredLinkURL = URL.init(fileURLWithPath: "/usr/local/bin/cot")
+    private static let preferredLinkURL = URL(fileURLWithPath: "/usr/local/bin/cot")
     
     private static let preferredLinkTargetURL: URL = {
         // cot in CotEditor.app in /Applications directory

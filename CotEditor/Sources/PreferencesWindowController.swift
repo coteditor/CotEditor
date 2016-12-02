@@ -50,7 +50,7 @@ final class PreferencesWindowController: NSWindowController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var windowNibName: String? {
@@ -79,27 +79,26 @@ final class PreferencesWindowController: NSWindowController {
     // MARK: Action Messages
     
     /// switch panes from toolbar
-    @IBAction func switchView(_ sender: Any?) {
+    @IBAction func switchView(_ toolbarItem: NSToolbarItem) {
         
-        guard let window = self.window,
-              let toolbarItem = sender as? NSToolbarItem else { return }
+        guard let window = self.window else { return }
         
         // detect clicked icon and select the view to switch
         let newView = self.viewControllers[toolbarItem.tag].view
         
         // remove current view from the main view
-        for view in window.contentView?.subviews ?? [] {
+        window.contentView?.subviews.forEach { view in
             view.removeFromSuperviewWithoutNeedingDisplay()
         }
-        
-        // set window title
-        window.title = toolbarItem.paletteLabel
         
         // resize window to fit to new view
         var frame = window.frameRect(forContentRect: newView.frame)
         frame.origin = window.frame.origin
         frame.origin.y += window.frame.height - frame.height
-        self.window?.setFrame(frame, display: true, animate: true)
+        window.setFrame(frame, display: false, animate: true)
+        
+        // set window title
+        window.title = toolbarItem.paletteLabel
         
         // add new view to the main view
         window.contentView?.addSubview(newView)

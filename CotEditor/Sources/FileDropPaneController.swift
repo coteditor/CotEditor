@@ -260,8 +260,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             return trimmed.isEmpty ? nil : trimmed
         }
         
-        guard !sanitizedExtensions.isEmpty else { return "" }
-        
         return sanitizedExtensions.joined(separator: ", ")
     }
     

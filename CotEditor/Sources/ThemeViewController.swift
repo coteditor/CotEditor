@@ -166,7 +166,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
             guard key != DictionaryKey.metadata.rawValue else { continue }
             
             for subkey in subdict.allKeys {
-                let keyPath = subkey as! String
+                guard let keyPath = subkey as? String else { continue }
                 
                 subdict.addObserver(self, forKeyPath: keyPath, context: nil)
             }
@@ -183,7 +183,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
             guard key != DictionaryKey.metadata.rawValue else { continue }
             
             for subkey in subdict.allKeys {
-                let keyPath = subkey as! String
+                guard let keyPath = subkey as? String else { continue }
                 
                 subdict.removeObserver(self, forKeyPath: keyPath)
             }
