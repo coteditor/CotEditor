@@ -38,7 +38,7 @@ extension Notification.Name {
 
 // constants
 
-private let UniqueFileIDLength = 8
+private let UniqueFileIDLength = 13
 
 /// Maximal length to scan encoding declaration
 private let MaxEncodingScanLength = 2000
