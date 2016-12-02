@@ -75,6 +75,9 @@
             <property name="tab width" code="tbwd" type="integer" access="rw" description="The width of a tab character in space equivalents.">
                 <cocoa key="tabWidth"/>
             </property>
+            <property name="expands tab" code="extb" type="boolean" access="rw" description="Are tab characters expanded to space?">
+                <cocoa key="expandsTab"/>
+            </property>
             <property name="selection" code="sele" type="text selection" access="rw" description="The current selection.">
                 <cocoa key="selectionObject"/>
             </property>
