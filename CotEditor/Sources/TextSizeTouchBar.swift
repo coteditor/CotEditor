@@ -36,13 +36,11 @@ fileprivate extension NSTouchBarItemIdentifier {
 
 
 @available(macOS 10.12.1, *)
-class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
+class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceValidations {
     
     // MARK: Private Properties
     
-    private weak var slider: NSSlider?
-    
-    fileprivate var textView: NSTextView? {  // NSTextView cannot be weak
+    private weak var textView: NSTextView? {  // NSTextView cannot be weak
         
         get {
             return _textContainer?.textView
@@ -105,7 +103,6 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
             item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSizeTemplate"))
             item.target = self
             item.action = #selector(textSizeSliderChanged(_:))
-            self.slider = item.slider
             
             let constraints = NSLayoutConstraint.constraints(withVisualFormat: "[slider(300)]", metrics: nil,
                                                              views: ["slider": item.slider])
@@ -115,6 +112,23 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
             
         default:
             return nil
+        }
+    }
+    
+    
+    
+    // MARK: User Interface Validations
+    
+    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        guard let action = item.action else { return false }
+        
+        switch action {
+        case #selector(resetTextSize(_:)):
+            return (self.textView?.scale != 1.0)
+            
+        default:
+            return true
         }
     }
     
@@ -142,31 +156,14 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate {
     // MARK: Private Methods
     
     /// validate text size slider in touch bar
-    func invalidateSlider() {
+    func invalidateSlider(_ notification: Notification) {
         
-        guard let textView = self.textView else { return }
+        guard
+            let scale = self.textView?.scale,
+            let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem
+            else { return }
         
-        self.slider?.doubleValue = Double(textView.scale)
-    }
-    
-}
-
-
-
-@available(macOS 10.12.1, *)
-extension TextSizeTouchBar: NSUserInterfaceValidations {
-    
-    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-        
-        guard let action = item.action else { return false }
-        
-        switch action {
-        case #selector(resetTextSize(_:)):
-            return (self.textView?.scale != 1.0)
-            
-        default:
-            return true
-        }
+        item.slider.doubleValue = Double(scale)
     }
     
 }

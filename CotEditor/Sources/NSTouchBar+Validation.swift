@@ -116,6 +116,9 @@ private final class TouchBarValidator {
     // MARK: -
     // MARK: Lifecycle
     
+    private init() { }
+    
+    
     deinit {
         self.isEnabled = false  // remove observer if needed
         self.validationTimer?.invalidate()
