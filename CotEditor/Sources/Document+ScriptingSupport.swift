@@ -183,13 +183,13 @@ extension Document {
     
     
     /// whether replace tab with spaces
-    var autoExpandTab: NSNumber {
+    var expandsTab: NSNumber {
         
         get {
             return NSNumber(value :self.viewController?.isAutoTabExpandEnabled ?? false)
         }
-        set (autoExpandTab) {
-            self.viewController?.isAutoTabExpandEnabled = autoExpandTab.boolValue
+        set (expandsTab) {
+            self.viewController?.isAutoTabExpandEnabled = expandsTab.boolValue
         }
     }
     
