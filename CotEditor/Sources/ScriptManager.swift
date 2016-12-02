@@ -234,18 +234,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             
             guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
             
-            switch resourceType {
-            case URLFileResourceType.directory:
-                let submenu = NSMenu(title: title)
-                let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
-                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
-                menu.addItem(item)
-                item.submenu = submenu
-                self.addChildFileItem(to: submenu, in: url)
-                
-            case URLFileResourceType.regular:
-                guard (AppleScript.extensions + ShellScript.extensions).contains(url.pathExtension) else { continue }
-                
+            if (AppleScript.extensions + ShellScript.extensions).contains(url.pathExtension) {
                 let shortcut = self.shortcut(from: url)
                 let item = NSMenuItem(title: title, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
                 item.keyEquivalentModifierMask = shortcut.modifierMask
@@ -253,8 +242,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.target = self
                 item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
                 menu.addItem(item)
-                
-            default: break
+            } else if resourceType == URLFileResourceType.directory {
+                let submenu = NSMenu(title: title)
+                let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
+                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
+                menu.addItem(item)
+                item.submenu = submenu
+                self.addChildFileItem(to: submenu, in: url)
             }
         }
     }
