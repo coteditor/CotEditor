@@ -11,8 +11,8 @@ develop
 - Change the outline navigation arrows direction in the navigation bar if text orientation is vertical.
 - Add tooltips to the line endings menu in the toolbar.
 - Improve calculation of the vertical position of line numbers.
-- Tweak the behavior of the incompatible character table and the find result table to highlight the correspondent range in the editor every time when click a row in the table.
-- Update default settings about visibility of invisible characters.
+- Tweak the behavior of the incompatible character table and the find result table to highlight the correspondent range in the editor every time when clicking a row in the table.
+- Update default settings about the visibility of invisible characters.
 - [non-AppStore ver.] Update Sparkle framework to version 1.15.0.
 
 
@@ -21,7 +21,7 @@ develop
 - Fix a possible crash on changing document's encoding lossy.
 - Fix an issue where application crashed if syntax editor panel becomes too small.
 - Fix an issue where editor views didn't update after changing the body font or the visibility of the other invisible characters.
-- Fix an issue where no error message raised when an text encoding reinterpretation failed.
+- Fix an issue where no error message raised when a text encoding reinterpretation failed.
 - Fix an issue where the current line highlight also highlights the last line when the cursor is in the second last line.
 - Fix an issue where the title of the menu item toggling invisible character visibility didn't reflect the frontmost window state.
 - Fix an issue where the text size slider in the Touch Bar didn't update if text size was updated excepting via Touch Bar while the slider is shown.
