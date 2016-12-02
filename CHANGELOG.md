@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Support AppleScript's script bundle for scripting (thanks to Kaito Udagawa!).
 - Add a new AppleScript property `expands tab` for document object (thanks to Kaito Udagawa!).
 - Change the outline navigation arrows direction in the navigation bar if text orientation is vertical.
 - Add tooltips to the line endings menu in the toolbar.
