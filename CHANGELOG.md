@@ -12,6 +12,7 @@ develop
 - Improve calculation of the vertical position of line numbers.
 - Tweak the behavior of the incompatible character table and the find result table to highlight the correspondent range in the editor every time when click a row in the table.
 - Update default settings about visibility of invisible characters.
+- [non-AppStore ver.] Update Sparkle framework to version 1.15.0.
 
 
 ### Fixes
