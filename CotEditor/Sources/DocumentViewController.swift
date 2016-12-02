@@ -748,7 +748,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// whether replace tab with spaces
-    private var isAutoTabExpandEnabled: Bool {
+    var isAutoTabExpandEnabled: Bool {
         
         get {
             guard let textView = self.focusedTextView else {

@@ -46,8 +46,6 @@ final class EditorTextView: NSTextView, Themable {
     
     // MARK: Public Properties
     
-    var isAutomaticTabExpansionEnabled = false
-    
     var lineHighlightRect: NSRect?
     
     var inlineCommentDelimiter: String?
@@ -831,6 +829,16 @@ final class EditorTextView: NSTextView, Themable {
                 tabWidth = oldValue
             }
             guard tabWidth != oldValue else { return }
+            
+            // apply to view
+            self.invalidateDefaultParagraphStyle()
+        }
+    }
+    
+    /// whether replace tab with spaces
+    var isAutomaticTabExpansionEnabled: Bool {
+        didSet {
+            guard isAutomaticTabExpansionEnabled != oldValue else { return }
             
             // apply to view
             self.invalidateDefaultParagraphStyle()

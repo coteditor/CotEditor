@@ -182,6 +182,18 @@ extension Document {
     }
     
     
+    /// whether replace tab with spaces
+    var autoExpandTab: NSNumber {
+        
+        get {
+            return NSNumber(value :self.viewController?.isAutoTabExpandEnabled ?? false)
+        }
+        set (autoExpandTab) {
+            self.viewController?.isAutoTabExpandEnabled = autoExpandTab.boolValue
+        }
+    }
+    
+    
     
     // MARK: AppleScript Handler
     
