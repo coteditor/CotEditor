@@ -98,7 +98,7 @@ class Script {
 
 final class AppleScript: Script {
     
-    static let extensions = ["applescript", "scpt"]
+    static let extensions = ["applescript", "scpt", "scptd"]
     
     
     // MARK: Script Methods
