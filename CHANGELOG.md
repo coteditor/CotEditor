@@ -23,6 +23,7 @@ develop
 - Fix an issue where no error message raised when an text encoding reinterpretation failed.
 - Fix an issue where the current line highlight also highlights the last line when the cursor is in the second last line.
 - Fix an issue where the title of the menu item toggling invisible charater visibility didn't reflect the frontmost window state.
+- Fix an issue where the text size slider in the Touch Bar didn't update if text size was updated excepting via Touch Bar while the slider is shown.
 - Address an issue with drawing area of zoomed character view in character inspector popover.
 
 
