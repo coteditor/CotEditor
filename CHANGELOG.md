@@ -7,13 +7,14 @@ develop
 
 ### Improvements
 
-- Support AppleScript's script bundle for scripting (thanks to Kaito Udagawa!).
+- Support AppleScript's script bundle (.scptd) for scripting (thanks to Kaito Udagawa!).
 - Add a new AppleScript property `expands tab` for document object (thanks to Kaito Udagawa!).
 - Change the outline navigation arrows direction in the navigation bar if text orientation is vertical.
 - Add tooltips to the line endings menu in the toolbar.
 - Improve calculation of the vertical position of line numbers.
 - Tweak the behavior of the incompatible character table and the find result table to highlight the correspondent range in the editor every time when clicking a row in the table.
 - Update default settings about the visibility of invisible characters.
+    - From this change, the invisible character settings can be reset. If so, please reset from the “Appearance” pane in the preferences.
 - [non-AppStore ver.] Update Sparkle framework to version 1.15.0.
 
 
