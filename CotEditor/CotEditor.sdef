@@ -329,6 +329,11 @@
         <event name="document opened" code="cEd1edod" description="This handler is called when CotEditor opened a document.">
             <direct-parameter type="document" description="The document that opened."/>
         </event>
+        
+        <!-- handle [e]vent [d]ocument [s]ave[d] -->
+        <event name="document saved" code="cEd1edsd" description="This handler is called when CotEditor saved a document.">
+            <direct-parameter type="document" description="The document that saved."/>
+        </event>
     </suite>
     
     

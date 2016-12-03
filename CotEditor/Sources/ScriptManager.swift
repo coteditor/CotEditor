@@ -220,6 +220,17 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
+    /// Dispatch an Apple event that notifies the given document was opened
+    ///
+    /// - parameter document: the document that was opened
+    func dispatchEvent(documentSaved document: Document) {
+        let event = createEvent(by: document, eventID: AEEventID(code: "edsd"))
+        if let urls = self.scriptHandlersTable["document saved"] {
+            self.dispatch(event, toHandlersAt: urls)
+        }
+    }
+    
+    
     /// Create an Apple event caused by the given `Document`
     ///
     /// - parameters:
