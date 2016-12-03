@@ -39,6 +39,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private let scriptsDirectoryURL: URL
     private var didChangeFolder = false
+    private var scriptHandlersTable: [String: [URL]] = [:]
     
     
     
@@ -150,6 +151,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         menu.removeAllItems()
         
+        for name in self.scriptHandlersTable.keys {
+            self.scriptHandlersTable[name] = []
+        }
+        
         self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
         if !menu.items.isEmpty {
@@ -204,6 +209,23 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
+    /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
+    ///
+    /// - parameters:
+    ///   - event: the Apple event to be dispatched
+    ///   - urls: the locations of AppleScript handling the given Apple event
+    func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
+        for url in urls {
+            let script = AppleScript(url: url, name: self.scriptName(from: url))
+            do {
+                try script.run(withAppleEvent: event)
+            } catch let error {
+                NSApp.presentError(error)
+            }
+        }
+    }
+    
+    
     /// open Script Menu folder in Finder
     @IBAction func openScriptFolder(_ sender: Any?) {
         
@@ -235,6 +257,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
             guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
             
             if (AppleScript.extensions + ShellScript.extensions).contains(url.pathExtension) {
+                if (url.pathExtension == "scptd") {
+                    self.loadScriptInfo(at: url)
+                }
+                
                 let shortcut = self.shortcut(from: url)
                 let item = NSMenuItem(title: title, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
                 item.keyEquivalentModifierMask = shortcut.modifierMask
@@ -249,6 +275,20 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 menu.addItem(item)
                 item.submenu = submenu
                 self.addChildFileItem(to: submenu, in: url)
+            }
+        }
+    }
+    
+    
+    private func loadScriptInfo(at url: URL) {
+        let infoUrl = url.appendingPathComponent("Contents/Info.plist")
+        guard let info = NSDictionary(contentsOf: infoUrl) else { return }
+
+        if let names = info["CotEditorHandlers"] as? Array<String> {
+            for name in names {
+                var handlers = self.scriptHandlersTable[name] ?? []
+                handlers.append(url)
+                self.scriptHandlersTable[name] = handlers
             }
         }
     }
