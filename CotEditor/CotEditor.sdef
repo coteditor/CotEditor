@@ -324,6 +324,14 @@
     </suite>
     
     
+    <suite name="CotEditor Event Handler suite" code="cEd1" description="commands that are executed as CotEditor event handlers.">
+        <!-- handle [e]vent [d]ocument [o]pene[d] -->
+        <event name="document opened" code="cEd1edod" description="This handler is called when CotEditor opened a document.">
+            <direct-parameter type="document" description="The document that opened."/>
+        </event>
+    </suite>
+    
+    
     <!-- imported standard Text Suite -->
     <suite name="Text Suite" code="????" description="Common text classes for all applications.">
         <access-group identifier="*"/>

@@ -337,6 +337,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             ?? Defaults[.syntaxStyle]
         
         self.setSyntaxStyle(name: styleName)
+        
+        ScriptManager.shared.dispatchEvent(documentOpened: self)
     }
     
     

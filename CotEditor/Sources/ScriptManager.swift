@@ -209,6 +209,36 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
+    /// Dispatch an Apple event that notifies the given document was opened
+    ///
+    /// - parameter document: the document that was opened
+    func dispatchEvent(documentOpened document: Document) {
+        let event = createEvent(by: document, eventID: AEEventID(code: "edod"))
+        if let urls = self.scriptHandlersTable["document opened"] {
+            self.dispatch(event, toHandlersAt: urls)
+        }
+    }
+    
+    
+    /// Create an Apple event caused by the given `Document`
+    ///
+    /// - parameters:
+    ///   - document: the document to dispatch an Apple event
+    ///   - eventID: the event ID to be set in the returned event
+    ///
+    /// - returns: a descriptor for an Apple event by the `Document`
+    func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
+        let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
+        
+        //
+        let documentDescriptor = document.objectSpecifier.descriptor!
+        
+        event.setParam(documentDescriptor, forKeyword: keyDirectObject)
+        
+        return event
+    }
+    
+    
     /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
     ///
     /// - parameters:
