@@ -490,6 +490,20 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     }
     
     
+    /// whether replace tab with spaces
+    var isAutoTabExpandEnabled: Bool {
+        
+        get {
+            return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? Defaults[.autoExpandTab]
+        }
+        set {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.isAutomaticTabExpansionEnabled = newValue
+            }
+        }
+    }
+    
+    
     /// apply text styles from text view
     func invalidateStyleInTextStorage() {
         
@@ -744,25 +758,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     private var editorViewControllers: [EditorViewController] {
         
         return self.splitViewController?.childViewControllers as? [EditorViewController] ?? []
-    }
-    
-    
-    /// whether replace tab with spaces
-    var isAutoTabExpandEnabled: Bool {
-        
-        get {
-            guard let textView = self.focusedTextView else {
-                return Defaults[.autoExpandTab]
-            }
-            
-            return textView.isAutomaticTabExpansionEnabled
-        }
-        
-        set {
-            for viewController in self.editorViewControllers {
-                viewController.textView?.isAutomaticTabExpansionEnabled = newValue
-            }
-        }
     }
     
     
