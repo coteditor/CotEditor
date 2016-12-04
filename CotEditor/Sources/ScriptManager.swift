@@ -39,6 +39,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private let scriptsDirectoryURL: URL
     private var didChangeFolder = false
+    private var scriptHandlersTable: [String: [URL]] = [:]
     
     
     
@@ -150,6 +151,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         menu.removeAllItems()
         
+        for name in self.scriptHandlersTable.keys {
+            self.scriptHandlersTable[name] = []
+        }
+        
         self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
         if !menu.items.isEmpty {
@@ -204,6 +209,67 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
+    /// Dispatch an Apple event that notifies the given document was opened
+    ///
+    /// - parameter document: the document that was opened
+    func dispatchEvent(documentOpened document: Document) {
+        let event = createEvent(by: document, eventID: AEEventID(code: "edod"))
+        if let urls = self.scriptHandlersTable["document opened"] {
+            self.dispatch(event, toHandlersAt: urls)
+        }
+    }
+    
+    
+    /// Dispatch an Apple event that notifies the given document was opened
+    ///
+    /// - parameter document: the document that was opened
+    func dispatchEvent(documentSaved document: Document) {
+        let event = createEvent(by: document, eventID: AEEventID(code: "edsd"))
+        if let urls = self.scriptHandlersTable["document saved"] {
+            self.dispatch(event, toHandlersAt: urls)
+        }
+    }
+    
+    
+    /// Create an Apple event caused by the given `Document`
+    ///
+    /// - bug:
+    ///   NSScriptObjectSpecifier.descriptor can be nil.
+    ///   If `nil`, the error is propagated by passing a string in place of `Document`.
+    ///   [#649](https://github.com/coteditor/CotEditor/pull/649)
+    ///
+    /// - parameters:
+    ///   - document: the document to dispatch an Apple event
+    ///   - eventID: the event ID to be set in the returned event
+    ///
+    /// - returns: a descriptor for an Apple event by the `Document`
+    func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
+        let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
+        
+        let documentDescriptor = document.objectSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
+        event.setParam(documentDescriptor, forKeyword: keyDirectObject)
+        
+        return event
+    }
+    
+    
+    /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
+    ///
+    /// - parameters:
+    ///   - event: the Apple event to be dispatched
+    ///   - urls: the locations of AppleScript handling the given Apple event
+    func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
+        for url in urls {
+            let script = AppleScript(url: url, name: self.scriptName(from: url))
+            do {
+                try script.run(withAppleEvent: event)
+            } catch let error {
+                NSApp.presentError(error)
+            }
+        }
+    }
+    
+    
     /// open Script Menu folder in Finder
     @IBAction func openScriptFolder(_ sender: Any?) {
         
@@ -235,6 +301,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
             guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
             
             if (AppleScript.extensions + ShellScript.extensions).contains(url.pathExtension) {
+                if (url.pathExtension == "scptd") {
+                    self.loadScriptInfo(at: url)
+                }
+                
                 let shortcut = self.shortcut(from: url)
                 let item = NSMenuItem(title: title, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
                 item.keyEquivalentModifierMask = shortcut.modifierMask
@@ -249,6 +319,20 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 menu.addItem(item)
                 item.submenu = submenu
                 self.addChildFileItem(to: submenu, in: url)
+            }
+        }
+    }
+    
+    
+    private func loadScriptInfo(at url: URL) {
+        let infoUrl = url.appendingPathComponent("Contents/Info.plist")
+        guard let info = NSDictionary(contentsOf: infoUrl) else { return }
+
+        if let names = info["CotEditorHandlers"] as? Array<String> {
+            for name in names {
+                var handlers = self.scriptHandlersTable[name] ?? []
+                handlers.append(url)
+                self.scriptHandlersTable[name] = handlers
             }
         }
     }
