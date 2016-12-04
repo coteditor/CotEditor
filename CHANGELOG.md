@@ -20,7 +20,7 @@ develop
 - Tweak the behavior of the incompatible character table and the find result table to highlight the correspondent range in the editor every time when clicking a row in the table.
 - Update default settings about the visibility of invisible characters.
     - From this change, the invisible character settings can be reset. If so, please reset from the “Appearance” pane in the preferences.
-- [non-AppStore ver.] Update Sparkle framework to version 1.15.0.
+- [non-AppStore ver.] Update Sparkle framework to version 1.15.1.
 
 
 ### Fixes
