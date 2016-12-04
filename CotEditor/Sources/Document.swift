@@ -439,7 +439,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             }
             
             if saveOperation == .saveToOperation, let strongSelf = self {
-                ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
+                ScriptManager.shared.dispatchEvent(for: .documentSaved, document: strongSelf)
             }
         }
     }
@@ -763,7 +763,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.isVerticalText = ((self.fileAttributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
         }
         
-        ScriptManager.shared.dispatchEvent(documentOpened: self)
+        ScriptManager.shared.dispatchEvent(for: .documentOpened, document: self)
     }
     
     
