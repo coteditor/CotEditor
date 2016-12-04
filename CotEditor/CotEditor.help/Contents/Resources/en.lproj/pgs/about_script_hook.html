@@ -8,7 +8,7 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Adding hooks for CotEditor scripts</title>
+	<title>Adding scripting hooks for CotEditor scripts</title>
 </head>
 
 <body>
@@ -18,10 +18,114 @@
 
 
 <a name="about_script_hook"></a>
-<h1>Adding hooks for CotEditor scripts</h1>
+<h1>Adding scripting hooks for CotEditor scripts</h1>
 
-<p>This page explains how to add hooks to scripts.</p>
+<p>Scripting hooks allows CotEditor scripts to be executed on certain events. The following events are available with CotEditor:</p>
 
+<ul>
+	<li><code>document opened</code> : after you opened the file and then the contents was loaded</li>
+	<li><code>document saved</code> : after you saved the file and then the contents was stored</li>
+</ul>
+
+<p>See `CotEditor Event Handler suite` section on AppleScript Dictionary for further information.</p>
+
+<p>The rest of this page describes how to include the script hooking to your CotEditor script.</p>
+
+<h2>Synopsis</h2>
+
+<p>Scripts with scripting hook must conforms to the following protocols:</p>
+
+<ul>
+	<li>written in AppleScript or JavaScript for Automation (JXA)</li>
+	<li>stored in the form of script bundle (`.scptd`)</li>
+</ul>
+
+<p>In addition, events to subscribe and handlers for them must be declared, as described below.</p>
+
+<h2>Structure of Script Bundle</h2>
+
+<p>A script bundle is the directory structure as follows:</p>
+
+<pre>
+HookingScript.scptd
+└── Contents
+    ├── Info.plist
+    └── Resources
+        ├── Script Libraries
+        │   └── my-fancy-library.scpt
+        ├── Scripts
+        │   └── main.scpt
+        └── description.rtfd
+            └── TXT.rtf
+</pre>
+
+<p>Any scripts can be exported in this form with Script Editor.app, which is one of standard applications distributed with macOS.</p>
+
+<p>To support scripting hooks, the list of events to subscribe must be written in `Contents/Info.plist`. `Info.plist` is a property list containing the metadata of the bundle and formatted in XML as the following example:</p>
+
+<code>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.coteditor.hooking-script</string>
+	<key>CFBundleName</key>
+	<string>Hooking Script</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+</dict>
+</plist>
+</code>
+
+<p>The events to subscribe must be stored at the key `CotEditorHandlers` and in the form of `array` of `string`.</p>
+
+<code>
+<key>CotEditorHandlers</key>
+<array>
+  <string>document opened</string>
+  <string>document saved</string>
+</array>
+</code>
+
+<h2>Event Handlers</h2>
+
+<p>A event handler is the block to receive certain events which the application caused and do something with the received event. In this section, the manners to write an event handler are described with the simple example, which shows the dialog on opening and saving a file.</p>
+
+<h3>AppleScript</h3>
+
+<p>In AppleScript, handlers are written with a `using terms from` block and `on` blocks.</p>
+
+<code>
+using terms from application "CotEditor"
+	on document opened theDocument
+		set thePath to file of theDocument
+		display alert "Opened " & thePath
+	end document opened
+
+	on document saved theDocument
+		set thePath to file of theDocument
+		display alert "Saved " & thePath
+	end document saved
+end using terms from
+</code>
+
+<h3>JavaScript for Automation (JXA)</h3>
+
+<p>In JXA, `function` statements on the global object will create handlers.</p>
+
+<code>
+CotEditor = Application.currentApplication()
+CotEditor.includeStandardAdditions = true
+
+function documentOpened(document) {
+	CotEditor.displayAlert("Opened " + document.file().toString())
+}
+
+function documentSaved(document) {
+	CotEditor.displayAlert("Saved " + document.file().toString())
+}
+</code>
 
 <section id="cf">
 <h2>See also</h2>
