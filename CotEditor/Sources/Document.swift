@@ -438,16 +438,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 self?.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
             
-            if let document = self {
-                switch saveOperation {
-                case .saveAsOperation:
-                    fallthrough
-                case .saveOperation:
-                    fallthrough
-                case .saveToOperation:
-                    ScriptManager.shared.dispatchEvent(documentSaved: document)
-                default: break
-                }
+            if saveOperation == .saveToOperation, let strongSelf = self {
+                ScriptManager.shared.dispatchEvent(for: .documentSaved, document: strongSelf)
             }
         }
     }
@@ -771,7 +763,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.isVerticalText = ((self.fileAttributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
         }
         
-        ScriptManager.shared.dispatchEvent(documentOpened: self)
+        ScriptManager.shared.dispatchEvent(for: .documentOpened, document: self)
     }
     
     

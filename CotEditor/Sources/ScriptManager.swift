@@ -28,6 +28,24 @@
 
 import Cocoa
 
+enum ScriptingEventType: String {
+    
+    case documentOpened = "document opened"
+    case documentSaved = "document saved"
+    
+    
+    var eventID: AEEventID {
+        
+        switch self {
+        case .documentOpened: return AEEventID(code: "edod")
+        case .documentSaved: return AEEventID(code: "edsd")
+        }
+    }
+    
+}
+
+
+
 final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Public Properties
@@ -39,7 +57,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private let scriptsDirectoryURL: URL
     private var didChangeFolder = false
-    private var scriptHandlersTable: [String: [URL]] = [:]
+    private var scriptHandlersTable: [ScriptingEventType: [URL]] = [:]
     
     
     
@@ -151,9 +169,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         menu.removeAllItems()
         
-        for name in self.scriptHandlersTable.keys {
-            self.scriptHandlersTable[name] = []
-        }
+        self.scriptHandlersTable = [:]
         
         self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
@@ -168,6 +184,17 @@ final class ScriptManager: NSObject, NSFilePresenter {
         menu.addItem(openMenuItem)
         
         self.didChangeFolder = false
+    }
+    
+    
+    /// Dispatch an Apple event that notifies an event about the given document
+    func dispatchEvent(for eventType: ScriptingEventType, document: Document) {
+        
+        let event = createEvent(by: document, eventID: eventType.eventID)
+        
+        guard let urls = self.scriptHandlersTable[eventType] else { return }
+        
+        self.dispatch(event, toHandlersAt: urls)
     }
     
     
@@ -209,27 +236,14 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Dispatch an Apple event that notifies the given document was opened
-    ///
-    /// - parameter document: the document that was opened
-    func dispatchEvent(documentOpened document: Document) {
-        let event = createEvent(by: document, eventID: AEEventID(code: "edod"))
-        if let urls = self.scriptHandlersTable["document opened"] {
-            self.dispatch(event, toHandlersAt: urls)
-        }
+    /// open Script Menu folder in Finder
+    @IBAction func openScriptFolder(_ sender: Any?) {
+        
+        NSWorkspace.shared().activateFileViewerSelecting([self.scriptsDirectoryURL])
     }
     
     
-    /// Dispatch an Apple event that notifies the given document was opened
-    ///
-    /// - parameter document: the document that was opened
-    func dispatchEvent(documentSaved document: Document) {
-        let event = createEvent(by: document, eventID: AEEventID(code: "edsd"))
-        if let urls = self.scriptHandlersTable["document saved"] {
-            self.dispatch(event, toHandlersAt: urls)
-        }
-    }
-    
+    // MARK: Private Methods
     
     /// Create an Apple event caused by the given `Document`
     ///
@@ -243,7 +257,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///   - eventID: the event ID to be set in the returned event
     ///
     /// - returns: a descriptor for an Apple event by the `Document`
-    func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
+    private func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
+        
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
         
         let documentDescriptor = document.objectSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
@@ -258,7 +273,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - parameters:
     ///   - event: the Apple event to be dispatched
     ///   - urls: the locations of AppleScript handling the given Apple event
-    func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
+    private func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
+        
         for url in urls {
             let script = AppleScript(url: url, name: self.scriptName(from: url))
             do {
@@ -269,15 +285,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         }
     }
     
-    
-    /// open Script Menu folder in Finder
-    @IBAction func openScriptFolder(_ sender: Any?) {
-        
-        NSWorkspace.shared().activateFileViewerSelecting([self.scriptsDirectoryURL])
-    }
-    
-    
-    // MARK: Private Methods
     
     /// read files and create/add menu items
     private func addChildFileItem(to menu: NSMenu, in directoryURL: URL) {
@@ -312,6 +319,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.target = self
                 item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
                 menu.addItem(item)
+                
             } else if resourceType == URLFileResourceType.directory {
                 let submenu = NSMenu(title: title)
                 let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
@@ -325,15 +333,20 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     private func loadScriptInfo(at url: URL) {
+        
         let infoUrl = url.appendingPathComponent("Contents/Info.plist")
-        guard let info = NSDictionary(contentsOf: infoUrl) else { return }
-
-        if let names = info["CotEditorHandlers"] as? Array<String> {
-            for name in names {
-                var handlers = self.scriptHandlersTable[name] ?? []
-                handlers.append(url)
-                self.scriptHandlersTable[name] = handlers
-            }
+        
+        guard
+            let info = NSDictionary(contentsOf: infoUrl),
+            let names = info["CotEditorHandlers"] as? [String]
+            else { return }
+        
+        for name in names {
+            guard let eventType = ScriptingEventType(rawValue: name) else { continue }
+            
+            var handlers = self.scriptHandlersTable[eventType] ?? []
+            handlers.append(url)
+            self.scriptHandlersTable[eventType] = handlers
         }
     }
     
