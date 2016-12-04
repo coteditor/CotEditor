@@ -8,7 +8,7 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>CotEditor スクリプト フックの追加</title>
+	<title>スクリプトフックの追加</title>
 </head>
 
 <body>
@@ -18,10 +18,116 @@
 
 
 <a name="about_script_hook"></a>
-<h1>CotEditor スクリプト フックの追加</h1>
+<h1>スクリプトフックの追加</h1>
 
-<p>このページでは CotEditror スクリプトへフックを追加する方法を説明します。</p>
+<p>スクリプトフックは、特定のイベント発生時にスクリプトを起動する機能です。CotEditor は、次に挙げるイベントでのフックをサポートしています。</p>
 
+<ul>
+	<li><code>document opened</code> : ファイルを開く操作を行い、テキストが読み込まれた直後</li>
+	<li><code>document saved</code> : ファイルを保存する操作を行い、テキストが書き込まれた直後</li>
+</ul>
+
+<p>イベントの詳細な仕様については、AppleScript 辞書の CotEditor Event Handler suite 項を参照してください。</p>
+
+<p>このページでは CotEditor スクリプトをスクリプトフックへ対応させる方法について説明します。</p>
+
+<h2>概要</h2>
+
+<p>フックに対応したスクリプトを作成する場合、以下の制約を満足する必要があります。</p>
+
+<ul>
+	<li>AppleScript または JavaScript for Automation (JXA) による記述</li>
+	<li>スクリプト バンドル 形式 (`.scptd`) で格納</li>
+</ul>
+
+<p>以上に加えて、フックしたいイベントをメタデータファイルにて明示し、イベントハンドラを記述する必要があります。</p>
+
+<h2>スクリプトバンドルの構造</h2>
+
+<p>スクリプト バンドルは、以下に示す構造を持つディレクトリ構造です。</p>
+
+<pre>
+HookingScript.scptd
+└── Contents
+    ├── Info.plist
+    └── Resources
+        ├── Script Libraries
+        │   └── my-fancy-library.scpt
+        ├── Scripts
+        │   └── main.scpt
+        └── description.rtfd
+            └── TXT.rtf
+</pre>
+
+<p>この形式には、macOSに標準で添付されているスクリプト エディタを用いることにより、簡単に書き出すことができます。</p>
+
+<p>CotEditorのスクリプトフックに対応させるためには、まず、`Info.plist`にフックしたいイベントの一覧を記載する必要があります。
+`plist`ファイルはプロパティリストと呼ばれ、その内容は以下に示すようなXML形式で記述されたバンドルのメタデータです。</p>
+
+<code>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.coteditor.hooking-script</string>
+	<key>CFBundleName</key>
+	<string>Hooking Script</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+</dict>
+</plist>
+</code>
+
+<p>フックしたいイベントの一覧は、キー`CotEditorHandlers`に文字列の配列として記載します。以下にその一例を示します。</p>
+
+<code>
+<key>CotEditorHandlers</key>
+<array>
+  <string>document opened</string>
+  <string>document saved</string>
+</array>
+</code>
+
+<h2>イベントハンドラ</h2>
+
+<p>イベントハンドラは、アプリケーションが発生させたイベントを受信し、処理を行うスクリプトを指します。
+ここでは、ファイルを読み込んだ後と書き込んだ後にダイアログを表示するスクリプトを例に採り上げ、イベントハンドラの記述方法について説明します。</p>
+
+<h3>AppleScript</h3>
+
+<p>AppleScriptでスクリプトを記述する場合、`using terms from`ブロックと`on`ブロックを組み合わせることで、ハンドラを作成します。</p>
+
+<code>
+using terms from application "CotEditor"
+	on document opened theDocument
+		set thePath to file of theDocument
+		display alert "Opened " & thePath
+	end document opened
+
+	on document saved theDocument
+		set thePath to file of theDocument
+		display alert "Saved " & thePath
+	end document saved
+end using terms from
+</code>
+
+<h3>JavaScript for Automation (JXA)</h3>
+
+<p>JXAでスクリプトを記述する場合、`function`文を用いてハンドラを作成します。関数はグローバルオブジェクト上で定義する必要があります。</p>
+
+<code>
+CotEditor = Application.currentApplication()
+CotEditor.includeStandardAdditions = true
+
+function documentOpened(document) {
+	CotEditor.displayAlert("Opened " + document.file().toString())
+}
+
+function documentSaved(document) {
+	CotEditor.displayAlert("Saved " + document.file().toString())
+}
+</code>
 
 <section id="cf">
 <h2>関連項目</h2>
