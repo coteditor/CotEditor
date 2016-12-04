@@ -241,10 +241,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
         
-        //
-        let documentDescriptor = document.objectSpecifier.descriptor!
-        
-        event.setParam(documentDescriptor, forKeyword: keyDirectObject)
+        if let documentDescriptor = document.objectSpecifier.descriptor {
+            event.setParam(documentDescriptor, forKeyword: keyDirectObject)
+        }
         
         return event
     }
