@@ -113,8 +113,10 @@ final class AppleScript: Script {
     /// run script
     /// - throws: Error by NSUserScriptTask
     override func run() throws {
+        
         try self.run(withAppleEvent: nil)
     }
+    
     
     /// Execute the AppleScript script by sending it the given Apple event.
     ///
@@ -125,6 +127,7 @@ final class AppleScript: Script {
     /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
     ///           
     func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
+        
         guard self.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.url)
         }

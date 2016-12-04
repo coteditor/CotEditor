@@ -151,9 +151,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         menu.removeAllItems()
         
-        for name in self.scriptHandlersTable.keys {
-            self.scriptHandlersTable[name] = []
-        }
+        self.scriptHandlersTable = [:]
         
         self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
@@ -213,6 +211,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///
     /// - parameter document: the document that was opened
     func dispatchEvent(documentOpened document: Document) {
+        
         let event = createEvent(by: document, eventID: AEEventID(code: "edod"))
         if let urls = self.scriptHandlersTable["document opened"] {
             self.dispatch(event, toHandlersAt: urls)
@@ -224,6 +223,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///
     /// - parameter document: the document that was opened
     func dispatchEvent(documentSaved document: Document) {
+        
         let event = createEvent(by: document, eventID: AEEventID(code: "edsd"))
         if let urls = self.scriptHandlersTable["document saved"] {
             self.dispatch(event, toHandlersAt: urls)
@@ -244,6 +244,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///
     /// - returns: a descriptor for an Apple event by the `Document`
     func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
+        
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
         
         let documentDescriptor = document.objectSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
@@ -259,6 +260,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///   - event: the Apple event to be dispatched
     ///   - urls: the locations of AppleScript handling the given Apple event
     func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
+        
         for url in urls {
             let script = AppleScript(url: url, name: self.scriptName(from: url))
             do {
@@ -312,6 +314,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.target = self
                 item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
                 menu.addItem(item)
+                
             } else if resourceType == URLFileResourceType.directory {
                 let submenu = NSMenu(title: title)
                 let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
@@ -325,15 +328,18 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     private func loadScriptInfo(at url: URL) {
+        
         let infoUrl = url.appendingPathComponent("Contents/Info.plist")
-        guard let info = NSDictionary(contentsOf: infoUrl) else { return }
-
-        if let names = info["CotEditorHandlers"] as? Array<String> {
-            for name in names {
-                var handlers = self.scriptHandlersTable[name] ?? []
-                handlers.append(url)
-                self.scriptHandlersTable[name] = handlers
-            }
+        
+        guard
+            let info = NSDictionary(contentsOf: infoUrl),
+            let names = info["CotEditorHandlers"] as? [String]
+            else { return }
+        
+        for name in names {
+            var handlers = self.scriptHandlersTable[name] ?? []
+            handlers.append(url)
+            self.scriptHandlersTable[name] = handlers
         }
     }
     
