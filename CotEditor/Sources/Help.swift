@@ -52,6 +52,7 @@ struct Help {
         "about_file_mapping",
         "about_styleinfo_settings",
         "howto_findpanel",
+        "about_scripting",
         ]
     
     private init() { }
