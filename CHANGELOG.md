@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add Scripting hook feature for document opening/saving (thanks to Kaito Udagawa!).
+
+
 ### Improvements
 
 - Support AppleScript's script bundle (.scptd) for scripting (thanks to Kaito Udagawa!).
