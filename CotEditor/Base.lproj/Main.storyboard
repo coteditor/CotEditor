@@ -610,7 +610,7 @@ Gw
                                                             <action selector="inlineCommentOut:" target="Ady-hI-5gd" id="cKe-O3-dvP"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Blcok Comment" id="U5v-4k-2tq">
+                                                    <menuItem title="Block Comment" id="U5v-4k-2tq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="blockCommentOut:" target="Ady-hI-5gd" id="2fg-lQ-D0T"/>
