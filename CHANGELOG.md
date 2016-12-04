@@ -8,6 +8,7 @@ develop
 ### New Features
 
 - Add Scripting hook feature for document opening/saving (thanks to Kaito Udagawa!).
+    - See “Adding scripting hooks for CotEditor scripts” from the Help menu > “CotEditor Scripting Manual” > “About Scripting” for details.
 
 
 ### Improvements
