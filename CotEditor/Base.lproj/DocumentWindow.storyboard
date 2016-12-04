@@ -85,7 +85,11 @@
                                         <action selector="toggleIncompatibleCharList:" target="klO-m3-n5X" id="KOI-wf-RAx"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="47B6BDDC-E0CC-4997-B3A0-62224DC378F6" explicitItemIdentifier="printItemID" label="Print" paletteLabel="Print" toolTip="Print" tag="-1" image="Print" id="hbb-MD-j6g" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target"/>
+                                <toolbarItem implicitItemIdentifier="47B6BDDC-E0CC-4997-B3A0-62224DC378F6" explicitItemIdentifier="printItemID" label="Print" paletteLabel="Print" toolTip="Print" tag="-1" image="Print" id="hbb-MD-j6g" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <connections>
+                                        <action selector="printDocument:" target="klO-m3-n5X" id="Od5-lf-DOv"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="bP0-GL-SND" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target"/>
                                 <toolbarItem implicitItemIdentifier="91A2D44B-F0E2-4BBD-81F0-A97429A3A26D" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="3" image="BiggerFont" id="yOr-Yw-6Of" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>

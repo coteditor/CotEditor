@@ -27,6 +27,7 @@ develop
 
 - Fix a possible crash on changing document's encoding lossy.
 - Fix an issue where application crashed if syntax editor panel becomes too small.
+- Fix an issue where the print icon in the toolbar didn't work.
 - Fix an issue where editor views didn't update after changing the body font or the visibility of the other invisible characters.
 - Fix an issue where no error message raised when a text encoding reinterpretation failed.
 - Fix an issue where the current line highlight also highlights the last line when the cursor is in the second last line.
