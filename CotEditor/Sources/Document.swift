@@ -337,8 +337,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             ?? Defaults[.syntaxStyle]
         
         self.setSyntaxStyle(name: styleName)
-        
-        ScriptManager.shared.dispatchEvent(documentOpened: self)
     }
     
     
@@ -452,7 +450,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
             }
         }
-        
     }
     
     
@@ -773,6 +770,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if Defaults[.savesTextOrientation] {
             self.isVerticalText = ((self.fileAttributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
         }
+        
+        ScriptManager.shared.dispatchEvent(documentOpened: self)
     }
     
     
