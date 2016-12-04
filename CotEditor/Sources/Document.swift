@@ -438,6 +438,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 self?.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
             
+            if let strongSelf = self {
+                switch saveOperation {
+                case .saveOperation,
+                     .saveAsOperation,
+                     .saveToOperation:
+                    ScriptManager.shared.dispatchEvent(for: .documentSaved, document: strongSelf)
+                default: break
+                }
+            }
             if saveOperation == .saveToOperation, let strongSelf = self {
                 ScriptManager.shared.dispatchEvent(for: .documentSaved, document: strongSelf)
             }
