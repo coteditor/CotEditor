@@ -9,7 +9,7 @@ xcode_scheme: CotEditor
 before_install:
   - gem install xcpretty
   - gem install xcpretty-travis-formatter
-  - carthage update --platform OSX
+  - carthage update --platform macOS
 script:
   set -o pipefail &&
   xcodebuild clean test
