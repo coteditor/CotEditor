@@ -29,27 +29,19 @@ import Cocoa
 
 extension NSImage {
     
-    /// return copy of image tinted with the color or standard template image if `color` is `nil`
-    func tinted(color: NSColor?) -> NSImage {
+    /// return copy of image tinted with the color
+    func tinted(color: NSColor) -> NSImage {
         
-        let tinted = self.copy() as! NSImage
-        
-        guard let color = color else {
-            tinted.isTemplate = true
-            return tinted
-        }
-        
-        let imageRect = NSRect(origin: .zero, size: self.size)
-        
-        tinted.lockFocus()
-        
-        color.set()
-        NSRectFillUsingOperation(imageRect, .sourceAtop)
-        
-        tinted.unlockFocus()
-        tinted.isTemplate = false
-        
-        return tinted
+        return NSImage(size: self.size, flipped: false, drawingHandler: { [weak self] dstRect -> Bool in
+            guard let strongSelf = self else { return false }
+            
+            strongSelf.draw(in: dstRect)
+            
+            color.setFill()
+            NSRectFillUsingOperation(dstRect, .sourceIn)
+            
+            return true
+        })
     }
     
 }

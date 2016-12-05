@@ -114,7 +114,11 @@ extension DocumentViewController: TouchBarItemValidations {
             }
             }() else { return true }
         
-        button.image = button.image?.tinted(color: isEnabled ? nil : .lightGray)
+        let color: NSColor? = isEnabled ? nil : .quaternaryLabelColor
+        if button.bezelColor != color {
+            button.bezelColor = color
+            button.needsDisplay = true
+        }
         
         return true
     }
