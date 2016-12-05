@@ -443,12 +443,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 case .saveOperation,
                      .saveAsOperation,
                      .saveToOperation:
-                    ScriptManager.shared.dispatchEvent(for: .documentSaved, document: strongSelf)
+                    ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
                 default: break
                 }
-            }
-            if saveOperation == .saveToOperation, let strongSelf = self {
-                ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
             }
         }
     }

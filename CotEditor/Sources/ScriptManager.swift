@@ -229,11 +229,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///
     /// - parameter document: the document that was opened
     func dispatchEvent(documentOpened document: Document) {
+        
         let eventType = ScriptingEventType.documentOpened
         let event = createEvent(by: document, eventID: eventType.eventID)
-        if let urls = self.scriptHandlersTable[eventType] {
-            self.dispatch(event, toHandlersAt: urls)
-        }
+        
+        guard let urls = self.scriptHandlersTable[eventType] else { return }
+        
+        self.dispatch(event, toHandlersAt: urls)
     }
     
     
@@ -241,11 +243,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///
     /// - parameter document: the document that was opened
     func dispatchEvent(documentSaved document: Document) {
+        
         let eventType = ScriptingEventType.documentSaved
         let event = createEvent(by: document, eventID: eventType.eventID)
-        if let urls = self.scriptHandlersTable[eventType] {
-            self.dispatch(event, toHandlersAt: urls)
-        }
+        
+        guard let urls = self.scriptHandlersTable[eventType] else { return }
+        
+        self.dispatch(event, toHandlersAt: urls)
     }
     
     
@@ -356,6 +360,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         for name in names {
             guard let eventType = ScriptingEventType(rawValue: name) else { return }
+            
             var handlers = self.scriptHandlersTable[eventType] ?? []
             handlers.append(url)
             self.scriptHandlersTable[eventType] = handlers
