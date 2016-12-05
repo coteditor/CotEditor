@@ -9,12 +9,12 @@ develop
 
 - Add Scripting hook feature for document opening/saving (thanks to Kaito Udagawa!).
     - See “Adding scripting hooks for CotEditor scripts” from the Help menu > “CotEditor Scripting Manual” > “About Scripting” for details.
+- Support AppleScript's script bundle (.scptd) for scripting (thanks to Kaito Udagawa!).
+- Add a new AppleScript property `expands tab` for document object (thanks to Kaito Udagawa!).
 
 
 ### Improvements
 
-- Support AppleScript's script bundle (.scptd) for scripting (thanks to Kaito Udagawa!).
-- Add a new AppleScript property `expands tab` for document object (thanks to Kaito Udagawa!).
 - Change the outline navigation arrows direction in the navigation bar if text orientation is vertical.
 - Add tooltips to the line endings menu in the toolbar.
 - Improve calculation of the vertical position of line numbers.
@@ -35,6 +35,7 @@ develop
 - Fix an issue where the title of the menu item toggling invisible character visibility didn't reflect the frontmost window state.
 - Fix an issue where the text size slider in the Touch Bar didn't update if text size was updated excepting via Touch Bar while the slider is shown.
 - Address an issue with drawing area of zoomed character view in character inspector popover.
+- Fix a typo in the English menu.
 
 
 
