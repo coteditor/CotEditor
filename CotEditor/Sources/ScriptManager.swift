@@ -187,6 +187,34 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
+    /// Dispatch an Apple event that notifies the given document was opened
+    ///
+    /// - parameter document: the document that was opened
+    func dispatchEvent(documentOpened document: Document) {
+        
+        let eventType = ScriptingEventType.documentOpened
+        let event = createEvent(by: document, eventID: eventType.eventID)
+        
+        guard let urls = self.scriptHandlersTable[eventType] else { return }
+        
+        self.dispatch(event, toHandlersAt: urls)
+    }
+    
+    
+    /// Dispatch an Apple event that notifies the given document was opened
+    ///
+    /// - parameter document: the document that was opened
+    func dispatchEvent(documentSaved document: Document) {
+        
+        let eventType = ScriptingEventType.documentSaved
+        let event = createEvent(by: document, eventID: eventType.eventID)
+        
+        guard let urls = self.scriptHandlersTable[eventType] else { return }
+        
+        self.dispatch(event, toHandlersAt: urls)
+    }
+    
+    
     
     // MARK: Action Message
     
@@ -225,33 +253,15 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Dispatch an Apple event that notifies the given document was opened
-    ///
-    /// - parameter document: the document that was opened
-    func dispatchEvent(documentOpened document: Document) {
+    /// open Script Menu folder in Finder
+    @IBAction func openScriptFolder(_ sender: Any?) {
         
-        let eventType = ScriptingEventType.documentOpened
-        let event = createEvent(by: document, eventID: eventType.eventID)
-        
-        guard let urls = self.scriptHandlersTable[eventType] else { return }
-        
-        self.dispatch(event, toHandlersAt: urls)
+        NSWorkspace.shared().activateFileViewerSelecting([self.scriptsDirectoryURL])
     }
     
     
-    /// Dispatch an Apple event that notifies the given document was opened
-    ///
-    /// - parameter document: the document that was opened
-    func dispatchEvent(documentSaved document: Document) {
-        
-        let eventType = ScriptingEventType.documentSaved
-        let event = createEvent(by: document, eventID: eventType.eventID)
-        
-        guard let urls = self.scriptHandlersTable[eventType] else { return }
-        
-        self.dispatch(event, toHandlersAt: urls)
-    }
     
+    // MARK: Private Methods
     
     /// Create an Apple event caused by the given `Document`
     ///
@@ -265,7 +275,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///   - eventID: the event ID to be set in the returned event
     ///
     /// - returns: a descriptor for an Apple event by the `Document`
-    func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
+    private func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
         
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
         
@@ -281,7 +291,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - parameters:
     ///   - event: the Apple event to be dispatched
     ///   - urls: the locations of AppleScript handling the given Apple event
-    func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
+    private func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
         
         for url in urls {
             let script = AppleScript(url: url, name: self.scriptName(from: url))
@@ -293,15 +303,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         }
     }
     
-    
-    /// open Script Menu folder in Finder
-    @IBAction func openScriptFolder(_ sender: Any?) {
-        
-        NSWorkspace.shared().activateFileViewerSelecting([self.scriptsDirectoryURL])
-    }
-    
-    
-    // MARK: Private Methods
     
     /// read files and create/add menu items
     private func addChildFileItem(to menu: NSMenu, in directoryURL: URL) {
@@ -349,6 +350,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
+    /// load script info in Apple Script bundle
     private func loadScriptInfo(at url: URL) {
         
         let infoUrl = url.appendingPathComponent("Contents/Info.plist")
