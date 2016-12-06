@@ -361,7 +361,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             else { return }
         
         for name in names {
-            guard let eventType = ScriptingEventType(rawValue: name) else { return }
+            guard let eventType = ScriptingEventType(rawValue: name) else { continue }
             
             var handlers = self.scriptHandlersTable[eventType] ?? []
             handlers.append(url)
