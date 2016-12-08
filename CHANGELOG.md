@@ -39,6 +39,12 @@ develop
 
 
 
+### Misc.
+
+- You can now find CotEditor scripts on [GitHub Wiki](https://github.com/coteditor/CotEditor/wiki/CotEditor-Scripts).
+
+
+
 3.1.1 (174)
 --------------------------
 
