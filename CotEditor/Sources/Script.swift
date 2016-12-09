@@ -102,7 +102,7 @@ class AbstractScript : Script {
 
 // MARK: -
 
-final class AppleScript: AbstractScript {
+class AppleScript: AbstractScript {
     
     static let extensions = ["applescript", "scpt", "scptd"]
     
@@ -152,7 +152,7 @@ final class AppleScript: AbstractScript {
 
 
 
-final class ShellScript: AbstractScript {
+class ShellScript: AbstractScript {
     
     static let extensions = ["sh", "pl", "php", "rb", "py", "js"]
     
