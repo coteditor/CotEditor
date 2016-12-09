@@ -28,7 +28,13 @@
 
 import Cocoa
 
-class Script {
+protocol Script {
+    func run() throws
+    func reveal() throws
+    func edit() throws
+}
+
+class AbstractScript : Script {
     
     let url: URL
     let name: String
@@ -96,7 +102,7 @@ class Script {
 
 // MARK: -
 
-final class AppleScript: Script {
+final class AppleScript: AbstractScript {
     
     static let extensions = ["applescript", "scpt", "scptd"]
     
@@ -137,7 +143,7 @@ final class AppleScript: Script {
         
         task.execute(withAppleEvent: event) { (result: NSAppleEventDescriptor?, error: Error?) in
             if let error = error {
-                Script.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
+                AbstractScript.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
             }
         }
     }
@@ -146,7 +152,7 @@ final class AppleScript: Script {
 
 
 
-final class ShellScript: Script {
+final class ShellScript: AbstractScript {
     
     static let extensions = ["sh", "pl", "php", "rb", "py", "js"]
     
@@ -208,7 +214,7 @@ final class ShellScript: Script {
             do {
                 input = try self.readInputString(type: inputType, editor: document)
             } catch let error {
-                Script.writeToConsole(message: error.localizedDescription, scriptName: self.name)
+                AbstractScript.writeToConsole(message: error.localizedDescription, scriptName: self.name)
                 return
             }
         } else {
@@ -262,7 +268,7 @@ final class ShellScript: Script {
                 do {
                     try ShellScript.applyOutput(output, editor: document, type: outputType)
                 } catch let error {
-                    Script.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
+                    AbstractScript.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 }
             }
         }
@@ -278,7 +284,7 @@ final class ShellScript: Script {
             // put error message on the sconsole
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
             if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
-                Script.writeToConsole(message: message, scriptName: scriptName)
+                AbstractScript.writeToConsole(message: message, scriptName: scriptName)
             }
         }
     }
