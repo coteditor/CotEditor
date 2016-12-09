@@ -58,6 +58,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private let scriptsDirectoryURL: URL
     private var didChangeFolder = false
     private var scriptHandlersTable: [ScriptingEventType: [URL]] = [:]
+    private var scripts: [URL: Script] = [:]
     
     
     
@@ -171,6 +172,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         self.scriptHandlersTable = [:]
         
+        self.scripts = [:]
+        
         self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
         if !menu.items.isEmpty {
@@ -223,16 +226,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         guard let url = sender?.representedObject as? URL else { return }
         
-        let scriptName = self.scriptName(from: url)
-        
-        let script: Script
-        if AppleScript.extensions.contains(url.pathExtension) {
-            script = AppleScript(url: url, name: scriptName)
-        } else if ShellScript.extensions.contains(url.pathExtension) {
-            script = ShellScript(url: url, name: scriptName)
-        } else {
-            return
-        }
+        guard let script = self.scripts[url] else { return }
         
         do {
             // change behavior if modifier key is pressed
@@ -338,6 +332,12 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
                 menu.addItem(item)
                 
+                let scriptName = self.scriptName(from: url)
+                if AppleScript.extensions.contains(url.pathExtension) {
+                    self.scripts[url] = AppleScript(url: url, name: scriptName)
+                } else if ShellScript.extensions.contains(url.pathExtension) {
+                    self.scripts[url] = ShellScript(url: url, name: scriptName)
+                }
             } else if resourceType == URLFileResourceType.directory {
                 let submenu = NSMenu(title: title)
                 let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
