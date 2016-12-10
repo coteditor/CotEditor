@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11185.3" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11185.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="IncompatibleCharactersViewController" customModule="CotEditor" customModuleProvider="target">
@@ -157,10 +158,10 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action selector="selectCharacter:" target="-2" id="fLb-Jf-DbV"/>
                                     <binding destination="avY-Hl-jdD" name="content" keyPath="arrangedObjects" id="lS8-Vq-CST"/>
                                     <binding destination="avY-Hl-jdD" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="lS8-Vq-CST" id="bcz-Ah-ntY"/>
                                     <binding destination="avY-Hl-jdD" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="bcz-Ah-ntY" id="nnT-CB-W5z"/>
-                                    <outlet property="delegate" destination="-2" id="8Mi-4q-z8e"/>
                                 </connections>
                             </tableView>
                         </subviews>

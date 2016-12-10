@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="CharacterPopoverController" customModule="CotEditor" customModuleProvider="target">
@@ -14,10 +15,13 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView horizontalHuggingPriority="249" verticalCompressionResistancePriority="250" id="c22-O7-iKe">
             <rect key="frame" x="0.0" y="0.0" width="264" height="74"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="500" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" preferredMaxLayoutWidth="500" translatesAutoresizingMaskIntoConstraints="NO" id="Lnp-OL-NAu" customClass="CharacterField" customModule="CotEditor" customModuleProvider="target">
+                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lnp-OL-NAu" customClass="CharacterField" customModule="CotEditor" customModuleProvider="target">
                     <rect key="frame" x="8" y="10" width="56" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="52" id="brS-3N-jsB"/>
+                    </constraints>
                     <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="蛙" id="E2I-1W-zW6" customClass="CharacterFieldCell" customModule="CotEditor" customModuleProvider="target">
                         <font key="font" size="48" name="TimesNewRomanPSMT"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

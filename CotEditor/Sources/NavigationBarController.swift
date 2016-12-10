@@ -35,28 +35,29 @@ final class NavigationBarController: NSViewController {
     /// observe textView
     var textView: NSTextView? {  // NSTextView cannot be weak
         
-        get {
-            return self._textContainer?.textView
-        }
-        set {
-            self._textContainer = newValue?.textContainer
+        didSet {
+            guard let textView = self.textView else { return }
             
-            guard let textView = newValue else { return }
+            self.updateTextOrientation(to: textView.layoutOrientation)
             
             // observe text selection change to update outline menu selection
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: .NSTextViewDidChangeSelection, object: textView)
+            
+            textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .new, context: nil)
         }
     }
-    private weak var _textContainer: NSTextContainer?
     
     
     // MARK: Private Properties
     
-    var isParsingOutline = false  // flag to control outline indicator
+    private var isParsingOutline = false  // flag to control outline indicator
+    
+    private var prevButton: NSButton?
+    private var nextButton: NSButton?
     
     @IBOutlet private weak var outlineMenu: NSPopUpButton?
-    @IBOutlet private weak var prevButton: NSButton?
-    @IBOutlet private weak var nextButton: NSButton?
+    @IBOutlet private weak var leftButton: NSButton?
+    @IBOutlet private weak var rightButton: NSButton?
     
     @IBOutlet private weak var openSplitButton: NSButton?
     @IBOutlet private weak var closeSplitButton: NSButton?
@@ -66,11 +67,12 @@ final class NavigationBarController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        self.textView?.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
     }
     
     
@@ -83,9 +85,20 @@ final class NavigationBarController: NSViewController {
         super.viewDidLoad()
         
         // hide as default
-        self.prevButton!.isHidden = true
-        self.nextButton!.isHidden = true
+        self.leftButton!.isHidden = true
+        self.rightButton!.isHidden = true
         self.outlineMenu!.isHidden = true
+    }
+    
+    
+    
+    // MARK: KVO
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == #keyPath(NSTextView.layoutOrientation), let orientation = self.textView?.layoutOrientation {
+            self.updateTextOrientation(to: orientation)
+        }
     }
     
     
@@ -300,6 +313,33 @@ final class NavigationBarController: NSViewController {
         }
         
         self.outlineMenu!.selectItem(at: selectedIndex)
+        self.updatePrevNextButtonEnabled()
+    }
+    
+    
+    /// update menu item arrows
+    private func updateTextOrientation(to orientation: NSTextLayoutOrientation) {
+        
+        switch orientation {
+        case .horizontal:
+            self.prevButton = self.leftButton
+            self.nextButton = self.rightButton
+            self.leftButton?.image = #imageLiteral(resourceName: "UpArrowTemplate")
+            self.rightButton?.image = #imageLiteral(resourceName: "DownArrowTemplate")
+            
+        case .vertical:
+            self.prevButton = self.rightButton
+            self.nextButton = self.leftButton
+            self.leftButton?.image = #imageLiteral(resourceName: "LeftArrowTemplate")
+            self.rightButton?.image = #imageLiteral(resourceName: "RightArrowTemplate")
+        }
+        
+        self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu(_:))
+        self.prevButton?.toolTip = NSLocalizedString("Jump to previous outline item", comment: "")
+        
+        self.nextButton?.action = #selector(selectNextItemOfOutlineMenu(_:))
+        self.nextButton?.toolTip = NSLocalizedString("Jump to next outline item", comment: "")
+        
         self.updatePrevNextButtonEnabled()
     }
     

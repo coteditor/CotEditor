@@ -31,6 +31,13 @@
 "9p6-Sj-QjF.paletteLabel" = "Fine riga";  /* Line Endings */
 "9p6-Sj-QjF.toolTip" = "Modifica fine riga";  /* Change line endings */
 
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix / macOS"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "Unix / macOS";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.ibShadowedToolTip" = "Mac OS classico";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
+
 /* Class = "NSToolbarItem"; ObjectID = "VL4-m8-9uC"; */
 "VL4-m8-9uC.label" = "Codifica file";  /* File Encoding */
 "VL4-m8-9uC.paletteLabel" = "Codifica file";  /* File Encoding */

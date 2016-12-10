@@ -276,6 +276,8 @@ struct KeyBindingSerialization {
         
         static let action = "action"
         static let shortcut = "shortcut"
+        
+        private init() { }
     }
     
     

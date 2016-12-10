@@ -138,7 +138,7 @@ final class AlphaWindow: NSWindow {
 
 // MARK: Window Tabbing
 
-@available(OSX 10.12, *)
+@available(macOS 10.12, *)
 extension AlphaWindow {
     
     /// settable window user tabbing preference (Don't forget to set to `nil` after use.)

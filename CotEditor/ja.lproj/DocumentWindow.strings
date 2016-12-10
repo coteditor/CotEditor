@@ -30,6 +30,13 @@
 "9p6-Sj-QjF.paletteLabel" = "改行コード";  /* Line Endings */
 "9p6-Sj-QjF.toolTip" = "改行コードを変更";  /* Change line endings */
 
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix / macOS"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "Unix / macOS";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.ibShadowedToolTip" = "クラシック Mac OS";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
+
 /* Class = "NSToolbarItem"; ObjectID = "VL4-m8-9uC"; */
 "VL4-m8-9uC.label" = "エンコーディング";  /* File Encoding */
 "VL4-m8-9uC.paletteLabel" = "エンコーディング";  /* File Encoding */

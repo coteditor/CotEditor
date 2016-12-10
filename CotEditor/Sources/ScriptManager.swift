@@ -28,6 +28,24 @@
 
 import Cocoa
 
+enum ScriptingEventType: String {
+    
+    case documentOpened = "document opened"
+    case documentSaved = "document saved"
+    
+    
+    var eventID: AEEventID {
+        
+        switch self {
+        case .documentOpened: return AEEventID(code: "edod")
+        case .documentSaved: return AEEventID(code: "edsd")
+        }
+    }
+    
+}
+
+
+
 final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Public Properties
@@ -39,6 +57,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private let scriptsDirectoryURL: URL
     private var didChangeFolder = false
+    private var scriptHandlersTable: [ScriptingEventType: [URL]] = [:]
     
     
     
@@ -150,6 +169,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         menu.removeAllItems()
         
+        self.scriptHandlersTable = [:]
+        
         self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
         if !menu.items.isEmpty {
@@ -163,6 +184,34 @@ final class ScriptManager: NSObject, NSFilePresenter {
         menu.addItem(openMenuItem)
         
         self.didChangeFolder = false
+    }
+    
+    
+    /// Dispatch an Apple event that notifies the given document was opened
+    ///
+    /// - parameter document: the document that was opened
+    func dispatchEvent(documentOpened document: Document) {
+        
+        let eventType = ScriptingEventType.documentOpened
+        let event = createEvent(by: document, eventID: eventType.eventID)
+        
+        guard let urls = self.scriptHandlersTable[eventType] else { return }
+        
+        self.dispatch(event, toHandlersAt: urls)
+    }
+    
+    
+    /// Dispatch an Apple event that notifies the given document was opened
+    ///
+    /// - parameter document: the document that was opened
+    func dispatchEvent(documentSaved document: Document) {
+        
+        let eventType = ScriptingEventType.documentSaved
+        let event = createEvent(by: document, eventID: eventType.eventID)
+        
+        guard let urls = self.scriptHandlersTable[eventType] else { return }
+        
+        self.dispatch(event, toHandlersAt: urls)
     }
     
     
@@ -211,7 +260,49 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
+    
     // MARK: Private Methods
+    
+    /// Create an Apple event caused by the given `Document`
+    ///
+    /// - bug:
+    ///   NSScriptObjectSpecifier.descriptor can be nil.
+    ///   If `nil`, the error is propagated by passing a string in place of `Document`.
+    ///   [#649](https://github.com/coteditor/CotEditor/pull/649)
+    ///
+    /// - parameters:
+    ///   - document: the document to dispatch an Apple event
+    ///   - eventID: the event ID to be set in the returned event
+    ///
+    /// - returns: a descriptor for an Apple event by the `Document`
+    private func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
+        
+        let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
+        
+        let documentDescriptor = document.objectSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
+        event.setParam(documentDescriptor, forKeyword: keyDirectObject)
+        
+        return event
+    }
+    
+    
+    /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
+    ///
+    /// - parameters:
+    ///   - event: the Apple event to be dispatched
+    ///   - urls: the locations of AppleScript handling the given Apple event
+    private func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
+        
+        for url in urls {
+            let script = AppleScript(url: url, name: self.scriptName(from: url))
+            do {
+                try script.run(withAppleEvent: event)
+            } catch let error {
+                NSApp.presentError(error)
+            }
+        }
+    }
+    
     
     /// read files and create/add menu items
     private func addChildFileItem(to menu: NSMenu, in directoryURL: URL) {
@@ -234,17 +325,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
             
             guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
             
-            switch resourceType {
-            case URLFileResourceType.directory:
-                let submenu = NSMenu(title: title)
-                let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
-                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
-                menu.addItem(item)
-                item.submenu = submenu
-                self.addChildFileItem(to: submenu, in: url)
-                
-            case URLFileResourceType.regular:
-                guard (AppleScript.extensions + ShellScript.extensions).contains(url.pathExtension) else { continue }
+            if (AppleScript.extensions + ShellScript.extensions).contains(url.pathExtension) {
+                if (url.pathExtension == "scptd") {
+                    self.loadScriptInfo(at: url)
+                }
                 
                 let shortcut = self.shortcut(from: url)
                 let item = NSMenuItem(title: title, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
@@ -254,8 +338,34 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
                 menu.addItem(item)
                 
-            default: break
+            } else if resourceType == URLFileResourceType.directory {
+                let submenu = NSMenu(title: title)
+                let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
+                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
+                menu.addItem(item)
+                item.submenu = submenu
+                self.addChildFileItem(to: submenu, in: url)
             }
+        }
+    }
+    
+    
+    /// load script info in Apple Script bundle
+    private func loadScriptInfo(at url: URL) {
+        
+        let infoUrl = url.appendingPathComponent("Contents/Info.plist")
+        
+        guard
+            let info = NSDictionary(contentsOf: infoUrl),
+            let names = info["CotEditorHandlers"] as? [String]
+            else { return }
+        
+        for name in names {
+            guard let eventType = ScriptingEventType(rawValue: name) else { continue }
+            
+            var handlers = self.scriptHandlersTable[eventType] ?? []
+            handlers.append(url)
+            self.scriptHandlersTable[eventType] = handlers
         }
     }
     

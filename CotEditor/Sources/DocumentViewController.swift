@@ -200,7 +200,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             menuItem.title = NSLocalizedString(title, comment: "")
             
         case #selector(toggleInvisibleChars):
-            let title = self.showsPageGuide ? "Hide Invisible Characters" : "Show Invisible Characters"
+            let title = self.showsInvisibles ? "Hide Invisible Characters" : "Show Invisible Characters"
             menuItem.title = NSLocalizedString(title, comment: "")
             // disable button if item cannot be enable
             if self.canActivateShowInvisibles {
@@ -437,10 +437,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             for viewController in self.editorViewControllers {
                 viewController.textView?.wrapsLines = wrapsLines
             }
-            
-            if #available(macOS 10.12.1, *), NSClassFromString("NSTouchBar") != nil {
-                self.validateTouchBarItem(identifier: .wrapLines)
-            }
         }
     }
     
@@ -462,10 +458,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         didSet {
             for viewController in self.editorViewControllers {
                 viewController.textView?.showsInvisibles = showsInvisibles
-            }
-            
-            if #available(macOS 10.12.1, *), NSClassFromString("NSTouchBar") != nil {
-                self.validateTouchBarItem(identifier: .invisibles)
             }
         }
     }
@@ -493,6 +485,20 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         set {
             for viewController in self.editorViewControllers {
                 viewController.textView?.tabWidth = newValue
+            }
+        }
+    }
+    
+    
+    /// whether replace tab with spaces
+    var isAutoTabExpandEnabled: Bool {
+        
+        get {
+            return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? Defaults[.autoExpandTab]
+        }
+        set {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.isAutomaticTabExpansionEnabled = newValue
             }
         }
     }
@@ -752,25 +758,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     private var editorViewControllers: [EditorViewController] {
         
         return self.splitViewController?.childViewControllers as? [EditorViewController] ?? []
-    }
-    
-    
-    /// whether replace tab with spaces
-    private var isAutoTabExpandEnabled: Bool {
-        
-        get {
-            guard let textView = self.focusedTextView else {
-                return Defaults[.autoExpandTab]
-            }
-            
-            return textView.isAutomaticTabExpansionEnabled
-        }
-        
-        set {
-            for viewController in self.editorViewControllers {
-                viewController.textView?.isAutomaticTabExpansionEnabled = newValue
-            }
-        }
     }
     
     

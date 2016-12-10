@@ -75,6 +75,9 @@
             <property name="tab width" code="tbwd" type="integer" access="rw" description="The width of a tab character in space equivalents.">
                 <cocoa key="tabWidth"/>
             </property>
+            <property name="expands tab" code="extb" type="boolean" access="rw" description="Are tab characters expanded to space?">
+                <cocoa key="expandsTab"/>
+            </property>
             <property name="selection" code="sele" type="text selection" access="rw" description="The current selection.">
                 <cocoa key="selectionObject"/>
             </property>
@@ -318,6 +321,19 @@
                 <cocoa key="unfType"/>
             </parameter>
         </command>
+    </suite>
+    
+    
+    <suite name="CotEditor Event Handler suite" code="cEd1" description="commands that are executed as CotEditor event handlers.">
+        <!-- handle [e]vent [d]ocument [o]pene[d] -->
+        <event name="document opened" code="cEd1edod" description="This handler is called when CotEditor opened a document.">
+            <direct-parameter type="document" description="The document that opened."/>
+        </event>
+        
+        <!-- handle [e]vent [d]ocument [s]ave[d] -->
+        <event name="document saved" code="cEd1edsd" description="This handler is called when CotEditor saved a document.">
+            <direct-parameter type="document" description="The document that saved."/>
+        </event>
     </suite>
     
     

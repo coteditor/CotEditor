@@ -111,7 +111,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     glyphString = verticalTab
                     
                 default:
-                    guard showsInvisibleCharacters && Int(self.glyph(at: glyphIndex, isValidIndex: nil)) == NSControlGlyph else { continue }
+                    guard self.showsInvisibleCharacters && self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
                     
                     guard self.textStorage?.attribute(NSGlyphInfoAttributeName, at: charIndex, effectiveRange: nil) == nil else { continue }
                     

@@ -40,10 +40,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             textView.inlineCommentDelimiter = syntaxStyle?.inlineCommentDelimiter
             textView.blockCommentDelimiters = syntaxStyle?.blockCommentDelimiters
             textView.firstSyntaxCompletionCharacterSet = syntaxStyle?.firstCompletionCharacterSet
-            
-            if #available(macOS 10.12.1, *), NSClassFromString("NSTouchBar") != nil {
-                textView.validateTouchBarItem(identifier: .comment)
-            }
         }
     }
     
@@ -317,7 +313,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         self.lastCursorLocation = cursorLocation
         
         // The brace will be highlighted only when the cursor moves forward, just like on Xcode. (2006-09-10)
-        // If the difference is more than one, they've moved the cursor with the mouse or it has been moved by resetSelectedRange below and we shouldn't check for matching braces then.
+        // -> If the difference is more than one, the cursor would be moved with the mouse or programmatically
+        //    and we shouldn't check for matching braces then.
         guard difference == 1 else { return }
         
         // check the caracter just before the cursor
@@ -377,7 +374,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             let string = textView.string else { return }
         
         // calculate current line rect
-        let lineRange = (string as NSString).lineRange(for: textView.selectedRange)
+        let lineRange = (string as NSString).lineRange(for: textView.selectedRange, excludingLastLineEnding: true)
         let glyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
         var rect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
         rect.origin.x = textContainer.lineFragmentPadding

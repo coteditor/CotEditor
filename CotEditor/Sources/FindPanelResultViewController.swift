@@ -35,7 +35,7 @@ private let MaxMatchedStringLength = 256
 
 
 
-final class FindPanelResultViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+final class FindPanelResultViewController: NSViewController, NSTableViewDataSource {
     
     // MARK: Public Properties
     
@@ -126,29 +126,6 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDelegate
     
     
     
-    // MARK: Table View Delegate
-    
-    /// select matched string in text view
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        
-        guard let tableView = notification.object as? NSTableView,
-              let textView = self.target else { return }
-        
-        let row = tableView.selectedRow
-        
-        guard -1 < row && row < self.results.count else { return }
-        
-        let range = self.results[row].range
-        
-        DispatchQueue.main.async {
-            textView.selectedRange = range
-            textView.centerSelectionInVisibleArea(nil)
-            textView.showFindIndicator(for: range)
-        }
-    }
-    
-    
-    
     // MARK: Public Methods
     
     /// set new find results
@@ -178,9 +155,36 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDelegate
     /// remove current highlight by Find All
     private func unhighlight() {
         
-        guard let textView = self.target else { return }
+        guard
+            let textView = self.target,
+            let range = textView.string?.nsRange
+            else { return }
         
-        textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: textView.string!.nsRange)
+        textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: range)
+    }
+    
+    
+    
+    // MARK: Action Messsages
+    
+    /// select matched string in text view
+    @IBAction func selectMatch(_ tableView: NSTableView) {
+        
+        let row = tableView.clickedRow
+        
+        guard -1 < row && row < self.results.count else { return }
+        
+        let range = self.results[row].range
+        
+        // abandon if text became shorter than range to select
+        guard
+            let textView = self.target,
+            let string = textView.string, string.nsRange.max >= range.max
+            else { return }
+        
+        textView.selectedRange = range
+        textView.scrollRangeToVisible(range)
+        textView.showFindIndicator(for: range)
     }
     
 }

@@ -46,7 +46,12 @@ extension Comparable {
 
 
 /// debug friendly print with a dog/cow.
-func moof(_ items: Any?..., function: String = #function) {
+func moof(_ items: Any..., function: String = #function) {
+    
+    #if DEBUG
+    #else
+        return
+    #endif
     
     let icon = Thread.isMainThread ? "🐕" : "🐄"
     

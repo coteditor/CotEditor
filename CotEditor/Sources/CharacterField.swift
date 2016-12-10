@@ -26,23 +26,23 @@
  */
 
 import Cocoa
+import CoreText
 
 final class CharacterField: NSTextField {
     
     // MARK: Text Field Methods
     
-    /// determine size
+    /// required size
     override var intrinsicContentSize: NSSize {
         
-        var size = super.intrinsicContentSize
-        let textBounds = self.attributedStringValue.bounds.integral
+        return self.attributedStringValue.bounds.integral.size
+    }
+    
+    
+    /// disable flipping
+    override var isFlipped: Bool {
         
-        if let font = self.font {
-            size.width = max(font.pointSize, size.width)
-        }
-        size.height = max(size.height, textBounds.height) + 1
-        
-        return size
+        return false
     }
     
 }
@@ -51,23 +51,27 @@ final class CharacterField: NSTextField {
 
 final class CharacterFieldCell: NSTextFieldCell {
     
-    /// rect of content text
-    override func titleRect(forBounds rect: NSRect) -> NSRect {
-        
-        var titleRect = super.titleRect(forBounds: rect)
-        let textBounds = self.attributedStringValue.bounds.integral
-        
-        titleRect.origin.y = -textBounds.minY
-        titleRect.size.height = max(textBounds.height, titleRect.height)
-        
-        return titleRect
-    }
+    // MARK: Text Field Cell Methods
     
-    
-    /// draw inside of field
+    /// draw inside of field with CoreText
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         
-        self.attributedStringValue.draw(in: self.titleRect(forBounds: cellFrame))
+        #if DEBUG
+            NSColor.orange.setStroke()
+            NSBezierPath(rect: cellFrame).stroke()
+        #endif
+        
+        guard let context = NSGraphicsContext.current()?.cgContext else { return }
+        
+        let line = CTLineCreateWithAttributedString(self.attributedStringValue as CFAttributedString)
+        let bounds = self.attributedStringValue.bounds.integral
+        
+        context.saveGState()
+        
+        context.textPosition = CGPoint(x: (cellFrame.width - bounds.width) / 2, y: -bounds.minY)
+        CTLineDraw(line, context)
+        
+        context.restoreGState()
     }
     
 }
@@ -78,16 +82,12 @@ private extension NSAttributedString {
     
     var bounds: NSRect {
         
-        let layoutManager = NSLayoutManager()
-        let textStorage = NSTextStorage(attributedString: self)
-        let textContainer = NSTextContainer(containerSize: .infinite)
+        let line = CTLineCreateWithAttributedString(self as CFAttributedString)
         
-        layoutManager.addTextContainer(textContainer)
-        textStorage.addLayoutManager(layoutManager)
+        let bounds = CTLineGetBoundsWithOptions(line, [.excludeTypographicLeading])
+        let pathBounds = CTLineGetBoundsWithOptions(line, [.useGlyphPathBounds])
         
-        let glyphRange = layoutManager.glyphRange(for: textContainer)
-        
-        return layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+        return NSUnionRect(bounds, pathBounds)
     }
     
 }

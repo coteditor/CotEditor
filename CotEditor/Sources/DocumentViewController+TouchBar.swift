@@ -50,6 +50,8 @@ extension DocumentViewController: NSTouchBarDelegate {
         
         let touchBar = NSTouchBar()
         
+        NSTouchBar.isAutomaticValidationEnabled = true
+        
         touchBar.delegate = self
         touchBar.customizationIdentifier = .documentView
         touchBar.defaultItemIdentifiers = [.otherItemsProxy, .fixedSpaceSmall, .invisibles, .wrapLines]
@@ -90,19 +92,18 @@ extension DocumentViewController: NSTouchBarDelegate {
         }
     }
     
+}
+
+
+@available(macOS 10.12.1, *)
+extension DocumentViewController: TouchBarItemValidations {
     
-    
-    // MARK: Public Methods
-    
-    func validateTouchBarItem(identifier: NSTouchBarItemIdentifier) {
+    func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool {
         
-        guard
-            let item = self.touchBar?.item(forIdentifier: identifier),
-            let button = item.view as? NSButton
-            else { return }
+        guard let button = item.view as? NSButton else { return true }
         
         guard let isEnabled: Bool = {
-            switch identifier {
+            switch item.identifier {
             case NSTouchBarItemIdentifier.invisibles:
                 return self.showsInvisibles
                 
@@ -111,9 +112,15 @@ extension DocumentViewController: NSTouchBarDelegate {
                 
             default: return nil
             }
-            }() else { return }
+            }() else { return true }
         
-        button.image = button.image?.tinted(color: isEnabled ? nil : .lightGray)
+        let color: NSColor? = isEnabled ? nil : .quaternaryLabelColor
+        if button.bezelColor != color {
+            button.bezelColor = color
+            button.needsDisplay = true
+        }
+        
+        return true
     }
     
 }

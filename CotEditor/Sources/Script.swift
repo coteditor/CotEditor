@@ -98,7 +98,7 @@ class Script {
 
 final class AppleScript: Script {
     
-    static let extensions = ["applescript", "scpt"]
+    static let extensions = ["applescript", "scpt", "scptd"]
     
     
     // MARK: Script Methods
@@ -114,6 +114,20 @@ final class AppleScript: Script {
     /// - throws: Error by NSUserScriptTask
     override func run() throws {
         
+        try self.run(withAppleEvent: nil)
+    }
+    
+    
+    /// Execute the AppleScript script by sending it the given Apple event.
+    ///
+    /// Any script errors will be written to the console panel.
+    ///
+    /// - parameter event: the apple event
+    ///
+    /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
+    ///           
+    func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
+        
         guard self.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.url)
         }
@@ -121,7 +135,7 @@ final class AppleScript: Script {
         let task = try NSUserAppleScriptTask(url: self.url)
         let scriptName = self.name
         
-        task.execute(withAppleEvent: nil) { (result: NSAppleEventDescriptor?, error: Error?) in
+        task.execute(withAppleEvent: event) { (result: NSAppleEventDescriptor?, error: Error?) in
             if let error = error {
                 Script.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
             }

@@ -49,7 +49,7 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
             // load "selected" icon template
             guard
                 let iconName = self.image(forSegment: segment)?.name(),
-                let selectedIcon = NSImage(named: "Selected" + iconName)
+                let selectedIcon = NSImage(named: "Selected" + iconName)?.tinted(color: .alternateSelectedControlColor)
                 else {
                     fatalError("No selected icon template for inspector tab view was found.")
             }
@@ -59,16 +59,8 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
             imageRect.origin.y += floor((imageRect.height - selectedIcon.size.height) / 2)
             imageRect.size = selectedIcon.size
             
-            NSGraphicsContext.saveGraphicsState()
-            
             // draw icon template
             selectedIcon.draw(in: imageRect)
-            
-            // tint drawn icon template
-            NSColor.alternateSelectedControlColor.setFill()
-            NSRectFillUsingOperation(frame, .sourceAtop)
-            
-            NSGraphicsContext.restoreGraphicsState()
             
         } else {
             super.drawSegment(segment, inFrame: frame, with: controlView)

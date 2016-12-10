@@ -39,8 +39,8 @@ final class LineNumberView: NSRulerView {
     private let LineNumberPadding: CGFloat = 4.0
     private let FontSizeFactor: CGFloat = 0.9
     
-    private let LineNumberFont = CGFont("AvenirNextCondensed-Regular" as CFString) ?? CGFont(NSFont.paletteFont(ofSize: 0).fontName as CFString)!
-    private let BoldLineNumberFont = CGFont("AvenirNextCondensed-Bold" as CFString) ?? CGFont(NSFont.paletteFont(ofSize: 0).fontName as CFString)!
+    private let lineNumberFont: CGFont = LineNumberFont.regular.cgFont
+    private let boldLineNumberFont: CGFont = LineNumberFont.bold.cgFont
     
     
     // MARK: Private Properties
@@ -119,16 +119,17 @@ final class LineNumberView: NSRulerView {
         let length = (string as NSString).length
         let scale = textView.scale
         
-        // set graphics context
+        // save graphics context
         context.saveGState()
         
         // setup font
-        let masterFontSize = scale * (textView.font?.pointSize ?? NSFont.systemFontSize())
+        let masterFont = textView.font ?? NSFont.systemFont(ofSize: 0)
+        let masterFontSize = scale * masterFont.pointSize
+        let masterAscent = scale * masterFont.ascender
         let fontSize = min(round(self.FontSizeFactor * masterFontSize), masterFontSize)
-        let font = CTFontCreateWithGraphicsFont(self.LineNumberFont, fontSize, nil, nil)
-        let ascent = CTFontGetAscent(font)
+        let font = CTFontCreateWithGraphicsFont(self.lineNumberFont, fontSize, nil, nil)
         
-        context.setFont(self.LineNumberFont)
+        context.setFont(self.lineNumberFont)
         context.setFontSize(fontSize)
         context.setFillColor(self.textColor.cgColor)
         
@@ -180,9 +181,9 @@ final class LineNumberView: NSRulerView {
         let inset = textView.textContainerOrigin.scaled(to: scale)
         var transform = CGAffineTransform(scaleX: 1.0, y: -1.0)  // flip
         if isVerticalText {
-            transform = transform.translatedBy(x: round(relativePoint.x - inset.y - ascent), y: -ruleThickness)
+            transform = transform.translatedBy(x: round(relativePoint.x - inset.y - masterAscent), y: -ruleThickness)
         } else {
-            transform = transform.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - inset.y - ascent)
+            transform = transform.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - inset.y - masterAscent)
         }
         context.textMatrix = transform
         
@@ -215,7 +216,7 @@ final class LineNumberView: NSRulerView {
             }
             
             if isBold {
-                context.setFont(self.BoldLineNumberFont)
+                context.setFont(self.boldLineNumberFont)
             }
             
             // draw
@@ -223,7 +224,7 @@ final class LineNumberView: NSRulerView {
             
             if isBold {
                 // back to the regular font
-                context.setFont(self.LineNumberFont)
+                context.setFont(self.lineNumberFont)
             }
         }
         
@@ -247,7 +248,8 @@ final class LineNumberView: NSRulerView {
         }
         
         // get glyph range of which line number should be drawn
-        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: self.scrollView!.documentVisibleRect, in: textContainer)
+        let visibleRect = self.scrollView?.documentVisibleRect ?? textView.frame
+        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
         
         // count up lines until visible
         let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
@@ -400,6 +402,66 @@ final class LineNumberView: NSRulerView {
     func textDidChange(_ notification: Notification) {
         
         self.needsRecountTotalNumberOfLines = true
+    }
+    
+}
+
+
+
+// MARK: Line Number Font
+
+private enum LineNumberFont {
+    
+    case regular
+    case bold
+    
+    
+    
+    var font: NSFont {
+        
+        return NSFont(name: self.fontName, size: 0) ?? self.systemFont
+    }
+    
+    
+    var cgFont: CGFont {
+        
+        return CTFontCopyGraphicsFont(self.font, nil)
+    }
+    
+    
+    /// name of the first candidate font
+    private var fontName: String {
+        
+        switch self {
+        case .regular:
+            return "AvenirNextCondensed-Regular"
+        case .bold:
+            return "AvenirNextCondensed-Bold"
+        }
+    }
+    
+    
+    /// system font for fallback
+    private var systemFont: NSFont {
+        
+        if #available(macOS 10.11, *) {
+            return .monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
+        } else {
+            return .paletteFont(ofSize: 0)
+        }
+    }
+    
+    
+    /// font weight for system font
+    @available(macOS 10.11, *)
+    private var weight: CGFloat {
+        
+        switch self {
+        case .regular:
+            return NSFontWeightRegular
+        case .bold:
+            return NSFontWeightBold
+        }
     }
     
 }

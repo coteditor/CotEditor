@@ -108,7 +108,12 @@ final class StatusBarController: NSViewController {
         {
         willSet {
             self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
-            NotificationCenter.default.removeObserver(self)
+            
+            if let analyzer = self.documentAnalyzer {
+                NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
+                NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateFileInfo, object: analyzer)
+                NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateModeInfo, object: analyzer)
+            }
         }
         didSet {
             guard let analyzer = documentAnalyzer else { return }

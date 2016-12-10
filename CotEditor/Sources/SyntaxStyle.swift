@@ -554,6 +554,8 @@ extension SyntaxStyle {
         
         guard let storage = self.textStorage else { return }
         
+        assert(Thread.isMainThread)
+        
         for layoutManager in storage.layoutManagers {
             layoutManager.removeTemporaryAttribute(NSForegroundColorAttributeName, forCharacterRange: highlightRange)
             

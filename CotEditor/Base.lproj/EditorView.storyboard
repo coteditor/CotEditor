@@ -147,12 +147,12 @@
                     </view>
                     <connections>
                         <outlet property="closeSplitButton" destination="Bmo-XE-CCn" id="l36-HV-WaO"/>
-                        <outlet property="nextButton" destination="MlW-Dz-FOk" id="3UB-j6-5wR"/>
+                        <outlet property="leftButton" destination="BUj-TD-scp" id="UPE-Vg-sYz"/>
                         <outlet property="openSplitButton" destination="syK-XU-x2I" id="rpx-m0-Ia5"/>
                         <outlet property="outlineIndicator" destination="htM-ug-ofP" id="9bf-eJ-GwB"/>
                         <outlet property="outlineLoadingMessage" destination="Svt-vI-TEc" id="dqn-f5-EZW"/>
                         <outlet property="outlineMenu" destination="uo6-wO-fJZ" id="E2p-BI-hLI"/>
-                        <outlet property="prevButton" destination="BUj-TD-scp" id="cCC-oU-Smh"/>
+                        <outlet property="rightButton" destination="MlW-Dz-FOk" id="rRE-Sr-4yx"/>
                     </connections>
                 </viewController>
                 <customObject id="OuY-Pd-2q9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

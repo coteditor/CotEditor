@@ -37,9 +37,12 @@ private enum ColumnIdentifier: String {
     /// initializer accepting optional rawValue
     init?(_ string: String?) {
         
-        guard let string = string else { return nil }
+        guard
+            let string = string,
+            let identifier = ColumnIdentifier(rawValue: string)
+            else { return nil }
         
-        self = ColumnIdentifier(rawValue: string)!
+        self = identifier
     }
 }
 

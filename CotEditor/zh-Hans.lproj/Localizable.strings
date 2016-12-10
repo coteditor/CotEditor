@@ -133,9 +133,9 @@
 "Discard Changes" = "放弃修改";
 
 // Reinterpretion failed alert
-"Can not reinterpret." = "无法再次解释。";
 "The document doesn’t have a file to reinterpret." = "该文档没有用来再次解释的文件。";
-"The file “%@” could not be reinterpreted using the new encoding “%@”." = "文件“%@”无法使用“%@”编码再次解释。";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "文件“%@”无法使用“%@”编码再次解释。";
+"The file may have been saved using a different text encoding, or it may not be a text file." = "该文件可能已使用了不同的文本编码来存储，或者可能不是文本文件。";
 
 // Incompatible chars alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
@@ -295,6 +295,8 @@
 /* MARK: NavigationBarController */
 // Outline menu title
 "<Outline Menu>" = "<大纲菜单>";
+"Jump to previous outline item" = "上一个提纲项目";
+"Jump to next outline item" = "下一个提纲项目";
 
 
 

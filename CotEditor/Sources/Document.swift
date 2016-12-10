@@ -38,7 +38,7 @@ extension Notification.Name {
 
 // constants
 
-private let UniqueFileIDLength = 8
+private let UniqueFileIDLength = 13
 
 /// Maximal length to scan encoding declaration
 private let MaxEncodingScanLength = 2000
@@ -84,7 +84,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var readingEncoding: String.Encoding  // encoding to read document file
     private var needsShowUpdateAlertWithBecomeKey = false
     private var isExternalUpdateAlertShown = false
-    private var fileHash: Data?  // MD5
+    private var fileData: Data?
     private var isVerticalText = false
     private var odbEventSender: ODBEventSender?
     private var shouldSaveXattr = true
@@ -267,8 +267,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let data = try Data(contentsOf: url)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
         
-        // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
-        self.fileHash = data.md5
+        // store file data in order to check the file content identity in `presentedItemDidChange()`
+        self.fileData = data
         
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
@@ -413,31 +413,39 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }()
         
         super.save(to: newUrl, ofType: typeName, for: saveOperation) { [weak self] (error: Error?) in
-            guard let strongSelf = self else { return }
-            
-            assert(Thread.isMainThread)
-         
             defer {
                 completionHandler(error)
             }
             
             guard error == nil else { return }
             
+            assert(Thread.isMainThread)
+            
             // apply syntax style that is inferred from the file name
             if saveOperation == .saveAsOperation {
                 let fileName = url.lastPathComponent
                 if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName) {
-                    strongSelf.setSyntaxStyle(name: styleName)
+                    self?.setSyntaxStyle(name: styleName)
                 }
             }
             
             if saveOperation != .autosaveElsewhereOperation {
                 // update file information
-                strongSelf.analyzer.invalidateFileInfo()
+                self?.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
                 let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
-                strongSelf.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
+                self?.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
+            }
+            
+            if let strongSelf = self {
+                switch saveOperation {
+                case .saveOperation,
+                     .saveAsOperation,
+                     .saveToOperation:
+                    ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
+                default: break
+                }
             }
         }
     }
@@ -458,9 +466,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // get the latest file attributes
             self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
             
-            // store file hash (MD5) in order to check the file content identity in `presentedItemDidChange`
+            // store file data in order to check the file content identity in `presentedItemDidChange()`
             if let data = try? Data(contentsOf: url) {  // FILE_READ
-                self.fileHash = data.md5
+                self.fileData = data
             }
             
             // store file encoding for revert
@@ -495,8 +503,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             var permissions = (attributes[FileAttributeKey.posixPermissions.rawValue] as? UInt16) ?? 0
             if let originalURL = absoluteOriginalContentsURL, permissions == 0 {
                 let coordinator = NSFileCoordinator(filePresenter: self)
-                coordinator.coordinate(readingItemAt: originalURL, options: .withoutChanges, error: nil) { (newURL) in
-                    permissions = ((try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.posixPermissions] as? UInt16) ?? 0  // FILE_READ
+                coordinator.coordinate(readingItemAt: originalURL, options: .withoutChanges, error: nil) { (newURL) in  // FILE_READ
+                    permissions = ((try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.posixPermissions] as? UInt16) ?? 0
                 }
             }
             if permissions == 0 {
@@ -674,20 +682,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard let fileURL = self.fileURL else { return }
         
-        // ignore if file's modificationDate is the same as document's modificationDate
+        var didChange = false
         var fileModificationDate: Date?
         let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in
-            fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date  // FILE_READ
+        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [weak self] (newURL) in  // FILE_READ
+            // ignore if file's modificationDate is the same as document's modificationDate
+            fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
+            guard fileModificationDate != self?.fileModificationDate else { return }
+            
+            // ignore if file contents is the same as the stored file data
+            let data = try? Data(contentsOf: newURL)
+            guard data != self?.fileData else { return }
+            
+            didChange = true
         }
-        guard fileModificationDate != self.fileModificationDate else { return }
         
-        // ignore if file's MD5 hash is the same as the stored MD5 and deal as if it was not modified
-        var fileHash: Data?
-        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in
-            fileHash = try? Data(contentsOf: newURL).md5  // FILE_READ
-        }
-        guard fileHash != self.fileHash else {
+        guard didChange else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
             // If not, an alert shows up when user saves the file.
             if let lastModificationDate = self.fileModificationDate,
@@ -703,11 +713,20 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             switch option {
             case .ignore:
                 break
+                
             case .notify:
                 self?.notifyExternalFileUpdate()
+                
             case .revert:
-                if let fileURL = self?.fileURL, let fileType = self?.fileType {
-                    try? self?.revert(toContentsOf: fileURL, ofType: fileType)
+                guard let strongSelf = self,
+                    let fileURL = strongSelf.fileURL,
+                    let fileType = strongSelf.fileType
+                    else { return }
+                
+                do {
+                    try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
+                } catch let error {
+                    strongSelf.presentErrorAsSheet(error)
                 }
             }
         }
@@ -749,6 +768,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if Defaults[.savesTextOrientation] {
             self.isVerticalText = ((self.fileAttributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
         }
+        
+        ScriptManager.shared.dispatchEvent(documentOpened: self)
     }
     
     
@@ -810,11 +831,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
         } catch let error {
             NSBeep()
-            if let window = self.windowForSheet {
-                self.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
-            } else {
-                self.presentError(error)
-            }
+            self.presentErrorAsSheet(error)
         }
     }
     
@@ -823,7 +840,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     func reinterpret(encoding: String.Encoding) throws {
         
         guard let fileURL = self.fileURL else {
-            throw EncodingError(kind: .reinterpretationFailed(fileURL: self.fileURL), encoding: encoding, withUTF8BOM: false, attempter: self)
+            self.readingEncoding = self.encoding
+            throw ReinterpretationError(kind: .noFile, encoding: encoding)
         }
         
         // do nothing if given encoding is the same as current one
@@ -836,28 +854,26 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
         } catch {
             self.readingEncoding = self.encoding
-            throw EncodingError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding, withUTF8BOM: false, attempter: self)
+            throw ReinterpretationError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding)
         }
     }
     
     
     /// change string encoding registering process to the undo manager
     @discardableResult
-    func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) -> Bool {  // TODO: throw?
+    func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) -> Bool {
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return true }
         
         let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
         
         // ask lossy
-        guard !askLossy || self.string.canBeConverted(to: encoding) else {
-            let error = EncodingError(kind: .lossyEncodingConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
-            
-            if let window = self.windowForSheet {
-                window.attachedSheet?.orderOut(self)  // close previous sheet
-                self.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
+        if askLossy {
+            guard self.string.canBeConverted(to: encoding) else {
+                let error = EncodingError(kind: .lossyEncodingConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
+                self.presentErrorAsSheet(error)
+                return false
             }
-            return false
         }
         
         // register undo
@@ -1024,6 +1040,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 strongSelf.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
                 
             case NSAlertSecondButtonReturn:  // = Reinterpret
+                // ask user if document is edited
                 if strongSelf.isDocumentEdited, let fileURL = strongSelf.fileURL {
                     let alert = NSAlert()
                     alert.messageText = String(format: NSLocalizedString("The file “%@” has unsaved changes.", comment: ""), fileURL.lastPathComponent)
@@ -1032,23 +1049,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
                     
                     documentWindow.attachedSheet?.orderOut(strongSelf)  // close previous sheet
-                    alert.beginSheetModal(for: documentWindow, completionHandler: { (returnCode: NSModalResponse) in
-                        switch returnCode {
-                        case NSAlertFirstButtonReturn:  // = Cancel
-                            // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                            NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
-                            
-                        case NSAlertSecondButtonReturn:  // = Discard Changes
-                            try? strongSelf.reinterpret(encoding: encoding)
-                            
-                        default: break
-                        }
-                    })
+                    let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
                     
-                } else {
-                    try? strongSelf.reinterpret(encoding: encoding)
-                    
+                    guard returnCode != NSAlertFirstButtonReturn else {  // = Cancel
+                        // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+                        NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
+                        return
+                    }
                 }
+                
+                // reinterpret
+                strongSelf.reinterpretAndShowError(encoding: encoding)
                 
             case NSAlertThirdButtonReturn:  // = Cancel
                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
@@ -1182,12 +1193,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
             
         } catch let error {
-            self.recoverBlock = completionHandler
-            self.presentError(error,
-                              modalFor: self.windowForSheet!,
-                              delegate: self,
-                              didPresent: #selector(didPresentErrorWithRecovery(didRecover:block:)),
-                              contextInfo: nil)
+            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
             return
         }
         
@@ -1283,15 +1289,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
     }
     
-    
-    /// perform didRecoverBlock after recovering presented error
-    private var recoverBlock: ((Bool) -> Void)? = nil
-    func didPresentErrorWithRecovery(didRecover: Bool, block: UnsafeMutableRawPointer) {
-        
-        self.recoverBlock?(didRecover)
-        self.recoverBlock = nil
-    }
-    
 }
 
 
@@ -1304,19 +1301,105 @@ extension Document: Editable {
         
         return self.viewController?.focusedTextView
     }
+    
 }
 
 
 
+// MARK: - Error Handling Extension
+
+fileprivate extension NSDocument {
+    
+    typealias RecoveryHandler = ((Bool) -> Void)
+    
+    
+    /// present an error alert as document modal sheet
+    func presentErrorAsSheet(_ error: Error, recoveryHandler: RecoveryHandler? = nil) {
+        
+        guard let window = self.windowForSheet else {
+            let didRecover = self.presentError(error)
+            recoveryHandler?(didRecover)
+            return
+        }
+        
+        // close previous sheet if exists
+        window.attachedSheet?.orderOut(self)
+        
+        if let recoveryHandler = recoveryHandler {
+            let block = UnsafeMutablePointer<RecoveryHandler>.allocate(capacity: 1)
+            block.pointee = recoveryHandler
+            
+            self.presentError(error, modalFor: window,
+                              delegate: self,
+                              didPresent: #selector(didPresentErrorWithRecovery(didRecover:contextInfo:)),
+                              contextInfo: UnsafeMutableRawPointer(mutating: block))
+            
+        } else {
+            self.presentError(error, modalFor: window,
+                              delegate: nil, didPresent: nil, contextInfo: nil)
+        }
+    }
+    
+    
+    /// perform didRecoverBlock after recovering presented error
+    @objc private func didPresentErrorWithRecovery(didRecover: Bool, contextInfo: UnsafeMutableRawPointer?) {
+        
+        if let recoveryHandler = contextInfo?.assumingMemoryBound(to: RecoveryHandler.self).pointee {
+            recoveryHandler(didRecover)
+        }
+    }
+    
+}
+
+
 
 // MARK: - Error
+
+private struct ReinterpretationError: LocalizedError {
+    
+    enum ErrorKind {
+        case noFile
+        case reinterpretationFailed(fileURL: URL)
+    }
+    
+    let kind: ErrorKind
+    let encoding: String.Encoding
+    
+    
+    
+    var errorDescription: String? {
+        
+        switch self.kind {
+        case .noFile:
+            return NSLocalizedString("The document doesn’t have a file to reinterpret.", comment: "")
+            
+        case .reinterpretationFailed(let fileURL):
+            return String(format: NSLocalizedString("The file “%@” couldn’t be reinterpreted using text encoding “%@”.", comment: ""),
+                          fileURL.lastPathComponent, String.localizedName(of: self.encoding))
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        switch self.kind {
+        case .noFile:
+            return nil
+            
+        case .reinterpretationFailed:
+            return NSLocalizedString("The file may have been saved using a different text encoding, or it may not be a text file.", comment: "")
+        }
+    }
+    
+}
+
+
 
 private struct EncodingError: LocalizedError, RecoverableError {
     
     enum ErrorKind {
         case ianaCharsetNameConflict(ianaEncoding: String.Encoding)
         case unconvertibleCharacters
-        case reinterpretationFailed(fileURL: URL?)  // TODO: not RecoverableError
         case lossyEncodingConversion
     }
     
@@ -1333,10 +1416,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
         case .ianaCharsetNameConflict(let ianaEncoding):
             return String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""),
                           self.encodingName, String.localizedName(of: ianaEncoding))
+            
         case .unconvertibleCharacters:
             return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), self.encodingName)
-        case .reinterpretationFailed:
-            return NSLocalizedString("Can not reinterpret.", comment: "")
+            
         case .lossyEncodingConversion:
             return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), self.encodingName)
         }
@@ -1351,12 +1434,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
             
         case .unconvertibleCharacters:
             return NSLocalizedString("Do you want to continue processing?", comment: "")
-            
-        case .reinterpretationFailed(let fileURL):
-            guard let fileURL = fileURL else {
-                return NSLocalizedString("The document doesn’t have a file to reinterpret.", comment: "")
-            }
-            return String(format: NSLocalizedString("The file “%@” could not be reinterpreted using the new encoding “%@”.", comment: ""), fileURL.lastPathComponent, self.encodingName)
             
         case .lossyEncodingConversion:
             return NSLocalizedString("Do you want to change encoding and show incompatible characters?", comment: "'")
@@ -1375,9 +1452,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
             return [NSLocalizedString("Show Incompatible Chars", comment: ""),
                     NSLocalizedString("Save Available Strings", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
-            
-        case .reinterpretationFailed:
-            return []
             
         case .lossyEncodingConversion:
             return [NSLocalizedString("Change Encoding", comment: ""),
@@ -1402,6 +1476,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 assertionFailure()
                 return false
             }
+            
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Chars
@@ -1416,15 +1491,14 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 return false
             }
             
-        case .reinterpretationFailed:
-            return false
-            
         case .lossyEncodingConversion:
             switch recoveryOptionIndex {
             case 0:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
                 if let windowContentController = windowContentController {
-                    (document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController)?.showSidebarPane(index: .incompatibleCharacters)
+                    if let undoClient = document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController {
+                        undoClient.showSidebarPane(index: .incompatibleCharacters)
+                    }
                     windowContentController.showSidebarPane(index: .incompatibleCharacters)
                 }
                 return true

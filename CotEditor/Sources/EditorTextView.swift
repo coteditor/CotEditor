@@ -744,6 +744,9 @@ final class EditorTextView: NSTextView, Themable {
         case DefaultKeys.tabWidth.rawValue:
             self.tabWidth = newValue as! Int
             
+        case DefaultKeys.fontName.rawValue, DefaultKeys.fontSize.rawValue:
+            self.resetFont(nil)
+            
         case DefaultKeys.lineHeight.rawValue:
             self.lineHeight = newValue as! CGFloat
             
@@ -988,7 +991,7 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    ///input a backslash (/)
+    ///input a backslash (\\)
     @IBAction func inputBackSlash(_ sender: Any?) {
         
         super.insertText("\\", replacementRange: self.rangeForUserTextChange)

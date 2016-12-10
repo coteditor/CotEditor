@@ -610,7 +610,7 @@ Gw
                                                             <action selector="inlineCommentOut:" target="Ady-hI-5gd" id="cKe-O3-dvP"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Blcok Comment" id="U5v-4k-2tq">
+                                                    <menuItem title="Block Comment" id="U5v-4k-2tq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="blockCommentOut:" target="Ady-hI-5gd" id="2fg-lQ-D0T"/>
@@ -1005,25 +1005,12 @@ CA
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="CotEditor Scripting Manual" id="OLa-Mb-rXS">
                                                 <items>
-                                                    <menuItem title="About Script Menu Folder" tag="11" id="u2o-8v-WPL">
+                                                    <menuItem title="About Scripting" tag="24" id="u2o-8v-WPL">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="CvM-9e-xdi"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Scripting with AppleScript" tag="12" id="GRD-OA-psD">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="ukk-pt-hZ5"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Scripting with Other Languages" tag="13" id="zKW-b0-WR1">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="2zp-NG-8WQ"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="mLm-uo-FsQ"/>
                                                     <menuItem title="AppleScript Dictionary" id="620">
                                                         <connections>
                                                             <action selector="openAppleScriptDictionary:" target="Voe-Tx-rLC" id="5u0-2M-HRs"/>

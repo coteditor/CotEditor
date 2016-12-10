@@ -31,6 +31,13 @@ import ColorCode
 
 final class HexColorTransformer: ValueTransformer {
     
+    // MARK: Public Properties
+    
+    static let name = NSValueTransformerName("HexColorTransformer")
+    
+    
+    
+    // MARK: -
     // MARK: Value Transformer Methods
     
     /// Class of transformed value
@@ -50,9 +57,7 @@ final class HexColorTransformer: ValueTransformer {
     /// From color code hex to NSColor (String -> NSColor)
     override func transformedValue(_ value: Any?) -> Any? {
         
-        guard let code = value as? String else {
-            return nil
-        }
+        guard let code = value as? String else { return nil }
         
         var type: ColorCodeType = .invalid
         let color = NSColor(colorCode: code, type: &type)
@@ -66,7 +71,7 @@ final class HexColorTransformer: ValueTransformer {
     /// From NSColor to hex color code string (NSColor -> String)
     override func reverseTransformedValue(_ value: Any?) -> Any? {
         
-        guard let color = value as? NSColor else { return "#000000" }
+        let color = value as? NSColor ?? .black
         
         let sanitizedColor = color.usingColorSpaceName(NSCalibratedRGBColorSpace)
         

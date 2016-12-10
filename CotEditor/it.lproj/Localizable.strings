@@ -133,9 +133,9 @@
 "Discard Changes" = "Annulla modifiche";
 
 // Reinterpretion failed alert
-"Can not reinterpret." = "Impossibile reinterpretare.";
 "The document doesn’t have a file to reinterpret." = "Il documento non ha un file da reinterpretare.";
-"The file “%@” could not be reinterpreted using the new encoding “%@”." = "Non è stato possibile reinterpretare il file “%@” con la nuova codifica “%@”.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "Non è stato possibile reinterpretare il file “%@” con la nuova codifica “%@”.";
+"The file may have been saved using a different text encoding, or it may not be a text file." = "Il file potrebbe essere stato salvato usando una codifica di testo diversa, o potrebbe non essere un file di testo.";
 
 // Incompatible chars alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio come “%@”.";
@@ -295,6 +295,8 @@
 /* MARK: NavigationBarController */
 // Outline menu title
 "<Outline Menu>" = "<Menu degli Outline>";
+"Jump to previous outline item" = "Salta all’elemento Outline successivo";
+"Jump to next outline item" = "Salta all’elemento Outline precedente";
 
 
 

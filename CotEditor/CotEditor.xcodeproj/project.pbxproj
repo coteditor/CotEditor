@@ -26,6 +26,8 @@
 		258EF2FA077FEDD000011E52 /* SyntaxEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditView.xib */; };
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
+		2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */; };
+		2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */; };
 		2A0BF8A81DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */; };
 		2A0BF8A91DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */; };
 		2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */; };
@@ -600,6 +602,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTouchBar+Validation.swift"; sourceTree = "<group>"; };
 		2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTouchBar.swift; sourceTree = "<group>"; };
 		2A0D64A11D20FFB0006B4937 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		2A0D64A21D20FFB3006B4937 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPanel.strings"; sourceTree = "<group>"; };
@@ -1041,6 +1044,7 @@
 		2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourCharCode.swift; sourceTree = "<group>"; };
 		2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourCharCodeTests.swift; sourceTree = "<group>"; };
 		2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+ScriptingSupport.swift"; sourceTree = "<group>"; };
+		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2AF999DB1DA94F2700B36D79 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
@@ -1317,6 +1321,7 @@
 				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
 				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
 				2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */,
+				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
 			);
 			name = AppKit;
 			sourceTree = "<group>";
@@ -2274,6 +2279,7 @@
 				2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */,
 				2A4682B31D2F6B580005410E /* FIleDropComposer.swift in Sources */,
 				2A6FD9D21D38933100A59784 /* EditorTextViewController.swift in Sources */,
+				2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
 				2A71BC7F1DDC70A80085AE1C /* NSImage+Template.swift in Sources */,
 				2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
@@ -2416,6 +2422,7 @@
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
 				2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
+				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A1679E61D3CE07100E8261D /* Document.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
@@ -2984,6 +2991,7 @@
 				2A80C6601CEE351200AA664D /* ja */,
 				2A80C6611CEE351400AA664D /* de */,
 				2A401FE21D9AD77400ACE036 /* it */,
+				2AF4F57F1DE60B4200703525 /* zh-Hans */,
 			);
 			name = Credits.html;
 			sourceTree = "<group>";
@@ -3133,7 +3141,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
-				OTHER_SWIFT_FLAGS = "-D APPSTORE";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -3147,7 +3155,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
-				OTHER_SWIFT_FLAGS = "-D APPSTORE";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -3240,7 +3248,6 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -3258,6 +3265,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_INSTALL_OBJC_HEADER = NO;

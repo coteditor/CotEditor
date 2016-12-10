@@ -504,12 +504,8 @@
 "M1N-Fg-Bo4.title" = "CotEditor 脚本手册";
 /* Class = "NSMenu"; title = "CotEditor Scripting Manual"; ObjectID = "OLa-Mb-rXS"; */
 "OLa-Mb-rXS.title" = "CotEditor 脚本手册";
-/* Class = "NSMenuItem"; title = "About Script Menu Folder"; ObjectID = "u2o-8v-WPL"; */
-"u2o-8v-WPL.title" = "关于 Script Menu 文件夹";
-/* Class = "NSMenuItem"; title = "Scripting with AppleScript"; ObjectID = "GRD-OA-psD"; */
-"GRD-OA-psD.title" = "AppleScript 脚本";
-/* Class = "NSMenuItem"; title = "Scripting with Other Languages"; ObjectID = "zKW-b0-WR1"; */
-"zKW-b0-WR1.title" = "其他语言脚本";
+/* Class = "NSMenuItem"; title = "About Scripting"; ObjectID = "u2o-8v-WPL"; */
+"u2o-8v-WPL.title" = "关于脚本";
 /* Class = "NSMenuItem"; title = "AppleScript Dictionary"; ObjectID = "620"; */
 "620.title" = "AppleScript 字典";
 
