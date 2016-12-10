@@ -132,9 +132,9 @@ class ScriptDescriptor {
     ///            Returns `nil` if the script type is unsupported.
     func makeScript() -> Script? {
         if self.isAppleScript {
-            return AppleScript(url: self.url, name: self.name)
+            return AppleScript(with: self)
         } else if self.isShellScript {
-            return ShellScript(url: self.url, name: self.name)
+            return ShellScript(with: self)
         } else {
             return nil
         }
@@ -144,42 +144,17 @@ class ScriptDescriptor {
 
 
 protocol Script {
-    var url: URL { get }
+    
+    // MARK: Properties
+    
+    /// A script descriptor the receiver was created from.
+    var descriptor: ScriptDescriptor { get }
+    
+    // MARK: Methods
+    
+    /// Execute the script with the default way.
     func run() throws
-}
-
-class AbstractScript : Script {
     
-    let url: URL
-    let name: String
-    
-    
-    
-    // MARK: -
-    // MARK: Lifecycle
-    
-    init(url: URL, name: String) {
-        
-        self.url = url
-        self.name = name
-    }
-    
-    
-    
-    // MARK: Abstracts Methods
-    
-    func run() throws { preconditionFailure() }
-    
-    // MARK: Private Methods
-    
-    /// append message to console panel and show it
-    fileprivate static func writeToConsole(message: String, scriptName: String) {
-        
-        DispatchQueue.main.async {
-            ConsolePanelController.shared.showWindow(nil)
-            ConsolePanelController.shared.append(message: message, title: scriptName)
-        }
-    }
     
 }
 
@@ -187,16 +162,28 @@ class AbstractScript : Script {
 
 // MARK: -
 
-class AppleScript: AbstractScript {
+class AppleScript: Script {
     
-    static let extensions = ["applescript", "scpt", "scptd"]
+    // MARK: Script Properties
+    
+    let descriptor: ScriptDescriptor
+    
+    
+    
+    // MARK: -
+    // MARK: Lifecycle
+    
+    init(with descriptor: ScriptDescriptor) {
+        self.descriptor = descriptor
+    }
+    
     
     
     // MARK: Script Methods
     
     /// run script
     /// - throws: Error by NSUserScriptTask
-    override func run() throws {
+    func run() throws {
         
         try self.run(withAppleEvent: nil)
     }
@@ -212,27 +199,40 @@ class AppleScript: AbstractScript {
     ///           
     func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
         
-        guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.url)
+        guard self.descriptor.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
         }
         
-        let task = try NSUserAppleScriptTask(url: self.url)
-        let scriptName = self.name
+        let task = try NSUserAppleScriptTask(url: self.descriptor.url)
+        let scriptName = self.descriptor.name
         
         task.execute(withAppleEvent: event) { (result: NSAppleEventDescriptor?, error: Error?) in
             if let error = error {
-                AbstractScript.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
+                writeToConsole(message: error.localizedDescription, scriptName: scriptName)
             }
         }
     }
+    
     
 }
 
 
 
-class ShellScript: AbstractScript {
+class ShellScript: Script {
     
-    static let extensions = ["sh", "pl", "php", "rb", "py", "js"]
+    // MARK: Script Properties
+    
+    let descriptor: ScriptDescriptor
+    
+    
+    
+    // MARK: -
+    // MARK: Lifecycle
+    
+    init(with descriptor: ScriptDescriptor) {
+        self.descriptor = descriptor
+    }
+    
     
     
     // MARK: Private Enum
@@ -263,17 +263,17 @@ class ShellScript: AbstractScript {
     
     /// run script
     /// - throws: ScriptFileError or Error by NSUserScriptTask
-    override func run() throws {
+    func run() throws {
         
         // check script file
-        guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.url)
+        guard self.descriptor.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
         }
-        guard self.url.isExecutable ?? false else {
-            throw ScriptFileError(kind: .permission, url: self.url)
+        guard self.descriptor.url.isExecutable ?? false else {
+            throw ScriptFileError(kind: .permission, url: self.descriptor.url)
         }
         guard let script = self.content, !script.isEmpty else {
-            throw ScriptFileError(kind: .read, url: self.url)
+            throw ScriptFileError(kind: .read, url: self.descriptor.url)
         }
         
         // fetch target document
@@ -285,7 +285,7 @@ class ShellScript: AbstractScript {
             do {
                 input = try self.readInputString(type: inputType, editor: document)
             } catch let error {
-                AbstractScript.writeToConsole(message: error.localizedDescription, scriptName: self.name)
+                writeToConsole(message: error.localizedDescription, scriptName: self.descriptor.name)
                 return
             }
         } else {
@@ -302,7 +302,7 @@ class ShellScript: AbstractScript {
         }()
         
         // create task
-        let task = try NSUserUnixTask(url: self.url)
+        let task = try NSUserUnixTask(url: self.descriptor.url)
         
         // set pipes
         let inPipe = Pipe()
@@ -320,7 +320,7 @@ class ShellScript: AbstractScript {
             }
         }
         
-        let scriptName = self.name
+        let scriptName = self.descriptor.name
         var isCancelled = false  // user cancel state
         
         // read output asynchronously for safe with huge output
@@ -339,7 +339,7 @@ class ShellScript: AbstractScript {
                 do {
                     try ShellScript.applyOutput(output, editor: document, type: outputType)
                 } catch let error {
-                    AbstractScript.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
+                    writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 }
             }
         }
@@ -355,7 +355,7 @@ class ShellScript: AbstractScript {
             // put error message on the sconsole
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
             if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
-                AbstractScript.writeToConsole(message: message, scriptName: scriptName)
+                writeToConsole(message: message, scriptName: scriptName)
             }
         }
     }
@@ -366,7 +366,7 @@ class ShellScript: AbstractScript {
     /// read content of script file
     private lazy var content: String? = {
         
-        guard let data = try? Data(contentsOf: self.url) else { return nil }
+        guard let data = try? Data(contentsOf: self.descriptor.url) else { return nil }
         
         for encoding in EncodingManager.shared.defaultEncodings {
             guard let encoding = encoding else { continue }
@@ -529,4 +529,16 @@ private extension ScriptToken {
         self.init(rawValue: type)
     }
     
+}
+
+
+
+// MARK: Private Functions
+
+fileprivate func writeToConsole(message: String, scriptName: String) {
+    
+    DispatchQueue.main.async {
+        ConsolePanelController.shared.showWindow(nil)
+        ConsolePanelController.shared.append(message: message, title: scriptName)
+    }
 }
