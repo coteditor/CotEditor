@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-develop
+3.1.2 (177)
 --------------------------
 
 ### New Features
@@ -36,7 +36,6 @@ develop
 - Fix an issue where the text size slider in the Touch Bar didn't update if text size was updated excepting via Touch Bar while the slider is shown.
 - Address an issue with drawing area of zoomed character view in character inspector popover.
 - Fix a typo in the English menu.
-
 
 
 ### Misc.
