@@ -28,24 +28,6 @@
 
 import Cocoa
 
-enum ScriptingEventType: String {
-    
-    case documentOpened = "document opened"
-    case documentSaved = "document saved"
-    
-    
-    var eventID: AEEventID {
-        
-        switch self {
-        case .documentOpened: return AEEventID(code: "edod")
-        case .documentSaved: return AEEventID(code: "edsd")
-        }
-    }
-    
-}
-
-
-
 final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Public Properties
@@ -288,7 +270,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
         
         for url in urls {
-            let script = AppleScript(url: url, name: self.scriptName(from: url))
+            guard let script = self.scripts[url] as? AppleScript else { continue }
             do {
                 try script.run(withAppleEvent: event)
             } catch let error {
@@ -310,37 +292,35 @@ final class ScriptManager: NSObject, NSFilePresenter {
             // ignore files/folders of which name starts with "_"
             if url.lastPathComponent.hasPrefix("_") { continue }
         
-            let title = self.scriptName(from: url)
+            let descriptor = ScriptDescriptor(at: url)
             
-            if title == String.separator {
+            if descriptor.name == String.separator {
                 menu.addItem(NSMenuItem.separator())
                 continue
             }
             
             guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
             
-            if (AppleScript.extensions + ShellScript.extensions).contains(url.pathExtension) {
-                if (url.pathExtension == "scptd") {
-                    self.loadScriptInfo(at: url)
+            if let script = descriptor.makeScript() {
+                
+                for eventType in descriptor.eventTypes {
+                    var handlers = self.scriptHandlersTable[eventType] ?? []
+                    handlers.append(url)
+                    self.scriptHandlersTable[eventType] = handlers
                 }
                 
-                let shortcut = self.shortcut(from: url)
-                let item = NSMenuItem(title: title, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
+                let shortcut = descriptor.shortcut
+                let item = NSMenuItem(title: descriptor.name, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
                 item.keyEquivalentModifierMask = shortcut.modifierMask
                 item.representedObject = url
                 item.target = self
                 item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
                 menu.addItem(item)
                 
-                let scriptName = self.scriptName(from: url)
-                if AppleScript.extensions.contains(url.pathExtension) {
-                    self.scripts[url] = AppleScript(url: url, name: scriptName)
-                } else if ShellScript.extensions.contains(url.pathExtension) {
-                    self.scripts[url] = ShellScript(url: url, name: scriptName)
-                }
+                self.scripts[url] = script
             } else if resourceType == URLFileResourceType.directory {
-                let submenu = NSMenu(title: title)
-                let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
+                let submenu = NSMenu(title: descriptor.name)
+                let item = NSMenuItem(title: descriptor.name, action: nil, keyEquivalent: "")
                 item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
                 menu.addItem(item)
                 item.submenu = submenu
@@ -350,54 +330,4 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// load script info in Apple Script bundle
-    private func loadScriptInfo(at url: URL) {
-        
-        let infoUrl = url.appendingPathComponent("Contents/Info.plist")
-        
-        guard
-            let info = NSDictionary(contentsOf: infoUrl),
-            let names = info["CotEditorHandlers"] as? [String]
-            else { return }
-        
-        for name in names {
-            guard let eventType = ScriptingEventType(rawValue: name) else { continue }
-            
-            var handlers = self.scriptHandlersTable[eventType] ?? []
-            handlers.append(url)
-            self.scriptHandlersTable[eventType] = handlers
-        }
-    }
-    
-    
-    /// build menu item title from file/folder name
-    private func scriptName(from url: URL) -> String {
-        
-        let filename = url.deletingPathExtension().lastPathComponent
-        
-        // remove the number prefix ordering
-        var scriptName = filename.replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)
-        
-        // remove keyboard shortcut definition
-        if let keySpecChars = scriptName.components(separatedBy: ".").last,
-            ModifierKey.all.contains(where: { keySpecChars.hasPrefix($0.keySpecChar) })
-        {
-            scriptName = scriptName.components(separatedBy: ".").first ?? scriptName
-        }
-        
-        return scriptName
-    }
-    
-    
-    /// get keyboard shortcut from file name
-    private func shortcut(from url: URL) -> Shortcut {
-        
-        let keySpecChars = url.deletingPathExtension().pathExtension
-        let shortcut = Shortcut(keySpecChars: keySpecChars)
-        
-        guard !shortcut.modifierMask.isEmpty else { return .none }
-        
-        return shortcut
-    }
-
 }

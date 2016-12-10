@@ -28,6 +28,121 @@
 
 import Cocoa
 
+enum ScriptingEventType: String {
+    
+    case documentOpened = "document opened"
+    case documentSaved = "document saved"
+    
+    
+    var eventID: AEEventID {
+        
+        switch self {
+        case .documentOpened: return AEEventID(code: "edod")
+        case .documentSaved: return AEEventID(code: "edsd")
+        }
+    }
+    
+}
+
+
+
+class ScriptDescriptor {
+    
+    // MARK: Public Properties
+    
+    let url: URL
+    let name: String
+    let ordering: Int?
+    let shortcut: Shortcut
+    let eventTypes: [ScriptingEventType]
+    
+    
+    /// A Boolean value that indicates whether the receiver represents an AppleScript or a JXA script.
+    var isAppleScript: Bool {
+        get {
+            return ["applescript", "scpt", "scptd"].contains(self.url.pathExtension)
+        }
+    }
+    
+    
+    /// A Boolean value that indicates whether the receiver represents a shell script.
+    var isShellScript: Bool {
+        get {
+            return ["sh", "pl", "php", "rb", "py", "js"].contains(self.url.pathExtension)
+        }
+    }
+    
+    
+    
+    // MARK: -
+    // MARK: Public Methods
+    
+    /// Create a descriptor that represents an user script at given URL.
+    ///
+    /// `Contents/Info.plist` in the script at `url` will be read if they exist.
+    ///
+    /// - parameter url: the location of an user script
+    init(at url: URL) {
+        
+        // Extract from URL
+        
+        self.url = url
+        
+        var name = url.deletingPathExtension().lastPathComponent
+        
+        let shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+        if shortcut.modifierMask.isEmpty {
+            self.shortcut = Shortcut.none
+        } else {
+            self.shortcut = shortcut
+            
+            // Remove the shortcut specification from the script name
+            name = URL(fileURLWithPath: name).deletingPathExtension().lastPathComponent
+        }
+        
+        if let range = name.range(of: "^[0-9]+\\)", options: .regularExpression) {
+            // Remove the parenthesis at last
+            let orderingString = name.substring(to: name.index(before: range.upperBound))
+            self.ordering = Int(orderingString)
+            
+            // Remove the ordering number from the script name
+            name.removeSubrange(range)
+        } else {
+            self.ordering = nil
+        }
+        
+        self.name = name
+        
+        
+        // Extract from Info.plist
+        
+        let info = NSDictionary(contentsOf: url.appendingPathComponent("Contents/Info.plist"))
+        
+        if let names = info?["CotEditorHandlers"] as? [String] {
+            self.eventTypes = names.flatMap { ScriptingEventType(rawValue: $0) }
+        } else {
+            self.eventTypes = []
+        }
+    }
+    
+    
+    /// Create and return an user script instance
+    ///
+    /// - returns: An instance of `Script` created by the receiver.
+    ///            Returns `nil` if the script type is unsupported.
+    func makeScript() -> Script? {
+        if self.isAppleScript {
+            return AppleScript(url: self.url, name: self.name)
+        } else if self.isShellScript {
+            return ShellScript(url: self.url, name: self.name)
+        } else {
+            return nil
+        }
+    }
+}
+
+
+
 protocol Script {
     func run() throws
     func reveal() throws
