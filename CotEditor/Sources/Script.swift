@@ -46,6 +46,14 @@ enum ScriptingEventType: String {
 
 
 
+enum ScriptingFileType {
+    case appleScript
+    case shellScript
+    case unknown
+}
+
+
+
 class ScriptDescriptor {
     
     // MARK: Public Properties
@@ -55,22 +63,16 @@ class ScriptDescriptor {
     let ordering: Int?
     let shortcut: Shortcut
     let eventTypes: [ScriptingEventType]
+    let type: ScriptingFileType
     
     
-    /// A Boolean value that indicates whether the receiver represents an AppleScript or a JXA script.
-    var isAppleScript: Bool {
-        get {
-            return ["applescript", "scpt", "scptd"].contains(self.url.pathExtension)
-        }
-    }
     
+    // MARK: Private Properties
     
-    /// A Boolean value that indicates whether the receiver represents a shell script.
-    var isShellScript: Bool {
-        get {
-            return ["sh", "pl", "php", "rb", "py", "js"].contains(self.url.pathExtension)
-        }
-    }
+    private static let extensions: [ScriptingFileType:[String]] = [
+        .appleScript: ["applescript", "scpt", "scptd"],
+        .shellScript: ["sh", "pl", "php", "rb", "py", "js"]
+    ]
     
     
     
@@ -87,6 +89,8 @@ class ScriptDescriptor {
         // Extract from URL
         
         self.url = url
+        
+        self.type = ScriptDescriptor.extensions.first { $0.value.contains(url.pathExtension) }?.key ?? .unknown
         
         var name = url.deletingPathExtension().lastPathComponent
         
@@ -131,12 +135,10 @@ class ScriptDescriptor {
     /// - returns: An instance of `Script` created by the receiver.
     ///            Returns `nil` if the script type is unsupported.
     func makeScript() -> Script? {
-        if self.isAppleScript {
-            return AppleScript(with: self)
-        } else if self.isShellScript {
-            return ShellScript(with: self)
-        } else {
-            return nil
+        switch self.type {
+        case .appleScript: return AppleScript(with: self)
+        case .shellScript: return ShellScript(with: self)
+        case .unknown: return nil
         }
     }
 }
