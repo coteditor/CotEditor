@@ -27,6 +27,7 @@
  */
 
 import Cocoa
+import OSAKit
 
 enum ScriptingEventType: String {
     
@@ -66,6 +67,15 @@ enum ScriptingFileType {
 
 
 
+enum ScriptingExecutionModel: String {
+    
+    case unrestricted
+    case persistent
+    
+}
+
+
+
 struct ScriptDescriptor {
     
     // MARK: Public Properties
@@ -73,8 +83,9 @@ struct ScriptDescriptor {
     let url: URL
     let name: String
     let type: ScriptingFileType?
-    let shortcut: Shortcut
+    let executionModel: ScriptingExecutionModel
     let eventTypes: [ScriptingEventType]
+    let shortcut: Shortcut
     let ordering: Int?
     
     
@@ -124,6 +135,12 @@ struct ScriptDescriptor {
         
         let info = NSDictionary(contentsOf: url.appendingPathComponent("Contents/Info.plist"))
         
+        if let name = info?["CotEditorExecutionModel"] as? String {
+            self.executionModel = ScriptingExecutionModel(rawValue: name) ?? .unrestricted
+        } else {
+            self.executionModel = .unrestricted
+        }
+        
         if let names = info?["CotEditorHandlers"] as? [String] {
             self.eventTypes = names.flatMap { ScriptingEventType(rawValue: $0) }
         } else {
@@ -144,7 +161,11 @@ struct ScriptDescriptor {
         guard let type = self.type else { return nil }
         
         switch type {
-        case .appleScript: return AppleScript(with: self)
+        case .appleScript:
+            switch self.executionModel {
+            case .unrestricted: return AppleScript(with: self)
+            case .persistent: return PersistentOSAScript(with: self)
+            }
         case .shellScript: return ShellScript(with: self)
         }
     }
@@ -235,6 +256,75 @@ final class AppleScript: Script {
             if let error = error {
                 writeToConsole(message: error.localizedDescription, scriptName: scriptName)
             }
+        }
+    }
+    
+    
+}
+
+
+
+// MARK: -
+
+final class PersistentOSAScript: Script {
+    
+    // MARK: Script Properties
+    
+    let descriptor: ScriptDescriptor
+    let script: OSAScript
+    
+    
+    
+    // MARK: -
+    // MARK: Lifecycle
+    
+    init?(with descriptor: ScriptDescriptor) {
+        
+        guard let script = OSAScript(contentsOf: descriptor.url, error: nil) else { return nil }
+        
+        self.descriptor = descriptor
+        self.script = script
+    }
+    
+    
+    
+    // MARK: Script Methods
+    
+    /// run script
+    /// - throws: Error by NSUserScriptTask
+    func run() throws {
+        
+        guard self.descriptor.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        }
+        
+        var errorInfo: NSDictionary? = NSDictionary()
+        if self.script.executeAndReturnError(&errorInfo) == nil {
+            let message = (errorInfo?["NSLocalizedDescription"] as? String) ?? "Unknown error"
+            writeToConsole(message: message, scriptName: self.descriptor.name)
+        }
+    }
+    
+    
+    /// Execute the AppleScript script by sending it the given Apple event.
+    ///
+    /// Any script errors will be written to the console panel.
+    ///
+    /// - parameter event: the apple event
+    ///
+    /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
+    func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
+        
+        guard let event = event else { try self.run(); return }
+        
+        guard self.descriptor.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        }
+        
+        var errorInfo: NSDictionary?
+        if self.script.executeAppleEvent(event, error: &errorInfo) == nil {
+            let message = (errorInfo?["NSLocalizedDescription"] as? String) ?? "Unknown error"
+            writeToConsole(message: message, scriptName: self.descriptor.name)
         }
     }
     
