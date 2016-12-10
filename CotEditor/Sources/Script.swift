@@ -169,7 +169,6 @@ class AbstractScript : Script {
     
     // MARK: Abstracts Methods
     
-    fileprivate var editorIdentifier: String { preconditionFailure() }
     func run() throws { preconditionFailure() }
     
     
@@ -180,7 +179,7 @@ class AbstractScript : Script {
     /// - throws: ScriptFileError
     func edit() throws {
         
-        guard NSWorkspace.shared().open([self.url], withAppBundleIdentifier: self.editorIdentifier, additionalEventParamDescriptor: nil, launchIdentifiers: nil) else {
+        guard NSWorkspace.shared().open(self.url) else {
             // display alert if cannot open/select the script file
             throw ScriptFileError(kind: .open, url: self.url)
         }
@@ -223,13 +222,6 @@ class AppleScript: AbstractScript {
     
     
     // MARK: Script Methods
-    
-    /// bundle identifier of appliation to edit script
-    override var editorIdentifier: String {
-        
-        return BundleIdentifier.ScriptEditor
-    }
-    
     
     /// run script
     /// - throws: Error by NSUserScriptTask
@@ -297,13 +289,6 @@ class ShellScript: AbstractScript {
     
     
     // MARK: Script Methods
-    
-    /// bundle identifier of appliation to edit script
-    override var editorIdentifier: String {
-        
-        return Bundle.main.bundleIdentifier!
-    }
-    
     
     /// run script
     /// - throws: ScriptFileError or Error by NSUserScriptTask
