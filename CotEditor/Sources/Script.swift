@@ -55,7 +55,7 @@ enum ScriptingFileType {
 
 
 
-final class ScriptDescriptor {
+struct ScriptDescriptor {
     
     // MARK: Public Properties
     
@@ -80,62 +80,53 @@ final class ScriptDescriptor {
     // MARK: -
     // MARK: Public Methods
     
-    /// Create a descriptor, initialized according to the specified information.
-    init(url: URL, name: String, type: ScriptingFileType?, shortcut: Shortcut = Shortcut.none, eventTypes: [ScriptingEventType] = [], ordering: Int?) {
-        self.url = url
-        self.name = name
-        self.type = type
-        self.shortcut = shortcut
-        self.eventTypes = eventTypes
-        self.ordering = ordering
-    }
-    
-    
     /// Create a descriptor that represents an user script at given URL.
     ///
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
     /// - parameter url: the location of an user script
-    convenience init(at url: URL) {
+    init(at url: URL) {
         
         // Extract from URL
         
-        let type = ScriptDescriptor.extensions.first { $0.value.contains(url.pathExtension) }?.key
+        self.url = url
+        
+        self.type = ScriptDescriptor.extensions.first { $0.value.contains(url.pathExtension) }?.key
         
         var name = url.deletingPathExtension().lastPathComponent
         
-        var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+        let shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
         if shortcut.modifierMask.isEmpty {
-            shortcut = Shortcut.none
+            self.shortcut = Shortcut.none
         } else {
+            self.shortcut = shortcut
+            
             // Remove the shortcut specification from the script name
             name = URL(fileURLWithPath: name).deletingPathExtension().lastPathComponent
         }
         
-        let ordering: Int?
         if let range = name.range(of: "^[0-9]+\\)", options: .regularExpression) {
             // Remove the parenthesis at last
             let orderingString = name.substring(to: name.index(before: range.upperBound))
-            ordering = Int(orderingString)
+            self.ordering = Int(orderingString)
             
             // Remove the ordering number from the script name
             name.removeSubrange(range)
         } else {
-            ordering = nil
+            self.ordering = nil
         }
+        
+        self.name = name
         
         // Extract from Info.plist
         
         let info = NSDictionary(contentsOf: url.appendingPathComponent("Contents/Info.plist"))
         
-        let eventTypes: [ScriptingEventType]
         if let names = info?["CotEditorHandlers"] as? [String] {
-            eventTypes = names.flatMap { ScriptingEventType(rawValue: $0) }
+            self.eventTypes = names.flatMap { ScriptingEventType(rawValue: $0) }
         } else {
-            eventTypes = []
+            self.eventTypes = []
         }
-        
-        self.init(url: url, name: name, type: type, shortcut: shortcut, eventTypes: eventTypes, ordering: ordering)
     }
     
     
