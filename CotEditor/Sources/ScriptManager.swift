@@ -270,7 +270,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
         
         for url in urls {
-            guard let script = self.scripts[url] as? AppleScript else { continue }
+            guard let script = self.scripts[url] else { continue }
             do {
                 try script.run(withAppleEvent: event)
             } catch let error {

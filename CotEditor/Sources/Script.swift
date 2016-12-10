@@ -156,6 +156,23 @@ protocol Script {
     func run() throws
     
     
+    /// Execute the script by sending it the given Apple event.
+    ///
+    /// Events the script cannot handle must be ignored with no errors.
+    func run(withAppleEvent event: NSAppleEventDescriptor?) throws
+    
+    
+}
+
+
+
+extension Script {
+    
+    func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
+        // ignore every request with an event by default
+    }
+    
+    
 }
 
 
