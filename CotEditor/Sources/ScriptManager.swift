@@ -271,6 +271,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         for url in urls {
             guard let script = self.scripts[url] else { continue }
+            
             do {
                 try script.run(withAppleEvent: event)
             } catch let error {
@@ -318,16 +319,19 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 menu.addItem(item)
                 
                 self.scripts[url] = script
+                
             } else if resourceType == URLFileResourceType.directory {
                 let submenu = NSMenu(title: descriptor.name)
                 let item = NSMenuItem(title: descriptor.name, action: nil, keyEquivalent: "")
                 item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
                 menu.addItem(item)
                 item.submenu = submenu
+                
                 self.addChildFileItem(to: submenu, in: url)
             }
         }
     }
+    
     
     /// open script file in an editor
     /// - throws: ScriptFileError
@@ -350,6 +354,5 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         NSWorkspace.shared().activateFileViewerSelecting([url])
     }
-    
     
 }

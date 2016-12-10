@@ -70,7 +70,7 @@ struct ScriptDescriptor {
     
     // MARK: Private Properties
     
-    private static let extensions: [ScriptingFileType:[String]] = [
+    private static let extensions: [ScriptingFileType: [String]] = [
         .appleScript: ["applescript", "scpt", "scptd"],
         .shellScript: ["sh", "pl", "php", "rb", "py", "js"]
     ]
@@ -78,7 +78,7 @@ struct ScriptDescriptor {
     
     
     // MARK: -
-    // MARK: Public Methods
+    // MARK: Lifecycle
     
     /// Create a descriptor that represents an user script at given URL.
     ///
@@ -130,6 +130,9 @@ struct ScriptDescriptor {
     }
     
     
+    
+    // MARK: Public Methods
+    
     /// Create and return an user script instance
     ///
     /// - returns: An instance of `Script` created by the receiver.
@@ -143,6 +146,7 @@ struct ScriptDescriptor {
         case .shellScript: return ShellScript(with: self)
         }
     }
+    
 }
 
 
@@ -165,7 +169,6 @@ protocol Script {
     /// Events the script cannot handle must be ignored with no errors.
     func run(withAppleEvent event: NSAppleEventDescriptor?) throws
     
-    
 }
 
 
@@ -175,7 +178,6 @@ extension Script {
     func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
         // ignore every request with an event by default
     }
-    
     
 }
 
@@ -238,6 +240,8 @@ final class AppleScript: Script {
 }
 
 
+
+// MARK: -
 
 final class ShellScript: Script {
     
@@ -554,7 +558,7 @@ private extension ScriptToken {
 
 
 
-// MARK: Private Functions
+// MARK: - Private Functions
 
 fileprivate func writeToConsole(message: String, scriptName: String) {
     
