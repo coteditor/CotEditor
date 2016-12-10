@@ -56,7 +56,7 @@ enum ScriptingFileType {
 
 
 
-class ScriptDescriptor {
+final class ScriptDescriptor {
     
     // MARK: Public Properties
     
@@ -191,7 +191,7 @@ extension Script {
 
 // MARK: -
 
-class AppleScript: Script {
+final class AppleScript: Script {
     
     // MARK: Script Properties
     
@@ -247,7 +247,7 @@ class AppleScript: Script {
 
 
 
-class ShellScript: Script {
+final class ShellScript: Script {
     
     // MARK: Script Properties
     
