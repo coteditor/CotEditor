@@ -144,9 +144,8 @@ class ScriptDescriptor {
 
 
 protocol Script {
+    var url: URL { get }
     func run() throws
-    func reveal() throws
-    func edit() throws
 }
 
 class AbstractScript : Script {
@@ -170,34 +169,6 @@ class AbstractScript : Script {
     // MARK: Abstracts Methods
     
     func run() throws { preconditionFailure() }
-    
-    
-    
-    // MARK: Public Methods
-    
-    /// open script file in an editor
-    /// - throws: ScriptFileError
-    func edit() throws {
-        
-        guard NSWorkspace.shared().open(self.url) else {
-            // display alert if cannot open/select the script file
-            throw ScriptFileError(kind: .open, url: self.url)
-        }
-    }
-    
-    
-    /// reveal script file in Finder
-    /// - throws: ScriptFileError
-    func reveal() throws {
-        
-        guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.url)
-        }
-        
-        NSWorkspace.shared().activateFileViewerSelecting([self.url])
-    }
-    
-    
     
     // MARK: Private Methods
     

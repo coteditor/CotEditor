@@ -214,10 +214,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
             // change behavior if modifier key is pressed
             switch NSEvent.modifierFlags() {
             case [.option]:
-                try script.edit()
+                try self.editScript(at: script.url)
                 
             case [.option, .shift]:
-                try script.reveal()
+                try self.revealScript(at: script.url)
                 
             default:
                 try script.run()
@@ -327,6 +327,28 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 self.addChildFileItem(to: submenu, in: url)
             }
         }
+    }
+    
+    /// open script file in an editor
+    /// - throws: ScriptFileError
+    private func editScript(at url: URL) throws {
+        
+        guard NSWorkspace.shared().open(url) else {
+            // display alert if cannot open/select the script file
+            throw ScriptFileError(kind: .open, url: url)
+        }
+    }
+    
+    
+    /// reveal script file in Finder
+    /// - throws: ScriptFileError
+    private func revealScript(at url: URL) throws {
+        
+        guard url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: url)
+        }
+        
+        NSWorkspace.shared().activateFileViewerSelecting([url])
     }
     
     
