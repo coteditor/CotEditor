@@ -47,9 +47,11 @@ enum ScriptingEventType: String {
 
 
 enum ScriptingFileType {
+    
     case appleScript
     case shellScript
     case unknown
+    
 }
 
 
@@ -60,10 +62,10 @@ class ScriptDescriptor {
     
     let url: URL
     let name: String
-    let ordering: Int?
+    let type: ScriptingFileType
     let shortcut: Shortcut
     let eventTypes: [ScriptingEventType]
-    let type: ScriptingFileType
+    let ordering: Int?
     
     
     
@@ -79,54 +81,62 @@ class ScriptDescriptor {
     // MARK: -
     // MARK: Public Methods
     
+    /// Create a descriptor, initialized according to the specified information.
+    init(url: URL, name: String, type: ScriptingFileType, shortcut: Shortcut = Shortcut.none, eventTypes: [ScriptingEventType] = [], ordering: Int?) {
+        self.url = url
+        self.name = name
+        self.type = type
+        self.shortcut = shortcut
+        self.eventTypes = eventTypes
+        self.ordering = ordering
+    }
+    
+    
     /// Create a descriptor that represents an user script at given URL.
     ///
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
     /// - parameter url: the location of an user script
-    init(at url: URL) {
+    convenience init(at url: URL) {
         
         // Extract from URL
         
-        self.url = url
-        
-        self.type = ScriptDescriptor.extensions.first { $0.value.contains(url.pathExtension) }?.key ?? .unknown
+        let type = ScriptDescriptor.extensions.first { $0.value.contains(url.pathExtension) }?.key ?? .unknown
         
         var name = url.deletingPathExtension().lastPathComponent
         
-        let shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+        var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
         if shortcut.modifierMask.isEmpty {
-            self.shortcut = Shortcut.none
+            shortcut = Shortcut.none
         } else {
-            self.shortcut = shortcut
-            
             // Remove the shortcut specification from the script name
             name = URL(fileURLWithPath: name).deletingPathExtension().lastPathComponent
         }
         
+        let ordering: Int?
         if let range = name.range(of: "^[0-9]+\\)", options: .regularExpression) {
             // Remove the parenthesis at last
             let orderingString = name.substring(to: name.index(before: range.upperBound))
-            self.ordering = Int(orderingString)
+            ordering = Int(orderingString)
             
             // Remove the ordering number from the script name
             name.removeSubrange(range)
         } else {
-            self.ordering = nil
+            ordering = nil
         }
-        
-        self.name = name
-        
         
         // Extract from Info.plist
         
         let info = NSDictionary(contentsOf: url.appendingPathComponent("Contents/Info.plist"))
         
+        let eventTypes: [ScriptingEventType]
         if let names = info?["CotEditorHandlers"] as? [String] {
-            self.eventTypes = names.flatMap { ScriptingEventType(rawValue: $0) }
+            eventTypes = names.flatMap { ScriptingEventType(rawValue: $0) }
         } else {
-            self.eventTypes = []
+            eventTypes = []
         }
+        
+        self.init(url: url, name: name, type: type, shortcut: shortcut, eventTypes: eventTypes, ordering: ordering)
     }
     
     
