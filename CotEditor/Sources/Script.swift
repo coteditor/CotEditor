@@ -50,7 +50,6 @@ enum ScriptingFileType {
     
     case appleScript
     case shellScript
-    case unknown
     
 }
 
@@ -62,7 +61,7 @@ final class ScriptDescriptor {
     
     let url: URL
     let name: String
-    let type: ScriptingFileType
+    let type: ScriptingFileType?
     let shortcut: Shortcut
     let eventTypes: [ScriptingEventType]
     let ordering: Int?
@@ -82,7 +81,7 @@ final class ScriptDescriptor {
     // MARK: Public Methods
     
     /// Create a descriptor, initialized according to the specified information.
-    init(url: URL, name: String, type: ScriptingFileType, shortcut: Shortcut = Shortcut.none, eventTypes: [ScriptingEventType] = [], ordering: Int?) {
+    init(url: URL, name: String, type: ScriptingFileType?, shortcut: Shortcut = Shortcut.none, eventTypes: [ScriptingEventType] = [], ordering: Int?) {
         self.url = url
         self.name = name
         self.type = type
@@ -101,7 +100,7 @@ final class ScriptDescriptor {
         
         // Extract from URL
         
-        let type = ScriptDescriptor.extensions.first { $0.value.contains(url.pathExtension) }?.key ?? .unknown
+        let type = ScriptDescriptor.extensions.first { $0.value.contains(url.pathExtension) }?.key
         
         var name = url.deletingPathExtension().lastPathComponent
         
@@ -145,10 +144,12 @@ final class ScriptDescriptor {
     /// - returns: An instance of `Script` created by the receiver.
     ///            Returns `nil` if the script type is unsupported.
     func makeScript() -> Script? {
-        switch self.type {
+        
+        guard let type = self.type else { return nil }
+        
+        switch type {
         case .appleScript: return AppleScript(with: self)
         case .shellScript: return ShellScript(with: self)
-        case .unknown: return nil
         }
     }
 }
