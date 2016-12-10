@@ -51,6 +51,17 @@ enum ScriptingFileType {
     case appleScript
     case shellScript
     
+    static let all: [ScriptingFileType] = [.appleScript, .shellScript]
+    
+    
+    var extensions: [String] {
+        
+        switch self {
+        case .appleScript: return ["applescript", "scpt", "scptd"]
+        case .shellScript: return ["sh", "pl", "php", "rb", "py", "js"]
+        }
+    }
+    
 }
 
 
@@ -68,15 +79,6 @@ struct ScriptDescriptor {
     
     
     
-    // MARK: Private Properties
-    
-    private static let extensions: [ScriptingFileType: [String]] = [
-        .appleScript: ["applescript", "scpt", "scptd"],
-        .shellScript: ["sh", "pl", "php", "rb", "py", "js"]
-    ]
-    
-    
-    
     // MARK: -
     // MARK: Lifecycle
     
@@ -91,7 +93,7 @@ struct ScriptDescriptor {
         
         self.url = url
         
-        self.type = ScriptDescriptor.extensions.first { $0.value.contains(url.pathExtension) }?.key
+        self.type = ScriptingFileType.all.first { $0.extensions.contains(url.pathExtension) }
         
         var name = url.deletingPathExtension().lastPathComponent
         
