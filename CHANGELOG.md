@@ -9,6 +9,7 @@ develop
 
 - Optimize script menu updating performance.
 - Change behavior to avoid showing incompatible char list on undoing encoding change.
+- Add more description about scripting in the help contents.
 - Deprecate hidden settings for UI update interval.
 - Update build environment to Xcode 8.2.1 (SDK macOS 10.12.2).
 
@@ -17,6 +18,7 @@ develop
 
 - Fix an issue where the application could crash after lossy encoding change.
 - Fix an issue where incompatible charaters highlight could highlight wrong characters if line endings are CR/LF.
+- Fix an issue the menu item “About Scripting” in Help > “CotEditor Scripting Manual” didn't work.
 - Fix an issue where the zoomed characer in the characer inspector was flipped when the popover is detached.
 - Fix an issue where `lossy` option in `convert` command by AppleScript scripting was ignored.
 - Fix an issue on the AppleScript scripting where `range` property of `document` contents could be wrong if document line endings are not LF. (thanks to Kaito Udagawa!).
