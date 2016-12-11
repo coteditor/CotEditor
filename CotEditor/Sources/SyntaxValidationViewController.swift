@@ -68,7 +68,7 @@ final class SyntaxValidationViewController: NSViewController {
             }
         }()
         
-        let errorMessages = errors.map { error in
+        let errorMessages = errors.map { (error: SyntaxStyleValidator.StyleError) -> String in
             return "⚠️ " + error.localizedDescription + "\n\t> " + (error.failureReason ?? "")
         }
         
