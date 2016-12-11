@@ -41,9 +41,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private var didChangeFolder = false
     private var scriptHandlersTable: [ScriptingEventType: [URL]] = [:]
     private var scripts: [URL: Script] = [:]
-    
-    // owned by the main dispatch queue
-    private weak var menuBuildingTask: DispatchWorkItem?
+    private weak var menuBuildingTask: DispatchWorkItem?  // owned by the main dispatch queue
     
     
     
@@ -77,8 +75,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         }
         
         super.init()
-        
-        self.buildScriptMenu()
         
         // observe for script folder change
         NSFileCoordinator.addFilePresenter(self)
