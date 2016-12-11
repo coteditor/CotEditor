@@ -42,6 +42,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private var scriptHandlersTable: [ScriptingEventType: [URL]] = [:]
     private var scripts: [URL: Script] = [:]
     
+    // owned by the main dispatch queue
+    private weak var menuBuildingTask: DispatchWorkItem?
+    
     
     
     // MARK: Private Enum
@@ -113,7 +116,16 @@ final class ScriptManager: NSObject, NSFilePresenter {
         self.didChangeFolder = true
         
         if NSApp.isActive {
-            self.buildScriptMenu()
+            // The access on menuBuildingTask must be serialized
+            // This task will be invalid after `self` is released
+            DispatchQueue.global().async { [weak self] in
+                self?.menuBuildingTask?.cancel()
+                
+                let newTask = DispatchWorkItem() { self?.buildScriptMenu() }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: newTask)
+                
+                self?.menuBuildingTask = newTask
+            }
         }
     }
     
