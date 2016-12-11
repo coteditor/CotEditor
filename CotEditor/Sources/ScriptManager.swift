@@ -38,10 +38,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Private Properties
     
     private let scriptsDirectoryURL: URL
-    private var didChangeFolder = false
     private var scriptHandlersTable: [ScriptingEventType: [URL]] = [:]
     private var scripts: [URL: Script] = [:]
-    private weak var menuBuildingTask: DispatchWorkItem?  // owned by the main dispatch queue
+    private var menuBuildingTask: DispatchWorkItem?
     
     
     
@@ -111,19 +110,16 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// script folder did change
     func presentedSubitemDidChange(at url: URL) {
         
-        self.didChangeFolder = true
+        // schedule script menu build
+        self.menuBuildingTask?.cancel()
+        let newTask = DispatchWorkItem(qos: .background) { [weak self] in
+            self?.buildScriptMenu()
+        }
+        self.menuBuildingTask = newTask
         
         if NSApp.isActive {
-            // The access on menuBuildingTask must be serialized
-            // This task will be invalid after `self` is released
-            DispatchQueue.global().async { [weak self] in
-                self?.menuBuildingTask?.cancel()
-                
-                let newTask = DispatchWorkItem() { self?.buildScriptMenu() }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: newTask)
-                
-                self?.menuBuildingTask = newTask
-            }
+            // perform with a delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: newTask)
         }
     }
     
@@ -131,9 +127,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// update script menu if needed
     func applicationDidBecomeActive(_ notification: Notification) {
         
-        if self.didChangeFolder {
-            self.buildScriptMenu()
-        }
+        self.menuBuildingTask?.perform()
     }
     
     
@@ -158,13 +152,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// build Script menu
     func buildScriptMenu() {
         
+        self.menuBuildingTask?.cancel()
+        self.scriptHandlersTable = [:]
+        self.scripts = [:]
+        
         let menu = MainMenu.script.menu!
         
         menu.removeAllItems()
-        
-        self.scriptHandlersTable = [:]
-        
-        self.scripts = [:]
         
         self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
@@ -177,8 +171,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         openMenuItem.target = self
         openMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
         menu.addItem(openMenuItem)
-        
-        self.didChangeFolder = false
     }
     
     
