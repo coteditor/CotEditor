@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Improvements
+
+- Optimize script menu updating performance.
+
+
+
 3.1.2 (177)
 --------------------------
 
