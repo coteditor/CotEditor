@@ -119,16 +119,22 @@ extension String {
     
     
     /// convert passed-in range as if line endings are changed from fromLineEnding to toLineEnding
+    /// assume the receiver has `fromLineEnding` regardless of actual ones if specified
     func convert(from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding, range: NSRange) -> NSRange {
         
         guard let currentLineEnding = (fromLineEnding ?? self.detectedLineEnding) else { return range }
         
-        guard currentLineEnding.string.unicodeScalars.count != toLineEnding.string.unicodeScalars.count else { return range }
+        let delta = toLineEnding.string.unicodeScalars.count - currentLineEnding.string.unicodeScalars.count
         
-        let locationString = (self as NSString).substring(to: range.location).replacingLineEndings(with: toLineEnding)
-        let lengthString = (self as NSString).substring(with: range).replacingLineEndings(with: toLineEnding)
+        guard delta != 0 else { return range }
         
-        return NSRange(location: locationString.utf16.count, length: lengthString.utf16.count)
+        let regex = try! NSRegularExpression(pattern: "\\r\\n|[\\n\\r\\u2028\\u2029]")
+        let locationRange = NSRange(location: 0, length: range.location)
+        
+        let locationDelta = delta * regex.numberOfMatches(in: self, range: locationRange)
+        let lengthDelta = delta * regex.numberOfMatches(in: self, range: range)
+        
+        return NSRange(location: range.location + locationDelta, length: range.length + lengthDelta)
     }
     
 }
