@@ -362,6 +362,7 @@ extension SyntaxStyle {
                                                          selector: #selector(parseOutline),
                                                          userInfo: nil,
                                                          repeats: false)
+            self.outlineMenuTimer?.tolerance = 0.1 * interval
         }
     }
     

@@ -292,6 +292,7 @@ final class DocumentAnalyzer: NSObject {
                                                               selector: #selector(updateEditorInfo(timer:)),
                                                               userInfo: nil,
                                                               repeats: false)
+            self.editorInfoUpdateTimer?.tolerance = 0.1 * interval
         }
     }
     

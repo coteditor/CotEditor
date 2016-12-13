@@ -354,6 +354,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                                                                selector: #selector(updateCurrentLineRect),
                                                                userInfo: nil,
                                                                repeats: false)
+            self.currentLineUpdateTimer?.tolerance = 0.5 * interval
         }
     }
     

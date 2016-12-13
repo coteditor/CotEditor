@@ -195,6 +195,7 @@ private final class TouchBarValidator {
                                                         selector: #selector(validateTouchBar(timer:)),
                                                         userInfo: nil,
                                                         repeats: false)
+            self.validationTimer?.tolerance = 0.1 * delay.rawValue
         }
     }
     

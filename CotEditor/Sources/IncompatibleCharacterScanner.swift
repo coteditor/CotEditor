@@ -97,6 +97,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
                                                     selector: #selector(scan(timer:)),
                                                     userInfo: nil,
                                                     repeats: false)
+            self.updateTimer?.tolerance = 0.1 * interval
         }
     }
     

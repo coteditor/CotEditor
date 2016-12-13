@@ -1279,6 +1279,7 @@ extension EditorTextView {
                                                         selector: #selector(completion(timer:)),
                                                         userInfo: nil,
                                                         repeats: false)
+            self.completionTimer?.tolerance = 0.1 * delay
         }
     }
     
