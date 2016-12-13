@@ -48,7 +48,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     
     // MARK: Private Properties
     
-    static let UpdateInterval: TimeInterval = 0.42
+    static let UpdateInterval: TimeInterval = 0.4
     
     private weak var updateTimer: Timer?
     private var needsUpdate = true
