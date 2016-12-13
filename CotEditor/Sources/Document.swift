@@ -1480,7 +1480,9 @@ private struct EncodingError: LocalizedError, RecoverableError {
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Chars
-                windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+                DispatchQueue.main.async {
+                    windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+                }
                 return false
             case 1:  // == Save
                 return true
@@ -1499,7 +1501,9 @@ private struct EncodingError: LocalizedError, RecoverableError {
                     if let undoClient = document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController {
                         undoClient.showSidebarPane(index: .incompatibleCharacters)
                     }
-                    windowContentController.showSidebarPane(index: .incompatibleCharacters)
+                    DispatchQueue.main.async {
+                        windowContentController.showSidebarPane(index: .incompatibleCharacters)
+                    }
                 }
                 return true
             case 1:  // == Cancel
