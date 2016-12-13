@@ -161,8 +161,6 @@ let DefaultSettings: [DefaultKeys: Any] = [
     .headerFooterDateFormat: "YYYY-MM-dd HH:mm",
     .headerFooterPathAbbreviatingWithTilde: true,
     .autoCompletionDelay: 0.25,
-    .infoUpdateInterval: 0.2,
-    .outlineMenuInterval: 0.37,
     .showColoringIndicatorTextLength: 75000,
     .coloringRangeBufferLength: 5000,
     .largeFileAlertThreshold: 50 * pow(1024, 2),  // 50 MB

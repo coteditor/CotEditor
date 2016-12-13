@@ -306,6 +306,9 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
 
 extension SyntaxStyle {
     
+    private static let OutlineMenuUpdateInterval: TimeInterval = 0.4
+    
+    
     /// parse outline with delay
     func invalidateOutline() {
         
@@ -352,7 +355,7 @@ extension SyntaxStyle {
     /// let parse outline after a delay
     private func setupOutlineMenuUpdateTimer() {
         
-        let interval: TimeInterval = Defaults[.outlineMenuInterval]
+        let interval = type(of: self).OutlineMenuUpdateInterval
         
         if let timer = self.outlineMenuTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)

@@ -8,6 +8,7 @@ develop
 ### Improvements
 
 - Optimize script menu updating performance.
+- Deprecate hidden settings for UI update interval.
 - Update build environment to Xcode 8.2 (SDK macOS 10.12.2).
 
 

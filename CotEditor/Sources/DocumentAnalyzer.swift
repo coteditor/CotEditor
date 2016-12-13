@@ -73,6 +73,8 @@ final class DocumentAnalyzer: NSObject {
     
     // MARK: Private Properties
     
+    private static let EditorInfoUpdateInterval: TimeInterval = 0.2
+    
     private weak var document: Document?  // weak to avoid cycle retain
     private weak var editorInfoUpdateTimer: Timer?
     
@@ -282,7 +284,7 @@ final class DocumentAnalyzer: NSObject {
     /// set update timer for information about the content text
     private func setupEditorInfoUpdateTimer() {
         
-        let interval: TimeInterval = Defaults[.infoUpdateInterval]
+        let interval = type(of: self).EditorInfoUpdateInterval
         
         if let timer = self.editorInfoUpdateTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: interval)
