@@ -41,7 +41,7 @@ extension NSTouchBarItemIdentifier {
 
 
 
-@available(macOS 10.12.1, *)
+@available(macOS 10.12.2, *)
 extension DocumentViewController: NSTouchBarDelegate {
     
     // MARK: View Controller Methods
@@ -95,7 +95,7 @@ extension DocumentViewController: NSTouchBarDelegate {
 }
 
 
-@available(macOS 10.12.1, *)
+@available(macOS 10.12.2, *)
 extension DocumentViewController: TouchBarItemValidations {
     
     func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool {
@@ -127,7 +127,7 @@ extension DocumentViewController: TouchBarItemValidations {
 
 
 
-@available(macOS 10.12.1, *)
+@available(macOS 10.12.2, *)
 extension NSDocument: NSSharingServicePickerTouchBarItemDelegate {
     
     public func items(for pickerTouchBarItem: NSSharingServicePickerTouchBarItem) -> [Any] {
