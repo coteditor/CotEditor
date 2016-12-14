@@ -12,6 +12,11 @@ develop
 - Update build environment to Xcode 8.2 (SDK macOS 10.12.2).
 
 
+### Fixes
+
+- Fix an issue where the zoomed characer in the characer inspector was flipped when the popover is detached.
+
+
 
 3.1.2 (177)
 --------------------------
