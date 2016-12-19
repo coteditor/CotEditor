@@ -15,6 +15,7 @@ develop
 ### Fixes
 
 - Fix an issue where the zoomed characer in the characer inspector was flipped when the popover is detached.
+- Fix an issue on the AppleScript scripting where `range` property of `document` contents could be wrong if document line endings are not LF. (thanks to Kaito Udagawa!).
 
 
 
