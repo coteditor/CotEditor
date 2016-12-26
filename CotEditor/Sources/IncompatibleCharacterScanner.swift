@@ -31,7 +31,7 @@ protocol IncompatibleCharacterScannerDelegate: class {
     
     func needsUpdateIncompatibleCharacter(_ document: Document) -> Bool
     
-    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacers: [IncompatibleCharacter])
+    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter])
 }
 
 
@@ -43,7 +43,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     weak var delegate: IncompatibleCharacterScannerDelegate?
     
     private(set) weak var document: Document?  // weak to avoid cycle retain
-    private(set) var incompatibleCharacers = [IncompatibleCharacter]()  // line endings applied
+    private(set) var incompatibleCharacters = [IncompatibleCharacter]()  // line endings applied
     
     
     // MARK: Private Properties
@@ -109,10 +109,10 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
         
         guard let document = self.document else { return }
         
-        self.incompatibleCharacers = document.string.scanIncompatibleCharacters(for: document.encoding) ?? []
+        self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.encoding) ?? []
         self.needsUpdate = false
         
-        self.delegate?.document(document, didUpdateIncompatibleCharacters: self.incompatibleCharacers)
+        self.delegate?.document(document, didUpdateIncompatibleCharacters: self.incompatibleCharacters)
     }
     
     

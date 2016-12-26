@@ -53,6 +53,12 @@ final class IncompatibleCharacter: NSObject {
         return NSRange(location: self.location, length: 1)
     }
     
+    
+    override var debugDescription: String {
+        
+        return "<\(self): \(self.character) -\(self.location)>"
+    }
+    
 }
 
 

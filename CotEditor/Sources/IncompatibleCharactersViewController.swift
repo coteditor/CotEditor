@@ -106,12 +106,12 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     
     
     /// incompatible characters list was updated
-    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacers: [IncompatibleCharacter]) {
+    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter]) {
         
-        self.incompatibleCharacters = incompatibleCharacers
-        self.isCharacterAvailable = !incompatibleCharacers.isEmpty
+        self.incompatibleCharacters = incompatibleCharacters
+        self.isCharacterAvailable = !incompatibleCharacters.isEmpty
         
-        let ranges = incompatibleCharacers.map { $0.range }
+        let ranges = incompatibleCharacters.map { $0.range }
         
         document.textStorage.clearAllMarkup()
         document.textStorage.markup(ranges: ranges, lineEnding: document.lineEnding)
