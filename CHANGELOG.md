@@ -8,6 +8,7 @@ develop
 ### Improvements
 
 - Optimize script menu updating performance.
+- Change behavior to avoid showing incompatible char list on undoing encoding change.
 - Deprecate hidden settings for UI update interval.
 - Update build environment to Xcode 8.2 (SDK macOS 10.12.2).
 

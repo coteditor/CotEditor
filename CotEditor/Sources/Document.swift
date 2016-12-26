@@ -1497,13 +1497,8 @@ private struct EncodingError: LocalizedError, RecoverableError {
             switch recoveryOptionIndex {
             case 0:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
-                if let windowContentController = windowContentController {
-                    if let undoClient = document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController {
-                        undoClient.showSidebarPane(index: .incompatibleCharacters)
-                    }
-                    DispatchQueue.main.async {
-                        windowContentController.showSidebarPane(index: .incompatibleCharacters)
-                    }
+                DispatchQueue.main.async {
+                    windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 }
                 return true
             case 1:  // == Cancel
