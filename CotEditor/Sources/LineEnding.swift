@@ -119,7 +119,9 @@ extension String {
     
     
     /// convert passed-in range as if line endings are changed from fromLineEnding to toLineEnding
-    /// assume the receiver has `fromLineEnding` regardless of actual ones if specified
+    /// assuming the receiver has `fromLineEnding` regardless of actual ones if specified
+    ///
+    /// - important: Consider to avoid using this method in a frequent loop as it's relatively heavy.
     func convert(from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding, range: NSRange) -> NSRange {
         
         guard let currentLineEnding = (fromLineEnding ?? self.detectedLineEnding) else { return range }
@@ -128,11 +130,12 @@ extension String {
         
         guard delta != 0 else { return range }
         
+        let string = self.replacingLineEndings(with: currentLineEnding)
         let regex = try! NSRegularExpression(pattern: "\\r\\n|[\\n\\r\\u2028\\u2029]")
         let locationRange = NSRange(location: 0, length: range.location)
         
-        let locationDelta = delta * regex.numberOfMatches(in: self, range: locationRange)
-        let lengthDelta = delta * regex.numberOfMatches(in: self, range: range)
+        let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)
+        let lengthDelta = delta * regex.numberOfMatches(in: string, range: range)
         
         return NSRange(location: range.location + locationDelta, length: range.length + lengthDelta)
     }
