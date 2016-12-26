@@ -1281,7 +1281,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             guard let strongSelf = self else { return }
             
             if returnCode == NSAlertSecondButtonReturn, let fileType = strongSelf.fileType { // == Revert
-                try? strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
+                do {
+                    try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
+                } catch let error {
+                    strongSelf.presentErrorAsSheet(error)
+                }
             }
             
             strongSelf.isExternalUpdateAlertShown = false
