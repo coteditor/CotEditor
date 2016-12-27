@@ -210,7 +210,7 @@ extension Document {
             return .yes
         }
         
-        let lossy = (arguments?["Lossy"] as? Bool) ?? false
+        let lossy = (arguments?["lossy"] as? Bool) ?? false
         
         return self.changeEncoding(to: encoding, withUTF8BOM: false, askLossy: false, lossy: lossy) ? .yes : .no
     }

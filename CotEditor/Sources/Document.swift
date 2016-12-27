@@ -867,11 +867,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
         
-        // ask lossy
-        if askLossy {
-            guard self.string.canBeConverted(to: encoding) else {
+        // check if conversion is lossy
+        if !self.string.canBeConverted(to: encoding) {
+            if askLossy {
                 let error = EncodingError(kind: .lossyEncodingConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
                 self.presentErrorAsSheet(error)
+                return false
+                
+            } else if !lossy {
                 return false
             }
         }
