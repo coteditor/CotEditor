@@ -15,7 +15,7 @@ develop
 
 ### Fixes
 
-- Fix an issue where the application could crash after lossy encoding change if line endings are CR/LF.
+- Fix an issue where the application could crash after lossy encoding change.
 - Fix an issue where incompatible charaters highlight could highlight wrong characters if line endings are CR/LF.
 - Fix an issue where the zoomed characer in the characer inspector was flipped when the popover is detached.
 - Fix an issue where `lossy` option in `convert` command by AppleScript scripting was ignored.

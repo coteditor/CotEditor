@@ -561,15 +561,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private dynamic var allowedFileTypes: [String]? = nil
     
     
-    /// check if document can be saved safety by autosaving
-    override func checkAutosavingSafety() throws {
-        
-        try super.checkAutosavingSafety()
-        
-        try self.checkSavingSafetyForConverting(content: self.string, encoding: self.encoding)
-    }
-    
-    
     /// display dialogs about save before closing document
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
