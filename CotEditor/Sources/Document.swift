@@ -878,8 +878,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // register undo
         if let undoManager = self.undoManager {
-        (undoManager.prepare(withInvocationTarget: self) as AnyObject).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
-        undoManager.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
+            (undoManager.prepare(withInvocationTarget: self) as AnyObject).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
+            undoManager.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
         }
         
         // update encoding
@@ -1498,6 +1498,8 @@ private struct EncodingError: LocalizedError, RecoverableError {
             }
             
         case .lossyEncodingConversion:
+            assert(Thread.isMainThread)
+            
             switch recoveryOptionIndex {
             case 0:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
