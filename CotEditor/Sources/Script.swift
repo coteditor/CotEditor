@@ -315,7 +315,10 @@ final class PersistentOSAScript: Script {
     /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
         
-        guard let event = event else { try self.run(); return }
+        guard let event = event else {
+            try self.run()
+            return
+        }
         
         guard self.descriptor.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.descriptor.url)
@@ -327,7 +330,6 @@ final class PersistentOSAScript: Script {
             writeToConsole(message: message, scriptName: self.descriptor.name)
         }
     }
-    
     
 }
 

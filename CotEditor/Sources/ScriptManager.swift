@@ -305,7 +305,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
             guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
             
             if let script = descriptor.makeScript() {
-                
                 for eventType in descriptor.eventTypes {
                     var handlers = self.scriptHandlersTable[eventType] ?? []
                     handlers.append(url)
