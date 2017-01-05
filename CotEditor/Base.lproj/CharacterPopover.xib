@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,16 +14,16 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView horizontalHuggingPriority="249" verticalCompressionResistancePriority="250" id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="264" height="74"/>
+            <rect key="frame" x="0.0" y="0.0" width="276" height="92"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lnp-OL-NAu" customClass="CharacterField" customModule="CotEditor" customModuleProvider="target">
-                    <rect key="frame" x="8" y="10" width="56" height="54"/>
+                    <rect key="frame" x="8" y="10" width="68" height="72"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="52" id="brS-3N-jsB"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="brS-3N-jsB"/>
                     </constraints>
                     <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="蛙" id="E2I-1W-zW6" customClass="CharacterFieldCell" customModule="CotEditor" customModuleProvider="target">
-                        <font key="font" size="48" name="TimesNewRomanPSMT"/>
+                        <font key="font" size="64" name="TimesNewRomanPSMT"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -33,7 +33,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="5tD-mh-lm6">
-                    <rect key="frame" x="68" y="13" width="188" height="14"/>
+                    <rect key="frame" x="80" y="31" width="188" height="14"/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="U+86D9" id="Atm-wm-Ocl">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -44,7 +44,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="cvP-MD-1SF">
-                    <rect key="frame" x="68" y="48" width="188" height="16"/>
+                    <rect key="frame" x="80" y="66" width="188" height="16"/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK UNIFIED IDEOGRAPH-86D9" id="H6i-fn-bnL">
                         <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -55,7 +55,7 @@
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="V7B-LW-D7y">
-                    <rect key="frame" x="68" y="31" width="188" height="14"/>
+                    <rect key="frame" x="80" y="49" width="188" height="14"/>
                     <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK Unified Ideographs" id="h7A-Kh-GoY">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
