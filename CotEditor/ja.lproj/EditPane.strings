@@ -83,7 +83,7 @@
 /* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
 "1v9-7i-9RL.title" = "シンタックススタイルで定義された単語";
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
-"c5j-0N-f2R.title" = "一般英単語";
+"c5j-0N-f2R.title" = "一般単語";
 
 /* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
 "J1B-wA-rdr.title" = "入力中に補完候補を表示";
