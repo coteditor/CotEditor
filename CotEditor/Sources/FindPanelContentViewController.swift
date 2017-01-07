@@ -112,14 +112,14 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     }
     
     
-    /// recieve number of found
+    /// receive number of found
     func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView) {
         
         self.fieldViewController?.updateResultCount(numberOfFound, target: textView)
     }
     
     
-    /// recieve number of replaced
+    /// receive number of replaced
     func textFinder(_ textFinder: TextFinder, didReplace numberOfReplaced: Int, textView: NSTextView) {
         
         self.fieldViewController?.updateReplacedCount(numberOfReplaced, target: textView)
