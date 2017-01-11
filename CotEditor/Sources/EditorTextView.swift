@@ -53,7 +53,7 @@ final class EditorTextView: NSTextView, Themable {
     var inlineCommentDelimiter: String?
     var blockCommentDelimiters: BlockDelimiters?
     
-    var firstSyntaxCompletionCharacterSet: CharacterSet?
+    var firstSyntaxCompletionCharacterSet: CharacterSet?  // set of the first characters of the completion words
     var needsRecompletion = false
     
     // for Scaling extension

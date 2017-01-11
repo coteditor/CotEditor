@@ -46,8 +46,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     let inlineCommentDelimiter: String?
     let blockCommentDelimiters: BlockDelimiters?
     
-    let completionWords: [String]?  // completion words list
-    let firstCompletionCharacterSet: CharacterSet?  // set of the first characters of the completion words
+    let completionWords: [String]?
     
     fileprivate(set) var outlineItems: [OutlineItem] = [] {
         didSet {
@@ -105,7 +104,6 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
             self.simpleWordsCharacterSets = nil
             self.pairedQuoteTypes = nil
             self.outlineDefinitions = nil
-            self.firstCompletionCharacterSet = nil
             
             return
         }
@@ -161,33 +159,33 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         self.hasSyntaxHighlighting = (!highlightDictionary.isEmpty || blockCommentDelimiters != nil || inlineCommentDelimiter != nil)
         
         // create word-completion data set
-        var completionWords = [String]()
-        var firstCharSet = CharacterSet()
-        if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: Any]], !completionDicts.isEmpty {
-            for dict in completionDicts {
-                guard
-                    let word = dict[SyntaxDefinitionKey.keyString.rawValue] as? String,
-                    let firstChar = word.unicodeScalars.first else { continue }
-                
-                completionWords.append(word)
-                firstCharSet.update(with: firstChar)
-            }
-        } else {
-            for definitions in highlightDictionary.values {
-                for definition in definitions {
-                    let word = definition.beginString.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.completionWords = {
+            var words = [String]()
+            if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: Any]], !completionDicts.isEmpty {
+                // create from completion definition
+                for dict in completionDicts {
                     guard
-                        let firstChar = word.unicodeScalars.first,
-                        definition.endString == nil && !definition.isRegularExpression else { continue }
+                        let word = dict[SyntaxDefinitionKey.keyString.rawValue] as? String,
+                        !word.isEmpty else { continue }
                     
-                    completionWords.append(word)
-                    firstCharSet.update(with: firstChar)
+                    words.append(word)
+                }
+            } else {
+                // create from normal highlighting words
+                for definitions in highlightDictionary.values {
+                    for definition in definitions {
+                        guard definition.endString == nil && !definition.isRegularExpression else { continue }
+                        
+                        let word = definition.beginString.trimmingCharacters(in: .whitespacesAndNewlines)
+                        
+                        guard !word.isEmpty else { continue }
+                        
+                        words.append(word)
+                    }
                 }
             }
-        }
-        // keep results
-        self.completionWords = !completionWords.isEmpty ? completionWords.sorted() : nil
-        self.firstCompletionCharacterSet = !firstCharSet.isEmpty ? firstCharSet : nil
+            return words.isEmpty ? nil : words.sorted()
+        }()
         
         // create characerSet dict for simple word highlights
         self.simpleWordsCharacterSets = {
@@ -210,9 +208,8 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                     characterSets[type] = charSet
                 }
             }
-            guard !characterSets.isEmpty else { return nil }
             
-            return characterSets
+            return characterSets.isEmpty ? nil : characterSets
         }()
         
         // parse outline definitions
