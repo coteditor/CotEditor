@@ -1447,7 +1447,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                     NSLocalizedString("Cancel", comment: "")]
             
         case .unconvertibleCharacters:
-            return [NSLocalizedString("Show Incompatible Chars", comment: ""),
+            return [NSLocalizedString("Show Incompatible Characters", comment: ""),
                     NSLocalizedString("Save Available Strings", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
             
@@ -1477,7 +1477,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
-            case 0:  // == Show Incompatible Chars
+            case 0:  // == Show Incompatible Characters
                 DispatchQueue.main.async {
                     windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 }

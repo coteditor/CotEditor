@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -80,7 +80,7 @@
                                         <action selector="getInfo:" target="klO-m3-n5X" id="hAx-X6-Mra"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D8B8253F-8F6E-4371-B384-927861F6E143" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Chars" paletteLabel="Show Incompatible Chars" toolTip="Show incompatible characters with current encoding" tag="5" image="IncompatibleChars" id="xle-wq-mIH" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="D8B8253F-8F6E-4371-B384-927861F6E143" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Characters" paletteLabel="Show Incompatible Characters" toolTip="Show incompatible characters with current encoding" tag="5" image="IncompatibleChars" id="xle-wq-mIH" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleIncompatibleCharList:" target="klO-m3-n5X" id="KOI-wf-RAx"/>
                                     </connections>
@@ -116,7 +116,7 @@
                                         <action selector="toggleComment:" target="klO-m3-n5X" id="YdZ-m0-PoD"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="7A543E54-397D-4BF6-8781-28A1C45E0F90" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisible Chars" paletteLabel="Show / Hide Invisible Chars" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="xbD-Up-YfQ" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="7A543E54-397D-4BF6-8781-28A1C45E0F90" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisibles" paletteLabel="Show / Hide Invisibles" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="xbD-Up-YfQ" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleInvisibleChars:" target="klO-m3-n5X" id="UVg-ZM-cYT"/>
                                     </connections>
@@ -136,12 +136,12 @@
                                         <action selector="toggleLayoutOrientation:" target="klO-m3-n5X" id="1ee-vK-XVD"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="B182CA80-1500-4D59-A0C6-DE9C691FA947" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Auto Tab Expand" toolTip="Toggle auto tab expand" tag="13" image="AutoTabExpand_On" id="c9C-af-Zcg" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="B182CA80-1500-4D59-A0C6-DE9C691FA947" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Tab Auto-Expansion" toolTip="Toggle tab auto-expansion" tag="13" image="AutoTabExpand_On" id="c9C-af-Zcg" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="AOo-vA-XLq"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8C717A30-BD51-43A3-9F26-961DB811A614" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammer panel" tag="24" image="SpellCheck" id="Ply-Nr-aOE" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="8C717A30-BD51-43A3-9F26-961DB811A614" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammar panel" tag="24" image="SpellCheck" id="Ply-Nr-aOE" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="showGuessPanel:" target="klO-m3-n5X" id="7jm-Sv-aTP"/>
                                     </connections>

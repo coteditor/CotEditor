@@ -187,7 +187,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
             return words.isEmpty ? nil : words.sorted()
         }()
         
-        // create characerSet dict for simple word highlights
+        // create characterSet dict for simple word highlights
         self.simpleWordsCharacterSets = {
             var characterSets = [SyntaxType: CharacterSet]()
             for (type, definitions) in highlightDictionary {

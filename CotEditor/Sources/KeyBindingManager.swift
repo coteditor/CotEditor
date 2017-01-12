@@ -96,7 +96,7 @@ struct InvalidKeySpecCharactersError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        return NSLocalizedString("Please combinate with another keys.", comment: "")
+        return NSLocalizedString("Please combine with another keys.", comment: "")
     }
     
 }

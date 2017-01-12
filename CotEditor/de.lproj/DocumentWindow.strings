@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,8 +53,8 @@
 "uXf-pD-u6A.toolTip" = "Dokumentinformationen einblenden";  /* Show document information */
 
 /* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
-"xle-wq-mIH.label" = "Inkompatible Zeichen";  /* Incompatible Chars */
-"xle-wq-mIH.paletteLabel" = "Inkompatible Zeichen einblenden";  /* Show Incompatible Chars */
+"xle-wq-mIH.label" = "Inkompatible Zeichen";  /* Incompatible Characters */
+"xle-wq-mIH.paletteLabel" = "Inkompatible Zeichen einblenden";  /* Show Incompatible Characters */
 "xle-wq-mIH.toolTip" = "Inkompatible Zeichen für den ausgewählte Codierung einblenden";  /* Show incompatible characters for selected encoding */
 
 /* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
@@ -88,8 +88,8 @@
 "fW9-Xn-I9b.toolTip" = "Auswahl aus-/unkommentieren";  /* Comment-out or uncomment selection */
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
-"xbD-Up-YfQ.label" = "Unsichtbare Zeichen";  /* Invisible Chars */
-"xbD-Up-YfQ.paletteLabel" = "Unsichtbare Zeichen ein-/ausblenden";  /* Show / Hide Invisible Chars */
+"xbD-Up-YfQ.label" = "Unsichtbares";  /* Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "Unsichtbares ein-/ausblenden";  /* Show / Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "Unsichtbare Zeichen im Text ein-/ausblenden";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
@@ -109,13 +109,13 @@
 
 /* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "Tab. Expandieren";  /* Expand Tabs */
-"c9C-af-Zcg.paletteLabel" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle Auto Tab Expand */
-"c9C-af-Zcg.toolTip" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle auto tab expand */
+"c9C-af-Zcg.paletteLabel" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle Tab Auto-Expansion */
+"c9C-af-Zcg.toolTip" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle tab auto-expansion */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Rechtschreibprüfung";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "Rechtschreibprüfung";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "Rechtschreibung und Grammatik einblenden";  /* Show spelling and grammer panel */
+"Ply-Nr-aOE.toolTip" = "Rechtschreibung und Grammatik einblenden";  /* Show spelling and grammar panel */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "Farbcode";  /* Color Code */

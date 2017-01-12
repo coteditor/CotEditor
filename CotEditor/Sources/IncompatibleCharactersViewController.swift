@@ -67,7 +67,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     }
     
     
-    /// clear incompatible chars markup
+    /// clear incompatible characters markup
     override func viewDidDisappear() {
         
         self.isVisible = false

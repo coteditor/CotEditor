@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -119,9 +119,9 @@
 "Some characters would have to be changed or deleted in saving as “%@”." = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio come “%@”.";
 "Do you want to continue processing?" = "Si desidera continuare l’elaborazione?";
 "Save Available Strings" = "Salva le stringhe disponibili";
-"Show Incompatible Chars" = "Mostra caratteri incompatibili";
+"Show Incompatible Characters" = "Mostra caratteri incompatibili";
 
-// Uncorresponded IANA charset name alert
+// Incompatible IANA charset name alert
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "La codifica è “%@”, ma il set di caratteri IANA nel testo è “%@”.";
 "Do you want to continue processing?" = "Si desidera continuare l’elaborazione?";
 "Do not show this warning for this document again" = "Non mostrare più questo avviso per questo documento";
@@ -132,12 +132,12 @@
 "Do you want to discard the changes and reset the file encoding?" = "Si desidera annullare le modifiche e ripristinare la codifica del file?";
 "Discard Changes" = "Annulla modifiche";
 
-// Reinterpretion failed alert
+// Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "Il documento non ha un file da reinterpretare.";
 "The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "Non è stato possibile reinterpretare il file “%@” con la nuova codifica “%@”.";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "Il file potrebbe essere stato salvato usando una codifica di testo diversa, o potrebbe non essere un file di testo.";
 
-// Incompatible chars alert
+// incompatible characters alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio come “%@”.";
 "Do you want to change encoding and show incompatible characters?" = "Si desidera cambiare codifica e mostrare i caratteri incompatibili?";
 "Change Encoding" = "Cambia modifica";
@@ -283,7 +283,7 @@
 /* MARK: StatusBarController */
 "%@: " = "%@: ";
 "Lines" = "Righe";
-"Chars" = "Caratteri";
+"Characters" = "Caratteri";
 "Length" = "Lunghezza";
 "Words" = "Parole";
 "Location" = "Posizione";
@@ -327,7 +327,7 @@
 "Stylesheet Keywords" = "Parole chiave CSS";
 
 
-// Genearal pane
+// General pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "La modifica verrà applicata al prossimo avvio.";
 "Do you want to restart CotEditor now?" = "Si desidera riavviare CotEditor adesso?";
@@ -469,7 +469,7 @@
 // Label for text menu keybindings action
 "Insert Text %@" = "Inserisci testo %@";
 
-// Keybord key name
+// Keyboard key name
 "Space" = "Spazio";
 
 // Warning messages
@@ -478,7 +478,7 @@
 "“%@” includes the Command key." = "La combinazione “%@” include il tasto Command.";
 "Please choose another key." = "Si prega di sceglierne un altro.";
 "Single type is invalid for a shortcut." = "Un solo tasto non è una scorciatoia valida.";
-"Please combinate with another keys." = "Si prega di abbinarlo ad altri tasti.";
+"Please combine with another keys." = "Si prega di abbinarlo ad altri tasti.";
 
 
 

@@ -193,7 +193,7 @@ final class LayoutManager: NSLayoutManager {
     }
     
     
-    /// draw invisible characters
+    /// draw glyphs
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
     
         NSGraphicsContext.saveGraphicsState()
@@ -257,7 +257,7 @@ final class LayoutManager: NSLayoutManager {
                 var point = lineOrigin.offsetBy(dx: origin.x + glyphLocation.x,
                                                 dy: origin.y + self.defaultBaselineOffset)
                 if isVertical {
-                    // [note] Probably not a good solution but better than not (2016-05-25).
+                    // [note] Probably not a good solution but better than doing nothing (2016-05-25).
                     let pathBounds = CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
                     point.y += pathBounds.height / 2
                 }
@@ -289,7 +289,7 @@ final class LayoutManager: NSLayoutManager {
     
     // MARK: Public Methods
     
-    /// return fixed line hight to avoid having defferent line hight by composite font
+    /// return fixed line height to avoid having defferent line height by composite font
     var lineHeight: CGFloat {
         
         let multiple = self.firstTextView?.defaultParagraphStyle?.lineHeightMultiple ?? 1.0
@@ -369,7 +369,7 @@ final class LayoutManager: NSLayoutManager {
     /// apply invisible settings
     private func applyDefaultInvisiblesSetting() {
         
-        // showInvisibles will be set from EditorViewController or PrintTextView
+        // `showsInvisibles` will be set from EditorTextView or PrintTextView
         self.showsSpace = Defaults[.showInvisibleSpace]
         self.showsTab = Defaults[.showInvisibleTab]
         self.showsNewLine = Defaults[.showInvisibleNewLine]

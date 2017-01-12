@@ -177,7 +177,7 @@
             </parameter>
         </command>
         
-        <command name="change roman width" code="cEd1GWrm" description="Change width of Japanese roman charactors in the selection.">
+        <command name="change roman width" code="cEd1GWrm" description="Change width of Japanese roman characters in the selection.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to change width."/>
             <parameter name="to" code="rWtp" type="character width type" description="The text width to change.">

@@ -119,7 +119,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     
     // MARK: Private Methods
     
-    /// update incompatible chars afer interval
+    /// update incompatible characters afer interval
     @objc func scan(timer: Timer) {
         
         self.updateTimer?.invalidate()

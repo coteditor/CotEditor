@@ -163,7 +163,7 @@ final class StatusBarController: NSViewController {
             status.appendFormattedState(value: info.lines, label: "Lines")
         }
         if Defaults[.showStatusBarChars] {
-            status.appendFormattedState(value: info.chars, label: "Chars")
+            status.appendFormattedState(value: info.chars, label: "Characters")
         }
         if Defaults[.showStatusBarLength] {
             status.appendFormattedState(value: info.length, label: "Length")

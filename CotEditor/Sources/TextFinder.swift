@@ -115,7 +115,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         self.highlightColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
         // Highlight color is currently not customizable. (2015-01-04)
-        // It might better when it can be set in theme also for incompatible chars highlight.
+        // It might better when it can be set in theme also for incompatible characters highlight.
         // Just because I'm lazy.
         
         super.init()

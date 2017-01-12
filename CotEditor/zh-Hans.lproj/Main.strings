@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -89,7 +89,7 @@
 
 /* Class = "NSMenuItem"; title = "Get Info"; ObjectID = "564"; */
 "564.title" = "显示简介";
-/* Class = "NSMenuItem"; title = "Show Incompatible Chars"; ObjectID = "679"; */
+/* Class = "NSMenuItem"; title = "Show Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "显示不兼容字符";
 
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */

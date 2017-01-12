@@ -305,7 +305,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             }
         }
         
-        // update incompatible chars list
+        // update incompatible characters list
         self.document?.incompatibleCharacterScanner.invalidate()
     }
     

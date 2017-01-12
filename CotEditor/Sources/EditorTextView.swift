@@ -1324,7 +1324,7 @@ extension EditorTextView {
         
         var wordRange = range
         
-        // treat additional specific chars as separator (see `wordRange(at:)` for details)
+        // treat additional specific characters as separator (see `wordRange(at:)` for details)
         if wordRange.length > 0 {
             wordRange = self.wordRange(at: proposedCharRange.location)
             if proposedCharRange.length > 1 {
