@@ -5,15 +5,20 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
+
+
 ### Improvements
 
 - Optimize script menu updating performance.
 - Change behavior to avoid showing incompatible char list on undoing encoding change.
 - Scale up character view in character inspector.
 - Change drawing font for some invisible characters to draw them at a better position.
+- Update “JavaScript” syntax style.
 - Add more description about scripting in the help contents.
 - Deprecate hidden settings for UI update interval.
-- Update “JavaScript” syntax style.
 - Update build environment to Xcode 8.2.1 (SDK macOS 10.12.2).
 
 
