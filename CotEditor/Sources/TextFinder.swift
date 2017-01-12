@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -89,7 +89,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     // MARK: Public Properties
     
-    dynamic var findString = ""
+    dynamic var findString = "" {
+        
+        didSet {
+            if self.sharesFindString {
+                NSPasteboard.findString = self.findString
+            }
+        }
+    }
     dynamic var replacementString = ""
     
     weak var delegate: TextFinderDelegate?
@@ -125,8 +132,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         // observe application activation to sync find string with other apps
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .NSApplicationDidBecomeActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .NSApplicationWillResignActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .NSApplicationWillTerminate, object: nil)
     }
     
     
@@ -182,15 +187,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             if let sharedFindString = NSPasteboard.findString {
                 self.findString = sharedFindString
             }
-        }
-    }
-    
-    
-    /// sync search string on deactivating application
-    func applicationWillResignActive(_ notification: Notification) {
-        
-        if self.sharesFindString {
-            NSPasteboard.findString = self.findString
         }
     }
     

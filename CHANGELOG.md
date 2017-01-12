@@ -19,6 +19,7 @@ develop
 ### Fixes
 
 - Fix an issue where the application could crash after lossy encoding change.
+- Fix an issue where the find string was not synchronized with other applications.
 - Fix an issue where incompatible characters highlight could highlight wrong characters if line endings are CR/LF.
 - Fix an issue the menu item “About Scripting” in Help > “CotEditor Scripting Manual” didn't work.
 - Fix an issue where the zoomed character in the character inspector was flipped when the popover is detached.
