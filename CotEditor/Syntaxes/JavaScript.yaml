@@ -4,9 +4,9 @@ filenames: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "2.1.0"
+  version: "2.1.1"
   license: "Same as CotEditor"
-  lastModified: "2016-04-19"
+  lastModified: "2017-01-12"
 completions: []
 outlineMenu:
 - beginString: "^([\\t ]*)(function)([^{]*)\\{"
@@ -598,7 +598,7 @@ attributes:
   regularExpression: true
 - beginString: "(?<=\\.)hidden\\b"
   regularExpression: true
-- beginString: "(?<=\\.)hight\\b"
+- beginString: "(?<=\\.)height\\b"
   regularExpression: true
 - beginString: "(?<=\\.)id\\b"
   regularExpression: true
@@ -696,7 +696,7 @@ attributes:
 - beginString: "cancelable"
 - beginString: "cancelBubble"
 - beginString: "changedTouches"
-- beginString: "charaterSet"
+- beginString: "characterSet"
 - beginString: "charCode"
 - beginString: "charset"
 - beginString: "childElementCount"

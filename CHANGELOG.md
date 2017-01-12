@@ -13,6 +13,7 @@ develop
 - Change drawing font for some invisible characters to draw them at a better position.
 - Add more description about scripting in the help contents.
 - Deprecate hidden settings for UI update interval.
+- Update “JavaScript” syntax style.
 - Update build environment to Xcode 8.2.1 (SDK macOS 10.12.2).
 
 
