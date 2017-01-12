@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -79,7 +79,6 @@ final class LayoutManager: NSLayoutManager {
     
     // MARK: Private Properties
     
-    private static let usesTextFontForInvisibles = Defaults[.usesTextFontForInvisibles]
     private static let HiraginoSansName = NSFontManager.shared().availableFonts.contains(FontName.HiraginoSans) ? FontName.HiraginoSans : FontName.HiraKakuProN
     private static let observedDefaultKeys: [DefaultKeys] = [
         .invisibleSpace,
@@ -382,28 +381,17 @@ final class LayoutManager: NSLayoutManager {
     /// cache CTLineRefs for invisible characters drawing
     private func generateInvisibleLines() -> InvisibleLines {
         
-        let font: NSFont = {
-            if type(of: self).usesTextFontForInvisibles, let textFont = self.textFont {
-                return textFont
-            } else {
-                let fontSize = self.textFont?.pointSize ?? 0
-                return NSFont(name: "LucidaGrande", size: fontSize) ?? NSFont.systemFont(ofSize: fontSize)
-            }
-        }()
+        let fontSize = self.textFont?.pointSize ?? 0
+        let font = NSFont.systemFont(ofSize: fontSize)
+        let spaceFont = self.textFont ?? font
+        let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: fontSize) ?? font
         
-        let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: font.pointSize) ?? font
-        
-        let attributes: [String: Any] = [NSForegroundColorAttributeName: self.invisiblesColor,
-                                         NSFontAttributeName: font]
-        let fullWidthAttributes: [String: Any] = [NSForegroundColorAttributeName: self.invisiblesColor,
-                                                  NSFontAttributeName: fullWidthFont]
-        
-        return InvisibleLines(space:          CTLine.create(string: Invisible.userSpace, attributes: attributes),
-                              tab:            CTLine.create(string: Invisible.userTab, attributes: attributes),
-                              newLine:        CTLine.create(string: Invisible.userNewLine, attributes: attributes),
-                              fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, attributes: fullWidthAttributes),
-                              verticalTab:    CTLine.create(string: Invisible.verticalTab, attributes: fullWidthAttributes),
-                              replacement:    CTLine.create(string: Invisible.replacement, attributes: fullWidthAttributes))
+        return InvisibleLines(space:          CTLine.create(string: Invisible.userSpace,          color: self.invisiblesColor, font: spaceFont),
+                              tab:            CTLine.create(string: Invisible.userTab,            color: self.invisiblesColor, font: font),
+                              newLine:        CTLine.create(string: Invisible.userNewLine,        color: self.invisiblesColor, font: font),
+                              fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, color: self.invisiblesColor, font: fullWidthFont),
+                              verticalTab:    CTLine.create(string: Invisible.verticalTab,        color: self.invisiblesColor, font: fullWidthFont),
+                              replacement:    CTLine.create(string: Invisible.replacement,        color: self.invisiblesColor, font: fullWidthFont))
     }
     
 }
@@ -415,9 +403,12 @@ final class LayoutManager: NSLayoutManager {
 private extension CTLine {
     
     /// convenient initializer for CTLine
-    class func create(string: String, attributes: [String: Any]?) -> CTLine {
+    class func create(string: String, color: NSColor, font: NSFont) -> CTLine {
         
+        let attributes: [String: Any] = [NSForegroundColorAttributeName: color,
+                                         NSFontAttributeName: font]
         let attrString = NSAttributedString(string: string, attributes: attributes)
+        
         return CTLineCreateWithAttributedString(attrString)
     }
  }
