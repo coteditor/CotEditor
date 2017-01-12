@@ -49,7 +49,7 @@ final class LayoutManager: NSLayoutManager {
     var usesAntialias = true
     
     var textFont: NSFont? {
-        // keep body text font to avoid the issue where the line hight can be different by composite font
+        // keep body text font to avoid the issue where the line height can be different by composite font
         // -> DO NOT use `self.firstTextView.font`, because it may return another font in case for example:
         //    Japansete text is input nevertheless the font that user specified dosen't support it.
         didSet {
@@ -378,7 +378,7 @@ final class LayoutManager: NSLayoutManager {
     }
     
     
-    /// cache CTLineRefs for invisible characters drawing
+    /// cache CTLines for invisible characters drawing
     private func generateInvisibleLines() -> InvisibleLines {
         
         let fontSize = self.textFont?.pointSize ?? 0
