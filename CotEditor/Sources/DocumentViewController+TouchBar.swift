@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -70,13 +70,13 @@ extension DocumentViewController: NSTouchBarDelegate {
         case NSTouchBarItemIdentifier.invisibles:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Invisibles", comment: "touch bar item")
-            item.view = NSButton(image: #imageLiteral(resourceName: "InvisiblesTemplate"), target: self, action: #selector(toggleInvisibleChars(_:)))
+            item.view = NSButton(image: #imageLiteral(resourceName: "InvisiblesTemplate"), target: self, action: #selector(toggleInvisibleCharsViaTouchBar(_:)))
             return item
             
         case NSTouchBarItemIdentifier.wrapLines:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Wrap Lines", comment: "touch bar item")
-            item.view = NSButton(image: #imageLiteral(resourceName: "WrapLinesTemplate"), target: self, action: #selector(toggleLineWrap(_:)))
+            item.view = NSButton(image: #imageLiteral(resourceName: "WrapLinesTemplate"), target: self, action: #selector(toggleLineWrapViaTouchBar(_:)))
             return item
             
         case NSTouchBarItemIdentifier.share:
@@ -90,6 +90,30 @@ extension DocumentViewController: NSTouchBarDelegate {
         default:
             return nil
         }
+    }
+    
+    
+    /// toggle visibility of invisible characters in text view
+    @IBAction private func toggleInvisibleCharsViaTouchBar(_ sender: NSButton) {
+        
+        self.toggleInvisibleChars(sender)
+        
+        // update UI manually
+        //   -> workaround for the issue where UI doesn't update on a touch bar event (2017-01 macOS 10.12.2 SDK)
+        self.view.window?.toolbar?.validateVisibleItems()
+        self.touchBar?.validateVisibleItems()
+    }
+    
+    
+    /// toggle if lines wrap at window edge
+    @IBAction private func toggleLineWrapViaTouchBar(_ sender: NSButton) {
+        
+        self.toggleLineWrap(sender)
+        
+        // update UI manually
+        //   -> workaround for the issue where UI doesn't update on a touch bar event (2017-01 macOS 10.12.2 SDK)
+        self.view.window?.toolbar?.validateVisibleItems()
+        self.touchBar?.validateVisibleItems()
     }
     
 }
@@ -114,7 +138,7 @@ extension DocumentViewController: TouchBarItemValidations {
             }
             }() else { return true }
         
-        let color: NSColor? = isEnabled ? nil : .quaternaryLabelColor
+        let color: NSColor? = isEnabled ? nil : NSColor(white: 0.15, alpha: 1)
         if button.bezelColor != color {
             button.bezelColor = color
             button.needsDisplay = true
