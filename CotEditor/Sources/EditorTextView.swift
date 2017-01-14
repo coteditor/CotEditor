@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -949,10 +949,9 @@ final class EditorTextView: NSTextView, Themable {
             
             // apply document's line ending
             if self.documentLineEnding != .LF {
-                for characterIndex in (0..<plainText.utf16.count).reversed() {  // process backwards
-                    guard (plainText as NSString).character(at: characterIndex) == "\n".utf16.first! else { continue }
-                    
+                for (characterIndex, character) in plainText.utf16.enumerated().reversed() where character == "\n".utf16.first! {  // process backwards
                     let characterRange = NSRange(location: characterIndex, length: 1)
+                    
                     styledText.replaceCharacters(in: characterRange, with: lineEnding)
                 }
             }
