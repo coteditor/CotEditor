@@ -138,7 +138,7 @@ extension DocumentViewController: TouchBarItemValidations {
             }
             }() else { return true }
         
-        let color: NSColor? = isEnabled ? nil : NSColor(white: 0.15, alpha: 1)
+        let color: NSColor? = isEnabled ? nil : .offStateButtonBezelColor
         if button.bezelColor != color {
             button.bezelColor = color
             button.needsDisplay = true
@@ -159,5 +159,16 @@ extension NSDocument: NSSharingServicePickerTouchBarItemDelegate {
         guard let fileURL = self.fileURL else { return [] }
         
         return [fileURL]
+    }
+}
+
+
+
+@available(macOS 10.12.2, *)
+private extension NSColor {
+    
+    /// button bezel color for off state
+    class var offStateButtonBezelColor: NSColor {
+        return NSColor(white: 0.12, alpha: 1)
     }
 }
