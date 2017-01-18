@@ -1,15 +1,15 @@
 /*
  
- Utilities.swift
+ Debug.swift
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2016-06-25.
+ Created by 1024jp on 2017-01-18.
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,33 +27,24 @@
 
 import Foundation
 
-extension Comparable {
-    
-    /**
-     Modify number to be within min/max values.
-     
-     - parameter minimum: Condition which receiver should not smaller than.
-     - parameter minimum: Condition which receiver should not larger than.
-     
-     - returns: Processed value.
-     */
-    func within(min minimum: Self, max maximum: Self) -> Self {
-        
-        return max(minimum, min(self, maximum))
-    }
-}
-
-
-
-/// debug friendly print with a dog/cow.
+/**
+ Debug friendly print with a dog/cow.
+ 
+ This function works just like `Swift.debugPring()` function. The advantage is you can know the thread and the function name that invoked this function easily at the same time. A 🐄 icon will be printed at the beginning of the message if it's invoked in a background thead, otherwise a 🐕.
+ 
+ - parameter items: Zero or more items to print.
+ - parameter function: The name of the function that invoked this function. You never need to set this parameter manually because it's set automatically.
+ */
 func moof(_ items: Any..., function: String = #function) {
     
     let icon = Thread.isMainThread ? "🐕" : "🐄"
+    let prefix = icon + " " + function + " "
     
-    Swift.print(icon + " \(function) ", terminator: "")
     if items.isEmpty {
-        Swift.print("")
+        Swift.print(prefix)
+        
     } else {
+        Swift.print(prefix, terminator: "")
         Swift.debugPrint(items)
     }
 }
