@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,8 +29,16 @@ import Cocoa
 
 extension NSImage {
     
-    /// return copy of image tinted with the color
+    /**
+     Return a copy of the image tinted with the color.
+     
+     - parameter color: The color to tint the image.
+     
+     - returns: A tinted image.
+     */
     func tinted(color: NSColor) -> NSImage {
+        
+        assert(self.isTemplate, "A image to tint should be a template image.")
         
         return NSImage(size: self.size, flipped: false, drawingHandler: { [weak self] dstRect -> Bool in
             guard let strongSelf = self else { return false }

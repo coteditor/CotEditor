@@ -103,5 +103,6 @@ extension String {
 
 /// check succesion from UErrorCode
 private func U_SUCCESS(_ code: UErrorCode) -> Bool {
+    
     return code.rawValue <= U_ZERO_ERROR.rawValue
 }
