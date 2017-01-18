@@ -411,6 +411,8 @@
 		2ABF0DC71D7D33880049B151 /* SmallToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF0DC61D7D33880049B151 /* SmallToolbarItem.swift */; };
 		2ABF0DC81D7D33880049B151 /* SmallToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF0DC61D7D33880049B151 /* SmallToolbarItem.swift */; };
 		2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */; };
+		2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */; };
+		2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */; };
 		2AC2462E1D1BC70C00E46CFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC2462D1D1BC70C00E46CFA /* AppDelegate.swift */; };
 		2AC2462F1D1BC70C00E46CFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC2462D1D1BC70C00E46CFA /* AppDelegate.swift */; };
 		2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */; };
@@ -935,6 +937,7 @@
 		2ABD9F701A3E0A3900BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCommentsEditView.xib; sourceTree = "<group>"; };
 		2ABF0DC61D7D33880049B151 /* SmallToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallToolbarItem.swift; sourceTree = "<group>"; };
 		2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTests.swift; sourceTree = "<group>"; };
+		2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDocument+ErrorHandling.swift"; sourceTree = "<group>"; };
 		2AC2462D1D1BC70C00E46CFA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1321,6 +1324,7 @@
 				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
 				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
 				2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */,
+				2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
 			);
 			name = AppKit;
@@ -2156,6 +2160,7 @@
 				2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
 				2A38FB011D1C6B6D0032231A /* SyntaxEditTableViewDelegate.swift in Sources */,
 				2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
+				2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
 				2A9082E31D32456300228F50 /* NSTextView+Layout.swift in Sources */,
 				2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
@@ -2422,6 +2427,7 @@
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
 				2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
+				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A1679E61D3CE07100E8261D /* Document.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,

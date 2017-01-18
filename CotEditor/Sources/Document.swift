@@ -1304,53 +1304,6 @@ extension Document: Editable {
 
 
 
-// MARK: - Error Handling Extension
-
-fileprivate extension NSDocument {
-    
-    typealias RecoveryHandler = ((Bool) -> Void)
-    
-    
-    /// present an error alert as document modal sheet
-    func presentErrorAsSheet(_ error: Error, recoveryHandler: RecoveryHandler? = nil) {
-        
-        guard let window = self.windowForSheet else {
-            let didRecover = self.presentError(error)
-            recoveryHandler?(didRecover)
-            return
-        }
-        
-        // close previous sheet if exists
-        window.attachedSheet?.orderOut(self)
-        
-        if let recoveryHandler = recoveryHandler {
-            let block = UnsafeMutablePointer<RecoveryHandler>.allocate(capacity: 1)
-            block.pointee = recoveryHandler
-            
-            self.presentError(error, modalFor: window,
-                              delegate: self,
-                              didPresent: #selector(didPresentErrorWithRecovery(didRecover:contextInfo:)),
-                              contextInfo: UnsafeMutableRawPointer(mutating: block))
-            
-        } else {
-            self.presentError(error, modalFor: window,
-                              delegate: nil, didPresent: nil, contextInfo: nil)
-        }
-    }
-    
-    
-    /// perform didRecoverBlock after recovering presented error
-    @objc private func didPresentErrorWithRecovery(didRecover: Bool, contextInfo: UnsafeMutableRawPointer?) {
-        
-        if let recoveryHandler = contextInfo?.assumingMemoryBound(to: RecoveryHandler.self).pointee {
-            recoveryHandler(didRecover)
-        }
-    }
-    
-}
-
-
-
 // MARK: - Error
 
 private struct ReinterpretationError: LocalizedError {
