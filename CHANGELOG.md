@@ -14,6 +14,7 @@ develop
 
 - Optimize script menu updating performance.
 - Change behavior to avoid showing incompatible char list on undoing encoding change.
+- Evaluate also the shebang to specify the syntax style on saving the document newly.
 - Scale up character view in character inspector.
 - Change drawing font for some invisible characters to draw them at a better position.
 - Update “JavaScript” syntax style.

@@ -418,34 +418,37 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             }
             
             guard error == nil else { return }
+            guard let strongSelf = self else { return }
             
             assert(Thread.isMainThread)
             
-            // apply syntax style that is inferred from the file name
+            // apply syntax style that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation {
                 let fileName = url.lastPathComponent
-                if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName) {
-                    self?.setSyntaxStyle(name: styleName)
+                if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName)
+                    ?? SyntaxManager.shared.styleName(documentContent: strongSelf.string)
+                    // -> Due to the async-saving, self.string can be changed from the actual saved contents.
+                    //    But we don't care about that.
+                {
+                    strongSelf.setSyntaxStyle(name: styleName)
                 }
             }
             
             if saveOperation != .autosaveElsewhereOperation {
                 // update file information
-                self?.analyzer.invalidateFileInfo()
+                strongSelf.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
                 let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
-                self?.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
+                strongSelf.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
             
-            if let strongSelf = self {
-                switch saveOperation {
-                case .saveOperation,
-                     .saveAsOperation,
-                     .saveToOperation:
-                    ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
-                default: break
-                }
+            switch saveOperation {
+            case .saveOperation,
+                 .saveAsOperation,
+                 .saveToOperation:
+                ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
+            default: break
             }
         }
     }
