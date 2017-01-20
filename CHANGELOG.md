@@ -27,6 +27,7 @@ develop
 
 - Fix an issue where the application could crash after lossy encoding change.
 - Fix an issue where the find string was not synchronized with other applications.
+- Fix an issue where the regular expression anchors `^` and `$` could match wrongly on the normal “Find Next/Previous” under specific conditions.
 - Fix an issue where incompatible characters highlight could highlight wrong characters if line endings are CR/LF.
 - Fix an issue where some touch bar icons were drawn wrongly. 
 - Fix an issue where the menu item “About Scripting” in Help > “CotEditor Scripting Manual” didn't work.
