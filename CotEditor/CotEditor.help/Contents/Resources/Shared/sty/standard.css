@@ -35,7 +35,7 @@ hr {
 	opacity: 0.33;
 }
 
-code {
+:not(h1) > code {
 	font-family: 'menlo', monospace;
 	font-size: 90%;
 	background: hsla(201, 30%, 50%, .02);
