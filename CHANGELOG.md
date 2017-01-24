@@ -21,6 +21,7 @@ develop
 - Add more description about scripting in the help contents.
 - Deprecate hidden settings for UI update interval.
 - Update build environment to Xcode 8.2.1 (SDK macOS 10.12.2).
+- [non-AppStore ver.] Update Sparkle framework to version 1.16.0.
 
 
 ### Fixes
