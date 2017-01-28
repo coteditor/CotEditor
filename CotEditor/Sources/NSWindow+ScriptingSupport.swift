@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,18 +31,18 @@ import Cocoa
 extension NSWindow {
     
     /// opacity of the editor view for AppleScript (real type)
-    var viewOpacity: NSNumber {
+    var viewOpacity: Double {
         
         get {
             guard let alphaWindow = self as? AlphaWindow else { return 1.0 }
             
-            return NSNumber(value: Double(alphaWindow.backgroundAlpha))
+            return Double(alphaWindow.backgroundAlpha)
         }
         
         set {
             guard let alphaWindow = self as? AlphaWindow else { return }
             
-            alphaWindow.backgroundAlpha = CGFloat(viewOpacity.doubleValue)
+            alphaWindow.backgroundAlpha = CGFloat(newValue)
         }
     }
     
