@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -58,10 +58,10 @@ extension Document {
             return textStorage
         }
         
-        set (object) {
-            if let textStorage = object as? NSTextStorage {
+        set {
+            if let textStorage = newValue as? NSTextStorage {
                 self.replaceAllString(with: textStorage.string)
-            } else if let string = object as? String {
+            } else if let string = newValue as? String {
                 self.replaceAllString(with: string)
             }
         }
@@ -74,16 +74,16 @@ extension Document {
         get {
             return self.scriptTextStorage
         }
-        set (contents) {
-            self.scriptTextStorage = contents
+        set {
+            self.scriptTextStorage = newValue
         }
     }
     
     
     /// length of document (integer)
-    var length: NSNumber {
+    var length: Int {
         
-        return NSNumber(value: self.string.utf16.count)
+        return self.string.utf16.count
     }
     
     
@@ -102,9 +102,9 @@ extension Document {
                 return OSALineEnding.LF
             }
         }
-        set (lineEndingChar) {
+        set {
             let type: LineEnding = {
-                switch lineEndingChar {
+                switch newValue {
                 case OSALineEnding.LF:
                     return .LF
                 case OSALineEnding.CR:
@@ -140,8 +140,8 @@ extension Document {
         get {
             return self.syntaxStyle.styleName
         }
-        set (coloringStyle) {
-            self.setSyntaxStyle(name: coloringStyle)
+        set {
+            self.setSyntaxStyle(name: newValue)
         }
     }
     
@@ -159,37 +159,37 @@ extension Document {
     
     
     /// state of text wrapping (bool)
-    var wrapsLines: NSNumber {
+    var wrapsLines: Bool {
         
         get {
-            return NSNumber(value :self.viewController?.wrapsLines ?? false)
+            return self.viewController?.wrapsLines ?? false
         }
-        set (wrapsLine) {
-            self.viewController?.wrapsLines = wrapsLines.boolValue
+        set {
+            self.viewController?.wrapsLines = newValue
         }
     }
     
     
     /// tab width (integer)
-    var tabWidth: NSNumber {
+    var tabWidth: Int {
         
         get {
-            return NSNumber(value: self.viewController?.tabWidth ?? 0)
+            return self.viewController?.tabWidth ?? 0
         }
-        set (tabWidth) {
-            self.viewController?.tabWidth = tabWidth.intValue
+        set {
+            self.viewController?.tabWidth = newValue
         }
     }
     
     
     /// whether replace tab with spaces
-    var expandsTab: NSNumber {
+    var expandsTab: Bool {
         
         get {
-            return NSNumber(value :self.viewController?.isAutoTabExpandEnabled ?? false)
+            return self.viewController?.isAutoTabExpandEnabled ?? false
         }
-        set (expandsTab) {
-            self.viewController?.isAutoTabExpandEnabled = expandsTab.boolValue
+        set {
+            self.viewController?.isAutoTabExpandEnabled = newValue
         }
     }
     
