@@ -10,6 +10,10 @@ develop
 - Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
 
 
+
+3.1.3
+--------------------------
+
 ### Improvements
 
 - Optimize script menu updating performance.
