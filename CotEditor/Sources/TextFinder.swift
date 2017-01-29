@@ -736,10 +736,10 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             let regex = self.regex()!
             guard let match = regex.firstMatch(in: string, range: textView.selectedRange) else { return false }
             
-            let tempalte = self.unescapesReplacementString ? self.replacementString.unescaped : self.replacementString
+            let template = self.unescapesReplacementString ? self.replacementString.unescaped : self.replacementString
             
             matchedRange = match.range
-            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: tempalte)
+            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: template)
             
         } else {
             matchedRange = (string as NSString).range(of: self.sanitizedFindString, options: self.textualOptions, range: textView.selectedRange)
