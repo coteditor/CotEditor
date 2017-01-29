@@ -389,7 +389,7 @@ private extension NSString {
     func range(of searchString: String, selectedRange: NSRange, options: String.CompareOptions, isWrapSearch: Bool) -> NSRange? {
         
         let targetRange: NSRange = {
-            if options.contains(.backwards) {
+            if options.contains(.backwards) && !options.contains(.regularExpression) {
                 return NSRange(location: 0, length: selectedRange.location)
             }
             return NSRange(location: selectedRange.max, length: self.length - selectedRange.max)
