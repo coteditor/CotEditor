@@ -385,7 +385,7 @@ private extension String.CompareOptions {
 
 private extension NSString {
     
-    ///
+    /// find and return the range of the first occurence starting from the given selectedRange
     func range(of searchString: String, selectedRange: NSRange, options: String.CompareOptions, isWrapSearch: Bool) -> NSRange? {
         
         let targetRange: NSRange = {
