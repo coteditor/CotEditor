@@ -253,33 +253,24 @@ extension Document {
         
         guard
             let arguments = command.evaluatedArguments,
-            let searchString = arguments["targetString"] as? String, !searchString.isEmpty else { return false }
+            let searchString = arguments["targetString"] as? String, !searchString.isEmpty
+            else { return false }
         
         let wholeString = self.string
         
         guard !wholeString.isEmpty else { return false }
         
-        let isRegex = (arguments["regularExpression"] as? Bool) ?? false
-        let ignoresCase = (arguments["ignoreCase"] as? Bool) ?? false
-        let isBackwards = (arguments["backwardsSearch"] as? Bool) ?? false
+        let options = String.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         
-        // set target range
-        let targetRange: NSRange = {
-            let selectedRange = self.selectedRange
-            if isBackwards {
-                return NSRange(location: 0, length: selectedRange.location)
-            }
-            return NSRange(location: selectedRange.max, length: wholeString.utf16.count - selectedRange.max)
-        }()
-        
         // perform find
-        var success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: targetRange)
-        if !success && isWrapSearch {
-            success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: wholeString.nsRange)
-        }
+        guard let foundRange = (wholeString as NSString).range(of: searchString, selectedRange: self.selectedRange,
+                                                               options: options, isWrapSearch: isWrapSearch)
+            else { return false }
         
-        return success as NSNumber
+        self.selectedRange = foundRange
+        
+        return true
     }
     
     
@@ -288,68 +279,41 @@ extension Document {
         
         guard
             let arguments = command.evaluatedArguments,
-            let searchString = arguments["targetString"] as? String, !searchString.isEmpty else { return 0 }
+            let searchString = arguments["targetString"] as? String, !searchString.isEmpty,
+            let replacementString = arguments["newString"] as? String
+            else { return 0 }
         
         let wholeString = self.string
         
         guard !wholeString.isEmpty else { return 0 }
         
-        let replacementString = (arguments["newString"] as? String) ?? ""
-        let isRegex = (arguments["regularExpression"] as? Bool) ?? false
-        let ignoresCase = (arguments["ignoreCase"] as? Bool) ?? false
-        let isBackwards = (arguments["backwardsSearch"] as? Bool) ?? false
+        let options = String.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         let isAll = (arguments["all"] as? Bool) ?? false
         
-        // set target range
-        let targetRange: NSRange = {
-            if isAll {
-                return wholeString.nsRange
-            }
-            let selectedRange = self.selectedRange
-            if isBackwards {
-                return NSRange(location: 0, length: selectedRange.location)
-            }
-            return NSRange(location: selectedRange.max, length: wholeString.utf16.count - selectedRange.max)
-        }()
-        
         // perform replacement
-        var numberOfReplacements = 0
         if isAll {
             let newWholeString = NSMutableString(string: wholeString)
-            if isRegex {
-                let options: NSRegularExpression.Options = ignoresCase ? .caseInsensitive : []
-                guard let regex = try? NSRegularExpression(pattern: searchString, options: options) else { return 0 }
-                numberOfReplacements = regex.replaceMatches(in: newWholeString, range: targetRange, withTemplate: replacementString)
-                
-            } else {
-                var options = NSString.CompareOptions()
-                if ignoresCase {
-                    options.update(with: .caseInsensitive)
-                }
-                if isBackwards {
-                    options.update(with: .backwards)
-                }
-                numberOfReplacements = newWholeString.replaceOccurrences(of: searchString, with: replacementString,
-                                                                         options: options, range: targetRange)
-            }
-            if numberOfReplacements > 0 {
-                self.replaceAllString(with: newWholeString as String)
-                self.selectedRange = NSRange()
-            }
+            let numberOfReplacements = newWholeString.replaceOccurrences(of: searchString, with: replacementString,
+                                                                         options: options, range: wholeString.nsRange)
+            
+            guard numberOfReplacements > 0 else { return 0 }
+            
+            self.replaceAllString(with: newWholeString as String)
+            self.selectedRange = NSRange()
+            
+            return numberOfReplacements as NSNumber
             
         } else {
-            var success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: targetRange)
-            if !success && isWrapSearch {
-                success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: wholeString.nsRange)
-            }
-            if success {
-                self.selection.contents = replacementString  // TextSelection's `setContents:` accepts also String for its argument
-                numberOfReplacements = 1
-            }
+            guard let foundRange = (wholeString as NSString).range(of: searchString, selectedRange: self.selectedRange,
+                                                                   options: options, isWrapSearch: isWrapSearch)
+                else { return 0 }
+            
+            self.selectedRange = foundRange
+            self.selection.contents = replacementString  // TextSelection's `setContents:` accepts also String for its argument
+            
+            return 1
         }
-        
-        return numberOfReplacements as NSNumber
     }
     
     
@@ -372,34 +336,60 @@ extension Document {
         
         let range = self.string.range(location: location, length: length)
         
-        return (self.string as NSString?)?.substring(with: range)
+        return (self.string as NSString).substring(with: range)
     }
     
+}
+
+
+
+
+// MARK: -
+
+private extension String.CompareOptions {
     
+    init(scriptingArguments arguments: [String: Any]) {
+        
+        let isRegex = (arguments["regularExpression"] as? Bool) ?? false
+        let ignoresCase = (arguments["ignoreCase"] as? Bool) ?? false
+        let isBackwards = (arguments["backwardsSearch"] as? Bool) ?? false
+        
+        self.init()
+        
+        if isRegex {
+            self.update(with: .regularExpression)
+        }
+        if ignoresCase {
+            self.update(with: .caseInsensitive)
+        }
+        if isBackwards {
+            self.update(with: .backwards)
+        }
+    }
     
-    // MARK: Private Methods
+}
+
+
+private extension NSString {
     
-    /// find string, select if found and return whether succeed
-    private func find(_ searchString: String, regularExpression: Bool, ignoreCase: Bool, backwards: Bool, range: NSRange) -> Bool {
+    ///
+    func range(of searchString: String, selectedRange: NSRange, options: String.CompareOptions, isWrapSearch: Bool) -> NSRange? {
         
-        var options = NSString.CompareOptions()
-        if regularExpression {
-            options.update(with: .regularExpression)
+        let targetRange: NSRange = {
+            if options.contains(.backwards) {
+                return NSRange(location: 0, length: selectedRange.location)
+            }
+            return NSRange(location: selectedRange.max, length: self.length - selectedRange.max)
+        }()
+        
+        var foundRange = self.range(of: searchString, options: options, range: targetRange)
+        if foundRange.location == NSNotFound && isWrapSearch {
+            foundRange = self.range(of: searchString, options: options)
         }
-        if ignoreCase {
-            options.update(with: .caseInsensitive)
-        }
-        if backwards {
-            options.update(with: .backwards)
-        }
         
-        let foundRange = (self.string as NSString).range(of: searchString, options: options, range: range)
+        guard foundRange.location != NSNotFound else { return nil }
         
-        guard foundRange.location != NSNotFound else { return false }
-        
-        self.selectedRange = foundRange
-        
-        return true
+        return foundRange
     }
     
 }
