@@ -309,8 +309,21 @@ extension Document {
                                                                    options: options, isWrapSearch: isWrapSearch)
                 else { return 0 }
             
+            let replacedString: String
+            if options.contains(.regularExpression) {
+                let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? .caseInsensitive : []
+                guard
+                    let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions),
+                    let match = regex.firstMatch(in: wholeString, options: .withoutAnchoringBounds, range: foundRange)
+                    else { return 0 }
+                
+                replacedString = regex.replacementString(for: match, in: wholeString, offset: 0, template: replacementString)
+            } else {
+                replacedString = replacementString
+            }
+            
             self.selectedRange = foundRange
-            self.selection.contents = replacementString  // TextSelection's `setContents:` accepts also String for its argument
+            self.selection.contents = replacedString  // TextSelection's `setContents:` accepts also String for its argument
             
             return 1
         }
