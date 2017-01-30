@@ -35,6 +35,7 @@ private extension OSALineEnding {
     static let CRLF = FourCharCode(code: "leCL")
 }
 
+
 extension Document {
     
     // MARK: AppleScript Accessors
@@ -44,34 +45,12 @@ extension Document {
         get {
             let textStorage = NSTextStorage(string: self.string)
             
-            // observe text storage update for in case when a part of the contents is directly edited
-            // e.g.:
-            // ```AppleScript
-            // tell first document of application "CotEditor"
-            //     set first paragraph of contents to "foo bar"
-            // end tell
-            // ```
-            weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: .NSTextStorageDidProcessEditing, object: textStorage, queue: .main) { notification in
-                if let observer = observer {
-                    NotificationCenter.default.removeObserver(observer)
-                }
-                
-                if let textStorage = notification.object as? NSTextStorage {
-                    self.replaceAllString(with: textStorage.string)
-                }
-            }
-            
-            // disconnect the observation after 0.5 sec. anyway (otherwise app may crash)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if let observer = observer {
-                    NotificationCenter.default.removeObserver(observer)
-                }
+            textStorage.observeDirectEditing { [weak self] (editedString) in
+                self?.replaceAllString(with: editedString)
             }
             
             return textStorage
         }
-        
         set {
             if let textStorage = newValue as? NSTextStorage {
                 self.replaceAllString(with: textStorage.string)
@@ -90,6 +69,20 @@ extension Document {
         }
         set {
             self.scriptTextStorage = newValue
+        }
+    }
+    
+    
+    /// selection-object (TextSelection)
+    var selectionObject: Any {
+        
+        get {
+            return self.selection
+        }
+        set {
+            if let string = newValue as? String {
+                self.selection.contents = string
+            }
         }
     }
     
@@ -160,17 +153,6 @@ extension Document {
     }
     
     
-    /// selection-object
-    func selectionObject() -> TextSelection {
-        return self.selection
-    }
-    func setSelectionObject(_ object: Any) {
-        if let string = object as? String {
-            self.selection.contents = string
-        }
-    }
-    
-    
     /// state of text wrapping (bool)
     var wrapsLines: Bool {
         
@@ -213,17 +195,16 @@ extension Document {
     /// handle the Convert AppleScript by changing the text encoding and converting the text
     func handleConvert(_ command: NSScriptCommand) -> NSNumber {
         
-        let arguments = command.evaluatedArguments
-        
         guard
-            let encodingName = arguments?["newEncoding"] as? String,
+            let arguments = command.evaluatedArguments,
+            let encodingName = arguments["newEncoding"] as? String,
             let encoding = EncodingManager.encoding(fromName: encodingName) else { return false }
         
         if encoding == self.encoding {
             return true
         }
         
-        let lossy = (arguments?["lossy"] as? Bool) ?? false
+        let lossy = (arguments["lossy"] as? Bool) ?? false
         
         return self.changeEncoding(to: encoding, withUTF8BOM: false, askLossy: false, lossy: lossy) as NSNumber
     }
@@ -232,10 +213,9 @@ extension Document {
     /// handle the Convert AppleScript by changing the text encoding and reinterpreting the text
     func handleReinterpret(_ command: NSScriptCommand) -> NSNumber {
         
-        let arguments = command.evaluatedArguments
-        
         guard
-            let encodingName = arguments?["newEncoding"] as? String,
+            let arguments = command.evaluatedArguments,
+            let encodingName = arguments["newEncoding"] as? String,
             let encoding = EncodingManager.encoding(fromName: encodingName) else { return false }
         
         do {
@@ -340,9 +320,10 @@ extension Document {
     /// return sting in the specified range
     func handleString(_ command: NSScriptCommand) -> String? {
         
-        let arguments = command.evaluatedArguments
-        
-        guard let rangeArray = arguments?["range"] as? [Int], rangeArray.count == 2 else { return nil }
+        guard
+            let arguments = command.evaluatedArguments,
+            let rangeArray = arguments["range"] as? [Int], rangeArray.count == 2
+            else { return nil }
         
         let location = rangeArray[0]
         let length = max(rangeArray[1], 1)
