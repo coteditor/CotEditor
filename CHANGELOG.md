@@ -11,7 +11,7 @@ develop
 
 
 
-3.1.3
+3.1.3 (180)
 --------------------------
 
 ### Improvements
@@ -39,7 +39,7 @@ develop
 - Fix an issue where the menu item “About Scripting” in Help > “CotEditor Scripting Manual” didn't work.
 - Fix an issue where the zoomed character in the character inspector was flipped when the popover is detached.
 - Fix an issue where `lossy` option in `convert` command by AppleScript scripting was ignored.
-- Fix an issue on the AppleScript scripting where `range` property of `document` contents could be wrong if document line endings are not LF. (thanks to Kaito Udagawa!).
+- Fix an issue on the AppleScript scripting where `range` property of `document` contents could be wrong if document line endings are not LF (thanks to Kaito Udagawa!).
 - Fix an issue where the editor opacity couldn't be set via AppleScript.
 - Fix minor typos.
 
