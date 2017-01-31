@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@
 "kjP-FS-fyd.title" = "状态栏显示：";
 /* Class = "NSButtonCell"; title = "Line Count"; ObjectID = "6jK-xX-8AH"; */
 "6jK-xX-8AH.title" = "行数";
-/* Class = "NSButtonCell"; title = "Char Count"; ObjectID = "sHZ-kO-Wvu"; */
+/* Class = "NSButtonCell"; title = "Character Count"; ObjectID = "sHZ-kO-Wvu"; */
 "sHZ-kO-Wvu.title" = "字符数";
 /* Class = "NSButtonCell"; title = "Length"; ObjectID = "YE8-hr-UbT"; */
 "YE8-hr-UbT.title" = "长度";

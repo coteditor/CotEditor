@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -122,7 +122,7 @@
                                                 <action selector="getInfo:" target="Ady-hI-5gd" id="MP6-vd-LwJ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Incompatible Chars" keyEquivalent="I" id="679">
+                                        <menuItem title="Show Incompatible Characters" keyEquivalent="I" id="679">
                                             <connections>
                                                 <action selector="toggleIncompatibleCharList:" target="Ady-hI-5gd" id="tKS-ZB-SMh"/>
                                             </connections>

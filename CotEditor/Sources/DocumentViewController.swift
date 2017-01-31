@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -305,7 +305,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             }
         }
         
-        // update incompatible chars list
+        // update incompatible characters list
         self.document?.incompatibleCharacterScanner.invalidate()
     }
     
@@ -543,9 +543,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
         self.wrapsLines = !self.wrapsLines
-        
-        // workaround for change via touch bar (2016-11 macOS 10.12.1 SDK)
-        self.view.window?.toolbar?.validateVisibleItems()
     }
     
     
@@ -571,9 +568,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func toggleInvisibleChars(_ sender: Any?) {
         
         self.showsInvisibles = !self.showsInvisibles
-        
-        // workaround for change via touch bar (2016-11 macOS 10.12.1 SDK)
-        self.view.window?.toolbar?.validateVisibleItems()
     }
     
     

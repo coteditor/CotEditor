@@ -145,7 +145,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.servicesProvider = ServicesProvider()
         
         // setup touchbar
-        if #available(macOS 10.12.1, *), NSClassFromString("NSTouchBar") != nil {
+        if #available(macOS 10.12.2, *) {
             NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         }
         

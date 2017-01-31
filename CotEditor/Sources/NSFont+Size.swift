@@ -37,7 +37,7 @@ extension NSFont {
      
      - returns: Advancement of passed-in character.
      
-     - note: This method is not light-weigt since it creates new NSTextStorage and NSLayoutManager every time it's called. You should store the value somewhere to use this repeatedly.
+     - note: This method is not light-weigt since it creates new NSTextStorage and NSLayoutManager every time it's called. You should store the result somewhere to use it repeatedly.
      */
     func advancement(character: Character) -> NSSize {
         

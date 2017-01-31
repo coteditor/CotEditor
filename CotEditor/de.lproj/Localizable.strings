@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -118,9 +118,9 @@
 "Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
 "Do you want to continue processing?" = "Möchten Sie mit der Bearbeitung fortfahren?";
 "Save Available Strings" = " Verfügbare Zeichenkette speichern";
-"Show Incompatible Chars" = "Inkompatible Zeichen einblenden";
+"Show Incompatible Characters" = "Inkompatible Zeichen einblenden";
 
-// Uncorresponded IANA charset name alert
+// Incompatible IANA charset name alert
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "Die Codierung ist „%@“, doch der IANA-Zeichensatzname ist „%@“.";
 "Do you want to continue processing?" = "Möchten Sie mit der Bearbeitung fortfahren?";
 "Do not show this warning for this document again" = "Diese Warnung für dieses Dokument nicht erneut anzeigen";
@@ -131,12 +131,12 @@
 "Do you want to discard the changes and reset the file encoding?" = "Möchten Sie die Änderungen verwerfen und die Dateicodierung zurücksetzen?";
 "Discard Changes" = "Änderungen verwerfen";
 
-// Reinterpretion failed alert
+// Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "Das Dokument hat keine Datei zum Neuinterpretieren.";
 "The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "Die Datei „%@“ konnte nicht mithilfe der Codierung „%@“ neu interpretiert werden.";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "Die Datei wurde möglicherweise mit einer anderen Textcodierung gesichert order es handelt sich nicht um eine Textdatei";
 
-// Incompatible chars alert
+// incompatible characters alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
 "Do you want to change encoding and show incompatible characters?" = "Möchten Sie die Codierung ändern und die inkompatiblen Zeichen zeigen?";
 "Change Encoding" = "Codierung wechseln";
@@ -282,7 +282,7 @@
 /* MARK: StatusBarController */
 "%@: " = "%@: ";
 "Lines" = "Zeilen";
-"Chars" = "Zeichen";
+"Characters" = "Zeichen";
 "Length" = "Länge";
 "Words" = "Wörter";
 "Location" = "Position";
@@ -326,7 +326,7 @@
 "Stylesheet Keywords" = "CSS-Schlüsselwörter";
 
 
-// Genearal pane
+// General pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";
 "Do you want to restart CotEditor now?" = "Möchten Sie CotEditor jetzt neu starten?";
@@ -468,7 +468,7 @@
 // Label for text menu keybindings action
 "Insert Text %@" = "Text hinzufügen %@";
 
-// Keybord key name
+// Keyboard key name
 "Space" = "Leertaste";
 
 // Warning messages
@@ -477,7 +477,7 @@
 "“%@” includes the Command key." = "„%@“ enthält die Command-Taste.";
 "Please choose another key." = "Bitte wählen Sie eine andere Taste.";
 "Single type is invalid for a shortcut." = "Einzelne Tasten sind für einen Kurzbefehl ungültig.";
-"Please combinate with another keys." = "Bitte kombinieren Sie sie mit anderen Tasten.";
+"Please combine with another keys." = "Bitte kombinieren Sie sie mit anderen Tasten.";
 
 
 

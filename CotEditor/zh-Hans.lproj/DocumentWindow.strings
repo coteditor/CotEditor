@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -54,8 +54,8 @@
 "uXf-pD-u6A.toolTip" = "显示文档信息";  /* Show document information */
 
 /* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
-"xle-wq-mIH.label" = "不兼容字符";  /* Incompatible Chars */
-"xle-wq-mIH.paletteLabel" = "显示不兼容字符";  /* Show Incompatible Chars */
+"xle-wq-mIH.label" = "不兼容字符";  /* Incompatible Characters */
+"xle-wq-mIH.paletteLabel" = "显示不兼容字符";  /* Show Incompatible Characters */
 "xle-wq-mIH.toolTip" = "显示选中编码的不兼容字符";  /* Show incompatible characters for selected encoding */
 
 /* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
@@ -89,8 +89,8 @@
 "fW9-Xn-I9b.toolTip" = "将选中内容注释或取消注释";  /* Comment-out or uncomment selection */
 
 /* Class = "NSToolbarItem"; label = "不可见字符"; ObjectID = "xbD-Up-YfQ"; */
-"xbD-Up-YfQ.label" = "不可见字符";  /* Invisible Chars */
-"xbD-Up-YfQ.paletteLabel" = "显示 / 隐藏不可见字符";  /* Show / Hide Invisible Chars */
+"xbD-Up-YfQ.label" = "不可见字符";  /* Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "显示 / 隐藏不可见字符";  /* Show / Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "显示或隐藏文本中的不可见字符";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
@@ -110,13 +110,13 @@
 
 /* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "扩展 Tab";  /* Expand Tabs */
-"c9C-af-Zcg.paletteLabel" = "切换自动扩展 Tab";  /* Toggle Auto Tab Expand */
-"c9C-af-Zcg.toolTip" = "切换自动扩展 Tab";  /* Toggle auto tab expand */
+"c9C-af-Zcg.paletteLabel" = "切换自动扩展 Tab";  /* Toggle Tab Auto-Expansion */
+"c9C-af-Zcg.toolTip" = "切换自动扩展 Tab";  /* Toggle tab auto-expansion */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "拼写检查";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "拼写检查";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "显示拼写和语法面板";  /* Show spelling and grammer panel */
+"Ply-Nr-aOE.toolTip" = "显示拼写和语法面板";  /* Show spelling and grammar panel */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "颜色代码";  /* Color Code */

@@ -95,7 +95,7 @@ extension String {
         // We don't use `CharacterSet.newlines` because it contains more characters than we need.
         guard let range = self.rangeOfCharacter(from: LineEnding.characterSet) else { return nil }
         let character = self.characters[range.lowerBound]
-        // -> This is enough because Swift (at least Swift 3-beta) treats "\r\n" as single character.
+        // -> This is enough because Swift (at least Swift 3) treats "\r\n" as a single character.
         
         return LineEnding(rawValue: character)
     }
@@ -119,16 +119,25 @@ extension String {
     
     
     /// convert passed-in range as if line endings are changed from fromLineEnding to toLineEnding
+    /// assuming the receiver has `fromLineEnding` regardless of actual ones if specified
+    ///
+    /// - important: Consider to avoid using this method in a frequent loop as it's relatively heavy.
     func convert(from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding, range: NSRange) -> NSRange {
         
         guard let currentLineEnding = (fromLineEnding ?? self.detectedLineEnding) else { return range }
         
-        guard currentLineEnding.string.unicodeScalars.count != toLineEnding.string.unicodeScalars.count else { return range }
+        let delta = toLineEnding.string.unicodeScalars.count - currentLineEnding.string.unicodeScalars.count
         
-        let locationString = (self as NSString).substring(to: range.location).replacingLineEndings(with: toLineEnding)
-        let lengthString = (self as NSString).substring(with: range).replacingLineEndings(with: toLineEnding)
+        guard delta != 0 else { return range }
         
-        return NSRange(location: locationString.utf16.count, length: lengthString.utf16.count)
+        let string = self.replacingLineEndings(with: currentLineEnding)
+        let regex = try! NSRegularExpression(pattern: "\\r\\n|[\\n\\r\\u2028\\u2029]")
+        let locationRange = NSRange(location: 0, length: range.location)
+        
+        let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)
+        let lengthDelta = delta * regex.numberOfMatches(in: string, range: range)
+        
+        return NSRange(location: range.location + locationDelta, length: range.length + lengthDelta)
     }
     
 }

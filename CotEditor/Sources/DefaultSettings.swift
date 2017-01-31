@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -157,12 +157,9 @@ let DefaultSettings: [DefaultKeys: Any] = [
     .recentStyleNames: [],
     
     // ------ hidden settings ------
-    .usesTextFontForInvisibles: false,
     .headerFooterDateFormat: "YYYY-MM-dd HH:mm",
     .headerFooterPathAbbreviatingWithTilde: true,
     .autoCompletionDelay: 0.25,
-    .infoUpdateInterval: 0.2,
-    .outlineMenuInterval: 0.37,
     .showColoringIndicatorTextLength: 75000,
     .coloringRangeBufferLength: 5000,
     .largeFileAlertThreshold: 50 * pow(1024, 2),  // 50 MB

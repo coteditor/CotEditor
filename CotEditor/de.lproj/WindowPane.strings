@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@
 "kjP-FS-fyd.title" = "Statusleiste zeigt:";
 /* Class = "NSButtonCell"; title = "Line Count"; ObjectID = "6jK-xX-8AH"; */
 "6jK-xX-8AH.title" = "Zeilenanzahl";
-/* Class = "NSButtonCell"; title = "Char Count"; ObjectID = "sHZ-kO-Wvu"; */
+/* Class = "NSButtonCell"; title = "Character Count"; ObjectID = "sHZ-kO-Wvu"; */
 "sHZ-kO-Wvu.title" = "Zeichenanzahl";
 /* Class = "NSButtonCell"; title = "Length"; ObjectID = "YE8-hr-UbT"; */
 "YE8-hr-UbT.title" = "Länge";

@@ -1,15 +1,15 @@
 /*
  
- NSWindow+ScriptingSupport.swift
+ Comparable.swift
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2014-03-12.
+ Created by 1024jp on 2016-06-25.
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2016 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,25 +25,18 @@
  
  */
 
-import Cocoa
-
-/// scripting support
-extension NSWindow {
+extension Comparable {
     
-    /// opacity of the editor view for AppleScript (real type)
-    var viewOpacity: Double {
+    /**
+     Modify number to be within min/max values.
+     
+     - parameter minimum: Condition which receiver should not smaller than.
+     - parameter maximum: Condition which receiver should not larger than.
+     
+     - returns: Processed value.
+     */
+    func within(min minimum: Self, max maximum: Self) -> Self {
         
-        get {
-            guard let alphaWindow = self as? AlphaWindow else { return 1.0 }
-            
-            return Double(alphaWindow.backgroundAlpha)
-        }
-        
-        set {
-            guard let alphaWindow = self as? AlphaWindow else { return }
-            
-            alphaWindow.backgroundAlpha = CGFloat(newValue)
-        }
+        return max(minimum, min(self, maximum))
     }
-    
 }

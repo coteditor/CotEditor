@@ -193,7 +193,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Methods
     
-    /// recieve number of found
+    /// receive number of found
     func updateResultCount(_ numberOfFound: Int, target: NSTextView) {
         
         self.clearNumberOfFound()
@@ -217,7 +217,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// recieve number of replaced
+    /// receive number of replaced
     func updateReplacedCount(_ numberOfReplaced: Int, target: NSTextView) {
         
         self.clearNumberOfReplaced()

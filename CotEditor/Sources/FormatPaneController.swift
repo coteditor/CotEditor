@@ -70,7 +70,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     // MARK: View Controller Methods
     
-    // setup UI
+    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()

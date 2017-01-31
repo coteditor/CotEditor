@@ -103,7 +103,7 @@ extension UTF32Char {
         return self.name(for: U_UNICODE_CHAR_NAME) ?? self.name(for: U_EXTENDED_CHAR_NAME)
         // -> `U_UNICODE_CHAR_NAME` returns modern Unicode name however it doesn't support surrogate character names.
         //    `U_EXTENDED_CHAR_NAME` returns lowercase name within angle brackets like "<lead surrogate-D83D>".
-        //    Therefore, we combinate `U_UNICODE_CHAR_NAME` and `U_EXTENDED_CHAR_NAME`.
+        //    Therefore, we combine `U_UNICODE_CHAR_NAME` and `U_EXTENDED_CHAR_NAME`.
     }
     
     

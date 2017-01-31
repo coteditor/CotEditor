@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -88,7 +88,7 @@
 
 /* Class = "NSMenuItem"; title = "Get Info"; ObjectID = "564"; */
 "564.title" = "Informationen einblenden";
-/* Class = "NSMenuItem"; title = "Show Incompatible Chars"; ObjectID = "679"; */
+/* Class = "NSMenuItem"; title = "Show Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Inkompatible Zeichen einblenden";
 
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */

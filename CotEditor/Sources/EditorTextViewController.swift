@@ -39,7 +39,18 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             
             textView.inlineCommentDelimiter = syntaxStyle?.inlineCommentDelimiter
             textView.blockCommentDelimiters = syntaxStyle?.blockCommentDelimiters
-            textView.firstSyntaxCompletionCharacterSet = syntaxStyle?.firstCompletionCharacterSet
+            
+            textView.firstSyntaxCompletionCharacterSet = {
+                guard let words = syntaxStyle?.completionWords, !words.isEmpty else { return nil }
+                
+                return words.reduce(CharacterSet()) { (charSet: CharacterSet, word: String) in
+                    if let firstChar = word.unicodeScalars.first {
+                        var charSet = charSet
+                        charSet.update(with: firstChar)
+                    }
+                    return charSet
+                }
+            }()
         }
     }
     
@@ -354,6 +365,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                                                                selector: #selector(updateCurrentLineRect),
                                                                userInfo: nil,
                                                                repeats: false)
+            self.currentLineUpdateTimer?.tolerance = 0.5 * interval
         }
     }
     

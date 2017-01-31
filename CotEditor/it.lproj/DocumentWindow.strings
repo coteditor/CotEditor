@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -54,8 +54,8 @@
 "uXf-pD-u6A.toolTip" = "Mostra informazioni sul documento";  /* Show document information */
 
 /* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
-"xle-wq-mIH.label" = "Caratteri incompatibili";  /* Incompatible Chars */
-"xle-wq-mIH.paletteLabel" = "Mostra caratteri incompatibili";  /* Show Incompatible Chars */
+"xle-wq-mIH.label" = "Caratteri incompatibili";  /* Incompatible Characters */
+"xle-wq-mIH.paletteLabel" = "Mostra caratteri incompatibili";  /* Show Incompatible Characters */
 "xle-wq-mIH.toolTip" = "Mostra i caratteri incompatibili con la codifica selezionata";  /* Show incompatible characters for selected encoding */
 
 /* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
@@ -89,8 +89,8 @@
 "fW9-Xn-I9b.toolTip" = "Commenta o de-commenta la selezione";  /* Comment-out or uncomment selection */
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
-"xbD-Up-YfQ.label" = "Caratteri invisibili";  /* Invisible Chars */
-"xbD-Up-YfQ.paletteLabel" = "Mostra/Nascondi caratteri invisibili";  /* Show / Hide Invisible Chars */
+"xbD-Up-YfQ.label" = "Caratteri invisibili";  /* Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "Mostra/Nascondi caratteri invisibili";  /* Show / Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "Mostra/Nasconde la guida in linea della pagina";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
@@ -110,13 +110,13 @@
 
 /* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "Espandi Tab";  /* Expand Tabs */
-"c9C-af-Zcg.paletteLabel" = "Abilita/Disabilita l’espansione automatica dei Tab";  /* Toggle Auto Tab Expand */
-"c9C-af-Zcg.toolTip" = "Abilita/Disabilita l’espansione automatica dei Tab";  /* Toggle auto tab expand */
+"c9C-af-Zcg.paletteLabel" = "Abilita/Disabilita l’espansione automatica dei Tab";  /* Toggle Tab Auto-Expansion */
+"c9C-af-Zcg.toolTip" = "Abilita/Disabilita l’espansione automatica dei Tab";  /* Toggle tab auto-expansion */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Controllo ortografia";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "Controllo ortografia";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "Mostra il pannello per il controllo dell’ortografia e della grammatica";  /* Show spelling and grammer panel */
+"Ply-Nr-aOE.toolTip" = "Mostra il pannello per il controllo dell’ortografia e della grammatica";  /* Show spelling and grammar panel */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "Codice colore";  /* Color Code */

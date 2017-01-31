@@ -170,7 +170,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     }
     
     
-    /// toggle visibility of incompatible chars list view
+    /// toggle visibility of incompatible characters list view
     @IBAction func toggleIncompatibleCharList(_ sender: Any?) {
         
         self.toggleVisibilityOfSidebarTabItem(index: .incompatibleCharacters)

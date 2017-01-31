@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -44,24 +44,38 @@ extension Document {
         get {
             let textStorage = NSTextStorage(string: self.string)
             
-            NotificationCenter.default.addObserver(self, selector: #selector(scriptTextStorageDidProcessEditing),
-                                                   name: .NSTextStorageDidProcessEditing,
-                                                   object: textStorage)
-            
-            // disconnect the delegate after 0.5 sec. (otherwise app may crash)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                guard let strongSelf = self else { return }
+            // observe text storage update for in case when a part of the contents is directly edited
+            // e.g.:
+            // ```AppleScript
+            // tell first document of application "CotEditor"
+            //     set first paragraph of contents to "foo bar"
+            // end tell
+            // ```
+            weak var observer: NSObjectProtocol?
+            observer = NotificationCenter.default.addObserver(forName: .NSTextStorageDidProcessEditing, object: textStorage, queue: .main) { notification in
+                if let observer = observer {
+                    NotificationCenter.default.removeObserver(observer)
+                }
                 
-                NotificationCenter.default.removeObserver(strongSelf, name: .NSTextStorageDidProcessEditing, object: textStorage)
+                if let textStorage = notification.object as? NSTextStorage {
+                    self.replaceAllString(with: textStorage.string)
+                }
+            }
+            
+            // disconnect the observation after 0.5 sec. anyway (otherwise app may crash)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                if let observer = observer {
+                    NotificationCenter.default.removeObserver(observer)
+                }
             }
             
             return textStorage
         }
         
-        set (object) {
-            if let textStorage = object as? NSTextStorage {
+        set {
+            if let textStorage = newValue as? NSTextStorage {
                 self.replaceAllString(with: textStorage.string)
-            } else if let string = object as? String {
+            } else if let string = newValue as? String {
                 self.replaceAllString(with: string)
             }
         }
@@ -74,16 +88,16 @@ extension Document {
         get {
             return self.scriptTextStorage
         }
-        set (contents) {
-            self.scriptTextStorage = contents
+        set {
+            self.scriptTextStorage = newValue
         }
     }
     
     
     /// length of document (integer)
-    var length: NSNumber {
+    var length: Int {
         
-        return NSNumber(value: self.string.utf16.count)
+        return self.string.utf16.count
     }
     
     
@@ -102,9 +116,9 @@ extension Document {
                 return OSALineEnding.LF
             }
         }
-        set (lineEndingChar) {
+        set {
             let type: LineEnding = {
-                switch lineEndingChar {
+                switch newValue {
                 case OSALineEnding.LF:
                     return .LF
                 case OSALineEnding.CR:
@@ -140,8 +154,8 @@ extension Document {
         get {
             return self.syntaxStyle.styleName
         }
-        set (coloringStyle) {
-            self.setSyntaxStyle(name: coloringStyle)
+        set {
+            self.setSyntaxStyle(name: newValue)
         }
     }
     
@@ -151,7 +165,6 @@ extension Document {
         return self.selection
     }
     func setSelectionObject(_ object: Any) {
-        
         if let string = object as? String {
             self.selection.contents = string
         }
@@ -159,37 +172,37 @@ extension Document {
     
     
     /// state of text wrapping (bool)
-    var wrapsLines: NSNumber {
+    var wrapsLines: Bool {
         
         get {
-            return NSNumber(value :self.viewController?.wrapsLines ?? false)
+            return self.viewController?.wrapsLines ?? false
         }
-        set (wrapsLine) {
-            self.viewController?.wrapsLines = wrapsLines.boolValue
+        set {
+            self.viewController?.wrapsLines = newValue
         }
     }
     
     
     /// tab width (integer)
-    var tabWidth: NSNumber {
+    var tabWidth: Int {
         
         get {
-            return NSNumber(value: self.viewController?.tabWidth ?? 0)
+            return self.viewController?.tabWidth ?? 0
         }
-        set (tabWidth) {
-            self.viewController?.tabWidth = tabWidth.intValue
+        set {
+            self.viewController?.tabWidth = newValue
         }
     }
     
     
     /// whether replace tab with spaces
-    var expandsTab: NSNumber {
+    var expandsTab: Bool {
         
         get {
-            return NSNumber(value :self.viewController?.isAutoTabExpandEnabled ?? false)
+            return self.viewController?.isAutoTabExpandEnabled ?? false
         }
-        set (expandsTab) {
-            self.viewController?.isAutoTabExpandEnabled = expandsTab.boolValue
+        set {
+            self.viewController?.isAutoTabExpandEnabled = newValue
         }
     }
     
@@ -197,152 +210,127 @@ extension Document {
     
     // MARK: AppleScript Handler
     
-    /// change encoding and convert text
+    /// handle the Convert AppleScript by changing the text encoding and converting the text
     func handleConvert(_ command: NSScriptCommand) -> NSNumber {
         
         let arguments = command.evaluatedArguments
         
         guard
             let encodingName = arguments?["newEncoding"] as? String,
-            let encoding = EncodingManager.encoding(fromName: encodingName) else { return .no }
+            let encoding = EncodingManager.encoding(fromName: encodingName) else { return false }
         
         if encoding == self.encoding {
-            return .yes
+            return true
         }
         
-        let lossy = (arguments?["Lossy"] as? Bool) ?? false
+        let lossy = (arguments?["lossy"] as? Bool) ?? false
         
-        return self.changeEncoding(to: encoding, withUTF8BOM: false, askLossy: false, lossy: lossy) ? .yes : .no
+        return self.changeEncoding(to: encoding, withUTF8BOM: false, askLossy: false, lossy: lossy) as NSNumber
     }
     
     
-    /// change encoding and reinterpret text
+    /// handle the Convert AppleScript by changing the text encoding and reinterpreting the text
     func handleReinterpret(_ command: NSScriptCommand) -> NSNumber {
         
         let arguments = command.evaluatedArguments
         
         guard
             let encodingName = arguments?["newEncoding"] as? String,
-            let encoding = EncodingManager.encoding(fromName: encodingName) else { return .no }
+            let encoding = EncodingManager.encoding(fromName: encodingName) else { return false }
         
         do {
             try self.reinterpret(encoding: encoding)
         } catch {
-            return .no
+            return false
         }
         
-        return .yes
+        return true
     }
     
     
-    /// find
+    /// handle the Find AppleScript command
     func handleFind(_ command: NSScriptCommand) -> NSNumber {
         
         guard
             let arguments = command.evaluatedArguments,
-            let searchString = arguments["targetString"] as? String, !searchString.isEmpty else { return .no }
-        
-        let isRegex = (arguments["regularExpression"] as? Bool) ?? false
-        let ignoresCase = (arguments["ignoreCase"] as? Bool) ?? false
-        let isBackwards = (arguments["backwardsSearch"] as? Bool) ?? false
-        let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
+            let searchString = arguments["targetString"] as? String, !searchString.isEmpty
+            else { return false }
         
         let wholeString = self.string
         
-        guard !wholeString.isEmpty else { return .no }
+        guard !wholeString.isEmpty else { return false }
         
-        // set target range
-        let targetRange: NSRange = {
-            let selectedRange = self.selectedRange
-            if isBackwards {
-                return NSRange(location: 0, length: selectedRange.location)
-            }
-            return NSRange(location: selectedRange.max, length: string.utf16.count - selectedRange.max)
-        }()
+        let options = String.CompareOptions(scriptingArguments: arguments)
+        let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         
         // perform find
-        var success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: targetRange)
-        if !success && isWrapSearch {
-            success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: wholeString.nsRange)
-        }
+        guard let foundRange = (wholeString as NSString).range(of: searchString, selectedRange: self.selectedRange,
+                                                               options: options, isWrapSearch: isWrapSearch)
+            else { return false }
         
-        return NSNumber(value: success)
+        self.selectedRange = foundRange
+        
+        return true
     }
     
     
-    /// replace
+    /// handle the Replace AppleScript command
     func handleReplace(_ command: NSScriptCommand) -> NSNumber {
         
         guard
             let arguments = command.evaluatedArguments,
-            let searchString = arguments["targetString"] as? String, !searchString.isEmpty else { return .no }
+            let searchString = arguments["targetString"] as? String, !searchString.isEmpty,
+            let replacementString = arguments["newString"] as? String
+            else { return 0 }
         
         let wholeString = self.string
         
-        guard !wholeString.isEmpty else { return .no }
+        guard !wholeString.isEmpty else { return 0 }
         
-        let replacementString = (arguments["newString"] as? String) ?? ""
-        let isRegex = (arguments["regularExpression"] as? Bool) ?? false
-        let ignoresCase = (arguments["ignoreCase"] as? Bool) ?? false
-        let isBackwards = (arguments["backwardsSearch"] as? Bool) ?? false
+        let options = String.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         let isAll = (arguments["all"] as? Bool) ?? false
         
-        guard isRegex || searchString != replacementString else { return .no }
-        
-        // set target range
-        let targetRange: NSRange = {
-            if isAll {
-                return wholeString.nsRange
-            }
-            let selectedRange = self.selectedRange
-            if isBackwards {
-                return NSRange(location: 0, length: selectedRange.location)
-            }
-            return NSRange(location: selectedRange.max, length: string.utf16.count - selectedRange.max)
-        }()
-        
         // perform replacement
-        var numberOfReplacements = 0
         if isAll {
             let newWholeString = NSMutableString(string: wholeString)
-            if isRegex {
-                let options: NSRegularExpression.Options = ignoresCase ? .caseInsensitive : []
-                guard let regex = try? NSRegularExpression(pattern: searchString, options: options) else { return .no }
-                numberOfReplacements = regex.replaceMatches(in: newWholeString, range: targetRange, withTemplate: replacementString)
-                
-            } else {
-                var options = NSString.CompareOptions()
-                if ignoresCase {
-                    options.update(with: .caseInsensitive)
-                }
-                if isBackwards {
-                    options.update(with: .backwards)
-                }
-                numberOfReplacements = newWholeString.replaceOccurrences(of: searchString, with: replacementString,
-                                                                         options: options, range: targetRange)
-            }
-            if numberOfReplacements > 0 {
-                self.replaceAllString(with: newWholeString as String)
-                self.selectedRange = NSRange()
-            }
+            let numberOfReplacements = newWholeString.replaceOccurrences(of: searchString, with: replacementString,
+                                                                         options: options, range: wholeString.nsRange)
+            
+            guard numberOfReplacements > 0 else { return 0 }
+            
+            self.replaceAllString(with: newWholeString as String)
+            self.selectedRange = NSRange()
+            
+            return numberOfReplacements as NSNumber
             
         } else {
-            var success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: targetRange)
-            if !success && isWrapSearch {
-                success = self.find(searchString, regularExpression: isRegex, ignoreCase: ignoresCase, backwards: isBackwards, range: wholeString.nsRange)
+            guard let foundRange = (wholeString as NSString).range(of: searchString, selectedRange: self.selectedRange,
+                                                                   options: options, isWrapSearch: isWrapSearch)
+                else { return 0 }
+            
+            let replacedString: String
+            if options.contains(.regularExpression) {
+                let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? .caseInsensitive : []
+                guard
+                    let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions),
+                    let match = regex.firstMatch(in: wholeString, options: .withoutAnchoringBounds, range: foundRange)
+                    else { return 0 }
+                
+                replacedString = regex.replacementString(for: match, in: wholeString, offset: 0, template: replacementString)
+            } else {
+                replacedString = replacementString
             }
-            if success {
-                self.selection.contents = replacementString  // TextSelection's `setContents:` accepts also String for its argument
-                numberOfReplacements = 1
-            }
+            
+            self.selectedRange = foundRange
+            self.selection.contents = replacedString  // TextSelection's `setContents:` accepts also String for its argument
+            
+            return 1
         }
-        
-        return NSNumber(value: numberOfReplacements)
     }
     
     
-    /// scroll to make selection visible
+    /// handle the Scroll AppleScript command by scrolling the text tiew to make selection visible
     func handleScroll(_ command: NSScriptCommand) {
         
         self.textView?.centerSelectionInVisibleArea(nil)
@@ -354,63 +342,67 @@ extension Document {
         
         let arguments = command.evaluatedArguments
         
-        guard let rangeArray = arguments?["range"] as? [Int] else { return "" }
+        guard let rangeArray = arguments?["range"] as? [Int], rangeArray.count == 2 else { return nil }
         
         let location = rangeArray[0]
         let length = max(rangeArray[1], 1)
         
         let range = self.string.range(location: location, length: length)
         
-        return (self.string as NSString?)?.substring(with: range)
-    }
-    
-    
-    
-    // MARK: Notifications
-    
-    /// text strage as AppleScript's return value did update
-    func scriptTextStorageDidProcessEditing(_ notification: Notification) {
-        
-        guard let textStorage = notification.object as? NSTextStorage else { return }
-        
-        self.replaceAllString(with: textStorage.string)
-        
-        NotificationCenter.default.removeObserver(self, name: .NSTextStorageDidProcessEditing, object: textStorage)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// find string, select if found and return whether succeed
-    private func find(_ searchString: String, regularExpression: Bool, ignoreCase: Bool, backwards: Bool, range: NSRange) -> Bool {
-        
-        var options = NSString.CompareOptions()
-        if regularExpression {
-            options.update(with: .regularExpression)
-        }
-        if ignoreCase {
-            options.update(with: .caseInsensitive)
-        }
-        if backwards {
-            options.update(with: .backwards)
-        }
-        
-        let foundRange = (self.string as NSString).range(of: searchString, options: options, range: range)
-        
-        guard foundRange.location != NSNotFound else { return false }
-        
-        self.selectedRange = foundRange
-        
-        return true
+        return (self.string as NSString).substring(with: range)
     }
     
 }
 
 
 
-private extension NSNumber {
 
-    @nonobjc static let no = NSNumber(value: false)
-    @nonobjc static let yes = NSNumber(value: true)
+// MARK: -
+
+private extension String.CompareOptions {
+    
+    init(scriptingArguments arguments: [String: Any]) {
+        
+        let isRegex = (arguments["regularExpression"] as? Bool) ?? false
+        let ignoresCase = (arguments["ignoreCase"] as? Bool) ?? false
+        let isBackwards = (arguments["backwardsSearch"] as? Bool) ?? false
+        
+        self.init()
+        
+        if isRegex {
+            self.update(with: .regularExpression)
+        }
+        if ignoresCase {
+            self.update(with: .caseInsensitive)
+        }
+        if isBackwards {
+            self.update(with: .backwards)
+        }
+    }
+    
+}
+
+
+private extension NSString {
+    
+    /// find and return the range of the first occurence starting from the given selectedRange
+    func range(of searchString: String, selectedRange: NSRange, options: String.CompareOptions, isWrapSearch: Bool) -> NSRange? {
+        
+        let targetRange: NSRange = {
+            if options.contains(.backwards) && !options.contains(.regularExpression) {
+                return NSRange(location: 0, length: selectedRange.location)
+            }
+            return NSRange(location: selectedRange.max, length: self.length - selectedRange.max)
+        }()
+        
+        var foundRange = self.range(of: searchString, options: options, range: targetRange)
+        if foundRange.location == NSNotFound && isWrapSearch {
+            foundRange = self.range(of: searchString, options: options)
+        }
+        
+        guard foundRange.location != NSNotFound else { return nil }
+        
+        return foundRange
+    }
+    
 }

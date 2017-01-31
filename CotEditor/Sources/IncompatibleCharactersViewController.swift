@@ -67,7 +67,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     }
     
     
-    /// clear incompatible chars markup
+    /// clear incompatible characters markup
     override func viewDidDisappear() {
         
         self.isVisible = false
@@ -106,12 +106,12 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     
     
     /// incompatible characters list was updated
-    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacers: [IncompatibleCharacter]) {
+    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter]) {
         
-        self.incompatibleCharacters = incompatibleCharacers
-        self.isCharacterAvailable = !incompatibleCharacers.isEmpty
+        self.incompatibleCharacters = incompatibleCharacters
+        self.isCharacterAvailable = !incompatibleCharacters.isEmpty
         
-        let ranges = incompatibleCharacers.map { $0.range }
+        let ranges = incompatibleCharacters.map { $0.range }
         
         document.textStorage.clearAllMarkup()
         document.textStorage.markup(ranges: ranges, lineEnding: document.lineEnding)
@@ -147,7 +147,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
 
 private extension NSTextStorage {
     
-    /// change background color of pased-in ranges (incompatible chars scannar may use this method)
+    /// change background color of pased-in ranges
     func markup(ranges: [NSRange], lineEnding: LineEnding = .LF) {
         
         guard let color = self.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }

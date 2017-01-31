@@ -31,7 +31,7 @@ protocol IncompatibleCharacterScannerDelegate: class {
     
     func needsUpdateIncompatibleCharacter(_ document: Document) -> Bool
     
-    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacers: [IncompatibleCharacter])
+    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter])
 }
 
 
@@ -43,12 +43,12 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     weak var delegate: IncompatibleCharacterScannerDelegate?
     
     private(set) weak var document: Document?  // weak to avoid cycle retain
-    private(set) var incompatibleCharacers = [IncompatibleCharacter]()  // line endings applied
+    private(set) var incompatibleCharacters = [IncompatibleCharacter]()  // line endings applied
     
     
     // MARK: Private Properties
     
-    static let UpdateInterval: TimeInterval = 0.42
+    static let UpdateInterval: TimeInterval = 0.4
     
     private weak var updateTimer: Timer?
     private var needsUpdate = true
@@ -97,6 +97,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
                                                     selector: #selector(scan(timer:)),
                                                     userInfo: nil,
                                                     repeats: false)
+            self.updateTimer?.tolerance = 0.1 * interval
         }
     }
     
@@ -108,17 +109,17 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
         
         guard let document = self.document else { return }
         
-        self.incompatibleCharacers = document.string.scanIncompatibleCharacters(for: document.encoding) ?? []
+        self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.encoding) ?? []
         self.needsUpdate = false
         
-        self.delegate?.document(document, didUpdateIncompatibleCharacters: self.incompatibleCharacers)
+        self.delegate?.document(document, didUpdateIncompatibleCharacters: self.incompatibleCharacters)
     }
     
     
     
     // MARK: Private Methods
     
-    /// update incompatible chars afer interval
+    /// update incompatible characters afer interval
     @objc func scan(timer: Timer) {
         
         self.updateTimer?.invalidate()

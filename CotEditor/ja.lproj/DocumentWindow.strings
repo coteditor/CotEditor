@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,8 +53,8 @@
 "uXf-pD-u6A.toolTip" = "書類情報を表示";  /* Show document information */
 
 /* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
-"xle-wq-mIH.label" = "非互換文字";  /* Incompatible Chars */
-"xle-wq-mIH.paletteLabel" = "非互換文字を表示";  /* Show Incompatible Chars */
+"xle-wq-mIH.label" = "非互換文字";  /* Incompatible Characters */
+"xle-wq-mIH.paletteLabel" = "非互換文字を表示";  /* Show Incompatible Characters */
 "xle-wq-mIH.toolTip" = "エンコーディングと非互換の文字を表示";  /* Show incompatible characters with selected encoding */
 
 /* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
@@ -88,8 +88,8 @@
 "fW9-Xn-I9b.toolTip" = "選択範囲をコメントアウト／コメント解除";  /* Comment-out or uncomment selection */
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
-"xbD-Up-YfQ.label" = "不可視文字";  /* Invisible Chars */
-"xbD-Up-YfQ.paletteLabel" = "不可視文字を表示／隠す";  /* Show / Hide Invisible Chars */
+"xbD-Up-YfQ.label" = "不可視文字";  /* Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "不可視文字を表示／隠す";  /* Show / Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "テキスト中の不可視文字を表示／隠す";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
@@ -109,13 +109,13 @@
 
 /* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "タブを展開";  /* Expand Tabs */
-"c9C-af-Zcg.paletteLabel" = "自動タブ展開を切替";  /* Toggle Auto Tab Expand */
-"c9C-af-Zcg.toolTip" = "自動タブ展開を切替";  /* Toggle auto tab expand */
+"c9C-af-Zcg.paletteLabel" = "自動タブ展開を切替";  /* Toggle Tab Auto-Expansion */
+"c9C-af-Zcg.toolTip" = "自動タブ展開を切替";  /* Toggle tab auto-expansion */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "スペルチェック";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "スペルチェック";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "スペルと文法パネルを表示";  /* Show spelling and grammer panel */
+"Ply-Nr-aOE.toolTip" = "スペルと文法パネルを表示";  /* Show spelling and grammar panel */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "カラーコード";  /* Color Code */

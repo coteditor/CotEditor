@@ -70,6 +70,12 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     // MARK:
     // MARK: Lifecycle
     
+    private override init() {
+        
+        super.init()
+    }
+    
+    
     deinit {
         SUUpdater.shared().delegate = nil
     }
@@ -105,7 +111,7 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     // MARK: Sparkle Updater Delegate
     
     /// return AppCast file URL dinamically
-    func feedURLString(for updater: SUUpdater!) -> String! {
+    func feedURLString(for updater: SUUpdater) -> String? {
         
         // force checking beta if the currently runnning one is a beta.
         let checksBeta: Bool = AppInfo.isPrerelease ? true : Defaults[.checksUpdatesForBeta]

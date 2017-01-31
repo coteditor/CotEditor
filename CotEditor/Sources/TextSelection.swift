@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -125,19 +125,18 @@ final class TextSelection: NSObject {
     
     
     /// character range (location and length) of the selection
-    var range: [NSNumber]? {
+    var range: [Int]? {
         
         get {
             guard let range = self.document?.selectedRange else { return nil }
             
-            return [NSNumber(value: range.location),
-                    NSNumber(value: range.length)]
+            return [range.location, range.length]
         }
         set (range) {
             guard
                 range?.count == 2,
-                let location = range?[0].intValue,
-                let length = range?[1].intValue,
+                let location = range?[0],
+                let length = range?[1],
                 let string = self.document?.string else { return }
             
             let range = string.range(location: location, length: length)
@@ -160,8 +159,8 @@ final class TextSelection: NSObject {
             let startLine = string.lineNumber(at: selectedRange.location)
             let endLine = string.lineNumber(at: selectedRange.max)
             
-            return [NSNumber(value: startLine),
-                    NSNumber(value: endLine - startLine + 1)]
+            return [startLine,
+                    endLine - startLine + 1]
         }
         set (range) {
             let location: Int

@@ -42,7 +42,7 @@ extension NSTouchBarItemIdentifier {
 
 
 
-@available(macOS 10.12.1, *)
+@available(macOS 10.12.2, *)
 extension EditorTextView {
     
     override func makeTouchBar() -> NSTouchBar? {
@@ -91,7 +91,7 @@ extension EditorTextView {
 
 
 
-@available(macOS 10.12.1, *)
+@available(macOS 10.12.2, *)
 extension EditorTextViewController {
     
     /// suggest candidates for automatic text completion

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -119,9 +119,9 @@
 "Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
 "Do you want to continue processing?" = "保存作業を続けますか？";
 "Save Available Strings" = "有効な文字列を保存";
-"Show Incompatible Chars" = "非互換文字を表示";
+"Show Incompatible Characters" = "非互換文字を表示";
 
-// Uncorresponded IANA charset name alert
+// Incompatible IANA charset name alert
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "エンコーディングは“%@”ですが、IANA 文字セット名は“%@”です。";
 "Do you want to continue processing?" = "保存作業を続けますか？";
 "Do not show this warning for this document again" = "今後この書類ではこの警告を表示しない";
@@ -132,12 +132,12 @@
 "Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコーディングをリセットしてもよろしいですか？";
 "Discard Changes" = "変更内容を破棄";
 
-// Reinterpretion failed alert
+// Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "再解釈をするファイルがありません。";
 "The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "テキストエンコーディング“%1@”でファイル“%2@”を再解釈できませんでした。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "このファイルは、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。";
 
-// Incompatible chars alert
+// incompatible characters alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか？";
 "Change Encoding" = "エンコーディングを変更";
@@ -283,7 +283,7 @@
 /* MARK: StatusBarController */
 "%@: " = "%@：";
 "Lines" = "行数";
-"Chars" = "文字数";
+"Characters" = "文字数";
 "Length" = "文字長";
 "Words" = "単語数";
 "Location" = "位置";
@@ -327,7 +327,7 @@
 "Stylesheet Keywords" = "スタイルシートキーワード";
 
 
-// Genearal pane
+// General pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
 "Do you want to restart CotEditor now?" = "CotEditor を今すぐ再起動しますか？";
@@ -469,7 +469,7 @@
 // Label for text menu keybindings action
 "Insert Text %@" = "テキストを挿入 %@";
 
-// Keybord key name
+// Keyboard key name
 "Space" = "スペース";
 
 // Warning messages
@@ -478,7 +478,7 @@
 "“%@” includes the Command key." = "“%@”はコマンドキーを含んでいます。";
 "Please choose another key." = "別のキーを選んでください。";
 "Single type is invalid for a shortcut." = "単体のキーはショートカットに登録できません。";
-"Please combinate with another keys." = "別のキーと組み合わせてください。";
+"Please combine with another keys." = "別のキーと組み合わせてください。";
 
 
 

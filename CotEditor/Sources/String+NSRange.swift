@@ -29,7 +29,7 @@ import Foundation
 
 extension String {
     
-    // convert NSRange to Range<Index>
+    /// convert NSRange to Range<Index>
     func range(from nsRange: NSRange) -> Range<String.Index>? {
         
         guard let start16 = utf16.index(utf16.startIndex, offsetBy: nsRange.location, limitedBy: utf16.endIndex),
@@ -42,6 +42,7 @@ extension String {
     }
     
     
+    /// convert Range<Index> to NSRange
     func nsRange(from range: Range<String.Index>) -> NSRange {
         
         let start = range.lowerBound.samePosition(in: self.utf16)

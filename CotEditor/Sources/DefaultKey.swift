@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -266,12 +266,9 @@ extension DefaultKeys {
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
     
     // hidden settings
-    static let usesTextFontForInvisibles = DefaultKey<Bool>("usesTextFontForInvisibles")
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
     static let headerFooterPathAbbreviatingWithTilde = DefaultKey<Bool>("headerFooterPathAbbreviatingWithTilde")
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
-    static let infoUpdateInterval = DefaultKey<Double>("infoUpdateInterval")
-    static let outlineMenuInterval = DefaultKey<Double>("outlineMenuInterval")
     static let showColoringIndicatorTextLength = DefaultKey<Int>("showColoringIndicatorTextLength")
     static let coloringRangeBufferLength = DefaultKey<Int>("coloringRangeBufferLength")
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")

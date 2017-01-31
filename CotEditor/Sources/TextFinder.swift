@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -89,7 +89,14 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     // MARK: Public Properties
     
-    dynamic var findString = ""
+    dynamic var findString = "" {
+        
+        didSet {
+            if self.sharesFindString {
+                NSPasteboard.findString = self.findString
+            }
+        }
+    }
     dynamic var replacementString = ""
     
     weak var delegate: TextFinderDelegate?
@@ -115,7 +122,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         self.highlightColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
         // Highlight color is currently not customizable. (2015-01-04)
-        // It might better when it can be set in theme also for incompatible chars highlight.
+        // It might better when it can be set in theme also for incompatible characters highlight.
         // Just because I'm lazy.
         
         super.init()
@@ -125,8 +132,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         
         // observe application activation to sync find string with other apps
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .NSApplicationDidBecomeActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .NSApplicationWillResignActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .NSApplicationWillTerminate, object: nil)
     }
     
     
@@ -182,15 +187,6 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             if let sharedFindString = NSPasteboard.findString {
                 self.findString = sharedFindString
             }
-        }
-    }
-    
-    
-    /// sync search string on deactivating application
-    func applicationWillResignActive(_ notification: Notification) {
-        
-        if self.sharesFindString {
-            NSPasteboard.findString = self.findString
         }
     }
     
@@ -740,10 +736,10 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             let regex = self.regex()!
             guard let match = regex.firstMatch(in: string, range: textView.selectedRange) else { return false }
             
-            let tempalte = self.unescapesReplacementString ? self.replacementString.unescaped : self.replacementString
+            let template = self.unescapesReplacementString ? self.replacementString.unescaped : self.replacementString
             
             matchedRange = match.range
-            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: tempalte)
+            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: template)
             
         } else {
             matchedRange = (string as NSString).range(of: self.sanitizedFindString, options: self.textualOptions, range: textView.selectedRange)
@@ -805,9 +801,10 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         guard let string = string, !string.isEmpty else { return }
         
         let regex = self.regex()!
+        let options: NSRegularExpression.MatchingOptions = [.withoutAnchoringBounds]
         
         for scopeRange in ranges {
-            regex.enumerateMatches(in: string, range: scopeRange, using: { (result, flags, stop) in
+            regex.enumerateMatches(in: string, options: options, range: scopeRange, using: { (result, flags, stop) in
                 guard let result = result else { return }
                 
                 var ioStop = false

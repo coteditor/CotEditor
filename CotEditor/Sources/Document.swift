@@ -418,34 +418,37 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             }
             
             guard error == nil else { return }
+            guard let strongSelf = self else { return }
             
             assert(Thread.isMainThread)
             
-            // apply syntax style that is inferred from the file name
+            // apply syntax style that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation {
                 let fileName = url.lastPathComponent
-                if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName) {
-                    self?.setSyntaxStyle(name: styleName)
+                if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName)
+                    ?? SyntaxManager.shared.styleName(documentContent: strongSelf.string)
+                    // -> Due to the async-saving, self.string can be changed from the actual saved contents.
+                    //    But we don't care about that.
+                {
+                    strongSelf.setSyntaxStyle(name: styleName)
                 }
             }
             
             if saveOperation != .autosaveElsewhereOperation {
                 // update file information
-                self?.analyzer.invalidateFileInfo()
+                strongSelf.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
                 let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
-                self?.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
+                strongSelf.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
             
-            if let strongSelf = self {
-                switch saveOperation {
-                case .saveOperation,
-                     .saveAsOperation,
-                     .saveToOperation:
-                    ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
-                default: break
-                }
+            switch saveOperation {
+            case .saveOperation,
+                 .saveAsOperation,
+                 .saveToOperation:
+                ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
+            default: break
             }
         }
     }
@@ -559,15 +562,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         return super.prepareSavePanel(savePanel)
     }
     private dynamic var allowedFileTypes: [String]? = nil
-    
-    
-    /// check if document can be saved safety by autosaving
-    override func checkAutosavingSafety() throws {
-        
-        try super.checkAutosavingSafety()
-        
-        try self.checkSavingSafetyForConverting(content: self.string, encoding: self.encoding)
-    }
     
     
     /// display dialogs about save before closing document
@@ -867,19 +861,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
         
-        // ask lossy
-        if askLossy {
-            guard self.string.canBeConverted(to: encoding) else {
+        // check if conversion is lossy
+        if !self.string.canBeConverted(to: encoding) {
+            if askLossy {
                 let error = EncodingError(kind: .lossyEncodingConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
                 self.presentErrorAsSheet(error)
+                return false
+                
+            } else if !lossy {
                 return false
             }
         }
         
         // register undo
         if let undoManager = self.undoManager {
-        (undoManager.prepare(withInvocationTarget: self) as AnyObject).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
-        undoManager.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
+            (undoManager.prepare(withInvocationTarget: self) as AnyObject).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
+            undoManager.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
         }
         
         // update encoding
@@ -1281,7 +1278,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             guard let strongSelf = self else { return }
             
             if returnCode == NSAlertSecondButtonReturn, let fileType = strongSelf.fileType { // == Revert
-                try? strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
+                do {
+                    try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
+                } catch let error {
+                    strongSelf.presentErrorAsSheet(error)
+                }
             }
             
             strongSelf.isExternalUpdateAlertShown = false
@@ -1300,53 +1301,6 @@ extension Document: Editable {
     var textView: NSTextView? {
         
         return self.viewController?.focusedTextView
-    }
-    
-}
-
-
-
-// MARK: - Error Handling Extension
-
-fileprivate extension NSDocument {
-    
-    typealias RecoveryHandler = ((Bool) -> Void)
-    
-    
-    /// present an error alert as document modal sheet
-    func presentErrorAsSheet(_ error: Error, recoveryHandler: RecoveryHandler? = nil) {
-        
-        guard let window = self.windowForSheet else {
-            let didRecover = self.presentError(error)
-            recoveryHandler?(didRecover)
-            return
-        }
-        
-        // close previous sheet if exists
-        window.attachedSheet?.orderOut(self)
-        
-        if let recoveryHandler = recoveryHandler {
-            let block = UnsafeMutablePointer<RecoveryHandler>.allocate(capacity: 1)
-            block.pointee = recoveryHandler
-            
-            self.presentError(error, modalFor: window,
-                              delegate: self,
-                              didPresent: #selector(didPresentErrorWithRecovery(didRecover:contextInfo:)),
-                              contextInfo: UnsafeMutableRawPointer(mutating: block))
-            
-        } else {
-            self.presentError(error, modalFor: window,
-                              delegate: nil, didPresent: nil, contextInfo: nil)
-        }
-    }
-    
-    
-    /// perform didRecoverBlock after recovering presented error
-    @objc private func didPresentErrorWithRecovery(didRecover: Bool, contextInfo: UnsafeMutableRawPointer?) {
-        
-        if let recoveryHandler = contextInfo?.assumingMemoryBound(to: RecoveryHandler.self).pointee {
-            recoveryHandler(didRecover)
-        }
     }
     
 }
@@ -1449,7 +1403,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                     NSLocalizedString("Cancel", comment: "")]
             
         case .unconvertibleCharacters:
-            return [NSLocalizedString("Show Incompatible Chars", comment: ""),
+            return [NSLocalizedString("Show Incompatible Characters", comment: ""),
                     NSLocalizedString("Save Available Strings", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
             
@@ -1479,8 +1433,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
             
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
-            case 0:  // == Show Incompatible Chars
-                windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+            case 0:  // == Show Incompatible Characters
+                DispatchQueue.main.async {
+                    windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+                }
                 return false
             case 1:  // == Save
                 return true
@@ -1492,14 +1448,13 @@ private struct EncodingError: LocalizedError, RecoverableError {
             }
             
         case .lossyEncodingConversion:
+            assert(Thread.isMainThread)
+            
             switch recoveryOptionIndex {
             case 0:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
-                if let windowContentController = windowContentController {
-                    if let undoClient = document.undoManager?.prepare(withInvocationTarget: windowContentController) as? WindowContentViewController {
-                        undoClient.showSidebarPane(index: .incompatibleCharacters)
-                    }
-                    windowContentController.showSidebarPane(index: .incompatibleCharacters)
+                DispatchQueue.main.async {
+                    windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 }
                 return true
             case 1:  // == Cancel

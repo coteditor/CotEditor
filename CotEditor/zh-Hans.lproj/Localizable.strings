@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -119,9 +119,9 @@
 "Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to continue processing?" = "继续进行处理吗？";
 "Save Available Strings" = "保存有效字符串";
-"Show Incompatible Chars" = "显示不兼容字符";
+"Show Incompatible Characters" = "显示不兼容字符";
 
-// Uncorresponded IANA charset name alert
+// Incompatible IANA charset name alert
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "编码为“%@”，但是文本中的 IANA 字符集名字为“%@”。";
 "Do you want to continue processing?" = "继续进行处理吗？";
 "Do not show this warning for this document again" = "对该文档不再显示此信息";
@@ -132,12 +132,12 @@
 "Do you want to discard the changes and reset the file encoding?" = "确定要放弃修改内容并且重置文件编码吗？";
 "Discard Changes" = "放弃修改";
 
-// Reinterpretion failed alert
+// Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "该文档没有用来再次解释的文件。";
 "The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "文件“%@”无法使用“%@”编码再次解释。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "该文件可能已使用了不同的文本编码来存储，或者可能不是文本文件。";
 
-// Incompatible chars alert
+// incompatible characters alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to change encoding and show incompatible characters?" = "改变编码并显示不兼容字符吗？";
 "Change Encoding" = "更改编码";
@@ -283,7 +283,7 @@
 /* MARK: StatusBarController */
 "%@: " = "%@：";
 "Lines" = "行数";
-"Chars" = "字符数";
+"Characters" = "字符数";
 "Length" = "长度";
 "Words" = "字数";
 "Location" = "位置";
@@ -327,7 +327,7 @@
 "Stylesheet Keywords" = "样式表关键字";
 
 
-// Genearal pane
+// General pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "变更将在下次启动时生效。";
 "Do you want to restart CotEditor now?" = "现在就重启 CotEditor 吗？";
@@ -469,7 +469,7 @@
 // Label for text menu keybindings action
 "Insert Text %@" = "插入文本 %@";
 
-// Keybord key name
+// Keyboard key name
 "Space" = "空格键";
 
 // Warning messages
@@ -478,7 +478,7 @@
 "“%@” includes the Command key." = "“%@”包含了 Command 键。";
 "Please choose another key." = "请选择其他按键。";
 "Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
-"Please combinate with another keys." = "请与其他键组合使用。";
+"Please combine with another keys." = "请与其他键组合使用。";
 
 
 

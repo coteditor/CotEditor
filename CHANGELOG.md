@@ -2,6 +2,49 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### New Features
+
+- Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
+
+
+
+3.1.3 (180)
+--------------------------
+
+### Improvements
+
+- Optimize script menu updating performance.
+- Change behavior to avoid showing incompatible char list on undoing encoding change.
+- Evaluate also the shebang to specify the syntax style on saving the document newly.
+- Scale up character view in character inspector.
+- Change drawing font for some invisible characters to draw them at a better position.
+- Update “JavaScript” syntax style.
+- Add more description about scripting in the help contents.
+- Deprecate hidden settings for UI update interval.
+- Update build environment to Xcode 8.2.1 (SDK macOS 10.12.2).
+- [non-AppStore ver.] Update Sparkle framework to version 1.16.0.
+
+
+### Fixes
+
+- Fix an issue where the application could crash after lossy encoding change.
+- Fix an issue where the find string was not synchronized with other applications.
+- Fix an issue where the regular expression anchors `^` and `$` could match wrongly on the normal “Find Next/Previous” under specific conditions.
+- Fix an issue where incompatible characters highlight could highlight wrong characters if line endings are CR/LF.
+- Fix an issue on AppleScript where a single replacement with the regular expression didn't refer to the matches.
+- Fix an issue where some touch bar icons were drawn wrongly.
+- Fix an issue where the menu item “About Scripting” in Help > “CotEditor Scripting Manual” didn't work.
+- Fix an issue where the zoomed character in the character inspector was flipped when the popover is detached.
+- Fix an issue where `lossy` option in `convert` command by AppleScript scripting was ignored.
+- Fix an issue on the AppleScript scripting where `range` property of `document` contents could be wrong if document line endings are not LF (thanks to Kaito Udagawa!).
+- Fix an issue where the editor opacity couldn't be set via AppleScript.
+- Fix minor typos.
+
+
+
 3.1.2 (177)
 --------------------------
 

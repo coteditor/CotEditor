@@ -27,67 +27,179 @@
  */
 
 import Cocoa
+import OSAKit
 
-class Script {
+enum ScriptingEventType: String {
+    
+    case documentOpened = "document opened"
+    case documentSaved = "document saved"
+    
+    
+    var eventID: AEEventID {
+        
+        switch self {
+        case .documentOpened: return AEEventID(code: "edod")
+        case .documentSaved: return AEEventID(code: "edsd")
+        }
+    }
+    
+}
+
+
+
+enum ScriptingFileType {
+    
+    case appleScript
+    case shellScript
+    
+    static let all: [ScriptingFileType] = [.appleScript, .shellScript]
+    
+    
+    var extensions: [String] {
+        
+        switch self {
+        case .appleScript: return ["applescript", "scpt", "scptd"]
+        case .shellScript: return ["sh", "pl", "php", "rb", "py", "js"]
+        }
+    }
+    
+}
+
+
+
+enum ScriptingExecutionModel: String {
+    
+    case unrestricted
+    case persistent
+    
+}
+
+
+
+struct ScriptDescriptor {
+    
+    // MARK: Public Properties
     
     let url: URL
     let name: String
+    let type: ScriptingFileType?
+    let executionModel: ScriptingExecutionModel
+    let eventTypes: [ScriptingEventType]
+    let shortcut: Shortcut
+    let ordering: Int?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(url: URL, name: String) {
+    /// Create a descriptor that represents an user script at given URL.
+    ///
+    /// `Contents/Info.plist` in the script at `url` will be read if they exist.
+    ///
+    /// - parameter url: the location of an user script
+    init(at url: URL) {
+        
+        // Extract from URL
         
         self.url = url
+        
+        self.type = ScriptingFileType.all.first { $0.extensions.contains(url.pathExtension) }
+        
+        var name = url.deletingPathExtension().lastPathComponent
+        
+        let shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+        if shortcut.modifierMask.isEmpty {
+            self.shortcut = Shortcut.none
+        } else {
+            self.shortcut = shortcut
+            
+            // Remove the shortcut specification from the script name
+            name = URL(fileURLWithPath: name).deletingPathExtension().lastPathComponent
+        }
+        
+        if let range = name.range(of: "^[0-9]+\\)", options: .regularExpression) {
+            // Remove the parenthesis at last
+            let orderingString = name.substring(to: name.index(before: range.upperBound))
+            self.ordering = Int(orderingString)
+            
+            // Remove the ordering number from the script name
+            name.removeSubrange(range)
+        } else {
+            self.ordering = nil
+        }
+        
         self.name = name
+        
+        // Extract from Info.plist
+        
+        let info = NSDictionary(contentsOf: url.appendingPathComponent("Contents/Info.plist"))
+        
+        if let name = info?["CotEditorExecutionModel"] as? String {
+            self.executionModel = ScriptingExecutionModel(rawValue: name) ?? .unrestricted
+        } else {
+            self.executionModel = .unrestricted
+        }
+        
+        if let names = info?["CotEditorHandlers"] as? [String] {
+            self.eventTypes = names.flatMap { ScriptingEventType(rawValue: $0) }
+        } else {
+            self.eventTypes = []
+        }
     }
-    
-    
-    
-    // MARK: Abstracts Methods
-    
-    fileprivate var editorIdentifier: String { preconditionFailure() }
-    func run() throws { preconditionFailure() }
     
     
     
     // MARK: Public Methods
     
-    /// open script file in an editor
-    /// - throws: ScriptFileError
-    func edit() throws {
+    /// Create and return an user script instance
+    ///
+    /// - returns: An instance of `Script` created by the receiver.
+    ///            Returns `nil` if the script type is unsupported.
+    func makeScript() -> Script? {
         
-        guard NSWorkspace.shared().open([self.url], withAppBundleIdentifier: self.editorIdentifier, additionalEventParamDescriptor: nil, launchIdentifiers: nil) else {
-            // display alert if cannot open/select the script file
-            throw ScriptFileError(kind: .open, url: self.url)
+        guard let type = self.type else { return nil }
+        
+        switch type {
+        case .appleScript:
+            switch self.executionModel {
+            case .unrestricted: return AppleScript(with: self)
+            case .persistent: return PersistentOSAScript(with: self)
+            }
+        case .shellScript: return ShellScript(with: self)
         }
     }
     
+}
+
+
+
+protocol Script {
     
-    /// reveal script file in Finder
-    /// - throws: ScriptFileError
-    func reveal() throws {
-        
-        guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.url)
-        }
-        
-        NSWorkspace.shared().activateFileViewerSelecting([self.url])
-    }
+    // MARK: Properties
+    
+    /// A script descriptor the receiver was created from.
+    var descriptor: ScriptDescriptor { get }
+    
+    // MARK: Methods
+    
+    /// Execute the script with the default way.
+    func run() throws
     
     
+    /// Execute the script by sending it the given Apple event.
+    ///
+    /// Events the script cannot handle must be ignored with no errors.
+    func run(withAppleEvent event: NSAppleEventDescriptor?) throws
     
-    // MARK: Private Methods
+}
+
+
+
+extension Script {
     
-    /// append message to console panel and show it
-    fileprivate static func writeToConsole(message: String, scriptName: String) {
-        
-        DispatchQueue.main.async {
-            ConsolePanelController.shared.showWindow(nil)
-            ConsolePanelController.shared.append(message: message, title: scriptName)
-        }
+    func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
+        // ignore every request with an event by default
     }
     
 }
@@ -98,21 +210,26 @@ class Script {
 
 final class AppleScript: Script {
     
-    static let extensions = ["applescript", "scpt", "scptd"]
+    // MARK: Script Properties
+    
+    let descriptor: ScriptDescriptor
+    
+    
+    
+    // MARK: -
+    // MARK: Lifecycle
+    
+    init(with descriptor: ScriptDescriptor) {
+        self.descriptor = descriptor
+    }
+    
     
     
     // MARK: Script Methods
     
-    /// bundle identifier of appliation to edit script
-    override var editorIdentifier: String {
-        
-        return BundleIdentifier.ScriptEditor
-    }
-    
-    
     /// run script
     /// - throws: Error by NSUserScriptTask
-    override func run() throws {
+    func run() throws {
         
         try self.run(withAppleEvent: nil)
     }
@@ -128,17 +245,89 @@ final class AppleScript: Script {
     ///           
     func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
         
-        guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.url)
+        guard self.descriptor.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
         }
         
-        let task = try NSUserAppleScriptTask(url: self.url)
-        let scriptName = self.name
+        let task = try NSUserAppleScriptTask(url: self.descriptor.url)
+        let scriptName = self.descriptor.name
         
         task.execute(withAppleEvent: event) { (result: NSAppleEventDescriptor?, error: Error?) in
             if let error = error {
-                Script.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
+                writeToConsole(message: error.localizedDescription, scriptName: scriptName)
             }
+        }
+    }
+    
+    
+}
+
+
+
+// MARK: -
+
+final class PersistentOSAScript: Script {
+    
+    // MARK: Script Properties
+    
+    let descriptor: ScriptDescriptor
+    let script: OSAScript
+    
+    
+    
+    // MARK: -
+    // MARK: Lifecycle
+    
+    init?(with descriptor: ScriptDescriptor) {
+        
+        guard let script = OSAScript(contentsOf: descriptor.url, error: nil) else { return nil }
+        
+        self.descriptor = descriptor
+        self.script = script
+    }
+    
+    
+    
+    // MARK: Script Methods
+    
+    /// run script
+    /// - throws: Error by NSUserScriptTask
+    func run() throws {
+        
+        guard self.descriptor.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        }
+        
+        var errorInfo: NSDictionary? = NSDictionary()
+        if self.script.executeAndReturnError(&errorInfo) == nil {
+            let message = (errorInfo?["NSLocalizedDescription"] as? String) ?? "Unknown error"
+            writeToConsole(message: message, scriptName: self.descriptor.name)
+        }
+    }
+    
+    
+    /// Execute the AppleScript script by sending it the given Apple event.
+    ///
+    /// Any script errors will be written to the console panel.
+    ///
+    /// - parameter event: the apple event
+    ///
+    /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
+    func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
+        
+        guard let event = event else {
+            try self.run()
+            return
+        }
+        
+        guard self.descriptor.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        }
+        
+        var errorInfo: NSDictionary?
+        if self.script.executeAppleEvent(event, error: &errorInfo) == nil {
+            let message = (errorInfo?["NSLocalizedDescription"] as? String) ?? "Unknown error"
+            writeToConsole(message: message, scriptName: self.descriptor.name)
         }
     }
     
@@ -146,9 +335,23 @@ final class AppleScript: Script {
 
 
 
+// MARK: -
+
 final class ShellScript: Script {
     
-    static let extensions = ["sh", "pl", "php", "rb", "py", "js"]
+    // MARK: Script Properties
+    
+    let descriptor: ScriptDescriptor
+    
+    
+    
+    // MARK: -
+    // MARK: Lifecycle
+    
+    init(with descriptor: ScriptDescriptor) {
+        self.descriptor = descriptor
+    }
+    
     
     
     // MARK: Private Enum
@@ -177,26 +380,19 @@ final class ShellScript: Script {
     
     // MARK: Script Methods
     
-    /// bundle identifier of appliation to edit script
-    override var editorIdentifier: String {
-        
-        return Bundle.main.bundleIdentifier!
-    }
-    
-    
     /// run script
     /// - throws: ScriptFileError or Error by NSUserScriptTask
-    override func run() throws {
+    func run() throws {
         
         // check script file
-        guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.url)
+        guard self.descriptor.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
         }
-        guard self.url.isExecutable ?? false else {
-            throw ScriptFileError(kind: .permission, url: self.url)
+        guard self.descriptor.url.isExecutable ?? false else {
+            throw ScriptFileError(kind: .permission, url: self.descriptor.url)
         }
         guard let script = self.content, !script.isEmpty else {
-            throw ScriptFileError(kind: .read, url: self.url)
+            throw ScriptFileError(kind: .read, url: self.descriptor.url)
         }
         
         // fetch target document
@@ -208,7 +404,7 @@ final class ShellScript: Script {
             do {
                 input = try self.readInputString(type: inputType, editor: document)
             } catch let error {
-                Script.writeToConsole(message: error.localizedDescription, scriptName: self.name)
+                writeToConsole(message: error.localizedDescription, scriptName: self.descriptor.name)
                 return
             }
         } else {
@@ -225,7 +421,7 @@ final class ShellScript: Script {
         }()
         
         // create task
-        let task = try NSUserUnixTask(url: self.url)
+        let task = try NSUserUnixTask(url: self.descriptor.url)
         
         // set pipes
         let inPipe = Pipe()
@@ -243,7 +439,7 @@ final class ShellScript: Script {
             }
         }
         
-        let scriptName = self.name
+        let scriptName = self.descriptor.name
         var isCancelled = false  // user cancel state
         
         // read output asynchronously for safe with huge output
@@ -262,7 +458,7 @@ final class ShellScript: Script {
                 do {
                     try ShellScript.applyOutput(output, editor: document, type: outputType)
                 } catch let error {
-                    Script.writeToConsole(message: error.localizedDescription, scriptName: scriptName)
+                    writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 }
             }
         }
@@ -278,7 +474,7 @@ final class ShellScript: Script {
             // put error message on the sconsole
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
             if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
-                Script.writeToConsole(message: message, scriptName: scriptName)
+                writeToConsole(message: message, scriptName: scriptName)
             }
         }
     }
@@ -289,7 +485,7 @@ final class ShellScript: Script {
     /// read content of script file
     private lazy var content: String? = {
         
-        guard let data = try? Data(contentsOf: self.url) else { return nil }
+        guard let data = try? Data(contentsOf: self.descriptor.url) else { return nil }
         
         for encoding in EncodingManager.shared.defaultEncodings {
             guard let encoding = encoding else { continue }
@@ -452,4 +648,16 @@ private extension ScriptToken {
         self.init(rawValue: type)
     }
     
+}
+
+
+
+// MARK: - Private Functions
+
+fileprivate func writeToConsole(message: String, scriptName: String) {
+    
+    DispatchQueue.main.async {
+        ConsolePanelController.shared.showWindow(nil)
+        ConsolePanelController.shared.append(message: message, title: scriptName)
+    }
 }
