@@ -10,6 +10,11 @@ develop
 - Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
 
 
+### Fixes
+
+- Fix an issue on the regular expression search where the look-after did not match the word just behind the selection.
+
+
 
 3.1.3 (180)
 --------------------------

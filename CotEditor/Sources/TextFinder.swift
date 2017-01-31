@@ -801,7 +801,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         guard let string = string, !string.isEmpty else { return }
         
         let regex = self.regex()!
-        let options: NSRegularExpression.MatchingOptions = [.withoutAnchoringBounds]
+        let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
         
         for scopeRange in ranges {
             regex.enumerateMatches(in: string, options: options, range: scopeRange, using: { (result, flags, stop) in
