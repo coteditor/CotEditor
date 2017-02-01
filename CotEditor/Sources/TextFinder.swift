@@ -765,7 +765,7 @@ final class TextFinder: NSResponder {
     
     
     /// enumerate matchs in string using current settings
-    private func enumerateMatchs(in string: String?, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
+    private func enumerateMatchs(in string: String, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
         
         if self.settings.usesRegularExpression {
             self.enumerateRegularExpressionMatchs(in: string, ranges: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
@@ -776,10 +776,11 @@ final class TextFinder: NSResponder {
     
     
     /// enumerate matchs in string using textual search
-    private func enumerateTextualMatchs(in string: String?, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
+    private func enumerateTextualMatchs(in string: String, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
         
-        guard let string = string as NSString?, string.length > 0 else { return }
+        guard !string.isEmpty else { return }
         
+        let nsString = string as NSString
         let findString = self.sanitizedFindString
         let options = self.settings.textualOptions
         
@@ -787,8 +788,8 @@ final class TextFinder: NSResponder {
             var searchRange = scopeRange
             
             while searchRange.location != NSNotFound {
-                searchRange.length = string.length - searchRange.location
-                let foundRange = string.range(of: findString, options: options, range: searchRange)
+                searchRange.length = nsString.length - searchRange.location
+                let foundRange = nsString.range(of: findString, options: options, range: searchRange)
                 
                 guard foundRange.max <= scopeRange.max else { break }
                 
@@ -806,9 +807,9 @@ final class TextFinder: NSResponder {
     
     
     /// enumerate matchs in string using regular expression
-    private func enumerateRegularExpressionMatchs(in string: String?, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
+    private func enumerateRegularExpressionMatchs(in string: String, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
         
-        guard let string = string, !string.isEmpty else { return }
+        guard !string.isEmpty else { return }
         
         let regex = self.regex()!
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
