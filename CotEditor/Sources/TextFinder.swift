@@ -75,10 +75,6 @@ private struct HighlightItem {
 }
 
 
-// constants
-private let MaxHistorySize = 20
-
-
 
 // MARK:
 
@@ -350,7 +346,7 @@ final class TextFinder: NSResponder {
             }
         }
         
-        self.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
     }
     
     
@@ -441,7 +437,7 @@ final class TextFinder: NSResponder {
             }
         }
         
-        self.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
     }
     
     
@@ -469,8 +465,8 @@ final class TextFinder: NSResponder {
             NSBeep()
         }
         
-        self.appendHistory(self.findString, forKey: .findHistory)
-        self.appendHistory(self.replacementString, forKey: .replaceHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
@@ -482,8 +478,8 @@ final class TextFinder: NSResponder {
         self.replace()
         self.find(forward: true)
         
-        self.appendHistory(self.findString, forKey: .findHistory)
-        self.appendHistory(self.replacementString, forKey: .replaceHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
@@ -590,8 +586,8 @@ final class TextFinder: NSResponder {
             }
         }
         
-        self.appendHistory(self.findString, forKey: .findHistory)
-        self.appendHistory(self.replacementString, forKey: .replaceHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
@@ -727,7 +723,7 @@ final class TextFinder: NSResponder {
         
         self.delegate?.textFinder(self, didFind: count, textView: textView)
         
-        self.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
         
         return count
     }
@@ -871,28 +867,11 @@ final class TextFinder: NSResponder {
         return true
     }
     
-    
-    /// append given string to history with the user defaults key
-    private func appendHistory(_ string: String, forKey key: DefaultKey<[String]>) {
-        
-        guard !string.isEmpty else { return }
-        
-        // append new string to history
-        var history = Defaults[key] ?? []
-        history.remove(string)  // remove duplicated item
-        history.append(string)
-        if history.count > MaxHistorySize {  // remove overflow
-            history.removeFirst(history.count - MaxHistorySize)
-        }
-        
-        Defaults[key] = history
-    }
-    
 }
 
 
 
-// MARK: - TextFinder Settings Provider Protocol
+// MARK: - UserDefaults
 
 extension UserDefaults: TextFinderSettingsProvider {
     
@@ -963,6 +942,33 @@ extension UserDefaults: TextFinderSettingsProvider {
     var sharesFindString: Bool {
         
         return self[.syncFindPboard]
+    }
+    
+}
+
+
+
+private extension UserDefaults {
+    
+    private static let MaxHistorySize = 20
+    
+    
+    /// append given string to history with the user defaults key
+    func appendHistory(_ string: String, forKey key: DefaultKey<[String]>) {
+        
+        assert(key == .findHistory || key == .replaceHistory)
+        
+        guard !string.isEmpty else { return }
+        
+        // append new string to history
+        var history = self[key] ?? []
+        history.remove(string)  // remove duplicated item
+        history.append(string)
+        if history.count > UserDefaults.MaxHistorySize {  // remove overflow
+            history.removeFirst(history.count - UserDefaults.MaxHistorySize)
+        }
+        
+        self[key] = history
     }
     
 }
