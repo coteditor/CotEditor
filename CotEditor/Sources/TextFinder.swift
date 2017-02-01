@@ -357,12 +357,11 @@ final class TextFinder: NSResponder {
             let textView = self.client else { return }
         
         let integerFormatter = self.integerFormatter
-        let regex = self.regex()!
         let scopeRanges = self.scopeRanges
         
         self.busyTextViews.insert(textView)
         
-        let numberOfGroups = regex.numberOfCaptureGroups
+        let numberOfGroups = self.regex()?.numberOfCaptureGroups ?? 0
         let highlightColors = self.highlightColor.decomposite(into: numberOfGroups + 1)
         
         let string = textView.string ?? ""

@@ -12,6 +12,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where the application crashed by the Highlight command under the condition when the find string is a invalid regular expression pattern even the regular expression is turned off.
 - Fix an issue on the text search where the single text search couldn't find the word intersects with the current selection.
 
 
