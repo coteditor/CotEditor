@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -410,7 +410,7 @@ extension SyntaxStyle {
         
         let wholeRange = string.nsRange
         let bufferLength = Defaults[.coloringRangeBufferLength]
-        var highlightRange = NSIntersectionRange(editedRange, wholeRange)  // in case that wholeRange length is changed from editedRange
+        var highlightRange = editedRange.intersection(wholeRange)  // in case that wholeRange length is changed from editedRange
         
         // highlight whole if string is enough short
         if wholeRange.length <= bufferLength {
@@ -421,12 +421,13 @@ extension SyntaxStyle {
             for layoutManager in textStorage.layoutManagers {
                 guard let visibleRange = layoutManager.firstTextView?.visibleRange else { continue }
                 
-                if NSIntersectionRange(editedRange, visibleRange).length > 0 {
-                    highlightRange = NSUnionRange(highlightRange, visibleRange)
+                if editedRange.intersects(with: visibleRange) {
+                    highlightRange.formUnion(visibleRange)
                 }
             }
             
-            highlightRange = (string as NSString).lineRange(for: NSIntersectionRange(wholeRange, highlightRange))
+            highlightRange.formIntersection(wholeRange)
+            highlightRange = (string as NSString).lineRange(for: highlightRange)
             
             // expand highlight area if the character just before/after the highlighting area is the same color
             if let layoutManager = textStorage.layoutManagers.first {

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -72,6 +72,42 @@ extension NSRange: Equatable {
     var max: Int {
         
         return NSMaxRange(self)
+    }
+    
+    
+    func contains(location: Int) -> Bool {
+        
+        return NSLocationInRange(location, self)
+    }
+    
+    
+    func union(_ range: NSRange) -> NSRange {
+        
+        return NSUnionRange(self, range)
+    }
+    
+    
+    mutating func formUnion(_ range: NSRange) {
+        
+        self = NSUnionRange(self, range)
+    }
+    
+    
+    func intersection(_ range: NSRange) -> NSRange {
+        
+        return NSIntersectionRange(self, range)
+    }
+    
+    
+    mutating func formIntersection(_ range: NSRange) {
+        
+        self = NSIntersectionRange(self, range)
+    }
+    
+    
+    func intersects(with range: NSRange) -> Bool {
+        
+        return NSIntersectionRange(self, range).length > 0
     }
 
     

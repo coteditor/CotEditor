@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -271,7 +271,7 @@ final class LineNumberView: NSRulerView {
             
             // check if line is selected
             let isSelected = selectedLineRanges.contains { selectedRange in
-                return (NSLocationInRange(lineRange.location, selectedRange) &&
+                return (selectedRange.contains(location: lineRange.location) &&
                     (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.max == selectedRange.max)))
             }
             
@@ -562,7 +562,7 @@ extension LineNumberView {
         let clickedIndex = draggingInfo?.index ?? currentIndex
         let currentLineRange = string.lineRange(at: currentIndex)
         let clickedLineRange = string.lineRange(at: clickedIndex)
-        var range = NSUnionRange(currentLineRange, clickedLineRange)
+        var range = currentLineRange.union(clickedLineRange)
         
         let affinity: NSSelectionAffinity = (currentIndex < clickedIndex) ? .upstream : .downstream
         
@@ -604,7 +604,7 @@ extension LineNumberView {
         // with Shift key (expand selection)
         if NSEvent.modifierFlags().contains(.shift) {
             let selectedRange = textView.selectedRange
-            if NSLocationInRange(currentIndex, selectedRange) {  // reduce
+            if selectedRange.contains(location: currentIndex) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
                 if inUpperSelection {  // clicked upper half section of selected range
                     range = NSRange(location: currentIndex, length: selectedRange.max - currentIndex)
@@ -613,7 +613,7 @@ extension LineNumberView {
                     range.length -= selectedRange.max - currentLineRange.max
                 }
             } else {  // expand
-                range = NSUnionRange(range, selectedRange)
+                range.formUnion(selectedRange)
             }
         }
         

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ extension EditorTextView {
             
             // calculate new selection range
             let deletedRange = NSRange(location: scanningLineLocation, length: numberOfDeleted)
-            newSelectedRange.length -= NSIntersectionRange(deletedRange, newSelectedRange).length
+            newSelectedRange.length -= newSelectedRange.intersection(deletedRange).length
             if isFirstLine {
                 newSelectedRange.location = max(selectedRange.location - numberOfDeleted,
                                                 lineRange.location)
