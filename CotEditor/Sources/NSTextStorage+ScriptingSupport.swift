@@ -32,7 +32,7 @@ extension NSTextStorage {
     /**
      Observe text storage update for in case when a part of the contents is directly edited from an AppleScript.
      
-     This method is used for a textStorage that will be a return value for scripting.
+     This method is used for a textStorage that will be passed to AppleScript.
      
      e.g.:
      ```AppleScript
