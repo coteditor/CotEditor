@@ -12,7 +12,7 @@ develop
 
 ### Fixes
 
-- Fix an issue on the regular expression search where the look-after did not match the word just behind the selection.
+- Fix an issue on the text search where the single text search couldn't find the word intersects with the current selection.
 
 
 

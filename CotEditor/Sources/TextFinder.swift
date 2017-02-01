@@ -677,27 +677,38 @@ final class TextFinder: NSResponder {
             let textView = self.client,
             let string = textView.string, !string.isEmpty else { return 0 }
         
-        func matchedRanges(in range: NSRange) -> [NSRange] {
-            var matches = [NSRange]()
-            self.enumerateMatchs(in: string, ranges: [range], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
-                matches.append(matchedRange)
-            })
-            return matches
-        }
+        let selectedRange = textView.selectedRange
+        let startLocation = forward ? selectedRange.max : selectedRange.location
         
-        let startLocation = forward ? textView.selectedRange.max : textView.selectedRange.location
-        let forwardMatches = matchedRanges(in: NSRange(location: startLocation,
-                                                       length: string.utf16.count - startLocation))
-        let wrappedMatches = matchedRanges(in: NSRange(location: 0,
-                                                       length: startLocation))
+        var forwardMatches = [NSRange]()  // matches after the start location
+        let forwardRange = NSRange(location: startLocation, length: string.utf16.count - startLocation)
+        self.enumerateMatchs(in: string, ranges: [forwardRange], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+            forwardMatches.append(matchedRange)
+        })
+        
+        var wrappedMatches = [NSRange]()  // matches before the start location
+        var intersectionMatches = [NSRange]()  // matches including the start location
+        self.enumerateMatchs(in: string, ranges: [string.nsRange], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+            if matchedRange.location >= startLocation {
+                stop = true
+                return
+            }
+            if matchedRange.contains(location: startLocation) {
+                intersectionMatches.append(matchedRange)
+            } else {
+                wrappedMatches.append(matchedRange)
+            }
+        })
         
         var foundRange: NSRange? = forward ? forwardMatches.first : wrappedMatches.last
         
         // wrap search
         let isWrapped = (foundRange == nil && self.settings.isWrap)
         if isWrapped {
-            foundRange = forward ? wrappedMatches.first : forwardMatches.last
+            foundRange = forward ? (wrappedMatches + intersectionMatches).first : (intersectionMatches + forwardMatches).last
         }
+        
+        let count = forwardMatches.count + wrappedMatches.count + intersectionMatches.count
         
         // found feedback
         if let range = foundRange {
@@ -713,8 +724,6 @@ final class TextFinder: NSResponder {
         } else {
             NSBeep()
         }
-        
-        let count = forwardMatches.count + wrappedMatches.count
         
         self.delegate?.textFinder(self, didFind: count, textView: textView)
         
