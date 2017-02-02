@@ -178,19 +178,19 @@ final class TextFind {
     
     
     ///
-    func findAll(using block: (_ matches: [NSRange?], _ stop: inout Bool) -> Void) {
+    func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
         
-        let numberOfGroups = self.regex?.numberOfCaptureGroups ?? 0
+        let numberOfGroups = self.numberOfCaptureGroups
         
         self.enumerateMatchs(in: self.scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             
-            var matches = [NSRange?]()
+            var matches = [NSRange]()
             
             matches.append(matchedRange)
             
-            if numberOfGroups > 0 {
+            if numberOfGroups > 0, let regexMatch = match {
                 for index in 1...numberOfGroups {
-                    matches.append(match?.rangeAt(index))
+                    matches.append(regexMatch.rangeAt(index))
                 }
             }
             

@@ -243,13 +243,13 @@ final class TextFinder: NSResponder {
             var lineNumber = 1
             var lineCountedLocation = 0
             
-            textFind.findAll() { (matches: [NSRange?], stop) in
+            textFind.findAll() { (matches: [NSRange], stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
                 
-                let matchedRange = matches[0]!
+                let matchedRange = matches[0]
                 
                 // calculate line number
                 let diffRange = NSRange(location: lineCountedLocation, length: matchedRange.location - lineCountedLocation)
@@ -263,10 +263,10 @@ final class TextFinder: NSResponder {
                 let lineString = (textFind.string as NSString).substring(with: lineRange)
                 let attrLineString = NSMutableAttributedString(string: lineString)
                 
-                for match in matches.enumerated() {
-                    guard let range = match.element, range.length > 0 else { continue }
+                for (index, range) in matches.enumerated() {
+                    guard range.length > 0 else { continue }
                     
-                    let color = highlightColors[match.offset]
+                    let color = highlightColors[index]
                     let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
                     
                     attrLineString.addAttribute(NSBackgroundColorAttributeName, value: color, range: inlineRange)
@@ -347,16 +347,16 @@ final class TextFinder: NSResponder {
             
             var highlights = [HighlightItem]()
             
-            textFind.findAll { (matches: [NSRange?], stop) in
+            textFind.findAll { (matches: [NSRange], stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
                 
-                for match in matches.enumerated() {
-                    guard let range = match.element, range.length > 0 else { continue }
+                for (index, range) in matches.enumerated() {
+                    guard range.length > 0 else { continue }
                     
-                    let color = highlightColors[match.offset]
+                    let color = highlightColors[index]
                     highlights.append(HighlightItem(range: range, color: color))
                 }
                 

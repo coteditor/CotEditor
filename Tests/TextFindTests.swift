@@ -159,7 +159,7 @@ class TextFindTests: XCTestCase {
                                      regexOptions: [.caseInsensitive])
         textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)", settings: settings)
         
-        var matches = [[NSRange?]]()
+        var matches = [[NSRange]]()
         textFind.findAll { (matchedRanges, stop) in
             matches.append(matchedRanges)
         }
