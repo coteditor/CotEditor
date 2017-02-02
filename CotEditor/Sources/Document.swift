@@ -1434,7 +1434,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Characters
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 }
                 return false
@@ -1453,7 +1453,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             switch recoveryOptionIndex {
             case 0:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 }
                 return true
