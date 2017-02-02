@@ -491,6 +491,7 @@
 		2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
 		2AED46701E425CD200751C45 /* TextFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED466F1E425CD200751C45 /* TextFind.swift */; };
 		2AED46711E425CD200751C45 /* TextFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED466F1E425CD200751C45 /* TextFind.swift */; };
+		2AED46731E43942300751C45 /* TextFindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED46721E43942300751C45 /* TextFindTests.swift */; };
 		2AED70EE1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */; };
 		2AED70EF1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */; };
 		2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */; };
@@ -1045,6 +1046,7 @@
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
 		2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		2AED466F1E425CD200751C45 /* TextFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFind.swift; sourceTree = "<group>"; };
+		2AED46721E43942300751C45 /* TextFindTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindTests.swift; sourceTree = "<group>"; };
 		2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Sandboxing.swift"; sourceTree = "<group>"; };
 		2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Authopen.swift"; sourceTree = "<group>"; };
@@ -1721,6 +1723,7 @@
 				2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */,
 				2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */,
 				2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */,
+				2AED46721E43942300751C45 /* TextFindTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2337,6 +2340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */,
+				2AED46731E43942300751C45 /* TextFindTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
 				2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */,
