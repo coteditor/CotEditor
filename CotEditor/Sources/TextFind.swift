@@ -78,6 +78,7 @@ final class TextFind {
     init(for string: String, findString: String, settings: TextFind.Settings, selectedRanges: [NSRange] = [NSRange()]) throws {
         
         assert(!selectedRanges.isEmpty)
+        assert(!settings.textualOptions.contains(.backwards))
         
         guard !findString.isEmpty else {
             throw TextFindError.emptyFindString
