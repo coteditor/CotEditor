@@ -595,16 +595,13 @@ final class TextFinder: NSResponder {
         let textFind: TextFind
         do {
             textFind = try TextFind(for: string, findString: self.sanitizedFindString, settings: settings, selectedRanges: textView.selectedRanges as [NSRange])
-        } catch let error as TextFindError {
+        } catch {
             switch error {
-            case .regularExpression:
+            case TextFindError.regularExpression:
                 self.findPanelController.showWindow(self)
                 self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
             default: break
             }
-            NSBeep()
-            return nil
-        } catch {
             NSBeep()
             return nil
         }

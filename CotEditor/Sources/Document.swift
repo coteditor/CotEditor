@@ -263,7 +263,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func read(from url: URL, ofType typeName: String) throws {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
-        
         let data = try Data(contentsOf: url)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
         
@@ -719,7 +718,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 
                 do {
                     try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
-                } catch let error {
+                } catch {
                     strongSelf.presentErrorAsSheet(error)
                 }
             }
@@ -823,7 +822,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         do {
             try self.reinterpret(encoding: encoding)
             
-        } catch let error {
+        } catch {
             NSBeep()
             self.presentErrorAsSheet(error)
         }
@@ -1163,7 +1162,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             do {
                 try self.checkSavingSafetyWithIANACharSetName(content: content, encoding: encoding)
                 
-            } catch let error {
+            } catch {
                 // --> ask directly with a NSAlert for the suppression button
                 let alert = NSAlert(error: error)
                 alert.showsSuppressionButton = true
@@ -1189,7 +1188,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         do {
             try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
             
-        } catch let error {
+        } catch {
             self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
             return
         }
@@ -1280,7 +1279,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if returnCode == NSAlertSecondButtonReturn, let fileType = strongSelf.fileType { // == Revert
                 do {
                     try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
-                } catch let error {
+                } catch {
                     strongSelf.presentErrorAsSheet(error)
                 }
             }

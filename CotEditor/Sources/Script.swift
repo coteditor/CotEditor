@@ -403,7 +403,7 @@ final class ShellScript: Script {
         if let inputType = InputType(scanning: script) {
             do {
                 input = try self.readInputString(type: inputType, editor: document)
-            } catch let error {
+            } catch {
                 writeToConsole(message: error.localizedDescription, scriptName: self.descriptor.name)
                 return
             }
@@ -457,7 +457,7 @@ final class ShellScript: Script {
                 
                 do {
                     try ShellScript.applyOutput(output, editor: document, type: outputType)
-                } catch let error {
+                } catch {
                     writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 }
             }

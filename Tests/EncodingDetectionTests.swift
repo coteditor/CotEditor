@@ -117,7 +117,7 @@ class EncodingDetectionTests: XCTestCase {
             string = try String(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)
         } catch let error as CocoaError where error.code == .fileReadUnknownStringEncoding {
             didCatchError = true
-        } catch let error {
+        } catch {
             XCTFail(error.localizedDescription)
         }
 

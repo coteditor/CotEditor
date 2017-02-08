@@ -288,7 +288,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         do {
             try ThemeManager.shared.renameSetting(name: oldName, to: newName)
             
-        } catch let error {
+        } catch {
             // revert name
             fieldEditor.string = oldName
             
@@ -552,7 +552,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             do {
                 try ThemeManager.shared.removeSetting(name: name)
                 
-            } catch let error {
+            } catch {
                 alert.window.orderOut(nil)
                 NSBeep()
                 NSAlert(error: error).beginSheetModal(for: window)
@@ -569,7 +569,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         do {
             try ThemeManager.shared.restoreSetting(name: name)
-        } catch let error {
+        } catch {
             self.presentError(error)
         }
     }
@@ -580,7 +580,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         do {
             try ThemeManager.shared.importSetting(fileURL: fileURL)
-        } catch let error {
+        } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)
         }

@@ -40,7 +40,7 @@ final class ServicesProvider: NSObject {
         do {
             document = try NSDocumentController.shared().openUntitledDocumentAndDisplay(false)
             
-        } catch let error {
+        } catch {
             NSApp.presentError(error)
             return
         }

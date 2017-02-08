@@ -151,7 +151,7 @@ final class ThemeManager: SettingFileManager {
         // create directory to save in user domain if not yet exist
         do {
             try self.prepareUserSettingDirectory()
-        } catch let error {
+        } catch {
             completionHandler?(error)
             return false
         }
@@ -163,7 +163,7 @@ final class ThemeManager: SettingFileManager {
             
             try data.write(to: fileURL, options: .atomic)
             
-        } catch let error {
+        } catch {
             completionHandler?(error)
             return false
         }

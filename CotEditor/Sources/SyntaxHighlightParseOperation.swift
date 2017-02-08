@@ -299,7 +299,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         let regex: NSRegularExpression
         do {
             try regex = NSRegularExpression(pattern: regexString, options: options)
-        } catch let error {
+        } catch {
             print("Regex Syntax Error in " + #function + ": ", error)
             return []
         }
@@ -337,7 +337,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         do {
             try beginRegex = NSRegularExpression(pattern: beginString, options: options)
             try endRegex = NSRegularExpression(pattern: endString, options: options)
-        } catch let error {
+        } catch {
             print("Regex Syntax Error in " + #function + ": ", error)
             return []
         }

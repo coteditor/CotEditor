@@ -237,7 +237,7 @@ final class DocumentController: NSDocumentController {
         let document: NSDocument
         do {
             document = try self.openUntitledDocumentAndDisplay(false)
-        } catch let error {
+        } catch {
             self.presentError(error)
             return
         }
@@ -256,7 +256,7 @@ final class DocumentController: NSDocumentController {
         let document: NSDocument
         do {
             document = try self.openUntitledDocumentAndDisplay(false)
-        } catch let error {
+        } catch {
             self.presentError(error)
             return
         }

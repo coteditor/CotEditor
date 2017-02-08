@@ -87,7 +87,7 @@ final class TextFind {
         if settings.usesRegularExpression {
             do {
                 self.regex = try NSRegularExpression(pattern: findString, options: settings.regexOptions)
-            } catch let error {
+            } catch {
                 let failureReason: String? = (error as? LocalizedError)?.failureReason
                 throw TextFindError.regularExpression(reason: failureReason)
             }

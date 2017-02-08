@@ -473,7 +473,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             do {
                 try SyntaxManager.shared.removeSetting(name: name)
                 
-            } catch let error {
+            } catch {
                 alert.window.orderOut(nil)
                 NSBeep()
                 NSAlert(error: error).beginSheetModal(for: window)
@@ -490,7 +490,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         do {
             try SyntaxManager.shared.restoreSetting(name: name)
-        } catch let error {
+        } catch {
             self.presentError(error)
         }
     }
@@ -501,7 +501,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         do {
             try SyntaxManager.shared.importSetting(fileURL: fileURL)
-        } catch let error {
+        } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)
         }

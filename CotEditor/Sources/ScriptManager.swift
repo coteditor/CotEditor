@@ -225,7 +225,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 try script.run()
             }
             
-        } catch let error {
+        } catch {
             NSApp.presentError(error)
         }
     }
@@ -276,7 +276,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             
             do {
                 try script.run(withAppleEvent: event)
-            } catch let error {
+            } catch {
                 NSApp.presentError(error)
             }
         }
