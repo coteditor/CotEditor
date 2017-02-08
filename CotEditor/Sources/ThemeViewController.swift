@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -40,13 +40,19 @@ protocol ThemeViewControllerDelegate: class {
 final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate {
     
     dynamic var theme: ThemeDictionary? {
-        willSet (newTheme) {
+        willSet {
             // remove current observing (in case when the theme is restored)
             self.endThemeObserving()
             
             // observe input theme
-            if let theme = newTheme {
+            if let theme = newValue {
                 self.observe(theme: theme)
+            }
+        }
+        didSet {
+            // add metadata's NSMutableDictionary beforehand for KVO by NSObjectController
+            if self.theme?[DictionaryKey.metadata.rawValue] == nil {
+                self.theme?[DictionaryKey.metadata.rawValue] = NSMutableDictionary()
             }
         }
     }
@@ -60,7 +66,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
@@ -90,9 +96,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     /// theme is modified
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
-        if let theme = self.theme {
-            self.delegate?.didUpdate(theme: theme)
-        }
+        self.notifyUpdate()
     }
     
     
@@ -110,9 +114,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     func popoverDidClose(_ obj: Notification) {
         
         if self.isMetadataEdited {
-            if let theme = self.theme {
-                self.delegate?.didUpdate(theme: theme)
-            }
+            self.notifyUpdate()
             self.isMetadataEdited = false
         }
     }
@@ -122,9 +124,9 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     // MARK: Action Messages
     
     /// apply system highlight color to color well
-    @IBAction func applySystemSelectionColor(_ sender: Any?) {
+    @IBAction func applySystemSelectionColor(_ button: NSButton) {
         
-        guard let button = sender as? NSButton, button.state == NSOnState else { return }
+        guard button.state == NSOnState else { return }
         
         let color = NSColor.selectedTextBackgroundColor
         let colorCode = color.usingColorSpaceName(NSCalibratedRGBColorSpace)?.colorCode(type: .hex)
@@ -134,9 +136,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     
     
     /// show medatada of theme file via popover
-    @IBAction func showMedatada(_ sender: Any?) {
-        
-        guard let button = sender as? NSButton else { return }
+    @IBAction func showMedatada(_ button: NSButton) {
         
         self.popover?.show(relativeTo: button.frame, of: self.view, preferredEdge: .maxY)
     }
@@ -158,6 +158,20 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     
     
     // MARK: Private Methods
+    
+    /// notify theme update to delegate
+    private func notifyUpdate() {
+        
+        guard var theme = self.theme else { return }
+        
+        // remove metadata key if empty
+        if theme[DictionaryKey.metadata.rawValue]?.count == 0 {
+            theme[DictionaryKey.metadata.rawValue] = nil
+        }
+        
+        self.delegate?.didUpdate(theme: theme)
+    }
+    
     
     /// start observing theme change
     private func observe(theme: ThemeDictionary) {
