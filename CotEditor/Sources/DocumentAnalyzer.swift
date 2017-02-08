@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -73,10 +73,8 @@ final class DocumentAnalyzer: NSObject {
     
     // MARK: Private Properties
     
-    private static let EditorInfoUpdateInterval: TimeInterval = 0.2
-    
     private weak var document: Document?  // weak to avoid cycle retain
-    private weak var editorInfoUpdateTimer: Timer?
+    private let editorUpdateTimer = DebounceTimer(delay: 0.2)
     
     
     
@@ -88,11 +86,6 @@ final class DocumentAnalyzer: NSObject {
         self.document = document
         
         super.init()
-    }
-    
-    
-    deinit {
-        self.editorInfoUpdateTimer?.invalidate()
     }
     
     
@@ -140,7 +133,9 @@ final class DocumentAnalyzer: NSObject {
         
         guard self.needsUpdateEditorInfo || self.needsUpdateStatusEditorInfo else { return }
         
-        self.setupEditorInfoUpdateTimer()
+        self.editorUpdateTimer.schedule { [weak self] in
+            self?.updateEditorInfo()
+        }
     }
     
     
@@ -148,7 +143,7 @@ final class DocumentAnalyzer: NSObject {
     // MARK: Private Methods
     
     /// update editor info (only if really needed)
-    func updateEditorInfo() {
+    private func updateEditorInfo() {
         
         guard
             let document = self.document,
@@ -278,32 +273,6 @@ final class DocumentAnalyzer: NSObject {
             return String.localizedStringWithFormat("%li (%li)", count, selectedCount)
         }
         return String.localizedStringWithFormat("%li", count)
-    }
-    
-    
-    /// set update timer for information about the content text
-    private func setupEditorInfoUpdateTimer() {
-        
-        let interval = type(of: self).EditorInfoUpdateInterval
-        
-        if let timer = self.editorInfoUpdateTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: interval)
-        } else {
-            self.editorInfoUpdateTimer = Timer.scheduledTimer(timeInterval: interval,
-                                                              target: self,
-                                                              selector: #selector(updateEditorInfo(timer:)),
-                                                              userInfo: nil,
-                                                              repeats: false)
-            self.editorInfoUpdateTimer?.tolerance = 0.1 * interval
-        }
-    }
-    
-    
-    /// editor info update timer is fired
-    func updateEditorInfo(timer: Timer) {
-        
-        self.editorInfoUpdateTimer?.invalidate()
-        self.updateEditorInfo()
     }
     
 }

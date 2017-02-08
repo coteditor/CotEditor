@@ -71,7 +71,7 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
-    fileprivate weak var completionTimer: Timer?
+    fileprivate let completionTimer = DebounceTimer(delay: 0)
     fileprivate var particalCompletionWord: String?
     
     private let observedDefaultKeys: [DefaultKeys] = [
@@ -168,8 +168,6 @@ final class EditorTextView: NSTextView, Themable {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
         NotificationCenter.default.removeObserver(self)
-        
-        self.completionTimer?.invalidate()
     }
     
     
@@ -1202,7 +1200,7 @@ extension EditorTextView {
     /// display completion candidate and list
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
-        self.completionTimer?.invalidate()
+        self.completionTimer.cancel()
         
         guard let string = self.string else { return }
         
@@ -1270,15 +1268,8 @@ extension EditorTextView {
     /// display word completion list with a delay
     func complete(after delay: TimeInterval) {
         
-        if let timer = self.completionTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: delay)
-        } else {
-            self.completionTimer = Timer.scheduledTimer(timeInterval: delay,
-                                                        target: self,
-                                                        selector: #selector(completion(timer:)),
-                                                        userInfo: nil,
-                                                        repeats: false)
-            self.completionTimer?.tolerance = 0.1 * delay
+        self.completionTimer.schedule(after: delay) {
+            self.completion()
         }
     }
     
@@ -1287,9 +1278,7 @@ extension EditorTextView {
     // MARK: Private Methods
     
     /// display word completion list
-    func completion(timer: Timer) {
-        
-        self.completionTimer?.invalidate()
+    private func completion() {
         
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)

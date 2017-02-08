@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -48,24 +48,17 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     
     // MARK: Private Properties
     
-    static let UpdateInterval: TimeInterval = 0.4
-    
-    private weak var updateTimer: Timer?
     private var needsUpdate = true
+    private let updateTimer = DebounceTimer(delay: 0.4)
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(document: Document) {
         
         self.document = document
-    }
-    
-    
-    deinit {
-        self.updateTimer?.invalidate()
     }
     
     
@@ -87,17 +80,8 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
             let document = self.document,
             self.delegate?.needsUpdateIncompatibleCharacter(document) ?? false else { return }
         
-        let interval = type(of: self).UpdateInterval
-        
-        if let timer = self.updateTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: interval)
-        } else {
-            self.updateTimer = Timer.scheduledTimer(timeInterval: interval,
-                                                    target: self,
-                                                    selector: #selector(scan(timer:)),
-                                                    userInfo: nil,
-                                                    repeats: false)
-            self.updateTimer?.tolerance = 0.1 * interval
+        self.updateTimer.schedule { [weak self] in
+            self?.scan()
         }
     }
     
@@ -105,25 +89,12 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     /// scan immediately
     func scan() {
         
-        self.updateTimer?.invalidate()
-        
         guard let document = self.document else { return }
         
         self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.encoding) ?? []
         self.needsUpdate = false
         
         self.delegate?.document(document, didUpdateIncompatibleCharacters: self.incompatibleCharacters)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// update incompatible characters afer interval
-    @objc func scan(timer: Timer) {
-        
-        self.updateTimer?.invalidate()
-        self.scan()
     }
     
 }

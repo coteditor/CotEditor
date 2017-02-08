@@ -75,7 +75,8 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     fileprivate var cachedHighlights: [SyntaxType: [NSRange]]?  // extracted results cache of the last whole string highlighs
     fileprivate var highlightCacheHash: String?  // MD5 hash
-    fileprivate weak var outlineMenuTimer: Timer?
+    
+    fileprivate let outlineUpdateTimer = DebounceTimer(delay: 0.4)
     
     private static let AllAlphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
     
@@ -232,8 +233,6 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     deinit {
         self.outlineParseOperationQueue.cancelAllOperations()
         self.syntaxHighlightParseOperationQueue.cancelAllOperations()
-        
-        self.outlineMenuTimer?.invalidate()
     }
     
     
@@ -303,9 +302,6 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
 
 extension SyntaxStyle {
     
-    private static let OutlineMenuUpdateInterval: TimeInterval = 0.4
-    
-    
     /// parse outline with delay
     func invalidateOutline() {
         
@@ -314,7 +310,9 @@ extension SyntaxStyle {
             return
         }
         
-        self.setupOutlineMenuUpdateTimer()
+        self.outlineUpdateTimer.schedule { [weak self] in
+            self?.parseOutline()
+        }
     }
     
     
@@ -322,9 +320,7 @@ extension SyntaxStyle {
     // MARK: Private Methods
     
     /// parse outline
-    @objc private func parseOutline() {
-        
-        self.outlineMenuTimer?.invalidate()
+    private func parseOutline() {
         
         guard
             let definitions = self.outlineDefinitions,
@@ -346,24 +342,6 @@ extension SyntaxStyle {
         }
         
         self.outlineParseOperationQueue.addOperation(operation)
-    }
-    
-    
-    /// let parse outline after a delay
-    private func setupOutlineMenuUpdateTimer() {
-        
-        let interval = type(of: self).OutlineMenuUpdateInterval
-        
-        if let timer = self.outlineMenuTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: interval)
-        } else {
-            self.outlineMenuTimer = Timer.scheduledTimer(timeInterval: interval,
-                                                         target: self,
-                                                         selector: #selector(parseOutline),
-                                                         userInfo: nil,
-                                                         repeats: false)
-            self.outlineMenuTimer?.tolerance = 0.1 * interval
-        }
     }
     
 }

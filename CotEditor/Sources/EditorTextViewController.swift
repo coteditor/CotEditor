@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -75,9 +75,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private static let CurrentLineUpdateInterval = 0.01
-    private weak var currentLineUpdateTimer: Timer?
     private var lastCursorLocation = 0
+    private let currentLineUpdateTimer = DebounceTimer(delay: 0.01, tolerance: 0.5)
     
     private enum MenuItemTag: Int {
         case script = 800
@@ -89,8 +88,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: Lifecycle
     
     deinit {
-        self.currentLineUpdateTimer?.invalidate()
-        
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.highlightCurrentLine.rawValue)
         NotificationCenter.default.removeObserver(self)
         
@@ -355,27 +352,16 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard Defaults[.highlightCurrentLine] else { return }
         
-        let interval = type(of: self).CurrentLineUpdateInterval
-        
-        if let timer = self.currentLineUpdateTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: interval)
-        } else {
-            self.currentLineUpdateTimer = Timer.scheduledTimer(timeInterval: interval,
-                                                               target: self,
-                                                               selector: #selector(updateCurrentLineRect),
-                                                               userInfo: nil,
-                                                               repeats: false)
-            self.currentLineUpdateTimer?.tolerance = 0.5 * interval
+        self.currentLineUpdateTimer.schedule { [weak self] in
+            self?.updateCurrentLineRect()
         }
     }
     
     
     /// update current line highlight area
-    func updateCurrentLineRect() {
+    private func updateCurrentLineRect() {
         
         // [note] Don't invoke this method too often but with a currentLineUpdateTimer because this is a heavy task.
-        
-        self.currentLineUpdateTimer?.invalidate()
         
         guard Defaults[.highlightCurrentLine] else { return }
         
