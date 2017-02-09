@@ -40,7 +40,12 @@ final class DebounceTimer {
     // MARK: -
     // MARK: Lifecycle
     
-    init(delay: TimeInterval, tolerance: TimeInterval = 0.1) {
+    /// Returns a new `DebounceTimer` initialized with given values.
+    ///
+    /// - Parameters:
+    ///   - delay: The default time to wait since last emission.
+    ///   - tolerance: The rate of the timer tolerance to the delay interval.
+    init(delay: TimeInterval, tolerance: Double = 0.1) {
         
         self.delay = delay
         self.tolerance = tolerance
