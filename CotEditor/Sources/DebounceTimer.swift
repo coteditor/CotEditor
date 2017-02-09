@@ -86,10 +86,19 @@ final class DebounceTimer {
     }
     
     
-    /// Cancel action if scheduled
+    /// Cancel action if scheduled.
     func cancel() {
         
         self.timer?.invalidate()
+    }
+    
+    
+    /// Run action immediatly if one scheduled.
+    func run() {
+        
+        guard let timer = self.timer else { return }
+        
+        self.fire(timer)
     }
     
     
