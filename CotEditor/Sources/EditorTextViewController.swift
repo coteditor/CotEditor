@@ -76,7 +76,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: Private Properties
     
     private var lastCursorLocation = 0
-    private let currentLineUpdateTimer = DebounceTimer(delay: 0.01, tolerance: 0.5)
+    private lazy var currentLineUpdateTask: Debouncer = Debouncer(delay: 0.01, tolerance: 0.5) { [weak self] in self?.updateCurrentLineRect() }
     
     private enum MenuItemTag: Int {
         case script = 800
@@ -248,7 +248,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         //   -> Flag is set in EditorTextView > `insertCompletion:forPartialWordRange:movement:isFinal:`
         if textView.needsRecompletion {
             textView.needsRecompletion = false
-            textView.complete(after: 0.05)
+            textView.completionTask.schedule(delay: 0.05)
         }
     }
     
@@ -267,7 +267,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // highlight the current line
         // -> For the selection change, call `updateCurrentLineRect` directly rather than setting currentLineUpdateTimer
         //    in order to provide a quick feedback of change to users.
-        self.updateCurrentLineRect()
+        self.currentLineUpdateTask.run()
         
         // highlight matching brace
         self.highlightMatchingBrace(in: textView)
@@ -348,13 +348,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     
     /// set update timer for current line highlight calculation
-    func setupCurrentLineUpdateTimer() {
+    @objc private func setupCurrentLineUpdateTimer() {
         
         guard Defaults[.highlightCurrentLine] else { return }
         
-        self.currentLineUpdateTimer.schedule { [weak self] in
-            self?.updateCurrentLineRect()
-        }
+        self.currentLineUpdateTask.schedule()
     }
     
     

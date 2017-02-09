@@ -74,7 +74,8 @@ final class DocumentAnalyzer: NSObject {
     // MARK: Private Properties
     
     private weak var document: Document?  // weak to avoid cycle retain
-    private let editorUpdateTimer = DebounceTimer(delay: 0.2)
+    
+    private lazy var editorUpdateTask: Debouncer = Debouncer(delay: 0.2) { [weak self] in self?.updateEditorInfo() }
     
     
     
@@ -133,9 +134,7 @@ final class DocumentAnalyzer: NSObject {
         
         guard self.needsUpdateEditorInfo || self.needsUpdateStatusEditorInfo else { return }
         
-        self.editorUpdateTimer.schedule { [weak self] in
-            self?.updateEditorInfo()
-        }
+        self.editorUpdateTask.schedule()
     }
     
     

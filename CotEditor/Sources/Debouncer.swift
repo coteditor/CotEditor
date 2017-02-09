@@ -1,6 +1,6 @@
 /*
  
- DebounceTimer.swift
+ Debouncer.swift
  
  CotEditor
  https://coteditor.com
@@ -27,10 +27,12 @@
 
 import Foundation
 
-final class DebounceTimer {
+/// Object invoking the registered block when a specific time interval is passed after the last call.
+final class Debouncer {
     
     // MARK: Private Properties
     
+    private let action: () -> ()
     private let delay: TimeInterval
     private let tolerance: Double
     private weak var timer: Timer?
@@ -40,13 +42,15 @@ final class DebounceTimer {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Returns a new `DebounceTimer` initialized with given values.
+    /// Returns a new `Debouncer` initialized with given values.
     ///
     /// - Parameters:
-    ///   - delay: The default time to wait since last emission.
+    ///   - delay: The default time to wait since last call.
     ///   - tolerance: The rate of the timer tolerance to the delay interval.
-    init(delay: TimeInterval, tolerance: Double = 0.1) {
+    ///   - action: The action to debounce.
+    init(delay: TimeInterval = 0, tolerance: Double = 0.2, action: @escaping () -> ()) {
         
+        self.action = action
         self.delay = delay
         self.tolerance = tolerance
     }
@@ -60,63 +64,41 @@ final class DebounceTimer {
     
     // MARK: Public Methods
     
-    /// Perform the action after when `delay` seconds have passed since the last emission.
+    /// Invoke the action after when `delay` seconds have passed since last call.
     ///
     /// - Parameters:
-    ///   - delay: The time to wait since last emission. If nil, the default delay is used.
-    ///   - action: The action to perform after the delay.
-    func schedule(after delay: TimeInterval? = nil, action: @escaping () -> Void) {
+    ///   - delay: The time to wait since last call. If nil, receiver's default delay is used.
+    func schedule(delay: TimeInterval? = nil) {
         
         let delay = delay ?? self.delay
         
         guard delay > 0 else {
-            self.timer?.invalidate()
-            action()
-            return
+            return self.run()
         }
         
         if let timer = self.timer {
             timer.fireDate = Date(timeIntervalSinceNow: delay)
         } else {
             self.timer = Timer.scheduledTimer(timeInterval: delay,
-                                              target: self, selector: #selector(fire),
-                                              userInfo: action, repeats: false)
+                                              target: self, selector: #selector(run),
+                                              userInfo: nil, repeats: false)
         }
         self.timer?.tolerance = self.tolerance * delay
     }
     
     
-    /// Cancel action if scheduled.
+    /// Run the action immediately.
+    @objc func run() {
+        
+        self.timer?.invalidate()
+        self.action()
+    }
+    
+    
+    /// Cancel the action if scheduled.
     func cancel() {
         
         self.timer?.invalidate()
-    }
-    
-    
-    /// Run action immediately if one scheduled.
-    func run() {
-        
-        guard let timer = self.timer else { return }
-        
-        self.fire(timer)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    @objc private func fire(_ timer: Timer) {
-        
-        defer {
-            self.timer?.invalidate()
-        }
-        
-        guard
-            timer.isValid,
-            let action = timer.userInfo as? (() -> Void)
-            else { return }
-        
-        action()
     }
     
 }

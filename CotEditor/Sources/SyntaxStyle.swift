@@ -76,7 +76,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     fileprivate var cachedHighlights: [SyntaxType: [NSRange]]?  // extracted results cache of the last whole string highlighs
     fileprivate var highlightCacheHash: String?  // MD5 hash
     
-    fileprivate let outlineUpdateTimer = DebounceTimer(delay: 0.4)
+    fileprivate private(set) lazy var outlineUpdateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.parseOutline() }
     
     private static let AllAlphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
     
@@ -310,9 +310,7 @@ extension SyntaxStyle {
             return
         }
         
-        self.outlineUpdateTimer.schedule { [weak self] in
-            self?.parseOutline()
-        }
+        self.outlineUpdateTask.schedule()
     }
     
     
@@ -320,7 +318,7 @@ extension SyntaxStyle {
     // MARK: Private Methods
     
     /// parse outline
-    private func parseOutline() {
+    fileprivate func parseOutline() {
         
         guard
             let definitions = self.outlineDefinitions,

@@ -48,8 +48,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     
     // MARK: Private Properties
     
-    private var needsUpdate = true
-    private let updateTimer = DebounceTimer(delay: 0.4)
+    private lazy var updateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.scan() }
     
     
     
@@ -74,15 +73,11 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     /// set update timer
     func invalidate() {
         
-        self.needsUpdate = true
-        
         guard
             let document = self.document,
             self.delegate?.needsUpdateIncompatibleCharacter(document) ?? false else { return }
         
-        self.updateTimer.schedule { [weak self] in
-            self?.scan()
-        }
+        self.updateTask.schedule()
     }
     
     
@@ -92,7 +87,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
         guard let document = self.document else { return }
         
         self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.encoding) ?? []
-        self.needsUpdate = false
+        self.updateTask.cancel()
         
         self.delegate?.document(document, didUpdateIncompatibleCharacters: self.incompatibleCharacters)
     }

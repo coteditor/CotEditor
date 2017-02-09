@@ -60,6 +60,8 @@ final class EditorTextView: NSTextView, Themable {
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
     
+    private(set) lazy var completionTask: Debouncer = Debouncer() { [weak self] in self?.performCompletion() }
+    
     
     // MARK: Private Properties
     
@@ -71,7 +73,6 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
-    fileprivate let completionTimer = DebounceTimer(delay: 0)
     fileprivate var particalCompletionWord: String?
     
     private let observedDefaultKeys: [DefaultKeys] = [
@@ -331,7 +332,7 @@ final class EditorTextView: NSTextView, Themable {
         // auto completion
         if Defaults[.autoComplete] {
             let delay: TimeInterval = Defaults[.autoCompletionDelay]
-            self.complete(after: delay)
+            self.completionTask.schedule(delay: delay)
         }
     }
     
@@ -1200,7 +1201,7 @@ extension EditorTextView {
     /// display completion candidate and list
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
-        self.completionTimer.cancel()
+        self.completionTask.cancel()
         
         guard let string = self.string else { return }
         
@@ -1263,22 +1264,10 @@ extension EditorTextView {
     
     
     
-    // MARK: Public Methods
-    
-    /// display word completion list with a delay
-    func complete(after delay: TimeInterval) {
-        
-        self.completionTimer.schedule(after: delay) { [weak self] in
-            self?.performCompletion()
-        }
-    }
-    
-    
-    
     // MARK: Private Methods
     
     /// display word completion list
-    private func performCompletion() {
+    fileprivate func performCompletion() {
         
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
