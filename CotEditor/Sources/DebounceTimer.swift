@@ -32,7 +32,7 @@ final class DebounceTimer {
     // MARK: Private Properties
     
     private let delay: TimeInterval
-    private let tolerance: TimeInterval
+    private let tolerance: Double
     private weak var timer: Timer?
     
     
