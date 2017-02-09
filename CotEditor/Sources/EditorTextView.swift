@@ -1268,8 +1268,8 @@ extension EditorTextView {
     /// display word completion list with a delay
     func complete(after delay: TimeInterval) {
         
-        self.completionTimer.schedule(after: delay) {
-            self.completion()
+        self.completionTimer.schedule(after: delay) { [weak self] in
+            self?.performCompletion()
         }
     }
     
@@ -1278,7 +1278,7 @@ extension EditorTextView {
     // MARK: Private Methods
     
     /// display word completion list
-    private func completion() {
+    private func performCompletion() {
         
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)

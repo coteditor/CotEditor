@@ -93,7 +93,7 @@ final class DebounceTimer {
     }
     
     
-    /// Run action immediatly if one scheduled.
+    /// Run action immediately if one scheduled.
     func run() {
         
         guard let timer = self.timer else { return }
