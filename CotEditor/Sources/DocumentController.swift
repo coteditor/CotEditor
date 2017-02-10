@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ final class DocumentController: NSDocumentController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init() {
@@ -84,11 +84,11 @@ final class DocumentController: NSDocumentController {
         let openEvent = NSAppleEventManager.shared().currentAppleEvent
         
         super.openDocument(withContentsOf: url, display: displayDocument) { (document, documentWasAlreadyOpen, error) in
+            completionHandler(document, documentWasAlreadyOpen, error)
+            
             if let openEvent = openEvent {
                 (document as? AdditionalDocumentPreparing)?.registerDocumnentOpenEvent(openEvent)
             }
-            
-            completionHandler(document, documentWasAlreadyOpen, error)
         }
     }
     
