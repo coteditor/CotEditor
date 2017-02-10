@@ -93,40 +93,18 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// check file before creating a new document instance
+    /// instantiates a document located by a URL, of a specified type, and returns it if successful
     override func makeDocument(withContentsOf url: URL, ofType typeName: String) throws -> NSDocument {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let error: DocumentReadError? = {
-            let cfTypeName = typeName as CFString
-            if UTTypeConformsTo(cfTypeName, kUTTypeImage) && !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics) ||   // SVG is plain-text (except SVGZ)
-                UTTypeConformsTo(cfTypeName, kUTTypeAudiovisualContent) ||
-                UTTypeConformsTo(cfTypeName, kUTTypeGNUZipArchive) ||
-                UTTypeConformsTo(cfTypeName, kUTTypeZipArchive) ||
-                UTTypeConformsTo(cfTypeName, kUTTypeBzip2Archive)
-            {
-                return DocumentReadError(kind: .binaryFile(type: typeName), url: url)
-            }
+        do {
+            try self.checkOpeningSafetyOfDocument(at: url, typeName: typeName)
             
-            // display alert if file is enorm large
-            let fileSizeThreshold = Defaults[.largeFileAlertThreshold]
-            if fileSizeThreshold > 0,
-                let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
-                fileSize > fileSizeThreshold
-            {
-                return DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
-            }
-            
-            return nil
-        }()
-        
-        // ask user for opening file
-        if let error = error {
+        } catch {
+            // ask user for opening file
             try DispatchQueue.syncOnMain {
-                let wantsOpen = self.presentError(error)
-                
-                guard wantsOpen else { throw CocoaError(.userCancelled) }
+                guard self.presentError(error) else { throw CocoaError(.userCancelled) }
             }
         }
         
@@ -297,6 +275,38 @@ final class DocumentController: NSDocumentController {
         
         DispatchQueue.main.async { [weak self] in
             self?.accessorySelectedEncoding = defaultEncoding
+        }
+    }
+    
+    
+    /// Check file before creating a new document instance.
+    ///
+    /// - Parameters:
+    ///   - url: The location of the new document object.
+    ///   - typeName: The type of the document.
+    /// - Throws: DocumentReadError
+    private func checkOpeningSafetyOfDocument(at url: URL, typeName: String) throws {
+        
+        // check if the file is possible binary
+        let cfTypeName = typeName as CFString
+        let binaryTypes = [kUTTypeImage,
+                           kUTTypeAudiovisualContent,
+                           kUTTypeGNUZipArchive,
+                           kUTTypeZipArchive,
+                           kUTTypeBzip2Archive]
+        if binaryTypes.contains(where: { UTTypeConformsTo(cfTypeName, $0) }) &&
+            !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics)  // SVG is plain-text (except SVGZ)
+        {
+            throw DocumentReadError(kind: .binaryFile(type: typeName), url: url)
+        }
+        
+        // check if the file is enorm large
+        let fileSizeThreshold = Defaults[.largeFileAlertThreshold]
+        if fileSizeThreshold > 0,
+            let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
+            fileSize > fileSizeThreshold
+        {
+            throw DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
         }
     }
     
