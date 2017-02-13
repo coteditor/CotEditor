@@ -74,7 +74,7 @@ final class EncodingManager: NSObject {
     
     // MARK: KVO
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.encodingList.rawValue {
             DispatchQueue.main.async { [weak self] in

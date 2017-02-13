@@ -48,7 +48,7 @@ private enum ColumnIdentifier: String {
 
 
 /// model object for NSArrayController
-final class SnippetItem : NSObject {
+final class SnippetItem: NSObject {
     
     dynamic var text: String
     

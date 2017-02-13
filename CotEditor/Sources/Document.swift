@@ -480,7 +480,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// customize document's file attributes
-    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String : Any] {
+    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
         
         // [caution] This method may be called from a background thread due to async-saving.
         
@@ -590,7 +590,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// setup print setting including print panel
-    override func printOperation(withSettings printSettings: [String : Any]) throws -> NSPrintOperation {
+    override func printOperation(withSettings printSettings: [String: Any]) throws -> NSPrintOperation {
         
         let viewController = self.viewController!
         

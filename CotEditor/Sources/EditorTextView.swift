@@ -695,7 +695,7 @@ final class EditorTextView: NSTextView, Themable {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         guard let keyPath = keyPath, let newValue = change?[.newKey] else { return }
         

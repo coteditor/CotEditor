@@ -119,7 +119,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.highlightCurrentLine.rawValue {
             if (change?[NSKeyValueChangeKey.newKey] as? Bool) ?? false {

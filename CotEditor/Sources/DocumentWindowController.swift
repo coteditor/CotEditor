@@ -48,7 +48,7 @@ final class DocumentWindowController: NSWindowController {
     // MARK: KVO
     
     /// apply user defaults change
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         guard let keyPath = keyPath else { return }
         

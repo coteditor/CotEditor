@@ -59,7 +59,7 @@ final class FindPanelButtonViewController: NSViewController {
     
     
     /// observed user defaults are changed
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.findNextAfterReplace.rawValue {
             self.invalidateReplaceButtonBehavior()

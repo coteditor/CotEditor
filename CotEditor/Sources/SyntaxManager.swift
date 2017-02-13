@@ -609,7 +609,7 @@ extension SyntaxManager {
             let plist = try? PropertyListSerialization.propertyList(from: plistData, format: nil),
             let style = plist as? [String: Any] else { return false }
         
-        var newStyle = [String : Any]()
+        var newStyle = [String: Any]()
         
         // format migration
         for (key, value) in style {

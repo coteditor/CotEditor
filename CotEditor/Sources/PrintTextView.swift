@@ -308,7 +308,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     // MARK: Layout Manager Delegate
     
-    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [String : Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [String : Any]? {
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [String: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [String: Any]? {
         
         return attrs
     }
@@ -422,7 +422,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// return attributes for header/footer string
-    private func headerFooterAttributes(for alignment: AlignmentType) -> [String : Any] {
+    private func headerFooterAttributes(for alignment: AlignmentType) -> [String: Any] {
     
         let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
         

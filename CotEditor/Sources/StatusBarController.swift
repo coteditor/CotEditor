@@ -92,7 +92,7 @@ final class StatusBarController: NSViewController {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if type(of: self).observedDefaultKeys.contains(where: { $0.rawValue == keyPath }) {
             self.updateEditorStatus()
