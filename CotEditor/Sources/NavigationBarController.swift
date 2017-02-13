@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -295,7 +295,7 @@ final class NavigationBarController: NSViewController {
     
     
     /// set outline menu selection
-    func invalidateOutlineMenuSelection() {
+    @objc private func invalidateOutlineMenuSelection() {
         
         guard let popUp = self.outlineMenu, popUp.isEnabled && (popUp.menu!.numberOfItems > 0) else { return }
         

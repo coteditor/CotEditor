@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -152,7 +152,7 @@ final class StatusBarController: NSViewController {
     
     
     /// update left side text
-    func updateEditorStatus() {
+    @objc private func updateEditorStatus() {
         
         guard !self.view.isHidden else { return }
         guard let info = self.documentAnalyzer else { return }
@@ -191,7 +191,7 @@ final class StatusBarController: NSViewController {
     
     
     /// update right side text and readonly icon state
-    func updateDocumentStatus() {
+    @objc private func updateDocumentStatus() {
         
         guard !self.view.isHidden else { return }
         guard let info = self.documentAnalyzer else { return }

@@ -399,7 +399,7 @@ final class LineNumberView: NSRulerView {
     
     
     /// update total number of lines determining view thickness on holizontal text layout
-    func textDidChange(_ notification: Notification) {
+    @objc private func textDidChange(_ notification: Notification) {
         
         self.needsRecountTotalNumberOfLines = true
     }

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -74,7 +74,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
         
         super.windowDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidResign(_:)), name: .NSWindowDidResignMain, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidResign), name: .NSWindowDidResignMain, object: nil)
     }
     
     
@@ -82,7 +82,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     // MARK: Notification
     
     /// notification about main window resign
-    func mainWindowDidResign(_ notification: Notification) {
+    @objc private func mainWindowDidResign(_ notification: Notification) {
         
         guard NSApp.isActive else { return }
         

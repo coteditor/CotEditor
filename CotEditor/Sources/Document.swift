@@ -777,7 +777,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Notifications
     
     /// set a flag of syntax highlight update if corresponded style has been updated
-    func syntaxDidUpdate(_ notification: Notification) {
+    @objc private func syntaxDidUpdate(_ notification: Notification) {
         
         guard
             let oldName = notification.userInfo?[SettingFileManager.NotificationKey.old] as? String,
@@ -1245,7 +1245,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// display alert about file modification by an external process
-    func showUpdatedByExternalProcessAlert() {
+    @objc private func showUpdatedByExternalProcessAlert() {
     
         NotificationCenter.default.removeObserver(self, name: .NSApplicationDidBecomeActive, object: nil)
         

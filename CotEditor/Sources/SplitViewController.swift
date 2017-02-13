@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -106,7 +106,7 @@ final class SplitViewController: NSSplitViewController {
     // MARK: Notifications
     
     /// editor's focus did change
-    func textViewDidBecomeFirstResponder(_ notification: Notification) {
+    @objc private func textViewDidBecomeFirstResponder(_ notification: Notification) {
         
         guard let textView = notification.object as? EditorTextView else { return }
         

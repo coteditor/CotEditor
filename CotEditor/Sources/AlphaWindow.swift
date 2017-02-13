@@ -109,7 +109,7 @@ final class AlphaWindow: NSWindow {
     // MARK: Notifications
     
     /// entering Versions
-    func willEnterOpaqueMode(_ notification: Notification) {
+    @objc private func willEnterOpaqueMode(_ notification: Notification) {
         
         self.storedBackgroundAlpha = self.backgroundAlpha
         self.backgroundAlpha = 1.0
@@ -117,7 +117,7 @@ final class AlphaWindow: NSWindow {
     
     
     /// exiting Versions
-    func willExitOpaqueMode(_ notification: Notification) {
+    @objc private func willExitOpaqueMode(_ notification: Notification) {
         
         if let backgroundAlpha = self.storedBackgroundAlpha {
             self.backgroundAlpha = backgroundAlpha

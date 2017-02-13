@@ -1022,7 +1022,7 @@ final class EditorTextView: NSTextView, Themable {
     // MARK: Notification
     
     /// window's opacity did change
-    func didWindowOpacityChange(_ notification: Notification?) {
+    @objc private func didWindowOpacityChange(_ notification: Notification?) {
         
         // let text view have own background if possible
         self.drawsBackground = self.window?.isOpaque ?? true

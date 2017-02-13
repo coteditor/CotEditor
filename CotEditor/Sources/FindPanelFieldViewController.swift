@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -279,7 +279,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// number of found in find string field becomes no more valid
-    func clearNumberOfFound(_ notification: Notification? = nil) {
+    @objc private func clearNumberOfFound(_ notification: Notification? = nil) {
         
         self.findResultMessage = nil
         

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2013-2016 1024jp
+ © 2013-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -397,7 +397,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Private Methods
     
     /// build encoding menu in the main menu
-    func buildEncodingMenu() {
+    @objc private func buildEncodingMenu() {
         
         let menu = self.encodingsMenu!
         
@@ -406,7 +406,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// build syntax style menu in the main menu
-    func buildSyntaxMenu() {
+    @objc private func buildSyntaxMenu() {
         
         let menu = self.syntaxStylesMenu!
         
@@ -433,7 +433,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// build theme menu in the main menu
-     func buildThemeMenu() {
+     @objc private func buildThemeMenu() {
         
         let menu = self.themesMenu!
         
