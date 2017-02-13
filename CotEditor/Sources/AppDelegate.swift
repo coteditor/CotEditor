@@ -427,7 +427,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let recolorAction = #selector(SyntaxHolder.recolorAll)
         let shortcut = MenuKeyBindingManager.shared.shortcut(for: recolorAction)
         let recoloritem = NSMenuItem(title: NSLocalizedString("Re-Color All", comment: ""), action: recolorAction, keyEquivalent: shortcut.keyEquivalent)
-        recoloritem.keyEquivalentModifierMask = shortcut.modifierMask // = default: Cmd + Opt + R
+        recoloritem.keyEquivalentModifierMask = shortcut.modifierMask  // = default: Cmd + Opt + R
         menu.addItem(recoloritem)
     }
     

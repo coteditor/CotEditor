@@ -29,8 +29,8 @@
 import Foundation
 
 let DefaultEncodings: [UInt32] = [
-    CFStringBuiltInEncodings.UTF8.rawValue,   // Unicode (UTF-8)
-    kCFStringEncodingInvalidId, // ----------
+    CFStringBuiltInEncodings.UTF8.rawValue,  // Unicode (UTF-8)
+    kCFStringEncodingInvalidId,  // ----------
     
     UInt32(CFStringEncodings.shiftJIS.rawValue),  // Japanese (Shift JIS)
     UInt32(CFStringEncodings.EUC_JP.rawValue),  // Japanese (EUC)
@@ -38,11 +38,11 @@ let DefaultEncodings: [UInt32] = [
     UInt32(CFStringEncodings.shiftJIS_X0213.rawValue),  // Japanese (Shift JIS X0213)
     UInt32(CFStringEncodings.macJapanese.rawValue),  // Japanese (Mac OS)
     UInt32(CFStringEncodings.ISO_2022_JP.rawValue),  // Japanese (ISO 2022-JP)
-    kCFStringEncodingInvalidId, // ----------
+    kCFStringEncodingInvalidId,  // ----------
     
     CFStringBuiltInEncodings.macRoman.rawValue,  // Western (Mac OS Roman)
     CFStringBuiltInEncodings.windowsLatin1.rawValue,  // Western (Windows Latin 1)
-    kCFStringEncodingInvalidId, // ----------
+    kCFStringEncodingInvalidId,  // ----------
     
     UInt32(CFStringEncodings.GB_18030_2000.rawValue),  // Chinese (GB18030)
     UInt32(CFStringEncodings.big5_HKSCS_1999.rawValue),  // Traditional Chinese (Big 5 HKSCS)
@@ -54,16 +54,16 @@ let DefaultEncodings: [UInt32] = [
     UInt32(CFStringEncodings.EUC_CN.rawValue),  // Simplified Chinese (EUC)
     UInt32(CFStringEncodings.dosChineseTrad.rawValue),  // Traditional Chinese (Windows, DOS)
     UInt32(CFStringEncodings.dosChineseSimplif.rawValue),  // Simplified Chinese (Windows, DOS)
-    kCFStringEncodingInvalidId, // ----------
+    kCFStringEncodingInvalidId,  // ----------
     
     UInt32(CFStringEncodings.macKorean.rawValue),  // Korean (Mac OS)
     UInt32(CFStringEncodings.EUC_KR.rawValue),  // Korean (EUC)
     UInt32(CFStringEncodings.dosKorean.rawValue),  // Korean (Windows, DOS)
-    kCFStringEncodingInvalidId, // ----------
+    kCFStringEncodingInvalidId,  // ----------
     
     UInt32(CFStringEncodings.macArabic.rawValue),  // Arabic (Mac OS)
     UInt32(CFStringEncodings.isoLatinArabic.rawValue),  // Arabic (ISO 8859-6)
-    UInt32(CFStringEncodings.windowsArabic.rawValue), // Arabic (Windows)
+    UInt32(CFStringEncodings.windowsArabic.rawValue),  // Arabic (Windows)
     UInt32(CFStringEncodings.macGreek.rawValue),  // Greek (Mac OS)
     UInt32(CFStringEncodings.isoLatinGreek.rawValue),  // Greek (ISO 8859-7)
     UInt32(CFStringEncodings.windowsGreek.rawValue),  // Greek (Windows)
@@ -76,7 +76,7 @@ let DefaultEncodings: [UInt32] = [
     UInt32(CFStringEncodings.macCentralEurRoman.rawValue),  // Central European (Mac OS)
     UInt32(CFStringEncodings.macTurkish.rawValue),  // Turkish (Mac OS)
     UInt32(CFStringEncodings.macIcelandic.rawValue),  // Icelandic (Mac OS)
-    kCFStringEncodingInvalidId, // ----------
+    kCFStringEncodingInvalidId,  // ----------
     
     CFStringBuiltInEncodings.isoLatin1.rawValue,  // Western (ISO Latin 1)
     UInt32(CFStringEncodings.isoLatin2.rawValue),  // Central European (ISO Latin 2)
@@ -88,14 +88,14 @@ let DefaultEncodings: [UInt32] = [
     UInt32(CFStringEncodings.isoLatin8.rawValue),  // Celtic (ISO Latin 8)
     UInt32(CFStringEncodings.isoLatin9.rawValue),  // Western (ISO Latin 9)
     UInt32(CFStringEncodings.isoLatin10.rawValue),  // Romanian (ISO Latin 10)
-    kCFStringEncodingInvalidId, // ----------
+    kCFStringEncodingInvalidId,  // ----------
     
     UInt32(CFStringEncodings.dosLatinUS.rawValue),  // Latin-US (DOS)
     UInt32(CFStringEncodings.windowsLatin2.rawValue),  // Central European (Windows Latin 2)
     CFStringBuiltInEncodings.nextStepLatin.rawValue,  // Western (NextStep)
     CFStringBuiltInEncodings.ASCII.rawValue,  // Western (ASCII)
     CFStringBuiltInEncodings.nonLossyASCII.rawValue,  // Non-lossy ASCII
-    kCFStringEncodingInvalidId, // ----------
+    kCFStringEncodingInvalidId,  // ----------
     
     CFStringBuiltInEncodings.UTF16.rawValue,  // Unicode (UTF-16)
     CFStringBuiltInEncodings.UTF16BE.rawValue,  // Unicode (UTF-16BE)

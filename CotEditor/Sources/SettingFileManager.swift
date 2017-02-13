@@ -449,7 +449,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         case 0:  // == Cancel
             return false
             
-        case 1: // == Replace
+        case 1:  // == Replace
             do {
                 try self.attempter.overwriteSetting(fileURL: self.url)
             } catch {

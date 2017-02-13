@@ -144,7 +144,7 @@ final class DocumentController: NSDocumentController {
         // set visibility of hidden files in the panel
         openPanel.showsHiddenFiles = self.showsHiddenFiles
         openPanel.treatsFilePackagesAsDirectories = self.showsHiddenFiles
-        // ->  bind showsHiddenFiles flag with openPanel (for El capitan and leter)
+        // -> bind showsHiddenFiles flag with openPanel (for El capitan and leter)
         openPanel.bind(#keyPath(NSOpenPanel.showsHiddenFiles), to: self, withKeyPath: #keyPath(showsHiddenFiles))
         openPanel.bind(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories), to: self, withKeyPath: #keyPath(showsHiddenFiles))
         

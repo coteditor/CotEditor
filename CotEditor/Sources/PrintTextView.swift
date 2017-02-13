@@ -198,7 +198,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                         point = NSPoint(x: -point.y - width / 2,
                                         y: point.x - charSize.height)
                     } else {
-                        point.x -= CGFloat(digit) * charSize.width   // align right
+                        point.x -= CGFloat(digit) * charSize.width  // align right
                     }
                     
                     // draw number

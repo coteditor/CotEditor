@@ -78,7 +78,7 @@ enum ControlCharacter {
     // MARK: Code Point Ranges
     
     static let deleteCharacter = UInt32(0x007F)
-    static let C0Range = UInt32(0x0000)...UInt32(0x0020) // U+0020 is actually not in range of C0 control character. But they are often included in actual fact.
+    static let C0Range = UInt32(0x0000)...UInt32(0x0020)  // U+0020 is actually not in range of C0 control character. But they are often included in actual fact.
     static let C1Range = UInt32(0x0080)...UInt32(0x009F)
     
     

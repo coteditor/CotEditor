@@ -199,7 +199,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         }
         
         // treat esc key as cancel
-        guard input != "\u{1b}" else { return } // = ESC key
+        guard input != "\u{1b}" else { return }  // = ESC key
         
         guard input != item.shortcut?.description else { return }  // not edited
         

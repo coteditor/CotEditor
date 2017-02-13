@@ -204,7 +204,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                     } else {
                         charSet.insert(charactersIn: word)
                     }
-                    charSet.remove(charactersIn: "\n\t ")   // ignore line breaks, tabs and spaces
+                    charSet.remove(charactersIn: "\n\t ")  // ignore line breaks, tabs and spaces
                     
                     characterSets[type] = charSet
                 }

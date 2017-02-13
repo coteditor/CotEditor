@@ -94,7 +94,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init() {
@@ -795,7 +795,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal text storage has always LF for its line ending.)
     var string: String {
         
-        let editorString = self.textStorage.string // line ending is always LF
+        let editorString = self.textStorage.string  // line ending is always LF
         
         if self.lineEnding == .LF {
             return NSString(string: editorString) as String  // make sure being immutable
@@ -1280,7 +1280,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
             guard let strongSelf = self else { return }
             
-            if returnCode == NSAlertSecondButtonReturn, let fileType = strongSelf.fileType { // == Revert
+            if returnCode == NSAlertSecondButtonReturn, let fileType = strongSelf.fileType {  // == Revert
                 do {
                     try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
                 } catch {

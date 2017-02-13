@@ -44,7 +44,7 @@ final class DocumentAnalyzer: NSObject {
     // MARK: Public Properties
     
     var needsUpdateEditorInfo = false  // need to update all editor info
-    var needsUpdateStatusEditorInfo = false // need only to update editor info in satus bar
+    var needsUpdateStatusEditorInfo = false  // need only to update editor info in satus bar
     
     // file info
     private(set) dynamic var creationDate: Date?
