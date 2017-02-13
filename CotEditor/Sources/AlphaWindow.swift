@@ -98,6 +98,8 @@ final class AlphaWindow: NSWindow {
     override var isOpaque: Bool {
         
         didSet {
+            guard isOpaque != oldValue else { return }
+            
             NotificationCenter.default.post(name: .WindowDidChangeOpacity, object: self)
         }
     }
