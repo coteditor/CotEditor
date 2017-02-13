@@ -96,6 +96,11 @@ final class DocumentWindowController: NSWindowController {
             self.toolbarController!.document = document
             self.contentViewController!.representedObject = document
             
+            // -> In case when the window was created as a restored window (the right side ones in the browsing mode)
+            if document.isInViewingMode, let window = self.window as? AlphaWindow {
+                window.backgroundAlpha = 1.0
+            }
+            
             // FIXME: workaround for that contentView origin can stack into toolbar on Sierra (2016-09 on macOS 10.12)
             // -> cf. https://github.com/coteditor/CotEditor/issues/600
             if let window = self.window {

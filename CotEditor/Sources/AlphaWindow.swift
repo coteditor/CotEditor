@@ -43,11 +43,6 @@ final class AlphaWindow: NSWindow {
     var backgroundAlpha: CGFloat = 1.0
         {
         didSet {
-            // window must be opaque on version browsing
-            if self.windowController?.document?.isInViewingMode ?? false {
-                backgroundAlpha = 1.0
-            }
-            
             backgroundAlpha = backgroundAlpha.within(min: 0.2, max: 1.0)
             self.backgroundColor = self.backgroundColor.withAlphaComponent(backgroundAlpha)
             self.isOpaque = (backgroundAlpha == 1.0)
@@ -58,11 +53,11 @@ final class AlphaWindow: NSWindow {
     
     // MARK: Private Properties
     
-    private var storedBackgroundColor: NSColor?
+    private var storedBackgroundAlpha: CGFloat?
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init(contentRect: NSRect, styleMask style: NSWindowStyleMask, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
@@ -75,10 +70,6 @@ final class AlphaWindow: NSWindow {
         if let windowTitleView = self.standardWindowButton(.closeButton)?.superview {
             windowTitleView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
         }
-        
-        // observe toggling fullscreen
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: .NSWindowWillEnterFullScreen, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: .NSWindowWillExitFullScreen, object: self)
         
         // observe toggling Versions browsing
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: .NSWindowWillEnterVersionBrowser, object: self)
@@ -117,21 +108,21 @@ final class AlphaWindow: NSWindow {
     
     // MARK: Notifications
     
-    /// notify entering fullscreen or Versions
+    /// entering Versions
     func willEnterOpaqueMode(_ notification: Notification) {
         
-        self.storedBackgroundColor = self.backgroundColor
-        self.backgroundColor = nil  // restore window background to default (affect to the toolbar's background)
-        self.isOpaque = true  // set opaque flag expressly in order to let textView which observes opaque update its background color
+        self.storedBackgroundAlpha = self.backgroundAlpha
+        self.backgroundAlpha = 1.0
     }
     
     
-    /// notify exit fullscreen or Versions
+    /// exiting Versions
     func willExitOpaqueMode(_ notification: Notification) {
         
-        self.backgroundColor = self.storedBackgroundColor
-        self.isOpaque = (self.backgroundAlpha == 1.0)
-        self.invalidateShadow()
+        if let backgroundAlpha = self.storedBackgroundAlpha {
+            self.backgroundAlpha = backgroundAlpha
+            self.storedBackgroundAlpha = nil
+        }
     }
 
 }

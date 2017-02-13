@@ -17,6 +17,7 @@ develop
 - Fix an issue where the application crashed by the Highlight command under the condition when the find string is a invalid regular expression pattern even the regular expression is turned off.
 - Fix an issue on the text search where the single text search couldn't find the word intersects with the current selection.
 - Fix an issue where the metadata of a custom theme cannot be edited.
+- Fix an issue where the background of the line number view was drawn with wrong color when entered to the fullscreen mode.
 
 
 
