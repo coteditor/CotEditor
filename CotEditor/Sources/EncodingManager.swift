@@ -90,7 +90,7 @@ final class EncodingManager: NSObject {
     /// return user's encoding priority list
     var defaultEncodings: [String.Encoding?] {
         
-        let encodingNumbers = Defaults[.encodingList]
+        let encodingNumbers = UserDefaults.standard[.encodingList]
         
         return encodingNumbers.map { encodingNumber in
             let cfEncoding = encodingNumber.uint32Value

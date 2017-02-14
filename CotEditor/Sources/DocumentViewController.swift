@@ -63,13 +63,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         }
         
         // setup status bar
-        self.isStatusBarShown = Defaults[.showStatusBar]
-        self.showsInvisibles = Defaults[.showInvisibles]
-        self.showsLineNumber = Defaults[.showLineNumbers]
-        self.showsNavigationBar = Defaults[.showNavigationBar]
-        self.wrapsLines = Defaults[.wrapLines]
-        self.verticalLayoutOrientation = Defaults[.layoutTextVertical]
-        self.showsPageGuide = Defaults[.showPageGuide]
+        let defaults = UserDefaults.standard
+        self.isStatusBarShown = defaults[.showStatusBar]
+        self.showsInvisibles = defaults[.showInvisibles]
+        self.showsLineNumber = defaults[.showLineNumbers]
+        self.showsNavigationBar = defaults[.showNavigationBar]
+        self.wrapsLines = defaults[.wrapLines]
+        self.verticalLayoutOrientation = defaults[.layoutTextVertical]
+        self.showsPageGuide = defaults[.showPageGuide]
         
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
                                                name: .ThemeDidUpdate,
@@ -132,7 +133,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             self.invalidateSyntaxHighlight()
             
             // detect indent style
-            if Defaults[.detectsIndentStyle],
+            if UserDefaults.standard[.detectsIndentStyle],
                 let indentStyle = document.textStorage.string.detectedIndentStyle
             {
                 self.isAutoTabExpandEnabled = {
@@ -494,7 +495,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     var isAutoTabExpandEnabled: Bool {
         
         get {
-            return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? Defaults[.autoExpandTab]
+            return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? UserDefaults.standard[.autoExpandTab]
         }
         set {
             for viewController in self.editorViewControllers {
@@ -675,11 +676,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// whether at least one of invisible characters is enabled in the preferences currently
     private var canActivateShowInvisibles: Bool {
         
-        return (Defaults[.showInvisibleSpace] ||
-            Defaults[.showInvisibleTab] ||
-            Defaults[.showInvisibleNewLine] ||
-            Defaults[.showInvisibleFullwidthSpace] ||
-            Defaults[.showInvisibles])
+        let defaults = UserDefaults.standard
+        return (defaults[.showInvisibleSpace] ||
+            defaults[.showInvisibleTab] ||
+            defaults[.showInvisibleNewLine] ||
+            defaults[.showInvisibleFullwidthSpace] ||
+            defaults[.showInvisibles])
     }
     
     

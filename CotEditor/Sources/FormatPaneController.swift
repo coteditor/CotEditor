@@ -220,7 +220,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         let withUTF8BOM = (self.inNewEncodingMenu?.selectedItem?.representedObject as? String) == IsUTF8WithBOM
         
-        Defaults[.saveUTF8BOM] = withUTF8BOM
+        UserDefaults.standard[.saveUTF8BOM] = withUTF8BOM
     }
     
     
@@ -239,7 +239,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             guard returnCode == NSAlertFirstButtonReturn else { return }
             
-            Defaults[.encodingInOpen] = String.Encoding.autoDetection.rawValue
+            UserDefaults.standard[.encodingInOpen] = String.Encoding.autoDetection.rawValue
         }
     }
     
@@ -372,13 +372,13 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         // select menu item for the current setting manually although Cocoa-Bindings are used on these menus
         //   -> Because items were actually added after Cocoa-Binding selected the item.
-        let inOpenEncoding = Defaults[.encodingInOpen]
-        let inNewEncoding = Defaults[.encodingInNew]
+        let inOpenEncoding = UserDefaults.standard[.encodingInOpen]
+        let inNewEncoding = UserDefaults.standard[.encodingInNew]
         self.inOpenEncodingMenu?.selectItem(withTag: Int(inOpenEncoding))
         
         if Int(inNewEncoding) == UTF8Int {
             let UTF8WithBomIndex = inNewMenu.indexOfItem(withRepresentedObject: IsUTF8WithBOM)
-            let index = Defaults[.saveUTF8BOM] ? UTF8WithBomIndex : UTF8WithBomIndex - 1
+            let index = UserDefaults.standard[.saveUTF8BOM] ? UTF8WithBomIndex : UTF8WithBomIndex - 1
             // -> The normal "UTF-8" is just above "UTF-8 with BOM".
             
             self.inNewEncodingMenu?.selectItem(at: index)
@@ -415,7 +415,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
             //   -> Because items were actually added after Cocoa-Binding selected the item.
-            let defaultStyle = Defaults[.syntaxStyle]!
+            let defaultStyle = UserDefaults.standard[.syntaxStyle]!
             let selectedStyle = styleNames.contains(defaultStyle) ? defaultStyle : BundledStyleName.none
             
             popup.selectItem(withTitle: selectedStyle)
@@ -427,7 +427,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     private dynamic var selectedStyleName: String {
         
         guard let styleInfo = self.stylesController?.selectedObjects.first as? [String: Any] else {
-            return Defaults[.syntaxStyle]!
+            return UserDefaults.standard[.syntaxStyle]!
         }
         return styleInfo[StyleKey.name.rawValue] as! String
     }

@@ -60,10 +60,10 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
         
-        if Defaults[.sidebarWidth] >= 100 {
-            self.sidebarThickness = Defaults[.sidebarWidth]
+        if UserDefaults.standard[.sidebarWidth] >= 100 {
+            self.sidebarThickness = UserDefaults.standard[.sidebarWidth]
         }
-        self.isSidebarShown = Defaults[.showDocumentInspector]
+        self.isSidebarShown = UserDefaults.standard[.showDocumentInspector]
         
         self.sidebarViewController?.delegate = self
     }
@@ -106,7 +106,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         if notification.userInfo?["NSSplitViewDividerIndex"] != nil {  // check wheter the change coused by user's divider dragging
             // store current sidebar width
             if self.isSidebarShown {
-                Defaults[.sidebarWidth] = self.sidebarThickness
+                UserDefaults.standard[.sidebarWidth] = self.sidebarThickness
             }
             
             // sync divider position among window tabs

@@ -54,7 +54,7 @@ final class DocumentWindowController: NSWindowController {
         
         if keyPath == DefaultKeys.windowAlpha.rawValue {
             if let window = self.window as? AlphaWindow {
-                window.backgroundAlpha = Defaults[.windowAlpha]
+                window.backgroundAlpha = UserDefaults.standard[.windowAlpha]
             }
         }
     }
@@ -75,12 +75,12 @@ final class DocumentWindowController: NSWindowController {
         let window = self.window as! AlphaWindow
         
         // set window size
-        let contentSize = NSSize(width: Defaults[.windowWidth],
-                                 height: Defaults[.windowHeight])
+        let contentSize = NSSize(width: UserDefaults.standard[.windowWidth],
+                                 height: UserDefaults.standard[.windowHeight])
         window.setContentSize(contentSize)
         
         // setup background
-        window.backgroundAlpha = Defaults[.windowAlpha]
+        window.backgroundAlpha = UserDefaults.standard[.windowAlpha]
         
         // observe opacity setting change
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue, context: nil)

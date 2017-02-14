@@ -56,7 +56,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     /// show invisible characters
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
-        if Defaults[.showInvisibles] {
+        if UserDefaults.standard[.showInvisibles] {
             let string = self.textStorage?.string ?? ""
             
             let color = NSColor.tertiaryLabelColor
@@ -69,11 +69,12 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let fullwidthAttributes = [NSFontAttributeName: fullWidthFont,
                               NSForegroundColorAttributeName: color]
             
-            let showsSpace = Defaults[.showInvisibleSpace]
-            let showsTab = Defaults[.showInvisibleTab]
-            let showsNewLine = Defaults[.showInvisibleNewLine]
-            let showsFullWidthSpace = Defaults[.showInvisibleFullwidthSpace]
-            let showsOtherInvisibles = Defaults[.showOtherInvisibleChars]
+            let defaults = UserDefaults.standard
+            let showsSpace = defaults[.showInvisibleSpace]
+            let showsTab = defaults[.showInvisibleTab]
+            let showsNewLine = defaults[.showInvisibleNewLine]
+            let showsFullWidthSpace = defaults[.showInvisibleFullwidthSpace]
+            let showsOtherInvisibles = defaults[.showOtherInvisibleChars]
             
             let space = NSAttributedString(string: Invisible.userSpace, attributes: attributes)
             let tab = NSAttributedString(string: Invisible.userTab, attributes: attributes)

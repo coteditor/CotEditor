@@ -104,13 +104,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let uuid = UUID().uuidString
         self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: UniqueFileIDLength))
         
-        let encoding = String.Encoding(rawValue: Defaults[.encodingInNew])
+        let encoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInNew])
         self.encoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
         if self.encoding == .utf8 {
-            self.hasUTF8BOM = Defaults[.saveUTF8BOM]
+            self.hasUTF8BOM = UserDefaults.standard[.saveUTF8BOM]
         }
-        self.lineEnding = LineEnding(index: Defaults[.lineEndCharCode]) ?? .LF
-        self.syntaxStyle = SyntaxManager.shared.style(name: Defaults[.syntaxStyle]) ?? SyntaxStyle()
+        self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .LF
+        self.syntaxStyle = SyntaxManager.shared.style(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         self.syntaxStyle.textStorage = self.textStorage
         
         // set encoding to read file
@@ -172,7 +172,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         return self._autosavesInPlace
     }
     // avoid changing the value while the application is running
-    private static let _autosavesInPlace = Defaults[.enablesAutosaveInPlace]
+    private static let _autosavesInPlace = UserDefaults.standard[.enablesAutosaveInPlace]
     
     
     /// can read document on a background thread?
@@ -333,7 +333,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // determine syntax style
         let styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent)
             ?? SyntaxManager.shared.styleName(documentContent: string)
-            ?? Defaults[.syntaxStyle]
+            ?? UserDefaults.standard[.syntaxStyle]
         
         self.setSyntaxStyle(name: styleName)
     }
@@ -374,7 +374,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // trim trailing whitespace if needed
         assert(Thread.isMainThread)
-        if Defaults[.trimsTrailingWhitespaceOnSave] {
+        if UserDefaults.standard[.trimsTrailingWhitespaceOnSave] {
             let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
             
             for layoutManager in self.textStorage.layoutManagers {
@@ -493,7 +493,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             extendedAttributes[FileExtendedAttributeName.Encoding] = self.encoding.xattrEncodingData
         }
         // save text orientation state to the extended file attributes (com.coteditor.VerticalText)
-        if Defaults[.savesTextOrientation] {
+        if UserDefaults.standard[.savesTextOrientation] {
             extendedAttributes[FileExtendedAttributeName.VerticalText] = self.isVerticalText ? Data(bytes: [1]) : nil
         }
         if attributes[NSFileExtendedAttributes.rawValue] != nil || !extendedAttributes.isEmpty {
@@ -606,9 +606,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // set font for printing
         printView.font = {
-            if Defaults[.setPrintFont] {  // == use printing font
-                return NSFont(name: Defaults[.printFontName]!,
-                              size: Defaults[.printFontSize])
+            if UserDefaults.standard[.setPrintFont] {  // == use printing font
+                return NSFont(name: UserDefaults.standard[.printFontName]!,
+                              size: UserDefaults.standard[.printFontSize])
             }
             return viewController.font
         }()
@@ -665,7 +665,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enable.
 //        super.presentedItemDidChange()
         
-        let option = DocumentConflictOption(rawValue: Defaults[.documentConflictOption]) ?? .notify
+        let option = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption]) ?? .notify
         
         // do nothing
         if option == .ignore { return }
@@ -758,7 +758,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // check file meta data for text orientation
         assert(self.fileAttributes != nil)
-        if Defaults[.savesTextOrientation] {
+        if UserDefaults.standard[.savesTextOrientation] {
             self.isVerticalText = ((self.fileAttributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
         }
         
@@ -1121,7 +1121,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // detect encoding from data
-        let encodingList = Defaults[.encodingList].map { return $0.uint32Value }
+        let encodingList = UserDefaults.standard[.encodingList].map { return $0.uint32Value }
         var usedEncoding: String.Encoding?
         let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
         
@@ -1143,9 +1143,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// detect file encoding from encoding declaration like "charset=" or "encoding=" in file content
     private func scanEncodingFromDeclaration(content: String) -> String.Encoding? {
         
-        guard Defaults[.referToEncodingTag] else { return nil }
+        guard UserDefaults.standard[.referToEncodingTag] else { return nil }
         
-        let suggestedCFEncodings = Defaults[.encodingList]
+        let suggestedCFEncodings = UserDefaults.standard[.encodingList]
         
         return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
                                                upTo: MaxEncodingScanLength,

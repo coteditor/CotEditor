@@ -224,7 +224,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         guard let content = self.fileDropController?.content as? [Any] else { return }
         
-        Defaults[.fileDropArray] = content
+        UserDefaults.standard[.fileDropArray] = content
     }
     
     
@@ -237,7 +237,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // make data mutable for NSArrayController
         let content = NSMutableArray()
-        if let settings = Defaults[.fileDropArray] as? [[String: String]] {
+        if let settings = UserDefaults.standard[.fileDropArray] as? [[String: String]] {
             for setting in settings {
                 content.add(NSMutableDictionary(dictionary: setting))
             }

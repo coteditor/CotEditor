@@ -163,7 +163,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         //      >= 2.2.0 : Single Integer
         let thisVersion = AppInfo.bundleVersion
         let isLatest: Bool = {
-            guard let lastVersion = Defaults[.lastVersion] else { return true }
+            guard let lastVersion = UserDefaults.standard[.lastVersion] else { return true }
             
             // if isDigit -> probably semver (semver must be older than 2.2.0)
             let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) == nil)
@@ -171,7 +171,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return !isDigit || Int(thisVersion)! >= Int(lastVersion)!
         }()
         if isLatest {
-            Defaults[.lastVersion] = thisVersion
+            UserDefaults.standard[.lastVersion] = thisVersion
         }
     }
     
@@ -180,9 +180,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
         if self.didFinishLaunching {
-            return Defaults[.reopenBlankWindow]
+            return UserDefaults.standard[.reopenBlankWindow]
         } else {
-            return Defaults[.createNewAtStartup]
+            return UserDefaults.standard[.createNewAtStartup]
         }
     }
     

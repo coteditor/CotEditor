@@ -177,7 +177,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let particalWord = (string as NSString).substring(with: charRange)
         
         // extract words in document and set to candidateWords
-        if Defaults[.completesDocumentWords] {
+        if UserDefaults.standard[.completesDocumentWords] {
             let documentWords: [String] = {
                 // do nothing if the particle word is a symbol
                 guard charRange.length > 1 || CharacterSet.alphanumerics.contains(particalWord.unicodeScalars.first!) else { return [] }
@@ -191,13 +191,13 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // copy words defined in syntax style
-        if Defaults[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords {
+        if UserDefaults.standard[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords {
             let syntaxWords = syntaxCandidateWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
             candidateWords.addObjects(from: syntaxWords)
         }
         
         // copy the standard words from default completion words
-        if Defaults[.completesStandartWords] {
+        if UserDefaults.standard[.completesStandartWords] {
             candidateWords.addObjects(from: words)
         }
         
@@ -215,7 +215,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // append Script menu
         if let scriptMenu = ScriptManager.shared.contexualMenu {
-            if Defaults[.inlineContextualScriptMenu] {
+            if UserDefaults.standard[.inlineContextualScriptMenu] {
                 menu.addItem(NSMenuItem.separator())
                 menu.items.last?.tag = MenuItemTag.script.rawValue
                 
@@ -312,7 +312,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// find the matching open brace and highlight it
     private func highlightMatchingBrace(in textView: NSTextView) {
         
-        guard Defaults[.highlightBraces] else { return }
+        guard UserDefaults.standard[.highlightBraces] else { return }
         
         guard let string = textView.string, !string.isEmpty else { return }
         
@@ -329,7 +329,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let lastIndex = string.index(before: String.UTF16Index(cursorLocation).samePosition(in: string)!)
         let lastCharacter = string.characters[lastIndex]
         guard let pair: BracePair = (BracePair.braces + [.ltgt]).first(where: { $0.end == lastCharacter }),
-            ((pair != .ltgt) || Defaults[.highlightLtGt])
+            ((pair != .ltgt) || UserDefaults.standard[.highlightLtGt])
             else { return }
         
         guard let index = string.indexOfBeginBrace(for: pair, at: lastIndex) else {
@@ -350,7 +350,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// set update timer for current line highlight calculation
     @objc private func setupCurrentLineUpdateTimer() {
         
-        guard Defaults[.highlightCurrentLine] else { return }
+        guard UserDefaults.standard[.highlightCurrentLine] else { return }
         
         self.currentLineUpdateTask.schedule()
     }
@@ -361,7 +361,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // [note] Don't invoke this method too often but with a currentLineUpdateTimer because this is a heavy task.
         
-        guard Defaults[.highlightCurrentLine] else { return }
+        guard UserDefaults.standard[.highlightCurrentLine] else { return }
         
         guard
             let textView = self.textView,

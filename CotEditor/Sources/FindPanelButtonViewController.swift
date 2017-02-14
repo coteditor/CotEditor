@@ -74,7 +74,7 @@ final class FindPanelButtonViewController: NSViewController {
     @IBAction func replace(_ sender: Any?) {
         
         // perform "Replace & Find" instead of "Replace"
-        if Defaults[.findNextAfterReplace] {
+        if UserDefaults.standard[.findNextAfterReplace] {
             TextFinder.shared.replaceAndFind(sender)
         } else {
             TextFinder.shared.replace(sender)
@@ -106,7 +106,7 @@ final class FindPanelButtonViewController: NSViewController {
     private func invalidateReplaceButtonBehavior() {
         
         self.replaceButton?.toolTip = {
-            if Defaults[.findNextAfterReplace] {
+            if UserDefaults.standard[.findNextAfterReplace] {
                 return NSLocalizedString("Replace the current selection with the replacement text, then find the next match.", comment: "")
             } else {
                 return NSLocalizedString("Replace the current selection with the replacement text.", comment: "")

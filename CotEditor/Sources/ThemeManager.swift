@@ -185,8 +185,8 @@ final class ThemeManager: SettingFileManager {
         
         try super.renameSetting(name: settingName, to: newName)
         
-        if Defaults[.theme] == settingName {
-            Defaults[.theme] = newName
+        if UserDefaults.standard[.theme] == settingName {
+            UserDefaults.standard[.theme] = newName
         }
         
         self.updateCache { [weak self] in
@@ -205,7 +205,7 @@ final class ThemeManager: SettingFileManager {
         
         self.updateCache { [weak self] in
             // restore theme of opened documents to default
-            let defaultThemeName = Defaults[.theme]!
+            let defaultThemeName = UserDefaults.standard[.theme]!
             
             NotificationCenter.default.post(name: .ThemeDidUpdate,
                                             object: self,
@@ -290,7 +290,7 @@ final class ThemeManager: SettingFileManager {
             }
             
             // reset user default if not found
-            let defaultThemeName = Defaults[.theme]!
+            let defaultThemeName = UserDefaults.standard[.theme]!
             if !themeNameSet.contains(defaultThemeName) {
                 UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
             }

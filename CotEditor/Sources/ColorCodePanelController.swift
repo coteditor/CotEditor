@@ -204,10 +204,10 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     private var selectedCodeType: ColorCodeType {
         
         get {
-            return ColorCodeType(rawValue: Defaults[.colorCodeType]) ?? .hex
+            return ColorCodeType(rawValue: UserDefaults.standard[.colorCodeType]) ?? .hex
         }
         set {
-            Defaults[.colorCodeType] = newValue.rawValue
+            UserDefaults.standard[.colorCodeType] = newValue.rawValue
         }
     }
     

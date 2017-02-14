@@ -49,7 +49,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         _defaultKeyBindings = [KeyBinding(action: SnippetKeyBindingManager.action(index: 0),
                                           shortcut: Shortcut(modifierMask: .shift, keyEquivalent: "\r"))]
-        self.defaultSnippets = Defaults[.insertCustomTextArray] ?? []
+        self.defaultSnippets = UserDefaults.standard[.insertCustomTextArray] ?? []
         
         super.init()
         
@@ -141,7 +141,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         if usesDefaults {
             return self.defaultSnippets
         } else {
-            return Defaults[.insertCustomTextArray] ?? []
+            return UserDefaults.standard[.insertCustomTextArray] ?? []
         }
     }
     
@@ -149,7 +149,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// save texts to insert
     func saveSnippets(_ snippets: [String]) {
         
-        Defaults[.insertCustomTextArray] = snippets
+        UserDefaults.standard[.insertCustomTextArray] = snippets
     }
     
     
@@ -189,7 +189,7 @@ private extension SnippetKeyBindingManager {
     func migrateIfNeeded() {
         
         guard
-            let lastVersionString = Defaults[.lastVersion],
+            let lastVersionString = UserDefaults.standard[.lastVersion],
             let lastVersion = Int(lastVersionString),
             lastVersion < AppVersion.version3_0,
             !self.keyBindingSettingFileURL.isReachable

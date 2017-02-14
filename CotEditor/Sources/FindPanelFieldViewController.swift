@@ -263,7 +263,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             }
         }
         
-        guard let history = Defaults[key], !history.isEmpty else { return }
+        guard let history = UserDefaults.standard[key], !history.isEmpty else { return }
         
         menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
         

@@ -94,8 +94,8 @@ extension EditorTextView {
     /// reset scale and font to default
     @IBAction func resetFont(_ sender: Any?) {
         
-        let name = Defaults[.fontName]!
-        let size = Defaults[.fontSize]
+        let name = UserDefaults.standard[.fontName]!
+        let size = UserDefaults.standard[.fontSize]
         self.font = NSFont(name: name, size: size) ?? NSFont.userFont(ofSize: size)
         
         self.setScaleKeepingVisibleArea(1.0)

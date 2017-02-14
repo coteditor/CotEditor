@@ -28,8 +28,6 @@
 
 import AppKit
 
-let Defaults = UserDefaults.standard
-
 class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
     
     let rawValue: String

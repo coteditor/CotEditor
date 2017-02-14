@@ -281,7 +281,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     /// whether enable parsing syntax
     var canParse: Bool {
         
-        let isHighlightEnabled = Defaults[.enableSyntaxHighlight]
+        let isHighlightEnabled = UserDefaults.standard[.enableSyntaxHighlight]
         
         return isHighlightEnabled && !self.isNone
     }
@@ -353,7 +353,7 @@ extension SyntaxStyle {
     /// update whole document highlights
     func highlightAll(completionHandler: (() -> Void)? = nil) {  // @escaping
         
-        guard Defaults[.enableSyntaxHighlight] else { return }
+        guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
         let wholeRange = textStorage.string.nsRange
@@ -378,14 +378,14 @@ extension SyntaxStyle {
     /// update highlights around passed-in range
     func highlight(around editedRange: NSRange) {
         
-        guard Defaults[.enableSyntaxHighlight] else { return }
+        guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = NSString(string: textStorage.string) as String
         
         let wholeRange = string.nsRange
-        let bufferLength = Defaults[.coloringRangeBufferLength]
+        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         var highlightRange = editedRange.intersection(wholeRange)  // in case that wholeRange length is changed from editedRange
         
         // highlight whole if string is enough short
@@ -520,7 +520,7 @@ extension SyntaxStyle {
     /// whether need to display highlighting indicator
     private func shouldShowIndicator(for highlightLength: Int) -> Bool {
         
-        let threshold = Defaults[.showColoringIndicatorTextLength]
+        let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
         
         // do not show indicator if threshold is 0
         return threshold > 0 && highlightLength > threshold

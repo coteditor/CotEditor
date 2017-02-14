@@ -25,6 +25,8 @@
  
  */
 
+import Foundation
+
 enum Invisible {
     
     static let spaces = ["·", "°", "ː", "␣"]
@@ -43,28 +45,28 @@ extension Invisible {
     
     static var userSpace: String {
         
-        let index = Defaults[.invisibleSpace]
+        let index = UserDefaults.standard[.invisibleSpace]
         return self.spaces[safe: index] ?? self.spaces.first!
     }
     
     
     static var userTab: String {
         
-        let index = Defaults[.invisibleTab]
+        let index = UserDefaults.standard[.invisibleTab]
         return self.tabs[safe: index] ?? self.tabs.first!
     }
     
     
     static var userNewLine: String {
         
-        let index = Defaults[.invisibleNewLine]
+        let index = UserDefaults.standard[.invisibleNewLine]
         return self.newLines[safe: index] ?? self.newLines.first!
     }
     
     
     static var userFullWidthSpace: String {
         
-        let index = Defaults[.invisibleFullwidthSpace]
+        let index = UserDefaults.standard[.invisibleFullwidthSpace]
         return self.fullWidthSpaces[safe: index] ?? self.fullWidthSpaces.first!
     }
     

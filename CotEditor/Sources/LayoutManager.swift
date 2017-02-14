@@ -301,7 +301,7 @@ final class LayoutManager: NSLayoutManager {
     /// invalidate indent of wrapped lines
     func invalidateIndent(in range: NSRange) {
         
-        guard Defaults[.enablesHangingIndent] else { return }
+        guard UserDefaults.standard[.enablesHangingIndent] else { return }
         
         guard let textStorage = self.textStorage, let textView = self.firstTextView else { return }
         
@@ -312,7 +312,7 @@ final class LayoutManager: NSLayoutManager {
         
         guard lineRange.length > 0 else { return }
         
-        let hangingIndent = self.spaceWidth * CGFloat(Defaults[.hangingIndentWidth])
+        let hangingIndent = self.spaceWidth * CGFloat(UserDefaults.standard[.hangingIndentWidth])
         let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")
         
         // get dummy attributes to make calculation of indent width the same as layoutManager's calculation (2016-04)
@@ -369,12 +369,13 @@ final class LayoutManager: NSLayoutManager {
     /// apply invisible settings
     private func applyDefaultInvisiblesSetting() {
         
+        let defaults = UserDefaults.standard
         // `showsInvisibles` will be set from EditorTextView or PrintTextView
-        self.showsSpace = Defaults[.showInvisibleSpace]
-        self.showsTab = Defaults[.showInvisibleTab]
-        self.showsNewLine = Defaults[.showInvisibleNewLine]
-        self.showsFullwidthSpace = Defaults[.showInvisibleFullwidthSpace]
-        self.showsOtherInvisibles = Defaults[.showOtherInvisibleChars]
+        self.showsSpace = defaults[.showInvisibleSpace]
+        self.showsTab = defaults[.showInvisibleTab]
+        self.showsNewLine = defaults[.showInvisibleNewLine]
+        self.showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
+        self.showsOtherInvisibles = defaults[.showOtherInvisibleChars]
     }
     
     

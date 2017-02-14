@@ -153,7 +153,7 @@ final class FileDropComposer {
         
         guard let fileExtension = fileExtension else { return nil }
         
-        guard let definitions = Defaults[.fileDropArray] as? [[String: String]] else {
+        guard let definitions = UserDefaults.standard[.fileDropArray] as? [[String: String]] else {
             assertionFailure("invalid file drop setting")
             return nil
         }

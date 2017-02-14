@@ -149,6 +149,7 @@ final class DocumentAnalyzer: NSObject {
             let textView = document.viewController?.focusedTextView else { return }
         
         let needsAll = self.needsUpdateEditorInfo
+        let defaults = UserDefaults.standard
         
         let string = NSString(string: document.textStorage.string) as String
         let lineEnding = document.lineEnding
@@ -163,7 +164,7 @@ final class DocumentAnalyzer: NSObject {
         
         // calculate on background thread
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let countsLineEnding = Defaults[.countLineEndingAsChar]
+            let countsLineEnding = defaults[.countLineEndingAsChar]
             var location = 0
             var line = 0
             var column = 0
@@ -178,7 +179,7 @@ final class DocumentAnalyzer: NSObject {
                 let hasSelection = !selectedString.isEmpty
                 
                 // count length
-                if needsAll || Defaults[.showStatusBarLength] {
+                if needsAll || defaults[.showStatusBarLength] {
                     let isSingleLineEnding = (String(lineEnding.rawValue).unicodeScalars.count == 1)
                     let stringForCounting = isSingleLineEnding ? string : string.replacingLineEndings(with: lineEnding)
                     length = stringForCounting.utf16.count
@@ -190,7 +191,7 @@ final class DocumentAnalyzer: NSObject {
                 }
                 
                 // count characters
-                if needsAll || Defaults[.showStatusBarChars] {
+                if needsAll || defaults[.showStatusBarChars] {
                     let stringForCounting = countsLineEnding ? string : string.removingLineEndings
                     numberOfChars = stringForCounting.numberOfComposedCharacters
                     
@@ -201,7 +202,7 @@ final class DocumentAnalyzer: NSObject {
                 }
                 
                 // count lines
-                if needsAll || Defaults[.showStatusBarLines] {
+                if needsAll || defaults[.showStatusBarLines] {
                     numberOfLines = string.numberOfLines
                     if hasSelection {
                         numberOfSelectedLines = selectedString.numberOfLines
@@ -209,7 +210,7 @@ final class DocumentAnalyzer: NSObject {
                 }
                 
                 // count words
-                if needsAll || Defaults[.showStatusBarWords] {
+                if needsAll || defaults[.showStatusBarWords] {
                     numberOfWords = string.numberOfWords
                     if hasSelection {
                         numberOfSelectedWords = selectedString.numberOfWords
@@ -217,20 +218,20 @@ final class DocumentAnalyzer: NSObject {
                 }
                 
                 // calculate current location
-                if needsAll || Defaults[.showStatusBarLocation] {
+                if needsAll || defaults[.showStatusBarLocation] {
                     let locString = (string as NSString).substring(to: selectedRange.location)
                     let stringForCounting = countsLineEnding ? locString : locString.removingLineEndings
                     location = stringForCounting.numberOfComposedCharacters
                 }
                 
                 // calculate current line
-                if needsAll || Defaults[.showStatusBarLine] {
+                if needsAll || defaults[.showStatusBarLine] {
                     line = string.lineNumber(at: selectedRange.location)
                     
                 }
                 
                 // calculate current column
-                if needsAll || Defaults[.showStatusBarColumn] {
+                if needsAll || defaults[.showStatusBarColumn] {
                     let lineRange = (string as NSString).lineRange(for: selectedRange)
                     column = selectedRange.location - lineRange.location  // as length
                     column = (string as NSString).substring(with: NSRange(location: lineRange.location, length: column)).numberOfComposedCharacters

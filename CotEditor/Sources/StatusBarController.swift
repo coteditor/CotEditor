@@ -157,27 +157,28 @@ final class StatusBarController: NSViewController {
         guard !self.view.isHidden else { return }
         guard let info = self.documentAnalyzer else { return }
         
+        let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()
         
-        if Defaults[.showStatusBarLines] {
+        if defaults[.showStatusBarLines] {
             status.appendFormattedState(value: info.lines, label: "Lines")
         }
-        if Defaults[.showStatusBarChars] {
+        if defaults[.showStatusBarChars] {
             status.appendFormattedState(value: info.chars, label: "Characters")
         }
-        if Defaults[.showStatusBarLength] {
+        if defaults[.showStatusBarLength] {
             status.appendFormattedState(value: info.length, label: "Length")
         }
-        if Defaults[.showStatusBarWords] {
+        if defaults[.showStatusBarWords] {
             status.appendFormattedState(value: info.words, label: "Words")
         }
-        if Defaults[.showStatusBarLocation] {
+        if defaults[.showStatusBarLocation] {
             status.appendFormattedState(value: info.location, label: "Location")
         }
-        if Defaults[.showStatusBarLine] {
+        if defaults[.showStatusBarLine] {
             status.appendFormattedState(value: info.line, label: "Line")
         }
-        if Defaults[.showStatusBarColumn] {
+        if defaults[.showStatusBarColumn] {
             status.appendFormattedState(value: info.column, label: "Column")
         }
         
@@ -196,15 +197,16 @@ final class StatusBarController: NSViewController {
         guard !self.view.isHidden else { return }
         guard let info = self.documentAnalyzer else { return }
         
+        let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()
         
-        if Defaults[.showStatusBarEncoding] {
+        if defaults[.showStatusBarEncoding] {
             status.appendFormattedState(value: info.charsetName, label: nil)
         }
-        if Defaults[.showStatusBarLineEndings] {
+        if defaults[.showStatusBarLineEndings] {
             status.appendFormattedState(value: info.lineEndings, label: nil)
         }
-        if Defaults[.showStatusBarFileSize] {
+        if defaults[.showStatusBarFileSize] {
             let fileSize = self.byteCountFormatter.string(for: info.fileSize)
             status.appendFormattedState(value: fileSize, label: nil)
         }

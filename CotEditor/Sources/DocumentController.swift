@@ -56,7 +56,7 @@ final class DocumentController: NSDocumentController {
     
     override init() {
         
-        self._accessorySelectedEncoding = Defaults[.encodingInOpen]
+        self._accessorySelectedEncoding = UserDefaults.standard[.encodingInOpen]
         self.autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
                                                                  in: .userDomainMask,
                                                                  appropriateFor: nil,
@@ -64,7 +64,7 @@ final class DocumentController: NSDocumentController {
         
         super.init()
         
-        self.autosavingDelay = Defaults[.autosavingDelay]
+        self.autosavingDelay = UserDefaults.standard[.autosavingDelay]
     }
     
     
@@ -271,7 +271,7 @@ final class DocumentController: NSDocumentController {
     /// reset selection of the encoding menu
     private func resetAccessorySelectedEncoding() {
         
-        let defaultEncoding = String.Encoding(rawValue: Defaults[.encodingInOpen])
+        let defaultEncoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInOpen])
         
         DispatchQueue.main.async { [weak self] in
             self?.accessorySelectedEncoding = defaultEncoding
@@ -301,7 +301,7 @@ final class DocumentController: NSDocumentController {
         }
         
         // check if the file is enorm large
-        let fileSizeThreshold = Defaults[.largeFileAlertThreshold]
+        let fileSizeThreshold = UserDefaults.standard[.largeFileAlertThreshold]
         if fileSizeThreshold > 0,
             let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
             fileSize > fileSizeThreshold

@@ -72,8 +72,8 @@ final class PrintPaneController: NSViewController {
     
     /// show font panel
     @IBAction func showFonts(_ sender: Any?) {
-        guard let font = NSFont(name: Defaults[.printFontName]!,
-                                size: Defaults[.printFontSize]) else { return }
+        guard let font = NSFont(name: UserDefaults.standard[.printFontName]!,
+                                size: UserDefaults.standard[.printFontSize]) else { return }
         
         self.view.window?.makeFirstResponder(self)
         NSFontManager.shared().setSelectedFont(font, isMultiple: false)
@@ -88,8 +88,8 @@ final class PrintPaneController: NSViewController {
         
         let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
         
-        Defaults[.printFontName] = newFont.fontName
-        Defaults[.printFontSize] = newFont.pointSize
+        UserDefaults.standard[.printFontName] = newFont.fontName
+        UserDefaults.standard[.printFontSize] = newFont.pointSize
         
         self.setupFontFamilyNameAndSize()
     }
@@ -103,8 +103,8 @@ final class PrintPaneController: NSViewController {
         let index = popup.indexOfSelectedItem
         let theme = (index > 2) ? popup.titleOfSelectedItem : nil  // do not set theme on `Black and White` and `same as document's setting`
         
-        Defaults[.printTheme] = theme
-        Defaults[.printColorIndex] = index
+        UserDefaults.standard[.printTheme] = theme
+        UserDefaults.standard[.printColorIndex] = index
     }
     
     
@@ -114,8 +114,8 @@ final class PrintPaneController: NSViewController {
     /// display font name and size in the font field
     private func setupFontFamilyNameAndSize() {
         
-        let name = Defaults[.printFontName]!
-        let size = Defaults[.printFontSize]
+        let name = UserDefaults.standard[.printFontName]!
+        let size = UserDefaults.standard[.printFontSize]
         
         guard let font = NSFont(name: name, size: size),
               let displayFont = NSFont(name: name, size: min(size, 13.0)),
@@ -131,8 +131,8 @@ final class PrintPaneController: NSViewController {
     /// setup popup menu for color setting
     @objc private func setupColorMenu() {
         
-        let index = Defaults[.printColorIndex]
-        let themeName = Defaults[.printTheme]
+        let index = UserDefaults.standard[.printColorIndex]
+        let themeName = UserDefaults.standard[.printTheme]
         let themeNames = ThemeManager.shared.themeNames
         
         guard let popupButton = self.colorPopupButton else { return }

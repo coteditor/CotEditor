@@ -60,7 +60,7 @@ final class GeneralPaneController: NSViewController {
         super.viewDidLoad()
         
         // select one of document conflict radio buttons
-        let conflictOption = DocumentConflictOption(rawValue: Defaults[.documentConflictOption])!
+        let conflictOption = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption])!
         switch conflictOption {
         case .ignore:
             self.ignoreConflictButton?.state = NSOnState
@@ -97,7 +97,7 @@ final class GeneralPaneController: NSViewController {
     @IBAction func updateAutosaveSetting(_ sender: Any?) {
         
         let currentSetting = Document.autosavesInPlace()
-        let newSetting = Defaults[.enablesAutosaveInPlace]
+        let newSetting = UserDefaults.standard[.enablesAutosaveInPlace]
         
         // do nothing if the setting returned to the current one.
         guard currentSetting != newSetting else { return }
@@ -119,7 +119,7 @@ final class GeneralPaneController: NSViewController {
                 break  // do nothing
                 
             case NSAlertThirdButtonReturn:  // = Cancel
-                Defaults[.enablesAutosaveInPlace] = newSetting
+                UserDefaults.standard[.enablesAutosaveInPlace] = newSetting
                 
             default: break
             }
@@ -132,7 +132,7 @@ final class GeneralPaneController: NSViewController {
         
         guard let tag = sender?.tag else { return }
         
-        Defaults[.documentConflictOption] = tag
+        UserDefaults.standard[.documentConflictOption] = tag
     }
     
 }

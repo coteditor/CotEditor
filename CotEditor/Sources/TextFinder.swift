@@ -74,7 +74,7 @@ final class TextFinder: NSResponder {
     dynamic var findString = "" {
         
         didSet {
-            if Defaults[.syncFindPboard] {
+            if UserDefaults.standard[.syncFindPboard] {
                 NSPasteboard.findString = self.findString
             }
         }
@@ -165,7 +165,7 @@ final class TextFinder: NSResponder {
     /// sync search string on activating application
     @objc private func applicationDidBecomeActive(_ notification: Notification) {
         
-        if Defaults[.syncFindPboard] {
+        if UserDefaults.standard[.syncFindPboard] {
             if let sharedFindString = NSPasteboard.findString {
                 self.findString = sharedFindString
             }
@@ -311,7 +311,7 @@ final class TextFinder: NSResponder {
                 strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 
                 // -> close also if matched since result view will be shown when succeed
-                if !results.isEmpty || Defaults[.findClosesIndicatorWhenDone] {
+                if !results.isEmpty || UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
                     if let panel = strongSelf.findPanelController.window, panel.isVisible {
                         panel.makeKey()
@@ -393,7 +393,7 @@ final class TextFinder: NSResponder {
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
-                if Defaults[.findClosesIndicatorWhenDone] {
+                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
                     if let panel = strongSelf.findPanelController.window, panel.isVisible {
                         panel.makeKey()
@@ -506,7 +506,7 @@ final class TextFinder: NSResponder {
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
-                if Defaults[.findClosesIndicatorWhenDone] {
+                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
                     if let panel = strongSelf.findPanelController.window, panel.isVisible {
                         panel.makeKey()
@@ -533,7 +533,7 @@ final class TextFinder: NSResponder {
         self.findString = selectedString
         
         // auto-disable regex
-        Defaults[.findUsesRegularExpression] = false
+        UserDefaults.standard[.findUsesRegularExpression] = false
     }
     
     

@@ -102,16 +102,18 @@ final class EditorTextView: NSTextView, Themable {
     
     required init?(coder: NSCoder) {
         
-        self.isAutomaticTabExpansionEnabled = Defaults[.autoExpandTab]
-        self.isAutomaticIndentEnabled = Defaults[.autoIndent]
-        self.isSmartIndentEnabled = Defaults[.enableSmartIndent]
-        self.balancesBrackets = Defaults[.balancesBrackets]
+        let defaults = UserDefaults.standard
+        
+        self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
+        self.isAutomaticIndentEnabled = defaults[.autoIndent]
+        self.isSmartIndentEnabled = defaults[.enableSmartIndent]
+        self.balancesBrackets = defaults[.balancesBrackets]
         
         // set paragraph style values
-        self.lineHeight = Defaults[.lineHeight]
-        self.tabWidth = Defaults[.tabWidth]
+        self.lineHeight = defaults[.lineHeight]
+        self.tabWidth = defaults[.tabWidth]
         
-        self.theme = ThemeManager.shared.theme(name: Defaults[.theme]!)
+        self.theme = ThemeManager.shared.theme(name: defaults[.theme]!)
         // -> will be applied first in `viewDidMoveToWindow()`
         
         super.init(coder: coder)
@@ -139,21 +141,21 @@ final class EditorTextView: NSTextView, Themable {
                                    NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
         
         // setup behaviors
-        self.smartInsertDeleteEnabled = Defaults[.smartInsertAndDelete]
-        self.isAutomaticQuoteSubstitutionEnabled = Defaults[.enableSmartQuotes]
-        self.isAutomaticDashSubstitutionEnabled = Defaults[.enableSmartDashes]
-        self.isAutomaticLinkDetectionEnabled = Defaults[.autoLinkDetection]
-        self.isContinuousSpellCheckingEnabled = Defaults[.checkSpellingAsType]
+        self.smartInsertDeleteEnabled = defaults[.smartInsertAndDelete]
+        self.isAutomaticQuoteSubstitutionEnabled = defaults[.enableSmartQuotes]
+        self.isAutomaticDashSubstitutionEnabled = defaults[.enableSmartDashes]
+        self.isAutomaticLinkDetectionEnabled = defaults[.autoLinkDetection]
+        self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
         
         // set font
         let font: NSFont? = {
-            let fontName = Defaults[.fontName]!
-            let fontSize = Defaults[.fontSize]
+            let fontName = defaults[.fontName]!
+            let fontSize = defaults[.fontSize]
             return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize)
         }()
         super.font = font
         layoutManager.textFont = font
-        layoutManager.usesAntialias = Defaults[.shouldAntialias]
+        layoutManager.usesAntialias = defaults[.shouldAntialias]
         
         self.invalidateDefaultParagraphStyle()
         
@@ -254,7 +256,7 @@ final class EditorTextView: NSTextView, Themable {
             }() else { return super.insertText(string, replacementRange: replacementRange) }
         
         // swap '¥' with '\' if needed
-        if Defaults[.swapYenAndBackSlash], plainString.characters.count == 1 {
+        if UserDefaults.standard[.swapYenAndBackSlash], plainString.characters.count == 1 {
             if plainString == "\\" {
                 return super.insertText("¥", replacementRange: replacementRange)
             } else if plainString == "¥" {
@@ -330,8 +332,8 @@ final class EditorTextView: NSTextView, Themable {
         super.insertText(plainString, replacementRange: replacementRange)
         
         // auto completion
-        if Defaults[.autoComplete] {
-            let delay: TimeInterval = Defaults[.autoCompletionDelay]
+        if UserDefaults.standard[.autoComplete] {
+            let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
             self.completionTask.schedule(delay: delay)
         }
     }
@@ -556,7 +558,7 @@ final class EditorTextView: NSTextView, Themable {
             let textColor = self.textColor,
             let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
-            let column = Defaults[.pageGuideColumn]
+            let column = UserDefaults.standard[.pageGuideColumn]
             let inset = self.textContainerOrigin.x
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
             let x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment

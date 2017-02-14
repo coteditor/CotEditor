@@ -147,7 +147,7 @@ extension AlphaWindow {
             return tabbingPreference
         }
         
-        if let tabbingPreference = NSWindowUserTabbingPreference(rawValue: Defaults[.windowTabbing]), tabbingPreference.rawValue >= 0 {  // -1 obays system setting
+        if let tabbingPreference = NSWindowUserTabbingPreference(rawValue: UserDefaults.standard[.windowTabbing]), tabbingPreference.rawValue >= 0 {  // -1 obays system setting
             return tabbingPreference
         }
         
