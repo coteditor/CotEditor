@@ -249,7 +249,7 @@ final class ThemeManager: SettingFileManager {
     // MARK: Private Methods
     
     /// create ThemeDictionary from a file at the URL
-    func themeDictionary(fileURL: URL) -> ThemeDictionary? {
+    private func themeDictionary(fileURL: URL) -> ThemeDictionary? {
         
         guard let data = try? Data(contentsOf: fileURL) else { return nil }
         
@@ -308,7 +308,7 @@ final class ThemeManager: SettingFileManager {
     
     
     /// plain theme to be based on when creating a new theme
-    var plainThemeDictionary: ThemeDictionary {
+    private var plainThemeDictionary: ThemeDictionary {
         
         let url = self.urlForBundledSetting(name: "_Plain")!
         

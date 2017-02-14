@@ -292,7 +292,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// number of replaced in replacement string field becomes no more valid
-    func clearNumberOfReplaced(_ notification: Notification? = nil) {
+    @objc private func clearNumberOfReplaced(_ notification: Notification? = nil) {
         
         self.replacementResultMessage = nil
     }
