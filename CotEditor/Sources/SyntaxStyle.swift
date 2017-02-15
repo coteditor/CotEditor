@@ -193,11 +193,15 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         self.simpleWordsCharacterSets = {
             var characterSets = [SyntaxType: CharacterSet]()
             for (type, definitions) in highlightDictionary {
-                var charSet = CharacterSet(charactersIn: SyntaxStyle.AllAlphabets)
+                var charSet = CharacterSet()
                 
                 for definition in definitions {
-                    let word = definition.beginString.trimmingCharacters(in: .whitespacesAndNewlines)
-                    guard !word.isEmpty && definition.endString == nil && !definition.isRegularExpression else { continue }
+                    guard
+                        definition.endString == nil,
+                        !definition.isRegularExpression
+                        else { continue }
+                    
+                    let word = definition.beginString
                     
                     if definition.ignoreCase {
                         charSet.insert(charactersIn: word.uppercased())
@@ -205,10 +209,15 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                     } else {
                         charSet.insert(charactersIn: word)
                     }
-                    charSet.remove(charactersIn: "\n\t ")  // ignore line breaks, tabs and spaces
-                    
-                    characterSets[type] = charSet
                 }
+                
+                charSet.remove(charactersIn: "\n\t ")  // ignore line breaks, tabs and spaces
+                
+                guard !charSet.isEmpty else { continue }
+                
+                charSet.insert(charactersIn: SyntaxStyle.AllAlphabets)
+                
+                characterSets[type] = charSet
             }
             
             return characterSets.isEmpty ? nil : characterSets
