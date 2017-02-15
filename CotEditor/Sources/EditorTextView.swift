@@ -731,7 +731,7 @@ final class EditorTextView: NSTextView, Themable {
             
         case DefaultKeys.autoLinkDetection.rawValue:
             self.isAutomaticLinkDetectionEnabled = newValue as! Bool
-            if isAutomaticLinkDetectionEnabled {
+            if self.isAutomaticLinkDetectionEnabled {
                 self.detectLinkIfNeeded()
             } else {
                 if let textStorage = self.textStorage {
