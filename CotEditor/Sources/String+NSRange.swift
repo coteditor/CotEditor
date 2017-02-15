@@ -111,7 +111,7 @@ extension NSRange: Equatable {
     }
 
     
-    public static func ==(lhs: NSRange, rhs: NSRange) -> Bool {
+    public static func == (lhs: NSRange, rhs: NSRange) -> Bool {
         
         return NSEqualRanges(lhs, rhs)
     }

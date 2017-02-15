@@ -104,8 +104,7 @@ final class StatusBarController: NSViewController {
     
     // MARK: Public Methods
     
-    weak var documentAnalyzer: DocumentAnalyzer?
-        {
+    weak var documentAnalyzer: DocumentAnalyzer? {
         willSet {
             self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
             

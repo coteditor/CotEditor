@@ -332,7 +332,7 @@ final class LayoutManager: NSLayoutManager {
         // process line by line
         textStorage.beginEditing()
         (textStorage.string as NSString).enumerateSubstrings(in: lineRange, options: .byLines) { (substring: String?, substringRange, enclosingRange, stop) in
-            guard let substring = substring else  { return }
+            guard let substring = substring else { return }
             
             var indent = hangingIndent
             
@@ -387,12 +387,12 @@ final class LayoutManager: NSLayoutManager {
         let spaceFont = self.textFont ?? font
         let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: fontSize) ?? font
         
-        return InvisibleLines(space:          CTLine.create(string: Invisible.userSpace,          color: self.invisiblesColor, font: spaceFont),
-                              tab:            CTLine.create(string: Invisible.userTab,            color: self.invisiblesColor, font: font),
-                              newLine:        CTLine.create(string: Invisible.userNewLine,        color: self.invisiblesColor, font: font),
+        return InvisibleLines(space:          CTLine.create(string: Invisible.userSpace, color: self.invisiblesColor, font: spaceFont),
+                              tab:            CTLine.create(string: Invisible.userTab, color: self.invisiblesColor, font: font),
+                              newLine:        CTLine.create(string: Invisible.userNewLine, color: self.invisiblesColor, font: font),
                               fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, color: self.invisiblesColor, font: fullWidthFont),
-                              verticalTab:    CTLine.create(string: Invisible.verticalTab,        color: self.invisiblesColor, font: fullWidthFont),
-                              replacement:    CTLine.create(string: Invisible.replacement,        color: self.invisiblesColor, font: fullWidthFont))
+                              verticalTab:    CTLine.create(string: Invisible.verticalTab, color: self.invisiblesColor, font: fullWidthFont),
+                              replacement:    CTLine.create(string: Invisible.replacement, color: self.invisiblesColor, font: fullWidthFont))
     }
     
 }

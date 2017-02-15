@@ -27,7 +27,8 @@
 
 import Cocoa
 
-@IBDesignable final class PaddingTextFieldCell: NSTextFieldCell {
+@IBDesignable
+final class PaddingTextFieldCell: NSTextFieldCell {
     
     // MARK: Public Properties
     

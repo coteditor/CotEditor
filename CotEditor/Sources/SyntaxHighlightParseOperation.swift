@@ -40,7 +40,7 @@ struct BlockDelimiters: Equatable, CustomDebugStringConvertible {
     }
     
 
-    static func ==(lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
+    static func == (lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
         
         return lhs.begin == rhs.begin && lhs.end == rhs.end
     }
@@ -81,7 +81,7 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
     }
     
     
-    static func ==(lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
+    static func == (lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
         
         return lhs.beginString == rhs.beginString &&
             lhs.endString == rhs.endString &&
@@ -430,7 +430,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         // sort by location  // ???: performance critial
         positions.sort {
             if $0.location == $1.location {
-                if ($0.role.rawValue == $1.role.rawValue) {
+                if $0.role.rawValue == $1.role.rawValue {
                     return $0.length > $1.length
                 }
                 return $0.role.rawValue < $1.role.rawValue

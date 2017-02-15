@@ -185,6 +185,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                     }
                 }
             }
+            
             return words.isEmpty ? nil : words.sorted()
         }()
         
@@ -242,7 +243,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     }
     
     
-    static func ==(lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
+    static func == (lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
         
         guard lhs.styleName == rhs.styleName &&
             lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&

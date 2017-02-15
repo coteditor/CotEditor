@@ -243,7 +243,7 @@ final class TextFinder: NSResponder {
             var lineNumber = 1
             var lineCountedLocation = 0
             
-            textFind.findAll() { (matches: [NSRange], stop) in
+            textFind.findAll { (matches: [NSRange], stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return

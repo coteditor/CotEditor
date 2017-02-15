@@ -82,7 +82,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             
             // set theme if needed
             self.theme = {
-                if let mode = PrintColorMode(rawValue: defaults[.printColorIndex])  {
+                if let mode = PrintColorMode(rawValue: defaults[.printColorIndex]) {
                     switch mode {
                     case .blackWhite:
                         return BlackAndWhiteThemeName
@@ -388,7 +388,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
 private func localizedSummaryItem(name: String, description: String) -> [String: String] {
     
     return [NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedString(name, comment: ""),
-            NSPrintPanelAccessorySummaryItemDescriptionKey:  NSLocalizedString(description, comment: "")]
+            NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedString(description, comment: "")]
 }
 
 

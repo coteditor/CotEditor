@@ -275,7 +275,7 @@ final class LineNumberView: NSRulerView {
                     (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.max == selectedRange.max)))
             }
             
-            while (glyphCount < glyphIndex) {  // handle wrapper lines
+            while glyphCount < glyphIndex {  // handle wrapper lines
                 var range = NSRange.notFound
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphCount, effectiveRange: &range, withoutAdditionalLayout: true)
                 let isWrappedLine = (lastLineNumber == lineNumber)

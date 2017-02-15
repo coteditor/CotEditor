@@ -60,7 +60,7 @@ final class EditorTextView: NSTextView, Themable {
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
     
-    private(set) lazy var completionTask: Debouncer = Debouncer() { [weak self] in self?.performCompletion() }
+    private(set) lazy var completionTask: Debouncer = Debouncer { [weak self] in self?.performCompletion() }
     
     
     // MARK: Private Properties
@@ -935,10 +935,10 @@ final class EditorTextView: NSTextView, Themable {
                     guard let color = layoutManager.temporaryAttribute(NSForegroundColorAttributeName,
                                                                        atCharacterIndex: characterIndex,
                                                                        longestEffectiveRange: &effectiveRange,
-                                                                       in: selectedRange) else
-                    {
-                        characterIndex += 1
-                        continue
+                                                                       in: selectedRange)
+                        else {
+                            characterIndex += 1
+                            continue
                     }
                     
                     let localRange = NSRange(location: effectiveRange.location - selectedRange.location, length: effectiveRange.length)

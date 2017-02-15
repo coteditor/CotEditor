@@ -145,9 +145,10 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     /// jump to theme's destribution URL
     @IBAction func jumpToURL(_ sender: Any?) {
         
-        guard let address = self.theme?[DictionaryKey.metadata.rawValue]?[MetadataKey.distributionURL.rawValue] as? String,
-              let url = URL(string: address) else
-        {
+        guard
+            let address = self.theme?[DictionaryKey.metadata.rawValue]?[MetadataKey.distributionURL.rawValue] as? String,
+            let url = URL(string: address)
+            else {
                 NSBeep()
                 return
         }

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,20 +30,24 @@ import Foundation
 extension NSAttributedString {
     
     /// concatenate attributed strings
-    static func +(lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
+    static func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
         
         let result = NSMutableAttributedString()
         result.append(lhs)
         result.append(rhs)
         
-        return result
+        return result.copy() as! NSAttributedString
     }
     
     
     /// concatenate attributed strings
-    static func +=(lhs: inout NSAttributedString, rhs: NSAttributedString) {
+    static func += (lhs: inout NSAttributedString, rhs: NSAttributedString) {
         
-        lhs = lhs + rhs
+        let result = NSMutableAttributedString()
+        result.append(lhs)
+        result.append(rhs)
+        
+        lhs = result.copy() as! NSAttributedString
     }
     
 }

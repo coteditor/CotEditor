@@ -40,8 +40,8 @@ final class AlphaWindow: NSWindow {
     
     // MARK: Public Properties
     
-    var backgroundAlpha: CGFloat = 1.0
-        {
+    var backgroundAlpha: CGFloat = 1.0 {
+        
         didSet {
             backgroundAlpha = backgroundAlpha.within(min: 0.2, max: 1.0)
             self.backgroundColor = self.backgroundColor.withAlphaComponent(backgroundAlpha)

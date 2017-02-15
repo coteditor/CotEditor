@@ -242,7 +242,6 @@ final class AppleScript: Script {
     /// - parameter event: the apple event
     ///
     /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
-    ///           
     func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
         
         guard self.descriptor.url.isReachable else {

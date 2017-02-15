@@ -560,7 +560,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         return super.prepareSavePanel(savePanel)
     }
-    private dynamic var allowedFileTypes: [String]? = nil
+    private dynamic var allowedFileTypes: [String]?
     
     
     /// display dialogs about save before closing document

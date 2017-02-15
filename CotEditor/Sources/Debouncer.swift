@@ -32,7 +32,7 @@ final class Debouncer {
     
     // MARK: Private Properties
     
-    private let action: () -> ()
+    private let action: () -> Void
     private let delay: TimeInterval
     private let tolerance: Double
     private weak var timer: Timer?
@@ -48,7 +48,7 @@ final class Debouncer {
     ///   - delay: The default time to wait since last call.
     ///   - tolerance: The rate of the timer tolerance to the delay interval.
     ///   - action: The action to debounce.
-    init(delay: TimeInterval = 0, tolerance: Double = 0.2, action: @escaping () -> ()) {
+    init(delay: TimeInterval = 0, tolerance: Double = 0.2, action: @escaping () -> Void) {
         
         self.action = action
         self.delay = delay

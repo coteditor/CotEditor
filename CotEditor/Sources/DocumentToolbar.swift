@@ -86,7 +86,7 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
         super.runCustomizationPalette(sender)
         
         // fallback for removing "Use small size" button in `window(:willPositionSheet:using)`
-        if let sheet = self.window?.attachedSheet  {
+        if let sheet = self.window?.attachedSheet {
             self.removeSmallSizeButton(in: sheet)
         }
     }
@@ -116,7 +116,7 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
         
         let toggleButton: NSButton? = views.lazy
             .flatMap { $0 as? NSButton }
-            .filter { (button: NSButton) -> Bool in
+            .first { (button: NSButton) -> Bool in
                 guard
                     let buttonTypeValue = button.cell?.value(forKey: "buttonType") as? UInt,
                     let buttonType = NSButtonType(rawValue: buttonTypeValue)
@@ -124,7 +124,6 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
                 
                 return buttonType == .switch
             }
-            .first
         
         toggleButton?.isHidden = true
         sheet.contentView?.needsDisplay = true

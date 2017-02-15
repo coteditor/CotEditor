@@ -35,7 +35,7 @@ extension EditorTextView {
         let rawValue: Int
         
         static let inline = CommentTypes(rawValue: 1 << 0)
-        static let block  = CommentTypes(rawValue: 1 << 1)
+        static let block = CommentTypes(rawValue: 1 << 1)
         
         static let both: CommentTypes = [.inline, .block]
     }

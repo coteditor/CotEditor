@@ -108,14 +108,15 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         guard obj.object is NSTextField,
             let controller = self.fileDropController else { return }
         
-        guard let newItem = controller.selectedObjects.first as? [String: String],
-              let extensions = newItem[FileDropComposer.SettingKey.extensions], !extensions.isEmpty else
-        {
-            // delete row if empty
-            // -> set false to flag for in case that the delete button was pressed while editing and the target can be automatically deleted
-            self.deletingFileDrop = false
-            controller.remove(nil)
-            return
+        guard
+            let newItem = controller.selectedObjects.first as? [String: String],
+            let extensions = newItem[FileDropComposer.SettingKey.extensions], !extensions.isEmpty
+            else {
+                // delete row if empty
+                // -> set false to flag for in case that the delete button was pressed while editing and the target can be automatically deleted
+                self.deletingFileDrop = false
+                controller.remove(nil)
+                return
         }
         
         // sanitize

@@ -205,12 +205,12 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: true,
-                                                    NSPasteboardURLReadingContentsConformToTypesKey: [AppInfo.UTType.theme]]) { [weak self]
-                                                        (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
-                                                        
-                                                        guard let fileURL = draggingItem.item as? URL else { return }
-                                                        
-                                                        self?.importTheme(fileURL: fileURL)
+                                                    NSPasteboardURLReadingContentsConformToTypesKey: [AppInfo.UTType.theme]])
+        { [weak self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
+            
+            guard let fileURL = draggingItem.item as? URL else { return }
+            
+            self?.importTheme(fileURL: fileURL)
         }
         
         return true
