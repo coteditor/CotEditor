@@ -145,7 +145,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// build Script menu
     func buildScriptMenu() {
         
+        assert(Thread.isMainThread)
+        
         self.menuBuildingTask?.cancel()
+        self.menuBuildingTask = nil
         self.scriptHandlersTable = [:]
         self.scripts = [:]
         
