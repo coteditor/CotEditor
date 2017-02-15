@@ -37,7 +37,7 @@ final class SyntaxTermsEditViewController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(syntaxType: SyntaxType) {

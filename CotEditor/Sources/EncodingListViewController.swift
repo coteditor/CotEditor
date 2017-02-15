@@ -46,7 +46,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

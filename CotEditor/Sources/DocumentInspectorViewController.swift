@@ -37,7 +37,7 @@ final class DocumentInspectorViewController: NSViewController {
     }
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var nibName: String? {

@@ -64,7 +64,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private let dateFormatter: DateFormatter
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     init() {

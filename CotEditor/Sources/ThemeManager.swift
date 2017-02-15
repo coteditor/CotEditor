@@ -45,7 +45,7 @@ let ThemeExtension = "cottheme"
 
 
 
-// MARK:
+// MARK: -
 
 final class ThemeManager: SettingFileManager {
     
@@ -63,7 +63,7 @@ final class ThemeManager: SettingFileManager {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override private init() {

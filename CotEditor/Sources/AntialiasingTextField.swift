@@ -40,7 +40,7 @@ final class AntialiasingTextField: NSTextField {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Text Field Methods
     
     /// control antialiasing of text

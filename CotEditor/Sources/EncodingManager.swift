@@ -42,7 +42,7 @@ extension Notification.Name {
 
 
 
-// MARK:
+// MARK: -
 
 private let UTF8Tag = Int(String.Encoding.utf8.rawValue)
 

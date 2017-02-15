@@ -35,7 +35,7 @@ protocol ThemeViewControllerDelegate: class {
 
 
 
-// MARK:
+// MARK: -
 
 final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate {
     

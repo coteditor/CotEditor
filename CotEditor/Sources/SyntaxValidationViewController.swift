@@ -37,7 +37,7 @@ final class SyntaxValidationViewController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var nibName: String? {

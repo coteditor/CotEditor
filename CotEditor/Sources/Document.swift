@@ -58,7 +58,7 @@ private enum FileExtendedAttributeName {
 
 
 
-// MARK:
+// MARK: -
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     

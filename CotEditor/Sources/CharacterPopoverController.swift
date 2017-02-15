@@ -42,7 +42,7 @@ final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     /// default initializer (singleString must be a single character (or a surrogate-pair). If not, return nil.)

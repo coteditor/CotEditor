@@ -35,7 +35,7 @@ final class FindPanelButtonViewController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

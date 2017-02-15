@@ -37,7 +37,7 @@ final class PrintPaneController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

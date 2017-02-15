@@ -53,7 +53,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

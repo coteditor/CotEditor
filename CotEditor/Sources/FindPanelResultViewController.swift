@@ -62,7 +62,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: View Controller Methods
     
     /// prepare for display

@@ -118,7 +118,7 @@ final class LayoutManager: NSLayoutManager {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init() {
@@ -399,7 +399,7 @@ final class LayoutManager: NSLayoutManager {
 
 
 
-// MARK:
+// MARK: -
 
 private extension CTLine {
     

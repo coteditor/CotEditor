@@ -57,7 +57,7 @@ private enum AppCastURL {
 
 
 
-// MARK:
+// MARK: -
 
 final class UpdaterManager: NSObject, SUUpdaterDelegate {
     
@@ -67,7 +67,7 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     private override init() {

@@ -36,7 +36,7 @@ final class GoToLineViewController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(textView: NSTextView) {

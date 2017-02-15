@@ -116,7 +116,7 @@ private struct QuoteCommentItem {
 
 
 
-// MARK:
+// MARK: -
 
 final class SyntaxHighlightParseOperation: AsynchronousOperation {
     
@@ -139,7 +139,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(definitions: [SyntaxType: [HighlightDefinition]], simpleWordsCharacterSets: [SyntaxType: CharacterSet]?, pairedQuoteTypes: [String: SyntaxType]?, inlineCommentDelimiter: String?, blockCommentDelimiters: BlockDelimiters?) {

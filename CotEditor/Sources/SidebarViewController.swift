@@ -55,7 +55,7 @@ final class SidebarViewController: NSTabViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Tab View Controller Methods
     
     /// prepare tabs

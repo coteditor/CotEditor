@@ -42,7 +42,7 @@ final class GeneralPaneController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var nibName: String? {

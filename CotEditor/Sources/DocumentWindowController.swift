@@ -36,7 +36,7 @@ final class DocumentWindowController: NSWindowController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

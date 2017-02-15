@@ -63,7 +63,7 @@ final class IncompatibleCharacter: NSObject {
 
 
 
-// MARK:
+// MARK: -
 
 extension String {
     

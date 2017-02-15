@@ -52,7 +52,7 @@ final class LineNumberView: NSRulerView {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init(scrollView: NSScrollView?, orientation: NSRulerOrientation) {
@@ -489,8 +489,7 @@ private extension Int {
 
 
 
-// MARK:
-// MARK: Line Selecting
+// MARK: - Line Selecting
 
 private struct DraggingInfo {
     

@@ -35,7 +35,7 @@ import ColorCode
 
 
 
-// MARK:
+// MARK: -
 
 final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
@@ -54,7 +54,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

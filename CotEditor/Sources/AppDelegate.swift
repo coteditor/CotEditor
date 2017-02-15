@@ -59,7 +59,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init() {

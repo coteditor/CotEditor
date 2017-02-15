@@ -38,7 +38,7 @@ final class ProgressViewController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(progress: Progress, message: String) {

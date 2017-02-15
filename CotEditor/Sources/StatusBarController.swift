@@ -219,7 +219,7 @@ final class StatusBarController: NSViewController {
 
 
 
-// MARK:
+// MARK: -
 
 private extension NSMutableAttributedString {
     

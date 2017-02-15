@@ -64,7 +64,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: View Controller Method
     
     /// nib name

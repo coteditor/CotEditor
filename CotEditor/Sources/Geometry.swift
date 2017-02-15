@@ -66,8 +66,7 @@ extension CGRect: Scalable {
 
 
 
-// MARK:
-// MARK: Syntax Sugares
+// MARK: - Syntax Sugares
 
 extension CGPoint {
     

@@ -45,7 +45,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var nibName: String? {

@@ -84,7 +84,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
 
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

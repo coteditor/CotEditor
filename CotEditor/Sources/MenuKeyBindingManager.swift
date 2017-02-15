@@ -41,7 +41,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override private init() {

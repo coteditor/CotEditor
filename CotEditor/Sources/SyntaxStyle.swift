@@ -82,7 +82,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(dictionary: [String: Any]?, name: String) {

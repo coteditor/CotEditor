@@ -60,7 +60,7 @@ final class ConsolePanelController: NSWindowController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var windowNibName: String? {
@@ -114,8 +114,7 @@ final class ConsolePanelController: NSWindowController {
 
 
 
-// MARK:
-// MARK: TextFinder Support
+// MARK: - TextFinder Support
 
 /// Map find actions to NSTextFinder, since find action key bindings are configured for TextFinder.
 extension ConsolePanelController {

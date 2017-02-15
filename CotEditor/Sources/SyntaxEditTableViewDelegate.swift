@@ -36,7 +36,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Delegate
     
     /// selection did change

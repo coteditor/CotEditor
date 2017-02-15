@@ -61,7 +61,7 @@ private let MaxDetectionLength = 1024 * 8
 
 
 
-// MARK:
+// MARK: -
 
 private extension CFStringEncoding {
     

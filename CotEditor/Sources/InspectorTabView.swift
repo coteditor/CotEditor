@@ -40,7 +40,7 @@ final class InspectorTabView: NSTabView {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(coder: NSCoder) {

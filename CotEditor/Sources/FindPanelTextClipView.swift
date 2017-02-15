@@ -35,7 +35,7 @@ final class FindPanelTextClipView: NSClipView {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(coder: NSCoder) {

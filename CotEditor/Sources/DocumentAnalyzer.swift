@@ -37,7 +37,7 @@ extension Notification.Name {
 
 
 
-// MARK:
+// MARK: -
 
 final class DocumentAnalyzer: NSObject {
     
@@ -79,7 +79,7 @@ final class DocumentAnalyzer: NSObject {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(document: Document) {

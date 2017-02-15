@@ -47,7 +47,7 @@ final class OpacityPanelController: NSWindowController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

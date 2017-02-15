@@ -42,7 +42,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override private init() {

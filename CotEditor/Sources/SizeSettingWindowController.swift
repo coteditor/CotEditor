@@ -35,7 +35,7 @@ final class SizeSettingWindowController: NSWindowController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var windowNibName: String? {

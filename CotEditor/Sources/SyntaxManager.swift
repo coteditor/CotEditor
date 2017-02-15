@@ -57,7 +57,7 @@ enum BundledStyleName {
 
 
 
-// MARK:
+// MARK: -
 
 final class SyntaxManager: SettingFileManager {
     
@@ -95,7 +95,7 @@ final class SyntaxManager: SettingFileManager {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override private init() {

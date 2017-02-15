@@ -42,7 +42,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

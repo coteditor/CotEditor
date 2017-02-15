@@ -108,7 +108,7 @@ final class ToolbarController: NSObject {
 
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

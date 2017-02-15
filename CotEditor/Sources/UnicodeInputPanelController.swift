@@ -34,7 +34,7 @@ import Cocoa
 
 
 
-// MARK:
+// MARK: -
 
 final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate {
     
@@ -53,7 +53,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

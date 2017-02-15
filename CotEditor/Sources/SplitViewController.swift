@@ -36,7 +36,7 @@ final class SplitViewController: NSSplitViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

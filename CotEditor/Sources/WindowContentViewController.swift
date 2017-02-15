@@ -38,7 +38,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Split View Controller Methods
     
     /// setup view
@@ -281,7 +281,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     
     /// window content view controllers in all tabs in the same window
-    private var siblings: [WindowContentViewController]  {
+    private var siblings: [WindowContentViewController] {
         
         if #available(macOS 10.12, *) {
             return self.view.window?.tabbedWindows?.flatMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]

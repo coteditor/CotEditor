@@ -47,7 +47,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

@@ -48,8 +48,7 @@ extension NSTextView {
 
 
 
-// MARK:
-// MARK: Scaling
+// MARK: - Scaling
 
 // cf. https://developer.apple.com/library/mac/qa/qa1346/_index.html
 
@@ -143,8 +142,7 @@ extension NSTextView {
 
 
 
-// MARK:
-// MARK: Wrapping
+// MARK: - Wrapping
 
 extension NSTextView {
     

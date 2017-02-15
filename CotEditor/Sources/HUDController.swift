@@ -64,7 +64,7 @@ final class HUDController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(symbol: HUDSymbol) {
@@ -136,7 +136,7 @@ final class HUDController: NSViewController {
 
 
 
-// MARK:
+// MARK: -
 
 private enum AnimationIdentifier {
     static let fadeIn = "fadeIn"

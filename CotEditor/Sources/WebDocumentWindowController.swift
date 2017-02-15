@@ -38,7 +38,7 @@ final class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(documentName: String) {

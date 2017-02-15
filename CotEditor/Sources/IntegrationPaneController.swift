@@ -52,7 +52,7 @@ final class IntegrationPaneController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     /// nib name

@@ -86,7 +86,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
 
 
 
-// MARK:
+// MARK: -
 
 final class OutlineParseOperation: AsynchronousOperation {
     
@@ -105,7 +105,7 @@ final class OutlineParseOperation: AsynchronousOperation {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(definitions: [OutlineDefinition]) {

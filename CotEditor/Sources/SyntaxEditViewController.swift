@@ -83,7 +83,7 @@ private enum PaneIndex: Int {
 
 
 
-// MARK:
+// MARK: -
 
 final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
     
@@ -106,7 +106,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(style styleName: String, mode: SyntaxEditSheetMode) {

@@ -35,7 +35,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Layout Manager Methods
     
     /// fix line height for mixed font

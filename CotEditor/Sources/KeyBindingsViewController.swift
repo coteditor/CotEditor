@@ -62,7 +62,7 @@ final class SnippetItem: NSObject {
 
 
 
-// MARK:
+// MARK: -
 
 class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate {
     
@@ -76,7 +76,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var nibName: String? {
@@ -290,7 +290,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var nibName: String? {

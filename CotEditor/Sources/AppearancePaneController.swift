@@ -49,7 +49,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {

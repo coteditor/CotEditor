@@ -69,7 +69,7 @@ struct CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     init?(string: String) {

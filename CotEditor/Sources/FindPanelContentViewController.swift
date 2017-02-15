@@ -40,7 +40,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Split View Controller Methods
     
     /// set delegate
