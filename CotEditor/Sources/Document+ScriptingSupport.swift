@@ -30,6 +30,7 @@ import Cocoa
 
 typealias OSALineEnding = FourCharCode
 private extension OSALineEnding {
+    
     static let LF = FourCharCode(code: "leLF")
     static let CR = FourCharCode(code: "leCR")
     static let CRLF = FourCharCode(code: "leCL")

@@ -102,7 +102,9 @@ final class LayoutManager: NSLayoutManager {
     private var showsFullwidthSpace = false
     
     private lazy var invisibleLines: InvisibleLines = self.generateInvisibleLines()
+    
     private struct InvisibleLines {
+        
         let space: CTLine
         let tab: CTLine
         let newLine: CTLine

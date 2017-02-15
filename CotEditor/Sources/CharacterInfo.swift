@@ -35,6 +35,7 @@ extension UnicodeScalar {
     
     
     struct SkinToneModifier {
+        
         static let type12 = UnicodeScalar(0x1F3FB)!  // 🏻 Light
         static let type3 = UnicodeScalar(0x1F3FC)!  // 🏼 Medium Light
         static let type4 = UnicodeScalar(0x1F3FD)!  // 🏽 Medium

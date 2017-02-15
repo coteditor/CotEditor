@@ -32,6 +32,7 @@ extension EditorTextView {
     // MARK: Options
     
     struct CommentTypes: OptionSet {
+        
         let rawValue: Int
         
         static let inline = CommentTypes(rawValue: 1 << 0)

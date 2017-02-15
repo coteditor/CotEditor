@@ -28,8 +28,7 @@
 
 import Foundation
 
-final class IncompatibleCharacter: NSObject {
-    // -> inherit NSObject for NSArrayController
+final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArrayController
     
     let character: String
     let convertedCharacter: String
