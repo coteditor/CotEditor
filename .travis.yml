@@ -10,7 +10,6 @@ before_install:
   - gem install xcpretty
   - gem install xcpretty-travis-formatter
   - carthage update --platform macOS
-  - brew update && brew install swiftlint
 script:
   set -o pipefail &&
   xcodebuild clean test
