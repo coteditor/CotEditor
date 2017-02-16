@@ -21,7 +21,6 @@ disabled_rules:
   - unused_closure_parameter
   
   - force_try
-  - variable_name
 
 trailing_whitespace:
   ignores_empty_lines: true
@@ -55,6 +54,17 @@ cyclomatic_complexity:
 large_tuple:
   warning: 3
   error: 6
+
+variable_name:
+  max_length:
+    warning: 60
+    error: 100
+  min_length:
+    warning: 1
+    error: 0
+  excluded:
+    - shiftJIS_X0213
+    - version3_0
 
 
 custom_rules:

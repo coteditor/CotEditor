@@ -41,8 +41,6 @@ extension Notification.Name {
     func changeTheme(_ sender: AnyObject?)
 }
 
-let ThemeExtension = "cottheme"
-
 
 
 // MARK: -
@@ -100,7 +98,7 @@ final class ThemeManager: SettingFileManager {
     /// path extension for user setting file
     override var filePathExtension: String {
         
-        return ThemeExtension
+        return DocumentType.theme.extensions[0]
     }
     
     

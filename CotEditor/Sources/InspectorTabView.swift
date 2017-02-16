@@ -36,7 +36,7 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Properties
     
-    private let ControlHeight: CGFloat = 28.0
+    private let controlHeight: CGFloat = 28.0
     
     
     
@@ -52,7 +52,7 @@ final class InspectorTabView: NSTabView {
         // setup segmented control
         self.segmentedControl.cell = SwitcherSegmentedCell()
         self.segmentedControl.segmentStyle = .texturedSquare
-        self.segmentedControl.frame.origin.y = floor((self.ControlHeight - self.segmentedControl.intrinsicContentSize.height) / 2)
+        self.segmentedControl.frame.origin.y = floor((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2)
         self.addSubview(self.segmentedControl)
         
         self.rebuildSegmentedControl()
@@ -66,8 +66,8 @@ final class InspectorTabView: NSTabView {
     override var contentRect: NSRect {
         
         var rect = self.bounds
-        rect.origin.y = self.ControlHeight + 1  // +1 for border
-        rect.size.height -= self.ControlHeight + 1
+        rect.origin.y = self.controlHeight + 1  // +1 for border
+        rect.size.height -= self.controlHeight + 1
         
         return rect
     }
@@ -90,8 +90,8 @@ final class InspectorTabView: NSTabView {
         NSGraphicsContext.saveGraphicsState()
         
         NSColor.gridColor.setStroke()
-        NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.ControlHeight + 0.5),
-                                  to: NSPoint(x: dirtyRect.maxX, y: self.ControlHeight + 0.5))
+        NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.controlHeight + 0.5),
+                                  to: NSPoint(x: dirtyRect.maxX, y: self.controlHeight + 0.5))
         
         NSGraphicsContext.restoreGraphicsState()
     }

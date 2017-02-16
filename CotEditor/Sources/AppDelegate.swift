@@ -72,13 +72,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         // register default setting values
-        let defaults: [String: Any] = DefaultSettings.reduce([:]) { (dict, item) in
-            var dict = dict
-            dict[item.key.rawValue] = item.value
-            return dict
-        }
-        UserDefaults.standard.register(defaults: defaults)
-        NSUserDefaultsController.shared().initialValues = defaults
+        UserDefaults.standard.register(defaults: DefaultSettings.defaults)
+        NSUserDefaultsController.shared().initialValues = DefaultSettings.defaults
         
         // instantiate DocumentController
         _ = DocumentController.shared()
@@ -247,7 +242,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let url = URL(fileURLWithPath: filename)
         
         // perform install if the file is CotEditor theme file
-        guard url.pathExtension == ThemeExtension else { return false }
+        guard DocumentType.theme.extensions.contains(url.pathExtension) else { return false }
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()

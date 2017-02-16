@@ -28,10 +28,10 @@
 import Cocoa
 
 /// the maximum number of characters to add to the left of the matched string
-private let MaxLeftMargin = 32
+private let maxLeftMargin = 32
 
 /// maximal number of characters for the result line
-private let MaxMatchedStringLength = 256
+private let maxMatchedStringLength = 256
 
 
 
@@ -106,13 +106,13 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             let lineAttrString = result.attributedLineString.mutableCopy() as! NSMutableAttributedString
             
             // trim
-            if result.lineRange.location > MaxLeftMargin {
-                let diff = result.lineRange.location - MaxLeftMargin
+            if result.lineRange.location > maxLeftMargin {
+                let diff = result.lineRange.location - maxLeftMargin
                 lineAttrString.replaceCharacters(in: NSRange(location: 0, length: diff), with: "…")
             }
-            if lineAttrString.length > MaxMatchedStringLength {
-                let extra = lineAttrString.length - MaxMatchedStringLength
-                lineAttrString.replaceCharacters(in: NSRange(location: MaxMatchedStringLength, length: extra), with: "…")
+            if lineAttrString.length > maxMatchedStringLength {
+                let extra = lineAttrString.length - maxMatchedStringLength
+                lineAttrString.replaceCharacters(in: NSRange(location: maxMatchedStringLength, length: extra), with: "…")
             }
             
             // truncate tail

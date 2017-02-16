@@ -107,7 +107,7 @@ final class EncodingManager: NSObject {
     /// returns corresponding NSStringEncoding from a encoding name
     class func encoding(fromName encodingName: String) -> String.Encoding? {
         
-        for cfEncoding in DefaultEncodings {
+        for cfEncoding in DefaultSettings.encodings {
             guard cfEncoding != kCFStringEncodingInvalidId else { continue }  // = separator
             
             let encoding = String.Encoding(cfEncoding: cfEncoding)

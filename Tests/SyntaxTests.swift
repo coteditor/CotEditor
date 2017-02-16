@@ -30,8 +30,8 @@ import XCTest
 import YAML
 @testable import CotEditor
 
-let StyleDirectoryName = "Syntaxes"
-let StyleExtension = "yaml"
+let styleDirectoryName = "Syntaxes"
+let styleExtension = "yaml"
 
 
 class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
@@ -50,7 +50,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         let bundle = Bundle(for: type(of: self))
         
         // load XML style
-        let styleURL = bundle.url(forResource: "HTML", withExtension: StyleExtension, subdirectory: StyleDirectoryName)
+        let styleURL = bundle.url(forResource: "HTML", withExtension: styleExtension, subdirectory: styleDirectoryName)
         let data = try? Data(contentsOf: styleURL!)
         let dict = try? YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as? [String: Any]
         self.htmlStyle = SyntaxStyle(dictionary: dict!, name: "HTML")

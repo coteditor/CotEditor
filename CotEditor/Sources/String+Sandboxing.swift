@@ -32,13 +32,13 @@ extension String {
     /// Returns a new string representing the receiver as a path with a tilde (~) substituted for the full path to the current user’s home directory.
     var abbreviatingWithTildeInSandboxedPath: String {
         
-        return self.replacingOccurrences(of: HomeDirectory, with: "~", options: .anchored)
+        return self.replacingOccurrences(of: homeDirectory, with: "~", options: .anchored)
     }
     
 }
 
 
-private let HomeDirectory: String = {
+private let homeDirectory: String = {
     
     guard
         let passwd = getpwuid(getuid()),

@@ -46,7 +46,10 @@ enum PrintSettingKey: String {
     
 }
 
-let BlackAndWhiteThemeName = NSLocalizedString("Black and White", comment: "")
+struct ThemeName {
+    
+    static let blackAndWhite = NSLocalizedString("Black and White", comment: "")
+}
 
 
 
@@ -85,12 +88,12 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                 if let mode = PrintColorMode(rawValue: defaults[.printColorIndex]) {
                     switch mode {
                     case .blackWhite:
-                        return BlackAndWhiteThemeName
+                        return ThemeName.blackAndWhite
                     case .sameAsDocument:
-                        return defaults[.theme] ?? BlackAndWhiteThemeName
+                        return defaults[.theme] ?? ThemeName.blackAndWhite
                     }
                 }
-                return defaults[.printTheme] ?? BlackAndWhiteThemeName
+                return defaults[.printTheme] ?? ThemeName.blackAndWhite
             }()
             self.lineNumberMode = PrintLineNmuberMode(rawValue: defaults[.printLineNumIndex]) ?? .no
             self.invisibleCharsMode = PrintInvisiblesMode(rawValue: defaults[.printInvisibleCharIndex]) ?? .no
@@ -180,7 +183,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         popUp.removeAllItems()
         
-        popUp.addItem(withTitle: BlackAndWhiteThemeName)
+        popUp.addItem(withTitle: ThemeName.blackAndWhite)
         
         popUp.menu?.addItem(NSMenuItem.separator())
         
@@ -230,7 +233,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var theme: String {
         
         get {
-            return self.settingValue(forKey: .theme) as? String ?? BlackAndWhiteThemeName
+            return self.settingValue(forKey: .theme) as? String ?? ThemeName.blackAndWhite
         }
         set {
             self.setSettingValue(newValue, forKey: .theme)

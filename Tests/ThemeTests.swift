@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,8 +29,7 @@
 import XCTest
 @testable import CotEditor
 
-let ThemeDirectoryName = "Themes"
-let ThemeExtension = "cottheme"
+let themeDirectoryName = "Themes"
 
 
 class ThemeTests: XCTestCase {
@@ -93,11 +92,11 @@ class ThemeTests: XCTestCase {
     /// test if all of bundled themes are valid
     func testBundledThemes() {
         
-        let themeDirectoryURL = self.bundle?.url(forResource: ThemeDirectoryName, withExtension: nil)!
+        let themeDirectoryURL = self.bundle?.url(forResource: themeDirectoryName, withExtension: nil)!
         let enumerator = FileManager.default.enumerator(at: themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])!
         
         for url in enumerator.allObjects as! [URL] {
-            guard url.pathExtension == ThemeExtension else { continue }
+            guard DocumentType.theme.extensions.contains(url.pathExtension) else { continue }
             
             let theme = self.loadThemeWithURL(url)
             
@@ -111,7 +110,7 @@ class ThemeTests: XCTestCase {
     
     func loadThemeWithName(_ name: String) -> Theme? {
         
-        let url = self.bundle?.url(forResource: name, withExtension: ThemeExtension, subdirectory: ThemeDirectoryName)
+        let url = self.bundle?.url(forResource: name, withExtension: DocumentType.theme.extensions[0], subdirectory: themeDirectoryName)
         
         return self.loadThemeWithURL(url!)
     }

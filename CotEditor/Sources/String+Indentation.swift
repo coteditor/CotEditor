@@ -34,8 +34,13 @@ enum IndentStyle {
 }
 
 
-private let MinDetectionLines = 5
-private let MaxDetectionLines = 100
+private struct DetectionLines {
+    
+    static let min = 5
+    static let max = 100
+    
+    private init() { }
+}
 
 
 extension String {
@@ -52,7 +57,7 @@ extension String {
         var spaceCount = 0
         var lineCount = 0
         self.enumerateLines { (line, stop) in
-            guard lineCount < MaxDetectionLines else {
+            guard lineCount < DetectionLines.max else {
                 stop = true
                 return
             }
@@ -73,7 +78,7 @@ extension String {
         }
         
         // no enough lines to detect
-        guard tabCount + spaceCount >= MinDetectionLines else { return nil }
+        guard tabCount + spaceCount >= DetectionLines.min else { return nil }
         
         // detect indent style
         if tabCount > spaceCount * 2 {

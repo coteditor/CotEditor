@@ -186,7 +186,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let pboard = info.draggingPasteboard()
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [NSPasteboardURLReadingFileURLsOnlyKey: true,
-                                                   NSPasteboardURLReadingContentsConformToTypesKey: [AppInfo.UTType.theme]])
+                                                   NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.theme.UTType]])
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
@@ -205,7 +205,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: true,
-                                                    NSPasteboardURLReadingContentsConformToTypesKey: [AppInfo.UTType.theme]])
+                                                    NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.theme.UTType]])
         { [weak self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
             
             guard let fileURL = draggingItem.item as? URL else { return }

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,18 +28,18 @@
 
 import Cocoa
 
-let kVerticalPrintMargin: CGFloat = 56.0    // default 90.0
-let kHorizontalPrintMargin: CGFloat = 24.0  // default 72.0
-
-private let kLineFragmentPadding: CGFloat = 20.0
-private let kLineNumberPadding: CGFloat = 10.0
-private let kHeaderFooterFontSize: CGFloat = 9.0
-
-private let kLineNumberFontName = "AvenirNextCondensed-Regular"
-
-
-
 final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
+    
+    // MARK: Constants
+    
+    static let verticalPrintMargin: CGFloat = 56.0    // default 90.0
+    static let horizontalPrintMargin: CGFloat = 24.0  // default 72.0
+    
+    private let lineFragmentPadding: CGFloat = 20.0
+    private let lineNumberPadding: CGFloat = 10.0
+    private let headerFooterFontSize: CGFloat = 9.0
+    private let lineNumberFontName = "AvenirNextCondensed-Regular"
+    
 
     // MARK: Public Properties
     
@@ -83,7 +83,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // specify text container padding
         // -> If padding is changed while printing, print area can be cropped due to text wrapping
-        self.textContainer?.lineFragmentPadding = kLineFragmentPadding
+        self.textContainer?.lineFragmentPadding = self.lineFragmentPadding
         
         self.maxSize = .infinite
         
@@ -136,7 +136,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         {
             // prepare text attributes for line numbers
             let fontSize = round(0.9 * (self.font?.pointSize ?? 12))
-            let font = NSFont(name: kLineNumberFontName, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
+            let font = NSFont(name: self.lineNumberFontName, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
             let attrs = [NSFontAttributeName: font,
                          NSForegroundColorAttributeName: self.textColor ?? .textColor]
             
@@ -144,7 +144,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             let charSize = NSAttributedString(string: "8", attributes: attrs).size()
             
             // adjust values for line number drawing
-            let horizontalOrigin = self.textContainerOrigin.x + kLineFragmentPadding - kLineNumberPadding
+            let horizontalOrigin = self.textContainerOrigin.x + self.lineFragmentPadding - self.lineNumberPadding
             
             // vertical text
             let isVerticalText = self.layoutOrientation == .vertical
@@ -341,7 +341,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         }()
         
         // adjust paddings considering the line numbers
-        self.xOffset = self.printsLineNumber ? kLineFragmentPadding : 0
+        self.xOffset = self.printsLineNumber ? self.lineFragmentPadding : 0
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
@@ -359,8 +359,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         }()
         
         // setup syntax highlighting with theme
-        let themeName = (settings[PrintSettingKey.theme.rawValue] as? String) ?? BlackAndWhiteThemeName
-        if themeName == BlackAndWhiteThemeName {
+        let themeName = (settings[PrintSettingKey.theme.rawValue] as? String) ?? ThemeName.blackAndWhite
+        if themeName == ThemeName.blackAndWhite {
             layoutManager.removeTemporaryAttribute(NSForegroundColorAttributeName, forCharacterRange: textStorage.string.nsRange)
             self.textColor = .textColor
             self.backgroundColor = .white
@@ -440,7 +440,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
         
         // font
-        guard let font = NSFont.userFont(ofSize: kHeaderFooterFontSize) else {
+        guard let font = NSFont.userFont(ofSize: self.headerFooterFontSize) else {
             return [NSParagraphStyleAttributeName: paragraphStyle]
         }
         

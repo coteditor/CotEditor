@@ -33,11 +33,11 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Constants
     
-    private let MinNumberOfDigits = 3
-    private let MinVerticalThickness: CGFloat = 32.0
-    private let MinHorizontalThickness: CGFloat = 20.0
-    private let LineNumberPadding: CGFloat = 4.0
-    private let FontSizeFactor: CGFloat = 0.9
+    private let minNumberOfDigits = 3
+    private let minVerticalThickness: CGFloat = 32.0
+    private let minHorizontalThickness: CGFloat = 20.0
+    private let lineNumberPadding: CGFloat = 4.0
+    private let fontSizeFactor: CGFloat = 0.9
     
     private let lineNumberFont: CGFont = LineNumberFont.regular.cgFont
     private let boldLineNumberFont: CGFont = LineNumberFont.bold.cgFont
@@ -126,7 +126,7 @@ final class LineNumberView: NSRulerView {
         let masterFont = textView.font ?? NSFont.systemFont(ofSize: 0)
         let masterFontSize = scale * masterFont.pointSize
         let masterAscent = scale * masterFont.ascender
-        let fontSize = min(round(self.FontSizeFactor * masterFontSize), masterFontSize)
+        let fontSize = min(round(self.fontSizeFactor * masterFontSize), masterFontSize)
         let font = CTFontCreateWithGraphicsFont(self.lineNumberFont, fontSize, nil, nil)
         
         context.setFont(self.lineNumberFont)
@@ -150,14 +150,14 @@ final class LineNumberView: NSRulerView {
         }()
         
         // prepare frame width
-        let lineNumberPadding = round(scale * self.LineNumberPadding)
+        let lineNumberPadding = round(scale * self.lineNumberPadding)
         let isVerticalText = self.orientation == .horizontalRuler
         let tickLength = ceil(fontSize / 3)
         
         // adjust thickness
         var ruleThickness: CGFloat
         if isVerticalText {
-            ruleThickness = max(fontSize + 2.5 * tickLength, self.MinHorizontalThickness)
+            ruleThickness = max(fontSize + 2.5 * tickLength, self.minHorizontalThickness)
         } else {
             if self.needsRecountTotalNumberOfLines {
                 // -> count only if really needed since the line counting is high workload, especially by large document
@@ -168,8 +168,8 @@ final class LineNumberView: NSRulerView {
             // use the line number of whole string, namely the possible largest line number
             // -> The view width depends on the number of digits of the total line numbers.
             //    It's quite dengerous to change width of line number view on scrolling dynamically.
-            let digits = max(self.totalNumberOfLines.numberOfDigits, self.MinNumberOfDigits)
-            ruleThickness = max(CGFloat(digits) * charWidth + 3 * lineNumberPadding, self.MinVerticalThickness)
+            let digits = max(self.totalNumberOfLines.numberOfDigits, self.minNumberOfDigits)
+            ruleThickness = max(CGFloat(digits) * charWidth + 3 * lineNumberPadding, self.minVerticalThickness)
         }
         ruleThickness = ceil(ruleThickness)
         if ruleThickness != self.ruleThickness {
@@ -342,7 +342,7 @@ final class LineNumberView: NSRulerView {
         if self.orientation == .horizontalRuler {
             return self.ruleThickness
         }
-        return max(self.MinVerticalThickness, self.ruleThickness)
+        return max(self.minVerticalThickness, self.ruleThickness)
     }
     
     

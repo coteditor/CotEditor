@@ -34,9 +34,16 @@ extension Notification.Name {
 }
 
 
-private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
+private struct AttributeName {
+    
+    static let autoBalancedClosingBracket = "autoBalancedClosingBracket"
+    
+    
+    private init() { }
+}
 
-private let AutoBalancedClosingBracketAttributeName = "autoBalancedClosingBracket"
+
+private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 
 
 
@@ -289,7 +296,7 @@ final class EditorTextView: NSTextView, Themable {
                 self.selectedRange = NSRange(location: self.selectedRange.location - 1, length: 0)
                 
                 // set flag
-                self.textStorage?.addAttribute(AutoBalancedClosingBracketAttributeName, value: true,
+                self.textStorage?.addAttribute(AttributeName.autoBalancedClosingBracket, value: true,
                                                range: NSRange(location: self.selectedRange.location, length: 1))
                 
                 return
@@ -301,7 +308,7 @@ final class EditorTextView: NSTextView, Themable {
             let nextCharacter = self.characterAfterInsertion,
             let firstCharacter = plainString.characters.first, firstCharacter == Character(nextCharacter),
             BracePair.braces.contains(where: { $0.end == firstCharacter }),  // ignore "
-            self.textStorage?.attribute(AutoBalancedClosingBracketAttributeName, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
+            self.textStorage?.attribute(AttributeName.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
         {
             self.selectedRange.location += 1
             return

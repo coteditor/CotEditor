@@ -38,10 +38,10 @@ extension Notification.Name {
 
 // constants
 
-private let UniqueFileIDLength = 13
+private let uniqueFileIDLength = 13
 
 /// Maximal length to scan encoding declaration
-private let MaxEncodingScanLength = 2000
+private let maxEncodingScanLength = 2000
 
 private enum SerializationKey {
     static let readingEncoding = "readingEncoding"
@@ -102,7 +102,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         let uuid = UUID().uuidString
-        self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: UniqueFileIDLength))
+        self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: uniqueFileIDLength))
         
         let encoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInNew])
         self.encoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
@@ -639,10 +639,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             printInfo.horizontalPagination = .fitPagination
             printInfo.isHorizontallyCentered = false
             printInfo.isVerticallyCentered = false
-            printInfo.leftMargin = kHorizontalPrintMargin
-            printInfo.rightMargin = kHorizontalPrintMargin
-            printInfo.topMargin = kVerticalPrintMargin
-            printInfo.bottomMargin = kVerticalPrintMargin
+            printInfo.leftMargin = PrintTextView.horizontalPrintMargin
+            printInfo.rightMargin = PrintTextView.horizontalPrintMargin
+            printInfo.topMargin = PrintTextView.verticalPrintMargin
+            printInfo.bottomMargin = PrintTextView.verticalPrintMargin
             printInfo.dictionary()[NSPrintHeaderAndFooter] = true
             
             return printInfo
@@ -1148,7 +1148,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let suggestedCFEncodings = UserDefaults.standard[.encodingList]
         
         return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
-                                               upTo: MaxEncodingScanLength,
+                                               upTo: maxEncodingScanLength,
                                                suggestedCFEncodings: suggestedCFEncodings.map { return $0.uint32Value })
     }
     
