@@ -51,11 +51,6 @@ enum AppInfo {
         return (AppInfo.shortVersion.rangeOfCharacter(from: digitSet.inverted) != nil)
     }()
     
-    
-    enum UTType {
-        static let theme = "com.coteditor.CotEditor.theme"
-    }
-    
 }
 
 
