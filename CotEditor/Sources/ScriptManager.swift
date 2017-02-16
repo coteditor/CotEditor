@@ -324,7 +324,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 
                 self.scripts[url] = script
                 
-            } else if resourceType == URLFileResourceType.directory {
+            } else if resourceType == .directory {
                 let submenu = NSMenu(title: descriptor.name)
                 let item = NSMenuItem(title: descriptor.name, action: nil, keyEquivalent: "")
                 item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
