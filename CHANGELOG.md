@@ -18,6 +18,7 @@ develop
 - Fix an issue on the text search where the single text search couldn't find the word intersects with the current selection.
 - Fix an issue where the metadata of a custom theme cannot be edited.
 - Fix an issue where the background of the line number view was drawn with wrong color when entered to the fullscreen mode.
+- Fix an issue on the regular expression Replace All with multiple selections where user cancellation didn't stop search immediately.
 
 
 

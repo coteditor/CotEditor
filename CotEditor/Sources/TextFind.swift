@@ -302,15 +302,21 @@ final class TextFind {
         let string = self.string
         let regex = self.regex!
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
+        var cancelled = false
         
         for scopeRange in ranges {
-            regex.enumerateMatches(in: string, options: options, range: scopeRange, using: { (result, flags, stop) in
+            guard !cancelled else { return }
+            
+            regex.enumerateMatches(in: string, options: options, range: scopeRange) { (result, flags, stop) in
                 guard let result = result else { return }
                 
                 var ioStop = false
                 block(result.range, result, &ioStop)
-                stop.pointee = ObjCBool(ioStop)
-            })
+                if ioStop {
+                    stop.pointee = ObjCBool(ioStop)
+                    cancelled = true
+                }
+            }
             
             scopeCompletionHandler?(scopeRange)
         }
