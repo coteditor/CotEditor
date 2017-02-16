@@ -67,11 +67,11 @@ class LineEndingTests: XCTestCase {
     
     func testRangeConversion() {
         
-        let lfToCrlfRange = "a\nb\nc".convert(from: .LF, to: .CRLF, range: NSMakeRange(2, 2))
+        let lfToCrlfRange = "a\nb\nc".convert(from: .LF, to: .CRLF, range: NSRange(location: 2, length: 2))
         XCTAssertEqual(lfToCrlfRange.location, 3)
         XCTAssertEqual(lfToCrlfRange.length, 3)
         
-        let implicitConvertedRange = "a\r\nb\r\nc".convert(to: .LF, range: NSMakeRange(3, 3))
+        let implicitConvertedRange = "a\r\nb\r\nc".convert(to: .LF, range: NSRange(location: 3, length: 3))
         XCTAssertEqual(implicitConvertedRange.location, 2)
         XCTAssertEqual(implicitConvertedRange.length, 2)
     }

@@ -1,6 +1,7 @@
 
 included:
   - CotEditor/Sources
+  - Tests
 
 opt_in_rules:
   - attributes
