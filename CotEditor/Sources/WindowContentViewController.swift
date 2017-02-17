@@ -254,12 +254,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     /// set visibility and tab of sidebar
     private func setSidebarShown(_ shown: Bool, index: SidebarViewController.TabIndex? = nil, animate: Bool = false) {
         
-        if let index = index {
-            self.siblings.forEach { sibling in
-                sibling.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
-            }
-        }
-        
         guard NSAppKitVersionNumber >= Double(NSAppKitVersionNumber10_11) else {
             self.isSidebarShown = shown
             return
@@ -267,6 +261,12 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         
         NSAnimationContext.current().withAnimation(animate) {
             self.isSidebarShown = shown
+        }
+        
+        if let index = index {
+            self.siblings.forEach { sibling in
+                sibling.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
+            }
         }
     }
     
