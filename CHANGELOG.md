@@ -7,9 +7,17 @@ develop
 
 ### New Features
 
+- Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
+
+
+
+3.1.4
+--------------------------
+
+### New Features
+
 - Update `cot` command-line tool.
     - Enable using wildcard for file path argument.
-- Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
 
 
 ### Fixes
