@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -111,12 +111,7 @@ extension String {
         let startIndex = self.index(index, offsetBy: -MaxEscapesCheckLength, limitedBy: self.startIndex) ?? self.startIndex
         let seekCharacters = self.characters[startIndex..<index]
         
-        var numberOfEscapes = 0
-        for character in seekCharacters.reversed() {
-            guard character == "\\" else { break }
-            
-            numberOfEscapes += 1
-        }
+        let numberOfEscapes = seekCharacters.reversed().prefix(while: { $0 == "\\" }).count
         
         return (numberOfEscapes % 2 == 1)
     }
