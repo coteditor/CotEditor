@@ -256,7 +256,7 @@ final class SyntaxManager: SettingFileManager {
         
         // load from file
         if let url = self.urlForUsedSetting(name: name),
-            let style = self.styleDictionary(fileURL: url) {
+            let style = try? self.styleDictionary(fileURL: url) {
             
             // store newly loaded style
             self.styleCaches[name] = style
@@ -273,7 +273,7 @@ final class SyntaxManager: SettingFileManager {
         
         guard let url = self.urlForBundledSetting(name: name) else { return nil }
         
-        return self.styleDictionary(fileURL: url)
+        return try? self.styleDictionary(fileURL: url)
     }
     
     
@@ -412,15 +412,21 @@ final class SyntaxManager: SettingFileManager {
     
     // MARK: Private Methods
     
-    /// return style dictionary at file URL
-    private func styleDictionary(fileURL: URL) -> StyleDictionary? {
+    /// Return style dictionary at file URL.
+    ///
+    /// - parameter fileURL: URL to a style file.
+    /// - throws: CocoaError
+    private func styleDictionary(fileURL: URL) throws -> StyleDictionary {
         
-        guard
-            let yamlData = try? Data(contentsOf: fileURL),
-            let yaml = try? YAMLSerialization.object(withYAMLData: yamlData,
-                                                     options: kYAMLReadOptionMutableContainersAndLeaves) else { return nil }
+        let yamlData = try Data(contentsOf: fileURL)
+        let yaml = try YAMLSerialization.object(withYAMLData: yamlData,
+                                                 options: kYAMLReadOptionMutableContainersAndLeaves)
         
-        return yaml as? StyleDictionary
+        guard let styleDictionary = yaml as? StyleDictionary else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        
+        return styleDictionary
     }
     
     
@@ -459,14 +465,14 @@ final class SyntaxManager: SettingFileManager {
         let directoryURL = self.userSettingDirectoryURL
         var map = self.bundledMap
         
-        // load user styles
+        // load user styles if exists
         if let enumerator = FileManager.default.enumerator(at: directoryURL, includingPropertiesForKeys: nil,
                                                            options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
             for case let url as URL in enumerator {
                 guard [self.filePathExtension, "yml"].contains(url.pathExtension) else { continue }
+                guard let style = try? self.styleDictionary(fileURL: url) else { continue }
                 
                 let styleName = self.settingName(from: url)
-                guard let style = self.styleDictionary(fileURL: url) else { continue }
                 
                 map[styleName] = [SyntaxKey.extensions.rawValue: type(of: self).keyStrings(in: style, key: .extensions),
                                   SyntaxKey.filenames.rawValue: type(of: self).keyStrings(in: style, key: .filenames),
