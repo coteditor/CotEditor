@@ -46,13 +46,13 @@ struct KeyBinding: Hashable, Comparable, CustomStringConvertible {
     }
     
     
-    static func ==(lhs: KeyBinding, rhs: KeyBinding) -> Bool {
+    static func == (lhs: KeyBinding, rhs: KeyBinding) -> Bool {
         
         return lhs.shortcut == rhs.shortcut && lhs.action == rhs.action
     }
     
     
-    static func <(lhs: KeyBinding, rhs: KeyBinding) -> Bool {
+    static func < (lhs: KeyBinding, rhs: KeyBinding) -> Bool {
         
         return lhs.action.description < rhs.action.description
     }
@@ -203,7 +203,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         
         let defaultExistsAction = self.defaultKeyBindings.map { $0.action }
         let diff = keyBindings.subtracting(self.defaultKeyBindings)
-            .filter { $0.shortcut != nil ||  defaultExistsAction.contains($0.action) }
+            .filter { $0.shortcut != nil || defaultExistsAction.contains($0.action) }
         
         // write to file
         if diff.isEmpty {

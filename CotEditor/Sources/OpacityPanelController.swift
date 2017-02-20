@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ final class OpacityPanelController: NSWindowController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
@@ -79,7 +79,7 @@ final class OpacityPanelController: NSWindowController {
     // MARK: Notification
     
     /// notification about main window change
-    func mainWindowDidChange(_ notification: Notification) {
+    @objc private func mainWindowDidChange(_ notification: Notification) {
         if let window = notification.object as? AlphaWindow {
             self.opacity = window.backgroundAlpha
         }

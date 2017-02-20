@@ -57,7 +57,7 @@ enum BundledStyleName {
 
 
 
-// MARK:
+// MARK: -
 
 final class SyntaxManager: SettingFileManager {
     
@@ -95,13 +95,13 @@ final class SyntaxManager: SettingFileManager {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override private init() {
         
-        self.recentStyleNameSet = NSMutableOrderedSet(array: Defaults[.recentStyleNames] ?? [])
-        self.maximumRecentStyleNameCount = Defaults[.maximumRecentStyleCount]
+        self.recentStyleNameSet = NSMutableOrderedSet(array: UserDefaults.standard[.recentStyleNames] ?? [])
+        self.maximumRecentStyleNameCount = UserDefaults.standard[.maximumRecentStyleCount]
         
         // load bundled style list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
@@ -189,7 +189,7 @@ final class SyntaxManager: SettingFileManager {
             self.recentStyleNameSet.remove(name)
             self.recentStyleNameSet.insert(name, at: 0)
         }
-        Defaults[.recentStyleNames] = self.recentStyleNames
+        UserDefaults.standard[.recentStyleNames] = self.recentStyleNames
         
         DispatchQueue.main.async { [weak self] in
             NotificationCenter.default.post(name: .SyntaxHistoryDidUpdate, object: self)
@@ -487,7 +487,7 @@ final class SyntaxManager: SettingFileManager {
             self.recentStyleNameSet.intersectSet(Set(self.styleNames))
         }
         
-        Defaults[.recentStyleNames] = self.recentStyleNames
+        UserDefaults.standard[.recentStyleNames] = self.recentStyleNames
     }
     
     
@@ -609,7 +609,7 @@ extension SyntaxManager {
             let plist = try? PropertyListSerialization.propertyList(from: plistData, format: nil),
             let style = plist as? [String: Any] else { return false }
         
-        var newStyle = [String : Any]()
+        var newStyle = [String: Any]()
         
         // format migration
         for (key, value) in style {

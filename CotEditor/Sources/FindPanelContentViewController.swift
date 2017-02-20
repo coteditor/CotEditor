@@ -27,7 +27,7 @@
 
 import Cocoa
 
-private let DefaultResultViewHeight: CGFloat = 200.0
+private let defaultResultViewHeight: CGFloat = 200.0
 
 final class FindPanelContentViewController: NSSplitViewController, TextFinderDelegate {
     
@@ -40,7 +40,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Split View Controller Methods
     
     /// set delegate
@@ -168,9 +168,9 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         let diff: CGFloat = {
             if shown {
                 if resultViewItem.isCollapsed {
-                    return DefaultResultViewHeight
+                    return defaultResultViewHeight
                 } else {
-                    return max(DefaultResultViewHeight - height, 0)
+                    return max(defaultResultViewHeight - height, 0)
                 }
             } else {
                 return -height

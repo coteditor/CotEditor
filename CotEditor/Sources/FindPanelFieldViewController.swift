@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
@@ -88,7 +88,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// observed user defaults are changed
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         guard let keyPath = keyPath else { return }
         
@@ -263,7 +263,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             }
         }
         
-        guard let history = Defaults[key], !history.isEmpty else { return }
+        guard let history = UserDefaults.standard[key], !history.isEmpty else { return }
         
         menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
         
@@ -279,7 +279,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// number of found in find string field becomes no more valid
-    func clearNumberOfFound(_ notification: Notification? = nil) {
+    @objc private func clearNumberOfFound(_ notification: Notification? = nil) {
         
         self.findResultMessage = nil
         
@@ -292,7 +292,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// number of replaced in replacement string field becomes no more valid
-    func clearNumberOfReplaced(_ notification: Notification? = nil) {
+    @objc private func clearNumberOfReplaced(_ notification: Notification? = nil) {
         
         self.replacementResultMessage = nil
     }

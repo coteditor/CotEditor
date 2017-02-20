@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -51,9 +51,14 @@ enum AppInfo {
         return (AppInfo.shortVersion.rangeOfCharacter(from: digitSet.inverted) != nil)
     }()
     
+}
+
+
+struct DocumentType {
     
-    enum UTType {
-        static let theme = "com.coteditor.CotEditor.theme"
-    }
+    let UTType: String
+    let extensions: [String]
     
+    
+    static let theme = DocumentType(UTType: "com.coteditor.CotEditor.theme", extensions: ["cottheme"])
 }

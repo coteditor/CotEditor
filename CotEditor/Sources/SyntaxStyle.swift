@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -75,13 +75,14 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     fileprivate var cachedHighlights: [SyntaxType: [NSRange]]?  // extracted results cache of the last whole string highlighs
     fileprivate var highlightCacheHash: String?  // MD5 hash
-    fileprivate weak var outlineMenuTimer: Timer?
+    
+    fileprivate private(set) lazy var outlineUpdateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.parseOutline() }
     
     private static let AllAlphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(dictionary: [String: Any]?, name: String) {
@@ -184,6 +185,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                     }
                 }
             }
+            
             return words.isEmpty ? nil : words.sorted()
         }()
         
@@ -191,11 +193,15 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         self.simpleWordsCharacterSets = {
             var characterSets = [SyntaxType: CharacterSet]()
             for (type, definitions) in highlightDictionary {
-                var charSet = CharacterSet(charactersIn: SyntaxStyle.AllAlphabets)
+                var charSet = CharacterSet()
                 
                 for definition in definitions {
-                    let word = definition.beginString.trimmingCharacters(in: .whitespacesAndNewlines)
-                    guard !word.isEmpty && definition.endString == nil && !definition.isRegularExpression else { continue }
+                    guard
+                        definition.endString == nil,
+                        !definition.isRegularExpression
+                        else { continue }
+                    
+                    let word = definition.beginString
                     
                     if definition.ignoreCase {
                         charSet.insert(charactersIn: word.uppercased())
@@ -203,10 +209,15 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                     } else {
                         charSet.insert(charactersIn: word)
                     }
-                    charSet.remove(charactersIn: "\n\t ")   // ignore line breaks, tabs and spaces
-                    
-                    characterSets[type] = charSet
                 }
+                
+                charSet.remove(charactersIn: "\n\t ")  // ignore line breaks, tabs and spaces
+                
+                guard !charSet.isEmpty else { continue }
+                
+                charSet.insert(charactersIn: SyntaxStyle.AllAlphabets)
+                
+                characterSets[type] = charSet
             }
             
             return characterSets.isEmpty ? nil : characterSets
@@ -232,8 +243,6 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     deinit {
         self.outlineParseOperationQueue.cancelAllOperations()
         self.syntaxHighlightParseOperationQueue.cancelAllOperations()
-        
-        self.outlineMenuTimer?.invalidate()
     }
     
     
@@ -243,7 +252,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     }
     
     
-    static func ==(lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
+    static func == (lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
         
         guard lhs.styleName == rhs.styleName &&
             lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&
@@ -282,7 +291,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     /// whether enable parsing syntax
     var canParse: Bool {
         
-        let isHighlightEnabled = Defaults[.enableSyntaxHighlight]
+        let isHighlightEnabled = UserDefaults.standard[.enableSyntaxHighlight]
         
         return isHighlightEnabled && !self.isNone
     }
@@ -303,9 +312,6 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
 
 extension SyntaxStyle {
     
-    private static let OutlineMenuUpdateInterval: TimeInterval = 0.4
-    
-    
     /// parse outline with delay
     func invalidateOutline() {
         
@@ -314,7 +320,7 @@ extension SyntaxStyle {
             return
         }
         
-        self.setupOutlineMenuUpdateTimer()
+        self.outlineUpdateTask.schedule()
     }
     
     
@@ -322,9 +328,7 @@ extension SyntaxStyle {
     // MARK: Private Methods
     
     /// parse outline
-    @objc private func parseOutline() {
-        
-        self.outlineMenuTimer?.invalidate()
+    fileprivate func parseOutline() {
         
         guard
             let definitions = self.outlineDefinitions,
@@ -348,24 +352,6 @@ extension SyntaxStyle {
         self.outlineParseOperationQueue.addOperation(operation)
     }
     
-    
-    /// let parse outline after a delay
-    private func setupOutlineMenuUpdateTimer() {
-        
-        let interval = type(of: self).OutlineMenuUpdateInterval
-        
-        if let timer = self.outlineMenuTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: interval)
-        } else {
-            self.outlineMenuTimer = Timer.scheduledTimer(timeInterval: interval,
-                                                         target: self,
-                                                         selector: #selector(parseOutline),
-                                                         userInfo: nil,
-                                                         repeats: false)
-            self.outlineMenuTimer?.tolerance = 0.1 * interval
-        }
-    }
-    
 }
 
 
@@ -377,7 +363,7 @@ extension SyntaxStyle {
     /// update whole document highlights
     func highlightAll(completionHandler: (() -> Void)? = nil) {  // @escaping
         
-        guard Defaults[.enableSyntaxHighlight] else { return }
+        guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
         let wholeRange = textStorage.string.nsRange
@@ -402,15 +388,15 @@ extension SyntaxStyle {
     /// update highlights around passed-in range
     func highlight(around editedRange: NSRange) {
         
-        guard Defaults[.enableSyntaxHighlight] else { return }
+        guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = NSString(string: textStorage.string) as String
         
         let wholeRange = string.nsRange
-        let bufferLength = Defaults[.coloringRangeBufferLength]
-        var highlightRange = NSIntersectionRange(editedRange, wholeRange)  // in case that wholeRange length is changed from editedRange
+        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
+        var highlightRange = editedRange.intersection(wholeRange)  // in case that wholeRange length is changed from editedRange
         
         // highlight whole if string is enough short
         if wholeRange.length <= bufferLength {
@@ -421,12 +407,13 @@ extension SyntaxStyle {
             for layoutManager in textStorage.layoutManagers {
                 guard let visibleRange = layoutManager.firstTextView?.visibleRange else { continue }
                 
-                if NSIntersectionRange(editedRange, visibleRange).length > 0 {
-                    highlightRange = NSUnionRange(highlightRange, visibleRange)
+                if editedRange.intersects(with: visibleRange) {
+                    highlightRange.formUnion(visibleRange)
                 }
             }
             
-            highlightRange = (string as NSString).lineRange(for: NSIntersectionRange(wholeRange, highlightRange))
+            highlightRange.formIntersection(wholeRange)
+            highlightRange = (string as NSString).lineRange(for: highlightRange)
             
             // expand highlight area if the character just before/after the highlighting area is the same color
             if let layoutManager = textStorage.layoutManagers.first {
@@ -543,7 +530,7 @@ extension SyntaxStyle {
     /// whether need to display highlighting indicator
     private func shouldShowIndicator(for highlightLength: Int) -> Bool {
         
-        let threshold = Defaults[.showColoringIndicatorTextLength]
+        let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
         
         // do not show indicator if threshold is 0
         return threshold > 0 && highlightLength > threshold

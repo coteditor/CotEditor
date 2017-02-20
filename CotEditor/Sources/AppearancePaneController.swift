@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
@@ -79,7 +79,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         self.themeTableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
         
         // select default theme
-        let themeName = Defaults[.theme]!
+        let themeName = UserDefaults.standard[.theme]!
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
@@ -186,7 +186,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let pboard = info.draggingPasteboard()
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [NSPasteboardURLReadingFileURLsOnlyKey: true,
-                                                   NSPasteboardURLReadingContentsConformToTypesKey: [AppInfo.UTType.theme]])
+                                                   NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.theme.UTType]])
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
@@ -205,12 +205,12 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: true,
-                                                    NSPasteboardURLReadingContentsConformToTypesKey: [AppInfo.UTType.theme]]) { [weak self]
-                                                        (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
-                                                        
-                                                        guard let fileURL = draggingItem.item as? URL else { return }
-                                                        
-                                                        self?.importTheme(fileURL: fileURL)
+                                                    NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.theme.UTType]])
+        { [weak self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
+            
+            guard let fileURL = draggingItem.item as? URL else { return }
+            
+            self?.importTheme(fileURL: fileURL)
         }
         
         return true
@@ -243,8 +243,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         // update default theme setting
         // -> skip on the first time because, at the time point, the settings are not yet applied.
-        if self.themeViewController != nil, let oldThemeName = Defaults[.theme], oldThemeName != themeName {
-            Defaults[.theme] = themeName
+        if self.themeViewController != nil, let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
+            UserDefaults.standard[.theme] = themeName
             
             // update theme of the current document windows
             //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
@@ -288,7 +288,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         do {
             try ThemeManager.shared.renameSetting(name: oldName, to: newName)
             
-        } catch let error {
+        } catch {
             // revert name
             fieldEditor.string = oldName
             
@@ -345,8 +345,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// show font panel
     @IBAction func showFonts(_ sender: Any?) {
         
-        guard let font = NSFont(name: Defaults[.fontName]!,
-                                size: Defaults[.fontSize]) else { return }
+        guard let font = NSFont(name: UserDefaults.standard[.fontName]!,
+                                size: UserDefaults.standard[.fontSize]) else { return }
         
         self.view.window?.makeFirstResponder(self)
         NSFontManager.shared().setSelectedFont(font, isMultiple: false)
@@ -361,8 +361,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
         
-        Defaults[.fontName] = newFont.fontName
-        Defaults[.fontSize] = newFont.pointSize
+        UserDefaults.standard[.fontName] = newFont.fontName
+        UserDefaults.standard[.fontSize] = newFont.pointSize
         
         self.setupFontFamilyNameAndSize()
     }
@@ -481,9 +481,9 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// display font name and size in the font field
     private func setupFontFamilyNameAndSize() {
         
-        let name = Defaults[.fontName]!
-        let size = Defaults[.fontSize]
-        let shouldAntiailias = Defaults[.shouldAntialias]
+        let name = UserDefaults.standard[.fontName]!
+        let size = UserDefaults.standard[.fontSize]
+        let shouldAntiailias = UserDefaults.standard[.shouldAntialias]
         
         guard let font = NSFont(name: name, size: size),
             let displayFont = NSFont(name: name, size: min(size, 13.0)),
@@ -500,7 +500,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView else {
-            return Defaults[.theme]!
+            return UserDefaults.standard[.theme]!
         }
         return self.themeNames[tableView.selectedRow]
     }
@@ -517,7 +517,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// refresh theme view if current displayed theme was restored
-    func themeDidUpdate(_ notification: Notification) {
+    @objc private func themeDidUpdate(_ notification: Notification) {
         
         guard
             let bundledTheme = ThemeManager.shared.themeDictionary(name: self.selectedThemeName),
@@ -552,7 +552,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             do {
                 try ThemeManager.shared.removeSetting(name: name)
                 
-            } catch let error {
+            } catch {
                 alert.window.orderOut(nil)
                 NSBeep()
                 NSAlert(error: error).beginSheetModal(for: window)
@@ -569,7 +569,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         do {
             try ThemeManager.shared.restoreSetting(name: name)
-        } catch let error {
+        } catch {
             self.presentError(error)
         }
     }
@@ -580,7 +580,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         do {
             try ThemeManager.shared.importSetting(fileURL: fileURL)
-        } catch let error {
+        } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)
         }
@@ -588,7 +588,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// update theme list
-    func setupThemeList() {
+    @objc private func setupThemeList() {
         
         self.themeNames = ThemeManager.shared.themeNames
         self.themeTableView?.reloadData()

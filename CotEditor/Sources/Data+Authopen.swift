@@ -36,7 +36,7 @@ import Foundation
 // You can remove these if you feel it's really needless.
 // ------------------------------------------------------------------------------
 
-private let AuthopenPath = "/usr/libexec/authopen"
+private let authopenPath = "/usr/libexec/authopen"
 
 extension Data {
     
@@ -47,7 +47,7 @@ extension Data {
         guard fileURL.isFileURL else { return nil }
         
         let task = Task()
-        task.launchPath = AuthopenPath
+        task.launchPath = authopenPath
         task.arguments = [fileURL.path]
         task.standardOutput = Pipe()
         
@@ -71,7 +71,7 @@ extension Data {
         guard fileURL.isFileURL else { return false }
         
         let task = Task()
-        task.launchPath = AuthopenPath
+        task.launchPath = authopenPath
         task.arguments = ["-c", "-c", fileURL.path]
         task.standardOutput = Pipe()
         

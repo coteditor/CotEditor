@@ -34,13 +34,20 @@ extension Notification.Name {
 }
 
 
+private struct AttributeName {
+    
+    static let autoBalancedClosingBracket = "autoBalancedClosingBracket"
+    
+    
+    private init() { }
+}
+
+
 private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 
-private let AutoBalancedClosingBracketAttributeName = "autoBalancedClosingBracket"
 
 
-
-// MARK:
+// MARK: -
 
 final class EditorTextView: NSTextView, Themable {
     
@@ -60,6 +67,8 @@ final class EditorTextView: NSTextView, Themable {
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
     
+    private(set) lazy var completionTask: Debouncer = Debouncer { [weak self] in self?.performCompletion() }
+    
     
     // MARK: Private Properties
     
@@ -71,7 +80,6 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
-    fileprivate weak var completionTimer: Timer?
     fileprivate var particalCompletionWord: String?
     
     private let observedDefaultKeys: [DefaultKeys] = [
@@ -96,21 +104,23 @@ final class EditorTextView: NSTextView, Themable {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(coder: NSCoder) {
         
-        self.isAutomaticTabExpansionEnabled = Defaults[.autoExpandTab]
-        self.isAutomaticIndentEnabled = Defaults[.autoIndent]
-        self.isSmartIndentEnabled = Defaults[.enableSmartIndent]
-        self.balancesBrackets = Defaults[.balancesBrackets]
+        let defaults = UserDefaults.standard
+        
+        self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
+        self.isAutomaticIndentEnabled = defaults[.autoIndent]
+        self.isSmartIndentEnabled = defaults[.enableSmartIndent]
+        self.balancesBrackets = defaults[.balancesBrackets]
         
         // set paragraph style values
-        self.lineHeight = Defaults[.lineHeight]
-        self.tabWidth = Defaults[.tabWidth]
+        self.lineHeight = defaults[.lineHeight]
+        self.tabWidth = defaults[.tabWidth]
         
-        self.theme = ThemeManager.shared.theme(name: Defaults[.theme]!)
+        self.theme = ThemeManager.shared.theme(name: defaults[.theme]!)
         // -> will be applied first in `viewDidMoveToWindow()`
         
         super.init(coder: coder)
@@ -138,21 +148,21 @@ final class EditorTextView: NSTextView, Themable {
                                    NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
         
         // setup behaviors
-        self.smartInsertDeleteEnabled = Defaults[.smartInsertAndDelete]
-        self.isAutomaticQuoteSubstitutionEnabled = Defaults[.enableSmartQuotes]
-        self.isAutomaticDashSubstitutionEnabled = Defaults[.enableSmartDashes]
-        self.isAutomaticLinkDetectionEnabled = Defaults[.autoLinkDetection]
-        self.isContinuousSpellCheckingEnabled = Defaults[.checkSpellingAsType]
+        self.smartInsertDeleteEnabled = defaults[.smartInsertAndDelete]
+        self.isAutomaticQuoteSubstitutionEnabled = defaults[.enableSmartQuotes]
+        self.isAutomaticDashSubstitutionEnabled = defaults[.enableSmartDashes]
+        self.isAutomaticLinkDetectionEnabled = defaults[.autoLinkDetection]
+        self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
         
         // set font
         let font: NSFont? = {
-            let fontName = Defaults[.fontName]!
-            let fontSize = Defaults[.fontSize]
+            let fontName = defaults[.fontName]!
+            let fontSize = defaults[.fontSize]
             return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize)
         }()
         super.font = font
         layoutManager.textFont = font
-        layoutManager.usesAntialias = Defaults[.shouldAntialias]
+        layoutManager.usesAntialias = defaults[.shouldAntialias]
         
         self.invalidateDefaultParagraphStyle()
         
@@ -168,8 +178,6 @@ final class EditorTextView: NSTextView, Themable {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
         NotificationCenter.default.removeObserver(self)
-        
-        self.completionTimer?.invalidate()
     }
     
     
@@ -255,7 +263,7 @@ final class EditorTextView: NSTextView, Themable {
             }() else { return super.insertText(string, replacementRange: replacementRange) }
         
         // swap '¥' with '\' if needed
-        if Defaults[.swapYenAndBackSlash], plainString.characters.count == 1 {
+        if UserDefaults.standard[.swapYenAndBackSlash], plainString.characters.count == 1 {
             if plainString == "\\" {
                 return super.insertText("¥", replacementRange: replacementRange)
             } else if plainString == "¥" {
@@ -288,7 +296,7 @@ final class EditorTextView: NSTextView, Themable {
                 self.selectedRange = NSRange(location: self.selectedRange.location - 1, length: 0)
                 
                 // set flag
-                self.textStorage?.addAttribute(AutoBalancedClosingBracketAttributeName, value: true,
+                self.textStorage?.addAttribute(AttributeName.autoBalancedClosingBracket, value: true,
                                                range: NSRange(location: self.selectedRange.location, length: 1))
                 
                 return
@@ -300,7 +308,7 @@ final class EditorTextView: NSTextView, Themable {
             let nextCharacter = self.characterAfterInsertion,
             let firstCharacter = plainString.characters.first, firstCharacter == Character(nextCharacter),
             BracePair.braces.contains(where: { $0.end == firstCharacter }),  // ignore "
-            self.textStorage?.attribute(AutoBalancedClosingBracketAttributeName, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
+            self.textStorage?.attribute(AttributeName.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
         {
             self.selectedRange.location += 1
             return
@@ -331,9 +339,9 @@ final class EditorTextView: NSTextView, Themable {
         super.insertText(plainString, replacementRange: replacementRange)
         
         // auto completion
-        if Defaults[.autoComplete] {
-            let delay: TimeInterval = Defaults[.autoCompletionDelay]
-            self.complete(after: delay)
+        if UserDefaults.standard[.autoComplete] {
+            let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
+            self.completionTask.schedule(delay: delay)
         }
     }
     
@@ -371,7 +379,7 @@ final class EditorTextView: NSTextView, Themable {
             return super.insertNewline(sender)
         }
         
-        let baseIndentRange = NSIntersectionRange(indentRange, NSRange(location: 0, length: self.selectedRange.location))
+        let baseIndentRange = indentRange.intersection(NSRange(location: 0, length: self.selectedRange.location))
         let indent = (string as NSString).substring(with: baseIndentRange)
         
         // calculation for smart indent
@@ -557,7 +565,7 @@ final class EditorTextView: NSTextView, Themable {
             let textColor = self.textColor,
             let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
-            let column = Defaults[.pageGuideColumn]
+            let column = UserDefaults.standard[.pageGuideColumn]
             let inset = self.textContainerOrigin.x
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
             let x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
@@ -696,7 +704,7 @@ final class EditorTextView: NSTextView, Themable {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         guard let keyPath = keyPath, let newValue = change?[.newKey] else { return }
         
@@ -730,7 +738,7 @@ final class EditorTextView: NSTextView, Themable {
             
         case DefaultKeys.autoLinkDetection.rawValue:
             self.isAutomaticLinkDetectionEnabled = newValue as! Bool
-            if isAutomaticLinkDetectionEnabled {
+            if self.isAutomaticLinkDetectionEnabled {
                 self.detectLinkIfNeeded()
             } else {
                 if let textStorage = self.textStorage {
@@ -934,10 +942,10 @@ final class EditorTextView: NSTextView, Themable {
                     guard let color = layoutManager.temporaryAttribute(NSForegroundColorAttributeName,
                                                                        atCharacterIndex: characterIndex,
                                                                        longestEffectiveRange: &effectiveRange,
-                                                                       in: selectedRange) else
-                    {
-                        characterIndex += 1
-                        continue
+                                                                       in: selectedRange)
+                        else {
+                            characterIndex += 1
+                            continue
                     }
                     
                     let localRange = NSRange(location: effectiveRange.location - selectedRange.location, length: effectiveRange.length)
@@ -1023,7 +1031,7 @@ final class EditorTextView: NSTextView, Themable {
     // MARK: Notification
     
     /// window's opacity did change
-    func didWindowOpacityChange(_ notification: Notification?) {
+    @objc private func didWindowOpacityChange(_ notification: Notification?) {
         
         // let text view have own background if possible
         self.drawsBackground = self.window?.isOpaque ?? true
@@ -1202,7 +1210,7 @@ extension EditorTextView {
     /// display completion candidate and list
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
-        self.completionTimer?.invalidate()
+        self.completionTask.cancel()
         
         guard let string = self.string else { return }
         
@@ -1265,31 +1273,10 @@ extension EditorTextView {
     
     
     
-    // MARK: Public Methods
-    
-    /// display word completion list with a delay
-    func complete(after delay: TimeInterval) {
-        
-        if let timer = self.completionTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: delay)
-        } else {
-            self.completionTimer = Timer.scheduledTimer(timeInterval: delay,
-                                                        target: self,
-                                                        selector: #selector(completion(timer:)),
-                                                        userInfo: nil,
-                                                        repeats: false)
-            self.completionTimer?.tolerance = 0.1 * delay
-        }
-    }
-    
-    
-    
     // MARK: Private Methods
     
     /// display word completion list
-    func completion(timer: Timer) {
-        
-        self.completionTimer?.invalidate()
+    fileprivate func performCompletion() {
         
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
@@ -1327,7 +1314,7 @@ extension EditorTextView {
         if wordRange.length > 0 {
             wordRange = self.wordRange(at: proposedCharRange.location)
             if proposedCharRange.length > 1 {
-                wordRange = NSUnionRange(wordRange, self.wordRange(at: proposedCharRange.max - 1))
+                wordRange.formUnion(self.wordRange(at: proposedCharRange.max - 1))
             }
         }
         

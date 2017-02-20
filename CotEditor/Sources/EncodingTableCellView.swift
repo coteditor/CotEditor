@@ -37,7 +37,7 @@ private extension NSColor {
 
 
 
-// MARK:
+// MARK: -
 
 final class EncodingTableCellView: NSTableCellView {
     

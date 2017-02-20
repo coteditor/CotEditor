@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -51,12 +51,12 @@ final class DocumentController: NSDocumentController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init() {
         
-        self._accessorySelectedEncoding = Defaults[.encodingInOpen]
+        self._accessorySelectedEncoding = UserDefaults.standard[.encodingInOpen]
         self.autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
                                                                  in: .userDomainMask,
                                                                  appropriateFor: nil,
@@ -64,7 +64,7 @@ final class DocumentController: NSDocumentController {
         
         super.init()
         
-        self.autosavingDelay = Defaults[.autosavingDelay]
+        self.autosavingDelay = UserDefaults.standard[.autosavingDelay]
     }
     
     
@@ -84,49 +84,27 @@ final class DocumentController: NSDocumentController {
         let openEvent = NSAppleEventManager.shared().currentAppleEvent
         
         super.openDocument(withContentsOf: url, display: displayDocument) { (document, documentWasAlreadyOpen, error) in
+            completionHandler(document, documentWasAlreadyOpen, error)
+            
             if let openEvent = openEvent {
                 (document as? AdditionalDocumentPreparing)?.registerDocumnentOpenEvent(openEvent)
             }
-            
-            completionHandler(document, documentWasAlreadyOpen, error)
         }
     }
     
     
-    /// check file before creating a new document instance
+    /// instantiates a document located by a URL, of a specified type, and returns it if successful
     override func makeDocument(withContentsOf url: URL, ofType typeName: String) throws -> NSDocument {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let error: DocumentReadError? = {
-            let cfTypeName = typeName as CFString
-            if UTTypeConformsTo(cfTypeName, kUTTypeImage) && !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics) ||   // SVG is plain-text (except SVGZ)
-                UTTypeConformsTo(cfTypeName, kUTTypeAudiovisualContent) ||
-                UTTypeConformsTo(cfTypeName, kUTTypeGNUZipArchive) ||
-                UTTypeConformsTo(cfTypeName, kUTTypeZipArchive) ||
-                UTTypeConformsTo(cfTypeName, kUTTypeBzip2Archive)
-            {
-                return DocumentReadError(kind: .binaryFile(type: typeName), url: url)
-            }
+        do {
+            try self.checkOpeningSafetyOfDocument(at: url, typeName: typeName)
             
-            // display alert if file is enorm large
-            let fileSizeThreshold = Defaults[.largeFileAlertThreshold]
-            if fileSizeThreshold > 0,
-                let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
-                fileSize > fileSizeThreshold
-            {
-                return DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
-            }
-            
-            return nil
-        }()
-        
-        // ask user for opening file
-        if let error = error {
+        } catch {
+            // ask user for opening file
             try DispatchQueue.syncOnMain {
-                let wantsOpen = self.presentError(error)
-                
-                guard wantsOpen else { throw CocoaError(.userCancelled) }
+                guard self.presentError(error) else { throw CocoaError(.userCancelled) }
             }
         }
         
@@ -166,7 +144,7 @@ final class DocumentController: NSDocumentController {
         // set visibility of hidden files in the panel
         openPanel.showsHiddenFiles = self.showsHiddenFiles
         openPanel.treatsFilePackagesAsDirectories = self.showsHiddenFiles
-        // ->  bind showsHiddenFiles flag with openPanel (for El capitan and leter)
+        // -> bind showsHiddenFiles flag with openPanel (for El capitan and leter)
         openPanel.bind(#keyPath(NSOpenPanel.showsHiddenFiles), to: self, withKeyPath: #keyPath(showsHiddenFiles))
         openPanel.bind(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories), to: self, withKeyPath: #keyPath(showsHiddenFiles))
         
@@ -237,7 +215,7 @@ final class DocumentController: NSDocumentController {
         let document: NSDocument
         do {
             document = try self.openUntitledDocumentAndDisplay(false)
-        } catch let error {
+        } catch {
             self.presentError(error)
             return
         }
@@ -256,7 +234,7 @@ final class DocumentController: NSDocumentController {
         let document: NSDocument
         do {
             document = try self.openUntitledDocumentAndDisplay(false)
-        } catch let error {
+        } catch {
             self.presentError(error)
             return
         }
@@ -293,10 +271,42 @@ final class DocumentController: NSDocumentController {
     /// reset selection of the encoding menu
     private func resetAccessorySelectedEncoding() {
         
-        let defaultEncoding = String.Encoding(rawValue: Defaults[.encodingInOpen])
+        let defaultEncoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInOpen])
         
         DispatchQueue.main.async { [weak self] in
             self?.accessorySelectedEncoding = defaultEncoding
+        }
+    }
+    
+    
+    /// Check file before creating a new document instance.
+    ///
+    /// - Parameters:
+    ///   - url: The location of the new document object.
+    ///   - typeName: The type of the document.
+    /// - Throws: DocumentReadError
+    private func checkOpeningSafetyOfDocument(at url: URL, typeName: String) throws {
+        
+        // check if the file is possible binary
+        let cfTypeName = typeName as CFString
+        let binaryTypes = [kUTTypeImage,
+                           kUTTypeAudiovisualContent,
+                           kUTTypeGNUZipArchive,
+                           kUTTypeZipArchive,
+                           kUTTypeBzip2Archive]
+        if binaryTypes.contains(where: { UTTypeConformsTo(cfTypeName, $0) }) &&
+            !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics)  // SVG is plain-text (except SVGZ)
+        {
+            throw DocumentReadError(kind: .binaryFile(type: typeName), url: url)
+        }
+        
+        // check if the file is enorm large
+        let fileSizeThreshold = UserDefaults.standard[.largeFileAlertThreshold]
+        if fileSizeThreshold > 0,
+            let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
+            fileSize > fileSizeThreshold
+        {
+            throw DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
         }
     }
     

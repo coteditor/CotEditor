@@ -83,7 +83,7 @@ private enum PaneIndex: Int {
 
 
 
-// MARK:
+// MARK: -
 
 final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
     
@@ -106,7 +106,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(style styleName: String, mode: SyntaxEditSheetMode) {
@@ -315,7 +315,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         do {
             try SyntaxManager.shared.save(styleDictionary: styleDictionary, name: styleName, oldName: oldName)
-        } catch let error {
+        } catch {
             print(error)
         }
         
@@ -370,12 +370,12 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         do {
             try SyntaxManager.shared.validate(settingName: styleName, originalName: self.originalStyleName)
+            
         } catch let error as InvalidNameError {
             self.isStyleNameValid = false
             self.message = "⚠️ " + error.localizedDescription + " " + error.recoverySuggestion!
-        } catch {
-            fatalError()
-        }
+            
+        } catch { assertionFailure("Caught unknown error.") }
         
         return self.isStyleNameValid
     }

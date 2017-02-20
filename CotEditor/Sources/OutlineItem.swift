@@ -52,7 +52,7 @@ struct OutlineItem: Equatable, CustomDebugStringConvertible {
     }
   
     
-    static func ==(lhs: OutlineItem, rhs: OutlineItem) -> Bool {
+    static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
         
         return lhs.title == rhs.title &&
             lhs.range == rhs.range &&

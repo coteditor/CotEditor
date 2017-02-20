@@ -38,7 +38,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Split View Controller Methods
     
     /// setup view
@@ -60,10 +60,10 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         }
         
-        if Defaults[.sidebarWidth] >= 100 {
-            self.sidebarThickness = Defaults[.sidebarWidth]
+        if UserDefaults.standard[.sidebarWidth] >= 100 {
+            self.sidebarThickness = UserDefaults.standard[.sidebarWidth]
         }
-        self.isSidebarShown = Defaults[.showDocumentInspector]
+        self.isSidebarShown = UserDefaults.standard[.showDocumentInspector]
         
         self.sidebarViewController?.delegate = self
     }
@@ -106,7 +106,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         if notification.userInfo?["NSSplitViewDividerIndex"] != nil {  // check wheter the change coused by user's divider dragging
             // store current sidebar width
             if self.isSidebarShown {
-                Defaults[.sidebarWidth] = self.sidebarThickness
+                UserDefaults.standard[.sidebarWidth] = self.sidebarThickness
             }
             
             // sync divider position among window tabs
@@ -254,12 +254,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     /// set visibility and tab of sidebar
     private func setSidebarShown(_ shown: Bool, index: SidebarViewController.TabIndex? = nil, animate: Bool = false) {
         
-        if let index = index {
-            self.siblings.forEach { sibling in
-                sibling.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
-            }
-        }
-        
         guard NSAppKitVersionNumber >= Double(NSAppKitVersionNumber10_11) else {
             self.isSidebarShown = shown
             return
@@ -267,6 +261,12 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         
         NSAnimationContext.current().withAnimation(animate) {
             self.isSidebarShown = shown
+        }
+        
+        if let index = index {
+            self.siblings.forEach { sibling in
+                sibling.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
+            }
         }
     }
     
@@ -281,7 +281,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     
     /// window content view controllers in all tabs in the same window
-    private var siblings: [WindowContentViewController]  {
+    private var siblings: [WindowContentViewController] {
         
         if #available(macOS 10.12, *) {
             return self.view.window?.tabbedWindows?.flatMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]

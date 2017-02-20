@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -89,6 +89,12 @@ final class SyntaxStyleValidator {
     }
     
     
+    // MARK: -
+    // MARK: Lifecycle
+    
+    private init() { }
+    
+    
     
     // MARK: Public Methods
     
@@ -137,7 +143,7 @@ final class SyntaxStyleValidator {
                 if definition.isRegularExpression {
                     do {
                         _ = try NSRegularExpression(pattern: definition.beginString)
-                    } catch let error {
+                    } catch {
                         results.append(StyleError(kind: .regularExpression(error: error),
                                                   type: key,
                                                   role: .begin,
@@ -147,7 +153,7 @@ final class SyntaxStyleValidator {
                     if let endString = definition.endString {
                         do {
                             _ = try NSRegularExpression(pattern: endString)
-                        } catch let error {
+                        } catch {
                             results.append(StyleError(kind: .regularExpression(error: error),
                                                       type: key,
                                                       role: .end,
@@ -159,7 +165,7 @@ final class SyntaxStyleValidator {
                 if key == SyntaxKey.outlineMenu.rawValue {
                     do {
                         _ = try NSRegularExpression(pattern: definition.beginString)
-                    } catch let error {
+                    } catch {
                         results.append(StyleError(kind: .regularExpression(error: error),
                                                   type: key,
                                                   role: .regularExpression,

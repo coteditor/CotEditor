@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ private enum StyleKey: String {
     case state
 }
 
-private let IsUTF8WithBOM = "UTF-8 with BOM"
+private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
 final class FormatPaneController: NSViewController, NSTableViewDelegate {
@@ -53,7 +53,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
@@ -218,9 +218,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     /// save also availability of UTF-8 BOM
     @IBAction func changeEncodingInNewDocument(_ sender: Any?) {
         
-        let withUTF8BOM = (self.inNewEncodingMenu?.selectedItem?.representedObject as? String) == IsUTF8WithBOM
+        let withUTF8BOM = (self.inNewEncodingMenu?.selectedItem?.representedObject as? String) == isUTF8WithBOMFlag
         
-        Defaults[.saveUTF8BOM] = withUTF8BOM
+        UserDefaults.standard[.saveUTF8BOM] = withUTF8BOM
     }
     
     
@@ -239,7 +239,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             guard returnCode == NSAlertFirstButtonReturn else { return }
             
-            Defaults[.encodingInOpen] = String.Encoding.autoDetection.rawValue
+            UserDefaults.standard[.encodingInOpen] = String.Encoding.autoDetection.rawValue
         }
     }
     
@@ -341,7 +341,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     // MARK: Private Methods
     
     /// build encodings menus
-    func setupEncodingMenus() {
+    @objc private func setupEncodingMenus() {
         
         guard let inOpenMenu = self.inOpenEncodingMenu?.menu,
             let inNewMenu = self.inNewEncodingMenu?.menu else { return }
@@ -365,20 +365,20 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             if item.tag == UTF8Int {
                 let bomItem = NSMenuItem(title: String.localizedNameOfUTF8EncodingWithBOM, action: nil, keyEquivalent: "")
                 bomItem.tag = UTF8Int
-                bomItem.representedObject = IsUTF8WithBOM
+                bomItem.representedObject = isUTF8WithBOMFlag
                 inNewMenu.addItem(bomItem)
             }
         }
         
         // select menu item for the current setting manually although Cocoa-Bindings are used on these menus
         //   -> Because items were actually added after Cocoa-Binding selected the item.
-        let inOpenEncoding = Defaults[.encodingInOpen]
-        let inNewEncoding = Defaults[.encodingInNew]
+        let inOpenEncoding = UserDefaults.standard[.encodingInOpen]
+        let inNewEncoding = UserDefaults.standard[.encodingInNew]
         self.inOpenEncodingMenu?.selectItem(withTag: Int(inOpenEncoding))
         
         if Int(inNewEncoding) == UTF8Int {
-            let UTF8WithBomIndex = inNewMenu.indexOfItem(withRepresentedObject: IsUTF8WithBOM)
-            let index = Defaults[.saveUTF8BOM] ? UTF8WithBomIndex : UTF8WithBomIndex - 1
+            let UTF8WithBomIndex = inNewMenu.indexOfItem(withRepresentedObject: isUTF8WithBOMFlag)
+            let index = UserDefaults.standard[.saveUTF8BOM] ? UTF8WithBomIndex : UTF8WithBomIndex - 1
             // -> The normal "UTF-8" is just above "UTF-8 with BOM".
             
             self.inNewEncodingMenu?.selectItem(at: index)
@@ -389,7 +389,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// build sytnax style menus
-    func setupSyntaxStyleMenus() {
+    @objc private func setupSyntaxStyleMenus() {
         
         let styleNames = SyntaxManager.shared.styleNames
         
@@ -415,7 +415,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
             //   -> Because items were actually added after Cocoa-Binding selected the item.
-            let defaultStyle = Defaults[.syntaxStyle]!
+            let defaultStyle = UserDefaults.standard[.syntaxStyle]!
             let selectedStyle = styleNames.contains(defaultStyle) ? defaultStyle : BundledStyleName.none
             
             popup.selectItem(withTitle: selectedStyle)
@@ -427,7 +427,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     private dynamic var selectedStyleName: String {
         
         guard let styleInfo = self.stylesController?.selectedObjects.first as? [String: Any] else {
-            return Defaults[.syntaxStyle]!
+            return UserDefaults.standard[.syntaxStyle]!
         }
         return styleInfo[StyleKey.name.rawValue] as! String
     }
@@ -473,7 +473,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             do {
                 try SyntaxManager.shared.removeSetting(name: name)
                 
-            } catch let error {
+            } catch {
                 alert.window.orderOut(nil)
                 NSBeep()
                 NSAlert(error: error).beginSheetModal(for: window)
@@ -490,7 +490,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         do {
             try SyntaxManager.shared.restoreSetting(name: name)
-        } catch let error {
+        } catch {
             self.presentError(error)
         }
     }
@@ -501,7 +501,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         do {
             try SyntaxManager.shared.importSetting(fileURL: fileURL)
-        } catch let error {
+        } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)
         }

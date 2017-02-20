@@ -11,6 +11,26 @@ develop
 
 
 
+3.1.4 (182)
+--------------------------
+
+### New Features
+
+- Update `cot` command-line tool.
+    - Enable using wildcard for file path argument.
+
+
+### Fixes
+
+- Fix an issue where the application crashed by the Highlight command under the condition when the find string is a invalid regular expression pattern even the regular expression is turned off.
+- Fix an issue where the application could crash on El Capitan when a side inspector is about to open.
+- Fix an issue on the text search where the single text search couldn't find the word intersects with the current selection.
+- Fix an issue where the metadata of a custom theme cannot be edited.
+- Fix an issue where the background of the line number view was drawn with wrong color when entered to the fullscreen mode.
+- Fix an issue on the regular expression Replace All with multiple selections where user cancellation didn't stop search immediately.
+
+
+
 3.1.3 (180)
 --------------------------
 

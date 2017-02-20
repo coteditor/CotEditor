@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2013-2016 1024jp
+ © 2013-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ final class DocumentWindowController: NSWindowController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
@@ -48,13 +48,13 @@ final class DocumentWindowController: NSWindowController {
     // MARK: KVO
     
     /// apply user defaults change
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         guard let keyPath = keyPath else { return }
         
         if keyPath == DefaultKeys.windowAlpha.rawValue {
             if let window = self.window as? AlphaWindow {
-                window.backgroundAlpha = Defaults[.windowAlpha]
+                window.backgroundAlpha = UserDefaults.standard[.windowAlpha]
             }
         }
     }
@@ -75,12 +75,12 @@ final class DocumentWindowController: NSWindowController {
         let window = self.window as! AlphaWindow
         
         // set window size
-        let contentSize = NSSize(width: Defaults[.windowWidth],
-                                 height: Defaults[.windowHeight])
+        let contentSize = NSSize(width: UserDefaults.standard[.windowWidth],
+                                 height: UserDefaults.standard[.windowHeight])
         window.setContentSize(contentSize)
         
         // setup background
-        window.backgroundAlpha = Defaults[.windowAlpha]
+        window.backgroundAlpha = UserDefaults.standard[.windowAlpha]
         
         // observe opacity setting change
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue, context: nil)
@@ -96,7 +96,12 @@ final class DocumentWindowController: NSWindowController {
             self.toolbarController!.document = document
             self.contentViewController!.representedObject = document
             
-            // FIXME: workaround for that contentView origin can stack into toolbar on Sierra (2016-09 on macOS 10.12)
+            // -> In case when the window was created as a restored window (the right side ones in the browsing mode)
+            if document.isInViewingMode, let window = self.window as? AlphaWindow {
+                window.backgroundAlpha = 1.0
+            }
+            
+            // workaround for that contentView origin can stack into toolbar on Sierra (2016-09 on macOS 10.12)
             // -> cf. https://github.com/coteditor/CotEditor/issues/600
             if let window = self.window {
                 window.contentView?.frame = window.contentRect(forFrameRect: NSRect(origin: .zero, size: window.frame.size))

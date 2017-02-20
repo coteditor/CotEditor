@@ -53,7 +53,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
         do {
             self.regex = try NSRegularExpression(pattern: pattern, options: options)
             
-        } catch let error {
+        } catch {
             print("Error on outline parsing: " + error.localizedDescription)
             return nil
         }
@@ -73,7 +73,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
     }
    
 
-    static func ==(lhs: OutlineDefinition, rhs: OutlineDefinition) -> Bool {
+    static func == (lhs: OutlineDefinition, rhs: OutlineDefinition) -> Bool {
         
         return lhs.regex == rhs.regex &&
             lhs.template == rhs.template &&
@@ -86,7 +86,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
 
 
 
-// MARK:
+// MARK: -
 
 final class OutlineParseOperation: AsynchronousOperation {
     
@@ -105,7 +105,7 @@ final class OutlineParseOperation: AsynchronousOperation {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(definitions: [OutlineDefinition]) {

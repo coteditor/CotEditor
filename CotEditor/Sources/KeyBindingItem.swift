@@ -49,7 +49,7 @@ final class KeyBindingItem {
 
 
 
-// MARK:
+// MARK: -
 
 final class NamedTreeNode: NSTreeNode {
     
@@ -59,7 +59,7 @@ final class NamedTreeNode: NSTreeNode {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(name: String, representedObject: Any? = nil) {

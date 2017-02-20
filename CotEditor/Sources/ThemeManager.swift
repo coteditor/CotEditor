@@ -41,11 +41,9 @@ extension Notification.Name {
     func changeTheme(_ sender: AnyObject?)
 }
 
-let ThemeExtension = "cottheme"
 
 
-
-// MARK:
+// MARK: -
 
 final class ThemeManager: SettingFileManager {
     
@@ -63,7 +61,7 @@ final class ThemeManager: SettingFileManager {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override private init() {
@@ -100,7 +98,7 @@ final class ThemeManager: SettingFileManager {
     /// path extension for user setting file
     override var filePathExtension: String {
         
-        return ThemeExtension
+        return DocumentType.theme.extensions[0]
     }
     
     
@@ -151,7 +149,7 @@ final class ThemeManager: SettingFileManager {
         // create directory to save in user domain if not yet exist
         do {
             try self.prepareUserSettingDirectory()
-        } catch let error {
+        } catch {
             completionHandler?(error)
             return false
         }
@@ -163,7 +161,7 @@ final class ThemeManager: SettingFileManager {
             
             try data.write(to: fileURL, options: .atomic)
             
-        } catch let error {
+        } catch {
             completionHandler?(error)
             return false
         }
@@ -185,8 +183,8 @@ final class ThemeManager: SettingFileManager {
         
         try super.renameSetting(name: settingName, to: newName)
         
-        if Defaults[.theme] == settingName {
-            Defaults[.theme] = newName
+        if UserDefaults.standard[.theme] == settingName {
+            UserDefaults.standard[.theme] = newName
         }
         
         self.updateCache { [weak self] in
@@ -205,7 +203,7 @@ final class ThemeManager: SettingFileManager {
         
         self.updateCache { [weak self] in
             // restore theme of opened documents to default
-            let defaultThemeName = Defaults[.theme]!
+            let defaultThemeName = UserDefaults.standard[.theme]!
             
             NotificationCenter.default.post(name: .ThemeDidUpdate,
                                             object: self,
@@ -249,7 +247,7 @@ final class ThemeManager: SettingFileManager {
     // MARK: Private Methods
     
     /// create ThemeDictionary from a file at the URL
-    func themeDictionary(fileURL: URL) -> ThemeDictionary? {
+    private func themeDictionary(fileURL: URL) -> ThemeDictionary? {
         
         guard let data = try? Data(contentsOf: fileURL) else { return nil }
         
@@ -290,7 +288,7 @@ final class ThemeManager: SettingFileManager {
             }
             
             // reset user default if not found
-            let defaultThemeName = Defaults[.theme]!
+            let defaultThemeName = UserDefaults.standard[.theme]!
             if !themeNameSet.contains(defaultThemeName) {
                 UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
             }
@@ -308,7 +306,7 @@ final class ThemeManager: SettingFileManager {
     
     
     /// plain theme to be based on when creating a new theme
-    var plainThemeDictionary: ThemeDictionary {
+    private var plainThemeDictionary: ThemeDictionary {
         
         let url = self.urlForBundledSetting(name: "_Plain")!
         

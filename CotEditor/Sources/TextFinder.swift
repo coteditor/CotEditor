@@ -53,20 +53,6 @@ struct TextFindResult {
 }
 
 
-private protocol TextFinderSettingsProvider {
-    
-    var usesRegularExpression: Bool { get }
-    var isWrap: Bool { get }
-    var inSelection: Bool { get }
-    var textualOptions: NSString.CompareOptions { get }
-    var regexOptions: NSRegularExpression.Options { get }
-    var unescapesReplacementString: Bool { get }
-    var closesIndicatorWhenDone: Bool { get }
-    var sharesFindString: Bool { get }
-    
-}
-
-
 private struct HighlightItem {
     
     let range: NSRange
@@ -75,14 +61,10 @@ private struct HighlightItem {
 }
 
 
-// constants
-private let MaxHistorySize = 20
 
+// MARK: -
 
-
-// MARK:
-
-final class TextFinder: NSResponder, TextFinderSettingsProvider {
+final class TextFinder: NSResponder {
     
     static let shared = TextFinder()
     
@@ -92,7 +74,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     dynamic var findString = "" {
         
         didSet {
-            if self.sharesFindString {
+            if UserDefaults.standard[.syncFindPboard] {
                 NSPasteboard.findString = self.findString
             }
         }
@@ -111,7 +93,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     private override init() {
@@ -181,9 +163,9 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     // MARK: Notifications
     
     /// sync search string on activating application
-    func applicationDidBecomeActive(_ notification: Notification) {
+    @objc private func applicationDidBecomeActive(_ notification: Notification) {
         
-        if self.sharesFindString {
+        if UserDefaults.standard[.syncFindPboard] {
             if let sharedFindString = NSPasteboard.findString {
                 self.findString = sharedFindString
             }
@@ -236,20 +218,13 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     /// find all matched string in the target and show results in a table
     @IBAction func findAll(_ sender: Any?) {
         
-        guard self.checkIsReadyToFind(),
-            let textView = self.client else { return }
-        
-        let integerFormatter = self.integerFormatter
-        let findString = self.sanitizedFindString
-        let scopeRanges = self.scopeRanges
+        guard let (textView, textFind) = self.prepareTextFind() else { return }
         
         self.busyTextViews.insert(textView)
         
-        let numberOfGroups = self.regex()?.numberOfCaptureGroups ?? 0
-        let highlightColors = self.highlightColor.decomposite(into: numberOfGroups + 1)
-        
+        let integerFormatter = self.integerFormatter
+        let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
         let lineRegex = try! NSRegularExpression(pattern: "\n")
-        let string = textView.string ?? ""
         
         // setup progress sheet
         guard let documentViewController = textView.window?.windowController?.contentViewController else {
@@ -268,43 +243,34 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             var lineNumber = 1
             var lineCountedLocation = 0
             
-            strongSelf.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
-                
+            textFind.findAll { (matches: [NSRange], stop) in
                 guard !progress.isCancelled else {
-                    DispatchQueue.main.async {
-                        indicator.dismiss(nil)
-                    }
-                    strongSelf.busyTextViews.remove(textView)
                     stop = true
                     return
                 }
                 
+                let matchedRange = matches[0]
+                
                 // calculate line number
                 let diffRange = NSRange(location: lineCountedLocation, length: matchedRange.location - lineCountedLocation)
-                lineNumber += lineRegex.numberOfMatches(in: string, range: diffRange)
+                lineNumber += lineRegex.numberOfMatches(in: textFind.string, range: diffRange)
                 lineCountedLocation = matchedRange.location
                 
                 // highlight both string in textView and line string for result table
-                let lineRange = (string as NSString).lineRange(for: matchedRange)
+                let lineRange = (textFind.string as NSString).lineRange(for: matchedRange)
                 let inlineRange = NSRange(location: matchedRange.location - lineRange.location,
                                           length: matchedRange.length)
-                let lineString = (string as NSString).substring(with: lineRange)
+                let lineString = (textFind.string as NSString).substring(with: lineRange)
                 let attrLineString = NSMutableAttributedString(string: lineString)
                 
-                attrLineString.addAttribute(NSBackgroundColorAttributeName, value: highlightColors.first!, range: inlineRange)
-                
-                highlights.append(HighlightItem(range: matchedRange, color: highlightColors.first!))
-                
-                if numberOfGroups > 0 {
-                    for index in 1...numberOfGroups {
-                        guard let range = match?.rangeAt(index), range.length > 0 else { continue }
-                        
-                        let color = highlightColors[index]
-                        let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
-                        
-                        attrLineString.addAttribute(NSBackgroundColorAttributeName, value: color, range: inlineRange)
-                        highlights.append(HighlightItem(range: range, color: color))
-                    }
+                for (index, range) in matches.enumerated() {
+                    guard range.length > 0 else { continue }
+                    
+                    let color = highlightColors[index]
+                    let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
+                    
+                    attrLineString.addAttribute(NSBackgroundColorAttributeName, value: color, range: inlineRange)
+                    highlights.append(HighlightItem(range: range, color: color))
                 }
                 
                 results.append(TextFindResult(range: matchedRange, lineRange: inlineRange, lineNumber: lineNumber, attributedLineString: attrLineString))
@@ -312,17 +278,24 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 // progress indicator
                 let informativeFormat = (results.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
-                                         integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
+                                         integerFormatter.string(from: highlights.count as NSNumber)!)
                 DispatchQueue.main.async { [weak progress] in
                     progress?.localizedDescription = informative
                 }
-                })
-            
-            guard !progress.isCancelled else { return }
+            }
             
             DispatchQueue.main.sync {
+                defer {
+                    strongSelf.busyTextViews.remove(textView)
+                }
+                
+                guard !progress.isCancelled else {
+                    indicator.dismiss(nil)
+                    return
+                }
+                
                 // highlight
-                textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: string.nsRange)
+                textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: textFind.string.nsRange)
                 for highlight in highlights {
                     textView.layoutManager?.addTemporaryAttribute(NSBackgroundColorAttributeName,
                                                                   value: highlight.color, forCharacterRange: highlight.range)
@@ -335,40 +308,31 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
-                strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: findString, results: results, textView: textView)
+                strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 
                 // -> close also if matched since result view will be shown when succeed
-                if !results.isEmpty || strongSelf.closesIndicatorWhenDone {
+                if !results.isEmpty || UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
                     if let panel = strongSelf.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
-                
-                strongSelf.busyTextViews.remove(textView)
             }
         }
         
-        self.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
     }
     
     
     /// highlight all matched strings
     @IBAction func highlight(_ sender: Any?) {
         
-        guard self.checkIsReadyToFind(),
-            let textView = self.client else { return }
-        
-        let integerFormatter = self.integerFormatter
-        let regex = self.regex()!
-        let scopeRanges = self.scopeRanges
+        guard let (textView, textFind) = self.prepareTextFind() else { return }
         
         self.busyTextViews.insert(textView)
         
-        let numberOfGroups = regex.numberOfCaptureGroups
-        let highlightColors = self.highlightColor.decomposite(into: numberOfGroups + 1)
-        
-        let string = textView.string ?? ""
+        let integerFormatter = self.integerFormatter
+        let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
         
         // setup progress sheet
         guard let documentViewController = textView.window?.windowController?.contentViewController else {
@@ -382,41 +346,41 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             guard let strongSelf = self else { return }
             
             var highlights = [HighlightItem]()
-            strongSelf.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
-                
+            
+            textFind.findAll { (matches: [NSRange], stop) in
                 guard !progress.isCancelled else {
-                    DispatchQueue.main.async {
-                        indicator.dismiss(nil)
-                    }
-                    strongSelf.busyTextViews.remove(textView)
                     stop = true
                     return
                 }
                 
-                highlights.append(HighlightItem(range: matchedRange, color: highlightColors.first!))
-                
-                if numberOfGroups > 0 {
-                    for index in 1...numberOfGroups {
-                        guard let range = match?.rangeAt(index), range.length > 0 else { continue }
-                        let color = highlightColors[index]
-                        highlights.append(HighlightItem(range: range, color: color))
-                    }
+                for (index, range) in matches.enumerated() {
+                    guard range.length > 0 else { continue }
+                    
+                    let color = highlightColors[index]
+                    highlights.append(HighlightItem(range: range, color: color))
                 }
                 
                 // progress indicator
                 let informativeFormat = (highlights.count == 1) ? "%@ string found." : "%@ strings found."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
-                                         integerFormatter.string(from: NSNumber(integerLiteral: highlights.count))!)
+                                         integerFormatter.string(from: highlights.count as NSNumber)!)
                 DispatchQueue.main.async { [weak progress] in
                     progress?.localizedDescription = informative
                 }
-                })
-            
-            guard !progress.isCancelled else { return }
+            }
             
             DispatchQueue.main.sync {
+                defer {
+                    strongSelf.busyTextViews.remove(textView)
+                }
+                
+                guard !progress.isCancelled else {
+                    indicator.dismiss(nil)
+                    return
+                }
+                
                 // highlight
-                textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: string.nsRange)
+                textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: textFind.string.nsRange)
                 for highlight in highlights {
                     textView.layoutManager?.addTemporaryAttribute(NSBackgroundColorAttributeName,
                                                                   value: highlight.color, forCharacterRange: highlight.range)
@@ -429,18 +393,16 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
-                if strongSelf.closesIndicatorWhenDone {
+                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
                     if let panel = strongSelf.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
-                
-                strongSelf.busyTextViews.remove(textView)
             }
         }
         
-        self.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
     }
     
     
@@ -459,48 +421,37 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     /// replace matched string in selection with replacementStirng
     @IBAction func replace(_ sender: Any?) {
         
-        guard self.checkIsReadyToFind() else { return }
-        
         if self.replace() {
             self.client?.centerSelectionInVisibleArea(self)
-            
         } else {
             NSBeep()
         }
         
-        self.appendHistory(self.findString, forKey: .findHistory)
-        self.appendHistory(self.replacementString, forKey: .replaceHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
     /// replace matched string with replacementStirng and select the next match
     @IBAction func replaceAndFind(_ sender: Any?) {
         
-        guard self.checkIsReadyToFind() else { return }
-        
         self.replace()
         self.find(forward: true)
         
-        self.appendHistory(self.findString, forKey: .findHistory)
-        self.appendHistory(self.replacementString, forKey: .replaceHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
     /// replace all matched strings with given string
     @IBAction func replaceAll(_ sender: Any?) {
         
-        guard self.checkIsReadyToFind(),
-            let textView = self.client,
-            let string = textView.string else { return }
-        
-        let integerFormatter = self.integerFormatter
-        let replacementString = (self.usesRegularExpression && self.unescapesReplacementString)
-            ? self.replacementString.unescaped
-            : self.replacementString
-        let scopeRanges = self.scopeRanges
-        let inSelection = self.inSelection
+        guard let (textView, textFind) = self.prepareTextFind() else { return }
         
         self.busyTextViews.insert(textView)
+        
+        let replacementString = self.replacementString
+        let integerFormatter = self.integerFormatter
         
         // setup progress sheet
         guard let documentViewController = textView.window?.windowController?.contentViewController else {
@@ -513,70 +464,49 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
             
-            var replacementStrings = [String]()
-            var replacementRanges = [NSRange]()
-            var selectedRanges = [NSRange]()
             var count = 0
-            
-            // variables to calculate new selection ranges
-            var locationDelta = 1
-            var lengthDelta = 0
-            
-            strongSelf.enumerateMatchs(in: string, ranges: scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
-                
+            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (stop) in
                 guard !progress.isCancelled else {
-                    DispatchQueue.main.async {
-                        indicator.dismiss(nil)
-                    }
-                    strongSelf.busyTextViews.remove(textView)
                     stop = true
                     return
                 }
                 
-                let replacedString: String = {
-                    guard let match = match, let regex = match.regularExpression else { return replacementString }
-                    
-                    return regex.replacementString(for: match, in: string, offset: 0, template: replacementString)
-                }()
-                
-                replacementStrings.append(replacedString)
-                replacementRanges.append(matchedRange)
                 count += 1
-                
-                lengthDelta -= matchedRange.length - replacementString.utf16.count
                 
                 // progress indicator
                 let informativeFormat = (count == 1) ? "%@ string replaced." : "%@ strings replaced."
                 let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
-                                         integerFormatter.string(from: NSNumber(integerLiteral: count))!)
+                                         integerFormatter.string(from: count as NSNumber)!)
                 DispatchQueue.main.async { [weak progress] in
                     progress?.localizedDescription = informative
                 }
-                
-                }, scopeCompletionHandler: { (scopeRange: NSRange) in
-                    let selectedRange = NSRange(location: scopeRange.location + locationDelta,
-                                                length: scopeRange.length + lengthDelta)
-                    locationDelta += selectedRange.length - scopeRange.length
-                    lengthDelta = 0
-                    selectedRanges.append(selectedRange)
-            })
-            
-            guard !progress.isCancelled else { return }
+            }
             
             DispatchQueue.main.sync {
+                defer {
+                    strongSelf.busyTextViews.remove(textView)
+                }
+                
+                guard !progress.isCancelled else {
+                    indicator.dismiss(nil)
+                    return
+                }
+                
                 indicator.done()
                 
-                if count > 0 {
+                if !replacementItems.isEmpty {
+                    let replacementStrings = replacementItems.map { $0.string }
+                    let replacementRanges = replacementItems.map { $0.range }
+                    
                     // apply found strings to the text view
-                    textView.replace(with: replacementStrings, ranges: replacementRanges,
-                                     selectedRanges: inSelection ? selectedRanges : nil,
+                    textView.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
                                      actionName: NSLocalizedString("Replace All", comment: ""))
                 } else {
                     NSBeep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
-                if strongSelf.closesIndicatorWhenDone {
+                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
                     if let panel = strongSelf.findPanelController.window, panel.isVisible {
                         panel.makeKey()
@@ -584,13 +514,11 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
                 }
                 
                 strongSelf.delegate?.textFinder(strongSelf, didReplace: count, textView: textView)
-                
-                strongSelf.busyTextViews.remove(textView)
             }
         }
         
-        self.appendHistory(self.findString, forKey: .findHistory)
-        self.appendHistory(self.replacementString, forKey: .replaceHistory)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
@@ -605,7 +533,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
         self.findString = selectedString
         
         // auto-disable regex
-        Defaults[.findUsesRegularExpression] = false
+        UserDefaults.standard[.findUsesRegularExpression] = false
     }
     
     
@@ -629,7 +557,7 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     
     
     /// selected string in the current tareget
-    private dynamic var selectedString: String? {
+    private var selectedString: String? {
         
         guard let selectedRange = self.client?.selectedRange,
               let string = self.client?.string as NSString? else { return nil }
@@ -638,33 +566,47 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     }
     
     
-    /// ranges to find in
-    private dynamic var scopeRanges: [NSRange] {
-        
-        guard let textView = self.client else { return [] }
-        
-        if self.inSelection {
-            return textView.selectedRanges as [NSRange]
-        }
-        if let range = textView.string?.nsRange {
-            return [range]
-        }
-        
-        return []
-    }
-    
-    
     /// find string of which line endings are standardized to LF
-    private dynamic var sanitizedFindString: String {
+    private var sanitizedFindString: String {
         
         return self.findString.replacingLineEndings(with: .LF)
     }
     
     
-    /// regex object with current settings
-    private func regex() -> NSRegularExpression? {
+    /// check Find can be performed and alert if needed
+    private func prepareTextFind() -> (NSTextView, TextFind)? {
         
-        return try? NSRegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
+        guard
+            let textView = self.client,
+            !self.busyTextViews.contains(textView),
+            let string = textView.string
+            else {
+                NSBeep()
+                return nil
+        }
+        
+        guard self.findPanelController.window?.attachedSheet == nil else {
+            self.findPanelController.showWindow(self)
+            NSBeep()
+            return nil
+        }
+        
+        let settings = TextFind.Settings(defaults: UserDefaults.standard)
+        let textFind: TextFind
+        do {
+            textFind = try TextFind(for: string, findString: self.sanitizedFindString, settings: settings, selectedRanges: textView.selectedRanges as [NSRange])
+        } catch {
+            switch error {
+            case TextFindError.regularExpression:
+                self.findPanelController.showWindow(self)
+                self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
+            default: break
+            }
+            NSBeep()
+            return nil
+        }
+        
+        return (textView, textFind)
     }
     
     
@@ -672,39 +614,17 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     @discardableResult
     private func find(forward: Bool) -> Int {
         
-        guard self.checkIsReadyToFind(),
-            let textView = self.client,
-            let string = textView.string, !string.isEmpty else { return 0 }
+        guard let (textView, textFind) = self.prepareTextFind() else { return 0 }
         
-        func matchedRanges(in range: NSRange) -> [NSRange] {
-            var matches = [NSRange]()
-            self.enumerateMatchs(in: string, ranges: [range], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
-                matches.append(matchedRange)
-            })
-            return matches
-        }
-        
-        let startLocation = forward ? textView.selectedRange.max : textView.selectedRange.location
-        let forwardMatches = matchedRanges(in: NSRange(location: startLocation,
-                                                       length: string.utf16.count - startLocation))
-        let wrappedMatches = matchedRanges(in: NSRange(location: 0,
-                                                       length: startLocation))
-        
-        var foundRange: NSRange? = forward ? forwardMatches.first : wrappedMatches.last
-        
-        // wrap search
-        let isWrapped = (foundRange == nil && self.isWrap)
-        if isWrapped {
-            foundRange = forward ? wrappedMatches.first : forwardMatches.last
-        }
+        let result = textFind.find(forward: forward)
         
         // found feedback
-        if let range = foundRange {
+        if let range = result.range {
             textView.selectedRange = range
             textView.scrollRangeToVisible(range)
             textView.showFindIndicator(for: range)
             
-            if isWrapped, let view = textView.enclosingScrollView?.superview {
+            if result.wrapped, let view = textView.enclosingScrollView?.superview {
                 let hudController = HUDController(symbol: .wrap)!
                 hudController.isReversed = !forward
                 hudController.show(in: view)
@@ -713,13 +633,11 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
             NSBeep()
         }
         
-        let count = forwardMatches.count + wrappedMatches.count
+        self.delegate?.textFinder(self, didFind: result.count, textView: textView)
         
-        self.delegate?.textFinder(self, didFind: count, textView: textView)
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
         
-        self.appendHistory(self.findString, forKey: .findHistory)
-        
-        return count
+        return result.count
     }
     
     
@@ -727,254 +645,72 @@ final class TextFinder: NSResponder, TextFinderSettingsProvider {
     @discardableResult
     private func replace() -> Bool {
         
-        guard let textView = self.client,
-            let string = textView.string else { return false }
-        
-        let matchedRange: NSRange
-        let replacedString: String
-        if self.usesRegularExpression {
-            let regex = self.regex()!
-            guard let match = regex.firstMatch(in: string, range: textView.selectedRange) else { return false }
-            
-            let template = self.unescapesReplacementString ? self.replacementString.unescaped : self.replacementString
-            
-            matchedRange = match.range
-            replacedString = regex.replacementString(for: match, in: string, offset: 0, template: template)
-            
-        } else {
-            matchedRange = (string as NSString).range(of: self.sanitizedFindString, options: self.textualOptions, range: textView.selectedRange)
-            guard matchedRange.location != NSNotFound else { return false }
-            replacedString = self.replacementString
-        }
+        guard
+            let (textView, textFind) = self.prepareTextFind(),
+            let result = textFind.replace(with: self.replacementString)
+            else { return false }
         
         // apply replacement to text view
-        return textView.replace(with: replacedString, range: matchedRange,
-                                selectedRange: NSRange(location: matchedRange.location, length: replacedString.utf16.count),
+        return textView.replace(with: result.string, range: result.range,
+                                selectedRange: NSRange(location: result.range.location, length: result.string.utf16.count),
                                 actionName: NSLocalizedString("Replace", comment: ""))
-    }
-    
-    
-    /// enumerate matchs in string using current settings
-    private func enumerateMatchs(in string: String?, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
-        
-        if self.usesRegularExpression {
-            self.enumerateRegularExpressionMatchs(in: string, ranges: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
-        } else {
-            self.enumerateTextualMatchs(in: string, ranges: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
-        }
-    }
-    
-    
-    /// enumerate matchs in string using textual search
-    private func enumerateTextualMatchs(in string: String?, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
-        
-        guard let string = string as NSString?, string.length > 0 else { return }
-        
-        let findString = self.sanitizedFindString
-        let options = self.textualOptions
-        
-        for scopeRange in ranges {
-            var searchRange = scopeRange
-            
-            while searchRange.location != NSNotFound {
-                searchRange.length = string.length - searchRange.location
-                let foundRange = string.range(of: findString, options: options, range: searchRange)
-                
-                guard foundRange.max <= scopeRange.max else { break }
-                
-                var stop = false
-                block(foundRange, nil, &stop)
-                
-                guard !stop else { return }
-                
-                searchRange.location = foundRange.max
-            }
-            
-            scopeCompletionHandler?(scopeRange)
-        }
-    }
-    
-    
-    /// enumerate matchs in string using regular expression
-    private func enumerateRegularExpressionMatchs(in string: String?, ranges: [NSRange], using block: (NSRange, NSTextCheckingResult?, inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
-        
-        guard let string = string, !string.isEmpty else { return }
-        
-        let regex = self.regex()!
-        let options: NSRegularExpression.MatchingOptions = [.withoutAnchoringBounds]
-        
-        for scopeRange in ranges {
-            regex.enumerateMatches(in: string, options: options, range: scopeRange, using: { (result, flags, stop) in
-                guard let result = result else { return }
-                
-                var ioStop = false
-                block(result.range, result, &ioStop)
-                stop.pointee = ObjCBool(ioStop)
-            })
-            
-            scopeCompletionHandler?(scopeRange)
-        }
-    }
-    
-    
-    /// check Find can be performed and alert if needed
-    private func checkIsReadyToFind() -> Bool {
-        
-        guard let client = self.client else {
-            NSBeep()
-            return false
-        }
-        
-        guard !self.busyTextViews.contains(client) else {
-            NSBeep()
-            return false
-        }
-        
-        guard self.findPanelController.window?.attachedSheet == nil else {
-            self.findPanelController.showWindow(self)
-            NSBeep()
-            return false
-        }
-        
-        guard !self.findString.isEmpty else {
-            NSBeep()
-            return false
-        }
-        
-        // check regular expression syntax
-        if self.usesRegularExpression {
-            do {
-                _ = try NSRegularExpression(pattern: self.sanitizedFindString, options: self.regexOptions)
-            } catch let error {
-                let failureReason: String? = (error as? LocalizedError)?.failureReason
-                let newError = TextFinderError.regularExpression(reason: failureReason)
-                
-                self.findPanelController.showWindow(self)
-                self.presentError(newError, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
-                
-                NSBeep()
-                return false
-            }
-        }
-        
-        return true
-    }
-    
-    
-    /// append given string to history with the user defaults key
-    private func appendHistory(_ string: String, forKey key: DefaultKey<[String]>) {
-        
-        guard !string.isEmpty else { return }
-        
-        // append new string to history
-        var history = Defaults[key] ?? []
-        history.remove(string)  // remove duplicated item
-        history.append(string)
-        if history.count > MaxHistorySize {  // remove overflow
-            history.removeFirst(history.count - MaxHistorySize)
-        }
-        
-        Defaults[key] = history
-    }
-    
-    
-    
-    // MARK: TextFinder Settings Provider Protocol
-    
-    /// return value from user defaults
-    fileprivate var usesRegularExpression: Bool {
-        
-        return Defaults[.findUsesRegularExpression]
-    }
-    
-    
-    /// return value from user defaults
-    fileprivate var isWrap: Bool {
-        
-        return Defaults[.findIsWrap]
-    }
-    
-    
-    /// return value from user defaults
-    fileprivate var inSelection: Bool {
-        
-        return Defaults[.findInSelection]
-    }
-    
-    
-    /// return value from user defaults
-    fileprivate var textualOptions: NSString.CompareOptions {
-        
-        var options = NSString.CompareOptions()
-        
-        if Defaults[.findIgnoresCase]               { options.update(with: .caseInsensitive) }
-        if Defaults[.findTextIsLiteralSearch]       { options.update(with: .literal) }
-        if Defaults[.findTextIgnoresDiacriticMarks] { options.update(with: .diacriticInsensitive) }
-        if Defaults[.findTextIgnoresWidth]          { options.update(with: .widthInsensitive) }
-        
-        return options
-    }
-    
-    
-    /// return value from user defaults
-    fileprivate var regexOptions: NSRegularExpression.Options {
-        
-        var options = NSRegularExpression.Options()
-        
-        if Defaults[.findIgnoresCase]                { options.update(with: .caseInsensitive) }
-        if Defaults[.findRegexIsSingleline]          { options.update(with: .dotMatchesLineSeparators) }
-        if Defaults[.findRegexIsMultiline]           { options.update(with: .anchorsMatchLines) }
-        if Defaults[.findRegexUsesUnicodeBoundaries] { options.update(with: .useUnicodeWordBoundaries) }
-        
-        return options
-    }
-    
-    
-    /// return value from user defaults
-    fileprivate var unescapesReplacementString: Bool {
-        
-        return Defaults[.findRegexUnescapesReplacementString]
-    }
-    
-    
-    /// return value from user defaults
-    fileprivate var closesIndicatorWhenDone: Bool {
-        
-        return Defaults[.findClosesIndicatorWhenDone]
-    }
-    
-    
-    /// return if sync search string with other applications
-    fileprivate var sharesFindString: Bool {
-        
-        return Defaults[.syncFindPboard]
     }
     
 }
 
 
 
-// MARK: - Error
+// MARK: - UserDefaults
 
-private enum TextFinderError: LocalizedError {
+private extension UserDefaults {
     
-    case regularExpression(reason: String?)
+    private static let MaxHistorySize = 20
     
     
-    var errorDescription: String? {
+    /// append given string to history with the user defaults key
+    func appendHistory(_ string: String, forKey key: DefaultKey<[String]>) {
         
-        return NSLocalizedString("Invalid regular expression", comment: "")
-    }
-    
-    
-    var recoverySuggestion: String? {
+        assert(key == .findHistory || key == .replaceHistory)
         
-        switch self {
-        case .regularExpression(let reason):
-            return reason
+        guard !string.isEmpty else { return }
+        
+        // append new string to history
+        var history = self[key] ?? []
+        history.remove(string)  // remove duplicated item
+        history.append(string)
+        if history.count > UserDefaults.MaxHistorySize {  // remove overflow
+            history.removeFirst(history.count - UserDefaults.MaxHistorySize)
         }
+        
+        self[key] = history
     }
     
+}
+
+
+private extension TextFind.Settings {
+    
+    init(defaults: UserDefaults) {
+        
+        var textualOptions = NSString.CompareOptions()
+        if defaults[.findIgnoresCase]               { textualOptions.update(with: .caseInsensitive) }
+        if defaults[.findTextIsLiteralSearch]       { textualOptions.update(with: .literal) }
+        if defaults[.findTextIgnoresDiacriticMarks] { textualOptions.update(with: .diacriticInsensitive) }
+        if defaults[.findTextIgnoresWidth]          { textualOptions.update(with: .widthInsensitive) }
+        
+        var regexOptions = NSRegularExpression.Options()
+        if defaults[.findIgnoresCase]                { regexOptions.update(with: .caseInsensitive) }
+        if defaults[.findRegexIsSingleline]          { regexOptions.update(with: .dotMatchesLineSeparators) }
+        if defaults[.findRegexIsMultiline]           { regexOptions.update(with: .anchorsMatchLines) }
+        if defaults[.findRegexUsesUnicodeBoundaries] { regexOptions.update(with: .useUnicodeWordBoundaries) }
+        
+        self.init(usesRegularExpression: defaults[.findUsesRegularExpression],
+                  isWrap: defaults[.findIsWrap],
+                  inSelection: defaults[.findInSelection],
+                  textualOptions: textualOptions,
+                  regexOptions: regexOptions,
+                  unescapesReplacementString: defaults[.findRegexUnescapesReplacementString])
+    }
 }
 
 

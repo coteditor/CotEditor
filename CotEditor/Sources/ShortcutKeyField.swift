@@ -36,7 +36,7 @@ final class ShortcutKeyField: NSTextField {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Text Field Methods
     
     /// text field turns into edit mode

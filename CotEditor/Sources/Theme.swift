@@ -65,7 +65,7 @@ struct Theme: CustomDebugStringConvertible {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     init?(dictionary: ThemeDictionary, name: String) {

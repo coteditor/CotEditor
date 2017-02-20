@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -40,14 +40,9 @@ final class AlphaWindow: NSWindow {
     
     // MARK: Public Properties
     
-    var backgroundAlpha: CGFloat = 1.0
-        {
+    var backgroundAlpha: CGFloat = 1.0 {
+        
         didSet {
-            // window must be opaque on version browsing
-            if self.windowController?.document?.isInViewingMode ?? false {
-                backgroundAlpha = 1.0
-            }
-            
             backgroundAlpha = backgroundAlpha.within(min: 0.2, max: 1.0)
             self.backgroundColor = self.backgroundColor.withAlphaComponent(backgroundAlpha)
             self.isOpaque = (backgroundAlpha == 1.0)
@@ -58,11 +53,11 @@ final class AlphaWindow: NSWindow {
     
     // MARK: Private Properties
     
-    private var storedBackgroundColor: NSColor?
+    private var storedBackgroundAlpha: CGFloat?
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init(contentRect: NSRect, styleMask style: NSWindowStyleMask, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
@@ -75,10 +70,6 @@ final class AlphaWindow: NSWindow {
         if let windowTitleView = self.standardWindowButton(.closeButton)?.superview {
             windowTitleView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
         }
-        
-        // observe toggling fullscreen
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: .NSWindowWillEnterFullScreen, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: .NSWindowWillExitFullScreen, object: self)
         
         // observe toggling Versions browsing
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: .NSWindowWillEnterVersionBrowser, object: self)
@@ -98,6 +89,8 @@ final class AlphaWindow: NSWindow {
     override var isOpaque: Bool {
         
         didSet {
+            guard isOpaque != oldValue else { return }
+            
             NotificationCenter.default.post(name: .WindowDidChangeOpacity, object: self)
         }
     }
@@ -115,21 +108,21 @@ final class AlphaWindow: NSWindow {
     
     // MARK: Notifications
     
-    /// notify entering fullscreen or Versions
-    func willEnterOpaqueMode(_ notification: Notification) {
+    /// entering Versions
+    @objc private func willEnterOpaqueMode(_ notification: Notification) {
         
-        self.storedBackgroundColor = self.backgroundColor
-        self.backgroundColor = nil  // restore window background to default (affect to the toolbar's background)
-        self.isOpaque = true  // set opaque flag expressly in order to let textView which observes opaque update its background color
+        self.storedBackgroundAlpha = self.backgroundAlpha
+        self.backgroundAlpha = 1.0
     }
     
     
-    /// notify exit fullscreen or Versions
-    func willExitOpaqueMode(_ notification: Notification) {
+    /// exiting Versions
+    @objc private func willExitOpaqueMode(_ notification: Notification) {
         
-        self.backgroundColor = self.storedBackgroundColor
-        self.isOpaque = (self.backgroundAlpha == 1.0)
-        self.invalidateShadow()
+        if let backgroundAlpha = self.storedBackgroundAlpha {
+            self.backgroundAlpha = backgroundAlpha
+            self.storedBackgroundAlpha = nil
+        }
     }
 
 }
@@ -154,7 +147,7 @@ extension AlphaWindow {
             return tabbingPreference
         }
         
-        if let tabbingPreference = NSWindowUserTabbingPreference(rawValue: Defaults[.windowTabbing]), tabbingPreference.rawValue >= 0 {  // -1 obays system setting
+        if let tabbingPreference = NSWindowUserTabbingPreference(rawValue: UserDefaults.standard[.windowTabbing]), tabbingPreference.rawValue >= 0 {  // -1 obays system setting
             return tabbingPreference
         }
         

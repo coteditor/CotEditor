@@ -1,0 +1,92 @@
+
+included:
+  - CotEditor/Sources
+  - Tests
+
+opt_in_rules:
+  - attributes
+  - closure_spacing
+  - explicit_init
+  - file_header
+  - first_where
+  - operator_usage_whitespace
+  - private_outlet
+  - redundant_nil_coalescing
+  - valid_docs
+
+disabled_rules:
+  - force_cast
+  - nesting
+  - opening_brace
+  - trailing_comma
+  - unused_closure_parameter
+  
+  - force_try
+
+trailing_whitespace:
+  ignores_empty_lines: true
+
+attributes:
+  always_on_same_line: ["@IBAction", "@objc"]
+
+vertical_whitespace:
+  max_empty_lines: 4
+
+file_length:
+  warning: 1500
+  error: 3000
+
+line_length:
+  warning: 1000
+  error: 2000
+
+type_body_length:
+  warning: 600
+  error: 1000
+
+function_body_length:
+  warning: 150
+  error: 300
+
+cyclomatic_complexity:
+  warning: 25
+  error: 50
+
+large_tuple:
+  warning: 3
+  error: 6
+
+variable_name:
+  max_length:
+    warning: 60
+    error: 100
+  min_length:
+    warning: 1
+    error: 0
+  excluded:
+    - shiftJIS_X0213
+    - version3_0
+
+
+custom_rules:
+  comment_space:
+    name: "Space After Comment"
+    regex: "//\S"
+    match_kinds:
+      - comment
+    message: "There should be a space after a comment delimiter."
+    severity: warning
+
+  inline_comment_spaces:
+    name: "Spaces Before Inline Comment"
+    regex: "\S ?//"
+    match_kinds:
+      - comment
+    message: "There should be more than 2 spaces before an inline comment."
+    severity: warning
+
+  empty_first_line:
+    name: "Empty First Line"
+    regex: "(^[ a-zA-Z ]*(?:protocol|extension|class|struct) (?!(?:var|let))[ a-zA-Z:]*\{\n *\S+)"
+    message: "There should be an empty line after a declaration"
+    severity: warning

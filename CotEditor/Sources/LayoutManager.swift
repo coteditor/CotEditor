@@ -102,7 +102,9 @@ final class LayoutManager: NSLayoutManager {
     private var showsFullwidthSpace = false
     
     private lazy var invisibleLines: InvisibleLines = self.generateInvisibleLines()
+    
     private struct InvisibleLines {
+        
         let space: CTLine
         let tab: CTLine
         let newLine: CTLine
@@ -118,7 +120,7 @@ final class LayoutManager: NSLayoutManager {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init() {
@@ -160,7 +162,7 @@ final class LayoutManager: NSLayoutManager {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if let keyPath = keyPath, type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
             self.applyDefaultInvisiblesSetting()
@@ -301,7 +303,7 @@ final class LayoutManager: NSLayoutManager {
     /// invalidate indent of wrapped lines
     func invalidateIndent(in range: NSRange) {
         
-        guard Defaults[.enablesHangingIndent] else { return }
+        guard UserDefaults.standard[.enablesHangingIndent] else { return }
         
         guard let textStorage = self.textStorage, let textView = self.firstTextView else { return }
         
@@ -312,7 +314,7 @@ final class LayoutManager: NSLayoutManager {
         
         guard lineRange.length > 0 else { return }
         
-        let hangingIndent = self.spaceWidth * CGFloat(Defaults[.hangingIndentWidth])
+        let hangingIndent = self.spaceWidth * CGFloat(UserDefaults.standard[.hangingIndentWidth])
         let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")
         
         // get dummy attributes to make calculation of indent width the same as layoutManager's calculation (2016-04)
@@ -332,7 +334,7 @@ final class LayoutManager: NSLayoutManager {
         // process line by line
         textStorage.beginEditing()
         (textStorage.string as NSString).enumerateSubstrings(in: lineRange, options: .byLines) { (substring: String?, substringRange, enclosingRange, stop) in
-            guard let substring = substring else  { return }
+            guard let substring = substring else { return }
             
             var indent = hangingIndent
             
@@ -369,12 +371,13 @@ final class LayoutManager: NSLayoutManager {
     /// apply invisible settings
     private func applyDefaultInvisiblesSetting() {
         
+        let defaults = UserDefaults.standard
         // `showsInvisibles` will be set from EditorTextView or PrintTextView
-        self.showsSpace = Defaults[.showInvisibleSpace]
-        self.showsTab = Defaults[.showInvisibleTab]
-        self.showsNewLine = Defaults[.showInvisibleNewLine]
-        self.showsFullwidthSpace = Defaults[.showInvisibleFullwidthSpace]
-        self.showsOtherInvisibles = Defaults[.showOtherInvisibleChars]
+        self.showsSpace = defaults[.showInvisibleSpace]
+        self.showsTab = defaults[.showInvisibleTab]
+        self.showsNewLine = defaults[.showInvisibleNewLine]
+        self.showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
+        self.showsOtherInvisibles = defaults[.showOtherInvisibleChars]
     }
     
     
@@ -386,19 +389,19 @@ final class LayoutManager: NSLayoutManager {
         let spaceFont = self.textFont ?? font
         let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: fontSize) ?? font
         
-        return InvisibleLines(space:          CTLine.create(string: Invisible.userSpace,          color: self.invisiblesColor, font: spaceFont),
-                              tab:            CTLine.create(string: Invisible.userTab,            color: self.invisiblesColor, font: font),
-                              newLine:        CTLine.create(string: Invisible.userNewLine,        color: self.invisiblesColor, font: font),
+        return InvisibleLines(space:          CTLine.create(string: Invisible.userSpace, color: self.invisiblesColor, font: spaceFont),
+                              tab:            CTLine.create(string: Invisible.userTab, color: self.invisiblesColor, font: font),
+                              newLine:        CTLine.create(string: Invisible.userNewLine, color: self.invisiblesColor, font: font),
                               fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, color: self.invisiblesColor, font: fullWidthFont),
-                              verticalTab:    CTLine.create(string: Invisible.verticalTab,        color: self.invisiblesColor, font: fullWidthFont),
-                              replacement:    CTLine.create(string: Invisible.replacement,        color: self.invisiblesColor, font: fullWidthFont))
+                              verticalTab:    CTLine.create(string: Invisible.verticalTab, color: self.invisiblesColor, font: fullWidthFont),
+                              replacement:    CTLine.create(string: Invisible.replacement, color: self.invisiblesColor, font: fullWidthFont))
     }
     
 }
 
 
 
-// MARK:
+// MARK: -
 
 private extension CTLine {
     

@@ -28,7 +28,7 @@
 
 import Cocoa
 
-private let MaximumNumberOfSplitEditors = 8
+private let maximumNumberOfSplitEditors = 8
 
 
 final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, ThemeHolder, NSTextStorageDelegate {
@@ -63,13 +63,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         }
         
         // setup status bar
-        self.isStatusBarShown = Defaults[.showStatusBar]
-        self.showsInvisibles = Defaults[.showInvisibles]
-        self.showsLineNumber = Defaults[.showLineNumbers]
-        self.showsNavigationBar = Defaults[.showNavigationBar]
-        self.wrapsLines = Defaults[.wrapLines]
-        self.verticalLayoutOrientation = Defaults[.layoutTextVertical]
-        self.showsPageGuide = Defaults[.showPageGuide]
+        let defaults = UserDefaults.standard
+        self.isStatusBarShown = defaults[.showStatusBar]
+        self.showsInvisibles = defaults[.showInvisibles]
+        self.showsLineNumber = defaults[.showLineNumbers]
+        self.showsNavigationBar = defaults[.showNavigationBar]
+        self.wrapsLines = defaults[.wrapLines]
+        self.verticalLayoutOrientation = defaults[.layoutTextVertical]
+        self.showsPageGuide = defaults[.showPageGuide]
         
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
                                                name: .ThemeDidUpdate,
@@ -132,7 +133,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             self.invalidateSyntaxHighlight()
             
             // detect indent style
-            if Defaults[.detectsIndentStyle],
+            if UserDefaults.standard[.detectsIndentStyle],
                 let indentStyle = document.textStorage.string.detectedIndentStyle
             {
                 self.isAutoTabExpandEnabled = {
@@ -324,7 +325,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     // MARK: Notifications
     
     /// selection did change
-    func textViewDidChangeSelection(_ notification: Notification?) {
+    @objc private func textViewDidChangeSelection(_ notification: Notification?) {
         
         // update document information
         self.document?.analyzer.invalidateEditorInfo()
@@ -332,7 +333,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// document updated syntax style
-    func didChangeSyntaxStyle(_ notification: Notification?) {
+    @objc private func didChangeSyntaxStyle(_ notification: Notification?) {
         
         guard let syntaxStyle = self.syntaxStyle else { return }
         
@@ -352,7 +353,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// theme did update
-    func didUpdateTheme(_ notification: Notification?) {
+    @objc private func didUpdateTheme(_ notification: Notification?) {
         
         guard
             let oldName = notification?.userInfo?[SettingFileManager.NotificationKey.old] as? String,
@@ -494,7 +495,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     var isAutoTabExpandEnabled: Bool {
         
         get {
-            return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? Defaults[.autoExpandTab]
+            return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? UserDefaults.standard[.autoExpandTab]
         }
         set {
             for viewController in self.editorViewControllers {
@@ -613,7 +614,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// split editor view
     @IBAction func openSplitTextView(_ sender: Any?) {
         
-        guard (self.splitViewController?.splitViewItems.count ?? 0) < MaximumNumberOfSplitEditors else {
+        guard (self.splitViewController?.splitViewItems.count ?? 0) < maximumNumberOfSplitEditors else {
             NSBeep()
             return
         }
@@ -675,11 +676,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// whether at least one of invisible characters is enabled in the preferences currently
     private var canActivateShowInvisibles: Bool {
         
-        return (Defaults[.showInvisibleSpace] ||
-            Defaults[.showInvisibleTab] ||
-            Defaults[.showInvisibleNewLine] ||
-            Defaults[.showInvisibleFullwidthSpace] ||
-            Defaults[.showInvisibles])
+        let defaults = UserDefaults.standard
+        return (defaults[.showInvisibleSpace] ||
+            defaults[.showInvisibleTab] ||
+            defaults[.showInvisibleNewLine] ||
+            defaults[.showInvisibleFullwidthSpace] ||
+            defaults[.showInvisibles])
     }
     
     

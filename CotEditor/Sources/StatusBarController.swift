@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -92,7 +92,7 @@ final class StatusBarController: NSViewController {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if type(of: self).observedDefaultKeys.contains(where: { $0.rawValue == keyPath }) {
             self.updateEditorStatus()
@@ -104,8 +104,7 @@ final class StatusBarController: NSViewController {
     
     // MARK: Public Methods
     
-    weak var documentAnalyzer: DocumentAnalyzer?
-        {
+    weak var documentAnalyzer: DocumentAnalyzer? {
         willSet {
             self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
             
@@ -152,32 +151,33 @@ final class StatusBarController: NSViewController {
     
     
     /// update left side text
-    func updateEditorStatus() {
+    @objc private func updateEditorStatus() {
         
         guard !self.view.isHidden else { return }
         guard let info = self.documentAnalyzer else { return }
         
+        let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()
         
-        if Defaults[.showStatusBarLines] {
+        if defaults[.showStatusBarLines] {
             status.appendFormattedState(value: info.lines, label: "Lines")
         }
-        if Defaults[.showStatusBarChars] {
+        if defaults[.showStatusBarChars] {
             status.appendFormattedState(value: info.chars, label: "Characters")
         }
-        if Defaults[.showStatusBarLength] {
+        if defaults[.showStatusBarLength] {
             status.appendFormattedState(value: info.length, label: "Length")
         }
-        if Defaults[.showStatusBarWords] {
+        if defaults[.showStatusBarWords] {
             status.appendFormattedState(value: info.words, label: "Words")
         }
-        if Defaults[.showStatusBarLocation] {
+        if defaults[.showStatusBarLocation] {
             status.appendFormattedState(value: info.location, label: "Location")
         }
-        if Defaults[.showStatusBarLine] {
+        if defaults[.showStatusBarLine] {
             status.appendFormattedState(value: info.line, label: "Line")
         }
-        if Defaults[.showStatusBarColumn] {
+        if defaults[.showStatusBarColumn] {
             status.appendFormattedState(value: info.column, label: "Column")
         }
         
@@ -191,20 +191,21 @@ final class StatusBarController: NSViewController {
     
     
     /// update right side text and readonly icon state
-    func updateDocumentStatus() {
+    @objc private func updateDocumentStatus() {
         
         guard !self.view.isHidden else { return }
         guard let info = self.documentAnalyzer else { return }
         
+        let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()
         
-        if Defaults[.showStatusBarEncoding] {
+        if defaults[.showStatusBarEncoding] {
             status.appendFormattedState(value: info.charsetName, label: nil)
         }
-        if Defaults[.showStatusBarLineEndings] {
+        if defaults[.showStatusBarLineEndings] {
             status.appendFormattedState(value: info.lineEndings, label: nil)
         }
-        if Defaults[.showStatusBarFileSize] {
+        if defaults[.showStatusBarFileSize] {
             let fileSize = self.byteCountFormatter.string(for: info.fileSize)
             status.appendFormattedState(value: fileSize, label: nil)
         }
@@ -217,7 +218,7 @@ final class StatusBarController: NSViewController {
 
 
 
-// MARK:
+// MARK: -
 
 private extension NSMutableAttributedString {
     

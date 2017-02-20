@@ -104,7 +104,7 @@ extension String {
 
 extension BracePair: Hashable {
     
-    static func ==(lhs: BracePair, rhs: BracePair) -> Bool {
+    static func == (lhs: BracePair, rhs: BracePair) -> Bool {
         
         return lhs.begin == rhs.begin && lhs.end == rhs.end
     }

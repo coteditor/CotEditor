@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,11 +43,6 @@ enum HUDSymbol {
 
 private let HUDIdentifier = "HUD"
 
-// constants
-private let CornerRadius: CGFloat = 14.0
-private let DefaultDisplayingInterval: TimeInterval = 0.1
-private let FadeDuration: TimeInterval = 0.5
-
 
 final class HUDController: NSViewController {
     
@@ -58,13 +53,17 @@ final class HUDController: NSViewController {
     
     // MARK: Private Properties
     
+    private let cornerRadius: CGFloat = 14.0
+    private let defaultDisplayingInterval: TimeInterval = 0.1
+    private let fadeDuration: TimeInterval = 0.5
+    
     private dynamic let symbolImage: NSImage
     
     @IBOutlet private weak var symbolView: NSImageView?
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init?(symbol: HUDSymbol) {
@@ -96,7 +95,7 @@ final class HUDController: NSViewController {
         super.viewDidLoad()
         
         self.view.identifier = HUDIdentifier
-        self.view.layer?.cornerRadius = CornerRadius
+        self.view.layer?.cornerRadius = self.cornerRadius
         self.view.layer?.opacity = 0.0
         
         // set rotate symbol
@@ -114,7 +113,7 @@ final class HUDController: NSViewController {
         
         // remove previous HUD
         for subview in clientView.subviews where subview.identifier == HUDIdentifier {
-            subview.fadeOut(duration: FadeDuration / 2.0, delay: 0)  // fade quickly
+            subview.fadeOut(duration: self.fadeDuration / 2.0, delay: 0)  // fade quickly
         }
         
         clientView.addSubview(self.view)
@@ -126,17 +125,17 @@ final class HUDController: NSViewController {
                                                       toItem: clientView, attribute: .centerY, multiplier: 0.8, constant: 0)])  // shift a bit upper
         
         // fade-in
-        self.view.fadeIn(duration: FadeDuration * 0.8)
+        self.view.fadeIn(duration: self.fadeDuration * 0.8)
         
         // set fade-out with delay
-        self.view.fadeOut(duration: FadeDuration, delay: FadeDuration + DefaultDisplayingInterval)
+        self.view.fadeOut(duration: self.fadeDuration, delay: self.fadeDuration + self.defaultDisplayingInterval)
     }
     
 }
 
 
 
-// MARK:
+// MARK: -
 
 private enum AnimationIdentifier {
     static let fadeIn = "fadeIn"

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,11 +33,11 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Constants
     
-    private let MinNumberOfDigits = 3
-    private let MinVerticalThickness: CGFloat = 32.0
-    private let MinHorizontalThickness: CGFloat = 20.0
-    private let LineNumberPadding: CGFloat = 4.0
-    private let FontSizeFactor: CGFloat = 0.9
+    private let minNumberOfDigits = 3
+    private let minVerticalThickness: CGFloat = 32.0
+    private let minHorizontalThickness: CGFloat = 20.0
+    private let lineNumberPadding: CGFloat = 4.0
+    private let fontSizeFactor: CGFloat = 0.9
     
     private let lineNumberFont: CGFont = LineNumberFont.regular.cgFont
     private let boldLineNumberFont: CGFont = LineNumberFont.bold.cgFont
@@ -52,7 +52,7 @@ final class LineNumberView: NSRulerView {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init(scrollView: NSScrollView?, orientation: NSRulerOrientation) {
@@ -126,7 +126,7 @@ final class LineNumberView: NSRulerView {
         let masterFont = textView.font ?? NSFont.systemFont(ofSize: 0)
         let masterFontSize = scale * masterFont.pointSize
         let masterAscent = scale * masterFont.ascender
-        let fontSize = min(round(self.FontSizeFactor * masterFontSize), masterFontSize)
+        let fontSize = min(round(self.fontSizeFactor * masterFontSize), masterFontSize)
         let font = CTFontCreateWithGraphicsFont(self.lineNumberFont, fontSize, nil, nil)
         
         context.setFont(self.lineNumberFont)
@@ -150,14 +150,14 @@ final class LineNumberView: NSRulerView {
         }()
         
         // prepare frame width
-        let lineNumberPadding = round(scale * self.LineNumberPadding)
+        let lineNumberPadding = round(scale * self.lineNumberPadding)
         let isVerticalText = self.orientation == .horizontalRuler
         let tickLength = ceil(fontSize / 3)
         
         // adjust thickness
         var ruleThickness: CGFloat
         if isVerticalText {
-            ruleThickness = max(fontSize + 2.5 * tickLength, self.MinHorizontalThickness)
+            ruleThickness = max(fontSize + 2.5 * tickLength, self.minHorizontalThickness)
         } else {
             if self.needsRecountTotalNumberOfLines {
                 // -> count only if really needed since the line counting is high workload, especially by large document
@@ -168,8 +168,8 @@ final class LineNumberView: NSRulerView {
             // use the line number of whole string, namely the possible largest line number
             // -> The view width depends on the number of digits of the total line numbers.
             //    It's quite dengerous to change width of line number view on scrolling dynamically.
-            let digits = max(self.totalNumberOfLines.numberOfDigits, self.MinNumberOfDigits)
-            ruleThickness = max(CGFloat(digits) * charWidth + 3 * lineNumberPadding, self.MinVerticalThickness)
+            let digits = max(self.totalNumberOfLines.numberOfDigits, self.minNumberOfDigits)
+            ruleThickness = max(CGFloat(digits) * charWidth + 3 * lineNumberPadding, self.minVerticalThickness)
         }
         ruleThickness = ceil(ruleThickness)
         if ruleThickness != self.ruleThickness {
@@ -271,11 +271,11 @@ final class LineNumberView: NSRulerView {
             
             // check if line is selected
             let isSelected = selectedLineRanges.contains { selectedRange in
-                return (NSLocationInRange(lineRange.location, selectedRange) &&
+                return (selectedRange.contains(location: lineRange.location) &&
                     (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.max == selectedRange.max)))
             }
             
-            while (glyphCount < glyphIndex) {  // handle wrapper lines
+            while glyphCount < glyphIndex {  // handle wrapper lines
                 var range = NSRange.notFound
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphCount, effectiveRange: &range, withoutAdditionalLayout: true)
                 let isWrappedLine = (lastLineNumber == lineNumber)
@@ -342,7 +342,7 @@ final class LineNumberView: NSRulerView {
         if self.orientation == .horizontalRuler {
             return self.ruleThickness
         }
-        return max(self.MinVerticalThickness, self.ruleThickness)
+        return max(self.minVerticalThickness, self.ruleThickness)
     }
     
     
@@ -399,7 +399,7 @@ final class LineNumberView: NSRulerView {
     
     
     /// update total number of lines determining view thickness on holizontal text layout
-    func textDidChange(_ notification: Notification) {
+    @objc private func textDidChange(_ notification: Notification) {
         
         self.needsRecountTotalNumberOfLines = true
     }
@@ -489,8 +489,7 @@ private extension Int {
 
 
 
-// MARK:
-// MARK: Line Selecting
+// MARK: - Line Selecting
 
 private struct DraggingInfo {
     
@@ -541,7 +540,7 @@ extension LineNumberView {
     // MARK: Private Methods
     
     /// select lines while dragging event
-    func selectLines(_ timer: Timer?) {
+    @objc private func selectLines(_ timer: Timer?) {
         
         guard
             let window = self.window,
@@ -562,7 +561,7 @@ extension LineNumberView {
         let clickedIndex = draggingInfo?.index ?? currentIndex
         let currentLineRange = string.lineRange(at: currentIndex)
         let clickedLineRange = string.lineRange(at: clickedIndex)
-        var range = NSUnionRange(currentLineRange, clickedLineRange)
+        var range = currentLineRange.union(clickedLineRange)
         
         let affinity: NSSelectionAffinity = (currentIndex < clickedIndex) ? .upstream : .downstream
         
@@ -604,7 +603,7 @@ extension LineNumberView {
         // with Shift key (expand selection)
         if NSEvent.modifierFlags().contains(.shift) {
             let selectedRange = textView.selectedRange
-            if NSLocationInRange(currentIndex, selectedRange) {  // reduce
+            if selectedRange.contains(location: currentIndex) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
                 if inUpperSelection {  // clicked upper half section of selected range
                     range = NSRange(location: currentIndex, length: selectedRange.max - currentIndex)
@@ -613,7 +612,7 @@ extension LineNumberView {
                     range.length -= selectedRange.max - currentLineRange.max
                 }
             } else {  // expand
-                range = NSUnionRange(range, selectedRange)
+                range.formUnion(selectedRange)
             }
         }
         

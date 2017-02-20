@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -108,7 +108,7 @@ final class ToolbarController: NSObject {
 
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
@@ -135,7 +135,7 @@ final class ToolbarController: NSObject {
     }
     
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == #keyPath(Document.fileURL) {
             self.invalidateShareButton()
@@ -147,14 +147,14 @@ final class ToolbarController: NSObject {
     // MARK: Private Methods
     
     /// enable Share button only if document is saved
-    func invalidateShareButton() {
+    private func invalidateShareButton() {
         
         self.shareButton?.isEnabled = (self.document?.fileURL != nil)
     }
     
     
     /// select item in the encoding popup menu
-    func invalidateLineEndingSelection() {
+    @objc private func invalidateLineEndingSelection() {
         
         guard let lineEnding = self.document?.lineEnding else { return }
         
@@ -163,7 +163,7 @@ final class ToolbarController: NSObject {
     
     
     /// select item in the line ending menu
-    func invalidateEncodingSelection() {
+    @objc private func invalidateEncodingSelection() {
         
         guard let document = self.document else { return }
         
@@ -177,7 +177,7 @@ final class ToolbarController: NSObject {
     
     
     /// select item in the syntax style menu
-    func invalidateSyntaxStyleSelection() {
+    @objc private func invalidateSyntaxStyleSelection() {
         
         guard let popUpButton = self.syntaxPopupButton else { return }
         guard let styleName = self.document?.syntaxStyle.styleName else { return }
@@ -190,7 +190,7 @@ final class ToolbarController: NSObject {
     
     
     /// build encoding popup item
-    func buildEncodingPopupButton() {
+    @objc private func buildEncodingPopupButton() {
         
         guard let popUpButton = self.encodingPopupButton else { return }
         
@@ -201,7 +201,7 @@ final class ToolbarController: NSObject {
     
     
     /// build syntax style popup menu
-    func buildSyntaxPopupButton() {
+    @objc private func buildSyntaxPopupButton() {
         
         guard let menu = self.syntaxPopupButton?.menu else { return }
         

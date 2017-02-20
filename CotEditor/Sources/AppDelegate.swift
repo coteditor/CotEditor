@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2013-2016 1024jp
+ © 2013-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init() {
@@ -72,13 +72,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         // register default setting values
-        let defaults: [String: Any] = DefaultSettings.reduce([:]) { (dict, item) in
-            var dict = dict
-            dict[item.key.rawValue] = item.value
-            return dict
-        }
-        UserDefaults.standard.register(defaults: defaults)
-        NSUserDefaultsController.shared().initialValues = defaults
+        UserDefaults.standard.register(defaults: DefaultSettings.defaults)
+        NSUserDefaultsController.shared().initialValues = DefaultSettings.defaults
         
         // instantiate DocumentController
         _ = DocumentController.shared()
@@ -163,7 +158,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         //      >= 2.2.0 : Single Integer
         let thisVersion = AppInfo.bundleVersion
         let isLatest: Bool = {
-            guard let lastVersion = Defaults[.lastVersion] else { return true }
+            guard let lastVersion = UserDefaults.standard[.lastVersion] else { return true }
             
             // if isDigit -> probably semver (semver must be older than 2.2.0)
             let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) == nil)
@@ -171,7 +166,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return !isDigit || Int(thisVersion)! >= Int(lastVersion)!
         }()
         if isLatest {
-            Defaults[.lastVersion] = thisVersion
+            UserDefaults.standard[.lastVersion] = thisVersion
         }
     }
     
@@ -180,9 +175,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
         if self.didFinishLaunching {
-            return Defaults[.reopenBlankWindow]
+            return UserDefaults.standard[.reopenBlankWindow]
         } else {
-            return Defaults[.createNewAtStartup]
+            return UserDefaults.standard[.createNewAtStartup]
         }
     }
     
@@ -247,7 +242,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let url = URL(fileURLWithPath: filename)
         
         // perform install if the file is CotEditor theme file
-        guard url.pathExtension == ThemeExtension else { return false }
+        guard DocumentType.theme.extensions.contains(url.pathExtension) else { return false }
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
@@ -264,7 +259,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         do {
             try ThemeManager.shared.importSetting(fileURL: url)
             
-        } catch let error {
+        } catch {
             // ask whether the old theme should be repleced with new one if the same name theme is already exists
             let success = NSApp.presentError(error)
             
@@ -397,7 +392,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Private Methods
     
     /// build encoding menu in the main menu
-    func buildEncodingMenu() {
+    @objc private func buildEncodingMenu() {
         
         let menu = self.encodingsMenu!
         
@@ -406,7 +401,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// build syntax style menu in the main menu
-    func buildSyntaxMenu() {
+    @objc private func buildSyntaxMenu() {
         
         let menu = self.syntaxStylesMenu!
         
@@ -427,13 +422,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let recolorAction = #selector(SyntaxHolder.recolorAll)
         let shortcut = MenuKeyBindingManager.shared.shortcut(for: recolorAction)
         let recoloritem = NSMenuItem(title: NSLocalizedString("Re-Color All", comment: ""), action: recolorAction, keyEquivalent: shortcut.keyEquivalent)
-        recoloritem.keyEquivalentModifierMask = shortcut.modifierMask // = default: Cmd + Opt + R
+        recoloritem.keyEquivalentModifierMask = shortcut.modifierMask  // = default: Cmd + Opt + R
         menu.addItem(recoloritem)
     }
     
     
     /// build theme menu in the main menu
-     func buildThemeMenu() {
+     @objc private func buildThemeMenu() {
         
         let menu = self.themesMenu!
         

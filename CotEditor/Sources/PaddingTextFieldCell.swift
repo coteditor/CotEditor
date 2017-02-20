@@ -27,7 +27,8 @@
 
 import Cocoa
 
-@IBDesignable final class PaddingTextFieldCell: NSTextFieldCell {
+@IBDesignable
+final class PaddingTextFieldCell: NSTextFieldCell {
     
     // MARK: Public Properties
     
@@ -36,7 +37,7 @@ import Cocoa
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Cell Methods
     
     /// add padding to area to draw text

@@ -57,7 +57,7 @@ private enum AppCastURL {
 
 
 
-// MARK:
+// MARK: -
 
 final class UpdaterManager: NSObject, SUUpdaterDelegate {
     
@@ -67,7 +67,7 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     private override init() {
@@ -114,7 +114,7 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     func feedURLString(for updater: SUUpdater) -> String? {
         
         // force checking beta if the currently runnning one is a beta.
-        let checksBeta: Bool = AppInfo.isPrerelease ? true : Defaults[.checksUpdatesForBeta]
+        let checksBeta: Bool = AppInfo.isPrerelease ? true : UserDefaults.standard[.checksUpdatesForBeta]
         
         let appCast: AppCastURL = checksBeta ? .beta : .stable
         

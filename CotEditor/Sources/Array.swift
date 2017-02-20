@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ extension Array where Element: Equatable {
     mutating func remove(_ element: Element) {
         
         if let index = index(of: element) {
-            remove(at: index)
+            self.remove(at: index)
         }
     }
     
@@ -43,12 +43,10 @@ extension Array where Element: Equatable {
 
 extension Collection {
 
-    /// Returns the element at the specified index only if it is within bounds, otherwise nil.
-    public subscript(safe index: Index) -> _Element? {
+    /// Return the element at the specified index only if it is within bounds, otherwise nil.
+    public subscript(safe index: Index) -> Iterator.Element? {
         
-        return index >= startIndex && index < endIndex
-            ? self[index]
-            : nil
+        return (startIndex..<endIndex).contains(index) ? self[index] : nil
     }
 }
 

@@ -34,7 +34,7 @@ extension NSWindow {
     func endEditing() -> Bool {
         
         let responder: NSResponder?
-        if let editor = self.firstResponder as? NSTextView, editor.isFieldEditor  {
+        if let editor = self.firstResponder as? NSTextView, editor.isFieldEditor {
             // -> Regarding field editor, the real first responder is its delegate.
             responder = editor.delegate as? NSResponder
         } else {

@@ -42,7 +42,7 @@ extension Notification.Name {
 
 
 
-// MARK:
+// MARK: -
 
 private let UTF8Tag = Int(String.Encoding.utf8.rawValue)
 
@@ -74,7 +74,7 @@ final class EncodingManager: NSObject {
     
     // MARK: KVO
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.encodingList.rawValue {
             DispatchQueue.main.async { [weak self] in
@@ -90,7 +90,7 @@ final class EncodingManager: NSObject {
     /// return user's encoding priority list
     var defaultEncodings: [String.Encoding?] {
         
-        let encodingNumbers = Defaults[.encodingList]
+        let encodingNumbers = UserDefaults.standard[.encodingList]
         
         return encodingNumbers.map { encodingNumber in
             let cfEncoding = encodingNumber.uint32Value
@@ -107,7 +107,7 @@ final class EncodingManager: NSObject {
     /// returns corresponding NSStringEncoding from a encoding name
     class func encoding(fromName encodingName: String) -> String.Encoding? {
         
-        for cfEncoding in DefaultEncodings {
+        for cfEncoding in DefaultSettings.encodings {
             guard cfEncoding != kCFStringEncodingInvalidId else { continue }  // = separator
             
             let encoding = String.Encoding(cfEncoding: cfEncoding)

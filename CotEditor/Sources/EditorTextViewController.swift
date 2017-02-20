@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -75,9 +75,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private static let CurrentLineUpdateInterval = 0.01
-    private weak var currentLineUpdateTimer: Timer?
     private var lastCursorLocation = 0
+    private lazy var currentLineUpdateTask: Debouncer = Debouncer(delay: 0.01, tolerance: 0.5) { [weak self] in self?.updateCurrentLineRect() }
     
     private enum MenuItemTag: Int {
         case script = 800
@@ -85,12 +84,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
 
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
-        self.currentLineUpdateTimer?.invalidate()
-        
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.highlightCurrentLine.rawValue)
         NotificationCenter.default.removeObserver(self)
         
@@ -122,7 +119,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: KVO
     
     /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.highlightCurrentLine.rawValue {
             if (change?[NSKeyValueChangeKey.newKey] as? Bool) ?? false {
@@ -180,7 +177,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let particalWord = (string as NSString).substring(with: charRange)
         
         // extract words in document and set to candidateWords
-        if Defaults[.completesDocumentWords] {
+        if UserDefaults.standard[.completesDocumentWords] {
             let documentWords: [String] = {
                 // do nothing if the particle word is a symbol
                 guard charRange.length > 1 || CharacterSet.alphanumerics.contains(particalWord.unicodeScalars.first!) else { return [] }
@@ -194,13 +191,13 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // copy words defined in syntax style
-        if Defaults[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords {
+        if UserDefaults.standard[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords {
             let syntaxWords = syntaxCandidateWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
             candidateWords.addObjects(from: syntaxWords)
         }
         
         // copy the standard words from default completion words
-        if Defaults[.completesStandartWords] {
+        if UserDefaults.standard[.completesStandartWords] {
             candidateWords.addObjects(from: words)
         }
         
@@ -218,7 +215,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // append Script menu
         if let scriptMenu = ScriptManager.shared.contexualMenu {
-            if Defaults[.inlineContextualScriptMenu] {
+            if UserDefaults.standard[.inlineContextualScriptMenu] {
                 menu.addItem(NSMenuItem.separator())
                 menu.items.last?.tag = MenuItemTag.script.rawValue
                 
@@ -251,7 +248,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         //   -> Flag is set in EditorTextView > `insertCompletion:forPartialWordRange:movement:isFinal:`
         if textView.needsRecompletion {
             textView.needsRecompletion = false
-            textView.complete(after: 0.05)
+            textView.completionTask.schedule(delay: 0.05)
         }
     }
     
@@ -270,7 +267,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // highlight the current line
         // -> For the selection change, call `updateCurrentLineRect` directly rather than setting currentLineUpdateTimer
         //    in order to provide a quick feedback of change to users.
-        self.updateCurrentLineRect()
+        self.currentLineUpdateTask.run()
         
         // highlight matching brace
         self.highlightMatchingBrace(in: textView)
@@ -315,7 +312,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// find the matching open brace and highlight it
     private func highlightMatchingBrace(in textView: NSTextView) {
         
-        guard Defaults[.highlightBraces] else { return }
+        guard UserDefaults.standard[.highlightBraces] else { return }
         
         guard let string = textView.string, !string.isEmpty else { return }
         
@@ -332,7 +329,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let lastIndex = string.index(before: String.UTF16Index(cursorLocation).samePosition(in: string)!)
         let lastCharacter = string.characters[lastIndex]
         guard let pair: BracePair = (BracePair.braces + [.ltgt]).first(where: { $0.end == lastCharacter }),
-            ((pair != .ltgt) || Defaults[.highlightLtGt])
+            ((pair != .ltgt) || UserDefaults.standard[.highlightLtGt])
             else { return }
         
         guard let index = string.indexOfBeginBrace(for: pair, at: lastIndex) else {
@@ -351,33 +348,20 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     
     /// set update timer for current line highlight calculation
-    func setupCurrentLineUpdateTimer() {
+    @objc private func setupCurrentLineUpdateTimer() {
         
-        guard Defaults[.highlightCurrentLine] else { return }
+        guard UserDefaults.standard[.highlightCurrentLine] else { return }
         
-        let interval = type(of: self).CurrentLineUpdateInterval
-        
-        if let timer = self.currentLineUpdateTimer, timer.isValid {
-            timer.fireDate = Date(timeIntervalSinceNow: interval)
-        } else {
-            self.currentLineUpdateTimer = Timer.scheduledTimer(timeInterval: interval,
-                                                               target: self,
-                                                               selector: #selector(updateCurrentLineRect),
-                                                               userInfo: nil,
-                                                               repeats: false)
-            self.currentLineUpdateTimer?.tolerance = 0.5 * interval
-        }
+        self.currentLineUpdateTask.schedule()
     }
     
     
     /// update current line highlight area
-    func updateCurrentLineRect() {
+    private func updateCurrentLineRect() {
         
         // [note] Don't invoke this method too often but with a currentLineUpdateTimer because this is a heavy task.
         
-        self.currentLineUpdateTimer?.invalidate()
-        
-        guard Defaults[.highlightCurrentLine] else { return }
+        guard UserDefaults.standard[.highlightCurrentLine] else { return }
         
         guard
             let textView = self.textView,

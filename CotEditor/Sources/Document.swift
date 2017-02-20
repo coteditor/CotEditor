@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -38,10 +38,10 @@ extension Notification.Name {
 
 // constants
 
-private let UniqueFileIDLength = 13
+private let uniqueFileIDLength = 13
 
 /// Maximal length to scan encoding declaration
-private let MaxEncodingScanLength = 2000
+private let maxEncodingScanLength = 2000
 
 private enum SerializationKey {
     static let readingEncoding = "readingEncoding"
@@ -58,7 +58,7 @@ private enum FileExtendedAttributeName {
 
 
 
-// MARK:
+// MARK: -
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
@@ -94,7 +94,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init() {
@@ -102,15 +102,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         let uuid = UUID().uuidString
-        self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: UniqueFileIDLength))
+        self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: uniqueFileIDLength))
         
-        let encoding = String.Encoding(rawValue: Defaults[.encodingInNew])
+        let encoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInNew])
         self.encoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
         if self.encoding == .utf8 {
-            self.hasUTF8BOM = Defaults[.saveUTF8BOM]
+            self.hasUTF8BOM = UserDefaults.standard[.saveUTF8BOM]
         }
-        self.lineEnding = LineEnding(index: Defaults[.lineEndCharCode]) ?? .LF
-        self.syntaxStyle = SyntaxManager.shared.style(name: Defaults[.syntaxStyle]) ?? SyntaxStyle()
+        self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .LF
+        self.syntaxStyle = SyntaxManager.shared.style(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         self.syntaxStyle.textStorage = self.textStorage
         
         // set encoding to read file
@@ -172,7 +172,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         return self._autosavesInPlace
     }
     // avoid changing the value while the application is running
-    private static let _autosavesInPlace = Defaults[.enablesAutosaveInPlace]
+    private static let _autosavesInPlace = UserDefaults.standard[.enablesAutosaveInPlace]
     
     
     /// can read document on a background thread?
@@ -263,7 +263,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func read(from url: URL, ofType typeName: String) throws {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
-        
         let data = try Data(contentsOf: url)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
         
@@ -334,7 +333,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // determine syntax style
         let styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent)
             ?? SyntaxManager.shared.styleName(documentContent: string)
-            ?? Defaults[.syntaxStyle]
+            ?? UserDefaults.standard[.syntaxStyle]
         
         self.setSyntaxStyle(name: styleName)
     }
@@ -375,7 +374,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // trim trailing whitespace if needed
         assert(Thread.isMainThread)
-        if Defaults[.trimsTrailingWhitespaceOnSave] {
+        if UserDefaults.standard[.trimsTrailingWhitespaceOnSave] {
             let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
             
             for layoutManager in self.textStorage.layoutManagers {
@@ -481,7 +480,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// customize document's file attributes
-    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String : Any] {
+    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
         
         // [caution] This method may be called from a background thread due to async-saving.
         
@@ -494,7 +493,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             extendedAttributes[FileExtendedAttributeName.Encoding] = self.encoding.xattrEncodingData
         }
         // save text orientation state to the extended file attributes (com.coteditor.VerticalText)
-        if Defaults[.savesTextOrientation] {
+        if UserDefaults.standard[.savesTextOrientation] {
             extendedAttributes[FileExtendedAttributeName.VerticalText] = self.isVerticalText ? Data(bytes: [1]) : nil
         }
         if attributes[NSFileExtendedAttributes.rawValue] != nil || !extendedAttributes.isEmpty {
@@ -561,7 +560,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         return super.prepareSavePanel(savePanel)
     }
-    private dynamic var allowedFileTypes: [String]? = nil
+    private dynamic var allowedFileTypes: [String]?
     
     
     /// display dialogs about save before closing document
@@ -591,7 +590,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// setup print setting including print panel
-    override func printOperation(withSettings printSettings: [String : Any]) throws -> NSPrintOperation {
+    override func printOperation(withSettings printSettings: [String: Any]) throws -> NSPrintOperation {
         
         let viewController = self.viewController!
         
@@ -607,9 +606,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // set font for printing
         printView.font = {
-            if Defaults[.setPrintFont] {  // == use printing font
-                return NSFont(name: Defaults[.printFontName]!,
-                              size: Defaults[.printFontSize])
+            if UserDefaults.standard[.setPrintFont] {  // == use printing font
+                return NSFont(name: UserDefaults.standard[.printFontName]!,
+                              size: UserDefaults.standard[.printFontSize])
             }
             return viewController.font
         }()
@@ -640,10 +639,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             printInfo.horizontalPagination = .fitPagination
             printInfo.isHorizontallyCentered = false
             printInfo.isVerticallyCentered = false
-            printInfo.leftMargin = kHorizontalPrintMargin
-            printInfo.rightMargin = kHorizontalPrintMargin
-            printInfo.topMargin = kVerticalPrintMargin
-            printInfo.bottomMargin = kVerticalPrintMargin
+            printInfo.leftMargin = PrintTextView.horizontalPrintMargin
+            printInfo.rightMargin = PrintTextView.horizontalPrintMargin
+            printInfo.topMargin = PrintTextView.verticalPrintMargin
+            printInfo.bottomMargin = PrintTextView.verticalPrintMargin
             printInfo.dictionary()[NSPrintHeaderAndFooter] = true
             
             return printInfo
@@ -666,7 +665,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enable.
 //        super.presentedItemDidChange()
         
-        let option = DocumentConflictOption(rawValue: Defaults[.documentConflictOption]) ?? .notify
+        let option = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption]) ?? .notify
         
         // do nothing
         if option == .ignore { return }
@@ -719,7 +718,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 
                 do {
                     try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
-                } catch let error {
+                } catch {
                     strongSelf.presentErrorAsSheet(error)
                 }
             }
@@ -759,7 +758,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // check file meta data for text orientation
         assert(self.fileAttributes != nil)
-        if Defaults[.savesTextOrientation] {
+        if UserDefaults.standard[.savesTextOrientation] {
             self.isVerticalText = ((self.fileAttributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
         }
         
@@ -778,7 +777,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Notifications
     
     /// set a flag of syntax highlight update if corresponded style has been updated
-    func syntaxDidUpdate(_ notification: Notification) {
+    @objc private func syntaxDidUpdate(_ notification: Notification) {
         
         guard
             let oldName = notification.userInfo?[SettingFileManager.NotificationKey.old] as? String,
@@ -796,7 +795,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal text storage has always LF for its line ending.)
     var string: String {
         
-        let editorString = self.textStorage.string // line ending is always LF
+        let editorString = self.textStorage.string  // line ending is always LF
         
         if self.lineEnding == .LF {
             return NSString(string: editorString) as String  // make sure being immutable
@@ -823,7 +822,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         do {
             try self.reinterpret(encoding: encoding)
             
-        } catch let error {
+        } catch {
             NSBeep()
             self.presentErrorAsSheet(error)
         }
@@ -856,6 +855,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change string encoding registering process to the undo manager
     @discardableResult
     func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) -> Bool {
+        
+        assert(Thread.isMainThread)
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return true }
         
@@ -1120,7 +1121,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // detect encoding from data
-        let encodingList = Defaults[.encodingList].map { return $0.uint32Value }
+        let encodingList = UserDefaults.standard[.encodingList].map { return $0.uint32Value }
         var usedEncoding: String.Encoding?
         let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
         
@@ -1142,18 +1143,20 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// detect file encoding from encoding declaration like "charset=" or "encoding=" in file content
     private func scanEncodingFromDeclaration(content: String) -> String.Encoding? {
         
-        guard Defaults[.referToEncodingTag] else { return nil }
+        guard UserDefaults.standard[.referToEncodingTag] else { return nil }
         
-        let suggestedCFEncodings = Defaults[.encodingList]
+        let suggestedCFEncodings = UserDefaults.standard[.encodingList]
         
         return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
-                                               upTo: MaxEncodingScanLength,
+                                               upTo: maxEncodingScanLength,
                                                suggestedCFEncodings: suggestedCFEncodings.map { return $0.uint32Value })
     }
     
     
     /// check if can save safety with the current encoding and ask if not
     private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
+        
+        assert(Thread.isMainThread)
         
         let content = self.string
         let encoding = self.encoding
@@ -1163,7 +1166,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             do {
                 try self.checkSavingSafetyWithIANACharSetName(content: content, encoding: encoding)
                 
-            } catch let error {
+            } catch {
                 // --> ask directly with a NSAlert for the suppression button
                 let alert = NSAlert(error: error)
                 alert.showsSuppressionButton = true
@@ -1189,7 +1192,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         do {
             try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
             
-        } catch let error {
+        } catch {
             self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
             return
         }
@@ -1242,7 +1245,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// display alert about file modification by an external process
-    func showUpdatedByExternalProcessAlert() {
+    @objc private func showUpdatedByExternalProcessAlert() {
     
         NotificationCenter.default.removeObserver(self, name: .NSApplicationDidBecomeActive, object: nil)
         
@@ -1277,10 +1280,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
             guard let strongSelf = self else { return }
             
-            if returnCode == NSAlertSecondButtonReturn, let fileType = strongSelf.fileType { // == Revert
+            if returnCode == NSAlertSecondButtonReturn, let fileType = strongSelf.fileType {  // == Revert
                 do {
                     try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
-                } catch let error {
+                } catch {
                     strongSelf.presentErrorAsSheet(error)
                 }
             }
@@ -1434,7 +1437,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Characters
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 }
                 return false
@@ -1453,7 +1456,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             switch recoveryOptionIndex {
             case 0:  // == Change Encoding
                 document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     windowContentController?.showSidebarPane(index: .incompatibleCharacters)
                 }
                 return true

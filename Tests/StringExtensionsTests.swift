@@ -80,12 +80,12 @@ class StringExtensionsTests: XCTestCase {
         
         let testString = "a\nb c\n\n"
         XCTAssertEqual(testString.numberOfLines, 3)
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 0), includingLastLineEnding: true),  0)  // ""
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 1), includingLastLineEnding: true),  1)  // "a"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 2), includingLastLineEnding: true),  2)  // "a\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 0), includingLastLineEnding: true), 0)   // ""
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 1), includingLastLineEnding: true), 1)   // "a"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 2), includingLastLineEnding: true), 2)   // "a\n"
         XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 2), includingLastLineEnding: false), 1)  // "a\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 6), includingLastLineEnding: true),  3)  // "a\nb c\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 7), includingLastLineEnding: true),  4)  // "a\nb c\n\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 6), includingLastLineEnding: true), 3)   // "a\nb c\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 7), includingLastLineEnding: true), 4)   // "a\nb c\n\n"
         XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 2, length: 4), includingLastLineEnding: false), 1)  // "b c\n"
         
         XCTAssertEqual(testString.lineNumber(at: 0), 1)
@@ -112,9 +112,9 @@ class StringExtensionsTests: XCTestCase {
         
         let testString = "0123456789"
         
-        XCTAssertTrue(NSEqualRanges(testString.range(location: 2, length: 2), NSMakeRange(2, 2)))
-        XCTAssertTrue(NSEqualRanges(testString.range(location: -1, length: 1), NSMakeRange(9, 1)))
-        XCTAssertTrue(NSEqualRanges(testString.range(location: 3, length: -2), NSMakeRange(3, "45678".utf16.count)))
+        XCTAssertTrue(NSEqualRanges(testString.range(location: 2, length: 2), NSRange(location: 2, length: 2)))
+        XCTAssertTrue(NSEqualRanges(testString.range(location: -1, length: 1), NSRange(location: 9, length: 1)))
+        XCTAssertTrue(NSEqualRanges(testString.range(location: 3, length: -2), NSRange(location: 3, length: "45678".utf16.count)))
         
         
         let linesString = "1\r\n2\r\n3\r\n4"  // 1 based

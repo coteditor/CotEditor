@@ -27,7 +27,8 @@
 
 import Cocoa
 
-@IBDesignable final class DotImageView: NSImageView {
+@IBDesignable
+final class DotImageView: NSImageView {
     
     // MARK: View Methods
     

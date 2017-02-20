@@ -242,7 +242,6 @@ final class AppleScript: Script {
     /// - parameter event: the apple event
     ///
     /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
-    ///           
     func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
         
         guard self.descriptor.url.isReachable else {
@@ -403,7 +402,7 @@ final class ShellScript: Script {
         if let inputType = InputType(scanning: script) {
             do {
                 input = try self.readInputString(type: inputType, editor: document)
-            } catch let error {
+            } catch {
                 writeToConsole(message: error.localizedDescription, scriptName: self.descriptor.name)
                 return
             }
@@ -457,7 +456,7 @@ final class ShellScript: Script {
                 
                 do {
                     try ShellScript.applyOutput(output, editor: document, type: outputType)
-                } catch let error {
+                } catch {
                     writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 }
             }

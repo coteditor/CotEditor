@@ -27,7 +27,7 @@
 
 import Foundation
 
-//typealias ColorDefinition = [String: [String: Any]]
+// typealias ColorDefinition = [String: [String: Any]]
 typealias ThemeDictionary = [String: NSMutableDictionary]  // use NSMutableDictionary for KVO
 
 enum ThemeKey: String {

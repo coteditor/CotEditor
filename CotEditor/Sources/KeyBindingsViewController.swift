@@ -48,7 +48,7 @@ private enum ColumnIdentifier: String {
 
 
 /// model object for NSArrayController
-final class SnippetItem : NSObject {
+final class SnippetItem: NSObject {
     
     dynamic var text: String
     
@@ -62,7 +62,7 @@ final class SnippetItem : NSObject {
 
 
 
-// MARK:
+// MARK: -
 
 class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate {
     
@@ -76,7 +76,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var nibName: String? {
@@ -199,7 +199,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         }
         
         // treat esc key as cancel
-        guard input != "\u{1b}" else { return } // = ESC key
+        guard input != "\u{1b}" else { return }  // = ESC key
         
         guard input != item.shortcut?.description else { return }  // not edited
         
@@ -268,7 +268,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         do {
             try self.manager.saveKeyBindings(outlineTree: self.outlineTree)
-        } catch let error {
+        } catch {
             Swift.print(error)
         }
         
@@ -290,7 +290,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var nibName: String? {

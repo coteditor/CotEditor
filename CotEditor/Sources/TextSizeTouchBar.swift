@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ fileprivate extension NSTouchBarItemIdentifier {
 
 
 @available(macOS 10.12.2, *)
-class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceValidations {
+final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceValidations {
     
     // MARK: Private Properties
     
@@ -156,7 +156,7 @@ class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceValidatio
     // MARK: Private Methods
     
     /// validate text size slider in touch bar
-    func invalidateSlider(_ notification: Notification) {
+    @objc private func invalidateSlider(_ notification: Notification) {
         
         guard
             let scale = self.textView?.scale,

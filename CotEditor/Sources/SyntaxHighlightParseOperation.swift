@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ struct BlockDelimiters: Equatable, CustomDebugStringConvertible {
     }
     
 
-    static func ==(lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
+    static func == (lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
         
         return lhs.begin == rhs.begin && lhs.end == rhs.end
     }
@@ -81,7 +81,7 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
     }
     
     
-    static func ==(lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
+    static func == (lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
         
         return lhs.beginString == rhs.beginString &&
             lhs.endString == rhs.endString &&
@@ -116,7 +116,7 @@ private struct QuoteCommentItem {
 
 
 
-// MARK:
+// MARK: -
 
 final class SyntaxHighlightParseOperation: AsynchronousOperation {
     
@@ -139,7 +139,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(definitions: [SyntaxType: [HighlightDefinition]], simpleWordsCharacterSets: [SyntaxType: CharacterSet]?, pairedQuoteTypes: [String: SyntaxType]?, inlineCommentDelimiter: String?, blockCommentDelimiters: BlockDelimiters?) {
@@ -299,7 +299,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         let regex: NSRegularExpression
         do {
             try regex = NSRegularExpression(pattern: regexString, options: options)
-        } catch let error {
+        } catch {
             print("Regex Syntax Error in " + #function + ": ", error)
             return []
         }
@@ -337,7 +337,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         do {
             try beginRegex = NSRegularExpression(pattern: beginString, options: options)
             try endRegex = NSRegularExpression(pattern: endString, options: options)
-        } catch let error {
+        } catch {
             print("Regex Syntax Error in " + #function + ": ", error)
             return []
         }
@@ -360,7 +360,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                                                                      length: parseRange.max - beginRange.max))
             
             if endRange.location != NSNotFound {
-                ranges.append(NSUnionRange(beginRange, endRange))
+                ranges.append(beginRange.union(endRange))
             }
         }
         
@@ -430,7 +430,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         // sort by location  // ???: performance critial
         positions.sort {
             if $0.location == $1.location {
-                if ($0.role.rawValue == $1.role.rawValue) {
+                if $0.role.rawValue == $1.role.rawValue {
                     return $0.length > $1.length
                 }
                 return $0.role.rawValue < $1.role.rawValue

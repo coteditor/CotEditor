@@ -67,7 +67,7 @@ private extension OSAUnicodeNormalizationType {
 
 
 
-// MARK:
+// MARK: -
 
 final class TextSelection: NSObject {
     
@@ -75,7 +75,7 @@ final class TextSelection: NSObject {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     required init(document: Document) {
@@ -105,12 +105,17 @@ final class TextSelection: NSObject {
         get {
             guard let string = self.document?.selectedString else { return nil }
             
-            return NSTextStorage(string: string)
+            let textStorage = NSTextStorage(string: string)
+            
+            textStorage.observeDirectEditing { [weak self] (editedString) in
+                self?.document?.insert(string: editedString)
+            }
+            
+            return textStorage
         }
-        
-        set (object) {
+        set {
             guard let string: String = {
-                switch object {
+                switch newValue {
                 case let storage as NSTextStorage:
                     return storage.string
                 case let string as String:
@@ -332,19 +337,6 @@ final class TextSelection: NSObject {
             textView.normalizeUnicodeWithModifiedNFD(command)
         default: break
         }
-    }
-    
-    
-    
-    // MARK: Delegate
-    
-    /// text strage as AppleScript's return value did update
-    override func textStorageDidProcessEditing(_ notification: Notification) {
-        
-        guard let storage = notification.object as? NSTextStorage else { return }
-        
-        self.document?.insert(string: storage.string)
-        storage.delegate = nil
     }
     
     

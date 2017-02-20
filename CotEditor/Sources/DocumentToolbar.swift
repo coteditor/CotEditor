@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
 
 import Cocoa
 
-class DocumentToolbar: NSToolbar, NSWindowDelegate {
+final class DocumentToolbar: NSToolbar, NSWindowDelegate {
     
     // MARK: Private Properties
     
@@ -42,7 +42,9 @@ class DocumentToolbar: NSToolbar, NSWindowDelegate {
         get {
             return .regular
         }
-        set { /* ignore */ }
+        set {
+            super.sizeMode = .regular
+        }
     }
     
     
@@ -84,7 +86,7 @@ class DocumentToolbar: NSToolbar, NSWindowDelegate {
         super.runCustomizationPalette(sender)
         
         // fallback for removing "Use small size" button in `window(:willPositionSheet:using)`
-        if let sheet = self.window?.attachedSheet  {
+        if let sheet = self.window?.attachedSheet {
             self.removeSmallSizeButton(in: sheet)
         }
     }
@@ -114,7 +116,7 @@ class DocumentToolbar: NSToolbar, NSWindowDelegate {
         
         let toggleButton: NSButton? = views.lazy
             .flatMap { $0 as? NSButton }
-            .filter { (button: NSButton) -> Bool in
+            .first { (button: NSButton) -> Bool in
                 guard
                     let buttonTypeValue = button.cell?.value(forKey: "buttonType") as? UInt,
                     let buttonType = NSButtonType(rawValue: buttonTypeValue)
@@ -122,7 +124,6 @@ class DocumentToolbar: NSToolbar, NSWindowDelegate {
                 
                 return buttonType == .switch
             }
-            .first
         
         toggleButton?.isHidden = true
         sheet.contentView?.needsDisplay = true

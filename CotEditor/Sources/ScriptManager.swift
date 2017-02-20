@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     private override init() {
@@ -124,13 +124,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// update script menu if needed
-    func applicationDidBecomeActive(_ notification: Notification) {
-        
-        self.menuBuildingTask?.perform()
-    }
-    
-    
     
     // MARK: Public Methods
     
@@ -152,7 +145,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// build Script menu
     func buildScriptMenu() {
         
+        assert(Thread.isMainThread)
+        
         self.menuBuildingTask?.cancel()
+        self.menuBuildingTask = nil
         self.scriptHandlersTable = [:]
         self.scripts = [:]
         
@@ -225,7 +221,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 try script.run()
             }
             
-        } catch let error {
+        } catch {
             NSApp.presentError(error)
         }
     }
@@ -240,6 +236,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     // MARK: Private Methods
+    
+    /// update script menu if needed
+    @objc private func applicationDidBecomeActive(_ notification: Notification) {
+        
+        self.menuBuildingTask?.perform()
+    }
+    
     
     /// Create an Apple event caused by the given `Document`
     ///
@@ -276,7 +279,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             
             do {
                 try script.run(withAppleEvent: event)
-            } catch let error {
+            } catch {
                 NSApp.presentError(error)
             }
         }
@@ -321,7 +324,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 
                 self.scripts[url] = script
                 
-            } else if resourceType == URLFileResourceType.directory {
+            } else if resourceType == .directory {
                 let submenu = NSMenu(title: descriptor.name)
                 let item = NSMenuItem(title: descriptor.name, action: nil, keyEquivalent: "")
                 item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue

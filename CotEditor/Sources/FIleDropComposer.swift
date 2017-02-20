@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -99,10 +99,18 @@ final class FileDropComposer {
     }
     
     
+    
+    // MARK: -
+    // MARK: Lifecycle
+    
+    private init() { }
+    
+    
+    
     // MARK: Public Methods
     
     /// create file drop text
-    class func dropText(forFileURL droppedFileURL: URL, documentURL: URL?) -> String? {
+    static func dropText(forFileURL droppedFileURL: URL, documentURL: URL?) -> String? {
         
         let pathExtension = droppedFileURL.pathExtension
         
@@ -141,11 +149,11 @@ final class FileDropComposer {
     // MARK: Private Methods
     
     /// find matched template for path extension
-    private class func template(forExtension fileExtension: String?) -> String? {
+    private static func template(forExtension fileExtension: String?) -> String? {
         
         guard let fileExtension = fileExtension else { return nil }
         
-        guard let definitions = Defaults[.fileDropArray] as? [[String: String]] else {
+        guard let definitions = UserDefaults.standard[.fileDropArray] as? [[String: String]] else {
             assertionFailure("invalid file drop setting")
             return nil
         }

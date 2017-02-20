@@ -48,7 +48,7 @@ private extension UTF32 {
 }
 
 
-private let ISO2022JP_EscapeSequences: [[UInt8]] = [
+private let ISO2022JPEscapeSequences: [[UInt8]] = [
     [0x1B, 0x28, 0x42],  // ASCII
     [0x1B, 0x28, 0x49],  // kana
     [0x1B, 0x24, 0x40],  // 1978
@@ -57,11 +57,11 @@ private let ISO2022JP_EscapeSequences: [[UInt8]] = [
 ]
 
 
-private let MaxDetectionLength = 1024 * 8
+private let maxDetectionLength = 1024 * 8
 
 
 
-// MARK:
+// MARK: -
 
 private extension CFStringEncoding {
     
@@ -154,10 +154,10 @@ extension String {
             }
             
             // text ISO-2022-JP
-            if data.prefix(MaxDetectionLength).contains(0x1B) {
+            if data.prefix(maxDetectionLength).contains(0x1B) {
                 // check existance of typical escape sequences
                 // -> It's not perfect yet works in most cases. (2016-01 by 1024p)
-                for escapeSequence in ISO2022JP_EscapeSequences {
+                for escapeSequence in ISO2022JPEscapeSequences {
                     let escapeSequenceData = Data(bytes: escapeSequence)
                     if data.range(of: escapeSequenceData) != nil {
                         if let string = String(data: data, encoding: .iso2022JP) {

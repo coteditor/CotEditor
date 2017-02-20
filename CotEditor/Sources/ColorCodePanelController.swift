@@ -35,7 +35,7 @@ import ColorCode
 
 
 
-// MARK:
+// MARK: -
 
 final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
@@ -54,7 +54,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -204,10 +204,10 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     private var selectedCodeType: ColorCodeType {
         
         get {
-            return ColorCodeType(rawValue: Defaults[.colorCodeType]) ?? .hex
+            return ColorCodeType(rawValue: UserDefaults.standard[.colorCodeType]) ?? .hex
         }
         set {
-            Defaults[.colorCodeType] = newValue.rawValue
+            UserDefaults.standard[.colorCodeType] = newValue.rawValue
         }
     }
     

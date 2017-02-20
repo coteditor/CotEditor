@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -80,13 +80,13 @@ extension EditorTextView {
             
             // move selected ranges in the line to move
             for selectedRange in selectedRanges {
-                let intersectionRange = NSIntersectionRange(selectedRange, editRange)
+                let intersectionRange = selectedRange.intersection(editRange)
                 
                 if intersectionRange.length > 0 {
                     newSelectedRanges.append(NSRange(location: intersectionRange.location - upperLineRange.length,
                                                      length: intersectionRange.length))
                     
-                } else if NSLocationInRange(selectedRange.location, editRange) {
+                } else if editRange.contains(location: selectedRange.location) {
                     newSelectedRanges.append(NSRange(location: selectedRange.location - upperLineRange.length,
                                                      length: selectedRange.length))
                 }
@@ -150,13 +150,13 @@ extension EditorTextView {
             
             // move selected ranges in the line to move
             for selectedRange in selectedRanges {
-                let intersectionRange = NSIntersectionRange(selectedRange, editRange)
+                let intersectionRange = selectedRange.intersection(editRange)
                 
                 if intersectionRange.length > 0 {
                     newSelectedRanges.append(NSRange(location: intersectionRange.location + lowerLineRange.length,
                                                      length: intersectionRange.length))
                     
-                } else if NSLocationInRange(selectedRange.location, editRange) {
+                } else if editRange.contains(location: selectedRange.location) {
                     newSelectedRanges.append(NSRange(location: selectedRange.location + lowerLineRange.length,
                                                      length: selectedRange.length))
                 }

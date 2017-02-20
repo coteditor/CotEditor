@@ -36,7 +36,7 @@ final class EditPaneController: NSViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var nibName: String? {
@@ -73,10 +73,11 @@ final class EditPaneController: NSViewController {
     /// update hint for word completion
     private func updateCompletionHintMessage() {
         
+        let defaults = UserDefaults.standard
         self.isValidCompletion = (
-            Defaults[.completesDocumentWords] ||
-            Defaults[.completesSyntaxWords] ||
-            Defaults[.completesStandartWords]
+            defaults[.completesDocumentWords] ||
+            defaults[.completesSyntaxWords] ||
+            defaults[.completesStandartWords]
         )
     }
     

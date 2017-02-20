@@ -46,7 +46,10 @@ enum PrintSettingKey: String {
     
 }
 
-let BlackAndWhiteThemeName = NSLocalizedString("Black and White", comment: "")
+struct ThemeName {
+    
+    static let blackAndWhite = NSLocalizedString("Black and White", comment: "")
+}
 
 
 
@@ -64,7 +67,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: View Controller Method
     
     /// nib name
@@ -78,32 +81,34 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     override var representedObject: Any? {
         
         didSet {
+            let defaults = UserDefaults.standard
+            
             // set theme if needed
             self.theme = {
-                if let mode = PrintColorMode(rawValue: Defaults[.printColorIndex])  {
+                if let mode = PrintColorMode(rawValue: defaults[.printColorIndex]) {
                     switch mode {
                     case .blackWhite:
-                        return BlackAndWhiteThemeName
+                        return ThemeName.blackAndWhite
                     case .sameAsDocument:
-                        return Defaults[.theme] ?? BlackAndWhiteThemeName
+                        return defaults[.theme] ?? ThemeName.blackAndWhite
                     }
                 }
-                return Defaults[.printTheme] ?? BlackAndWhiteThemeName
+                return defaults[.printTheme] ?? ThemeName.blackAndWhite
             }()
-            self.lineNumberMode = PrintLineNmuberMode(rawValue: Defaults[.printLineNumIndex]) ?? .no
-            self.invisibleCharsMode = PrintInvisiblesMode(rawValue: Defaults[.printInvisibleCharIndex]) ?? .no
+            self.lineNumberMode = PrintLineNmuberMode(rawValue: defaults[.printLineNumIndex]) ?? .no
+            self.invisibleCharsMode = PrintInvisiblesMode(rawValue: defaults[.printInvisibleCharIndex]) ?? .no
             
-            self.printsHeader = Defaults[.printHeader]
-            self.primaryHeaderContent = PrintInfoType(Defaults[.primaryHeaderContent])
-            self.primaryHeaderAlignment = AlignmentType(Defaults[.primaryHeaderAlignment])
-            self.secondaryHeaderContent = PrintInfoType(Defaults[.secondaryHeaderContent])
-            self.secondaryHeaderAlignment = AlignmentType(Defaults[.secondaryHeaderAlignment])
+            self.printsHeader = defaults[.printHeader]
+            self.primaryHeaderContent = PrintInfoType(defaults[.primaryHeaderContent])
+            self.primaryHeaderAlignment = AlignmentType(defaults[.primaryHeaderAlignment])
+            self.secondaryHeaderContent = PrintInfoType(defaults[.secondaryHeaderContent])
+            self.secondaryHeaderAlignment = AlignmentType(defaults[.secondaryHeaderAlignment])
             
-            self.printsFooter = Defaults[.printFooter]
-            self.primaryFooterContent = PrintInfoType(Defaults[.primaryFooterContent])
-            self.primaryFooterAlignment = AlignmentType(Defaults[.primaryFooterAlignment])
-            self.secondaryFooterContent = PrintInfoType(Defaults[.secondaryFooterContent])
-            self.secondaryFooterAlignment = AlignmentType(Defaults[.secondaryFooterAlignment])
+            self.printsFooter = defaults[.printFooter]
+            self.primaryFooterContent = PrintInfoType(defaults[.primaryFooterContent])
+            self.primaryFooterAlignment = AlignmentType(defaults[.primaryFooterAlignment])
+            self.secondaryFooterContent = PrintInfoType(defaults[.secondaryFooterContent])
+            self.secondaryFooterAlignment = AlignmentType(defaults[.secondaryFooterAlignment])
             
             // apply current theme
             self.updateThemeList()
@@ -139,7 +144,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     /// localized descriptions for print settings
-    func localizedSummaryItems() -> [[String : String]] {
+    func localizedSummaryItems() -> [[String: String]] {
         
         return [
             localizedSummaryItem(name: "Color", description: self.theme),
@@ -178,7 +183,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         popUp.removeAllItems()
         
-        popUp.addItem(withTitle: BlackAndWhiteThemeName)
+        popUp.addItem(withTitle: ThemeName.blackAndWhite)
         
         popUp.menu?.addItem(NSMenuItem.separator())
         
@@ -228,7 +233,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     dynamic var theme: String {
         
         get {
-            return self.settingValue(forKey: .theme) as? String ?? BlackAndWhiteThemeName
+            return self.settingValue(forKey: .theme) as? String ?? ThemeName.blackAndWhite
         }
         set {
             self.setSettingValue(newValue, forKey: .theme)
@@ -386,7 +391,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
 private func localizedSummaryItem(name: String, description: String) -> [String: String] {
     
     return [NSPrintPanelAccessorySummaryItemNameKey: NSLocalizedString(name, comment: ""),
-            NSPrintPanelAccessorySummaryItemDescriptionKey:  NSLocalizedString(description, comment: "")]
+            NSPrintPanelAccessorySummaryItemDescriptionKey: NSLocalizedString(description, comment: "")]
 }
 
 

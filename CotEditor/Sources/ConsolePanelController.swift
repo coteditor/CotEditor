@@ -27,7 +27,8 @@
 
 import Cocoa
 
-private let ConsoleFontSize: CGFloat = 11.0
+// Constants
+private let consoleFontSize: CGFloat = 11.0
 
 
 final class ConsolePanelController: NSWindowController {
@@ -39,13 +40,13 @@ final class ConsolePanelController: NSWindowController {
     
     // MARK: Private Properties
     
-    private let fontSize: CGFloat = ConsoleFontSize
+    private let fontSize: CGFloat = consoleFontSize
     
     private let messageParagraphStyle: NSParagraphStyle = {
         // indent for message body
         let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
-        paragraphStyle.headIndent = ConsoleFontSize
-        paragraphStyle.firstLineHeadIndent = ConsoleFontSize
+        paragraphStyle.headIndent = consoleFontSize
+        paragraphStyle.firstLineHeadIndent = consoleFontSize
         return paragraphStyle
     }()
     
@@ -60,7 +61,7 @@ final class ConsolePanelController: NSWindowController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Lifecycle
     
     override var windowNibName: String? {
@@ -114,8 +115,7 @@ final class ConsolePanelController: NSWindowController {
 
 
 
-// MARK:
-// MARK: TextFinder Support
+// MARK: - TextFinder Support
 
 /// Map find actions to NSTextFinder, since find action key bindings are configured for TextFinder.
 extension ConsolePanelController {

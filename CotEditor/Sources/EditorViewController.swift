@@ -59,7 +59,7 @@ final class EditorViewController: NSSplitViewController {
     
     
     
-    // MARK:
+    // MARK: -
     // MARK: Split View Controller Methods
     
     /// setup UI
