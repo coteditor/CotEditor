@@ -67,7 +67,9 @@ final class EditorTextView: NSTextView, Themable {
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
     
-    private(set) lazy var completionTask: Debouncer = Debouncer { [weak self] in self?.performCompletion() }
+    private(set) lazy var completionTask: Debouncer = Debouncer { [weak container = self.textContainer] in  // NSTextView cannot be weak
+        (container?.textView as? EditorTextView)?.performCompletion()
+    }
     
     
     // MARK: Private Properties
