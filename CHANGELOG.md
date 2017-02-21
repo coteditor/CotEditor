@@ -11,6 +11,9 @@ develop
 
 
 
+3.1.5
+--------------------------
+
 ### Fixes
 
 - Fix an issue where the application could crash by auto-completion on OS X 10.10.
