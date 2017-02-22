@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -246,12 +246,20 @@ final class ThemeManager: SettingFileManager {
     
     // MARK: Private Methods
     
-    /// create ThemeDictionary from a file at the URL
-    private func themeDictionary(fileURL: URL) -> ThemeDictionary? {
+    /// Create ThemeDictionary from a file at the URL.
+    ///
+    /// - parameter fileURL: URL to a theme file.
+    /// - throws: CocoaError
+    private func themeDictionary(fileURL: URL) throws -> ThemeDictionary {
         
-        guard let data = try? Data(contentsOf: fileURL) else { return nil }
+        let data = try Data(contentsOf: fileURL)
+        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
         
-        return (try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)) as? ThemeDictionary
+        guard let themeDictionry = json as? ThemeDictionary else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        
+        return themeDictionry
     }
     
     
@@ -265,9 +273,8 @@ final class ThemeManager: SettingFileManager {
             let themeNameSet = NSMutableOrderedSet(array: strongSelf.bundledThemeNames)
             
             // load user themes if exists
-            if userDirURL.isReachable {
-                let fileURLs = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
-                                                                            options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])) ?? []
+            if let fileURLs = try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
+                                                                           options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
                 let userThemeNames = fileURLs
                     .filter { $0.pathExtension == strongSelf.filePathExtension }
                     .map { strongSelf.settingName(from: $0) }
@@ -280,10 +287,13 @@ final class ThemeManager: SettingFileManager {
             
             // cache definitions
             strongSelf.archivedThemes = (themeNameSet.array as! [String]).reduce([:]) { (dict, name) in
-                guard let themeURL = strongSelf.urlForUsedSetting(name: name) else { return dict }
+                guard
+                    let themeURL = strongSelf.urlForUsedSetting(name: name),
+                    let themeDictionary = try? strongSelf.themeDictionary(fileURL: themeURL)
+                    else { return dict }
                 
                 var dict = dict
-                dict[name] = strongSelf.themeDictionary(fileURL: themeURL)
+                dict[name] = themeDictionary
                 return dict
             }
             
@@ -310,7 +320,7 @@ final class ThemeManager: SettingFileManager {
         
         let url = self.urlForBundledSetting(name: "_Plain")!
         
-        return self.themeDictionary(fileURL: url)!
+        return try! self.themeDictionary(fileURL: url)
     }
     
 }
