@@ -82,7 +82,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @IBOutlet private weak var savePanelAccessoryView: NSView?
     
     private var readingEncoding: String.Encoding  // encoding to read document file
-    private var needsShowUpdateAlertWithBecomeKey = false
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var isVerticalText = false
@@ -670,8 +669,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // do nothing
         if option == .ignore { return }
         
-        // don't check twice if document is already marked as modified
-        guard !self.needsShowUpdateAlertWithBecomeKey else { return }
+        // don't check twice if already notified
+        guard !self.isExternalUpdateAlertShown else { return }
         
         guard let fileURL = self.fileURL else { return }
         
@@ -706,21 +705,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             switch option {
             case .ignore:
                 break
-                
             case .notify:
-                self?.notifyExternalFileUpdate()
-                
+                self?.showUpdatedByExternalProcessAlert()
             case .revert:
-                guard let strongSelf = self,
-                    let fileURL = strongSelf.fileURL,
-                    let fileType = strongSelf.fileType
-                    else { return }
-                
-                do {
-                    try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
-                } catch {
-                    strongSelf.presentErrorAsSheet(error)
-                }
+                self?.revertWithoutAsking()
             }
         }
     }
@@ -816,7 +804,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // string encoding
     
     /// reinterpret file with the desired encoding and show error dialog if failed
-    @discardableResult
     func reinterpretAndShowError(encoding: String.Encoding) {
         
         do {
@@ -1224,43 +1211,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// notify about external file update
-    private func notifyExternalFileUpdate() {
-        
-        // rise a flag
-        self.needsShowUpdateAlertWithBecomeKey = true
-        
-        if NSApp.isActive {
-            // display dialog immediately
-            self.showUpdatedByExternalProcessAlert()
-            
-        } else {
-            // alert first when application becomes active
-            NotificationCenter.default.addObserver(self, selector: #selector(showUpdatedByExternalProcessAlert), name: .NSApplicationDidBecomeActive, object: nil)
-            
-            // let application icon in Dock jump
-            NSApp.requestUserAttention(.informationalRequest)
-        }
-    }
-    
-    
     /// display alert about file modification by an external process
-    @objc private func showUpdatedByExternalProcessAlert() {
-    
-        NotificationCenter.default.removeObserver(self, name: .NSApplicationDidBecomeActive, object: nil)
+    private func showUpdatedByExternalProcessAlert() {
         
-        guard let fileURL = self.fileURL,
-            self.needsShowUpdateAlertWithBecomeKey,
-            !self.isExternalUpdateAlertShown  // do nothing if alert is already shown
-            else { return }
+        assert(Thread.isMainThread)
         
-        let messageText: String = {
-            if self.isDocumentEdited {
-                return "The file has been modified by another application. There are also unsaved changes in CotEditor."
-            } else {
-                return "The file has been modified by another application."
-            }
-        }()
+        // do nothing if alert is already shown
+        guard !self.isExternalUpdateAlertShown else { return }
+        
+        self.isExternalUpdateAlertShown = true
+        
+        let messageText = self.isDocumentEdited
+            ? "The file has been modified by another application. There are also unsaved changes in CotEditor."
+            : "The file has been modified by another application."
         
         let alert = NSAlert()
         alert.messageText = NSLocalizedString(messageText, comment: "")
@@ -1273,23 +1236,31 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.alertStyle = .critical
         }
         
-        self.isExternalUpdateAlertShown = true
-        self.windowForSheet?.orderFront(self)
-        
-        // display alert
         alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
-            guard let strongSelf = self else { return }
             
-            if returnCode == NSAlertSecondButtonReturn, let fileType = strongSelf.fileType {  // == Revert
-                do {
-                    try strongSelf.revert(toContentsOf: fileURL, ofType: fileType)
-                } catch {
-                    strongSelf.presentErrorAsSheet(error)
-                }
+            if returnCode == NSAlertSecondButtonReturn {  // == Revert
+                self?.revertWithoutAsking()
             }
             
-            strongSelf.isExternalUpdateAlertShown = false
-            strongSelf.needsShowUpdateAlertWithBecomeKey = false
+            self?.isExternalUpdateAlertShown = false
+        }
+    }
+    
+    
+    /// Revert receiver with current document file without asking to user before
+    private func revertWithoutAsking() {
+        
+        assert(Thread.isMainThread)
+        
+        guard
+            let fileURL = self.fileURL,
+            let fileType = self.fileType
+            else { return }
+        
+        do {
+            try self.revert(toContentsOf: fileURL, ofType: fileType)
+        } catch {
+            self.presentErrorAsSheet(error)
         }
     }
     
