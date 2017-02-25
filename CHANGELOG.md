@@ -10,6 +10,10 @@ develop
 - Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
 
 
+### Fixes
+
+- Fix an issue on macOS 10.11 where “No incompatible characters were found.” message in the incomptible characters pane didn't hide even when incompatible characters exist.
+
 
 3.1.5
 --------------------------

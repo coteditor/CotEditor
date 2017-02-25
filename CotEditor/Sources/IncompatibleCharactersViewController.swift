@@ -38,7 +38,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     }
     
     private dynamic var incompatibleCharacters: [IncompatibleCharacter] = []
-    private dynamic var isCharacterAvailable = false
+    private dynamic var characterAvailable = false
     private var isVisible = false
     
     @IBOutlet private var incompatibleCharsController: NSArrayController?
@@ -109,7 +109,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter]) {
         
         self.incompatibleCharacters = incompatibleCharacters
-        self.isCharacterAvailable = !incompatibleCharacters.isEmpty
+        self.characterAvailable = !incompatibleCharacters.isEmpty
         
         let ranges = incompatibleCharacters.map { $0.range }
         
