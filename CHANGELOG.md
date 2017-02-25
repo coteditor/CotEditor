@@ -13,6 +13,7 @@ develop
 ### Fixes
 
 - Fix an issue on macOS 10.11 where “No incompatible characters were found.” message in the incomptible characters pane didn't hide even when incompatible characters exist.
+- Fix an issue where a large amount of scrolling down didn't jumpt to the end of the target.
 
 
 3.1.5
