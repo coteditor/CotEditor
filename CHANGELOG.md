@@ -5,10 +5,6 @@ Change Log
 develop
 --------------------------
 
-### New Features
-
-- Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
-
 
 ### Fixes
 
@@ -47,6 +43,11 @@ develop
 
 3.1.3 (180)
 --------------------------
+
+### New Features
+
+- Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
+
 
 ### Improvements
 
