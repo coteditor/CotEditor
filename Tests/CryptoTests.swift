@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -47,6 +47,7 @@ class CryptoTests: XCTestCase {
         
         XCTAssertEqual(data.md5, data.md5)
         XCTAssertEqual(data.md5.count, 16)
+        XCTAssertEqual(data.md5.base64EncodedString(), "bqkCSZRNBpPwe8NYdPh8Wg==")
     }
 
 }
