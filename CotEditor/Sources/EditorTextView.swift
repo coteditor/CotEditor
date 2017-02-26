@@ -504,8 +504,8 @@ final class EditorTextView: NSTextView, Themable {
             return (self.layoutManager as? LayoutManager)?.textFont ?? super.font
         }
         
-        set (font) {
-            guard let font = font else { return }
+        set {
+            guard let font = newValue else { return }
             
             // 複合フォントで行間が等間隔でなくなる問題を回避するため、LayoutManager にもフォントを持たせておく
             // -> [NSTextView font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に

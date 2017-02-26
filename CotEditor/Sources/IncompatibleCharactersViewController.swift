@@ -80,8 +80,8 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     /// set delegate
     override var representedObject: Any? {
         
-        willSet (newObject) {
-            guard newObject is IncompatibleCharacterScanner else {
+        willSet {
+            guard newValue is IncompatibleCharacterScanner else {
                 assertionFailure("representedObject of \(self.className) must be an instance of \(IncompatibleCharacterScanner.self)")
                 return
             }

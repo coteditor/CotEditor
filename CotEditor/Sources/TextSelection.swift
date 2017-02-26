@@ -142,7 +142,8 @@ final class TextSelection: NSObject {
                 newValue?.count == 2,
                 let location = newValue?[0],
                 let length = newValue?[1],
-                let string = self.document?.string else { return }
+                let string = self.document?.string
+                else { return }
             
             let range = string.range(location: location, length: length)
             
