@@ -42,6 +42,12 @@ final class LineNumberView: NSRulerView {
     private let lineNumberFont: CGFont = LineNumberFont.regular.cgFont
     private let boldLineNumberFont: CGFont = LineNumberFont.bold.cgFont
     
+    private enum ColorStrength: CGFloat {
+        case normal = 0.75
+        case bold = 0.9
+        case stroke = 0.2
+    }
+    
     
     // MARK: Private Properties
     
@@ -83,13 +89,11 @@ final class LineNumberView: NSRulerView {
         NSGraphicsContext.saveGraphicsState()
         
         // fill background
-        self.backgroundColor.withAlphaComponent(0.08).setFill()
+        self.backgroundColor.setFill()
         NSBezierPath.fill(dirtyRect)
         
         // draw frame border (1px)
-        let textColor = self.textColor
-        let borderAlpha = 0.3 * textColor.alphaComponent
-        textColor.withAlphaComponent(borderAlpha).setStroke()
+        self.textColor(.stroke).setStroke()
         switch self.orientation {
         case .verticalRuler:
             NSBezierPath.strokeLine(from: NSPoint(x: self.frame.maxX - 0.5, y: dirtyRect.maxY),
@@ -131,7 +135,7 @@ final class LineNumberView: NSRulerView {
         
         context.setFont(self.lineNumberFont)
         context.setFontSize(fontSize)
-        context.setFillColor(self.textColor.cgColor)
+        context.setFillColor(self.textColor().cgColor)
         
         // prepare glyphs
         var wrappedMarkGlyph = CGGlyph()
@@ -216,6 +220,7 @@ final class LineNumberView: NSRulerView {
             }
             
             if isBold {
+                context.setFillColor(self.textColor(.bold).cgColor)
                 context.setFont(self.boldLineNumberFont)
             }
             
@@ -224,6 +229,7 @@ final class LineNumberView: NSRulerView {
             
             if isBold {
                 // back to the regular font
+                context.setFillColor(self.textColor().cgColor)
                 context.setFont(self.lineNumberFont)
             }
         }
@@ -321,7 +327,7 @@ final class LineNumberView: NSRulerView {
         
         // draw vertical text tics
         if isVerticalText {
-            context.setStrokeColor(textColor.withAlphaComponent(0.3).cgColor)
+            context.setStrokeColor(self.textColor(.stroke).cgColor)
             context.strokePath()
         }
         
@@ -377,15 +383,18 @@ final class LineNumberView: NSRulerView {
     
     
     /// return text color considering current accesibility setting
-    private var textColor: NSColor {
+    private func textColor(_ strength: ColorStrength = .normal) -> NSColor {
         
-        guard let textColor = self.textView?.textColor else {
-            return .textColor
-        }
-        if NSWorkspace.shared().accessibilityDisplayShouldIncreaseContrast {
-            return textColor
-        }
-        return textColor.withAlphaComponent(0.67)
+        let textColor = self.textView?.textColor ?? .textColor
+        
+        let alpha: CGFloat = {
+            if NSWorkspace.shared().accessibilityDisplayShouldIncreaseContrast && strength != .stroke {
+                return 1.0
+            }
+            return strength.rawValue
+        }()
+        
+        return textColor.withAlphaComponent(alpha)
     }
     
     
@@ -394,7 +403,7 @@ final class LineNumberView: NSRulerView {
         
         let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
         
-        return isDarkBackground ? .white : .black
+        return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
     }
     
     
@@ -436,7 +445,7 @@ private enum LineNumberFont {
         case .regular:
             return "AvenirNextCondensed-Regular"
         case .bold:
-            return "AvenirNextCondensed-Bold"
+            return "AvenirNextCondensed-DemiBold"
         }
     }
     
