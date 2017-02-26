@@ -592,7 +592,7 @@ final class EditorTextView: NSTextView, Themable {
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
-            layoutManager.ensureLayout(for: textContainer)
+            layoutManager.ensureLayout(forCharacterRange: NSRange(location: 0, length: range.max))
             let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
             let glyphRect = layoutManager
                 .boundingRect(forGlyphRange: glyphRange, in: textContainer)
