@@ -552,8 +552,8 @@ extension LineNumberView {
         let point = NSEvent.mouseLocation()  // screen based point
         
         // scroll text view if needed
-        let pointedRect = window.convertFromScreen(NSRect(origin: point, size: NSSize.zero))
-        let targetRect = textView.convert(pointedRect, to: nil)
+        let pointedRect = window.convertFromScreen(NSRect(origin: point, size: .zero))
+        let targetRect = textView.convert(pointedRect, from: nil)
         textView.scrollToVisible(targetRect)
         
         // select lines
