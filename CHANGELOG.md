@@ -9,10 +9,11 @@ develop
 
 - Fix an issue on macOS 10.11 where “No incompatible characters were found.” message in the incomptible characters pane didn't hide even when incompatible characters exist.
 - Fix an issue where a large amount of scrolling down didn't jumpt to the end of the target.
+- Fix an issue with sytnax style editor where a newly added row wasn't focused automatically.
 
 
 
-3.1.5
+3.1.5 (184)
 --------------------------
 
 ### Fixes

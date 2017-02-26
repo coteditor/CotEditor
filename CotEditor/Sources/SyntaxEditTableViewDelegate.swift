@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -46,31 +46,20 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
         
         let row = tableView.selectedRow
         
-        // the last row is selected
-        guard row + 1 == tableView.numberOfRows else { return }
+        // start editing automatically if the leftmost cell of the added row is blank
+        guard
+            row + 1 == tableView.numberOfRows,  // the last row is selected
+            let rowView = tableView.rowView(atRow: row, makeIfNecessary: true),
+            let (column, textField) = (0 ..< rowView.numberOfColumns).lazy  // find the leftmost text field column
+                .flatMap({ (column) -> (Int, NSTextField)? in
+                    guard let textField = (rowView.view(atColumn: column) as? NSTableCellView)?.textField else { return nil }
+                    return (column, textField)
+                }).first,
+            textField.stringValue.isEmpty
+            else { return }
         
         tableView.scrollRowToVisible(row)
-        
-        guard let rowView = tableView.rowView(atRow: row, makeIfNecessary: false) else { return }
-        
-        // find the leftmost text field column
-        var column = -1
-        for index in 0 ..< rowView.numberOfColumns {
-            if (rowView.view(atColumn: column) as? NSTableCellView)?.textField != nil {
-                column = index
-                break
-            }
-        }
-        guard column < 0 else { return }  // no text field found
-        
-        // proceed on the next run loop
-        //   -> Since the string of the selected cell cannot be read at this point.
-        DispatchQueue.main.async {
-            // start editing automatically if the leftmost cell of the added row is blank
-            if (rowView.view(atColumn: column) as? NSTableCellView)?.textField?.stringValue == "" {
-                tableView.editColumn(column, row: row, with: nil, select: true)
-            }
-        }
+        tableView.editColumn(column, row: row, with: nil, select: true)
     }
     
     
