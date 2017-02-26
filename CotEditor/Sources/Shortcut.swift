@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -123,8 +123,9 @@ struct Shortcut: Hashable, CustomStringConvertible {
     var keySpecChars: String {
         
         let modifierCharacters = ModifierKey.all
-            .filter { key in self.modifierMask.contains(key.mask) }
-            .reduce("") { (chars, key) in chars + key.keySpecChar }
+            .filter { self.modifierMask.contains($0.mask) }
+            .map { $0.keySpecChar }
+            .joined()
         
         return modifierCharacters + self.keyEquivalent
     }
@@ -176,8 +177,9 @@ struct Shortcut: Hashable, CustomStringConvertible {
     private var printableModifierMask: String {
         
         return ModifierKey.all
-            .filter { key in self.modifierMask.contains(key.mask) }
-            .reduce("") { (partical, key) in partical + key.symbol }
+            .filter { self.modifierMask.contains($0.mask) }
+            .map { $0.symbol }
+            .joined()
     }
     
     

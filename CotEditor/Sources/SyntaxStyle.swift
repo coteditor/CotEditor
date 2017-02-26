@@ -49,11 +49,10 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     let completionWords: [String]?
     
     fileprivate(set) var outlineItems: [OutlineItem] = [] {
+        
         didSet {
-            let items = self.outlineItems
-            
             // inform delegate about outline items update
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.async { [weak self, items = self.outlineItems] in
                 guard let strongSelf = self else { return }
                 
                 strongSelf.delegate?.syntaxStyle(strongSelf, didParseOutline: items)
