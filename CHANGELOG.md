@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Update Python syntax style for Python 3.6.   
 - Improve line number drawing.
 
 
