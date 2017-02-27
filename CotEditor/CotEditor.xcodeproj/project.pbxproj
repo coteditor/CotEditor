@@ -491,6 +491,8 @@
 		2AE52F231D175A9400D60A32 /* SizeSettingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F211D175A9400D60A32 /* SizeSettingWindowController.swift */; };
 		2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
+		2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
+		2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
 		2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
 		2AED46701E425CD200751C45 /* TextFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED466F1E425CD200751C45 /* TextFind.swift */; };
@@ -1052,6 +1054,7 @@
 		2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColorTransformer.swift; sourceTree = "<group>"; };
 		2AE52F211D175A9400D60A32 /* SizeSettingWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeSettingWindowController.swift; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
+		2AEC48321E641E4F00FB0F89 /* Snippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		2AED466F1E425CD200751C45 /* TextFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFind.swift; sourceTree = "<group>"; };
 		2AED46721E43942300751C45 /* TextFindTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindTests.swift; sourceTree = "<group>"; };
@@ -1561,6 +1564,7 @@
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
 				2A9C370A1D66E99400774BA4 /* BracePair.swift */,
+				2AEC48321E641E4F00FB0F89 /* Snippet.swift */,
 				2A4682B11D2F6B580005410E /* FIleDropComposer.swift */,
 				2AA7E97C1DBAAC950083B7ED /* Script.swift */,
 				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
@@ -2275,6 +2279,7 @@
 				2AA4D3781D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				2A6FD9EE1D3A85D700A59784 /* String+NSRange.swift in Sources */,
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
+				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A7646EC1D49035500350674 /* SettingFileManager.swift in Sources */,
 				2A1CD5551DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */,
 				2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
@@ -2437,6 +2442,7 @@
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2AD69B881D3E4FCD00FBD998 /* Editable.swift in Sources */,
 				2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
+				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2AF073E61D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */,
 				2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */,
 				2AA375451D403F110080C27C /* String+Encoding.swift in Sources */,
