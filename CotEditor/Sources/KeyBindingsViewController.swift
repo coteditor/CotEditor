@@ -287,6 +287,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     dynamic var snippets = [SnippetItem]()
     
     @IBOutlet private var snippetArrayController: NSArrayController?
+    @IBOutlet private var formatTextView: TokenTextView?
     
     
     
@@ -306,6 +307,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         
         super.viewDidLoad()
         
+        self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
         self.setup(snippets: SnippetKeyBindingManager.shared.snippets(defaults: false))
     }
     

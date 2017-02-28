@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" customClass="SnippetKeyBindingsViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
+                <outlet property="formatTextView" destination="57" id="Akp-5w-TxQ"/>
                 <outlet property="outlineView" destination="86" id="cXw-yD-mOE"/>
                 <outlet property="snippetArrayController" destination="98" id="hVp-m9-i69"/>
                 <outlet property="view" destination="55" id="qMB-nC-eiN"/>
@@ -40,7 +41,7 @@
                         <rect key="frame" x="1" y="1" width="462" height="58"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView importsGraphics="NO" richText="NO" allowsUndo="YES" smartInsertDelete="YES" id="57">
+                            <textView importsGraphics="NO" richText="NO" allowsUndo="YES" smartInsertDelete="YES" id="57" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="462" height="58"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

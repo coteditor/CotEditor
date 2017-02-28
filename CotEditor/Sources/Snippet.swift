@@ -27,11 +27,17 @@
 
 import Foundation
 
+
 struct Snippet {
     
-    private enum Variable: String {
+    enum Variable: String, TokenRepresentable {
         
-        case cursor = "<<<CURSOR>>>"
+        static let prefix = "<<<"
+        static let suffix = ">>>"
+        
+        case cursor = "CURSOR"
+        
+        static let all: [Variable] = [.cursor]
     }
     
     
@@ -48,7 +54,7 @@ struct Snippet {
         var string = string
         
         // cursor position
-        if let range = string.range(of: Variable.cursor.rawValue) {
+        if let range = string.range(of: Variable.cursor.token) {
             let nsRange = string.nsRange(from: range)
             
             string = string.replacingCharacters(in: range, with: "")
