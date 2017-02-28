@@ -84,6 +84,10 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidLoad()
         
+        // set background color
+        self.view.wantsLayer = true
+        self.view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+        
         // hide as default
         self.leftButton!.isHidden = true
         self.rightButton!.isHidden = true

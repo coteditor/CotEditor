@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,7 +38,7 @@
         <scene sceneID="JxK-9F-xcJ">
             <objects>
                 <viewController id="KjS-UJ-AjC" customClass="NavigationBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" verticalCompressionResistancePriority="249" id="Fb7-9r-keA" customClass="OpaqueView" customModule="CotEditor" customModuleProvider="target">
+                    <view key="view" verticalCompressionResistancePriority="249" id="Fb7-9r-keA">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
