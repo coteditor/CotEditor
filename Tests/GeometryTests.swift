@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -49,6 +49,7 @@ class GeometryTests: XCTestCase {
     func testOffset() {
         
         XCTAssertEqual(CGPoint(x: 2, y:3).offsetBy(dx: 4, dy: 5), CGPoint(x: 6, y: 8))
+        XCTAssertEqual(CGPoint(x: 2, y:3).offset(by: -CGPoint(x: 2, y:3)), CGPoint.zero)
     }
 
 }

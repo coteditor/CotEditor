@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -70,9 +70,21 @@ extension CGRect: Scalable {
 
 extension CGPoint {
     
-    func offsetBy(dx: CGFloat, dy: CGFloat) -> CGPoint {
+    static prefix func - (point: CGPoint) -> CGPoint {
+        
+        return CGPoint(x: -point.x, y: -point.y)
+    }
+    
+    
+    func offsetBy(dx: CGFloat = 0, dy: CGFloat = 0) -> CGPoint {
         
         return CGPoint(x: self.x + dx, y: self.y + dy)
+    }
+    
+    
+    func offset(by point: CGPoint) -> CGPoint {
+        
+        return self.offsetBy(dx: point.x, dy: point.y)
     }
     
 }
@@ -96,6 +108,12 @@ extension CGRect {
     var mid: CGPoint {
         
         return CGPoint(x: self.midX, y: self.midY)
+    }
+    
+    
+    func offset(by point: CGPoint) -> CGRect {
+        
+        return self.offsetBy(dx: point.x, dy: point.y)
     }
     
 }

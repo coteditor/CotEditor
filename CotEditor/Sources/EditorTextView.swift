@@ -594,9 +594,8 @@ final class EditorTextView: NSTextView, Themable {
         {
             layoutManager.ensureLayout(forCharacterRange: NSRange(location: 0, length: range.max))
             let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-            let glyphRect = layoutManager
-                .boundingRect(forGlyphRange: glyphRange, in: textContainer)
-                .offsetBy(dx: self.textContainerOrigin.x, dy: self.textContainerOrigin.y)
+            let glyphRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+                .offset(by: self.textContainerOrigin)
             
             super.scrollToVisible(glyphRect)  // move minimum distance
             return
@@ -1174,9 +1173,7 @@ private extension NSTextView {
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-        let containerOrigin = self.textContainerOrigin
-        let rect = boundingRect.offsetBy(dx: containerOrigin.x,
-                                         dy: containerOrigin.y)
+        let rect = boundingRect.offset(by: self.textContainerOrigin)
         
         return self.convertToLayer(rect)
     }

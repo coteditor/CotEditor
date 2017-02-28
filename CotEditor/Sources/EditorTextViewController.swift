@@ -371,7 +371,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         var rect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
         rect.origin.x = textContainer.lineFragmentPadding
         rect.size.width = textContainer.containerSize.width - 2 * rect.minX
-        rect = rect.offsetBy(dx: textView.textContainerOrigin.x, dy: textView.textContainerOrigin.y)
+        rect = rect.offset(by: textView.textContainerOrigin)
         
         guard textView.lineHighlightRect != rect else { return }
         

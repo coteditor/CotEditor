@@ -134,8 +134,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 // calculate position to draw glyph
                 let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                let point = lineOrigin.offsetBy(dx: origin.x + glyphLocation.x,
-                                                dy: origin.y)
+                let point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x)
                 
                 // draw character
                 glyphString.draw(at: point)
