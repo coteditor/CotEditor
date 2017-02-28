@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -288,6 +288,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     
     @IBOutlet private var snippetArrayController: NSArrayController?
     @IBOutlet private var formatTextView: TokenTextView?
+    @IBOutlet private var variableInsertionMenu: NSPopUpButton?
     
     
     
@@ -309,6 +310,12 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         
         self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
         self.setup(snippets: SnippetKeyBindingManager.shared.snippets(defaults: false))
+        
+        // setup variable menu
+        for variable in Snippet.Variable.all {
+            let item = NSMenuItem(title: variable.token, action: #selector(insertVariable), keyEquivalent: "")
+            self.variableInsertionMenu!.menu!.addItem(item)
+        }
     }
     
     
@@ -366,6 +373,36 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         
         if notification.object is NSTextView {
             self.saveSettings()
+        }
+    }
+    
+    
+    
+    // MARK: Action Messages
+    
+    /// variable insertion menu was selected
+    @IBAction func insertVariable(_ sender: Any?) {
+        
+        guard let menuItem = sender as? NSMenuItem else { return }
+        guard let textView = self.formatTextView else { return }
+        
+        let title = menuItem.title
+        let range = textView.rangeForUserTextChange
+        
+        // cannot insert multiple cursor
+        if
+            title == Snippet.Variable.cursor.token,
+            let string = textView.string,
+            string.contains(title)
+        {
+            NSBeep()
+            return
+        }
+        
+        self.view.window?.makeFirstResponder(textView)
+        if textView.shouldChangeText(in: range, replacementString: title) {
+            textView.replaceCharacters(in: range, with: title)
+            textView.didChangeText()
         }
     }
     

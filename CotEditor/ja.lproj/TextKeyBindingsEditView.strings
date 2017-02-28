@@ -41,6 +41,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "152"; */
 "152.title" = "挿入文字列のフォーマット：";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "An8-sr-spM"; */
+"An8-sr-spM.title" = "変数を挿入";
 /* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "mIh-YA-eHt"; */
 "mIh-YA-eHt.ibShadowedNoSelectionPlaceholder" = "アクションを選択してください。";
 

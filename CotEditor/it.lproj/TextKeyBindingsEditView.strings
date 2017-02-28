@@ -42,6 +42,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "152"; */
 "152.title" = "Formato di inserimento:";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "An8-sr-spM"; */
+"An8-sr-spM.title" = "Insert Variable";  // FIXME: added
 /* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "mIh-YA-eHt"; */
 "mIh-YA-eHt.ibShadowedNoSelectionPlaceholder" = "Selezionare l’azione.";
 

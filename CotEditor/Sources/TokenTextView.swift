@@ -109,7 +109,7 @@ class TokenTextView: NSTextView {
         guard
             granularity == .selectByWord,
             let textStorage = self.textStorage,
-            textStorage.attribute(tokenAttributeName, at: proposedCharRange.location, effectiveRange: &effectiveRange) != nil,
+            textStorage.attribute(tokenAttributeName, at: proposedCharRange.location, longestEffectiveRange: &effectiveRange, in: textStorage.string.nsRange) != nil,
             effectiveRange != .notFound
             else { return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity) }
         
