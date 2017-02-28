@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
-        guard let textField = (rowView.view(atColumn: 0)  as? NSTableCellView)?.textField else { return }
+        guard let textField = (rowView.view(atColumn: 0) as? NSTableCellView)?.textField else { return }
         
         let cfEncoding = CFStringEncoding(self.encodings[row].uint32Value)
         
@@ -103,17 +103,9 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         // update enability of "Delete Separator" button
-        self.deleteSeparatorButton?.isEnabled = {
-            for index in self.tableView!.selectedRowIndexes.sorted() {
-                let encoding = self.encodings[index].uint32Value
-                
-                if encoding == kCFStringEncodingInvalidId {
-                    return true
-                }
-            }
-            
-            return false
-        }()
+        self.deleteSeparatorButton?.isEnabled = self.tableView!.selectedRowIndexes.contains { index in
+            self.encodings[index].uint32Value == kCFStringEncodingInvalidId
+        }
     }
     
     
@@ -193,12 +185,12 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         NSAnimationContext.runAnimationGroup({ context in
             // update UI
             tableView.insertRows(at: indexes, withAnimation: .effectGap)
-            }, completionHandler: { [weak self] in
-                // update data
-                let item = NSNumber(value: kCFStringEncodingInvalidId)
-                self?.encodings.insert(item, at: rowIndex)
-                
-                tableView.selectRowIndexes(indexes, byExtendingSelection: false)
+        }, completionHandler: { [weak self] in
+            // update data
+            let item = NSNumber(value: kCFStringEncodingInvalidId)
+            self?.encodings.insert(item, at: rowIndex)
+            
+            tableView.selectRowIndexes(indexes, byExtendingSelection: false)
         })
     }
     
@@ -207,24 +199,19 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     private func deleteSeparators(at rowIndexes: IndexSet) {
         
         // pick only separators up
-        var toDeleteIndexes = IndexSet()
-        for index in rowIndexes.sorted() {
-            let encoding = self.encodings[index].uint32Value
-            
-            if encoding == kCFStringEncodingInvalidId {
-                toDeleteIndexes.insert(index)
-            }
+        let toDeleteIndexes = rowIndexes.filteredIndexSet { index in
+            self.encodings[index].uint32Value == kCFStringEncodingInvalidId
         }
-        guard !toDeleteIndexes.isEmpty else { return }
         
+        guard !toDeleteIndexes.isEmpty else { return }
         guard let tableView = self.tableView else { return }
         
         NSAnimationContext.runAnimationGroup({ context in
             // update UI
             tableView.removeRows(at: toDeleteIndexes, withAnimation: [.slideUp, .effectFade])
-            }, completionHandler: { [weak self] in
-                // update data
-                self?.encodings.remove(in: toDeleteIndexes)
+        }, completionHandler: { [weak self] in
+            // update data
+            self?.encodings.remove(in: toDeleteIndexes)
         })
     }
     
