@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -387,7 +387,7 @@ final class ShellScript: Script {
         guard self.descriptor.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.descriptor.url)
         }
-        guard self.descriptor.url.isExecutable ?? false else {
+        guard try self.descriptor.url.resourceValues(forKeys: [.isExecutableKey]).isExecutable ?? false else {
             throw ScriptFileError(kind: .permission, url: self.descriptor.url)
         }
         guard let script = self.content, !script.isEmpty else {
