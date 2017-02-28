@@ -11,7 +11,7 @@
                 <outlet property="fileDropController" destination="451" id="Do3-c6-cpR"/>
                 <outlet property="formatTextView" destination="532" id="C5S-P7-taE"/>
                 <outlet property="glossaryTextView" destination="586" id="EoC-Yf-e8m"/>
-                <outlet property="tokenInsertionMenu" destination="536" id="SbL-5D-1vh"/>
+                <outlet property="variableInsertionMenu" destination="536" id="5Kg-4K-qh2"/>
                 <outlet property="view" destination="747" id="ImZ-nW-JkE"/>
             </connections>
         </customObject>
@@ -110,16 +110,16 @@ The parent directory name of the dropped file.
                     </scroller>
                 </scrollView>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="536">
-                    <rect key="frame" x="337" y="156" width="196" height="22"/>
+                    <rect key="frame" x="367" y="156" width="166" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="XCP-jV-qFG"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="XCP-jV-qFG"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Insert Pre-Formatted String" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
+                    <popUpButtonCell key="cell" type="push" title="Insert Variable" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" title="OtherViews" id="543">
                             <items>
-                                <menuItem title="Insert Pre-Formatted String" hidden="YES" id="541"/>
+                                <menuItem title="Insert Variable" hidden="YES" id="541"/>
                             </items>
                         </menu>
                     </popUpButtonCell>

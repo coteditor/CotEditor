@@ -42,8 +42,8 @@
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
 "3332.title" = "Format des einzufügenden Textes:";
 
-/* Class = "NSMenuItem"; title = "Insert Pre-Formatted String"; ObjectID = "541"; */
-"541.title" = "Vorformatierte Zeichenkette hinzufügen";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
+"541.title" = "Variable hinzufügen";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "Kein Suffix ausgewählt.";
