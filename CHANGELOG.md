@@ -14,6 +14,11 @@ Change Log
 3.1.6 (186)
 --------------------------
 
+### New Features
+
+- Now, key binding snippets can set cursor position.
+
+
 ### Improvements
 
 - Draw capsule for pre-formatted text in the insertion format field in the File Drop pane.
