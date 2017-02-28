@@ -16,6 +16,15 @@ Change Log
 
 ### Improvements
 
+- Draw capsule for pre-formatted text in the insertion format field in the File Drop pane.
+
+
+
+develop
+--------------------------
+
+### Improvements
+
 - Update Python syntax style for Python 3.6.
 - Improve line number drawing.
 

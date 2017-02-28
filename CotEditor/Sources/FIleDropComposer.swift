@@ -37,18 +37,21 @@ final class FileDropComposer {
     }
     
     
-    enum Token: String {
+    enum Token: String, TokenRepresentable {
         
-        case absolutePath = "<<<ABSOLUTE-PATH>>>"
-        case relativePath = "<<<RELATIVE-PATH>>>"
-        case filename = "<<<FILENAME>>>"
-        case filenameWithoutExtension = "<<<FILENAME-NOSUFFIX>>>"
-        case fileExtension = "<<<FILEEXTENSION>>>"
-        case fileExtensionLowercase = "<<<FILEEXTENSION-LOWER>>>"
-        case fileExtensionUppercase = "<<<FILEEXTENSION-UPPER>>>"
-        case directory = "<<<DIRECTORY>>>"
-        case imageWidth = "<<<IMAGEWIDTH>>>"
-        case imageHeight = "<<<IMAGEHEIGHT>>>"
+        static let prefix = "<<<"
+        static let suffix = ">>>"
+        
+        case absolutePath = "ABSOLUTE-PATH"
+        case relativePath = "RELATIVE-PATH"
+        case filename = "FILENAME"
+        case filenameWithoutExtension = "FILENAME-NOSUFFIX"
+        case fileExtension = "FILEEXTENSION"
+        case fileExtensionLowercase = "FILEEXTENSION-LOWER"
+        case fileExtensionUppercase = "FILEEXTENSION-UPPER"
+        case directory = "DIRECTORY"
+        case imageWidth = "IMAGEWIDTH"
+        case imageHeight = "IMAGEHEIGHT"
         
         static let pathTokens: [Token] = [.absolutePath, .relativePath, .filename, .filenameWithoutExtension, .fileExtension, .fileExtensionLowercase, .fileExtensionUppercase, .directory]
         static let imageTokens: [Token] = [.imageWidth, .imageHeight]
@@ -118,26 +121,26 @@ final class FileDropComposer {
         
         // replace template
         var dropText = template
-            .replacingOccurrences(of: Token.absolutePath.rawValue, with: droppedFileURL.path)
-            .replacingOccurrences(of: Token.relativePath.rawValue, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
-            .replacingOccurrences(of: Token.filename.rawValue, with: droppedFileURL.lastPathComponent)
-            .replacingOccurrences(of: Token.filenameWithoutExtension.rawValue, with: droppedFileURL.deletingPathExtension().lastPathComponent)
-            .replacingOccurrences(of: Token.fileExtension.rawValue, with: pathExtension)
-            .replacingOccurrences(of: Token.fileExtensionLowercase.rawValue, with: pathExtension.lowercased())
-            .replacingOccurrences(of: Token.fileExtensionUppercase.rawValue, with: pathExtension.uppercased())
-            .replacingOccurrences(of: Token.directory.rawValue, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
+            .replacingOccurrences(of: Token.absolutePath.token, with: droppedFileURL.path)
+            .replacingOccurrences(of: Token.relativePath.token, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
+            .replacingOccurrences(of: Token.filename.token, with: droppedFileURL.lastPathComponent)
+            .replacingOccurrences(of: Token.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
+            .replacingOccurrences(of: Token.fileExtension.token, with: pathExtension)
+            .replacingOccurrences(of: Token.fileExtensionLowercase.token, with: pathExtension.lowercased())
+            .replacingOccurrences(of: Token.fileExtensionUppercase.token, with: pathExtension.uppercased())
+            .replacingOccurrences(of: Token.directory.token, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
         
         // get image dimension if needed
         //   -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
-        if template.contains(Token.imageWidth.rawValue) || template.contains(Token.imageHeight.rawValue) {
+        if template.contains(Token.imageWidth.token) || template.contains(Token.imageHeight.token) {
             var imageRep: NSImageRep?
             NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { (newURL: URL) in
                 imageRep = NSImageRep(contentsOf: newURL)
             }
             if let imageRep = imageRep {
                 dropText = dropText
-                    .replacingOccurrences(of: Token.imageWidth.rawValue, with: String(imageRep.pixelsWide))
-                    .replacingOccurrences(of: Token.imageHeight.rawValue, with: String(imageRep.pixelsHigh))
+                    .replacingOccurrences(of: Token.imageWidth.token, with: String(imageRep.pixelsWide))
+                    .replacingOccurrences(of: Token.imageHeight.token, with: String(imageRep.pixelsHigh))
             }
         }
         
