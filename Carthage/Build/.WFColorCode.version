@@ -1,0 +1,10 @@
+{
+  "xcodeVersion" : "Xcode 8.2.1\nBuild version 8C1002",
+  "commitish" : "2.0.2",
+  "Mac" : [
+    {
+      "name" : "ColorCode",
+      "md5" : "6f764227dcb82a78b7e227ba7a09f29a"
+    }
+  ]
+}
