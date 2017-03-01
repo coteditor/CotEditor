@@ -38,6 +38,16 @@ struct Snippet {
         case cursor = "CURSOR"
         
         static let all: [Variable] = [.cursor]
+        
+        
+        var localizedDescription: String? {
+            
+            switch self {
+            case .cursor:
+                return NSLocalizedString("The cursor position after inserting the snippet.", comment: "")
+            }
+        }
+        
     }
     
     

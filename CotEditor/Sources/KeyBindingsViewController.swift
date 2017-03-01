@@ -314,6 +314,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         // setup variable menu
         for variable in Snippet.Variable.all {
             let item = NSMenuItem(title: variable.token, action: #selector(insertVariable), keyEquivalent: "")
+            item.toolTip = variable.localizedDescription
             self.variableInsertionMenu!.menu!.addItem(item)
         }
     }
