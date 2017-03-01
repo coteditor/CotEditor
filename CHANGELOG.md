@@ -7,17 +7,17 @@ develop
 
 ### Improvements
 
-- Update Python syntax style for Python 3.6.   
+- Update Python syntax style for Python 3.6.
 - Improve line number drawing.
 
 
 ### Fixes
 
-- Fix an issue on macOS 10.11 where the application could crash on saving a document that contains incompatible characters.
-- Fix an issue on macOS 10.11 where “No incompatible characters were found.” message in the incomptible characters pane didn't hide even when incompatible characters exist.
+- Fix an issue on OS X 10.11 where the application could crash on saving a document that contains incompatible characters.
+- Fix an issue on OS X 10.11 where “No incompatible characters were found.” message in the incompatible characters pane didn't hide even when incompatible characters exist.
 - Fix an issue where editor view didn't scroll by dragging on the line number view when the view is zoomed out.
-- Fix an issue where a large amount of scrolling down didn't jumpt to the end of the target.
-- Fix an issue with sytnax style editor where a newly added row wasn't focused automatically.
+- Fix an issue where a large amount of scrolling down didn't jump to the end of the target.
+- Fix an issue with syntax style editor where a newly added row wasn't focused automatically.
 
 
 
