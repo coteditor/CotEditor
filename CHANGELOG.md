@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.1.7 (188)
+--------------------------
+
+### Fixes
+
+- Fix an issue on MacBook Pro with Touch Bar where the application crashed immediately after launch.
+
+
+
 3.1.6 (186)
 --------------------------
 
