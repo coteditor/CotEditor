@@ -65,13 +65,13 @@ extension Editable {
             return string.convert(from: .LF, to: self.lineEnding, range: textView.selectedRange)
         }
         
-        set (selectedRange) {
+        set {
             guard
                 let textView = self.textView,
                 let string = textView.string
                 else { return }
             
-            textView.selectedRange = string.convert(from: self.lineEnding, to: .LF, range: selectedRange)
+            textView.selectedRange = string.convert(from: self.lineEnding, to: .LF, range: newValue)
         }
     }
     

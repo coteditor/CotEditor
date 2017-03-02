@@ -504,8 +504,8 @@ final class EditorTextView: NSTextView, Themable {
             return (self.layoutManager as? LayoutManager)?.textFont ?? super.font
         }
         
-        set (font) {
-            guard let font = font else { return }
+        set {
+            guard let font = newValue else { return }
             
             // 複合フォントで行間が等間隔でなくなる問題を回避するため、LayoutManager にもフォントを持たせておく
             // -> [NSTextView font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
@@ -592,10 +592,10 @@ final class EditorTextView: NSTextView, Themable {
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
+            layoutManager.ensureLayout(forCharacterRange: NSRange(location: 0, length: range.max))
             let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-            let glyphRect = layoutManager
-                .boundingRect(forGlyphRange: glyphRange, in: textContainer)
-                .offsetBy(dx: self.textContainerOrigin.x, dy: self.textContainerOrigin.y)
+            let glyphRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+                .offset(by: self.textContainerOrigin)
             
             super.scrollToVisible(glyphRect)  // move minimum distance
             return
@@ -1173,9 +1173,7 @@ private extension NSTextView {
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-        let containerOrigin = self.textContainerOrigin
-        let rect = boundingRect.offsetBy(dx: containerOrigin.x,
-                                         dy: containerOrigin.y)
+        let rect = boundingRect.offset(by: self.textContainerOrigin)
         
         return self.convertToLayer(rect)
     }

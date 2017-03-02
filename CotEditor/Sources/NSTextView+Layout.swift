@@ -37,8 +37,7 @@ extension NSTextView {
               let layoutManager = self.layoutManager,
               let textContainer = self.textContainer else { return nil }
         
-        let containerOrigin = self.textContainerOrigin
-        let visibleRect = scrollView.documentVisibleRect.offsetBy(dx: -containerOrigin.x, dy: -containerOrigin.y)
+        let visibleRect = scrollView.documentVisibleRect.offset(by: -self.textContainerOrigin)
         let glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
         
         return layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
@@ -117,7 +116,7 @@ extension NSTextView {
         let isVertical = (self.layoutOrientation == .vertical)
         let visibleRect = scrollView.documentVisibleRect
         let visibleOrigin = NSPoint(x: visibleRect.minX, y: isVertical ? visibleRect.maxY : visibleRect.minY)
-        let centerFromClipOrigin = point.offsetBy(dx: -visibleOrigin.x, dy: -visibleOrigin.y).scaled(to: currentScale)  // from top-left
+        let centerFromClipOrigin = point.offset(by: -visibleOrigin).scaled(to: currentScale)  // from top-left
         
         self.scale = scale
         

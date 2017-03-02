@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -40,7 +40,8 @@ extension String {
                 
                 return UnicodeScalar(scalar.value + UnicodeScalar.characterWidthDistance)!
             }
-            .reduce("") { (string, scalar) in string + String(scalar) }
+            .map { String($0) }
+            .joined()
     }
     
     
@@ -53,7 +54,8 @@ extension String {
                 
                 return UnicodeScalar(scalar.value - UnicodeScalar.characterWidthDistance)!
             }
-            .reduce("") { (string, scalar) in string + String(scalar) }
+            .map { String($0) }
+            .joined()
     }
     
     

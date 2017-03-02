@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,36 +28,46 @@
 import Foundation
 import CommonCrypto
 
-extension String {
+protocol MD5Convertible {
+    
+    var md5: Self { get }
+}
+
+
+extension String: MD5Convertible {
     
     /// hash value in MD5
     var md5: String {
         
         guard let data = self.data(using: .utf8) else { return "" }
         
-        var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-        CC_MD5(data.bytes, CC_LONG(data.count), &hash)
-        
-        return hash.reduce("") { $0 + String(format: "%02x", $1) }
+        return data.hash
+            .map { String(format: "%02x", $0) }
+            .joined()
     }
     
 }
 
 
 
-extension Data {
+extension Data: MD5Convertible {
     
     /// hash value in MD5
     var md5: Data {
         
-        var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-        CC_MD5(self.bytes, CC_LONG(self.count), &hash)
-        
-        return Data(bytes: hash, count: hash.count)
+        return Data(bytes: self.hash)
     }
     
     
-    fileprivate var bytes: [UInt8] {
+    fileprivate var hash: [UInt8] {
+        
+        var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+        CC_MD5(self.bytes, CC_LONG(self.count), &hash)
+        return hash
+    }
+    
+    
+    private var bytes: [UInt8] {
         
         var bytes = [UInt8](repeating: 0, count: self.count)
         self.copyBytes(to: &bytes, count: self.count)

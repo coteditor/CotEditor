@@ -8,12 +8,12 @@ interpreters:
 - keyString: "python2"
 - keyString: "python3"
 metadata:
-  version: "2.3.2"
-  lastModified: "2016-03-07"
+  version: "2.4.0"
+  lastModified: "2017-02-27"
   distributionURL: "https://coteditor.com"
   author: "nanasiya"
   license: "Same as CotEditor"
-  description: "Support both Python2 and Python3 (<= 3.5).\n\nMaintained by 1024jp since 2013."
+  description: "Support both Python2 and Python3 (<= 3.6).\n\nMaintained by 1024jp since 2013."
 outlineMenu:
 - beginString: "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$"
   keyString: "$1$2"
@@ -112,6 +112,7 @@ commands:
 - beginString: "__imul__"
 - beginString: "__index__"
 - beginString: "__init__"
+- beginString: "__init_subclass__"
 - beginString: "__instancecheck__"
 - beginString: "__int__"
 - beginString: "__inv__"
@@ -166,6 +167,7 @@ commands:
 - beginString: "__rtruediv__"
 - beginString: "__rxor__"
 - beginString: "__set__"
+- beginString: "__set_name__"
 - beginString: "__setattr__"
 - beginString: "__setitem__"
 - beginString: "__setslice__"
@@ -435,19 +437,19 @@ values:
 - beginString: "softspace"
 - beginString: "True"
 numbers:
-- beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?"
+- beginString: "((?<!\\w)|[-+])(?:\\.[0-9][0-9_]*|[0-9][0-9_]*\\.|[0-9]+\\.[0-9][0-9_]*|[0-9][0-9_]*)(e[+-]?[0-9][0-9_]*)?[jl]?"
   ignoreCase: true
   regularExpression: true
   description: "decimal"
-- beginString: "\\b0b[01]+l?"
+- beginString: "\\b0b[01][01_]*l?"
   ignoreCase: true
   regularExpression: true
   description: "binary"
-- beginString: "\\b0o[0-7]+l?"
+- beginString: "\\b0o[0-7][0-7_]*l?"
   ignoreCase: true
   regularExpression: true
   description: "octal"
-- beginString: "\\b0x[0-9a-f]+l?"
+- beginString: "\\b0x[0-9a-f][0-9a-f_]*l?"
   ignoreCase: true
   regularExpression: true
   description: "hexadecimal"

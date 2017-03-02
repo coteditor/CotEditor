@@ -84,7 +84,11 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidLoad()
         
-        // hide as default
+        // set background color
+        self.view.wantsLayer = true
+        self.view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+        
+        // hide outline navigations
         self.leftButton!.isHidden = true
         self.rightButton!.isHidden = true
         self.outlineMenu!.isHidden = true
@@ -116,7 +120,6 @@ final class NavigationBarController: NSViewController {
             
             self.outlineMenu!.removeAllItems()
             
-            // set buttons status here to avoid flicking (2008-05-17)
             self.prevButton!.isHidden = outlineItems.isEmpty
             self.nextButton!.isHidden = outlineItems.isEmpty
             self.outlineMenu!.isHidden = outlineItems.isEmpty
@@ -178,9 +181,9 @@ final class NavigationBarController: NSViewController {
     /// can select prev item in outline menu?
     var canSelectPrevItem: Bool {
         
-        guard let index = self.outlineMenu?.indexOfSelectedItem else { return false }
+        guard let menu = self.outlineMenu else { return false }
         
-        return (index > 1)
+        return (menu.indexOfSelectedItem > 1)
     }
     
     
@@ -198,7 +201,10 @@ final class NavigationBarController: NSViewController {
     /// start displaying outline indicator
     func showOutlineIndicator() {
         
-        guard self.outlineMenu!.isEnabled else { return }
+        guard self.outlineMenu!.isEnabled else {
+            self.isParsingOutline = false
+            return
+        }
         
         self.isParsingOutline = true
         
@@ -251,14 +257,10 @@ final class NavigationBarController: NSViewController {
         
         guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
         
-        var targetIndex = popUp.indexOfSelectedItem - 1
+        let index = stride(from: popUp.indexOfSelectedItem - 1, to: 0, by: -1)
+            .first { !popUp.item(at: $0)!.isSeparatorItem } ?? 0
         
-        while popUp.item(at: targetIndex)!.isSeparatorItem {
-            targetIndex -= 1
-            guard targetIndex >= 0 else { break }
-        }
-        
-        popUp.menu!.performActionForItem(at: targetIndex)
+        popUp.menu!.performActionForItem(at: index)
     }
     
     
@@ -267,15 +269,12 @@ final class NavigationBarController: NSViewController {
         
         guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
         
-        var targetIndex = popUp.indexOfSelectedItem + 1
-        let maxIndex = popUp.numberOfItems - 1
+        let index = stride(from: popUp.indexOfSelectedItem + 1, to: popUp.numberOfItems, by: 1)
+            .first { !popUp.item(at: $0)!.isSeparatorItem }
         
-        while popUp.item(at: targetIndex)!.isSeparatorItem {
-            targetIndex += 1
-            guard targetIndex <= maxIndex else { break }
+        if let index = index {
+            popUp.menu!.performActionForItem(at: index)
         }
-        
-        popUp.menu!.performActionForItem(at: targetIndex)
     }
     
     
@@ -297,22 +296,23 @@ final class NavigationBarController: NSViewController {
     /// set outline menu selection
     @objc private func invalidateOutlineMenuSelection() {
         
-        guard let popUp = self.outlineMenu, popUp.isEnabled && (popUp.menu!.numberOfItems > 0) else { return }
+        guard
+            let popUp = self.outlineMenu, popUp.isEnabled,
+            let items = popUp.menu?.items,
+            let firstItem = items.first
+            else { return }
         
-        let range = self.textView!.selectedRange
-        var selectedIndex = 0
-        for (index, menuItem) in popUp.menu!.items.enumerated().reversed() {
-            guard !menuItem.isSeparatorItem else { continue }
+        let location = self.textView!.selectedRange.location
+        let selectedItem = items.reversed().first { menuItem in
+            guard
+                !menuItem.isSeparatorItem,
+                let itemRange = menuItem.representedObject as? NSRange
+                else { return false }
             
-            guard let itemRange = menuItem.representedObject as? NSRange else { continue }
-            
-            if itemRange.location <= range.location {
-                selectedIndex = index
-                break
-            }
-        }
+            return itemRange.location <= location
+        } ?? firstItem
         
-        self.outlineMenu!.selectItem(at: selectedIndex)
+        popUp.select(selectedItem)
         self.updatePrevNextButtonEnabled()
     }
     

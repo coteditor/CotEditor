@@ -256,8 +256,8 @@ final class LayoutManager: NSLayoutManager {
                 // calculate position to draw glyph
                 let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                var point = lineOrigin.offsetBy(dx: origin.x + glyphLocation.x,
-                                                dy: origin.y + self.defaultBaselineOffset)
+                var point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x,
+                                                                   dy: self.defaultBaselineOffset)
                 if isVertical {
                     // [note] Probably not a good solution but better than doing nothing (2016-05-25).
                     let pathBounds = CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)

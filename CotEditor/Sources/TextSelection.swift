@@ -137,16 +137,17 @@ final class TextSelection: NSObject {
             
             return [range.location, range.length]
         }
-        set (range) {
+        set {
             guard
-                range?.count == 2,
-                let location = range?[0],
-                let length = range?[1],
-                let string = self.document?.string else { return }
+                newValue?.count == 2,
+                let location = newValue?[0],
+                let length = newValue?[1],
+                let string = self.document?.string
+                else { return }
             
             let range = string.range(location: location, length: length)
             
-            guard range.location != NSNotFound else { return }
+            guard range != .notFound else { return }
             
             self.document?.selectedRange = range
         }
@@ -167,17 +168,18 @@ final class TextSelection: NSObject {
             return [startLine,
                     endLine - startLine + 1]
         }
-        set (range) {
+        set {
             let location: Int
             let length: Int
             
-            if let number = range as? Int {
+            switch newValue {
+            case let number as Int:
                 location = number
                 length = 1
-            } else if let range = range as? [Int], range.count == 2 {
+            case let range as [Int] where range.count == 2:
                 location = range[0]
                 length = range[1]
-            } else {
+            default:
                 return
             }
             

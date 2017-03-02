@@ -29,13 +29,6 @@ import Foundation
 
 extension URL {
     
-    /// check if file URL is executable
-    var isExecutable: Bool? {
-        
-        return (try? self.resourceValues(forKeys: [.isExecutableKey]))?.isExecutable
-    }
-    
-    
     /// check just URL is reachable and ignore any errors
     var isReachable: Bool {
         

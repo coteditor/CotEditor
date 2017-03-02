@@ -1,0 +1,10 @@
+{
+  "xcodeVersion" : "Xcode 8.2.1\nBuild version 8C1002",
+  "commitish" : "d6c887580f43f00ae24652d4ca8d5393fba9b942",
+  "Mac" : [
+    {
+      "name" : "YAML",
+      "md5" : "4db8a7a1b5cf189f7f4355a05fa4482d"
+    }
+  ]
+}

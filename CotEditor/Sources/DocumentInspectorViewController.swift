@@ -71,8 +71,8 @@ final class DocumentInspectorViewController: NSViewController {
     /// set analyzer
     override var representedObject: Any? {
         
-        willSet (newObject) {
-            guard newObject is DocumentAnalyzer else {
+        willSet {
+            guard newValue is DocumentAnalyzer else {
                 assertionFailure("representedObject of \(self.className) must be an instance of \(DocumentAnalyzer.className)")
                 return
             }

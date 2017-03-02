@@ -173,13 +173,11 @@ struct DefaultSettings {
         ]
     
     
-    static let defaults: [String: Any] = {
-        DefaultSettings.settings.reduce([:]) { (dict, item) in
-            var dict = dict
-            dict[item.key.rawValue] = item.value
-            return dict
-        }
-    }()
+    static let defaults: [String: Any] = DefaultSettings.settings.reduce([:]) { (dict, item) in
+        var dict = dict
+        dict[item.key.rawValue] = item.value
+        return dict
+    }
     
     
     private init() { }

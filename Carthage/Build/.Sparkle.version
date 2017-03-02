@@ -1,0 +1,10 @@
+{
+  "xcodeVersion" : "Xcode 8.2.1\nBuild version 8C1002",
+  "commitish" : "1.16.0",
+  "Mac" : [
+    {
+      "name" : "Sparkle",
+      "md5" : "ba85a071317c0d5516e0ba3aff6b0c9a"
+    }
+  ]
+}

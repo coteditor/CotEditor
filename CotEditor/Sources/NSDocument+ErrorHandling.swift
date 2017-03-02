@@ -25,11 +25,11 @@
  
  */
 
-import AppKit
+import AppKit.NSDocument
 
 extension NSDocument {
     
-    typealias RecoveryHandler = ((Bool) -> Void)
+    typealias RecoveryHandler = ((_ didRecover: Bool) -> Void)
     
     
     /// present an error alert as document modal sheet
@@ -45,14 +45,10 @@ extension NSDocument {
         window.attachedSheet?.orderOut(self)
         
         if let recoveryHandler = recoveryHandler {
-            let block = UnsafeMutablePointer<RecoveryHandler>.allocate(capacity: 1)
-            block.pointee = recoveryHandler
-            
             self.presentError(error, modalFor: window,
                               delegate: self,
                               didPresent: #selector(didPresentErrorWithRecovery(didRecover:contextInfo:)),
-                              contextInfo: UnsafeMutableRawPointer(mutating: block))
-            
+                              contextInfo: bridgeWrapped(recoveryHandler))
         } else {
             self.presentError(error, modalFor: window,
                               delegate: nil, didPresent: nil, contextInfo: nil)
@@ -64,11 +60,11 @@ extension NSDocument {
     // MARK: Private Methods
     
     /// perform didRecoverBlock after recovering presented error
-    @objc private func didPresentErrorWithRecovery(didRecover: Bool, contextInfo: UnsafeMutableRawPointer?) {
+    @objc private func didPresentErrorWithRecovery(didRecover: Bool, contextInfo: UnsafeMutableRawPointer) {
         
-        if let recoveryHandler = contextInfo?.assumingMemoryBound(to: RecoveryHandler.self).pointee {
-            recoveryHandler(didRecover)
-        }
+        let recoveryHandler: RecoveryHandler = bridgeUnwrapped(contextInfo)
+        
+        recoveryHandler(didRecover)
     }
     
 }

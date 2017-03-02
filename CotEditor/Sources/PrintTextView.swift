@@ -282,13 +282,13 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// set printing font
     override var font: NSFont? {
         
-        willSet (newFont) {
+        willSet {
             // set tab width
             let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
             let tabWidth = UserDefaults.standard[.tabWidth]
             
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(tabWidth) * (newFont?.advancement(character: " ").width ?? 0)
+            paragraphStyle.defaultTabInterval = CGFloat(tabWidth) * (newValue?.advancement(character: " ").width ?? 0)
             paragraphStyle.lineHeightMultiple = self.lineHeight
             self.defaultParagraphStyle = paragraphStyle
             
@@ -299,7 +299,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             
             // set font also to layout manager
             if let layoutManager = self.layoutManager as? LayoutManager {
-                layoutManager.textFont = newFont
+                layoutManager.textFont = newValue
             }
         }
     }

@@ -2,16 +2,26 @@
 Change Log
 ==========================
 
-develop
+3.1.6 (186)
 --------------------------
 
-### New Features
+### Improvements
 
-- Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
+- Update Python syntax style for Python 3.6.
+- Improve line number drawing.
+
+
+### Fixes
+
+- Fix an issue on OS X 10.11 where the application could crash on saving a document that contains incompatible characters.
+- Fix an issue on OS X 10.11 where “No incompatible characters were found.” message in the incompatible characters pane didn't hide even when incompatible characters exist.
+- Fix an issue where editor view didn't scroll by dragging on the line number view when the view is zoomed out.
+- Fix an issue where a large amount of scrolling down didn't jump to the end of the target.
+- Fix an issue with syntax style editor where a newly added row wasn't focused automatically.
 
 
 
-3.1.5
+3.1.5 (184)
 --------------------------
 
 ### Fixes
@@ -42,6 +52,11 @@ develop
 
 3.1.3 (180)
 --------------------------
+
+### New Features
+
+- Now, AppleScript's script bundles can specify execution mode to enable running the script inside the application Sandbox (thanks to Kaito Udagawa!).
+
 
 ### Improvements
 

@@ -53,10 +53,14 @@ extension Document {
             return textStorage
         }
         set {
-            if let textStorage = newValue as? NSTextStorage {
+            switch newValue {
+            case let textStorage as NSTextStorage:
                 self.replaceAllString(with: textStorage.string)
-            } else if let string = newValue as? String {
+                
+            case let string as String:
                 self.replaceAllString(with: string)
+                
+            default: break
             }
         }
     }

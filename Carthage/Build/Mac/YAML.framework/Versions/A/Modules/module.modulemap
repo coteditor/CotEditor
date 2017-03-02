@@ -1,0 +1,6 @@
+framework module YAML {
+  umbrella header "YAMLSerialization.h"
+
+  export *
+  module * { export * }
+}
