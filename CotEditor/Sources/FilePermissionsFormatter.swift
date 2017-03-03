@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -59,5 +59,6 @@ private func humanReadable(permission: UInt) -> String {
     
     return (0...2).reversed()
         .map { (index: Int) -> Int in return (Int(permission) >> (index * 3)) & 0x7 }
-        .reduce("-") { (string: String, digit: Int) -> String in return string + units[digit] }  // Document is always file.
+        .map { units[$0] }
+        .reduce("-", +)  // document is always file.
 }

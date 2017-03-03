@@ -218,14 +218,11 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
             let validator = NSApp.target(forAction: action, to: control.target, from: self)
             else { return }
         
-        switch validator {
-        case let validator as TouchBarItemValidations:
+        // ! DO NOT use `swich ... case let` to classify. It causes crash.
+        if let validator = validator as? TouchBarItemValidations {
             control.isEnabled = validator.validateTouchBarItem(self)
-            
-        case let validator as NSUserInterfaceValidations:
-            control.isEnabled = validator.validateUserInterfaceItem(self)
-            
-        default: break
+        } else if let validator = validator as? NSUserInterfaceValidations {
+            control.isEnabled = (validator as AnyObject).validateUserInterfaceItem(self)
         }
     }
     

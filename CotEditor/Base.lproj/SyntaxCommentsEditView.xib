@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
@@ -19,7 +20,7 @@
                     <rect key="frame" x="12" y="40" width="426" height="181"/>
                     <clipView key="contentView" id="oan-uw-mqe">
                         <rect key="frame" x="1" y="0.0" width="424" height="180"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="uOT-Vg-FZh" viewBased="YES" id="ace-Sg-2RE">
                                 <rect key="frame" x="0.0" y="0.0" width="427" height="157"/>
@@ -235,7 +236,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="IH6-RX-NFo">
                         <rect key="frame" x="-100" y="-100" width="335" height="15"/>
@@ -438,7 +438,7 @@
                 <binding destination="au5-OB-I1o" name="contentArray" keyPath="selection.comments" id="euC-rA-7iw"/>
             </connections>
         </arrayController>
-        <customObject id="Mps-4k-Noo" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
+        <customObject id="Mps-4k-Noo" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="SKZ-Xe-n9z" id="OXn-zj-SXA"/>
             </connections>

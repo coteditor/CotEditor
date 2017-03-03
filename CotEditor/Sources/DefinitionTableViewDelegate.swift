@@ -1,6 +1,6 @@
 /*
  
- SyntaxEditTableViewDelegate.swift
+ DefinitionTableViewDelegate.swift
  
  CotEditor
  https://coteditor.com
@@ -28,7 +28,7 @@
 
 import Cocoa
 
-final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
+final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     
     // MARK: Private Properties
     
@@ -63,7 +63,7 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
     }
     
     
-    /// set action on swiping theme name
+    /// set action on swiping a table row
     @available(macOS 10.11, *)
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
         
@@ -88,28 +88,28 @@ final class SyntaxEditTableViewDelegate: NSObject, NSTableViewDelegate {
     
     // MARK: Action Messages
     
-    @IBAction func didCheckboxClicked(_ sender: Any?) {
-        
-        // To perform this action,
-        // checkbox (NSButton) and column (NSTableColumn) must have the same identifier as the style dict key
-        
-        guard let checkbox = sender as? NSButton,
-              let identifier = checkbox.identifier else { return }
+    /// update all selected checkboxes in the same column
+    @IBAction func didCheckboxClicked(_ checkbox: NSButton) {
         
         // find tableView
         let superview = sequence(first: checkbox, next: { $0.superview }).first { (view: NSView) -> Bool in view is NSTableView }
         
         guard let tableView = superview as? NSTableView, tableView.numberOfSelectedRows > 1 else { return }
         
-        let columnIndex = tableView.column(withIdentifier: identifier)
+        let columnIndex = tableView.column(for: checkbox)
+        
+        guard columnIndex != -1 else { return }
+        
+        let identifier = tableView.tableColumns[columnIndex].identifier
         let isChecked = checkbox.state == NSOnState
         
         tableView.enumerateAvailableRowViews { (rowView: NSTableRowView, row: Int) in
-            guard rowView.isSelected else { return }
+            guard
+                rowView.isSelected,
+                let view = rowView.view(atColumn: columnIndex) as? NSTableCellView
+                else { return }
             
-            if let view = rowView.view(atColumn: columnIndex) as? NSTableCellView {
-                (view.objectValue as AnyObject?)?.setValue(NSNumber(value: isChecked), forKey: identifier)
-            }
+            (view.objectValue as AnyObject?)?.setValue(NSNumber(value: isChecked), forKey: identifier)
         }
     }
     

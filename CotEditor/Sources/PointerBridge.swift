@@ -25,7 +25,7 @@ PointerBridge.swift
  
  */
 
-private class Wrapper<T> {
+private final class Wrapper<T> {
     
     let value: T
     

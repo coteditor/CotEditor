@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
                     <rect key="frame" x="12" y="192" width="174" height="115"/>
                     <clipView key="contentView" id="l1m-DS-Lqo">
                         <rect key="frame" x="1" y="1" width="172" height="113"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="dA2-Cq-7bP">
                                 <rect key="frame" x="0.0" y="0.0" width="172" height="113"/>
@@ -94,7 +94,7 @@
                     <rect key="frame" x="194" y="192" width="244" height="115"/>
                     <clipView key="contentView" id="GTq-tY-QkB">
                         <rect key="frame" x="1" y="1" width="242" height="113"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="Tx3-Ki-c38">
                                 <rect key="frame" x="0.0" y="0.0" width="242" height="113"/>
@@ -194,7 +194,7 @@
                     <rect key="frame" x="12" y="40" width="174" height="87"/>
                     <clipView key="contentView" id="p3k-iS-RPJ">
                         <rect key="frame" x="1" y="1" width="172" height="85"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="rl8-9y-Ntt">
                                 <rect key="frame" x="0.0" y="0.0" width="172" height="85"/>
@@ -462,17 +462,17 @@
                 <binding destination="x4x-57-b26" name="contentArray" keyPath="selection.interpreters" id="oBh-2N-vcl"/>
             </connections>
         </arrayController>
-        <customObject id="d7s-my-ran" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
+        <customObject id="d7s-my-ran" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="4o4-Do-zNT" id="3Se-9O-qZt"/>
             </connections>
         </customObject>
-        <customObject id="A1s-0g-450" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
+        <customObject id="A1s-0g-450" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="GNq-TE-e6o" id="IYP-VP-dWx"/>
             </connections>
         </customObject>
-        <customObject id="T80-vh-snI" customClass="SyntaxEditTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
+        <customObject id="T80-vh-snI" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
             <connections>
                 <outlet property="arrayController" destination="b1i-d7-DoG" id="TRE-Uh-zQr"/>
             </connections>
