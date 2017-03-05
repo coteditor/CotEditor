@@ -63,8 +63,8 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     // MARK: Private Properties
     
-    fileprivate let outlineParseOperationQueue: OperationQueue
-    fileprivate let syntaxHighlightParseOperationQueue: OperationQueue
+    fileprivate let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
+    fileprivate let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
     
     fileprivate let hasSyntaxHighlighting: Bool
     fileprivate let highlightDictionary: [SyntaxType: [HighlightDefinition]]?
@@ -87,11 +87,6 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     required init(dictionary: [String: Any]?, name: String) {
         
         self.styleName = name
-        
-        self.outlineParseOperationQueue = OperationQueue()
-        self.outlineParseOperationQueue.name = "com.coteditor.CotEditor.outlineParseOperationQueue"
-        self.syntaxHighlightParseOperationQueue = OperationQueue()
-        self.syntaxHighlightParseOperationQueue.name = "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue"
         
         guard let dictionary = dictionary else {
             self.isNone = true
