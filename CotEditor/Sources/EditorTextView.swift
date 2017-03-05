@@ -1021,9 +1021,11 @@ final class EditorTextView: NSTextView, Themable {
         
         guard
             let popoverController = CharacterPopoverController(character: selectedString),
-            let selectedRect = self.overlayRect(range: self.selectedRange) else { return }
+            let selectedRect = self.boundingRect(for: self.selectedRange)
+            else { return }
         
-        let positioningRect = selectedRect.offsetBy(dx: 0, dy: -4)
+        let positioningRect = self.convertToLayer(selectedRect).offsetBy(dx: 0, dy: -4)
+        
         popoverController.showPopover(relativeTo: positioningRect, of: self)
         self.showFindIndicator(for: self.selectedRange)
     }
@@ -1161,21 +1163,6 @@ private extension NSTextView {
         guard let index = string.utf16.index(string.utf16.startIndex, offsetBy: location).samePosition(in: string.unicodeScalars) else { return nil }
         
         return string.unicodeScalars[safe: index]
-    }
-    
-    
-    /// rect for given character range
-    func overlayRect(range: NSRange) -> NSRect? {
-        
-        guard
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return nil }
-        
-        let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-        let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-        let rect = boundingRect.offset(by: self.textContainerOrigin)
-        
-        return self.convertToLayer(rect)
     }
     
 }

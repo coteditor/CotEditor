@@ -361,17 +361,15 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard
             let textView = self.textView,
-            let layoutManager = textView.layoutManager,
             let textContainer = textView.textContainer,
             let string = textView.string else { return }
         
         // calculate current line rect
         let lineRange = (string as NSString).lineRange(for: textView.selectedRange, excludingLastLineEnding: true)
-        let glyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-        var rect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-        rect.origin.x = textContainer.lineFragmentPadding
-        rect.size.width = textContainer.containerSize.width - 2 * rect.minX
-        rect = rect.offset(by: textView.textContainerOrigin)
+        
+        guard var rect = textView.boundingRect(for: lineRange) else { return }
+        
+        rect.size.width = textContainer.containerSize.width - 2 * textContainer.lineFragmentPadding
         
         guard textView.lineHighlightRect != rect else { return }
         
