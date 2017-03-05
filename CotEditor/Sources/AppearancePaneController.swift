@@ -450,7 +450,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @IBAction func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = NSLocalizedString("", comment: "")
+        openPanel.prompt = NSLocalizedString("Import", comment: "")
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
