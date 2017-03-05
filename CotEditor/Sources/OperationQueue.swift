@@ -29,7 +29,6 @@ import Foundation
 
 extension OperationQueue {
     
-    
     /// Initialize OperationQueue with a specific name.
     ///
     /// - Parameters:
