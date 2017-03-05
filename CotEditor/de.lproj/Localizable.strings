@@ -509,7 +509,7 @@
 
 
 /* MARK: FileDropComposer */
-// Descriptions about tokens in the file drop feature
+// Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Der absolute Pfad der abgelegten Datei.";
 "The relative path between dropped file and the document." = "Der relative Pfad zwischen der abgelegten Datei und dem Dokument.";
 "The dropped file’s name including extension (if exists)." = "Der Name der abgelegten Datei inklusive Suffix (falls es existiert).";
@@ -520,6 +520,12 @@
 "The parent directory name of dropped file." = "Der übergeordnete Ordnername der abgelegten Datei.";
 "(If the dropped file is an image) image width." = "Die Bildbreite (nur wenn die abgelegte Datei ein Bild ist).";
 "(If the dropped file is an image) image height." = "Die Bildhöhe (nur wenn die abgelegte Datei ein Bild ist).";
+
+
+
+/* MARK: Snippet */
+// Descriptions about variables in the snippet feature
+"The cursor position after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
 
 
 

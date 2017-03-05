@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11163.2" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FileDropPaneController" customModule="CotEditor" customModuleProvider="target">
@@ -10,7 +11,7 @@
                 <outlet property="fileDropController" destination="451" id="Do3-c6-cpR"/>
                 <outlet property="formatTextView" destination="532" id="C5S-P7-taE"/>
                 <outlet property="glossaryTextView" destination="586" id="EoC-Yf-e8m"/>
-                <outlet property="tokenInsertionMenu" destination="536" id="SbL-5D-1vh"/>
+                <outlet property="variableInsertionMenu" destination="536" id="5Kg-4K-qh2"/>
                 <outlet property="view" destination="747" id="ImZ-nW-JkE"/>
             </connections>
         </customObject>
@@ -50,7 +51,7 @@
                         <rect key="frame" x="1" y="1" width="258" height="137"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView editable="NO" importsGraphics="NO" horizontallyResizable="YES" findStyle="panel" verticallyResizable="YES" smartInsertDelete="YES" id="586">
+                            <textView editable="NO" importsGraphics="NO" horizontallyResizable="YES" findStyle="panel" smartInsertDelete="YES" id="586">
                                 <rect key="frame" x="0.0" y="-12" width="258" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -95,8 +96,6 @@ The parent directory name of the dropped file.
                                     </fragment>
                                 </attributedString>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="258" height="137"/>
-                                <size key="maxSize" width="372" height="10000000"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -111,16 +110,16 @@ The parent directory name of the dropped file.
                     </scroller>
                 </scrollView>
                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="536">
-                    <rect key="frame" x="337" y="156" width="196" height="22"/>
+                    <rect key="frame" x="367" y="156" width="166" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="190" id="XCP-jV-qFG"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="XCP-jV-qFG"/>
                     </constraints>
-                    <popUpButtonCell key="cell" type="push" title="Insert Pre-Formatted String" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
+                    <popUpButtonCell key="cell" type="push" title="Insert Variable" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" id="3336">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <menu key="menu" title="OtherViews" id="543">
                             <items>
-                                <menuItem title="Insert Pre-Formatted String" hidden="YES" id="541"/>
+                                <menuItem title="Insert Variable" hidden="YES" id="541"/>
                             </items>
                         </menu>
                     </popUpButtonCell>
@@ -131,15 +130,13 @@ The parent directory name of the dropped file.
                         <rect key="frame" x="1" y="1" width="508" height="98"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView importsGraphics="NO" richText="NO" horizontallyResizable="YES" findStyle="panel" allowsUndo="YES" verticallyResizable="YES" smartInsertDelete="YES" id="532">
+                            <textView importsGraphics="NO" richText="NO" horizontallyResizable="YES" findStyle="panel" allowsUndo="YES" smartInsertDelete="YES" id="532" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="508" height="98"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="minSize" width="508" height="98"/>
                                 <size key="maxSize" width="600" height="10000000"/>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="508" height="98"/>
-                                <size key="maxSize" width="600" height="10000000"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="textContainerInset">
                                         <size key="value" width="0.0" height="4"/>
@@ -233,7 +230,7 @@ The parent directory name of the dropped file.
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="447">
-                                <rect key="frame" x="0.0" y="0.0" width="228" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="228" height="118"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>

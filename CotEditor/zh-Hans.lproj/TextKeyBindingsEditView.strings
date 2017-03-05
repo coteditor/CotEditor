@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -40,8 +40,10 @@
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "87"; */
 "87.headerCell.title" = "按键";
 
-/* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
-"152.title" = "插入文本：";
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "152"; */
+"152.title" = "按格式插入：";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "An8-sr-spM"; */
+"An8-sr-spM.title" = "Insert Variable";  // FIXME: added
 /* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "mIh-YA-eHt"; */
 "mIh-YA-eHt.ibShadowedNoSelectionPlaceholder" = "选择动作。";
 

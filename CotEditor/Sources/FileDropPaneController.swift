@@ -36,9 +36,14 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     @IBOutlet private var fileDropController: NSArrayController?
     @IBOutlet private weak var extensionTableView: NSTableView?
-    @IBOutlet private weak var tokenInsertionMenu: NSPopUpButton?
-    @IBOutlet private var formatTextView: NSTextView?  // NSTextView cannot be weak
+    @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
     @IBOutlet private var glossaryTextView: NSTextView?  // NSTextView cannot be weak
+    @IBOutlet private var formatTextView: TokenTextView? {  // NSTextView cannot be weak
+        didSet {
+            // set tokenizer for format text view
+            self.formatTextView!.tokenizer = FileDropComposer.Token.tokenizer
+        }
+    }
     
     
     
@@ -70,21 +75,21 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // set localized glossary to view
         self.glossaryTextView!.string = FileDropComposer.Token.all
-            .map { $0.rawValue + "\n" + $0.localizedDescription }
+            .map { $0.token + "\n" + $0.localizedDescription }
             .joined(separator: "\n\n")
         self.glossaryTextView?.textContainerInset = NSSize(width: 2, height: 6)
         
-        // setup token menu
-        if let menu = self.tokenInsertionMenu?.menu {
-            for token in FileDropComposer.Token.pathTokens {
-                let item = NSMenuItem(title: token.rawValue, action: #selector(insertToken), keyEquivalent: "")
-                item.toolTip = token.localizedDescription
+        // setup variable menu
+        if let menu = self.variableInsertionMenu?.menu {
+            for variable in FileDropComposer.Token.pathTokens {
+                let item = NSMenuItem(title: variable.token, action: #selector(insertVariable), keyEquivalent: "")
+                item.toolTip = variable.localizedDescription
                 menu.addItem(item)
             }
             menu.addItem(NSMenuItem.separator())
-            for token in FileDropComposer.Token.imageTokens {
-                let item = NSMenuItem(title: token.rawValue, action: #selector(insertToken), keyEquivalent: "")
-                item.toolTip = token.localizedDescription
+            for variable in FileDropComposer.Token.imageTokens {
+                let item = NSMenuItem(title: variable.token, action: #selector(insertVariable), keyEquivalent: "")
+                item.toolTip = variable.localizedDescription
                 menu.addItem(item)
             }
         }
@@ -177,8 +182,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Action Messages
     
-    /// preset token insertion menu was selected
-    @IBAction func insertToken(_ sender: Any?) {
+    /// variable insertion menu was selected
+    @IBAction func insertVariable(_ sender: Any?) {
         
         guard let menuItem = sender as? NSMenuItem else { return }
         guard let textView = self.formatTextView else { return }

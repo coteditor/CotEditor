@@ -510,7 +510,7 @@
 
 
 /* MARK: FileDropComposer */
-// Descriptions about tokens in the file drop feature
+// Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
 "The relative path between dropped file and the document." = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
 "The dropped file’s name including extension (if exists)." = "ドロップ元ファイルの拡張子を含むファイル名";
@@ -522,6 +522,11 @@
 "(If the dropped file is an image) image width." = "イメージの幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
 "(If the dropped file is an image) image height." = "イメージの高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
 
+
+
+/* MARK: Snippet */
+// Descriptions about variables in the snippet feature
+"The cursor position after inserting the snippet." = "スニペット挿入後のカーソル位置";
 
 
 /* String extension */

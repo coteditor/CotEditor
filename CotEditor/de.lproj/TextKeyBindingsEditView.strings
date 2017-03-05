@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,8 +39,10 @@
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "87"; */
 "87.headerCell.title" = "Taste";
 
-/* Class = "NSTextFieldCell"; title = "Text to insert:"; ObjectID = "152"; */
-"152.title" = "Hinzuzufügender Text:";
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "152"; */
+"152.title" = "Format des einzufügenden Textes:";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "An8-sr-spM"; */
+"An8-sr-spM.title" = "Variable hinzufügen";
 /* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "mIh-YA-eHt"; */
 "mIh-YA-eHt.ibShadowedNoSelectionPlaceholder" = "Wählen Sie eine Aktion.";
 

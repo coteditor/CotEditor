@@ -117,7 +117,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     // MARK: Public Methods
     
     /// return snippet string for key binding if exists
-    func snippet(keyEquivalent: String?, modifierMask: NSEventModifierFlags) -> String? {
+    func snippet(keyEquivalent: String?, modifierMask: NSEventModifierFlags) -> Snippet? {
         
         guard let keyEquivalent = keyEquivalent else { return nil }
         guard !modifierMask.contains(.deviceIndependentFlagsMask) else { return nil }  // check modifier key is pressed  (just in case)
@@ -128,9 +128,15 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         guard let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }) else { return nil }
         
         let snippets = self.snippets(defaults: false)
-        guard let index = type(of: self).snippetIndex(for: keyBinding.action), index < snippets.count else { return nil }
         
-        return snippets[index]
+        guard
+            let index = type(of: self).snippetIndex(for: keyBinding.action),
+            index < snippets.count
+            else { return nil }
+        
+        let snippetString = snippets[index]
+        
+        return Snippet(snippetString)
     }
     
     

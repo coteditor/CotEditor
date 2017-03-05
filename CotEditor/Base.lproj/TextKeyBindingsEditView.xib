@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="SnippetKeyBindingsViewController" customModule="CotEditor" customModuleProvider="target">
             <connections>
+                <outlet property="formatTextView" destination="57" id="Akp-5w-TxQ"/>
                 <outlet property="outlineView" destination="86" id="cXw-yD-mOE"/>
                 <outlet property="snippetArrayController" destination="98" id="hVp-m9-i69"/>
+                <outlet property="variableInsertionMenu" destination="cQx-CO-rNR" id="CsZ-PI-L28"/>
                 <outlet property="view" destination="55" id="qMB-nC-eiN"/>
             </connections>
         </customObject>
@@ -26,8 +29,8 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="460" translatesAutoresizingMaskIntoConstraints="NO" id="66">
-                    <rect key="frame" x="18" y="107" width="88" height="17"/>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Text to insert:" usesSingleLineMode="YES" id="152">
+                    <rect key="frame" x="18" y="107" width="108" height="17"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Insertion Format:" usesSingleLineMode="YES" id="152">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -39,15 +42,13 @@
                         <rect key="frame" x="1" y="1" width="462" height="58"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView importsGraphics="NO" richText="NO" allowsUndo="YES" verticallyResizable="YES" smartInsertDelete="YES" id="57">
+                            <textView importsGraphics="NO" richText="NO" allowsUndo="YES" smartInsertDelete="YES" id="57" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="462" height="58"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="minSize" width="462" height="58"/>
                                 <size key="maxSize" width="464" height="10000000"/>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="462" height="58"/>
-                                <size key="maxSize" width="464" height="10000000"/>
                                 <allowedInputSourceLocales>
                                     <string>eu</string>
                                     <string>hr_BA</string>
@@ -892,7 +893,6 @@
                                 </connections>
                             </outlineView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="166">
                         <rect key="frame" x="1" y="131" width="428" height="16"/>
@@ -934,6 +934,21 @@
                         <binding destination="-2" name="value" keyPath="warningMessage" id="okM-qo-2L2"/>
                     </connections>
                 </textField>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cQx-CO-rNR">
+                    <rect key="frame" x="321" y="102" width="166" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="4AJ-Tk-cvw"/>
+                    </constraints>
+                    <popUpButtonCell key="cell" type="push" title="Insert Variable" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" preferredEdge="maxY" selectedItem="An8-sr-spM" id="miz-03-Ojd">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                        <menu key="menu" id="0Nt-51-n6D">
+                            <items>
+                                <menuItem title="Insert Variable" state="on" hidden="YES" id="An8-sr-spM"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                </popUpButton>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="56" secondAttribute="trailing" constant="20" symbolic="YES" id="4s1-3n-2db"/>
@@ -947,12 +962,14 @@
                 <constraint firstItem="85" firstAttribute="top" secondItem="8d0-e7-yYF" secondAttribute="bottom" constant="8" symbolic="YES" id="OIZ-KW-XYl"/>
                 <constraint firstItem="66" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="On5-A6-0Ee"/>
                 <constraint firstItem="8d0-e7-yYF" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="PlN-vH-79z"/>
+                <constraint firstItem="cQx-CO-rNR" firstAttribute="baseline" secondItem="66" secondAttribute="baseline" id="Ppu-uK-4cW"/>
                 <constraint firstItem="d4z-hn-ieA" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="QPZ-79-Zgb"/>
                 <constraint firstItem="56" firstAttribute="top" secondItem="66" secondAttribute="bottom" constant="4" id="Qdj-hb-Gcq"/>
                 <constraint firstItem="64" firstAttribute="top" secondItem="d4z-hn-ieA" secondAttribute="bottom" constant="4" id="Rve-Gw-0mm"/>
                 <constraint firstItem="64" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="Tes-bV-f1d"/>
                 <constraint firstAttribute="trailing" secondItem="64" secondAttribute="trailing" constant="20" symbolic="YES" id="UtY-TX-aXu"/>
                 <constraint firstItem="67" firstAttribute="top" secondItem="56" secondAttribute="bottom" constant="12" id="ZMY-10-oOL"/>
+                <constraint firstItem="cQx-CO-rNR" firstAttribute="trailing" secondItem="56" secondAttribute="trailing" id="ec1-Q2-sGA"/>
                 <constraint firstItem="63" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="ftu-8v-qQe"/>
                 <constraint firstItem="56" firstAttribute="leading" secondItem="55" secondAttribute="leading" constant="20" symbolic="YES" id="kML-3A-h0u"/>
                 <constraint firstItem="d4z-hn-ieA" firstAttribute="top" secondItem="55" secondAttribute="top" constant="4" id="p5L-Zg-awH"/>
