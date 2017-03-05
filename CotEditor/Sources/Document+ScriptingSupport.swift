@@ -375,14 +375,14 @@ private extension NSString {
     func range(of searchString: String, selectedRange: NSRange, options: String.CompareOptions, isWrapSearch: Bool) -> NSRange? {
         
         let targetRange: NSRange = {
-            if options.contains(.backwards) && !options.contains(.regularExpression) {
+            if options.contains(.backwards), !options.contains(.regularExpression) {
                 return NSRange(location: 0, length: selectedRange.location)
             }
             return NSRange(location: selectedRange.max, length: self.length - selectedRange.max)
         }()
         
         var foundRange = self.range(of: searchString, options: options, range: targetRange)
-        if foundRange.location == NSNotFound && isWrapSearch {
+        if foundRange.location == NSNotFound, isWrapSearch {
             foundRange = self.range(of: searchString, options: options)
         }
         

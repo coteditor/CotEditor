@@ -55,7 +55,7 @@ final class ATSTypesetter: NSATSTypesetter {
         
         let result = super.actionForControlCharacter(at: charIndex)
         
-        if result.contains(.zeroAdvancementAction) && charIndex > 0 {
+        if result.contains(.zeroAdvancementAction), charIndex > 0 {
             guard let string = self.attributedString?.string as NSString? else { return result }
             
             let isLowSurrogate = CFStringIsSurrogateLowCharacter(string.character(at: charIndex)) && CFStringIsSurrogateHighCharacter(string.character(at: charIndex - 1))

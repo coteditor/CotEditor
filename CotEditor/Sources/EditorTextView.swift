@@ -971,7 +971,7 @@ final class EditorTextView: NSTextView, Themable {
             }
             
             selections.append(styledText)
-            propertyList.append(plainText.components(separatedBy: "\n").count)
+            propertyList.append(plainText.components(separatedBy: .newlines).count)
         }
         
         var pasteboardString = NSAttributedString()

@@ -341,10 +341,10 @@ private extension NSTextView {
             let linesRange = string.lineRange(for: selectedRange)
             
             // store each line to process
-            string.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired], using: { (substring: String?, substringRange, enclosingRange, stop) in
+            string.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { (substring: String?, substringRange, enclosingRange, stop) in
                 
                 lineRanges.add(enclosingRange)
-            })
+            }
         }
         
         return lineRanges.array as! [NSRange]

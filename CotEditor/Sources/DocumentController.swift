@@ -294,7 +294,7 @@ final class DocumentController: NSDocumentController {
                            kUTTypeGNUZipArchive,
                            kUTTypeZipArchive,
                            kUTTypeBzip2Archive]
-        if binaryTypes.contains(where: { UTTypeConformsTo(cfTypeName, $0) }) &&
+        if binaryTypes.contains(where: { UTTypeConformsTo(cfTypeName, $0) }),
             !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics)  // SVG is plain-text (except SVGZ)
         {
             throw DocumentReadError(kind: .binaryFile(type: typeName), url: url)

@@ -500,7 +500,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // give the execute permission if user requested
-        if self.isExecutable && saveOperation != .autosaveElsewhereOperation {
+        if self.isExecutable, saveOperation != .autosaveElsewhereOperation {
             var permissions = (attributes[FileAttributeKey.posixPermissions.rawValue] as? UInt16) ?? 0
             if let originalURL = absoluteOriginalContentsURL, permissions == 0 {
                 let coordinator = NSFileCoordinator(filePresenter: self)
@@ -566,7 +566,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
         // disable save dialog if content is empty and not saved
-        if self.fileURL == nil && self.textStorage.string.isEmpty {
+        if self.fileURL == nil, self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
         }
         

@@ -112,9 +112,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// return number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
-        guard let children = self.children(ofItem: item) else { return 0 }
-        
-        return children.count
+        return self.children(ofItem: item)?.count ?? 0
     }
     
     

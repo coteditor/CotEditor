@@ -198,7 +198,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // provide nothing if there is only a candidate which is same as input word
-        if  let word = candidateWords.firstObject as? String, candidateWords.count == 1 && word.caseInsensitiveCompare(particalWord) == .orderedSame {
+        if  let word = candidateWords.firstObject as? String,
+            candidateWords.count == 1,
+            word.caseInsensitiveCompare(particalWord) == .orderedSame
+        {
             return []
         }
         
