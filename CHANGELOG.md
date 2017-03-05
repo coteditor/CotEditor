@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Update cot command to fix an issue where files cannot be opened if the default Python on macOS is version 3.x.
+
+
+
 3.1.7 (188)
 --------------------------
 
