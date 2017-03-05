@@ -13,6 +13,7 @@ develop
 ### Improvements
 
 - Draw capsule for pre-formatted text in the insertion format field in the File Drop pane.
+- Improve performance of closing large size document.
 
 
 

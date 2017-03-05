@@ -79,6 +79,12 @@ enum LineEnding: Character {
         }
     }
     
+    
+    var length: Int {
+        
+        return self.string.unicodeScalars.count
+    }
+    
 }
 
 

@@ -76,6 +76,8 @@ final class DocumentAnalyzer: NSObject {
     private weak var document: Document?  // weak to avoid cycle retain
     
     private lazy var editorUpdateTask: Debouncer = Debouncer(delay: 0.2) { [weak self] in self?.updateEditorInfo() }
+    private let editorInfoCountOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.EditorInfoCountOperationQueue",
+                                                               qos: .userInitiated)
     
     
     
@@ -87,6 +89,13 @@ final class DocumentAnalyzer: NSObject {
         self.document = document
         
         super.init()
+        
+        self.editorInfoCountOperationQueue.maxConcurrentOperationCount = 1
+    }
+    
+    
+    deinit {
+        self.editorInfoCountOperationQueue.cancelAllOperations()
     }
     
     
@@ -146,132 +155,72 @@ final class DocumentAnalyzer: NSObject {
         
         guard
             let document = self.document,
-            let textView = document.viewController?.focusedTextView else { return }
+            let textView = document.viewController?.focusedTextView,
+            !textView.hasMarkedText() else { return }
         
-        let needsAll = self.needsUpdateEditorInfo
-        let defaults = UserDefaults.standard
-        
-        let string = NSString(string: document.textStorage.string) as String
-        let lineEnding = document.lineEnding
-        let selectedRange: NSRange = {
-            var range = textView.selectedRange
-            // exclude editing range from selected range (2007-05-20)
-            if textView.hasMarkedText() {
-                range.length = 0
-            }
-            return range
+        let requiredInfo: EditorInfoTypes = {
+            if self.needsUpdateEditorInfo { return .all }
+            
+            var types = EditorInfoTypes()
+            if UserDefaults.standard[.showStatusBarLength]   { types.update(with: .length) }
+            if UserDefaults.standard[.showStatusBarChars]    { types.update(with: .characters) }
+            if UserDefaults.standard[.showStatusBarLines]    { types.update(with: .lines) }
+            if UserDefaults.standard[.showStatusBarWords]    { types.update(with: .words) }
+            if UserDefaults.standard[.showStatusBarLocation] { types.update(with: .location) }
+            if UserDefaults.standard[.showStatusBarLine]     { types.update(with: .line) }
+            if UserDefaults.standard[.showStatusBarColumn]   { types.update(with: .column) }
+            return types
         }()
         
-        // calculate on background thread
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let countsLineEnding = defaults[.countLineEndingAsChar]
-            var location = 0
-            var line = 0
-            var column = 0
-            var length = 0, selectedLength = 0
-            var numberOfChars = 0, numberOfSelectedChars = 0
-            var numberOfLines = 0, numberOfSelectedLines = 0
-            var numberOfWords = 0, numberOfSelectedWords = 0
-            var unicode: String?
-
-            if !string.isEmpty {
-                let selectedString = (string as NSString).substring(with: selectedRange)
-                let hasSelection = !selectedString.isEmpty
-                
-                // count length
-                if needsAll || defaults[.showStatusBarLength] {
-                    let isSingleLineEnding = (String(lineEnding.rawValue).unicodeScalars.count == 1)
-                    let stringForCounting = isSingleLineEnding ? string : string.replacingLineEndings(with: lineEnding)
-                    length = stringForCounting.utf16.count
-                    
-                    if hasSelection {
-                        let stringForCounting = isSingleLineEnding ? selectedString : selectedString.replacingLineEndings(with: lineEnding)
-                        selectedLength = stringForCounting.utf16.count
-                    }
-                }
-                
-                // count characters
-                if needsAll || defaults[.showStatusBarChars] {
-                    let stringForCounting = countsLineEnding ? string : string.removingLineEndings
-                    numberOfChars = stringForCounting.numberOfComposedCharacters
-                    
-                    if hasSelection {
-                        let stringForCounting = countsLineEnding ? selectedString : selectedString.removingLineEndings
-                        numberOfSelectedChars = stringForCounting.numberOfComposedCharacters
-                    }
-                }
-                
-                // count lines
-                if needsAll || defaults[.showStatusBarLines] {
-                    numberOfLines = string.numberOfLines
-                    if hasSelection {
-                        numberOfSelectedLines = selectedString.numberOfLines
-                    }
-                }
-                
-                // count words
-                if needsAll || defaults[.showStatusBarWords] {
-                    numberOfWords = string.numberOfWords
-                    if hasSelection {
-                        numberOfSelectedWords = selectedString.numberOfWords
-                    }
-                }
-                
-                // calculate current location
-                if needsAll || defaults[.showStatusBarLocation] {
-                    let locString = (string as NSString).substring(to: selectedRange.location)
-                    let stringForCounting = countsLineEnding ? locString : locString.removingLineEndings
-                    location = stringForCounting.numberOfComposedCharacters
-                }
-                
-                // calculate current line
-                if needsAll || defaults[.showStatusBarLine] {
-                    line = string.lineNumber(at: selectedRange.location)
-                    
-                }
-                
-                // calculate current column
-                if needsAll || defaults[.showStatusBarColumn] {
-                    let lineRange = (string as NSString).lineRange(for: selectedRange)
-                    column = selectedRange.location - lineRange.location  // as length
-                    column = (string as NSString).substring(with: NSRange(location: lineRange.location, length: column)).numberOfComposedCharacters
-                }
-                
-                // unicode
-                if needsAll && hasSelection {
-                    if selectedString.unicodeScalars.count == 1,
-                        let first = selectedString.unicodeScalars.first
-                    {
-                        unicode = first.codePoint
-                    }
-                }
-            }
+        let operation = EditorInfoCountOperation(string: NSString(string: document.textStorage.string) as String,
+                                                 lineEnding: document.lineEnding,
+                                                 selectedRange: textView.selectedRange,
+                                                 requiredInfo: requiredInfo,
+                                                 countsLineEnding: UserDefaults.standard[.countLineEndingAsChar])
+        
+        operation.completionBlock = { [weak self, weak operation] in
+            guard
+                let operation = operation, !operation.isCancelled,
+                let strongSelf = self else { return }
             
-            // apply to UI
             DispatchQueue.main.async {
-                guard let strongSelf = self else { return }
-                
-                strongSelf.length = type(of: strongSelf).format(count: length, selectedCount: selectedLength)
-                strongSelf.chars = type(of: strongSelf).format(count: numberOfChars, selectedCount: numberOfSelectedChars)
-                strongSelf.lines = type(of: strongSelf).format(count: numberOfLines, selectedCount: numberOfSelectedLines)
-                strongSelf.words = type(of: strongSelf).format(count: numberOfWords, selectedCount: numberOfSelectedWords)
-                strongSelf.location = String.localizedStringWithFormat("%li", location)
-                strongSelf.line = String.localizedStringWithFormat("%li", line)
-                strongSelf.column = String.localizedStringWithFormat("%li", column)
-                strongSelf.unicode = unicode
+                strongSelf.length = CountFormatter.format(operation.length, selected: operation.selectedLength)
+                strongSelf.chars = CountFormatter.format(operation.chars, selected: operation.selectedChars)
+                strongSelf.lines = CountFormatter.format(operation.lines, selected: operation.selectedLines)
+                strongSelf.words = CountFormatter.format(operation.words, selected: operation.selectedWords)
+                strongSelf.location = CountFormatter.format(operation.location)
+                strongSelf.line = CountFormatter.format(operation.line)
+                strongSelf.column = CountFormatter.format(operation.column)
+                strongSelf.unicode = operation.unicode
                 
                 NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: strongSelf)
             }
         }
+        
+        // cancel waiting operations to avoid stacking large operations
+        self.editorInfoCountOperationQueue.operations
+            .filter { !$0.isExecuting }
+            .forEach { $0.cancel() }
+        
+        self.editorInfoCountOperationQueue.addOperation(operation)
     }
+    
+}
+
+
+
+private struct CountFormatter {
+    
+    private init() { }
     
     
     /// format count number with selection
-    private static func format(count: Int, selectedCount: Int?) -> String {
+    static func format(_ count: Int, selected selectedCount: Int? = nil) -> String {
         
         if let selectedCount = selectedCount, selectedCount > 0 {
             return String.localizedStringWithFormat("%li (%li)", count, selectedCount)
         }
+        
         return String.localizedStringWithFormat("%li", count)
     }
     

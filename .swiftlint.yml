@@ -9,7 +9,6 @@ opt_in_rules:
   - explicit_init
   - file_header
   - first_where
-  - operator_usage_whitespace
   - private_outlet
   - redundant_nil_coalescing
   - valid_docs
