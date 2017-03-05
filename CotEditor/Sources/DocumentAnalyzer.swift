@@ -245,13 +245,13 @@ final class DocumentAnalyzer: NSObject {
             DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 
-                strongSelf.length = type(of: strongSelf).format(count: length, selectedCount: selectedLength)
-                strongSelf.chars = type(of: strongSelf).format(count: numberOfChars, selectedCount: numberOfSelectedChars)
-                strongSelf.lines = type(of: strongSelf).format(count: numberOfLines, selectedCount: numberOfSelectedLines)
-                strongSelf.words = type(of: strongSelf).format(count: numberOfWords, selectedCount: numberOfSelectedWords)
-                strongSelf.location = String.localizedStringWithFormat("%li", location)
-                strongSelf.line = String.localizedStringWithFormat("%li", line)
-                strongSelf.column = String.localizedStringWithFormat("%li", column)
+                strongSelf.length = CountFormatter.format(length, selected: selectedLength)
+                strongSelf.chars = CountFormatter.format(numberOfChars, selected: numberOfSelectedChars)
+                strongSelf.lines = CountFormatter.format(numberOfLines, selected: numberOfSelectedLines)
+                strongSelf.words = CountFormatter.format(numberOfWords, selected: numberOfSelectedWords)
+                strongSelf.location = CountFormatter.format(location)
+                strongSelf.line = CountFormatter.format(line)
+                strongSelf.column = CountFormatter.format(column)
                 strongSelf.unicode = unicode
                 
                 NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: strongSelf)
@@ -259,13 +259,22 @@ final class DocumentAnalyzer: NSObject {
         }
     }
     
+}
+
+
+
+private struct CountFormatter {
+    
+    private init() { }
+    
     
     /// format count number with selection
-    private static func format(count: Int, selectedCount: Int?) -> String {
+    static func format(_ count: Int, selected selectedCount: Int? = nil) -> String {
         
         if let selectedCount = selectedCount, selectedCount > 0 {
             return String.localizedStringWithFormat("%li (%li)", count, selectedCount)
         }
+        
         return String.localizedStringWithFormat("%li", count)
     }
     
