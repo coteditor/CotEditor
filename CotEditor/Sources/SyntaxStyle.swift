@@ -63,8 +63,10 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     // MARK: Private Properties
     
-    fileprivate let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
-    fileprivate let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
+    fileprivate let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue",
+                                                                qos: .utility)
+    fileprivate let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue",
+                                                                        qos: .userInitiated)
     
     fileprivate let hasSyntaxHighlighting: Bool
     fileprivate let highlightDictionary: [SyntaxType: [HighlightDefinition]]?
