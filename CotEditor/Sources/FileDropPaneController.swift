@@ -56,12 +56,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    override var nibName: String? {
-        
-        return "FileDropPane"
-    }
-    
-    
     
     // MARK: View Controller Methods
     
