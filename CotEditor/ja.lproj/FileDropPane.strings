@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,9 +30,6 @@
 /* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
 "3335.title" = "（カンマ区切り、ドット不要）";
 
-/* Class = "NSTextFieldCell"; title = "Glossary:"; ObjectID = "3337"; */
-"3337.title" = "用語説明：";
-
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "457"; */
 "457.ibShadowedToolTip" = "追加";
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Delete"; ObjectID = "458"; */
@@ -44,6 +41,12 @@
 
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "変数を挿入";
+/* Class = "NSButton"; ibShadowedToolTip = "Show glossary for variables."; ObjectID = "PKM-q8-yPJ"; */
+"PKM-q8-yPJ.ibShadowedToolTip" = "変数の用語説明を表示";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "拡張子が選択されていません。";
+
+
+/* Class = "NSViewController"; title = "Glossary"; ObjectID = "La6-Dq-gq6"; */
+"La6-Dq-gq6.title" = "用語説明";

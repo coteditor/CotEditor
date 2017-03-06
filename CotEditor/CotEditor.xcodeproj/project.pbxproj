@@ -495,6 +495,8 @@
 		2AE52F231D175A9400D60A32 /* SizeSettingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F211D175A9400D60A32 /* SizeSettingWindowController.swift */; };
 		2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
+		2AE65DAF1E6D8C0E004D5D0B /* FileDropGlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE65DAE1E6D8C0E004D5D0B /* FileDropGlossaryViewController.swift */; };
+		2AE65DB01E6D8C0E004D5D0B /* FileDropGlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE65DAE1E6D8C0E004D5D0B /* FileDropGlossaryViewController.swift */; };
 		2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
@@ -1064,6 +1066,7 @@
 		2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColorTransformer.swift; sourceTree = "<group>"; };
 		2AE52F211D175A9400D60A32 /* SizeSettingWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeSettingWindowController.swift; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
+		2AE65DAE1E6D8C0E004D5D0B /* FileDropGlossaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropGlossaryViewController.swift; sourceTree = "<group>"; };
 		2AEC48321E641E4F00FB0F89 /* Snippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		2AED466F1E425CD200751C45 /* TextFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFind.swift; sourceTree = "<group>"; };
@@ -1651,6 +1654,7 @@
 				2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */,
 				2A5DCE881D18FFDB00D5D74C /* EncodingListViewController.swift */,
 				2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift */,
+				2AE65DAE1E6D8C0E004D5D0B /* FileDropGlossaryViewController.swift */,
 			);
 			name = "Other View Controllers";
 			sourceTree = "<group>";
@@ -2270,6 +2274,7 @@
 				2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */,
+				2AE65DB01E6D8C0E004D5D0B /* FileDropGlossaryViewController.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A5D13201D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
 				2AFB5AE91D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
@@ -2550,6 +2555,7 @@
 				2AA375471D40BDCB0080C27C /* LineEnding.swift in Sources */,
 				2ACDC0A31D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2A5ADE841D2168FC00F6CE26 /* Array.swift in Sources */,
+				2AE65DAF1E6D8C0E004D5D0B /* FileDropGlossaryViewController.swift in Sources */,
 				2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				2A48103E1D4D210300F7D34C /* Crypto.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,

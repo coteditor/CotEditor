@@ -34,6 +34,7 @@ final class FileDropComposer {
         
         static let extensions = "extensions"
         static let formatString = "formatString"
+        static let description = "description"
     }
     
     

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,9 +31,6 @@
 /* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
 "3335.title" = "（逗号分隔, 不要带点）";
 
-/* Class = "NSTextFieldCell"; title = "Glossary:"; ObjectID = "3337"; */
-"3337.title" = "用法说明：";
-
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "457"; */
 "457.ibShadowedToolTip" = "添加";
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Delete"; ObjectID = "458"; */
@@ -42,8 +39,15 @@
 
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
 "3332.title" = "按格式插入：";
+
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "插入预先定义的字符串";  // FIXME: changed "Pre-Formatted String" -> "Variable"
+/* Class = "NSButton"; ibShadowedToolTip = "Show glossary for variables."; ObjectID = "PKM-q8-yPJ"; */
+"PKM-q8-yPJ.ibShadowedToolTip" = "Show glossary for variables.";  // FIXME: added
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "没有选中扩展名。";
+
+
+/* Class = "NSViewController"; title = "Glossary"; ObjectID = "La6-Dq-gq6"; */
+"La6-Dq-gq6.title" = "用法说明";

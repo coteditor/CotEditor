@@ -37,8 +37,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     @IBOutlet private var fileDropController: NSArrayController?
     @IBOutlet private weak var extensionTableView: NSTableView?
     @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
-    @IBOutlet private var glossaryTextView: NSTextView?  // NSTextView cannot be weak
     @IBOutlet private var formatTextView: TokenTextView? {  // NSTextView cannot be weak
+        
         didSet {
             // set tokenizer for format text view
             self.formatTextView!.tokenizer = FileDropComposer.Token.tokenizer
@@ -52,7 +52,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     deinit {
         self.formatTextView?.delegate = nil
-        self.glossaryTextView?.delegate = nil
     }
     
     
@@ -63,15 +62,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // load setting
-        self.loadSetting()
-        
-        // set localized glossary to view
-        self.glossaryTextView!.string = FileDropComposer.Token.all
-            .map { $0.token + "\n" + $0.localizedDescription }
-            .joined(separator: "\n\n")
-        self.glossaryTextView?.textContainerInset = NSSize(width: 2, height: 6)
         
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
@@ -90,11 +80,21 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
+    /// update setting
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.loadSetting()
+    }
+    
+    
     /// finish current editing
     override func viewWillDisappear() {
         
-        self.endEditing()
+        super.viewWillDisappear()
         
+        self.endEditing()
         self.saveSetting()
     }
     
@@ -133,7 +133,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// start editing extantion table field just added
+    /// start editing extention table field just added
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
         guard let content = (rowView.view(atColumn: 0) as? NSTableCellView)?.textField?.stringValue else { return }
@@ -247,7 +247,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// trim extension string format or return nil if all invalid
+    /// trim extension string format
     private static func sanitize(extensionsString: String) -> String {
         
         guard !extensionsString.isEmpty else { return "" }

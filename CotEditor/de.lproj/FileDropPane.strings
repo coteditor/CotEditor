@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,9 +30,6 @@
 /* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
 "3335.title" = "(kommagetrennt, ohne Punkte)";
 
-/* Class = "NSTextFieldCell"; title = "Glossary:"; ObjectID = "3337"; */
-"3337.title" = "Glossar:";
-
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "457"; */
 "457.ibShadowedToolTip" = "Hinzufügen";
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Delete"; ObjectID = "458"; */
@@ -44,6 +41,12 @@
 
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "Variable hinzufügen";
+/* Class = "NSButton"; ibShadowedToolTip = "Show glossary for variables."; ObjectID = "PKM-q8-yPJ"; */
+"PKM-q8-yPJ.ibShadowedToolTip" = "Glossar für die Variablen anzeigen.";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "Kein Suffix ausgewählt.";
+
+
+/* Class = "NSViewController"; title = "Glossary"; ObjectID = "La6-Dq-gq6"; */
+"La6-Dq-gq6.title" = "Glossar";
