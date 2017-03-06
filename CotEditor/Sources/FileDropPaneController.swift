@@ -250,18 +250,12 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// trim extension string format
     private static func sanitize(extensionsString: String) -> String {
         
-        guard !extensionsString.isEmpty else { return "" }
+        let trimSet = CharacterSet(charactersIn: ", ./\\\t\r\n")  // separator + typical invalid characters
         
-        let trimSet = CharacterSet(charactersIn: "./ \t\r\n")
-        let extensions = extensionsString.components(separatedBy: ",")
-        
-        // trim
-        let sanitizedExtensions: [String] = extensions.flatMap { extension_ in
-            let trimmed = extension_.trimmingCharacters(in: trimSet)
-            return trimmed.isEmpty ? nil : trimmed
-        }
-        
-        return sanitizedExtensions.joined(separator: ", ")
+        return extensionsString
+            .components(separatedBy: trimSet)
+            .filter { !$0.isEmpty }
+            .joined(separator: ", ")
     }
     
     

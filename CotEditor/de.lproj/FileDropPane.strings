@@ -30,6 +30,11 @@
 /* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
 "3335.title" = "(kommagetrennt, ohne Punkte)";
 
+/* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
+"FAF-cL-AAk.headerCell.title" = "Suffixe";
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "p2m-Qi-6k3"; */
+"p2m-Qi-6k3.headerCell.title" = "Beschreibung";
+
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "457"; */
 "457.ibShadowedToolTip" = "Hinzufügen";
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Delete"; ObjectID = "458"; */
