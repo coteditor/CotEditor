@@ -59,6 +59,5 @@ private func humanReadable(permission: UInt) -> String {
     
     return (0...2).reversed()
         .map { (index: Int) -> Int in return (Int(permission) >> (index * 3)) & 0x7 }
-        .map { units[$0] }
-        .reduce("-", +)  // document is always file.
+        .reduce("-") { $0 + units[$1] }  // document is always file.
 }
