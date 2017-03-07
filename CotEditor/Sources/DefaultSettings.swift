@@ -112,8 +112,18 @@ struct DefaultSettings {
         .enableSyntaxHighlight: true,
         .syntaxStyle: "Plain Text",
         
-        .fileDropArray: [[FileDropComposer.SettingKey.extensions: "jpg, jpeg, gif, png",
-                          FileDropComposer.SettingKey.formatString: "<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"]],
+        .fileDropArray: [
+            [FileDropComposer.SettingKey.extensions: "jpg, jpeg, gif, png",
+             FileDropComposer.SettingKey.scope: "Markdown",
+             FileDropComposer.SettingKey.formatString: "![<<<FILENAME-NOSUFFIX>>>](<<<RELATIVE-PATH>>>)"],
+            [FileDropComposer.SettingKey.scope: "Markdown",
+             FileDropComposer.SettingKey.formatString: "[<<<FILENAME-NOSUFFIX>>>](<<<RELATIVE-PATH>>>)"],
+            [FileDropComposer.SettingKey.extensions: "jpg, jpeg, gif, png",
+             FileDropComposer.SettingKey.scope: "HTML",
+             FileDropComposer.SettingKey.formatString: "<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"],
+            [FileDropComposer.SettingKey.scope: "CSS",
+             FileDropComposer.SettingKey.formatString: "url(\"<<<RELATIVE-PATH>>>\")"],
+        ],
         
         .insertCustomTextArray: ["<br />\n", "", "", "", "", "", "", "", "", "", "",
                                  "", "", "", "", "", "", "", "", "", "",
