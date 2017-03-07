@@ -32,10 +32,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Private Properties
     
-    private var deletingFileDrop = false
-    
     @IBOutlet private var fileDropController: NSArrayController?
-    @IBOutlet private weak var extensionTableView: NSTableView?
+    @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
     @IBOutlet private var formatTextView: TokenTextView? {  // NSTextView cannot be weak
         
@@ -81,9 +79,9 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     /// update setting
-    override func viewWillAppear() {
+    override func viewDidAppear() {
         
-        super.viewWillAppear()
+        super.viewDidAppear()
         
         self.loadSetting()
     }
@@ -102,47 +100,19 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Delegate
     
-    /// extension table was edited
-    override func controlTextDidEndEditing(_ obj: Notification) {
+    /// extension field was edited
+    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
-        guard obj.object is NSTextField,
-            let controller = self.fileDropController else { return }
-        
-        guard
-            let newItem = controller.selectedObjects.first as? [String: String],
-            let extensions = newItem[FileDropComposer.SettingKey.extensions], !extensions.isEmpty
-            else {
-                // delete row if empty
-                // -> set false to flag for in case that the delete button was pressed while editing and the target can be automatically deleted
-                self.deletingFileDrop = false
-                controller.remove(nil)
-                return
-        }
+        guard control.identifier == FileDropComposer.SettingKey.extensions else { return true }
         
         // sanitize
-        let newExtensions = type(of: self).sanitize(extensionsString: extensions)
-        
-        // save if new text valid
-        if !newExtensions.isEmpty {
-            (controller.selection as AnyObject).setValue(newExtensions, forKey: FileDropComposer.SettingKey.extensions)
-        } else if let format = newItem[FileDropComposer.SettingKey.formatString], format.isEmpty {
-            controller.remove(nil)
+        if let string = fieldEditor.string {
+            fieldEditor.string = type(of: self).sanitize(extensionsString: string)
         }
         
         self.saveSetting()
-    }
-    
-    
-    /// start editing extention table field just added
-    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
-        guard let content = (rowView.view(atColumn: 0) as? NSTableCellView)?.textField?.stringValue else { return }
-        
-        let isLastRow = (tableView.numberOfRows - 1 == row)
-        
-        if isLastRow && content.isEmpty {
-            tableView.editColumn(0, row: row, with: nil, select: true)
-        }
+        return true
     }
     
     
@@ -156,7 +126,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         return [NSTableViewRowAction(style: .destructive,
                                      title: NSLocalizedString("Delete", comment: "table view action title"),
                                      handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
-                                        self?.deletingFileDrop = true
                                         self?.deleteSetting(at: row)
             })]
     }
@@ -205,10 +174,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// remove selected file drop setting
     @IBAction func removeSetting(_ sender: Any?) {
         
-        guard let selectedRow = self.extensionTableView?.selectedRow, selectedRow != -1 else { return }
-        
-        // raise flag for in case that the delete button was pressed while editing and the target can be automatically deleted
-        self.deletingFileDrop = true
+        guard let selectedRow = self.tableView?.selectedRow, selectedRow != -1 else { return }
         
         self.endEditing()
         
@@ -223,9 +189,11 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// write back file drop setting to UserDefaults
     private func saveSetting() {
         
-        guard let content = self.fileDropController?.content as? [Any] else { return }
+        guard let content = self.fileDropController?.content as? [[String: String]] else { return }
         
-        UserDefaults.standard[.fileDropArray] = content
+        UserDefaults.standard[.fileDropArray] = content.filter {
+            !($0[FileDropComposer.SettingKey.extensions] ?? "").isEmpty || !($0[FileDropComposer.SettingKey.scope] ?? "").isEmpty
+        }
     }
     
     
@@ -262,9 +230,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// ask if user really wants to delete the item
     private func deleteSetting(at row: Int) {
         
-        // do nothing if it's already removed in `controlTextDidEndEditing:`
-        guard self.deletingFileDrop else { return }
-        
         guard let objects = self.fileDropController?.arrangedObjects as? [[String: String]] else { return }
         
         // obtain extension to delete for display
@@ -282,15 +247,13 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
                 if #available(macOS 10.11, *) {
-                    strongSelf.extensionTableView?.rowActionsVisible = false
+                    strongSelf.tableView?.rowActionsVisible = false
                 }
                 return
             }
-            guard strongSelf.deletingFileDrop else { return }
             
             strongSelf.fileDropController?.remove(atArrangedObjectIndex: row)
             strongSelf.saveSetting()
-            strongSelf.deletingFileDrop = false
         }
     }
     

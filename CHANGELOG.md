@@ -7,14 +7,16 @@ develop
 
 ### New Features
 
+- Improve File Drop feature:
+    - Now, you can add a file drop setting only for a specific syntax style.
+    - Add description field.
+    - Draw capsule for pre-formatted text in the insertion format setting field.
+    - Update the default file drop settings.
 - Now, key binding snippets can set cursor position.
 
 
 ### Improvements
 
-- Improve File Drop feature:
-    - Add description field.
-    - Draw capsule for pre-formatted text in the insertion format field.
 - Improve performance of closing large size document.
 - Add “.swift” extension to file types treaded as CotEditor script.
 - [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
