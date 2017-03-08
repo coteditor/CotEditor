@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -89,12 +89,17 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move
         let destinationRows = IndexSet(destinationRow..<(destinationRow + draggingItems.count))
         
-        // update data
-        self.remove(atArrangedObjectIndexes: sourceRows)
-        self.insert(contentsOf: draggingItems, atArrangedObjectIndexes: destinationRows)
-        
-        // select dropped items
-        tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
+        // update
+        NSAnimationContext.runAnimationGroup({ context in
+            // update UI
+            tableView.removeRows(at: sourceRows, withAnimation: .effectFade)
+            tableView.insertRows(at: destinationRows, withAnimation: .effectGap)
+            tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
+        }, completionHandler: {
+            // update data
+            self.remove(atArrangedObjectIndexes: sourceRows)
+            self.insert(contentsOf: draggingItems, atArrangedObjectIndexes: destinationRows)
+        })
         
         return true
     }
