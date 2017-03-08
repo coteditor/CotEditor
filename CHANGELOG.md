@@ -14,6 +14,7 @@ develop
 
 - Draw capsule for pre-formatted text in the insertion format field in the File Drop pane.
 - Improve performance of closing large size document.
+- Add “.swift” extension to file types treaded as CotEditor script.
 - [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
 
 
