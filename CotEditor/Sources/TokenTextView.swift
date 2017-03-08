@@ -117,6 +117,17 @@ final class TokenTextView: NSTextView {
     }
     
     
+    /// validate insertion menu
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        if item.action == #selector(insertVariable) {
+            return self.isEditable
+        }
+        
+        return super.validateUserInterfaceItem(item)
+    }
+    
+    
     
     // MARK: Actions
     
