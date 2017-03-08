@@ -61,13 +61,7 @@ final class FileDropComposer {
         static let all = Token.pathTokens + Token.imageTokens
         
         
-        var localizedDescription: String {
-            
-            return NSLocalizedString(self.description, comment: "")
-        }
-        
-        
-        private var description: String {
+        var description: String {
             
             switch self {
             case .absolutePath:

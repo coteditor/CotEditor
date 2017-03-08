@@ -57,8 +57,6 @@
 
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "変数を挿入";
-/* Class = "NSButton"; ibShadowedToolTip = "Show glossary for variables."; ObjectID = "PKM-q8-yPJ"; */
-"PKM-q8-yPJ.ibShadowedToolTip" = "変数の用語説明を表示";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "拡張子が選択されていません。";

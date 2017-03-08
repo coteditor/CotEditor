@@ -57,8 +57,6 @@
 
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "Variable hinzufügen";
-/* Class = "NSButton"; ibShadowedToolTip = "Show glossary for variables."; ObjectID = "PKM-q8-yPJ"; */
-"PKM-q8-yPJ.ibShadowedToolTip" = "Glossar für die Variablen anzeigen.";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "Kein Suffix ausgewählt.";

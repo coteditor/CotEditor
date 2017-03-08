@@ -24,14 +24,14 @@
                                 </connections>
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="OK0-xb-bxI">
-                                <rect key="frame" x="341" y="116" width="166" height="22"/>
+                                <rect key="frame" x="367" y="116" width="166" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="VNd-PI-sho"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" title="Insert Variable" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" selectedItem="541" id="Akg-Ri-30c">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
-                                    <menu key="menu" title="OtherViews" id="w2E-24-Qeh">
+                                    <menu key="menu" title="OtherViews" showsStateColumn="NO" id="w2E-24-Qeh">
                                         <items>
                                             <menuItem title="Insert Variable" hidden="YES" id="541"/>
                                         </items>
@@ -302,16 +302,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button toolTip="Show glossary for variables." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PKM-q8-yPJ">
-                                <rect key="frame" x="510" y="117" width="22" height="22"/>
-                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D3m-NC-2NE">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="La6-Dq-gq6" kind="popover" popoverAnchorView="PKM-q8-yPJ" popoverBehavior="t" preferredEdge="maxX" id="9fx-Ay-eOu"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Pqq-0d-en4" secondAttribute="trailing" constant="20" symbolic="YES" id="0bO-Xz-zcs"/>
@@ -319,15 +309,12 @@
                             <constraint firstItem="457" firstAttribute="width" secondItem="458" secondAttribute="width" id="9SU-eP-JlU"/>
                             <constraint firstItem="prG-8I-L0n" firstAttribute="top" secondItem="nF4-c6-mvy" secondAttribute="bottom" constant="6" id="9a1-fJ-2Es"/>
                             <constraint firstItem="458" firstAttribute="leading" secondItem="457" secondAttribute="trailing" constant="-1" id="HtS-Zv-scr"/>
-                            <constraint firstAttribute="trailing" secondItem="PKM-q8-yPJ" secondAttribute="trailing" constant="20" symbolic="YES" id="Kuz-Ll-84l"/>
-                            <constraint firstItem="PKM-q8-yPJ" firstAttribute="leading" secondItem="OK0-xb-bxI" secondAttribute="trailing" constant="8" id="RHN-xk-6FI"/>
                             <constraint firstItem="JWP-To-iJP" firstAttribute="top" secondItem="457" secondAttribute="bottom" constant="20" id="SBW-c3-QxV"/>
                             <constraint firstItem="457" firstAttribute="top" secondItem="prG-8I-L0n" secondAttribute="bottom" constant="8" symbolic="YES" id="T6v-in-Xxr"/>
                             <constraint firstItem="prG-8I-L0n" firstAttribute="trailing" secondItem="mLV-wT-ghP" secondAttribute="trailing" id="Z4c-4b-Dkp"/>
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="top" secondItem="JWP-To-iJP" secondAttribute="bottom" constant="6" id="bFY-y4-yig"/>
                             <constraint firstItem="mLV-wT-ghP" firstAttribute="bottom" secondItem="nF4-c6-mvy" secondAttribute="bottom" id="bU7-Qs-LW6"/>
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="g5O-VB-rVd"/>
-                            <constraint firstItem="PKM-q8-yPJ" firstAttribute="baseline" secondItem="OK0-xb-bxI" secondAttribute="baseline" constant="-1" id="hY5-BW-ruU"/>
                             <constraint firstItem="457" firstAttribute="height" secondItem="458" secondAttribute="height" id="hZw-id-Tdg"/>
                             <constraint firstAttribute="trailing" secondItem="7WH-D1-7oE" secondAttribute="trailing" constant="20" symbolic="YES" id="hpw-nP-1hg"/>
                             <constraint firstItem="457" firstAttribute="top" secondItem="458" secondAttribute="top" id="jl7-NQ-mf8"/>
@@ -337,6 +324,7 @@
                             <constraint firstItem="JWP-To-iJP" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="q9y-ee-vj6"/>
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="top" secondItem="OK0-xb-bxI" secondAttribute="bottom" constant="6" id="t2u-Ox-XTZ"/>
                             <constraint firstItem="nF4-c6-mvy" firstAttribute="top" secondItem="Gi6-Rx-eMY" secondAttribute="top" constant="20" symbolic="YES" id="wfn-pP-bUF"/>
+                            <constraint firstAttribute="trailing" secondItem="OK0-xb-bxI" secondAttribute="trailing" constant="20" symbolic="YES" id="ydR-wd-jfm"/>
                             <constraint firstItem="prG-8I-L0n" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="yg8-O0-IK3"/>
                             <constraint firstItem="nF4-c6-mvy" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="zqp-oX-HNv"/>
                         </constraints>
@@ -359,45 +347,6 @@
                 </arrayController>
             </objects>
             <point key="canvasLocation" x="274" y="422"/>
-        </scene>
-        <!--Glossary-->
-        <scene sceneID="wf4-HA-muP">
-            <objects>
-                <viewController title="Glossary" showSeguePresentationStyle="single" id="La6-Dq-gq6" customClass="FileDropGlossaryViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" allowsMagnification="YES" usesPredominantAxisScrolling="NO" id="Hpg-eP-C5S">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" drawsBackground="NO" id="PE7-Im-8Pl">
-                            <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView editable="NO" drawsBackground="NO" importsGraphics="NO" horizontallyResizable="YES" findStyle="panel" smartInsertDelete="YES" id="9qp-aP-8tJ">
-                                    <rect key="frame" x="0.0" y="-24" width="250" height="300"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="250" height="300"/>
-                                    <size key="maxSize" width="450" height="10000000"/>
-                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="rgb-uI-sZ7">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="VAO-hm-xGl">
-                            <rect key="frame" x="236" y="0.0" width="14" height="300"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
-                    <connections>
-                        <outlet property="textView" destination="9qp-aP-8tJ" id="OpG-K4-ENe"/>
-                    </connections>
-                </viewController>
-                <customObject id="CHW-Ue-CLK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="775" y="421"/>
         </scene>
     </scenes>
     <resources>

@@ -63,17 +63,9 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
-            for variable in FileDropComposer.Token.pathTokens {
-                let item = NSMenuItem(title: variable.token, action: #selector(insertVariable), keyEquivalent: "")
-                item.toolTip = variable.localizedDescription
-                menu.addItem(item)
-            }
-            menu.addItem(NSMenuItem.separator())
-            for variable in FileDropComposer.Token.imageTokens {
-                let item = NSMenuItem(title: variable.token, action: #selector(insertVariable), keyEquivalent: "")
-                item.toolTip = variable.localizedDescription
-                menu.addItem(item)
-            }
+            menu.addItems(for: FileDropComposer.Token.pathTokens, target: self.formatTextView)
+            menu.addItem(.separator())
+            menu.addItems(for: FileDropComposer.Token.imageTokens, target: self.formatTextView)
         }
     }
     
@@ -144,23 +136,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     // MARK: Action Messages
-    
-    /// variable insertion menu was selected
-    @IBAction func insertVariable(_ sender: Any?) {
-        
-        guard let menuItem = sender as? NSMenuItem else { return }
-        guard let textView = self.formatTextView else { return }
-        
-        let title = menuItem.title
-        let range = textView.rangeForUserTextChange
-        
-        self.view.window?.makeFirstResponder(textView)
-        if textView.shouldChangeText(in: range, replacementString: title) {
-            textView.replaceCharacters(in: range, with: title)
-            textView.didChangeText()
-        }
-    }
-    
     
     /// add file drop setting
     @IBAction func addSetting(_ sender: Any?) {
