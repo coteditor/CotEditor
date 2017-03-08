@@ -136,8 +136,8 @@
                                     <rect key="frame" x="1" y="0.0" width="508" height="159"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="c3e-u6-nJD" viewBased="YES" id="eYE-eu-OMg">
-                                            <rect key="frame" x="0.0" y="0.0" width="514" height="136"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="c3e-u6-nJD" viewBased="YES" id="eYE-eu-OMg">
+                                            <rect key="frame" x="0.0" y="0.0" width="508" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -160,7 +160,7 @@
                                                             <rect key="frame" x="1" y="1" width="150" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIX-u0-ddX">
+                                                                <textField identifier="extensions" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIX-u0-ddX">
                                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="png, jpg, gif" usesSingleLineMode="YES" id="caT-Gh-1x2">
                                                                         <font key="font" metaFont="system"/>
@@ -234,7 +234,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="205" minWidth="10" maxWidth="1000" headerToolTip="" id="p2m-Qi-6k3">
+                                                <tableColumn identifier="" width="199" minWidth="10" maxWidth="1000" headerToolTip="" id="p2m-Qi-6k3">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -248,11 +248,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="bjH-aA-F7G">
-                                                            <rect key="frame" x="307" y="1" width="205" height="17"/>
+                                                            <rect key="frame" x="307" y="1" width="199" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField identifier="description" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-15-RQ7">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="205" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="199" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="25Y-1h-PMq">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -289,7 +289,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="Jsi-Qf-PJo"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="ebT-4a-UjZ">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ebT-4a-UjZ">
                                     <rect key="frame" x="1" y="143" width="508" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -298,7 +298,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="c3e-u6-nJD">
-                                    <rect key="frame" x="0.0" y="0.0" width="514" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="508" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
