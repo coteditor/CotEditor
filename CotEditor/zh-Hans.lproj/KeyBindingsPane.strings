@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,6 +29,55 @@
 
 /* Class = "NSTabViewItem"; label = "Menu Items"; ObjectID = "QZO-GE-ra1"; */
 "QZO-GE-ra1.label" = "菜单项";
-
 /* Class = "NSTabViewItem"; label = "Snippets"; ObjectID = "VfI-7K-2Nb"; */
 "VfI-7K-2Nb.label" = "代码片段";
+
+
+
+
+/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
+"ZYM-tb-Csx.title" = "菜单项目的快捷按键";
+
+/* Class = "NSTextFieldCell"; title = "(excl. Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
+"Dl2-3y-7EJ.title" = "(不包括. 脚本菜单)";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
+"Hue-bU-8wr.title" = "选中要绑定的项目并单击按键列来改变绑定";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "qGe-Et-FB2"; */
+"qGe-Et-FB2.title" = "快捷键中必须包含 Command 键。";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
+"jNh-nd-VRd.headerCell.title" = "动作";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
+"PSD-Um-TfH.headerCell.title" = "按键";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
+"CyK-OL-qHa.title" = "恢复默认";
+
+
+
+
+/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
+"eMZ-Mx-JSK.title" = "插入预定义文本的快捷按键";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
+"a9m-M2-rgC.title" = "选中要绑定的项目并单击按键列来改变绑定";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
+"5zd-aF-0zL.title" = "快捷键中不能包含 Command 键。";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
+"sz5-hl-bZK.headerCell.title" = "动作";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
+"hXU-bV-zlt.headerCell.title" = "按键";
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
+"tuB-9O-QZH.title" = "按格式插入：";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
+"wC4-qj-3oD.title" = "Insert Variable";  // FIXME: added
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "Y5G-PR-ofT"; */
+"Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "选择动作。";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
+"0Du-JI-ZN7.title" = "恢复默认";

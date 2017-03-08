@@ -77,15 +77,6 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: String? {
-        
-        return "MenuKeyBindingsEditView"
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -291,15 +282,6 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: String? {
-        
-        return "TextKeyBindingsEditView"
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -370,39 +352,6 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
             self.saveSettings()
         }
     }
-    
-    
-    
-    // MARK: Action Messages
-    
-    /// variable insertion menu was selected
-    @IBAction func insertVariable(_ sender: Any?) {
-        
-        guard let menuItem = sender as? NSMenuItem else { return }
-        guard let textView = self.formatTextView else { return }
-        
-        let title = menuItem.title
-        let range = textView.rangeForUserTextChange
-        
-        // cannot insert multiple cursor
-        if
-            title == Snippet.Variable.cursor.token,
-            let string = textView.string,
-            string.contains(title)
-        {
-            NSBeep()
-            return
-        }
-        
-        self.view.window?.makeFirstResponder(textView)
-        if textView.shouldChangeText(in: range, replacementString: title) {
-            textView.replaceCharacters(in: range, with: title)
-            textView.didChangeText()
-        }
-    }
-    
-    
-    
     // MARK: Private Methods
     
     /// set snippets to arrayController
