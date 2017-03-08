@@ -38,7 +38,7 @@ final class PreferencesWindowController: NSWindowController {
     
     private let viewControllers: [NSViewController] = [
         NSStoryboard(name: "GeneralPane", bundle: nil).instantiateInitialController() as! GeneralPaneController,
-        WindowPaneController(),
+        NSStoryboard(name: "WindowPane", bundle: nil).instantiateInitialController() as! WindowPaneController,
         AppearancePaneController(),
         EditPaneController(),
         FormatPaneController(),

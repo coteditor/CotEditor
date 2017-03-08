@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -37,15 +37,6 @@ final class WindowPaneController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: String? {
-        
-        return "WindowPane"
-    }
-    
-    
-    
     // MARK: Action Messages
     
     /// opaque setting did update
