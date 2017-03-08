@@ -108,6 +108,42 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
+    /// setup scope popup menu
+    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
+        
+        guard
+            let cellView = rowView.view(atColumn: 1) as? NSTableCellView,
+            let menu = cellView.subviews.first as? NSPopUpButton,
+            let item = cellView.objectValue as? [String: String]
+            else {
+                assertionFailure()
+                return
+        }
+        
+        // reset attributed string for "All" item
+        // -> Otherwise, the title isn't localized.
+        let allItem = menu.itemArray.first!
+        allItem.attributedTitle = NSAttributedString(string: allItem.title, attributes: allItem.attributedTitle!.attributes(at: 0, effectiveRange: nil))
+        
+        
+        // add styles
+        for styleName in SyntaxManager.shared.styleNames {
+            menu.addItem(withTitle: styleName)
+            menu.lastItem!.representedObject = styleName
+        }
+        
+        // select item
+        if let scope = item[FileDropComposer.SettingKey.scope] {
+            menu.selectItem(withTitle: scope)
+        } else {
+            if let emptyItem = menu.itemArray.first(where: { !$0.isSeparatorItem && $0.title.isEmpty }) {
+                menu.menu?.removeItem(emptyItem)
+            }
+            menu.selectItem(at: 0)
+        }
+    }
+    
+    
     /// set action on swiping theme name
     @available(macOS 10.11, *)
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
@@ -166,8 +202,17 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         guard let content = self.fileDropController?.content as? [[String: String]] else { return }
         
-        UserDefaults.standard[.fileDropArray] = content.filter {
-            !($0[FileDropComposer.SettingKey.extensions] ?? "").isEmpty || !($0[FileDropComposer.SettingKey.scope] ?? "").isEmpty
+        // sanitize
+        UserDefaults.standard[.fileDropArray] = content.flatMap { (item: [String: String]) -> [String: String]? in
+            
+            if let extensions = item[FileDropComposer.SettingKey.extensions], extensions.isEmpty {
+                var item = item
+                item[FileDropComposer.SettingKey.extensions] = nil
+            }
+            
+            guard item[FileDropComposer.SettingKey.extensions] != nil || item[FileDropComposer.SettingKey.scope] != nil else { return nil }
+            
+            return item
         }
     }
     

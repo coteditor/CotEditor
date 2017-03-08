@@ -43,8 +43,8 @@
 
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "All"; ObjectID = "hY5-0z-qN6"; */
 "hY5-0z-qN6.ibShadowedIsNilPlaceholder" = "すべて";  // displays if no scope extension is specified
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "All"; ObjectID = "iH2-ed-kWz"; */
-"iH2-ed-kWz.ibShadowedIsNilPlaceholder" = "すべて";  // displays if no scope syntax style is specified
+/* Class = "NSMenuItem"; title = "All"; ObjectID = "W3Z-PB-IUJ"; */
+"W3Z-PB-IUJ.title" = "すべて";  // displays if no scope syntax style is specified
 
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "457"; */
 "457.ibShadowedToolTip" = "追加";

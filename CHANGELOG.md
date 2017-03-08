@@ -19,6 +19,7 @@ develop
 
 - Improve performance of closing large size document.
 - Add “.swift” extension to file types treaded as CotEditor script.
+- And some minor improvements and fixes.
 - [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
 
 

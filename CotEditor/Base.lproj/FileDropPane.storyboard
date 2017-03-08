@@ -206,31 +206,38 @@
                                                             <rect key="frame" x="154" y="1" width="150" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="scope" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4R-VP-La2">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="17"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="HTML" usesSingleLineMode="YES" id="jqc-C9-wHV">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
+                                                                <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="IBU-1D-WII">
+                                                                    <rect key="frame" x="2" y="-2" width="146" height="22"/>
+                                                                    <popUpButtonCell key="cell" type="bevel" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="W3Z-PB-IUJ" id="eh9-Os-Ang">
+                                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="menu"/>
+                                                                        <menu key="menu" id="LxZ-tS-R8a">
+                                                                            <items>
+                                                                                <menuItem title="All" state="on" id="W3Z-PB-IUJ">
+                                                                                    <attributedString key="attributedTitle">
+                                                                                        <fragment content="All">
+                                                                                            <attributes>
+                                                                                                <color key="NSColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <font key="NSFont" metaFont="menu"/>
+                                                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                            </attributes>
+                                                                                        </fragment>
+                                                                                    </attributedString>
+                                                                                </menuItem>
+                                                                                <menuItem isSeparatorItem="YES" id="LII-bD-opK"/>
+                                                                            </items>
+                                                                        </menu>
+                                                                    </popUpButtonCell>
                                                                     <connections>
-                                                                        <binding destination="Nke-jc-fMr" name="value" keyPath="objectValue.scope" id="iH2-ed-kWz">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSNullPlaceholder">All</string>
-                                                                            </dictionary>
-                                                                        </binding>
+                                                                        <binding destination="Nke-jc-fMr" name="selectedObject" keyPath="objectValue.scope" id="IEo-3L-WB7"/>
                                                                     </connections>
-                                                                </textField>
+                                                                </popUpButton>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="B4R-VP-La2" secondAttribute="trailing" constant="2" id="5jV-YM-P3Z"/>
-                                                                <constraint firstItem="B4R-VP-La2" firstAttribute="top" secondItem="Nke-jc-fMr" secondAttribute="top" id="U3T-BS-OhL"/>
-                                                                <constraint firstAttribute="bottom" secondItem="B4R-VP-La2" secondAttribute="bottom" id="Ucq-zF-TEz"/>
-                                                                <constraint firstItem="B4R-VP-La2" firstAttribute="leading" secondItem="Nke-jc-fMr" secondAttribute="leading" constant="2" id="inQ-5q-cgX"/>
+                                                                <constraint firstAttribute="trailing" secondItem="IBU-1D-WII" secondAttribute="trailing" constant="2" id="67j-zF-zXB"/>
+                                                                <constraint firstItem="IBU-1D-WII" firstAttribute="leading" secondItem="Nke-jc-fMr" secondAttribute="leading" constant="2" id="9iW-VI-UOp"/>
+                                                                <constraint firstItem="IBU-1D-WII" firstAttribute="centerY" secondItem="Nke-jc-fMr" secondAttribute="centerY" id="H8J-no-blM"/>
                                                             </constraints>
-                                                            <connections>
-                                                                <outlet property="textField" destination="B4R-VP-La2" id="ofC-dJ-7ew"/>
-                                                            </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>

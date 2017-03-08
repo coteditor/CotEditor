@@ -44,8 +44,8 @@
 
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "All"; ObjectID = "hY5-0z-qN6"; */
 "hY5-0z-qN6.ibShadowedIsNilPlaceholder" = "All";  // displays if no scope extension is specified  // FIXME: Added
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "All"; ObjectID = "iH2-ed-kWz"; */
-"iH2-ed-kWz.ibShadowedIsNilPlaceholder" = "All";  // displays if no scope syntax style is specified  // FIXME: Added
+/* Class = "NSMenuItem"; title = "All"; ObjectID = "W3Z-PB-IUJ"; */
+"W3Z-PB-IUJ.title" = "All";  // displays if no scope syntax style is specified  // FIXME: Added
 
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "457"; */
 "457.ibShadowedToolTip" = "添加";
