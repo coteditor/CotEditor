@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Add “.swift” extension to file types treaded as CotEditor script.
 - [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
 
 
