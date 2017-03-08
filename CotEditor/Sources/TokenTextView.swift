@@ -125,9 +125,11 @@ final class TokenTextView: NSTextView {
     
     @IBAction func insertVariable(_ sender: Any?) {
         
-        guard let menuItem = sender as? NSMenuItem else { return }
+        guard
+            let menuItem = sender as? NSMenuItem,
+            let title = menuItem.representedObject as? String
+            else { return }
         
-        let title = menuItem.title
         let range = self.rangeForUserTextChange
         
         self.window?.makeFirstResponder(self)
@@ -187,6 +189,7 @@ extension NSMenu {
             item.target = target
             item.action = #selector(TokenTextView.insertVariable)
             item.attributedTitle = token + description
+            item.representedObject = variable.token
             
             self.addItem(item)
         }
