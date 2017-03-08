@@ -942,7 +942,7 @@
                     <popUpButtonCell key="cell" type="push" title="Insert Variable" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" preferredEdge="maxY" selectedItem="An8-sr-spM" id="miz-03-Ojd">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
-                        <menu key="menu" id="0Nt-51-n6D">
+                        <menu key="menu" showsStateColumn="NO" id="0Nt-51-n6D">
                             <items>
                                 <menuItem title="Insert Variable" state="on" hidden="YES" id="An8-sr-spM"/>
                             </items>

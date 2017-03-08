@@ -30,7 +30,7 @@ import AppKit
 private let tokenAttributeName = "tokenAttributeName"
 
 
-class TokenTextView: NSTextView {
+final class TokenTextView: NSTextView {
     
     var tokenizer: Tokenizer?
     var tokenColor: NSColor = .selectedControlColor
@@ -118,6 +118,26 @@ class TokenTextView: NSTextView {
     
     
     
+    // MARK: Actions
+    
+    
+    /// variable insertion menu was selected
+    
+    @IBAction func insertVariable(_ sender: Any?) {
+        
+        guard let menuItem = sender as? NSMenuItem else { return }
+        
+        let title = menuItem.title
+        let range = self.rangeForUserTextChange
+        
+        self.window?.makeFirstResponder(self)
+        if self.shouldChangeText(in: range, replacementString: title) {
+            self.replaceCharacters(in: range, with: title)
+            self.didChangeText()
+        }
+    }
+    
+    
     // MARK: Private Method
     
     /// find tokens in contens and mark-up them
@@ -141,6 +161,35 @@ class TokenTextView: NSTextView {
         }
         
         self.needsDisplay = true
+    }
+    
+}
+
+
+
+extension NSMenu {
+    
+    /// add a menu item to insert variable to TokenTextView
+    func addItems<T: TokenRepresentable>(for variables: [T], target: TokenTextView?) {
+        
+        let fontSize = NSFont.systemFontSize(for: .small)
+        let font = NSFont.menuFont(ofSize: fontSize)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.firstLineHeadIndent = 2 * fontSize
+        paragraphStyle.headIndent = 2 * fontSize
+        
+        for variable in variables {
+            let token = NSAttributedString(string: variable.token, attributes: [NSFontAttributeName: font])
+            let description = NSAttributedString(string: "\n" + variable.localizedDescription, attributes: [NSFontAttributeName: font,
+                                                                                                            NSForegroundColorAttributeName: NSColor.gray,
+                                                                                                            NSParagraphStyleAttributeName: paragraphStyle])
+            let item = NSMenuItem()
+            item.target = target
+            item.action = #selector(TokenTextView.insertVariable)
+            item.attributedTitle = token + description
+            
+            self.addItem(item)
+        }
     }
     
 }

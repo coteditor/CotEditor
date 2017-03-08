@@ -32,13 +32,11 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Private Properties
     
-    private var deletingFileDrop = false
-    
     @IBOutlet private var fileDropController: NSArrayController?
-    @IBOutlet private weak var extensionTableView: NSTableView?
+    @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
-    @IBOutlet private var glossaryTextView: NSTextView?  // NSTextView cannot be weak
     @IBOutlet private var formatTextView: TokenTextView? {  // NSTextView cannot be weak
+        
         didSet {
             // set tokenizer for format text view
             self.formatTextView!.tokenizer = FileDropComposer.Token.tokenizer
@@ -52,13 +50,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     deinit {
         self.formatTextView?.delegate = nil
-        self.glossaryTextView?.delegate = nil
-    }
-    
-    
-    override var nibName: String? {
-        
-        return "FileDropPane"
     }
     
     
@@ -70,37 +61,30 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         super.viewDidLoad()
         
-        // load setting
-        self.loadSetting()
-        
-        // set localized glossary to view
-        self.glossaryTextView!.string = FileDropComposer.Token.all
-            .map { $0.token + "\n" + $0.localizedDescription }
-            .joined(separator: "\n\n")
-        self.glossaryTextView?.textContainerInset = NSSize(width: 2, height: 6)
-        
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
-            for variable in FileDropComposer.Token.pathTokens {
-                let item = NSMenuItem(title: variable.token, action: #selector(insertVariable), keyEquivalent: "")
-                item.toolTip = variable.localizedDescription
-                menu.addItem(item)
-            }
-            menu.addItem(NSMenuItem.separator())
-            for variable in FileDropComposer.Token.imageTokens {
-                let item = NSMenuItem(title: variable.token, action: #selector(insertVariable), keyEquivalent: "")
-                item.toolTip = variable.localizedDescription
-                menu.addItem(item)
-            }
+            menu.addItems(for: FileDropComposer.Token.pathTokens, target: self.formatTextView)
+            menu.addItem(.separator())
+            menu.addItems(for: FileDropComposer.Token.imageTokens, target: self.formatTextView)
         }
+    }
+    
+    
+    /// update setting
+    override func viewDidAppear() {
+        
+        super.viewDidAppear()
+        
+        self.loadSetting()
     }
     
     
     /// finish current editing
     override func viewWillDisappear() {
         
-        self.endEditing()
+        super.viewWillDisappear()
         
+        self.endEditing()
         self.saveSetting()
     }
     
@@ -108,46 +92,54 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Delegate
     
-    /// extension table was edited
-    override func controlTextDidEndEditing(_ obj: Notification) {
+    /// extension field was edited
+    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
-        guard obj.object is NSTextField,
-            let controller = self.fileDropController else { return }
-        
-        guard
-            let newItem = controller.selectedObjects.first as? [String: String],
-            let extensions = newItem[FileDropComposer.SettingKey.extensions], !extensions.isEmpty
-            else {
-                // delete row if empty
-                // -> set false to flag for in case that the delete button was pressed while editing and the target can be automatically deleted
-                self.deletingFileDrop = false
-                controller.remove(nil)
-                return
-        }
+        guard control.identifier == FileDropComposer.SettingKey.extensions else { return true }
         
         // sanitize
-        let newExtensions = type(of: self).sanitize(extensionsString: extensions)
-        
-        // save if new text valid
-        if !newExtensions.isEmpty {
-            (controller.selection as AnyObject).setValue(newExtensions, forKey: FileDropComposer.SettingKey.extensions)
-        } else if let format = newItem[FileDropComposer.SettingKey.formatString], format.isEmpty {
-            controller.remove(nil)
+        if let string = fieldEditor.string {
+            fieldEditor.string = type(of: self).sanitize(extensionsString: string)
         }
         
         self.saveSetting()
+        
+        return true
     }
     
     
-    /// start editing extantion table field just added
+    /// setup scope popup menu
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
-        guard let content = (rowView.view(atColumn: 0) as? NSTableCellView)?.textField?.stringValue else { return }
+        guard
+            let cellView = rowView.view(atColumn: 1) as? NSTableCellView,
+            let menu = cellView.subviews.first as? NSPopUpButton,
+            let item = cellView.objectValue as? [String: String]
+            else {
+                assertionFailure()
+                return
+        }
         
-        let isLastRow = (tableView.numberOfRows - 1 == row)
+        // reset attributed string for "All" item
+        // -> Otherwise, the title isn't localized.
+        let allItem = menu.itemArray.first!
+        allItem.attributedTitle = NSAttributedString(string: allItem.title, attributes: allItem.attributedTitle!.attributes(at: 0, effectiveRange: nil))
         
-        if isLastRow && content.isEmpty {
-            tableView.editColumn(0, row: row, with: nil, select: true)
+        
+        // add styles
+        for styleName in SyntaxManager.shared.styleNames {
+            menu.addItem(withTitle: styleName)
+            menu.lastItem!.representedObject = styleName
+        }
+        
+        // select item
+        if let scope = item[FileDropComposer.SettingKey.scope] {
+            menu.selectItem(withTitle: scope)
+        } else {
+            if let emptyItem = menu.itemArray.first(where: { !$0.isSeparatorItem && $0.title.isEmpty }) {
+                menu.menu?.removeItem(emptyItem)
+            }
+            menu.selectItem(at: 0)
         }
     }
     
@@ -162,7 +154,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         return [NSTableViewRowAction(style: .destructive,
                                      title: NSLocalizedString("Delete", comment: "table view action title"),
                                      handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
-                                        self?.deletingFileDrop = true
                                         self?.deleteSetting(at: row)
             })]
     }
@@ -182,23 +173,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Action Messages
     
-    /// variable insertion menu was selected
-    @IBAction func insertVariable(_ sender: Any?) {
-        
-        guard let menuItem = sender as? NSMenuItem else { return }
-        guard let textView = self.formatTextView else { return }
-        
-        let title = menuItem.title
-        let range = textView.rangeForUserTextChange
-        
-        self.view.window?.makeFirstResponder(textView)
-        if textView.shouldChangeText(in: range, replacementString: title) {
-            textView.replaceCharacters(in: range, with: title)
-            textView.didChangeText()
-        }
-    }
-    
-    
     /// add file drop setting
     @IBAction func addSetting(_ sender: Any?) {
         
@@ -211,10 +185,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// remove selected file drop setting
     @IBAction func removeSetting(_ sender: Any?) {
         
-        guard let selectedRow = self.extensionTableView?.selectedRow, selectedRow != -1 else { return }
-        
-        // raise flag for in case that the delete button was pressed while editing and the target can be automatically deleted
-        self.deletingFileDrop = true
+        guard let selectedRow = self.tableView?.selectedRow, selectedRow != -1 else { return }
         
         self.endEditing()
         
@@ -229,9 +200,20 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// write back file drop setting to UserDefaults
     private func saveSetting() {
         
-        guard let content = self.fileDropController?.content as? [Any] else { return }
+        guard let content = self.fileDropController?.content as? [[String: String]] else { return }
         
-        UserDefaults.standard[.fileDropArray] = content
+        // sanitize
+        UserDefaults.standard[.fileDropArray] = content.flatMap { (item: [String: String]) -> [String: String]? in
+            
+            if let extensions = item[FileDropComposer.SettingKey.extensions], extensions.isEmpty {
+                var item = item
+                item[FileDropComposer.SettingKey.extensions] = nil
+            }
+            
+            guard item[FileDropComposer.SettingKey.extensions] != nil || item[FileDropComposer.SettingKey.scope] != nil else { return nil }
+            
+            return item
+        }
     }
     
     
@@ -253,29 +235,20 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// trim extension string format or return nil if all invalid
+    /// trim extension string format
     private static func sanitize(extensionsString: String) -> String {
         
-        guard !extensionsString.isEmpty else { return "" }
+        let trimSet = CharacterSet(charactersIn: ", ./\\\t\r\n")  // separator + typical invalid characters
         
-        let trimSet = CharacterSet(charactersIn: "./ \t\r\n")
-        let extensions = extensionsString.components(separatedBy: ",")
-        
-        // trim
-        let sanitizedExtensions: [String] = extensions.flatMap { extension_ in
-            let trimmed = extension_.trimmingCharacters(in: trimSet)
-            return trimmed.isEmpty ? nil : trimmed
-        }
-        
-        return sanitizedExtensions.joined(separator: ", ")
+        return extensionsString
+            .components(separatedBy: trimSet)
+            .filter { !$0.isEmpty }
+            .joined(separator: ", ")
     }
     
     
     /// ask if user really wants to delete the item
     private func deleteSetting(at row: Int) {
-        
-        // do nothing if it's already removed in `controlTextDidEndEditing:`
-        guard self.deletingFileDrop else { return }
         
         guard let objects = self.fileDropController?.arrangedObjects as? [[String: String]] else { return }
         
@@ -294,15 +267,13 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
                 if #available(macOS 10.11, *) {
-                    strongSelf.extensionTableView?.rowActionsVisible = false
+                    strongSelf.tableView?.rowActionsVisible = false
                 }
                 return
             }
-            guard strongSelf.deletingFileDrop else { return }
             
             strongSelf.fileDropController?.remove(atArrangedObjectIndex: row)
             strongSelf.saveSetting()
-            strongSelf.deletingFileDrop = false
         }
     }
     

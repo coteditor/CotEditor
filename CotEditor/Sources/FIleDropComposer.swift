@@ -25,7 +25,8 @@
  
  */
 
-import Cocoa
+import Foundation
+import AppKit.NSImageRep
 
 final class FileDropComposer {
     
@@ -34,6 +35,8 @@ final class FileDropComposer {
         
         static let extensions = "extensions"
         static let formatString = "formatString"
+        static let scope = "scope"
+        static let description = "description"
     }
     
     
@@ -58,13 +61,7 @@ final class FileDropComposer {
         static let all = Token.pathTokens + Token.imageTokens
         
         
-        var localizedDescription: String {
-            
-            return NSLocalizedString(self.description, comment: "")
-        }
-        
-        
-        private var description: String {
+        var description: String {
             
             switch self {
             case .absolutePath:
@@ -102,22 +99,34 @@ final class FileDropComposer {
     }
     
     
+    private let definitions: [[String: String]]
+    
+    
     
     // MARK: -
     // MARK: Lifecycle
     
-    private init() { }
+    init(definitions: [[String: String]]) {
+        
+        self.definitions = definitions
+    }
     
     
     
     // MARK: Public Methods
     
     /// create file drop text
-    static func dropText(forFileURL droppedFileURL: URL, documentURL: URL?) -> String? {
+    ///
+    /// - Parameters:
+    ///   - droppedFileURL: The file URL of dropped file to insert.
+    ///   - documentURL: The file URL of the document or nil if it's not yet saved.
+    ///   - syntaxStyle: The document syntax style or nil if style is not specified.
+    /// - Returns: The text to insert.
+    func dropText(forFileURL droppedFileURL: URL, documentURL: URL?, syntaxStyle: String?) -> String? {
         
         let pathExtension = droppedFileURL.pathExtension
         
-        guard let template = self.template(forExtension: pathExtension) else { return nil }
+        guard let template = self.template(forExtension: pathExtension, syntaxStyle: syntaxStyle) else { return nil }
         
         // replace template
         var dropText = template
@@ -151,17 +160,22 @@ final class FileDropComposer {
     
     // MARK: Private Methods
     
-    /// find matched template for path extension
-    private static func template(forExtension fileExtension: String?) -> String? {
+    /// find matched template for path extension and scope
+    ///
+    /// - Parameters:
+    ///   - fileExtension: The extension of file to drop.
+    ///   - syntaxStyle: The document syntax style or nil if style is not specified.
+    /// - Returns: A matched template string for file drop or nil if not found.
+    private func template(forExtension fileExtension: String, syntaxStyle: String?) -> String? {
         
-        guard let fileExtension = fileExtension else { return nil }
+        guard !fileExtension.isEmpty else { return nil }
         
-        guard let definitions = UserDefaults.standard[.fileDropArray] as? [[String: String]] else {
-            assertionFailure("invalid file drop setting")
-            return nil
-        }
-        
-        for definition in definitions {
+        for definition in self.definitions {
+            // check scope if specified
+            if let scope = definition[SettingKey.scope], !scope.isEmpty {
+                guard let syntaxStyle = syntaxStyle, syntaxStyle == scope else { continue }
+            }
+            
             guard let extensions = definition[SettingKey.extensions]?.components(separatedBy: ", ") else { continue }
             
             if extensions.contains(fileExtension.lowercased()) || extensions.contains(fileExtension.uppercased()) {

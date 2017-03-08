@@ -639,13 +639,20 @@ final class EditorTextView: NSTextView, Themable {
         
         // on file drop
         if type == NSFilenamesPboardType,
-            let filePaths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String] {
+            let filePaths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String]
+        {
+            let definitions = UserDefaults.standard[.fileDropArray] as? [[String: String]]
+            let composer = FileDropComposer(definitions: definitions ?? [])
             let documentURL = self.document?.fileURL
+            let syntaxStyle: String? = {
+                guard let style = self.document?.syntaxStyle, !style.isNone else { return nil }
+                return style.styleName
+            }()
             var replacementString = ""
             
             for path in filePaths {
                 let url = URL(fileURLWithPath: path)
-                if let dropText = FileDropComposer.dropText(forFileURL: url, documentURL: documentURL) {
+                if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
                     replacementString += dropText
                     
                 } else {

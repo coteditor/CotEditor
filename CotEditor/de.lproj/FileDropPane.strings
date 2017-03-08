@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,13 +25,26 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Extensions:"; ObjectID = "3331"; */
-"3331.title" = "Suffixe:";
+/* Class = "NSTextFieldCell"; title = "File Drop Definitions:"; ObjectID = "3331"; */
+"3331.title" = "Definitionen für Datei-Drop:";
 /* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
 "3335.title" = "(kommagetrennt, ohne Punkte)";
 
-/* Class = "NSTextFieldCell"; title = "Glossary:"; ObjectID = "3337"; */
-"3337.title" = "Glossar:";
+/* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
+"FAF-cL-AAk.headerCell.title" = "Suffixe";
+"FAF-cL-AAk.headerToolTip" = "Dateisuffixe der abgelegte Datei.";  /* File extensions of dropped file. */
+
+/* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
+"RqT-x4-YbN.headerCell.title" = "Syntaxstil";
+"RqT-x4-YbN.headerToolTip" = "Syntaxstil, in dem diese Datei-Drop-Einstellung aktiviert ist.";  /* Syntax style in which this file drop setting is enabled. */  // FIXME: added
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "p2m-Qi-6k3"; */
+"p2m-Qi-6k3.headerCell.title" = "Beschreibung";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "All"; ObjectID = "hY5-0z-qN6"; */
+"hY5-0z-qN6.ibShadowedIsNilPlaceholder" = "Alle";  // displays if no scope extension is specified
+/* Class = "NSMenuItem"; title = "All"; ObjectID = "W3Z-PB-IUJ"; */
+"W3Z-PB-IUJ.title" = "Alle";  // displays if no scope syntax style is specified
 
 /* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "457"; */
 "457.ibShadowedToolTip" = "Hinzufügen";
@@ -47,3 +60,7 @@
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "Kein Suffix ausgewählt.";
+
+
+/* Class = "NSViewController"; title = "Glossary"; ObjectID = "La6-Dq-gq6"; */
+"La6-Dq-gq6.title" = "Glossar";
