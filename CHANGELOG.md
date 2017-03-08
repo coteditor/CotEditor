@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
+
+
 ### Fixes
 
 - Update cot command to fix an issue where files cannot be opened if the default Python on macOS is version 3.x.
