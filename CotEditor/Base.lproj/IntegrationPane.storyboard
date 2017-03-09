@@ -42,14 +42,14 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="NGa-54-JV0" name="displayPatternValue1" keyPath="linkURL.path" id="e2G-16-MxZ">
-                                        <dictionary key="options">
-                                            <string key="NSDisplayPattern">installed at %{value1}@</string>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="NGa-54-JV0" name="hidden" keyPath="installed" id="bIt-85-7jy">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="NGa-54-JV0" name="displayPatternValue1" keyPath="linkURL.path" id="e2G-16-MxZ">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayPattern">installed at %{value1}@</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -61,7 +61,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="openHelpAnchor:" target="Wg0-Wy-vM7" id="aSt-dl-oDC"/>
+                                    <action selector="openHelpAnchor:" target="Wg0-Wy-vM7" id="AkK-TL-4vi"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hel-wg-HgL">

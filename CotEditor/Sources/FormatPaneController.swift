@@ -45,9 +45,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     @IBOutlet private weak var inOpenEncodingMenu: NSPopUpButton?
     @IBOutlet private weak var inNewEncodingMenu: NSPopUpButton?
     
-    @IBOutlet private weak var stylesController: NSArrayController?
+    @IBOutlet private var stylesController: NSArrayController?
+    @IBOutlet private var syntaxTableMenu: NSMenu?
     @IBOutlet private weak var syntaxTableView: NSTableView?
-    @IBOutlet private weak var syntaxTableMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesDefaultPopup: NSPopUpButton?
     @IBOutlet private weak var syntaxStyleDeleteButton: NSButton?
     
@@ -58,12 +58,6 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    override var nibName: String? {
-        
-        return "FormatPane"
     }
     
     

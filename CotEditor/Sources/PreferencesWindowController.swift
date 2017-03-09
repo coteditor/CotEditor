@@ -37,16 +37,16 @@ final class PreferencesWindowController: NSWindowController {
     // MARK: Private Properties
     
     private let viewControllers: [NSViewController] = [
-        NSStoryboard(name: "GeneralPane", bundle: nil).instantiateInitialController() as! GeneralPaneController,
-        NSStoryboard(name: "WindowPane", bundle: nil).instantiateInitialController() as! WindowPaneController,
-        NSStoryboard(name: "AppearancePane", bundle: nil).instantiateInitialController() as! AppearancePaneController,
-        NSStoryboard(name: "EditPane", bundle: nil).instantiateInitialController() as! EditPaneController,
-        FormatPaneController(),
-        NSStoryboard(name: "FileDropPane", bundle: nil).instantiateInitialController() as! FileDropPaneController,
-        NSStoryboard(name: "KeyBindingsPane", bundle: nil).instantiateInitialController() as! KeyBindingsPaneController,
-        NSStoryboard(name: "PrintPane", bundle: nil).instantiateInitialController() as! PrintPaneController,
-        NSStoryboard(name: "IntegrationPane", bundle: nil).instantiateInitialController() as! IntegrationPaneController,
-        ]
+        "GeneralPane",
+        "WindowPane",
+        "AppearancePane",
+        "EditPane",
+        "FormatPane",
+        "FileDropPane",
+        "KeyBindingsPane",
+        "PrintPane",
+        "IntegrationPane",
+        ].map { (name: String) -> NSViewController in NSStoryboard(name: name, bundle: nil).instantiateInitialController() as! NSViewController }
     
     
     
