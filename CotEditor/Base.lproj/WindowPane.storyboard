@@ -442,6 +442,9 @@
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="Qki-Cn-AgK" name="hidden" keyPath="supportsWindowTabbing" id="r8Y-7h-xBG"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
