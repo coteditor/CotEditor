@@ -44,7 +44,7 @@ final class PreferencesWindowController: NSWindowController {
         FormatPaneController(),
         NSStoryboard(name: "FileDropPane", bundle: nil).instantiateInitialController() as! FileDropPaneController,
         NSStoryboard(name: "KeyBindingsPane", bundle: nil).instantiateInitialController() as! KeyBindingsPaneController,
-        PrintPaneController(),
+        NSStoryboard(name: "PrintPane", bundle: nil).instantiateInitialController() as! PrintPaneController,
         NSStoryboard(name: "IntegrationPane", bundle: nil).instantiateInitialController() as! IntegrationPaneController,
         ]
     

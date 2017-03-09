@@ -38,15 +38,6 @@ final class PrintPaneController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: String? {
-        
-        return "PrintPane"
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// apply current settings to UI
