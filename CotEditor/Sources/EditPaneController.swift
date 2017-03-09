@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,38 +32,17 @@ final class EditPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private dynamic var isValidCompletion = true
+    private lazy dynamic var isValidCompletion: Bool = self.validateCompletionSetting()
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: String? {
-        
-        return "EditPane"
-    }
-    
-    
-    
-    // MARK: View Controller Methods
-    
-    /// setup UI
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        self.updateCompletionHintMessage()
-    }
-    
-    
-    
     // MARK: Action Messages
     
     /// completion list condition was changed
     @IBAction func updateCompletionListWords(_ sender: Any?) {
         
-        self.updateCompletionHintMessage()
+        self.isValidCompletion = self.validateCompletionSetting()
     }
     
     
@@ -71,14 +50,12 @@ final class EditPaneController: NSViewController {
     // MARK: Private Methods
     
     /// update hint for word completion
-    private func updateCompletionHintMessage() {
+    private func validateCompletionSetting() -> Bool {
         
-        let defaults = UserDefaults.standard
-        self.isValidCompletion = (
-            defaults[.completesDocumentWords] ||
-            defaults[.completesSyntaxWords] ||
-            defaults[.completesStandartWords]
-        )
+        return (UserDefaults.standard[.completesDocumentWords] ||
+                UserDefaults.standard[.completesSyntaxWords] ||
+                UserDefaults.standard[.completesStandartWords]
+            )
     }
     
 }

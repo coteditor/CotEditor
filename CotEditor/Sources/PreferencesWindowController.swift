@@ -40,7 +40,7 @@ final class PreferencesWindowController: NSWindowController {
         NSStoryboard(name: "GeneralPane", bundle: nil).instantiateInitialController() as! GeneralPaneController,
         NSStoryboard(name: "WindowPane", bundle: nil).instantiateInitialController() as! WindowPaneController,
         NSStoryboard(name: "AppearancePane", bundle: nil).instantiateInitialController() as! AppearancePaneController,
-        EditPaneController(),
+        NSStoryboard(name: "EditPane", bundle: nil).instantiateInitialController() as! EditPaneController,
         FormatPaneController(),
         NSStoryboard(name: "FileDropPane", bundle: nil).instantiateInitialController() as! FileDropPaneController,
         NSStoryboard(name: "KeyBindingsPane", bundle: nil).instantiateInitialController() as! KeyBindingsPaneController,
