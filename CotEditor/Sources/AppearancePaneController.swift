@@ -45,7 +45,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private weak var box: NSBox?
-    @IBOutlet private weak var themeTableMenu: NSMenu?
+    @IBOutlet private var themeTableMenu: NSMenu?
     
     
     
@@ -54,12 +54,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    override var nibName: String? {
-        
-        return "AppearancePane"
     }
     
     

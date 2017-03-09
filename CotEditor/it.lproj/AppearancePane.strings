@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
 "oAZ-6U-Ba8.title" = "Invisibili:";
-/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "gqy-Io-eUU"; */
+/* Class = "NSButtonCell"; title = "Show invisible Characters"; ObjectID = "gqy-Io-eUU"; */
 "gqy-Io-eUU.title" = "Mostra invisibili";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
 "gcF-OM-SV0.title" = "Spazio";

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
 "oAZ-6U-Ba8.title" = "Unsichtbares:";
-/* Class = "NSButtonCell"; title = "Show invisibles"; ObjectID = "gqy-Io-eUU"; */
+/* Class = "NSButtonCell"; title = "Show invisible Characters"; ObjectID = "gqy-Io-eUU"; */
 "gqy-Io-eUU.title" = "Unsichtbare Zeichen anzeigen";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
 "gcF-OM-SV0.title" = "Leerzeichen";

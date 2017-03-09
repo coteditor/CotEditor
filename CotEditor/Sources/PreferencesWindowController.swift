@@ -39,7 +39,7 @@ final class PreferencesWindowController: NSWindowController {
     private let viewControllers: [NSViewController] = [
         NSStoryboard(name: "GeneralPane", bundle: nil).instantiateInitialController() as! GeneralPaneController,
         NSStoryboard(name: "WindowPane", bundle: nil).instantiateInitialController() as! WindowPaneController,
-        AppearancePaneController(),
+        NSStoryboard(name: "AppearancePane", bundle: nil).instantiateInitialController() as! AppearancePaneController,
         EditPaneController(),
         FormatPaneController(),
         NSStoryboard(name: "FileDropPane", bundle: nil).instantiateInitialController() as! FileDropPaneController,
