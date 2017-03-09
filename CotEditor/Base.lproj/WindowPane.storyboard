@@ -41,8 +41,8 @@
                                     </allowedInputSourceLocales>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="K2m-gz-m7G"/>
                                     <binding destination="NU0-2h-SUe" name="value" keyPath="values.pageGuideColumn" id="t1H-0w-i0R"/>
+                                    <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="K2m-gz-m7G"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="neB-9i-HX4">
@@ -326,8 +326,8 @@
                                 <rect key="frame" x="487" y="327" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1000" doubleValue="1" id="jBa-nO-Be8"/>
                                 <connections>
-                                    <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="n2C-zV-02A"/>
                                     <binding destination="NU0-2h-SUe" name="value" keyPath="values.pageGuideColumn" id="keB-PP-HXG"/>
+                                    <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="n2C-zV-02A"/>
                                 </connections>
                             </stepper>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="dgR-do-Wa7">
@@ -362,6 +362,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="Vhg-R8-9Sf" id="t5N-jo-noX"/>
+                                </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="dN2-g1-1rQ">
                                 <rect key="frame" x="304" y="376" width="106" height="18"/>
