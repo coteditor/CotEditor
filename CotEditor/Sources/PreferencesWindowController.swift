@@ -84,15 +84,13 @@ final class PreferencesWindowController: NSWindowController {
         guard let window = self.window else { return }
         
         // detect clicked icon and select the view to switch
-        let newView = self.viewControllers[toolbarItem.tag].view
+        let newController = self.viewControllers[toolbarItem.tag]
         
         // remove current view from the main view
-        window.contentView?.subviews.forEach { view in
-            view.removeFromSuperviewWithoutNeedingDisplay()
-        }
+        window.contentViewController = nil
         
         // resize window to fit to new view
-        var frame = window.frameRect(forContentRect: newView.frame)
+        var frame = window.frameRect(forContentRect: newController.view.frame)
         frame.origin = window.frame.origin
         frame.origin.y += window.frame.height - frame.height
         window.setFrame(frame, display: false, animate: true)
@@ -101,7 +99,7 @@ final class PreferencesWindowController: NSWindowController {
         window.title = toolbarItem.paletteLabel
         
         // add new view to the main view
-        window.contentView?.addSubview(newView)
+        window.contentViewController = newController
     }
     
 }
