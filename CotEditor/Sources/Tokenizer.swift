@@ -65,7 +65,7 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
 
 // MARK: -
 
-class Tokenizer {
+final class Tokenizer {
     
     let tokens: [String]
     let prefix: String

@@ -47,7 +47,7 @@ struct EditorInfoTypes: OptionSet {
 
 // MARK: -
 
-class EditorInfoCountOperation: AsynchronousOperation {
+final class EditorInfoCountOperation: AsynchronousOperation {
     
     // MARK: Public Properties
     
