@@ -95,7 +95,7 @@ extension String {
         guard !self.isEmpty, !range.isEmpty else { return 0 }
         
         var count = 0
-        self.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (substring, substringRange, enclosingRange, stop) in
+        self.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { _ in
             count += 1
         }
         if includingLastLineEnding {

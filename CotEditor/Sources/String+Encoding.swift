@@ -30,21 +30,21 @@ import Foundation
 
 private extension UTF8 {
     
-    static var bom: [UInt8] { return [0xEF, 0xBB, 0xBF] }
+    static let bom: [UInt8] = [0xEF, 0xBB, 0xBF]
 }
 
 
 private extension UTF16 {
     
-    static var beBom: [UInt8] { return [0xFE, 0xFF] }
-    static var leBom: [UInt8] { return [0xFF, 0xFE] }
+    static let beBom: [UInt8] = [0xFE, 0xFF]
+    static let leBom: [UInt8] = [0xFF, 0xFE]
 }
 
 
 private extension UTF32 {
     
-    static var beBom: [UInt8] { return [0x00, 0x00, 0xFE, 0xFF] }
-    static var leBom: [UInt8] { return [0xFF, 0xFE, 0x00, 0x00] }
+    static let beBom: [UInt8] = [0x00, 0x00, 0xFE, 0xFF]
+    static let leBom: [UInt8] = [0xFF, 0xFE, 0x00, 0x00]
 }
 
 
