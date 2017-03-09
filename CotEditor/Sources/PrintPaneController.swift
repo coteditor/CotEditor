@@ -40,11 +40,6 @@ final class PrintPaneController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     override var nibName: String? {
         
         return "PrintPane"
@@ -54,16 +49,11 @@ final class PrintPaneController: NSViewController {
     
     // MARK: View Controller Methods
     
-    /// setup UI
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
+    /// apply current settings to UI
+    override func viewWillAppear() {
         
         self.setupFontFamilyNameAndSize()
         self.setupColorMenu()
-        
-        // observe theme list update
-        NotificationCenter.default.addObserver(self, selector: #selector(setupColorMenu), name: .ThemeListDidUpdate, object: nil)
     }
     
     
@@ -72,6 +62,7 @@ final class PrintPaneController: NSViewController {
     
     /// show font panel
     @IBAction func showFonts(_ sender: Any?) {
+        
         guard let font = NSFont(name: UserDefaults.standard[.printFontName]!,
                                 size: UserDefaults.standard[.printFontSize]) else { return }
         
@@ -96,12 +87,10 @@ final class PrintPaneController: NSViewController {
     
     
     /// color setting did update
-    @IBAction func changePrintTheme(_ sender: Any?) {
+    @IBAction func changePrintTheme(_ sender: NSPopUpButton) {
         
-        guard let popup = sender as? NSPopUpButton else { return }
-        
-        let index = popup.indexOfSelectedItem
-        let theme = (index > 2) ? popup.titleOfSelectedItem : nil  // do not set theme on `Black and White` and `same as document's setting`
+        let index = sender.indexOfSelectedItem
+        let theme = (index > 2) ? sender.titleOfSelectedItem : nil  // do not set theme on `Black and White` and `same as document's setting`
         
         UserDefaults.standard[.printTheme] = theme
         UserDefaults.standard[.printColorIndex] = index
@@ -128,8 +117,8 @@ final class PrintPaneController: NSViewController {
     }
     
     
-    /// setup popup menu for color setting
-    @objc private func setupColorMenu() {
+    /// update popup menu for color setting
+    private func setupColorMenu() {
         
         let index = UserDefaults.standard[.printColorIndex]
         let themeName = UserDefaults.standard[.printTheme]
@@ -140,10 +129,13 @@ final class PrintPaneController: NSViewController {
         popupButton.removeAllItems()
         
         // build popup button
-        popupButton.addItem(withTitle: NSLocalizedString("Black and White", comment: ""))
+        popupButton.addItem(withTitle: ThemeName.blackAndWhite)
         popupButton.addItem(withTitle: NSLocalizedString("Same as Document’s Setting", comment: ""))
-        popupButton.menu?.addItem(NSMenuItem.separator())
+        popupButton.menu?.addItem(.separator())
+        
         popupButton.addItem(withTitle: NSLocalizedString("Theme", comment: ""))
+        popupButton.lastItem?.isEnabled = false
+        
         for name in themeNames {
             popupButton.addItem(withTitle: name)
             popupButton.lastItem?.indentationLevel = 1
