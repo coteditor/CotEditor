@@ -19,12 +19,14 @@ develop
 
 - Improve performance of closing large size document.
 - Add “.swift” extension to file types treaded as CotEditor script.
-- And some minor improvements and fixes.
+- Change syntax style detection behavior to set “None” style if no appropriate style can be found on file opening.
 - [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
+- And some minor improvements and fixes.
 
 
 ### Fixes
 
+- Fix an issue where the document syntax style could be back to the default if the current style was set manually and document was modified in another process.
 - Update cot command to fix an issue where files cannot be opened if the default Python on macOS is version 3.x.
 
 

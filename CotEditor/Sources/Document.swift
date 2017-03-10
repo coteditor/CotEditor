@@ -329,12 +329,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
         
-        // determine syntax style
-        let styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent)
-            ?? SyntaxManager.shared.styleName(documentContent: string)
-            ?? UserDefaults.standard[.syntaxStyle]
-        
-        self.setSyntaxStyle(name: styleName)
+        // determine syntax style (only on the first file open)
+        if self.windowForSheet == nil {
+            let styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent)
+                ?? SyntaxManager.shared.styleName(documentContent: string)
+                ?? BundledStyleName.none
+            
+            self.setSyntaxStyle(name: styleName)
+        }
     }
     
     
