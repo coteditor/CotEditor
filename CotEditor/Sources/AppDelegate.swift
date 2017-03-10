@@ -29,7 +29,7 @@
 import Cocoa
 
 @NSApplicationMain
-final class AppDelegate: NSObject, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
     
     // MARK: Enums
     
@@ -279,6 +279,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     
+    // MARK: User Interface Validations
+    
+    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        guard let action = item.action else { return false }
+        
+        switch action {
+        case #selector(showOpacityPanel):
+            return !NSApp.orderedDocuments.isEmpty
+            
+        default:
+            return true
+        }
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// activate self and perform "New" menu action
@@ -412,8 +429,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separator())
         
         // add syntax styles
-        let styleNames = SyntaxManager.shared.styleNames
-        for styleName in styleNames {
+        for styleName in SyntaxManager.shared.styleNames {
             menu.addItem(withTitle: styleName, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
         }
         menu.addItem(NSMenuItem.separator())
@@ -434,8 +450,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         menu.removeAllItems()
         
-        let themeNames = ThemeManager.shared.themeNames
-        for themeName in themeNames {
+        for themeName in ThemeManager.shared.themeNames {
             menu.addItem(withTitle: themeName, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "")
         }
     }
