@@ -28,8 +28,6 @@
 
 /* Class = "NSTextFieldCell"; title = "File Drop Definitions:"; ObjectID = "3331"; */
 "3331.title" = "File trascinato:";  // FIXME: Changed
-/* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
-"3335.title" = "(separati da virgola, no punti)";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "Estensioni";

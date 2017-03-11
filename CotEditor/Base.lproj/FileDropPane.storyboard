@@ -80,14 +80,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mLV-wT-ghP">
-                                <rect key="frame" x="380" y="350" width="152" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="(comma separated, no dots)" usesSingleLineMode="YES" id="3335">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button toolTip="Delete" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">
                                 <rect key="frame" x="47" y="155" width="28" height="22"/>
                                 <constraints>
@@ -318,9 +310,7 @@
                             <constraint firstItem="458" firstAttribute="leading" secondItem="457" secondAttribute="trailing" constant="-1" id="HtS-Zv-scr"/>
                             <constraint firstItem="JWP-To-iJP" firstAttribute="top" secondItem="457" secondAttribute="bottom" constant="20" id="SBW-c3-QxV"/>
                             <constraint firstItem="457" firstAttribute="top" secondItem="prG-8I-L0n" secondAttribute="bottom" constant="8" symbolic="YES" id="T6v-in-Xxr"/>
-                            <constraint firstItem="prG-8I-L0n" firstAttribute="trailing" secondItem="mLV-wT-ghP" secondAttribute="trailing" id="Z4c-4b-Dkp"/>
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="top" secondItem="JWP-To-iJP" secondAttribute="bottom" constant="6" id="bFY-y4-yig"/>
-                            <constraint firstItem="mLV-wT-ghP" firstAttribute="bottom" secondItem="nF4-c6-mvy" secondAttribute="bottom" id="bU7-Qs-LW6"/>
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="g5O-VB-rVd"/>
                             <constraint firstItem="457" firstAttribute="height" secondItem="458" secondAttribute="height" id="hZw-id-Tdg"/>
                             <constraint firstAttribute="trailing" secondItem="7WH-D1-7oE" secondAttribute="trailing" constant="20" symbolic="YES" id="hpw-nP-1hg"/>

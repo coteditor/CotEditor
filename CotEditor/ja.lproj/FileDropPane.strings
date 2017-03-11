@@ -27,8 +27,6 @@
 
 /* Class = "NSTextFieldCell"; title = "File Drop Definitions:"; ObjectID = "3331"; */
 "3331.title" = "ファイルドロップ定義：";
-/* Class = "NSTextFieldCell"; title = "(comma separated, no dots)"; ObjectID = "3335"; */
-"3335.title" = "（カンマ区切り、ドット不要）";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "拡張子";
