@@ -218,8 +218,8 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="9bY-Ch-TGC">
-                                <rect key="frame" x="191" y="339" width="103" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="(excl. Script menu)" id="Dl2-3y-7EJ">
+                                <rect key="frame" x="191" y="339" width="129" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="(excluding Script menu)" id="Dl2-3y-7EJ">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

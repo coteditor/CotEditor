@@ -38,7 +38,7 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "菜单项目的快捷按键";
 
-/* Class = "NSTextFieldCell"; title = "(excl. Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
+/* Class = "NSTextFieldCell"; title = "(excluding Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
 "Dl2-3y-7EJ.title" = "(不包括. 脚本菜单)";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
