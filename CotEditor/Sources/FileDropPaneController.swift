@@ -70,10 +70,10 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// update setting
-    override func viewDidAppear() {
+    /// apply current settings to UI
+    override func viewWillAppear() {
         
-        super.viewDidAppear()
+        super.viewWillAppear()
         
         self.loadSetting()
     }

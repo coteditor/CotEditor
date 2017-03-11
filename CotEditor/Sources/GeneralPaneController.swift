@@ -70,10 +70,10 @@ final class GeneralPaneController: NSViewController {
     }
     
     
-    /// update setting
-    override func viewDidAppear() {
+    /// apply current settings to UI
+    override func viewWillAppear() {
         
-        super.viewDidAppear()
+        super.viewWillAppear()
         
         // select one of document conflict radio buttons
         let conflictOption = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption])!

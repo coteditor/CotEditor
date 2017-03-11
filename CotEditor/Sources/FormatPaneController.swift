@@ -72,11 +72,18 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         self.syntaxTableView?.doubleAction = #selector(openSyntaxEditSheet)
         self.syntaxTableView?.target = self
         
-        self.setupEncodingMenus()
-        self.setupSyntaxStyleMenus()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: .EncodingListDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: .SyntaxListDidUpdate, object: nil)
+    }
+    
+    
+    /// apply current settings to UI
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.setupEncodingMenus()
+        self.setupSyntaxStyleMenus()
     }
     
     
@@ -350,15 +357,15 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         inOpenMenu.addItem(autoDetectItem)
         inOpenMenu.addItem(NSMenuItem.separator())
         
-        let UTF8Int = Int(String.Encoding.utf8.rawValue)
+        let utf8Int = Int(String.Encoding.utf8.rawValue)
         for item in menuItems {
             inOpenMenu.addItem(item)
             inNewMenu.addItem(item.copy() as! NSMenuItem)
             
             // add "UTF-8 with BOM" item only to "In New" menu
-            if item.tag == UTF8Int {
+            if item.tag == utf8Int {
                 let bomItem = NSMenuItem(title: String.localizedNameOfUTF8EncodingWithBOM, action: nil, keyEquivalent: "")
-                bomItem.tag = UTF8Int
+                bomItem.tag = utf8Int
                 bomItem.representedObject = isUTF8WithBOMFlag
                 inNewMenu.addItem(bomItem)
             }
@@ -370,7 +377,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         let inNewEncoding = UserDefaults.standard[.encodingInNew]
         self.inOpenEncodingMenu?.selectItem(withTag: Int(inOpenEncoding))
         
-        if Int(inNewEncoding) == UTF8Int {
+        if Int(inNewEncoding) == utf8Int {
             let UTF8WithBomIndex = inNewMenu.indexOfItem(withRepresentedObject: isUTF8WithBOMFlag)
             let index = UserDefaults.standard[.saveUTF8BOM] ? UTF8WithBomIndex : UTF8WithBomIndex - 1
             // -> The normal "UTF-8" is just above "UTF-8 with BOM".
