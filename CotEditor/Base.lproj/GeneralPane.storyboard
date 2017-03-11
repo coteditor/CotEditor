@@ -85,7 +85,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="goq-md-y5e">
-                                <rect key="frame" x="65" y="483" width="98" height="17"/>
+                                <rect key="frame" x="61" y="483" width="102" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Document save:" usesSingleLineMode="YES" id="Ki4-3Y-AZL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -146,12 +146,12 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="ttU-LH-46v" name="enabled" keyPath="values.SUEnableAutomaticChecks" id="KJD-Ko-7KW"/>
                                     <binding destination="JG1-NR-KT5" name="hidden" keyPath="hasUpdater" previousBinding="KJD-Ko-7KW" id="gri-lK-n8b">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="ttU-LH-46v" name="enabled" keyPath="values.SUEnableAutomaticChecks" id="KJD-Ko-7KW"/>
                                     <binding destination="ttU-LH-46v" name="value" keyPath="values.checksUpdatesForBeta" id="Ics-fr-hma"/>
                                 </connections>
                             </button>

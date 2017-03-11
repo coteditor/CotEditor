@@ -18,13 +18,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGp-6x-e5X">
-                    <rect key="frame" x="12" y="120" width="426" height="186"/>
+                    <rect key="frame" x="12" y="121" width="426" height="185"/>
                     <clipView key="contentView" id="kWo-dQ-dd2">
-                        <rect key="frame" x="1" y="0.0" width="424" height="185"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <rect key="frame" x="1" y="0.0" width="424" height="184"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Ekv-v1-FdT" viewBased="YES" id="2bp-d9-mTT">
-                                <rect key="frame" x="0.0" y="0.0" width="424" height="162"/>
+                                <rect key="frame" x="0.0" y="0.0" width="424" height="161"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -171,10 +171,10 @@
                     </tableHeaderView>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fiO-0i-ClJ">
-                    <rect key="frame" x="12" y="91" width="25" height="22"/>
+                    <rect key="frame" x="12" y="91" width="24" height="23"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="25" id="0TS-E7-cbt"/>
-                        <constraint firstAttribute="height" constant="20" id="arb-wd-fX8"/>
+                        <constraint firstAttribute="width" constant="24" id="0TS-E7-cbt"/>
+                        <constraint firstAttribute="height" constant="21" id="arb-wd-fX8"/>
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="Kdc-mr-BS6">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -186,7 +186,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="keq-g7-p76">
-                    <rect key="frame" x="36" y="91" width="25" height="22"/>
+                    <rect key="frame" x="35" y="91" width="24" height="23"/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="in5-c6-yDg">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="miniSystem"/>

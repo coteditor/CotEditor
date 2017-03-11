@@ -10,7 +10,7 @@
             <objects>
                 <viewController title="File Drop" showSeguePresentationStyle="single" id="UtY-fi-jOg" customClass="FileDropPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="Gi6-Rx-eMY" userLabel="File Drop Pane">
-                        <rect key="frame" x="0.0" y="0.0" width="550" height="387"/>
+                        <rect key="frame" x="0.0" y="0.0" width="550" height="388"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-D1-7oE">
@@ -81,10 +81,10 @@
                                 </scroller>
                             </scrollView>
                             <button toolTip="Delete" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">
-                                <rect key="frame" x="47" y="155" width="28" height="22"/>
+                                <rect key="frame" x="43" y="155" width="24" height="23"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="VRI-cn-q8N"/>
-                                    <constraint firstAttribute="width" constant="28" id="pAf-0I-IYk"/>
+                                    <constraint firstAttribute="height" constant="21" id="VRI-cn-q8N"/>
+                                    <constraint firstAttribute="width" constant="24" id="pAf-0I-IYk"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="scB-a1-1Mh">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -96,7 +96,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Add" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="457">
-                                <rect key="frame" x="20" y="155" width="28" height="22"/>
+                                <rect key="frame" x="20" y="155" width="24" height="23"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="A1h-kK-Umc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -115,7 +115,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nF4-c6-mvy">
-                                <rect key="frame" x="18" y="350" width="131" height="17"/>
+                                <rect key="frame" x="18" y="351" width="131" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="File Drop Definitions:" usesSingleLineMode="YES" id="3331">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -123,7 +123,7 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prG-8I-L0n">
-                                <rect key="frame" x="20" y="184" width="510" height="160"/>
+                                <rect key="frame" x="20" y="185" width="510" height="160"/>
                                 <clipView key="contentView" id="Etr-Iq-249">
                                     <rect key="frame" x="1" y="0.0" width="508" height="159"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

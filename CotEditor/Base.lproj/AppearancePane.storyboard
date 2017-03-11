@@ -159,10 +159,10 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ka6-Bf-yVl">
-                                <rect key="frame" x="20" y="23" width="28" height="23"/>
+                                <rect key="frame" x="20" y="23" width="24" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="U6N-28-bzY"/>
-                                    <constraint firstAttribute="width" constant="28" id="tOH-dt-pv7"/>
+                                    <constraint firstAttribute="width" constant="24" id="tOH-dt-pv7"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5JO-2k-t8K">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -173,7 +173,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FYd-hb-j4K">
-                                <rect key="frame" x="47" y="23" width="28" height="23"/>
+                                <rect key="frame" x="43" y="23" width="24" height="23"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Srn-QD-aiu">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -188,7 +188,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IcH-In-axb">
-                                <rect key="frame" x="74" y="23" width="36" height="23"/>
+                                <rect key="frame" x="66" y="23" width="36" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="pud-N8-x0h"/>
                                 </constraints>
@@ -313,12 +313,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="vz6-IP-Ktk"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="h49-8N-kkT">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="h49-8N-kkT">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="bZp-SX-ara">
                                         <items>
-                                            <menuItem title=" " state="on" id="zHn-8K-2Sn"/>
+                                            <menuItem title=" " id="zHn-8K-2Sn"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -338,12 +338,12 @@
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4bD-zo-hEC">
                                 <rect key="frame" x="185" y="380" width="55" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="aNA-M8-4Ta">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="aNA-M8-4Ta">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="tGq-xE-d9W">
                                         <items>
-                                            <menuItem title=" " state="on" id="Yeg-gd-tHm"/>
+                                            <menuItem title=" " id="Yeg-gd-tHm"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -404,12 +404,12 @@
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="112-i3-na3">
                                 <rect key="frame" x="388" y="403" width="55" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="24l-rZ-Cgd">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="24l-rZ-Cgd">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="hJ1-Rg-86H">
                                         <items>
-                                            <menuItem title=" " state="on" id="NX2-CC-Q6m"/>
+                                            <menuItem title=" " id="NX2-CC-Q6m"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -429,12 +429,12 @@
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1sU-kn-r4s">
                                 <rect key="frame" x="388" y="381" width="55" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title=" " bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="j3x-qJ-uW6">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="j3x-qJ-uW6">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name="HiraKakuProN-W3"/>
                                     <menu key="menu" title="OtherViews" id="FlE-m8-CGj">
                                         <items>
-                                            <menuItem title=" " state="on" id="1Gs-Ea-ggU"/>
+                                            <menuItem title=" " id="1Gs-Ea-ggU"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
