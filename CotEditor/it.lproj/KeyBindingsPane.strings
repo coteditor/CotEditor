@@ -53,7 +53,7 @@
 "PSD-Um-TfH.headerCell.title" = "Tasto";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
-"CyK-OL-qHa.title" = "Ripristina i valori di default";
+"CyK-OL-qHa.title" = "Ripristina default";
 
 
 
@@ -80,4 +80,4 @@
 "Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Selezionare l’azione.";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
-"0Du-JI-ZN7.title" = "Ripristina i valori di default";
+"0Du-JI-ZN7.title" = "Ripristina default";
