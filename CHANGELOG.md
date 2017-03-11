@@ -19,6 +19,7 @@ develop
 
 - Improve performance of closing large size document.
 - Add “.swift” extension to file types treaded as CotEditor script.
+- Improve invisible character drawing on a non-opaque view.
 - Change syntax style detection behavior to set “None” style if no appropriate style can be found on file opening.
 - [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
 - And some minor improvements and fixes.

@@ -211,6 +211,11 @@ final class LayoutManager: NSLayoutManager {
             let string = self.textStorage?.string
         {
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
+            let isOpaque = self.firstTextView?.isOpaque ?? true
+            
+            if !isOpaque {
+                context.setShouldSmoothFonts(false)
+            }
             
             // flip coordinate if needed
             if NSGraphicsContext.current()?.isFlipped ?? false {
@@ -267,6 +272,10 @@ final class LayoutManager: NSLayoutManager {
                 // draw character
                 context.textPosition = point
                 CTLineDraw(line, context)
+            }
+            
+            if !isOpaque {
+                context.setShouldSmoothFonts(true)
             }
         }
         
