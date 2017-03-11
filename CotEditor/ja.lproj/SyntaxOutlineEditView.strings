@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,9 +43,9 @@
 /* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
 "rqP-22-G2u.title" = "（空白はマッチした全文字列）";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Bold"; ObjectID = "eX8-7L-AYT"; */
-"eX8-7L-AYT.ibShadowedToolTip" = "ボールド";
-/* Class = "NSButton"; ibShadowedToolTip = "Underline"; ObjectID = "rFv-YW-Uea"; */
-"rFv-YW-Uea.ibShadowedToolTip" = "アンダーライン";
-/* Class = "NSButton"; ibShadowedToolTip = "Italic"; ObjectID = "5fG-BP-ynf"; */
-"5fG-BP-ynf.ibShadowedToolTip" = "イタリック";
+/* Class = "NSButtonCell"; title = "Bold"; ObjectID = "iub-mE-wGf"; */
+"iub-mE-wGf.title" = "ボールド";
+/* Class = "NSButtonCell"; title = "Italic"; ObjectID = "fUz-0u-0D4"; */
+"fUz-0u-0D4.title" = "イタリック";
+/* Class = "NSButtonCell"; title = "Underline"; ObjectID = "00X-sB-42F"; */
+"00X-sB-42F.title" = "アンダーライン";

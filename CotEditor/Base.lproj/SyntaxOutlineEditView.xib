@@ -223,40 +223,40 @@
                         <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.keyString" id="yfw-aj-0bM"/>
                     </connections>
                 </textField>
-                <button toolTip="Bold" translatesAutoresizingMaskIntoConstraints="NO" id="eX8-7L-AYT">
-                    <rect key="frame" x="8" y="20" width="29" height="18"/>
-                    <buttonCell key="cell" type="check" title="B" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="mini" inset="2" id="iub-mE-wGf">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="eX8-7L-AYT">
+                    <rect key="frame" x="8" y="20" width="48" height="18"/>
+                    <buttonCell key="cell" type="check" title="Bold" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" inset="2" id="iub-mE-wGf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="10" name="Menlo-Bold"/>
+                        <font key="font" metaFont="systemBold" size="11"/>
                     </buttonCell>
                     <connections>
                         <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.bold" id="oHN-Q7-K9W"/>
                     </connections>
                 </button>
-                <button toolTip="Italic" translatesAutoresizingMaskIntoConstraints="NO" id="5fG-BP-ynf">
-                    <rect key="frame" x="39" y="20" width="29" height="18"/>
-                    <buttonCell key="cell" type="check" title="I" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="mini" inset="2" id="fUz-0u-0D4">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="5fG-BP-ynf" customClass="ItalicButton" customModule="CotEditor" customModuleProvider="target">
+                    <rect key="frame" x="58" y="20" width="48" height="18"/>
+                    <buttonCell key="cell" type="check" title="Italic" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" inset="2" id="fUz-0u-0D4">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="10" name="Menlo-Italic"/>
+                        <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
                         <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.italic" id="xWI-2A-OYt"/>
                     </connections>
                 </button>
-                <button toolTip="Underline" translatesAutoresizingMaskIntoConstraints="NO" id="rFv-YW-Uea">
-                    <rect key="frame" x="70" y="20" width="29" height="18"/>
-                    <buttonCell key="cell" type="check" title="U" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="mini" inset="2" id="00X-sB-42F">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="rFv-YW-Uea">
+                    <rect key="frame" x="108" y="20" width="73" height="18"/>
+                    <buttonCell key="cell" type="check" title="Underline" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" inset="2" id="00X-sB-42F">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" size="10" name="Menlo-Regular"/>
+                        <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
                     <connections>
                         <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.underline" id="e91-xE-cUI"/>
                     </connections>
                 </button>
                 <box boxType="custom" borderType="none" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="SWD-Hc-Qt1">
-                    <rect key="frame" x="87" y="22" width="6" height="1"/>
+                    <rect key="frame" x="125" y="22" width="50" height="1"/>
                     <view key="contentView" id="5Ai-MU-ivP">
-                        <rect key="frame" x="0.0" y="0.0" width="6" height="1"/>
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="1"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <constraints>
