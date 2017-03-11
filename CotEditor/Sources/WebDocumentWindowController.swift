@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
         super.windowDidLoad()
         
         // set webView programmically
-        let webView = WKWebView(frame: self.window!.contentView!.frame)
+        let webView = WKWebView(frame: .zero)
         self.webView = webView
         self.window?.contentView = webView
         webView.navigationDelegate = self
