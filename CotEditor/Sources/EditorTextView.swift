@@ -222,6 +222,11 @@ final class EditorTextView: NSTextView, Themable {
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
                                                name: .WindowDidChangeOpacity,
                                                object: window)
+        
+        // observe scorolling and resizing to fix drawing area on non-opaque view
+        if let scrollView = self.enclosingScrollView {
+            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)), name: .NSViewBoundsDidChange, object: scrollView.contentView)
+        }
     }
     
     
@@ -563,6 +568,14 @@ final class EditorTextView: NSTextView, Themable {
     
     /// draw view
     override func draw(_ dirtyRect: NSRect) {
+        
+        // minimize drawing area on non-opaque background
+        // -> Otherwise, all textView (from the top to the bottom) is everytime drawn
+        //    and it affects to the drawing performance on a large document critically.
+        var dirtyRect = dirtyRect
+        if !self.drawsBackground {
+            dirtyRect = self.visibleRect
+        }
         
         super.draw(dirtyRect)
         
@@ -1142,6 +1155,16 @@ final class EditorTextView: NSTextView, Themable {
         self.enabledTextCheckingTypes = currentCheckingType
         
         self.undoManager?.enableUndoRegistration()
+    }
+    
+    
+    /// visible rect did change
+    @objc private func didChangeVisibleRect(_ notification: Notification) {
+        
+        if !self.drawsBackground {
+            // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
     }
     
 }

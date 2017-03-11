@@ -18,6 +18,7 @@ develop
 ### Improvements
 
 - Improve performance of closing large size document.
+- Improve drawing performance of a large size document with non-opaque background.
 - Add “.swift” extension to file types treaded as CotEditor script.
 - Add hidden “Reload All Themes/Styles” menu item to theme/syntax style action menus in Preferences (visible with `Option` key).
 - Improve invisible character drawing on a non-opaque view.
