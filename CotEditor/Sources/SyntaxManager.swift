@@ -34,10 +34,10 @@ extension Notification.Name {
     /// Posted when the line-up of syntax styles is updated.  This will be used for syntax style menus.
     static let SyntaxListDidUpdate = Notification.Name("SyntaxListDidUpdate")
     
-    /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
+    /// Posted when a syntax style is updated.  Information about new/previous style names are in userInfo.
     static let StyntaxDidUpdate = Notification.Name("StyntaxDidUpdate")
     
-    /// Posted when a syntax style is updated.  Information about new/previous style names are in userInfo.
+    /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
     static let SyntaxHistoryDidUpdate = Notification.Name("SyntaxHistoryDidUpdate")
 }
 
