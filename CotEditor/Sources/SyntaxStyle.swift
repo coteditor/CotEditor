@@ -250,33 +250,23 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     static func == (lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
         
-        guard lhs.styleName == rhs.styleName &&
-            lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&
-            lhs.blockCommentDelimiters == rhs.blockCommentDelimiters else { return false }
+        guard
+            lhs.styleName == rhs.styleName,
+            lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter,
+            lhs.blockCommentDelimiters == rhs.blockCommentDelimiters,
+            lhs.pairedQuoteTypes == rhs.pairedQuoteTypes,
+            lhs.outlineDefinitions == rhs.outlineDefinitions
+            else { return false }
         
-        if let lProp = lhs.pairedQuoteTypes, let rProp = rhs.pairedQuoteTypes, lProp != rProp {
-            return false
-        } else if !(lhs.pairedQuoteTypes == nil && rhs.pairedQuoteTypes == nil) {
+        // compare highlightDictionaries
+        switch (lhs.highlightDictionary, rhs.highlightDictionary) {
+        case let (.some(l), .some(r)):
+            return l == r
+        case (.none, .none):
+            return true
+        default:
             return false
         }
-        
-        if let lProp = lhs.outlineDefinitions, let rProp = rhs.outlineDefinitions, lProp != rProp {
-            return false
-        } else if !(lhs.outlineDefinitions == nil && rhs.outlineDefinitions == nil) {
-            return false
-        }
-        
-        // compare highlightDictionary
-        if !(lhs.highlightDictionary == nil && rhs.highlightDictionary == nil) {
-            return false
-        } else if let lProp = lhs.highlightDictionary, let rProp = rhs.highlightDictionary {
-            guard lProp.count == rProp.count else { return false }
-            for (key, lhsub) in rProp {
-                guard let rhsub = lProp[key], lhsub == rhsub else { return false }
-            }
-        }
-        
-        return true
     }
     
     

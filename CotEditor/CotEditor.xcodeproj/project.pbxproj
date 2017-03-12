@@ -109,6 +109,8 @@
 		2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */; };
 		2A3CC1F71C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
 		2A3CC1F81C8B442600506DB8 /* SaveDocumentAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3CC1F51C8B442600506DB8 /* SaveDocumentAccessory.xib */; };
+		2A3D63F41E75A33000F538E1 /* Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D63F31E75A33000F538E1 /* Equatable.swift */; };
+		2A3D63F51E75A33000F538E1 /* Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D63F31E75A33000F538E1 /* Equatable.swift */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2A41EC1A1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */; };
 		2A41EC1B1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */; };
@@ -704,6 +706,7 @@
 		2A3CC1FA1C8B59EB00506DB8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
 		2A3CC1FC1C8B59EE00506DB8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SaveDocumentAccessory.strings"; sourceTree = "<group>"; };
 		2A3CC1FE1C8B59F100506DB8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
+		2A3D63F31E75A33000F538E1 /* Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equatable.swift; sourceTree = "<group>"; };
 		2A3E84821D07331900070A54 /* updateHelpindex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpindex.sh; sourceTree = "<group>"; };
 		2A401FB61D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		2A401FB81D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FindPanel.strings; sourceTree = "<group>"; };
@@ -1361,6 +1364,7 @@
 			isa = PBXGroup;
 			children = (
 				2A885E321D5C3A1B00288723 /* Comparable.swift */,
+				2A3D63F31E75A33000F538E1 /* Equatable.swift */,
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
 				2A5ADE831D2168FC00F6CE26 /* Array.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
@@ -2254,6 +2258,7 @@
 				2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */,
+				2A3D63F51E75A33000F538E1 /* Equatable.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A5D13201D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
 				2AFB5AE91D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
@@ -2520,6 +2525,7 @@
 				2AAD61F81D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */,
 				2A5D132F1D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */,
 				2AE52F181D17468B00D60A32 /* EditorSplitView.swift in Sources */,
+				2A3D63F41E75A33000F538E1 /* Equatable.swift in Sources */,
 				2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2A4257B31D2309AB0086DAAD /* OpacityPanelController.swift in Sources */,
 				2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
