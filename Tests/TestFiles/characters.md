@@ -29,6 +29,9 @@ Test File for Special Caracters
 - 🇯 U+1F1EF (U+D83C U+DDEF)
 - 🇦🇦 U+1F1E6 (U+D83C U+DDE6)  U+1F1E6 (U+D83C U+DDE6)
 
+## complex emoji
+👨‍👨‍👧‍👦🕵️‍♀️
+
 ## sound mark
 - が U+304C
 - が U+304B (か) + U+3099 ( ゙)
