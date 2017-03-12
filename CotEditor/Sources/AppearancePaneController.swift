@@ -80,13 +80,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         super.viewWillAppear()
         
         self.setupFontFamilyNameAndSize()
-        
         self.setupThemeList()
-        
-        // select default theme
-        let themeName = UserDefaults.standard[.theme]!
-        let row = self.themeNames.index(of: themeName) ?? 0
-        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     
     
@@ -243,8 +237,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
         // update default theme setting
-        // -> skip on the first time because, at the time point, the settings are not yet applied.
-        if self.themeViewController != nil, let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
+        if let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
             UserDefaults.standard[.theme] = themeName
             
             // update theme of the current document windows
@@ -591,8 +584,13 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// update theme list
     @objc private func setupThemeList() {
         
+        let themeName = UserDefaults.standard[.theme]!
+        
         self.themeNames = ThemeManager.shared.themeNames
         self.themeTableView?.reloadData()
+        
+        let row = self.themeNames.index(of: themeName) ?? 0
+        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     
 }
