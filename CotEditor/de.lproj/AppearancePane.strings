@@ -65,6 +65,8 @@
 "4B4-mq-8Fs.title" = "Exportieren …";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
 "gcs-B8-kPL.title" = "Importieren …";
+/* Class = "NSButtonCell"; title = "Reload All Themes"; ObjectID = "7Yp-bg-3l6"; */
+"7Yp-bg-3l6.title" = "Alle Themen neu laden";
 
 
 /* contextual menu */

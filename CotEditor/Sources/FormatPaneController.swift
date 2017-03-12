@@ -338,6 +338,12 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     }
     
     
+    @IBAction func reloadAllStyles(_ sender: AnyObject?) {
+        
+        SyntaxManager.shared.updateCache()
+    }
+    
+    
     
     // MARK: Private Methods
     

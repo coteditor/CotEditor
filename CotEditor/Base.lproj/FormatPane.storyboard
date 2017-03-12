@@ -316,7 +316,7 @@
                                     <constraint firstAttribute="height" constant="21" id="gOc-0s-ci7"/>
                                     <constraint firstAttribute="width" constant="35" id="iFj-WH-iHp"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="sRJ-x0-fo7" id="yBI-dh-jpV">
+                                <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="yBI-dh-jpV">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="AYn-mG-LBH">
@@ -346,6 +346,12 @@
                                             <menuItem title="Import…" id="1lj-x8-ouD">
                                                 <connections>
                                                     <action selector="importSyntaxStyle:" target="Lgm-sL-YIF" id="AUx-F3-lOi"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="Reload All Styles" alternate="YES" id="FhP-Hj-cWE">
+                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                <connections>
+                                                    <action selector="reloadAllStyles:" target="Lgm-sL-YIF" id="Sox-VL-Uwd"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="VuU-mF-pIB"/>

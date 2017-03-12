@@ -116,7 +116,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             
         case #selector(renameTheme(_:)):
             if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Rename “%@”…", comment: ""), representedTheme!)
+                menuItem.title = String(format: NSLocalizedString("Rename “%@”", comment: ""), representedTheme!)
             }
             menuItem.isHidden = (representedTheme == nil)
             return !isBundled
@@ -433,6 +433,12 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         guard let url = ThemeManager.shared.urlForUserSetting(name: themeName) else { return }
         
         NSWorkspace.shared().activateFileViewerSelecting([url])
+    }
+    
+    
+    @IBAction func reloadAllThemes(_ sender: AnyObject?) {
+        
+        ThemeManager.shared.updateCache()
     }
     
     

@@ -66,6 +66,8 @@
 "4B4-mq-8Fs.title" = "Export…";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
 "gcs-B8-kPL.title" = "Import…";
+/* Class = "NSButtonCell"; title = "Reload All Themes"; ObjectID = "7Yp-bg-3l6"; */
+"7Yp-bg-3l6.title" = "Reload All Themes";  // FIXME: added
 
 
 /* contextual menu */

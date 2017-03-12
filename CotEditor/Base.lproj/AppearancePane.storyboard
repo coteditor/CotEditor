@@ -192,7 +192,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="pud-N8-x0h"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="smallSquare" title="Theme Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="4m4-1Z-aml" id="LkE-Zl-odd">
+                                <popUpButtonCell key="cell" type="smallSquare" title="Theme Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="LkE-Zl-odd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="HHh-e3-GD4">
@@ -228,6 +228,12 @@
                                             <menuItem title="Import…" id="gcs-B8-kPL">
                                                 <connections>
                                                     <action selector="importTheme:" target="WBM-EY-ENr" id="hXl-4t-O2Y"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="Reload All Themes" alternate="YES" id="7Yp-bg-3l6">
+                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                <connections>
+                                                    <action selector="reloadAllThemes:" target="WBM-EY-ENr" id="MEI-6f-bnd"/>
                                                 </connections>
                                             </menuItem>
                                         </items>
@@ -605,7 +611,7 @@
                 </menu>
                 <userDefaultsController representsSharedInstance="YES" id="IE5-39-jAY" userLabel="Shared User Defaults Controller"/>
             </objects>
-            <point key="canvasLocation" x="362" y="115"/>
+            <point key="canvasLocation" x="362" y="114.5"/>
         </scene>
     </scenes>
     <resources>
