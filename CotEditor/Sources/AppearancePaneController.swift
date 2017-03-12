@@ -68,6 +68,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         // register droppable types
         self.themeTableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
         
+        self.themeNames = ThemeManager.shared.themeNames
+        
         // observe theme list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .ThemeListDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: .ThemeDidUpdate, object: nil)
@@ -80,7 +82,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         super.viewWillAppear()
         
         self.setupFontFamilyNameAndSize()
-        self.setupThemeList()
+        
+        let themeName = UserDefaults.standard[.theme]!
+        let row = self.themeNames.index(of: themeName) ?? 0
+        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     
     
