@@ -42,7 +42,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     private var themeNames = [String]()
     private dynamic var isBundled = false
     
-    @IBOutlet private weak var fontField: AntialiasingTextField?
+    @IBOutlet fileprivate private(set) weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private weak var box: NSBox?
     @IBOutlet private var themeTableMenu: NSMenu?
@@ -336,39 +336,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     // MARK: Action Messages
     
-    /// show font panel
-    @IBAction func showFonts(_ sender: Any?) {
-        
-        guard let font = NSFont(name: UserDefaults.standard[.fontName]!,
-                                size: UserDefaults.standard[.fontSize]) else { return }
-        
-        self.view.window?.makeFirstResponder(self)
-        NSFontManager.shared().setSelectedFont(font, isMultiple: false)
-        NSFontManager.shared().orderFrontFontPanel(sender)
-    }
-    
-    
-    /// font in font panel did update
-    @IBAction override func changeFont(_ sender: Any?) {
-        
-        guard let fontManager = sender as? NSFontManager else { return }
-        
-        let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
-        
-        UserDefaults.standard[.fontName] = newFont.fontName
-        UserDefaults.standard[.fontSize] = newFont.pointSize
-        
-        self.setupFontFamilyNameAndSize()
-    }
-    
-    
-    /// update font name field with new setting
-    @IBAction func updateFontField(_ sender: Any?) {
-        
-        self.setupFontFamilyNameAndSize()
-    }
-    
-    
     /// add theme
     @IBAction func addTheme(_ sender: Any?) {
         
@@ -472,24 +439,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     // MARK: Private Methods
     
-    /// display font name and size in the font field
-    private func setupFontFamilyNameAndSize() {
-        
-        let name = UserDefaults.standard[.fontName]!
-        let size = UserDefaults.standard[.fontSize]
-        let shouldAntiailias = UserDefaults.standard[.shouldAntialias]
-        
-        guard let font = NSFont(name: name, size: size),
-            let displayFont = NSFont(name: name, size: min(size, 13.0)),
-            let fontField = self.fontField else { return }
-        
-        fontField.stringValue = font.displayName! + " " + String(format:"%g", size)
-        fontField.font = displayFont
-        fontField.disablesAntialiasing = !shouldAntiailias
-    }
-    
-    
-
     /// return theme name which is currently selected in the list table
     private dynamic var selectedThemeName: String {
         
@@ -591,6 +540,73 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+    }
+    
+}
+
+
+
+// MARK: - Font Setting
+
+extension AppearancePaneController {
+    
+    // MARK: Action Messages
+    
+    /// show font panel
+    @IBAction func showFonts(_ sender: Any?) {
+        
+        guard let font = NSFont(name: UserDefaults.standard[.fontName]!,
+                                size: UserDefaults.standard[.fontSize]) else { return }
+        
+        self.view.window?.makeFirstResponder(self)
+        NSFontManager.shared().setSelectedFont(font, isMultiple: false)
+        NSFontManager.shared().orderFrontFontPanel(sender)
+    }
+    
+    
+    /// font in font panel did update
+    @IBAction override func changeFont(_ sender: Any?) {
+        
+        guard let fontManager = sender as? NSFontManager else { return }
+        
+        let newFont = fontManager.convert(.systemFont(ofSize: 0))
+        
+        UserDefaults.standard[.fontName] = newFont.fontName
+        UserDefaults.standard[.fontSize] = newFont.pointSize
+        
+        self.setupFontFamilyNameAndSize()
+    }
+    
+    
+    /// update font name field with new setting
+    @IBAction func updateFontField(_ sender: Any?) {
+        
+        self.setupFontFamilyNameAndSize()
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// display font name and size in the font field
+    fileprivate func setupFontFamilyNameAndSize() {
+        
+        let name = UserDefaults.standard[.fontName]!
+        let size = UserDefaults.standard[.fontSize]
+        let shouldAntiailias = UserDefaults.standard[.shouldAntialias]
+        let maxDisplaySize = NSFont.systemFontSize(for: .regular)
+        
+        guard
+            let font = NSFont(name: name, size: size),
+            let displayFont = NSFont(name: name, size: min(size, maxDisplaySize)),
+            let fontField = self.fontField
+            else { return }
+        
+        let displayName = font.displayName ?? font.fontName
+        
+        fontField.stringValue = displayName + " " + String.localizedStringWithFormat("%g", size)
+        fontField.font = displayFont
+        fontField.disablesAntialiasing = !shouldAntiailias
     }
     
 }
