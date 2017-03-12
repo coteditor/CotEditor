@@ -135,7 +135,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="extensions" width="150" minWidth="40" maxWidth="1000" headerToolTip="File extensions of dropped file." id="FAF-cL-AAk">
+                                                <tableColumn identifier="extensions" width="150" minWidth="40" maxWidth="1000" headerToolTip="File extensions of dropped file (comma separated)." id="FAF-cL-AAk">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
