@@ -85,9 +85,9 @@ final class StatusBarController: NSViewController {
     
     
     /// request analyzer to stop updating editor info
-    override func viewDidAppear() {
+    override func viewDidDisappear() {
         
-        super.viewDidAppear()
+        super.viewDidDisappear()
         
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
     }
