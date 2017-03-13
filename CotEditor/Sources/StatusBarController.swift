@@ -158,7 +158,7 @@ final class StatusBarController: NSViewController {
     @objc private func updateEditorStatus() {
         
         guard !self.view.isHidden else { return }
-        guard let info = self.documentAnalyzer else { return }
+        guard let info = self.documentAnalyzer?.info else { return }
         
         let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()
@@ -198,7 +198,7 @@ final class StatusBarController: NSViewController {
     @objc private func updateDocumentStatus() {
         
         guard !self.view.isHidden else { return }
-        guard let info = self.documentAnalyzer else { return }
+        guard let info = self.documentAnalyzer?.info else { return }
         
         let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()

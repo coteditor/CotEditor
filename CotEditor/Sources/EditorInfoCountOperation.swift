@@ -49,21 +49,27 @@ struct EditorInfoTypes: OptionSet {
 
 final class EditorInfoCountOperation: AsynchronousOperation {
     
+    struct Result {
+        
+        var length = 0
+        var characters = 0
+        var lines = 0
+        var words = 0
+        var location = 0  // caret location from the beginning of document
+        var line = 1      // current line
+        var column = 0    // caret location from the beginning of line
+        var unicode: String?  // Unicode of selected single character (or surrogate-pair)
+        
+        var selectedLength = 0
+        var selectedCharacters = 0
+        var selectedLines = 0
+        var selectedWords = 0
+    }
+    
+    
     // MARK: Public Properties
     
-    private(set) var lines = 0
-    private(set) var chars = 0
-    private(set) var words = 0
-    private(set) var length = 0
-    private(set) var location = 0  // caret location from the beginning of document
-    private(set) var line = 1      // current line
-    private(set) var column = 0    // caret location from the beginning of line
-    private(set) var unicode: String?  // Unicode of selected single character (or surrogate-pair)
-    
-    private(set) var selectedLines = 0
-    private(set) var selectedChars = 0
-    private(set) var selectedWords = 0
-    private(set) var selectedLength = 0
+    private(set) var result = Result()
     
     
     // MARK: Private Properties
@@ -111,11 +117,11 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         if self.requiredInfo.contains(.length) {
             let isSingleLineEnding = (self.lineEnding.length == 1)
             let stringForCounting = isSingleLineEnding ? self.string : self.string.replacingLineEndings(with: self.lineEnding)
-            self.length = stringForCounting.utf16.count
+            self.result.length = stringForCounting.utf16.count
             
             if hasSelection {
                 let stringForCounting = isSingleLineEnding ? selectedString : selectedString.replacingLineEndings(with: self.lineEnding)
-                self.selectedLength = stringForCounting.utf16.count
+                self.result.selectedLength = stringForCounting.utf16.count
             }
         }
         
@@ -124,11 +130,11 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         // count characters
         if self.requiredInfo.contains(.characters) {
             let stringForCounting = self.countsLineEnding ? self.string : self.string.removingLineEndings
-            self.chars = stringForCounting.countComposedCharacters { (stop) in stop = self.isCancelled }
+            self.result.characters = stringForCounting.countComposedCharacters { (stop) in stop = self.isCancelled }
             
             if hasSelection {
                 let stringForCounting = self.countsLineEnding ? selectedString : selectedString.removingLineEndings
-                self.selectedChars = stringForCounting.countComposedCharacters { (stop) in stop = self.isCancelled }
+                self.result.selectedCharacters = stringForCounting.countComposedCharacters { (stop) in stop = self.isCancelled }
             }
         }
         
@@ -136,9 +142,9 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         
         // count lines
         if self.requiredInfo.contains(.lines) {
-            self.lines = self.string.numberOfLines
+            self.result.lines = self.string.numberOfLines
             if hasSelection {
-                self.selectedLines = selectedString.numberOfLines
+                self.result.selectedLines = selectedString.numberOfLines
             }
         }
         
@@ -146,9 +152,9 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         
         // count words
         if self.requiredInfo.contains(.words) {
-            self.words = self.string.numberOfWords
+            self.result.words = self.string.numberOfWords
             if hasSelection {
-                self.selectedWords = selectedString.numberOfWords
+                self.result.selectedWords = selectedString.numberOfWords
             }
         }
         
@@ -156,14 +162,14 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         if self.requiredInfo.contains(.location) {
             let locString = nsString.substring(to: selectedRange.location)
             let stringForCounting = self.countsLineEnding ? locString : locString.removingLineEndings
-            self.location = stringForCounting.numberOfComposedCharacters
+            self.result.location = stringForCounting.numberOfComposedCharacters
         }
         
         guard !self.isCancelled else { return }
         
         // calculate current line
         if self.requiredInfo.contains(.line) {
-            self.line = self.string.lineNumber(at: self.selectedRange.location)
+            self.result.line = self.string.lineNumber(at: self.selectedRange.location)
         }
         
         guard !self.isCancelled else { return }
@@ -172,13 +178,13 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         if self.requiredInfo.contains(.column) {
             let lineRange = nsString.lineRange(for: self.selectedRange)
             let columnLength = self.selectedRange.location - lineRange.location  // as length
-            self.column = nsString.substring(with: NSRange(location: lineRange.location, length: columnLength)).numberOfComposedCharacters
+            self.result.column = nsString.substring(with: NSRange(location: lineRange.location, length: columnLength)).numberOfComposedCharacters
         }
         
         // unicode
         if self.requiredInfo.contains(.unicode) {
             if selectedString.unicodeScalars.count == 1 {
-                self.unicode = selectedString.unicodeScalars.first?.codePoint
+                self.result.unicode = selectedString.unicodeScalars.first?.codePoint
             }
         }
     }

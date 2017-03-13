@@ -37,6 +37,35 @@ extension Notification.Name {
 
 
 
+final class DocumentInfo: NSObject {
+    
+    // file info
+    dynamic var creationDate: Date?
+    dynamic var modificationDate: Date?
+    dynamic var fileSize: NSNumber?
+    dynamic var filePath: URL?
+    dynamic var owner: String?
+    dynamic var permission: NSNumber?
+    dynamic var isReadOnly = false
+    
+    // mode info
+    dynamic var encoding: String?
+    dynamic var charsetName: String?
+    dynamic var lineEndings: String?
+    
+    // editor info
+    dynamic var lines: String?
+    dynamic var chars: String?
+    dynamic var words: String?
+    dynamic var length: String?
+    dynamic var location: String?  // caret location from the beginning of document
+    dynamic var line: String?      // current line
+    dynamic var column: String?    // caret location from the beginning of line
+    dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
+}
+
+
+
 // MARK: -
 
 final class DocumentAnalyzer: NSObject {
@@ -46,29 +75,7 @@ final class DocumentAnalyzer: NSObject {
     var needsUpdateEditorInfo = false  // need to update all editor info
     var needsUpdateStatusEditorInfo = false  // need only to update editor info in satus bar
     
-    // file info
-    private(set) dynamic var creationDate: Date?
-    private(set) dynamic var modificationDate: Date?
-    private(set) dynamic var fileSize: NSNumber?
-    private(set) dynamic var filePath: String?
-    private(set) dynamic var owner: String?
-    private(set) dynamic var permission: NSNumber?
-    private(set) dynamic var isReadOnly = false
-    
-    // mode info
-    private(set) dynamic var encoding: String?
-    private(set) dynamic var charsetName: String?
-    private(set) dynamic var lineEndings: String?
-    
-    // editor info
-    private(set) dynamic var lines: String?
-    private(set) dynamic var chars: String?
-    private(set) dynamic var words: String?
-    private(set) dynamic var length: String?
-    private(set) dynamic var location: String?  // caret location from the beginning of document
-    private(set) dynamic var line: String?      // current line
-    private(set) dynamic var column: String?    // caret location from the beginning of line
-    private(set) dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
+    private(set) dynamic var info = DocumentInfo()
     
     
     // MARK: Private Properties
@@ -109,19 +116,19 @@ final class DocumentAnalyzer: NSObject {
         
         let attrs = document.fileAttributes
         
-        self.creationDate = attrs?[.creationDate] as? Date
-        self.modificationDate = attrs?[.modificationDate] as? Date
-        self.fileSize = attrs?[.size] as? NSNumber
-        self.filePath = document.fileURL?.path
-        self.owner = attrs?[.ownerAccountName] as? String
-        self.permission = attrs?[.posixPermissions] as? NSNumber
-        self.isReadOnly = {
+        self.info.creationDate = attrs?[.creationDate] as? Date
+        self.info.modificationDate = attrs?[.modificationDate] as? Date
+        self.info.fileSize = attrs?[.size] as? NSNumber
+        self.info.filePath = document.fileURL
+        self.info.owner = attrs?[.ownerAccountName] as? String
+        self.info.permission = attrs?[.posixPermissions] as? NSNumber
+        self.info.isReadOnly = {
             guard !document.isInViewingMode else { return false }
             
             return attrs?[.immutable] as? Bool ?? false
         }()
         
-        NotificationCenter.default.post(name: .AnalyzerDidUpdateFileInfo, object: self)
+        NotificationCenter.default.post(name: .AnalyzerDidUpdateFileInfo, object: self.info)
     }
     
     
@@ -130,11 +137,11 @@ final class DocumentAnalyzer: NSObject {
         
         guard let document = self.document else { return }
         
-        self.encoding = String.localizedName(of: document.encoding, withUTF8BOM: document.hasUTF8BOM)
-        self.charsetName = document.encoding.ianaCharSetName
-        self.lineEndings = document.lineEnding.name
+        self.info.encoding = String.localizedName(of: document.encoding, withUTF8BOM: document.hasUTF8BOM)
+        self.info.charsetName = document.encoding.ianaCharSetName
+        self.info.lineEndings = document.lineEnding.name
         
-        NotificationCenter.default.post(name: .AnalyzerDidUpdateModeInfo, object: self)
+        NotificationCenter.default.post(name: .AnalyzerDidUpdateModeInfo, object: self.info)
     }
     
     
@@ -181,19 +188,21 @@ final class DocumentAnalyzer: NSObject {
         operation.completionBlock = { [weak self, weak operation] in
             guard
                 let operation = operation, !operation.isCancelled,
-                let strongSelf = self else { return }
+                let info = self?.info else { return }
+            
+            let result = operation.result
             
             DispatchQueue.main.async {
-                strongSelf.length = CountFormatter.format(operation.length, selected: operation.selectedLength)
-                strongSelf.chars = CountFormatter.format(operation.chars, selected: operation.selectedChars)
-                strongSelf.lines = CountFormatter.format(operation.lines, selected: operation.selectedLines)
-                strongSelf.words = CountFormatter.format(operation.words, selected: operation.selectedWords)
-                strongSelf.location = CountFormatter.format(operation.location)
-                strongSelf.line = CountFormatter.format(operation.line)
-                strongSelf.column = CountFormatter.format(operation.column)
-                strongSelf.unicode = operation.unicode
+                info.length = CountFormatter.format(result.length, selected: result.selectedLength)
+                info.chars = CountFormatter.format(result.characters, selected: result.selectedCharacters)
+                info.lines = CountFormatter.format(result.lines, selected: result.selectedLines)
+                info.words = CountFormatter.format(result.words, selected: result.selectedWords)
+                info.location = CountFormatter.format(result.location)
+                info.line = CountFormatter.format(result.line)
+                info.column = CountFormatter.format(result.column)
+                info.unicode = result.unicode
                 
-                NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: strongSelf)
+                NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: info)
             }
         }
         
