@@ -29,6 +29,7 @@
 "Text document" = "テキスト書類";
 "Plain text" = "プレーンテキスト";
 "CotEditor Theme" = "CotEditorテーマ";
+"CotEditor Batch Replacement Definition" = "CotEditor置換セット定義";
 "BibTeX" = "BibTeX";
 "Configuration" = "Configuration";
 "C header" = "Cヘッダ";

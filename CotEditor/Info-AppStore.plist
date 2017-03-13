@@ -77,6 +77,28 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>cotbr</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>ReplacementsIcon</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array/>
+			<key>CFBundleTypeName</key>
+			<string>CotEditor Batch Replacement Definition</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.CotEditor.replacements</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>bib</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -1064,6 +1086,29 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>cottheme</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/json</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.json</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>CotEditor Batch Replacement Definition</string>
+			<key>UTTypeIconFile</key>
+			<string>ReplacementsIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.CotEditor.replacements</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>cotbr</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>
