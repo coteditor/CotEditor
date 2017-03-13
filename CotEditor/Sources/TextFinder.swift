@@ -85,6 +85,7 @@ final class TextFinder: NSResponder {
     // MARK: Private Properties
     
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
+    private lazy var batchReplacementPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("BatchReplacementPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
     private let highlightColor: NSColor
     
     
@@ -172,6 +173,13 @@ final class TextFinder: NSResponder {
     @IBAction func showFindPanel(_ sender: Any?) {
         
         self.findPanelController.showWindow(sender)
+    }
+    
+    
+    /// activate batch replacement panel
+    @IBAction func showBatchReplacementPanel(_ sender: AnyObject?) {
+        
+        self.batchReplacementPanelController.showWindow(sender)
     }
     
     

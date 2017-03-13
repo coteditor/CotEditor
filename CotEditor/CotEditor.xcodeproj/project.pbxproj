@@ -137,6 +137,8 @@
 		2A3A922C205638A600F9B5F3 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A922A205638A600F9B5F3 /* BackgroundView.swift */; };
 		2A3D63F41E75A33000F538E1 /* Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D63F31E75A33000F538E1 /* Equatable.swift */; };
 		2A3D63F51E75A33000F538E1 /* Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D63F31E75A33000F538E1 /* Equatable.swift */; };
+		2A3D63FB1E769DDF00F538E1 /* BatchReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* BatchReplacementPanel.storyboard */; };
+		2A3D63FC1E769DDF00F538E1 /* BatchReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* BatchReplacementPanel.storyboard */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2A3F18FA203270BE002F1CA7 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F18F9203270BE002F1CA7 /* UITests.swift */; };
 		2A4144B8201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */; };
@@ -820,6 +822,7 @@
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3A922A205638A600F9B5F3 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		2A3D63F31E75A33000F538E1 /* Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equatable.swift; sourceTree = "<group>"; };
+		2A3D63FA1E769DDF00F538E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BatchReplacementPanel.storyboard; sourceTree = "<group>"; };
 		2A3E84821D07331900070A54 /* updateHelpindex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpindex.sh; sourceTree = "<group>"; };
 		2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3F18F9203270BE002F1CA7 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
@@ -1529,6 +1532,7 @@
 				2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */,
 				2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */,
 				2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */,
+				2A3D63F91E769DDF00F538E1 /* BatchReplacementPanel.storyboard */,
 			);
 			name = "Text Finder";
 			sourceTree = "<group>";
@@ -2324,6 +2328,7 @@
 			files = (
 				2A6F0D551B5500E100C2D03C /* Images.xcassets in Resources */,
 				2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */,
+				2A3D63FC1E769DDF00F538E1 /* BatchReplacementPanel.storyboard in Resources */,
 				2A6F0D571B5500E100C2D03C /* Themes in Resources */,
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
 				2ADF3C021E6D7345009125BB /* FileDropPane.storyboard in Resources */,
@@ -2426,6 +2431,7 @@
 				258EF2FA077FEDD000011E52 /* SyntaxEditView.xib in Resources */,
 				2A3A75AA19E77E87001DAB88 /* SyntaxTermsEditView.xib in Resources */,
 				2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
+				2A3D63FB1E769DDF00F538E1 /* BatchReplacementPanel.storyboard in Resources */,
 				2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */,
 				2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */,
 				2AE12E0B1E7DDF5100681F72 /* CustomSurroundStringView.storyboard in Resources */,
@@ -3339,6 +3345,14 @@
 				57ED31691FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxValidationView.xib;
+			sourceTree = "<group>";
+		};
+		2A3D63F91E769DDF00F538E1 /* BatchReplacementPanel.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A3D63FA1E769DDF00F538E1 /* Base */,
+			);
+			name = BatchReplacementPanel.storyboard;
 			sourceTree = "<group>";
 		};
 		2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */ = {
