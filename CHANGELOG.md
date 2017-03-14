@@ -19,18 +19,32 @@ develop
 
 - Improve performance of closing large size document.
 - Improve drawing performance of a large size document with non-opaque background.
-- Add “.swift” extension to file types treaded as CotEditor script.
 - Add hidden “Reload All Themes/Styles” menu item to theme/syntax style action menus in Preferences (visible with `Option` key).
 - Improve invisible character drawing on a non-opaque view.
 - Change syntax style detection behavior to set “None” style if no appropriate style can be found on file opening.
-- [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
 - And some minor improvements and fixes.
 
 
 ### Fixes
 
 - Fix an issue where the document syntax style could be back to the default if the current style was set manually and document was modified in another process.
-- Update cot command to fix an issue where files cannot be opened if the default Python on macOS is version 3.x.
+
+
+
+3.1.8 (191)
+--------------------------
+
+### Improvements
+
+- Add “.swift” extension to file types treaded as CotEditor script.
+- [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
+
+
+### Fixes
+
+- Update cot command:
+    - Fix an issue where files cannot be opened if the default Python on macOS is version 3.x.
+    - Fix a possible hang under specific environments.
 
 
 
