@@ -59,7 +59,7 @@ enum ScriptingFileType {
         
         switch self {
         case .appleScript: return ["applescript", "scpt", "scptd"]
-        case .shellScript: return ["sh", "pl", "php", "rb", "py", "js"]
+        case .shellScript: return ["sh", "pl", "php", "rb", "py", "js", "swift"]
         }
     }
     

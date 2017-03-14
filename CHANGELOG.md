@@ -2,6 +2,23 @@
 Change Log
 ==========================
 
+3.1.8 (191)
+--------------------------
+
+### Improvements
+
+- Add “.swift” extension to file types treaded as CotEditor script.
+- [non-AppStore ver.] Update Sparkle framework to version 1.17.0.
+
+
+### Fixes
+
+- Update cot command:
+    - Fix an issue where files cannot be opened if the default Python on macOS is version 3.x.
+    - Fix a possible hang under specific environments.
+
+
+
 3.1.7 (188)
 --------------------------
 
