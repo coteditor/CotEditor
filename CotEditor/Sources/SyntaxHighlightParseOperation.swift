@@ -116,6 +116,14 @@ private struct QuoteCommentItem {
 
 
 
+private extension CharacterSet {
+    
+    static let wordBrakeCharacters = CharacterSet(charactersIn: "\n\t ")
+    static let simpleAlphanumeric = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_")
+}
+
+
+
 // MARK: -
 
 final class SyntaxHighlightParseOperation: AsynchronousOperation {
@@ -132,8 +140,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     // MARK: Private Properties
     
     private let definitions: [SyntaxType: [HighlightDefinition]]
-    private let simpleWordsCharacterSets: [SyntaxType: CharacterSet]?
-    private let pairedQuoteTypes: [String: SyntaxType]?  // dict for quote pair to extract with comment
+    private let pairedQuoteTypes: [String: SyntaxType]  // dict for quote pair to extract with comment
     private let inlineCommentDelimiter: String?
     private let blockCommentDelimiters: BlockDelimiters?
     
@@ -142,10 +149,9 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     // MARK: -
     // MARK: Lifecycle
     
-    required init(definitions: [SyntaxType: [HighlightDefinition]], simpleWordsCharacterSets: [SyntaxType: CharacterSet]?, pairedQuoteTypes: [String: SyntaxType]?, inlineCommentDelimiter: String?, blockCommentDelimiters: BlockDelimiters?) {
+    required init(definitions: [SyntaxType: [HighlightDefinition]], pairedQuoteTypes: [String: SyntaxType], inlineCommentDelimiter: String?, blockCommentDelimiters: BlockDelimiters?) {
         
         self.definitions = definitions
-        self.simpleWordsCharacterSets = simpleWordsCharacterSets
         self.pairedQuoteTypes = pairedQuoteTypes
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
@@ -187,29 +193,43 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     // MARK: Private Methods
     
     /// extract ranges of passed-in words with Scanner by considering non-word characters around words
-    private func ranges(simpleWords words: [String], ignoreCaseWords: [String], charSet: CharacterSet) -> [NSRange] {
+    private func ranges(words: [String], caseInsensitiveWords: [String]) -> [NSRange] {
+        
+        guard !words.isEmpty || !caseInsensitiveWords.isEmpty else { return [] }
+        
+        // create characterSet dict for simple word highlights
+        let characterSet: CharacterSet = {
+            let charactersString = words + caseInsensitiveWords.map({ $0.uppercased() + $0.lowercased() })
+            var charSet = CharacterSet(charactersIn: charactersString.joined())
+                .union(.simpleAlphanumeric)
+            
+            charSet.remove(charactersIn: "\n\t ")  // ignore line breaks, tabs and spaces
+            
+            return charSet
+        }()
         
         var ranges = [NSRange]()
         
         let scanner = Scanner(string: self.string!)
-        scanner.caseSensitive = true
+        scanner.caseSensitive = !caseInsensitiveWords.isEmpty
         scanner.scanLocation = self.parseRange.location
         
         while !scanner.isAtEnd && scanner.scanLocation < self.parseRange.max {
             guard !self.isCancelled else { return [] }
             
             var scannedString: NSString?
-            scanner.scanUpToCharacters(from: charSet, into: nil)
+            scanner.scanUpToCharacters(from: characterSet, into: nil)
+            
             guard
                 !scanner.isAtEnd,
-                scanner.scanCharacters(from: charSet, into: &scannedString),
+                scanner.scanCharacters(from: characterSet, into: &scannedString),
                 let word = scannedString as? String else { break }
             
+            guard words.contains(word) || caseInsensitiveWords.contains(word.lowercased()) else { continue }
+            
             let length = word.utf16.count
-            
-            guard words.contains(word) || ignoreCaseWords.contains(word.lowercased()) else { continue }
-            
             let range = NSRange(location: scanner.scanLocation - length, length: length)
+            
             ranges.append(range)
         }
         
@@ -412,16 +432,14 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         }
         
         // create quote definitions if exists
-        if let quoteTypes = self.pairedQuoteTypes {
-            for quote in quoteTypes.keys {
-                let ranges = self.ranges(string: quote)
-                let length = quote.utf16.count
-                for range in ranges {
-                    positions.append(QuoteCommentItem(location: range.location,
-                                                      length: length,
-                                                      kind: quote,
-                                                      role: .both))
-                }
+        for quote in self.pairedQuoteTypes.keys {
+            let ranges = self.ranges(string: quote)
+            let length = quote.utf16.count
+            for range in ranges {
+                positions.append(QuoteCommentItem(location: range.location,
+                                                  length: length,
+                                                  kind: quote,
+                                                  role: .both))
             }
         }
         
@@ -458,7 +476,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             // search corresponding end delimiter
             if position.kind == kind && (position.role == .both || position.role == .end) {
                 let endLocation = position.location + position.length
-                let syntaxType = self.pairedQuoteTypes?[kind] ?? SyntaxType.comments
+                let syntaxType = self.pairedQuoteTypes[kind] ?? SyntaxType.comments
                 let range = NSRange(location: startLocation, length: endLocation - startLocation)
                 
                 if highlights[syntaxType] != nil {
@@ -479,7 +497,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         
         // highlight until the end if not closed
         if let searchingPairKind = searchingPairKind, isContinued {
-            let syntaxType = self.pairedQuoteTypes?[searchingPairKind] ?? SyntaxType.comments
+            let syntaxType = self.pairedQuoteTypes[searchingPairKind] ?? SyntaxType.comments
             let range = NSRange(location: startLocation, length: parseRange.max - startLocation)
             
             if highlights[syntaxType] != nil {
@@ -511,7 +529,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             let childProgress = Progress(totalUnitCount: definitions.count + 10)  // + 10 for simple words
             
             var simpleWords = [String]()
-            var simpleICWords = [String]()
+            var caseInsensitiveWords = [String]()
             let wordsQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.words." + syntaxType.rawValue)
             
             var ranges = [NSRange]()
@@ -541,7 +559,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                     } else {
                         wordsQueue.sync {
                             if definition.ignoreCase {
-                                simpleICWords.append(definition.beginString.lowercased())
+                                caseInsensitiveWords.append(definition.beginString.lowercased())
                             } else {
                                 simpleWords.append(definition.beginString)
                             }
@@ -564,11 +582,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             guard !self.isCancelled else { return [:] }
             
             // extract simple words
-            if let charSet = self.simpleWordsCharacterSets?[syntaxType], !charSet.isEmpty {
-                ranges += self.ranges(simpleWords: simpleWords,
-                                      ignoreCaseWords: simpleICWords,
-                                      charSet: charSet)
-            }
+            ranges += self.ranges(words: simpleWords, caseInsensitiveWords: caseInsensitiveWords)
             
             // store range array
             highlights[syntaxType] = ranges
