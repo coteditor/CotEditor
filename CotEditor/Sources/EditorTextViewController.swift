@@ -311,9 +311,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// find the matching open brace and highlight it
     private func highlightMatchingBrace(in textView: NSTextView) {
         
-        guard UserDefaults.standard[.highlightBraces] else { return }
-        
-        guard let string = textView.string, !string.isEmpty else { return }
+        guard
+            UserDefaults.standard[.highlightBraces],
+            let string = textView.string, !string.isEmpty,
+            textView.selectedRange.location != NSNotFound
+            else { return }
         
         let cursorLocation = textView.selectedRange.location
         let difference = cursorLocation - self.lastCursorLocation
@@ -325,11 +327,13 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard difference == 1 else { return }
         
         // check the caracter just before the cursor
-        let lastIndex = string.index(before: String.UTF16Index(cursorLocation).samePosition(in: string)!)
+        guard let cursorIndex = String.UTF16Index(cursorLocation).samePosition(in: string) else { return }
+        let lastIndex = string.index(before: cursorIndex)
         let lastCharacter = string.characters[lastIndex]
-        guard let pair: BracePair = (BracePair.braces + [.ltgt]).first(where: { $0.end == lastCharacter }),
-            ((pair != .ltgt) || UserDefaults.standard[.highlightLtGt])
-            else { return }
+        
+        let bracePairs: [BracePair] = UserDefaults.standard[.highlightLtGt] ? (BracePair.braces + [.ltgt]) : BracePair.braces
+        
+        guard let pair = bracePairs.first(where: { $0.end == lastCharacter }) else { return }
         
         guard let index = string.indexOfBeginBrace(for: pair, at: lastIndex) else {
             // do not beep when the typed brace is `>`

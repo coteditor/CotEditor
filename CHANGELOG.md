@@ -28,6 +28,7 @@ develop
 ### Fixes
 
 - Fix an issue where the document syntax style could be back to the default if the current style was set manually and document was modified in another process.
+- Fix an possible crash on highlighting matching brace.
 
 
 
