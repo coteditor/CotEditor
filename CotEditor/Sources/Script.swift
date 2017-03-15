@@ -103,14 +103,12 @@ struct ScriptDescriptor {
         // Extract from URL
         
         self.url = url
-        
         self.type = ScriptingFileType.all.first { $0.extensions.contains(url.pathExtension) }
-        
         var name = url.deletingPathExtension().lastPathComponent
         
         let shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
         if shortcut.modifierMask.isEmpty {
-            self.shortcut = Shortcut.none
+            self.shortcut = .none
         } else {
             self.shortcut = shortcut
             
@@ -174,7 +172,7 @@ struct ScriptDescriptor {
 
 
 
-protocol Script {
+protocol Script: class {
     
     // MARK: Properties
     
@@ -348,6 +346,7 @@ final class ShellScript: Script {
     // MARK: Lifecycle
     
     init(with descriptor: ScriptDescriptor) {
+        
         self.descriptor = descriptor
     }
     
