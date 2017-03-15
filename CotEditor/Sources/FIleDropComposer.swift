@@ -180,7 +180,7 @@ final class FileDropComposer {
             
             // check extensions
             if let extensions = definition[SettingKey.extensions]?.components(separatedBy: ", "),
-                extensions.contains(where: { $0.compare(fileExtension, options: .caseInsensitive) == .orderedSame })
+                !extensions.contains(where: { $0.compare(fileExtension, options: .caseInsensitive) == .orderedSame })
             {
                 return false
             }
