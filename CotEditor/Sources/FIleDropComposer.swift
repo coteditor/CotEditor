@@ -170,20 +170,25 @@ final class FileDropComposer {
         
         guard !fileExtension.isEmpty else { return nil }
         
-        for definition in self.definitions {
-            // check scope if specified
-            if let scope = definition[SettingKey.scope], !scope.isEmpty {
-                guard let syntaxStyle = syntaxStyle, syntaxStyle == scope else { continue }
+        let definition = self.definitions.first { definition in
+            // check scope
+            if let scope = definition[SettingKey.scope], !scope.isEmpty,
+                syntaxStyle != scope
+            {
+                return false
             }
             
-            guard let extensions = definition[SettingKey.extensions]?.components(separatedBy: ", ") else { continue }
-            
-            if extensions.contains(fileExtension.lowercased()) || extensions.contains(fileExtension.uppercased()) {
-                return definition[SettingKey.formatString]
+            // check extensions
+            if let extensions = definition[SettingKey.extensions]?.components(separatedBy: ", "),
+                extensions.contains(where: { $0.compare(fileExtension, options: .caseInsensitive) == .orderedSame })
+            {
+                return false
             }
+            
+            return true
         }
         
-        return nil
+        return definition?[SettingKey.formatString]
     }
     
 }
