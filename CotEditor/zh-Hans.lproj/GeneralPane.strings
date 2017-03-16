@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -62,8 +62,6 @@
 
 /* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
 "3307.title" = "与其他应用共享查找字符串";
-/* Class = "NSButtonCell"; title = "Inline script menu items into contextual menu"; ObjectID = "3309"; */
-"3309.title" = "将脚本菜单集成至上下文菜单中";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "统计行尾为一个字符";
 /* Class = "NSButtonCell"; title = "Link URLs"; ObjectID = "tPy-Ox-YpP"; */

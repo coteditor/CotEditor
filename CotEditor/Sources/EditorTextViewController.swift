@@ -214,24 +214,12 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // append Script menu
         if let scriptMenu = ScriptManager.shared.contexualMenu {
-            if UserDefaults.standard[.inlineContextualScriptMenu] {
-                menu.addItem(NSMenuItem.separator())
-                menu.items.last?.tag = MenuItemTag.script.rawValue
-                
-                for item in scriptMenu.items {
-                    let addItem = item.copy() as! NSMenuItem
-                    addItem.tag = MenuItemTag.script.rawValue
-                    menu.addItem(addItem)
-                }
-                menu.addItem(NSMenuItem.separator())
-                
-            } else {
-                let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
-                item.image = #imageLiteral(resourceName: "ScriptTemplate")
-                item.tag = MenuItemTag.script.rawValue
-                item.submenu = scriptMenu
-                menu.addItem(item)
-            }
+            let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
+            item.image = #imageLiteral(resourceName: "ScriptTemplate")
+            item.toolTip = NSLocalizedString("Scripts", comment: "")
+            item.tag = MenuItemTag.script.rawValue
+            item.submenu = scriptMenu
+            menu.addItem(item)
         }
         
         return menu

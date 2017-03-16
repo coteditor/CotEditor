@@ -38,7 +38,6 @@ struct DefaultSettings {
         .trimsTrailingWhitespaceOnSave: false,
         .documentConflictOption: DocumentConflictOption.revert.rawValue,
         .syncFindPboard: false,
-        .inlineContextualScriptMenu: false,
         .countLineEndingAsChar: true,
         .autoLinkDetection: false,
         .checkSpellingAsType: false,

@@ -22,6 +22,7 @@ develop
 - Add hidden “Reload All Themes/Styles” menu item to theme/syntax style action menus in Preferences (visible with `Option` key).
 - Improve invisible character drawing on a non-opaque view.
 - Change syntax style detection behavior to set “None” style if no appropriate style can be found on file opening.
+- Remove “Inline script menu items into contextual menu” option.
 - And some minor improvements and fixes.
 
 
