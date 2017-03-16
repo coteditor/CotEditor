@@ -253,7 +253,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
                                                        SettingFileManager.NotificationKey.new: themeName])
         }
         
-        let themeViewController = ThemeViewController()
+        let themeViewController = self.storyboard!.instantiateController(withIdentifier: "ThemeViewController") as! ThemeViewController
         themeViewController.delegate = self
         themeViewController.theme = themeDict
         themeViewController.isBundled = isBundled
