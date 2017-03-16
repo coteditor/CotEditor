@@ -64,6 +64,33 @@ extension Replacement: Equatable {
 
 
 
+// MARK: Validation
+
+extension Replacement {
+    
+    /// check if replacement definition is valid
+    ///
+    /// - Throws: TextFindError
+    func validate() throws {
+        
+        guard !self.findString.isEmpty else {
+            throw TextFindError.emptyFindString
+        }
+        
+        if self.usesRegularExpression {
+            do {
+                let _ = try NSRegularExpression(pattern: self.findString)
+            } catch {
+                let failureReason: String? = (error as? LocalizedError)?.failureReason
+                throw TextFindError.regularExpression(reason: failureReason)
+            }
+        }
+    }
+    
+}
+
+
+
 // MARK: JSON
 
 extension Replacement {
