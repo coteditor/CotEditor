@@ -71,7 +71,7 @@ extension Replacement {
     /// check if replacement definition is valid
     ///
     /// - Throws: TextFindError
-    func validate() throws {
+    func validate(regexOptions: NSRegularExpression.Options = []) throws {
         
         guard !self.findString.isEmpty else {
             throw TextFindError.emptyFindString
@@ -79,54 +79,12 @@ extension Replacement {
         
         if self.usesRegularExpression {
             do {
-                let _ = try NSRegularExpression(pattern: self.findString)
+                let _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
             } catch {
                 let failureReason: String? = (error as? LocalizedError)?.failureReason
                 throw TextFindError.regularExpression(reason: failureReason)
             }
         }
-    }
-    
-}
-
-
-
-// MARK: JSON
-
-extension Replacement {
-    
-    enum DictionaryKey {
-        
-        static let findString = "findString"
-        static let replacementString = "replacementString"
-        static let usesRegularExpression = "usesRegularExpression"
-        static let ignoresCase = "ignoresCase"
-        static let enabled = "enabled"
-    }
-    
-    
-    init?(dictionary: [String: Any]) {
-        
-        guard
-            let findString = dictionary[DictionaryKey.findString] as? String, !findString.isEmpty,
-            let replacementString = dictionary[DictionaryKey.replacementString] as? String
-            else { return nil }
-        
-        self.findString = findString
-        self.replacementString = replacementString
-        self.usesRegularExpression = (dictionary[DictionaryKey.usesRegularExpression] as? Bool) ?? false
-        self.ignoresCase = (dictionary[DictionaryKey.ignoresCase] as? Bool) ?? false
-        self.enabled = (dictionary[DictionaryKey.enabled] as? Bool) ?? true
-    }
-    
-    
-    var mutableDictionary: NSMutableDictionary {
-        
-        return NSMutableDictionary(dictionary: [DictionaryKey.findString: self.findString,
-                                                DictionaryKey.replacementString: self.replacementString,
-                                                DictionaryKey.usesRegularExpression: self.usesRegularExpression,
-                                                DictionaryKey.ignoresCase: self.ignoresCase,
-                                                DictionaryKey.enabled: self.enabled])
     }
     
 }

@@ -31,52 +31,31 @@ struct BatchReplacement {
     
     struct Settings {
         
-        let textualOptions: NSString.CompareOptions
-        let regexOptions: NSRegularExpression.Options
-        let unescapesReplacementString: Bool
-    }
-    
-    
-    
-    // MARK: Public Properties
-    
-    let name: String
-    let settings: Settings
-    let replacements: [Replacement]
-    
-    
-    
-    // MARK: -
-    // MARK: LifeCycle
-    
-    init(url: URL) throws {
+        var textualOptions: NSString.CompareOptions
+        var regexOptions: NSRegularExpression.Options
+        var unescapesReplacementString: Bool
         
-        // load JSON data
-        let data = try Data(contentsOf: url)
-        let jsonObject = try JSONSerialization.jsonObject(with: data)
         
-        guard let json = jsonObject as? [String: Any] else {
-            throw CocoaError(.fileReadCorruptFile)
+        init(textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [.anchorsMatchLines], unescapesReplacementString: Bool = false) {
+            
+            self.textualOptions = textualOptions
+            self.regexOptions = regexOptions
+            self.unescapesReplacementString = unescapesReplacementString
         }
-        
-        let name = url.deletingPathExtension().lastPathComponent
-        
-        self = try BatchReplacement(name: name, json: json)
     }
     
     
-    init(name: String, json: [String: Any]) throws {
-        
-        guard
-            let replacementsJson = json["replacements"] as? [[String: Any]],
-            let settingsJson = json["settings"] as? [String: Any]
-            else { throw CocoaError(.fileReadCorruptFile) }
+    
+    var name: String
+    var settings: Settings
+    var replacements: [Replacement]
+    
+    
+    init(name: String, settings: Settings = Settings(), replacements: [Replacement] = []) {
         
         self.name = name
-        self.settings = Settings(textualOptions: NSString.CompareOptions(rawValue: (settingsJson["textualOptions"] as? UInt) ?? 0),
-                                 regexOptions: NSRegularExpression.Options(rawValue: (settingsJson["regexOptions"] as? UInt) ?? 0),
-                                 unescapesReplacementString: (settingsJson["unescapesReplacementString"] as? Bool) ?? false)
-        self.replacements = replacementsJson.flatMap { Replacement(dictionary: $0) }
+        self.settings = settings
+        self.replacements = replacements
     }
     
 }
