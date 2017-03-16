@@ -64,7 +64,7 @@
 "3307.title" = "与其他应用共享查找字符串";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "统计行尾为一个字符";
-/* Class = "NSButtonCell"; title = "Link URLs"; ObjectID = "tPy-Ox-YpP"; */
+/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "链接文档中的 URL";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "键入时检查拼写";

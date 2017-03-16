@@ -63,8 +63,8 @@
 "3307.title" = "検索文字列をほかのアプリケーションと共有";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "改行コードを文字としてカウント";
-/* Class = "NSButtonCell"; title = "Link URLs"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "URL をリンク";
+/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
+"tPy-Ox-YpP.title" = "書類中の URL をリンク";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "入力中に自動スペルチェック";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
