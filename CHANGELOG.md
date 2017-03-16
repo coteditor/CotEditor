@@ -28,6 +28,7 @@ develop
 ### Fixes
 
 - Fix an issue where the document syntax style could be back to the default if the current style was set manually and document was modified in another process.
+- Fix an issue where the “Cancel” button in the dialog shown when changing the Auto Save setting in General pane didn't revert the actual setting state.
 - Fix an possible crash on highlighting matching brace.
 
 

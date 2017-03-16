@@ -117,7 +117,7 @@ final class GeneralPaneController: NSViewController {
                 break  // do nothing
                 
             case NSAlertThirdButtonReturn:  // = Cancel
-                UserDefaults.standard[.enablesAutosaveInPlace] = newSetting
+                UserDefaults.standard[.enablesAutosaveInPlace] = !newSetting
                 
             default: break
             }
