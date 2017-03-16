@@ -340,7 +340,7 @@ enum TextFindError: LocalizedError {
         case .regularExpression:
             return NSLocalizedString("Invalid regular expression", comment: "")
         case .emptyFindString:
-            return nil
+            return NSLocalizedString("Empty find string", comment: "")
         }
     }
     
@@ -351,7 +351,7 @@ enum TextFindError: LocalizedError {
         case .regularExpression(let reason):
             return reason
         case .emptyFindString:
-            return nil
+            return NSLocalizedString("Input text to find.", comment: "")
         }
     }
     

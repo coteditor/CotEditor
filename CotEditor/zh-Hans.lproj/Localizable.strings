@@ -70,6 +70,8 @@
 "%@ string replaced." = "已替换 %@ 个匹配";
 "%@ strings replaced." = "已替换 %@ 个匹配";
 "Invalid regular expression" = "无效的正则表达式";
+"Empty find string" = "Empty find string";  // FIXME: added
+"Input text to find." = "Input text to find.";  // FIXME: added
 
 
 /* MARK: FindPanelController */

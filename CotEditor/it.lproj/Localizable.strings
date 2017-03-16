@@ -70,6 +70,8 @@
 "%@ string replaced." = "%@ stringa sostituita.";
 "%@ strings replaced." = "%@ stringhe sostituite.";
 "Invalid regular expression" = "Espressione regolare non valida";
+"Empty find string" = "Empty find string";  // FIXME: added
+"Input text to find." = "Input text to find.";  // FIXME: added
 
 
 /* MARK: FindPanelController */

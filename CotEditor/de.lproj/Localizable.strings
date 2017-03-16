@@ -69,6 +69,8 @@
 "%@ string replaced." = "%@ Zeichenkette ersetzt.";
 "%@ strings replaced." = "%@ Zeichenketten ersetzt.";
 "Invalid regular expression" = "Ungültiger regulärer Ausdruck";
+"Empty find string" = "Leerer Suchbegriff";
+"Input text to find." = "Geben Sie den zu findenden Text ein.";
 
 
 /* MARK: FindPanelController */

@@ -70,6 +70,8 @@
 "%@ string replaced." = "%@ 件置換しました。";
 "%@ strings replaced." = "%@ 件置換しました。";
 "Invalid regular expression" = "無効な正規表現です。";
+"Empty find string" = "検索文字列が空です。";
+"Input text to find." = "検索するテキストを入力してください。";
 
 
 /* MARK: FindPanelController */
