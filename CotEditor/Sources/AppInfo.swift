@@ -61,6 +61,7 @@ struct DocumentType {
     
     
     static let theme = DocumentType(UTType: "com.coteditor.CotEditor.theme", extensions: ["cottheme"])
+    static let replacement = DocumentType(UTType: "com.coteditor.CotEditor.replacement", extensions: ["cotbr"])
 }
 
 

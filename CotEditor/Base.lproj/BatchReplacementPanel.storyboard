@@ -560,7 +560,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="removeSetting:" target="y8N-kI-aI7" id="P96-0j-l2f"/>
+                                    <action selector="deleteSetting:" target="y8N-kI-aI7" id="iJ8-ot-uL6"/>
                                 </connections>
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="O7q-NN-KLS">
@@ -580,6 +580,12 @@
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="duplicateSetting:" target="y8N-kI-aI7" id="zq9-VQ-bvb"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="Rename" id="cZ9-i9-VsM">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="renameSetting:" target="y8N-kI-aI7" id="jGs-VC-DtO"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="Export…" id="fN1-Tr-8T8">
@@ -644,6 +650,12 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="duplicateSetting:" target="y8N-kI-aI7" id="BpG-JC-Nu5"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Rename" id="KGb-Yh-gXR">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="renameSetting:" target="y8N-kI-aI7" id="NaK-Do-gOW"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Delete" id="M9A-ds-FNR">

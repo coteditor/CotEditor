@@ -463,6 +463,13 @@
 
 
 
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new batch replacement setting named “%@” will be installed, but a setting with the same name already exists." = "A new batch replacement setting named “%@” will be installed, but a setting with the same name already exists.";  // FIXME: added
+"Do you want to replace it?\nReplaced setting can’t be restored." = "Do you want to replace it?\nReplaced setting can’t be restored.";  // FIXME: added
+
+
+
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
 "Insert Text %li" = "Inserisci testo %li";

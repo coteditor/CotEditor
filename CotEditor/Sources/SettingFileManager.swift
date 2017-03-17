@@ -32,6 +32,7 @@ enum SettingFileType {
     
     case syntaxStyle
     case theme
+    case replacement
 }
 
 
@@ -449,6 +450,9 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
             
         case .theme:
             return String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), self.name)
+            
+        case .replacement:
+            return String(format: NSLocalizedString("A new batch replacement setting named “%@” will be installed, but a setting with the same name already exists.", comment: ""), self.name)
         }
     }
     
@@ -461,6 +465,9 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
             
         case .theme:
             return NSLocalizedString("Do you want to replace it?\nReplaced theme can’t be restored.", comment: "")
+            
+        case .replacement:
+            return NSLocalizedString("Do you want to replace it?\nReplaced setting can’t be restored.", comment: "")
         }
     }
     

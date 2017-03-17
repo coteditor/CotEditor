@@ -91,7 +91,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.coteditor.CotEditor.replacements</string>
+				<string>com.coteditor.CotEditor.replacement</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
@@ -1107,7 +1107,7 @@
 			<key>UTTypeIconFile</key>
 			<string>ReplacementsIcon</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.coteditor.CotEditor.replacements</string>
+			<string>com.coteditor.CotEditor.replacement</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
