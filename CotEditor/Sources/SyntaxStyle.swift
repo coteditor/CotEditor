@@ -410,14 +410,14 @@ extension SyntaxStyle {
         if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
             // wait for window becomes ready
             DispatchQueue.global(qos: .background).async {
-                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) {
+                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) && !operation.isFinished {
                     usleep(100)
                 }
                 
                 // attach the indicator as a sheet
                 DispatchQueue.main.sync {
-                    guard !operation.isFinished && !operation.isCancelled,
-                        let contentViewController = storage.layoutManagers.first?.firstTextView?.window?.windowController?.contentViewController
+                    guard !operation.isFinished,
+                        let contentViewController = storage.layoutManagers.first?.firstTextView?.viewControllerForSheet
                         else { return }
                     
                     indicator = ProgressViewController(progress: operation.progress, message: NSLocalizedString("Coloring text…", comment: ""))

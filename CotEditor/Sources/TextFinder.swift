@@ -226,12 +226,9 @@ final class TextFinder: NSResponder {
         let lineRegex = try! NSRegularExpression(pattern: "\n")
         
         // setup progress sheet
-        guard let documentViewController = textView.window?.windowController?.contentViewController else {
-            fatalError("The find target text view must be embedded in a window with its contentViewController.")
-        }
         let progress = Progress(totalUnitCount: -1)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Find All", comment: ""))!
-        documentViewController.presentViewControllerAsSheet(indicator)
+        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Find All", comment: ""))
+        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
@@ -332,12 +329,9 @@ final class TextFinder: NSResponder {
         let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
         
         // setup progress sheet
-        guard let documentViewController = textView.window?.windowController?.contentViewController else {
-            fatalError("The find target text view must be embedded in a window with its contentViewController.")
-        }
         let progress = Progress(totalUnitCount: -1)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Highlight", comment: ""))!
-        documentViewController.presentViewControllerAsSheet(indicator)
+        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Highlight", comment: ""))
+        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
@@ -449,12 +443,9 @@ final class TextFinder: NSResponder {
         let integerFormatter = self.integerFormatter
         
         // setup progress sheet
-        guard let documentViewController = textView.window?.windowController?.contentViewController else {
-            fatalError("The find target text view must be embedded in a window with its contentViewController.")
-        }
         let progress = Progress(totalUnitCount: -1)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Replace All", comment: ""))!
-        documentViewController.presentViewControllerAsSheet(indicator)
+        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Replace All", comment: ""))
+        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }

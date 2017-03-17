@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,6 +27,17 @@
 
 import Cocoa
 
+extension NSView {
+    
+    var viewControllerForSheet: NSViewController? {
+        
+        return self.window?.windowController?.contentViewController
+    }
+
+}
+
+
+
 final class ProgressViewController: NSViewController {
     
     // MARK: Private Properties
@@ -41,12 +52,12 @@ final class ProgressViewController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    required init?(progress: Progress, message: String) {
+    required init(progress: Progress, message: String) {
         
         self.progress = progress
         self.message = message
         
-        super.init(nibName: nil, bundle: nil)
+        super.init(nibName: nil, bundle: nil)!
     }
     
     
