@@ -29,6 +29,13 @@ import Cocoa
 
 final class BatchReplacementViewController: NSViewController {
     
+    private dynamic var hasInvalidSetting = false
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -36,7 +43,10 @@ final class BatchReplacementViewController: NSViewController {
         super.viewDidLoad()
         
         self.representedObject = BatchReplacement(name: NSLocalizedString("Untitled", comment: ""))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(validateObject), name: .NSTableViewSelectionDidChange, object: nil)
     }
+    
     
     
     /// pass settings to advanced options popover
@@ -68,7 +78,9 @@ final class BatchReplacementViewController: NSViewController {
     // MARK: Action Messages
     
     /// perform batch replacement
-    @IBAction func batchReplace(_ sender: AnyObject?) {
+    @IBAction func batchReplace(_ sender: Any?) {
+        
+        self.validateObject()
         
         guard
             let textView = TextFinder.shared.client,
@@ -123,6 +135,15 @@ final class BatchReplacementViewController: NSViewController {
                 }
             }
         }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    @objc private func validateObject() {
+        
+        self.hasInvalidSetting = (self.representedObject as? BatchReplacement)?.replacements.contains(where: { $0.localizedError != nil }) ?? false
     }
     
 }

@@ -36,8 +36,6 @@ final class Replacement: NSObject {
     dynamic var enabled = true
     dynamic var comment: String?
     
-    dynamic var localizedError: String?
-    
     
     init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, comment: String? = nil, enabled: Bool? = true) {
         
@@ -85,6 +83,32 @@ extension Replacement {
 
 extension Replacement {
     
+    /// key paths affecting localizedError property
+    class func keyPathsForValuesAffectingLocalizedError() -> Set<String> {
+        
+        return [#keyPath(findString), #keyPath(usesRegularExpression)]
+    }
+    
+    
+    /// localized error message
+    dynamic var localizedError: String? {
+        
+        do {
+            try self.validate()
+        } catch {
+            // report only the regex error...
+            switch error {
+            case TextFindError.regularExpression(let reason):
+                return reason
+                
+            default: break
+            }
+        }
+        
+        return nil
+    }
+    
+    
     /// check if replacement definition is valid
     ///
     /// - Throws: TextFindError
@@ -98,7 +122,7 @@ extension Replacement {
             do {
                 let _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
             } catch {
-                let failureReason: String? = (error as? LocalizedError)?.failureReason
+                let failureReason = error.localizedDescription
                 throw TextFindError.regularExpression(reason: failureReason)
             }
         }

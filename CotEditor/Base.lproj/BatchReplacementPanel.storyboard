@@ -125,6 +125,7 @@
                                                                                 <string key="NSValueTransformerName">NSIsNil</string>
                                                                             </dictionary>
                                                                         </binding>
+                                                                        <binding destination="Rqz-SK-mda" name="toolTip" keyPath="objectValue.localizedError" id="0ch-BU-0iX"/>
                                                                     </connections>
                                                                 </imageView>
                                                             </subviews>
@@ -407,6 +408,13 @@
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="uzB-9o-Idl" name="hidden" keyPath="hasInvalidSetting" id="sqF-Jh-BfH">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </textField>
                             <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6DU-wH-q4e">
                                 <rect key="frame" x="176" y="73" width="16" height="16"/>
@@ -415,6 +423,13 @@
                                     <constraint firstAttribute="width" secondItem="6DU-wH-q4e" secondAttribute="height" multiplier="1:1" id="qiO-b0-Yjf"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="pX1-Sh-GyU"/>
+                                <connections>
+                                    <binding destination="uzB-9o-Idl" name="hidden" keyPath="hasInvalidSetting" id="yWX-sY-QHi">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </imageView>
                         </subviews>
                         <constraints>
