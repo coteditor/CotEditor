@@ -205,7 +205,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             case 0:
                 return NSLocalizedString("Not Found", comment: "")
             default:
-                return String(format: NSLocalizedString("%@ Found", comment: ""),
+                return String(format: NSLocalizedString("%@ found", comment: ""),
                               String.localizedStringWithFormat("%li", numberOfFound))
             }
         }()
@@ -229,7 +229,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             case 0:
                 return NSLocalizedString("Not Replaced", comment: "")
             default:
-                return String(format: NSLocalizedString("%@ Replaced", comment: ""),
+                return String(format: NSLocalizedString("%@ replaced", comment: ""),
                               String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
