@@ -29,6 +29,33 @@ import Foundation
 
 extension BatchReplacement {
     
+    convenience init(url: URL) throws {
+        
+        // load JSON data
+        let data = try Data(contentsOf: url)
+        let jsonObject = try JSONSerialization.jsonObject(with: data)
+        
+        guard let json = jsonObject as? [String: Any] else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        
+        let name = url.deletingPathExtension().lastPathComponent
+        
+        try self.init(name: name, dictionary: json)
+    }
+    
+    
+    func jsonData() throws -> Data {
+        
+        return try JSONSerialization.data(withJSONObject: self.dictionary, options: .prettyPrinted)
+    }
+    
+}
+
+
+
+extension BatchReplacement {
+    
     enum Key {
         
         static let settings = "settings"
@@ -49,52 +76,10 @@ extension BatchReplacement {
     }
     
     
-    convenience init(url: URL) throws {
+    var dictionary: [String: Any] {
         
-        // load JSON data
-        let data = try Data(contentsOf: url)
-        let jsonObject = try JSONSerialization.jsonObject(with: data)
-        
-        guard let json = jsonObject as? [String: Any] else {
-            throw CocoaError(.fileReadCorruptFile)
-        }
-        
-        let name = url.deletingPathExtension().lastPathComponent
-        
-        try self.init(name: name, dictionary: json)
-    }
-    
-}
-
-
-
-extension Replacement {
-    
-    enum Key {
-        
-        static let findString = "findString"
-        static let replacementString = "replacementString"
-        static let usesRegularExpression = "usesRegularExpression"
-        static let ignoresCase = "ignoresCase"
-        static let enabled = "enabled"
-        static let description = "description"
-    }
-    
-    
-    convenience init?(dictionary: [String: Any]) {
-        
-        guard
-            let findString = dictionary[Key.findString] as? String, !findString.isEmpty,
-            let replacementString = dictionary[Key.replacementString] as? String
-            else { return nil }
-        
-        self.init(findString: findString,
-                  replacementString: replacementString,
-                  usesRegularExpression: (dictionary[Key.usesRegularExpression] as? Bool) ?? false,
-                  ignoresCase: (dictionary[Key.ignoresCase] as? Bool) ?? false,
-                  comment: dictionary[Key.description] as? String,
-                  enabled: dictionary[Key.enabled] as? Bool
-        )
+        return [Key.settings: self.settings.dictionary,
+                Key.replacements: self.replacements.map { $0.dictionary }]
     }
     
 }
@@ -124,6 +109,69 @@ extension BatchReplacement.Settings {
         if let rawValue = dictionary[Key.unescapesReplacementString] as? Bool {
             self.unescapesReplacementString = rawValue
         }
+    }
+    
+    
+    var dictionary: [String: Any] {
+        
+        return [Key.textualOptions: self.textualOptions,
+                Key.regexOptions: self.regexOptions,
+                Key.unescapesReplacementString: self.unescapesReplacementString,
+        ]
+    }
+    
+}
+
+
+
+extension Replacement {
+    
+    enum Key {
+        
+        static let findString = "findString"
+        static let replacementString = "replacementString"
+        static let usesRegularExpression = "usesRegularExpression"
+        static let ignoresCase = "ignoresCase"
+        static let enabled = "enabled"
+        static let description = "description"
+    }
+    
+    
+    convenience init?(dictionary: [String: Any]) {
+        
+        guard
+            let findString = dictionary[Key.findString] as? String,
+            let replacementString = dictionary[Key.replacementString] as? String
+            else { return nil }
+        
+        self.init(findString: findString,
+                  replacementString: replacementString,
+                  usesRegularExpression: (dictionary[Key.usesRegularExpression] as? Bool) ?? false,
+                  ignoresCase: (dictionary[Key.ignoresCase] as? Bool) ?? false,
+                  comment: dictionary[Key.description] as? String,
+                  enabled: dictionary[Key.enabled] as? Bool
+        )
+    }
+    
+    
+    var dictionary: [String: Any] {
+        
+        var dictionary: [String: Any] = [Key.findString: self.findString,
+                                         Key.replacementString: self.replacementString]
+        
+        // set optional values
+        if self.usesRegularExpression {
+            dictionary[Key.usesRegularExpression] = true
+        }
+        if self.ignoresCase {
+            dictionary[Key.ignoresCase] = true
+        }
+        if !self.enabled {
+            dictionary[Key.enabled] = false
+        }
+        dictionary[Key.description] = self.comment
+        
+        return dictionary
     }
     
 }
