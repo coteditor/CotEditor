@@ -160,6 +160,18 @@ final class TextFinder: NSResponder {
     
     
     
+    // MARK: Public Methods
+    
+    /// target text view
+    var client: NSTextView? {
+        
+        guard let provider = NSApp.target(forAction: #selector(TextFinderClientProvider.textFinderClient)) as? TextFinderClientProvider else { return nil }
+        
+        return provider.textFinderClient()
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// jump to selection in client
@@ -515,15 +527,6 @@ final class TextFinder: NSResponder {
     
     
     // MARK: Private Methods
-    
-    /// target text view
-    private var client: NSTextView? {
-        
-        guard let provider = NSApp.target(forAction: #selector(TextFinderClientProvider.textFinderClient)) as? TextFinderClientProvider else { return nil }
-        
-        return provider.textFinderClient()
-    }
-    
     
     /// selected string in the current tareget
     private var selectedString: String? {

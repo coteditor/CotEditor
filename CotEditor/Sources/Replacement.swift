@@ -27,29 +27,47 @@
 
 import Foundation
 
-struct Replacement {
+final class Replacement: NSObject {
     
-    let findString: String
-    let replacementString: String
-    let usesRegularExpression: Bool
-    let ignoresCase: Bool
-    let enabled: Bool
+    dynamic var findString: String
+    dynamic var replacementString: String
+    dynamic var usesRegularExpression: Bool
+    dynamic var ignoresCase: Bool
+    dynamic var enabled = true
+    dynamic var comment: String?
     
     
-    init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, enabled: Bool = true) {
+    init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, comment: String? = nil, enabled: Bool? = true) {
         
         self.findString = findString
         self.replacementString = replacementString
         self.ignoresCase = ignoresCase
         self.usesRegularExpression = usesRegularExpression
-        self.enabled = enabled
+        self.comment = comment
+        
+        if let enabled = enabled {
+            self.enabled = enabled
+        }
+        
+        super.init()
+    }
+    
+    
+    override init() {
+        
+        self.findString = ""
+        self.replacementString = ""
+        self.ignoresCase = false
+        self.usesRegularExpression = false
+        
+        super.init()
     }
     
 }
 
 
 
-extension Replacement: Equatable {
+extension Replacement {
     
     static func == (lhs: Replacement, rhs: Replacement) -> Bool {
         
@@ -57,6 +75,7 @@ extension Replacement: Equatable {
             lhs.replacementString == rhs.replacementString &&
             lhs.usesRegularExpression == rhs.usesRegularExpression &&
             lhs.ignoresCase == rhs.ignoresCase &&
+            lhs.comment == rhs.comment &&
             lhs.enabled == rhs.enabled
     }
     

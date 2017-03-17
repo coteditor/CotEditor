@@ -27,7 +27,7 @@
 
 import Foundation
 
-struct BatchReplacement {
+final class BatchReplacement: NSObject {
     
     struct Settings {
         
@@ -46,9 +46,9 @@ struct BatchReplacement {
     
     
     
-    var name: String
+    dynamic var name: String
     var settings: Settings
-    var replacements: [Replacement]
+    dynamic var replacements: [Replacement]
     
     
     init(name: String, settings: Settings = Settings(), replacements: [Replacement] = []) {
@@ -115,7 +115,7 @@ extension BatchReplacement {
             do {
                 textFind = try TextFind(for: result.string, findString: replacement.findString, settings: settings, selectedRanges: findRanges)
             } catch {
-                assertionFailure(error.localizedDescription)
+                print(error.localizedDescription)
                 continue
             }
             

@@ -36,20 +36,20 @@ extension BatchReplacement {
     }
     
     
-    init(name: String, dictionary: [String: Any]) throws {
+    convenience init(name: String, dictionary: [String: Any]) throws {
         
         guard
             let replacementsJson = dictionary[Key.replacements] as? [[String: Any]],
             let settingsJson = dictionary[Key.settings] as? [String: Any]
             else { throw CocoaError(.fileReadCorruptFile) }
         
-        self.name = name
-        self.settings = Settings(dictionary: settingsJson)
-        self.replacements = replacementsJson.flatMap { Replacement(dictionary: $0) }
+        self.init(name: name,
+                  settings: Settings(dictionary: settingsJson),
+                  replacements: replacementsJson.flatMap { Replacement(dictionary: $0) })
     }
     
     
-    init(url: URL) throws {
+    convenience init(url: URL) throws {
         
         // load JSON data
         let data = try Data(contentsOf: url)
@@ -61,7 +61,7 @@ extension BatchReplacement {
         
         let name = url.deletingPathExtension().lastPathComponent
         
-        self = try BatchReplacement(name: name, dictionary: json)
+        try self.init(name: name, dictionary: json)
     }
     
 }
@@ -77,21 +77,24 @@ extension Replacement {
         static let usesRegularExpression = "usesRegularExpression"
         static let ignoresCase = "ignoresCase"
         static let enabled = "enabled"
+        static let description = "description"
     }
     
     
-    init?(dictionary: [String: Any]) {
+    convenience init?(dictionary: [String: Any]) {
         
         guard
             let findString = dictionary[Key.findString] as? String, !findString.isEmpty,
             let replacementString = dictionary[Key.replacementString] as? String
             else { return nil }
         
-        self.findString = findString
-        self.replacementString = replacementString
-        self.usesRegularExpression = (dictionary[Key.usesRegularExpression] as? Bool) ?? false
-        self.ignoresCase = (dictionary[Key.ignoresCase] as? Bool) ?? false
-        self.enabled = (dictionary[Key.enabled] as? Bool) ?? true
+        self.init(findString: findString,
+                  replacementString: replacementString,
+                  usesRegularExpression: (dictionary[Key.usesRegularExpression] as? Bool) ?? false,
+                  ignoresCase: (dictionary[Key.ignoresCase] as? Bool) ?? false,
+                  comment: dictionary[Key.description] as? String,
+                  enabled: dictionary[Key.enabled] as? Bool
+        )
     }
     
 }

@@ -99,6 +99,8 @@
 		2A231A2E1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */; };
 		2A231A251E7B4EDC00C2A909 /* BatchReplacement+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* BatchReplacement+JSON.swift */; };
 		2A231A261E7B4EDC00C2A909 /* BatchReplacement+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* BatchReplacement+JSON.swift */; };
+		2A231A281E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */; };
+		2A231A291E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */; };
 		2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
@@ -497,6 +499,8 @@
 		2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B51E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
 		2ACC21B61E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
+		2ACC5E411E7B08D300109ABC /* BatchReplacementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E401E7B08D300109ABC /* BatchReplacementViewController.swift */; };
+		2ACC5E421E7B08D300109ABC /* BatchReplacementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E401E7B08D300109ABC /* BatchReplacementViewController.swift */; };
 		2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */; };
 		2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
@@ -808,6 +812,7 @@
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindProgress.swift; sourceTree = "<group>"; };
 		2A231A241E7B4EDC00C2A909 /* BatchReplacement+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BatchReplacement+JSON.swift"; sourceTree = "<group>"; };
+		2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BatchReplacementSettings+Object.swift"; sourceTree = "<group>"; };
 		2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAnimationContext.swift; sourceTree = "<group>"; };
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -1149,6 +1154,7 @@
 		2ACB53AD1A3E043E0040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxValidationView.xib; sourceTree = "<group>"; };
 		2ACC21B11E52B7920078241F /* DefaultOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
 		2ACC21B41E52B8C50078241F /* DefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
+		2ACC5E401E7B08D300109ABC /* BatchReplacementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchReplacementViewController.swift; sourceTree = "<group>"; };
 		2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeMetaDataViewController.swift; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = ColorCode.framework.dSYM; sourceTree = "<group>"; };
@@ -1535,6 +1541,25 @@
 			name = "Document View";
 			sourceTree = "<group>";
 		};
+		2A231A2A1E7BD92F00C2A909 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2A3581941E597B3300762AA5 /* Replacement.swift */,
+				2A3581971E597ECE00762AA5 /* BatchReplacement.swift */,
+				2A231A241E7B4EDC00C2A909 /* BatchReplacement+JSON.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2A231A2B1E7BD93600C2A909 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */,
+				2ACC5E401E7B08D300109ABC /* BatchReplacementViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		2A2D6C1A1A602D7E002451FF /* Text Finder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1570,9 +1595,8 @@
 		2A3581931E597AFE00762AA5 /* Batch Replacement */ = {
 			isa = PBXGroup;
 			children = (
-				2A3581941E597B3300762AA5 /* Replacement.swift */,
-				2A3581971E597ECE00762AA5 /* BatchReplacement.swift */,
-				2A231A241E7B4EDC00C2A909 /* BatchReplacement+JSON.swift */,
+				2A231A2A1E7BD92F00C2A909 /* Models */,
+				2A231A2B1E7BD93600C2A909 /* View Controllers */,
 			);
 			name = "Batch Replacement";
 			sourceTree = "<group>";
@@ -2614,6 +2638,7 @@
 				2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */,
 				2AF073E71D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */,
 				2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */,
+				2A231A291E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */,
 				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
@@ -2751,6 +2776,7 @@
 				2AA375441D403F100080C27C /* String+Encoding.swift in Sources */,
 				2A6FD9DE1D392EFF00A59784 /* ATSTypesetter.swift in Sources */,
 				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
+				2ACC5E421E7B08D300109ABC /* BatchReplacementViewController.swift in Sources */,
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2A4257B71D23153B0086DAAD /* UnicodeInputPanelController.swift in Sources */,
 				2ACDC0921D1726BD009B72D6 /* DotImageView.swift in Sources */,
@@ -2951,8 +2977,10 @@
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
 				2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
+				2A231A281E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
+				2ACC5E411E7B08D300109ABC /* BatchReplacementViewController.swift in Sources */,
 				2A1679E61D3CE07100E8261D /* Document.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
