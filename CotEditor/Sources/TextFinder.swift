@@ -89,7 +89,6 @@ final class TextFinder: NSResponder {
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController() as! FindPanelController
     private let integerFormatter: NumberFormatter
     private let highlightColor: NSColor
-    private var busyTextViews = Set<NSTextView>()
     
     
     
@@ -220,7 +219,7 @@ final class TextFinder: NSResponder {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return }
         
-        self.busyTextViews.insert(textView)
+        textView.isEditable = false
         
         let integerFormatter = self.integerFormatter
         let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
@@ -285,9 +284,7 @@ final class TextFinder: NSResponder {
             }
             
             DispatchQueue.main.sync {
-                defer {
-                    strongSelf.busyTextViews.remove(textView)
-                }
+                textView.isEditable = true
                 
                 guard !progress.isCancelled else {
                     indicator.dismiss(nil)
@@ -329,7 +326,7 @@ final class TextFinder: NSResponder {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return }
         
-        self.busyTextViews.insert(textView)
+        textView.isEditable = false
         
         let integerFormatter = self.integerFormatter
         let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
@@ -370,9 +367,7 @@ final class TextFinder: NSResponder {
             }
             
             DispatchQueue.main.sync {
-                defer {
-                    strongSelf.busyTextViews.remove(textView)
-                }
+                textView.isEditable = true
                 
                 guard !progress.isCancelled else {
                     indicator.dismiss(nil)
@@ -448,7 +443,7 @@ final class TextFinder: NSResponder {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return }
         
-        self.busyTextViews.insert(textView)
+        textView.isEditable = false
         
         let replacementString = self.replacementString
         let integerFormatter = self.integerFormatter
@@ -483,9 +478,7 @@ final class TextFinder: NSResponder {
             }
             
             DispatchQueue.main.sync {
-                defer {
-                    strongSelf.busyTextViews.remove(textView)
-                }
+                textView.isEditable = true
                 
                 guard !progress.isCancelled else {
                     indicator.dismiss(nil)
@@ -578,7 +571,7 @@ final class TextFinder: NSResponder {
         
         guard
             let textView = self.client,
-            !self.busyTextViews.contains(textView),
+            textView.isEditable,
             let string = textView.string
             else {
                 NSBeep()
