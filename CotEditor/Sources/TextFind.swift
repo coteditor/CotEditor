@@ -208,7 +208,7 @@ final class TextFind {
         var selectedRanges = [NSRange]()
         
         // variables to calculate new selection ranges
-        var locationDelta = 1
+        var locationDelta = 0
         var lengthDelta = 0
         
         self.enumerateMatchs(in: self.scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
