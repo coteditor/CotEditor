@@ -36,7 +36,7 @@ final class BatchReplacement: NSObject {
         var unescapesReplacementString: Bool
         
         
-        init(textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [.anchorsMatchLines], unescapesReplacementString: Bool = false) {
+        init(textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [.anchorsMatchLines], unescapesReplacementString: Bool = true) {
             
             self.textualOptions = textualOptions
             self.regexOptions = regexOptions
@@ -46,7 +46,7 @@ final class BatchReplacement: NSObject {
     
     
     
-    dynamic var name: String
+    let name: String
     var settings: Settings
     dynamic var replacements: [Replacement]
     

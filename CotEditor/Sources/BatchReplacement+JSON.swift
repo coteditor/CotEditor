@@ -76,6 +76,7 @@ extension BatchReplacement {
     }
     
     
+    /// JSON compatible dictionary
     var dictionary: [String: Any] {
         
         return [Key.settings: self.settings.dictionary,
@@ -112,10 +113,11 @@ extension BatchReplacement.Settings {
     }
     
     
+    /// JSON compatible dictionary
     var dictionary: [String: Any] {
         
-        return [Key.textualOptions: self.textualOptions,
-                Key.regexOptions: self.regexOptions,
+        return [Key.textualOptions: self.textualOptions.rawValue,
+                Key.regexOptions: self.regexOptions.rawValue,
                 Key.unescapesReplacementString: self.unescapesReplacementString,
         ]
     }
@@ -154,6 +156,7 @@ extension Replacement {
     }
     
     
+    /// JSON compatible dictionary
     var dictionary: [String: Any] {
         
         var dictionary: [String: Any] = [Key.findString: self.findString,
