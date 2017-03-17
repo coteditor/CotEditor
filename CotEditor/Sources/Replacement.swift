@@ -36,6 +36,8 @@ final class Replacement: NSObject {
     dynamic var enabled = true
     dynamic var comment: String?
     
+    dynamic var localizedError: String?
+    
     
     init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, comment: String? = nil, enabled: Bool? = true) {
         
