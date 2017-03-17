@@ -9,8 +9,8 @@
         <scene sceneID="WvZ-bY-kAi">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" sceneMemberID="viewController">
-                    <window key="window" title="Batch Replacement" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="rFC-87-Fxd" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
+                    <window key="window" title="Batch Replacement" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="rFC-87-Fxd" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="520" height="320"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
@@ -465,25 +465,25 @@
             </objects>
             <point key="canvasLocation" x="234" y="734"/>
         </scene>
-        <!--View Controller-->
+        <!--Batch Replacement List View Controller-->
         <scene sceneID="tHa-Ef-d3P">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="y8N-kI-aI7" sceneMemberID="viewController">
-                    <view key="view" id="fKV-DK-LtH">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="320"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                <viewController showSeguePresentationStyle="single" id="y8N-kI-aI7" customClass="BatchReplacementListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <visualEffectView key="view" appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" id="sT1-Cd-M1e">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="300"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-4N-kRH">
-                                <rect key="frame" x="0.0" y="21" width="120" height="299"/>
-                                <clipView key="contentView" id="fvK-do-Kwl">
-                                    <rect key="frame" x="0.0" y="0.0" width="120" height="299"/>
+                                <rect key="frame" x="0.0" y="23" width="120" height="277"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="fvK-do-Kwl">
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="277"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="XJK-Ch-OtB">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="299"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="XJK-Ch-OtB">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="277"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="117" minWidth="40" maxWidth="1000" id="L6B-oJ-FMt">
@@ -520,8 +520,12 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="menu" destination="3B8-6q-gru" id="7Iy-4E-8Vh"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
+                                    <nil key="backgroundColor"/>
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="eBD-OI-kJw"/>
@@ -536,7 +540,7 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tHD-Pj-dFD">
-                                <rect key="frame" x="0.0" y="0.0" width="24" height="21"/>
+                                <rect key="frame" x="2" y="2" width="24" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="AAD-Tr-DF1"/>
                                     <constraint firstAttribute="width" constant="24" id="U5t-Wj-CoE"/>
@@ -545,20 +549,26 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="addSetting:" target="y8N-kI-aI7" id="UW1-rt-Sof"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oJQ-xc-kGh">
-                                <rect key="frame" x="24" y="0.0" width="24" height="21"/>
+                                <rect key="frame" x="26" y="2" width="24" height="21"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSRemoveTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="1Gb-qg-hPR">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="removeSetting:" target="y8N-kI-aI7" id="P96-0j-l2f"/>
+                                </connections>
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="O7q-NN-KLS">
-                                <rect key="frame" x="82" y="0.0" width="38" height="21"/>
+                                <rect key="frame" x="78" y="4" width="38" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="SjX-xT-GVD"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="3mW-VX-9wW" id="IwC-Jx-M4D">
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="IwC-Jx-M4D">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="5JP-FI-8cb">
@@ -566,11 +576,36 @@
                                             <menuItem image="NSActionTemplate" hidden="YES" enabled="NO" id="3mW-VX-9wW">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Import" id="mF9-q3-LmX">
+                                            <menuItem title="Duplicate" id="mF9-q3-LmX">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="duplicateSetting:" target="y8N-kI-aI7" id="zq9-VQ-bvb"/>
+                                                </connections>
                                             </menuItem>
-                                            <menuItem title="Export" id="fN1-Tr-8T8">
+                                            <menuItem title="Export…" id="fN1-Tr-8T8">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="exportSetting:" target="y8N-kI-aI7" id="90I-1i-AWc"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="Reveal in Finder" alternate="YES" id="tLz-9S-3we">
+                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                <connections>
+                                                    <action selector="revealSettingInFinder:" target="y8N-kI-aI7" id="dJi-7f-h6N"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="jIk-dY-Dto"/>
+                                            <menuItem title="Import…" id="iZn-Pw-tgJ">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="importSetting:" target="y8N-kI-aI7" id="nVL-3S-Fsz"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="Reload All Settings" alternate="YES" id="0ca-Jy-pHT">
+                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                <connections>
+                                                    <action selector="reloadAllSettings:" target="y8N-kI-aI7" id="fdq-vw-L3k"/>
+                                                </connections>
                                             </menuItem>
                                         </items>
                                     </menu>
@@ -578,30 +613,73 @@
                             </popUpButton>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="tHD-Pj-dFD" firstAttribute="width" secondItem="oJQ-xc-kGh" secondAttribute="width" id="1gv-U8-x3N"/>
-                            <constraint firstAttribute="bottom" secondItem="O7q-NN-KLS" secondAttribute="bottom" id="7tg-d8-CGE"/>
-                            <constraint firstItem="TNv-4N-kRH" firstAttribute="leading" secondItem="fKV-DK-LtH" secondAttribute="leading" id="PF5-WV-XGK"/>
-                            <constraint firstItem="oJQ-xc-kGh" firstAttribute="leading" secondItem="tHD-Pj-dFD" secondAttribute="trailing" id="Q0z-5O-Itg"/>
-                            <constraint firstItem="tHD-Pj-dFD" firstAttribute="top" secondItem="TNv-4N-kRH" secondAttribute="bottom" id="XpJ-zc-8mY"/>
-                            <constraint firstAttribute="bottom" secondItem="tHD-Pj-dFD" secondAttribute="bottom" id="Z1b-fj-qUb"/>
-                            <constraint firstAttribute="trailing" secondItem="O7q-NN-KLS" secondAttribute="trailing" id="Zeg-Jr-WUf"/>
-                            <constraint firstAttribute="bottom" secondItem="oJQ-xc-kGh" secondAttribute="bottom" id="dnI-lb-BhG"/>
-                            <constraint firstAttribute="trailing" secondItem="TNv-4N-kRH" secondAttribute="trailing" id="egd-X5-y2w"/>
-                            <constraint firstItem="O7q-NN-KLS" firstAttribute="height" secondItem="tHD-Pj-dFD" secondAttribute="height" id="hpN-XK-Nj8"/>
-                            <constraint firstItem="TNv-4N-kRH" firstAttribute="top" secondItem="fKV-DK-LtH" secondAttribute="top" id="keW-OI-4h7"/>
-                            <constraint firstItem="tHD-Pj-dFD" firstAttribute="leading" secondItem="fKV-DK-LtH" secondAttribute="leading" id="mwT-nq-2ZK"/>
-                            <constraint firstItem="tHD-Pj-dFD" firstAttribute="height" secondItem="oJQ-xc-kGh" secondAttribute="height" id="v97-dg-6UU"/>
+                            <constraint firstItem="oJQ-xc-kGh" firstAttribute="leading" secondItem="tHD-Pj-dFD" secondAttribute="trailing" id="4Nq-ib-yWv"/>
+                            <constraint firstAttribute="trailing" secondItem="TNv-4N-kRH" secondAttribute="trailing" id="AWT-MD-P3C"/>
+                            <constraint firstItem="TNv-4N-kRH" firstAttribute="top" secondItem="sT1-Cd-M1e" secondAttribute="top" id="JPz-ml-B9O"/>
+                            <constraint firstItem="tHD-Pj-dFD" firstAttribute="width" secondItem="oJQ-xc-kGh" secondAttribute="width" id="MXi-GK-8Fs"/>
+                            <constraint firstItem="tHD-Pj-dFD" firstAttribute="height" secondItem="oJQ-xc-kGh" secondAttribute="height" id="RLv-Vo-v5K"/>
+                            <constraint firstItem="tHD-Pj-dFD" firstAttribute="leading" secondItem="sT1-Cd-M1e" secondAttribute="leading" constant="2" id="TAK-KT-Iog"/>
+                            <constraint firstAttribute="bottom" secondItem="oJQ-xc-kGh" secondAttribute="bottom" constant="2" id="XfN-go-CdM"/>
+                            <constraint firstItem="tHD-Pj-dFD" firstAttribute="top" secondItem="TNv-4N-kRH" secondAttribute="bottom" id="Xo5-j0-4wN"/>
+                            <constraint firstAttribute="bottom" secondItem="tHD-Pj-dFD" secondAttribute="bottom" constant="2" id="eL2-nz-kIP"/>
+                            <constraint firstAttribute="trailing" secondItem="O7q-NN-KLS" secondAttribute="trailing" constant="4" id="kqu-Ap-bhC"/>
+                            <constraint firstItem="TNv-4N-kRH" firstAttribute="leading" secondItem="sT1-Cd-M1e" secondAttribute="leading" id="wnB-Al-TQD"/>
+                            <constraint firstItem="O7q-NN-KLS" firstAttribute="centerY" secondItem="tHD-Pj-dFD" secondAttribute="centerY" id="zFI-ts-okg"/>
                         </constraints>
-                    </view>
+                    </visualEffectView>
+                    <connections>
+                        <outlet property="tableView" destination="XJK-Ch-OtB" id="Ewq-nZ-Vod"/>
+                    </connections>
                 </viewController>
                 <customObject id="P7x-3b-9Pa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="3B8-6q-gru">
+                    <items>
+                        <menuItem title="New Setting" id="ah0-d7-MIb">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="addSetting:" target="y8N-kI-aI7" id="uG1-Mw-0U9"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Duplicate" id="zRC-iK-Noh">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="duplicateSetting:" target="y8N-kI-aI7" id="BpG-JC-Nu5"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Delete" id="M9A-ds-FNR">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="removeSetting:" target="y8N-kI-aI7" id="KjP-or-uRx"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Export…" id="5mf-DX-YT5">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="exportSetting:" target="y8N-kI-aI7" id="ofD-M1-29O"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Reveal in Finder" alternate="YES" id="sYx-dd-JiV">
+                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                            <connections>
+                                <action selector="revealSettingInFinder:" target="y8N-kI-aI7" id="q39-5a-B8m"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="xX2-1H-iy6"/>
+                        <menuItem title="Import…" id="8TG-QH-hxz">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="importSetting:" target="y8N-kI-aI7" id="ox9-7r-Yit"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="-64" y="734"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Batch Replacement Split View Controller-->
         <scene sceneID="aEk-uG-3UA">
             <objects>
-                <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" sceneMemberID="viewController">
+                <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" customClass="BatchReplacementSplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem holdingPriority="251" id="t6n-9g-dQO"/>
                         <splitViewItem id="RVu-VR-TJq"/>
@@ -611,6 +689,8 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </splitView>
                     <connections>
+                        <outlet property="contentListSplitViewItem" destination="t6n-9g-dQO" id="Eak-Om-c5w"/>
+                        <outlet property="mainSplitViewItem" destination="RVu-VR-TJq" id="hDt-SB-Dk9"/>
                         <segue destination="y8N-kI-aI7" kind="relationship" relationship="splitItems" id="EKi-ev-pps"/>
                         <segue destination="uzB-9o-Idl" kind="relationship" relationship="splitItems" id="3RV-RK-z1q"/>
                     </connections>

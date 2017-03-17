@@ -48,8 +48,6 @@ final class Replacement: NSObject {
         if let enabled = enabled {
             self.enabled = enabled
         }
-        
-        super.init()
     }
     
     
@@ -59,8 +57,6 @@ final class Replacement: NSObject {
         self.replacementString = ""
         self.ignoresCase = false
         self.usesRegularExpression = false
-        
-        super.init()
     }
     
 }
