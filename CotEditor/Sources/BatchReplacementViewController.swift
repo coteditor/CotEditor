@@ -30,6 +30,8 @@ import Cocoa
 final class BatchReplacementViewController: NSViewController {
     
     private dynamic var hasInvalidSetting = false
+    private dynamic var resultMessage: String?
+    
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -47,6 +49,12 @@ final class BatchReplacementViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(validateObject), name: .NSTableViewSelectionDidChange, object: nil)
     }
     
+    
+    /// reset previous search result
+    override func viewWillAppear() {
+        
+        self.resultMessage = nil
+    }
     
     
     /// pass settings to advanced options popover
@@ -80,7 +88,9 @@ final class BatchReplacementViewController: NSViewController {
     /// perform batch replacement
     @IBAction func batchReplace(_ sender: Any?) {
         
+        self.endEditing()
         self.validateObject()
+        self.resultMessage = nil
         
         guard
             let textView = TextFinder.shared.client,
@@ -100,16 +110,18 @@ final class BatchReplacementViewController: NSViewController {
         textView.isEditable = false
         
         // setup progress sheet
-        let progress = Progress(totalUnitCount: Int64(batchReplacement.replacements.count))
+        let progress = TextFindProgress(format: .replacement, totalUnitCount: batchReplacement.replacements.count)
         let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Batch Replace", comment: ""))
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
-        DispatchQueue.global().async {
-            let result = batchReplacement.replace(string: string, ranges: textView.selectedRanges as [NSRange], inSelection: inSelection) { (stop) in
+        DispatchQueue.global().async { [weak self] in
+            let result = batchReplacement.replace(string: string, ranges: textView.selectedRanges as [NSRange], inSelection: inSelection) { (count, stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
+                
+                progress.needsUpdateDescription(count: count)
             }
             
             DispatchQueue.main.async {
@@ -129,6 +141,13 @@ final class BatchReplacementViewController: NSViewController {
                     NSBeep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
+                
+                self?.resultMessage = {
+                    guard result.count > 0 else { return NSLocalizedString("Not Replaced", comment: "") }
+                    
+                    return String(format: NSLocalizedString("%@ replaced", comment: ""),
+                                  String.localizedStringWithFormat("%li", result.count))
+                }()
                 
                 if UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)

@@ -91,9 +91,10 @@ extension BatchReplacement {
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether replace only in selection.
     ///   - block: The Block enumerates the matches.
+    ///   - count: The number of replaces so far.
     ///   - stop: A reference to a Boolean value. The Block can set the value to true to stop further processing.
     /// - Returns: The result of the replacement.
-    func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ stop: inout Bool) -> Void) -> Result {
+    func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ count: Int, _ stop: inout Bool) -> Void) -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
         
@@ -122,7 +123,8 @@ extension BatchReplacement {
             // process replacement
             var cancelled = false
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (stop) in
-                block(&stop)
+                result.count += 1
+                block(result.count, &stop)
                 cancelled = stop
             }
             
@@ -132,7 +134,6 @@ extension BatchReplacement {
             // update string
             for item in replacementItems.reversed() {
                 result.string = (result.string as NSString).replacingCharacters(in: item.range, with: item.string)
-                result.count += 1
             }
             
             // update selected ranges
