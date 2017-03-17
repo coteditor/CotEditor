@@ -87,7 +87,6 @@ final class TextFinder: NSResponder {
     // MARK: Private Properties
     
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController() as! FindPanelController
-    private let integerFormatter: NumberFormatter
     private let highlightColor: NSColor
     
     
@@ -96,10 +95,6 @@ final class TextFinder: NSResponder {
     // MARK: Lifecycle
     
     private override init() {
-        
-        self.integerFormatter = NumberFormatter()
-        self.integerFormatter.usesGroupingSeparator = true
-        self.integerFormatter.numberStyle = .decimal
         
         self.highlightColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
         // Highlight color is currently not customizable. (2015-01-04)
@@ -221,12 +216,11 @@ final class TextFinder: NSResponder {
         
         textView.isEditable = false
         
-        let integerFormatter = self.integerFormatter
         let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
         let lineRegex = try! NSRegularExpression(pattern: "\n")
         
         // setup progress sheet
-        let progress = Progress(totalUnitCount: -1)
+        let progress = TextFindProgress(format: .find)
         let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Find All", comment: ""))
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
@@ -271,13 +265,7 @@ final class TextFinder: NSResponder {
                 
                 results.append(TextFindResult(range: matchedRange, lineRange: inlineRange, lineNumber: lineNumber, attributedLineString: attrLineString))
                 
-                // progress indicator
-                let informativeFormat = (results.count == 1) ? "%@ string found." : "%@ strings found."
-                let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
-                                         integerFormatter.string(from: highlights.count as NSNumber)!)
-                DispatchQueue.main.async { [weak progress] in
-                    progress?.localizedDescription = informative
-                }
+                progress.needsUpdateDescription(count: results.count)
             }
             
             DispatchQueue.main.sync {
@@ -325,11 +313,10 @@ final class TextFinder: NSResponder {
         
         textView.isEditable = false
         
-        let integerFormatter = self.integerFormatter
         let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
         
         // setup progress sheet
-        let progress = Progress(totalUnitCount: -1)
+        let progress = TextFindProgress(format: .find)
         let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Highlight", comment: ""))
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
@@ -351,13 +338,7 @@ final class TextFinder: NSResponder {
                     highlights.append(HighlightItem(range: range, color: color))
                 }
                 
-                // progress indicator
-                let informativeFormat = (highlights.count == 1) ? "%@ string found." : "%@ strings found."
-                let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
-                                         integerFormatter.string(from: highlights.count as NSNumber)!)
-                DispatchQueue.main.async { [weak progress] in
-                    progress?.localizedDescription = informative
-                }
+                progress.needsUpdateDescription(count: highlights.count)
             }
             
             DispatchQueue.main.sync {
@@ -440,10 +421,9 @@ final class TextFinder: NSResponder {
         textView.isEditable = false
         
         let replacementString = self.replacementString
-        let integerFormatter = self.integerFormatter
         
         // setup progress sheet
-        let progress = Progress(totalUnitCount: -1)
+        let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Replace All", comment: ""))
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
@@ -459,13 +439,7 @@ final class TextFinder: NSResponder {
                 
                 count += 1
                 
-                // progress indicator
-                let informativeFormat = (count == 1) ? "%@ string replaced." : "%@ strings replaced."
-                let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
-                                         integerFormatter.string(from: count as NSNumber)!)
-                DispatchQueue.main.async { [weak progress] in
-                    progress?.localizedDescription = informative
-                }
+                progress.needsUpdateDescription(count: count)
             }
             
             DispatchQueue.main.sync {

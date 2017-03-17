@@ -73,6 +73,8 @@
 		2A1CD5551DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
+		2A231A2D1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */; };
+		2A231A2E1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */; };
 		2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
@@ -684,6 +686,7 @@
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
+		2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindProgress.swift; sourceTree = "<group>"; };
 		2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAnimationContext.swift; sourceTree = "<group>"; };
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -1612,6 +1615,7 @@
 			children = (
 				2A18560A1D47FA37008FA79E /* TextFinder.swift */,
 				2AED466F1E425CD200751C45 /* TextFind.swift */,
+				2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */,
 				2ACFE5891D205CE90005233A /* View Controllers */,
 				2A009ADB1A5AB96F00C3D542 /* Text View */,
 			);
@@ -2274,6 +2278,7 @@
 				2A5D13391D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */,
 				2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2A5D131A1D1EFE4B00D38E6A /* SharingMenu.swift in Sources */,
+				2A231A2E1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */,
 				2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */,
 				2AEDB4201D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
 				2A0BF8A91DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
@@ -2476,6 +2481,7 @@
 				2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2ABCD69D1D872D0A00437DD5 /* AppVersion.swift in Sources */,
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
+				2A231A2D1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */,
 				2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */,
