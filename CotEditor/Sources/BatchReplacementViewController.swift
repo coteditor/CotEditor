@@ -30,6 +30,7 @@ import Cocoa
 final class BatchReplacementViewController: NSViewController {
     
     private dynamic var hasInvalidSetting = false
+    private dynamic var canPerform = true
     private dynamic var resultMessage: String?
     
     
@@ -52,6 +53,8 @@ final class BatchReplacementViewController: NSViewController {
     
     /// reset previous search result
     override func viewWillAppear() {
+        
+        super.viewWillAppear()
         
         self.resultMessage = nil
     }
@@ -93,6 +96,7 @@ final class BatchReplacementViewController: NSViewController {
         self.resultMessage = nil
         
         guard
+            self.canPerform,
             let textView = TextFinder.shared.client,
             let string = textView.string
             else {
@@ -162,7 +166,18 @@ final class BatchReplacementViewController: NSViewController {
     
     @objc private func validateObject() {
         
-        self.hasInvalidSetting = (self.representedObject as? BatchReplacement)?.replacements.contains(where: { $0.localizedError != nil }) ?? false
+        guard let batchReplacement = self.representedObject as? BatchReplacement else { return }
+        
+        self.hasInvalidSetting = batchReplacement.replacements.contains { $0.localizedError != nil }
+        
+        self.canPerform = batchReplacement.replacements.contains { replacement in
+            do {
+                try replacement.validate()
+            } catch {
+                return false
+            }
+            return true
+        }
     }
     
 }
