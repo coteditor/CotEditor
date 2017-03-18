@@ -341,6 +341,15 @@
                                 <connections>
                                     <action selector="remove:" target="0gs-fu-hhY" id="Stz-8t-QkO"/>
                                     <binding destination="0gs-fu-hhY" name="enabled" keyPath="canRemove" id="RJu-n9-eeQ"/>
+                                    <binding destination="0gs-fu-hhY" name="enabled2" keyPath="arrangedObjects.@count" previousBinding="RJu-n9-eeQ" id="u33-Wr-2AF">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">MoreThanOneTransformer</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rgJ-1f-1Af">
@@ -435,8 +444,8 @@
                                 </connections>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-Kb-8Ck">
-                                <rect key="frame" x="114" y="23" width="103" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5 strings replaced." id="HU0-YI-OIX">
+                                <rect key="frame" x="157" y="23" width="60" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5 replaced" id="HU0-YI-OIX">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -577,7 +586,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="eBD-OI-kJw"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="uU0-Cg-1XF">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="uU0-Cg-1XF">
                                     <rect key="frame" x="0.0" y="261" width="110" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
