@@ -23,6 +23,7 @@ develop
 - Improve invisible character drawing on a non-opaque view.
 - Change syntax style detection behavior to set “None” style if no appropriate style can be found on file opening.
 - Remove “Inline script menu items into contextual menu” option.
+- Improve the setting file naming rule for when the name overwraps with an existing setting.
 - And some minor improvements and fixes.
 
 

@@ -120,7 +120,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             style = manager.styleDictionary(name: styleName)
             
         case .copy:
-            name = manager.copiedSettingName(styleName)
+            name = manager.savableSettingName(for: styleName, appendCopySuffix: true)
             style = manager.styleDictionary(name: styleName)
             
         case .new:

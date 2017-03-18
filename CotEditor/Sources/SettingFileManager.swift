@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -139,30 +139,12 @@ class SettingFileManager: SettingManager {
     
     
     /// return setting name appending localized " Copy" + number suffix without extension
-    func copiedSettingName(_ originalName: String) -> String {
+    /// return setting name appending number suffix without extension
+    func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
         
-        let baseName = originalName.trimmingCharacters(in: .whitespacesAndNewlines)
-        let localizedCopy = " " + NSLocalizedString("copy", comment: "copied file suffix")
+        let suffix = appendCopySuffix ? NSLocalizedString("copy", comment: "copied file suffix") : nil
         
-        let regex = try! NSRegularExpression(pattern: localizedCopy + "( [0-9]+)?$")
-        let copySuffixRange = regex.rangeOfFirstMatch(in: baseName, range: baseName.nsRange)
-        
-        let copyBaseName: String = {
-            if copySuffixRange.location != NSNotFound {
-                return (baseName as NSString).substring(to: copySuffixRange.location) + localizedCopy
-            }
-            return baseName + localizedCopy
-        }()
-        
-        // increase number suffix
-        var copiedName = copyBaseName
-        var count = 2
-        while self.settingNames.contains(copiedName) {
-            copiedName = copyBaseName + " " + String(count)
-            count += 1
-        }
-        
-        return copiedName
+        return self.settingNames.createAvailableName(for: proposedName, suffix: suffix)
     }
     
     
@@ -219,7 +201,7 @@ class SettingFileManager: SettingManager {
     /// duplicate the setting with name
     func duplicateSetting(name: String) throws {
         
-        let newName = self.copiedSettingName(name)
+        let newName = self.savableSettingName(for: name, appendCopySuffix: true)
         
         guard let sourceURL = self.urlForUsedSetting(name: name) else {
             throw SettingFileError(kind: .noSourceFile, name: name, error: nil)

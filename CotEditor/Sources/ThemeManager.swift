@@ -230,15 +230,11 @@ final class ThemeManager: SettingFileManager {
     /// create a new untitled theme
     func createUntitledTheme(completionHandler: ((String, Error?) -> Void)? = nil) {  // @escaping
         
-        var newName = NSLocalizedString("Untitled", comment: "")
+        // append number suffix if "Untitled" already exists
+        let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
         
-        // append "Copy n" if "Untitled" already exists
-        if self.urlForUserSetting(name: newName) != nil {
-            newName = self.copiedSettingName(newName)
-        }
-        
-        self.save(themeDictionary: self.plainThemeDictionary, name: newName) { (error: Error?) in
-            completionHandler?(newName, error)
+        self.save(themeDictionary: self.plainThemeDictionary, name: name) { (error: Error?) in
+            completionHandler?(name, error)
         }
     }
     

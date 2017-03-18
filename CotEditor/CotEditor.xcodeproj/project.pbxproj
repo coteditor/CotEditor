@@ -486,6 +486,9 @@
 		2ADF3C021E6D7345009125BB /* FileDropPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */; };
 		2ADF3C121E6D8774009125BB /* IntegrationPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3C101E6D8774009125BB /* IntegrationPane.storyboard */; };
 		2ADF3C131E6D8774009125BB /* IntegrationPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3C101E6D8774009125BB /* IntegrationPane.storyboard */; };
+		2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFA1E7DB47000681F72 /* Collection+String.swift */; };
+		2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFA1E7DB47000681F72 /* Collection+String.swift */; };
+		2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */; };
 		2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
 		2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
 		2AE52F181D17468B00D60A32 /* EditorSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F171D17468B00D60A32 /* EditorSplitView.swift */; };
@@ -1049,6 +1052,8 @@
 		2ADF3C151E6D8780009125BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationPane.strings"; sourceTree = "<group>"; };
 		2ADF3C161E6D8783009125BB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
 		2ADF3C171E6D8785009125BB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
+		2AE12DFA1E7DB47000681F72 /* Collection+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+String.swift"; sourceTree = "<group>"; };
+		2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCollectionTests.swift; sourceTree = "<group>"; };
 		2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		2AE52F171D17468B00D60A32 /* EditorSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorSplitView.swift; sourceTree = "<group>"; };
 		2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionsFormatter.swift; sourceTree = "<group>"; };
@@ -1365,6 +1370,7 @@
 				2A3D63F31E75A33000F538E1 /* Equatable.swift */,
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
 				2A5ADE831D2168FC00F6CE26 /* Array.swift */,
+				2AE12DFA1E7DB47000681F72 /* Collection+String.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
 				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
 				2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */,
@@ -1725,6 +1731,7 @@
 			isa = PBXGroup;
 			children = (
 				2A9082EE1D325ED900228F50 /* GeometryTests.swift */,
+				2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */,
 				2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */,
 				2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */,
 				2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */,
@@ -2333,6 +2340,7 @@
 				2A71BC7C1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
 				2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
 				2A5ADE851D2168FC00F6CE26 /* Array.swift in Sources */,
+				2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A7725651D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */,
 				2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2AA375441D403F100080C27C /* String+Encoding.swift in Sources */,
@@ -2401,6 +2409,7 @@
 			files = (
 				2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */,
 				2AED46731E43942300751C45 /* TextFindTests.swift in Sources */,
+				2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
 				2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */,
@@ -2589,6 +2598,7 @@
 				2A6FD9ED1D3A85D700A59784 /* String+NSRange.swift in Sources */,
 				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
+				2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
