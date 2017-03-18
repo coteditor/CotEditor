@@ -92,14 +92,12 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
         
-        let representedStyleName: String? = {
+        let representedSettingName: String? = {
             guard isContextualMenu else {
                 return self.selectedStyleName
             }
             
-            let clickedRow = self.syntaxTableView?.clickedRow ?? -1
-            
-            guard clickedRow != -1 else { return nil }  // clicked blank area
+            guard let clickedRow = self.syntaxTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
             
             guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
             
@@ -108,49 +106,50 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         // set style name as representedObject to menu items whose action is related to syntax style
         if NSStringFromSelector(menuItem.action!).contains("Syntax") {
-            menuItem.representedObject = representedStyleName
+            menuItem.representedObject = representedSettingName
         }
         
+        let itemSelected = (representedSettingName != nil)
         var isBundled = false
         var isCustomized = false
-        if let representedStyleName = representedStyleName {
-            isBundled = SyntaxManager.shared.isBundledSetting(name: representedStyleName)
-            isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: representedStyleName)
+        if let representedSettingName = representedSettingName {
+            isBundled = SyntaxManager.shared.isBundledSetting(name: representedSettingName)
+            isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: representedSettingName)
         }
         
         guard let action = menuItem.action else { return false }
         
-        // append targeet style name to menu titles
+        // append target setting name to menu titles
         switch action {
         case #selector(openSyntaxMappingConflictSheet(_:)):
             return SyntaxManager.shared.existsMappingConflict
             
         case #selector(openSyntaxEditSheet(_:)) where SyntaxEditSheetMode(rawValue: menuItem.tag) == .copy:
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), representedStyleName!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (representedStyleName == nil)
+            menuItem.isHidden = !itemSelected
             
         case #selector(deleteSyntaxStyle(_:)):
-            menuItem.isHidden = (isBundled || representedStyleName == nil)
+            menuItem.isHidden = (isBundled || !itemSelected)
             
         case #selector(restoreSyntaxStyle(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), representedStyleName!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (!isBundled || representedStyleName == nil)
+            menuItem.isHidden = (!isBundled || !itemSelected)
             return isCustomized
             
         case #selector(exportSyntaxStyle(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), representedStyleName!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), name)
             }
-            menuItem.isHidden = (representedStyleName == nil)
+            menuItem.isHidden = !itemSelected
             return (!isBundled || isCustomized)
             
         case #selector(revealSyntaxStyleInFinder(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), representedStyleName!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), name)
             }
             return (!isBundled || isCustomized)
             

@@ -29,7 +29,7 @@
 import Cocoa
 import AudioToolbox
 
-final class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     
@@ -94,64 +94,65 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
         
-        let representedTheme: String? = {
+        let representedSettingName: String? = {
             guard isContextualMenu else {
                 return self.selectedThemeName
             }
-            let clickedRow = self.themeTableView?.clickedRow ?? -1
             
-            guard clickedRow != -1 else { return nil }  // clicked blank area
+            guard let clickedRow = self.themeTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
             
             return self.themeNames[safe: clickedRow]
         }()
-        menuItem.representedObject = representedTheme
+        menuItem.representedObject = representedSettingName
         
+        let itemSelected = (representedSettingName != nil)
         var isBundled = false
         var isCustomized = false
-        if let representedTheme = representedTheme {
-            isBundled = ThemeManager.shared.isBundledSetting(name: representedTheme)
-            isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: representedTheme)
+        if let representedSettingName = representedSettingName {
+            isBundled = ThemeManager.shared.isBundledSetting(name: representedSettingName)
+            isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: representedSettingName)
         }
         
         guard let action = menuItem.action else { return false }
         
+        // append target setting name to menu titles
         switch action {
         case #selector(addTheme), #selector(importTheme(_:)):
-            menuItem.isHidden = (isContextualMenu && representedTheme != nil)
+            menuItem.isHidden = (isContextualMenu && itemSelected)
             
         case #selector(renameTheme(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Rename “%@”", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Rename “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (representedTheme == nil)
+            menuItem.isHidden = !itemSelected
             return !isBundled
             
         case #selector(duplicateTheme(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (representedTheme == nil)
+            menuItem.isHidden = !itemSelected
             
         case #selector(deleteTheme(_:)):
-            menuItem.isHidden = (isBundled || representedTheme == nil)
+            menuItem.isHidden = (isBundled || !itemSelected)
             
         case #selector(restoreTheme(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (!isBundled || representedTheme == nil)
+            menuItem.isHidden = (!isBundled || !itemSelected)
             return isCustomized
             
         case #selector(exportTheme(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), name)
             }
-            menuItem.isHidden = (representedTheme == nil)
+            menuItem.isHidden = !itemSelected
             return (!isBundled || isCustomized)
             
         case #selector(revealThemeInFinder(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), name)
             }
             return (!isBundled || isCustomized)
             
@@ -276,30 +277,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     }
     
     
-    /// theme nama was edited
-    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-        
-        // finish if empty (The original name will be restored automatically)
-        guard let newName = fieldEditor.string, !newName.isEmpty else { return true }
-        
-        let oldName = self.selectedThemeName
-        
-        do {
-            try ThemeManager.shared.renameSetting(name: oldName, to: newName)
-            
-        } catch {
-            // revert name
-            fieldEditor.string = oldName
-            
-            // show alert
-            NSAlert(error: error).beginSheetModal(for: self.view.window!)
-            return false
-        }
-        
-        return true
-    }
-    
-    
     /// set action on swiping theme name
     @available(macOS 10.11, *)
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
@@ -335,6 +312,31 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
                                             self?.deleteTheme(name: themeName)
                 })]
         }
+    }
+    
+    // NSTextFieldDelegate
+    
+    /// theme name was edited
+    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+        
+        // finish if empty (The original name will be restored automatically)
+        guard let newName = fieldEditor.string, !newName.isEmpty else { return true }
+        
+        let oldName = self.selectedThemeName
+        
+        do {
+            try ThemeManager.shared.renameSetting(name: oldName, to: newName)
+            
+        } catch {
+            // revert name
+            fieldEditor.string = oldName
+            
+            // show alert
+            NSAlert(error: error).beginSheetModal(for: self.view.window!)
+            return false
+        }
+        
+        return true
     }
     
     
