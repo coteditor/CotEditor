@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -217,7 +217,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// scan all key bindings as well as selector name in passed-in menu
     private class func scanMenuKeyBindingRecurrently(menu: NSMenu) -> Set<KeyBinding> {
         
-        let keyBindings: [KeyBinding] = menu.items
+        let keyBindings: [KeyBinding] = menu.items.lazy
             .filter(self.allowsModifying)
             .map { menuItem -> [KeyBinding] in
                 if let submenu = menuItem.submenu {
@@ -242,7 +242,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// clear keyboard shortcuts in the passed-in menu
     private func clearMenuKeyBindingRecurrently(menu: NSMenu) {
         
-        menu.items
+        menu.items.lazy
             .filter(type(of: self).allowsModifying)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
@@ -259,7 +259,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// apply current keyboard short cut settings to the passed-in menu
     private func applyMenuKeyBindingRecurrently(menu: NSMenu) {
         
-        menu.items
+        menu.items.lazy
             .filter(type(of: self).allowsModifying)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
@@ -283,7 +283,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// read key bindings from the menu and create an array data for outlineView in preferences
     private func outlineTree(menu: NSMenu, defaults usesDefaults: Bool) -> [NSTreeNode] {
         
-        return menu.items
+        return menu.items.lazy
             .filter(type(of: self).allowsModifying)
             .flatMap { menuItem in
                 if let submenu = menuItem.submenu {

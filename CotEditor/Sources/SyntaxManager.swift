@@ -461,10 +461,15 @@ final class SyntaxManager: SettingFileManager {
                 guard let style = try? self.styleDictionary(fileURL: url) else { continue }
                 
                 let styleName = self.settingName(from: url)
+                let keys: [SyntaxKey] = [.extensions, .filenames, .interpreters]
                 
-                map[styleName] = [SyntaxKey.extensions.rawValue: type(of: self).keyStrings(in: style, key: .extensions),
-                                  SyntaxKey.filenames.rawValue: type(of: self).keyStrings(in: style, key: .filenames),
-                                  SyntaxKey.interpreters.rawValue: type(of: self).keyStrings(in: style, key: .interpreters)]
+                map[styleName] = keys.flatDictionary { [style = style] (key) in
+                    // collect values which has "keyString" key in key section in style dictionary
+                    let dictionaries = (style[key.rawValue] as? [[String: String]]) ?? []
+                    let keyStrings = dictionaries.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] }
+                    
+                    return (key.rawValue, keyStrings)
+                }
                 
                 // cache style since it's already loaded
                 self.styleCaches[styleName] = style
@@ -482,14 +487,6 @@ final class SyntaxManager: SettingFileManager {
         }
         
         UserDefaults.standard[.recentStyleNames] = self.recentStyleNames
-    }
-    
-    
-    /// collect values which has "keyString" key in key section in style dictionary
-    private static func keyStrings(in style: StyleDictionary, key: SyntaxKey) -> [String] {
-        
-        guard let dictionaries = style[key.rawValue] as? [[String: String]] else { return [] }
-        return dictionaries.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] }
     }
     
     
