@@ -487,6 +487,9 @@
                             <constraint firstItem="pfM-xk-MrN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QdJ-Fc-QBG" secondAttribute="trailing" constant="12" symbolic="YES" id="wbr-RJ-Msd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="gnf-Yi-u37" id="WCJ-yG-4AA"/>
+                    </connections>
                 </viewController>
                 <objectController objectClassName="CotEditor.BatchReplacement" id="tvC-n0-WUJ">
                     <declaredKeys>

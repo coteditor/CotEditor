@@ -50,14 +50,7 @@ final class ReplacementManager: SettingFileManager {
         
         super.init()
         
-        // cache user settings asynchronously but wait until the process will be done
-        let semaphore = DispatchSemaphore(value: 0)
-        self.updateCache {
-            semaphore.signal()
-        }
-        while semaphore.wait(timeout: .now()) == .timedOut {
-            RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
-        }
+        self.updateCache()
     }
     
     
@@ -142,20 +135,17 @@ final class ReplacementManager: SettingFileManager {
     }
     
     
-    /// create a new untitled theme
+    /// create a new untitled setting
     func createUntitledSetting(completionHandler: ((String, Error?) -> Void)? = nil) {  // @escaping
         
-        var newName = NSLocalizedString("Untitled", comment: "")
+        let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
+        let batchReplacement = BatchReplacement(name: name)
         
-        // append "Copy n" if "Untitled" already exists
-        if self.urlForUserSetting(name: newName) != nil {
-            newName = self.copiedSettingName(newName)
-        }
+        // add a blank setting
+        batchReplacement.replacements.append(Replacement())
         
-        let replacement = BatchReplacement(name: newName)
-        
-        self.save(replacement: replacement) { (error: Error?) in
-            completionHandler?(newName, error)
+        self.save(replacement: batchReplacement) { (error: Error?) in
+            completionHandler?(name, error)
         }
     }
     

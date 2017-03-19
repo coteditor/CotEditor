@@ -29,10 +29,18 @@ import Cocoa
 
 final class BatchReplacementViewController: NSViewController {
     
+    // MARK: Private Properties
+    
     private dynamic var hasInvalidSetting = false
     private dynamic var canPerform = true
     private dynamic var resultMessage: String?
     
+    @IBOutlet private weak var tableView: NSTableView?
+    
+    
+    
+    // MARK: -
+    // MARK: Lifecycle
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -45,9 +53,13 @@ final class BatchReplacementViewController: NSViewController {
         
         super.viewDidLoad()
         
-        self.representedObject = BatchReplacement(name: NSLocalizedString("Untitled", comment: ""))
+        // set blank
+        let batchReplacement = BatchReplacement(name: NSLocalizedString("Untitled", comment: ""))
+        batchReplacement.replacements.append(Replacement())
+        self.representedObject = batchReplacement
         
-        NotificationCenter.default.addObserver(self, selector: #selector(validateObject), name: .NSTableViewSelectionDidChange, object: nil)
+        // -> Use obsevation since the delecation is already set to DefinitionTableViewDelegate
+        NotificationCenter.default.addObserver(self, selector: #selector(validateObject), name: .NSTableViewSelectionDidChange, object: self.tableView)
     }
     
     
@@ -97,7 +109,7 @@ final class BatchReplacementViewController: NSViewController {
         
         guard
             self.canPerform,
-            let textView = TextFinder.shared.client,
+            let textView = TextFinder.shared.client, textView.isEditable,
             let string = textView.string
             else {
                 NSBeep()
