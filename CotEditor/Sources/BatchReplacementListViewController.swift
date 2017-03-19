@@ -30,11 +30,103 @@ import AudioToolbox
 
 final class BatchReplacementListViewController: NSViewController {
     
+    // MARK: Private Properties
+    
+    fileprivate var settingNames = [String]()
+    
     @IBOutlet private weak var tableView: NSTableView?
     
-    private var mainViewController: NSViewController? {
+    fileprivate var mainViewController: NSViewController? {
         
         return (self.parent as? BatchReplacementSplitViewController)?.mainViewController
+    }
+    
+    
+    
+    // MARK: -
+    // MARK: Lifecycle
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    
+    // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // register droppable types
+        self.tableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
+        
+        // observe replacement setting list change
+        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: .ReplacementListDidUpdate, object: nil)
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+    }
+    
+    
+    /// apply current state to menu items
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        
+        let isContextualMenu = (menuItem.menu == self.tableView?.menu)
+        
+        let representedSettingName: String? = {
+            guard isContextualMenu else {
+                return self.selectedSettingName
+            }
+            
+            guard let clickedRow = self.tableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
+            
+            return self.settingNames[safe: clickedRow]
+        }()
+        menuItem.representedObject = representedSettingName
+        
+        let itemSelected = (representedSettingName != nil)
+        
+        guard let action = menuItem.action else { return false }
+        
+        // append target setting name to menu titles
+        switch action {
+        case #selector(addSetting), #selector(importSetting(_:)):
+            menuItem.isHidden = (isContextualMenu && itemSelected)
+            
+        case #selector(renameSetting(_:)):
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Rename “%@”", comment: ""), name)
+            }
+            menuItem.isHidden = !itemSelected
+            
+        case #selector(duplicateSetting(_:)):
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), name)
+            }
+            menuItem.isHidden = !itemSelected
+            
+        case #selector(deleteSetting(_:)):
+            menuItem.isHidden = !itemSelected
+            
+        case #selector(exportSetting(_:)):
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), name)
+            }
+            menuItem.isHidden = !itemSelected
+            
+        case #selector(revealSettingInFinder(_:)):
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), name)
+            }
+            
+        default: break
+        }
+        
+        return true
     }
     
     
@@ -69,7 +161,7 @@ final class BatchReplacementListViewController: NSViewController {
         
         guard
             let settingName = self.targetSettingName(for: sender),
-            let row = ReplacementManager.shared.settingNames.index(of: settingName)
+            let row = self.settingNames.index(of: settingName)
             else { return }
         
         self.tableView?.editColumn(0, row: row, with: nil, select: false)
@@ -145,12 +237,12 @@ final class BatchReplacementListViewController: NSViewController {
     
     // MARK: Private Methods
     
-    /// return theme name which is currently selected in the list table
-    private dynamic var selectedSettingName: String? {
+    /// return setting name which is currently selected in the list table
+    fileprivate dynamic var selectedSettingName: String? {
         
         let index = self.tableView?.selectedRow ?? 0
         
-        return ReplacementManager.shared.settingNames[safe: index]
+        return self.settingNames[safe: index]
     }
     
     
@@ -165,7 +257,7 @@ final class BatchReplacementListViewController: NSViewController {
     
     
     /// try to delete given setting
-    private func deleteSetting(name: String) {
+    fileprivate func deleteSetting(name: String) {
         
         let alert = NSAlert()
         alert.messageText = String(format: NSLocalizedString("Are you sure you want to delete “%@”?", comment: ""), name)
@@ -194,7 +286,7 @@ final class BatchReplacementListViewController: NSViewController {
     
     
     /// try to import setting file at given URL
-    private func importSetting(fileURL: URL) {
+    fileprivate func importSetting(fileURL: URL) {
         
         do {
             try ReplacementManager.shared.importSetting(fileURL: fileURL)
@@ -202,6 +294,131 @@ final class BatchReplacementListViewController: NSViewController {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)
         }
+    }
+    
+    
+    /// update setting list
+    @objc private func setupList() {
+        
+        let settingName = self.selectedSettingName
+        
+        self.settingNames = ReplacementManager.shared.settingNames
+        
+        self.tableView?.reloadData()
+        
+        if let settingName = settingName,
+            let row = self.settingNames.index(of: settingName)
+        {
+            self.tableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        }
+    }
+    
+}
+
+
+
+// MARK: - TableView Data Source
+
+extension BatchReplacementListViewController: NSTableViewDataSource {
+    
+    /// number of settings
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        
+        return ReplacementManager.shared.settings.count
+    }
+    
+    
+    /// content of table cell
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        return self.settingNames[safe: row]
+    }
+    
+    
+    /// validate when dragged items come to tableView
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
+        
+        // get file URLs from pasteboard
+        let pboard = info.draggingPasteboard()
+        let objects = pboard.readObjects(forClasses: [NSURL.self],
+                                         options: [NSPasteboardURLReadingFileURLsOnlyKey: true,
+                                                   NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.replacement.UTType]])
+        
+        guard let urls = objects, !urls.isEmpty else { return [] }
+        
+        // highlight text view itself
+        tableView.setDropRow(-1, dropOperation: .on)
+        
+        // show number of setting files
+        info.numberOfValidItemsForDrop = urls.count
+        
+        return .copy
+    }
+    
+    
+    /// check acceptability of dragged items and insert them to table
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
+        
+        info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
+                                    searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: true,
+                                                    NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.replacement.UTType]])
+        { [weak self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
+            
+            guard let fileURL = draggingItem.item as? URL else { return }
+            
+            self?.importSetting(fileURL: fileURL)
+        }
+        
+        return true
+    }
+    
+}
+
+
+
+// MARK: - TableView Delegate
+
+extension BatchReplacementListViewController: NSTableViewDelegate {
+    
+    /// selection of setting table did change
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        let settingName = self.selectedSettingName
+        let setting = ReplacementManager.shared.settings.first { $0.name == settingName }
+        
+        self.mainViewController?.representedObject = setting
+    }
+    
+}
+
+
+
+// MARK: - TextField Delegate
+
+extension BatchReplacementListViewController: NSTextFieldDelegate {
+    
+    /// setting name was edited
+    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+        
+        // finish if empty (The original name will be restored automatically)
+        guard
+            let newName = fieldEditor.string, !newName.isEmpty,
+            let oldName = self.selectedSettingName
+            else { return true }
+        
+        do {
+            try ReplacementManager.shared.renameSetting(name: oldName, to: newName)
+            
+        } catch {
+            // revert name
+            fieldEditor.string = oldName
+            
+            // show alert
+            NSAlert(error: error).beginSheetModal(for: self.view.window!)
+            return false
+        }
+        
+        return true
     }
     
 }

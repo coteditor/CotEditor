@@ -340,7 +340,6 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="remove:" target="0gs-fu-hhY" id="Stz-8t-QkO"/>
-                                    <binding destination="0gs-fu-hhY" name="enabled" keyPath="canRemove" id="RJu-n9-eeQ"/>
                                     <binding destination="0gs-fu-hhY" name="enabled2" keyPath="arrangedObjects.@count" previousBinding="RJu-n9-eeQ" id="u33-Wr-2AF">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -350,6 +349,7 @@
                                             <string key="NSValueTransformerName">MoreThanOneTransformer</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="0gs-fu-hhY" name="enabled" keyPath="canRemove" id="RJu-n9-eeQ"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rgJ-1f-1Af">
@@ -394,7 +394,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Select to replace text only in selection." translatesAutoresizingMaskIntoConstraints="NO" id="pfM-xk-MrN">
-                                <rect key="frame" x="220" y="21" width="84" height="18"/>
+                                <rect key="frame" x="137" y="21" width="84" height="18"/>
                                 <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="4lm-Fu-Fcf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -444,7 +444,7 @@
                                 </connections>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-Kb-8Ck">
-                                <rect key="frame" x="157" y="23" width="60" height="14"/>
+                                <rect key="frame" x="74" y="23" width="60" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5 replaced" id="HU0-YI-OIX">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -454,6 +454,16 @@
                                     <binding destination="uzB-9o-Idl" name="value" keyPath="resultMessage" id="KLp-gP-caX"/>
                                 </connections>
                             </textField>
+                            <button toolTip="Highlight all matches of terms in the list." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="99C-Bz-ySi">
+                                <rect key="frame" x="221" y="13" width="95" height="32"/>
+                                <buttonCell key="cell" type="push" title="Highlight" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kdu-Ni-M64">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="highlight:" target="uzB-9o-Idl" id="cLP-X8-4hu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="8Mv-wi-Ogp" firstAttribute="width" secondItem="rgJ-1f-1Af" secondAttribute="width" id="3lN-G3-5Vs"/>
@@ -471,11 +481,11 @@
                             <constraint firstItem="gG4-IL-p7b" firstAttribute="top" secondItem="i8z-Xa-PxI" secondAttribute="bottom" constant="16" id="PEK-lx-dKG"/>
                             <constraint firstItem="i8z-Xa-PxI" firstAttribute="leading" secondItem="dhM-uH-4uq" secondAttribute="trailing" constant="8" symbolic="YES" id="QxA-b3-G2c"/>
                             <constraint firstItem="i8z-Xa-PxI" firstAttribute="centerY" secondItem="dhM-uH-4uq" secondAttribute="centerY" id="R9B-jR-XRA"/>
+                            <constraint firstAttribute="bottom" secondItem="99C-Bz-ySi" secondAttribute="bottom" constant="20" symbolic="YES" id="SCv-dU-orQ"/>
                             <constraint firstAttribute="trailing" secondItem="i8z-Xa-PxI" secondAttribute="trailing" constant="20" symbolic="YES" id="Tgu-H3-Sr5"/>
                             <constraint firstItem="8Mv-wi-Ogp" firstAttribute="height" secondItem="rgJ-1f-1Af" secondAttribute="height" id="UuW-EI-01r"/>
                             <constraint firstItem="pfM-xk-MrN" firstAttribute="leading" secondItem="8Tz-Kb-8Ck" secondAttribute="trailing" constant="8" symbolic="YES" id="WyX-Fp-Ueg"/>
                             <constraint firstItem="4Jd-Pz-IbU" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="ZSu-w6-KSf"/>
-                            <constraint firstItem="Nth-za-4Ad" firstAttribute="leading" secondItem="pfM-xk-MrN" secondAttribute="trailing" constant="20" id="ZYX-cp-5ff"/>
                             <constraint firstAttribute="bottom" secondItem="QdJ-Fc-QBG" secondAttribute="bottom" constant="20" symbolic="YES" id="Zhf-F2-dja"/>
                             <constraint firstItem="4Jd-Pz-IbU" firstAttribute="top" secondItem="8CD-v6-nsP" secondAttribute="top" constant="20" symbolic="YES" id="a5d-U2-jPa"/>
                             <constraint firstItem="8Mv-wi-Ogp" firstAttribute="centerY" secondItem="rgJ-1f-1Af" secondAttribute="centerY" id="b83-cI-bu8"/>
@@ -483,6 +493,8 @@
                             <constraint firstItem="QdJ-Fc-QBG" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="kUl-yd-UmO"/>
                             <constraint firstAttribute="trailing" secondItem="Nth-za-4Ad" secondAttribute="trailing" constant="20" symbolic="YES" id="ldS-e8-eGW"/>
                             <constraint firstItem="dhM-uH-4uq" firstAttribute="centerY" secondItem="6DU-wH-q4e" secondAttribute="centerY" id="njv-rv-rJ2"/>
+                            <constraint firstItem="Nth-za-4Ad" firstAttribute="leading" secondItem="99C-Bz-ySi" secondAttribute="trailing" constant="12" symbolic="YES" id="tBY-XH-H8L"/>
+                            <constraint firstItem="99C-Bz-ySi" firstAttribute="leading" secondItem="pfM-xk-MrN" secondAttribute="trailing" constant="8" symbolic="YES" id="tnN-Ie-Jtb"/>
                             <constraint firstItem="8Mv-wi-Ogp" firstAttribute="leading" secondItem="rgJ-1f-1Af" secondAttribute="trailing" constant="-1" id="vxs-6T-UOb"/>
                             <constraint firstItem="pfM-xk-MrN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QdJ-Fc-QBG" secondAttribute="trailing" constant="12" symbolic="YES" id="wbr-RJ-Msd"/>
                         </constraints>
@@ -565,11 +577,15 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wai-xU-XpG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="107" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Setting Name" id="cXu-L5-hWg">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Setting Name" id="cXu-L5-hWg">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="Utg-o8-Jhc" name="value" keyPath="objectValue" id="C3O-aD-TQu"/>
+                                                                        <outlet property="delegate" destination="y8N-kI-aI7" id="djI-bw-nWf"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -580,6 +596,8 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <outlet property="dataSource" destination="y8N-kI-aI7" id="aBE-jG-c9a"/>
+                                                <outlet property="delegate" destination="y8N-kI-aI7" id="wij-b5-xfF"/>
                                                 <outlet property="menu" destination="3B8-6q-gru" id="7Iy-4E-8Vh"/>
                                             </connections>
                                         </tableView>
