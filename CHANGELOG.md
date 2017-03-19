@@ -12,6 +12,7 @@ develop
     - Add description field.
     - Draw capsule for pre-formatted text in the insertion format setting field.
     - Update the default file drop settings.
+- Add “Surround Selection With” actions to “Text” menu.
 - Now, key binding snippets can set cursor position.
 
 
@@ -23,6 +24,7 @@ develop
 - Improve invisible character drawing on a non-opaque view.
 - Change syntax style detection behavior to set “None” style if no appropriate style can be found on file opening.
 - Remove “Inline script menu items into contextual menu” option.
+- Improve auto-brackets/quotes insertion behavior with multiple selections.
 - Improve the setting file naming rule for when the name overwraps with an existing setting.
 - And some minor improvements and fixes.
 
