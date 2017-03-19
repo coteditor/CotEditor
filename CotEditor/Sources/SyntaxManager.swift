@@ -31,12 +31,6 @@ import YAML
 
 extension Notification.Name {
     
-    /// Posted when the line-up of syntax styles is updated.  This will be used for syntax style menus.
-    static let SyntaxListDidUpdate = Notification.Name("SyntaxListDidUpdate")
-    
-    /// Posted when a syntax style is updated.  Information about new/previous style names are in userInfo.
-    static let StyntaxDidUpdate = Notification.Name("StyntaxDidUpdate")
-    
     /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
     static let SyntaxHistoryDidUpdate = Notification.Name("SyntaxHistoryDidUpdate")
 }
@@ -297,9 +291,7 @@ final class SyntaxManager: SettingFileManager {
         self.styleCaches[name] = nil
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: .StyntaxDidUpdate, object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: name,
-                                                       SettingFileManager.NotificationKey.new: BundledStyleName.none])
+            self?.notifySettingUpdate(oldName: name, newName: BundledStyleName.none)
         }
     }
     
@@ -313,9 +305,7 @@ final class SyntaxManager: SettingFileManager {
         self.styleCaches[name] = self.bundledStyleDictionary(name: name)
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: .StyntaxDidUpdate, object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: name,
-                                                       SettingFileManager.NotificationKey.new: name])
+            self?.notifySettingUpdate(oldName: name, newName: name)
         }
     }
     
@@ -367,9 +357,7 @@ final class SyntaxManager: SettingFileManager {
         // update internal cache
         self.updateCache { [weak self] in
             if let oldName = oldName {
-                NotificationCenter.default.post(name: .StyntaxDidUpdate, object: self,
-                                                userInfo: [SettingFileManager.NotificationKey.old: oldName,
-                                                           SettingFileManager.NotificationKey.new: name])
+                self?.notifySettingUpdate(oldName: oldName, newName: name)
             }
         }
     }
@@ -440,7 +428,7 @@ final class SyntaxManager: SettingFileManager {
             strongSelf.updateMappingTables()
             
             DispatchQueue.main.sync {
-                NotificationCenter.default.post(name: .SyntaxListDidUpdate, object: strongSelf)
+                strongSelf.notifySettingListUpdate()
                 
                 completionHandler?()
             }

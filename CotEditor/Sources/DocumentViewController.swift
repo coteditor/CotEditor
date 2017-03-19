@@ -73,8 +73,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         self.showsPageGuide = defaults[.showPageGuide]
         
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
-                                               name: .ThemeDidUpdate,
-                                               object: nil)
+                                               name: .SettingDidUpdate,
+                                               object: ThemeManager.shared)
     }
     
     
@@ -357,11 +357,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         
         guard
             let oldName = notification?.userInfo?[SettingFileManager.NotificationKey.old] as? String,
-            let newName = notification?.userInfo?[SettingFileManager.NotificationKey.new] as? String else { return }
+            let newName = notification?.userInfo?[SettingFileManager.NotificationKey.new] as? String,
+            oldName == self.theme?.name else { return }
         
-        if oldName == self.theme?.name {
-            self.setTheme(name: newName)
-        }
+        self.setTheme(name: newName)
     }
     
     

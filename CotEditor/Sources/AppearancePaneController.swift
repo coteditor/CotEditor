@@ -71,8 +71,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         self.themeNames = ThemeManager.shared.themeNames
         
         // observe theme list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .ThemeListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: .ThemeDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .SettingListDidUpdate, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: .SettingDidUpdate, object: ThemeManager.shared)
     }
     
     
@@ -248,10 +248,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             
             // update theme of the current document windows
             //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
-            NotificationCenter.default.post(name: .ThemeDidUpdate,
-                                            object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: oldThemeName,
-                                                       SettingFileManager.NotificationKey.new: themeName])
+            ThemeManager.shared.notifySettingUpdate(oldName: oldThemeName, newName: themeName)
         }
         
         let themeViewController = self.storyboard!.instantiateController(withIdentifier: "ThemeViewController") as! ThemeViewController

@@ -129,9 +129,9 @@ final class ToolbarController: NSObject {
         self.buildSyntaxPopupButton()
         
         // observe popup menu line-up change
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: .EncodingListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxHistoryDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: .SettingListDidUpdate, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SettingListDidUpdate, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxHistoryDidUpdate, object: SyntaxManager.shared)
     }
     
     

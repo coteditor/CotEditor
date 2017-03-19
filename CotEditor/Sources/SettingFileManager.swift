@@ -29,8 +29,19 @@ import Foundation
 import AppKit.NSApplication
 
 enum SettingFileType {
+    
     case syntaxStyle
     case theme
+}
+
+
+extension Notification.Name {
+    
+    /// Posted when the line-up of setting files did update. The sender is a manager.
+    static let SettingListDidUpdate = Notification.Name("SettingListDidUpdate")
+    
+    /// Posted when a setting file is updated.  Information about new/previous setting names are in userInfo. The sender is a manager.
+    static let SettingDidUpdate = Notification.Name("SettingDidUpdate")
 }
 
 
@@ -251,6 +262,22 @@ class SettingFileManager: SettingManager {
         }
         
         try self.overwriteSetting(fileURL: fileURL)
+    }
+    
+    
+    /// notify about a line-up update of managed setting files.
+    func notifySettingListUpdate() {
+        
+        NotificationCenter.default.post(name: .SettingListDidUpdate, object: self)
+    }
+    
+    
+    /// notify about change of a managed setting
+    func notifySettingUpdate(oldName: String, newName: String) {
+        
+        NotificationCenter.default.post(name: .SettingDidUpdate, object: self,
+                                        userInfo: [SettingFileManager.NotificationKey.old: oldName,
+                                                   SettingFileManager.NotificationKey.new: newName])
     }
     
     

@@ -29,13 +29,6 @@ import Foundation
 import AppKit.NSColor
 import ColorCode
 
-extension Notification.Name {
-    
-    static let ThemeListDidUpdate = Notification.Name("ThemeListDidUpdate")
-    static let ThemeDidUpdate = Notification.Name("ThemeDidUpdate")
-}
-
-
 @objc protocol ThemeHolder: class {
     
     func changeTheme(_ sender: AnyObject?)
@@ -144,7 +137,7 @@ final class ThemeManager: SettingFileManager {
     
     /// save theme
     @discardableResult
-    func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: ((Error?) -> Void)? = nil) -> Bool {  // @escaping
+    func save(themeDictionary: ThemeDictionary, name settingName: String, completionHandler: ((Error?) -> Void)? = nil) -> Bool {  // @escaping
         
         // create directory to save in user domain if not yet exist
         do {
@@ -154,7 +147,7 @@ final class ThemeManager: SettingFileManager {
             return false
         }
         
-        let fileURL = self.preparedURLForUserSetting(name: themeName)
+        let fileURL = self.preparedURLForUserSetting(name: settingName)
         
         do {
             let data = try JSONSerialization.data(withJSONObject: themeDictionary, options: .prettyPrinted)
@@ -167,9 +160,7 @@ final class ThemeManager: SettingFileManager {
         }
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: .ThemeDidUpdate, object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: themeName,
-                                                       SettingFileManager.NotificationKey.new: themeName])
+            self?.notifySettingUpdate(oldName: settingName, newName: settingName)
             
             completionHandler?(nil)
         }
@@ -188,10 +179,7 @@ final class ThemeManager: SettingFileManager {
         }
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: .ThemeDidUpdate,
-                                            object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: settingName,
-                                                       SettingFileManager.NotificationKey.new: newName])
+            self?.notifySettingUpdate(oldName: settingName, newName: newName)
         }
     }
     
@@ -205,10 +193,7 @@ final class ThemeManager: SettingFileManager {
             // restore theme of opened documents to default
             let defaultThemeName = UserDefaults.standard[.theme]!
             
-            NotificationCenter.default.post(name: .ThemeDidUpdate,
-                                            object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: settingName,
-                                                       SettingFileManager.NotificationKey.new: defaultThemeName])
+            self?.notifySettingUpdate(oldName: settingName, newName: defaultThemeName)
         }
     }
     
@@ -219,10 +204,7 @@ final class ThemeManager: SettingFileManager {
         try super.restoreSetting(name: settingName)
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: .ThemeDidUpdate,
-                                            object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: settingName,
-                                                       SettingFileManager.NotificationKey.new: settingName])
+            self?.notifySettingUpdate(oldName: settingName, newName: settingName)
         }
     }
     
@@ -301,7 +283,7 @@ final class ThemeManager: SettingFileManager {
             DispatchQueue.main.sync {
                 // post notification
                 if isListUpdated {
-                    NotificationCenter.default.post(name: .ThemeListDidUpdate, object: self)
+                    strongSelf.notifySettingListUpdate()
                 }
                 
                 completionHandler?()

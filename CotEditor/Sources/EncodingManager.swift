@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,13 +27,6 @@
  */
 
 import Cocoa
-
-extension Notification.Name {
-    
-    /// Posted when current encoding list menu items is ready to build
-    static let EncodingListDidUpdate = Notification.Name("EncodingListDidUpdate")
-}
-
 
 @objc protocol EncodingHolder: class {
     
@@ -78,7 +71,7 @@ final class EncodingManager: NSObject {
         
         if keyPath == DefaultKeys.encodingList.rawValue {
             DispatchQueue.main.async { [weak self] in
-                NotificationCenter.default.post(name: .EncodingListDidUpdate, object: self)
+                NotificationCenter.default.post(name: .SettingListDidUpdate, object: self)
             }
         }
     }
