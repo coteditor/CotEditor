@@ -200,7 +200,7 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// return style name corresponding to file name
-    func styleName(documentFileName fileName: String?) -> String? {
+    func styleName(documentFileName fileName: String?) -> StyleName? {
         
         guard let fileName = fileName else { return nil }
         
@@ -218,7 +218,7 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// return style name scanning shebang in document content
-    func styleName(documentContent content: String) -> String? {
+    func styleName(documentContent content: String) -> StyleName? {
         
         if let interpreter = self.scanInterpreterFromShebang(in: content),
             let styleName = self.propertyAccessQueue.sync(execute: { self.interpreterToStyle })[interpreter] {

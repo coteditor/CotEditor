@@ -154,25 +154,15 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     // MARK: Abstract Properties/Methods
     
     /// name of file to save custom key bindings in the plist file form (without extension)
-    var settingFileName: String {
-        
-        preconditionFailure()
-    }
-    
+    var settingFileName: String { preconditionFailure() }
     
     /// default key bindings
-    var defaultKeyBindings: Set<KeyBinding> {
-        
-        preconditionFailure()
-    }
+    var defaultKeyBindings: Set<KeyBinding> { preconditionFailure() }
     
     
     /// create a KVO-compatible collection for outlineView in preferences from the key binding setting
     /// - parameter usesDefaults:   `true` for default setting and `false` for the current setting
-    func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
-        
-        preconditionFailure()
-    }
+    func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] { preconditionFailure() }
     
     
     

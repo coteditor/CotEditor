@@ -50,38 +50,20 @@ class SettingFileManager: SettingManager {
     // MARK: Abstract Methods
     
     /// path extension for user setting file
-    var filePathExtension: String {
-        
-        preconditionFailure()
-    }
-    
+    var filePathExtension: String { preconditionFailure() }
     
     /// setting file type
-    var settingFileType: SettingFileType {
-        
-        preconditionFailure()
-    }
-    
+    var settingFileType: SettingFileType { preconditionFailure() }
     
     /// list of names of setting file name (without extension)
-    var settingNames: [String] {
-        
-        preconditionFailure()
-    }
-    
+    var settingNames: [String] { preconditionFailure() }
     
     /// list of names of setting file name which are bundled (without extension)
-    var bundledSettingNames: [String] {
-        
-        preconditionFailure()
-    }
+    var bundledSettingNames: [String] { preconditionFailure() }
     
     
     /// update internal cache data
-    func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
-        
-        preconditionFailure()
-    }
+    func updateCache(completionHandler: (() -> Void)? = nil) { preconditionFailure() }
     
     
     
