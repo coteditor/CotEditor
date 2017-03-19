@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E191a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
     </dependencies>
@@ -389,7 +389,11 @@ Gw
                                         <menuItem isSeparatorItem="YES" id="792">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Split Editor" keyEquivalent="&quot;" id="793">
+                                        <menuItem title="Split Editor" id="793">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
                                             </connections>
@@ -412,7 +416,8 @@ Gw
                                                 <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Close Split Editor" keyEquivalent="'" id="796">
+                                        <menuItem title="Close Split Editor" id="796">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
                                             </connections>
@@ -706,6 +711,39 @@ CA
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="convertIndentationToTabs:" target="Ady-hI-5gd" id="kdi-SI-izy"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem title="Surround Selection With" id="9dv-Zb-W60">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Surround Selection With" id="AUq-CT-rPl">
+                                                <items>
+                                                    <menuItem title="Single Quotes" keyEquivalent="'" id="Srp-eD-10Q">
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithSingleQuotes:" target="Ady-hI-5gd" id="Ouh-e3-teo"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Double Quotes" tag="-1" keyEquivalent="&quot;" id="O8z-C9-ECD">
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithDoubleQuotes:" target="Ady-hI-5gd" id="rqZ-qN-jAw"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Parenthesis" keyEquivalent="(" id="G3o-1h-GwR">
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithParenthesis:" target="Ady-hI-5gd" id="iPh-IV-WH0"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Brackets" keyEquivalent="{" id="Xoq-43-C1z">
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithBraces:" target="Ady-hI-5gd" id="LTH-8s-duP"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="mRR-Qb-394"/>
+                                                    <menuItem title="Custom…" keyEquivalent="L" id="3VX-DL-PgT">
+                                                        <connections>
+                                                            <action selector="surroundSelection:" target="Ady-hI-5gd" id="O7n-j7-CD0"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>

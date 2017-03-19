@@ -348,6 +348,21 @@
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
 "sFn-3j-pY5.title" = "Elimina riga";
 
+/* Class = "NSMenuItem"; title = "Surround Selection With"; ObjectID = "9dv-Zb-W60"; */
+"9dv-Zb-W60.title" = "Surround Selection With";  // FIXME: added
+/* Class = "NSMenu"; title = "Surround Selection With"; ObjectID = "AUq-CT-rPl"; */
+"AUq-CT-rPl.title" = "Surround Selection With";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Single Quotes"; ObjectID = "Srp-eD-10Q"; */
+"Srp-eD-10Q.title" = "Single Quotes";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
+"O8z-C9-ECD.title" = "Double Quotes";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
+"G3o-1h-GwR.title" = "Parenthesis";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
+"Xoq-43-C1z.title" = "Brackets";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
+"3VX-DL-PgT.title" = "Custom…";  // FIXME: added
+
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
 "hBJ-Ge-278.title" = "Rimuovi gli spazi bianchi a fine riga";
 

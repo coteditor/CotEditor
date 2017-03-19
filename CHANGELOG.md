@@ -12,6 +12,7 @@ develop
     - Add description field.
     - Draw capsule for pre-formatted text in the insertion format setting field.
     - Update the default file drop settings.
+- Add “Surround Selection With” actions to “Text” menu.
 - Now, key binding snippets can set cursor position.
 
 

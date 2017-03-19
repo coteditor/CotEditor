@@ -347,6 +347,21 @@
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
 "sFn-3j-pY5.title" = "Zeile löschen";
 
+/* Class = "NSMenuItem"; title = "Surround Selection With"; ObjectID = "9dv-Zb-W60"; */
+"9dv-Zb-W60.title" = "Auswahl umgeben mit";
+/* Class = "NSMenu"; title = "Surround Selection With"; ObjectID = "AUq-CT-rPl"; */
+"AUq-CT-rPl.title" = "Auswahl umgeben mit";
+/* Class = "NSMenuItem"; title = "Single Quotes"; ObjectID = "Srp-eD-10Q"; */
+"Srp-eD-10Q.title" = "Einfachen Anführungszeichen";
+/* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
+"O8z-C9-ECD.title" = "Doppelten Anführungszeichen";
+/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
+"G3o-1h-GwR.title" = "Runden Klammern";
+/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
+"Xoq-43-C1z.title" = "Geschweiften Klammern";
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
+"3VX-DL-PgT.title" = "Konfigurieren …";
+
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
 "hBJ-Ge-278.title" = "Leerzeichen am Zeilenende entfernen";
 

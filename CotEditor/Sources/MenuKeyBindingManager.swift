@@ -57,7 +57,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     
-    // Key Binding Manager Methods
+    // MARK: Key Binding Manager Methods
     
     /// name of file to save custom key bindings in the plist file form (without extension)
     override var settingFileName: String {
@@ -104,7 +104,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     
-    // Public Methods
+    // MARK: Public Methods
     
     /// scan key bindings in main menu and store them as default values
     ///
@@ -142,7 +142,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     
-    // Public Methods
+    // MARK: Private Methods
 
     /// return key bindings for selector
     private func shortcut(for action: Selector, defaults usesDefaults: Bool) -> Shortcut {
