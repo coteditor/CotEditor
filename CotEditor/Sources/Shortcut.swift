@@ -239,11 +239,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
         ]
         
         // cast key from Int to UnicodeScalar
-        return table.reduce([:]) { (dict, item) in
-            var dict = dict
-            dict[UnicodeScalar(item.key)!] = item.value
-            return dict
-        }
+        return table.flatDictionary { (UnicodeScalar($0.key)!, $0.value) }
     }()
     
 }

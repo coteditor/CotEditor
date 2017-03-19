@@ -85,27 +85,25 @@ struct Theme: CustomDebugStringConvertible {
         
         var isValid = true
         
-        let colors: [ThemeKey: NSColor] = ThemeKey.basicKeys.reduce([:]) { (dict, key) in
-            var dict = dict
+        let colors: [ThemeKey: NSColor] = ThemeKey.basicKeys.flatDictionary { (key) in
             do {
-                dict[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
+                let color = try unarchiveColor(subdict: dictionary[key.rawValue])
+                return (key, color)
             } catch {
-                dict[key] = .gray
                 isValid = false
+                return (key, .gray)
             }
-            return dict
         }
         
         // unarchive syntax colors also
-        self.syntaxColors = SyntaxType.all.reduce([:]) { (dict, key) in
-            var dict = dict
+        self.syntaxColors = SyntaxType.all.flatDictionary { (key) in
             do {
-                dict[key] = try unarchiveColor(subdict: dictionary[key.rawValue])
+                let color = try unarchiveColor(subdict: dictionary[key.rawValue])
+                return (key, color)
             } catch {
-                dict[key] = .gray
                 isValid = false
+                return (key, .gray)
             }
-            return dict
         }
         
         // set properties

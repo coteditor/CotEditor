@@ -277,20 +277,19 @@ final class ThemeManager: SettingFileManager {
                 
                 themeNameSet.addObjects(from: userThemeNames)
             }
+            let themeNames = themeNameSet.array as! [String]
             
-            let isListUpdated = (themeNameSet.array as! [String] != strongSelf.themeNames)
-            strongSelf.themeNames = themeNameSet.array as! [String]
+            let isListUpdated = (themeNames != strongSelf.themeNames)
+            strongSelf.themeNames = themeNames
             
             // cache definitions
-            strongSelf.archivedThemes = (themeNameSet.array as! [String]).reduce([:]) { (dict, name) in
+            strongSelf.archivedThemes = themeNames.flatDictionary { (name) in
                 guard
                     let themeURL = strongSelf.urlForUsedSetting(name: name),
                     let themeDictionary = try? strongSelf.themeDictionary(fileURL: themeURL)
-                    else { return dict }
+                    else { return nil }
                 
-                var dict = dict
-                dict[name] = themeDictionary
-                return dict
+                return (name, themeDictionary)
             }
             
             // reset user default if not found
