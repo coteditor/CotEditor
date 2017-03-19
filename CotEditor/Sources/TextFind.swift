@@ -185,14 +185,10 @@ final class TextFind {
         
         self.enumerateMatchs(in: self.scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             
-            var matches = [NSRange]()
+            var matches = [matchedRange]
             
-            matches.append(matchedRange)
-            
-            if numberOfGroups > 0, let regexMatch = match {
-                for index in 1...numberOfGroups {
-                    matches.append(regexMatch.rangeAt(index))
-                }
+            if let match = match {
+                matches += stride(from: 1, through: numberOfGroups, by: 1).map { match.rangeAt($0) }
             }
             
             block(matches, &stop)

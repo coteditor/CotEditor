@@ -62,7 +62,7 @@ extension Collection where Iterator.Element == String {
         
         guard baseCount != nil || self.contains(baseName) else { return baseName }
         
-        return stride(from: baseCount ?? 2, to: 9999, by: 1).lazy
+        return sequence(first: baseCount ?? 2) { $0 + 1 }.lazy
             .map { baseName + " " + String($0) }
             .first { !self.contains($0) }!
     }
