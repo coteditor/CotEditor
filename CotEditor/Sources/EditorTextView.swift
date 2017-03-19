@@ -290,14 +290,8 @@ final class EditorTextView: NSTextView, Themable {
         {
             // wrap selection with brackets if some text is selected
             if self.selectedRange.length > 0 {
-                let selectedString = (wholeString as NSString).substring(with: self.selectedRange)
-                let replacementString = String(pair.begin) + selectedString + String(pair.end)
-                
-                if self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: replacementString) {
-                    self.replaceCharacters(in: self.rangeForUserTextChange, with: replacementString)
-                    self.didChangeText()
-                    return
-                }
+                self.surroundSelections(begin: String(pair.begin), end: String(pair.end))
+                return
                 
             // check if insertion point is in a word
             } else if !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)) {
