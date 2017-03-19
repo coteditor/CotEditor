@@ -100,6 +100,85 @@ final class BatchReplacementViewController: NSViewController {
     
     // MARK: Action Messages
     
+    ///
+    @IBAction func highlight(_ sender: AnyObject?) {
+        
+        self.endEditing()
+        self.validateObject()
+        self.resultMessage = nil
+        
+        guard
+            self.canPerform,
+            let textView = TextFinder.shared.client, textView.isEditable,
+            let string = textView.string
+            else {
+                NSBeep()
+                return
+        }
+        
+        guard let batchReplacement = self.representedObject as? BatchReplacement else {
+            assertionFailure("No batchReplacement object is set.")
+            return
+        }
+        
+        let inSelection = UserDefaults.standard[.findInSelection]
+        
+        textView.isEditable = false
+        
+        // setup progress sheet
+        let progress = TextFindProgress(format: .find, totalUnitCount: batchReplacement.replacements.count)
+        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Batch Replace", comment: ""))
+        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        
+        DispatchQueue.global().async { [weak self] in
+            let result = batchReplacement.find(string: string, ranges: textView.selectedRanges as [NSRange], inSelection: inSelection) { (count, stop) in
+                guard !progress.isCancelled else {
+                    stop = true
+                    return
+                }
+                
+                progress.needsUpdateDescription(count: count)
+             }
+            
+            DispatchQueue.main.async {
+                textView.isEditable = true
+                
+                guard !progress.isCancelled else {
+                    indicator.dismiss(nil)
+                    return
+                }
+                
+                if result.count > 0 {
+                    // apply to the text view
+                    if let layoutManager = textView.layoutManager {
+                        layoutManager.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: string.nsRange)
+                        let color = TextFinder.shared.highlightColor
+                        for range in result {
+                            layoutManager.addTemporaryAttribute(NSBackgroundColorAttributeName,
+                                                                value: color, forCharacterRange: range)
+                        }
+                    }
+                    
+                } else {
+                    NSBeep()
+                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
+                }
+                
+                self?.resultMessage = {
+                    guard result.count > 0 else { return NSLocalizedString("Not Found", comment: "") }
+                    
+                    return String(format: NSLocalizedString("%@ found", comment: ""),
+                                  String.localizedStringWithFormat("%li", result.count))
+                }()
+                
+                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
+                    indicator.dismiss(nil)
+                }
+            }
+        }
+    }
+    
+    
     /// perform batch replacement
     @IBAction func batchReplace(_ sender: Any?) {
         

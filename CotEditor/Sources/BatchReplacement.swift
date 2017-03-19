@@ -84,6 +84,57 @@ extension BatchReplacement {
     
     // MARK: Public Methods
     
+    /// Batch-find in given string.
+    ///
+    /// - Parameters:
+    ///   - string: The string to find in.
+    ///   - ranges: The ranges of selection in the text view.
+    ///   - inSelection: Whether find only in selection.
+    ///   - block: The Block enumerates the matches.
+    ///   - count: The number of replaces so far.
+    ///   - stop: A reference to a Boolean value. The Block can set the value to true to stop further processing.
+    /// - Returns: The found ranges.
+    func find(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ count: Int, _ stop: inout Bool) -> Void) -> [NSRange] {
+        
+        var result = [NSRange]()
+        
+        guard !string.isEmpty else { return result }
+        
+        for replacement in self.replacements {
+            guard replacement.enabled else { continue }
+            
+            let settings = TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
+                                             isWrap: false,
+                                             inSelection: inSelection,
+                                             textualOptions: self.settings.textualOptions,
+                                             regexOptions: self.settings.regexOptions,
+                                             unescapesReplacementString: self.settings.unescapesReplacementString)
+            
+            // -> Invalid replacement sets will be just ignored.
+            let textFind: TextFind
+            do {
+                textFind = try TextFind(for: string, findString: replacement.findString, settings: settings, selectedRanges: ranges)
+            } catch {
+                print(error.localizedDescription)
+                continue
+            }
+            
+            // process replacement
+            var cancelled = false
+            textFind.findAll { (ranges, stop) in
+                block(result.count, &stop)
+                cancelled = stop
+                
+                result.append(ranges.first!)
+            }
+            
+            guard !cancelled else { return [] }
+        }
+        
+        return result
+    }
+    
+    
     /// Batch-replace given string.
     ///
     /// - Parameters:

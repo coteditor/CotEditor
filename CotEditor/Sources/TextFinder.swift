@@ -71,6 +71,8 @@ final class TextFinder: NSResponder {
     
     // MARK: Public Properties
     
+    let highlightColor: NSColor
+    
     @objc dynamic var findString = "" {
         
         didSet {
@@ -86,7 +88,6 @@ final class TextFinder: NSResponder {
     
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
     private lazy var batchReplacementPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("BatchReplacementPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
-    private let highlightColor: NSColor
     
     
     
