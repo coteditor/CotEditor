@@ -270,6 +270,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let themeName = self.themeNames[row]
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
+        view.textField?.isSelectable = false
         view.textField?.isEditable = !isBundled
     }
     
