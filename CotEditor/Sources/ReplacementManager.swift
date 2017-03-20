@@ -39,7 +39,7 @@ final class ReplacementManager: SettingFileManager {
     
     static let shared = ReplacementManager()
     
-    private(set) var settings = [BatchReplacement]()
+    private(set) var settings = [String: BatchReplacement]()
     
     
     
@@ -81,9 +81,7 @@ final class ReplacementManager: SettingFileManager {
     /// list of names of setting file name (without extension)
     override var settingNames: [String] {
         
-        return self.settings
-            .map { $0.name }
-            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        return self.settings.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
     }
     
     
@@ -107,7 +105,7 @@ final class ReplacementManager: SettingFileManager {
     
     
     /// save
-    func save(replacement: BatchReplacement, completionHandler: ((Error?) -> Void)? = nil) {  // @escaping
+    func save(replacement: BatchReplacement, name settingName: String, completionHandler: ((Error?) -> Void)? = nil) {  // @escaping
         
         // create directory to save in user domain if not yet exist
         do {
@@ -117,7 +115,7 @@ final class ReplacementManager: SettingFileManager {
             return
         }
         
-        let fileURL = self.preparedURLForUserSetting(name: replacement.name)
+        let fileURL = self.preparedURLForUserSetting(name: settingName)
         
         do {
             let data = try replacement.jsonData()
@@ -139,12 +137,9 @@ final class ReplacementManager: SettingFileManager {
     func createUntitledSetting(completionHandler: ((String, Error?) -> Void)? = nil) {  // @escaping
         
         let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
-        let batchReplacement = BatchReplacement(name: name)
+        let batchReplacement = BatchReplacement(replacements: [Replacement()])
         
-        // add a blank setting
-        batchReplacement.replacements.append(Replacement())
-        
-        self.save(replacement: batchReplacement) { (error: Error?) in
+        self.save(replacement: batchReplacement, name: name) { (error: Error?) in
             completionHandler?(name, error)
         }
     }
@@ -161,10 +156,17 @@ final class ReplacementManager: SettingFileManager {
             
             // load settings if exists
             let userDirURL = strongSelf.userSettingDirectoryURL
-            let settings: [BatchReplacement] = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
+            let settings: [String: BatchReplacement] = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
                                                                                          options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
                 .filter { $0.pathExtension == strongSelf.filePathExtension }
-                .flatMap { try? BatchReplacement(url: $0) } ?? []
+                .flatDictionary { (url) in
+                    guard
+                        let name = self?.settingName(from: url),
+                        let setting =  try? BatchReplacement(url: url)
+                        else { return nil }
+                    
+                    return (name, setting)
+                } ?? [:]
             
             let isListUpdated = (settings != strongSelf.settings)
             strongSelf.settings = settings

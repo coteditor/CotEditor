@@ -39,9 +39,7 @@ extension BatchReplacement {
             throw CocoaError(.fileReadCorruptFile)
         }
         
-        let name = url.deletingPathExtension().lastPathComponent
-        
-        try self.init(name: name, dictionary: json)
+        try self.init(dictionary: json)
     }
     
     
@@ -63,15 +61,14 @@ extension BatchReplacement {
     }
     
     
-    convenience init(name: String, dictionary: [String: Any]) throws {
+    convenience init(dictionary: [String: Any]) throws {
         
         guard
             let replacementsJson = dictionary[Key.replacements] as? [[String: Any]],
             let settingsJson = dictionary[Key.settings] as? [String: Any]
             else { throw CocoaError(.fileReadCorruptFile) }
         
-        self.init(name: name,
-                  settings: Settings(dictionary: settingsJson),
+        self.init(settings: Settings(dictionary: settingsJson),
                   replacements: replacementsJson.flatMap { Replacement(dictionary: $0) })
     }
     

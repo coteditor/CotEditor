@@ -46,14 +46,12 @@ final class BatchReplacement: NSObject {
     
     
     
-    let name: String
     var settings: Settings
     dynamic var replacements: [Replacement]
     
     
-    init(name: String, settings: Settings = Settings(), replacements: [Replacement] = []) {
+    init(settings: Settings = Settings(), replacements: [Replacement] = []) {
         
-        self.name = name
         self.settings = settings
         self.replacements = replacements
     }

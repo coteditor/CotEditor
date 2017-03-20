@@ -383,8 +383,10 @@ extension BatchReplacementListViewController: NSTableViewDelegate {
     /// selection of setting table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        let settingName = self.selectedSettingName
-        let setting = ReplacementManager.shared.settings.first { $0.name == settingName }
+        guard
+            let settingName = self.selectedSettingName,
+            let setting = ReplacementManager.shared.settings[settingName]
+            else { return }
         
         self.mainViewController?.representedObject = setting
     }
