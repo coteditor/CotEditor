@@ -195,7 +195,7 @@ class TextFindTests: XCTestCase {
         
         settings = TextFind.Settings(usesRegularExpression: true,
                                      inSelection: true)
-        textFind = try! TextFind(for: "abcdefg abcdefg abcdefg", findString: "abc", settings: settings, selectedRanges: [NSRange(location: 1, length: 15),
+        textFind = try! TextFind(for: "abcdefg abcdefg abcdefg", findString: "abc", settings: settings, selectedRanges: [NSRange(location: 1, length: 14),
                                                                                                                          NSRange(location: 16, length: 7)])
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { _ in }
@@ -204,8 +204,8 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(replacementItems[0].range, NSRange(location: 8, length: 3))
         XCTAssertEqual(replacementItems[1].string, "_")
         XCTAssertEqual(replacementItems[1].range, NSRange(location: 16, length: 3))
-        XCTAssertEqual(selectedRanges![0], NSRange(location: 2, length: 13))
-        XCTAssertEqual(selectedRanges![1], NSRange(location: 15, length: 5))
+        XCTAssertEqual(selectedRanges![0], NSRange(location: 1, length: 12))
+        XCTAssertEqual(selectedRanges![1], NSRange(location: 14, length: 5))
     }
     
 }
