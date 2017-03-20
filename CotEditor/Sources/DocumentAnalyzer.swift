@@ -202,7 +202,7 @@ final class DocumentAnalyzer: NSObject {
                 info.column = CountFormatter.format(result.column)
                 info.unicode = result.unicode
                 
-                NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: info)
+                NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: self)
             }
         }
         
