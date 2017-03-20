@@ -100,7 +100,7 @@
                                                             <rect key="frame" x="24" y="1" width="110" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="FocusTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="dog" id="dIq-un-bYZ">
                                                                         <font key="font" metaFont="system"/>
@@ -120,6 +120,14 @@
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="G1j-rT-ITB"/>
                                                                     <connections>
+                                                                        <binding destination="Rqz-SK-mda" name="hidden2" keyPath="textField.editing" previousBinding="Y4z-0U-VCy" id="9Kd-dC-pME">
+                                                                            <dictionary key="options">
+                                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                            </dictionary>
+                                                                        </binding>
                                                                         <binding destination="Rqz-SK-mda" name="toolTip" keyPath="objectValue.localizedError" id="0ch-BU-0iX"/>
                                                                         <binding destination="Rqz-SK-mda" name="hidden" keyPath="objectValue.localizedError" id="Y4z-0U-VCy">
                                                                             <dictionary key="options">

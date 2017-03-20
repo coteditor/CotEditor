@@ -260,15 +260,7 @@ final class BatchReplacementViewController: NSViewController {
         guard let batchReplacement = self.representedObject as? BatchReplacement else { return }
         
         self.hasInvalidSetting = batchReplacement.replacements.contains { $0.localizedError != nil }
-        
-        self.canPerform = batchReplacement.replacements.contains { replacement in
-            do {
-                try replacement.validate()
-            } catch {
-                return false
-            }
-            return true
-        }
+        self.canPerform = batchReplacement.replacements.contains { $0.localizedError == nil }
     }
     
 }

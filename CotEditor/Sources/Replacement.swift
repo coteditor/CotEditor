@@ -96,13 +96,9 @@ extension Replacement {
         do {
             try self.validate()
         } catch {
-            // report only the regex error...
-            switch error {
-            case TextFindError.regularExpression(let reason):
-                return reason
-                
-            default: break
-            }
+            guard let suggestion = (error as? LocalizedError)?.recoverySuggestion else { return error.localizedDescription }
+            
+            return "[" + error.localizedDescription + "] " + suggestion
         }
         
         return nil
