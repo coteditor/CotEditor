@@ -27,12 +27,6 @@
 
 import Foundation
 
-extension Notification.Name {
-    
-    static let ReplacementListDidUpdate = Notification.Name("ReplacementListDidUpdate")
-}
-
-
 final class ReplacementManager: SettingFileManager {
     
     // MARK: Public Properties
@@ -174,7 +168,7 @@ final class ReplacementManager: SettingFileManager {
             DispatchQueue.main.sync {
                 // post notification
                 if isListUpdated {
-                    NotificationCenter.default.post(name: .ReplacementListDidUpdate, object: self)
+                    self?.notifySettingListUpdate()
                 }
                 
                 completionHandler?()

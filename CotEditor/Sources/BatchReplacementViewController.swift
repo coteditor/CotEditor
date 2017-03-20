@@ -27,7 +27,7 @@
 
 import Cocoa
 
-final class BatchReplacementViewController: NSViewController {
+final class BatchReplacementViewController: NSViewController, BatchReplacementPanelViewControlling {
     
     // MARK: Private Properties
     

@@ -28,18 +28,13 @@
 import Cocoa
 import AudioToolbox
 
-final class BatchReplacementListViewController: NSViewController {
+final class BatchReplacementListViewController: NSViewController, BatchReplacementPanelViewControlling {
     
     // MARK: Private Properties
     
     fileprivate var settingNames = [String]()
     
     @IBOutlet private weak var tableView: NSTableView?
-    
-    fileprivate var mainViewController: NSViewController? {
-        
-        return (self.parent as? BatchReplacementSplitViewController)?.mainViewController
-    }
     
     
     
@@ -62,7 +57,7 @@ final class BatchReplacementListViewController: NSViewController {
         self.tableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
         
         // observe replacement setting list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: .ReplacementListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: .SettingListDidUpdate, object: ReplacementManager.shared)
     }
     
     

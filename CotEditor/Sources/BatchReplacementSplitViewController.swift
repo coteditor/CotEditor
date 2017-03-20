@@ -27,21 +27,37 @@
 
 import Cocoa
 
-final class BatchReplacementSplitViewController: NSSplitViewController {
+protocol BatchReplacementPanelViewControlling: class { }
+
+extension BatchReplacementPanelViewControlling where Self: NSViewController {
     
-    @IBOutlet private weak var contentListSplitViewItem: NSSplitViewItem?
-    @IBOutlet private weak var mainSplitViewItem: NSSplitViewItem?
-    
-    
-    var contentListViewController: NSViewController? {
+    var contentListViewController: BatchReplacementListViewController? {
         
-        return self.contentListSplitViewItem?.viewController
+        return self.parentSplitViewController?.contentListSplitViewItem?.viewController as? BatchReplacementListViewController
     }
     
     
     var mainViewController: BatchReplacementViewController? {
         
-        return self.mainSplitViewItem?.viewController as? BatchReplacementViewController
+        return self.parentSplitViewController?.mainSplitViewItem?.viewController as? BatchReplacementViewController
     }
     
+    
+    // MARK: Private Methods
+    
+    private var parentSplitViewController: BatchReplacementSplitViewController? {
+        
+        return self.parent as? BatchReplacementSplitViewController
+    }
+    
+}
+
+
+
+// MARK: -
+
+final class BatchReplacementSplitViewController: NSSplitViewController {
+    
+    @IBOutlet fileprivate weak var contentListSplitViewItem: NSSplitViewItem?
+    @IBOutlet fileprivate weak var mainSplitViewItem: NSSplitViewItem?
 }
