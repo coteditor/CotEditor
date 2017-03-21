@@ -182,13 +182,13 @@ protocol Script: class {
     // MARK: Methods
     
     /// Execute the script with the default way.
-    func run() throws
+    func run(completionHandler: ((Void) -> Void)?) throws
     
     
     /// Execute the script by sending it the given Apple event.
     ///
     /// Events the script cannot handle must be ignored with no errors.
-    func run(withAppleEvent event: NSAppleEventDescriptor?) throws
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: ((Void) -> Void)?) throws
     
 }
 
@@ -196,7 +196,7 @@ protocol Script: class {
 
 extension Script {
     
-    func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: ((Void) -> Void)? = nil) throws {
         // ignore every request with an event by default
     }
     
@@ -227,9 +227,9 @@ final class AppleScript: Script {
     
     /// run script
     /// - throws: Error by NSUserScriptTask
-    func run() throws {
+    func run(completionHandler: ((Void) -> Void)? = nil) throws {
         
-        try self.run(withAppleEvent: nil)
+        try self.run(withAppleEvent: nil, completionHandler: completionHandler)
     }
     
     
@@ -240,7 +240,7 @@ final class AppleScript: Script {
     /// - parameter event: the apple event
     ///
     /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
-    func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: ((Void) -> Void)? = nil) throws {
         
         guard self.descriptor.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.descriptor.url)
@@ -253,6 +253,7 @@ final class AppleScript: Script {
             if let error = error {
                 writeToConsole(message: error.localizedDescription, scriptName: scriptName)
             }
+            completionHandler?()
         }
     }
     
@@ -289,7 +290,7 @@ final class PersistentOSAScript: Script {
     
     /// run script
     /// - throws: Error by NSUserScriptTask
-    func run() throws {
+    func run(completionHandler: ((Void) -> Void)? = nil) throws {
         
         guard self.descriptor.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.descriptor.url)
@@ -299,6 +300,7 @@ final class PersistentOSAScript: Script {
         if self.script.executeAndReturnError(&errorInfo) == nil {
             let message = (errorInfo?["NSLocalizedDescription"] as? String) ?? "Unknown error"
             writeToConsole(message: message, scriptName: self.descriptor.name)
+            completionHandler?()
         }
     }
     
@@ -310,10 +312,10 @@ final class PersistentOSAScript: Script {
     /// - parameter event: the apple event
     ///
     /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
-    func run(withAppleEvent event: NSAppleEventDescriptor?) throws {
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: ((Void) -> Void)? = nil) throws {
         
         guard let event = event else {
-            try self.run()
+            try self.run(completionHandler: completionHandler)
             return
         }
         
@@ -325,6 +327,7 @@ final class PersistentOSAScript: Script {
         if self.script.executeAppleEvent(event, error: &errorInfo) == nil {
             let message = (errorInfo?["NSLocalizedDescription"] as? String) ?? "Unknown error"
             writeToConsole(message: message, scriptName: self.descriptor.name)
+            completionHandler?()
         }
     }
     
@@ -380,7 +383,7 @@ final class ShellScript: Script {
     
     /// run script
     /// - throws: ScriptFileError or Error by NSUserScriptTask
-    func run() throws {
+    func run(completionHandler: ((Void) -> Void)? = nil) throws {
         
         // check script file
         guard self.descriptor.url.isReachable else {
@@ -463,6 +466,10 @@ final class ShellScript: Script {
         
         // execute
         task.execute(withArguments: arguments) { error in
+            defer {
+                completionHandler?()
+            }
+            
             // on user cancel
             if let error = error as? POSIXError, error.code == .ENOTBLK {
                 isCancelled = true

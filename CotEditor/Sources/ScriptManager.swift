@@ -34,6 +34,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     static let shared = ScriptManager()
     
+    private(set) var currentScriptName: String?
+    
     
     // MARK: Private Properties
     
@@ -215,7 +217,11 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 try self.revealScript(at: script.descriptor.url)
                 
             default:
-                try script.run()
+                self.currentScriptName = script.descriptor.name
+                try script.run { [weak self] in
+                    self?.currentScriptName = nil
+                
+                }
             }
             
         } catch {

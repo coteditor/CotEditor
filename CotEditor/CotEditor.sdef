@@ -161,6 +161,12 @@
         </class>
         
         
+        <command name="write to console" code="cEd1log_" description="Print text on console.">
+            <cocoa class="CotEditor.WriteToConsoleCommand"/>
+            <access-group identifier="*"/>
+            <direct-parameter code="cLog" type="text" description="The message to display on the console."/>
+        </command>
+        
         <command name="change case" code="cEd1CGcs" description="Change the case of the selection.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="text selection" description="The selection to change case."/>

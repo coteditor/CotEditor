@@ -13,6 +13,7 @@ develop
     - Draw capsule for pre-formatted text in the insertion format setting field.
     - Update the default file drop settings.
 - Add “Surround Selection With” actions to “Text” menu.
+- Add a new AppleScript/JXA command `write to console` so that users can print their own message on the CotEditor's console.
 - Now, key binding snippets can set cursor position.
 
 

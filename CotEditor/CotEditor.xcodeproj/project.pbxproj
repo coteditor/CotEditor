@@ -518,6 +518,8 @@
 		2AED70EF1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */; };
 		2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */; };
 		2AEDB4201D462EAB0020AD15 /* String+Sandboxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */; };
+		2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */; };
+		2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */; };
 		2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E21D33C3AB00770BA6 /* Theme.swift */; };
 		2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E21D33C3AB00770BA6 /* Theme.swift */; };
 		2AF073E61D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E51D33CB6F00770BA6 /* ThemeDictionary.swift */; };
@@ -1080,6 +1082,7 @@
 		2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Sandboxing.swift"; sourceTree = "<group>"; };
 		2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Authopen.swift"; sourceTree = "<group>"; };
+		2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteToConsoleCommand.swift; sourceTree = "<group>"; };
 		2AF073E21D33C3AB00770BA6 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2AF073E51D33CB6F00770BA6 /* ThemeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeDictionary.swift; sourceTree = "<group>"; };
 		2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryKey.swift; sourceTree = "<group>"; };
@@ -1306,6 +1309,7 @@
 				2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */,
 				2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */,
 				2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */,
+				2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -2294,6 +2298,7 @@
 				2A33D07F1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2A91C3191D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
+				2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 				2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2AE52F191D17468B00D60A32 /* EditorSplitView.swift in Sources */,
 				2AA761361D45634400031AAF /* String+Counting.swift in Sources */,
@@ -2576,6 +2581,7 @@
 				2ACDC0A31D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2A5ADE841D2168FC00F6CE26 /* Array.swift in Sources */,
 				2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
+				2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 				2A48103E1D4D210300F7D34C /* Crypto.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */,
