@@ -49,7 +49,7 @@ final class ThemeManager: SettingFileManager {
     
     // MARK: Private Properties
     
-    private var archivedThemes = [String: ThemeDictionary]()
+    private var cachedThemes = [String: Theme]()
     private var bundledThemeNames = [String]()
     
     
@@ -67,14 +67,8 @@ final class ThemeManager: SettingFileManager {
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
         
-        // cache user themes asynchronously but wait until the process will be done
-        let semaphore = DispatchSemaphore(value: 0)
-        self.updateCache {
-            semaphore.signal()
-        }
-        while semaphore.wait(timeout: .now()) == .timedOut {
-            RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
-        }
+        // cache user theme names
+        self.loadThemeNames()
     }
     
     
@@ -122,16 +116,30 @@ final class ThemeManager: SettingFileManager {
     /// create Theme instance from theme name
     func theme(name: String) -> Theme? {
         
+        // use cache if exists
+        if let theme = self.cachedThemes[name] {
+            return theme
+        }
+        
         guard let themeDictionary = self.themeDictionary(name: name) else { return nil }
         
-        return Theme(dictionary: themeDictionary, name: name)
+        let theme = Theme(dictionary: themeDictionary, name: name)
+        
+        self.cachedThemes[name] = theme
+        
+        return theme
     }
     
     
-    /// Theme dict in which objects are property list ready.
+    /// load theme dict in which objects are property list ready.
     func themeDictionary(name: String) -> ThemeDictionary? {
-    
-        return self.archivedThemes[name]
+        
+        guard
+            let themeURL = self.urlForUsedSetting(name: name),
+            let themeDictionary = try? self.themeDictionary(fileURL: themeURL)
+            else { return nil }
+        
+        return themeDictionary
     }
     
     
@@ -244,50 +252,42 @@ final class ThemeManager: SettingFileManager {
     /// update internal cache data
     override func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
         
+        self.cachedThemes = [:]
+        
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            let userDirURL = strongSelf.userSettingDirectoryURL
-            let themeNameSet = NSMutableOrderedSet(array: strongSelf.bundledThemeNames)
-            
-            // load user themes if exists
-            if let fileURLs = try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
-                                                                           options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
-                let userThemeNames = fileURLs
-                    .filter { $0.pathExtension == strongSelf.filePathExtension }
-                    .map { strongSelf.settingName(from: $0) }
-                
-                themeNameSet.addObjects(from: userThemeNames)
-            }
-            let themeNames = themeNameSet.array as! [String]
-            
-            let isListUpdated = (themeNames != strongSelf.themeNames)
-            strongSelf.themeNames = themeNames
-            
-            // cache definitions
-            strongSelf.archivedThemes = themeNames.flatDictionary { (name) in
-                guard
-                    let themeURL = strongSelf.urlForUsedSetting(name: name),
-                    let themeDictionary = try? strongSelf.themeDictionary(fileURL: themeURL)
-                    else { return nil }
-                
-                return (name, themeDictionary)
-            }
-            
-            // reset user default if not found
-            let defaultThemeName = UserDefaults.standard[.theme]!
-            if !themeNameSet.contains(defaultThemeName) {
-                UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
-            }
+            self?.loadThemeNames()
             
             DispatchQueue.main.sync {
-                // post notification
-                if isListUpdated {
-                    strongSelf.notifySettingListUpdate()
-                }
+                self?.notifySettingListUpdate()
                 
                 completionHandler?()
             }
+        }
+    }
+    
+    
+    /// load theme names in user domain
+    private func loadThemeNames() {
+        
+        let themeNameSet = NSMutableOrderedSet(array: self.bundledThemeNames)
+        
+        // load user themes if exists
+        if let fileURLs = try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
+                                                                       includingPropertiesForKeys: nil,
+                                                                       options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
+            let userThemeNames = fileURLs
+                .filter { $0.pathExtension == self.filePathExtension }
+                .map { self.settingName(from: $0) }
+            
+            themeNameSet.addObjects(from: userThemeNames)
+        }
+        
+        self.themeNames = themeNameSet.array as! [String]
+        
+        // reset user default if not found
+        let defaultThemeName = UserDefaults.standard[.theme]!
+        if !themeNameSet.contains(defaultThemeName) {
+            UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
         }
     }
     

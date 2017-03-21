@@ -75,7 +75,7 @@ final class SyntaxManager: SettingFileManager {
     private var recentStyleNameSet = NSMutableOrderedSet()
     private let maximumRecentStyleNameCount: Int
     
-    private var styleCaches: [StyleName: StyleDictionary] = [:]
+    private var cachedStyleDictionary: [StyleName: StyleDictionary] = [:]
     private var map: [StyleName: [String: [String]]] = [:]
     
     private let bundledStyleNames: [StyleName]
@@ -244,7 +244,7 @@ final class SyntaxManager: SettingFileManager {
         }
         
         // load from cache
-        if let style = self.styleCaches[name] {
+        if let style = self.cachedStyleDictionary[name] {
             return style
         }
         
@@ -253,7 +253,7 @@ final class SyntaxManager: SettingFileManager {
             let style = try? self.styleDictionary(fileURL: url) {
             
             // store newly loaded style
-            self.styleCaches[name] = style
+            self.cachedStyleDictionary[name] = style
             
             return style
         }
@@ -288,7 +288,7 @@ final class SyntaxManager: SettingFileManager {
         try super.removeSetting(name: name)
         
         // update internal cache
-        self.styleCaches[name] = nil
+        self.cachedStyleDictionary[name] = nil
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: BundledStyleName.none)
@@ -302,7 +302,7 @@ final class SyntaxManager: SettingFileManager {
         try super.restoreSetting(name: name)
         
         // update internal cache
-        self.styleCaches[name] = self.bundledStyleDictionary(name: name)
+        self.cachedStyleDictionary[name] = self.bundledStyleDictionary(name: name)
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
@@ -346,7 +346,7 @@ final class SyntaxManager: SettingFileManager {
         if self.isEqualToBundledStyle(styleDictionary, name: name) {
             if saveURL.isReachable {
                 try FileManager.default.removeItem(at: saveURL)
-                self.styleCaches[name] = nil
+                self.cachedStyleDictionary[name] = nil
             }
         } else {
             // save file to user domain
@@ -422,13 +422,11 @@ final class SyntaxManager: SettingFileManager {
     override func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
         
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            strongSelf.loadUserStyles()
-            strongSelf.updateMappingTables()
+            self?.loadUserStyles()
+            self?.updateMappingTables()
             
             DispatchQueue.main.sync {
-                strongSelf.notifySettingListUpdate()
+                self?.notifySettingListUpdate()
                 
                 completionHandler?()
             }
@@ -450,11 +448,11 @@ final class SyntaxManager: SettingFileManager {
     /// load style files in user domain and re-build chache and mapping table
     private func loadUserStyles() {
         
-        let directoryURL = self.userSettingDirectoryURL
         var map = self.bundledMap
         
         // load user styles if exists
-        if let enumerator = FileManager.default.enumerator(at: directoryURL, includingPropertiesForKeys: nil,
+        if let enumerator = FileManager.default.enumerator(at: self.userSettingDirectoryURL,
+                                                           includingPropertiesForKeys: nil,
                                                            options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
             for case let url as URL in enumerator {
                 guard [self.filePathExtension, "yml"].contains(url.pathExtension) else { continue }
@@ -472,7 +470,7 @@ final class SyntaxManager: SettingFileManager {
                 }
                 
                 // cache style since it's already loaded
-                self.styleCaches[styleName] = style
+                self.cachedStyleDictionary[styleName] = style
             }
         }
         self.map = map
