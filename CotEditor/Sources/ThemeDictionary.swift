@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -62,6 +62,7 @@ enum ThemeKey: String {
     static let basicKeys: [ThemeKey] = [.text, .background, .invisibles, .selection, .insertionPoint, .lineHighlight]
     
     static let syntaxKeys: [ThemeKey] = [.keywords, .commands, .types, .attributes, .variables, .values, .numbers, .strings, .characters, .comments]
-    static let all: [ThemeKey] = ThemeKey.basicKeys + ThemeKey.syntaxKeys + [.metadata]
+    static let colorKeys: [ThemeKey] = ThemeKey.basicKeys + ThemeKey.syntaxKeys
+    static let all: [ThemeKey] = colorKeys + [.metadata]
     
 }

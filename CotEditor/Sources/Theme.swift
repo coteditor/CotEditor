@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,13 +29,13 @@ import Foundation
 import AppKit.NSColor
 import ColorCode
 
-
 protocol Themable: class {
     
     var theme: Theme? { get }
 }
 
-struct Theme: CustomDebugStringConvertible {
+
+struct Theme {
     
     // MARK: Public Properties
     
@@ -59,6 +59,8 @@ struct Theme: CustomDebugStringConvertible {
     
     // MARK: Private Properties
     
+    private static let invalidColor = NSColor.gray.usingColorSpaceName(NSCalibratedRGBColorSpace)!
+    
     private let syntaxColors: [SyntaxType: NSColor]
     private let usesSystemSelectionColor: Bool
     private let _selectionColor: NSColor
@@ -72,38 +74,18 @@ struct Theme: CustomDebugStringConvertible {
         
         guard !name.isEmpty else { return nil }
         
-        func unarchiveColor(subdict: NSMutableDictionary?) throws -> NSColor {
-            
-            guard let colorCode = subdict?[ThemeKey.Sub.color.rawValue] as? String else { throw ThemeError.noValue }
-            
-            var type: ColorCodeType = .invalid
-            guard let color = NSColor(colorCode: colorCode, type: &type),
-                type == .hex || type == .shortHex else { throw ThemeError.invalid }
-            
-            return color
-        }
-        
+        // unarchive colors
         var isValid = true
-        
-        let colors: [ThemeKey: NSColor] = ThemeKey.basicKeys.flatDictionary { (key) in
-            do {
-                let color = try unarchiveColor(subdict: dictionary[key.rawValue])
-                return (key, color)
-            } catch {
-                isValid = false
-                return (key, .gray)
+        let colors: [ThemeKey: NSColor] = ThemeKey.colorKeys.flatDictionary { (key) in
+            guard
+                let colorCode = dictionary[key.rawValue]?[ThemeKey.Sub.color.rawValue] as? String,
+                let color = NSColor(colorCode: colorCode)
+                else {
+                    isValid = false
+                    return (key, Theme.invalidColor)
             }
-        }
-        
-        // unarchive syntax colors also
-        self.syntaxColors = SyntaxType.all.flatDictionary { (key) in
-            do {
-                let color = try unarchiveColor(subdict: dictionary[key.rawValue])
-                return (key, color)
-            } catch {
-                isValid = false
-                return (key, .gray)
-            }
+            
+            return (key, color)
         }
         
         // set properties
@@ -117,20 +99,10 @@ struct Theme: CustomDebugStringConvertible {
         self.insertionPointColor = colors[.insertionPoint]!
         self.lineHighLightColor = colors[.lineHighlight]!
         
+        self.syntaxColors = ThemeKey.syntaxKeys.flatDictionary { (SyntaxType(rawValue: $0.rawValue)!, colors[$0]!) }  // The syntax key and theme keys must be the same.
+        
         self.usesSystemSelectionColor = dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool ?? false
-        
-        // standardize color space to obtain color values safety
-        let textColor = self.textColor.usingColorSpaceName(NSDeviceRGBColorSpace)!
-        let backgroundColor = self.backgroundColor.usingColorSpaceName(NSDeviceRGBColorSpace)!
-        
-        // check if background is dark
-        self.isDarkTheme = backgroundColor.brightnessComponent < textColor.brightnessComponent
-    }
-    
-    
-    var debugDescription: String {
-        
-        return "<Theme: \(self.name)>"
+        self.isDarkTheme = self.backgroundColor.brightnessComponent < self.textColor.brightnessComponent
     }
     
     
@@ -146,11 +118,11 @@ struct Theme: CustomDebugStringConvertible {
 }
 
 
-
-// MARK: - Error
-
-private enum ThemeError: Error {
+extension Theme: CustomStringConvertible {
     
-    case noValue
-    case invalid
+    var description: String {
+        
+        return "<Theme: \(self.name)>"
+    }
+    
 }
