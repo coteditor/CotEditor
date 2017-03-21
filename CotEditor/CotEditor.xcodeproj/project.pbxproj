@@ -315,6 +315,8 @@
 		2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Comparable.swift */; };
 		2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Comparable.swift */; };
+		2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88E7701E81A2C7000019C6 /* OrderedSet.swift */; };
+		2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88E7701E81A2C7000019C6 /* OrderedSet.swift */; };
 		2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
 		2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
 		2A8961951DB76B0100E9E0EC /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961941DB76B0100E9E0EC /* Help.swift */; };
@@ -905,6 +907,7 @@
 		2A836F8B1D5734870044E8EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2A83E2391BA1E65A0069CDFE /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		2A885E321D5C3A1B00288723 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
+		2A88E7701E81A2C7000019C6 /* OrderedSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
 		2A8961911DB76A3400E9E0EC /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		2A8961941DB76B0100E9E0EC /* Help.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterScanner.swift; sourceTree = "<group>"; };
@@ -1257,6 +1260,7 @@
 			isa = PBXGroup;
 			children = (
 				2AC186DC1E2F4264002F4D27 /* Debug.swift */,
+				2A88E7701E81A2C7000019C6 /* OrderedSet.swift */,
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
 				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
@@ -2273,6 +2277,7 @@
 				2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */,
 				2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A5D13261D1F9D4100D38E6A /* TogglableToolbarItem.swift in Sources */,
+				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2AE12E081E7DDF0700681F72 /* CustomSurroundStringViewController.swift in Sources */,
 				2A4CB9931D79F38A000D6ADA /* DocumentToolbar.swift in Sources */,
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
@@ -2551,6 +2556,7 @@
 				2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
+				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A1679E61D3CE07100E8261D /* Document.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,

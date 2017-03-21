@@ -72,7 +72,7 @@ final class SyntaxManager: SettingFileManager {
     
     // MARK: Private Properties
     
-    private var recentStyleNameSet = NSMutableOrderedSet()
+    private var recentStyleNameSet: OrderedSet<StyleName>
     private let maximumRecentStyleNameCount: Int
     
     private var cachedStyleDictionary: [StyleName: StyleDictionary] = [:]
@@ -94,7 +94,7 @@ final class SyntaxManager: SettingFileManager {
     
     override private init() {
         
-        self.recentStyleNameSet = NSMutableOrderedSet(array: UserDefaults.standard[.recentStyleNames] ?? [])
+        self.recentStyleNameSet = OrderedSet(UserDefaults.standard[.recentStyleNames] ?? [])
         self.maximumRecentStyleNameCount = UserDefaults.standard[.maximumRecentStyleCount]
         
         // load bundled style list
@@ -158,7 +158,7 @@ final class SyntaxManager: SettingFileManager {
     var recentStyleNames: [StyleName] {
         
         let styleNames: [StyleName] = self.propertyAccessQueue.sync {
-            return self.recentStyleNameSet.array as! [StyleName]
+            return self.recentStyleNameSet.array
         }
         
         let count = max(0, self.maximumRecentStyleNameCount)
@@ -481,7 +481,7 @@ final class SyntaxManager: SettingFileManager {
         // remove deleted styles
         // -> don't care about style name change just for laziness
         self.propertyAccessQueue.sync {
-            self.recentStyleNameSet.intersectSet(Set(self.styleNames))
+            self.recentStyleNameSet.formIntersection(self.styleNames)
         }
         
         UserDefaults.standard[.recentStyleNames] = self.recentStyleNames

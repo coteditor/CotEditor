@@ -240,7 +240,7 @@ extension EditorTextView {
         
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()
-        let uniqueLines = NSMutableOrderedSet()  // [String]
+        var uniqueLines = OrderedSet<String>()
         var processedCount = 0
         
         // collect duplicate lines
@@ -250,7 +250,7 @@ extension EditorTextView {
             let lines = targetString.components(separatedBy: .newlines)
             
             // filter duplicate lines
-            uniqueLines.addObjects(from: lines)
+            uniqueLines.append(contentsOf: lines)
             
             let targetLinesRange: Range<Int> = processedCount..<uniqueLines.count
             processedCount += targetLinesRange.count
@@ -258,8 +258,7 @@ extension EditorTextView {
             // do nothing if no duplicate line exists
             guard targetLinesRange.count != lines.count else { continue }
             
-            let indexSet = IndexSet(integersIn: targetLinesRange)
-            let replacementString = (uniqueLines.objects(at: indexSet) as! [String]).joined(separator: "\n")
+            let replacementString = uniqueLines[targetLinesRange].joined(separator: "\n")
             
             replacementStrings.append(replacementString)
             replacementRanges.append(lineRange)
@@ -334,7 +333,7 @@ private extension NSTextView {
         
         guard let string = self.string as NSString? else { return [] }
         
-        let lineRanges = NSMutableOrderedSet()  // [NSRange]
+        var lineRanges = OrderedSet<NSRange>()
         
         // get line ranges to process
         for selectedRange in self.selectedRanges as [NSRange] {
@@ -343,11 +342,11 @@ private extension NSTextView {
             // store each line to process
             string.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { (substring: String?, substringRange, enclosingRange, stop) in
                 
-                lineRanges.add(enclosingRange)
+                lineRanges.append(enclosingRange)
             }
         }
         
-        return lineRanges.array as! [NSRange]
+        return lineRanges.array
     }
     
 }

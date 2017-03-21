@@ -169,7 +169,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // do nothing if completion is not suggested from the typed characters
         guard let string = textView.string, charRange.length > 0 else { return [] }
         
-        let candidateWords = NSMutableOrderedSet()  // [String]
+        var candidateWords = OrderedSet<String>()
         let particalWord = (string as NSString).substring(with: charRange)
         
         // extract words in document and set to candidateWords
@@ -183,29 +183,29 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 
                 return regex.matches(in: string, range: string.nsRange).map { (string as NSString).substring(with: $0.range) }
             }()
-            candidateWords.addObjects(from: documentWords)
+            candidateWords.append(contentsOf: documentWords)
         }
         
         // copy words defined in syntax style
         if UserDefaults.standard[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords {
             let syntaxWords = syntaxCandidateWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
-            candidateWords.addObjects(from: syntaxWords)
+            candidateWords.append(contentsOf: syntaxWords)
         }
         
         // copy the standard words from default completion words
         if UserDefaults.standard[.completesStandartWords] {
-            candidateWords.addObjects(from: words)
+            candidateWords.append(contentsOf: words)
         }
         
         // provide nothing if there is only a candidate which is same as input word
-        if  let word = candidateWords.firstObject as? String,
+        if  let word = candidateWords.first,
             candidateWords.count == 1,
             word.caseInsensitiveCompare(particalWord) == .orderedSame
         {
             return []
         }
         
-        return candidateWords.array as! [String]
+        return candidateWords.array
     }
     
     

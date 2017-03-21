@@ -269,7 +269,7 @@ final class ThemeManager: SettingFileManager {
     /// load theme names in user domain
     private func loadThemeNames() {
         
-        let themeNameSet = NSMutableOrderedSet(array: self.bundledThemeNames)
+        var themeNameSet = OrderedSet(self.bundledThemeNames)
         
         // load user themes if exists
         if let fileURLs = try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
@@ -279,10 +279,10 @@ final class ThemeManager: SettingFileManager {
                 .filter { $0.pathExtension == self.filePathExtension }
                 .map { self.settingName(from: $0) }
             
-            themeNameSet.addObjects(from: userThemeNames)
+            themeNameSet.append(contentsOf: userThemeNames)
         }
         
-        self.themeNames = themeNameSet.array as! [String]
+        self.themeNames = themeNameSet.array
         
         // reset user default if not found
         let defaultThemeName = UserDefaults.standard[.theme]!
