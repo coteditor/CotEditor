@@ -9,25 +9,25 @@ develop
 
 - Improve File Drop feature:
     - Now, you can add a file drop setting only for a specific syntax style.
-    - Add description field.
+    - Add description field to the setting table.
     - Draw capsule for pre-formatted text in the insertion format setting field.
     - Update the default file drop settings.
 - Add “Surround Selection With” actions to “Text” menu.
-- Add a new AppleScript/JXA command `write to console` so that users can print their own message on the CotEditor's console.
+- Add a new AppleScript/JXA command `write to console` so that users can insert their own message to the CotEditor's console.
 - Now, key binding snippets can set cursor position.
 
 
 ### Improvements
 
+- Change syntax style detection behavior to set to “None” style if no appropriate style can be found on file opening.
+- Avoid hiding console panel when CotEditor becomes not the frontmost application.
 - Improve performance of closing large size document.
-- Improve drawing performance of a large size document with non-opaque background.
+- Improve drawing performance of a large size document with a non-opaque background (Not enough good as an opaque one but still better than before).
 - Add hidden “Reload All Themes/Styles” menu item to theme/syntax style action menus in Preferences (visible with `Option` key).
 - Improve invisible character drawing on a non-opaque view.
-- Change syntax style detection behavior to set “None” style if no appropriate style can be found on file opening.
-- Remove “Inline script menu items into contextual menu” option.
-- Avoid hiding console panel when CotEditor is not the most-front application.
 - Improve auto-brackets/quotes insertion behavior with multiple selections.
 - Improve the setting file naming rule for when the name overwraps with an existing setting.
+- Remove less useful “Inline script menu items into contextual menu” option.
 - And some minor improvements and fixes.
 
 
