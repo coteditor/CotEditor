@@ -77,6 +77,8 @@ final class ConsolePanelController: NSWindowController {
     override func windowDidLoad() {
         
         super.windowDidLoad()
+        
+        (self.window as? NSPanel)?.isFloatingPanel = false
     
         self.textView?.font = NSFont.messageFont(ofSize: self.fontSize)
         self.textView?.textContainerInset = NSSize(width: 0.0, height: 4.0)

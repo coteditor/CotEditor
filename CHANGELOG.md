@@ -25,6 +25,7 @@ develop
 - Improve invisible character drawing on a non-opaque view.
 - Change syntax style detection behavior to set “None” style if no appropriate style can be found on file opening.
 - Remove “Inline script menu items into contextual menu” option.
+- Avoid hiding console panel when CotEditor is not the most-front application.
 - Improve auto-brackets/quotes insertion behavior with multiple selections.
 - Improve the setting file naming rule for when the name overwraps with an existing setting.
 - And some minor improvements and fixes.

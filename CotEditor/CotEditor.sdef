@@ -161,7 +161,7 @@
         </class>
         
         
-        <command name="write to console" code="cEd1log_" description="Print text on console.">
+        <command name="write to console" code="cEd1cnsl" description="Display text on the console.">
             <cocoa class="CotEditor.WriteToConsoleCommand"/>
             <access-group identifier="*"/>
             <direct-parameter code="cLog" type="text" description="The message to display on the console."/>
