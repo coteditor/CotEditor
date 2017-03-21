@@ -63,7 +63,7 @@ extension String {
 
 
 
-extension NSRange: Equatable {
+extension NSRange {
     
     static let notFound = NSRange(location: NSNotFound, length: 0)
     
@@ -109,7 +109,17 @@ extension NSRange: Equatable {
         
         return NSIntersectionRange(self, range).length > 0
     }
+    
+}
 
+
+extension NSRange: Hashable {
+    
+    public var hashValue: Int {
+        
+        return self.location ^ self.length
+    }
+    
     
     public static func == (lhs: NSRange, rhs: NSRange) -> Bool {
         
