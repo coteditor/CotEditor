@@ -1066,7 +1066,7 @@ CA
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="qQb-je-BMC"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="What’s New in CotEditor 3.1" tag="9" id="DCW-Ij-540">
+                                        <menuItem title="What’s New in CotEditor 3.2" tag="9" id="DCW-Ij-540">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="bTD-Xs-Jm8"/>
