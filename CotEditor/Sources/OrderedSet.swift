@@ -29,16 +29,23 @@ struct OrderedSet<Element: Hashable> {
     
     typealias Index = Int
     
-    private var elements: [Element]
+    private var elements: [Element] = []
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(_ elements: [Element] = []) {
+    init() { }
+    
+    
+    init<S: Sequence>(_ elements: S) where S.Iterator.Element == Element {
         
-        self.elements = elements
+        for element in elements {
+            guard !self.elements.contains(element) else { continue }
+            
+            self.elements.append(element)
+        }
     }
     
     
@@ -119,7 +126,8 @@ struct OrderedSet<Element: Hashable> {
     
     
     /// insert the given elements in the set only which it is not already present.
-    mutating func append(contentsOf elements: [Element]) {
+    
+    mutating func append<S: Sequence>(contentsOf elements: S) where S.Iterator.Element == Element {
         
         for element in elements {
             self.append(element)
