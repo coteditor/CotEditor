@@ -3,18 +3,14 @@
 language: objective-c
 osx_image: xcode8.2
 
-xcode_workspace: CotEditor.xcworkspace
-xcode_scheme: CotEditor
-
 before_install:
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-  - gem install xcpretty-travis-formatter --no-rdoc --no-ri --no-document --quiet
+  - gem install xcpretty-travis-formatter
 
 script:
   set -o pipefail &&
   xcodebuild clean build test
-  -workspace "$TRAVIS_XCODE_WORKSPACE"
-  -scheme "$TRAVIS_XCODE_SCHEME"
+  -workspace CotEditor.xcworkspace
+  -scheme CotEditor
   CODE_SIGN_IDENTITY=""
   CODE_SIGNING_REQUIRED=NO
   | xcpretty -f `xcpretty-travis-formatter`
