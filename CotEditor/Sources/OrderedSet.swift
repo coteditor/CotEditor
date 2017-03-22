@@ -106,6 +106,13 @@ struct OrderedSet<Element: Hashable> {
     }
     
     
+    /// return the index where the specified element appears in the set.
+    func index(of element: Element) -> Index? {
+        
+        return self.elements.index(of: element)
+    }
+    
+    
     /// return a new set with the elements that are common to both this set and the given sequence.
     func intersection<S: Sequence>(_ other: S) -> OrderedSet<Element> where S.Iterator.Element == Element {
         
@@ -126,7 +133,6 @@ struct OrderedSet<Element: Hashable> {
     
     
     /// insert the given elements in the set only which it is not already present.
-    
     mutating func append<S: Sequence>(contentsOf elements: S) where S.Iterator.Element == Element {
         
         for element in elements {
@@ -151,10 +157,19 @@ struct OrderedSet<Element: Hashable> {
     }
     
     
+    /// remove the the element at the position from the set.
+    mutating func remove(at index: Index) {
+        
+        self.elements.remove(at: index)
+    }
+    
+    
     /// remove the specified element from the set.
     mutating func remove(_ element: Element) {
         
-        self.elements.remove(element)
+        guard let index = self.index(of: element) else { return }
+        
+        self.remove(at: index)
     }
     
 }
