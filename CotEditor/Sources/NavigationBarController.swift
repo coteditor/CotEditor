@@ -141,7 +141,7 @@ final class NavigationBarController: NSViewController {
             for outlineItem in outlineItems {
                 // separator
                 if outlineItem.title == String.separator {
-                    menu.addItem(NSMenuItem.separator())
+                    menu.addItem(.separator())
                     continue
                 }
                 

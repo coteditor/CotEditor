@@ -87,12 +87,9 @@ final class ToolbarController: NSObject {
             self.toolbar?.validateVisibleItems()
             
             // observe document status change
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection),
-                                                   name: .DocumentDidChangeEncoding, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection),
-                                                   name: .DocumentDidChangeLineEnding, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection),
-                                                   name: .DocumentDidChangeSyntaxStyle, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection), name: .DocumentDidChangeEncoding, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection), name: .DocumentDidChangeLineEnding, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection), name: .DocumentDidChangeSyntaxStyle, object: document)
             document.addObserver(self, forKeyPath: #keyPath(Document.fileURL), context: nil)
         }
     }
@@ -212,7 +209,7 @@ final class ToolbarController: NSObject {
         menu.removeAllItems()
         
         menu.addItem(withTitle: BundledStyleName.none, action: action, keyEquivalent: "")
-        menu.addItem(NSMenuItem.separator())
+        menu.addItem(.separator())
         
         if !recentStyleNames.isEmpty {
             let labelItem = NSMenuItem()
@@ -223,7 +220,7 @@ final class ToolbarController: NSObject {
             for styleName in recentStyleNames {
                 menu.addItem(withTitle: styleName, action: action, keyEquivalent: "")
             }
-            menu.addItem(NSMenuItem.separator())
+            menu.addItem(.separator())
         }
         
         for styleName in styleNames {

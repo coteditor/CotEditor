@@ -360,7 +360,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         let autoDetectItem = NSMenuItem(title: NSLocalizedString("Auto-Detect", comment: ""), action: nil, keyEquivalent: "")
         autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
         inOpenMenu.addItem(autoDetectItem)
-        inOpenMenu.addItem(NSMenuItem.separator())
+        inOpenMenu.addItem(.separator())
         
         let utf8Int = Int(String.Encoding.utf8.rawValue)
         for item in menuItems {
@@ -416,7 +416,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         if let popup = self.syntaxStylesDefaultPopup {
             popup.removeAllItems()
             popup.addItem(withTitle: BundledStyleName.none)
-            popup.menu?.addItem(NSMenuItem.separator())
+            popup.menu?.addItem(.separator())
             popup.addItems(withTitles: styleNames)
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu

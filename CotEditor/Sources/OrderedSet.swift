@@ -41,11 +41,7 @@ struct OrderedSet<Element: Hashable> {
     
     init<S: Sequence>(_ elements: S) where S.Iterator.Element == Element {
         
-        for element in elements {
-            guard !self.elements.contains(element) else { continue }
-            
-            self.elements.append(element)
-        }
+        self.append(contentsOf: elements)
     }
     
     

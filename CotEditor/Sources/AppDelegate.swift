@@ -426,13 +426,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         // add None
         menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
-        menu.addItem(NSMenuItem.separator())
+        menu.addItem(.separator())
         
         // add syntax styles
         for styleName in SyntaxManager.shared.styleNames {
             menu.addItem(withTitle: styleName, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
         }
-        menu.addItem(NSMenuItem.separator())
+        menu.addItem(.separator())
         
         // add item to recolor
         let recolorAction = #selector(SyntaxHolder.recolorAll)

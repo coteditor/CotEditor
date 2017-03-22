@@ -160,7 +160,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
         if !menu.items.isEmpty {
-            menu.addItem(NSMenuItem.separator())
+            menu.addItem(.separator())
         }
         
         let openMenuItem = NSMenuItem(title: NSLocalizedString("Open Scripts Folder", comment: ""),
@@ -302,7 +302,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             let descriptor = ScriptDescriptor(at: url)
             
             if descriptor.name == String.separator {
-                menu.addItem(NSMenuItem.separator())
+                menu.addItem(.separator())
                 continue
             }
             
