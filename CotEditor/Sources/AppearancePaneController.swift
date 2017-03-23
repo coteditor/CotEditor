@@ -68,7 +68,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         // register droppable types
         self.themeTableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
         
-        self.themeNames = ThemeManager.shared.themeNames
+        self.themeNames = ThemeManager.shared.settingNames
         
         // observe theme list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .SettingListDidUpdate, object: ThemeManager.shared)
@@ -227,7 +227,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     func didUpdate(theme: ThemeDictionary) {
         
         // save
-        ThemeManager.shared.save(themeDictionary: theme, name: self.selectedThemeName)
+        do {
+            try ThemeManager.shared.save(settingDictionary: theme, name: self.selectedThemeName)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     
@@ -239,7 +243,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         guard let object = notification.object as? NSTableView, object == self.themeTableView else { return }
         
         let themeName = self.selectedThemeName
-        let themeDict = ThemeManager.shared.themeDictionary(name: themeName)
+        let themeDict = ThemeManager.shared.settingDictionary(name: themeName)
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
         // update default theme setting
@@ -346,8 +350,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         guard let tableView = self.themeTableView else { return }
         
-        ThemeManager.shared.createUntitledTheme { (themeName: String, error: Error?) in
-            let themeNames = ThemeManager.shared.themeNames
+        try? ThemeManager.shared.createUntitledTheme { themeName in
+            let themeNames = ThemeManager.shared.settingNames
             let row = themeNames.index(of: themeName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
@@ -474,7 +478,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @objc private func themeDidUpdate(_ notification: Notification) {
         
         guard
-            let bundledTheme = ThemeManager.shared.themeDictionary(name: self.selectedThemeName),
+            let bundledTheme = ThemeManager.shared.settingDictionary(name: self.selectedThemeName),
             let newTheme = self.themeViewController?.theme else { return }
         
         if bundledTheme == newTheme {
@@ -546,7 +550,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         let themeName = UserDefaults.standard[.theme]!
         
-        self.themeNames = ThemeManager.shared.themeNames
+        self.themeNames = ThemeManager.shared.settingNames
         self.themeTableView?.reloadData()
         
         let row = self.themeNames.index(of: themeName) ?? 0

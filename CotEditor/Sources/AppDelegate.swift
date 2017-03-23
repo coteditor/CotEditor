@@ -429,7 +429,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         menu.addItem(.separator())
         
         // add syntax styles
-        for styleName in SyntaxManager.shared.styleNames {
+        for styleName in SyntaxManager.shared.settingNames {
             menu.addItem(withTitle: styleName, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
         }
         menu.addItem(.separator())
@@ -450,7 +450,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         menu.removeAllItems()
         
-        for themeName in ThemeManager.shared.themeNames {
+        for themeName in ThemeManager.shared.settingNames {
             menu.addItem(withTitle: themeName, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "")
         }
     }

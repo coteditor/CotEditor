@@ -44,13 +44,12 @@ final class ThemeManager: SettingFileManager {
     
     static let shared = ThemeManager()
     
-    private(set) var themeNames = [String]()
-    
     
     // MARK: Private Properties
     
-    private var cachedThemes = [String: Theme]()
+    private var themeNames = [String]()
     private var bundledThemeNames = [String]()
+    private var cachedThemes = [String: Theme]()
     
     
     
@@ -68,7 +67,7 @@ final class ThemeManager: SettingFileManager {
             .map { self.settingName(from: $0) }
         
         // cache user theme names
-        self.loadThemeNames()
+        self.loadUserSettings()
     }
     
     
@@ -121,7 +120,7 @@ final class ThemeManager: SettingFileManager {
             return theme
         }
         
-        guard let themeDictionary = self.themeDictionary(name: name) else { return nil }
+        guard let themeDictionary = self.settingDictionary(name: name) else { return nil }
         
         let theme = Theme(dictionary: themeDictionary, name: name)
         
@@ -132,99 +131,91 @@ final class ThemeManager: SettingFileManager {
     
     
     /// load theme dict in which objects are property list ready.
-    func themeDictionary(name: String) -> ThemeDictionary? {
+    func settingDictionary(name: String) -> ThemeDictionary? {
         
         guard
             let themeURL = self.urlForUsedSetting(name: name),
-            let themeDictionary = try? self.themeDictionary(fileURL: themeURL)
+            let themeDictionary = try? self.settingDictionary(fileURL: themeURL)
             else { return nil }
         
         return themeDictionary
     }
     
     
-    /// save theme
-    @discardableResult
-    func save(themeDictionary: ThemeDictionary, name settingName: String, completionHandler: ((Error?) -> Void)? = nil) -> Bool {  // @escaping
+    /// save setting file
+    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: ((Void) -> Void)? = nil) throws {  // @escaping
         
         // create directory to save in user domain if not yet exist
-        do {
-            try self.prepareUserSettingDirectory()
-        } catch {
-            completionHandler?(error)
-            return false
-        }
+        try self.prepareUserSettingDirectory()
         
-        let fileURL = self.preparedURLForUserSetting(name: settingName)
+        let fileURL = self.preparedURLForUserSetting(name: name)
+        let data = try JSONSerialization.data(withJSONObject: settingDictionary, options: .prettyPrinted)
         
-        do {
-            let data = try JSONSerialization.data(withJSONObject: themeDictionary, options: .prettyPrinted)
-            
-            try data.write(to: fileURL, options: .atomic)
-            
-        } catch {
-            completionHandler?(error)
-            return false
-        }
+        try data.write(to: fileURL, options: .atomic)
         
         self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: settingName, newName: settingName)
+            self?.notifySettingUpdate(oldName: name, newName: name)
             
-            completionHandler?(nil)
+            completionHandler?()
         }
-        
-        return true
     }
     
     
     /// rename theme
-    override func renameSetting(name settingName: String, to newName: String) throws {
+    override func renameSetting(name: String, to newName: String) throws {
         
-        try super.renameSetting(name: settingName, to: newName)
+        try super.renameSetting(name: name, to: newName)
         
-        if UserDefaults.standard[.theme] == settingName {
+        self.cachedThemes[name] = nil
+        self.cachedThemes[newName] = nil
+        
+        if UserDefaults.standard[.theme] == name {
             UserDefaults.standard[.theme] = newName
         }
         
         self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: settingName, newName: newName)
+            self?.notifySettingUpdate(oldName: name, newName: newName)
         }
     }
     
     
     /// delete theme file corresponding to the theme name
-    override func removeSetting(name settingName: String) throws {
+    override func removeSetting(name: String) throws {
         
-        try super.removeSetting(name: settingName)
+        try super.removeSetting(name: name)
+        
+        self.cachedThemes[name] = nil
         
         self.updateCache { [weak self] in
             // restore theme of opened documents to default
             let defaultThemeName = UserDefaults.standard[.theme]!
             
-            self?.notifySettingUpdate(oldName: settingName, newName: defaultThemeName)
+            self?.notifySettingUpdate(oldName: name, newName: defaultThemeName)
         }
     }
     
     
     /// restore customized bundled theme to original one
-    override func restoreSetting(name settingName: String) throws {
+    override func restoreSetting(name: String) throws {
         
-        try super.restoreSetting(name: settingName)
+        try super.restoreSetting(name: name)
+        
+        self.cachedThemes[name] = nil
         
         self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: settingName, newName: settingName)
+            self?.notifySettingUpdate(oldName: name, newName: name)
         }
     }
     
     
     /// create a new untitled theme
-    func createUntitledTheme(completionHandler: ((String, Error?) -> Void)? = nil) {  // @escaping
+    func createUntitledTheme(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
         
         // append number suffix if "Untitled" already exists
         let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
         
-        self.save(themeDictionary: self.plainThemeDictionary, name: name) { (error: Error?) in
-            completionHandler?(name, error)
+        try self.save(settingDictionary: self.blankSettingDictionary, name: name) {
+            completionHandler?(name)
         }
     }
     
@@ -232,11 +223,11 @@ final class ThemeManager: SettingFileManager {
     
     // MARK: Private Methods
     
-    /// Create ThemeDictionary from a file at the URL.
+    /// Return ThemeDictionary from a file at the URL.
     ///
-    /// - parameter fileURL: URL to a theme file.
+    /// - parameter fileURL: URL to a setting file.
     /// - throws: CocoaError
-    private func themeDictionary(fileURL: URL) throws -> ThemeDictionary {
+    private func settingDictionary(fileURL: URL) throws -> ThemeDictionary {
         
         let data = try Data(contentsOf: fileURL)
         let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
@@ -249,25 +240,8 @@ final class ThemeManager: SettingFileManager {
     }
     
     
-    /// update internal cache data
-    override func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
-        
-        self.cachedThemes = [:]
-        
-        DispatchQueue.global().async { [weak self] in
-            self?.loadThemeNames()
-            
-            DispatchQueue.main.sync {
-                self?.notifySettingListUpdate()
-                
-                completionHandler?()
-            }
-        }
-    }
-    
-    
     /// load theme names in user domain
-    private func loadThemeNames() {
+    override func loadUserSettings() {
         
         var themeNameSet = OrderedSet(self.bundledThemeNames)
         
@@ -293,11 +267,11 @@ final class ThemeManager: SettingFileManager {
     
     
     /// plain theme to be based on when creating a new theme
-    private var plainThemeDictionary: ThemeDictionary {
+    private var blankSettingDictionary: ThemeDictionary {
         
         let url = self.urlForBundledSetting(name: "_Plain")!
         
-        return try! self.themeDictionary(fileURL: url)
+        return try! self.settingDictionary(fileURL: url)
     }
     
 }

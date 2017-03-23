@@ -202,8 +202,8 @@ final class ToolbarController: NSObject {
         
         guard let menu = self.syntaxPopupButton?.menu else { return }
         
-        let styleNames = SyntaxManager.shared.styleNames
-        let recentStyleNames = SyntaxManager.shared.recentStyleNames
+        let styleNames = SyntaxManager.shared.settingNames
+        let recentStyleNames = SyntaxManager.shared.recentSettingNames
         let action = #selector(Document.changeSyntaxStyle(_:))
         
         menu.removeAllItems()

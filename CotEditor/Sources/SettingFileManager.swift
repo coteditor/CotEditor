@@ -73,8 +73,8 @@ class SettingFileManager: SettingManager {
     var bundledSettingNames: [String] { preconditionFailure() }
     
     
-    /// update internal cache data
-    func updateCache(completionHandler: (() -> Void)? = nil) { preconditionFailure() }
+    /// load settings in the user domain
+    func loadUserSettings() { preconditionFailure() }
     
     
     
@@ -262,6 +262,29 @@ class SettingFileManager: SettingManager {
         }
         
         try self.overwriteSetting(fileURL: fileURL)
+    }
+    
+    
+    /// update internal cache data
+    func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
+        
+        let previousSettingNames = self.settingNames
+        
+        DispatchQueue.global().async { [weak self] in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.loadUserSettings()
+            
+            let didUpdateList = strongSelf.settingNames != previousSettingNames
+            
+            DispatchQueue.main.sync {
+                if didUpdateList {
+                    strongSelf.notifySettingListUpdate()
+                }
+                
+                completionHandler?()
+            }
+        }
     }
     
     

@@ -331,8 +331,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
-            let styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent)
-                ?? SyntaxManager.shared.styleName(documentContent: string)
+            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
+                ?? SyntaxManager.shared.settingName(documentContent: string)
                 ?? BundledStyleName.none
             
             self.setSyntaxStyle(name: styleName)
@@ -425,8 +425,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // apply syntax style that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation {
                 let fileName = url.lastPathComponent
-                if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName)
-                    ?? SyntaxManager.shared.styleName(documentContent: strongSelf.string)
+                if let styleName = SyntaxManager.shared.settingName(documentFileName: fileName)
+                    ?? SyntaxManager.shared.settingName(documentContent: strongSelf.string)
                     // -> Due to the async-saving, self.string can be changed from the actual saved contents.
                     //    But we don't care about that.
                 {

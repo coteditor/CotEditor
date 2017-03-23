@@ -73,7 +73,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         self.syntaxTableView?.target = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: .SettingListDidUpdate, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: .SettingListDidUpdate, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: .SettingListDidUpdate, object: SyntaxManager.shared)
     }
     
     
@@ -397,7 +397,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     /// build sytnax style menus
     @objc private func setupSyntaxStyleMenus() {
         
-        let styleNames = SyntaxManager.shared.styleNames
+        let styleNames = SyntaxManager.shared.settingNames
         
         let styleStates: [[String: Any]] = styleNames.map { styleName in
             let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)

@@ -179,7 +179,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// update popup menu for color setting
     private func setupColorMenu() {
         
-        let themeNames = ThemeManager.shared.themeNames
+        let themeNames = ThemeManager.shared.settingNames
         
         guard let popupButton = self.colorPopupButton else { return }
         

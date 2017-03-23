@@ -127,7 +127,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         
         // add styles
-        for styleName in SyntaxManager.shared.styleNames {
+        for styleName in SyntaxManager.shared.settingNames {
             menu.addItem(withTitle: styleName)
             menu.lastItem!.representedObject = styleName
         }

@@ -117,15 +117,15 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         switch mode {
         case .edit:
             name = styleName
-            style = manager.styleDictionary(name: styleName)
+            style = manager.settingDictionary(name: styleName) ?? manager.blankSettingDictionary
             
         case .copy:
             name = manager.savableSettingName(for: styleName, appendCopySuffix: true)
-            style = manager.styleDictionary(name: styleName)
+            style = manager.settingDictionary(name: styleName) ?? manager.blankSettingDictionary
             
         case .new:
             name = ""
-            style = manager.emptyStyleDictionary
+            style = manager.blankSettingDictionary
         }
         self.mode = mode
         self.style = NSMutableDictionary(dictionary: style)
@@ -247,7 +247,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     /// restore current settings in editor to default
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
-        guard let style = SyntaxManager.shared.bundledStyleDictionary(name: self.originalStyleName) else { return }
+        guard let style = SyntaxManager.shared.bundledSettingDictionary(name: self.originalStyleName) else { return }
         
         // discard current editing
         self.discardEditing()
@@ -314,7 +314,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         let oldName: String? = (self.mode == .new) ? nil : self.originalStyleName
         
         do {
-            try SyntaxManager.shared.save(styleDictionary: styleDictionary, name: styleName, oldName: oldName)
+            try SyntaxManager.shared.save(settingDictionary: styleDictionary, name: styleName, oldName: oldName)
         } catch {
             print(error)
         }
