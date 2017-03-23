@@ -44,7 +44,7 @@ final class ReplacementManager: SettingFileManager {
         
         super.init()
         
-        self.updateCache()
+        self.loadUserSettings()
     }
     
     
@@ -99,42 +99,30 @@ final class ReplacementManager: SettingFileManager {
     
     
     /// save
-    func save(replacement: BatchReplacement, name settingName: String, completionHandler: ((Error?) -> Void)? = nil) {  // @escaping
+    func save(replacement: BatchReplacement, name settingName: String, completionHandler: ((Void) -> Void)? = nil) throws {  // @escaping
         
         // create directory to save in user domain if not yet exist
-        do {
-            try self.prepareUserSettingDirectory()
-        } catch {
-            completionHandler?(error)
-            return
-        }
+        try self.prepareUserSettingDirectory()
         
         let fileURL = self.preparedURLForUserSetting(name: settingName)
+        let data = try replacement.jsonData()
         
-        do {
-            let data = try replacement.jsonData()
-            
-            try data.write(to: fileURL, options: .atomic)
-            
-        } catch {
-            completionHandler?(error)
-            return
-        }
+        try data.write(to: fileURL, options: .atomic)
         
         self.updateCache {
-            completionHandler?(nil)
+            completionHandler?()
         }
     }
     
     
     /// create a new untitled setting
-    func createUntitledSetting(completionHandler: ((String, Error?) -> Void)? = nil) {  // @escaping
+    func createUntitledSetting(completionHandler: ((String) -> Void)? = nil) throws {  // @escaping
         
         let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
         let batchReplacement = BatchReplacement(replacements: [Replacement()])
         
-        self.save(replacement: batchReplacement, name: name) { (error: Error?) in
-            completionHandler?(name, error)
+        try self.save(replacement: batchReplacement, name: name) {
+            completionHandler?(name)
         }
     }
     
@@ -143,37 +131,20 @@ final class ReplacementManager: SettingFileManager {
     // MARK: Private Methods
     
     /// update internal cache data
-    override func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
+    override func loadUserSettings() {
         
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            // load settings if exists
-            let userDirURL = strongSelf.userSettingDirectoryURL
-            let settings: [String: BatchReplacement] = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
-                                                                                         options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
-                .filter { $0.pathExtension == strongSelf.filePathExtension }
-                .flatDictionary { (url) in
-                    guard
-                        let name = self?.settingName(from: url),
-                        let setting =  try? BatchReplacement(url: url)
-                        else { return nil }
-                    
-                    return (name, setting)
-                } ?? [:]
-            
-            let isListUpdated = (settings != strongSelf.settings)
-            strongSelf.settings = settings
-            
-            DispatchQueue.main.sync {
-                // post notification
-                if isListUpdated {
-                    self?.notifySettingListUpdate()
-                }
+        // load settings if exists
+        let userDirURL = self.userSettingDirectoryURL
+        self.settings = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
+                                                                      options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
+            .filter { $0.pathExtension == self.filePathExtension }
+            .flatDictionary { (url) in
+                guard let setting = try? BatchReplacement(url: url) else { return nil }
                 
-                completionHandler?()
-            }
-        }
+                let name = self.settingName(from: url)
+                
+                return (name, setting)
+            } ?? [:]
     }
     
 }

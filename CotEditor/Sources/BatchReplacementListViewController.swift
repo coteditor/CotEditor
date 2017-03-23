@@ -133,7 +133,7 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         
         guard let tableView = self.tableView else { return }
         
-        ReplacementManager.shared.createUntitledSetting { (settingName: String, error: Error?) in
+        try? ReplacementManager.shared.createUntitledSetting { (settingName: String) in
             let settingNames = ReplacementManager.shared.settingNames
             let row = settingNames.index(of: settingName) ?? 0
             
