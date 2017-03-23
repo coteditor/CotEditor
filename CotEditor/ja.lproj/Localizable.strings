@@ -72,6 +72,7 @@
 "Invalid regular expression" = "無効な正規表現です。";
 "Empty find string" = "検索文字列が空です。";
 "Input text to find." = "検索するテキストを入力してください。";
+"Applying to document…" = "書類に適用中...";
 
 
 /* MARK: FindPanelController */

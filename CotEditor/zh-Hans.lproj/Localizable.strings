@@ -72,6 +72,7 @@
 "Invalid regular expression" = "无效的正则表达式";
 "Empty find string" = "Empty find string";  // FIXME: added
 "Input text to find." = "Input text to find.";  // FIXME: added
+"Applying to document…" = "Applying to document…";  // FIXME: added
 
 
 /* MARK: FindPanelController */
