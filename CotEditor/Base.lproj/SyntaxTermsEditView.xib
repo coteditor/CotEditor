@@ -276,7 +276,7 @@
                         <binding destination="SKZ-Xe-n9z" name="enabled" keyPath="canAdd" id="mCe-bR-I1B"/>
                     </connections>
                 </button>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="17" translatesAutoresizingMaskIntoConstraints="NO" id="SH5-Cb-LuZ">
+                <button identifier="about_syntaxstyle" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SH5-Cb-LuZ">
                     <rect key="frame" x="415" y="9" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nmc-rH-V3q">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

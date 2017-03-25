@@ -360,11 +360,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     
     
     /// open a specific page in Help contents
-    @IBAction func openHelpAnchor(_ sender: AnyObject?) {
+    @IBAction func openHelpAnchor(_ sender: AnyObject) {
         
-        guard let tag = sender?.tag, tag < Help.anchors.count else { return }
+        guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
         
-        NSHelpManager.shared().openHelpAnchor(Help.anchors[tag], inBook: AppInfo.helpBookName)
+        NSHelpManager.shared().openHelpAnchor(identifier, inBook: AppInfo.helpBookName)
     }
     
     

@@ -127,7 +127,7 @@
                         <binding destination="SKZ-Xe-n9z" name="enabled" keyPath="canRemove" id="DV6-sv-Du1"/>
                     </connections>
                 </button>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="20" translatesAutoresizingMaskIntoConstraints="NO" id="eST-UC-Ayr">
+                <button identifier="about_complist_settings" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eST-UC-Ayr">
                     <rect key="frame" x="415" y="9" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oOZ-0a-aOK">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

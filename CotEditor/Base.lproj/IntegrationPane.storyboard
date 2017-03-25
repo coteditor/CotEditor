@@ -13,7 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="550" height="140"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" tag="16" translatesAutoresizingMaskIntoConstraints="NO" id="Lc8-C4-VWY">
+                            <button identifier="about_cot" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lc8-C4-VWY">
                                 <rect key="frame" x="142" y="93" width="109" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="2pf-7V-Y7I"/>
@@ -54,7 +54,7 @@
                                     </binding>
                                 </connections>
                             </textField>
-                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="rbP-cF-8do">
+                            <button identifier="pref_integration" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rbP-cF-8do">
                                 <rect key="frame" x="507" y="17" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WCi-c2-3a5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

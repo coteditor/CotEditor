@@ -356,7 +356,7 @@
                                     <binding destination="Qki-Cn-AgK" name="hidden" keyPath="editorOpaque" id="Ypy-zD-QcO"/>
                                 </connections>
                             </imageView>
-                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="6S6-gu-D2C">
+                            <button identifier="pref_window" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6S6-gu-D2C">
                                 <rect key="frame" x="507" y="17" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" state="on" borderStyle="border" inset="2" id="NSa-g8-oom">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

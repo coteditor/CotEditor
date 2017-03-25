@@ -383,7 +383,7 @@
                                     <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printFooter" id="IRO-6q-ukn"/>
                                 </connections>
                             </segmentedControl>
-                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="vgh-ld-DGW">
+                            <button identifier="pref_print" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vgh-ld-DGW">
                                 <rect key="frame" x="507" y="17" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="vLp-x1-my1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

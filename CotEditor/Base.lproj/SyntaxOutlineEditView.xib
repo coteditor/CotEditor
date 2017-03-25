@@ -227,7 +227,7 @@
                     <rect key="frame" x="8" y="20" width="48" height="18"/>
                     <buttonCell key="cell" type="check" title="Bold" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" inset="2" id="iub-mE-wGf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="systemBold" size="11"/>
+                        <font key="font" metaFont="smallSystemBold"/>
                     </buttonCell>
                     <connections>
                         <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.bold" id="oHN-Q7-K9W"/>
@@ -264,7 +264,7 @@
                     </constraints>
                     <color key="fillColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                 </box>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="19" translatesAutoresizingMaskIntoConstraints="NO" id="I4O-YH-ALG">
+                <button identifier="about_outlinemenu_settings" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I4O-YH-ALG">
                     <rect key="frame" x="415" y="9" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lB1-fG-MMl">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
