@@ -153,7 +153,11 @@ final class TextFind {
     }
     
     
-    /// replace matched string in selection with replacementStirng
+    /// Return ReplacementItem replacing matched string in selection.
+    ///
+    /// - Parameters:
+    ///   - replacementString: The string with which to replace.
+    /// - Returns: The struct of a string to replace with and a range to replace if found. Otherwise, nil.
     func replace(with replacementString: String) -> ReplacementItem? {
         
         let string = self.string
@@ -178,7 +182,12 @@ final class TextFind {
     }
     
     
+    /// Find all matches in scopes.
     ///
+    /// - Parameter 
+    ///   - block: The Block enumerates the matches.
+    ///   - matches: The array of matches including group matches.
+    ///   - stop: The Block can set the value to true to stop further processing of the array.
     func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
         
         let numberOfGroups = self.numberOfCaptureGroups
@@ -196,16 +205,23 @@ final class TextFind {
     }
     
     
+    /// Replace all matches.
     ///
+    /// - Parameters:
+    ///   - replacementString: The string with which to replace.
+    ///   - block: The Block enumerates the matches.
+    ///   - stop: The Block can set the value to true to stop further processing of the array.
+    /// - Returns:
+    ///   - replacementItems: ReplacementItem per selectedRange.
+    ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, nil.
     func replaceAll(with replacementString: String, using block: (_ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems = [ReplacementItem]()
         var selectedRanges = [NSRange]()
         
-        // variables to calculate new selection ranges
-        var locationDelta = 0
-        var lengthDelta = 0
+        // temporal container collecting replacements to process string per selection in `scopeCompletionHandler` block
+        var items = [ReplacementItem]()
         
         self.enumerateMatchs(in: self.scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             
@@ -215,18 +231,25 @@ final class TextFind {
                 return regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
             }()
             
-            replacementItems.append(ReplacementItem(string: replacedString, range: matchedRange))
-            
-            lengthDelta -= matchedRange.length - replacementString.utf16.count
+            items.append(ReplacementItem(string: replacedString, range: matchedRange))
             
             block(&stop)
             
         }, scopeCompletionHandler: { (scopeRange: NSRange) in
-            let selectedRange = NSRange(location: scopeRange.location + locationDelta,
-                                        length: scopeRange.length + lengthDelta)
-            locationDelta += selectedRange.length - scopeRange.length
-            lengthDelta = 0
+            // build replacementString
+            let substring = (self.string as NSString).substring(with: scopeRange)
+            let replacedString = items.reversed().reduce(substring) { (substring, item) in
+                let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)
+                return (substring as NSString).replacingCharacters(in: substringRange, with: item.string)
+            }
+            replacementItems.append(ReplacementItem(string: replacedString, range: scopeRange))
+            
+            // build selectedRange
+            let locationDelta = zip(selectedRanges, self.selectedRanges).reduce(scopeRange.location) { $0 + ($1.0.length - $1.1.length) }
+            let selectedRange = NSRange(location: locationDelta, length: (replacedString as NSString).length)
             selectedRanges.append(selectedRange)
+            
+            items.removeAll()
         })
         
         return (replacementItems, self.settings.inSelection ? selectedRanges : nil)
