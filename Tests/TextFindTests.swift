@@ -185,11 +185,9 @@ class TextFindTests: XCTestCase {
         textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)", settings: settings)
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { _ in }
-        XCTAssertEqual(replacementItems.count, 2)
-        XCTAssertEqual(replacementItems[0].string, "c\\t")
-        XCTAssertEqual(replacementItems[0].range, NSRange(location: 1, length: 2))
-        XCTAssertEqual(replacementItems[1].string, "C\\t")
-        XCTAssertEqual(replacementItems[1].range, NSRange(location: 9, length: 2))
+        XCTAssertEqual(replacementItems.count, 1)
+        XCTAssertEqual(replacementItems[0].string, "ac\\tdefg AC\\tDEFG")
+        XCTAssertEqual(replacementItems[0].range, NSRange(location: 0, length: 15))
         XCTAssertNil(selectedRanges)
         
         
@@ -200,10 +198,10 @@ class TextFindTests: XCTestCase {
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { _ in }
         XCTAssertEqual(replacementItems.count, 2)
-        XCTAssertEqual(replacementItems[0].string, "_")
-        XCTAssertEqual(replacementItems[0].range, NSRange(location: 8, length: 3))
-        XCTAssertEqual(replacementItems[1].string, "_")
-        XCTAssertEqual(replacementItems[1].range, NSRange(location: 16, length: 3))
+        XCTAssertEqual(replacementItems[0].string, "bcdefg _defg")
+        XCTAssertEqual(replacementItems[0].range, NSRange(location: 1, length: 14))
+        XCTAssertEqual(replacementItems[1].string, "_defg")
+        XCTAssertEqual(replacementItems[1].range, NSRange(location: 16, length: 7))
         XCTAssertEqual(selectedRanges![0], NSRange(location: 1, length: 12))
         XCTAssertEqual(selectedRanges![1], NSRange(location: 14, length: 5))
     }
