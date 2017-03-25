@@ -31,8 +31,9 @@
 
 
 
-// Menu item title for Sparkle
+// Main menu item titles
 "Check for Updates…" = "Nach Aktualisierungen suchen …";
+"What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number
 
 
 // Share menu

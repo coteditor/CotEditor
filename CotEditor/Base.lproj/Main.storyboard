@@ -1066,7 +1066,7 @@ CA
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="qQb-je-BMC"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="What’s New in CotEditor 3.2" tag="9" id="DCW-Ij-540">
+                                        <menuItem title="What’s New in CotEditor" tag="9" id="DCW-Ij-540">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="bTD-Xs-Jm8"/>
@@ -1113,6 +1113,7 @@ CA
                         <outlet property="encodingsMenu" destination="300" id="Oy6-3l-RCI"/>
                         <outlet property="syntaxStylesMenu" destination="304" id="kdn-rP-dcP"/>
                         <outlet property="themesMenu" destination="165-HJ-Xty" id="R7w-wo-SVO"/>
+                        <outlet property="whatsNewMenuItem" destination="DCW-Ij-540" id="Hnl-Yn-pbG"/>
                     </connections>
                 </customObject>
                 <customObject id="1Vq-aI-bgB" customClass="NSFontManager"/>

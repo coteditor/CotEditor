@@ -56,6 +56,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
+    @IBOutlet private weak var whatsNewMenuItem: NSMenuItem?
     
     
     
@@ -103,6 +104,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         // store key bindings in MainMenu.xib before menu is modified
         MenuKeyBindingManager.shared.scanDefaultMenuKeyBindings()
+        
+        // append the current version number to "What’s New" menu item
+        let shortVersionRange = AppInfo.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
+        let shortVersion = AppInfo.shortVersion.substring(with: shortVersionRange)
+        self.whatsNewMenuItem?.title = String(format: NSLocalizedString("What’s New in CotEditor %@", comment: ""), shortVersion)
         
         // build menus
         self.buildEncodingMenu()
