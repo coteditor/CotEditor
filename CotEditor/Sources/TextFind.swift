@@ -184,7 +184,7 @@ final class TextFind {
     
     /// Find all matches in scopes.
     ///
-    /// - Parameter 
+    /// - Parameter
     ///   - block: The Block enumerates the matches.
     ///   - matches: The array of matches including group matches.
     ///   - stop: The Block can set the value to true to stop further processing of the array.
