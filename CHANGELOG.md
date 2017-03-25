@@ -20,7 +20,6 @@ develop
 ### Improvements
 
 - Change syntax style detection behavior to set to “None” style if no appropriate style can be found on file opening.
-- Significantly improve performance of “Replace All” with large document.
 - Avoid hiding console panel when CotEditor becomes not the frontmost application.
 - Improve performance of closing large size document.
 - Improve drawing performance of a large size document with a non-opaque background (Not enough good as an opaque one but still better than before).

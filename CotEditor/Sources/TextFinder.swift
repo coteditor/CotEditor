@@ -442,14 +442,6 @@ final class TextFinder: NSResponder {
                 progress.needsUpdateDescription(count: count)
             }
             
-            progress.localizedDescription = NSLocalizedString("Applying to document…", comment: "")
-            
-            // TODO: in selection replacement
-            var string = textFind.string as NSString
-            for item in replacementItems.reversed() {
-                string = string.replacingCharacters(in: item.range, with: item.string) as NSString
-            }
-            
             DispatchQueue.main.sync {
                 textView.isEditable = true
                 
@@ -461,8 +453,11 @@ final class TextFinder: NSResponder {
                 indicator.done()
                 
                 if !replacementItems.isEmpty {
+                    let replacementStrings = replacementItems.map { $0.string }
+                    let replacementRanges = replacementItems.map { $0.range }
+                    
                     // apply found strings to the text view
-                    textView.replace(with: [string as String], ranges: [textFind.string.nsRange], selectedRanges: selectedRanges,
+                    textView.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
                                      actionName: NSLocalizedString("Replace All", comment: ""))
                 } else {
                     NSBeep()

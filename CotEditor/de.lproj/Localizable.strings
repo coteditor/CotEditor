@@ -71,7 +71,6 @@
 "Invalid regular expression" = "Ungültiger regulärer Ausdruck";
 "Empty find string" = "Leerer Suchbegriff";
 "Input text to find." = "Geben Sie den zu findenden Text ein.";
-"Applying to document…" = "Auf das Document anwenden …";
 
 
 /* MARK: FindPanelController */
