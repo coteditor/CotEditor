@@ -106,14 +106,21 @@ final class TextFind {
     
     // MARK: Public Methods
     
-    /// the number of capture groups in the regular expression.
+    /// The number of capture groups in the regular expression.
     var numberOfCaptureGroups: Int {
         
         return self.regex?.numberOfCaptureGroups ?? 0
     }
     
     
-    /// find single match from the first selection.
+    /// Return the nearest match from the insertion point.
+    ///
+    /// - Parameter:
+    ///   - forward: Whether search forward from the insertion.
+    /// - Returns:
+    ///   - range: The range of matched or nil if not found.
+    ///   - count: The total number of matches in the scopes.
+    ///   - wrapped: Whether the search was wrapped to find the result.
     func find(forward: Bool) -> (range: NSRange?, count: Int, wrapped: Bool) {
         
         let selectedRange = self.selectedRanges.first!
@@ -182,7 +189,7 @@ final class TextFind {
     }
     
     
-    /// Find all matches in scopes.
+    /// Find all matches in the scopes.
     ///
     /// - Parameter
     ///   - block: The Block enumerates the matches.
@@ -205,7 +212,7 @@ final class TextFind {
     }
     
     
-    /// Replace all matches.
+    /// Replace all matches in the scopes.
     ///
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
