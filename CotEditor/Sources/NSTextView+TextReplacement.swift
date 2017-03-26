@@ -49,6 +49,7 @@ extension NSTextView {
     @discardableResult
     func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String?) -> Bool {
         
+        assert(Thread.isMainThread)
         assert(strings.count == ranges.count, "unbalanced number of strings and ranges for multiple replacement")
         
         guard !strings.isEmpty, let textStorage = self.textStorage else { return false }
@@ -103,6 +104,8 @@ extension NSTextView {
     
     /// trim all trailing whitespace with/without keeeping editing point
     func trimTrailingWhitespace(keepingEditingPoint: Bool = false) {
+        
+        assert(Thread.isMainThread)
         
         guard let string = self.string else { return }
         
