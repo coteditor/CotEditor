@@ -407,7 +407,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 baseFileName.remove(at: baseFileName.startIndex)
             }
             // append a unique string to avoid overwriting another backup file with the same file name.
-            let fileName = baseFileName + " (\(self.autosaveIdentifier))"
+            let fileName = baseFileName + " (" + self.autosaveIdentifier + ")"
             
             return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
