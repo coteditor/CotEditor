@@ -203,10 +203,9 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         guard let content = self.fileDropController?.content as? [[String: String]] else { return }
         
         // sanitize
-        UserDefaults.standard[.fileDropArray] = content.flatMap { (item: [String: String]) -> [String: String]? in
-            
+        let sanitized = content.flatMap { (item: [String: String]) -> [String: String]? in
+            var item = item
             if let extensions = item[FileDropComposer.SettingKey.extensions], extensions.isEmpty {
-                var item = item
                 item[FileDropComposer.SettingKey.extensions] = nil
             }
             
@@ -214,6 +213,15 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             
             return item
         }
+        
+        // check if the new setting is different from the default
+        let defaultSetting = DefaultSettings.defaults[DefaultKeys.fileDropArray.rawValue] as! [[String: String]]
+        guard
+            defaultSetting.count != sanitized.count,
+            zip(defaultSetting, sanitized).contains(where: { $0 != $1 })
+            else { return }
+        
+        UserDefaults.standard[.fileDropArray] = sanitized
     }
     
     
