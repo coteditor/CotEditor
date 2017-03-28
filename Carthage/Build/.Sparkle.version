@@ -1,10 +1,10 @@
 {
-  "xcodeVersion" : "Xcode 8.2.1\nBuild version 8C1002",
+  "xcodeVersion" : "Xcode 8.3\nBuild version 8E162",
   "commitish" : "1.17.0",
   "Mac" : [
     {
-      "name" : "Sparkle",
-      "md5" : "ef597e32f0e57c918f609a4619a6eadc"
+      "hash" : "dae0f1fc20e369fc472bc57e13ddae9d47be3cfc12e9d350c2b350d6fc0da24d",
+      "name" : "Sparkle"
     }
   ]
 }
