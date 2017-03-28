@@ -116,7 +116,7 @@ extension Replacement {
         
         if self.usesRegularExpression {
             do {
-                let _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
+                _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
             } catch {
                 let failureReason = error.localizedDescription
                 throw TextFindError.regularExpression(reason: failureReason)

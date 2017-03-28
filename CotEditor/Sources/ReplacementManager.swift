@@ -99,7 +99,7 @@ final class ReplacementManager: SettingFileManager {
     
     
     /// save
-    func save(replacement: BatchReplacement, name settingName: String, completionHandler: ((Void) -> Void)? = nil) throws {  // @escaping
+    func save(replacement: BatchReplacement, name settingName: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
