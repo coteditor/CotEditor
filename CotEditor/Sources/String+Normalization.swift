@@ -39,7 +39,7 @@ extension String {
         var error = U_ZERO_ERROR
         let normalizer = unorm2_getInstance(nil, "nfkc_cf", UNORM2_COMPOSE, &error)
         
-        guard U_SUCCESS(error) else {
+        guard u_success(error) else {
             debugPrint("unorm2_getInstance failed: ", u_errorName(error))
             return self
         }
@@ -50,7 +50,7 @@ extension String {
         
         let destLength = unorm2_normalize(normalizer, source, sourceLength, &destination, sourceLength * 64, &error)
         
-        guard U_SUCCESS(error) else {
+        guard u_success(error) else {
             debugPrint("unorm2_normalize failed: ", u_errorName(error))
             return self
         }
@@ -102,7 +102,7 @@ extension String {
 // MARK: Private Functions
 
 /// check succesion from UErrorCode
-private func U_SUCCESS(_ code: UErrorCode) -> Bool {
+private func u_success(_ code: UErrorCode) -> Bool {
     
     return code.rawValue <= U_ZERO_ERROR.rawValue
 }

@@ -14,6 +14,7 @@ opt_in_rules:
   - valid_docs
 
 disabled_rules:
+  - for_where
   - force_cast
   - nesting
   - opening_brace

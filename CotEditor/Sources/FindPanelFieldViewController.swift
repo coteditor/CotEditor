@@ -257,10 +257,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: DefaultKey<[String]>, action: Selector) {
         
         // clear current history items
-        for item in menu.items {
-            if item.action == action || item.isSeparatorItem {
-                menu.removeItem(item)
-            }
+        for item in menu.items where (item.action == action || item.isSeparatorItem) {
+            menu.removeItem(item)
         }
         
         guard let history = UserDefaults.standard[key], !history.isEmpty else { return }
