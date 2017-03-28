@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E191a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -1043,7 +1043,7 @@ CA
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="CotEditor Scripting Manual" id="OLa-Mb-rXS">
                                                 <items>
-                                                    <menuItem title="About Scripting" tag="3" id="u2o-8v-WPL">
+                                                    <menuItem title="About Scripting" identifier="about_scripting" id="u2o-8v-WPL">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="CvM-9e-xdi"/>
@@ -1060,13 +1060,13 @@ CA
                                         <menuItem isSeparatorItem="YES" id="619">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Release Notes" tag="1" id="822">
+                                        <menuItem title="Release Notes" identifier="releasenotes" id="822">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="qQb-je-BMC"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="What’s New in CotEditor" tag="2" id="DCW-Ij-540">
+                                        <menuItem title="What’s New in CotEditor" identifier="whats_new" id="DCW-Ij-540">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="bTD-Xs-Jm8"/>

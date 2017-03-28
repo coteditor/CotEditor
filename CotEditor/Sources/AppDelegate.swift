@@ -368,16 +368,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     /// open a specific page in Help contents
     @IBAction func openHelpAnchor(_ sender: AnyObject) {
         
-        // workaround for setting menuItem's identifier in Interface Builder
-        if let menuItem = sender as? NSMenuItem {
-            switch menuItem.tag {
-            case 1: menuItem.identifier = "releasenotes"
-            case 2: menuItem.identifier = "whats_new"
-            case 3: menuItem.identifier = "about_scripting"
-            default: break
-            }
-        }
-        
         guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
         
         NSHelpManager.shared().openHelpAnchor(identifier, inBook: AppInfo.helpBookName)
