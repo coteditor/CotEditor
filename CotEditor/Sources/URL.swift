@@ -44,7 +44,7 @@ extension URL {
         let pathComponents = self.pathComponents
         let basePathComponents = baseURL.pathComponents
         
-        let sameCount = zip(basePathComponents, pathComponents).prefix(while: { $0 == $1 }).count
+        let sameCount = zip(basePathComponents, pathComponents).count(while: { $0 == $1 })
         let parentCount = basePathComponents.count - sameCount - 1
         let sameComponents = [String](repeating: "..", count: parentCount)
         let diffComponents = pathComponents[sameCount..<pathComponents.count]
