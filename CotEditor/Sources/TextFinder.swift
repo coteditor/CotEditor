@@ -552,7 +552,7 @@ final class TextFinder: NSResponder {
         let settings = TextFind.Settings(defaults: UserDefaults.standard)
         let textFind: TextFind
         do {
-            textFind = try TextFind(for: string, findString: self.sanitizedFindString, settings: settings, selectedRanges: textView.selectedRanges as [NSRange])
+            textFind = try TextFind(for: string, findString: self.sanitizedFindString, settings: settings, selectedRanges: textView.selectedRanges as! [NSRange])
         } catch {
             switch error {
             case TextFindError.regularExpression:

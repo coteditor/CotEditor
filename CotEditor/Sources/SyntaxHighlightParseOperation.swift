@@ -77,7 +77,7 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
     
     var debugDescription: String {
         
-        return "<\(HighlightDefinition.self) begin: \(self.beginString)  end: \(self.endString)>"
+        return "<\(HighlightDefinition.self) begin: \(self.beginString)  end: \(self.endString ?? "nil")>"
     }
     
     
@@ -223,7 +223,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             guard
                 !scanner.isAtEnd,
                 scanner.scanCharacters(from: characterSet, into: &scannedString),
-                let word = scannedString as? String else { break }
+                let word = scannedString as String? else { break }
             
             guard words.contains(word) || caseInsensitiveWords.contains(word.lowercased()) else { continue }
             
@@ -526,7 +526,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                 totalProgress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             }
             
-            let childProgress = Progress(totalUnitCount: definitions.count + 10)  // + 10 for simple words
+            let childProgress = Progress(totalUnitCount: Int64(definitions.count) + 10)  // + 10 for simple words
             
             var simpleWords = [String]()
             var caseInsensitiveWords = [String]()

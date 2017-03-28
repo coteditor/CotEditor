@@ -178,7 +178,7 @@ extension EditorTextView {
             if self.selectedRange.length == 0 {  // convert all if nothing selected
                 return [string.nsRange]
             }
-            return self.selectedRanges as [NSRange]
+            return self.selectedRanges as! [NSRange]
         }()
         
         var replacementRanges = [NSRange]()

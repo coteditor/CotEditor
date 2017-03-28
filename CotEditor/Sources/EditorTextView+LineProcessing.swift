@@ -45,11 +45,11 @@ extension EditorTextView {
             return
         }
         
-        let selectedRanges = self.selectedRanges as [NSRange]
+        let selectedRanges = self.selectedRanges as! [NSRange]
         
         // register redo for text selection
         if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
-            undoClient.setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+            undoClient.setSelectedRangesWithUndo(self.selectedRanges as! [NSRange])
         }
         
         var newSelectedRanges = [NSRange]()
@@ -114,11 +114,11 @@ extension EditorTextView {
             return
         }
         
-        let selectedRanges = self.selectedRanges as [NSRange]
+        let selectedRanges = self.selectedRanges as! [NSRange]
         
         // register redo for text selection
         if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
-            undoClient.setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+            undoClient.setSelectedRangesWithUndo(self.selectedRanges as! [NSRange])
         }
         
         var newSelectedRanges = [NSRange]()
@@ -244,7 +244,7 @@ extension EditorTextView {
         var processedCount = 0
         
         // collect duplicate lines
-        for range in self.selectedRanges as [NSRange] {
+        for range in self.selectedRanges as! [NSRange] {
             let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
             let targetString = string.substring(with: lineRange)
             let lines = targetString.components(separatedBy: .newlines)
@@ -277,7 +277,7 @@ extension EditorTextView {
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()
         
-        let selectedRanges = self.selectedRanges as [NSRange]
+        let selectedRanges = self.selectedRanges as! [NSRange]
         
         // get lines to process
         for selectedRange in selectedRanges {
@@ -336,7 +336,7 @@ private extension NSTextView {
         var lineRanges = OrderedSet<NSRange>()
         
         // get line ranges to process
-        for selectedRange in self.selectedRanges as [NSRange] {
+        for selectedRange in self.selectedRanges as! [NSRange] {
             let linesRange = string.lineRange(for: selectedRange)
             
             // store each line to process

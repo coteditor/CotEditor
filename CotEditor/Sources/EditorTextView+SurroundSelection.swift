@@ -80,7 +80,7 @@ extension NSTextView {
         
         guard let string = self.string as NSString? else { return false }
         
-        let selectedRanges = self.selectedRanges as [NSRange]
+        let selectedRanges = self.selectedRanges as! [NSRange]
         
         let replacementStrings = selectedRanges.map { begin + string.substring(with: $0) + end }
         let newSelectedRanges = selectedRanges.enumerated().map { (offset, range) in

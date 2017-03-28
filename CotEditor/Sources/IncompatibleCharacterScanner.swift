@@ -63,7 +63,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     
     var debugDescription: String {
         
-        return "<\(self): \(self.document?.displayName)>"
+        return "<\(self): \(self.document?.displayName ?? "NO DOCUMENT")>"
     }
     
     

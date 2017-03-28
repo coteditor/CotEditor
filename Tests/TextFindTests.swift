@@ -215,7 +215,7 @@ class TextFindTests: XCTestCase {
 private extension TextFind.Settings {
     
     /// omittable initializer
-    init(usesRegularExpression: Bool = false, isWrap: Bool = false, inSelection: Bool = false, textualOptions: String.CompareOptions = [], regexOptions: NSRegularExpression.Options = [], unescapesReplacementString: Bool = false) {
+    init(usesRegularExpression: Bool = false, isWrap: Bool = false, inSelection: Bool = false, textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [], unescapesReplacementString: Bool = false) {
         
         self.usesRegularExpression = usesRegularExpression
         self.isWrap = isWrap

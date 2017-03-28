@@ -56,7 +56,7 @@ extension NSTextView {
         
         // register redo for text selection
         if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
-            undoClient.setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+            undoClient.setSelectedRangesWithUndo(self.selectedRanges as! [NSRange])
         }
         
         // tell textEditor about beginning of the text processing
@@ -82,7 +82,7 @@ extension NSTextView {
         self.didChangeText()
         
         // apply new selection ranges
-        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges as [NSRange])
+        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges as! [NSRange])
         
         return true
     }

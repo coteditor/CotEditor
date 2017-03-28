@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,8 +35,11 @@ struct KeyBinding: Hashable, Comparable, CustomStringConvertible {
     
     
     var description: String {
-        
-        return "<KeyBinding: \(self.action) - \(self.shortcut)>"
+        if let shortcut = self.shortcut {
+        return "<KeyBinding: \(self.action) - \(shortcut)>"
+        } else {
+            return "<KeyBinding: \(self.action)>"
+        }
     }
     
     

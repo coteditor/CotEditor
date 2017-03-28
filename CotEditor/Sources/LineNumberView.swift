@@ -525,7 +525,7 @@ extension LineNumberView {
         
         // repeat while dragging
         self.draggingTimer = .scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(selectLines),
-                                             userInfo: DraggingInfo(index: index, selectedRanges: textView.selectedRanges as [NSRange]),
+                                             userInfo: DraggingInfo(index: index, selectedRanges: textView.selectedRanges as! [NSRange]),
                                              repeats: true)
         
         self.selectLines(nil)  // for single click event
@@ -576,7 +576,7 @@ extension LineNumberView {
         
         // with Command key (add selection)
         if NSEvent.modifierFlags().contains(.command) {
-            let originalSelectedRanges = draggingInfo?.selectedRanges ?? textView.selectedRanges as [NSRange]
+            let originalSelectedRanges = draggingInfo?.selectedRanges ?? textView.selectedRanges as! [NSRange]
             var selectedRanges = [NSRange]()
             var intersects = false
             

@@ -949,7 +949,7 @@ final class EditorTextView: NSTextView, Themable {
         let lineEnding = String((self.documentLineEnding ?? .LF).rawValue)
         
         // substring all selected attributed strings
-        let selectedRanges = self.selectedRanges as [NSRange]
+        let selectedRanges = self.selectedRanges as! [NSRange]
         for selectedRange in selectedRanges {
             let plainText = (string as NSString).substring(with: selectedRange)
             let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
