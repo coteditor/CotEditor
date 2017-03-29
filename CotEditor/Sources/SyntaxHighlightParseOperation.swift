@@ -116,14 +116,6 @@ private struct QuoteCommentItem {
 
 
 
-private extension CharacterSet {
-    
-    static let wordBrakeCharacters = CharacterSet(charactersIn: "\n\t ")
-    static let simpleAlphanumeric = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_")
-}
-
-
-
 // MARK: -
 
 final class SyntaxHighlightParseOperation: AsynchronousOperation {
@@ -192,48 +184,22 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     
     // MARK: Private Methods
     
-    /// extract ranges of passed-in words with Scanner by considering non-word characters around words
-    private func ranges(words: [String], caseInsensitiveWords: [String]) -> [NSRange] {
+    /// extract ranges of passed-in words by considering non-word characters around words
+    private func ranges(words: [String], ignoreCase: Bool) -> [NSRange] {
         
-        guard !words.isEmpty || !caseInsensitiveWords.isEmpty else { return [] }
+        guard !words.isEmpty else { return [] }
         
-        // create characterSet dict for simple word highlights
-        let characterSet: CharacterSet = {
-            let charactersString = words + caseInsensitiveWords.map({ $0.uppercased() + $0.lowercased() })
-            var charSet = CharacterSet(charactersIn: charactersString.joined())
-                .union(.simpleAlphanumeric)
-            
-            charSet.remove(charactersIn: "\n\t ")  // ignore line breaks, tabs and spaces
-            
-            return charSet
-        }()
-        
-        var ranges = [NSRange]()
-        
-        let scanner = Scanner(string: self.string!)
-        scanner.caseSensitive = !caseInsensitiveWords.isEmpty
-        scanner.scanLocation = self.parseRange.location
-        
-        while !scanner.isAtEnd && scanner.scanLocation < self.parseRange.max {
-            guard !self.isCancelled else { return [] }
-            
-            var scannedString: NSString?
-            scanner.scanUpToCharacters(from: characterSet, into: nil)
-            
-            guard
-                !scanner.isAtEnd,
-                scanner.scanCharacters(from: characterSet, into: &scannedString),
-                let word = scannedString as String? else { break }
-            
-            guard words.contains(word) || caseInsensitiveWords.contains(word.lowercased()) else { continue }
-            
-            let length = word.utf16.count
-            let range = NSRange(location: scanner.scanLocation - length, length: length)
-            
-            ranges.append(range)
+        var options: NSRegularExpression.Options = .anchorsMatchLines
+        if ignoreCase {
+            options.update(with: .caseInsensitive)
         }
         
-        return ranges
+        let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
+        let rawBoundary = (words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").unique
+        let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
+        let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
+        
+        return self.ranges(regularExpressionString: pattern, ignoreCase: ignoreCase)
     }
     
     
@@ -582,7 +548,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             guard !self.isCancelled else { return [:] }
             
             // extract simple words
-            ranges += self.ranges(words: simpleWords, caseInsensitiveWords: caseInsensitiveWords)
+            ranges += self.ranges(words: simpleWords, ignoreCase: false)
+            ranges += self.ranges(words: caseInsensitiveWords, ignoreCase: true)
             
             // store range array
             highlights[syntaxType] = ranges
@@ -627,6 +594,17 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
 
 
 // MARK: Private Functions
+
+private extension String {
+    
+    /// String consists with unique characters in the receiver.
+    var unique: String {
+        
+        return String(Set(self.characters).sorted())
+    }
+    
+}
+
 
 /** Remove duplicated coloring ranges.
  
