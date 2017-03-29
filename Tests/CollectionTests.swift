@@ -1,6 +1,7 @@
 /*
  
  CollectionTests.swift
+ Tests
  
  CotEditor
  https://coteditor.com
@@ -32,9 +33,13 @@ class CollectionTests: XCTestCase {
     
     func testCount() {
         
-        XCTAssertEqual([1, 2, 0, -1, 3].count(while: { $0 > 0 }), 2)
-        XCTAssertEqual([0, 1, 2, 0, -1].count(while: { $0 > 0 }), 0)
-        XCTAssertEqual([1, 2, 3, 4, 5].count(while: { $0 > 0 }), 5)
+        XCTAssertEqual([1, 2, 0, -1, 3].count({ $0 > 0 }), 3)
+        XCTAssertEqual([0, 1, 2, 0, -1].count({ $0 > 0 }), 2)
+        XCTAssertEqual([1, 2, 3, 4, 5].count({ $0 > 0 }), 5)
+        
+        XCTAssertEqual([1, 2, 0, -1, 3].countPrefix(while: { $0 > 0 }), 2)
+        XCTAssertEqual([0, 1, 2, 0, -1].countPrefix(while: { $0 > 0 }), 0)
+        XCTAssertEqual([1, 2, 3, 4, 5].countPrefix(while: { $0 > 0 }), 5)
     }
     
 }

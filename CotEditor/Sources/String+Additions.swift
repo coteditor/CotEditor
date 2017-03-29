@@ -111,7 +111,7 @@ extension String {
         let startIndex = self.index(index, offsetBy: -MaxEscapesCheckLength, limitedBy: self.startIndex) ?? self.startIndex
         let seekCharacters = self.characters[startIndex..<index]
         
-        let numberOfEscapes = seekCharacters.reversed().count(while: { $0 == "\\" })
+        let numberOfEscapes = seekCharacters.reversed().countPrefix { $0 == "\\" }
         
         return (numberOfEscapes % 2 == 1)
     }

@@ -27,7 +27,6 @@
 
 import Foundation
 
-// element
 extension Array where Element: Equatable {
     
     /// Remove first collection element that is equal to the given `element`
@@ -70,7 +69,25 @@ extension Sequence {
 
 
 
+// MARK: - Count
+
 extension Sequence {
+    
+    /// Count up elements that satisfy the given predicate.
+    ///
+    /// - Parameters:
+    ///    - predicate: A closure that takes an element of the sequence as its argument
+    ///                 and returns a Boolean value indicating whether the element should be counted.
+    /// - Returns: The number of elements that satisfies the given predicate.
+    func count(_ predicate: (Iterator.Element) -> Bool) -> Int {
+        
+        var count = 0
+        for element in self where predicate(element) {
+            count += 1
+        }
+        return count
+    }
+    
     
     /// Count up elements by enumerating collection until a element shows up that doesn't satisfy the given predicate.
     ///
@@ -78,7 +95,7 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
-    func count(while predicate: (Iterator.Element) -> Bool) -> Int {
+    func countPrefix(while predicate: (Iterator.Element) -> Bool) -> Int {
         
         var count = 0
         for element in self {
@@ -86,7 +103,6 @@ extension Sequence {
             
             count += 1
         }
-        
         return count
     }
     
@@ -94,7 +110,8 @@ extension Sequence {
 
 
 
-// IndexSet
+// MARK: - IndexSet
+
 extension Array {
     
     /// Remove elements with IndexSet
@@ -111,6 +128,7 @@ extension Array {
         
         return indexes.flatMap { index in
             guard index < self.count else { return nil }
+            
             return self[index]
         }
     }
