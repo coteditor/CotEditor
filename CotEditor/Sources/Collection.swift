@@ -1,6 +1,6 @@
 /*
  
- Array.swift
+ Collection.swift
  
  CotEditor
  https://coteditor.com
@@ -48,8 +48,8 @@ extension Collection {
         
         return (startIndex..<endIndex).contains(index) ? self[index] : nil
     }
+    
 }
-
 
 
 extension Sequence {
@@ -63,7 +63,6 @@ extension Sequence {
             
             dict[tuple.0] = tuple.1
         }
-        
         return dict
     }
     
@@ -73,12 +72,12 @@ extension Sequence {
 
 extension Sequence {
     
-    /// Count up elements enumerating collection until a element shows up that doesn't satisfy the given predicate.
+    /// Count up elements by enumerating collection until a element shows up that doesn't satisfy the given predicate.
     ///
     /// - Parameters:
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
-    /// - Returns: The number of elements .
+    /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
     func count(while predicate: (Iterator.Element) -> Bool) -> Int {
         
         var count = 0
