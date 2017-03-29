@@ -92,6 +92,25 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
 }
 
 
+extension HighlightDefinition {
+    
+    /// create a regex type definition from simple words by considering non-word characters around words
+    init(words: [String], ignoreCase: Bool) {
+        
+        let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
+        let rawBoundary = (words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").unique
+        let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
+        let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
+        
+        self.beginString = pattern
+        self.endString = nil
+        self.isRegularExpression = true
+        self.ignoreCase = ignoreCase
+    }
+    
+}
+
+
 
 private struct QuoteCommentItem {
     
@@ -184,37 +203,18 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     
     // MARK: Private Methods
     
-    /// extract ranges of passed-in words by considering non-word characters around words
-    private func ranges(words: [String], ignoreCase: Bool) -> [NSRange] {
-        
-        guard !words.isEmpty else { return [] }
-        
-        var options: NSRegularExpression.Options = .anchorsMatchLines
-        if ignoreCase {
-            options.update(with: .caseInsensitive)
-        }
-        
-        let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
-        let rawBoundary = (words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").unique
-        let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
-        let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
-        
-        return self.ranges(regularExpressionString: pattern, ignoreCase: ignoreCase)
-    }
-    
-    
     /// simply extract ranges of passed-in string
-    private func ranges(string searchString: String) -> [NSRange] {
+    private func ranges(string searchString: String, ignoreCase: Bool = false) -> [NSRange] {
         
         guard !searchString.isEmpty else { return [] }
         
         var ranges = [NSRange]()
         let string = self.string!
+        let options: NSString.CompareOptions = ignoreCase ? [.literal, .caseInsensitive] : .literal
         
         var location = self.parseRange.location
         while location != NSNotFound {
-            let range = (string as NSString).range(of: searchString,
-                                                   options: .literal,
+            let range = (string as NSString).range(of: searchString, options: options,
                                                    range: NSRange(location: location,
                                                                   length: self.parseRange.max - location))
             location = range.max
@@ -494,10 +494,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             
             let childProgress = Progress(totalUnitCount: Int64(definitions.count) + 10)  // + 10 for simple words
             
-            var simpleWords = [String]()
-            var caseInsensitiveWords = [String]()
-            let wordsQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.words." + syntaxType.rawValue)
-            
             var ranges = [NSRange]()
             let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
             
@@ -505,35 +501,32 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                 guard !self.isCancelled else { return }
                 
                 let definition = definitions[i]
-                var extractedRanges: [NSRange]?
                 
-                if definition.isRegularExpression {
-                    if let endString = definition.endString {
-                        extractedRanges = self.ranges(regularExpressionBeginString: definition.beginString,
-                                                      endString: endString,
-                                                      ignoreCase: definition.ignoreCase)
+                let extractedRanges: [NSRange] = {
+                    if definition.isRegularExpression {
+                        if let endString = definition.endString {
+                            return self.ranges(regularExpressionBeginString: definition.beginString,
+                                               endString: endString,
+                                               ignoreCase: definition.ignoreCase)
+                        } else {
+                            return self.ranges(regularExpressionString: definition.beginString,
+                                               ignoreCase: definition.ignoreCase)
+                        }
+                        
                     } else {
-                        extractedRanges = self.ranges(regularExpressionString: definition.beginString,
-                                                      ignoreCase: definition.ignoreCase)
-                    }
-                    
-                } else {
-                    if let endString = definition.endString {
-                        extractedRanges = self.ranges(beginString: definition.beginString,
-                                                      endString: endString,
-                                                      ignoreCase: definition.ignoreCase)
-                    } else {
-                        wordsQueue.sync {
-                            if definition.ignoreCase {
-                                caseInsensitiveWords.append(definition.beginString.lowercased())
-                            } else {
-                                simpleWords.append(definition.beginString)
-                            }
+                        if let endString = definition.endString {
+                            return self.ranges(beginString: definition.beginString,
+                                               endString: endString,
+                                               ignoreCase: definition.ignoreCase)
+                        } else {
+                            assertionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
+                            return self.ranges(string: definition.beginString,
+                                               ignoreCase: definition.ignoreCase)
                         }
                     }
-                }
+                }()
                 
-                if let extractedRanges = extractedRanges, !extractedRanges.isEmpty {
+                if !extractedRanges.isEmpty {
                     rangesQueue.sync {
                         ranges += extractedRanges
                     }
@@ -546,10 +539,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             }
             
             guard !self.isCancelled else { return [:] }
-            
-            // extract simple words
-            ranges += self.ranges(words: simpleWords, ignoreCase: false)
-            ranges += self.ranges(words: caseInsensitiveWords, ignoreCase: true)
             
             // store range array
             highlights[syntaxType] = ranges

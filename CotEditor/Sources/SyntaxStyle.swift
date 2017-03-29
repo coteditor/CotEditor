@@ -117,18 +117,27 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
-        // also check if highlighting definition exists
-        var highlightDictionary = [SyntaxType: [HighlightDefinition]]()
-        var quoteTypes = [String: SyntaxType]()
-        for type in SyntaxType.all {
-            guard let definitionDictionaries = dictionary[type.rawValue] as? [[String: Any]] else { continue }
+        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.flatDictionary { (type) -> (SyntaxType, [HighlightDefinition])? in
+            guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return nil }
             
-            var definitions = [HighlightDefinition]()
-            for wordDict in definitionDictionaries {
-                guard let definition = HighlightDefinition(definition: wordDict) else { continue }
-                
-                // check quote
+            let definitions = wordDicts.flatMap { HighlightDefinition(definition: $0) }
+            
+            guard !definitions.isEmpty else { return nil }
+            
+            return (type, definitions)
+        }
+        
+        // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
+        // also combine simple word definitions into single regex definition
+        var quoteTypes = [String: SyntaxType]()
+        self.highlightDictionary = definitionDictionary.flatDictionary { (type, definitions) in
+            
+            var highlightDefinitions = [HighlightDefinition]()
+            var words = [String]()
+            var caseInsensitiveWords = [String]()
+            
+            for definition in definitions {
+                // extract quotes
                 if !definition.isRegularExpression, definition.beginString == definition.endString,
                     definition.beginString.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
                     Set(definition.beginString.characters).count == 1,  // consists of the same characters
@@ -140,11 +149,31 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                     continue
                 }
                 
-                definitions.append(definition)
+                // extract simple words
+                if !definition.isRegularExpression, definition.endString == nil {
+                    if definition.ignoreCase {
+                        caseInsensitiveWords.append(definition.beginString)
+                    } else {
+                        words.append(definition.beginString)
+                    }
+                    continue
+                }
+                
+                highlightDefinitions.append(definition)
             }
-            highlightDictionary[type] = definitions
+            
+            // transform simple word highlights to single regex for performance reasons
+            if !words.isEmpty {
+                highlightDefinitions.append(HighlightDefinition(words: words, ignoreCase: false))
+            }
+            if !caseInsensitiveWords.isEmpty {
+                highlightDefinitions.append(HighlightDefinition(words: caseInsensitiveWords, ignoreCase: true))
+            }
+            
+            guard !highlightDefinitions.isEmpty else { return nil }
+            
+            return (type, highlightDefinitions)
         }
-        self.highlightDictionary = highlightDictionary
         self.pairedQuoteTypes = quoteTypes
         
         // create word-completion data set
@@ -161,7 +190,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                 }
             } else {
                 // create from normal highlighting words
-                for definitions in highlightDictionary.values {
+                for definitions in definitionDictionary.values {
                     for definition in definitions {
                         guard definition.endString == nil && !definition.isRegularExpression else { continue }
                         
