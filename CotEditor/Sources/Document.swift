@@ -935,7 +935,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         syntaxStyle.textStorage = self.textStorage
         self.syntaxStyle = syntaxStyle
         
-        NotificationCenter.default.post(name: .DocumentDidChangeSyntaxStyle, object: self)
+        DispatchQueue.main.async { [weak self] in
+            NotificationCenter.default.post(name: .DocumentDidChangeSyntaxStyle, object: self)
+        }
     }
     
     
