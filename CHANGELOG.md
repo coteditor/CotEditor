@@ -28,6 +28,7 @@ develop
 - Improve invisible character drawing on a non-opaque view.
 - Improve auto-brackets/quotes insertion behavior with multiple selections.
 - Improve the setting file naming rule for when the name overwraps with an existing setting.
+- Update “Ruby” syntax style to fix command highlight.
 - Remove less useful “Inline script menu items into contextual menu” option.
 - And some minor improvements and fixes.
 
