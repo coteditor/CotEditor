@@ -201,17 +201,17 @@ final class OutlineParseOperation: AsynchronousOperation {
                 
                 // append outline item
                 outlineItems.append(item)
-                
-                guard !self.isCancelled else { return }
             }
-            
-            // sort by location
-            outlineItems.sort {
-                $0.range.location < $1.range.location
-            }
-            
-            self.results = outlineItems
         }
+        
+        guard !self.isCancelled else { return }
+        
+        // sort by location
+        outlineItems.sort {
+            $0.range.location < $1.range.location
+        }
+        
+        self.results = outlineItems
     }
     
 }
