@@ -126,9 +126,7 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         XCTAssertEqual(item.title, "   h2: 🐕🐄")
         XCTAssertEqual(item.range.location, 354)
         XCTAssertEqual(item.range.length, 13)
-        XCTAssertFalse(item.isBold)
-        XCTAssertFalse(item.isItalic)
-        XCTAssertFalse(item.hasUnderline)
+        XCTAssertTrue(item.style.isEmpty)
     }
     
 }
