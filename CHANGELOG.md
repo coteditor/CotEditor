@@ -26,6 +26,7 @@ develop
 - Improve performance of closing large size document.
 - Improve drawing performance of a large size document with a non-opaque background (Not enough good as an opaque one but still better than before).
 - Add hidden “Reload All Themes/Styles” menu item to theme/syntax style action menus in Preferences (visible with `Option` key).
+- Enable changing text size with single stroke by pressing and holding Touch Bar's Text Size button.
 - Improve invisible character drawing on a non-opaque view.
 - Improve auto-brackets/quotes insertion behavior with multiple selections.
 - Improve the setting file naming rule for when the name overwraps with an existing setting.
