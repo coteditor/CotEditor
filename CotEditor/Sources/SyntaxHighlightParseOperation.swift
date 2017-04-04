@@ -168,6 +168,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         self.blockCommentDelimiters = blockCommentDelimiters
         
         self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))
+        // +1 for comments & quotes
         
         super.init()
         
@@ -481,18 +482,17 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     private func extractHighlights() -> [SyntaxType: [NSRange]] {
         
         var highlights = [SyntaxType: [NSRange]]()
-        let totalProgress = self.progress
         
         for syntaxType in SyntaxType.all {
             guard let definitions = self.definitions[syntaxType] else { continue }
             
             // update indicator sheet message
-            totalProgress.becomeCurrent(withPendingUnitCount: 1)
-            DispatchQueue.main.async { [weak totalProgress] in
-                totalProgress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
+            self.progress.becomeCurrent(withPendingUnitCount: 1)
+            DispatchQueue.main.async { [weak progress = self.progress] in
+                progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             }
             
-            let childProgress = Progress(totalUnitCount: Int64(definitions.count) + 10)  // + 10 for simple words
+            let childProgress = Progress(totalUnitCount: Int64(definitions.count))
             
             var ranges = [NSRange]()
             let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
@@ -500,9 +500,9 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             DispatchQueue.concurrentPerform(iterations: definitions.count) { (i: Int) in
                 guard !self.isCancelled else { return }
                 
-                let definition = definitions[i]
-                
                 let extractedRanges: [NSRange] = {
+                    let definition = definitions[i]
+                    
                     if definition.isRegularExpression {
                         if let endString = definition.endString {
                             return self.ranges(regularExpressionBeginString: definition.beginString,
@@ -548,14 +548,14 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                 guard let childProgress = childProgress else { return }
                 childProgress.completedUnitCount = childProgress.totalUnitCount
             }
-            totalProgress.resignCurrent()
-        }  // end-for (syntaxType)
+            self.progress.resignCurrent()
+        }
         
         guard !self.isCancelled else { return [:] }
         
         // comments and quoted text
-        DispatchQueue.main.async { [weak totalProgress] in
-            totalProgress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
+        DispatchQueue.main.async { [weak progress = self.progress] in
+            progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
                                                          NSLocalizedString("comments and quoted texts", comment: ""))
         }
         let commentAndQuoteRanges = self.extractCommentsWithQuotes()
@@ -571,8 +571,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         
         let sanitized = sanitize(highlights: highlights)
         
-        DispatchQueue.main.async { [weak totalProgress] in
-            totalProgress?.completedUnitCount += 1  // = total - 1
+        DispatchQueue.main.async { [weak progress = self.progress] in
+            progress?.completedUnitCount += 1
         }
         
         return sanitized
