@@ -114,10 +114,9 @@ extension HighlightDefinition {
 
 private struct QuoteCommentItem {
     
-    let location: Int
-    let length: Int
     let kind: String
     let role: Role
+    let range: NSRange
     
     
     enum Kind {
@@ -126,10 +125,12 @@ private struct QuoteCommentItem {
     }
     
     
-    enum Role: Int {
-        case end
-        case both
-        case start
+    struct Role: OptionSet {
+        
+        let rawValue: Int
+        
+        static let start = Role(rawValue: 1 << 0)
+        static let end   = Role(rawValue: 1 << 1)
     }
 }
 
@@ -361,88 +362,71 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         var positions = [QuoteCommentItem]()
         
         if let delimiters = self.blockCommentDelimiters {
-            let beginRanges = self.ranges(string: delimiters.begin)
-            let beginLength = delimiters.begin.utf16.count
-            for range in beginRanges {
-                positions.append(QuoteCommentItem(location: range.location,
-                                                  length: beginLength,
-                                                  kind: QuoteCommentItem.Kind.blockComment,
-                                                  role: .start))
+            for range in self.ranges(string: delimiters.begin) {
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment,
+                                                  role: .start,
+                                                  range: range))
             }
-            
-            let endRanges = self.ranges(string: delimiters.end)
-            let endLength = delimiters.end.utf16.count
-            for range in endRanges {
-                positions.append(QuoteCommentItem(location: range.location,
-                                                  length: endLength,
-                                                  kind: QuoteCommentItem.Kind.blockComment,
-                                                  role: .end))
+            for range in self.ranges(string: delimiters.end) {
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment,
+                                                  role: .end,
+                                                  range: range))
             }
         }
         
         if let delimiter = self.inlineCommentDelimiter {
-            let string = self.string!
-            let ranges = self.ranges(string: delimiter)
-            let length = delimiter.utf16.count
-            for range in ranges {
-                let lineRange = (string as NSString).lineRange(for: range)
+            for range in self.ranges(string: delimiter) {
+                let lineRange = (self.string! as NSString).lineRange(for: range)
                 
-                positions.append(QuoteCommentItem(location: range.location,
-                                                  length: length,
-                                                  kind: QuoteCommentItem.Kind.inlineComment,
-                                                  role: .start))
-                positions.append(QuoteCommentItem(location: lineRange.max - length,
-                                                  length: length,
-                                                  kind: QuoteCommentItem.Kind.inlineComment,
-                                                  role: .end))
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment,
+                                                  role: .start,
+                                                  range: range))
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment,
+                                                  role: .end,
+                                                  range: NSRange(location: lineRange.max, length: 0)))
             }
         }
         
-        // create quote definitions if exists
         for quote in self.pairedQuoteTypes.keys {
-            let ranges = self.ranges(string: quote)
-            let length = quote.utf16.count
-            for range in ranges {
-                positions.append(QuoteCommentItem(location: range.location,
-                                                  length: length,
-                                                  kind: quote,
-                                                  role: .both))
+            for range in self.ranges(string: quote) {
+                positions.append(QuoteCommentItem(kind: quote,
+                                                  role: [.start, .end],
+                                                  range: range))
             }
         }
         
         guard !positions.isEmpty else { return [:] }
         
-        // sort by location  // ???: performance critial
+        // sort by location
         positions.sort {
-            if $0.location == $1.location {
-                if $0.role.rawValue == $1.role.rawValue {
-                    return $0.length > $1.length
-                }
-                return $0.role.rawValue < $1.role.rawValue
+            if $0.range.location < $1.range.location { return true }
+            if $0.range.location > $1.range.location { return false }
+            
+            if $0.role.rawValue == $1.role.rawValue {
+                return $0.range.length > $1.range.length
             }
-            return $0.location < $1.location
+            return $0.role.rawValue < $1.role.rawValue
         }
         
         // scan quoted strings and comments in the parse range
         var highlights = [SyntaxType: [NSRange]]()
         var startLocation = 0
-        var seekLocation = parseRange.location
-        var searchingPairKind: String?
-        var isContinued = false
+        var seekLocation = self.parseRange.location
+        var searchingKind: String?
         
         for position in positions {
             // search next begin delimiter
-            guard let kind = searchingPairKind else {
-                if position.role != .end && position.location >= seekLocation {
-                    searchingPairKind = position.kind
-                    startLocation = position.location
+            guard let kind = searchingKind else {
+                if position.role.contains(.start), position.range.location >= seekLocation {
+                    searchingKind = position.kind
+                    startLocation = position.range.location
                 }
                 continue
             }
             
             // search corresponding end delimiter
-            if position.kind == kind && (position.role == .both || position.role == .end) {
-                let endLocation = position.location + position.length
+            if position.role.contains(.end), position.kind == kind {
+                let endLocation = position.range.max
                 let syntaxType = self.pairedQuoteTypes[kind] ?? SyntaxType.comments
                 let range = NSRange(location: startLocation, length: endLocation - startLocation)
                 
@@ -452,20 +436,15 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                     highlights[syntaxType] = [range]
                 }
                 
-                searchingPairKind = nil
+                searchingKind = nil
                 seekLocation = endLocation
-                continue
-            }
-            
-            if startLocation < parseRange.max {
-                isContinued = true
             }
         }
         
         // highlight until the end if not closed
-        if let searchingPairKind = searchingPairKind, isContinued {
-            let syntaxType = self.pairedQuoteTypes[searchingPairKind] ?? SyntaxType.comments
-            let range = NSRange(location: startLocation, length: parseRange.max - startLocation)
+        if let searchingKind = searchingKind, startLocation < self.parseRange.max {
+            let syntaxType = self.pairedQuoteTypes[searchingKind] ?? SyntaxType.comments
+            let range = NSRange(location: startLocation, length: self.parseRange.max - startLocation)
             
             if highlights[syntaxType] != nil {
                 highlights[syntaxType]!.append(range)
