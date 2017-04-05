@@ -168,8 +168,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))
-        // +1 for comments & quotes
+        self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))  // +1 for extractCommentsWithQuotes()
         
         super.init()
         
