@@ -41,7 +41,7 @@
 "Dl2-3y-7EJ.title" = "(außer Skript-Menü)";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
-"Hue-bU-8wr.title" = "Zum Ändern eines Kurzbefehls wählen Sie ihn aus, klicken in die Taste-Spalte und drücken die Tasten.";
+"Hue-bU-8wr.title" = "Zum Ändern eines Kurzbefehls wähle ihn aus, klicke in die Taste-Spalte und drücke die Tasten.";
 
 /* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "qGe-Et-FB2"; */
 "qGe-Et-FB2.title" = "Eine der Tasten muss die Command-Taste sein.";
@@ -61,22 +61,22 @@
 "eMZ-Mx-JSK.title" = "Kurzbefehle zum Einsetzen vordefinierter Texte";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
-"a9m-M2-rgC.title" = "Zum Ändern eines Kurzbefehls wählen Sie ihn aus, klicken in die Taste-Spalte und drücken die Tasten.";
+"a9m-M2-rgC.title" = "Zum Ändern eines Kurzbefehls wähle ihn aus, klicke in die Taste-Spalte und drücke die Tasten.";
 
 /* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
 "5zd-aF-0zL.title" = "Keine der Tasten darf die Command-Taste sein.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
-"sz5-hl-bZK.headerCell.title" = "アクション";
+"sz5-hl-bZK.headerCell.title" = "Aktion"";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
-"hXU-bV-zlt.headerCell.title" = "キー";
+"hXU-bV-zlt.headerCell.title" = "Taste";
 
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
 "tuB-9O-QZH.title" = "Format des einzufügenden Textes:";
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
 "wC4-qj-3oD.title" = "Variable hinzufügen";
 /* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "Y5G-PR-ofT"; */
-"Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Wählen Sie eine Aktion.";
+"Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Wähle eine Aktion.";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
 "0Du-JI-ZN7.title" = "Auf Standard zurücksetzen";

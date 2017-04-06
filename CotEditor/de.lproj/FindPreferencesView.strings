@@ -40,7 +40,7 @@
 // Textual Search
 
 /* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "d1L-6X-N8c"; */
-"d1L-6X-N8c.title" = "Textuelles Suche";
+"d1L-6X-N8c.title" = "Textuelle Suche";
 
 /* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "mY4-am-wla"; */
 "mY4-am-wla.title" = "Zeichen streng unterscheiden";

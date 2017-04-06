@@ -1,5 +1,5 @@
 
-Füllen Sie die folgende Vorlage aus und posten Sie sie auf [GitHub Issues](https://github.com/coteditor/CotEditor/issues) oder senden Sie sie uns an <coteditor.github@gmail.com>. Bitte beachten Sie, dass der Inhalt der gesendeten E-Mail auf einer Issue-Seite geteilt werden könnte.
+Fülle die folgende Vorlage aus und poste sie auf [GitHub Issues](https://github.com/coteditor/CotEditor/issues) oder sende sie uns an <coteditor.github@gmail.com>. Bitte beachte, dass der Inhalt der gesendeten E-Mail auf einer Issue-Seite geteilt werden könnte.
 
 -----------------------------------------------
 
@@ -12,14 +12,14 @@ Füllen Sie die folgende Vorlage aus und posten Sie sie auf [GitHub Issues](http
 
 ## Short Description (Kurzbeschreibung)
 
-<!-- Schreiben Sie hier Ihren Kommentar -->
+<!-- Schreibe hier deinen Kommentar -->
 
 
 ## Steps to Reproduce the Issue (Schritte zur Reproduktion)
 
-<!-- Schreiben Sie hier Ihren Kommentar -->
+<!-- Schreibe hier deinen Kommentar -->
 
 
 ## Expected Result (Erwartetes Ergebnis)
 
-<!-- Schreiben Sie hier Ihren Kommentar -->
+<!-- Schreibe hier deinen Kommentar -->
