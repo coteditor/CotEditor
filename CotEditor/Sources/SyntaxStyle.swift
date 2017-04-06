@@ -514,7 +514,9 @@ extension SyntaxStyle {
             
             guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }
             
-            for (type, ranges) in highlights {
+            for type in SyntaxType.all {
+                guard let ranges = highlights[type], !ranges.isEmpty else { continue }
+                
                 let color = theme.syntaxColor(type: type) ?? theme.textColor
                 
                 for range in ranges {
