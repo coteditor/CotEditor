@@ -52,7 +52,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
             self.regex = try NSRegularExpression(pattern: pattern, options: options)
             
         } catch {
-            print("Error on outline parsing: " + error.localizedDescription)
+            print("Error on outline regex: " + error.localizedDescription)
             return nil
         }
         
