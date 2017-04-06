@@ -35,7 +35,7 @@ struct OutlineItem: Equatable, CustomDebugStringConvertible {
         
         static let bold      = Style(rawValue: 1 << 0)
         static let italic    = Style(rawValue: 1 << 1)
-        static let underline = Style(rawValue: 1 << 1)
+        static let underline = Style(rawValue: 1 << 2)
     }
     
 
