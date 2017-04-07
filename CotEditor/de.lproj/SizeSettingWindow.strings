@@ -29,7 +29,7 @@
 "127.title" = "Standardgröße-Probefenster";
 
 /* Class = "NSTextFieldCell"; title = "Resize this window.\nThe size of this window will be set as default."; ObjectID = "3399"; */
-"3399.title" = "Ändern Sie die Größe dieses Fensters.\nSie wird als Standardgröße festgelegt werden.";
+"3399.title" = "Ändere die Größe dieses Fensters.\nSie wird als Standardgröße festgelegt werden.";
 
 /* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
 "3402.title" = "Breite:";

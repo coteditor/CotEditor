@@ -33,7 +33,7 @@
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
 "3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "Suchen";
 /* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
-"hxw-DS-gxQ.ibShadowedToolTip" = "Geben Sie den Suchbegriff ein.";
+"hxw-DS-gxQ.ibShadowedToolTip" = "Gib den Suchbegriff ein.";
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
 "VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "Ersetzen";

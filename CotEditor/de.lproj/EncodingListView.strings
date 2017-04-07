@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Drag encodings to change the order."; ObjectID = "3395"; */
-"3395.title" = "Ziehen Sie die Codierungen, um die Reihenfolge zu ändern.";
+"3395.title" = "Ziehe die Codierungen, um die Reihenfolge zu ändern.";
 
 /* Class = "NSTextFieldCell"; title = "This list is for Auto-Detect and the file encoding menu.\nAuto-Detect tries these encodings from the top of the list."; ObjectID = "3394"; */
 "3394.title" = "Diese Liste wird für die automatische Erkennung und das Codierungsmenü verwendet.\nDie automatische Erkennung probiert die Codierungen in dieser Liste von oben beginnend durch.";
