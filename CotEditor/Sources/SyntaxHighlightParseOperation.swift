@@ -129,7 +129,7 @@ private struct QuoteCommentItem {
         
         let rawValue: Int
         
-        static let start = Role(rawValue: 1 << 0)
+        static let begin = Role(rawValue: 1 << 0)
         static let end   = Role(rawValue: 1 << 1)
     }
 }
@@ -362,35 +362,26 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         
         if let delimiters = self.blockCommentDelimiters {
             for range in self.ranges(string: delimiters.begin) {
-                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment,
-                                                  role: .start,
-                                                  range: range))
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment, role: .begin, range: range))
             }
             for range in self.ranges(string: delimiters.end) {
-                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment,
-                                                  role: .end,
-                                                  range: range))
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment, role: .end, range: range))
             }
         }
         
         if let delimiter = self.inlineCommentDelimiter {
             for range in self.ranges(string: delimiter) {
                 let lineRange = (self.string! as NSString).lineRange(for: range)
+                let endRange = NSRange(location: lineRange.max, length: 0)
                 
-                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment,
-                                                  role: .start,
-                                                  range: range))
-                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment,
-                                                  role: .end,
-                                                  range: NSRange(location: lineRange.max, length: 0)))
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment, role: .begin, range: range))
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment, role: .end, range: endRange))
             }
         }
         
         for quote in self.pairedQuoteTypes.keys {
             for range in self.ranges(string: quote) {
-                positions.append(QuoteCommentItem(kind: quote,
-                                                  role: [.start, .end],
-                                                  range: range))
+                positions.append(QuoteCommentItem(kind: quote, role: [.begin, .end], range: range))
             }
         }
         
@@ -409,14 +400,14 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         
         // scan quoted strings and comments in the parse range
         var highlights = [SyntaxType: [NSRange]]()
-        var startLocation = 0
         var seekLocation = self.parseRange.location
+        var startLocation = 0
         var searchingKind: String?
         
         for position in positions {
             // search next begin delimiter
             guard let kind = searchingKind else {
-                if position.role.contains(.start), position.range.location >= seekLocation {
+                if position.role.contains(.begin), position.range.location >= seekLocation {
                     searchingKind = position.kind
                     startLocation = position.range.location
                 }
