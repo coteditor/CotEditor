@@ -32,6 +32,7 @@ develop
 - Improve the setting file naming rule for when the name overwraps with an existing setting.
 - Update “Ruby” syntax style to fix command highlight.
 - Remove less useful “Inline script menu items into contextual menu” option.
+- Update German localization (Thanks to J-rg!).
 - And some minor improvements and fixes.
 
 
