@@ -3,7 +3,7 @@
 filenames: []
 metadata:
   distributionURL: "https://coteditor.com"
-  lastModified: "2014-11-16"
+  lastModified: "2017-04-09"
   author: "1024jp"
   license: "Same as CotEditor"
   description: "Commands contain only:\n- Language Fundamentals\n- Elemantaly Math\n-
@@ -11,7 +11,7 @@ metadata:
     Images\n- Printing and Saving\n- Workspace Variables\n- Data Import and Export
     (excl. HDF5, HDF4, FITS files)\n- File Operations\n- Operating System Commands\n-
     Exception Handling"
-  version: "1.0.0"
+  version: "1.0.1"
 keywords:
 - beginString: "case"
 - beginString: "catch"
@@ -805,9 +805,11 @@ numbers:
 - beginString: "\\b\\d+[ij]?\\b"
   regularExpression: true
 strings:
+- beginString: "\""
+  endString: "\""
+characters:
 - beginString: "'"
   endString: "'"
-characters: []
 commentDelimiters:
   inlineDelimiter: "%"
   beginDelimiter: "%{"
