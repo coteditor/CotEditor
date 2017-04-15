@@ -55,6 +55,20 @@ final class TokenTextView: NSTextView {
     }
     
     
+    /// delete whole token if cursor located at the end of a token
+    override func deleteBackward(_ sender: Any?) {
+        
+        guard
+            self.selectedRange.length == 0,
+            self.selectedRange.location > 0,
+            let effectiveRange = self.textStorage?.effectiveTokenRange(at: self.selectedRange.location - 1),
+            effectiveRange.max == self.selectedRange.location
+            else { return super.deleteBackward(sender) }
+        
+        self.replace(with: "", range: effectiveRange, selectedRange: nil)
+    }
+    
+    
     /// draw token capsule
     override func drawBackground(in rect: NSRect) {
         
@@ -104,13 +118,9 @@ final class TokenTextView: NSTextView {
     /// select token by selecting word
     override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
         
-        var effectiveRange = NSRange.notFound
-        
         guard
             granularity == .selectByWord,
-            let textStorage = self.textStorage,
-            textStorage.attribute(tokenAttributeName, at: proposedCharRange.location, longestEffectiveRange: &effectiveRange, in: textStorage.string.nsRange) != nil,
-            effectiveRange != .notFound
+            let effectiveRange = self.textStorage?.effectiveTokenRange(at: proposedCharRange.location)
             else { return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity) }
         
         return effectiveRange
@@ -174,6 +184,24 @@ final class TokenTextView: NSTextView {
         }
         
         self.needsDisplay = true
+    }
+    
+}
+
+
+
+private extension NSTextStorage {
+    
+    /// return range of a token if the location is in a token, otherwise nil.
+    func effectiveTokenRange(at location: Int) -> NSRange? {
+        
+        var effectiveRange = NSRange.notFound
+        
+        guard
+            self.attribute(tokenAttributeName, at: location, longestEffectiveRange: &effectiveRange, in: self.string.nsRange) != nil
+            else { return nil }
+        
+        return effectiveRange
     }
     
 }
