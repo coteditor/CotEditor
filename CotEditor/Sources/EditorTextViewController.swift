@@ -155,8 +155,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         {
             return !textView.replace(with: replacementString.replacingLineEndings(with: .LF),
                                      range: affectedCharRange,
-                                     selectedRange: nil,
-                                     actionName: nil)  // Action name will be set automatically.
+                                     selectedRange: nil)
         }
         
         return true

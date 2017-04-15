@@ -33,7 +33,7 @@ extension NSTextView {
     
     /// perform simple text replacement
     @discardableResult
-    func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String?) -> Bool {
+    func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
         
         let selectedRanges: [NSRange]? = {
             guard let selectedRange = selectedRange else { return nil }
@@ -47,7 +47,7 @@ extension NSTextView {
     
     /// perform multiple text replacements
     @discardableResult
-    func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String?) -> Bool {
+    func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String? = nil) -> Bool {
         
         assert(Thread.isMainThread)
         assert(strings.count == ranges.count, "unbalanced number of strings and ranges for multiple replacement")

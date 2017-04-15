@@ -88,7 +88,7 @@ extension NSTextView {
                     length: range.length)
         }
         
-        return self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges, actionName: nil)
+        return self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges)
     }
     
 }
