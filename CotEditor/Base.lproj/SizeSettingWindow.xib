@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SizeSettingWindowController" customModule="CotEditor" customModuleProvider="target">
@@ -56,7 +57,7 @@ Gw
                                     <action selector="cancel:" target="-2" id="uH7-EJ-Wyj"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="130" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
+                            <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="130" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="18" y="306" width="444" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="3399">
                                     <font key="font" metaFont="system"/>
@@ -66,7 +67,7 @@ The size of this window will be set as default.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="138">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="138">
                                 <rect key="frame" x="68" y="261" width="80" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="dMw-Jt-sFh"/>
@@ -80,11 +81,11 @@ The size of this window will be set as default.</string>
                                     </allowedInputSourceLocales>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="3I1-SB-fO2" name="value" keyPath="values.windowHeight" id="A2H-Td-3hP"/>
+                                    <binding destination="3I1-SB-fO2" name="value" keyPath="values.windowWidth" id="cQL-W1-iLx"/>
                                     <outlet property="formatter" destination="6fa-a9-iGI" id="0hn-rM-Qsa"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="140">
+                            <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="140">
                                 <rect key="frame" x="18" y="264" width="44" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Width:" usesSingleLineMode="YES" id="3402">
                                     <font key="font" metaFont="system"/>
@@ -92,7 +93,7 @@ The size of this window will be set as default.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="141">
+                            <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="141">
                                 <rect key="frame" x="154" y="264" width="48" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Height:" usesSingleLineMode="YES" id="3403">
                                     <font key="font" metaFont="system"/>
@@ -100,7 +101,7 @@ The size of this window will be set as default.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="136">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="136">
                                 <rect key="frame" x="208" y="261" width="80" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="xWN-LC-Lew"/>
@@ -117,7 +118,7 @@ The size of this window will be set as default.</string>
                                     </connections>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="3I1-SB-fO2" name="value" keyPath="values.windowWidth" id="oYP-yi-VUu"/>
+                                    <binding destination="3I1-SB-fO2" name="value" keyPath="values.windowHeight" id="nHs-9J-wde"/>
                                 </connections>
                             </textField>
                         </subviews>

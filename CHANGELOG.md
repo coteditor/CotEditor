@@ -43,7 +43,8 @@ develop
 - Fix an issue where the document syntax style could be back to the default if the current style was set manually and document was modified in another process.
 - Fix an issue where the status bar stopped updating after toggling the inspector sidebar.
 - Fix an issue where the “Cancel” button in the dialog shown when changing the Auto Save setting in General pane didn't revert the actual setting state.
-- Fix an issue where the author of a theme was not shown in the Appearance pane.
+- Fix an issue where author of a theme was not shown in the Appearance pane.
+- FIx an issue where width and height in the window size setting window was swapped.
 - Fix an possible crash on highlighting matching brace.
 - Fix few memory leaks.
 
