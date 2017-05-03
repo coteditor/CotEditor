@@ -1,5 +1,5 @@
 
-Fülle die folgende Vorlage aus und poste sie auf [GitHub Issues](https://github.com/coteditor/CotEditor/issues) oder sende sie uns an <coteditor.github@gmail.com>. Bitte beachte, dass der Inhalt der gesendeten E-Mail auf einer Issue-Seite geteilt werden könnte.
+Fülle die folgende Vorlage aus und poste sie auf [GitHub Issues](https://github.com/coteditor/CotEditor/issues) oder sende sie uns an <coteditor.github@gmail.com>. Bitte beachte, dass der Inhalt der gesendeten E-Mail auf einer Issue-Seite geteilt werden könnte. Bitte schreiben Sie den Inhalt entweder auf Englisch oder auf Japanisch.
 
 -----------------------------------------------
 
