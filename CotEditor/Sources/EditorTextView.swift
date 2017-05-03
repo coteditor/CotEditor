@@ -294,7 +294,10 @@ final class EditorTextView: NSTextView, Themable {
                 return
                 
             // check if insertion point is in a word
-            } else if !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)) {
+            } else if
+                !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)),
+                !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.characterBeforeInsertion ?? UnicodeScalar(0)))  // for "
+            {
                 let pairedBrackets = String(pair.begin) + String(pair.end)
             
                 super.insertText(pairedBrackets, replacementRange: replacementRange)
