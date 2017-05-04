@@ -361,6 +361,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // calculate current line rect
         let lineRange = (string as NSString).lineRange(for: textView.selectedRange, excludingLastLineEnding: true)
         
+        textView.layoutManager?.ensureLayout(for: textContainer)  // avoid blinking on textView's dynamic bounds change
+        
         guard var rect = textView.boundingRect(for: lineRange) else { return }
         
         rect.size.width = textContainer.containerSize.width - 2 * textContainer.lineFragmentPadding
