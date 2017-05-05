@@ -15,6 +15,7 @@ develop
 - Add “Surround Selection With” actions to “Text” menu.
 - Add a new AppleScript/JXA command `write to console` so that users can insert their own message to the CotEditor's console.
 - Now, key binding snippets can set cursor position.
+- Add syntax style for “Fortran”.
 
 
 ### Improvements

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,6 +43,7 @@
 "Dart script" = "Dart 脚本";
 "Diff" = "Diff";
 "Document Type Definition" = "文档类型定义";
+"Fortran Source" = "Fortran 源码";
 "Go script" = "Go 脚本";
 "Haskell script" = "Haskell 脚本";
 "HTML document" = "HTML 文档";

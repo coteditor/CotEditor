@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,6 +42,7 @@
 "Dart script" = "Dart スクリプト";
 "Diff" = "Diff";
 "Document Type Definition" = "文書型定義";
+"Fortran Source" = "Fortran ソース";
 "Go script" = "Go スクリプト";
 "Haskell script" = "Haskell スクリプト";
 "HTML document" = "HTML 書類";
