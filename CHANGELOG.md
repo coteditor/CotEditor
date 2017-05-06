@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- [beta] Fix comment highlights.
+
+
+
+3.2.0-beta (193)
+--------------------------
+
 ### New Features
 
 - Improve File Drop feature:

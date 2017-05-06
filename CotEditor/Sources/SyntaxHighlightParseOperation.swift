@@ -395,7 +395,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             if $0.role.rawValue == $1.role.rawValue {
                 return $0.range.length > $1.range.length
             }
-            return $0.role.rawValue < $1.role.rawValue
+            return $0.role.rawValue > $1.role.rawValue
         }
         
         // scan quoted strings and comments in the parse range
