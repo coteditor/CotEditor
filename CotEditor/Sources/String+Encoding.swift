@@ -223,6 +223,7 @@ extension String {
         let stringToScan = self.substring(to: scanIndex)
         let scanner = Scanner(string: stringToScan)  // scan only the beginning of string
         let stopSet = CharacterSet(charactersIn: "\"\' </>\n\r")
+        let invalidDelimiterSet = CharacterSet.alphanumerics.subtracting(CharacterSet(charactersIn: "\"\' ")).inverted
         var scannedString: NSString?
         
         scanner.charactersToBeSkipped = CharacterSet(charactersIn: "\"\' ")
@@ -234,14 +235,17 @@ extension String {
             while !scanner.isAtEnd {
                 scanner.scanUpTo(tag, into: nil)
                 if scanner.scanString(tag, into: nil),
+                    !scanner.scanCharacters(from: invalidDelimiterSet, into: nil),
                     scanner.scanUpToCharacters(from: stopSet, into: &scannedString) {
                     break
                 }
             }
+            
             if scannedString != nil { break }
         }
         
         guard let ianaCharSetName = scannedString else { return nil }
+        
         
         // convert IANA CharSet name to CFStringEncoding
         guard let cfEncoding: CFStringEncoding = {
