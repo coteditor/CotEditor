@@ -245,8 +245,7 @@ extension String {
         }
         
         guard let ianaCharSetName = scannedString else { return nil }
-        
-        
+                
         // convert IANA CharSet name to CFStringEncoding
         guard let cfEncoding: CFStringEncoding = {
             //　simply convert expect for "Shift_JIS"
