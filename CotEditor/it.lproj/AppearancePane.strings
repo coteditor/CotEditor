@@ -63,11 +63,11 @@
 /* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
 "Avf-y8-wXG.headerCell.title" = "Tema";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
-"4B4-mq-8Fs.title" = "Export…";
+"4B4-mq-8Fs.title" = "Esporta…";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
-"gcs-B8-kPL.title" = "Import…";
+"gcs-B8-kPL.title" = "Importa…";
 /* Class = "NSButtonCell"; title = "Reload All Themes"; ObjectID = "7Yp-bg-3l6"; */
-"7Yp-bg-3l6.title" = "Reload All Themes";  // FIXME: added
+"7Yp-bg-3l6.title" = "Ricarica tutti i Temi";
 
 
 /* contextual menu */

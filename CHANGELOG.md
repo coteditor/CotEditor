@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- [beta] Update Italian localization.
+
+
 ### Fixes
 
 - [beta] Fix comment highlights.

@@ -71,8 +71,8 @@
 "%@ string replaced." = "%@ stringa sostituita.";
 "%@ strings replaced." = "%@ stringhe sostituite.";
 "Invalid regular expression" = "Espressione regolare non valida";
-"Empty find string" = "Empty find string";  // FIXME: added
-"Input text to find." = "Input text to find.";  // FIXME: added
+"Empty find string" = "Stringa di ricerca vuota";
+"Input text to find." = "Inserire il testo da cercare.";
 
 
 /* MARK: FindPanelController */
@@ -529,7 +529,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "The cursor position after inserting the snippet.";  // FIXME: added
+"The cursor position after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";
 
 
 

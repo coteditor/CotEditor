@@ -75,7 +75,7 @@
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
 "tuB-9O-QZH.title" = "Formato di inserimento:";
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
-"wC4-qj-3oD.title" = "Insert Variable";  // FIXME: added
+"wC4-qj-3oD.title" = "Inserisci Variabile";
 /* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "Y5G-PR-ofT"; */
 "Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Selezionare l’azione.";
 

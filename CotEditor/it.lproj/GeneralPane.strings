@@ -65,7 +65,7 @@
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "Conteggia ogni fine riga come un carattere";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "Link URL";  // FIXME: modified
+"tPy-Ox-YpP.title" = "Collegamenti agli URL nel documento";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "Controlla ortografia durante la digitazione";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
