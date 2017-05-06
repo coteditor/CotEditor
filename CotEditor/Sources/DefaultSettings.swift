@@ -38,7 +38,6 @@ struct DefaultSettings {
         .trimsTrailingWhitespaceOnSave: false,
         .documentConflictOption: DocumentConflictOption.revert.rawValue,
         .syncFindPboard: false,
-        .inlineContextualScriptMenu: false,
         .countLineEndingAsChar: true,
         .autoLinkDetection: false,
         .checkSpellingAsType: false,
@@ -112,8 +111,24 @@ struct DefaultSettings {
         .enableSyntaxHighlight: true,
         .syntaxStyle: "Plain Text",
         
-        .fileDropArray: [[FileDropComposer.SettingKey.extensions: "jpg, jpeg, gif, png",
-                          FileDropComposer.SettingKey.formatString: "<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"]],
+        .fileDropArray: [
+            [FileDropComposer.SettingKey.extensions: "jpg, jpeg, gif, png",
+             FileDropComposer.SettingKey.scope: "Markdown",
+             FileDropComposer.SettingKey.formatString: "![<<<FILENAME-NOSUFFIX>>>](<<<RELATIVE-PATH>>>)"],
+            [FileDropComposer.SettingKey.scope: "Markdown",
+             FileDropComposer.SettingKey.formatString: "[<<<FILENAME-NOSUFFIX>>>](<<<RELATIVE-PATH>>>)"],
+            [FileDropComposer.SettingKey.extensions: "jpg, jpeg, gif, png",
+             FileDropComposer.SettingKey.scope: "HTML",
+             FileDropComposer.SettingKey.formatString: "<img src=\"<<<RELATIVE-PATH>>>\" alt=\"<<<FILENAME-NOSUFFIX>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\" width=\"<<<IMAGEWIDTH>>>\" height=\"<<<IMAGEHEIGHT>>>\" />"],
+            [FileDropComposer.SettingKey.extensions: "js",
+             FileDropComposer.SettingKey.scope: "HTML",
+             FileDropComposer.SettingKey.formatString: "<script type=\"text/javascript\" src=\"<<<RELATIVE-PATH>>>\"></script>"],
+            [FileDropComposer.SettingKey.extensions: "html, htm, php",
+             FileDropComposer.SettingKey.scope: "HTML",
+             FileDropComposer.SettingKey.formatString: "<a href=\"<<<RELATIVE-PATH>>>\" title=\"<<<FILENAME-NOSUFFIX>>>\"></a>"],
+            [FileDropComposer.SettingKey.scope: "CSS",
+             FileDropComposer.SettingKey.formatString: "url(\"<<<RELATIVE-PATH>>>\")"],
+        ],
         
         .insertCustomTextArray: ["<br />\n", "", "", "", "", "", "", "", "", "", "",
                                  "", "", "", "", "", "", "", "", "", "",
@@ -173,11 +188,7 @@ struct DefaultSettings {
         ]
     
     
-    static let defaults: [String: Any] = DefaultSettings.settings.reduce([:]) { (dict, item) in
-        var dict = dict
-        dict[item.key.rawValue] = item.value
-        return dict
-    }
+    static let defaults: [String: Any] = DefaultSettings.settings.flatDictionary { ($0.key.rawValue, $0.value) }
     
     
     private init() { }

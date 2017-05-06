@@ -155,8 +155,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         {
             return !textView.replace(with: replacementString.replacingLineEndings(with: .LF),
                                      range: affectedCharRange,
-                                     selectedRange: nil,
-                                     actionName: nil)  // Action name will be set automatically.
+                                     selectedRange: nil)
         }
         
         return true
@@ -169,7 +168,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // do nothing if completion is not suggested from the typed characters
         guard let string = textView.string, charRange.length > 0 else { return [] }
         
-        let candidateWords = NSMutableOrderedSet()  // [String]
+        var candidateWords = OrderedSet<String>()
         let particalWord = (string as NSString).substring(with: charRange)
         
         // extract words in document and set to candidateWords
@@ -183,26 +182,29 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 
                 return regex.matches(in: string, range: string.nsRange).map { (string as NSString).substring(with: $0.range) }
             }()
-            candidateWords.addObjects(from: documentWords)
+            candidateWords.append(contentsOf: documentWords)
         }
         
         // copy words defined in syntax style
         if UserDefaults.standard[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords {
             let syntaxWords = syntaxCandidateWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
-            candidateWords.addObjects(from: syntaxWords)
+            candidateWords.append(contentsOf: syntaxWords)
         }
         
         // copy the standard words from default completion words
         if UserDefaults.standard[.completesStandartWords] {
-            candidateWords.addObjects(from: words)
+            candidateWords.append(contentsOf: words)
         }
         
         // provide nothing if there is only a candidate which is same as input word
-        if  let word = candidateWords.firstObject as? String, candidateWords.count == 1 && word.caseInsensitiveCompare(particalWord) == .orderedSame {
+        if  let word = candidateWords.first,
+            candidateWords.count == 1,
+            word.caseInsensitiveCompare(particalWord) == .orderedSame
+        {
             return []
         }
         
-        return candidateWords.array as! [String]
+        return candidateWords.array
     }
     
     
@@ -211,24 +213,12 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // append Script menu
         if let scriptMenu = ScriptManager.shared.contexualMenu {
-            if UserDefaults.standard[.inlineContextualScriptMenu] {
-                menu.addItem(NSMenuItem.separator())
-                menu.items.last?.tag = MenuItemTag.script.rawValue
-                
-                for item in scriptMenu.items {
-                    let addItem = item.copy() as! NSMenuItem
-                    addItem.tag = MenuItemTag.script.rawValue
-                    menu.addItem(addItem)
-                }
-                menu.addItem(NSMenuItem.separator())
-                
-            } else {
-                let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
-                item.image = #imageLiteral(resourceName: "ScriptTemplate")
-                item.tag = MenuItemTag.script.rawValue
-                item.submenu = scriptMenu
-                menu.addItem(item)
-            }
+            let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
+            item.image = #imageLiteral(resourceName: "ScriptTemplate")
+            item.toolTip = NSLocalizedString("Scripts", comment: "")
+            item.tag = MenuItemTag.script.rawValue
+            item.submenu = scriptMenu
+            menu.addItem(item)
         }
         
         return menu
@@ -308,9 +298,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// find the matching open brace and highlight it
     private func highlightMatchingBrace(in textView: NSTextView) {
         
-        guard UserDefaults.standard[.highlightBraces] else { return }
-        
-        guard let string = textView.string, !string.isEmpty else { return }
+        guard
+            UserDefaults.standard[.highlightBraces],
+            let string = textView.string, !string.isEmpty,
+            textView.selectedRange.location != NSNotFound
+            else { return }
         
         let cursorLocation = textView.selectedRange.location
         let difference = cursorLocation - self.lastCursorLocation
@@ -322,11 +314,13 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard difference == 1 else { return }
         
         // check the caracter just before the cursor
-        let lastIndex = string.index(before: String.UTF16Index(cursorLocation).samePosition(in: string)!)
+        guard let cursorIndex = String.UTF16Index(cursorLocation).samePosition(in: string) else { return }
+        let lastIndex = string.index(before: cursorIndex)
         let lastCharacter = string.characters[lastIndex]
-        guard let pair: BracePair = (BracePair.braces + [.ltgt]).first(where: { $0.end == lastCharacter }),
-            ((pair != .ltgt) || UserDefaults.standard[.highlightLtGt])
-            else { return }
+        
+        let bracePairs: [BracePair] = UserDefaults.standard[.highlightLtGt] ? (BracePair.braces + [.ltgt]) : BracePair.braces
+        
+        guard let pair = bracePairs.first(where: { $0.end == lastCharacter }) else { return }
         
         guard let index = string.indexOfBeginBrace(for: pair, at: lastIndex) else {
             // do not beep when the typed brace is `>`
@@ -361,17 +355,17 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard
             let textView = self.textView,
-            let layoutManager = textView.layoutManager,
             let textContainer = textView.textContainer,
             let string = textView.string else { return }
         
         // calculate current line rect
         let lineRange = (string as NSString).lineRange(for: textView.selectedRange, excludingLastLineEnding: true)
-        let glyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-        var rect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-        rect.origin.x = textContainer.lineFragmentPadding
-        rect.size.width = textContainer.containerSize.width - 2 * rect.minX
-        rect = rect.offset(by: textView.textContainerOrigin)
+        
+        textView.layoutManager?.ensureLayout(for: textContainer)  // avoid blinking on textView's dynamic bounds change
+        
+        guard var rect = textView.boundingRect(for: lineRange) else { return }
+        
+        rect.size.width = textContainer.containerSize.width - 2 * textContainer.lineFragmentPadding
         
         guard textView.lineHighlightRect != rect else { return }
         

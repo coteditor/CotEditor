@@ -94,7 +94,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
                                  subject: document.displayName,
                                  label: NSLocalizedString("File", comment: ""),
                                  excludingSercives: [.addToNotes])
-            self.addItem(NSMenuItem.separator())
+            self.addItem(.separator())
         }
         
         // text

@@ -37,7 +37,9 @@ protocol ThemeViewControllerDelegate: class {
 
 // MARK: -
 
-final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate {
+final class ThemeViewController: NSViewController {
+    
+    // MARK: Public Properties
     
     dynamic var theme: ThemeDictionary? {
         willSet {
@@ -61,8 +63,9 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     weak var delegate: ThemeViewControllerDelegate?
     
     
-    private var isMetadataEdited = false
-    @IBOutlet private var popover: NSPopover?
+    // MARK: Private Properties
+    
+    private var storedMetadata: NSDictionary?
     
     
     
@@ -70,14 +73,7 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     // MARK: Lifecycle
     
     deinit {
-        self.popover?.delegate = nil  // avoid crash (2014-12-31)
         self.endThemeObserving()
-    }
-    
-    
-    override var nibName: String? {
-        
-        return "ThemeView"
     }
     
     
@@ -93,30 +89,34 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
     }
     
     
+    /// send data to meta data popover
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?)  {
+        
+        guard let destinationController = segue.destinationController as? ThemeMetaDataViewController else { return }
+        
+        destinationController.representedObject = self.theme
+        destinationController.isBundled = self.isBundled
+        self.storedMetadata = self.theme?[DictionaryKey.metadata.rawValue]?.copy() as? NSDictionary
+    }
+    
+    
+    /// meta data popover closed
+    override func dismissViewController(_ viewController: NSViewController) {
+        
+        if viewController is ThemeMetaDataViewController,
+            self.storedMetadata != self.theme?[DictionaryKey.metadata.rawValue]
+        {
+            self.notifyUpdate()
+        }
+        
+        super.dismissViewController(viewController)
+    }
+    
+    
     /// theme is modified
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         self.notifyUpdate()
-    }
-    
-    
-    
-    // MARK: Delegate
-    
-    /// meta data was possible edited
-    override func controlTextDidChange(_ obj: Notification) {
-        
-        self.isMetadataEdited = true
-    }
-    
-    
-    /// popover closed
-    func popoverDidClose(_ obj: Notification) {
-        
-        if self.isMetadataEdited {
-            self.notifyUpdate()
-            self.isMetadataEdited = false
-        }
     }
     
     
@@ -132,28 +132,6 @@ final class ThemeViewController: NSViewController, NSPopoverDelegate, NSTextFiel
         let colorCode = color.usingColorSpaceName(NSCalibratedRGBColorSpace)?.colorCode(type: .hex)
         
         self.theme?[ThemeKey.selection.rawValue]?[ThemeKey.Sub.color.rawValue] = colorCode
-    }
-    
-    
-    /// show medatada of theme file via popover
-    @IBAction func showMedatada(_ button: NSButton) {
-        
-        self.popover?.show(relativeTo: button.frame, of: self.view, preferredEdge: .maxY)
-    }
-    
-    
-    /// jump to theme's destribution URL
-    @IBAction func jumpToURL(_ sender: Any?) {
-        
-        guard
-            let address = self.theme?[DictionaryKey.metadata.rawValue]?[MetadataKey.distributionURL.rawValue] as? String,
-            let url = URL(string: address)
-            else {
-                NSBeep()
-                return
-        }
-        
-        NSWorkspace.shared().open(url)
     }
     
     

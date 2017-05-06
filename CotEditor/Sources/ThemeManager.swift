@@ -29,13 +29,6 @@ import Foundation
 import AppKit.NSColor
 import ColorCode
 
-extension Notification.Name {
-    
-    static let ThemeListDidUpdate = Notification.Name("ThemeListDidUpdate")
-    static let ThemeDidUpdate = Notification.Name("ThemeDidUpdate")
-}
-
-
 @objc protocol ThemeHolder: class {
     
     func changeTheme(_ sender: AnyObject?)
@@ -51,13 +44,12 @@ final class ThemeManager: SettingFileManager {
     
     static let shared = ThemeManager()
     
-    private(set) var themeNames = [String]()
-    
     
     // MARK: Private Properties
     
-    private var archivedThemes = [String: ThemeDictionary]()
+    private var themeNames = [String]()
     private var bundledThemeNames = [String]()
+    private var cachedThemes = [String: Theme]()
     
     
     
@@ -74,14 +66,8 @@ final class ThemeManager: SettingFileManager {
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
         
-        // cache user themes asynchronously but wait until the process will be done
-        let semaphore = DispatchSemaphore(value: 0)
-        self.updateCache {
-            semaphore.signal()
-        }
-        while semaphore.wait(timeout: .now()) == .timedOut {
-            RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
-        }
+        // cache user theme names
+        self.loadUserSettings()
     }
     
     
@@ -129,116 +115,107 @@ final class ThemeManager: SettingFileManager {
     /// create Theme instance from theme name
     func theme(name: String) -> Theme? {
         
-        guard let themeDictionary = self.themeDictionary(name: name) else { return nil }
+        // use cache if exists
+        if let theme = self.cachedThemes[name] {
+            return theme
+        }
         
-        return Theme(dictionary: themeDictionary, name: name)
+        guard let themeDictionary = self.settingDictionary(name: name) else { return nil }
+        
+        let theme = Theme(dictionary: themeDictionary, name: name)
+        
+        self.cachedThemes[name] = theme
+        
+        return theme
     }
     
     
-    /// Theme dict in which objects are property list ready.
-    func themeDictionary(name: String) -> ThemeDictionary? {
-    
-        return self.archivedThemes[name]
+    /// load theme dict in which objects are property list ready.
+    func settingDictionary(name: String) -> ThemeDictionary? {
+        
+        guard
+            let themeURL = self.urlForUsedSetting(name: name),
+            let themeDictionary = try? self.settingDictionary(fileURL: themeURL)
+            else { return nil }
+        
+        return themeDictionary
     }
     
     
-    /// save theme
-    @discardableResult
-    func save(themeDictionary: ThemeDictionary, name themeName: String, completionHandler: ((Error?) -> Void)? = nil) -> Bool {  // @escaping
+    /// save setting file
+    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: ((Void) -> Void)? = nil) throws {  // @escaping
         
         // create directory to save in user domain if not yet exist
-        do {
-            try self.prepareUserSettingDirectory()
-        } catch {
-            completionHandler?(error)
-            return false
-        }
+        try self.prepareUserSettingDirectory()
         
-        let fileURL = self.preparedURLForUserSetting(name: themeName)
+        let fileURL = self.preparedURLForUserSetting(name: name)
+        let data = try JSONSerialization.data(withJSONObject: settingDictionary, options: .prettyPrinted)
         
-        do {
-            let data = try JSONSerialization.data(withJSONObject: themeDictionary, options: .prettyPrinted)
-            
-            try data.write(to: fileURL, options: .atomic)
-            
-        } catch {
-            completionHandler?(error)
-            return false
-        }
+        try data.write(to: fileURL, options: .atomic)
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: .ThemeDidUpdate, object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: themeName,
-                                                       SettingFileManager.NotificationKey.new: themeName])
+            self?.notifySettingUpdate(oldName: name, newName: name)
             
-            completionHandler?(nil)
+            completionHandler?()
         }
-        
-        return true
     }
     
     
     /// rename theme
-    override func renameSetting(name settingName: String, to newName: String) throws {
+    override func renameSetting(name: String, to newName: String) throws {
         
-        try super.renameSetting(name: settingName, to: newName)
+        try super.renameSetting(name: name, to: newName)
         
-        if UserDefaults.standard[.theme] == settingName {
+        self.cachedThemes[name] = nil
+        self.cachedThemes[newName] = nil
+        
+        if UserDefaults.standard[.theme] == name {
             UserDefaults.standard[.theme] = newName
         }
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: .ThemeDidUpdate,
-                                            object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: settingName,
-                                                       SettingFileManager.NotificationKey.new: newName])
+            self?.notifySettingUpdate(oldName: name, newName: newName)
         }
     }
     
     
     /// delete theme file corresponding to the theme name
-    override func removeSetting(name settingName: String) throws {
+    override func removeSetting(name: String) throws {
         
-        try super.removeSetting(name: settingName)
+        try super.removeSetting(name: name)
+        
+        self.cachedThemes[name] = nil
         
         self.updateCache { [weak self] in
             // restore theme of opened documents to default
             let defaultThemeName = UserDefaults.standard[.theme]!
             
-            NotificationCenter.default.post(name: .ThemeDidUpdate,
-                                            object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: settingName,
-                                                       SettingFileManager.NotificationKey.new: defaultThemeName])
+            self?.notifySettingUpdate(oldName: name, newName: defaultThemeName)
         }
     }
     
     
     /// restore customized bundled theme to original one
-    override func restoreSetting(name settingName: String) throws {
+    override func restoreSetting(name: String) throws {
         
-        try super.restoreSetting(name: settingName)
+        try super.restoreSetting(name: name)
+        
+        self.cachedThemes[name] = nil
         
         self.updateCache { [weak self] in
-            NotificationCenter.default.post(name: .ThemeDidUpdate,
-                                            object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: settingName,
-                                                       SettingFileManager.NotificationKey.new: settingName])
+            self?.notifySettingUpdate(oldName: name, newName: name)
         }
     }
     
     
     /// create a new untitled theme
-    func createUntitledTheme(completionHandler: ((String, Error?) -> Void)? = nil) {  // @escaping
+    func createUntitledTheme(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
         
-        var newName = NSLocalizedString("Untitled", comment: "")
+        // append number suffix if "Untitled" already exists
+        let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
         
-        // append "Copy n" if "Untitled" already exists
-        if self.urlForUserSetting(name: newName) != nil {
-            newName = self.copiedSettingName(newName)
-        }
-        
-        self.save(themeDictionary: self.plainThemeDictionary, name: newName) { (error: Error?) in
-            completionHandler?(newName, error)
+        try self.save(settingDictionary: self.blankSettingDictionary, name: name) {
+            completionHandler?(name)
         }
     }
     
@@ -246,11 +223,11 @@ final class ThemeManager: SettingFileManager {
     
     // MARK: Private Methods
     
-    /// Create ThemeDictionary from a file at the URL.
+    /// Return ThemeDictionary from a file at the URL.
     ///
-    /// - parameter fileURL: URL to a theme file.
+    /// - parameter fileURL: URL to a setting file.
     /// - throws: CocoaError
-    private func themeDictionary(fileURL: URL) throws -> ThemeDictionary {
+    private func settingDictionary(fileURL: URL) throws -> ThemeDictionary {
         
         let data = try Data(contentsOf: fileURL)
         let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
@@ -263,64 +240,38 @@ final class ThemeManager: SettingFileManager {
     }
     
     
-    /// update internal cache data
-    override func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
+    /// load theme names in user domain
+    override func loadUserSettings() {
         
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+        var themeNameSet = OrderedSet(self.bundledThemeNames)
+        
+        // load user themes if exists
+        if let fileURLs = try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
+                                                                       includingPropertiesForKeys: nil,
+                                                                       options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
+            let userThemeNames = fileURLs
+                .filter { $0.pathExtension == self.filePathExtension }
+                .map { self.settingName(from: $0) }
             
-            let userDirURL = strongSelf.userSettingDirectoryURL
-            let themeNameSet = NSMutableOrderedSet(array: strongSelf.bundledThemeNames)
-            
-            // load user themes if exists
-            if let fileURLs = try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
-                                                                           options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
-                let userThemeNames = fileURLs
-                    .filter { $0.pathExtension == strongSelf.filePathExtension }
-                    .map { strongSelf.settingName(from: $0) }
-                
-                themeNameSet.addObjects(from: userThemeNames)
-            }
-            
-            let isListUpdated = (themeNameSet.array as! [String] != strongSelf.themeNames)
-            strongSelf.themeNames = themeNameSet.array as! [String]
-            
-            // cache definitions
-            strongSelf.archivedThemes = (themeNameSet.array as! [String]).reduce([:]) { (dict, name) in
-                guard
-                    let themeURL = strongSelf.urlForUsedSetting(name: name),
-                    let themeDictionary = try? strongSelf.themeDictionary(fileURL: themeURL)
-                    else { return dict }
-                
-                var dict = dict
-                dict[name] = themeDictionary
-                return dict
-            }
-            
-            // reset user default if not found
-            let defaultThemeName = UserDefaults.standard[.theme]!
-            if !themeNameSet.contains(defaultThemeName) {
-                UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
-            }
-            
-            DispatchQueue.main.sync {
-                // post notification
-                if isListUpdated {
-                    NotificationCenter.default.post(name: .ThemeListDidUpdate, object: self)
-                }
-                
-                completionHandler?()
-            }
+            themeNameSet.append(contentsOf: userThemeNames)
+        }
+        
+        self.themeNames = themeNameSet.array
+        
+        // reset user default if not found
+        let defaultThemeName = UserDefaults.standard[.theme]!
+        if !themeNameSet.contains(defaultThemeName) {
+            UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
         }
     }
     
     
     /// plain theme to be based on when creating a new theme
-    private var plainThemeDictionary: ThemeDictionary {
+    private var blankSettingDictionary: ThemeDictionary {
         
         let url = self.urlForBundledSetting(name: "_Plain")!
         
-        return try! self.themeDictionary(fileURL: url)
+        return try! self.settingDictionary(fileURL: url)
     }
     
 }

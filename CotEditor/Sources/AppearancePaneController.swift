@@ -29,7 +29,7 @@
 import Cocoa
 import AudioToolbox
 
-final class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     
@@ -42,10 +42,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     private var themeNames = [String]()
     private dynamic var isBundled = false
     
-    @IBOutlet private weak var fontField: AntialiasingTextField?
+    @IBOutlet fileprivate private(set) weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private weak var box: NSBox?
-    @IBOutlet private weak var themeTableMenu: NSMenu?
+    @IBOutlet private var themeTableMenu: NSMenu?
     
     
     
@@ -57,12 +57,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     }
     
     
-    override var nibName: String? {
-        
-        return "AppearancePane"
-    }
-    
-    
     
     // MARK: View Controller Methods
     
@@ -71,21 +65,27 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         super.viewDidLoad()
         
-        self.setupFontFamilyNameAndSize()
-        
-        self.setupThemeList()
-        
         // register droppable types
         self.themeTableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
         
-        // select default theme
+        self.themeNames = ThemeManager.shared.settingNames
+        
+        // observe theme list change
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .SettingListDidUpdate, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: .SettingDidUpdate, object: ThemeManager.shared)
+    }
+    
+    
+    /// apply current settings to UI
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.setupFontFamilyNameAndSize()
+        
         let themeName = UserDefaults.standard[.theme]!
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
-        
-        // observe theme list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .ThemeListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: .ThemeDidUpdate, object: nil)
     }
     
     
@@ -94,64 +94,65 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
         
-        let representedTheme: String? = {
+        let representedSettingName: String? = {
             guard isContextualMenu else {
                 return self.selectedThemeName
             }
-            let clickedRow = self.themeTableView?.clickedRow ?? -1
             
-            guard clickedRow != -1 else { return nil }  // clicked blank area
+            guard let clickedRow = self.themeTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
             
             return self.themeNames[safe: clickedRow]
         }()
-        menuItem.representedObject = representedTheme
+        menuItem.representedObject = representedSettingName
         
+        let itemSelected = (representedSettingName != nil)
         var isBundled = false
         var isCustomized = false
-        if let representedTheme = representedTheme {
-            isBundled = ThemeManager.shared.isBundledSetting(name: representedTheme)
-            isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: representedTheme)
+        if let representedSettingName = representedSettingName {
+            isBundled = ThemeManager.shared.isBundledSetting(name: representedSettingName)
+            isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: representedSettingName)
         }
         
         guard let action = menuItem.action else { return false }
         
+        // append target setting name to menu titles
         switch action {
         case #selector(addTheme), #selector(importTheme(_:)):
-            menuItem.isHidden = (isContextualMenu && representedTheme != nil)
+            menuItem.isHidden = (isContextualMenu && itemSelected)
             
         case #selector(renameTheme(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Rename “%@”…", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Rename “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (representedTheme == nil)
+            menuItem.isHidden = !itemSelected
             return !isBundled
             
         case #selector(duplicateTheme(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (representedTheme == nil)
+            menuItem.isHidden = !itemSelected
             
         case #selector(deleteTheme(_:)):
-            menuItem.isHidden = (isBundled || representedTheme == nil)
+            menuItem.isHidden = (isBundled || !itemSelected)
             
         case #selector(restoreTheme(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (!isBundled || representedTheme == nil)
+            menuItem.isHidden = (!isBundled || !itemSelected)
             return isCustomized
             
         case #selector(exportTheme(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), name)
             }
-            menuItem.isHidden = (representedTheme == nil)
+            menuItem.isHidden = !itemSelected
             return (!isBundled || isCustomized)
             
         case #selector(revealThemeInFinder(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), representedTheme!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), name)
             }
             return (!isBundled || isCustomized)
             
@@ -226,7 +227,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     func didUpdate(theme: ThemeDictionary) {
         
         // save
-        ThemeManager.shared.save(themeDictionary: theme, name: self.selectedThemeName)
+        do {
+            try ThemeManager.shared.save(settingDictionary: theme, name: self.selectedThemeName)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     
@@ -238,23 +243,19 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         guard let object = notification.object as? NSTableView, object == self.themeTableView else { return }
         
         let themeName = self.selectedThemeName
-        let themeDict = ThemeManager.shared.themeDictionary(name: themeName)
+        let themeDict = ThemeManager.shared.settingDictionary(name: themeName)
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
         // update default theme setting
-        // -> skip on the first time because, at the time point, the settings are not yet applied.
-        if self.themeViewController != nil, let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
+        if let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
             UserDefaults.standard[.theme] = themeName
             
             // update theme of the current document windows
             //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
-            NotificationCenter.default.post(name: .ThemeDidUpdate,
-                                            object: self,
-                                            userInfo: [SettingFileManager.NotificationKey.old: oldThemeName,
-                                                       SettingFileManager.NotificationKey.new: themeName])
+            ThemeManager.shared.notifySettingUpdate(oldName: oldThemeName, newName: themeName)
         }
         
-        let themeViewController = ThemeViewController()
+        let themeViewController = self.storyboard!.instantiateController(withIdentifier: "ThemeViewController") as! ThemeViewController
         themeViewController.delegate = self
         themeViewController.theme = themeDict
         themeViewController.isBundled = isBundled
@@ -273,31 +274,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let themeName = self.themeNames[row]
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
+        view.textField?.isSelectable = false
         view.textField?.isEditable = !isBundled
-    }
-    
-    
-    /// theme nama was edited
-    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-        
-        // finish if empty (The original name will be restored automatically)
-        guard let newName = fieldEditor.string, !newName.isEmpty else { return true }
-        
-        let oldName = self.selectedThemeName
-        
-        do {
-            try ThemeManager.shared.renameSetting(name: oldName, to: newName)
-            
-        } catch {
-            // revert name
-            fieldEditor.string = oldName
-            
-            // show alert
-            NSAlert(error: error).beginSheetModal(for: self.view.window!)
-            return false
-        }
-        
-        return true
     }
     
     
@@ -338,50 +316,42 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         }
     }
     
+    // NSTextFieldDelegate
+    
+    /// theme name was edited
+    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+        
+        // finish if empty (The original name will be restored automatically)
+        guard let newName = fieldEditor.string, !newName.isEmpty else { return true }
+        
+        let oldName = self.selectedThemeName
+        
+        do {
+            try ThemeManager.shared.renameSetting(name: oldName, to: newName)
+            
+        } catch {
+            // revert name
+            fieldEditor.string = oldName
+            
+            // show alert
+            NSAlert(error: error).beginSheetModal(for: self.view.window!)
+            return false
+        }
+        
+        return true
+    }
+    
     
     
     // MARK: Action Messages
-    
-    /// show font panel
-    @IBAction func showFonts(_ sender: Any?) {
-        
-        guard let font = NSFont(name: UserDefaults.standard[.fontName]!,
-                                size: UserDefaults.standard[.fontSize]) else { return }
-        
-        self.view.window?.makeFirstResponder(self)
-        NSFontManager.shared().setSelectedFont(font, isMultiple: false)
-        NSFontManager.shared().orderFrontFontPanel(sender)
-    }
-    
-    
-    /// font in font panel did update
-    @IBAction override func changeFont(_ sender: Any?) {
-        
-        guard let fontManager = sender as? NSFontManager else { return }
-        
-        let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
-        
-        UserDefaults.standard[.fontName] = newFont.fontName
-        UserDefaults.standard[.fontSize] = newFont.pointSize
-        
-        self.setupFontFamilyNameAndSize()
-    }
-    
-    
-    /// update font name field with new setting
-    @IBAction func updateFontField(_ sender: Any?) {
-        
-        self.setupFontFamilyNameAndSize()
-    }
-    
     
     /// add theme
     @IBAction func addTheme(_ sender: Any?) {
         
         guard let tableView = self.themeTableView else { return }
         
-        ThemeManager.shared.createUntitledTheme { (themeName: String, error: Error?) in
-            let themeNames = ThemeManager.shared.themeNames
+        try? ThemeManager.shared.createUntitledTheme { themeName in
+            let themeNames = ThemeManager.shared.settingNames
             let row = themeNames.index(of: themeName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
@@ -450,7 +420,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @IBAction func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = NSLocalizedString("", comment: "")
+        openPanel.prompt = NSLocalizedString("Import", comment: "")
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
@@ -475,27 +445,15 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     }
     
     
-    
-    // MARK: Private Methods
-    
-    /// display font name and size in the font field
-    private func setupFontFamilyNameAndSize() {
+    @IBAction func reloadAllThemes(_ sender: AnyObject?) {
         
-        let name = UserDefaults.standard[.fontName]!
-        let size = UserDefaults.standard[.fontSize]
-        let shouldAntiailias = UserDefaults.standard[.shouldAntialias]
-        
-        guard let font = NSFont(name: name, size: size),
-            let displayFont = NSFont(name: name, size: min(size, 13.0)),
-            let fontField = self.fontField else { return }
-        
-        fontField.stringValue = font.displayName! + " " + String(format:"%g", size)
-        fontField.font = displayFont
-        fontField.disablesAntialiasing = !shouldAntiailias
+        ThemeManager.shared.updateCache()
     }
     
     
-
+    
+    // MARK: Private Methods
+    
     /// return theme name which is currently selected in the list table
     private dynamic var selectedThemeName: String {
         
@@ -520,7 +478,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @objc private func themeDidUpdate(_ notification: Notification) {
         
         guard
-            let bundledTheme = ThemeManager.shared.themeDictionary(name: self.selectedThemeName),
+            let bundledTheme = ThemeManager.shared.settingDictionary(name: self.selectedThemeName),
             let newTheme = self.themeViewController?.theme else { return }
         
         if bundledTheme == newTheme {
@@ -590,8 +548,80 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// update theme list
     @objc private func setupThemeList() {
         
-        self.themeNames = ThemeManager.shared.themeNames
+        let themeName = UserDefaults.standard[.theme]!
+        
+        self.themeNames = ThemeManager.shared.settingNames
         self.themeTableView?.reloadData()
+        
+        let row = self.themeNames.index(of: themeName) ?? 0
+        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+    }
+    
+}
+
+
+
+// MARK: - Font Setting
+
+extension AppearancePaneController {
+    
+    // MARK: Action Messages
+    
+    /// show font panel
+    @IBAction func showFonts(_ sender: Any?) {
+        
+        guard let font = NSFont(name: UserDefaults.standard[.fontName]!,
+                                size: UserDefaults.standard[.fontSize]) else { return }
+        
+        self.view.window?.makeFirstResponder(self)
+        NSFontManager.shared().setSelectedFont(font, isMultiple: false)
+        NSFontManager.shared().orderFrontFontPanel(sender)
+    }
+    
+    
+    /// font in font panel did update
+    @IBAction override func changeFont(_ sender: Any?) {
+        
+        guard let fontManager = sender as? NSFontManager else { return }
+        
+        let newFont = fontManager.convert(.systemFont(ofSize: 0))
+        
+        UserDefaults.standard[.fontName] = newFont.fontName
+        UserDefaults.standard[.fontSize] = newFont.pointSize
+        
+        self.setupFontFamilyNameAndSize()
+    }
+    
+    
+    /// update font name field with new setting
+    @IBAction func updateFontField(_ sender: Any?) {
+        
+        self.setupFontFamilyNameAndSize()
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// display font name and size in the font field
+    fileprivate func setupFontFamilyNameAndSize() {
+        
+        let name = UserDefaults.standard[.fontName]!
+        let size = UserDefaults.standard[.fontSize]
+        let shouldAntiailias = UserDefaults.standard[.shouldAntialias]
+        let maxDisplaySize = NSFont.systemFontSize(for: .regular)
+        
+        guard
+            let font = NSFont(name: name, size: size),
+            let displayFont = NSFont(name: name, size: min(size, maxDisplaySize)),
+            let fontField = self.fontField
+            else { return }
+        
+        let displayName = font.displayName ?? font.fontName
+        
+        fontField.stringValue = displayName + " " + String.localizedStringWithFormat("%g", size)
+        fontField.font = displayFont
+        fontField.disablesAntialiasing = !shouldAntiailias
     }
     
 }

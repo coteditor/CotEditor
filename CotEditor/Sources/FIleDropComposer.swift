@@ -25,7 +25,8 @@
  
  */
 
-import Cocoa
+import Foundation
+import AppKit.NSImageRep
 
 final class FileDropComposer {
     
@@ -34,34 +35,33 @@ final class FileDropComposer {
         
         static let extensions = "extensions"
         static let formatString = "formatString"
+        static let scope = "scope"
+        static let description = "description"
     }
     
     
-    enum Token: String {
+    enum Token: String, TokenRepresentable {
         
-        case absolutePath = "<<<ABSOLUTE-PATH>>>"
-        case relativePath = "<<<RELATIVE-PATH>>>"
-        case filename = "<<<FILENAME>>>"
-        case filenameWithoutExtension = "<<<FILENAME-NOSUFFIX>>>"
-        case fileExtension = "<<<FILEEXTENSION>>>"
-        case fileExtensionLowercase = "<<<FILEEXTENSION-LOWER>>>"
-        case fileExtensionUppercase = "<<<FILEEXTENSION-UPPER>>>"
-        case directory = "<<<DIRECTORY>>>"
-        case imageWidth = "<<<IMAGEWIDTH>>>"
-        case imageHeight = "<<<IMAGEHEIGHT>>>"
+        static let prefix = "<<<"
+        static let suffix = ">>>"
+        
+        case absolutePath = "ABSOLUTE-PATH"
+        case relativePath = "RELATIVE-PATH"
+        case filename = "FILENAME"
+        case filenameWithoutExtension = "FILENAME-NOSUFFIX"
+        case fileExtension = "FILEEXTENSION"
+        case fileExtensionLowercase = "FILEEXTENSION-LOWER"
+        case fileExtensionUppercase = "FILEEXTENSION-UPPER"
+        case directory = "DIRECTORY"
+        case imageWidth = "IMAGEWIDTH"
+        case imageHeight = "IMAGEHEIGHT"
         
         static let pathTokens: [Token] = [.absolutePath, .relativePath, .filename, .filenameWithoutExtension, .fileExtension, .fileExtensionLowercase, .fileExtensionUppercase, .directory]
         static let imageTokens: [Token] = [.imageWidth, .imageHeight]
         static let all = Token.pathTokens + Token.imageTokens
         
         
-        var localizedDescription: String {
-            
-            return NSLocalizedString(self.description, comment: "")
-        }
-        
-        
-        private var description: String {
+        var description: String {
             
             switch self {
             case .absolutePath:
@@ -99,45 +99,57 @@ final class FileDropComposer {
     }
     
     
+    private let definitions: [[String: String]]
+    
+    
     
     // MARK: -
     // MARK: Lifecycle
     
-    private init() { }
+    init(definitions: [[String: String]]) {
+        
+        self.definitions = definitions
+    }
     
     
     
     // MARK: Public Methods
     
     /// create file drop text
-    static func dropText(forFileURL droppedFileURL: URL, documentURL: URL?) -> String? {
+    ///
+    /// - Parameters:
+    ///   - droppedFileURL: The file URL of dropped file to insert.
+    ///   - documentURL: The file URL of the document or nil if it's not yet saved.
+    ///   - syntaxStyle: The document syntax style or nil if style is not specified.
+    /// - Returns: The text to insert.
+    func dropText(forFileURL droppedFileURL: URL, documentURL: URL?, syntaxStyle: String?) -> String? {
         
         let pathExtension = droppedFileURL.pathExtension
         
-        guard let template = self.template(forExtension: pathExtension) else { return nil }
+        guard let template = self.template(forExtension: pathExtension, syntaxStyle: syntaxStyle) else { return nil }
         
         // replace template
         var dropText = template
-            .replacingOccurrences(of: Token.absolutePath.rawValue, with: droppedFileURL.path)
-            .replacingOccurrences(of: Token.relativePath.rawValue, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
-            .replacingOccurrences(of: Token.filename.rawValue, with: droppedFileURL.lastPathComponent)
-            .replacingOccurrences(of: Token.filenameWithoutExtension.rawValue, with: droppedFileURL.deletingPathExtension().lastPathComponent)
-            .replacingOccurrences(of: Token.fileExtension.rawValue, with: pathExtension)
-            .replacingOccurrences(of: Token.fileExtensionLowercase.rawValue, with: pathExtension.lowercased())
-            .replacingOccurrences(of: Token.fileExtensionUppercase.rawValue, with: pathExtension.uppercased())
-            .replacingOccurrences(of: Token.directory.rawValue, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
+            .replacingOccurrences(of: Token.absolutePath.token, with: droppedFileURL.path)
+            .replacingOccurrences(of: Token.relativePath.token, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
+            .replacingOccurrences(of: Token.filename.token, with: droppedFileURL.lastPathComponent)
+            .replacingOccurrences(of: Token.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
+            .replacingOccurrences(of: Token.fileExtension.token, with: pathExtension)
+            .replacingOccurrences(of: Token.fileExtensionLowercase.token, with: pathExtension.lowercased())
+            .replacingOccurrences(of: Token.fileExtensionUppercase.token, with: pathExtension.uppercased())
+            .replacingOccurrences(of: Token.directory.token, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
         
         // get image dimension if needed
         //   -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
-        if template.contains(Token.imageWidth.rawValue) || template.contains(Token.imageHeight.rawValue) {
+        if template.contains(Token.imageWidth.token) || template.contains(Token.imageHeight.token) {
             var imageRep: NSImageRep?
             NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { (newURL: URL) in
                 imageRep = NSImageRep(contentsOf: newURL)
             }
             if let imageRep = imageRep {
                 dropText = dropText
-                    .replacingOccurrences(of: Token.imageWidth.rawValue, with: String(imageRep.pixelsWide))
-                    .replacingOccurrences(of: Token.imageHeight.rawValue, with: String(imageRep.pixelsHigh))
+                    .replacingOccurrences(of: Token.imageWidth.token, with: String(imageRep.pixelsWide))
+                    .replacingOccurrences(of: Token.imageHeight.token, with: String(imageRep.pixelsHigh))
             }
         }
         
@@ -148,25 +160,35 @@ final class FileDropComposer {
     
     // MARK: Private Methods
     
-    /// find matched template for path extension
-    private static func template(forExtension fileExtension: String?) -> String? {
+    /// find matched template for path extension and scope
+    ///
+    /// - Parameters:
+    ///   - fileExtension: The extension of file to drop.
+    ///   - syntaxStyle: The document syntax style or nil if style is not specified.
+    /// - Returns: A matched template string for file drop or nil if not found.
+    private func template(forExtension fileExtension: String, syntaxStyle: String?) -> String? {
         
-        guard let fileExtension = fileExtension else { return nil }
+        guard !fileExtension.isEmpty else { return nil }
         
-        guard let definitions = UserDefaults.standard[.fileDropArray] as? [[String: String]] else {
-            assertionFailure("invalid file drop setting")
-            return nil
-        }
-        
-        for definition in definitions {
-            guard let extensions = definition[SettingKey.extensions]?.components(separatedBy: ", ") else { continue }
-            
-            if extensions.contains(fileExtension.lowercased()) || extensions.contains(fileExtension.uppercased()) {
-                return definition[SettingKey.formatString]
+        let definition = self.definitions.first { definition in
+            // check scope
+            if let scope = definition[SettingKey.scope], !scope.isEmpty,
+                syntaxStyle != scope
+            {
+                return false
             }
+            
+            // check extensions
+            if let extensions = definition[SettingKey.extensions]?.components(separatedBy: ", "),
+                !extensions.contains(where: { $0.compare(fileExtension, options: .caseInsensitive) == .orderedSame })
+            {
+                return false
+            }
+            
+            return true
         }
         
-        return nil
+        return definition?[SettingKey.formatString]
     }
     
 }

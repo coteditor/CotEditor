@@ -122,7 +122,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.hasUndoManager = true
         
         // observe sytnax style update
-        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: .StyntaxDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: .SettingDidUpdate, object: SyntaxManager.shared)
     }
     
     
@@ -329,12 +329,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
         
-        // determine syntax style
-        let styleName = SyntaxManager.shared.styleName(documentFileName: url.lastPathComponent)
-            ?? SyntaxManager.shared.styleName(documentContent: string)
-            ?? UserDefaults.standard[.syntaxStyle]
-        
-        self.setSyntaxStyle(name: styleName)
+        // determine syntax style (only on the first file open)
+        if self.windowForSheet == nil {
+            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
+                ?? SyntaxManager.shared.settingName(documentContent: string)
+                ?? BundledStyleName.none
+            
+            self.setSyntaxStyle(name: styleName)
+        }
     }
     
     
@@ -405,7 +407,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 baseFileName.remove(at: baseFileName.startIndex)
             }
             // append a unique string to avoid overwriting another backup file with the same file name.
-            let fileName = baseFileName + " (\(self.autosaveIdentifier))"
+            let fileName = baseFileName + " (" + self.autosaveIdentifier + ")"
             
             return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
@@ -423,8 +425,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // apply syntax style that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation {
                 let fileName = url.lastPathComponent
-                if let styleName = SyntaxManager.shared.styleName(documentFileName: fileName)
-                    ?? SyntaxManager.shared.styleName(documentContent: strongSelf.string)
+                if let styleName = SyntaxManager.shared.settingName(documentFileName: fileName)
+                    ?? SyntaxManager.shared.settingName(documentContent: strongSelf.string)
                     // -> Due to the async-saving, self.string can be changed from the actual saved contents.
                     //    But we don't care about that.
                 {
@@ -500,7 +502,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // give the execute permission if user requested
-        if self.isExecutable && saveOperation != .autosaveElsewhereOperation {
+        if self.isExecutable, saveOperation != .autosaveElsewhereOperation {
             var permissions = (attributes[FileAttributeKey.posixPermissions.rawValue] as? UInt16) ?? 0
             if let originalURL = absoluteOriginalContentsURL, permissions == 0 {
                 let coordinator = NSFileCoordinator(filePresenter: self)
@@ -566,7 +568,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
         // disable save dialog if content is empty and not saved
-        if self.fileURL == nil && self.textStorage.string.isEmpty {
+        if self.fileURL == nil, self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
         }
         
@@ -769,11 +771,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard
             let oldName = notification.userInfo?[SettingFileManager.NotificationKey.old] as? String,
-            let newName = notification.userInfo?[SettingFileManager.NotificationKey.new] as? String else { return }
+            let newName = notification.userInfo?[SettingFileManager.NotificationKey.new] as? String,
+            oldName == self.syntaxStyle.styleName else { return }
         
-        if oldName == self.syntaxStyle.styleName {
-            self.setSyntaxStyle(name: newName)
-        }
+        self.setSyntaxStyle(name: newName)
     }
     
     
@@ -934,7 +935,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         syntaxStyle.textStorage = self.textStorage
         self.syntaxStyle = syntaxStyle
         
-        NotificationCenter.default.post(name: .DocumentDidChangeSyntaxStyle, object: self)
+        DispatchQueue.main.async { [weak self] in
+            NotificationCenter.default.post(name: .DocumentDidChangeSyntaxStyle, object: self)
+        }
     }
     
     

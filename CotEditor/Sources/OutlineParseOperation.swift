@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,13 +30,11 @@ import Foundation
 
 struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
     
+    
     let regex: NSRegularExpression
     let template: String
     let isSeparator: Bool
-    
-    let isBold: Bool
-    let isItalic: Bool
-    let hasUnderline: Bool
+    let style: OutlineItem.Style
     
     
     init?(definition: [String: Any]) {
@@ -54,16 +52,24 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
             self.regex = try NSRegularExpression(pattern: pattern, options: options)
             
         } catch {
-            print("Error on outline parsing: " + error.localizedDescription)
+            print("Error on outline regex: " + error.localizedDescription)
             return nil
         }
         
         self.template = (definition[SyntaxDefinitionKey.keyString.rawValue] as? String) ?? ""
         self.isSeparator = (self.template == String.separator)
         
-        self.isBold = (definition[OutlineStyleKey.bold.rawValue] as? Bool) ?? false
-        self.isItalic = (definition[OutlineStyleKey.italic.rawValue] as? Bool) ?? false
-        self.hasUnderline = (definition[OutlineStyleKey.underline.rawValue] as? Bool) ?? false
+        var style = OutlineItem.Style()
+        if (definition[OutlineStyleKey.bold.rawValue] as? Bool) ?? false {
+            style.update(with: .bold)
+        }
+        if (definition[OutlineStyleKey.italic.rawValue] as? Bool) ?? false {
+            style.update(with: .italic)
+        }
+        if (definition[OutlineStyleKey.underline.rawValue] as? Bool) ?? false {
+            style.update(with: .underline)
+        }
+        self.style = style
     }
     
     
@@ -77,9 +83,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
         
         return lhs.regex == rhs.regex &&
             lhs.template == rhs.template &&
-            lhs.isBold == rhs.isBold &&
-            lhs.isItalic == rhs.isItalic &&
-            lhs.hasUnderline == rhs.hasUnderline
+            lhs.style == rhs.style
     }
     
 }
@@ -193,25 +197,21 @@ final class OutlineParseOperation: AsynchronousOperation {
                 // replace whitespaces
                 title = title.replacingOccurrences(of: "\n", with: " ")
                 
-                let item = OutlineItem(title: title,
-                                       range: range,
-                                       isBold: definition.isBold,
-                                       isItalic: definition.isItalic,
-                                       hasUnderline: definition.hasUnderline)
+                let item = OutlineItem(title: title, range: range, style: definition.style)
                 
                 // append outline item
                 outlineItems.append(item)
-                
-                guard !self.isCancelled else { return }
             }
-            
-            // sort by location
-            outlineItems.sort {
-                $0.range.location < $1.range.location
-            }
-            
-            self.results = outlineItems
         }
+        
+        guard !self.isCancelled else { return }
+        
+        // sort by location
+        outlineItems.sort {
+            $0.range.location < $1.range.location
+        }
+        
+        self.results = outlineItems
     }
     
 }

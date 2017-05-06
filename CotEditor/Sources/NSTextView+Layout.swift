@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,19 +28,34 @@
 import AppKit
 
 // MARK: Range
+
 extension NSTextView {
     
     /// calculate visible range
     var visibleRange: NSRange? {
         
-        guard let scrollView = self.enclosingScrollView,
-              let layoutManager = self.layoutManager,
-              let textContainer = self.textContainer else { return nil }
+        guard
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer else { return nil }
         
-        let visibleRect = scrollView.documentVisibleRect.offset(by: -self.textContainerOrigin)
+        let visibleRect = self.visibleRect.offset(by: -self.textContainerOrigin)
         let glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
         
         return layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
+    }
+    
+    
+    /// return bounding rectangle (in text view coordinates) enclosing all the given character range
+    func boundingRect(for range: NSRange) -> NSRect? {
+        
+        guard
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer else { return nil }
+        
+        let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+        let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+        
+        return boundingRect.offset(by: self.textContainerOrigin)
     }
     
 }
@@ -106,15 +121,17 @@ extension NSTextView {
     /// zoom to the scale keeping passed-in point position in scroll view
     func setScale(_ scale: CGFloat, centeredAt point: NSPoint) {
         
-        guard let scrollView = self.enclosingScrollView,
-              let layoutManager = self.layoutManager,
-              let textContainer = self.textContainer, scale != self.scale else { return }
+        let currentScale = self.scale
+        
+        guard
+            scale != currentScale,
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer else { return }
         
         // store current coordinate
         let centerGlyphIndex = layoutManager.glyphIndex(for: point, in: textContainer)
-        let currentScale = self.scale
         let isVertical = (self.layoutOrientation == .vertical)
-        let visibleRect = scrollView.documentVisibleRect
+        let visibleRect = self.visibleRect
         let visibleOrigin = NSPoint(x: visibleRect.minX, y: isVertical ? visibleRect.maxY : visibleRect.minY)
         let centerFromClipOrigin = point.offset(by: -visibleOrigin).scaled(to: currentScale)  // from top-left
         
@@ -168,7 +185,7 @@ extension NSTextView {
                                                      height: CGFloat.greatestFiniteMagnitude)
                 self.setConstrainedFrameSize(contentSize)
             } else {
-                textContainer.containerSize = NSSize.infinite
+                textContainer.containerSize = .infinite
             }
             self.autoresizingMask = wrapsLines ? (isVertical ? .viewHeightSizable : .viewWidthSizable) : .viewNotSizable
             if isVertical {

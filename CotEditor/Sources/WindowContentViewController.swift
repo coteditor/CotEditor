@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,8 +30,6 @@ import Cocoa
 final class WindowContentViewController: NSSplitViewController, TabViewControllerDelegate {
     
     // MARK: Private Properties
-    
-    private var isSynchronizingTabs = false
     
     @IBOutlet private weak var documentViewItem: NSSplitViewItem?
     @IBOutlet private weak var sidebarViewItem: NSSplitViewItem?
@@ -108,19 +106,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             if self.isSidebarShown {
                 UserDefaults.standard[.sidebarWidth] = self.sidebarThickness
             }
-            
-            // sync divider position among window tabs
-            if !self.isSynchronizingTabs,
-                let position = self.documentViewController?.view.frame.width
-            {
-                self.isSynchronizingTabs = true
-                
-                self.siblings.lazy
-                    .filter { $0 != self }
-                    .forEach { $0.splitView.setPosition(position, ofDividerAt: 0) }
-                
-                self.isSynchronizingTabs = false
-            }
         }
     }
     
@@ -131,15 +116,8 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     /// synchronize sidebar pane among window tabs
     func tabViewController(_ viewController: NSTabViewController, didSelect tabViewIndex: Int) {
         
-        guard !self.isSynchronizingTabs else { return }
-        
-        self.isSynchronizingTabs = true
-        
-        self.siblings.lazy
-            .filter { $0 != self }
+        self.siblings.filter { $0 != self }
             .forEach { $0.sidebarViewController?.selectedTabViewItemIndex = tabViewIndex }
-        
-        self.isSynchronizingTabs = false
     }
     
     
@@ -241,8 +219,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             self.sidebarViewItem?.isCollapsed = !shown
             
             // and then update background tabs
-            self.siblings.lazy
-                .filter { $0 != self }
+            self.siblings.filter { $0 != self }
                 .forEach {
                     $0.sidebarViewItem?.isCollapsed = !shown
                     $0.sidebarThickness = self.sidebarThickness

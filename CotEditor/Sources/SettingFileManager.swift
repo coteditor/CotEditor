@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,8 +29,19 @@ import Foundation
 import AppKit.NSApplication
 
 enum SettingFileType {
+    
     case syntaxStyle
     case theme
+}
+
+
+extension Notification.Name {
+    
+    /// Posted when the line-up of setting files did update. The sender is a manager.
+    static let SettingListDidUpdate = Notification.Name("SettingListDidUpdate")
+    
+    /// Posted when a setting file is updated.  Information about new/previous setting names are in userInfo. The sender is a manager.
+    static let SettingDidUpdate = Notification.Name("SettingDidUpdate")
 }
 
 
@@ -50,38 +61,20 @@ class SettingFileManager: SettingManager {
     // MARK: Abstract Methods
     
     /// path extension for user setting file
-    var filePathExtension: String {
-        
-        preconditionFailure()
-    }
-    
+    var filePathExtension: String { preconditionFailure() }
     
     /// setting file type
-    var settingFileType: SettingFileType {
-        
-        preconditionFailure()
-    }
-    
+    var settingFileType: SettingFileType { preconditionFailure() }
     
     /// list of names of setting file name (without extension)
-    var settingNames: [String] {
-        
-        preconditionFailure()
-    }
-    
+    var settingNames: [String] { preconditionFailure() }
     
     /// list of names of setting file name which are bundled (without extension)
-    var bundledSettingNames: [String] {
-        
-        preconditionFailure()
-    }
+    var bundledSettingNames: [String] { preconditionFailure() }
     
     
-    /// update internal cache data
-    func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
-        
-        preconditionFailure()
-    }
+    /// load settings in the user domain
+    func loadUserSettings() { preconditionFailure() }
     
     
     
@@ -139,30 +132,12 @@ class SettingFileManager: SettingManager {
     
     
     /// return setting name appending localized " Copy" + number suffix without extension
-    func copiedSettingName(_ originalName: String) -> String {
+    /// return setting name appending number suffix without extension
+    func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
         
-        let baseName = originalName.trimmingCharacters(in: .whitespacesAndNewlines)
-        let localizedCopy = " " + NSLocalizedString("copy", comment: "copied file suffix")
+        let suffix = appendCopySuffix ? NSLocalizedString("copy", comment: "copied file suffix") : nil
         
-        let regex = try! NSRegularExpression(pattern: localizedCopy + "( [0-9]+)?$")
-        let copySuffixRange = regex.rangeOfFirstMatch(in: baseName, range: baseName.nsRange)
-        
-        let copyBaseName: String = {
-            if copySuffixRange.location != NSNotFound {
-                return (baseName as NSString).substring(to: copySuffixRange.location) + localizedCopy
-            }
-            return baseName + localizedCopy
-        }()
-        
-        // increase number suffix
-        var copiedName = copyBaseName
-        var count = 2
-        while self.settingNames.contains(copiedName) {
-            copiedName = copyBaseName + " " + String(count)
-            count += 1
-        }
-        
-        return copiedName
+        return self.settingNames.createAvailableName(for: proposedName, suffix: suffix)
     }
     
     
@@ -219,7 +194,7 @@ class SettingFileManager: SettingManager {
     /// duplicate the setting with name
     func duplicateSetting(name: String) throws {
         
-        let newName = self.copiedSettingName(name)
+        let newName = self.savableSettingName(for: name, appendCopySuffix: true)
         
         guard let sourceURL = self.urlForUsedSetting(name: name) else {
             throw SettingFileError(kind: .noSourceFile, name: name, error: nil)
@@ -287,6 +262,45 @@ class SettingFileManager: SettingManager {
         }
         
         try self.overwriteSetting(fileURL: fileURL)
+    }
+    
+    
+    /// update internal cache data
+    func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
+        
+        let previousSettingNames = self.settingNames
+        
+        DispatchQueue.global().async { [weak self] in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.loadUserSettings()
+            
+            let didUpdateList = strongSelf.settingNames != previousSettingNames
+            
+            DispatchQueue.main.sync {
+                if didUpdateList {
+                    strongSelf.notifySettingListUpdate()
+                }
+                
+                completionHandler?()
+            }
+        }
+    }
+    
+    
+    /// notify about a line-up update of managed setting files.
+    func notifySettingListUpdate() {
+        
+        NotificationCenter.default.post(name: .SettingListDidUpdate, object: self)
+    }
+    
+    
+    /// notify about change of a managed setting
+    func notifySettingUpdate(oldName: String, newName: String) {
+        
+        NotificationCenter.default.post(name: .SettingDidUpdate, object: self,
+                                        userInfo: [SettingFileManager.NotificationKey.old: oldName,
+                                                   SettingFileManager.NotificationKey.new: newName])
     }
     
     

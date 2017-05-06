@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -77,6 +77,8 @@ final class ConsolePanelController: NSWindowController {
     override func windowDidLoad() {
         
         super.windowDidLoad()
+        
+        (self.window as? NSPanel)?.isFloatingPanel = false
     
         self.textView?.font = NSFont.messageFont(ofSize: self.fontSize)
         self.textView?.textContainerInset = NSSize(width: 0.0, height: 4.0)
@@ -87,15 +89,17 @@ final class ConsolePanelController: NSWindowController {
     // MARK: Public Methods
     
     /// append given message to the console
-    func append(message: String, title: String) {
+    func append(message: String, title: String?) {
         
         let date = self.dateFormatter.string(from: Date())
-        var attrString = NSAttributedString(string: "[" + date + "] ")
+        var attrString = NSAttributedString(string: "[" + date + "]")
         
         // append bold title
-        let attrTitle = NSMutableAttributedString(string: title)
-        attrTitle.applyFontTraits(.boldFontMask, range: NSRange(location: 0, length: title.utf16.count))
-        attrString += attrTitle
+        if let title = title {
+            let attrTitle = NSMutableAttributedString(string: " " + title)
+            attrTitle.applyFontTraits(.boldFontMask, range: NSRange(location: 1, length: title.utf16.count))
+            attrString += attrTitle
+        }
         
         // append indented message
         let attrMessage = NSAttributedString(string: "\n" + message + "\n", attributes: [NSParagraphStyleAttributeName: self.messageParagraphStyle])

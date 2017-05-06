@@ -76,18 +76,18 @@ final class StatusBarController: NSViewController {
     
     
     /// request analyzer to update editor info
-    override func viewWillAppear() {
+    override func viewDidAppear() {
         
-        super.viewWillAppear()
+        super.viewDidAppear()
         
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = true
     }
     
     
     /// request analyzer to stop updating editor info
-    override func viewDidAppear() {
+    override func viewDidDisappear() {
         
-        super.viewDidAppear()
+        super.viewDidDisappear()
         
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
     }
@@ -109,26 +109,24 @@ final class StatusBarController: NSViewController {
     // MARK: Public Methods
     
     weak var documentAnalyzer: DocumentAnalyzer? {
+        
         willSet {
-            self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
+            guard let analyzer = documentAnalyzer else { return }
             
-            if let analyzer = self.documentAnalyzer {
-                NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
-                NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateFileInfo, object: analyzer)
-                NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateModeInfo, object: analyzer)
-            }
+            analyzer.needsUpdateStatusEditorInfo = false
+            
+            NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
+            NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateFileInfo, object: analyzer)
+            NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateModeInfo, object: analyzer)
         }
         didSet {
             guard let analyzer = documentAnalyzer else { return }
             
             analyzer.needsUpdateStatusEditorInfo = !self.view.isHidden
             
-            NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus),
-                                                   name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus),
-                                                   name: .AnalyzerDidUpdateFileInfo, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus),
-                                                   name: .AnalyzerDidUpdateModeInfo, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: .AnalyzerDidUpdateFileInfo, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: .AnalyzerDidUpdateModeInfo, object: analyzer)
             
             self.updateEditorStatus()
             self.updateDocumentStatus()
@@ -158,7 +156,7 @@ final class StatusBarController: NSViewController {
     @objc private func updateEditorStatus() {
         
         guard !self.view.isHidden else { return }
-        guard let info = self.documentAnalyzer else { return }
+        guard let info = self.documentAnalyzer?.info else { return }
         
         let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()
@@ -198,7 +196,7 @@ final class StatusBarController: NSViewController {
     @objc private func updateDocumentStatus() {
         
         guard !self.view.isHidden else { return }
-        guard let info = self.documentAnalyzer else { return }
+        guard let info = self.documentAnalyzer?.info else { return }
         
         let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()

@@ -85,7 +85,7 @@ class ThemeTests: XCTestCase {
         
         XCTAssertNotNil(theme)  // Theme can be created from a lacking dictionary
         XCTAssertFalse(theme!.isValid)  // but flagged as invalid
-        XCTAssertEqual(theme!.textColor, NSColor.gray)  // and unavailable colors are substituted with frayColor().
+        XCTAssertEqual(theme!.textColor, NSColor.gray.usingColorSpaceName(NSCalibratedRGBColorSpace))  // and unavailable colors are substituted with frayColor().
     }
     
     

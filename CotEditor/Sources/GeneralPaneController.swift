@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,32 +43,12 @@ final class GeneralPaneController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: String? {
-        
-        return "GeneralPane"
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // select one of document conflict radio buttons
-        let conflictOption = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption])!
-        switch conflictOption {
-        case .ignore:
-            self.ignoreConflictButton?.state = NSOnState
-        case .notify:
-            self.notifyConflictButton?.state = NSOnState
-        case .revert:
-            self.revertConflictButton?.state = NSOnState
-        }
         
         // remove updater option on AppStore ver.
         #if APPSTORE
@@ -87,6 +67,24 @@ final class GeneralPaneController: NSViewController {
                 self.view.frame.size.height -= 32
             }
         #endif
+    }
+    
+    
+    /// apply current settings to UI
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // select one of document conflict radio buttons
+        let conflictOption = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption])!
+        switch conflictOption {
+        case .ignore:
+            self.ignoreConflictButton?.state = NSOnState
+        case .notify:
+            self.notifyConflictButton?.state = NSOnState
+        case .revert:
+            self.revertConflictButton?.state = NSOnState
+        }
     }
     
     
@@ -119,7 +117,7 @@ final class GeneralPaneController: NSViewController {
                 break  // do nothing
                 
             case NSAlertThirdButtonReturn:  // = Cancel
-                UserDefaults.standard[.enablesAutosaveInPlace] = newSetting
+                UserDefaults.standard[.enablesAutosaveInPlace] = !newSetting
                 
             default: break
             }

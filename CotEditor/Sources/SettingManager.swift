@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,21 +39,14 @@ class SettingManager: SettingManagerProtocol {
     
     // MARK: Abstract Properties
     
-    /// directory name in both Application Support and bundled Resources
-    var directoryName: String {
-        
-        preconditionFailure()
-    }
+    var directoryName: String { preconditionFailure() }
     
     
     
-    // MARK: Abstract Properties/Methods
+    // MARK: Public Properties/Methods
     
     /// user setting directory URL in Application Support
-    var userSettingDirectoryURL: URL {
-        
-        return type(of: self).supportDirectoryURL.appendingPathComponent(self.directoryName)
-    }
+    lazy var userSettingDirectoryURL: URL = type(of: self).supportDirectoryURL.appendingPathComponent(self.directoryName)
     
     
     /// create user setting directory if not yet exist
@@ -69,13 +62,10 @@ class SettingManager: SettingManagerProtocol {
     
     
     
-    // MARK: Private Methods
+    // MARK: Private Property
     
     /// application's support directory in user's `Application Suuport/`
-    private static var supportDirectoryURL: URL = {
-        
-        return try! FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask,
-                                            appropriateFor: nil, create: false).appendingPathComponent("CotEditor")
-    }()
+    private static let supportDirectoryURL: URL = try! FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask,
+                                                                               appropriateFor: nil, create: false).appendingPathComponent("CotEditor")
     
 }

@@ -347,6 +347,21 @@
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
 "sFn-3j-pY5.title" = "行を削除";
 
+/* Class = "NSMenuItem"; title = "Surround Selection With"; ObjectID = "9dv-Zb-W60"; */
+"9dv-Zb-W60.title" = "選択部分を囲む";
+/* Class = "NSMenu"; title = "Surround Selection With"; ObjectID = "AUq-CT-rPl"; */
+"AUq-CT-rPl.title" = "選択部分を囲む";
+/* Class = "NSMenuItem"; title = "Single Quotes"; ObjectID = "Srp-eD-10Q"; */
+"Srp-eD-10Q.title" = "一重引用符";
+/* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
+"O8z-C9-ECD.title" = "二重引用符";
+/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
+"G3o-1h-GwR.title" = "丸括弧";
+/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
+"Xoq-43-C1z.title" = "波括弧";
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
+"3VX-DL-PgT.title" = "カスタム...";
+
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
 "hBJ-Ge-278.title" = "行末の空白を削除";
 
@@ -509,8 +524,8 @@
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "リリースノート";
-/* Class = "NSMenuItem"; title = "What’s New in CotEditor 3"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor 3 の新機能";
+/* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
+"DCW-Ij-540.title" = "CotEditor の新機能";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "謝辞";
 

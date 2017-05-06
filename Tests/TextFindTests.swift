@@ -185,27 +185,25 @@ class TextFindTests: XCTestCase {
         textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)", settings: settings)
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { _ in }
-        XCTAssertEqual(replacementItems.count, 2)
-        XCTAssertEqual(replacementItems[0].string, "c\\t")
-        XCTAssertEqual(replacementItems[0].range, NSRange(location: 1, length: 2))
-        XCTAssertEqual(replacementItems[1].string, "C\\t")
-        XCTAssertEqual(replacementItems[1].range, NSRange(location: 9, length: 2))
+        XCTAssertEqual(replacementItems.count, 1)
+        XCTAssertEqual(replacementItems[0].string, "ac\\tdefg AC\\tDEFG")
+        XCTAssertEqual(replacementItems[0].range, NSRange(location: 0, length: 15))
         XCTAssertNil(selectedRanges)
         
         
         settings = TextFind.Settings(usesRegularExpression: true,
                                      inSelection: true)
-        textFind = try! TextFind(for: "abcdefg abcdefg abcdefg", findString: "abc", settings: settings, selectedRanges: [NSRange(location: 1, length: 15),
+        textFind = try! TextFind(for: "abcdefg abcdefg abcdefg", findString: "abc", settings: settings, selectedRanges: [NSRange(location: 1, length: 14),
                                                                                                                          NSRange(location: 16, length: 7)])
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { _ in }
         XCTAssertEqual(replacementItems.count, 2)
-        XCTAssertEqual(replacementItems[0].string, "_")
-        XCTAssertEqual(replacementItems[0].range, NSRange(location: 8, length: 3))
-        XCTAssertEqual(replacementItems[1].string, "_")
-        XCTAssertEqual(replacementItems[1].range, NSRange(location: 16, length: 3))
-        XCTAssertEqual(selectedRanges![0], NSRange(location: 2, length: 13))
-        XCTAssertEqual(selectedRanges![1], NSRange(location: 15, length: 5))
+        XCTAssertEqual(replacementItems[0].string, "bcdefg _defg")
+        XCTAssertEqual(replacementItems[0].range, NSRange(location: 1, length: 14))
+        XCTAssertEqual(replacementItems[1].string, "_defg")
+        XCTAssertEqual(replacementItems[1].range, NSRange(location: 16, length: 7))
+        XCTAssertEqual(selectedRanges![0], NSRange(location: 1, length: 12))
+        XCTAssertEqual(selectedRanges![1], NSRange(location: 14, length: 5))
     }
     
 }
@@ -217,7 +215,7 @@ class TextFindTests: XCTestCase {
 private extension TextFind.Settings {
     
     /// omittable initializer
-    init(usesRegularExpression: Bool = false, isWrap: Bool = false, inSelection: Bool = false, textualOptions: String.CompareOptions = [], regexOptions: NSRegularExpression.Options = [], unescapesReplacementString: Bool = false) {
+    init(usesRegularExpression: Bool = false, isWrap: Bool = false, inSelection: Bool = false, textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [], unescapesReplacementString: Bool = false) {
         
         self.usesRegularExpression = usesRegularExpression
         self.isWrap = isWrap

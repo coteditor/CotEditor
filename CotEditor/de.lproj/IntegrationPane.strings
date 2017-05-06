@@ -35,4 +35,4 @@
 "e2G-16-MxZ.ibShadowedDisplayPattern" = "bei %{value1}@ installiert";
 
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
-"c48-xK-Ag1.title" = "Mit dem „cot“-Kommandozeilenwerkzeug können Sie CotEditor von der Kommandozeile aus aktivieren und es Dateien öffnen lassen.";
+"c48-xK-Ag1.title" = "Mit dem „cot“-Kommandozeilenwerkzeug kannst du CotEditor von der Kommandozeile aus aktivieren und es Dateien öffnen lassen.";

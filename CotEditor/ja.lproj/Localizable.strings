@@ -32,8 +32,9 @@
 
 
 
-// Menu item title for Sparkle
+// Main menu item titles
 "Check for Updates…" = "アップデートを確認...";
+"What’s New in CotEditor %@" = "CotEditor %@ の新機能";  // %@ is version number
 
 
 // Share menu
@@ -70,6 +71,8 @@
 "%@ string replaced." = "%@ 件置換しました。";
 "%@ strings replaced." = "%@ 件置換しました。";
 "Invalid regular expression" = "無効な正規表現です。";
+"Empty find string" = "検索文字列が空です。";
+"Input text to find." = "検索するテキストを入力してください。";
 
 
 /* MARK: FindPanelController */
@@ -510,7 +513,7 @@
 
 
 /* MARK: FileDropComposer */
-// Descriptions about tokens in the file drop feature
+// Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
 "The relative path between dropped file and the document." = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
 "The dropped file’s name including extension (if exists)." = "ドロップ元ファイルの拡張子を含むファイル名";
@@ -522,6 +525,11 @@
 "(If the dropped file is an image) image width." = "イメージの幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
 "(If the dropped file is an image) image height." = "イメージの高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
 
+
+
+/* MARK: Snippet */
+// Descriptions about variables in the snippet feature
+"The cursor position after inserting the snippet." = "スニペット挿入後のカーソル位置";
 
 
 /* String extension */

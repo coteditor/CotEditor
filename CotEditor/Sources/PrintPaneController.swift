@@ -32,76 +32,30 @@ final class PrintPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    @IBOutlet private weak var fontField: NSTextField?
+    @IBOutlet fileprivate private(set) weak var fontField: NSTextField?
     @IBOutlet private weak var colorPopupButton: NSPopUpButton?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    override var nibName: String? {
-        
-        return "PrintPane"
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
-    /// setup UI
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
+    /// apply current settings to UI
+    override func viewWillAppear() {
         
         self.setupFontFamilyNameAndSize()
         self.setupColorMenu()
-        
-        // observe theme list update
-        NotificationCenter.default.addObserver(self, selector: #selector(setupColorMenu), name: .ThemeListDidUpdate, object: nil)
     }
     
     
     
     // MARK: Action Messages
     
-    /// show font panel
-    @IBAction func showFonts(_ sender: Any?) {
-        guard let font = NSFont(name: UserDefaults.standard[.printFontName]!,
-                                size: UserDefaults.standard[.printFontSize]) else { return }
-        
-        self.view.window?.makeFirstResponder(self)
-        NSFontManager.shared().setSelectedFont(font, isMultiple: false)
-        NSFontManager.shared().orderFrontFontPanel(sender)
-    }
-    
-    
-    /// font in font panel did update
-    @IBAction override func changeFont(_ sender: Any?) {
-        
-        guard let fontManager = sender as? NSFontManager else { return }
-        
-        let newFont = fontManager.convert(NSFont.systemFont(ofSize: 0))
-        
-        UserDefaults.standard[.printFontName] = newFont.fontName
-        UserDefaults.standard[.printFontSize] = newFont.pointSize
-        
-        self.setupFontFamilyNameAndSize()
-    }
-    
-    
     /// color setting did update
-    @IBAction func changePrintTheme(_ sender: Any?) {
+    @IBAction func changePrintTheme(_ sender: NSPopUpButton) {
         
-        guard let popup = sender as? NSPopUpButton else { return }
-        
-        let index = popup.indexOfSelectedItem
-        let theme = (index > 2) ? popup.titleOfSelectedItem : nil  // do not set theme on `Black and White` and `same as document's setting`
+        let index = sender.indexOfSelectedItem
+        let theme = (index > 2) ? sender.titleOfSelectedItem : nil  // do not set theme on `Black and White` and `same as document's setting`
         
         UserDefaults.standard[.printTheme] = theme
         UserDefaults.standard[.printColorIndex] = index
@@ -111,39 +65,25 @@ final class PrintPaneController: NSViewController {
     
     // MARK: Private Methods
     
-    /// display font name and size in the font field
-    private func setupFontFamilyNameAndSize() {
-        
-        let name = UserDefaults.standard[.printFontName]!
-        let size = UserDefaults.standard[.printFontSize]
-        
-        guard let font = NSFont(name: name, size: size),
-              let displayFont = NSFont(name: name, size: min(size, 13.0)),
-              let fontField = self.fontField else { return }
-        
-        let displayName = font.displayName ?? font.fontName
-        
-        fontField.stringValue = displayName + " " + String(format:"%g", size)
-        fontField.font = displayFont
-    }
-    
-    
-    /// setup popup menu for color setting
-    @objc private func setupColorMenu() {
+    /// update popup menu for color setting
+    private func setupColorMenu() {
         
         let index = UserDefaults.standard[.printColorIndex]
         let themeName = UserDefaults.standard[.printTheme]
-        let themeNames = ThemeManager.shared.themeNames
+        let themeNames = ThemeManager.shared.settingNames
         
         guard let popupButton = self.colorPopupButton else { return }
         
         popupButton.removeAllItems()
         
         // build popup button
-        popupButton.addItem(withTitle: NSLocalizedString("Black and White", comment: ""))
+        popupButton.addItem(withTitle: ThemeName.blackAndWhite)
         popupButton.addItem(withTitle: NSLocalizedString("Same as Document’s Setting", comment: ""))
-        popupButton.menu?.addItem(NSMenuItem.separator())
+        popupButton.menu?.addItem(.separator())
+        
         popupButton.addItem(withTitle: NSLocalizedString("Theme", comment: ""))
+        popupButton.lastItem?.isEnabled = false
+        
         for name in themeNames {
             popupButton.addItem(withTitle: name)
             popupButton.lastItem?.indentationLevel = 1
@@ -158,6 +98,64 @@ final class PrintPaneController: NSViewController {
                 popupButton.selectItem(at: 1)  // same as document
             }
         }
+    }
+    
+}
+
+
+
+// MARK: - Font Setting
+
+extension PrintPaneController {
+    
+    // MARK: Action Messages
+    
+    /// show font panel
+    @IBAction func showFonts(_ sender: Any?) {
+        
+        guard let font = NSFont(name: UserDefaults.standard[.printFontName]!,
+                                size: UserDefaults.standard[.printFontSize]) else { return }
+        
+        self.view.window?.makeFirstResponder(self)
+        NSFontManager.shared().setSelectedFont(font, isMultiple: false)
+        NSFontManager.shared().orderFrontFontPanel(sender)
+    }
+    
+    
+    /// font in font panel did update
+    @IBAction override func changeFont(_ sender: Any?) {
+        
+        guard let fontManager = sender as? NSFontManager else { return }
+        
+        let newFont = fontManager.convert(.systemFont(ofSize: 0))
+        
+        UserDefaults.standard[.printFontName] = newFont.fontName
+        UserDefaults.standard[.printFontSize] = newFont.pointSize
+        
+        self.setupFontFamilyNameAndSize()
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// display font name and size in the font field
+    fileprivate func setupFontFamilyNameAndSize() {
+        
+        let name = UserDefaults.standard[.printFontName]!
+        let size = UserDefaults.standard[.printFontSize]
+        let maxDisplaySize = NSFont.systemFontSize(for: .regular)
+        
+        guard
+            let font = NSFont(name: name, size: size),
+            let displayFont = NSFont(name: name, size: min(size, maxDisplaySize)),
+            let fontField = self.fontField
+            else { return }
+        
+        let displayName = font.displayName ?? font.fontName
+        
+        fontField.stringValue = displayName + " " + String.localizedStringWithFormat("%g", size)
+        fontField.font = displayFont
     }
     
 }

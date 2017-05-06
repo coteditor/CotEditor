@@ -87,12 +87,9 @@ final class ToolbarController: NSObject {
             self.toolbar?.validateVisibleItems()
             
             // observe document status change
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection),
-                                                   name: .DocumentDidChangeEncoding, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection),
-                                                   name: .DocumentDidChangeLineEnding, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection),
-                                                   name: .DocumentDidChangeSyntaxStyle, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection), name: .DocumentDidChangeEncoding, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection), name: .DocumentDidChangeLineEnding, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection), name: .DocumentDidChangeSyntaxStyle, object: document)
             document.addObserver(self, forKeyPath: #keyPath(Document.fileURL), context: nil)
         }
     }
@@ -129,9 +126,9 @@ final class ToolbarController: NSObject {
         self.buildSyntaxPopupButton()
         
         // observe popup menu line-up change
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: .EncodingListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxHistoryDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: .SettingListDidUpdate, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SettingListDidUpdate, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxHistoryDidUpdate, object: SyntaxManager.shared)
     }
     
     
@@ -205,14 +202,14 @@ final class ToolbarController: NSObject {
         
         guard let menu = self.syntaxPopupButton?.menu else { return }
         
-        let styleNames = SyntaxManager.shared.styleNames
-        let recentStyleNames = SyntaxManager.shared.recentStyleNames
+        let styleNames = SyntaxManager.shared.settingNames
+        let recentStyleNames = SyntaxManager.shared.recentSettingNames
         let action = #selector(Document.changeSyntaxStyle(_:))
         
         menu.removeAllItems()
         
         menu.addItem(withTitle: BundledStyleName.none, action: action, keyEquivalent: "")
-        menu.addItem(NSMenuItem.separator())
+        menu.addItem(.separator())
         
         if !recentStyleNames.isEmpty {
             let labelItem = NSMenuItem()
@@ -223,7 +220,7 @@ final class ToolbarController: NSObject {
             for styleName in recentStyleNames {
                 menu.addItem(withTitle: styleName, action: action, keyEquivalent: "")
             }
-            menu.addItem(NSMenuItem.separator())
+            menu.addItem(.separator())
         }
         
         for styleName in styleNames {

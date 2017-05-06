@@ -77,7 +77,7 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
     
     var debugDescription: String {
         
-        return "<\(HighlightDefinition.self) begin: \(self.beginString)  end: \(self.endString)>"
+        return "<\(HighlightDefinition.self) begin: \(self.beginString)  end: \(self.endString ?? "nil")>"
     }
     
     
@@ -92,13 +92,31 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
 }
 
 
+extension HighlightDefinition {
+    
+    /// create a regex type definition from simple words by considering non-word characters around words
+    init(words: [String], ignoreCase: Bool) {
+        
+        let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
+        let rawBoundary = (words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").unique
+        let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
+        let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
+        
+        self.beginString = pattern
+        self.endString = nil
+        self.isRegularExpression = true
+        self.ignoreCase = ignoreCase
+    }
+    
+}
+
+
 
 private struct QuoteCommentItem {
     
-    let location: Int
-    let length: Int
     let kind: String
     let role: Role
+    let range: NSRange
     
     
     enum Kind {
@@ -107,10 +125,12 @@ private struct QuoteCommentItem {
     }
     
     
-    enum Role: Int {
-        case end
-        case both
-        case start
+    struct Role: OptionSet {
+        
+        let rawValue: Int
+        
+        static let begin = Role(rawValue: 1 << 0)
+        static let end   = Role(rawValue: 1 << 1)
     }
 }
 
@@ -132,8 +152,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     // MARK: Private Properties
     
     private let definitions: [SyntaxType: [HighlightDefinition]]
-    private let simpleWordsCharacterSets: [SyntaxType: CharacterSet]?
-    private let pairedQuoteTypes: [String: SyntaxType]?  // dict for quote pair to extract with comment
+    private let pairedQuoteTypes: [String: SyntaxType]  // dict for quote pair to extract with comment
     private let inlineCommentDelimiter: String?
     private let blockCommentDelimiters: BlockDelimiters?
     
@@ -142,15 +161,14 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     // MARK: -
     // MARK: Lifecycle
     
-    required init(definitions: [SyntaxType: [HighlightDefinition]], simpleWordsCharacterSets: [SyntaxType: CharacterSet]?, pairedQuoteTypes: [String: SyntaxType]?, inlineCommentDelimiter: String?, blockCommentDelimiters: BlockDelimiters?) {
+    required init(definitions: [SyntaxType: [HighlightDefinition]], pairedQuoteTypes: [String: SyntaxType], inlineCommentDelimiter: String?, blockCommentDelimiters: BlockDelimiters?) {
         
         self.definitions = definitions
-        self.simpleWordsCharacterSets = simpleWordsCharacterSets
         self.pairedQuoteTypes = pairedQuoteTypes
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))
+        self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))  // +1 for extractCommentsWithQuotes()
         
         super.init()
         
@@ -186,49 +204,18 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     
     // MARK: Private Methods
     
-    /// extract ranges of passed-in words with Scanner by considering non-word characters around words
-    private func ranges(simpleWords words: [String], ignoreCaseWords: [String], charSet: CharacterSet) -> [NSRange] {
-        
-        var ranges = [NSRange]()
-        
-        let scanner = Scanner(string: self.string!)
-        scanner.caseSensitive = true
-        scanner.scanLocation = self.parseRange.location
-        
-        while !scanner.isAtEnd && scanner.scanLocation < self.parseRange.max {
-            guard !self.isCancelled else { return [] }
-            
-            var scannedString: NSString?
-            scanner.scanUpToCharacters(from: charSet, into: nil)
-            guard
-                !scanner.isAtEnd,
-                scanner.scanCharacters(from: charSet, into: &scannedString),
-                let word = scannedString as? String else { break }
-            
-            let length = word.utf16.count
-            
-            guard words.contains(word) || ignoreCaseWords.contains(word.lowercased()) else { continue }
-            
-            let range = NSRange(location: scanner.scanLocation - length, length: length)
-            ranges.append(range)
-        }
-        
-        return ranges
-    }
-    
-    
     /// simply extract ranges of passed-in string
-    private func ranges(string searchString: String) -> [NSRange] {
+    private func ranges(string searchString: String, ignoreCase: Bool = false) -> [NSRange] {
         
         guard !searchString.isEmpty else { return [] }
         
         var ranges = [NSRange]()
         let string = self.string!
+        let options: NSString.CompareOptions = ignoreCase ? [.literal, .caseInsensitive] : .literal
         
         var location = self.parseRange.location
         while location != NSNotFound {
-            let range = (string as NSString).range(of: searchString,
-                                                   options: .literal,
+            let range = (string as NSString).range(of: searchString, options: options,
                                                    range: NSRange(location: location,
                                                                   length: self.parseRange.max - location))
             location = range.max
@@ -374,91 +361,63 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         var positions = [QuoteCommentItem]()
         
         if let delimiters = self.blockCommentDelimiters {
-            let beginRanges = self.ranges(string: delimiters.begin)
-            let beginLength = delimiters.begin.utf16.count
-            for range in beginRanges {
-                positions.append(QuoteCommentItem(location: range.location,
-                                                  length: beginLength,
-                                                  kind: QuoteCommentItem.Kind.blockComment,
-                                                  role: .start))
+            for range in self.ranges(string: delimiters.begin) {
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment, role: .begin, range: range))
             }
-            
-            let endRanges = self.ranges(string: delimiters.end)
-            let endLength = delimiters.end.utf16.count
-            for range in endRanges {
-                positions.append(QuoteCommentItem(location: range.location,
-                                                  length: endLength,
-                                                  kind: QuoteCommentItem.Kind.blockComment,
-                                                  role: .end))
+            for range in self.ranges(string: delimiters.end) {
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment, role: .end, range: range))
             }
         }
         
         if let delimiter = self.inlineCommentDelimiter {
-            let string = self.string!
-            let ranges = self.ranges(string: delimiter)
-            let length = delimiter.utf16.count
-            for range in ranges {
-                let lineRange = (string as NSString).lineRange(for: range)
+            for range in self.ranges(string: delimiter) {
+                let lineRange = (self.string! as NSString).lineRange(for: range)
+                let endRange = NSRange(location: lineRange.max, length: 0)
                 
-                positions.append(QuoteCommentItem(location: range.location,
-                                                  length: length,
-                                                  kind: QuoteCommentItem.Kind.inlineComment,
-                                                  role: .start))
-                positions.append(QuoteCommentItem(location: lineRange.max - length,
-                                                  length: length,
-                                                  kind: QuoteCommentItem.Kind.inlineComment,
-                                                  role: .end))
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment, role: .begin, range: range))
+                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment, role: .end, range: endRange))
             }
         }
         
-        // create quote definitions if exists
-        if let quoteTypes = self.pairedQuoteTypes {
-            for quote in quoteTypes.keys {
-                let ranges = self.ranges(string: quote)
-                let length = quote.utf16.count
-                for range in ranges {
-                    positions.append(QuoteCommentItem(location: range.location,
-                                                      length: length,
-                                                      kind: quote,
-                                                      role: .both))
-                }
+        for quote in self.pairedQuoteTypes.keys {
+            for range in self.ranges(string: quote) {
+                positions.append(QuoteCommentItem(kind: quote, role: [.begin, .end], range: range))
             }
         }
         
         guard !positions.isEmpty else { return [:] }
         
-        // sort by location  // ???: performance critial
+        // sort by location
         positions.sort {
-            if $0.location == $1.location {
-                if $0.role.rawValue == $1.role.rawValue {
-                    return $0.length > $1.length
-                }
-                return $0.role.rawValue < $1.role.rawValue
+            if $0.range.location < $1.range.location { return true }
+            if $0.range.location > $1.range.location { return false }
+            
+            if $0.role.rawValue == $1.role.rawValue {
+                return $0.range.length > $1.range.length
             }
-            return $0.location < $1.location
+            return $0.role.rawValue < $1.role.rawValue
         }
         
         // scan quoted strings and comments in the parse range
         var highlights = [SyntaxType: [NSRange]]()
+        var seekLocation = self.parseRange.location
         var startLocation = 0
-        var seekLocation = parseRange.location
-        var searchingPairKind: String?
-        var isContinued = false
+        var searchingKind: String?
         
         for position in positions {
             // search next begin delimiter
-            guard let kind = searchingPairKind else {
-                if position.role != .end && position.location >= seekLocation {
-                    searchingPairKind = position.kind
-                    startLocation = position.location
+            guard let kind = searchingKind else {
+                if position.role.contains(.begin), position.range.location >= seekLocation {
+                    searchingKind = position.kind
+                    startLocation = position.range.location
                 }
                 continue
             }
             
             // search corresponding end delimiter
-            if position.kind == kind && (position.role == .both || position.role == .end) {
-                let endLocation = position.location + position.length
-                let syntaxType = self.pairedQuoteTypes?[kind] ?? SyntaxType.comments
+            if position.role.contains(.end), position.kind == kind {
+                let endLocation = position.range.max
+                let syntaxType = self.pairedQuoteTypes[kind] ?? SyntaxType.comments
                 let range = NSRange(location: startLocation, length: endLocation - startLocation)
                 
                 if highlights[syntaxType] != nil {
@@ -467,20 +426,15 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                     highlights[syntaxType] = [range]
                 }
                 
-                searchingPairKind = nil
+                searchingKind = nil
                 seekLocation = endLocation
-                continue
-            }
-            
-            if startLocation < parseRange.max {
-                isContinued = true
             }
         }
         
         // highlight until the end if not closed
-        if let searchingPairKind = searchingPairKind, isContinued {
-            let syntaxType = self.pairedQuoteTypes?[searchingPairKind] ?? SyntaxType.comments
-            let range = NSRange(location: startLocation, length: parseRange.max - startLocation)
+        if let searchingKind = searchingKind, startLocation < self.parseRange.max {
+            let syntaxType = self.pairedQuoteTypes[searchingKind] ?? SyntaxType.comments
+            let range = NSRange(location: startLocation, length: self.parseRange.max - startLocation)
             
             if highlights[syntaxType] != nil {
                 highlights[syntaxType]!.append(range)
@@ -497,22 +451,17 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
     private func extractHighlights() -> [SyntaxType: [NSRange]] {
         
         var highlights = [SyntaxType: [NSRange]]()
-        let totalProgress = self.progress
         
         for syntaxType in SyntaxType.all {
             guard let definitions = self.definitions[syntaxType] else { continue }
             
             // update indicator sheet message
-            totalProgress.becomeCurrent(withPendingUnitCount: 1)
-            DispatchQueue.main.async { [weak totalProgress] in
-                totalProgress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
+            self.progress.becomeCurrent(withPendingUnitCount: 1)
+            DispatchQueue.main.async { [weak progress = self.progress] in
+                progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             }
             
-            let childProgress = Progress(totalUnitCount: definitions.count + 10)  // + 10 for simple words
-            
-            var simpleWords = [String]()
-            var simpleICWords = [String]()
-            let wordsQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.words." + syntaxType.rawValue)
+            let childProgress = Progress(totalUnitCount: Int64(definitions.count))
             
             var ranges = [NSRange]()
             let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
@@ -520,36 +469,33 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             DispatchQueue.concurrentPerform(iterations: definitions.count) { (i: Int) in
                 guard !self.isCancelled else { return }
                 
-                let definition = definitions[i]
-                var extractedRanges: [NSRange]?
-                
-                if definition.isRegularExpression {
-                    if let endString = definition.endString {
-                        extractedRanges = self.ranges(regularExpressionBeginString: definition.beginString,
-                                                      endString: endString,
-                                                      ignoreCase: definition.ignoreCase)
-                    } else {
-                        extractedRanges = self.ranges(regularExpressionString: definition.beginString,
-                                                      ignoreCase: definition.ignoreCase)
-                    }
+                let extractedRanges: [NSRange] = {
+                    let definition = definitions[i]
                     
-                } else {
-                    if let endString = definition.endString {
-                        extractedRanges = self.ranges(beginString: definition.beginString,
-                                                      endString: endString,
-                                                      ignoreCase: definition.ignoreCase)
+                    if definition.isRegularExpression {
+                        if let endString = definition.endString {
+                            return self.ranges(regularExpressionBeginString: definition.beginString,
+                                               endString: endString,
+                                               ignoreCase: definition.ignoreCase)
+                        } else {
+                            return self.ranges(regularExpressionString: definition.beginString,
+                                               ignoreCase: definition.ignoreCase)
+                        }
+                        
                     } else {
-                        wordsQueue.sync {
-                            if definition.ignoreCase {
-                                simpleICWords.append(definition.beginString.lowercased())
-                            } else {
-                                simpleWords.append(definition.beginString)
-                            }
+                        if let endString = definition.endString {
+                            return self.ranges(beginString: definition.beginString,
+                                               endString: endString,
+                                               ignoreCase: definition.ignoreCase)
+                        } else {
+                            assertionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
+                            return self.ranges(string: definition.beginString,
+                                               ignoreCase: definition.ignoreCase)
                         }
                     }
-                }
+                }()
                 
-                if let extractedRanges = extractedRanges, !extractedRanges.isEmpty {
+                if !extractedRanges.isEmpty {
                     rangesQueue.sync {
                         ranges += extractedRanges
                     }
@@ -563,13 +509,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             
             guard !self.isCancelled else { return [:] }
             
-            // extract simple words
-            if let charSet = self.simpleWordsCharacterSets?[syntaxType], !charSet.isEmpty {
-                ranges += self.ranges(simpleWords: simpleWords,
-                                      ignoreCaseWords: simpleICWords,
-                                      charSet: charSet)
-            }
-            
             // store range array
             highlights[syntaxType] = ranges
             
@@ -578,14 +517,14 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                 guard let childProgress = childProgress else { return }
                 childProgress.completedUnitCount = childProgress.totalUnitCount
             }
-            totalProgress.resignCurrent()
-        }  // end-for (syntaxType)
+            self.progress.resignCurrent()
+        }
         
         guard !self.isCancelled else { return [:] }
         
         // comments and quoted text
-        DispatchQueue.main.async { [weak totalProgress] in
-            totalProgress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
+        DispatchQueue.main.async { [weak progress = self.progress] in
+            progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
                                                          NSLocalizedString("comments and quoted texts", comment: ""))
         }
         let commentAndQuoteRanges = self.extractCommentsWithQuotes()
@@ -601,8 +540,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         
         let sanitized = sanitize(highlights: highlights)
         
-        DispatchQueue.main.async { [weak totalProgress] in
-            totalProgress?.completedUnitCount += 1  // = total - 1
+        DispatchQueue.main.async { [weak progress = self.progress] in
+            progress?.completedUnitCount += 1
         }
         
         return sanitized
@@ -613,6 +552,17 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
 
 
 // MARK: Private Functions
+
+private extension String {
+    
+    /// String consists with unique characters in the receiver.
+    var unique: String {
+        
+        return String(Set(self.characters).sorted())
+    }
+    
+}
+
 
 /** Remove duplicated coloring ranges.
  

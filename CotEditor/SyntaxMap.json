@@ -161,6 +161,22 @@
 
     ]
   },
+  "Fortran": {
+    "extensions": [
+      "f",
+      "f08",
+      "f03",
+      "f95",
+      "f90",
+      "for"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
   "Git Config": {
     "extensions": [
 

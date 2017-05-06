@@ -222,6 +222,11 @@ final class EditorTextView: NSTextView, Themable {
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
                                                name: .WindowDidChangeOpacity,
                                                object: window)
+        
+        // observe scorolling and resizing to fix drawing area on non-opaque view
+        if let scrollView = self.enclosingScrollView {
+            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)), name: .NSViewBoundsDidChange, object: scrollView.contentView)
+        }
     }
     
     
@@ -233,9 +238,13 @@ final class EditorTextView: NSTextView, Themable {
             let snippet = SnippetKeyBindingManager.shared.snippet(keyEquivalent: event.charactersIgnoringModifiers,
                                                                   modifierMask: event.modifierFlags)
         {
-            if self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: snippet) {
-                self.replaceCharacters(in: self.rangeForUserTextChange, with: snippet)
+            let range = self.rangeForUserTextChange
+            if self.shouldChangeText(in: range, replacementString: snippet.string) {
+                self.replaceCharacters(in: range, with: snippet.string)
                 self.didChangeText()
+                if let selection = snippet.selection {
+                    self.selectedRange = NSRange(location: range.location + selection.location, length: selection.length)
+                }
                 self.undoManager?.setActionName(NSLocalizedString("Insert Custom Text", comment: "action name"))
                 self.centerSelectionInVisibleArea(self)
             }
@@ -281,17 +290,14 @@ final class EditorTextView: NSTextView, Themable {
         {
             // wrap selection with brackets if some text is selected
             if self.selectedRange.length > 0 {
-                let selectedString = (wholeString as NSString).substring(with: self.selectedRange)
-                let replacementString = String(pair.begin) + selectedString + String(pair.end)
-                
-                if self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: replacementString) {
-                    self.replaceCharacters(in: self.rangeForUserTextChange, with: replacementString)
-                    self.didChangeText()
-                    return
-                }
+                self.surroundSelections(begin: String(pair.begin), end: String(pair.end))
+                return
                 
             // check if insertion point is in a word
-            } else if !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)) {
+            } else if
+                !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)),
+                !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.characterBeforeInsertion ?? UnicodeScalar(0)))  // for "
+            {
                 let pairedBrackets = String(pair.begin) + String(pair.end)
             
                 super.insertText(pairedBrackets, replacementRange: replacementRange)
@@ -560,6 +566,14 @@ final class EditorTextView: NSTextView, Themable {
     /// draw view
     override func draw(_ dirtyRect: NSRect) {
         
+        // minimize drawing area on non-opaque background
+        // -> Otherwise, all textView (from the top to the bottom) is everytime drawn
+        //    and it affects to the drawing performance on a large document critically.
+        var dirtyRect = dirtyRect
+        if !self.drawsBackground {
+            dirtyRect = self.visibleRect
+        }
+        
         super.draw(dirtyRect)
         
         // draw page guide
@@ -635,13 +649,20 @@ final class EditorTextView: NSTextView, Themable {
         
         // on file drop
         if type == NSFilenamesPboardType,
-            let filePaths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String] {
+            let filePaths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String]
+        {
+            let definitions = UserDefaults.standard[.fileDropArray] as? [[String: String]]
+            let composer = FileDropComposer(definitions: definitions ?? [])
             let documentURL = self.document?.fileURL
+            let syntaxStyle: String? = {
+                guard let style = self.document?.syntaxStyle, !style.isNone else { return nil }
+                return style.styleName
+            }()
             var replacementString = ""
             
             for path in filePaths {
                 let url = URL(fileURLWithPath: path)
-                if let dropText = FileDropComposer.dropText(forFileURL: url, documentURL: documentURL) {
+                if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
                     replacementString += dropText
                     
                 } else {
@@ -931,7 +952,7 @@ final class EditorTextView: NSTextView, Themable {
         let lineEnding = String((self.documentLineEnding ?? .LF).rawValue)
         
         // substring all selected attributed strings
-        let selectedRanges = self.selectedRanges as [NSRange]
+        let selectedRanges = self.selectedRanges as! [NSRange]
         for selectedRange in selectedRanges {
             let plainText = (string as NSString).substring(with: selectedRange)
             let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
@@ -967,7 +988,7 @@ final class EditorTextView: NSTextView, Themable {
             }
             
             selections.append(styledText)
-            propertyList.append(plainText.components(separatedBy: "\n").count)
+            propertyList.append(plainText.components(separatedBy: .newlines).count)
         }
         
         var pasteboardString = NSAttributedString()
@@ -1021,9 +1042,11 @@ final class EditorTextView: NSTextView, Themable {
         
         guard
             let popoverController = CharacterPopoverController(character: selectedString),
-            let selectedRect = self.overlayRect(range: self.selectedRange) else { return }
+            let selectedRect = self.boundingRect(for: self.selectedRange)
+            else { return }
         
-        let positioningRect = selectedRect.offsetBy(dx: 0, dy: -4)
+        let positioningRect = self.convertToLayer(selectedRect).offsetBy(dx: 0, dy: -4)
+        
         popoverController.showPopover(relativeTo: positioningRect, of: self)
         self.showFindIndicator(for: self.selectedRange)
     }
@@ -1131,6 +1154,16 @@ final class EditorTextView: NSTextView, Themable {
         self.undoManager?.enableUndoRegistration()
     }
     
+    
+    /// visible rect did change
+    @objc private func didChangeVisibleRect(_ notification: Notification) {
+        
+        if !self.drawsBackground {
+            // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
+    }
+    
 }
 
 
@@ -1161,21 +1194,6 @@ private extension NSTextView {
         guard let index = string.utf16.index(string.utf16.startIndex, offsetBy: location).samePosition(in: string.unicodeScalars) else { return nil }
         
         return string.unicodeScalars[safe: index]
-    }
-    
-    
-    /// rect for given character range
-    func overlayRect(range: NSRange) -> NSRect? {
-        
-        guard
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return nil }
-        
-        let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-        let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-        let rect = boundingRect.offset(by: self.textContainerOrigin)
-        
-        return self.convertToLayer(rect)
     }
     
 }

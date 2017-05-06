@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@ import Cocoa
 /// type identifiers for dragging operation
 private enum PboardType {
     static let rows = "rows"
-    static let objects = "objects"
 }
 
 
@@ -42,8 +41,8 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
         
         // register dragged type
-        tableView.register(forDraggedTypes: [PboardType.rows, PboardType.objects])
-        pboard.declareTypes([PboardType.rows, PboardType.objects], owner: self)
+        tableView.register(forDraggedTypes: [PboardType.rows])
+        pboard.declareTypes([PboardType.rows], owner: self)
         
         // select rows to drag
         tableView.selectRowIndexes(rowIndexes, byExtendingSelection: false)
@@ -51,10 +50,6 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         // store row index info to pasteboard
         let rows = NSKeyedArchiver.archivedData(withRootObject: rowIndexes)
         pboard.setData(rows, forType: PboardType.rows)
-        
-        // store objects to drag to pasteboard
-        let objects = (self.arrangedObjects as AnyObject).objects(at: rowIndexes)
-        pboard.setPropertyList(objects, forType: PboardType.objects)
         
         return true
     }
@@ -83,18 +78,24 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         // obtain original rows from paste board
         guard
             let data = info.draggingPasteboard().data(forType: PboardType.rows),
-            let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet,
-            let draggingItems = info.draggingPasteboard().propertyList(forType: PboardType.objects) as? [Any] else { return false }
+            let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet else { return false }
+        
+        let draggingItems = (self.arrangedObjects as AnyObject).objects(at: sourceRows)
         
         let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move
         let destinationRows = IndexSet(destinationRow..<(destinationRow + draggingItems.count))
         
-        // update data
-        self.remove(atArrangedObjectIndexes: sourceRows)
-        self.insert(contentsOf: draggingItems, atArrangedObjectIndexes: destinationRows)
-        
-        // select dropped items
-        tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
+        // update
+        NSAnimationContext.runAnimationGroup({ context in
+            // update UI
+            tableView.removeRows(at: sourceRows, withAnimation: .effectFade)
+            tableView.insertRows(at: destinationRows, withAnimation: .effectGap)
+            tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
+        }, completionHandler: {
+            // update data
+            self.remove(atArrangedObjectIndexes: sourceRows)
+            self.insert(contentsOf: draggingItems, atArrangedObjectIndexes: destinationRows)
+        })
         
         return true
     }

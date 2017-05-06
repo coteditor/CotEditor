@@ -257,7 +257,7 @@ final class DocumentController: NSDocumentController {
         let autoDetectItem = NSMenuItem(title: NSLocalizedString("Auto-Detect", comment: ""), action: nil, keyEquivalent: "")
         autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
         menu.addItem(autoDetectItem)
-        menu.addItem(NSMenuItem.separator())
+        menu.addItem(.separator())
         
         let items = EncodingManager.shared.createEncodingMenuItems()
         for item in items {
@@ -294,7 +294,7 @@ final class DocumentController: NSDocumentController {
                            kUTTypeGNUZipArchive,
                            kUTTypeZipArchive,
                            kUTTypeBzip2Archive]
-        if binaryTypes.contains(where: { UTTypeConformsTo(cfTypeName, $0) }) &&
+        if binaryTypes.contains(where: { UTTypeConformsTo(cfTypeName, $0) }),
             !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics)  // SVG is plain-text (except SVGZ)
         {
             throw DocumentReadError(kind: .binaryFile(type: typeName), url: url)

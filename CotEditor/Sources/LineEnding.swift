@@ -79,6 +79,12 @@ enum LineEnding: Character {
         }
     }
     
+    
+    var length: Int {
+        
+        return self.string.unicodeScalars.count
+    }
+    
 }
 
 
@@ -126,7 +132,7 @@ extension String {
         
         guard let currentLineEnding = (fromLineEnding ?? self.detectedLineEnding) else { return range }
         
-        let delta = toLineEnding.string.unicodeScalars.count - currentLineEnding.string.unicodeScalars.count
+        let delta = toLineEnding.length - currentLineEnding.length
         
         guard delta != 0 else { return range }
         

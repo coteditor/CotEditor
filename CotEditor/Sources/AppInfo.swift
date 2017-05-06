@@ -62,3 +62,10 @@ struct DocumentType {
     
     static let theme = DocumentType(UTType: "com.coteditor.CotEditor.theme", extensions: ["cottheme"])
 }
+
+
+
+enum AppVersion {
+    
+    static let version3_0 = 142
+}

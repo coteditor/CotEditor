@@ -205,7 +205,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             case 0:
                 return NSLocalizedString("Not Found", comment: "")
             default:
-                return String(format: NSLocalizedString("%@ Found", comment: ""),
+                return String(format: NSLocalizedString("%@ found", comment: ""),
                               String.localizedStringWithFormat("%li", numberOfFound))
             }
         }()
@@ -229,7 +229,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             case 0:
                 return NSLocalizedString("Not Replaced", comment: "")
             default:
-                return String(format: NSLocalizedString("%@ Replaced", comment: ""),
+                return String(format: NSLocalizedString("%@ replaced", comment: ""),
                               String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
@@ -257,10 +257,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: DefaultKey<[String]>, action: Selector) {
         
         // clear current history items
-        for item in menu.items {
-            if item.action == action || item.isSeparatorItem {
-                menu.removeItem(item)
-            }
+        for item in menu.items where (item.action == action || item.isSeparatorItem) {
+            menu.removeItem(item)
         }
         
         guard let history = UserDefaults.standard[key], !history.isEmpty else { return }

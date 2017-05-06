@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,6 +43,7 @@
 "D source" = "Codice D";
 "Diff" = "Diff";
 "Document Type Definition" = "Definizione del tipo di documento (DTD)";
+"Fortran Source" = "Codice Fortran";
 "Go script" = "Script Go";
 "Haskell script" = "Script Haskell";
 "HTML document" = "Documento HTML";

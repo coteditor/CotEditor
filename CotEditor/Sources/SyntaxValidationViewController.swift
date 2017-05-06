@@ -49,7 +49,9 @@ final class SyntaxValidationViewController: NSViewController {
     
     // MARK: Public Methods
     
-    /// validate style and insert the results to text view (return: if valid)
+    /// validate style and insert the results to text view
+    ///
+    /// - Returns: If the style is valid
     @discardableResult
     func validateSyntax() -> Bool {
         
@@ -68,8 +70,9 @@ final class SyntaxValidationViewController: NSViewController {
             }
         }()
         
-        let errorMessages = errors.map { (error: SyntaxStyleValidator.StyleError) -> String in
-            return "⚠️ " + error.localizedDescription + "\n\t> " + (error.failureReason ?? "")
+        let errorMessages: [String] = errors.map { (error: SyntaxStyleValidator.StyleError) -> String in
+            let failureReason = error.failureReason ?? ""
+            return "⚠️ " + error.localizedDescription + "\n\t> " + failureReason
         }
         
         self.result = resultMessage + "\n\n" + errorMessages.joined(separator: "\n\n")

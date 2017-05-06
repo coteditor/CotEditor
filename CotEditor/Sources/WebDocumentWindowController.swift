@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,13 +28,13 @@
 import Cocoa
 import WebKit
 
-final class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
+final class WebDocumentWindowController: NSWindowController, WKNavigationDelegate {
     
     // MARK: Private Properties
     
     private let fileURL: URL
     
-    @IBOutlet private weak var webView: WebView?
+    private dynamic weak var webView: WKWebView?
     
     
     
@@ -57,11 +57,6 @@ final class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
     }
     
     
-    deinit {
-        self.webView?.policyDelegate = nil
-    }
-    
-    
     override var windowNibName: String? {
         
         return "WebDocumentWindow"
@@ -76,23 +71,31 @@ final class WebDocumentWindowController: NSWindowController, WebPolicyDelegate {
         
         super.windowDidLoad()
         
+        // set webView programmically
+        let webView = WKWebView(frame: .zero)
+        self.webView = webView
+        self.window?.contentView = webView
+        webView.navigationDelegate = self
+        
+        // send request
         let request = URLRequest(url: self.fileURL)
-        self.webView?.mainFrame.load(request)
+        webView.load(request)
     }
     
     
     
-    // MARK: Delegate
+    // MARK: Navigation Delegate
     
     /// open external link in default browser
-    func webView(_ webView: WebView!, decidePolicyForNavigationAction actionInformation: [AnyHashable: Any]!, request: URLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
-        guard let url = request.url, url.host != nil else {
-            listener.use()
-            return
-        }
+        guard
+            navigationAction.navigationType == .linkActivated,
+            let url = navigationAction.request.url, url.host != nil,
+            NSWorkspace.shared().open(url)
+            else { return decisionHandler(.allow) }
         
-        NSWorkspace.shared().open(url)
+        decisionHandler(.cancel)
     }
 
 }

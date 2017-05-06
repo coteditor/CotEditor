@@ -29,7 +29,7 @@
 import Cocoa
 
 @NSApplicationMain
-final class AppDelegate: NSObject, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
     
     // MARK: Enums
     
@@ -56,6 +56,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
+    @IBOutlet private weak var whatsNewMenuItem: NSMenuItem?
     
     
     
@@ -104,6 +105,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // store key bindings in MainMenu.xib before menu is modified
         MenuKeyBindingManager.shared.scanDefaultMenuKeyBindings()
         
+        // append the current version number to "What’s New" menu item
+        let shortVersionRange = AppInfo.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
+        let shortVersion = AppInfo.shortVersion.substring(with: shortVersionRange)
+        self.whatsNewMenuItem?.title = String(format: NSLocalizedString("What’s New in CotEditor %@", comment: ""), shortVersion)
+        
         // build menus
         self.buildEncodingMenu()
         self.buildSyntaxMenu()
@@ -111,9 +117,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu()
         
         // observe setting list updates
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: .EncodingListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: .SyntaxListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: .ThemeListDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: .SettingListDidUpdate, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: .SettingListDidUpdate, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: .SettingListDidUpdate, object: ThemeManager.shared)
     }
     
     
@@ -279,6 +285,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     
+    // MARK: User Interface Validations
+    
+    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        guard let action = item.action else { return false }
+        
+        switch action {
+        case #selector(showOpacityPanel):
+            return !NSApp.orderedDocuments.isEmpty
+            
+        default:
+            return true
+        }
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// activate self and perform "New" menu action
@@ -343,11 +366,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// open a specific page in Help contents
-    @IBAction func openHelpAnchor(_ sender: AnyObject?) {
+    @IBAction func openHelpAnchor(_ sender: AnyObject) {
         
-        guard let tag = sender?.tag, tag < Help.anchors.count else { return }
+        guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
         
-        NSHelpManager.shared().openHelpAnchor(Help.anchors[tag], inBook: AppInfo.helpBookName)
+        NSHelpManager.shared().openHelpAnchor(identifier, inBook: AppInfo.helpBookName)
     }
     
     
@@ -409,14 +432,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // add None
         menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
-        menu.addItem(NSMenuItem.separator())
+        menu.addItem(.separator())
         
         // add syntax styles
-        let styleNames = SyntaxManager.shared.styleNames
-        for styleName in styleNames {
+        for styleName in SyntaxManager.shared.settingNames {
             menu.addItem(withTitle: styleName, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
         }
-        menu.addItem(NSMenuItem.separator())
+        menu.addItem(.separator())
         
         // add item to recolor
         let recolorAction = #selector(SyntaxHolder.recolorAll)
@@ -434,8 +456,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         menu.removeAllItems()
         
-        let themeNames = ThemeManager.shared.themeNames
-        for themeName in themeNames {
+        for themeName in ThemeManager.shared.settingNames {
             menu.addItem(withTitle: themeName, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "")
         }
     }

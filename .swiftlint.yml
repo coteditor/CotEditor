@@ -9,12 +9,12 @@ opt_in_rules:
   - explicit_init
   - file_header
   - first_where
-  - operator_usage_whitespace
   - private_outlet
   - redundant_nil_coalescing
   - valid_docs
 
 disabled_rules:
+  - for_where
   - force_cast
   - nesting
   - opening_brace
@@ -71,7 +71,7 @@ variable_name:
 custom_rules:
   comment_space:
     name: "Space After Comment"
-    regex: "//\S"
+    regex: '//\S'
     match_kinds:
       - comment
     message: "There should be a space after a comment delimiter."
@@ -79,7 +79,7 @@ custom_rules:
 
   inline_comment_spaces:
     name: "Spaces Before Inline Comment"
-    regex: "\S ?//"
+    regex: '\S ?//'
     match_kinds:
       - comment
     message: "There should be more than 2 spaces before an inline comment."
@@ -87,6 +87,6 @@ custom_rules:
 
   empty_first_line:
     name: "Empty First Line"
-    regex: "(^[ a-zA-Z ]*(?:protocol|extension|class|struct) (?!(?:var|let))[ a-zA-Z:]*\{\n *\S+)"
+    regex: '(^[ a-zA-Z ]*(?:protocol|extension|class|struct) (?!(?:var|let))[ a-zA-Z:]*\{\n *\S+)'
     message: "There should be an empty line after a declaration"
     severity: warning

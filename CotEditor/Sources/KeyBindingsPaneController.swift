@@ -31,23 +31,14 @@ final class KeyBindingsPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private let menuViewController = KeyBindingsViewController()
-    private let textViewController = SnippetKeyBindingsViewController()
+    private lazy var menuViewController: NSViewController = self.storyboard!.instantiateController(withIdentifier: "MenuKeyBindingsViewController") as! NSViewController
+    private lazy var textViewController: NSViewController = self.storyboard!.instantiateController(withIdentifier: "SnippetKeyBindingsViewController") as! NSViewController
     
     @IBOutlet private weak var tabView: NSTabView?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: String? {
-        
-        return "KeyBindingsPane"
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup tab views

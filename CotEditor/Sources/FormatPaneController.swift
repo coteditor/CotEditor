@@ -45,9 +45,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     @IBOutlet private weak var inOpenEncodingMenu: NSPopUpButton?
     @IBOutlet private weak var inNewEncodingMenu: NSPopUpButton?
     
-    @IBOutlet private weak var stylesController: NSArrayController?
+    @IBOutlet private var stylesController: NSArrayController?
+    @IBOutlet private var syntaxTableMenu: NSMenu?
     @IBOutlet private weak var syntaxTableView: NSTableView?
-    @IBOutlet private weak var syntaxTableMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesDefaultPopup: NSPopUpButton?
     @IBOutlet private weak var syntaxStyleDeleteButton: NSButton?
     
@@ -58,12 +58,6 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    override var nibName: String? {
-        
-        return "FormatPane"
     }
     
     
@@ -78,11 +72,18 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         self.syntaxTableView?.doubleAction = #selector(openSyntaxEditSheet)
         self.syntaxTableView?.target = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: .SettingListDidUpdate, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: .SettingListDidUpdate, object: SyntaxManager.shared)
+    }
+    
+    
+    /// apply current settings to UI
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
         self.setupEncodingMenus()
         self.setupSyntaxStyleMenus()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: .EncodingListDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: .SyntaxListDidUpdate, object: nil)
     }
     
     
@@ -91,14 +92,12 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
         
-        let representedStyleName: String? = {
+        let representedSettingName: String? = {
             guard isContextualMenu else {
                 return self.selectedStyleName
             }
             
-            let clickedRow = self.syntaxTableView?.clickedRow ?? -1
-            
-            guard clickedRow != -1 else { return nil }  // clicked blank area
+            guard let clickedRow = self.syntaxTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
             
             guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
             
@@ -107,49 +106,50 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         // set style name as representedObject to menu items whose action is related to syntax style
         if NSStringFromSelector(menuItem.action!).contains("Syntax") {
-            menuItem.representedObject = representedStyleName
+            menuItem.representedObject = representedSettingName
         }
         
+        let itemSelected = (representedSettingName != nil)
         var isBundled = false
         var isCustomized = false
-        if let representedStyleName = representedStyleName {
-            isBundled = SyntaxManager.shared.isBundledSetting(name: representedStyleName)
-            isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: representedStyleName)
+        if let representedSettingName = representedSettingName {
+            isBundled = SyntaxManager.shared.isBundledSetting(name: representedSettingName)
+            isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: representedSettingName)
         }
         
         guard let action = menuItem.action else { return false }
         
-        // append targeet style name to menu titles
+        // append target setting name to menu titles
         switch action {
         case #selector(openSyntaxMappingConflictSheet(_:)):
             return SyntaxManager.shared.existsMappingConflict
             
         case #selector(openSyntaxEditSheet(_:)) where SyntaxEditSheetMode(rawValue: menuItem.tag) == .copy:
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), representedStyleName!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (representedStyleName == nil)
+            menuItem.isHidden = !itemSelected
             
         case #selector(deleteSyntaxStyle(_:)):
-            menuItem.isHidden = (isBundled || representedStyleName == nil)
+            menuItem.isHidden = (isBundled || !itemSelected)
             
         case #selector(restoreSyntaxStyle(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), representedStyleName!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), name)
             }
-            menuItem.isHidden = (!isBundled || representedStyleName == nil)
+            menuItem.isHidden = (!isBundled || !itemSelected)
             return isCustomized
             
         case #selector(exportSyntaxStyle(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), representedStyleName!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), name)
             }
-            menuItem.isHidden = (representedStyleName == nil)
+            menuItem.isHidden = !itemSelected
             return (!isBundled || isCustomized)
             
         case #selector(revealSyntaxStyleInFinder(_:)):
-            if !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), representedStyleName!)
+            if let name = representedSettingName, !isContextualMenu {
+                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), name)
             }
             return (!isBundled || isCustomized)
             
@@ -337,6 +337,12 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     }
     
     
+    @IBAction func reloadAllStyles(_ sender: AnyObject?) {
+        
+        SyntaxManager.shared.updateCache()
+    }
+    
+    
     
     // MARK: Private Methods
     
@@ -354,17 +360,17 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         let autoDetectItem = NSMenuItem(title: NSLocalizedString("Auto-Detect", comment: ""), action: nil, keyEquivalent: "")
         autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
         inOpenMenu.addItem(autoDetectItem)
-        inOpenMenu.addItem(NSMenuItem.separator())
+        inOpenMenu.addItem(.separator())
         
-        let UTF8Int = Int(String.Encoding.utf8.rawValue)
+        let utf8Int = Int(String.Encoding.utf8.rawValue)
         for item in menuItems {
             inOpenMenu.addItem(item)
             inNewMenu.addItem(item.copy() as! NSMenuItem)
             
             // add "UTF-8 with BOM" item only to "In New" menu
-            if item.tag == UTF8Int {
+            if item.tag == utf8Int {
                 let bomItem = NSMenuItem(title: String.localizedNameOfUTF8EncodingWithBOM, action: nil, keyEquivalent: "")
-                bomItem.tag = UTF8Int
+                bomItem.tag = utf8Int
                 bomItem.representedObject = isUTF8WithBOMFlag
                 inNewMenu.addItem(bomItem)
             }
@@ -376,7 +382,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         let inNewEncoding = UserDefaults.standard[.encodingInNew]
         self.inOpenEncodingMenu?.selectItem(withTag: Int(inOpenEncoding))
         
-        if Int(inNewEncoding) == UTF8Int {
+        if Int(inNewEncoding) == utf8Int {
             let UTF8WithBomIndex = inNewMenu.indexOfItem(withRepresentedObject: isUTF8WithBOMFlag)
             let index = UserDefaults.standard[.saveUTF8BOM] ? UTF8WithBomIndex : UTF8WithBomIndex - 1
             // -> The normal "UTF-8" is just above "UTF-8 with BOM".
@@ -391,7 +397,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     /// build sytnax style menus
     @objc private func setupSyntaxStyleMenus() {
         
-        let styleNames = SyntaxManager.shared.styleNames
+        let styleNames = SyntaxManager.shared.settingNames
         
         let styleStates: [[String: Any]] = styleNames.map { styleName in
             let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
@@ -410,7 +416,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         if let popup = self.syntaxStylesDefaultPopup {
             popup.removeAllItems()
             popup.addItem(withTitle: BundledStyleName.none)
-            popup.menu?.addItem(NSMenuItem.separator())
+            popup.menu?.addItem(.separator())
             popup.addItems(withTitles: styleNames)
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu

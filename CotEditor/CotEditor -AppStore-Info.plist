@@ -325,6 +325,27 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>f</string>
+				<string>f90</string>
+				<string>f95</string>
+				<string>f03</string>
+				<string>f08</string>
+				<string>for</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>FortranIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Fortran Source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>${PRODUCT_MODULE_NAME}.Document</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>go</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -945,11 +966,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1.8</string>
+	<string>3.2.0-beta</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>191</string>
+	<string>193</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>

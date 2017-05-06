@@ -31,8 +31,9 @@
 
 
 
-// Menu item title for Sparkle
+// Main menu item titles
 "Check for Updates…" = "Nach Aktualisierungen suchen …";
+"What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number
 
 
 // Share menu
@@ -49,7 +50,7 @@
 
 // Importing theme
 "“%@” is a CotEditor theme file." = "„%@“ ist eine CotEditor-Themadatei.";
-"Do you want to install this theme?" = "Möchten Sie das Thema installieren?";
+"Do you want to install this theme?" = "Möchtest du das Thema installieren?";
 "Install" = "Installieren";
 "Open as Text File" = "Als Textdatei öffnen";
 "A new theme named “%@” has been successfully installed." = "Ein neues Thema mit dem Namen „%@“ wurde erfolgreich installiert.";
@@ -69,6 +70,8 @@
 "%@ string replaced." = "%@ Zeichenkette ersetzt.";
 "%@ strings replaced." = "%@ Zeichenketten ersetzt.";
 "Invalid regular expression" = "Ungültiger regulärer Ausdruck";
+"Empty find string" = "Leerer Suchbegriff";
+"Input text to find." = "Gib den zu findenden Text ein.";
 
 
 /* MARK: FindPanelController */
@@ -76,8 +79,8 @@
 "Replace the current selection with the replacement text." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen.";
 "Not Found" = "Nicht gefunden";
 "%@ found" = "%@ gefunden";  // %@ is number of founds
-"Not Replaced" = "見つかりません";
-"%@ replaced" = "%@ 件置換しました";  // %@ is number of replaced
+"Not Replaced" = "Nicht ersetzt";
+"%@ replaced" = "%@ ersetzt";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
@@ -94,11 +97,11 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Die Datei „%@” entspricht keiner Textdatei.";
-"The file is %@.\n\nDo you really want to open the file?" = "Die Datei ist %@.\n\nMöchten Sie die Datei wirklich öffnen?";
+"The file is %@.\n\nDo you really want to open the file?" = "Die Datei ist %@.\n\nMöchtest du die Datei wirklich öffnen?";
 
 // Large file alert
 "The file “%@” has a size of %@." = "Die Datei „%@“ hat eine Größe von %@.";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Wenn eine so große Datei geöffnet wird, kann das Programm langsam werden oder nicht mehr reagieren.\n\nMöchten Sie die Datei wirklich öffnen?";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Wenn eine so große Datei geöffnet wird, kann das Programm langsam werden oder nicht mehr reagieren.\n\nMöchtest du die Datei wirklich öffnen?";
 "Open" = "Öffnen";
 
 
@@ -110,41 +113,41 @@
 
 // Convert or reinterpret encoding alert
 "File encoding" = "Dateicodierung";
-"Do you want to convert or reinterpret this document using “%@”?" = "Möchten Sie dieses Dokument mit „%@“ umwandeln oder neu interpretieren?";
+"Do you want to convert or reinterpret this document using “%@”?" = "Möchtest du dieses Dokument mit „%@“ umwandeln oder neu interpretieren?";
 "Convert" = "Umwandeln";
 "Reinterpret" = "Neu interpretieren";
 
 // Lossy encoding alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
-"Do you want to continue processing?" = "Möchten Sie mit der Bearbeitung fortfahren?";
+"Do you want to continue processing?" = "Möchtest du mit der Bearbeitung fortfahren?";
 "Save Available Strings" = " Verfügbare Zeichenkette speichern";
 "Show Incompatible Characters" = "Inkompatible Zeichen einblenden";
 
 // Incompatible IANA charset name alert
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "Die Codierung ist „%@“, doch der IANA-Zeichensatzname ist „%@“.";
-"Do you want to continue processing?" = "Möchten Sie mit der Bearbeitung fortfahren?";
+"Do you want to continue processing?" = "Möchtest du mit der Bearbeitung fortfahren?";
 "Do not show this warning for this document again" = "Diese Warnung für dieses Dokument nicht erneut anzeigen";
 "Continue Saving" = "Speicherung fortsetzen";
 
 // Encoding change with unsaved changes alert
 "The file “%@” has unsaved changes." = "Die Datei „%@“ hat ungespeicherte Änderungen.";
-"Do you want to discard the changes and reset the file encoding?" = "Möchten Sie die Änderungen verwerfen und die Dateicodierung zurücksetzen?";
+"Do you want to discard the changes and reset the file encoding?" = "Möchtest du die Änderungen verwerfen und die Dateicodierung zurücksetzen?";
 "Discard Changes" = "Änderungen verwerfen";
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "Das Dokument hat keine Datei zum Neuinterpretieren.";
 "The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "Die Datei „%@“ konnte nicht mithilfe der Codierung „%@“ neu interpretiert werden.";
-"The file may have been saved using a different text encoding, or it may not be a text file." = "Die Datei wurde möglicherweise mit einer anderen Textcodierung gesichert order es handelt sich nicht um eine Textdatei";
+"The file may have been saved using a different text encoding, or it may not be a text file." = "Die Datei wurde möglicherweise mit einer anderen Textcodierung gesichert oder es handelt sich nicht um eine Textdatei.";
 
 // incompatible characters alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
-"Do you want to change encoding and show incompatible characters?" = "Möchten Sie die Codierung ändern und die inkompatiblen Zeichen zeigen?";
+"Do you want to change encoding and show incompatible characters?" = "Möchtest du die Codierung ändern und die inkompatiblen Zeichen zeigen?";
 "Change Encoding" = "Codierung wechseln";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
 "The file has been modified by another application." = "Die Datei wurde durch ein anderes Programm geändert.";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Möchten Sie CotEditors Version behalten oder auf die geänderte Version aktualisieren?";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Möchtest du CotEditors Version behalten oder auf die geänderte Version aktualisieren?";
 "Keep CotEditor’s Edition" = "CotEditors Version behalten";
 "Update" = "Aktualisieren";
 
@@ -268,7 +271,7 @@
 
 // Tooltip for "Show Invisible Characters" menu item
 "Show or hide invisible characters in document" = "Unsichtbare Zeichen im Text ein-/ausblenden";
-"To show invisible characters, set them in Preferences" = "Um unsichtbare Zeichen anzuzeigen, setzen Sie sie in den Einstellungen";
+"To show invisible characters, set them in Preferences" = "Um unsichtbare Zeichen anzuzeigen, setze sie in den Einstellungen";
 
 
 
@@ -329,7 +332,7 @@
 // General pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";
-"Do you want to restart CotEditor now?" = "Möchten Sie CotEditor jetzt neu starten?";
+"Do you want to restart CotEditor now?" = "Möchtest du CotEditor jetzt neu starten?";
 "Restart Now" = "Neu starten";
 "Later" = "Später";
 
@@ -341,7 +344,7 @@
 "Restore “%@”" = "„%@“ zurücksetzen";
 "Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
 // Theme delete alert
-"Are you sure you want to delete “%@” theme?" = "Möchten Sie das Thema „%@“ wirklich löschen?";
+"Are you sure you want to delete “%@” theme?" = "Möchtest du das Thema „%@“ wirklich löschen?";
 "This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
 
 // Swipe to delete (also used in the Format pane)
@@ -351,7 +354,7 @@
 
 // Format pane
 // Encoding menu alert
-"Are you sure you want to change to “%@”?" = "Möchten Sie wirklich zu „%@“ wechseln?";
+"Are you sure you want to change to “%@”?" = "Möchtest du wirklich zu „%@“ wechseln?";
 "The default “Auto-Detect” is recommended for most cases." = "Die automatische Erkennung wird für die meisten Fälle empfohlen.";
 "Change to “%@”" = "Zu „%@“ wechseln";
 "Revert to “Auto-Detect”" = "Auf „Autom. erkennen“ zurücksetzen";
@@ -364,7 +367,7 @@
 
 // File Drop pane
 // File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "Möchten Sie die Einstellung von Datei-Drop für „%@“ wirklich löschen?";
+"Are you sure you want to delete the file drop setting for “%@”?" = "Möchtest du die Einstellung von Datei-Drop für „%@“ wirklich löschen?";
 "Deleted setting can’t be restored." = "Gelöschte Einstellung kann nicht wiederhergestellt werden.";
 
 
@@ -410,7 +413,7 @@
 "No original file for “%@” was found." = "Keine Original-Datei für „%@“ wurde gefunden.";
 
 // Setting file name warnings
-"Please choose another name." = "Bitte wählen Sie einen anderen Namen.";
+"Please choose another name." = "Bitte wähle einen anderen Namen.";
 "Name can’t be empty." = "Name darf nicht leer sein.";
 "You can’t use a name that contains “/”." = "Name darf kein „/“ enthalten.";
 "You can’t use a name that begins with a dot “.”." = "Name darf nicht mit einem Punkt „.“ beginnen.";
@@ -429,7 +432,7 @@
 "copy" = "Kopie";
 
 // Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "Möchten Sie den Syntaxstil „%@“ wirklich löschen?";
+"Are you sure you want to delete “%@” syntax style?" = "Möchtest du den Syntaxstil „%@“ wirklich löschen?";
 "This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
 "Delete" = "Löschen";
 "Replace" = "Ersetzen";
@@ -438,7 +441,7 @@
 "Import" = "Importieren";
 // Importing same name style alert
 "A new style named “%@” will be installed, but a custom style with the same name already exists." = "Ein neuer Stil mit dem Namen „%@“ wird installiert, doch ein benutzerdefinierter Stil mit demselben Namen existiert bereits.";
-"Do you want to replace it?\nReplaced style can’t be restored." = "Möchten Sie ihn ersetzen?\nErsetzter Stil kann nicht wiederhergestellt werden.";
+"Do you want to replace it?\nReplaced style can’t be restored." = "Möchtest du ihn ersetzen?\nErsetzter Stil kann nicht wiederhergestellt werden.";
 
 // Export syntax style file savePanel label
 "Export As:" = "Exportieren als:";
@@ -460,7 +463,7 @@
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefiniertes Thema mit dem selben Namen existiert bereits.";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "Möchten Sie es ersetzen?\nErsetztes Thema kann nicht wiederhergestellt werden.";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "Möchtest du es ersetzen?\nErsetztes Thema kann nicht wiederhergestellt werden.";
 
 
 
@@ -475,9 +478,9 @@
 "“%@” is already taken." = "„%@“ wird bereits verwendet.";
 "“%@” does not include the Command key." = "„%@“ enthält nicht die Command-Taste.";
 "“%@” includes the Command key." = "„%@“ enthält die Command-Taste.";
-"Please choose another key." = "Bitte wählen Sie eine andere Taste.";
+"Please choose another key." = "Bitte wähle eine andere Taste.";
 "Single type is invalid for a shortcut." = "Einzelne Tasten sind für einen Kurzbefehl ungültig.";
-"Please combine with another keys." = "Bitte kombinieren Sie sie mit anderen Tasten.";
+"Please combine with another keys." = "Bitte kombiniere sie mit anderen Tasten.";
 
 
 
@@ -499,17 +502,17 @@
 // Script file error description
 "The script “%@” does not exist." = "Das Skript „%@“ existiert nicht.";
 "The script file “%@” couldn’t be opened." = "Die Skriptdatei „%@“ konnte nicht geöffnet werden.";
-"The script “%@” can’t be executed because you don’t have the execute permission." = "Das Skript „%@“ kann nicht ausgeführt werden, da Sie keine Ausführungsrechte haben.";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "Das Skript „%@“ kann nicht ausgeführt werden, da du keine Ausführungsrechte hast.";
 "The script “%@” couldn’t be read." = "Das Skript „%@“ konnte nicht gelesen werden.";
 
 // Script file error recovery suggestions
-"Check the script file." = "Prüfen Sie die Skriptdatei.";
-"Check permission of the script file." = "Prüfen Sie die Zugriffsrechte der Skriptdatei.";
+"Check the script file." = "Prüfe die Skriptdatei.";
+"Check permission of the script file." = "Prüfe die Zugriffsrechte der Skriptdatei.";
 
 
 
 /* MARK: FileDropComposer */
-// Descriptions about tokens in the file drop feature
+// Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Der absolute Pfad der abgelegten Datei.";
 "The relative path between dropped file and the document." = "Der relative Pfad zwischen der abgelegten Datei und dem Dokument.";
 "The dropped file’s name including extension (if exists)." = "Der Name der abgelegten Datei inklusive Suffix (falls es existiert).";
@@ -520,6 +523,12 @@
 "The parent directory name of dropped file." = "Der übergeordnete Ordnername der abgelegten Datei.";
 "(If the dropped file is an image) image width." = "Die Bildbreite (nur wenn die abgelegte Datei ein Bild ist).";
 "(If the dropped file is an image) image height." = "Die Bildhöhe (nur wenn die abgelegte Datei ein Bild ist).";
+
+
+
+/* MARK: Snippet */
+// Descriptions about variables in the snippet feature
+"The cursor position after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
 
 
 

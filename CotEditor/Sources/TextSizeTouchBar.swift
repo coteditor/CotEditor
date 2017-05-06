@@ -56,16 +56,15 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     // MARK: -
     // MARK: Lifecycle
     
-    init(textView: NSTextView) {
+    init(textView: NSTextView, forPressAndHold: Bool = false) {
         
         super.init()
         
-        self.textView = textView
-        
         NSTouchBar.isAutomaticValidationEnabled = true
         
+        self.textView = textView
         self.delegate = self
-        self.defaultItemIdentifiers = [.textSizeActual, .textSizeSlider]
+        self.defaultItemIdentifiers = forPressAndHold ? [.textSizeSlider] : [.textSizeActual, .textSizeSlider]
         
         NotificationCenter.default.addObserver(self, selector: #selector(invalidateSlider), name: .TextViewDidChangeScale, object: textView)
     }

@@ -42,7 +42,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     /// selection did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let tableView = notification.object as? NSTableView else { return }
+        guard let tableView = notification.object as? NSTableView, tableView.numberOfRows > 0 else { return }
         
         let row = tableView.selectedRow
         

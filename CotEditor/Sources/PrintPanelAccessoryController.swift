@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     // MARK: Private Properties
     
-    @IBOutlet private weak var themePopUp: NSPopUpButton?
+    @IBOutlet private weak var colorPopupButton: NSPopUpButton?
     
     
     
@@ -111,7 +111,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             self.secondaryFooterAlignment = AlignmentType(defaults[.secondaryFooterAlignment])
             
             // apply current theme
-            self.updateThemeList()
+            self.setupColorMenu()
         }
     }
     
@@ -176,31 +176,32 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     }
     
     
-    /// update theme popup menu
-    private func updateThemeList() {
+    /// update popup menu for color setting
+    private func setupColorMenu() {
         
-        guard let popUp = self.themePopUp else { return }
+        let themeNames = ThemeManager.shared.settingNames
         
-        popUp.removeAllItems()
+        guard let popupButton = self.colorPopupButton else { return }
         
-        popUp.addItem(withTitle: ThemeName.blackAndWhite)
+        popupButton.removeAllItems()
         
-        popUp.menu?.addItem(NSMenuItem.separator())
+        // build popup button
+        popupButton.addItem(withTitle: ThemeName.blackAndWhite)
+        popupButton.menu?.addItem(.separator())
         
-        popUp.addItem(withTitle: NSLocalizedString("Theme", comment: ""))
-        popUp.item(withTitle: NSLocalizedString("Theme", comment: ""))?.action = nil
+        popupButton.addItem(withTitle: NSLocalizedString("Theme", comment: ""))
+        popupButton.lastItem?.isEnabled = false
         
-        let themeNames = ThemeManager.shared.themeNames
         for themeName in themeNames {
-            popUp.addItem(withTitle: themeName)
-            popUp.lastItem?.indentationLevel = 1
+            popupButton.addItem(withTitle: themeName)
+            popupButton.lastItem?.indentationLevel = 1
         }
         
         // select "Black and White" if there is nothing to select
         if themeNames.contains(self.theme) {
-            popUp.selectItem(withTitle: self.theme)
+            popupButton.selectItem(withTitle: self.theme)
         } else {
-            popUp.selectItem(at: 0)
+            popupButton.selectItem(at: 0)
         }
     }
     

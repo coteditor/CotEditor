@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,8 +35,11 @@ struct KeyBinding: Hashable, Comparable, CustomStringConvertible {
     
     
     var description: String {
-        
-        return "<KeyBinding: \(self.action) - \(self.shortcut)>"
+        if let shortcut = self.shortcut {
+        return "<KeyBinding: \(self.action) - \(shortcut)>"
+        } else {
+            return "<KeyBinding: \(self.action)>"
+        }
     }
     
     
@@ -154,25 +157,15 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     // MARK: Abstract Properties/Methods
     
     /// name of file to save custom key bindings in the plist file form (without extension)
-    var settingFileName: String {
-        
-        preconditionFailure()
-    }
-    
+    var settingFileName: String { preconditionFailure() }
     
     /// default key bindings
-    var defaultKeyBindings: Set<KeyBinding> {
-        
-        preconditionFailure()
-    }
+    var defaultKeyBindings: Set<KeyBinding> { preconditionFailure() }
     
     
     /// create a KVO-compatible collection for outlineView in preferences from the key binding setting
     /// - parameter usesDefaults:   `true` for default setting and `false` for the current setting
-    func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
-        
-        preconditionFailure()
-    }
+    func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] { preconditionFailure() }
     
     
     

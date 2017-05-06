@@ -87,9 +87,7 @@ final class TextFinder: NSResponder {
     // MARK: Private Properties
     
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController() as! FindPanelController
-    private let integerFormatter: NumberFormatter
     private let highlightColor: NSColor
-    private var busyTextViews = Set<NSTextView>()
     
     
     
@@ -97,10 +95,6 @@ final class TextFinder: NSResponder {
     // MARK: Lifecycle
     
     private override init() {
-        
-        self.integerFormatter = NumberFormatter()
-        self.integerFormatter.usesGroupingSeparator = true
-        self.integerFormatter.numberStyle = .decimal
         
         self.highlightColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
         // Highlight color is currently not customizable. (2015-01-04)
@@ -220,19 +214,15 @@ final class TextFinder: NSResponder {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return }
         
-        self.busyTextViews.insert(textView)
+        textView.isEditable = false
         
-        let integerFormatter = self.integerFormatter
         let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
         let lineRegex = try! NSRegularExpression(pattern: "\n")
         
         // setup progress sheet
-        guard let documentViewController = textView.window?.windowController?.contentViewController else {
-            fatalError("The find target text view must be embedded in a window with its contentViewController.")
-        }
-        let progress = Progress(totalUnitCount: -1)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Find All", comment: ""))!
-        documentViewController.presentViewControllerAsSheet(indicator)
+        let progress = TextFindProgress(format: .find)
+        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Find All", comment: ""))
+        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
@@ -275,19 +265,11 @@ final class TextFinder: NSResponder {
                 
                 results.append(TextFindResult(range: matchedRange, lineRange: inlineRange, lineNumber: lineNumber, attributedLineString: attrLineString))
                 
-                // progress indicator
-                let informativeFormat = (results.count == 1) ? "%@ string found." : "%@ strings found."
-                let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
-                                         integerFormatter.string(from: highlights.count as NSNumber)!)
-                DispatchQueue.main.async { [weak progress] in
-                    progress?.localizedDescription = informative
-                }
+                progress.needsUpdateDescription(count: results.count)
             }
             
             DispatchQueue.main.sync {
-                defer {
-                    strongSelf.busyTextViews.remove(textView)
-                }
+                textView.isEditable = true
                 
                 guard !progress.isCancelled else {
                     indicator.dismiss(nil)
@@ -329,18 +311,14 @@ final class TextFinder: NSResponder {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return }
         
-        self.busyTextViews.insert(textView)
+        textView.isEditable = false
         
-        let integerFormatter = self.integerFormatter
         let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
         
         // setup progress sheet
-        guard let documentViewController = textView.window?.windowController?.contentViewController else {
-            fatalError("The find target text view must be embedded in a window with its contentViewController.")
-        }
-        let progress = Progress(totalUnitCount: -1)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Highlight", comment: ""))!
-        documentViewController.presentViewControllerAsSheet(indicator)
+        let progress = TextFindProgress(format: .find)
+        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Highlight", comment: ""))
+        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
@@ -360,19 +338,11 @@ final class TextFinder: NSResponder {
                     highlights.append(HighlightItem(range: range, color: color))
                 }
                 
-                // progress indicator
-                let informativeFormat = (highlights.count == 1) ? "%@ string found." : "%@ strings found."
-                let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
-                                         integerFormatter.string(from: highlights.count as NSNumber)!)
-                DispatchQueue.main.async { [weak progress] in
-                    progress?.localizedDescription = informative
-                }
+                progress.needsUpdateDescription(count: highlights.count)
             }
             
             DispatchQueue.main.sync {
-                defer {
-                    strongSelf.busyTextViews.remove(textView)
-                }
+                textView.isEditable = true
                 
                 guard !progress.isCancelled else {
                     indicator.dismiss(nil)
@@ -448,18 +418,14 @@ final class TextFinder: NSResponder {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return }
         
-        self.busyTextViews.insert(textView)
+        textView.isEditable = false
         
         let replacementString = self.replacementString
-        let integerFormatter = self.integerFormatter
         
         // setup progress sheet
-        guard let documentViewController = textView.window?.windowController?.contentViewController else {
-            fatalError("The find target text view must be embedded in a window with its contentViewController.")
-        }
-        let progress = Progress(totalUnitCount: -1)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Replace All", comment: ""))!
-        documentViewController.presentViewControllerAsSheet(indicator)
+        let progress = TextFindProgress(format: .replacement)
+        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Replace All", comment: ""))
+        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
@@ -473,19 +439,11 @@ final class TextFinder: NSResponder {
                 
                 count += 1
                 
-                // progress indicator
-                let informativeFormat = (count == 1) ? "%@ string replaced." : "%@ strings replaced."
-                let informative = String(format: NSLocalizedString(informativeFormat, comment: ""),
-                                         integerFormatter.string(from: count as NSNumber)!)
-                DispatchQueue.main.async { [weak progress] in
-                    progress?.localizedDescription = informative
-                }
+                progress.needsUpdateDescription(count: count)
             }
             
             DispatchQueue.main.sync {
-                defer {
-                    strongSelf.busyTextViews.remove(textView)
-                }
+                textView.isEditable = true
                 
                 guard !progress.isCancelled else {
                     indicator.dismiss(nil)
@@ -578,7 +536,7 @@ final class TextFinder: NSResponder {
         
         guard
             let textView = self.client,
-            !self.busyTextViews.contains(textView),
+            textView.isEditable,
             let string = textView.string
             else {
                 NSBeep()
@@ -594,7 +552,7 @@ final class TextFinder: NSResponder {
         let settings = TextFind.Settings(defaults: UserDefaults.standard)
         let textFind: TextFind
         do {
-            textFind = try TextFind(for: string, findString: self.sanitizedFindString, settings: settings, selectedRanges: textView.selectedRanges as [NSRange])
+            textFind = try TextFind(for: string, findString: self.sanitizedFindString, settings: settings, selectedRanges: textView.selectedRanges as! [NSRange])
         } catch {
             switch error {
             case TextFindError.regularExpression:

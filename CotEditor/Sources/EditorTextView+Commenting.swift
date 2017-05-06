@@ -131,7 +131,7 @@ extension EditorTextView {
         if let delimiters = self.blockCommentDelimiters, types.contains(.block) {
             new = string.blockUncomment(delimiters: delimiters, spacer: spacer, range: targetRange, selectedRange: selectedRange)
         }
-        if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) && new == nil {
+        if let delimiter = self.inlineCommentDelimiter, types.contains(.inline), new == nil {
             new = string.inlineUncomment(delimiter: delimiter, spacer: spacer, range: targetRange, selectedRange: selectedRange)
         }
         
@@ -155,7 +155,7 @@ extension EditorTextView {
         let target = string.substring(with: targetRange)
         
         if let delimiters = self.blockCommentDelimiters {
-            if target.hasPrefix(delimiters.begin) && target.hasSuffix(delimiters.end) {
+            if target.hasPrefix(delimiters.begin), target.hasSuffix(delimiters.end) {
                 return true
             }
         }
@@ -232,7 +232,7 @@ private extension String {
             
             let newLine = line.substring(from: line.index(line.startIndex, offsetBy: delimiter.characters.count))
             
-            guard !spacer.isEmpty && newLine.hasPrefix(spacer) else { return newLine }
+            guard !spacer.isEmpty, newLine.hasPrefix(spacer) else { return newLine }
             
             return newLine.substring(from: newLine.index(newLine.startIndex, offsetBy: spacer.characters.count))
         }

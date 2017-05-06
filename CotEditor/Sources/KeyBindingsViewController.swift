@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -77,15 +77,6 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: String? {
-        
-        return "MenuKeyBindingsEditView"
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -112,9 +103,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// return number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
-        guard let children = self.children(ofItem: item) else { return 0 }
-        
-        return children.count
+        return self.children(ofItem: item)?.count ?? 0
     }
     
     
@@ -287,26 +276,23 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     dynamic var snippets = [SnippetItem]()
     
     @IBOutlet private var snippetArrayController: NSArrayController?
+    @IBOutlet private var formatTextView: TokenTextView?
+    @IBOutlet private var variableInsertionMenu: NSPopUpButton?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: String? {
-        
-        return "TextKeyBindingsEditView"
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
         self.setup(snippets: SnippetKeyBindingManager.shared.snippets(defaults: false))
+        
+        // setup variable menu
+        self.variableInsertionMenu!.menu!.addItems(for: Snippet.Variable.all, target: self.formatTextView)
     }
     
     
@@ -366,9 +352,6 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
             self.saveSettings()
         }
     }
-    
-    
-    
     // MARK: Private Methods
     
     /// set snippets to arrayController

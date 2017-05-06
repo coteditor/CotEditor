@@ -41,7 +41,7 @@
 "jXZ-7k-86F.title" = "“Unicode (UTF-8) con BOM” sarà aggiunto automaticamente subito dopo il normale “Unicode (UTF-8)”.";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
-"3396.title" = "Ripristina defaults";
+"3396.title" = "Ripristina default";
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3390"; */
 "3390.title" = "Annulla";
 /* Class = "NSButtonCell"; title = "OK"; ObjectID = "3391"; */

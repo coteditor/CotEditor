@@ -5,10 +5,10 @@ interpreters:
 metadata:
   author: "Y.Tokutomi"
   distributionURL: "https://coteditor.com"
-  version: "2.2.1"
+  version: "2.2.2"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2017-03-29"
 outlineMenu:
 - beginString: "(^[\\t ]*class)[\\t ]+(\\w*)"
   keyString: "$1 $2"
@@ -23,7 +23,8 @@ outlineMenu:
   description: "module"
   bold: true
 commands:
-- beginString: ".class"
+- beginString: "(?<=\\.)class\\b"
+  regularExpression: true
 - beginString: "__id__"
 - beginString: "__send__"
 - beginString: "abort"

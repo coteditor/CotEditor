@@ -33,7 +33,7 @@ extension NSTextView {
     
     /// perform simple text replacement
     @discardableResult
-    func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String?) -> Bool {
+    func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
         
         let selectedRanges: [NSRange]? = {
             guard let selectedRange = selectedRange else { return nil }
@@ -47,15 +47,16 @@ extension NSTextView {
     
     /// perform multiple text replacements
     @discardableResult
-    func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String?) -> Bool {
+    func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String? = nil) -> Bool {
         
+        assert(Thread.isMainThread)
         assert(strings.count == ranges.count, "unbalanced number of strings and ranges for multiple replacement")
         
         guard !strings.isEmpty, let textStorage = self.textStorage else { return false }
         
         // register redo for text selection
         if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
-            undoClient.setSelectedRangesWithUndo(self.selectedRanges as [NSRange])
+            undoClient.setSelectedRangesWithUndo(self.selectedRanges as! [NSRange])
         }
         
         // tell textEditor about beginning of the text processing
@@ -81,7 +82,7 @@ extension NSTextView {
         self.didChangeText()
         
         // apply new selection ranges
-        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges as [NSRange])
+        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges as! [NSRange])
         
         return true
     }
@@ -103,6 +104,8 @@ extension NSTextView {
     
     /// trim all trailing whitespace with/without keeeping editing point
     func trimTrailingWhitespace(keepingEditingPoint: Bool = false) {
+        
+        assert(Thread.isMainThread)
         
         guard let string = self.string else { return }
         

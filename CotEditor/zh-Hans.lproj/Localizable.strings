@@ -32,8 +32,9 @@
 
 
 
-// Menu item title for Sparkle
+// Main menu item titles
 "Check for Updates…" = "检查更新…";
+"What’s New in CotEditor %@" = "CotEditor %@ 新特性";  // %@ is version number
 
 
 // Share menu
@@ -70,6 +71,8 @@
 "%@ string replaced." = "已替换 %@ 个匹配";
 "%@ strings replaced." = "已替换 %@ 个匹配";
 "Invalid regular expression" = "无效的正则表达式";
+"Empty find string" = "空的搜索字符串";
+"Input text to find." = "输入文本以查找。";
 
 
 /* MARK: FindPanelController */
@@ -510,7 +513,7 @@
 
 
 /* MARK: FileDropComposer */
-// Descriptions about tokens in the file drop feature
+// Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的文件绝对路径";
 "The relative path between dropped file and the document." = "拖拽的文件与编辑中文档的相对路径";
 "The dropped file’s name including extension (if exists)." = "拖拽的文件的文件名以及扩展名（如果存在）";
@@ -521,6 +524,12 @@
 "The parent directory name of dropped file." = "拖拽的文件的上级目录";
 "(If the dropped file is an image) image width." = "图片宽度（如果拖拽文件是图像）";
 "(If the dropped file is an image) image height." = "图片高度（如果拖拽文件是图像）";
+
+
+
+/* MARK: Snippet */
+// Descriptions about variables in the snippet feature
+"The cursor position after inserting the snippet." = "插入片段后的光标位置";
 
 
 

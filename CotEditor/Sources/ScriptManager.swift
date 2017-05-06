@@ -34,12 +34,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     static let shared = ScriptManager()
     
+    private(set) var currentScriptName: String?
+    
     
     // MARK: Private Properties
     
     private let scriptsDirectoryURL: URL
-    private var scriptHandlersTable: [ScriptingEventType: [URL]] = [:]
-    private var scripts: [URL: Script] = [:]
+    private var scriptHandlersTable: [ScriptingEventType: [Script]] = [:]
     private var menuBuildingTask: DispatchWorkItem?
     
     
@@ -47,6 +48,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Private Enum
     
     private enum MenuItemTag: Int {
+        
         case scriptsDefault = 8001  // not to list up in context menu
     }
     
@@ -150,7 +152,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         self.menuBuildingTask?.cancel()
         self.menuBuildingTask = nil
         self.scriptHandlersTable = [:]
-        self.scripts = [:]
         
         let menu = MainMenu.script.menu!
         
@@ -159,7 +160,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
         
         if !menu.items.isEmpty {
-            menu.addItem(NSMenuItem.separator())
+            menu.addItem(.separator())
         }
         
         let openMenuItem = NSMenuItem(title: NSLocalizedString("Open Scripts Folder", comment: ""),
@@ -178,9 +179,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
         let eventType = ScriptingEventType.documentOpened
         let event = createEvent(by: document, eventID: eventType.eventID)
         
-        guard let urls = self.scriptHandlersTable[eventType] else { return }
+        guard let scripts = self.scriptHandlersTable[eventType] else { return }
         
-        self.dispatch(event, toHandlersAt: urls)
+        self.dispatch(event, handlers: scripts)
     }
     
     
@@ -192,9 +193,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
         let eventType = ScriptingEventType.documentSaved
         let event = createEvent(by: document, eventID: eventType.eventID)
         
-        guard let urls = self.scriptHandlersTable[eventType] else { return }
+        guard let scripts = self.scriptHandlersTable[eventType] else { return }
         
-        self.dispatch(event, toHandlersAt: urls)
+        self.dispatch(event, handlers: scripts)
     }
     
     
@@ -204,9 +205,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// launch script (invoked by menu item)
     @IBAction func launchScript(_ sender: AnyObject?) {
         
-        guard let url = sender?.representedObject as? URL else { return }
-        
-        guard let script = self.scripts[url] else { return }
+        guard let script = sender?.representedObject as? Script else { return }
         
         do {
             // change behavior if modifier key is pressed
@@ -218,7 +217,11 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 try self.revealScript(at: script.descriptor.url)
                 
             default:
-                try script.run()
+                self.currentScriptName = script.descriptor.name
+                try script.run { [weak self] in
+                    self?.currentScriptName = nil
+                
+                }
             }
             
         } catch {
@@ -271,12 +274,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///
     /// - parameters:
     ///   - event: the Apple event to be dispatched
-    ///   - urls: the locations of AppleScript handling the given Apple event
-    private func dispatch(_ event: NSAppleEventDescriptor, toHandlersAt urls: [URL]) {
+    ///   - scripts: AppleScripts handling the given Apple event
+    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [Script]) {
         
-        for url in urls {
-            guard let script = self.scripts[url] else { continue }
-            
+        for script in scripts {
             do {
                 try script.run(withAppleEvent: event)
             } catch {
@@ -301,7 +302,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             let descriptor = ScriptDescriptor(at: url)
             
             if descriptor.name == String.separator {
-                menu.addItem(NSMenuItem.separator())
+                menu.addItem(.separator())
                 continue
             }
             
@@ -310,19 +311,17 @@ final class ScriptManager: NSObject, NSFilePresenter {
             if let script = descriptor.makeScript() {
                 for eventType in descriptor.eventTypes {
                     var handlers = self.scriptHandlersTable[eventType] ?? []
-                    handlers.append(url)
+                    handlers.append(script)
                     self.scriptHandlersTable[eventType] = handlers
                 }
                 
                 let shortcut = descriptor.shortcut
                 let item = NSMenuItem(title: descriptor.name, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
                 item.keyEquivalentModifierMask = shortcut.modifierMask
-                item.representedObject = url
+                item.representedObject = script
                 item.target = self
                 item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
                 menu.addItem(item)
-                
-                self.scripts[url] = script
                 
             } else if resourceType == .directory {
                 let submenu = NSMenu(title: descriptor.name)

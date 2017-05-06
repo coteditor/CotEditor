@@ -17,13 +17,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szY-Yp-KrM">
-                    <rect key="frame" x="12" y="40" width="426" height="181"/>
+                    <rect key="frame" x="12" y="41" width="426" height="180"/>
                     <clipView key="contentView" id="oan-uw-mqe">
-                        <rect key="frame" x="1" y="0.0" width="424" height="180"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <rect key="frame" x="1" y="0.0" width="424" height="179"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="uOT-Vg-FZh" viewBased="YES" id="ace-Sg-2RE">
-                                <rect key="frame" x="0.0" y="0.0" width="427" height="157"/>
+                                <rect key="frame" x="0.0" y="0.0" width="427" height="156"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -250,10 +250,10 @@
                     </tableHeaderView>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Fq-66-Myr">
-                    <rect key="frame" x="12" y="11" width="25" height="22"/>
+                    <rect key="frame" x="12" y="11" width="24" height="23"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="PXE-Ru-qA8"/>
-                        <constraint firstAttribute="width" constant="25" id="eu3-K4-S2c"/>
+                        <constraint firstAttribute="height" constant="21" id="PXE-Ru-qA8"/>
+                        <constraint firstAttribute="width" constant="24" id="eu3-K4-S2c"/>
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="ZKh-Sr-Q7t">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -265,7 +265,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DyC-OT-P9k">
-                    <rect key="frame" x="36" y="11" width="25" height="22"/>
+                    <rect key="frame" x="35" y="11" width="24" height="23"/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="5cd-Ca-mBV">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="miniSystem"/>
@@ -365,7 +365,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" tag="18" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-Nb-6yw">
+                <button identifier="about_comment_settings" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-Nb-6yw">
                     <rect key="frame" x="415" y="9" width="25" height="25"/>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Bb-53-IpP">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

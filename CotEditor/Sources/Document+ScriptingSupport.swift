@@ -245,7 +245,7 @@ extension Document {
         
         guard !wholeString.isEmpty else { return false }
         
-        let options = String.CompareOptions(scriptingArguments: arguments)
+        let options = NSString.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         
         // perform find
@@ -272,7 +272,7 @@ extension Document {
         
         guard !wholeString.isEmpty else { return 0 }
         
-        let options = String.CompareOptions(scriptingArguments: arguments)
+        let options = NSString.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         let isAll = (arguments["all"] as? Bool) ?? false
         
@@ -345,7 +345,7 @@ extension Document {
 
 // MARK: -
 
-private extension String.CompareOptions {
+private extension NSString.CompareOptions {
     
     init(scriptingArguments arguments: [String: Any]) {
         
@@ -372,17 +372,17 @@ private extension String.CompareOptions {
 private extension NSString {
     
     /// find and return the range of the first occurence starting from the given selectedRange
-    func range(of searchString: String, selectedRange: NSRange, options: String.CompareOptions, isWrapSearch: Bool) -> NSRange? {
+    func range(of searchString: String, selectedRange: NSRange, options: NSString.CompareOptions, isWrapSearch: Bool) -> NSRange? {
         
         let targetRange: NSRange = {
-            if options.contains(.backwards) && !options.contains(.regularExpression) {
+            if options.contains(.backwards), !options.contains(.regularExpression) {
                 return NSRange(location: 0, length: selectedRange.location)
             }
             return NSRange(location: selectedRange.max, length: self.length - selectedRange.max)
         }()
         
         var foundRange = self.range(of: searchString, options: options, range: targetRange)
-        if foundRange.location == NSNotFound && isWrapSearch {
+        if foundRange.location == NSNotFound, isWrapSearch {
             foundRange = self.range(of: searchString, options: options)
         }
         

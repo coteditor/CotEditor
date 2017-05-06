@@ -96,8 +96,11 @@ extension EditorTextView {
         
         let name = UserDefaults.standard[.fontName]!
         let size = UserDefaults.standard[.fontSize]
-        self.font = NSFont(name: name, size: size) ?? NSFont.userFont(ofSize: size)
+        let font = NSFont(name: name, size: size) ?? NSFont.userFont(ofSize: size)
         
+        guard font != self.font else { return }
+        
+        self.font = font
         self.setScaleKeepingVisibleArea(1.0)
     }
     

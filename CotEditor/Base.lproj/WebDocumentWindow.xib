@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="WebDocumentWindowController" customModule="CotEditor" customModuleProvider="target">
             <connections>
-                <outlet property="webView" destination="eAE-ob-zji" id="RWG-VD-42W"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="kUp-tJ-aLO"/>
             </connections>
         </customObject>
@@ -20,26 +19,9 @@
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <webView translatesAutoresizingMaskIntoConstraints="NO" id="eAE-ob-zji">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
-                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12" minimumFontSize="10" plugInsEnabled="NO" javaEnabled="NO" javaScriptEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO">
-                            <nil key="identifier"/>
-                        </webPreferences>
-                        <connections>
-                            <outlet property="policyDelegate" destination="-2" id="3Rp-LH-yIj"/>
-                        </connections>
-                    </webView>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="eAE-ob-zji" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="Fce-0C-bQn"/>
-                    <constraint firstItem="eAE-ob-zji" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="KGX-Z4-lH8"/>
-                    <constraint firstAttribute="trailing" secondItem="eAE-ob-zji" secondAttribute="trailing" id="Uny-Ei-zoK"/>
-                    <constraint firstAttribute="bottom" secondItem="eAE-ob-zji" secondAttribute="bottom" id="vDZ-JX-SZD"/>
-                </constraints>
             </view>
             <connections>
-                <binding destination="-2" name="title" keyPath="webView.mainFrameTitle" id="pub-Ad-EnU"/>
+                <binding destination="-2" name="title" keyPath="webView.title" id="tgE-nd-lCn"/>
             </connections>
         </window>
     </objects>

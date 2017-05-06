@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,21 +28,27 @@
 import Foundation
 
 struct OutlineItem: Equatable, CustomDebugStringConvertible {
+    
+    struct Style: OptionSet {
+        
+        let rawValue: Int
+        
+        static let bold      = Style(rawValue: 1 << 0)
+        static let italic    = Style(rawValue: 1 << 1)
+        static let underline = Style(rawValue: 1 << 2)
+    }
+    
 
     let title: String
     let range: NSRange
-    let isBold: Bool
-    let isItalic: Bool
-    let hasUnderline: Bool
+    let style: Style
     
     
-    init(title: String, range: NSRange, isBold: Bool = false, isItalic: Bool = false, hasUnderline: Bool = false) {
+    init(title: String, range: NSRange, style: Style = []) {
         
         self.title = title
         self.range = range
-        self.isBold = isBold
-        self.isItalic = isItalic
-        self.hasUnderline = hasUnderline
+        self.style = style
     }
     
     
@@ -56,9 +62,7 @@ struct OutlineItem: Equatable, CustomDebugStringConvertible {
         
         return lhs.title == rhs.title &&
             lhs.range == rhs.range &&
-            lhs.isBold == rhs.isBold &&
-            lhs.isItalic == rhs.isItalic &&
-            lhs.hasUnderline == rhs.hasUnderline
+            lhs.style == rhs.style
     }
     
 }

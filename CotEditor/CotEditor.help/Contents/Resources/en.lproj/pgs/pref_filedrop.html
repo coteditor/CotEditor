@@ -23,16 +23,23 @@
 <p>File Drop allows you to insert a fixed text when you drop a file onto your document window. For example, you can automatically insert the <code>img</code> tag into your HTML document by dropping an image file from Finder.</p>
 
 <dl>
-	<dt>Extensions</dt>
-	<dd>Here, enter the file extensions of files being dropped.</dd>
+	<dt>File Drop Definitions</dt>
+	<dd>Here, enter the conditons to perform the file drop.</dd>
+	<dd><table>
+		<tbody>
+			<tr><th>Extensions</th><td>The setting is performed only when a file with one of these extensions is dropped. If this field is empty (All), all files are eligible. No dot is required for file extensions. You can set multiple extensions by separating them by comma.</td></tr>
+			<tr><th>Synatx Style</th><td>The setting is performed only when a file is dropped to a document having this syntax style. If this field is empty (All), all documents are eligible.</td></tr>
+			<tr><th>Description</th><td>You can use this field to leave a comment about the row. Description doesn't affect to the file drop behavior. This can be left blank.</td></tr>
+		</tbody>
+	</table></dd>
 	
 	<dt>Insertion format</dt>
-	<dd>Here, format the string as you want it to be inserted.</dd>
+	<dd>Here, format the string as you want it to be inserted for the condition that is selected in the file drop definition list above.</dd>
 	
-	<dt>Pre-Formatted String</dt>
-	<dd>You can use CotEditor's pre-formatted strings in an insertion format.</dd>
+	<dt>Variables</dt>
+	<dd>You can use CotEditor's variables in an insertion format.</dd>
 	<dd><ul>
-		<li>Pre-Formatted Strings are going to be replaced with the corresponding information of the dropped file.</li>
+		<li>Variablesare going to be replaced with the corresponding information of the dropped file. See “<a href="../pgs/about_filedrop.html">Variables for File Drop</a>” for each variable's details.</li>
 	</ul></dd>
 </dl>
 
@@ -40,7 +47,7 @@
 <section id="cf">
 <h2>See also</h2>
 <ul>
-	<li><a href="../pgs/about_filedrop.html">Pre-formatted strings for File Drop</a></li>
+	<li><a href="../pgs/about_filedrop.html">Variables for File Drop</a></li>
 	<li><a href="../xpgs/xpreferences.html">preferences</a></li>
 </ul>
 </section>

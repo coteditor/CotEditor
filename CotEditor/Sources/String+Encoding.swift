@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,21 +30,21 @@ import Foundation
 
 private extension UTF8 {
     
-    static var bom: [UInt8] { return [0xEF, 0xBB, 0xBF] }
+    static let bom: [UInt8] = [0xEF, 0xBB, 0xBF]
 }
 
 
 private extension UTF16 {
     
-    static var beBom: [UInt8] { return [0xFE, 0xFF] }
-    static var leBom: [UInt8] { return [0xFF, 0xFE] }
+    static let beBom: [UInt8] = [0xFE, 0xFF]
+    static let leBom: [UInt8] = [0xFF, 0xFE]
 }
 
 
 private extension UTF32 {
     
-    static var beBom: [UInt8] { return [0x00, 0x00, 0xFE, 0xFF] }
-    static var leBom: [UInt8] { return [0xFF, 0xFE, 0x00, 0x00] }
+    static let beBom: [UInt8] = [0x00, 0x00, 0xFE, 0xFF]
+    static let leBom: [UInt8] = [0xFF, 0xFE, 0x00, 0x00]
 }
 
 
@@ -223,6 +223,7 @@ extension String {
         let stringToScan = self.substring(to: scanIndex)
         let scanner = Scanner(string: stringToScan)  // scan only the beginning of string
         let stopSet = CharacterSet(charactersIn: "\"\' </>\n\r")
+        let invalidDelimiterSet = CharacterSet.alphanumerics.subtracting(CharacterSet(charactersIn: "\"\' ")).inverted
         var scannedString: NSString?
         
         scanner.charactersToBeSkipped = CharacterSet(charactersIn: "\"\' ")
@@ -234,15 +235,17 @@ extension String {
             while !scanner.isAtEnd {
                 scanner.scanUpTo(tag, into: nil)
                 if scanner.scanString(tag, into: nil),
+                    !scanner.scanCharacters(from: invalidDelimiterSet, into: nil),
                     scanner.scanUpToCharacters(from: stopSet, into: &scannedString) {
                     break
                 }
             }
+            
             if scannedString != nil { break }
         }
         
         guard let ianaCharSetName = scannedString else { return nil }
-        
+                
         // convert IANA CharSet name to CFStringEncoding
         guard let cfEncoding: CFStringEncoding = {
             //　simply convert expect for "Shift_JIS"
@@ -255,7 +258,9 @@ extension String {
             //     「日本語（Shift JIS）」になってしまうため。IANA では大文字小文字を区別しないとしているのでこれはいいのだが、
             //      CFStringConvertEncodingToIANACharSetName() では .shiftJIS と .shiftJIS_X0213 がそれぞれ
             //     「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせるための処理
-            return suggestedCFEncodings.first { $0 == .shiftJIS || $0 == .shiftJIS_X0213 }
+            return suggestedCFEncodings.first { (encoding: CFStringEncoding) in
+                encoding == .shiftJIS || encoding == .shiftJIS_X0213
+            }
             
             }(), cfEncoding != kCFStringEncodingInvalidId else { return nil }
         

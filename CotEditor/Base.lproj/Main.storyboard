@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -389,7 +389,11 @@ Gw
                                         <menuItem isSeparatorItem="YES" id="792">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Split Editor" keyEquivalent="&quot;" id="793">
+                                        <menuItem title="Split Editor" id="793">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
                                             </connections>
@@ -412,7 +416,8 @@ Gw
                                                 <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Close Split Editor" keyEquivalent="'" id="796">
+                                        <menuItem title="Close Split Editor" id="796">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
                                             </connections>
@@ -706,6 +711,39 @@ CA
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="convertIndentationToTabs:" target="Ady-hI-5gd" id="kdi-SI-izy"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem title="Surround Selection With" id="9dv-Zb-W60">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Surround Selection With" id="AUq-CT-rPl">
+                                                <items>
+                                                    <menuItem title="Single Quotes" keyEquivalent="'" id="Srp-eD-10Q">
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithSingleQuotes:" target="Ady-hI-5gd" id="Ouh-e3-teo"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Double Quotes" tag="-1" keyEquivalent="&quot;" id="O8z-C9-ECD">
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithDoubleQuotes:" target="Ady-hI-5gd" id="rqZ-qN-jAw"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Parenthesis" keyEquivalent="(" id="G3o-1h-GwR">
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithParenthesis:" target="Ady-hI-5gd" id="iPh-IV-WH0"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Brackets" keyEquivalent="{" id="Xoq-43-C1z">
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithBraces:" target="Ady-hI-5gd" id="LTH-8s-duP"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="mRR-Qb-394"/>
+                                                    <menuItem title="Custom…" keyEquivalent="L" id="3VX-DL-PgT">
+                                                        <connections>
+                                                            <action selector="surroundSelection:" target="Ady-hI-5gd" id="O7n-j7-CD0"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -1005,7 +1043,7 @@ CA
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="CotEditor Scripting Manual" id="OLa-Mb-rXS">
                                                 <items>
-                                                    <menuItem title="About Scripting" tag="24" id="u2o-8v-WPL">
+                                                    <menuItem title="About Scripting" identifier="about_scripting" id="u2o-8v-WPL">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="CvM-9e-xdi"/>
@@ -1022,13 +1060,13 @@ CA
                                         <menuItem isSeparatorItem="YES" id="619">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Release Notes" id="822">
+                                        <menuItem title="Release Notes" identifier="releasenotes" id="822">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="qQb-je-BMC"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="What’s New in CotEditor 3.1" tag="9" id="DCW-Ij-540">
+                                        <menuItem title="What’s New in CotEditor" identifier="whats_new" id="DCW-Ij-540">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="bTD-Xs-Jm8"/>
@@ -1075,6 +1113,7 @@ CA
                         <outlet property="encodingsMenu" destination="300" id="Oy6-3l-RCI"/>
                         <outlet property="syntaxStylesMenu" destination="304" id="kdn-rP-dcP"/>
                         <outlet property="themesMenu" destination="165-HJ-Xty" id="R7w-wo-SVO"/>
+                        <outlet property="whatsNewMenuItem" destination="DCW-Ij-540" id="Hnl-Yn-pbG"/>
                     </connections>
                 </customObject>
                 <customObject id="1Vq-aI-bgB" customClass="NSFontManager"/>
