@@ -72,7 +72,7 @@
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
 "1lj-x8-ouD.title" = "导入…";
 /* Class = "NSButtonCell"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
-"FhP-Hj-cWE.title" = "Reload All Styles";  // FIXME: added
+"FhP-Hj-cWE.title" = "重载全部样式";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts…"; ObjectID = "hyN-4W-57i"; */
 "hyN-4W-57i.title" = "显示文件映射冲突…";
 

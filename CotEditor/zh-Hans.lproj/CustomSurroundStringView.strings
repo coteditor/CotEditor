@@ -27,12 +27,12 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Surround With:"; ObjectID = "rgF-DI-5tb"; */
-"rgF-DI-5tb.title" = "Surround With:";  // FIXME: addded
+"rgF-DI-5tb.title" = "进行环绕：";
 
 /* Class = "NSTextFieldCell"; title = "Begin:"; ObjectID = "Gyd-g5-olo"; */
-"Gyd-g5-olo.title" = "Begin:";  // FIXME: addded
+"Gyd-g5-olo.title" = "开头：";
 /* Class = "NSTextFieldCell"; title = "End:"; ObjectID = "I9c-rv-hHo"; */
-"I9c-rv-hHo.title" = "End:";  // FIXME: addded
+"I9c-rv-hHo.title" = "结尾：";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "xm5-Ft-kfG"; */
 "xm5-Ft-kfG.title" = "取消";
