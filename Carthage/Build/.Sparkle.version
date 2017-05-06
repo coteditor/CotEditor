@@ -1,9 +1,8 @@
 {
-  "xcodeVersion" : "Xcode 8.3\nBuild version 8E162",
   "commitish" : "1.17.0",
   "Mac" : [
     {
-      "hash" : "dae0f1fc20e369fc472bc57e13ddae9d47be3cfc12e9d350c2b350d6fc0da24d",
+      "hash" : "24e73d2938ef983708141a73773a66307844d493e2bdf483477b8cb7797845db",
       "name" : "Sparkle"
     }
   ]

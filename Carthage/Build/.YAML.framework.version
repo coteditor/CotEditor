@@ -1,9 +1,8 @@
 {
-  "xcodeVersion" : "Xcode 8.3\nBuild version 8E162",
   "commitish" : "d6c887580f43f00ae24652d4ca8d5393fba9b942",
   "Mac" : [
     {
-      "hash" : "320287e23e7d11c7a95b0b930a1eefd77bf049c7690328a0f59de346bc49655a",
+      "hash" : "538b94d474d9dcc669f169e6c07067b757dea2d9c69708293519dc51e3bdb504",
       "name" : "YAML"
     }
   ]
