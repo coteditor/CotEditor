@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -115,8 +115,8 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             {
                 self.isSynchronizingTabs = true
                 
-                self.siblings.lazy
-                    .filter { $0 != self }
+                self.siblings.filter { $0 != self }
+                    .filter { $0.splitView.frame.width != position }
                     .forEach { $0.splitView.setPosition(position, ofDividerAt: 0) }
                 
                 self.isSynchronizingTabs = false
@@ -135,8 +135,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         
         self.isSynchronizingTabs = true
         
-        self.siblings.lazy
-            .filter { $0 != self }
+        self.siblings.filter { $0 != self }
             .forEach { $0.sidebarViewController?.selectedTabViewItemIndex = tabViewIndex }
         
         self.isSynchronizingTabs = false
@@ -241,8 +240,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             self.sidebarViewItem?.isCollapsed = !shown
             
             // and then update background tabs
-            self.siblings.lazy
-                .filter { $0 != self }
+            self.siblings.filter { $0 != self }
                 .forEach {
                     $0.sidebarViewItem?.isCollapsed = !shown
                     $0.sidebarThickness = self.sidebarThickness

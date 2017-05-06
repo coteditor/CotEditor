@@ -42,6 +42,7 @@ develop
 
 ### Fixes
 
+- Fix an issue where the application could hang up when lots of tabbed windows are about open.
 - Fix an issue where the selections after “Replace All” in selection shifted one character.
 - Fix an issue where the document syntax style could be back to the default if the current style was set manually and document was modified in another process.
 - Fix an issue where the status bar stopped updating after toggling the inspector sidebar.
