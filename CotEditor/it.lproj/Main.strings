@@ -353,9 +353,9 @@
 /* Class = "NSMenu"; title = "Surround Selection With"; ObjectID = "AUq-CT-rPl"; */
 "AUq-CT-rPl.title" = "Surround Selection With";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Single Quotes"; ObjectID = "Srp-eD-10Q"; */
-"Srp-eD-10Q.title" = "Single Quotes";  // FIXME: added
+"Srp-eD-10Q.title" = "Virgolette singole";
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
-"O8z-C9-ECD.title" = "Double Quotes";  // FIXME: added
+"O8z-C9-ECD.title" = "Virgolette doppie";
 /* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
 "G3o-1h-GwR.title" = "Parenthesis";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
