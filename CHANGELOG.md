@@ -10,24 +10,24 @@ develop
 - Improve File Drop feature:
     - Now, you can add a file drop setting only for a specific syntax style.
     - Add description field to the setting table.
-    - Draw capsule for pre-formatted text in the insertion format setting field.
+    - Draw capsule for variables in the insertion format setting field.
     - Update the default file drop settings.
-- Add “Surround Selection With” actions to “Text” menu.
-- Add a new AppleScript/JXA command `write to console` so that users can insert their own message to the CotEditor's console.
 - Now, key binding snippets can set cursor position.
+- Add “Surround Selection With” actions to “Text” menu.
+- Add a new AppleScript/JXA command `write to console` so that users can insert own message to the CotEditor's console.
 - Add syntax style for “Fortran”.
 
 
 ### Improvements
 
 - Change syntax style detection behavior to set to “None” style if no appropriate style can be found on file opening.
-- Significantly improve performance of “Replace All” with large document.
+- Significantly improve the performance of “Replace All” with a large document.
 - Avoid hiding console panel when CotEditor becomes not the frontmost application.
 - Reduce highlight parsing time with large size document.
 - Improve performance of closing large size document.
 - Improve drawing performance of a large size document with a non-opaque background (Not enough good as an opaque one but still better than before).
 - Add hidden “Reload All Themes/Styles” menu item to theme/syntax style action menus in Preferences (visible with `Option` key).
-- Enable changing text size with single stroke by pressing and holding Touch Bar's Text Size button.
+- Enable changing text size with a single stroke by pressing and holding Touch Bar's Text Size button.
 - Improve invisible character drawing on a non-opaque view.
 - Improve auto-brackets/quotes insertion behavior with multiple selections.
 - Improve the setting file naming rule for when the name overwraps with an existing setting.
@@ -44,13 +44,13 @@ develop
 
 - Fix an issue where the application could hang up when lots of tabbed windows are about open.
 - Fix an issue where the selections after “Replace All” in selection shifted one character.
-- Fix an issue where the document syntax style could be back to the default if the current style was set manually and document was modified in another process.
+- Fix an issue where the document syntax style could be back to the default if the current style was set manually and the document was modified by another process.
 - Fix an issue where the status bar stopped updating after toggling the inspector sidebar.
 - Fix an issue where the “Cancel” button in the dialog shown when changing the Auto Save setting in General pane didn't revert the actual setting state.
 - Fix an issue where author of a theme was not shown in the Appearance pane.
-- Fix an issue where width and height in the window size setting window was swapped.
-- Fix an issue where current line highlight occasionally blinked unwantedly.
-- Fix an possible crash on highlighting matching brace.
+- Fix an issue where width and height in the window size setting window were swapped.
+- Fix an issue where current line highlight occasionally blinked unwontedly.
+- Fix a possible crash on highlighting matching brace.
 - Fix few memory leaks.
 
 
