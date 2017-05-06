@@ -67,7 +67,7 @@
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
 "4B4-mq-8Fs.title" = "导出…";
 /* Class = "NSButtonCell"; title = "Reload All Themes"; ObjectID = "7Yp-bg-3l6"; */
-"7Yp-bg-3l6.title" = "Reload All Themes";  // FIXME: added
+"7Yp-bg-3l6.title" = "重载所有主题";
 
 
 /* contextual menu */

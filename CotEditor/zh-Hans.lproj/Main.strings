@@ -349,19 +349,19 @@
 "sFn-3j-pY5.title" = "删除行";
 
 /* Class = "NSMenuItem"; title = "Surround Selection With"; ObjectID = "9dv-Zb-W60"; */
-"9dv-Zb-W60.title" = "Surround Selection With";  // FIXME: added
+"9dv-Zb-W60.title" = "将选择进行环绕";
 /* Class = "NSMenu"; title = "Surround Selection With"; ObjectID = "AUq-CT-rPl"; */
-"AUq-CT-rPl.title" = "Surround Selection With";  // FIXME: added
+"AUq-CT-rPl.title" = "将选择进行环绕";
 /* Class = "NSMenuItem"; title = "Single Quotes"; ObjectID = "Srp-eD-10Q"; */
-"Srp-eD-10Q.title" = "Single Quotes";  // FIXME: added
+"Srp-eD-10Q.title" = "单引号";
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
-"O8z-C9-ECD.title" = "Double Quotes";  // FIXME: added
+"O8z-C9-ECD.title" = "双引号";
 /* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
-"G3o-1h-GwR.title" = "Parenthesis";  // FIXME: added
+"G3o-1h-GwR.title" = "圆括号";
 /* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
-"Xoq-43-C1z.title" = "Brackets";  // FIXME: added
+"Xoq-43-C1z.title" = "方括号";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
-"3VX-DL-PgT.title" = "Custom…";  // FIXME: added
+"3VX-DL-PgT.title" = "自定义…";
 
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
 "hBJ-Ge-278.title" = "移除行尾空白";
