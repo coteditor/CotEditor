@@ -71,7 +71,7 @@
 "%@ string replaced." = "已替换 %@ 个匹配";
 "%@ strings replaced." = "已替换 %@ 个匹配";
 "Invalid regular expression" = "无效的正则表达式";
-"Empty find string" = "空搜索字符";
+"Empty find string" = "空的搜索字符串";
 "Input text to find." = "输入文本以查找。";
 
 
