@@ -12,7 +12,9 @@ develop
 
 ### Fixes
 
+- [beta] Fix application's code signing.
 - [beta] Fix comment highlights.
+- [beta] Fix minor UI layout.
 
 
 
