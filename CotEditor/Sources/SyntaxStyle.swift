@@ -37,7 +37,7 @@ protocol SyntaxStyleDelegate: class {
 
 final class SyntaxStyle: Equatable, CustomStringConvertible {
     
-    // MARKL Public Properties
+    // MARK: Public Properties
     
     var textStorage: NSTextStorage?
     weak var delegate: SyntaxStyleDelegate?

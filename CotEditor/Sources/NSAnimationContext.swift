@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import AppKit.NSAnimationContext
 extension NSAnimationContext {
     
     /// execute block with/without animation
-    func withAnimation(_ animate: Bool = true, execute block: (Void) -> Void) {
+    func withAnimation(_ animate: Bool = true, execute block: () -> Void) {
         
         let allowsImplicitAnimation = self.allowsImplicitAnimation
         
