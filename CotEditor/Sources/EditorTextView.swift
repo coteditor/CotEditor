@@ -325,7 +325,7 @@ final class EditorTextView: NSTextView, Themable {
         // smart outdent with '}' charcter
         if self.isAutomaticIndentEnabled && self.isSmartIndentEnabled &&
             replacementRange.length == 0 && plainString == "}",
-            let insretionIndex = String.UTF16Index(self.selectedRange.max).samePosition(in: wholeString)
+            let insretionIndex = String.UTF16Index(self.selectedRange.upperBound).samePosition(in: wholeString)
         {
             let lineRange = wholeString.lineRange(at: insretionIndex)
             
@@ -442,7 +442,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
-            string.rangeOfIndent(at: location).max >= location
+            string.rangeOfIndent(at: location).upperBound >= location
         {
             let tabWidth = self.tabWidth
             let column = string.column(of: location, tabWidth: tabWidth)
@@ -610,7 +610,7 @@ final class EditorTextView: NSTextView, Themable {
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
-            layoutManager.ensureLayout(forCharacterRange: NSRange(location: 0, length: range.max))
+            layoutManager.ensureLayout(forCharacterRange: NSRange(location: 0, length: range.upperBound))
             let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
             let glyphRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
                 .offset(by: self.textContainerOrigin)
@@ -964,7 +964,7 @@ final class EditorTextView: NSTextView, Themable {
             // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
             if let layoutManager = self.layoutManager {
                 var characterIndex = selectedRange.location
-                while characterIndex < selectedRange.max {
+                while characterIndex < selectedRange.upperBound {
                     var effectiveRange = NSRange.notFound
                     guard let color = layoutManager.temporaryAttribute(NSForegroundColorAttributeName,
                                                                        atCharacterIndex: characterIndex,
@@ -978,7 +978,7 @@ final class EditorTextView: NSTextView, Themable {
                     let localRange = NSRange(location: effectiveRange.location - selectedRange.location, length: effectiveRange.length)
                     styledText.addAttribute(NSForegroundColorAttributeName, value: color, range: localRange)
                     
-                    characterIndex = effectiveRange.max
+                    characterIndex = effectiveRange.upperBound
                 }
             }
             
@@ -1194,7 +1194,7 @@ private extension NSTextView {
         
         guard let string = self.string else { return nil }
         
-        let location = self.selectedRange.max
+        let location = self.selectedRange.upperBound
         guard let index = string.utf16.index(string.utf16.startIndex, offsetBy: location).samePosition(in: string.unicodeScalars) else { return nil }
         
         return string.unicodeScalars[safe: index]
@@ -1225,7 +1225,7 @@ extension EditorTextView {
         
         let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
         
-        return NSRange(location: location, length: range.max - location)
+        return NSRange(location: location, length: range.upperBound - location)
     }
     
     
@@ -1336,7 +1336,7 @@ extension EditorTextView {
         if wordRange.length > 0 {
             wordRange = self.wordRange(at: proposedCharRange.location)
             if proposedCharRange.length > 1 {
-                wordRange.formUnion(self.wordRange(at: proposedCharRange.max - 1))
+                wordRange.formUnion(self.wordRange(at: proposedCharRange.upperBound - 1))
             }
         }
         

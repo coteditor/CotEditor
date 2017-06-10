@@ -62,7 +62,7 @@ final class TokenTextView: NSTextView {
             self.selectedRange.length == 0,
             self.selectedRange.location > 0,
             let effectiveRange = self.textStorage?.effectiveTokenRange(at: self.selectedRange.location - 1),
-            effectiveRange.max == self.selectedRange.location
+            effectiveRange.upperBound == self.selectedRange.location
             else { return super.deleteBackward(sender) }
         
         self.replace(with: "", range: effectiveRange, selectedRange: nil)
@@ -108,7 +108,7 @@ final class TokenTextView: NSTextView {
                 bezier.fill()
                 bezier.stroke()
                 
-                glyphLocation = inlineRange.max
+                glyphLocation = inlineRange.upperBound
             }
         }
         

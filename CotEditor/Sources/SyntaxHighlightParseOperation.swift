@@ -217,8 +217,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         while location != NSNotFound {
             let range = (string as NSString).range(of: searchString, options: options,
                                                    range: NSRange(location: location,
-                                                                  length: self.parseRange.max - location))
-            location = range.max
+                                                                  length: self.parseRange.upperBound - location))
+            location = range.upperBound
             
             guard range.location != NSNotFound else { break }
             guard !string.isCharacterEscaped(at: range.location) else { continue }
@@ -243,7 +243,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         scanner.caseSensitive = !ignoreCase
         scanner.scanLocation = self.parseRange.location
         
-        while !scanner.isAtEnd && (scanner.scanLocation < self.parseRange.max) {
+        while !scanner.isAtEnd && (scanner.scanLocation < self.parseRange.upperBound) {
             guard !self.isCancelled else { return [] }
             
             scanner.scanUpTo(beginString, into: nil)
@@ -253,7 +253,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             guard !self.string!.isCharacterEscaped(at: startLocation) else { continue }
             
             // find end string
-            while !scanner.isAtEnd && (scanner.scanLocation < self.parseRange.max) {
+            while !scanner.isAtEnd && (scanner.scanLocation < self.parseRange.upperBound) {
                 
                 scanner.scanUpTo(endString, into: nil)
                 guard scanner.scanString(endString, into: nil) else { break }
@@ -343,8 +343,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             guard let beginRange = result?.range else { return }
             
             let endRange = endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],
-                                                      range: NSRange(location: beginRange.max,
-                                                                     length: parseRange.max - beginRange.max))
+                                                      range: NSRange(location: beginRange.upperBound,
+                                                                     length: parseRange.upperBound - beginRange.upperBound))
             
             if endRange.location != NSNotFound {
                 ranges.append(beginRange.union(endRange))
@@ -372,7 +372,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         if let delimiter = self.inlineCommentDelimiter {
             for range in self.ranges(string: delimiter) {
                 let lineRange = (self.string! as NSString).lineRange(for: range)
-                let endRange = NSRange(location: lineRange.max, length: 0)
+                let endRange = NSRange(location: lineRange.upperBound, length: 0)
                 
                 positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment, role: .begin, range: range))
                 positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment, role: .end, range: endRange))
@@ -416,7 +416,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             
             // search corresponding end delimiter
             if position.role.contains(.end), position.kind == kind {
-                let endLocation = position.range.max
+                let endLocation = position.range.upperBound
                 let syntaxType = self.pairedQuoteTypes[kind] ?? SyntaxType.comments
                 let range = NSRange(location: startLocation, length: endLocation - startLocation)
                 
@@ -432,9 +432,9 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         }
         
         // highlight until the end if not closed
-        if let searchingKind = searchingKind, startLocation < self.parseRange.max {
+        if let searchingKind = searchingKind, startLocation < self.parseRange.upperBound {
             let syntaxType = self.pairedQuoteTypes[searchingKind] ?? SyntaxType.comments
-            let range = NSRange(location: startLocation, length: self.parseRange.max - startLocation)
+            let range = NSRange(location: startLocation, length: self.parseRange.upperBound - startLocation)
             
             if highlights[syntaxType] != nil {
                 highlights[syntaxType]!.append(range)

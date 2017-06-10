@@ -69,7 +69,7 @@ extension NSRange {
     
     
     /// syntax sugar of NSMaxRange
-    var max: Int {
+    var upperBound: Int {
         
         return NSMaxRange(self)
     }
@@ -155,7 +155,7 @@ extension NSString {
         guard excludingLastLineEnding else { return lineRange }
         
         // ignore last line ending
-        if lineRange.length > 0, self.character(at: lineRange.max - 1) == "\n".utf16.first! {
+        if lineRange.length > 0, self.character(at: lineRange.upperBound - 1) == "\n".utf16.first! {
             lineRange.length -= 1
         }
         

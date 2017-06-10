@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -179,7 +179,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         // abandon if text became shorter than range to select
         guard
             let textView = self.target,
-            let string = textView.string, string.nsRange.max >= range.max
+            let string = textView.string, string.nsRange.upperBound >= range.upperBound
             else { return }
         
         textView.selectedRange = range

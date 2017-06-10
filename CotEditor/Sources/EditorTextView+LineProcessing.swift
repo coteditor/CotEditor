@@ -107,7 +107,7 @@ extension EditorTextView {
         let lineRanges = self.selectedLineRanges
         
         // cannot perform Move Line Down if one of the selections is already in the last line
-        if lineRanges.last?.max == textStorage.length {
+        if lineRanges.last?.upperBound == textStorage.length {
             NSBeep()
             return
         }
@@ -126,7 +126,7 @@ extension EditorTextView {
         for lineRange in lineRanges.reversed() {
             let string = textStorage.string as NSString
             
-            var lowerLineRange = string.lineRange(at: lineRange.max)
+            var lowerLineRange = string.lineRange(at: lineRange.upperBound)
             var lineString = string.substring(with: lineRange)
             var lowerLineString = string.substring(with: lowerLineRange)
             
