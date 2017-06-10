@@ -27,10 +27,11 @@
 
 import Cocoa
 
-private extension NSTouchBarItemIdentifier {
+@available(macOS 10.12.2, *)
+private extension NSTouchBarItem.Identifier {
     
-    static let textSizeActual = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.textSizeActual")
-    static let textSizeSlider = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.textSizeSlider")
+    static let textSizeActual = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.textSizeActual")
+    static let textSizeSlider = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.textSizeSlider")
 }
 
 
@@ -84,16 +85,16 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     // MARK: Touch Bar Delegate
     
-    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
-        case NSTouchBarItemIdentifier.textSizeActual:
+        case .textSizeActual:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.view = NSButton(title: NSLocalizedString("Actual Size", comment: ""),
                                  target: self, action: #selector(resetTextSize(_:)))
             return item
             
-        case NSTouchBarItemIdentifier.textSizeSlider:
+        case .textSizeSlider:
             let item = NSSliderTouchBarItem(identifier: identifier)
             item.slider.doubleValue = Double(self.textView?.scale ?? 1.0)
             item.slider.maxValue = Double(self.textView?.enclosingScrollView?.maxMagnification ?? 5.0)

@@ -28,29 +28,17 @@
 import Cocoa
 
 /// outilneView column identifier
-private enum ColumnIdentifier: String {
+extension NSUserInterfaceItemIdentifier {
     
-    case title = "title"
-    case keySpecChars = "keyBindingKey"
-    
-    
-    /// initializer accepting optional rawValue
-    init?(_ string: String?) {
-        
-        guard
-            let string = string,
-            let identifier = ColumnIdentifier(rawValue: string)
-            else { return nil }
-        
-        self = identifier
-    }
+    static let title = NSUserInterfaceItemIdentifier("title")
+    static let keySpecChars = NSUserInterfaceItemIdentifier("keyBindingKey")
 }
 
 
 /// model object for NSArrayController
 final class SnippetItem: NSObject {
     
-    dynamic var text: String
+    @objc dynamic var text: String
     
     required init(_ text: String) {
         
@@ -69,8 +57,8 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     // MARK: Private Properties
     
     private var outlineTree: [NSTreeNode] = [NSTreeNode]()
-    private dynamic var warningMessage: String?  // for binding
-    private dynamic var isRestoreble: Bool = false  // for binding
+    @objc private dynamic var warningMessage: String?  // for binding
+    @objc private dynamic var isRestoreble: Bool = false  // for binding
     
     @IBOutlet private weak var outlineView: NSOutlineView?
     
@@ -125,7 +113,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// return suitable item for cell to display
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
         
-        guard let identifier = ColumnIdentifier(tableColumn?.identifier),
+        guard let identifier = tableColumn?.identifier,
               let node = item as? NamedTreeNode else { return "" }
         
         switch identifier {
@@ -135,6 +123,9 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         case .keySpecChars:
             guard let shortcut = (node.representedObject as? KeyBindingItem)?.shortcut, shortcut.isValid else { return nil }
             return shortcut.isValid ? shortcut.description : nil
+            
+        default:
+            return ""
         }
     }
     
@@ -147,7 +138,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// initialize table cell view
     func outlineView(_ outlineView: NSOutlineView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
-        if let view = rowView.view(atColumn: outlineView.column(withIdentifier: ColumnIdentifier.keySpecChars.rawValue)) as? NSTableCellView,
+        if let view = rowView.view(atColumn: outlineView.column(withIdentifier: .keySpecChars)) as? NSTableCellView,
             let textField = view.textField,
             let node = outlineView.item(atRow: row) as? NSTreeNode
         {
@@ -206,7 +197,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         } catch let error as InvalidKeySpecCharactersError {
             self.warningMessage = error.localizedDescription + " " + (error.recoverySuggestion ?? "")
             textField.objectValue = oldShortcut?.keySpecChars  // reset view with previous key
-            NSBeep()
+            NSSound.beep()
             
             // make text field edit mode again if invalid
             DispatchQueue.main.async {
@@ -279,7 +270,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
 
 final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
     
-    dynamic var snippets = [SnippetItem]()
+    @objc dynamic var snippets = [SnippetItem]()
     
     @IBOutlet private var snippetArrayController: NSArrayController?
     @IBOutlet private var formatTextView: TokenTextView?
@@ -315,7 +306,8 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     /// save current settings
     fileprivate override func saveSettings() {
         
-        let snippets = self.snippets.flatMap { $0.text }
+        let snippets = self.snippets.map { $0.text }
+        
         SnippetKeyBindingManager.shared.saveSnippets(snippets)
         
         super.saveSettings()

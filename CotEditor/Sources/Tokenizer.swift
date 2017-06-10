@@ -112,9 +112,9 @@ final class Tokenizer {
             
             guard let match = match else { return }
             
-            let token = (string as NSString).substring(with: match.rangeAt(1))
+            let token = String(string[Range(match.range(at: 1), in: string)!])
             
-            block(token, match.range, match.rangeAt(1))
+            block(token, match.range, match.range(at: 1))
         }
     }
     

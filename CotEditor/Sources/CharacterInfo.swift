@@ -76,7 +76,7 @@ struct CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {
     init?(string: String) {
         
         guard string.numberOfComposedCharacters == 1 || string == "\r\n" else { return nil }
-        // -> Number of String.characters.count and numberOfComposedCharacters are different.
+        // -> Number of String.count and numberOfComposedCharacters are different.
         
         let unicodes = string.unicodeScalars
         

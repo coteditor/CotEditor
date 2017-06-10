@@ -127,7 +127,7 @@ final class SplitViewController: NSSplitViewController {
         
         let splitViewItem = NSSplitViewItem(viewController: editorViewController)
         
-        splitViewItem.holdingPriority = 251
+        splitViewItem.holdingPriority = NSLayoutConstraint.Priority(251)
         
         if let otherEditorViewController = otherEditorViewController {
             guard let baseIndex = self.childViewControllers.index(of: otherEditorViewController) else {

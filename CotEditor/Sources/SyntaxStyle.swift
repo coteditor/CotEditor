@@ -130,8 +130,9 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
         // also combine simple word definitions into single regex definition
         var quoteTypes = [String: SyntaxType]()
-        self.highlightDictionary = definitionDictionary.flatDictionary { (type, definitions) in
+        self.highlightDictionary = definitionDictionary.flatDictionary { item in
             
+            let (type, definitions) = item
             var highlightDefinitions = [HighlightDefinition]()
             var words = [String]()
             var caseInsensitiveWords = [String]()
@@ -389,14 +390,14 @@ extension SyntaxStyle {
                 if start <= bufferLength {
                     start = 0
                 } else {
-                    if layoutManager.temporaryAttribute(NSForegroundColorAttributeName,
+                    if layoutManager.temporaryAttribute(.foregroundColor,
                                                         atCharacterIndex: start,
                                                         longestEffectiveRange: &effectiveRange,
                                                         in: wholeRange) != nil {
                         start = effectiveRange.location
                     }
                 }
-                if layoutManager.temporaryAttribute(NSForegroundColorAttributeName,
+                if layoutManager.temporaryAttribute(.foregroundColor,
                                                     atCharacterIndex: end,
                                                     longestEffectiveRange: &effectiveRange,
                                                     in: wholeRange) != nil {
@@ -516,7 +517,7 @@ extension SyntaxStyle {
         assert(Thread.isMainThread)
         
         for layoutManager in storage.layoutManagers {
-            layoutManager.removeTemporaryAttribute(NSForegroundColorAttributeName, forCharacterRange: highlightRange)
+            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
             
             guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }
             
@@ -526,7 +527,7 @@ extension SyntaxStyle {
                 let color = theme.syntaxColor(type: type) ?? theme.textColor
                 
                 for range in ranges {
-                    layoutManager.addTemporaryAttribute(NSForegroundColorAttributeName, value: color, forCharacterRange: range)
+                    layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
                 }
             }
         }

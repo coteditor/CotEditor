@@ -95,15 +95,15 @@ extension String {
         guard !self.isEmpty, !range.isEmpty else { return 0 }
         
         var count = 0
-        self.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { _ in
+        self.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
             count += 1
         }
-        if includingLastLineEnding {
-            let unicodeIndex = self.index(before: range.upperBound).samePosition(in: self.unicodeScalars)
-            let last = self.unicodeScalars[unicodeIndex]
-            if CharacterSet.newlines.contains(last) {
-                count += 1
-            }
+        
+        if includingLastLineEnding,
+            let last = self[range].unicodeScalars.last,
+            CharacterSet.newlines.contains(last)
+        {
+            count += 1
         }
         
         return count

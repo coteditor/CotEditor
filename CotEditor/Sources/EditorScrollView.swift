@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,9 +42,14 @@ final class EditorScrollView: NSScrollView {
     // MARK: Scroll View Methods
     
     /// use custom ruler view
-    override class func rulerViewClass() -> AnyClass {
-    
-        return LineNumberView.self
+    override class var rulerViewClass: AnyClass! {
+        
+        set {
+            super.rulerViewClass = LineNumberView.self
+        }
+        get {
+            return LineNumberView.self
+        }
     }
     
     
@@ -94,7 +99,7 @@ final class EditorScrollView: NSScrollView {
     // MARK: Private Methods
     
     /// return layout orientation of document text view
-    private var layoutOrientation: NSTextLayoutOrientation {
+    private var layoutOrientation: NSLayoutManager.TextLayoutOrientation {
         
         guard let documentView = self.documentView as? NSTextView else {
             return .horizontal

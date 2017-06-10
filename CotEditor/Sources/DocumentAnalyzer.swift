@@ -40,28 +40,28 @@ extension Notification.Name {
 final class DocumentInfo: NSObject {
     
     // file info
-    dynamic var creationDate: Date?
-    dynamic var modificationDate: Date?
-    dynamic var fileSize: NSNumber?
-    dynamic var filePath: URL?
-    dynamic var owner: String?
-    dynamic var permission: NSNumber?
-    dynamic var isReadOnly = false
+    @objc dynamic var creationDate: Date?
+    @objc dynamic var modificationDate: Date?
+    @objc dynamic var fileSize: NSNumber?
+    @objc dynamic var filePath: URL?
+    @objc dynamic var owner: String?
+    @objc dynamic var permission: NSNumber?
+    @objc dynamic var isReadOnly = false
     
     // mode info
-    dynamic var encoding: String?
-    dynamic var charsetName: String?
-    dynamic var lineEndings: String?
+    @objc dynamic var encoding: String?
+    @objc dynamic var charsetName: String?
+    @objc dynamic var lineEndings: String?
     
     // editor info
-    dynamic var lines: String?
-    dynamic var chars: String?
-    dynamic var words: String?
-    dynamic var length: String?
-    dynamic var location: String?  // caret location from the beginning of document
-    dynamic var line: String?      // current line
-    dynamic var column: String?    // caret location from the beginning of line
-    dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
+    @objc dynamic var lines: String?
+    @objc dynamic var chars: String?
+    @objc dynamic var words: String?
+    @objc dynamic var length: String?
+    @objc dynamic var location: String?  // caret location from the beginning of document
+    @objc dynamic var line: String?      // current line
+    @objc dynamic var column: String?    // caret location from the beginning of line
+    @objc dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
 }
 
 
@@ -75,7 +75,7 @@ final class DocumentAnalyzer: NSObject {
     var needsUpdateEditorInfo = false  // need to update all editor info
     var needsUpdateStatusEditorInfo = false  // need only to update editor info in satus bar
     
-    private(set) dynamic var info = DocumentInfo()
+    @objc private(set) dynamic var info = DocumentInfo()
     
     
     // MARK: Private Properties

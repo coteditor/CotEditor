@@ -54,8 +54,8 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     // MARK: Private Properties
     
     private var results = [TextFindResult]()
-    private dynamic var findString: String?
-    private dynamic var resultMessage: String?
+    @objc private dynamic var findString: String?
+    @objc private dynamic var resultMessage: String?
     
     @IBOutlet private weak var disclosureButton: NSButton?
     @IBOutlet private weak var tableView: NSTableView?
@@ -70,7 +70,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         
         // make sure the disclosure button points up before open result
         // (The buttom may point down if the view was closed by dragging.)
-        self.disclosureButton?.state = NSOnState
+        self.disclosureButton?.state = .on
     }
     
     
@@ -99,7 +99,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         let result = self.results[row]
         
         switch tableColumn?.identifier {
-        case "line"?:
+        case NSUserInterfaceItemIdentifier("line")?:
             return result.lineNumber
             
         default:
@@ -118,7 +118,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             // truncate tail
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineBreakMode = .byTruncatingTail
-            lineAttrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: lineAttrString.string.nsRange)
+            lineAttrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: lineAttrString.string.nsRange)
             
             return lineAttrString
         }
@@ -155,12 +155,9 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     /// remove current highlight by Find All
     private func unhighlight() {
         
-        guard
-            let textView = self.target,
-            let range = textView.string?.nsRange
-            else { return }
+        guard let textView = self.target else { return }
         
-        textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: range)
+        textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
     }
     
     
@@ -179,7 +176,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         // abandon if text became shorter than range to select
         guard
             let textView = self.target,
-            let string = textView.string, string.nsRange.upperBound >= range.upperBound
+            textView.string.nsRange.upperBound >= range.upperBound
             else { return }
         
         textView.selectedRange = range

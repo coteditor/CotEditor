@@ -60,7 +60,7 @@ final class AlphaWindow: NSWindow {
     // MARK: -
     // MARK: Lifecycle
     
-    override init(contentRect: NSRect, styleMask style: NSWindowStyleMask, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
+    override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing bufferingType: NSWindow.BackingStoreType, defer flag: Bool) {
         
         super.init(contentRect: contentRect, styleMask: style, backing: bufferingType, defer: flag)
         
@@ -72,8 +72,8 @@ final class AlphaWindow: NSWindow {
         }
         
         // observe toggling Versions browsing
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: .NSWindowWillEnterVersionBrowser, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: .NSWindowWillExitVersionBrowser, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: NSWindow.willEnterVersionBrowserNotification, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: NSWindow.willExitVersionBrowserNotification, object: self)
     }
     
     
@@ -135,19 +135,19 @@ final class AlphaWindow: NSWindow {
 extension AlphaWindow {
     
     /// settable window user tabbing preference (Don't forget to set to `nil` after use.)
-    static var tabbingPreference: NSWindowUserTabbingPreference?
+    static var tabbingPreference: NSWindow.UserTabbingPreference?
     
     
     
     // MARK: Window Methods
     
-    override class var userTabbingPreference: NSWindowUserTabbingPreference {
+    override class var userTabbingPreference: NSWindow.UserTabbingPreference {
         
         if let tabbingPreference = self.tabbingPreference {
             return tabbingPreference
         }
         
-        if let tabbingPreference = NSWindowUserTabbingPreference(rawValue: UserDefaults.standard[.windowTabbing]), tabbingPreference.rawValue >= 0 {  // -1 obays system setting
+        if let tabbingPreference = NSWindow.UserTabbingPreference(rawValue: UserDefaults.standard[.windowTabbing]), tabbingPreference.rawValue >= 0 {  // -1 obays system setting
             return tabbingPreference
         }
         

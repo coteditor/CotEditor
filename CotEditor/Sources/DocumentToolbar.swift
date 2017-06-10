@@ -37,7 +37,7 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
     
     // MARK: Toolbar Methods
     
-    override var sizeMode: NSToolbarSizeMode {
+    override var sizeMode: NSToolbar.SizeMode {
         
         get {
             return .regular
@@ -119,7 +119,7 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
             .first { (button: NSButton) -> Bool in
                 guard
                     let buttonTypeValue = button.cell?.value(forKey: "buttonType") as? UInt,
-                    let buttonType = NSButtonType(rawValue: buttonTypeValue)
+                    let buttonType = NSButton.ButtonType(rawValue: buttonTypeValue)
                     else { return false }
                 
                 return buttonType == .switch

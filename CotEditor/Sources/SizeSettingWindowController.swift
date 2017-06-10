@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -38,9 +38,9 @@ final class SizeSettingWindowController: NSWindowController {
     // MARK: -
     // MARK: Lifecycle
     
-    override var windowNibName: String? {
+    override var windowNibName: NSNib.Name? {
         
-        return "SizeSettingWindow"
+        return NSNib.Name("SizeSettingWindow")
     }
     
     
@@ -64,7 +64,7 @@ final class SizeSettingWindowController: NSWindowController {
         
         self.userDefaultsController.revert(sender)
         
-        NSApp.stopModal(withCode: NSModalResponseCancel)
+        NSApp.stopModal(withCode: .cancel)
         self.window?.orderOut(sender)
     }
     
@@ -74,7 +74,7 @@ final class SizeSettingWindowController: NSWindowController {
         
         self.userDefaultsController.save(sender)
         
-        NSApp.stopModal(withCode: NSModalResponseOK)
+        NSApp.stopModal(withCode: .OK)
         self.window?.orderOut(sender)
     }
     

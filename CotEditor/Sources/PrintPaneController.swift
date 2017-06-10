@@ -115,8 +115,8 @@ extension PrintPaneController {
         super.viewWillDisappear()
         
         // detach a possible font panel's target set in `showFonts()`
-        if NSFontManager.shared().target === self {
-            NSFontManager.shared().target = nil
+        if NSFontManager.shared.target === self {
+            NSFontManager.shared.target = nil
         }
     }
     
@@ -130,9 +130,9 @@ extension PrintPaneController {
         guard let font = NSFont(name: UserDefaults.standard[.printFontName]!,
                                 size: UserDefaults.standard[.printFontSize]) else { return }
         
-        NSFontManager.shared().setSelectedFont(font, isMultiple: false)
-        NSFontManager.shared().orderFrontFontPanel(sender)
-        NSFontManager.shared().target = self
+        NSFontManager.shared.setSelectedFont(font, isMultiple: false)
+        NSFontManager.shared.orderFrontFontPanel(sender)
+        NSFontManager.shared.target = self
     }
     
     

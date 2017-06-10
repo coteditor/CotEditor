@@ -118,7 +118,7 @@ struct ScriptDescriptor {
         
         if let range = name.range(of: "^[0-9]+\\)", options: .regularExpression) {
             // Remove the parenthesis at last
-            let orderingString = name.substring(to: name.index(before: range.upperBound))
+            let orderingString = name[..<name.index(before: range.upperBound)]
             self.ordering = Int(orderingString)
             
             // Remove the ordering number from the script name
@@ -398,7 +398,7 @@ final class ShellScript: Script {
         }
         
         // fetch target document
-        weak var document = NSDocumentController.shared().currentDocument as? Document
+        weak var document = NSDocumentController.shared.currentDocument as? Document
         
         // read input
         let input: String?
@@ -526,17 +526,17 @@ final class ShellScript: Script {
     private static func applyOutput(_ output: String, editor: Editable?, type: OutputType) throws {
         
         if type == .pasteBoard {
-            let pasteboard = NSPasteboard.general()
-            pasteboard.declareTypes([NSStringPboardType], owner: nil)
-            guard pasteboard.setString(output, forType: NSStringPboardType) else {
-                NSBeep()
+            let pasteboard = NSPasteboard.general
+            pasteboard.declareTypes([.string], owner: nil)
+            guard pasteboard.setString(output, forType: .string) else {
+                NSSound.beep()
                 return
             }
             return
         }
         
         if type == .newDocument {
-            let document = try NSDocumentController.shared().openUntitledDocumentAndDisplay(true) as! Document
+            let document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as! Document
             document.insert(string: output)
             document.selectedRange = NSRange(location: 0, length: 0)
             return
@@ -654,7 +654,7 @@ private extension ScriptToken {
         
         guard let result = regex.firstMatch(in: script, range: script.nsRange) else { return nil }
         
-        let type = (script as NSString).substring(with: result.rangeAt(1))
+        let type = (script as NSString).substring(with: result.range(at: 1))
         
         self.init(rawValue: type)
     }

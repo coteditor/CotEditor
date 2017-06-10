@@ -36,7 +36,7 @@ final class OpacityPanelController: NSWindowController {
     
     // MARK: Private Properties
     
-    private dynamic var opacity: CGFloat = 0 {
+    @objc private dynamic var opacity: CGFloat = 0 {
         didSet {
             // apply to the frontmost document window
             if let window = NSApp.mainWindow as? AlphaWindow {
@@ -55,9 +55,9 @@ final class OpacityPanelController: NSWindowController {
     }
     
     
-    override var windowNibName: String? {
+    override var windowNibName: NSNib.Name? {
         
-        return "OpacityPanel"
+        return NSNib.Name("OpacityPanel")
     }
     
     
@@ -66,10 +66,10 @@ final class OpacityPanelController: NSWindowController {
         super.windowDidLoad()
         
         // observe main window change
-        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidChange), name: .NSWindowDidBecomeMain, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidChange), name: NSWindow.didBecomeMainNotification, object: nil)
         
         // apply current window value
-        let notification = Notification(name: .NSWindowDidBecomeMain, object: NSApp.mainWindow)
+        let notification = Notification(name: NSWindow.didBecomeMainNotification, object: NSApp.mainWindow)
         self.mainWindowDidChange(notification)
     }
     

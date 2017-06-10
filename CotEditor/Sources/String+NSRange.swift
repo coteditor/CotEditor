@@ -48,8 +48,8 @@ extension String {
         let start = range.lowerBound.samePosition(in: self.utf16)
         let end = range.upperBound.samePosition(in: self.utf16)
         
-        return NSRange(location: self.utf16.distance(from: self.utf16.startIndex, to: start),
-                       length: self.utf16.distance(from: start, to: end))
+        return NSRange(location: start!.encodedOffset,
+                       length: end!.encodedOffset - start!.encodedOffset)
     }
     
     
@@ -66,40 +66,6 @@ extension String {
 extension NSRange {
     
     static let notFound = NSRange(location: NSNotFound, length: 0)
-    
-    
-    /// syntax sugar of NSMaxRange
-    var upperBound: Int {
-        
-        return NSMaxRange(self)
-    }
-    
-    
-    func contains(_ index: Int) -> Bool {
-        
-        return NSLocationInRange(index, self)
-    }
-    
-    
-    func union(_ range: NSRange) -> NSRange {
-        
-        return NSUnionRange(self, range)
-    }
-    
-    
-    mutating func formUnion(_ range: NSRange) {
-        
-        self = NSUnionRange(self, range)
-    }
-    
-    
-    func intersection(_ range: NSRange) -> NSRange? {
-        
-        let result = NSIntersectionRange(self, range)
-        
-        return result.length == 0 ? nil : result
-    }
-    
 }
 
 

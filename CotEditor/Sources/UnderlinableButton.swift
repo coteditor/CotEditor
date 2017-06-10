@@ -38,9 +38,9 @@ final class UnderlinableButton: NSButton {
         let range = NSRange(location: 0, length: attributedTitle.length)
         
         if self.underline {
-            attributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
+            attributedTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
         } else {
-            attributedTitle.removeAttribute(NSUnderlineStyleAttributeName, range: range)
+            attributedTitle.removeAttribute(.underlineStyle, range: range)
         }
         
         self.attributedTitle = attributedTitle

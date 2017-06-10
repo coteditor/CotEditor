@@ -31,8 +31,8 @@ final class GeneralPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private dynamic var hasUpdater = false
-    private dynamic var prerelease = false
+    @objc private dynamic var hasUpdater = false
+    @objc private dynamic var prerelease = false
     
     @IBOutlet private weak var updaterConstraint: NSLayoutConstraint?
     
@@ -79,11 +79,11 @@ final class GeneralPaneController: NSViewController {
         let conflictOption = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption])!
         switch conflictOption {
         case .ignore:
-            self.ignoreConflictButton?.state = NSOnState
+            self.ignoreConflictButton?.state = .on
         case .notify:
-            self.notifyConflictButton?.state = NSOnState
+            self.notifyConflictButton?.state = .on
         case .revert:
-            self.revertConflictButton?.state = NSOnState
+            self.revertConflictButton?.state = .on
         }
     }
     
@@ -94,7 +94,7 @@ final class GeneralPaneController: NSViewController {
     /// "Enable Auto Save and Versions" checkbox was clicked
     @IBAction func updateAutosaveSetting(_ sender: Any?) {
         
-        let currentSetting = Document.autosavesInPlace()
+        let currentSetting = Document.autosavesInPlace
         let newSetting = UserDefaults.standard[.enablesAutosaveInPlace]
         
         // do nothing if the setting returned to the current one.
@@ -110,13 +110,13 @@ final class GeneralPaneController: NSViewController {
         alert.beginSheetModal(for: self.view.window!) { returnCode in
             
             switch returnCode {
-            case NSAlertFirstButtonReturn:  // = Restart Now
+            case .alertFirstButtonReturn:  // = Restart Now
                 NSApp.relaunch(delay: 2.0)
                 
-            case NSAlertSecondButtonReturn:  // = Later
+            case .alertSecondButtonReturn:  // = Later
                 break  // do nothing
                 
-            case NSAlertThirdButtonReturn:  // = Cancel
+            case .alertThirdButtonReturn:  // = Cancel
                 UserDefaults.standard[.enablesAutosaveInPlace] = !newSetting
                 
             default: break

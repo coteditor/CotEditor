@@ -71,7 +71,7 @@ final class TextFinder: NSResponder {
     
     // MARK: Public Properties
     
-    dynamic var findString = "" {
+    @objc dynamic var findString = "" {
         
         didSet {
             if UserDefaults.standard[.syncFindPboard] {
@@ -79,14 +79,14 @@ final class TextFinder: NSResponder {
             }
         }
     }
-    dynamic var replacementString = ""
+    @objc dynamic var replacementString = ""
     
     weak var delegate: TextFinderDelegate?
     
     
     // MARK: Private Properties
     
-    private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController() as! FindPanelController
+    private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
     private let highlightColor: NSColor
     
     
@@ -107,7 +107,7 @@ final class TextFinder: NSResponder {
         NSApp.nextResponder = self
         
         // observe application activation to sync find string with other apps
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .NSApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: NSApplication.didBecomeActiveNotification, object: nil)
     }
     
     
@@ -188,7 +188,7 @@ final class TextFinder: NSResponder {
     @IBAction func findNext(_ sender: Any?) {
         
         // find backwards if Shift key pressed
-        let isShiftPressed = NSEvent.modifierFlags().contains(.shift)
+        let isShiftPressed = NSEvent.modifierFlags.contains(.shift)
         
         self.find(forward: !isShiftPressed)
     }
@@ -259,7 +259,7 @@ final class TextFinder: NSResponder {
                     let color = highlightColors[index]
                     let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
                     
-                    attrLineString.addAttribute(NSBackgroundColorAttributeName, value: color, range: inlineRange)
+                    attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
                     highlights.append(HighlightItem(range: range, color: color))
                 }
                 
@@ -277,16 +277,15 @@ final class TextFinder: NSResponder {
                 }
                 
                 // highlight
-                textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: textFind.string.nsRange)
+                textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textFind.string.nsRange)
                 for highlight in highlights {
-                    textView.layoutManager?.addTemporaryAttribute(NSBackgroundColorAttributeName,
-                                                                  value: highlight.color, forCharacterRange: highlight.range)
+                    textView.layoutManager?.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
                 }
                 
                 indicator.done()
                 
                 if highlights.isEmpty {
-                    NSBeep()
+                    NSSound.beep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
@@ -350,16 +349,15 @@ final class TextFinder: NSResponder {
                 }
                 
                 // highlight
-                textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: textFind.string.nsRange)
+                textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textFind.string.nsRange)
                 for highlight in highlights {
-                    textView.layoutManager?.addTemporaryAttribute(NSBackgroundColorAttributeName,
-                                                                  value: highlight.color, forCharacterRange: highlight.range)
+                    textView.layoutManager?.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
                 }
                 
                 indicator.done()
                 
                 if highlights.isEmpty {
-                    NSBeep()
+                    NSSound.beep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
@@ -379,12 +377,11 @@ final class TextFinder: NSResponder {
     /// remove all of current highlights in the frontmost textView
     @IBAction func unhighlight(_ sender: Any?) {
         
-        guard
-            let textView = self.client,
-            let range = textView.string?.nsRange
-            else { return }
+        guard let textView = self.client else { return }
         
-        textView.layoutManager?.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: range)
+        let range = textView.string.nsRange
+        
+        textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: range)
     }
     
     
@@ -394,7 +391,7 @@ final class TextFinder: NSResponder {
         if self.replace() {
             self.client?.centerSelectionInVisibleArea(self)
         } else {
-            NSBeep()
+            NSSound.beep()
         }
         
         UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
@@ -475,7 +472,7 @@ final class TextFinder: NSResponder {
                 indicator.done()
                 
                 if replacementItems.isEmpty {
-                    NSBeep()
+                    NSSound.beep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
@@ -499,7 +496,7 @@ final class TextFinder: NSResponder {
     @IBAction func useSelectionForFind(_ sender: Any?) {
         
         guard let selectedString = self.selectedString else {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
@@ -551,19 +548,19 @@ final class TextFinder: NSResponder {
         
         guard
             let textView = self.client,
-            textView.isEditable,
-            let string = textView.string?.immutable
+            textView.isEditable
             else {
-                NSBeep()
+                NSSound.beep()
                 return nil
-        }
+            }
         
         guard self.findPanelController.window?.attachedSheet == nil else {
             self.findPanelController.showWindow(self)
-            NSBeep()
+            NSSound.beep()
             return nil
         }
         
+        let string = textView.string.immutable
         let settings = TextFind.Settings(defaults: UserDefaults.standard)
         let textFind: TextFind
         do {
@@ -575,7 +572,7 @@ final class TextFinder: NSResponder {
                 self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
             default: break
             }
-            NSBeep()
+            NSSound.beep()
             return nil
         }
         
@@ -603,7 +600,7 @@ final class TextFinder: NSResponder {
                 hudController.show(in: view)
             }
         } else {
-            NSBeep()
+            NSSound.beep()
         }
         
         self.delegate?.textFinder(self, didFind: result.count, textView: textView)
@@ -696,17 +693,17 @@ private extension NSPasteboard {
     class var findString: String? {
         
         get {
-            let pasteboard = NSPasteboard(name: NSFindPboard)
-            return pasteboard.string(forType: NSStringPboardType)
+            let pasteboard = NSPasteboard(name: .findPboard)
+            return pasteboard.string(forType: .string)
         }
         
         set {
             guard let string = newValue, !string.isEmpty else { return }
             
-            let pasteboard = NSPasteboard(name: NSFindPboard)
+            let pasteboard = NSPasteboard(name: .findPboard)
             
-            pasteboard.declareTypes([NSStringPboardType], owner: nil)
-            pasteboard.setString(string, forType: NSStringPboardType)
+            pasteboard.declareTypes([.string], owner: nil)
+            pasteboard.setString(string, forType: .string)
         }
     }
     

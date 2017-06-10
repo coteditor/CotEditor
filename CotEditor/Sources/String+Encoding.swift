@@ -218,9 +218,7 @@ extension String {
         // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
         // Copyright (c) 2004-2006 Peter Borg
         
-        let scanIndex = self.index(self.startIndex, offsetBy: maxLength, limitedBy: self.endIndex) ?? self.endIndex
-        
-        let stringToScan = self.substring(to: scanIndex)
+        let stringToScan = String(self.prefix(maxLength))
         let scanner = Scanner(string: stringToScan)  // scan only the beginning of string
         let stopSet = CharacterSet(charactersIn: "\"\' </>\n\r")
         let invalidDelimiterSet = CharacterSet.alphanumerics.subtracting(CharacterSet(charactersIn: "\"\' ")).inverted

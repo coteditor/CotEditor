@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -52,15 +52,15 @@ final class SyntaxMappingConflictsViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private dynamic let extensionConflicts: [MappingConflict]
-    private dynamic let filenameConflicts: [MappingConflict]
+    @objc private dynamic let extensionConflicts: [MappingConflict]
+    @objc private dynamic let filenameConflicts: [MappingConflict]
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         
         extensionConflicts = type(of: self).parseConflictDict(conflictDict: SyntaxManager.shared.extensionConflicts)
         filenameConflicts = type(of: self).parseConflictDict(conflictDict: SyntaxManager.shared.filenameConflicts)
@@ -75,9 +75,9 @@ final class SyntaxMappingConflictsViewController: NSViewController {
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "SyntaxMappingConflictView"
+        return NSNib.Name("SyntaxMappingConflictView")
     }
     
     
@@ -87,12 +87,13 @@ final class SyntaxMappingConflictsViewController: NSViewController {
     /// convert conflictDict data for table
     private static func parseConflictDict(conflictDict: [String: [String]]) -> [MappingConflict] {
         
-        return conflictDict.map { (key, styles) in
+        return conflictDict.map { item in
             
+            let styles = item.value
             let primaryStyle = styles.first!
             let doubledStyles = styles.dropFirst().joined(separator: ", ")
             
-            return MappingConflict(name: key,
+            return MappingConflict(name: item.key,
                                    primaryStyle: primaryStyle,
                                    doubledStyles: doubledStyles)
         }

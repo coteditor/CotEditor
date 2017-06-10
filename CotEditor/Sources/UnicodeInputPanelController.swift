@@ -42,14 +42,14 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     
     static let shared = UnicodeInputPanelController()
     
-    private(set) dynamic var characterString: String?
+    @objc private(set) dynamic var characterString: String?
     
     
     // MARK: Private Properties
     
-    private dynamic var codePoint: String?
-    private dynamic var isValid = false
-    private dynamic var unicodeName: String?
+    @objc private dynamic var codePoint: String?
+    @objc private dynamic var isValid = false
+    @objc private dynamic var unicodeName: String?
     
     
     
@@ -61,9 +61,9 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     }
     
     
-    override var windowNibName: String? {
+    override var windowNibName: NSNib.Name? {
         
-        return "UnicodePanel"
+        return NSNib.Name("UnicodePanel")
     }
     
     
@@ -74,7 +74,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
         
         super.windowDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidResign), name: .NSWindowDidResignMain, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidResign), name: NSWindow.didResignMainNotification, object: nil)
     }
     
     
@@ -86,7 +86,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
         
         guard NSApp.isActive else { return }
         
-        if NSDocumentController.shared().documents.count <= 1 {  // The 1 is the document now resigning.
+        if NSDocumentController.shared.documents.count <= 1 {  // The 1 is the document now resigning.
             self.window?.performClose(self)
         }
     }
@@ -130,7 +130,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
         guard !(self.characterString?.isEmpty ?? true) else { return }
         
         guard let receiver = NSApp.target(forAction: #selector(UnicodeInputReceiver.insertUnicodeCharacter(_:))) as? UnicodeInputReceiver else {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
@@ -155,7 +155,7 @@ private extension UInt32 {
         
         guard let range = codePoint.range(of: "(?<=^(U\\+|0x|\\\\u)?)[0-9a-f]{1,5}$",
                                           options: [.regularExpression, .caseInsensitive]) else { return nil }
-        let hexString = codePoint.substring(with: range)
+        let hexString = codePoint[range]
         
         self.init(hexString, radix: 16)
     }

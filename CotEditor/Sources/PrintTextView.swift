@@ -130,15 +130,14 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // draw line numbers if needed
         if self.printsLineNumber,
-            let string = self.string,
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
             // prepare text attributes for line numbers
             let fontSize = round(0.9 * (self.font?.pointSize ?? 12))
             let font = NSFont(name: self.lineNumberFontName, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
-            let attrs = [NSFontAttributeName: font,
-                         NSForegroundColorAttributeName: self.textColor ?? .textColor]
+            let attrs: [NSAttributedStringKey: Any] = [.font: font,
+                                                       .foregroundColor: self.textColor ?? .textColor]
             
             // calculate character width by treating the font as a mono-space font
             let charSize = NSAttributedString(string: "8", attributes: attrs).size()
@@ -152,7 +151,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 // rotate axis
                 NSGraphicsContext.saveGraphicsState()
                 let transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-                NSGraphicsContext.current()?.cgContext.concatenate(transform)
+                NSGraphicsContext.current?.cgContext.concatenate(transform)
             }
             
             // get glyph range of which line number should be drawn
@@ -160,7 +159,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             
             // count up lines until visible
             let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
-            var lineNumber = max(string.numberOfLines(in: undisplayedRange, includingLastLineEnding: true), 1)  // start with 1
+            var lineNumber = max(self.string.numberOfLines(in: undisplayedRange, includingLastLineEnding: true), 1)  // start with 1
             
             // draw visible line numbers
             var glyphCount = glyphRangeToDraw.location
@@ -173,7 +172,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 }
                 
                 let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-                let lineRange = (string as NSString).lineRange(at: charIndex)  // get NSRange
+                let lineRange = (self.string as NSString).lineRange(at: charIndex)  // get NSRange
                 let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
                 glyphIndex = lineGlyphRange.upperBound
                 
@@ -190,7 +189,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                     
                     // adjust position to draw
                     var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
-                    let digit = numberString.characters.count
+                    let digit = numberString.count
                     if isVerticalText {
                         numberString = (lineNumber == 1 || lineNumber % 5 == 0) ? numberString : "·"  // draw real number only in every 5 times
                         
@@ -216,7 +215,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// return page header attributed string
     override var pageHeader: NSAttributedString {
         
-        guard let settings = NSPrintOperation.current()?.printInfo.dictionary(),
+        guard let settings = NSPrintOperation.current?.printInfo.dictionary(),
             (settings[PrintSettingKey.printsHeader.rawValue] as? Bool) ?? false else { return NSAttributedString() }
         
         let primaryInfoType = PrintInfoType(settings[PrintSettingKey.primaryHeaderContent.rawValue] as? Int)
@@ -234,7 +233,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// return page footer attributed string
     override var pageFooter: NSAttributedString {
         
-        guard let settings = NSPrintOperation.current()?.printInfo.dictionary(),
+        guard let settings = NSPrintOperation.current?.printInfo.dictionary(),
             (settings[PrintSettingKey.printsFooter.rawValue] as? Bool) ?? false else { return NSAttributedString() }
         
         let primaryInfoType = PrintInfoType(settings[PrintSettingKey.primaryFooterContent.rawValue] as? Int)
@@ -284,7 +283,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         willSet {
             // set tab width
-            let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+            let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
             let tabWidth = UserDefaults.standard[.tabWidth]
             
             paragraphStyle.tabStops = []
@@ -294,7 +293,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             
             // apply to current string
             if let textStorage = self.textStorage {
-                textStorage.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: textStorage.string.nsRange)
+                textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: textStorage.string.nsRange)
             }
             
             // set font also to layout manager
@@ -308,7 +307,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     // MARK: Layout Manager Delegate
     
-    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [String: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [String: Any]? {
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedStringKey: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedStringKey: Any]? {
         
         return attrs
     }
@@ -321,7 +320,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private func loadPrintSettings() {
         
         guard
-            let settings = NSPrintOperation.current()?.printInfo.dictionary(),
+            let settings = NSPrintOperation.current?.printInfo.dictionary(),
             let layoutManager = self.layoutManager as? LayoutManager,
             let textStorage = self.textStorage else { return }
         
@@ -361,7 +360,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         // setup syntax highlighting with theme
         let themeName = (settings[PrintSettingKey.theme.rawValue] as? String) ?? ThemeName.blackAndWhite
         if themeName == ThemeName.blackAndWhite {
-            layoutManager.removeTemporaryAttribute(NSForegroundColorAttributeName, forCharacterRange: textStorage.string.nsRange)
+            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: textStorage.string.nsRange)
             self.textColor = .textColor
             self.backgroundColor = .white
             layoutManager.invisiblesColor = .gray
@@ -379,7 +378,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 self.syntaxStyle = SyntaxManager.shared.style(name: self.syntaxName)
                 self.syntaxStyle?.textStorage = self.textStorage
             }
-            if let controller = NSPrintOperation.current()?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController {
+            if let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController {
                 self.syntaxStyle?.highlightAll { [weak controller] in
                     if let controller = controller, !controller.view.isHidden {
                         controller.needsUpdatePreview = true
@@ -422,15 +421,15 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// return attributes for header/footer string
-    private func headerFooterAttributes(for alignment: AlignmentType) -> [String: Any] {
+    private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedStringKey: Any] {
     
-        let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         
         // alignment for two lines
         paragraphStyle.alignment = alignment.textAlignment
         
         // tab stops for double-sided alignment (imitation of [super pageHeader])
-        if let printInfo = NSPrintOperation.current()?.printInfo {
+        if let printInfo = NSPrintOperation.current?.printInfo {
             let rightTabLocation = printInfo.paperSize.width - printInfo.topMargin / 2
             paragraphStyle.tabStops = [NSTextTab(type: .centerTabStopType, location: rightTabLocation / 2),
                                        NSTextTab(type: .rightTabStopType, location: rightTabLocation)]
@@ -441,11 +440,11 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // font
         guard let font = NSFont.userFont(ofSize: self.headerFooterFontSize) else {
-            return [NSParagraphStyleAttributeName: paragraphStyle]
+            return [.paragraphStyle: paragraphStyle]
         }
         
-        return [NSParagraphStyleAttributeName: paragraphStyle,
-                NSFontAttributeName: font]
+        return [.paragraphStyle: paragraphStyle,
+                .font: font]
     }
     
     
@@ -472,7 +471,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             return String(format: NSLocalizedString("Printed on %@", comment: ""), self.dateFormatter.string(from: Date()))
             
         case .pageNumber:
-            guard let pageNumber = NSPrintOperation.current()?.currentPage else { return nil }
+            guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }
             return String(pageNumber)
             
         case .none:
@@ -484,7 +483,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// update text view size considering text orientation
     private func setupPrintSize() {
         
-        guard let printInfo = NSPrintOperation.current()?.printInfo else { return }
+        guard let printInfo = NSPrintOperation.current?.printInfo else { return }
         
         var frameSize = printInfo.paperSize
         switch self.layoutOrientation {

@@ -28,6 +28,11 @@
 
 import Cocoa
 
+private extension NSSound {
+    
+    static let glass = NSSound(named: NSSound.Name("Glass"))
+}
+
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
     
@@ -45,7 +50,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     
     // MARK: Public Properties
     
-    dynamic let supportsWindowTabbing: Bool  // binded also in Window pref pane
+    @objc dynamic let supportsWindowTabbing: Bool  // binded also in Window pref pane
     
     
     // MARK: Private Properties
@@ -74,10 +79,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         // register default setting values
         UserDefaults.standard.register(defaults: DefaultSettings.defaults)
-        NSUserDefaultsController.shared().initialValues = DefaultSettings.defaults
+        NSUserDefaultsController.shared.initialValues = DefaultSettings.defaults
         
         // instantiate DocumentController
-        _ = DocumentController.shared()
+        _ = DocumentController.shared
         
         // wake text finder up
         _ = TextFinder.shared
@@ -107,7 +112,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         // append the current version number to "What’s New" menu item
         let shortVersionRange = AppInfo.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
-        let shortVersion = AppInfo.shortVersion.substring(with: shortVersionRange)
+        let shortVersion = String(AppInfo.shortVersion[shortVersionRange])
         self.whatsNewMenuItem?.title = String(format: NSLocalizedString("What’s New in CotEditor %@", comment: ""), shortVersion)
         
         // build menus
@@ -209,7 +214,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
             
             let url = URL(fileURLWithPath: filename)
             
-            DocumentController.shared().openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
+            DocumentController.shared.openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
                 defer {
                     remainingDocumentCount -= 1
                 }
@@ -259,7 +264,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         let returnCode = alert.runModal()
         
-        guard returnCode == NSAlertFirstButtonReturn else { return false }  // = Open as Text File
+        guard returnCode == .alertFirstButtonReturn else { return false }  // = Open as Text File
         
         // import theme
         do {
@@ -277,7 +282,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         let feedbackAlert = NSAlert()
         feedbackAlert.messageText = String(format: NSLocalizedString("A new theme named “%@” has been successfully installed.", comment: ""), themeName)
         
-        NSSound(named: "Glass")?.play()
+        NSSound.glass?.play()
         feedbackAlert.runModal()
         
         return true
@@ -308,7 +313,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     @IBAction func newDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)
-        NSDocumentController.shared().newDocument(sender)
+        NSDocumentController.shared.newDocument(sender)
     }
     
     
@@ -316,7 +321,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     @IBAction func openDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)
-        NSDocumentController.shared().openDocument(sender)
+        NSDocumentController.shared.openDocument(sender)
     }
     
     
@@ -360,8 +365,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         let appURL = Bundle.main.bundleURL
         
-        NSWorkspace.shared().open([appURL], withAppBundleIdentifier: BundleIdentifier.ScriptEditor,
-                                  additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+        NSWorkspace.shared.open([appURL], withAppBundleIdentifier: BundleIdentifier.ScriptEditor,
+                                additionalEventParamDescriptor: nil, launchIdentifiers: nil)
     }
     
     
@@ -370,21 +375,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
         
-        NSHelpManager.shared().openHelpAnchor(identifier, inBook: AppInfo.helpBookName)
+        let anchorName = NSHelpManager.AnchorName(identifier.rawValue)
+        let bookName = NSHelpManager.BookName(rawValue: AppInfo.helpBookName)
+        
+        NSHelpManager.shared.openHelpAnchor(anchorName, inBook: bookName)
     }
     
     
     /// open web site (coteditor.com) in default web browser
     @IBAction func openWebSite(_ sender: Any?) {
         
-        NSWorkspace.shared().open(AppWebURL.website.url)
+        NSWorkspace.shared.open(AppWebURL.website.url)
     }
     
     
     /// open bug report page in default web browser
     @IBAction func reportBug(_ sender: Any?) {
         
-        NSWorkspace.shared().open(AppWebURL.issueTracker.url)
+        NSWorkspace.shared.open(AppWebURL.issueTracker.url)
     }
     
     
@@ -402,7 +410,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
             .replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document
-        guard let document = (try? NSDocumentController.shared().openUntitledDocumentAndDisplay(false)) as? Document else { return }
+        guard let document = (try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false)) as? Document else { return }
         document.displayName = NSLocalizedString("Bug Report", comment: "document title")
         document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: report)
         document.setSyntaxStyle(name: "Markdown")

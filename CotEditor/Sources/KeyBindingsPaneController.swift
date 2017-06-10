@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ final class KeyBindingsPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private lazy var menuViewController: NSViewController = self.storyboard!.instantiateController(withIdentifier: "MenuKeyBindingsViewController") as! NSViewController
-    private lazy var textViewController: NSViewController = self.storyboard!.instantiateController(withIdentifier: "SnippetKeyBindingsViewController") as! NSViewController
+    private lazy var menuViewController: NSViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MenuKeyBindingsViewController")) as! NSViewController
+    private lazy var textViewController: NSViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("SnippetKeyBindingsViewController")) as! NSViewController
     
     @IBOutlet private weak var tabView: NSTabView?
     
