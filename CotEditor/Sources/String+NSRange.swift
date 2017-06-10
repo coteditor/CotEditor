@@ -75,9 +75,9 @@ extension NSRange {
     }
     
     
-    func contains(location: Int) -> Bool {
+    func contains(_ index: Int) -> Bool {
         
-        return NSLocationInRange(location, self)
+        return NSLocationInRange(index, self)
     }
     
     
@@ -93,21 +93,11 @@ extension NSRange {
     }
     
     
-    func intersection(_ range: NSRange) -> NSRange {
+    func intersection(_ range: NSRange) -> NSRange? {
         
-        return NSIntersectionRange(self, range)
-    }
-    
-    
-    mutating func formIntersection(_ range: NSRange) {
+        let result = NSIntersectionRange(self, range)
         
-        self = NSIntersectionRange(self, range)
-    }
-    
-    
-    func intersects(with range: NSRange) -> Bool {
-        
-        return NSIntersectionRange(self, range).length > 0
+        return result.length == 0 ? nil : result
     }
     
 }

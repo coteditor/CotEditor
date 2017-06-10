@@ -80,13 +80,11 @@ extension EditorTextView {
             
             // move selected ranges in the line to move
             for selectedRange in selectedRanges {
-                let intersectionRange = selectedRange.intersection(editRange)
-                
-                if intersectionRange.length > 0 {
+                if let intersectionRange = selectedRange.intersection(editRange) {
                     newSelectedRanges.append(NSRange(location: intersectionRange.location - upperLineRange.length,
                                                      length: intersectionRange.length))
                     
-                } else if editRange.contains(location: selectedRange.location) {
+                } else if editRange.contains(selectedRange.location) {
                     newSelectedRanges.append(NSRange(location: selectedRange.location - upperLineRange.length,
                                                      length: selectedRange.length))
                 }
@@ -150,13 +148,11 @@ extension EditorTextView {
             
             // move selected ranges in the line to move
             for selectedRange in selectedRanges {
-                let intersectionRange = selectedRange.intersection(editRange)
-                
-                if intersectionRange.length > 0 {
+                if let intersectionRange = selectedRange.intersection(editRange) {
                     newSelectedRanges.append(NSRange(location: intersectionRange.location + lowerLineRange.length,
                                                      length: intersectionRange.length))
                     
-                } else if editRange.contains(location: selectedRange.location) {
+                } else if editRange.contains(selectedRange.location) {
                     newSelectedRanges.append(NSRange(location: selectedRange.location + lowerLineRange.length,
                                                      length: selectedRange.length))
                 }

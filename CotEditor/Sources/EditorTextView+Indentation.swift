@@ -113,7 +113,7 @@ extension EditorTextView {
             
             // calculate new selection range
             let deletedRange = NSRange(location: scanningLineLocation, length: numberOfDeleted)
-            newSelectedRange.length -= newSelectedRange.intersection(deletedRange).length
+            newSelectedRange.length -= newSelectedRange.intersection(deletedRange)?.length ?? 0
             if isFirstLine {
                 newSelectedRange.location = max(selectedRange.location - numberOfDeleted,
                                                 lineRange.location)

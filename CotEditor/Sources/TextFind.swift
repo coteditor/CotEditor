@@ -139,7 +139,7 @@ final class TextFind {
                 stop = true
                 return
             }
-            if matchedRange.contains(location: startLocation) {
+            if matchedRange.contains(startLocation) {
                 intersectionMatches.append(matchedRange)
             } else {
                 wrappedMatches.append(matchedRange)

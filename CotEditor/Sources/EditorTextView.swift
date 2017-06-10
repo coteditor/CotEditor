@@ -387,8 +387,12 @@ final class EditorTextView: NSTextView, Themable {
             return super.insertNewline(sender)
         }
         
-        let baseIndentRange = indentRange.intersection(NSRange(location: 0, length: self.selectedRange.location))
-        let indent = (string as NSString).substring(with: baseIndentRange)
+        let indent: String = {
+            guard let baseIndentRange = indentRange.intersection(NSRange(location: 0, length: self.selectedRange.location)) else {
+                return ""
+            }
+            return (string as NSString).substring(with: baseIndentRange)
+        }()
         
         // calculation for smart indent
         var shouldIncreaseIndentLevel = false

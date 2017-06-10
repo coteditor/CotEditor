@@ -355,7 +355,9 @@ extension SyntaxStyle {
         
         let wholeRange = string.nsRange
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
-        var highlightRange = editedRange.intersection(wholeRange)  // in case that wholeRange length is changed from editedRange
+        
+        // in case that wholeRange length is changed from editedRange
+        guard var highlightRange = editedRange.intersection(wholeRange) else { return }
         
         // highlight whole if string is enough short
         if wholeRange.length <= bufferLength {
@@ -366,12 +368,12 @@ extension SyntaxStyle {
             for layoutManager in textStorage.layoutManagers {
                 guard let visibleRange = layoutManager.firstTextView?.visibleRange else { continue }
                 
-                if editedRange.intersects(with: visibleRange) {
+                if editedRange.intersection(visibleRange) != nil {
                     highlightRange.formUnion(visibleRange)
                 }
             }
             
-            highlightRange.formIntersection(wholeRange)
+            highlightRange = highlightRange.intersection(wholeRange)!
             highlightRange = (string as NSString).lineRange(for: highlightRange)
             
             // expand highlight area if the character just before/after the highlighting area is the same color

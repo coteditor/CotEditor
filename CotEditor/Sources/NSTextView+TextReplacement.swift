@@ -117,7 +117,7 @@ extension NSTextView {
             guard keepingEditingPoint else { return ranges }
             
             let cursorLocation = self.selectedRange.location
-            return ranges.filter { return $0.max != cursorLocation && !$0.contains(location: cursorLocation) }
+            return ranges.filter { return $0.max != cursorLocation && !$0.contains(cursorLocation) }
         }()
         
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)

@@ -95,11 +95,12 @@ final class TokenTextView: NSTextView {
             let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
             
             var glyphLocation = glyphRange.location
-            while glyphRange.contains(location: glyphLocation) {
+            while glyphRange.contains(glyphLocation) {
                 var effectiveRange = NSRange.notFound
                 layoutManager.lineFragmentRect(forGlyphAt: glyphLocation, effectiveRange: &effectiveRange)
                 
-                let inlineRange = effectiveRange.intersection(glyphRange)
+                guard let inlineRange = effectiveRange.intersection(glyphRange) else { continue }
+                
                 let boundingRect = layoutManager.boundingRect(forGlyphRange: inlineRange, in: textContainer)
                 let rect = boundingRect.offset(by: containerOrigin).insetBy(dx: 0.5, dy: 0.5)
                 

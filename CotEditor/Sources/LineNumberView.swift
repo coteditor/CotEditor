@@ -277,7 +277,7 @@ final class LineNumberView: NSRulerView {
             
             // check if line is selected
             let isSelected = selectedLineRanges.contains { selectedRange in
-                return (selectedRange.contains(location: lineRange.location) &&
+                return (selectedRange.contains(lineRange.location) &&
                     (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.max == selectedRange.max)))
             }
             
@@ -612,7 +612,7 @@ extension LineNumberView {
         // with Shift key (expand selection)
         if NSEvent.modifierFlags().contains(.shift) {
             let selectedRange = textView.selectedRange
-            if selectedRange.contains(location: currentIndex) {  // reduce
+            if selectedRange.contains(currentIndex) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
                 if inUpperSelection {  // clicked upper half section of selected range
                     range = NSRange(location: currentIndex, length: selectedRange.max - currentIndex)
