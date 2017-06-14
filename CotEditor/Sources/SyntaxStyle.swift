@@ -441,7 +441,7 @@ extension SyntaxStyle {
         if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
             // wait for window becomes ready
             DispatchQueue.global(qos: .background).async {
-                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) && !operation.isFinished {
+                while storage.layoutManagers.isEmpty && !operation.isFinished {
                     usleep(100)
                 }
                 
