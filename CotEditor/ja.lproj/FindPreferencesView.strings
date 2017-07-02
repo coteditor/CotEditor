@@ -49,12 +49,12 @@
 
 /* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "OUc-5d-N7I"; */
 "OUc-5d-N7I.title" = "発音区別記号を無視";
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "YYY-qb-T00"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
 "YYY-qb-T00.ibShadowedToolTip" = "文字の発音記号を無視して検索（例:  ö = o）";
 
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "Jug-Dk-JMZ"; */
 "Jug-Dk-JMZ.title" = "全角／半角を無視";
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (ex. ａ = a)."; ObjectID = "A5O-jt-o7T"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (e.g., ａ = a)."; ObjectID = "A5O-jt-o7T"; */
 "A5O-jt-o7T.ibShadowedToolTip" = "文字の全角／半角を無視して検索（例: ａ = a）";
 
 

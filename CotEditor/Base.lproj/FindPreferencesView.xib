@@ -53,7 +53,7 @@
                         <binding destination="hNo-st-CW5" name="value" keyPath="values.findTextIsLiteralSearch" id="4fx-tm-Qwh"/>
                     </connections>
                 </button>
-                <button toolTip="Search ignores width differences in character forms (ex. ａ = a)." translatesAutoresizingMaskIntoConstraints="NO" id="A5O-jt-o7T">
+                <button toolTip="Search ignores width differences in character forms (e.g., ａ = a)." translatesAutoresizingMaskIntoConstraints="NO" id="A5O-jt-o7T">
                     <rect key="frame" x="17" y="133" width="150" height="18"/>
                     <buttonCell key="cell" type="check" title="Ignore width differences" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="Jug-Dk-JMZ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -119,7 +119,7 @@
                         <binding destination="hNo-st-CW5" name="value" keyPath="values.findsNextAfterReplace" id="e5i-bi-bKv"/>
                     </connections>
                 </button>
-                <button toolTip="Search ignores diacritic marks (ex. ö = o)." translatesAutoresizingMaskIntoConstraints="NO" id="YYY-qb-T00">
+                <button toolTip="Search ignores diacritic marks (e.g., ö = o)." translatesAutoresizingMaskIntoConstraints="NO" id="YYY-qb-T00">
                     <rect key="frame" x="17" y="151" width="136" height="18"/>
                     <buttonCell key="cell" type="check" title="Ignore diacritic marks" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="OUc-5d-N7I">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

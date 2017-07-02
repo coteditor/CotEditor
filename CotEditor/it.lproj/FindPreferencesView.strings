@@ -50,12 +50,12 @@
 
 /* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "OUc-5d-N7I"; */
 "OUc-5d-N7I.title" = "Ignora segni diacritici";
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "YYY-qb-T00"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
 "YYY-qb-T00.ibShadowedToolTip" = "La ricerca ignora i segni diacritici (es. ö = o).";
 
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "Jug-Dk-JMZ"; */
 "Jug-Dk-JMZ.title" = "Ignora le differenze di ampiezza";
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (ex. ａ = a)."; ObjectID = "A5O-jt-o7T"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (e.g., ａ = a)."; ObjectID = "A5O-jt-o7T"; */
 "A5O-jt-o7T.ibShadowedToolTip" = "La ricerca ignora le differenze di ampiezza nei caratteri (es. ａ = a).";
 
 
