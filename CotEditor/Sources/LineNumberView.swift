@@ -65,7 +65,10 @@ final class LineNumberView: NSRulerView {
         
         super.init(scrollView: scrollView, orientation: orientation)
         
-        self.clientView = scrollView?.documentView
+        // observe new textStorage change
+        if let textView = scrollView?.documentView as? NSTextView {
+            NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .NSTextDidChange, object: textView)
+        }
     }
     
     
@@ -352,33 +355,13 @@ final class LineNumberView: NSRulerView {
     }
     
     
-    /// setter of client view
-    override var clientView: NSView? {
-        
-        willSet {
-            // stop observing current textStorage
-            if let textView = self.clientView as? NSTextView {
-                NotificationCenter.default.removeObserver(self, name: .NSTextDidChange, object: textView)
-            }
-        }
-        
-        didSet {
-            // observe new textStorage change
-            if let textView = self.clientView as? NSTextView {
-                NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .NSTextDidChange, object: textView)
-                self.needsRecountTotalNumberOfLines = true
-            }
-        }
-    }
-    
-    
     
     // MARK: Private Methods
     
     /// return client view casting to textView
     fileprivate var textView: NSTextView? {
         
-        return self.clientView as? NSTextView
+        return self.scrollView?.documentView as? NSTextView
     }
     
     

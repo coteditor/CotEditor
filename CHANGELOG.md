@@ -14,6 +14,7 @@ develop
 
 - [beta] Fix application's code signing.
 - [beta] Fix comment highlights.
+- [beta] Fix a potential crash.
 - [beta] Fix minor UI layout.
 
 
