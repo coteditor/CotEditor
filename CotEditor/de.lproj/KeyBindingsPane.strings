@@ -67,7 +67,7 @@
 "5zd-aF-0zL.title" = "Keine der Tasten darf die Command-Taste sein.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
-"sz5-hl-bZK.headerCell.title" = "Aktion"";
+"sz5-hl-bZK.headerCell.title" = "Aktion";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
 "hXU-bV-zlt.headerCell.title" = "Taste";
 

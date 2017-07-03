@@ -82,7 +82,7 @@
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
 "cdV-rY-hCN.title" = "Zuletzt gesucht";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
-"vE8-oK-xlC.title" = "Letzte Suchabfragen löschen";
+"vE8-oK-xlC.title" = "Letzte Sucheinträge löschen";
 
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
 "7cw-iQ-0LM.title" = "Zuletzt ersetzt";
@@ -96,7 +96,7 @@
 // Find Result
 
 /* Class = "NSButton"; UeN.ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
-"oC1-bN-UeN.ibShadowedToolTip" = "Suchresultat schließen.";
+"oC1-bN-UeN.ibShadowedToolTip" = "Suchergebnis schließen.";
 
 /* Class = "BindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
 "2MH-SD-x1y.ibShadowedDisplayPattern" = "Suchbegriff: %{value1}@";

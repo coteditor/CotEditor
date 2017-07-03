@@ -76,7 +76,7 @@
 /* Class = "NSMenuItem"; title = "New Window"; ObjectID = "cTV-Rh-597"; */
 "cTV-Rh-597.title" = "Neues Fenster";
 /* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
-"WCp-4v-OPR.title" = "Neues Tab";
+"WCp-4v-OPR.title" = "Neuer Tab";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "Öffnen …";
 /* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
@@ -527,7 +527,7 @@
 /* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
 "DCW-Ij-540.title" = "Was ist neu in CotEditor";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
-"824.title" = "Anerkennungen";
+"824.title" = "Anmerkungen";
 
 /* Class = "NSMenuItem"; title = "Create Bug Report…"; ObjectID = "iHn-Ed-A8u"; */
 "iHn-Ed-A8u.title" = "Fehlerbericht erstellen …";
