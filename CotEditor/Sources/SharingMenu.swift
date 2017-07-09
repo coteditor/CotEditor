@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,13 +36,7 @@ private enum SharingServiceType {
     case composeMessage
     
     
-    var service: NSSharingService? {
-        
-        return NSSharingService(named: self.name)
-    }
-    
-    
-    private var name: String {
+    var name: String {
         
         switch self {
         case .addToNotes: return "com.apple.Notes.SharingExtension"
@@ -131,7 +125,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
         self.addItem(labelItem)
         
         // create services to skip
-        let excludingServices = excludingServiceTypes.flatMap { type in type.service }
+        let excludingServices = excludingServiceTypes.flatMap { NSSharingService(named: $0.name) }
         
         // add menu items dynamically
         for service in NSSharingService.sharingServices(forItems: [item]) {

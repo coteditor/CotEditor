@@ -1,9 +1,8 @@
 {
-  "xcodeVersion" : "Xcode 8.3\nBuild version 8E162",
-  "commitish" : "2.0.3",
+  "commitish" : "2.0.4",
   "Mac" : [
     {
-      "hash" : "9dea04a6db4dbfae0e756a714892e966a3cf1f559edf92778f3e6ad76f508806",
+      "hash" : "d1f33541397d3b03c8cc3d94e7efefc3b9e96937c7a3acad5dbad47dcc9cd37d",
       "name" : "ColorCode"
     }
   ]

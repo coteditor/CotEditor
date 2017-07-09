@@ -69,15 +69,15 @@ extension NSRange {
     
     
     /// syntax sugar of NSMaxRange
-    var max: Int {
+    var upperBound: Int {
         
         return NSMaxRange(self)
     }
     
     
-    func contains(location: Int) -> Bool {
+    func contains(_ index: Int) -> Bool {
         
-        return NSLocationInRange(location, self)
+        return NSLocationInRange(index, self)
     }
     
     
@@ -93,21 +93,11 @@ extension NSRange {
     }
     
     
-    func intersection(_ range: NSRange) -> NSRange {
+    func intersection(_ range: NSRange) -> NSRange? {
         
-        return NSIntersectionRange(self, range)
-    }
-    
-    
-    mutating func formIntersection(_ range: NSRange) {
+        let result = NSIntersectionRange(self, range)
         
-        self = NSIntersectionRange(self, range)
-    }
-    
-    
-    func intersects(with range: NSRange) -> Bool {
-        
-        return NSIntersectionRange(self, range).length > 0
+        return result.length == 0 ? nil : result
     }
     
 }
@@ -165,7 +155,7 @@ extension NSString {
         guard excludingLastLineEnding else { return lineRange }
         
         // ignore last line ending
-        if lineRange.length > 0, self.character(at: lineRange.max - 1) == "\n".utf16.first! {
+        if lineRange.length > 0, self.character(at: lineRange.upperBound - 1) == "\n".utf16.first! {
             lineRange.length -= 1
         }
         

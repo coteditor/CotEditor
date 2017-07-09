@@ -65,7 +65,10 @@ final class LineNumberView: NSRulerView {
         
         super.init(scrollView: scrollView, orientation: orientation)
         
-        self.clientView = scrollView?.documentView
+        // observe new textStorage change
+        if let textView = scrollView?.documentView as? NSTextView {
+            NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .NSTextDidChange, object: textView)
+        }
     }
     
     
@@ -266,19 +269,19 @@ final class LineNumberView: NSRulerView {
         var glyphIndex = glyphRangeToDraw.location
         var lastLineNumber = 0
         
-        while glyphIndex < glyphRangeToDraw.max {  // count "real" lines
+        while glyphIndex < glyphRangeToDraw.upperBound {  // count "real" lines
             defer {
                 lineNumber += 1
             }
             let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
             let lineRange = string.lineRange(at: charIndex)  // get NSRange
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-            glyphIndex = lineGlyphRange.max
+            glyphIndex = lineGlyphRange.upperBound
             
             // check if line is selected
             let isSelected = selectedLineRanges.contains { selectedRange in
-                return (selectedRange.contains(location: lineRange.location) &&
-                    (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.max == selectedRange.max)))
+                return (selectedRange.contains(lineRange.location) &&
+                    (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.upperBound == selectedRange.upperBound)))
             }
             
             while glyphCount < glyphIndex {  // handle wrapper lines
@@ -286,7 +289,7 @@ final class LineNumberView: NSRulerView {
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphCount, effectiveRange: &range, withoutAdditionalLayout: true)
                 let isWrappedLine = (lastLineNumber == lineNumber)
                 lastLineNumber = lineNumber
-                glyphCount = range.max
+                glyphCount = range.upperBound
                 
                 if isVerticalText && isWrappedLine { continue }
                 
@@ -300,7 +303,7 @@ final class LineNumberView: NSRulerView {
                         drawTick(y: y)
                     }
                     if !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1 || isSelected ||
-                        lineRange.max == length && layoutManager.extraLineFragmentTextContainer == nil  // last line for vertical text
+                        lineRange.upperBound == length && layoutManager.extraLineFragmentTextContainer == nil  // last line for vertical text
                     {
                         drawLineNumber(lineNumber, y: y, isBold: isSelected)
                     }
@@ -313,7 +316,7 @@ final class LineNumberView: NSRulerView {
             let lineRect = layoutManager.extraLineFragmentUsedRect
             let isSelected: Bool = {
                 if let lastSelectedRange = selectedLineRanges.last {
-                    return (lastSelectedRange.length == 0) && (length == lastSelectedRange.max)
+                    return (lastSelectedRange.length == 0) && (length == lastSelectedRange.upperBound)
                 }
                 return false
             }()
@@ -352,33 +355,13 @@ final class LineNumberView: NSRulerView {
     }
     
     
-    /// setter of client view
-    override var clientView: NSView? {
-        
-        willSet {
-            // stop observing current textStorage
-            if let textView = self.clientView as? NSTextView {
-                NotificationCenter.default.removeObserver(self, name: .NSTextDidChange, object: textView)
-            }
-        }
-        
-        didSet {
-            // observe new textStorage change
-            if let textView = self.clientView as? NSTextView {
-                NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .NSTextDidChange, object: textView)
-                self.needsRecountTotalNumberOfLines = true
-            }
-        }
-    }
-    
-    
     
     // MARK: Private Methods
     
     /// return client view casting to textView
     fileprivate var textView: NSTextView? {
         
-        return self.clientView as? NSTextView
+        return self.scrollView?.documentView as? NSTextView
     }
     
     
@@ -581,9 +564,9 @@ extension LineNumberView {
             var intersects = false
             
             for selectedRange in originalSelectedRanges {
-                if selectedRange.location <= range.location && range.max <= selectedRange.max {  // exclude
+                if selectedRange.location <= range.location && range.upperBound <= selectedRange.upperBound {  // exclude
                     let range1 = NSRange(location: selectedRange.location, length: range.location - selectedRange.location)
-                    let range2 = NSRange(location: range.max, length: selectedRange.max - range.max)
+                    let range2 = NSRange(location: range.upperBound, length: selectedRange.upperBound - range.upperBound)
                     
                     if range1.length > 0 {
                         selectedRanges.append(range1)
@@ -612,13 +595,13 @@ extension LineNumberView {
         // with Shift key (expand selection)
         if NSEvent.modifierFlags().contains(.shift) {
             let selectedRange = textView.selectedRange
-            if selectedRange.contains(location: currentIndex) {  // reduce
+            if selectedRange.contains(currentIndex) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
                 if inUpperSelection {  // clicked upper half section of selected range
-                    range = NSRange(location: currentIndex, length: selectedRange.max - currentIndex)
+                    range = NSRange(location: currentIndex, length: selectedRange.upperBound - currentIndex)
                 } else {
                     range = selectedRange
-                    range.length -= selectedRange.max - currentLineRange.max
+                    range.length -= selectedRange.upperBound - currentLineRange.upperBound
                 }
             } else {  // expand
                 range.formUnion(selectedRange)

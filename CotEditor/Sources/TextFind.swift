@@ -124,7 +124,7 @@ final class TextFind {
     func find(forward: Bool) -> (range: NSRange?, count: Int, wrapped: Bool) {
         
         let selectedRange = self.selectedRanges.first!
-        let startLocation = forward ? selectedRange.max : selectedRange.location
+        let startLocation = forward ? selectedRange.upperBound : selectedRange.location
         
         var forwardMatches = [NSRange]()  // matches after the start location
         let forwardRange = NSRange(location: startLocation, length: string.utf16.count - startLocation)
@@ -139,7 +139,7 @@ final class TextFind {
                 stop = true
                 return
             }
-            if matchedRange.contains(location: startLocation) {
+            if matchedRange.contains(startLocation) {
                 intersectionMatches.append(matchedRange)
             } else {
                 wrappedMatches.append(matchedRange)
@@ -305,14 +305,14 @@ final class TextFind {
                 searchRange.length = string.length - searchRange.location
                 let foundRange = string.range(of: self.findString, options: self.settings.textualOptions, range: searchRange)
                 
-                guard foundRange.max <= scopeRange.max else { break }
+                guard foundRange.upperBound <= scopeRange.upperBound else { break }
                 
                 var stop = false
                 block(foundRange, nil, &stop)
                 
                 guard !stop else { return }
                 
-                searchRange.location = foundRange.max
+                searchRange.location = foundRange.upperBound
             }
             
             scopeCompletionHandler?(scopeRange)

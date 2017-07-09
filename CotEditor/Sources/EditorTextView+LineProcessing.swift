@@ -80,13 +80,11 @@ extension EditorTextView {
             
             // move selected ranges in the line to move
             for selectedRange in selectedRanges {
-                let intersectionRange = selectedRange.intersection(editRange)
-                
-                if intersectionRange.length > 0 {
+                if let intersectionRange = selectedRange.intersection(editRange) {
                     newSelectedRanges.append(NSRange(location: intersectionRange.location - upperLineRange.length,
                                                      length: intersectionRange.length))
                     
-                } else if editRange.contains(location: selectedRange.location) {
+                } else if editRange.contains(selectedRange.location) {
                     newSelectedRanges.append(NSRange(location: selectedRange.location - upperLineRange.length,
                                                      length: selectedRange.length))
                 }
@@ -109,7 +107,7 @@ extension EditorTextView {
         let lineRanges = self.selectedLineRanges
         
         // cannot perform Move Line Down if one of the selections is already in the last line
-        if lineRanges.last?.max == textStorage.length {
+        if lineRanges.last?.upperBound == textStorage.length {
             NSBeep()
             return
         }
@@ -128,7 +126,7 @@ extension EditorTextView {
         for lineRange in lineRanges.reversed() {
             let string = textStorage.string as NSString
             
-            var lowerLineRange = string.lineRange(at: lineRange.max)
+            var lowerLineRange = string.lineRange(at: lineRange.upperBound)
             var lineString = string.substring(with: lineRange)
             var lowerLineString = string.substring(with: lowerLineRange)
             
@@ -150,13 +148,11 @@ extension EditorTextView {
             
             // move selected ranges in the line to move
             for selectedRange in selectedRanges {
-                let intersectionRange = selectedRange.intersection(editRange)
-                
-                if intersectionRange.length > 0 {
+                if let intersectionRange = selectedRange.intersection(editRange) {
                     newSelectedRanges.append(NSRange(location: intersectionRange.location + lowerLineRange.length,
                                                      length: intersectionRange.length))
                     
-                } else if editRange.contains(location: selectedRange.location) {
+                } else if editRange.contains(selectedRange.location) {
                     newSelectedRanges.append(NSRange(location: selectedRange.location + lowerLineRange.length,
                                                      length: selectedRange.length))
                 }

@@ -163,7 +163,7 @@ final class TextSelection: NSObject {
                 let string = self.document?.string else { return nil }
             
             let startLine = string.lineNumber(at: selectedRange.location)
-            let endLine = string.lineNumber(at: selectedRange.max)
+            let endLine = string.lineNumber(at: selectedRange.upperBound)
             
             return [startLine,
                     endLine - startLine + 1]

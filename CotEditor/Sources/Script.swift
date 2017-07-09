@@ -182,13 +182,13 @@ protocol Script: class {
     // MARK: Methods
     
     /// Execute the script with the default way.
-    func run(completionHandler: ((Void) -> Void)?) throws
+    func run(completionHandler: (() -> Void)?) throws
     
     
     /// Execute the script by sending it the given Apple event.
     ///
     /// Events the script cannot handle must be ignored with no errors.
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: ((Void) -> Void)?) throws
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)?) throws
     
 }
 
@@ -196,7 +196,7 @@ protocol Script: class {
 
 extension Script {
     
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: ((Void) -> Void)? = nil) throws {
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
         // ignore every request with an event by default
     }
     
@@ -227,7 +227,7 @@ final class AppleScript: Script {
     
     /// run script
     /// - throws: Error by NSUserScriptTask
-    func run(completionHandler: ((Void) -> Void)? = nil) throws {
+    func run(completionHandler: (() -> Void)? = nil) throws {
         
         try self.run(withAppleEvent: nil, completionHandler: completionHandler)
     }
@@ -240,7 +240,7 @@ final class AppleScript: Script {
     /// - parameter event: the apple event
     ///
     /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: ((Void) -> Void)? = nil) throws {
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
         
         guard self.descriptor.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.descriptor.url)
@@ -290,7 +290,7 @@ final class PersistentOSAScript: Script {
     
     /// run script
     /// - throws: Error by NSUserScriptTask
-    func run(completionHandler: ((Void) -> Void)? = nil) throws {
+    func run(completionHandler: (() -> Void)? = nil) throws {
         
         guard self.descriptor.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.descriptor.url)
@@ -312,7 +312,7 @@ final class PersistentOSAScript: Script {
     /// - parameter event: the apple event
     ///
     /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: ((Void) -> Void)? = nil) throws {
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
         
         guard let event = event else {
             try self.run(completionHandler: completionHandler)
@@ -383,7 +383,7 @@ final class ShellScript: Script {
     
     /// run script
     /// - throws: ScriptFileError or Error by NSUserScriptTask
-    func run(completionHandler: ((Void) -> Void)? = nil) throws {
+    func run(completionHandler: (() -> Void)? = nil) throws {
         
         // check script file
         guard self.descriptor.url.isReachable else {

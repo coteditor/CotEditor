@@ -371,14 +371,14 @@ private extension NSString.CompareOptions {
 
 private extension NSString {
     
-    /// find and return the range of the first occurence starting from the given selectedRange
+    /// find and return the range of the first occurrence starting from the given selectedRange
     func range(of searchString: String, selectedRange: NSRange, options: NSString.CompareOptions, isWrapSearch: Bool) -> NSRange? {
         
         let targetRange: NSRange = {
             if options.contains(.backwards), !options.contains(.regularExpression) {
                 return NSRange(location: 0, length: selectedRange.location)
             }
-            return NSRange(location: selectedRange.max, length: self.length - selectedRange.max)
+            return NSRange(location: selectedRange.upperBound, length: self.length - selectedRange.upperBound)
         }()
         
         var foundRange = self.range(of: searchString, options: options, range: targetRange)

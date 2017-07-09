@@ -53,8 +53,8 @@
 "0c4-Jh-Er6.paletteLabel" = "Datei-Drop";  /* File Drop */
 
 /* Class = "NSToolbarItem"; ObjectID = "WSf-8J-dN6"; */
-"WSf-8J-dN6.label" = "Tastenbeleg.";  /* Key Bindings */
-"WSf-8J-dN6.paletteLabel" = "Tastenbelegungen";  /* Key Bindings */
+"WSf-8J-dN6.label" = "Kurzbefehle";  /* Key Bindings */
+"WSf-8J-dN6.paletteLabel" = "Kurzbefehle";  /* Key Bindings */
 
 /* Class = "NSToolbarItem"; ObjectID = "uTl-fL-Jcq"; */
 "uTl-fL-Jcq.label" = "Drucken";  /* Print */

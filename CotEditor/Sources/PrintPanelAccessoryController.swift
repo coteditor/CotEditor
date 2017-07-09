@@ -167,7 +167,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     
-    // MARK Private Methods
+    // MARK: Private Methods
     
     /// cast representedObject to NSPrintInfo
     private var printInfo: NSPrintInfo? {

@@ -2,7 +2,24 @@
 Change Log
 ==========================
 
-develop
+3.2.0-beta.2 (194)
+--------------------------
+
+### Improvements
+
+- [beta] Update Italian localization.
+
+
+### Fixes
+
+- [beta] Fix application's code signing.
+- [beta] Fix comment highlights.
+- [beta] Fix a potential crash.
+- [beta] Fix minor UI layout.
+
+
+
+3.2.0-beta (193)
 --------------------------
 
 ### New Features

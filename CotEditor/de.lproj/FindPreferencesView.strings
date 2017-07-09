@@ -49,13 +49,13 @@
 
 /* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "OUc-5d-N7I"; */
 "OUc-5d-N7I.title" = "Diakritische Zeichen ignorieren";
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "YYY-qb-T00"; */
-"YYY-qb-T00.ibShadowedToolTip" = "Suche ignoriert diakritische Zeichen (z.B. ö = o).";
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
+"YYY-qb-T00.ibShadowedToolTip" = "Suche ignoriert diakritische Zeichen (z. B. ö = o).";
 
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "Jug-Dk-JMZ"; */
-"Jug-Dk-JMZ.title" = "Breiteunterschied ignorieren";
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (ex. ａ = a)."; ObjectID = "A5O-jt-o7T"; */
-"A5O-jt-o7T.ibShadowedToolTip" = "Suche ignoriert den Unterschied der Breite der Zeichenform (z.B. ａ = a).";
+"Jug-Dk-JMZ.title" = "Breitenunterschiede ignorieren";
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (e.g., ａ = a)."; ObjectID = "A5O-jt-o7T"; */
+"A5O-jt-o7T.ibShadowedToolTip" = "Suche ignoriert den Unterschied der Breite der Zeichenform (z. B. ａ = a).";
 
 
 // Regular Expression
@@ -64,14 +64,14 @@
 "Xa9-i4-ELR.title" = "Regulärer-Ausdruck-Suche";
 
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
-"nqr-AM-oJQ.title" = "Punkt passt auf Zeilenumbruch";
+"nqr-AM-oJQ.title" = "Punkt entspricht Zeilenumbrüchen";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "c11-J5-UXF"; */
-"c11-J5-UXF.ibShadowedToolTip" = ". auf jedes Zeichen einschließlich Zeilenumbrüchen passen lassen (singleline).";
+"c11-J5-UXF.ibShadowedToolTip" = ". mit jedem Zeichen einschließlich Zeilenumbrüchen übereinstimmen lassen (singleline).";
 
 /* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "YXU-NA-BZb"; */
-"YXU-NA-BZb.title" = "Anker passen Zeilen";
+"YXU-NA-BZb.title" = "Anker entsprechen Zeilen";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "Lhw-9C-lgB"; */
-"Lhw-9C-lgB.ibShadowedToolTip" = "^ und $ auch auf jeden Zeilenanfang und -ende passen lassen (multiline).";
+"Lhw-9C-lgB.ibShadowedToolTip" = "^ und $ auch mit Zeilenanfang und -ende übereinstimmen lassen (multiline).";
 
 /* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "5oj-ch-YiX"; */
 "5oj-ch-YiX.title" = "Unicode-Wortgrenzen verwenden";

@@ -24,6 +24,79 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.2.0</h1>
+	<p>release: <time>2017-07</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Improve File Drop feature:
+	<ul>
+		<li>Now, you can add a file drop setting only for a specific syntax style.</li>
+		<li>Add description field to the setting table.</li>
+		<li>Draw capsule for variables in the insertion format setting field.</li>
+		<li>Update the default file drop settings.</li>
+	</ul></li>
+	<li>Now, key binding snippets can set cursor position.</li>
+	<li>Add “Surround Selection With” actions to “Text” menu.</li>
+	<li>Add a new AppleScript/JXA command <code>write to console</code> so that users can insert own message to the CotEditor's console.</li>
+	<li>Add syntax style for “Fortran”.</li>
+</ul>
+
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Change syntax style detection behavior to set to “None” style if no appropriate style can be found on file opening.</li>
+	<li>Significantly improve the performance of “Replace All” with a large document.</li>
+	<li>Avoid hiding console panel when CotEditor becomes not the frontmost application.</li>
+	<li>Reduce highlight parsing time with large size document.</li>
+	<li>Improve performance of closing large size document.</li>
+	<li>Improve drawing performance of a large size document with a non-opaque background (Not enough good as an opaque one but still better than before).</li>
+	<li>Add hidden “Reload All Themes/Styles” menu item to theme/syntax style action menus in Preferences (visible with <code>Option</code> key).</li>
+	<li>Enable changing text size with a single stroke by pressing and holding Touch Bar's Text Size button.</li>
+	<li>Improve invisible character drawing on a non-opaque view.</li>
+	<li>Improve auto-brackets/quotes insertion behavior with multiple selections.</li>
+	<li>Improve the setting file naming rule for when the name overwraps with an existing setting.</li>
+	<li>Improve condition to insert a closing quote automatically.</li>
+	<li>Improve the encoding declaration detection.</li>
+	<li>Update “Ruby” syntax style to fix commands highlight.</li>
+	<li>Update “MATLAB” syntax style to fix strings highlight.</li>
+	<li>Remove less useful “Inline script menu items into contextual menu” option.</li>
+	<li>Update German localization (Thanks to J-rg!).</li>
+	<li>And some minor improvements and fixes.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where the application could hang up when lots of tabbed windows are about open.</li>
+	<li>Fix an issue where the selections after “Replace All” in selection shifted one character.</li>
+	<li>Fix an issue where the document syntax style could be back to the default if the current style was set manually and the document was modified by another process.</li>
+	<li>Fix an issue where the status bar stopped updating after toggling the inspector sidebar.</li>
+	<li>Fix an issue where the “Cancel” button in the dialog shown when changing the Auto Save setting in General pane didn't revert the actual setting state.</li>
+	<li>Fix an issue where author of a theme was not shown in the Appearance pane.</li>
+	<li>Fix an issue where width and height in the window size setting window were swapped.</li>
+	<li>Fix an issue where current line highlight occasionally blinked unwontedly.</li>
+	<li>Fix a possible crash on highlighting matching brace.</li>
+	<li>Fix few memory leaks.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.1.8</h1>
 	<p>release: <time>2016-03-15</time></p>
 </header>
@@ -892,7 +965,7 @@
 	<li>Add independent “Unicode (UTF-8) with BOM” encoding to encoding list.
 	<ul>
 		<li>Respect the existence of the UTF-8 BOM in opened files.</li>
-		<li>Enable switching the document encoding between with and without BOM from the toolbar popup button and the “Format” menu. 
+		<li>Enable switching the document encoding between with and without BOM from the toolbar popup button and the “Format” menu.
 		<ul>
 			<li>The “Unicode (UTF-8) with BOM” item will be automatically added to just after the normal “Unicode (UTF-8)”.</li>
 		</ul></li>

@@ -143,7 +143,7 @@ final class ThemeManager: SettingFileManager {
     
     
     /// save setting file
-    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: ((Void) -> Void)? = nil) throws {  // @escaping
+    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()

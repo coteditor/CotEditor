@@ -37,7 +37,7 @@ protocol SyntaxStyleDelegate: class {
 
 final class SyntaxStyle: Equatable, CustomStringConvertible {
     
-    // MARKL Public Properties
+    // MARK: Public Properties
     
     var textStorage: NSTextStorage?
     weak var delegate: SyntaxStyleDelegate?
@@ -355,7 +355,9 @@ extension SyntaxStyle {
         
         let wholeRange = string.nsRange
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
-        var highlightRange = editedRange.intersection(wholeRange)  // in case that wholeRange length is changed from editedRange
+        
+        // in case that wholeRange length is changed from editedRange
+        guard var highlightRange = editedRange.intersection(wholeRange) else { return }
         
         // highlight whole if string is enough short
         if wholeRange.length <= bufferLength {
@@ -366,18 +368,18 @@ extension SyntaxStyle {
             for layoutManager in textStorage.layoutManagers {
                 guard let visibleRange = layoutManager.firstTextView?.visibleRange else { continue }
                 
-                if editedRange.intersects(with: visibleRange) {
+                if editedRange.intersection(visibleRange) != nil {
                     highlightRange.formUnion(visibleRange)
                 }
             }
             
-            highlightRange.formIntersection(wholeRange)
+            highlightRange = highlightRange.intersection(wholeRange)!
             highlightRange = (string as NSString).lineRange(for: highlightRange)
             
             // expand highlight area if the character just before/after the highlighting area is the same color
             if let layoutManager = textStorage.layoutManagers.first {
                 var start = highlightRange.location
-                var end = highlightRange.max
+                var end = highlightRange.upperBound
                 var effectiveRange = NSRange.notFound
                 
                 if start <= bufferLength {
@@ -394,7 +396,7 @@ extension SyntaxStyle {
                                                     atCharacterIndex: end,
                                                     longestEffectiveRange: &effectiveRange,
                                                     in: wholeRange) != nil {
-                    end = effectiveRange.max
+                    end = effectiveRange.upperBound
                 }
                 
                 highlightRange = NSRange(location: start, length: end - start)
@@ -439,7 +441,7 @@ extension SyntaxStyle {
         if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
             // wait for window becomes ready
             DispatchQueue.global(qos: .background).async {
-                while !(storage.layoutManagers.first?.firstTextView?.window?.isVisible ?? false) && !operation.isFinished {
+                while storage.layoutManagers.isEmpty && !operation.isFinished {
                     usleep(100)
                 }
                 
