@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- [beta] Fix syntax color highlighting under specific comments and quotes conditions.
+
+
+
 3.2.0-beta.2 (194)
 --------------------------
 
