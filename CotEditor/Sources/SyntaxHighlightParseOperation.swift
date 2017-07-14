@@ -392,6 +392,9 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             if $0.range.location < $1.range.location { return true }
             if $0.range.location > $1.range.location { return false }
             
+            if $0.range.length == 0 { return true }
+            if $1.range.length == 0 { return false }
+            
             if $0.role.rawValue == $1.role.rawValue {
                 return $0.range.length > $1.range.length
             }

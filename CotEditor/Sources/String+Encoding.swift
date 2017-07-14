@@ -144,7 +144,7 @@ extension String {
                     return
                 }
                 
-            // check UTF-32 BOM
+            // check UTF-16 BOM
             } else if data.starts(with: UTF16.beBom) || data.starts(with: UTF16.leBom) {
                 if let string = String(data: data, encoding: .utf16) {
                     usedEncoding = .utf16

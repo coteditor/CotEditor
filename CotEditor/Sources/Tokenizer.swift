@@ -106,7 +106,7 @@ final class Tokenizer {
     ///   - token: Found token.
     ///   - range: Range of token including prefix and suffix.
     ///   - keywordRange: Range of keyword.
-    func tokenize(_ string: String, range: NSRange? = nil, block: (_ token: String, _ range: NSRange, _ keywordRange: NSRange) -> (Void)) {
+    func tokenize(_ string: String, range: NSRange? = nil, block: (_ token: String, _ range: NSRange, _ keywordRange: NSRange) -> Void) {
         
         self.regex.enumerateMatches(in: string, range: range ?? string.nsRange) { (match, _, _) in
             

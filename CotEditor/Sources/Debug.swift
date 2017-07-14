@@ -51,7 +51,7 @@ func moof(_ items: Any..., function: String = #function) {
 
 
 /// Measure execution time of process.
-func measureTime(work: () -> (Void)) -> TimeInterval {
+func measureTime(work: () -> Void) -> TimeInterval {
     
     let date = Date()
     work()
@@ -60,7 +60,7 @@ func measureTime(work: () -> (Void)) -> TimeInterval {
 
 
 /// print execution time of process.
-func moofTime(_ label: String? = nil, work: () -> (Void)) {
+func moofTime(_ label: String? = nil, work: () -> Void) {
     
     let icon = Thread.isMainThread ? "🐕" : "🐄"
     let time = measureTime(work: work)
