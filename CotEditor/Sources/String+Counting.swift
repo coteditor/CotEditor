@@ -37,7 +37,7 @@ extension String {
     
     
     ///
-    func countComposedCharacters(_ body: ((_ stop: inout Bool) -> (Void))? = nil) -> Int {
+    func countComposedCharacters(_ body: ((_ stop: inout Bool) -> Void)? = nil) -> Int {
         
         guard !self.isEmpty else { return 0 }
         
