@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- [AppStore ver.] Fix an issue where acknowledgement window was empty.
+
+
+
+
 3.2.0 (196)
 --------------------------
 
