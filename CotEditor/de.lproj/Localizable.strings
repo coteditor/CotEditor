@@ -32,7 +32,7 @@
 
 
 // Main menu item titles
-"Check for Updates…" = "Nach Aktualisierungen suchen …";
+"Check for Updates…" = "Nach Updates suchen …";
 "What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number
 
 

@@ -74,10 +74,10 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
-"geU-63-sAC.title" = "Aktualisierung:";
+"geU-63-sAC.title" = "Softwareupdate:";
 
 /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
-"3423.title" = "Automatisch nach Aktualisierungen suchen";
+"3423.title" = "Automatisch nach Updates suchen";
 
 /* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
 "4aT-ka-sbv.title" = "Vorabversionen einschließen";
