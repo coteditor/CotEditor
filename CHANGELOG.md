@@ -5,6 +5,11 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle framework to version 1.18.0.
+
+
 ### Fixes
 
 - [AppStore ver.] Fix an issue where acknowledgement window was empty.
