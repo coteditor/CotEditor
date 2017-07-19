@@ -835,6 +835,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
         } catch {
             self.readingEncoding = self.encoding
+            
+            // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+            NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
+            
             throw ReinterpretationError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding)
         }
     }
