@@ -213,7 +213,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// return preferred file extension corresponding the current syntax style
+    /// return preferred file extension corresponding to the current syntax style
     override func fileNameExtension(forType typeName: String, saveOperation: NSSaveOperationType) -> String? {
         
         if let pathExtension = self.fileURL?.pathExtension {
@@ -262,6 +262,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func read(from url: URL, ofType typeName: String) throws {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
+        
         let data = try Data(contentsOf: url)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
         
@@ -279,12 +280,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // try reading the `com.apple.TextEncoding` extended attribute
         let xattrEncoding: String.Encoding? = {
-            guard
-                let extendedAttributes = attributes[NSFileExtendedAttributes] as? [String: Any],
-                let xattrEncodingData = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data
-                else { return nil }
+            let extendedAttributes = attributes[NSFileExtendedAttributes] as? [String: Any]
+            let xattrEncodingData = extendedAttributes?[FileExtendedAttributeName.Encoding] as? Data
             
-            return xattrEncodingData.decodingXattrEncoding
+            return xattrEncodingData?.decodingXattrEncoding
         }()
         self.shouldSaveXattr = (xattrEncoding != nil)
         
