@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Adjust character inspector position for vertical tab.
 - [non-AppStore ver.] Update Sparkle framework to version 1.18.0.
 
 
