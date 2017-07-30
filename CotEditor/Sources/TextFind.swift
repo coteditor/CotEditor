@@ -85,8 +85,18 @@ final class TextFind {
         }
         
         if settings.usesRegularExpression {
+            let sanitizedFindString: String = {
+                // replace `\v` with `\u000b`
+                //   -> Because NSRegularExpression cannot handle `\v` correctly. (2017-07 on macOS 10.12)
+                //   cf. https://github.com/coteditor/CotEditor/issues/713
+                if findString.contains("\\v") {
+                    return findString.replacingOccurrences(of: "(?<!\\\\)\\\\v", with: "\\\\u000b", options: .regularExpression)
+                }
+                return findString
+            }()
+            
             do {
-                self.regex = try NSRegularExpression(pattern: findString, options: settings.regexOptions)
+                self.regex = try NSRegularExpression(pattern: sanitizedFindString, options: settings.regexOptions)
             } catch {
                 let failureReason: String? = (error as? LocalizedError)?.failureReason
                 throw TextFindError.regularExpression(reason: failureReason)

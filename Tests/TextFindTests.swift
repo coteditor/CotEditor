@@ -98,6 +98,27 @@ class TextFindTests: XCTestCase {
     }
     
     
+    func testVerticalTabFind() {
+        
+        let text = "\u{b}000\\v000\n"
+        let findString = "\\v"
+        
+        let settings = TextFind.Settings(usesRegularExpression: true,
+                                         isWrap: true,
+                                         regexOptions: [.caseInsensitive],
+                                         unescapesReplacementString: true)
+        
+        let textFind = try! TextFind(for: text, findString: findString, settings: settings)
+        let result = textFind.find(forward: false)
+        XCTAssertEqual(result.count, 1)
+        
+        // wrong pattern with raw NSRegularExpression
+        let regex = try! NSRegularExpression(pattern: findString)
+        let numberOfMatches = regex.numberOfMatches(in: text, range: NSRange(location: 0, length: text.utf16.count))
+        XCTAssertEqual(numberOfMatches, 2)
+    }
+    
+    
     func testSingleRegexFindAndReplacement() {
         
         let findString = "(?!=a)b(c)(?=d)"
