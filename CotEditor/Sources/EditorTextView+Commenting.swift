@@ -95,7 +95,7 @@ extension EditorTextView {
         let string = self.string
         
         guard
-            let selectedRange = string.range(from: self.selectedRange),
+            let selectedRange = Range(self.selectedRange, in: string),
             let targetRange = self.commentingRange(fromLineHead: fromLineHead)
             else { return }
         
@@ -112,7 +112,7 @@ extension EditorTextView {
         
         guard let (newString, newSelectedRange) = new else { return }
         
-        self.replace(with: newString, range: string.nsRange(from: targetRange), selectedRange: newSelectedRange,
+        self.replace(with: newString, range: NSRange(targetRange, in: string), selectedRange: newSelectedRange,
                      actionName: NSLocalizedString("Comment Out", comment: "action name"))
     }
     
@@ -125,7 +125,7 @@ extension EditorTextView {
         let string = self.string
         
         guard
-            let selectedRange = string.range(from: self.selectedRange),
+            let selectedRange = Range(self.selectedRange, in: string),
             let targetRange = self.commentingRange(fromLineHead: fromLineHead),
             !targetRange.isEmpty else { return }
         
@@ -141,7 +141,7 @@ extension EditorTextView {
         
         guard let (newString, newSelectedRange) = new else { return }
         
-        self.replace(with: newString, range: string.nsRange(from: targetRange), selectedRange: newSelectedRange,
+        self.replace(with: newString, range: NSRange(targetRange, in: string), selectedRange: newSelectedRange,
                      actionName: NSLocalizedString("Uncomment", comment: "action name"))
     }
     
@@ -185,7 +185,7 @@ extension EditorTextView {
     /// return commenting target range
     private func commentingRange(fromLineHead: Bool) -> Range<String.Index>? {
         
-        guard let selectedRange = self.string.range(from: self.selectedRange) else { return nil }
+        guard let selectedRange = Range(self.selectedRange, in: self.string) else { return nil }
         
         return fromLineHead ? self.string.lineRange(for: selectedRange, excludingLastLineEnding: true) : selectedRange
     }

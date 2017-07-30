@@ -83,7 +83,7 @@ extension String {
     /// count the number of lines in the range
     func numberOfLines(in range: NSRange, includingLastLineEnding: Bool) -> Int {
         
-        guard let characterRange = self.range(from: range) else { return 0 }
+        guard let characterRange = Range(range, in: self) else { return 0 }
         
         return self.numberOfLines(in: characterRange, includingLastLineEnding: includingLastLineEnding)
     }

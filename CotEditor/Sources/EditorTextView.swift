@@ -1355,7 +1355,7 @@ extension EditorTextView {
             var highlightRange = NSRange.notFound
             _ = self.layoutManager?.temporaryAttribute(.foregroundColor, atCharacterIndex: wordRange.location, longestEffectiveRange: &highlightRange, in: self.string.nsRange)
             
-            let highlightCharacterRange = self.string.range(from: highlightRange)!
+            let highlightCharacterRange = Range(highlightRange, in: self.string)!
             let firstHighlightIndex = highlightCharacterRange.lowerBound
             let lastHighlightIndex = self.string.index(before: highlightCharacterRange.upperBound)
             
@@ -1400,7 +1400,7 @@ extension EditorTextView {
         
         let wordRange = self.string.rangeOfCharacters(from: CharacterSet(charactersIn: ".:").inverted, at: locationIndex, range: proposedRange) ?? proposedRange
         
-        return self.string.nsRange(from: wordRange)
+        return NSRange(wordRange, in: self.string)
     }
     
 }
