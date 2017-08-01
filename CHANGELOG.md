@@ -15,6 +15,7 @@ develop
 
 - Fix an issue where the regular expression didn't handle `\v` metacharacter correctly.
 - Fix an issue where the selection of encoding menu in toolbar didn't restore to the previous one when encoding reinterpretation was failed.
+- Address an issue where the application could crash on document saving.
 - [AppStore ver.] Fix an issue where acknowledgement window was empty.
 
 

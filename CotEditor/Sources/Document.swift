@@ -693,10 +693,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard didChange else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
             // If not, an alert shows up when user saves the file.
-            if let lastModificationDate = self.fileModificationDate,
-               let fileModificationDate = fileModificationDate,
-               lastModificationDate < fileModificationDate {
-                self.fileModificationDate = fileModificationDate
+            DispatchQueue.main.async { [weak self] in
+                guard
+                    let lastModificationDate = self?.fileModificationDate,
+                    let fileModificationDate = fileModificationDate,
+                    lastModificationDate < fileModificationDate
+                    else { return }
+                
+                self?.fileModificationDate = fileModificationDate
             }
             return
         }
