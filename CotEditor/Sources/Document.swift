@@ -51,6 +51,7 @@ private enum SerializationKey {
 
 // file extended attributes
 private let NSFileExtendedAttributes = FileAttributeKey("NSFileExtendedAttributes")
+
 private enum FileExtendedAttributeName {
     static let Encoding = "com.apple.TextEncoding"
     static let VerticalText = "com.coteditor.VerticalText"
@@ -560,6 +561,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         return super.prepareSavePanel(savePanel)
     }
+    
     private dynamic var allowedFileTypes: [String]?
     
     
@@ -1118,7 +1120,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // detect encoding from data
-        let encodingList = UserDefaults.standard[.encodingList].map { return $0.uint32Value }
+        let encodingList = UserDefaults.standard[.encodingList].map { $0.uint32Value }
         var usedEncoding: String.Encoding?
         let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
         
@@ -1146,7 +1148,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
                                                upTo: maxEncodingScanLength,
-                                               suggestedCFEncodings: suggestedCFEncodings.map { return $0.uint32Value })
+                                               suggestedCFEncodings: suggestedCFEncodings.map { $0.uint32Value })
     }
     
     

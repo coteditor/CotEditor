@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import XCTest
 
 class EncodingDetectionTests: XCTestCase {
     
-    var bundle: Bundle!
+    var bundle: Bundle?
     
 
     override func setUp() {
@@ -159,7 +159,7 @@ class EncodingDetectionTests: XCTestCase {
                        String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213))
         
         XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(forTags: tags, upTo: 128,
-                                                      suggestedCFEncodings: [utf8Int, shiftJISX0213Int, shiftJISInt]),
+                                                                           suggestedCFEncodings: [utf8Int, shiftJISX0213Int, shiftJISInt]),
                        String.Encoding.utf8)
     }
     
@@ -237,7 +237,7 @@ class EncodingDetectionTests: XCTestCase {
     
     func dataForFileName(_ fileName: String) -> Data {
         
-        let fileURL = self.bundle.url(forResource: fileName, withExtension: "txt", subdirectory: "Encodings")
+        let fileURL = self.bundle!.url(forResource: fileName, withExtension: "txt", subdirectory: "Encodings")
         let data = try? Data(contentsOf: fileURL!)
         
         XCTAssertNotNil(data)

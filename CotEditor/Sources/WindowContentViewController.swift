@@ -223,7 +223,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
                 .forEach {
                     $0.sidebarViewItem?.isCollapsed = !shown
                     $0.sidebarThickness = self.sidebarThickness
-            }
+                }
         }
     }
     

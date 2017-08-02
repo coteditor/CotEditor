@@ -528,7 +528,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         // comments and quoted text
         DispatchQueue.main.async { [weak progress = self.progress] in
             progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
-                                                         NSLocalizedString("comments and quoted texts", comment: ""))
+                                                    NSLocalizedString("comments and quoted texts", comment: ""))
         }
         let commentAndQuoteRanges = self.extractCommentsWithQuotes()
         for (key, value) in commentAndQuoteRanges {
