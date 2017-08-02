@@ -659,7 +659,7 @@ private extension ScriptToken {
 
 // MARK: - Private Functions
 
-fileprivate func writeToConsole(message: String, scriptName: String) {
+private func writeToConsole(message: String, scriptName: String) {
     
     DispatchQueue.main.async {
         ConsolePanelController.shared.showWindow(nil)
