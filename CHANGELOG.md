@@ -8,6 +8,9 @@ develop
 ### Improvements
 
 - Adjust character inspector position for vertical tab.
+- Update `cot` command-line tool.
+    - Avoid creating an extra blank document if `cot` command creates new document.
+    - Fix an issue where launching application with `--background` option didn't make CotEditor visible.
 - [non-AppStore ver.] Update Sparkle framework to version 1.18.0.
 
 
