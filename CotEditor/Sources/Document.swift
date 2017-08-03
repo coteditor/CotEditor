@@ -412,13 +412,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
         
-        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [weak self] (error: Error?) in
+        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
             defer {
                 completionHandler(error)
             }
             
             guard error == nil else { return }
-            guard let strongSelf = self else { return }
             
             assert(Thread.isMainThread)
             
@@ -426,28 +425,28 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if saveOperation == .saveAsOperation {
                 let fileName = url.lastPathComponent
                 if let styleName = SyntaxManager.shared.settingName(documentFileName: fileName)
-                    ?? SyntaxManager.shared.settingName(documentContent: strongSelf.string)
+                    ?? SyntaxManager.shared.settingName(documentContent: self.string)
                     // -> Due to the async-saving, self.string can be changed from the actual saved contents.
                     //    But we don't care about that.
                 {
-                    strongSelf.setSyntaxStyle(name: styleName)
+                    self.setSyntaxStyle(name: styleName)
                 }
             }
             
             if saveOperation != .autosaveElsewhereOperation {
                 // update file information
-                strongSelf.analyzer.invalidateFileInfo()
+                self.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
                 let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
-                strongSelf.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
+                self.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
             
             switch saveOperation {
             case .saveOperation,
                  .saveAsOperation,
                  .saveToOperation:
-                ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
+                ScriptManager.shared.dispatchEvent(documentSaved: self)
             default: break
             }
         }
@@ -680,14 +679,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         var didChange = false
         var fileModificationDate: Date?
         let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [weak self] (newURL) in  // FILE_READ
+        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [unowned self] (newURL) in  // FILE_READ
             // ignore if file's modificationDate is the same as document's modificationDate
             fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
-            guard fileModificationDate != self?.fileModificationDate else { return }
+            guard fileModificationDate != self.fileModificationDate else { return }
             
             // ignore if file contents is the same as the stored file data
             let data = try? Data(contentsOf: newURL)
-            guard data != self?.fileData else { return }
+            guard data != self.fileData else { return }
             
             didChange = true
         }
@@ -1029,38 +1028,36 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         
         let documentWindow = self.windowForSheet!
-        alert.beginSheetModal(for: documentWindow) { [weak self] (returnCode: NSModalResponse) in
-            guard let strongSelf = self else { return }
-            
+        alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSModalResponse) in
             switch returnCode {
             case NSAlertFirstButtonReturn:  // = Convert
-                strongSelf.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
+                self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
                 
             case NSAlertSecondButtonReturn:  // = Reinterpret
                 // ask user if document is edited
-                if strongSelf.isDocumentEdited, let fileURL = strongSelf.fileURL {
+                if self.isDocumentEdited, let fileURL = self.fileURL {
                     let alert = NSAlert()
                     alert.messageText = String(format: NSLocalizedString("The file “%@” has unsaved changes.", comment: ""), fileURL.lastPathComponent)
                     alert.informativeText = NSLocalizedString("Do you want to discard the changes and reset the file encoding?", comment: "")
                     alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
                     alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
                     
-                    documentWindow.attachedSheet?.orderOut(strongSelf)  // close previous sheet
+                    documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
                     let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
                     
                     guard returnCode != NSAlertFirstButtonReturn else {  // = Cancel
                         // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                        NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
+                        NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
                         return
                     }
                 }
                 
                 // reinterpret
-                strongSelf.reinterpretAndShowError(encoding: encoding)
+                self.reinterpretAndShowError(encoding: encoding)
                 
             case NSAlertThirdButtonReturn:  // = Cancel
                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
+                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
                 
             default: break
             }
@@ -1248,13 +1245,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.alertStyle = .critical
         }
         
-        alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSModalResponse) in
             
             if returnCode == NSAlertSecondButtonReturn {  // == Revert
-                self?.revertWithoutAsking()
+                self.revertWithoutAsking()
             }
             
-            self?.isExternalUpdateAlertShown = false
+            self.isExternalUpdateAlertShown = false
         }
     }
     
