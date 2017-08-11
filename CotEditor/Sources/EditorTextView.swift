@@ -769,7 +769,7 @@ final class EditorTextView: NSTextView, Themable {
                 self.detectLinkIfNeeded()
             } else {
                 if let textStorage = self.textStorage {
-                    textStorage.removeAttribute(.link, range: textStorage.string.nsRange)
+                    textStorage.removeAttribute(.link, range: textStorage.mutableString.range)
                 }
             }
             
@@ -790,7 +790,7 @@ final class EditorTextView: NSTextView, Themable {
             
         case DefaultKeys.enablesHangingIndent.rawValue, DefaultKeys.hangingIndentWidth.rawValue:
             if let textStorage = self.textStorage {
-                let wholeRange = textStorage.string.nsRange
+                let wholeRange = textStorage.mutableString.range
                 if keyPath == DefaultKeys.enablesHangingIndent.rawValue && !(newValue as! Bool) {
                     if let paragraphStyle = self.defaultParagraphStyle {
                         textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
@@ -932,7 +932,7 @@ final class EditorTextView: NSTextView, Themable {
         
         guard let textStorage = self.textStorage else { return }
         
-        let range = textStorage.string.nsRange
+        let range = textStorage.mutableString.range
         
         guard range.length > 0 else { return }
         
