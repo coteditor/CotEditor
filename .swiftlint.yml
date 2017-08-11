@@ -20,6 +20,7 @@ opt_in_rules:
   - vertical_parameter_alignment_on_call
 
 disabled_rules:
+  - block_based_kvo
   - for_where
   - force_cast
   - nesting
