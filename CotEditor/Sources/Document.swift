@@ -791,7 +791,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let editorString = self.textStorage.string  // line ending is always LF
         
         if self.lineEnding == .LF {
-            return NSString(string: editorString) as String  // make sure being immutable
+            return editorString.immutable  // make sure being immutable
         }
         
         return editorString.replacingLineEndings(with: self.lineEnding)

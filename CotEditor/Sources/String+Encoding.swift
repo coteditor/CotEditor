@@ -271,7 +271,9 @@ extension String {
     /// convert Yen sign in consideration of the encoding
     func convertingYenSign(for encoding: String.Encoding) -> String {
         
-        guard !self.isEmpty && !encoding.canConvertYenSign else { return String(self) }
+        guard !self.isEmpty && !encoding.canConvertYenSign else {
+            return self
+        }
         
         // replace Yen signs to backslashs if encoding cannot convert Yen sign
         return self.replacingOccurrences(of: "¥", with: "\\")
