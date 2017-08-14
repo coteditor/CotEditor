@@ -446,7 +446,7 @@ final class ShellScript: Script {
         // read output asynchronously for safe with huge output
         if let outputType = outputType {
             outPipe.fileHandleForReading.readToEndOfFileInBackgroundAndNotify()
-            var observer: NSObjectProtocol?
+            weak var observer: NSObjectProtocol?
             observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: nil) { (note: Notification) in
                 NotificationCenter.default.removeObserver(observer!)
                 
