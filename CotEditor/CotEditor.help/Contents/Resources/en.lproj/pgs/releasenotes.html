@@ -22,6 +22,42 @@
 <h1>Release Notes</h1>
 
 
+
+<article>
+<header>
+	<h1>CotEditor 3.2.1</h1>
+	<p>release: <time>2017-08</time></p>
+</header>
+
+
+<section>
+<h3>Improvements</h3>
+
+<ul>
+	<li>Adjust character inspector position for vertical tab.</li>
+	<li>Update <code>cot</code> command-line tool:
+	<ul>
+		<li>Avoid creating an extra blank document if <code>cot</code> command creates a new window.</li>
+		<li>Fix an issue where launching the application with <code>--background</code> option didn't make CotEditor visible.</li>
+	</ul></li>
+	<li><span class="label">non-AppStore ver.</span>: Update Sparkle framework to version 1.18.0.</li>
+</ul>
+</section>
+
+
+<section>
+<h3>Fixes</h3>
+
+<ul>
+	<li>Fix an issue where the regular expression didn't handle <code>\v</code> metacharacter correctly.</li>
+	<li>Fix an issue where the selection of encoding menu in toolbar didn't restore to the previous one when encoding reinterpretation was failed.</li>
+	<li>Address an issue where the application could crash on document saving or text replacement.</li>
+	<li><span class="label">AppStore ver.</span>: Fix an issue where acknowledgement window was empty.</li>
+</ul>
+</section>
+</article>
+
+
 <article>
 <header>
 	<h1>CotEditor 3.2.0</h1>
