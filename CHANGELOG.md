@@ -11,7 +11,7 @@ develop
 - Update `cot` command-line tool:
     - Avoid creating an extra blank document if `cot` command creates a new window.
     - Fix an issue where launching the application with `--background` option didn't make CotEditor visible.
-- [non-AppStore ver.] Update Sparkle framework to version 1.18.0.
+- [non-AppStore ver.] Update Sparkle framework to version 1.18.1.
 
 
 ### Fixes
