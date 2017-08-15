@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension Collection where Iterator.Element == String {
+extension Collection where Element == String {
     
     /// Create a name adding a number suffix not to be contained in the receiver.
     ///

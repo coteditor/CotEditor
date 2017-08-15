@@ -43,9 +43,9 @@ extension Array where Element: Equatable {
 extension Collection {
 
     /// Return the element at the specified index only if it is within bounds, otherwise nil.
-    public subscript(safe index: Index) -> Iterator.Element? {
+    public subscript(safe index: Index) -> Element? {
         
-        return (startIndex..<endIndex).contains(index) ? self[index] : nil
+        return indices.contains(index) ? self[index] : nil
     }
     
 }
@@ -54,7 +54,7 @@ extension Collection {
 extension Sequence {
     
     /// Build a dictionary from (key, value) tuple.
-    func flatDictionary<K, V>(transform: ((Iterator.Element) -> (K, V)?)) -> [K: V] {
+    func flatDictionary<K, V>(transform: ((Element) -> (K, V)?)) -> [K: V] {
         
         var dict = [K: V]()
         for element in self {
@@ -79,7 +79,7 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate.
-    func count(_ predicate: (Iterator.Element) -> Bool) -> Int {
+    func count(_ predicate: (Element) -> Bool) -> Int {
         
         var count = 0
         for element in self where predicate(element) {
@@ -95,7 +95,7 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
-    func countPrefix(while predicate: (Iterator.Element) -> Bool) -> Int {
+    func countPrefix(while predicate: (Element) -> Bool) -> Int {
         
         var count = 0
         for element in self {
