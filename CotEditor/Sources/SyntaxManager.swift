@@ -365,30 +365,28 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// empty style dictionary
-    lazy var blankSettingDictionary: StyleDictionary = {
+    var blankSettingDictionary: StyleDictionary {
         
-        // workaround for for Xcode's SourceKitService performance
-        var dictionary = StyleDictionary()
-        dictionary[SyntaxKey.metadata.rawValue] = NSMutableDictionary()
-        dictionary[SyntaxKey.extensions.rawValue] = NSMutableArray()
-        dictionary[SyntaxKey.filenames.rawValue] = NSMutableArray()
-        dictionary[SyntaxKey.interpreters.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.keywords.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.commands.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.types.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.attributes.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.variables.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.values.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.numbers.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.strings.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.characters.rawValue] = NSMutableArray()
-        dictionary[SyntaxType.comments.rawValue] = NSMutableArray()
-        dictionary[SyntaxKey.outlineMenu.rawValue] = NSMutableArray()
-        dictionary[SyntaxKey.completions.rawValue] = NSMutableArray()
-        dictionary[SyntaxKey.commentDelimiters.rawValue] = NSMutableDictionary()
-        
-        return dictionary
-    }()
+        return [
+            SyntaxKey.metadata.rawValue: NSMutableDictionary(),
+            SyntaxKey.extensions.rawValue: NSMutableArray(),
+            SyntaxKey.filenames.rawValue: NSMutableArray(),
+            SyntaxKey.interpreters.rawValue: NSMutableArray(),
+            SyntaxType.keywords.rawValue: NSMutableArray(),
+            SyntaxType.commands.rawValue: NSMutableArray(),
+            SyntaxType.types.rawValue: NSMutableArray(),
+            SyntaxType.attributes.rawValue: NSMutableArray(),
+            SyntaxType.variables.rawValue: NSMutableArray(),
+            SyntaxType.values.rawValue: NSMutableArray(),
+            SyntaxType.numbers.rawValue: NSMutableArray(),
+            SyntaxType.strings.rawValue: NSMutableArray(),
+            SyntaxType.characters.rawValue: NSMutableArray(),
+            SyntaxType.comments.rawValue: NSMutableArray(),
+            SyntaxKey.outlineMenu.rawValue: NSMutableArray(),
+            SyntaxKey.completions.rawValue: NSMutableArray(),
+            SyntaxKey.commentDelimiters.rawValue: NSMutableDictionary(),
+        ]
+    }
     
     
     
