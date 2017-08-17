@@ -305,7 +305,7 @@ final class LayoutManager: NSLayoutManager {
         
         let multiple = self.firstTextView?.defaultParagraphStyle?.lineHeightMultiple ?? 1.0
         
-        return round(multiple * self.defaultLineHeight)
+        return multiple * self.defaultLineHeight
     }
     
     

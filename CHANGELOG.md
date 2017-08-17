@@ -7,6 +7,15 @@ develop
 
 ### Improvements
 
+- Adjust line height calcuration.
+
+
+
+3.2.1 (199)
+--------------------------
+
+### Improvements
+
 - Adjust character inspector position for vertical tab.
 - Update `cot` command-line tool:
     - Avoid creating an extra blank document if `cot` command creates a new window.
