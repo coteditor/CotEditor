@@ -788,10 +788,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal text storage has always LF for its line ending.)
     var string: String {
         
-        let editorString = self.textStorage.string  // line ending is always LF
+        let editorString = self.textStorage.string.immutable  // line ending is always LF
         
         if self.lineEnding == .LF {
-            return editorString.immutable  // make sure being immutable
+            return editorString
         }
         
         return editorString.replacingLineEndings(with: self.lineEnding)
