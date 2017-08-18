@@ -935,7 +935,7 @@ final class EditorTextView: NSTextView, Themable {
         guard range.length > 0 else { return }
         
         textStorage.addAttributes(self.typingAttributes, range: range)
-        (self.layoutManager as? LayoutManager?)??.invalidateIndent(in: range)
+        (self.layoutManager as? LayoutManager)?.invalidateIndent(in: range)
         self.detectLinkIfNeeded()
     }
     
