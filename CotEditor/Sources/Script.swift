@@ -363,6 +363,7 @@ final class ShellScript: Script {
         case replaceAllText = "ReplaceAllText"
         case insertAfterSelection = "InsertAfterSelection"
         case appendToAllText = "AppendToAllText"
+        case newDocument = "NewDocument"
         case pasteBoard = "Pasteboard"
         
         static var token = "CotEditorXOutput"
@@ -536,6 +537,13 @@ final class ShellScript: Script {
             return
         }
         
+        if type == .newDocument {
+            let document = try NSDocumentController.shared().openUntitledDocumentAndDisplay(true) as! Document
+            document.insert(string: output)
+            document.selectedRange = NSRange(location: 0, length: 0)
+            return
+        }
+        
         guard let editor = editor else {
             throw ScriptError.noOutputTarget
         }
@@ -554,7 +562,7 @@ final class ShellScript: Script {
             case .appendToAllText:
                 editor.append(string: output)
                 
-            case .pasteBoard:
+            case .newDocument, .pasteBoard:
                 assertionFailure()
             }
         }
