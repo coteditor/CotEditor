@@ -29,6 +29,13 @@ import Foundation
 
 extension String {
     
+    /// return copied string to make sure the string is not a kind of NSMutableString.
+    var immutable: String {
+        
+        return NSString(string: self) as String
+    }
+    
+    
     /// unescape backslashes
     var unescaped: String {
         

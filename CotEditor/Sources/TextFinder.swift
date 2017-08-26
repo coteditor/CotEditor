@@ -537,7 +537,7 @@ final class TextFinder: NSResponder {
         guard
             let textView = self.client,
             textView.isEditable,
-            let string = textView.string
+            let string = textView.string?.immutable
             else {
                 NSBeep()
                 return nil

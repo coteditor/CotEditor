@@ -179,7 +179,7 @@ final class DocumentAnalyzer: NSObject {
             return types
         }()
         
-        let operation = EditorInfoCountOperation(string: NSString(string: document.textStorage.string) as String,
+        let operation = EditorInfoCountOperation(string: document.textStorage.string.immutable,
                                                  lineEnding: document.lineEnding,
                                                  selectedRange: textView.selectedRange,
                                                  requiredInfo: requiredInfo,

@@ -252,7 +252,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 
                 menuItem.keyEquivalent = ""
                 menuItem.keyEquivalentModifierMask = []
-        }
+            }
     }
     
     
@@ -276,7 +276,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 
                 menuItem.keyEquivalent = shortcut.keyEquivalent
                 menuItem.keyEquivalentModifierMask = shortcut.modifierMask
-        }
+            }
     }
     
     
@@ -302,7 +302,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 let item = KeyBindingItem(action: action, shortcut: shortcut, defaultShortcut: defaultShortcut)
                 
                 return NamedTreeNode(name: menuItem.title, representedObject: item)
-        }
+            }
     }
     
 }

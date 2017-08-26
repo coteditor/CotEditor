@@ -5,15 +5,22 @@ included:
 
 opt_in_rules:
   - attributes
+  - closure_end_indentation
   - closure_spacing
   - explicit_init
+  - extension_access_modifier
   - file_header
   - first_where
+  - implicit_return
+  - let_var_whitespace
+  - multiline_parameters
+  - nimble_operator
   - private_outlet
   - redundant_nil_coalescing
-  - valid_docs
+  - vertical_parameter_alignment_on_call
 
 disabled_rules:
+  - block_based_kvo
   - for_where
   - force_cast
   - nesting

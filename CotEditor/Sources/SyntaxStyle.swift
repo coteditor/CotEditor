@@ -299,7 +299,7 @@ extension SyntaxStyle {
         }
         
         let operation = OutlineParseOperation(definitions: self.outlineDefinitions)
-        operation.string = NSString(string: string) as String  // make sure being immutable
+        operation.string = string.immutable  // make sure being immutable
         operation.parseRange = string.nsRange
         
         operation.completionBlock = { [weak self, weak operation] in
@@ -322,6 +322,8 @@ extension SyntaxStyle {
     /// update whole document highlights
     func highlightAll(completionHandler: (() -> Void)? = nil) {  // @escaping
         
+        assert(Thread.isMainThread)
+        
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
@@ -338,7 +340,7 @@ extension SyntaxStyle {
         //   -> `string` of NSTextStorage is actually a mutable object
         //      and it can cause crash when the mutable string is given to NSRegularExpression instance.
         //      (2016-11, macOS 10.12.1 SDK)
-        let string = NSString(string: textStorage.string) as String
+        let string = textStorage.string.immutable
         
         self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
     }
@@ -347,11 +349,13 @@ extension SyntaxStyle {
     /// update highlights around passed-in range
     func highlight(around editedRange: NSRange) {
         
+        assert(Thread.isMainThread)
+        
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
         guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
         
         // make sure that string is immutable (see `highlightAll()` for details)
-        let string = NSString(string: textStorage.string) as String
+        let string = textStorage.string.immutable
         
         let wholeRange = string.nsRange
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]

@@ -51,6 +51,7 @@ private enum SerializationKey {
 
 // file extended attributes
 private let NSFileExtendedAttributes = FileAttributeKey("NSFileExtendedAttributes")
+
 private enum FileExtendedAttributeName {
     static let Encoding = "com.apple.TextEncoding"
     static let VerticalText = "com.coteditor.VerticalText"
@@ -213,7 +214,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// return preferred file extension corresponding the current syntax style
+    /// return preferred file extension corresponding to the current syntax style
     override func fileNameExtension(forType typeName: String, saveOperation: NSSaveOperationType) -> String? {
         
         if let pathExtension = self.fileURL?.pathExtension {
@@ -262,6 +263,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func read(from url: URL, ofType typeName: String) throws {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
+        
         let data = try Data(contentsOf: url)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
         
@@ -279,12 +281,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // try reading the `com.apple.TextEncoding` extended attribute
         let xattrEncoding: String.Encoding? = {
-            guard
-                let extendedAttributes = attributes[NSFileExtendedAttributes] as? [String: Any],
-                let xattrEncodingData = extendedAttributes[FileExtendedAttributeName.Encoding] as? Data
-                else { return nil }
+            let extendedAttributes = attributes[NSFileExtendedAttributes] as? [String: Any]
+            let xattrEncodingData = extendedAttributes?[FileExtendedAttributeName.Encoding] as? Data
             
-            return xattrEncodingData.decodingXattrEncoding
+            return xattrEncodingData?.decodingXattrEncoding
         }()
         self.shouldSaveXattr = (xattrEncoding != nil)
         
@@ -412,13 +412,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
         
-        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [weak self] (error: Error?) in
+        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
             defer {
                 completionHandler(error)
             }
             
             guard error == nil else { return }
-            guard let strongSelf = self else { return }
             
             assert(Thread.isMainThread)
             
@@ -426,28 +425,28 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if saveOperation == .saveAsOperation {
                 let fileName = url.lastPathComponent
                 if let styleName = SyntaxManager.shared.settingName(documentFileName: fileName)
-                    ?? SyntaxManager.shared.settingName(documentContent: strongSelf.string)
+                    ?? SyntaxManager.shared.settingName(documentContent: self.string)
                     // -> Due to the async-saving, self.string can be changed from the actual saved contents.
                     //    But we don't care about that.
                 {
-                    strongSelf.setSyntaxStyle(name: styleName)
+                    self.setSyntaxStyle(name: styleName)
                 }
             }
             
             if saveOperation != .autosaveElsewhereOperation {
                 // update file information
-                strongSelf.analyzer.invalidateFileInfo()
+                self.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
                 let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
-                strongSelf.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
+                self.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
             }
             
             switch saveOperation {
             case .saveOperation,
                  .saveAsOperation,
                  .saveToOperation:
-                ScriptManager.shared.dispatchEvent(documentSaved: strongSelf)
+                ScriptManager.shared.dispatchEvent(documentSaved: self)
             default: break
             }
         }
@@ -561,6 +560,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         return super.prepareSavePanel(savePanel)
     }
+    
     private dynamic var allowedFileTypes: [String]?
     
     
@@ -679,14 +679,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         var didChange = false
         var fileModificationDate: Date?
         let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [weak self] (newURL) in  // FILE_READ
+        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [unowned self] (newURL) in  // FILE_READ
             // ignore if file's modificationDate is the same as document's modificationDate
             fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
-            guard fileModificationDate != self?.fileModificationDate else { return }
+            guard fileModificationDate != self.fileModificationDate else { return }
             
             // ignore if file contents is the same as the stored file data
             let data = try? Data(contentsOf: newURL)
-            guard data != self?.fileData else { return }
+            guard data != self.fileData else { return }
             
             didChange = true
         }
@@ -694,10 +694,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard didChange else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
             // If not, an alert shows up when user saves the file.
-            if let lastModificationDate = self.fileModificationDate,
-               let fileModificationDate = fileModificationDate,
-               lastModificationDate < fileModificationDate {
-                self.fileModificationDate = fileModificationDate
+            DispatchQueue.main.async { [weak self] in
+                guard
+                    let lastModificationDate = self?.fileModificationDate,
+                    let fileModificationDate = fileModificationDate,
+                    lastModificationDate < fileModificationDate
+                    else { return }
+                
+                self?.fileModificationDate = fileModificationDate
             }
             return
         }
@@ -784,10 +788,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal text storage has always LF for its line ending.)
     var string: String {
         
-        let editorString = self.textStorage.string  // line ending is always LF
+        let editorString = self.textStorage.string.immutable  // line ending is always LF
         
         if self.lineEnding == .LF {
-            return NSString(string: editorString) as String  // make sure being immutable
+            return editorString
         }
         
         return editorString.replacingLineEndings(with: self.lineEnding)
@@ -835,6 +839,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
         } catch {
             self.readingEncoding = self.encoding
+            
+            // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+            NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
+            
             throw ReinterpretationError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding)
         }
     }
@@ -1020,38 +1028,36 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         
         let documentWindow = self.windowForSheet!
-        alert.beginSheetModal(for: documentWindow) { [weak self] (returnCode: NSModalResponse) in
-            guard let strongSelf = self else { return }
-            
+        alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSModalResponse) in
             switch returnCode {
             case NSAlertFirstButtonReturn:  // = Convert
-                strongSelf.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
+                self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
                 
             case NSAlertSecondButtonReturn:  // = Reinterpret
                 // ask user if document is edited
-                if strongSelf.isDocumentEdited, let fileURL = strongSelf.fileURL {
+                if self.isDocumentEdited, let fileURL = self.fileURL {
                     let alert = NSAlert()
                     alert.messageText = String(format: NSLocalizedString("The file “%@” has unsaved changes.", comment: ""), fileURL.lastPathComponent)
                     alert.informativeText = NSLocalizedString("Do you want to discard the changes and reset the file encoding?", comment: "")
                     alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
                     alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
                     
-                    documentWindow.attachedSheet?.orderOut(strongSelf)  // close previous sheet
+                    documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
                     let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
                     
                     guard returnCode != NSAlertFirstButtonReturn else {  // = Cancel
                         // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                        NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
+                        NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
                         return
                     }
                 }
                 
                 // reinterpret
-                strongSelf.reinterpretAndShowError(encoding: encoding)
+                self.reinterpretAndShowError(encoding: encoding)
                 
             case NSAlertThirdButtonReturn:  // = Cancel
                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: strongSelf)
+                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
                 
             default: break
             }
@@ -1111,7 +1117,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // detect encoding from data
-        let encodingList = UserDefaults.standard[.encodingList].map { return $0.uint32Value }
+        let encodingList = UserDefaults.standard[.encodingList].map { $0.uint32Value }
         var usedEncoding: String.Encoding?
         let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
         
@@ -1139,7 +1145,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
                                                upTo: maxEncodingScanLength,
-                                               suggestedCFEncodings: suggestedCFEncodings.map { return $0.uint32Value })
+                                               suggestedCFEncodings: suggestedCFEncodings.map { $0.uint32Value })
     }
     
     
@@ -1239,13 +1245,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.alertStyle = .critical
         }
         
-        alert.beginSheetModal(for: self.windowForSheet!) { [weak self] (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSModalResponse) in
             
             if returnCode == NSAlertSecondButtonReturn {  // == Revert
-                self?.revertWithoutAsking()
+                self.revertWithoutAsking()
             }
             
-            self?.isExternalUpdateAlertShown = false
+            self.isExternalUpdateAlertShown = false
         }
     }
     

@@ -27,7 +27,7 @@
 
 import Cocoa
 
-fileprivate extension NSTouchBarItemIdentifier {
+private extension NSTouchBarItemIdentifier {
     
     static let textSizeActual = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.textSizeActual")
     static let textSizeSlider = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.textSizeSlider")

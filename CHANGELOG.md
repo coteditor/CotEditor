@@ -2,6 +2,29 @@
 Change Log
 ==========================
 
+3.2.1 (201)
+--------------------------
+
+### Improvements
+
+- Adjust character inspector position for vertical tab.
+- Update `cot` command-line tool:
+    - Avoid creating an extra blank document if `cot` command creates a new window.
+    - Fix an issue where launching the application with `--background` option didn't make CotEditor visible.
+- Adjust line height calcuration.
+- [non-AppStore ver.] Update Sparkle framework to version 1.18.1.
+
+
+### Fixes
+
+- Fix an issue where the File Drop settings couldn't be saved.
+- Fix an issue where the regular expression didn't handle `\v` metacharacter correctly.
+- Fix an issue where the selection of encoding menu in toolbar didn't restore to the previous one when encoding reinterpretation was failed.
+- Address an issue where the application could crash on document saving or text replacement.
+- [AppStore ver.] Fix an issue where acknowledgement window was empty.
+
+
+
 3.2.0 (196)
 --------------------------
 

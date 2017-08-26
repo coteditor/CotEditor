@@ -29,6 +29,12 @@ import AppKit
 
 // MARK: Range
 
+private extension NSGlyph {
+    
+    static let verticalTab = NSGlyph(16777215)
+}
+
+
 extension NSTextView {
     
     /// calculate visible range
@@ -53,7 +59,14 @@ extension NSTextView {
             let textContainer = self.textContainer else { return nil }
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-        let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+        var boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+        
+        // adjust size if the substring of the given range is single vertical tab character.
+        if glyphRange.length == 1, layoutManager.glyph(at: glyphRange.location) == .verticalTab {
+            let lineHeight = layoutManager.lineFragmentRect(forGlyphAt: range.location, effectiveRange: nil).height
+            
+            boundingRect.size = CGSize(width: lineHeight / 2, height: lineHeight)
+        }
         
         return boundingRect.offset(by: self.textContainerOrigin)
     }
