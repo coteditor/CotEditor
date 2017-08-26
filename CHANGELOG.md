@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+Develop
+--------------------------
+
+### New Features
+
+- Add new `NewDocument` option to `CotEditorXOutput` for UNIX Scripting to put output string to newly created document.
+
+
+
 3.2.1 (201)
 --------------------------
 
