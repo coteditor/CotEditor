@@ -287,7 +287,8 @@
   },
   "JavaScript": {
     "extensions": [
-      "js"
+      "js",
+      "pac"
     ],
     "filenames": [
 

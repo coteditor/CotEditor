@@ -9,6 +9,11 @@ Develop
 
 - Add new `NewDocument` option to `CotEditorXOutput` for UNIX Scripting to put output string to newly created document.
 
+### Improvements
+
+- Update “JavaScript” syntax style:
+    - Add “.pac” extension.
+
 
 
 3.2.1 (201)
