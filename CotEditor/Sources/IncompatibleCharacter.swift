@@ -90,7 +90,7 @@ extension String {
             }()
             
             let characterIndex = self.index(self.startIndex, offsetBy: index).samePosition(in: self.utf16)
-            let location = self.utf16.startIndex.distance(to: characterIndex)
+            let location = characterIndex!.encodedOffset
             
             incompatibles.append(IncompatibleCharacter(character: character,
                                                        convertedCharacter: sanitizedConvertedCharacter,

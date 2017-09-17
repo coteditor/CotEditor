@@ -142,9 +142,9 @@ private final class TouchBarValidator {
         
         NSApp.touchBar?.validateVisibleItems()
         
-        guard let window = NSApp.mainWindow else { return }
+        guard let firstResponder = NSApp.mainWindow?.firstResponder else { return }
         
-        for responder in sequence(first: window.firstResponder, next: { $0.nextResponder }) {
+        for responder in sequence(first: firstResponder, next: { $0.nextResponder }) {
             responder.touchBar?.validateVisibleItems()
         }
     }

@@ -99,7 +99,7 @@ final class ATSTypesetter: NSATSTypesetter {
         guard let string = self.attributedString?.string else { return true }
         
         // -> Getting index fails when the code point is a part of surrogate pair.
-        guard let index = string.utf16.startIndex.advanced(by: charIndex).samePosition(in: string) else { return true }
+        guard let index = String.UTF16Index(encodedOffset: charIndex).samePosition(in: string) else { return true }
         
         // -> Don't use `characters` instead of `unicodeScalars` because of a memory leak (2016-09 macOS 10.12).
         for character in string.substring(to: index).unicodeScalars.reversed() {

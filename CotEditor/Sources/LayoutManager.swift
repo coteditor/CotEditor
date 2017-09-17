@@ -225,7 +225,7 @@ final class LayoutManager: NSLayoutManager {
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                let utf16Index = String.UTF16Index(charIndex)
+                let utf16Index = String.UTF16Index(encodedOffset: charIndex)
                 let codeUnit = string.utf16[utf16Index]
                 
                 let line: CTLine

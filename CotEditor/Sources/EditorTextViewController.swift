@@ -314,7 +314,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard difference == 1 else { return }
         
         // check the caracter just before the cursor
-        guard let cursorIndex = String.UTF16Index(cursorLocation).samePosition(in: string) else { return }
+        guard let cursorIndex = String.UTF16Index(encodedOffset: cursorLocation).samePosition(in: string) else { return }
         let lastIndex = string.index(before: cursorIndex)
         let lastCharacter = string.characters[lastIndex]
         
@@ -331,7 +331,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             return
         }
         
-        let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
+        let location = index.samePosition(in: string.utf16)!.encodedOffset
         
         textView.showFindIndicator(for: NSRange(location: location, length: 1))
     }

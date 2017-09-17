@@ -13,7 +13,7 @@ Develop
 
 - Update “JavaScript” syntax style:
     - Add “.pac” extension.
-
+- Update build environment to Xcode 9 (SDK macOS 10.13).
 
 
 3.2.1 (201)
