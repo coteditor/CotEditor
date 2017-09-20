@@ -16,6 +16,12 @@ Develop
 - Update build environment to Xcode 9 (SDK macOS 10.13).
 
 
+### Fixes
+
+- Fix an issue where current line highlight was occasionally too wide when line height is 1.0.
+
+
+
 3.2.1 (201)
 --------------------------
 
