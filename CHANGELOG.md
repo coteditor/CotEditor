@@ -19,6 +19,7 @@ Develop
 ### Fixes
 
 - Fix an issue where current line highlight was occasionally too wide when line height is 1.0.
+- Fix an issue where the hanging-indent was not update in specific cases.
 
 
 
