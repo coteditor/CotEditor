@@ -450,8 +450,6 @@ final class TextFinder: NSResponder {
                     return
                 }
                 
-                indicator.done()
-                
                 if !replacementItems.isEmpty {
                     let replacementStrings = replacementItems.map { $0.string }
                     let replacementRanges = replacementItems.map { $0.range }
@@ -459,7 +457,11 @@ final class TextFinder: NSResponder {
                     // apply found strings to the text view
                     textView.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
                                      actionName: NSLocalizedString("Replace All", comment: ""))
-                } else {
+                }
+                
+                indicator.done()
+                
+                if replacementItems.isEmpty {
                     NSBeep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
