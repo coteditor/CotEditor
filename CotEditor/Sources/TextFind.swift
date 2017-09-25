@@ -231,16 +231,20 @@ final class TextFind {
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
     ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, nil.
-    func replaceAll(with replacementString: String, using block: (_ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    func replaceAll(with replacementString: String, using block: @escaping (_ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems = [ReplacementItem]()
         var selectedRanges = [NSRange]()
+        var ioStop = false
         
         // temporal container collecting replacements to process string per selection in `scopeCompletionHandler` block
         var items = [ReplacementItem]()
         
         self.enumerateMatchs(in: self.scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+            if ioStop {
+                stop = true
+            }
             
             let replacedString: String = {
                 guard let match = match, let regex = match.regularExpression else { return replacementString }
@@ -250,14 +254,17 @@ final class TextFind {
             
             items.append(ReplacementItem(string: replacedString, range: matchedRange))
             
-            block(&stop)
-            
         }, scopeCompletionHandler: { (scopeRange: NSRange) in
             // build replacementString
-            let substring = (self.string as NSString).substring(with: scopeRange)
-            let replacedString = items.reversed().reduce(substring) { (substring, item) in
+            var replacedString = (self.string as NSString).substring(with: scopeRange)
+            
+            for item in items.reversed() {
+                // -> Invoke the block here because replacing text takes much more time than searching.
+                block(&ioStop)
+                if ioStop { return }
+                
                 let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)
-                return (substring as NSString).replacingCharacters(in: substringRange, with: item.string)
+                replacedString = (replacedString as NSString).replacingCharacters(in: substringRange, with: item.string)
             }
             replacementItems.append(ReplacementItem(string: replacedString, range: scopeRange))
             
