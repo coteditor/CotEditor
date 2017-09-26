@@ -235,6 +235,7 @@ final class TextFind {
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
     ///   - block: The Block enumerates the matches.
+    ///   - flag: The current state of the replacing progress.
     ///   - stop: The Block can set the value to true to stop further processing of the array.
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
@@ -265,21 +266,26 @@ final class TextFind {
         }, scopeCompletionHandler: { (scopeRange: NSRange) in
             block(.foundCount(items.count), &ioStop)
             
-            // build replacementString
-            var replacedString = (self.string as NSString).substring(with: scopeRange)
-            
-            for item in items.reversed() {
-                block(.replacementProgress, &ioStop)
-                if ioStop { return }
-                
-                let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)
-                replacedString = (replacedString as NSString).replacingCharacters(in: substringRange, with: item.string)
+            let length: Int
+            if items.isEmpty {
+                length = scopeRange.length
+            } else {
+                // build replacementString
+                var replacedString = (self.string as NSString).substring(with: scopeRange)
+                for item in items.reversed() {
+                    block(.replacementProgress, &ioStop)
+                    if ioStop { return }
+                    
+                    let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)
+                    replacedString = (replacedString as NSString).replacingCharacters(in: substringRange, with: item.string)
+                }
+                replacementItems.append(ReplacementItem(string: replacedString, range: scopeRange))
+                length = (replacedString as NSString).length
             }
-            replacementItems.append(ReplacementItem(string: replacedString, range: scopeRange))
             
             // build selectedRange
             let locationDelta = zip(selectedRanges, self.selectedRanges).reduce(scopeRange.location) { $0 + ($1.0.length - $1.1.length) }
-            let selectedRange = NSRange(location: locationDelta, length: (replacedString as NSString).length)
+            let selectedRange = NSRange(location: locationDelta, length: length)
             selectedRanges.append(selectedRange)
             
             items.removeAll()
