@@ -12,6 +12,9 @@ Develop
 
 ### Improvements
 
+- Improve Replace All action:
+    - Avoid recoloring after Replace All if no text replaced.
+    - Improve the progress indicator.
 - Update “JavaScript” syntax style:
     - Add “.pac” extension.
 - Update build environment to Xcode 9 (SDK macOS 10.13).
