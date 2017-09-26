@@ -15,6 +15,8 @@ Develop
 - Improve Replace All action:
     - Avoid recoloring after Replace All if no text replaced.
     - Improve the progress indicator.
+- Change to highlight matching braces just like Xcode.
+    - No more beep for unbalanced braces.
 - Update “JavaScript” syntax style:
     - Add “.pac” extension.
 - Update build environment to Xcode 9 (SDK macOS 10.13).
