@@ -66,6 +66,7 @@
 "Find All" = "すべて検索";
 "Replace All" = "すべて置換";
 "Highlight" = "ハイライト";
+"Searching in text…" = "テキストを検索しています...";
 "%@ string found." = "%@ 件見つかりました。";
 "%@ strings found." = "%@ 件見つかりました。";
 "%@ string replaced." = "%@ 件置換しました。";

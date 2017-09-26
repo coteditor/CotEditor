@@ -66,6 +66,7 @@
 "Find All" = "Cerca tutti";
 "Replace All" = "Sostituisci tutti";
 "Highlight" = "Evidenzia";
+"Searching in text…" = "Searching in text…"; // TODO: added
 "%@ string found." = "%@ stringa trovata.";
 "%@ strings found." = "%@ stringhe trovate.";
 "%@ string replaced." = "%@ stringa sostituita.";
