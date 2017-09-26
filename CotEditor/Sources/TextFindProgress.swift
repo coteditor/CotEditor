@@ -43,6 +43,7 @@ final class TextFindProgress: Progress {
         
         super.init(parent: nil, userInfo: nil)
         self.totalUnitCount = Int64(totalUnitCount)
+        self.localizedDescription = self.format.localizedString(for: 0)
     }
     
     

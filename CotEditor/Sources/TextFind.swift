@@ -48,6 +48,14 @@ final class TextFind {
     }
     
     
+    enum ReplacingFlag {
+        
+        case findProgress
+        case foundCount(Int)
+        case replacementProgress
+    }
+    
+    
     
     // MARK: Public Properties
     
@@ -231,7 +239,7 @@ final class TextFind {
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
     ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, nil.
-    func replaceAll(with replacementString: String, using block: @escaping (_ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    func replaceAll(with replacementString: String, using block: @escaping (_ flag: ReplacingFlag, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems = [ReplacementItem]()
@@ -254,13 +262,17 @@ final class TextFind {
             
             items.append(ReplacementItem(string: replacedString, range: matchedRange))
             
+            block(.findProgress, &stop)
+            
         }, scopeCompletionHandler: { (scopeRange: NSRange) in
+            block(.foundCount(items.count), &ioStop)
+            
             // build replacementString
             var replacedString = (self.string as NSString).substring(with: scopeRange)
             
             for item in items.reversed() {
                 // -> Invoke the block here because replacing text takes much more time than searching.
-                block(&ioStop)
+                block(.replacementProgress, &ioStop)
                 if ioStop { return }
                 
                 let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)

@@ -431,16 +431,29 @@ final class TextFinder: NSResponder {
             guard let strongSelf = self else { return }
             
             var count = 0
-            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (stop) in
+            var progressStep = 0
+            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
                 
-                count += 1
-                
-                progress.needsUpdateDescription(count: count)
+                switch flag {
+                case .findProgress:
+                    break  // just give a change to cancel
+                    
+                case .foundCount(let scopeTotal):
+                    let kFrequency = 500
+                    progressStep = (scopeTotal > kFrequency) ? Int(scopeTotal / kFrequency) : scopeTotal
+                    
+                case .replacementProgress:
+                    count += 1
+                    if count % progressStep == 0 {
+                        progress.needsUpdateDescription(count: count)
+                    }
+                }
             }
+            progress.needsUpdateDescription(count: count)  // display final replaced number
             
             DispatchQueue.main.sync {
                 textView.isEditable = true
