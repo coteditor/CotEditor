@@ -250,9 +250,6 @@ final class TextFind {
         var items = [ReplacementItem]()
         
         self.enumerateMatchs(in: self.scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
-            if ioStop {
-                stop = true
-            }
             
             let replacedString: String = {
                 guard let match = match, let regex = match.regularExpression else { return replacementString }
@@ -262,7 +259,8 @@ final class TextFind {
             
             items.append(ReplacementItem(string: replacedString, range: matchedRange))
             
-            block(.findProgress, &stop)
+            block(.findProgress, &ioStop)
+            stop = ioStop
             
         }, scopeCompletionHandler: { (scopeRange: NSRange) in
             block(.foundCount(items.count), &ioStop)
@@ -271,7 +269,6 @@ final class TextFind {
             var replacedString = (self.string as NSString).substring(with: scopeRange)
             
             for item in items.reversed() {
-                // -> Invoke the block here because replacing text takes much more time than searching.
                 block(.replacementProgress, &ioStop)
                 if ioStop { return }
                 
