@@ -66,7 +66,7 @@
 "Find All" = "查找全部";
 "Replace All" = "替换全部";
 "Highlight" = "高亮";
-"Searching in text…" = "Searching in text..."; // FIXME: added
+"Searching in text…" = "正在文本中搜索...";
 "%@ string found." = "找到 %@ 个匹配";
 "%@ strings found." = "找到 %@ 个匹配";
 "%@ string replaced." = "已替换 %@ 个匹配";
