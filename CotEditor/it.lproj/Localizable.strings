@@ -66,7 +66,7 @@
 "Find All" = "Cerca tutti";
 "Replace All" = "Sostituisci tutti";
 "Highlight" = "Evidenzia";
-"Searching in text…" = "Searching in text…"; // FIXME: added
+"Searching in text…" = "Ricerca nel testo…";
 "%@ string found." = "%@ stringa trovata.";
 "%@ strings found." = "%@ stringhe trovate.";
 "%@ string replaced." = "%@ stringa sostituita.";
