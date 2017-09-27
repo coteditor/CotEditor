@@ -306,6 +306,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard
             cursorLocation != NSNotFound,
+            cursorLocation > 0,
             let cursorIndex = String.UTF16Index(encodedOffset: cursorLocation).samePosition(in: string)
             else { return }
         
