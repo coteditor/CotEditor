@@ -51,5 +51,12 @@ class GeometryTests: XCTestCase {
         XCTAssertEqual(CGPoint(x: 2, y:3).offsetBy(dx: 4, dy: 5), CGPoint(x: 6, y: 8))
         XCTAssertEqual(CGPoint(x: 2, y:3).offset(by: -CGPoint(x: 2, y:3)), CGPoint.zero)
     }
+    
+    
+    func testRound() {
+        
+        XCTAssertEqual(CGFloat(2.555).rounded(to: 1), 2.6)
+        XCTAssertEqual(CGFloat(2.444).rounded(to: 2), 2.44)
+    }
 
 }
