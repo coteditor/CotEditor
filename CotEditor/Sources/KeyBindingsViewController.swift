@@ -85,6 +85,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         self.outlineTree = self.manager.outlineTree(defaults: false)
         self.isRestoreble = !self.manager.usesDefaultKeyBindings
+        self.outlineView?.reloadData()
     }
     
     
