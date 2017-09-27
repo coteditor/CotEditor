@@ -160,7 +160,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="bQJ-P8-Oc8" name="value" keyPath="objectValue" id="b4N-fU-yfy"/>
-                                                                        <outlet property="delegate" destination="sBQ-LT-Rwm" id="zMa-Wm-hu0"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -1136,7 +1135,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="5Mj-24-vkv" name="value" keyPath="objectValue" id="f9g-2Z-soV"/>
-                                                                        <outlet property="delegate" destination="9kQ-W2-4kw" id="HAc-Dw-dnS"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
