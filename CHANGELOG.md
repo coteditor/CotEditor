@@ -7,7 +7,7 @@ Develop
 
 ### New Features
 
-- Add new `NewDocument` option to `CotEditorXOutput` for UNIX Scripting to put output string to newly created document.
+- Add new `NewDocument` option to `CotEditorXOutput` for UNIX Scripting to put output string to a newly created document.
 
 
 ### Improvements
@@ -24,6 +24,7 @@ Develop
 
 ### Fixes
 
+- Fix an issue where the Key Binding setting tables were empty on macOS 10.13 High Sierra.
 - Fix an issue where current line highlight was occasionally too wide when line height is 1.0.
 - Fix an issue where the hanging-indent was not updated in specific cases.
 

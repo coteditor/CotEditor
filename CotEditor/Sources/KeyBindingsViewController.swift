@@ -85,6 +85,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         self.outlineTree = self.manager.outlineTree(defaults: false)
         self.isRestoreble = !self.manager.usesDefaultKeyBindings
+        self.outlineView?.reloadData()
     }
     
     
@@ -157,6 +158,11 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
             
             // set default short cut to placeholder
             textField.placeholderString = keyBinding?.defaultShortcut.description
+            
+            // set delegate of ShortcutKeyField programmatically for workaround of the Interface Builder on Xcode 9 (2017-9)
+            if textField is ShortcutKeyField {
+                textField.delegate = self
+            }
         }
     }
     

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jWV-Py-v0Q">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jWV-Py-v0Q">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,6 +48,7 @@
                             <constraint firstAttribute="bottom" secondItem="QgL-xK-6YG" secondAttribute="bottom" constant="20" symbolic="YES" id="Efs-9c-K7b"/>
                             <constraint firstAttribute="trailing" secondItem="QgL-xK-6YG" secondAttribute="trailing" constant="20" symbolic="YES" id="IVj-dU-zgm"/>
                             <constraint firstItem="Bxq-jn-CEb" firstAttribute="top" secondItem="dbj-Tj-xav" secondAttribute="top" constant="12" symbolic="YES" id="OKb-Ff-9CG"/>
+                            <constraint firstItem="QgL-xK-6YG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dbj-Tj-xav" secondAttribute="leading" constant="20" symbolic="YES" id="RKC-6G-vbE"/>
                             <constraint firstItem="QgL-xK-6YG" firstAttribute="top" secondItem="Bxq-jn-CEb" secondAttribute="bottom" constant="12" symbolic="YES" id="neP-1o-M52"/>
                             <constraint firstAttribute="trailing" secondItem="Bxq-jn-CEb" secondAttribute="trailing" constant="20" symbolic="YES" id="zX4-WP-2w3"/>
                         </constraints>
@@ -67,7 +69,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="504" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ib-kt-Wxu">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ib-kt-Wxu">
                                 <rect key="frame" x="18" y="321" width="468" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="To change a binding, select it, click the key column, and then type the keys." id="Hue-bU-8wr">
                                     <font key="font" metaFont="smallSystem"/>
@@ -105,7 +107,7 @@
                                                             <rect key="frame" x="1" y="1" width="344" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="JLp-JH-Jok">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLp-JH-Jok">
                                                                     <rect key="frame" x="0.0" y="0.0" width="344" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Action Name" id="0Uo-2F-m2T">
                                                                         <font key="font" metaFont="system"/>
@@ -146,7 +148,7 @@
                                                             <rect key="frame" x="348" y="1" width="112" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TE0-Ap-drx" customClass="ShortcutKeyField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE0-Ap-drx" customClass="ShortcutKeyField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="112" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="⌘N" id="T1C-pj-eFu">
                                                                         <font key="font" metaFont="system"/>
@@ -158,7 +160,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="bQJ-P8-Oc8" name="value" keyPath="objectValue" id="b4N-fU-yfy"/>
-                                                                        <outlet property="delegate" destination="sBQ-LT-Rwm" id="zMa-Wm-hu0"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -177,7 +178,7 @@
                                             </tableColumns>
                                             <connections>
                                                 <outlet property="dataSource" destination="sBQ-LT-Rwm" id="iZd-Jb-Ofb"/>
-                                                <outlet property="delegate" destination="DCK-MH-F2c" id="Fwq-Ag-Q9a"/>
+                                                <outlet property="delegate" destination="sBQ-LT-Rwm" id="um2-rI-2oy"/>
                                             </connections>
                                         </outlineView>
                                     </subviews>
@@ -209,7 +210,7 @@
                                     <binding destination="sBQ-LT-Rwm" name="enabled" keyPath="restoreble" id="vHw-kA-B8G"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="9m2-IX-4UY">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="9m2-IX-4UY">
                                 <rect key="frame" x="18" y="339" width="169" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Shortcuts for menu items" id="ZYM-tb-Csx">
                                     <font key="font" metaFont="systemBold"/>
@@ -217,7 +218,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="9bY-Ch-TGC">
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="9bY-Ch-TGC">
                                 <rect key="frame" x="191" y="339" width="129" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="(excluding Script menu)" id="Dl2-3y-7EJ">
                                     <font key="font" metaFont="smallSystem"/>
@@ -225,7 +226,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlK-a9-bD5">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlK-a9-bD5">
                                 <rect key="frame" x="18" y="305" width="468" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The keys here must include the Command key." id="qGe-Et-FB2">
                                     <font key="font" metaFont="smallSystem"/>
@@ -233,7 +234,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7F-7i-PcV">
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7F-7i-PcV">
                                 <rect key="frame" x="18" y="7" width="330" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' doesn’t include Command Key. Please choose another key." id="PAH-9l-L5p">
                                     <font key="font" metaFont="smallSystem"/>
@@ -264,6 +265,7 @@
                             <constraint firstItem="W7F-7i-PcV" firstAttribute="top" secondItem="m1z-qp-Bip" secondAttribute="bottom" constant="8" symbolic="YES" id="uPj-7Y-jDr"/>
                             <constraint firstItem="rlK-a9-bD5" firstAttribute="leading" secondItem="DCK-MH-F2c" secondAttribute="leading" constant="20" symbolic="YES" id="wIW-YV-zDq"/>
                             <constraint firstItem="m1z-qp-Bip" firstAttribute="top" secondItem="rlK-a9-bD5" secondAttribute="bottom" constant="8" symbolic="YES" id="wLi-vT-u8u"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9bY-Ch-TGC" secondAttribute="trailing" constant="20" symbolic="YES" id="xtZ-uv-1RT"/>
                             <constraint firstItem="0ib-kt-Wxu" firstAttribute="leading" secondItem="DCK-MH-F2c" secondAttribute="leading" constant="20" symbolic="YES" id="yhN-CT-pyF"/>
                         </constraints>
                     </view>
@@ -283,7 +285,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="504" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y0R-5q-peR">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y0R-5q-peR">
                                 <rect key="frame" x="18" y="321" width="468" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="To change a binding, select it, click the key column, and then type the keys." id="a9m-M2-rgC">
                                     <font key="font" metaFont="smallSystem"/>
@@ -291,7 +293,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="460" translatesAutoresizingMaskIntoConstraints="NO" id="9iZ-6g-sv2">
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="460" translatesAutoresizingMaskIntoConstraints="NO" id="9iZ-6g-sv2">
                                 <rect key="frame" x="18" y="107" width="108" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Insertion Format:" usesSingleLineMode="YES" id="tuB-9O-QZH">
                                     <font key="font" metaFont="system"/>
@@ -305,7 +307,7 @@
                                     <rect key="frame" x="1" y="1" width="462" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" richText="NO" allowsUndo="YES" smartInsertDelete="YES" id="5nm-kB-oHA" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
+                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" id="5nm-kB-oHA" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="462" height="58"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1080,7 +1082,7 @@
                                                             <rect key="frame" x="1" y="1" width="344" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Heh-3g-LcD">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Heh-3g-LcD">
                                                                     <rect key="frame" x="0.0" y="0.0" width="344" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Insert Text 0" id="Tyt-Cd-biz">
                                                                         <font key="font" metaFont="system"/>
@@ -1121,7 +1123,7 @@
                                                             <rect key="frame" x="348" y="1" width="112" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CBW-5n-q6l" customClass="ShortcutKeyField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBW-5n-q6l" customClass="ShortcutKeyField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="112" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="⇧↩" id="X9M-VG-4QE">
                                                                         <font key="font" metaFont="system"/>
@@ -1133,7 +1135,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="5Mj-24-vkv" name="value" keyPath="objectValue" id="f9g-2Z-soV"/>
-                                                                        <outlet property="delegate" destination="9kQ-W2-4kw" id="HAc-Dw-dnS"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -1170,7 +1171,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="460" translatesAutoresizingMaskIntoConstraints="NO" id="5MG-oB-l1Z">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="460" translatesAutoresizingMaskIntoConstraints="NO" id="5MG-oB-l1Z">
                                 <rect key="frame" x="18" y="339" width="225" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Shortcuts for preset text insertion" id="eMZ-Mx-JSK">
                                     <font key="font" metaFont="systemBold"/>
@@ -1178,7 +1179,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H96-sj-oDK">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H96-sj-oDK">
                                 <rect key="frame" x="18" y="305" width="468" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The keys here must exclude the Command key." id="5zd-aF-0zL">
                                     <font key="font" metaFont="smallSystem"/>
@@ -1186,7 +1187,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXn-Ep-KgN">
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXn-Ep-KgN">
                                 <rect key="frame" x="18" y="21" width="330" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="'Foo' includes the Command key. Please choose another key." id="4cq-fK-Hff">
                                     <font key="font" metaFont="smallSystem"/>
@@ -1214,6 +1215,8 @@
                             </popUpButton>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="nhE-yy-CSt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9iZ-6g-sv2" secondAttribute="trailing" constant="8" symbolic="YES" id="17X-h6-ehJ"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5MG-oB-l1Z" secondAttribute="trailing" constant="20" symbolic="YES" id="38T-gh-tPc"/>
                             <constraint firstAttribute="trailing" secondItem="u4k-5i-Dap" secondAttribute="trailing" constant="20" symbolic="YES" id="3Bd-WJ-ROb"/>
                             <constraint firstAttribute="bottom" secondItem="Ail-hi-5Nc" secondAttribute="bottom" constant="10" id="4WO-1A-rHM"/>
                             <constraint firstItem="Ail-hi-5Nc" firstAttribute="top" secondItem="0sD-wd-Lpr" secondAttribute="bottom" constant="12" id="51C-vD-9he"/>
