@@ -423,4 +423,4 @@ private extension CTLine {
         
         return CTLineCreateWithAttributedString(attrString)
     }
- }
+}
