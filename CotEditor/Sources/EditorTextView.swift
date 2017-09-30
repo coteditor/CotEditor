@@ -127,6 +127,10 @@ final class EditorTextView: NSTextView, Themable {
         
         super.init(coder: coder)
         
+        // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13).
+        self.scaleUnitSquare(to: NSSize(width: 1.001, height: 1.001))
+        self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
+        
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
         layoutManager.allowsNonContiguousLayout = true
