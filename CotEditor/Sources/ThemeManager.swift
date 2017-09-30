@@ -153,6 +153,9 @@ final class ThemeManager: SettingFileManager {
         
         try data.write(to: fileURL, options: .atomic)
         
+        // invalidate current cache
+        self.cachedThemes[name] = nil
+        
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
             
