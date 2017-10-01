@@ -25,8 +25,61 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.2.2</h1>
+	<p>リリース: <time>2017-09</time></p>
+</header>
+
+
+<section>
+<h2>新機能</h2>
+
+<ul>
+	<li>UNIX スクリプトの出力先設定 <code>CotEditorXOutput</code> に、新しい書類を出力先に設定できる <code>NewDocument</code> を追加</li>
+</ul>
+</section>
+
+
+<section>
+<h2>改良</h2>
+
+<ul>
+	<li>「すべて置換」機能の改良：
+	<ul>
+		<li>置換する文字列がなかったときはシンタックスカラーリングのやり直しを抑止</li>
+		<li>進捗通知を改良</li>
+	</ul></li>
+	<li>対応するカッコのハイライトルールを現行の Xcode と同じように変更
+	<ul>
+		<li>対応していないカッコの入力でビープ音を鳴らす機能を廃止</li>
+	</ul></li>
+	<li>“JavaScript”シンタックススタイルを更新：
+	<ul>
+		<li>拡張子に“pac”を追加</li>
+	</ul></li>
+	<li>ビルド環境を Xcode 9 (SDK macOS 10.13) に変更</li>
+</ul>
+</section>
+
+
+<section>
+<h3>修正</h3>
+
+<ul>
+	<li>macOS 10.13 High Sierra で、キーバインド設定ペインの設定一覧表示が空になっていた不具合を修正</li>
+	<li>行高設定が 1.0 のとき、現在行のハイライトが広くなりすぎることがあった不具合を修正</li>
+	<li>テキスト選択のハイライトが行間に残ることがあった不具合を修正</li>
+	<li>テーマのカスタマイズがアプリケーションを再起動するまで反映されなかった不具合を修正</li>
+	<li>テキスト編集時にぶら下がりインデントが更新されないことがあった不具合を修正</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.2.1</h1>
-	<p>リリース: <time>2017-08</time></p>
+	<p>リリース: <time>2017-08-26</time></p>
 </header>
 
 

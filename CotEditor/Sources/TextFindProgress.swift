@@ -43,6 +43,7 @@ final class TextFindProgress: Progress {
         
         super.init(parent: nil, userInfo: nil)
         self.totalUnitCount = Int64(totalUnitCount)
+        self.localizedDescription = self.format.localizedString(for: 0)
     }
     
     
@@ -105,6 +106,8 @@ struct CountableFormatter {
     private func format(for count: Int) -> String {
         
         switch count {
+        case 0:
+            return NSLocalizedString("Searching in text...", comment: "")
         case 1:
             return self.singular
         default:

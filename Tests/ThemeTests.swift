@@ -53,9 +53,9 @@ class ThemeTests: XCTestCase {
         XCTAssertEqual(theme.name, themeName)
         XCTAssertEqual(theme.textColor, NSColor.black.usingColorSpaceName(NSCalibratedRGBColorSpace))
         XCTAssertEqual(theme.insertionPointColor, NSColor.black.usingColorSpaceName(NSCalibratedRGBColorSpace))
-        XCTAssertEqualWithAccuracy(theme.invisiblesColor.brightnessComponent, 0.72, accuracy: 0.01)
+        XCTAssertEqual(theme.invisiblesColor.brightnessComponent, 0.72, accuracy: 0.01)
         XCTAssertEqual(theme.backgroundColor, NSColor.white.usingColorSpaceName(NSCalibratedRGBColorSpace))
-        XCTAssertEqualWithAccuracy(theme.lineHighLightColor.brightnessComponent, 0.94, accuracy: 0.01)
+        XCTAssertEqual(theme.lineHighLightColor.brightnessComponent, 0.94, accuracy: 0.01)
         XCTAssertEqual(theme.selectionColor, NSColor.selectedTextBackgroundColor)
         
         for type in SyntaxType.all {

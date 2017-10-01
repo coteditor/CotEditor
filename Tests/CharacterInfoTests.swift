@@ -127,10 +127,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testSingleCharWithVSInfo() {
         
-        guard let charInfo = CharacterInfo(string: "☺︎") else {
-            XCTFail()
-            return
-        }
+        let charInfo = CharacterInfo(string: "☺︎")!
         
         XCTAssertEqual(charInfo.string, "☺︎")
         XCTAssertFalse(charInfo.isComplex)
@@ -142,10 +139,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testCombiningCharacterInfo() {
         
-        guard let charInfo = CharacterInfo(string: "1️⃣") else {
-            XCTFail()
-            return
-        }
+        let charInfo = CharacterInfo(string: "1️⃣")!
         
         XCTAssertTrue(charInfo.isComplex)
         XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+0031", "U+FE0F", "U+20E3"])
@@ -155,10 +149,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testNationalIndicatorInfo() {
         
-        guard let charInfo = CharacterInfo(string: "🇯🇵") else {
-            XCTFail()
-            return
-        }
+        let charInfo = CharacterInfo(string: "🇯🇵")!
         
         XCTAssertTrue(charInfo.isComplex)
         XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+1F1EF", "U+1F1F5"])
@@ -167,10 +158,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testControlCharacterInfo() {
         
-        guard let charInfo = CharacterInfo(string: " ") else {
-            XCTFail()
-            return
-        }
+        let charInfo = CharacterInfo(string: " ")!
         
         XCTAssertEqual(charInfo.string, " ")
         XCTAssertEqual(charInfo.pictureString, "␠")

@@ -177,9 +177,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
     func dispatchEvent(documentOpened document: Document) {
         
         let eventType = ScriptingEventType.documentOpened
-        let event = createEvent(by: document, eventID: eventType.eventID)
         
-        guard let scripts = self.scriptHandlersTable[eventType] else { return }
+        guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
+        
+        let event = self.createEvent(by: document, eventID: eventType.eventID)
         
         self.dispatch(event, handlers: scripts)
     }
@@ -191,9 +192,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
     func dispatchEvent(documentSaved document: Document) {
         
         let eventType = ScriptingEventType.documentSaved
-        let event = createEvent(by: document, eventID: eventType.eventID)
         
-        guard let scripts = self.scriptHandlersTable[eventType] else { return }
+        guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
+        
+        let event = self.createEvent(by: document, eventID: eventType.eventID)
         
         self.dispatch(event, handlers: scripts)
     }
@@ -262,8 +264,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
         
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
-        
         let documentDescriptor = document.objectSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
+        
         event.setParam(documentDescriptor, forKeyword: keyDirectObject)
         
         return event

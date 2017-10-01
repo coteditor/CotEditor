@@ -25,8 +25,61 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.2.2</h1>
+	<p>release: <time>2017-09</time></p>
+</header>
+
+
+<section>
+<h3>New Features</h3>
+
+<ul>
+	<li>Add new <code>NewDocument</code> option to <code>CotEditorXOutput</code> for UNIX Scripting to put output string to a newly created document.</li>
+</ul>
+</section>
+
+
+<section>
+<h3>Improvements</h3>
+
+<ul>
+	<li>Improve Replace All action:
+	<ul>
+		<li>Avoid recoloring after Replace All if no text replaced.</li>
+		<li>Improve the progress indicator.</li>
+	</ul></li>
+	<li>Change to highlight matching braces just like Xcode.
+	<ul>
+		<li>No more beep for unbalanced braces.</li>
+	</ul></li>
+	<li>Update “JavaScript” syntax style:
+	<ul>
+		<li>Add “.pac” extension.</li>
+	</ul></li>
+	<li>Update build environment to Xcode 9 (SDK macOS 10.13).</li>
+</ul>
+</section>
+
+
+<section>
+<h3>Fixes</h3>
+
+<ul>
+	<li>Fix an issue where the Key Binding setting tables were empty on macOS 10.13 High Sierra.</li>
+	<li>Fix an issue where current line highlight was occasionally too wide when line height is 1.0.</li>
+	<li>Fix an issue where text selection highlight could remain between lines.</li>
+	<li>Fix an issue where the theme customization was not applied immediately.</li>
+	<li>Fix an issue where the hanging-indent was not updated in specific cases.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.2.1</h1>
-	<p>release: <time>2017-08</time></p>
+	<p>release: <time>2017-08-26</time></p>
 </header>
 
 

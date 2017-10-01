@@ -71,7 +71,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private var lastCursorLocation = 0
     private lazy var currentLineUpdateTask: Debouncer = Debouncer(delay: 0.01, tolerance: 0.5) { [weak self] in self?.updateCurrentLineRect() }
     
     private enum MenuItemTag: Int {
@@ -295,43 +294,36 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// find the matching open brace and highlight it
+    /// find the matching brace and highlight it
     private func highlightMatchingBrace(in textView: NSTextView) {
         
         guard
             UserDefaults.standard[.highlightBraces],
-            let string = textView.string, !string.isEmpty,
-            textView.selectedRange.location != NSNotFound
+            let string = textView.string, !string.isEmpty
             else { return }
         
         let cursorLocation = textView.selectedRange.location
-        let difference = cursorLocation - self.lastCursorLocation
-        self.lastCursorLocation = cursorLocation
         
-        // The brace will be highlighted only when the cursor moves forward, just like on Xcode. (2006-09-10)
-        // -> If the difference is more than one, the cursor would be moved with the mouse or programmatically
-        //    and we shouldn't check for matching braces then.
-        guard difference == 1 else { return }
+        guard
+            cursorLocation != NSNotFound,
+            cursorLocation > 0,
+            let cursorIndex = String.UTF16Index(encodedOffset: cursorLocation).samePosition(in: string)
+            else { return }
         
-        // check the caracter just before the cursor
-        guard let cursorIndex = String.UTF16Index(cursorLocation).samePosition(in: string) else { return }
+        // check the character just before the cursor
         let lastIndex = string.index(before: cursorIndex)
         let lastCharacter = string.characters[lastIndex]
         
         let bracePairs: [BracePair] = UserDefaults.standard[.highlightLtGt] ? (BracePair.braces + [.ltgt]) : BracePair.braces
         
-        guard let pair = bracePairs.first(where: { $0.end == lastCharacter }) else { return }
+        guard
+            let pair = bracePairs.first(where: { $0.begin == lastCharacter || $0.end == lastCharacter }),
+            let index = (pair.begin == lastCharacter)
+                ? string.indexOfEndBrace(for: pair, at: lastIndex)
+                : string.indexOfBeginBrace(for: pair, at: lastIndex)
+            else { return }
         
-        guard let index = string.indexOfBeginBrace(for: pair, at: lastIndex) else {
-            // do not beep when the typed brace is `>`
-            //  -> Since `>` (and `<`) can often be used alone unlike other braces.
-            if pair != .ltgt {
-                NSBeep()
-            }
-            return
-        }
-        
-        let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
+        let location = index.samePosition(in: string.utf16)!.encodedOffset
         
         textView.showFindIndicator(for: NSRange(location: location, length: 1))
     }

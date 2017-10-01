@@ -48,6 +48,14 @@ final class TextFind {
     }
     
     
+    enum ReplacingFlag {
+        
+        case findProgress
+        case foundCount(Int)
+        case replacementProgress
+    }
+    
+    
     
     // MARK: Public Properties
     
@@ -227,15 +235,17 @@ final class TextFind {
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
     ///   - block: The Block enumerates the matches.
+    ///   - flag: The current state of the replacing progress.
     ///   - stop: The Block can set the value to true to stop further processing of the array.
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
     ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, nil.
-    func replaceAll(with replacementString: String, using block: (_ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    func replaceAll(with replacementString: String, using block: @escaping (_ flag: ReplacingFlag, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems = [ReplacementItem]()
         var selectedRanges = [NSRange]()
+        var ioStop = false
         
         // temporal container collecting replacements to process string per selection in `scopeCompletionHandler` block
         var items = [ReplacementItem]()
@@ -250,20 +260,32 @@ final class TextFind {
             
             items.append(ReplacementItem(string: replacedString, range: matchedRange))
             
-            block(&stop)
+            block(.findProgress, &ioStop)
+            stop = ioStop
             
         }, scopeCompletionHandler: { (scopeRange: NSRange) in
-            // build replacementString
-            let substring = (self.string as NSString).substring(with: scopeRange)
-            let replacedString = items.reversed().reduce(substring) { (substring, item) in
-                let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)
-                return (substring as NSString).replacingCharacters(in: substringRange, with: item.string)
+            block(.foundCount(items.count), &ioStop)
+            
+            let length: Int
+            if items.isEmpty {
+                length = scopeRange.length
+            } else {
+                // build replacementString
+                var replacedString = (self.string as NSString).substring(with: scopeRange)
+                for item in items.reversed() {
+                    block(.replacementProgress, &ioStop)
+                    if ioStop { return }
+                    
+                    let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)
+                    replacedString = (replacedString as NSString).replacingCharacters(in: substringRange, with: item.string)
+                }
+                replacementItems.append(ReplacementItem(string: replacedString, range: scopeRange))
+                length = (replacedString as NSString).length
             }
-            replacementItems.append(ReplacementItem(string: replacedString, range: scopeRange))
             
             // build selectedRange
             let locationDelta = zip(selectedRanges, self.selectedRanges).reduce(scopeRange.location) { $0 + ($1.0.length - $1.1.length) }
-            let selectedRange = NSRange(location: locationDelta, length: (replacedString as NSString).length)
+            let selectedRange = NSRange(location: locationDelta, length: length)
             selectedRanges.append(selectedRange)
             
             items.removeAll()

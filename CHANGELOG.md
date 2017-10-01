@@ -2,6 +2,36 @@
 Change Log
 ==========================
 
+3.2.1 (203)
+--------------------------
+
+### New Features
+
+- Add new `NewDocument` option to `CotEditorXOutput` for UNIX Scripting to put output string to a newly created document.
+
+
+### Improvements
+
+- Improve Replace All action:
+    - Avoid recoloring after Replace All if no text replaced.
+    - Improve the progress indicator.
+- Change to highlight matching braces just like Xcode.
+    - No more beep for unbalanced braces.
+- Update “JavaScript” syntax style:
+    - Add “.pac” extension.
+- Update build environment to Xcode 9 (SDK macOS 10.13).
+
+
+### Fixes
+
+- Fix an issue where the Key Binding setting tables were empty on macOS 10.13 High Sierra.
+- Fix an issue where current line highlight was occasionally too wide when line height is 1.0.
+- Fix an issue where text selection highlight could remain between lines.
+- Fix an issue where the theme customization was not applied immediately.
+- Fix an issue where the hanging-indent was not updated in specific cases.
+
+
+
 3.2.1 (201)
 --------------------------
 

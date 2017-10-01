@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -131,7 +131,7 @@ extension String {
     /// calculate column number at location in the line expanding tab (\t) character
     func column(of location: Int, tabWidth: Int) -> Int {
         
-        let index = String.UTF16Index(location).samePosition(in: self)!
+        let index = String.UTF16Index(encodedOffset: location).samePosition(in: self)!
         
         let lineRange = self.lineRange(at: index)
         let column = self.distance(from: lineRange.lowerBound, to: index)

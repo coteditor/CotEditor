@@ -1,3 +1,4 @@
 framework module ColorCode {
     header "ColorCode-Swift.h"
+    requires objc
 }

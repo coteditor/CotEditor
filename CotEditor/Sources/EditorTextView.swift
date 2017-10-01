@@ -127,6 +127,10 @@ final class EditorTextView: NSTextView, Themable {
         
         super.init(coder: coder)
         
+        // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13).
+        self.scaleUnitSquare(to: NSSize(width: 1.001, height: 1.001))
+        self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
+        
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
         layoutManager.allowsNonContiguousLayout = true
@@ -325,7 +329,7 @@ final class EditorTextView: NSTextView, Themable {
         // smart outdent with '}' charcter
         if self.isAutomaticIndentEnabled && self.isSmartIndentEnabled &&
             replacementRange.length == 0 && plainString == "}",
-            let insretionIndex = String.UTF16Index(self.selectedRange.upperBound).samePosition(in: wholeString)
+            let insretionIndex = String.UTF16Index(encodedOffset: self.selectedRange.upperBound).samePosition(in: wholeString)
         {
             let lineRange = wholeString.lineRange(at: insretionIndex)
             
@@ -1118,7 +1122,9 @@ final class EditorTextView: NSTextView, Themable {
         //   -> The actual line height will be calculated in LayoutManager and ATSTypesetter based on this line height multiple.
         //      Because the default Cocoa Text System calculate line height differently
         //      if the first character of the document is drawn with another font (typically by a composite font).
-        paragraphStyle.lineHeightMultiple = self.lineHeight
+        //   -> Round line height for workaround to avoid expanding current line highlight when line height is 1.0. (2016-09 on macOS Sierra 10.12)
+        //      e.g. Times
+        paragraphStyle.lineHeightMultiple = self.lineHeight.rounded(to: 5)
         
         // calculate tab interval
         if let font = self.font {
@@ -1218,11 +1224,11 @@ extension EditorTextView {
         guard
             let characterSet = self.firstSyntaxCompletionCharacterSet,
             let string = self.string, !string.isEmpty,
-            let beginIndex = String.UTF16Index(range.location).samePosition(in: string),
+            let beginIndex = String.UTF16Index(encodedOffset: range.location).samePosition(in: string),
             let index = string.rangeOfCharacter(from: characterSet.inverted, options: .backwards, range: string.startIndex..<beginIndex)?.upperBound
             else { return range }
         
-        let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
+        let location = index.samePosition(in: string.utf16)!.encodedOffset
         
         return NSRange(location: location, length: range.upperBound - location)
     }
@@ -1342,7 +1348,7 @@ extension EditorTextView {
         // settle result on expanding selection or if there is no possibility for clicking brackets
         guard proposedCharRange.length == 0 && wordRange.length == 1 else { return wordRange }
         
-        let characterIndex = String.UTF16Index(wordRange.location).samePosition(in: string)!
+        let characterIndex = String.UTF16Index(encodedOffset: wordRange.location).samePosition(in: string)!
         let clickedCharacter = string.characters[characterIndex]
         
         // select (syntax-highlighted) quoted text by double-clicking
@@ -1365,12 +1371,12 @@ extension EditorTextView {
         guard let pair = (BracePair.braces + [.ltgt]).first(where: { $0.begin == clickedCharacter || $0.end == clickedCharacter }) else { return wordRange }
         if pair.end == clickedCharacter {
             if let index = string.indexOfBeginBrace(for: pair, at: characterIndex) {
-                let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
+                let location = index.samePosition(in: string.utf16)!.encodedOffset
                 return NSRange(location: location, length: wordRange.location - location + 1)
             }
         } else {
             if let index = string.indexOfEndBrace(for: pair, at: characterIndex) {
-                let location = string.utf16.startIndex.distance(to: index.samePosition(in: string.utf16))
+                let location = index.samePosition(in: string.utf16)!.encodedOffset
                 return NSRange(location: wordRange.location, length: location - wordRange.location + 1)
             }
         }
@@ -1391,7 +1397,7 @@ extension EditorTextView {
         
         guard proposedWordRange.length > 1, let string = self.string,
             let proposedRange = string.range(from: proposedWordRange),
-            let locationIndex = String.UTF16Index(location).samePosition(in: string) else { return proposedWordRange }
+            let locationIndex = String.UTF16Index(encodedOffset: location).samePosition(in: string) else { return proposedWordRange }
         
         let wordRange = string.rangeOfCharacters(from: CharacterSet(charactersIn: ".:").inverted, at: locationIndex, range: proposedRange) ?? proposedRange
         

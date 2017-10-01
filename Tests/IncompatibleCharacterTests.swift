@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,21 +35,19 @@ final class IncompatibleCharacterTests: XCTestCase {
         
         let string = "abc\\ \n ¥ \n ~"
         let encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)))
-        let incompatibles = string.scanIncompatibleCharacters(for: encoding)
+        let incompatibles = string.scanIncompatibleCharacters(for: encoding)!
         
-        XCTAssertEqual(incompatibles?.count, 2)
+        XCTAssertEqual(incompatibles.count, 2)
         
-        guard let backslash = incompatibles?.first else {
-            return XCTFail()
-        }
+        let backslash = incompatibles.first!
+        
         XCTAssertEqual(backslash.character, "\\")
         XCTAssertEqual(backslash.convertedCharacter, "＼")
         XCTAssertEqual(backslash.location, 3)
         XCTAssertEqual(backslash.lineNumber, 1)
         
-        guard let tilde = incompatibles?[1] else {
-            return XCTFail()
-        }
+        let tilde = incompatibles[1]
+        
         XCTAssertEqual(tilde.character, "~")
         XCTAssertEqual(tilde.convertedCharacter, "?")
         XCTAssertEqual(tilde.location, 11)

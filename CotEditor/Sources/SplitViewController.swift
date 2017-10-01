@@ -53,7 +53,7 @@ final class SplitViewController: NSSplitViewController {
         super.viewDidLoad()
         
         // workaround for OS X Yosemite (on macOS 10.12 SDK)
-        if NSAppKitVersionNumber < Double(NSAppKitVersionNumber10_11) {
+        if NSAppKitVersion.current < .macOS10_11 {
             self.splitView.delegate = self
         }
         

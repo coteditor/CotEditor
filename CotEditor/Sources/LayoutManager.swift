@@ -225,7 +225,7 @@ final class LayoutManager: NSLayoutManager {
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                let utf16Index = String.UTF16Index(charIndex)
+                let utf16Index = String.UTF16Index(encodedOffset: charIndex)
                 let codeUnit = string.utf16[utf16Index]
                 
                 let line: CTLine
@@ -289,7 +289,7 @@ final class LayoutManager: NSLayoutManager {
     override func textStorage(_ str: NSTextStorage, edited editedMask: NSTextStorageEditedOptions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
         
         // invalidate wrapping line indent in editRange if needed
-        if editedMask & NSTextStorageEditedOptions(1) != 0 {  // Hey Swift 3, where has NSTextStorageEditedCharacters gone...
+        if editedMask & NSTextStorageEditedOptions(1) != 0 || delta < 0 {  // Hey Swift 3, where has NSTextStorageEditedCharacters gone...
             self.invalidateIndent(in: newCharRange)
         }
         

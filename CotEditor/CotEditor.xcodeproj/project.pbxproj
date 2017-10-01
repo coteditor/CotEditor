@@ -536,6 +536,8 @@
 		2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */; };
 		2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */; };
 		2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */; };
+		2AF134481F6E82AA00A85D40 /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF134471F6E82AA00A85D40 /* NSAppKitVersion.swift */; };
+		2AF134491F6E82AA00A85D40 /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF134471F6E82AA00A85D40 /* NSAppKitVersion.swift */; };
 		2AF45E1E1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */; };
 		2AF45E1F1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */; };
 		2AF45E221E6C17700030CD60 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E211E6C17700030CD60 /* OperationQueue.swift */; };
@@ -1093,6 +1095,7 @@
 		2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourCharCode.swift; sourceTree = "<group>"; };
 		2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourCharCodeTests.swift; sourceTree = "<group>"; };
 		2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+ScriptingSupport.swift"; sourceTree = "<group>"; };
+		2AF134471F6E82AA00A85D40 /* NSAppKitVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppKitVersion.swift; sourceTree = "<group>"; };
 		2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorInfoCountOperation.swift; sourceTree = "<group>"; };
 		2AF45E211E6C17700030CD60 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
 		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
@@ -1371,6 +1374,7 @@
 		2A359E001DAEA0EE00FEF7AA /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
+				2AF134471F6E82AA00A85D40 /* NSAppKitVersion.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2A71BC7D1DDC70A80085AE1C /* NSImage+Template.swift */,
@@ -1971,24 +1975,24 @@
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
 					2A3E847D1D07296200070A54 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					2A6F0D4E1B5500E100C2D03C = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					2AC71DDE1BF0BDBC002E1434 = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8D15AC270486D014006FF6A4;
 					};
 					8D15AC270486D014006FF6A4 = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -2256,6 +2260,7 @@
 				2AED46711E425CD200751C45 /* TextFind.swift in Sources */,
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
+				2AF134491F6E82AA00A85D40 /* NSAppKitVersion.swift in Sources */,
 				2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */,
 				2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
@@ -2516,6 +2521,7 @@
 				2AFB5AE81D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				2A4CB9921D79F38A000D6ADA /* DocumentToolbar.swift in Sources */,
+				2AF134481F6E82AA00A85D40 /* NSAppKitVersion.swift in Sources */,
 				2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
@@ -3341,14 +3347,20 @@
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -3402,14 +3414,20 @@
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

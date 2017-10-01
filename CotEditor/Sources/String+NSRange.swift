@@ -103,33 +103,6 @@ extension NSRange {
 }
 
 
-extension NSRange: Hashable {
-    
-    public var hashValue: Int {
-        
-        return self.location ^ self.length
-    }
-    
-    
-    public static func == (lhs: NSRange, rhs: NSRange) -> Bool {
-        
-        return NSEqualRanges(lhs, rhs)
-    }
-    
-}
-
-
-extension NSRange: CustomDebugStringConvertible {
-    
-    public var debugDescription: String {
-        
-        let location: Any = (self.location == NSNotFound) ? "NSNotFound" : self.location
-        
-        return "{\(location), \(self.length)}"
-    }
-}
-
-
 
 extension NSString {
     
