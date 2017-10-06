@@ -71,7 +71,7 @@ extension String {
         
         guard
             let data = self.data(using: encoding, allowLossyConversion: true),
-            let convertedString = String(data:data, encoding: encoding),
+            let convertedString = String(data: data, encoding: encoding),
             convertedString.characters.count == self.characters.count else { return nil }
         
         // list-up characters to be converted/deleted

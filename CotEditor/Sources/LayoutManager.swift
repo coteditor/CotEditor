@@ -393,17 +393,18 @@ final class LayoutManager: NSLayoutManager {
     /// cache CTLines for invisible characters drawing
     private func generateInvisibleLines() -> InvisibleLines {
         
+        let color = self.invisiblesColor
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
         let spaceFont = self.textFont ?? font
         let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: fontSize) ?? font
         
-        return InvisibleLines(space:          CTLine.create(string: Invisible.userSpace, color: self.invisiblesColor, font: spaceFont),
-                              tab:            CTLine.create(string: Invisible.userTab, color: self.invisiblesColor, font: font),
-                              newLine:        CTLine.create(string: Invisible.userNewLine, color: self.invisiblesColor, font: font),
-                              fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, color: self.invisiblesColor, font: fullWidthFont),
-                              verticalTab:    CTLine.create(string: Invisible.verticalTab, color: self.invisiblesColor, font: fullWidthFont),
-                              replacement:    CTLine.create(string: Invisible.replacement, color: self.invisiblesColor, font: fullWidthFont))
+        return InvisibleLines(space: CTLine.create(string: Invisible.userSpace, color: color, font: spaceFont),
+                              tab: CTLine.create(string: Invisible.userTab, color: color, font: font),
+                              newLine: CTLine.create(string: Invisible.userNewLine, color: color, font: font),
+                              fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, color: color, font: fullWidthFont),
+                              verticalTab: CTLine.create(string: Invisible.verticalTab, color: color, font: fullWidthFont),
+                              replacement: CTLine.create(string: Invisible.replacement, color: color, font: fullWidthFont))
     }
     
 }

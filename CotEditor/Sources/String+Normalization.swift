@@ -44,7 +44,7 @@ extension String {
             return self
         }
         
-        let source = self.utf16.map { $0 }
+        let source = Array(self.utf16)
         let sourceLength = Int32(source.count)
         var destination = [UChar](repeating: 0, count: Int(sourceLength))
         
