@@ -110,6 +110,24 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     }
     
     
+    /// disable toggling sidebar in the tab overview mode
+    override func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        
+        guard let action = item.action else { return false }
+        
+        switch action {
+        case #selector(getInfo), #selector(toggleIncompatibleCharList):
+            if #available(macOS 10.13, *), let tabGroup = self.view.window?.tabGroup {
+                return !tabGroup.isOverviewVisible
+            }
+            
+        default: break
+        }
+        
+        return super.validateToolbarItem(item)
+    }
+    
+    
     
     // MARK: Sidebar View Controller Delegate
     

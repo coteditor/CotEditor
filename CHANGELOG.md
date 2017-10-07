@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Disable toggling side bar while the tab overview mode on High Sierra.
 - Some minor improvements and fixes.
 
 
