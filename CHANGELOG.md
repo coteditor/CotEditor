@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Improvements
+
+- Some minor improvements and fixes.
+
+
+
 3.2.2 (203)
 --------------------------
 

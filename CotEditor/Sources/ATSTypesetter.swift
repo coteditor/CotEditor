@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -78,13 +78,8 @@ final class ATSTypesetter: NSATSTypesetter {
         }
         
         // make blank space to draw a replacement character in LayoutManager later.
-        guard let textFont = manager.textFont else { return .zero }
-        let invisibleFont = NSFont(name: "Lucida Grande", size: textFont.pointSize) ?? textFont  // use current text font for fallback
-        let replacementGlyph = invisibleFont.glyph(withName: "replacement")  // U+FFFD
-        let replacementGlyphBounding = invisibleFont.boundingRect(forGlyph: replacementGlyph)
-        
         var rect = proposedRect
-        rect.size.width = replacementGlyphBounding.width
+        rect.size.width = manager.replacementGlyphWidth
         
         return rect
     }

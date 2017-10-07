@@ -60,6 +60,11 @@ final class LayoutManager: NSLayoutManager {
                 
                 // cache width of space char for hanging indent width calculation
                 self.spaceWidth = textFont.advancement(character: " ").width
+                
+                // cache replacement glyph width for ATS Typesetter
+                let invisibleFont = NSFont(name: "Lucida Grande", size: textFont.pointSize) ?? textFont  // use current text font for fallback
+                let replacementGlyph = invisibleFont.glyph(withName: "replacement")  // U+FFFD
+                self.replacementGlyphWidth = invisibleFont.boundingRect(forGlyph: replacementGlyph).width
             }
             
             self.invisibleLines = self.generateInvisibleLines()
@@ -73,6 +78,7 @@ final class LayoutManager: NSLayoutManager {
     }
     
     private(set) var spaceWidth: CGFloat = 0
+    private(set) var replacementGlyphWidth: CGFloat = 0
     private(set) var defaultBaselineOffset: CGFloat = 0  // defaultBaselineOffset for textFont
     private(set) var showsOtherInvisibles = false
     
