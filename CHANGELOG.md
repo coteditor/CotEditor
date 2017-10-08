@@ -13,7 +13,7 @@ develop
 
 ### Fixes
 
-- Fix an issue where UNIX script
+- Fix an issue where UNIX scripts could fail getting the content of the document.
 
 
 
