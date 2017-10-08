@@ -11,6 +11,11 @@ develop
 - Some minor improvements and fixes.
 
 
+### Fixes
+
+- Fix an issue where UNIX script
+
+
 
 3.2.2 (203)
 --------------------------

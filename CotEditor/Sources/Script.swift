@@ -433,12 +433,10 @@ final class ShellScript: Script {
         task.standardOutput = outPipe.fileHandleForWriting
         task.standardError = errPipe.fileHandleForWriting
         
-        // set input data asynchronously if available
+        // set input data if available
         if let data = input?.data(using: .utf8) {
-            inPipe.fileHandleForWriting.writeabilityHandler = { (handle: FileHandle) in
-                handle.write(data)
-                handle.closeFile()
-            }
+            inPipe.fileHandleForWriting.write(data)
+            inPipe.fileHandleForWriting.closeFile()
         }
         
         let scriptName = self.descriptor.name
