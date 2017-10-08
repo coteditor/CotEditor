@@ -477,7 +477,7 @@ final class ShellScript: Script {
                 return
             }
             
-            // put error message on the sconsole
+            // put error message on the console
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
             if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
                 writeToConsole(message: message, scriptName: scriptName)
