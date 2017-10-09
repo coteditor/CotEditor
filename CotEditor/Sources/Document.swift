@@ -399,7 +399,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         //   -> save backup file always in `~/Library/Autosaved Information/` directory
         //      (The default backup URL is the same directory as the fileURL.)
         let newUrl: URL = {
-            guard let fileURL = self.fileURL, saveOperation == .autosaveElsewhereOperation else { return url }
+            guard
+                saveOperation == .autosaveElsewhereOperation,
+                let fileURL = self.fileURL
+                else { return url }
             
             let autosaveDirectoryURL = (DocumentController.shared() as! DocumentController).autosaveDirectoryURL
             var baseFileName = fileURL.deletingPathExtension().lastPathComponent
