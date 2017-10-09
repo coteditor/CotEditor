@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,6 +30,9 @@ import Foundation
 class AsynchronousOperation: Operation {
     
     // MARK: Private Properties
+    
+    private var isOperationStarted = false
+    
     
     private var _executing: Bool = false {
         
@@ -77,6 +80,8 @@ class AsynchronousOperation: Operation {
     
     override func start() {
         
+        self.isOperationStarted = true
+        
         if self.isCancelled {
             _finished = true
             return
@@ -93,6 +98,8 @@ class AsynchronousOperation: Operation {
     
     /// invoke this method when operation finished no matter if the operation succeeded or not
     func finish() {
+        
+        guard self.isOperationStarted else { return }
         
         _executing = false
         _finished = true
