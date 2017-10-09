@@ -185,6 +185,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// enable asynchronous saving
     override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
         
+        if NSAppKitVersion.current <= .macOS10_12 {
+            return false
+        }
+        
         return saveOperation == .autosaveElsewhereOperation || saveOperation == .autosaveInPlaceOperation
     }
     
