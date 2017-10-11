@@ -99,7 +99,12 @@ extension EditorTextViewController {
     func textView(_ textView: NSTextView, candidatesForSelectedRange selectedRange: NSRange) -> [Any]? {
         
         var index = 0
-        guard let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index), !candidates.isEmpty else { return nil }
+        guard
+            let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index)?
+                .filter({ $0.range(of: "^(\\W|_)", options: .regularExpression) == nil }),
+            !candidates.isEmpty
+            else { return nil }
+        // -> remove words start with non-alphabet to workaround a bug: e.g. "__init__" in Python (2017-10 macOS 10.13)
         
         return candidates
     }
