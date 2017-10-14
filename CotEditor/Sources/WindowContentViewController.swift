@@ -117,9 +117,12 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         
         switch action {
         case #selector(getInfo), #selector(toggleIncompatibleCharList):
-            if #available(macOS 10.13, *), let tabGroup = self.view.window?.tabGroup {
+            if #available(macOS 10.13, *),
+                let window = self.view.window, window.isVisible,  // check visiblity to avoid the window position cascading bug
+                let tabGroup = window.tabGroup {
                 return !tabGroup.isOverviewVisible
             }
+            return true
             
         default: break
         }
