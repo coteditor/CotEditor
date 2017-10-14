@@ -230,6 +230,8 @@ final class EditorTextView: NSTextView, Themable {
         // observe scorolling and resizing to fix drawing area on non-opaque view
         if let scrollView = self.enclosingScrollView {
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)), name: .NSViewBoundsDidChange, object: scrollView.contentView)
+        } else {
+            assertionFailure("failed starting observing the visible rect change")
         }
     }
     
