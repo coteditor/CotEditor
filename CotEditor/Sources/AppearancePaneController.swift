@@ -565,6 +565,20 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
 
 extension AppearancePaneController {
     
+    // MARK: View Controller Methods
+    
+    override func viewWillDisappear() {
+        
+        super.viewWillDisappear()
+        
+        // detach a possible font panel's target set in `showFonts()`
+        if NSFontManager.shared().target === self {
+            NSFontManager.shared().target = nil
+        }
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// show font panel
@@ -573,9 +587,9 @@ extension AppearancePaneController {
         guard let font = NSFont(name: UserDefaults.standard[.fontName]!,
                                 size: UserDefaults.standard[.fontSize]) else { return }
         
-        self.view.window?.makeFirstResponder(self)
         NSFontManager.shared().setSelectedFont(font, isMultiple: false)
         NSFontManager.shared().orderFrontFontPanel(sender)
+        NSFontManager.shared().target = self
     }
     
     
