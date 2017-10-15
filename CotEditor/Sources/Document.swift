@@ -714,7 +714,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         DispatchQueue.main.async { [weak self] in
             switch option {
             case .ignore:
-                break
+                assertionFailure()
             case .notify:
                 self?.showUpdatedByExternalProcessAlert()
             case .revert:
