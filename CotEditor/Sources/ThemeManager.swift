@@ -65,7 +65,7 @@ final class ThemeManager: SettingFileManager {
         self.bundledThemeNames = themeURLs.lazy
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
-            .sorted()
+            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // cache user theme names
         self.loadUserSettings()
