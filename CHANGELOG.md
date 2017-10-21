@@ -8,6 +8,8 @@ develop
 ### Improvements
 
 - Disable toggling sidebar while the tab overview mode on High Sierra.
+- Update “CSS” syntax style:
+    - Fix an issue where keywords were highlighted incorrectly.
 - Some minor improvements and fixes.
 
 
@@ -15,7 +17,7 @@ develop
 
 - Fix an issue where UNIX scripts could fail getting the content of the document.
 - Fix an issue where font change in the preferences pane could be ignored.
-- Fix an issue where keywords of CSS could not be highlighted correctly.
+- Fix a potential issue where syntax keywords could be highlighted incorrectly if whitespaces accidentally get into keywords definition.
 - Workaround an issue where word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly.
 - Workaround an issue where the application could crash on document auto-saving.
 
