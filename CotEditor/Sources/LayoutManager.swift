@@ -138,7 +138,7 @@ final class LayoutManager: NSLayoutManager {
         // Since NSLayoutManager's showsControlCharacters flag is totally buggy (at least on El Capitan),
         // we stopped using it since CotEditor 2.3.3 released in 2016-01.
         // Previously, CotEditor used this flag for "Other Invisible Characters."
-        // However as CotEditor draws such control-glyph-alternative-characters by itself in `drawGlyphsForGlyphRange:atPoint:`,
+        // However, as CotEditor draws such control-glyph-alternative-characters by itself in `drawGlyphs(forGlyphRange:at:)`,
         // this flag is actually not so necessary as I thougth. Thus, treat carefully this.
         self.showsControlCharacters = false
         
@@ -317,6 +317,8 @@ final class LayoutManager: NSLayoutManager {
     
     /// invalidate indent of wrapped lines
     func invalidateIndent(in range: NSRange) {
+        
+        assert(Thread.isMainThread)
         
         guard UserDefaults.standard[.enablesHangingIndent] else { return }
         

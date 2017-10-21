@@ -935,6 +935,8 @@ final class EditorTextView: NSTextView, Themable {
     /// invalidate string attributes
     func invalidateStyle() {
         
+        assert(Thread.isMainThread)
+        
         guard let textStorage = self.textStorage else { return }
         
         let range = textStorage.string.nsRange
@@ -1097,6 +1099,8 @@ final class EditorTextView: NSTextView, Themable {
     /// update coloring settings
     private func applyTheme() {
         
+        assert(Thread.isMainThread)
+        
         guard let theme = self.theme else { return }
         
         self.window?.backgroundColor = theme.backgroundColor
@@ -1118,6 +1122,8 @@ final class EditorTextView: NSTextView, Themable {
     
     /// set defaultParagraphStyle based on font, tab width, and line height
     private func invalidateDefaultParagraphStyle() {
+        
+        assert(Thread.isMainThread)
         
         let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
         
@@ -1153,6 +1159,8 @@ final class EditorTextView: NSTextView, Themable {
     
     /// make link-like text clickable
     private func detectLinkIfNeeded() {
+        
+        assert(Thread.isMainThread)
         
         guard self.isAutomaticLinkDetectionEnabled else { return }
         
