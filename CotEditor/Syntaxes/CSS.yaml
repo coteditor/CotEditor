@@ -4,10 +4,10 @@ filenames: []
 metadata:
   author: "CotEditor Project"
   distributionURL: "https://coteditor.com"
-  version: "2.0.3"
-  description: "Support partly CSS3."
+  version: "2.0.4"
+  description: "Support CSS3 partly."
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2017-10-21"
 completions: []
 outlineMenu:
 - beginString: "\\@(media|page)\\b(.+)(?=($|\\{))"
@@ -691,7 +691,7 @@ keywords:
 - beginString: "border-bottom-right-radius"
 - beginString: "border-bottom-style"
 - beginString: "border-bottom-width"
-- beginString: "border-collapse\n"
+- beginString: "border-collapse"
 - beginString: "border-color"
 - beginString: "border-image"
 - beginString: "border-image-outset"

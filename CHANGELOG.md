@@ -15,6 +15,7 @@ develop
 
 - Fix an issue where UNIX scripts could fail getting the content of the document.
 - Fix an issue where font change in the preferences pane could be ignored.
+- Fix an issue where keywords of CSS could not be highlighted correctly.
 - Workaround an issue where word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly.
 - Workaround an issue where the application could crash on document auto-saving.
 
