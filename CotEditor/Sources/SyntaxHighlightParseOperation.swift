@@ -99,6 +99,7 @@ extension HighlightDefinition {
         
         let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
         let rawBoundary = (words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").unique
+            .replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
         let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
         let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
         
