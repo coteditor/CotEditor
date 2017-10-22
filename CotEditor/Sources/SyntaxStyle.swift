@@ -464,7 +464,7 @@ extension SyntaxStyle {
         operation.completionBlock = { [weak self, weak operation] in
             guard let strongSelf = self, let operation = operation else {
                 DispatchQueue.main.async {
-                    indicator?.dismiss(self)
+                    indicator?.dismiss(nil)
                 }
                 return
             }
