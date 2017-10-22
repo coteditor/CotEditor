@@ -128,7 +128,7 @@ final class EditorTextView: NSTextView, Themable {
         super.init(coder: coder)
         
         // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13).
-        self.scaleUnitSquare(to: NSSize(width: 1.001, height: 1.001))
+        self.scaleUnitSquare(to: NSSize(width: 0.5, height: 0.5))
         self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
         
         // setup layoutManager and textContainer
@@ -230,6 +230,8 @@ final class EditorTextView: NSTextView, Themable {
         // observe scorolling and resizing to fix drawing area on non-opaque view
         if let scrollView = self.enclosingScrollView {
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)), name: .NSViewBoundsDidChange, object: scrollView.contentView)
+        } else {
+            assertionFailure("failed starting observing the visible rect change")
         }
     }
     
@@ -521,9 +523,10 @@ final class EditorTextView: NSTextView, Themable {
         set {
             guard let font = newValue else { return }
             
-            // 複合フォントで行間が等間隔でなくなる問題を回避するため、LayoutManager にもフォントを持たせておく
-            // -> [NSTextView font] を使うと、「1バイトフォントを指定して日本語が入力されている」場合に
-            //    日本語フォントを返してくることがあるため、LayoutManager からは [textView font] を使わない
+            // let LayoutManager have the font too to avoid the issue where the line height can be inconsistance by a composite font
+            // -> Because `textView.font` can return a Japanese font
+            //    when the font is for one-bites and the first character of the content is Japanese one,
+            //    LayoutManager should not use `textView.font`.
             (self.layoutManager as? LayoutManager)?.textFont = font
             
             super.font = font
@@ -932,6 +935,8 @@ final class EditorTextView: NSTextView, Themable {
     /// invalidate string attributes
     func invalidateStyle() {
         
+        assert(Thread.isMainThread)
+        
         guard let textStorage = self.textStorage else { return }
         
         let range = textStorage.string.nsRange
@@ -1094,6 +1099,8 @@ final class EditorTextView: NSTextView, Themable {
     /// update coloring settings
     private func applyTheme() {
         
+        assert(Thread.isMainThread)
+        
         guard let theme = self.theme else { return }
         
         self.window?.backgroundColor = theme.backgroundColor
@@ -1115,6 +1122,8 @@ final class EditorTextView: NSTextView, Themable {
     
     /// set defaultParagraphStyle based on font, tab width, and line height
     private func invalidateDefaultParagraphStyle() {
+        
+        assert(Thread.isMainThread)
         
         let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
         
@@ -1150,6 +1159,8 @@ final class EditorTextView: NSTextView, Themable {
     
     /// make link-like text clickable
     private func detectLinkIfNeeded() {
+        
+        assert(Thread.isMainThread)
         
         guard self.isAutomaticLinkDetectionEnabled else { return }
         

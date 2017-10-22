@@ -8,6 +8,7 @@ before_install:
 
 script:
   set -o pipefail &&
+  travis_retry
   xcodebuild clean build test
   -workspace CotEditor.xcworkspace
   -scheme CotEditor

@@ -60,6 +60,11 @@ final class LayoutManager: NSLayoutManager {
                 
                 // cache width of space char for hanging indent width calculation
                 self.spaceWidth = textFont.advancement(character: " ").width
+                
+                // cache replacement glyph width for ATS Typesetter
+                let invisibleFont = NSFont(name: "Lucida Grande", size: textFont.pointSize) ?? textFont  // use current text font for fallback
+                let replacementGlyph = invisibleFont.glyph(withName: "replacement")  // U+FFFD
+                self.replacementGlyphWidth = invisibleFont.boundingRect(forGlyph: replacementGlyph).width
             }
             
             self.invisibleLines = self.generateInvisibleLines()
@@ -73,6 +78,7 @@ final class LayoutManager: NSLayoutManager {
     }
     
     private(set) var spaceWidth: CGFloat = 0
+    private(set) var replacementGlyphWidth: CGFloat = 0
     private(set) var defaultBaselineOffset: CGFloat = 0  // defaultBaselineOffset for textFont
     private(set) var showsOtherInvisibles = false
     
@@ -132,7 +138,7 @@ final class LayoutManager: NSLayoutManager {
         // Since NSLayoutManager's showsControlCharacters flag is totally buggy (at least on El Capitan),
         // we stopped using it since CotEditor 2.3.3 released in 2016-01.
         // Previously, CotEditor used this flag for "Other Invisible Characters."
-        // However as CotEditor draws such control-glyph-alternative-characters by itself in `drawGlyphsForGlyphRange:atPoint:`,
+        // However, as CotEditor draws such control-glyph-alternative-characters by itself in `drawGlyphs(forGlyphRange:at:)`,
         // this flag is actually not so necessary as I thougth. Thus, treat carefully this.
         self.showsControlCharacters = false
         
@@ -312,6 +318,8 @@ final class LayoutManager: NSLayoutManager {
     /// invalidate indent of wrapped lines
     func invalidateIndent(in range: NSRange) {
         
+        assert(Thread.isMainThread)
+        
         guard UserDefaults.standard[.enablesHangingIndent] else { return }
         
         guard let textStorage = self.textStorage, let textView = self.firstTextView else { return }
@@ -393,17 +401,18 @@ final class LayoutManager: NSLayoutManager {
     /// cache CTLines for invisible characters drawing
     private func generateInvisibleLines() -> InvisibleLines {
         
+        let color = self.invisiblesColor
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
         let spaceFont = self.textFont ?? font
         let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: fontSize) ?? font
         
-        return InvisibleLines(space:          CTLine.create(string: Invisible.userSpace, color: self.invisiblesColor, font: spaceFont),
-                              tab:            CTLine.create(string: Invisible.userTab, color: self.invisiblesColor, font: font),
-                              newLine:        CTLine.create(string: Invisible.userNewLine, color: self.invisiblesColor, font: font),
-                              fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, color: self.invisiblesColor, font: fullWidthFont),
-                              verticalTab:    CTLine.create(string: Invisible.verticalTab, color: self.invisiblesColor, font: fullWidthFont),
-                              replacement:    CTLine.create(string: Invisible.replacement, color: self.invisiblesColor, font: fullWidthFont))
+        return InvisibleLines(space: CTLine.create(string: Invisible.userSpace, color: color, font: spaceFont),
+                              tab: CTLine.create(string: Invisible.userTab, color: color, font: font),
+                              newLine: CTLine.create(string: Invisible.userNewLine, color: color, font: font),
+                              fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, color: color, font: fullWidthFont),
+                              verticalTab: CTLine.create(string: Invisible.verticalTab, color: color, font: fullWidthFont),
+                              replacement: CTLine.create(string: Invisible.replacement, color: color, font: fullWidthFont))
     }
     
 }
@@ -423,4 +432,4 @@ private extension CTLine {
         
         return CTLineCreateWithAttributedString(attrString)
     }
- }
+}

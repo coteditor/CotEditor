@@ -445,13 +445,13 @@ extension SyntaxStyle {
         if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
             // wait for window becomes ready
             DispatchQueue.global(qos: .background).async {
-                while storage.layoutManagers.isEmpty && !operation.isFinished {
+                while storage.layoutManagers.isEmpty && (!operation.isFinished || !operation.isCancelled) {
                     usleep(100)
                 }
                 
                 // attach the indicator as a sheet
                 DispatchQueue.main.sync {
-                    guard !operation.isFinished,
+                    guard !operation.isFinished || !operation.isCancelled,
                         let contentViewController = storage.layoutManagers.first?.firstTextView?.viewControllerForSheet
                         else { return }
                     

@@ -80,11 +80,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         // observe for script folder change
         NSFileCoordinator.addFilePresenter(self)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .NSApplicationDidBecomeActive, object: NSApp)
-        
-        // run dummy AppleScript once for quick script launch
-        DispatchQueue.main.async {
-            NSAppleScript(source: "tell application \"CotEditor\" to name")?.executeAndReturnError(nil)
-        }
     }
     
     

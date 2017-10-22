@@ -185,7 +185,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// enable asynchronous saving
     override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
         
-        return saveOperation == .autosaveElsewhereOperation || saveOperation == .autosaveInPlaceOperation
+        // -> Async-saving may cause an occasional crash. (2017-10 macOS 10.13 SDK)
+        return false
     }
     
     
@@ -399,7 +400,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         //   -> save backup file always in `~/Library/Autosaved Information/` directory
         //      (The default backup URL is the same directory as the fileURL.)
         let newUrl: URL = {
-            guard let fileURL = self.fileURL, saveOperation == .autosaveElsewhereOperation else { return url }
+            guard
+                saveOperation == .autosaveElsewhereOperation,
+                let fileURL = self.fileURL
+                else { return url }
             
             let autosaveDirectoryURL = (DocumentController.shared() as! DocumentController).autosaveDirectoryURL
             var baseFileName = fileURL.deletingPathExtension().lastPathComponent
@@ -710,7 +714,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         DispatchQueue.main.async { [weak self] in
             switch option {
             case .ignore:
-                break
+                assertionFailure()
             case .notify:
                 self?.showUpdatedByExternalProcessAlert()
             case .revert:

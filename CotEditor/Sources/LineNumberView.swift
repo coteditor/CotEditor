@@ -100,10 +100,10 @@ final class LineNumberView: NSRulerView {
         switch self.orientation {
         case .verticalRuler:
             NSBezierPath.strokeLine(from: NSPoint(x: self.frame.maxX - 0.5, y: dirtyRect.maxY),
-                                    to:   NSPoint(x: self.frame.maxX - 0.5, y: dirtyRect.minY))
+                                    to: NSPoint(x: self.frame.maxX - 0.5, y: dirtyRect.minY))
         case .horizontalRuler:
             NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.frame.maxY - 0.5),
-                                    to:   NSPoint(x: dirtyRect.maxX, y: self.frame.maxY - 0.5))
+                                    to: NSPoint(x: dirtyRect.maxX, y: self.frame.maxY - 0.5))
         }
         
         NSGraphicsContext.restoreGraphicsState()

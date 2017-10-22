@@ -66,18 +66,18 @@ class StringIndentationTests: XCTestCase {
     
     func testIndentLevelDetection() {
         
-        XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth:0), 0)
+        XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth: 0), 0)
         
-        XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth:4), 1)
-        XCTAssertEqual("    foo".indentLevel(at: 4, tabWidth:2), 2)
-        XCTAssertEqual("\tfoo".indentLevel(at: 4, tabWidth:2), 1)
+        XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth: 4), 1)
+        XCTAssertEqual("    foo".indentLevel(at: 4, tabWidth: 2), 2)
+        XCTAssertEqual("\tfoo".indentLevel(at: 4, tabWidth: 2), 1)
         
         // tab-space mix
-        XCTAssertEqual("  \t foo".indentLevel(at: 4, tabWidth:2), 2)
-        XCTAssertEqual("   \t foo".indentLevel(at: 4, tabWidth:2), 3)
+        XCTAssertEqual("  \t foo".indentLevel(at: 4, tabWidth: 2), 2)
+        XCTAssertEqual("   \t foo".indentLevel(at: 4, tabWidth: 2), 3)
         
         // multiline
-        XCTAssertEqual("    foo\n  bar".indentLevel(at: 10, tabWidth:2), 1)
+        XCTAssertEqual("    foo\n  bar".indentLevel(at: 10, tabWidth: 2), 1)
     }
 
 }

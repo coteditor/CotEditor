@@ -4,6 +4,7 @@ included:
   - Tests
 
 opt_in_rules:
+  - array_init
   - attributes
   - closure_end_indentation
   - closure_spacing
@@ -12,10 +13,13 @@ opt_in_rules:
   - file_header
   - first_where
   - implicit_return
+  - joined_default_parameter
   - let_var_whitespace
   - multiline_parameters
   - nimble_operator
+  - pattern_matching_keywords
   - private_outlet
+  - quick_discouraged_call
   - redundant_nil_coalescing
   - vertical_parameter_alignment_on_call
 
