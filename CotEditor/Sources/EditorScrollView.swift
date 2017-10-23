@@ -29,16 +29,13 @@ import Cocoa
 
 final class EditorScrollView: NSScrollView {
     
-    // MARK: Lifecycle
+    // MARK: Private Properties
     
-    deinit {
-        if let documentView = self.documentView as? NSTextView {
-            documentView.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
-        }
-    }
+    private var layoutOrientationObserver: NSKeyValueObservation?
     
     
     
+    // MARK: -
     // MARK: Scroll View Methods
     
     /// use custom ruler view
@@ -57,31 +54,21 @@ final class EditorScrollView: NSScrollView {
     override var documentView: NSView? {
         
         willSet {
-            if let documentView = newValue as? NSTextView {
-                documentView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
-            }
-        }
-    }
-
-    
-    
-    // MARK: KVO
-    
-    /// observed key value did update
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == #keyPath(NSTextView.layoutOrientation) {
-            switch self.layoutOrientation {
-            case .horizontal:
-                self.hasVerticalRuler = true
-                self.hasHorizontalRuler = false
-            case .vertical:
-                self.hasVerticalRuler = false
-                self.hasHorizontalRuler = true
-            }
+            guard let documentView = newValue as? NSTextView else { return }
             
-            // invalidate line number view background
-            self.window?.viewsNeedDisplay = true
+            self.layoutOrientationObserver = documentView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
+                switch textView.layoutOrientation {
+                case .horizontal:
+                    self.hasVerticalRuler = true
+                    self.hasHorizontalRuler = false
+                case .vertical:
+                    self.hasVerticalRuler = false
+                    self.hasHorizontalRuler = true
+                }
+                
+                // invalidate line number view background
+                self.window?.viewsNeedDisplay = true
+            }
         }
     }
     

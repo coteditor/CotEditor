@@ -43,13 +43,16 @@ final class NavigationBarController: NSViewController {
             // observe text selection change to update outline menu selection
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
             
-            textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .new, context: nil)
+            self.layoutOrientationObserver = textView.observe(\.layoutOrientation) { [unowned self] (textView, _) in
+                self.updateTextOrientation(to: textView.layoutOrientation)
+            }
         }
     }
     
     
     // MARK: Private Properties
     
+    private var layoutOrientationObserver: NSKeyValueObservation?
     private var isParsingOutline = false  // flag to control outline indicator
     
     private var prevButton: NSButton?
@@ -72,7 +75,6 @@ final class NavigationBarController: NSViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        self.textView?.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
     }
     
     
@@ -92,17 +94,6 @@ final class NavigationBarController: NSViewController {
         self.leftButton!.isHidden = true
         self.rightButton!.isHidden = true
         self.outlineMenu!.isHidden = true
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == #keyPath(NSTextView.layoutOrientation), let orientation = self.textView?.layoutOrientation {
-            self.updateTextOrientation(to: orientation)
-        }
     }
     
     

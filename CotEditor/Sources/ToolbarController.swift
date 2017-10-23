@@ -74,7 +74,7 @@ final class ToolbarController: NSObject {
             NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeEncoding, object: document)
             NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeLineEnding, object: document)
             NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeSyntaxStyle, object: document)
-            document.removeObserver(self, forKeyPath: #keyPath(Document.fileURL))
+            self.fileURLObserver = nil
         }
         
         didSet {
@@ -90,12 +90,16 @@ final class ToolbarController: NSObject {
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection), name: .DocumentDidChangeEncoding, object: document)
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection), name: .DocumentDidChangeLineEnding, object: document)
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection), name: .DocumentDidChangeSyntaxStyle, object: document)
-            document.addObserver(self, forKeyPath: #keyPath(Document.fileURL), context: nil)
+            self.fileURLObserver = document.observe(\.fileURL) { [unowned self] (_, _) in
+                self.invalidateShareButton()
+            }
         }
     }
     
     
     // MARK: Private Properties
+    
+    private var fileURLObserver: NSKeyValueObservation?
     
     @IBOutlet private weak var toolbar: NSToolbar?
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
@@ -106,15 +110,6 @@ final class ToolbarController: NSObject {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        self.document?.removeObserver(self, forKeyPath: #keyPath(Document.fileURL))
-    }
-    
-    
-    
     // MARK: Object Methods
     
     override func awakeFromNib() {
@@ -129,14 +124,6 @@ final class ToolbarController: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: .SettingListDidUpdate, object: EncodingManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SettingListDidUpdate, object: SyntaxManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxHistoryDidUpdate, object: SyntaxManager.shared)
-    }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == #keyPath(Document.fileURL) {
-            self.invalidateShareButton()
-        }
     }
     
     
