@@ -655,7 +655,7 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // on file drop
-        if let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] {
+        if let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL], !urls.isEmpty {
             let definitions = UserDefaults.standard[.fileDropArray] as? [[String: String]]
             let composer = FileDropComposer(definitions: definitions ?? [])
             let documentURL = self.document?.fileURL
