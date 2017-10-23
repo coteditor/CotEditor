@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develp
+--------------------------
+
+### Improvements
+
+- Update inner source code to Swift 4.
+
+
+
 3.2.3 (205)
 --------------------------
 
