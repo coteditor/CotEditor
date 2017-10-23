@@ -79,7 +79,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         // observe for script folder change
         NSFileCoordinator.addFilePresenter(self)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .NSApplicationDidBecomeActive, object: NSApp)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: NSApplication.didBecomeActiveNotification, object: NSApp)
     }
     
     

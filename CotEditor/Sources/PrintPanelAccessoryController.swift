@@ -144,7 +144,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     /// localized descriptions for print settings
-    func localizedSummaryItems() -> [[NSPrintPanel.AccessorySummaryKey : String]] {
+    func localizedSummaryItems() -> [[NSPrintPanel.AccessorySummaryKey: String]] {
         
         return [
             localizedSummaryItem(name: "Color", description: self.theme),
