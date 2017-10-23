@@ -72,7 +72,7 @@ extension String {
         
         guard excludingLastLineEnding,
             let index = self.index(lineRange.upperBound, offsetBy: -1, limitedBy: lineRange.lowerBound),
-            self.characters[index] == "\n" else { return lineRange }
+            self[index] == "\n" else { return lineRange }
         
         return lineRange.lowerBound..<self.index(before: lineRange.upperBound)
     }
@@ -115,8 +115,7 @@ extension String {
     func isCharacterEscaped(at index: Index) -> Bool {
         
         let MaxEscapesCheckLength = 8
-        let startIndex = self.index(index, offsetBy: -MaxEscapesCheckLength, limitedBy: self.startIndex) ?? self.startIndex
-        let seekCharacters = self.characters[startIndex..<index]
+        let seekCharacters = self[..<index].suffix(MaxEscapesCheckLength)
         
         let numberOfEscapes = seekCharacters.reversed().countPrefix { $0 == "\\" }
         

@@ -62,7 +62,7 @@ extension EditorTextView {
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: "CustomSurroundStringView", bundle: nil).instantiateInitialController() as! CustomSurroundStringViewController
+        let viewController = NSStoryboard(name: NSStoryboard.Name("CustomSurroundStringView"), bundle: nil).instantiateInitialController() as! CustomSurroundStringViewController
         viewController.representedObject = self
         
         self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
@@ -78,14 +78,14 @@ extension NSTextView {
     @discardableResult
     func surroundSelections(begin: String, end: String) -> Bool {
         
-        guard let string = self.string as NSString? else { return false }
-        
+        let string = self.string as NSString
         let selectedRanges = self.selectedRanges as! [NSRange]
         
         let replacementStrings = selectedRanges.map { begin + string.substring(with: $0) + end }
-        let newSelectedRanges = selectedRanges.enumerated().map { (offset, range) in
-            NSRange(location: (offset + 1) * begin.utf16.count + range.location + offset * end.utf16.count,
-                    length: range.length)
+        let newSelectedRanges = selectedRanges.enumerated().map { item -> NSRange in
+            let range = item.element
+            return NSRange(location: (item.offset + 1) * begin.utf16.count + range.location + item.offset * end.utf16.count,
+                           length: range.length)
         }
         
         return self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges)

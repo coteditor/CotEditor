@@ -212,7 +212,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
                 
                 let maxPosition = self.splitView.maxPossiblePositionOfDivider(at: 0)
                 
-                NSAnimationContext.current().withAnimation(false) {
+                NSAnimationContext.current.withAnimation(false) {
                     self.sidebarViewItem?.isCollapsed = !shown
                 }
                 
@@ -257,7 +257,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             return
         }
         
-        NSAnimationContext.current().withAnimation(animate) {
+        NSAnimationContext.current.withAnimation(animate) {
             self.isSidebarShown = shown
         }
         

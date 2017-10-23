@@ -106,7 +106,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.highlightCurrentLine.rawValue, options: .new, context: nil)
         
         // update current line highlight on changing frame size with a delay
-        NotificationCenter.default.addObserver(self, selector: #selector(setupCurrentLineUpdateTimer), name: .NSViewFrameDidChange, object: self.textView)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupCurrentLineUpdateTimer), name: NSView.frameDidChangeNotification, object: self.textView)
     }
     
     
@@ -165,8 +165,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>?) -> [String] {
         
         // do nothing if completion is not suggested from the typed characters
-        guard let string = textView.string, charRange.length > 0 else { return [] }
+        guard charRange.length > 0 else { return [] }
         
+        let string = textView.string
         var candidateWords = OrderedSet<String>()
         let particalWord = (string as NSString).substring(with: charRange)
         
@@ -276,7 +277,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             let textView = self.textView,
             let viewController = GoToLineViewController(textView: textView)
             else {
-                NSBeep()
+                NSSound.beep()
                 return
         }
         
@@ -299,9 +300,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard
             UserDefaults.standard[.highlightBraces],
-            let string = textView.string, !string.isEmpty
+            !textView.string.isEmpty
             else { return }
         
+        let string = textView.string
         let cursorLocation = textView.selectedRange.location
         
         guard
@@ -312,7 +314,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // check the character just before the cursor
         let lastIndex = string.index(before: cursorIndex)
-        let lastCharacter = string.characters[lastIndex]
+        let lastCharacter = string[lastIndex]
         
         let bracePairs: [BracePair] = UserDefaults.standard[.highlightLtGt] ? (BracePair.braces + [.ltgt]) : BracePair.braces
         
@@ -323,9 +325,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 : string.indexOfBeginBrace(for: pair, at: lastIndex)
             else { return }
         
-        let location = index.samePosition(in: string.utf16)!.encodedOffset
+        let range = NSRange(index..<string.index(after: index), in: string)
         
-        textView.showFindIndicator(for: NSRange(location: location, length: 1))
+        textView.showFindIndicator(for: range)
     }
     
     
@@ -347,11 +349,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard
             let textView = self.textView,
-            let textContainer = textView.textContainer,
-            let string = textView.string else { return }
+            let textContainer = textView.textContainer
+             else { return }
         
         // calculate current line rect
-        let lineRange = (string as NSString).lineRange(for: textView.selectedRange, excludingLastLineEnding: true)
+        let lineRange = (textView.string as NSString).lineRange(for: textView.selectedRange, excludingLastLineEnding: true)
         
         textView.layoutManager?.ensureLayout(for: textContainer)  // avoid blinking on textView's dynamic bounds change
         

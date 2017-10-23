@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ final class CharacterFieldCell: NSTextFieldCell {
             NSBezierPath(rect: cellFrame).stroke()
         #endif
         
-        guard let context = NSGraphicsContext.current()?.cgContext else { return }
+        guard let context = NSGraphicsContext.current?.cgContext else { return }
         
         let line = CTLineCreateWithAttributedString(self.attributedStringValue as CFAttributedString)
         let bounds = self.attributedStringValue.bounds.integral

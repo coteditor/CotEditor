@@ -41,13 +41,13 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Private Properties
     
-    private dynamic var showsHiddenFiles = false  // binding
+    @objc private dynamic var showsHiddenFiles = false  // binding
     
     @IBOutlet private var openPanelAccessoryView: NSView?
     @IBOutlet private weak var accessoryEncodingMenu: NSPopUpButton?
     @IBOutlet private weak var showHiddenFilesCheckbox: NSButton?
     
-    private dynamic var _accessorySelectedEncoding: UInt
+    @objc private dynamic var _accessorySelectedEncoding: UInt
     
     
     
@@ -127,7 +127,7 @@ final class DocumentController: NSDocumentController {
         
         // initialize encoding menu and set the accessory view
         if self.openPanelAccessoryView == nil {
-            Bundle.main.loadNibNamed("OpenDocumentAccessory", owner: self, topLevelObjects: nil)
+            Bundle.main.loadNibNamed(NSNib.Name("OpenDocumentAccessory"), owner: self, topLevelObjects: nil)
             if #available(macOS 10.11, *) { } else {
                 // real time togging of hidden files visibility works only on El Capitan (and later?)
                 self.showHiddenFilesCheckbox?.removeFromSuperview()
@@ -145,21 +145,21 @@ final class DocumentController: NSDocumentController {
         openPanel.showsHiddenFiles = self.showsHiddenFiles
         openPanel.treatsFilePackagesAsDirectories = self.showsHiddenFiles
         // -> bind showsHiddenFiles flag with openPanel (for El capitan and leter)
-        openPanel.bind(#keyPath(NSOpenPanel.showsHiddenFiles), to: self, withKeyPath: #keyPath(showsHiddenFiles))
-        openPanel.bind(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories), to: self, withKeyPath: #keyPath(showsHiddenFiles))
+        openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
+        openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
         
         // run non-modal open panel
         super.beginOpenPanel(openPanel, forTypes: inTypes) { [weak self] (result: Int) in
             
             // reset encoding menu if cancelled
-            if result == NSModalResponseCancel {
+            if result == NSApplication.ModalResponse.cancel.rawValue {
                 self?.resetAccessorySelectedEncoding()
             }
             
             self?.showsHiddenFiles = false  // reset flag
             
-            openPanel.unbind(#keyPath(NSOpenPanel.showsHiddenFiles))
-            openPanel.unbind(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories))
+            openPanel.unbind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)))
+            openPanel.unbind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)))
             
             completionHandler(result)
         }

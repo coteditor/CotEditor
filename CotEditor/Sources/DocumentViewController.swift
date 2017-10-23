@@ -79,7 +79,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// keys to be restored from the last session
-    override class func restorableStateKeyPaths() -> [String] {
+    override class var restorableStateKeyPaths: [String] {
         
         return [#keyPath(isStatusBarShown),
                 #keyPath(showsNavigationBar),
@@ -212,19 +212,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             }
             
         case #selector(toggleAutoTabExpand):
-            menuItem.state = self.isAutoTabExpandEnabled ? NSOnState : NSOffState
+            menuItem.state = self.isAutoTabExpandEnabled ? .on : .off
             
         case #selector(toggleAntialias):
-            menuItem.state = (self.focusedTextView?.usesAntialias ?? false) ? NSOnState : NSOffState
+            menuItem.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
             
         case #selector(changeTabWidth):
-            menuItem.state = (self.tabWidth == menuItem.tag) ? NSOnState : NSOffState
+            menuItem.state = (self.tabWidth == menuItem.tag) ? .on : .off
             
         case #selector(closeSplitTextView):
             return ((self.splitViewController?.splitViewItems.count ?? 0) > 1)
             
         case #selector(changeTheme):
-            menuItem.state = (self.theme?.name == menuItem.title) ? NSOnState : NSOffState
+            menuItem.state = (self.theme?.name == menuItem.title) ? .on : .off
             
         default: break
         }
@@ -249,16 +249,16 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         if let imageItem = item as? TogglableToolbarItem {
             switch action {
             case #selector(toggleLineWrap):
-                imageItem.state = self.wrapsLines ? NSOnState : NSOffState
+                imageItem.state = self.wrapsLines ? .on : .off
                 
             case #selector(toggleLayoutOrientation):
-                imageItem.state = self.verticalLayoutOrientation ? NSOnState : NSOffState
+                imageItem.state = self.verticalLayoutOrientation ? .on : .off
                 
             case #selector(togglePageGuide):
-                imageItem.state = self.showsPageGuide ? NSOnState : NSOffState
+                imageItem.state = self.showsPageGuide ? .on : .off
                 
             case #selector(toggleInvisibleChars):
-                imageItem.state = self.showsInvisibles ? NSOnState : NSOffState
+                imageItem.state = self.showsInvisibles ? .on : .off
                 
                 // disable button if item cannot be enabled
                 if self.canActivateShowInvisibles {
@@ -269,7 +269,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
                 }
                 
             case #selector(toggleAutoTabExpand):
-                imageItem.state = self.isAutoTabExpandEnabled ? NSOnState : NSOffState
+                imageItem.state = self.isAutoTabExpandEnabled ? .on : .off
                 
             default: break
             }
@@ -396,7 +396,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// Whether status bar is visible
-    var isStatusBarShown: Bool {
+    @objc var isStatusBarShown: Bool {
         
         get {
             return !(self.statusBarItem?.isCollapsed ?? true)
@@ -409,7 +409,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of navigation bars
-    var showsNavigationBar = false {
+    @objc var showsNavigationBar = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -420,7 +420,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of line numbers view
-    var showsLineNumber = false {
+    @objc var showsLineNumber = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -442,7 +442,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of page guide lines in text view
-    var showsPageGuide = false {
+    @objc var showsPageGuide = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -453,7 +453,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of invisible characters
-    var showsInvisibles = false {
+    @objc var showsInvisibles = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -464,10 +464,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// if text orientation is vertical
-    var verticalLayoutOrientation = false {
+    @objc var verticalLayoutOrientation = false {
         
         didSet {
-            let orientation: NSTextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
+            let orientation: NSLayoutManager.TextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
             
             for viewController in self.editorViewControllers {
                 viewController.textView?.setLayoutOrientation(orientation)
@@ -517,7 +517,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// toggle visibility of status bar with fancy animation
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
-        NSAnimationContext.current().withAnimation {
+        NSAnimationContext.current.withAnimation {
             self.isStatusBarShown = !self.isStatusBarShown
         }
     }
@@ -533,7 +533,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// toggle visibility of navigation bar with fancy animation
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
-        NSAnimationContext.current().withAnimation {
+        NSAnimationContext.current.withAnimation {
             self.showsNavigationBar = !self.showsNavigationBar
         }
     }
@@ -614,14 +614,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func openSplitTextView(_ sender: Any?) {
         
         guard (self.splitViewController?.splitViewItems.count ?? 0) < maximumNumberOfSplitEditors else {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
         guard let currentEditorViewController = self.findTargetEditorViewController(for: sender) else { return }
         
         // end current editing
-        NSTextInputContext.current()?.discardMarkedText()
+        NSTextInputContext.current?.discardMarkedText()
         
         let newEditorViewController = self.createEditor(baseViewController: currentEditorViewController)
         
@@ -647,7 +647,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             else { return }
         
         // end current editing
-        NSTextInputContext.current()?.discardMarkedText()
+        NSTextInputContext.current?.discardMarkedText()
         
         // move focus to the next text view if the view to close has a focus
         if splitViewController.focusedSubviewController == currentEditorViewController {
@@ -663,7 +663,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             splitViewController.removeSplitViewItem(splitViewItem)
         
             if let textView = currentEditorViewController.textView {
-                NotificationCenter.default.removeObserver(self, name: .NSTextViewDidChangeSelection, object: textView)
+                NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
             }
         }
     }
@@ -694,7 +694,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// create and set-up new (split) editor view
     private func createEditor(baseViewController: EditorViewController?) -> EditorViewController {
         
-        let storyboard = NSStoryboard(name: "EditorView", bundle: nil)
+        let storyboard = NSStoryboard(name: NSStoryboard.Name("EditorView"), bundle: nil)
         let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
         editorViewController.textStorage = self.textStorage
         
@@ -721,7 +721,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
-                                               name: .NSTextViewDidChangeSelection,
+                                               name: NSTextView.didChangeSelectionNotification,
                                                object: editorViewController.textView)
         
         return editorViewController
@@ -774,7 +774,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         
         guard
             let view = (sender is NSMenuItem) ? (self.view.window?.firstResponder as? NSView) : sender as? NSView,
-            let editorView = sequence(first: view, next: { $0.superview }).first(where: { $0.identifier == "EditorView" })
+            let editorView = sequence(first: view, next: { $0.superview }).first(where: { $0.identifier == NSUserInterfaceItemIdentifier("EditorView") })
             else { return nil }
         
         return self.splitViewController?.viewController(for: editorView)

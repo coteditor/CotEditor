@@ -194,13 +194,13 @@ extension NSTextView {
             textContainer.widthTracksTextView = wrapsLines
             if wrapsLines {
                 let contentSize = scrollView.contentSize
-                textContainer.containerSize = NSSize(width: contentSize.width.divided(by: self.scale).rounded(),
+                textContainer.containerSize = NSSize(width: (contentSize.width / self.scale).rounded(),
                                                      height: CGFloat.greatestFiniteMagnitude)
                 self.setConstrainedFrameSize(contentSize)
             } else {
                 textContainer.containerSize = .infinite
             }
-            self.autoresizingMask = wrapsLines ? (isVertical ? .viewHeightSizable : .viewWidthSizable) : .viewNotSizable
+            self.autoresizingMask = wrapsLines ? (isVertical ? .height : .width) : .none
             if isVertical {
                 scrollView.hasVerticalScroller = !wrapsLines
                 self.isVerticallyResizable = !wrapsLines

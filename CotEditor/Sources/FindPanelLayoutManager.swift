@@ -64,10 +64,10 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let font = self.font
             let fullWidthFont = NSFont(name: "HiraKakuProN-W3", size: font.pointSize) ?? font
             
-            let attributes = [NSFontAttributeName: font,
-                              NSForegroundColorAttributeName: color]
-            let fullwidthAttributes = [NSFontAttributeName: fullWidthFont,
-                              NSForegroundColorAttributeName: color]
+            let attributes: [NSAttributedStringKey: Any] = [.font: font,
+                                                            .foregroundColor: color]
+            let fullwidthAttributes: [NSAttributedStringKey: Any] = [.font: fullWidthFont,
+                                                                     .foregroundColor: color]
             
             let defaults = UserDefaults.standard
             let showsSpace = defaults[.showInvisibleSpace]
@@ -114,7 +114,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 default:
                     guard self.showsInvisibleCharacters && self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
                     
-                    guard self.textStorage?.attribute(NSGlyphInfoAttributeName, at: charIndex, effectiveRange: nil) == nil else { continue }
+                    guard self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil else { continue }
                     
                     let replaceFont = NSFont(name: "Lucida Grande", size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
                     let charRange = self.characterRange(forGlyphRange: NSRange(location: glyphIndex, length: 1), actualGlyphRange: nil)
@@ -125,9 +125,9 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     // !!!: The following line can cause crash by binary document.
                     //      It's actually dangerous and to be detoured to modify textStorage while drawing.
                     //      (2015-09 by 1024jp)
-                    self.textStorage?.addAttributes([NSGlyphInfoAttributeName: glyphInfo,
-                                                     NSFontAttributeName: replaceFont,
-                                                     NSForegroundColorAttributeName: color], range: charRange)
+                    self.textStorage?.addAttributes([.glyphInfo: glyphInfo,
+                                                     .font: replaceFont,
+                                                     .foregroundColor: color], range: charRange)
                     continue
                 }
 

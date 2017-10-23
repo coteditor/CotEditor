@@ -34,7 +34,7 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
     
     private let fileURL: URL
     
-    private dynamic weak var webView: WKWebView?
+    @objc private dynamic weak var webView: WKWebView?
     
     
     
@@ -57,9 +57,9 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
     }
     
     
-    override var windowNibName: String? {
+    override var windowNibName: NSNib.Name? {
         
-        return "WebDocumentWindow"
+        return NSNib.Name("WebDocumentWindow")
     }
     
     
@@ -92,7 +92,7 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
         guard
             navigationAction.navigationType == .linkActivated,
             let url = navigationAction.request.url, url.host != nil,
-            NSWorkspace.shared().open(url)
+            NSWorkspace.shared.open(url)
             else { return decisionHandler(.allow) }
         
         decisionHandler(.cancel)

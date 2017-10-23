@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ final class HexColorTransformer: ValueTransformer {
         
         let color = value as? NSColor ?? .black
         
-        let sanitizedColor = color.usingColorSpaceName(NSCalibratedRGBColorSpace)
+        let sanitizedColor = color.usingColorSpaceName(.calibratedRGB)
         
         return sanitizedColor?.colorCode(type: .hex)
     }

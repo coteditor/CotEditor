@@ -85,7 +85,7 @@ final class LayoutManager: NSLayoutManager {
     
     // MARK: Private Properties
     
-    private static let HiraginoSansName = NSFontManager.shared().availableFonts.contains(FontName.HiraginoSans) ? FontName.HiraginoSans : FontName.HiraKakuProN
+    private static let HiraginoSansName = NSFontManager.shared.availableFonts.contains(FontName.HiraginoSans) ? FontName.HiraginoSans : FontName.HiraKakuProN
     private static let observedDefaultKeys: [DefaultKeys] = [
         .invisibleSpace,
         .invisibleTab,
@@ -208,12 +208,12 @@ final class LayoutManager: NSLayoutManager {
         
         // set anti-alias state on screen drawing
         if NSGraphicsContext.currentContextDrawingToScreen() {
-            NSGraphicsContext.current()?.shouldAntialias = self.usesAntialias
+            NSGraphicsContext.current?.shouldAntialias = self.usesAntialias
         }
         
         // draw invisibles
         if self.showsInvisibles,
-            let context = NSGraphicsContext.current()?.cgContext,
+            let context = NSGraphicsContext.current?.cgContext,
             let string = self.textStorage?.string
         {
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
@@ -224,7 +224,7 @@ final class LayoutManager: NSLayoutManager {
             }
             
             // flip coordinate if needed
-            if NSGraphicsContext.current()?.isFlipped ?? false {
+            if NSGraphicsContext.current?.isFlipped ?? false {
                 context.textMatrix = CGAffineTransform(scaleX: 1.0, y: -1.0)
             }
             
@@ -292,10 +292,10 @@ final class LayoutManager: NSLayoutManager {
     
     
     /// textStorage did update
-    override func textStorage(_ str: NSTextStorage, edited editedMask: NSTextStorageEditedOptions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
+    override func textStorage(_ str: NSTextStorage, edited editedMask: Int, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
         
         // invalidate wrapping line indent in editRange if needed
-        if editedMask & NSTextStorageEditedOptions(1) != 0 || delta < 0 {  // Hey Swift 3, where has NSTextStorageEditedCharacters gone...
+        if editedMask & 1 != 0 || delta < 0 {  // 1 == .characters
             self.invalidateIndent(in: newCharRange)
         }
         
@@ -327,7 +327,8 @@ final class LayoutManager: NSLayoutManager {
         // only on focused editor
         if let window = textView.window, !self.layoutManagerOwnsFirstResponder(in: window) { return }
         
-        let lineRange = (textStorage.string as NSString).lineRange(for: range)
+        let string = textStorage.string as NSString
+        let lineRange = string.lineRange(for: range)
         
         guard lineRange.length > 0 else { return }
         
@@ -335,14 +336,14 @@ final class LayoutManager: NSLayoutManager {
         let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")
         
         // get dummy attributes to make calculation of indent width the same as layoutManager's calculation (2016-04)
-        let defaultParagraphStyle = textView.defaultParagraphStyle ?? NSParagraphStyle.default()
-        let indentAttributes: [String: Any] = {
-            let typingParagraphStyle = (textView.typingAttributes[NSParagraphStyleAttributeName] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
+        let defaultParagraphStyle = textView.defaultParagraphStyle ?? NSParagraphStyle.default
+        let indentAttributes: [NSAttributedStringKey: Any] = {
+            let typingParagraphStyle = (textView.typingAttributes[.paragraphStyle] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
             typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
             
-            var attributes: [String: Any] = [:]
-            attributes[NSFontAttributeName] = self.textFont
-            attributes[NSParagraphStyleAttributeName] = typingParagraphStyle
+            var attributes: [NSAttributedStringKey: Any] = [:]
+            attributes[.font] = self.textFont
+            attributes[.paragraphStyle] = typingParagraphStyle
             return attributes
         }()
         
@@ -350,7 +351,7 @@ final class LayoutManager: NSLayoutManager {
         
         // process line by line
         textStorage.beginEditing()
-        (textStorage.string as NSString).enumerateSubstrings(in: lineRange, options: .byLines) { (substring: String?, substringRange, enclosingRange, stop) in
+        string.enumerateSubstrings(in: lineRange, options: .byLines) { (substring: String?, substringRange, enclosingRange, stop) in
             guard let substring = substring else { return }
             
             var indent = hangingIndent
@@ -369,12 +370,12 @@ final class LayoutManager: NSLayoutManager {
             }
             
             // apply new indent only if needed
-            let paragraphStyle = textStorage.attribute(NSParagraphStyleAttributeName, at: substringRange.location, effectiveRange: nil) as? NSParagraphStyle
+            let paragraphStyle = textStorage.attribute(.paragraphStyle, at: substringRange.location, effectiveRange: nil) as? NSParagraphStyle
             if indent != paragraphStyle?.headIndent {
                 let mutableParagraphStyle = (paragraphStyle ?? defaultParagraphStyle).mutableCopy() as! NSMutableParagraphStyle
                 mutableParagraphStyle.headIndent = indent
                 
-                textStorage.addAttribute(NSParagraphStyleAttributeName, value: mutableParagraphStyle, range: substringRange)
+                textStorage.addAttribute(.paragraphStyle, value: mutableParagraphStyle, range: substringRange)
             }
         }
         
@@ -426,9 +427,8 @@ private extension CTLine {
     /// convenient initializer for CTLine
     class func create(string: String, color: NSColor, font: NSFont) -> CTLine {
         
-        let attributes: [String: Any] = [NSForegroundColorAttributeName: color,
-                                         NSFontAttributeName: font]
-        let attrString = NSAttributedString(string: string, attributes: attributes)
+        let attrString = NSAttributedString(string: string, attributes: [.foregroundColor: color,
+                                                                         .font: font])
         
         return CTLineCreateWithAttributedString(attrString)
     }

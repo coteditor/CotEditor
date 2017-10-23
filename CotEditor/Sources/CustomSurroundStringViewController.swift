@@ -31,8 +31,8 @@ final class CustomSurroundStringViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private dynamic var beginString: String = ""
-    private dynamic var endString: String = ""
+    @objc private dynamic var beginString: String = ""
+    @objc private dynamic var endString: String = ""
     
     @IBOutlet fileprivate weak var beginStringField: NSTextField?
     @IBOutlet fileprivate weak var endStringField: NSTextField?
@@ -48,7 +48,7 @@ final class CustomSurroundStringViewController: NSViewController {
         guard
             let textView = self.representedObject as? NSTextView,
             !self.beginString.isEmpty else {
-                NSBeep()
+                NSSound.beep()
                 return
         }
         

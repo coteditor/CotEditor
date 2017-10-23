@@ -31,14 +31,14 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private dynamic let textFinder = TextFinder.shared
+    @objc private dynamic let textFinder = TextFinder.shared
     
-    private dynamic var findResultMessage: String?  // binding
-    private dynamic var replacementResultMessage: String?  // binding
+    @objc private dynamic var findResultMessage: String?  // binding
+    @objc private dynamic var replacementResultMessage: String?  // binding
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
-    private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: "RegexReferenceView", bundle: nil)!
-    private lazy var preferencesViewController = NSViewController(nibName: "FindPreferencesView", bundle: nil)!
+    private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: NSNib.Name("RegexReferenceView"), bundle: nil)
+    private lazy var preferencesViewController = NSViewController(nibName: NSNib.Name("FindPreferencesView"), bundle: nil)
     
     @IBOutlet private var findTextView: NSTextView?  // NSTextView cannot be weak
     @IBOutlet private var replacementTextView: NSTextView?  // NSTextView cannot be weak
@@ -212,8 +212,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // dismiss result either client text or find string did change
         self.currentResultMessageTarget = target.layoutManager
-        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: .NSTextStorageDidProcessEditing, object: target.textStorage)
-        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: .NSWindowWillClose, object: target.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSWindow.willCloseNotification, object: target.window)
     }
     
     
@@ -266,7 +266,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
         
         for string in history {
-            let title = (string.characters.count < 64) ? string : (String(string.characters.prefix(64)) + "…")
+            let title = (string.count <= 64) ? string : (String(string.prefix(64)) + "…")
             let item = NSMenuItem(title: title, action: action, keyEquivalent: "")
             item.representedObject = string
             item.toolTip = string
@@ -283,8 +283,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // -> specify the object to remove osberver to avoid removing the windowWillClose notification (via delegate) from find panel itself.
         if let target = self.currentResultMessageTarget?.firstTextView {
-            NotificationCenter.default.removeObserver(self, name: .NSTextStorageDidProcessEditing, object: target.textStorage)
-            NotificationCenter.default.removeObserver(self, name: .NSWindowWillClose, object: target.window)
+            NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
+            NotificationCenter.default.removeObserver(self, name: NSWindow.willCloseNotification, object: target.window)
         }
     }
     

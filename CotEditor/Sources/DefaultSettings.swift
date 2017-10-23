@@ -67,7 +67,7 @@ struct DefaultSettings {
         .windowAlpha: 1.0,
         
         .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
-        .fontSize: NSFont.systemFontSize(),
+        .fontSize: NSFont.systemFontSize,
         .shouldAntialias: true,
         .lineHeight: 1.2,
         .highlightCurrentLine: false,
@@ -136,7 +136,7 @@ struct DefaultSettings {
         
         .setPrintFont: false,
         .printFontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
-        .printFontSize: NSFont.systemFontSize(),
+        .printFontSize: NSFont.systemFontSize,
         .printColorIndex: PrintColorMode.blackWhite.rawValue,
         .printLineNumIndex: PrintLineNmuberMode.no.rawValue,
         .printInvisibleCharIndex: PrintInvisiblesMode.no.rawValue,

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -158,9 +158,9 @@ class StringExtensionsTests: XCTestCase {
         let set = CharacterSet(charactersIn: "._").inverted
         let string = "abc.d🐕f_ghij"
         
-        XCTAssertEqual(string.substring(with: string.rangeOfCharacters(from: set, at: string.startIndex)!), "abc")
-        XCTAssertEqual(string.substring(with: string.rangeOfCharacters(from: set, at: string.index(string.startIndex, offsetBy: 4))!), "d🐕f")
-        XCTAssertEqual(string.substring(with: string.rangeOfCharacters(from: set, at: string.index(before: string.endIndex))!), "ghij")
+        XCTAssertEqual(string[string.rangeOfCharacters(from: set, at: string.startIndex)!], "abc")
+        XCTAssertEqual(string[string.rangeOfCharacters(from: set, at: string.index(string.startIndex, offsetBy: 4))!], "d🐕f")
+        XCTAssertEqual(string[string.rangeOfCharacters(from: set, at: string.index(before: string.endIndex))!], "ghij")
     }
     
     

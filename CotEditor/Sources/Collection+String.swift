@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension Collection where Iterator.Element == String {
+extension Collection where Element == String {
     
     /// Create a name adding a number suffix not to be contained in the receiver.
     ///
@@ -49,7 +49,7 @@ extension Collection where Iterator.Element == String {
             
             let root = (proposedName as NSString).substring(to: result.range.location)
             
-            let numberRange = result.rangeAt(2)
+            let numberRange = result.range(at: 2)
             
             guard numberRange.location != NSNotFound else { return (root, nil) }
             
@@ -63,7 +63,7 @@ extension Collection where Iterator.Element == String {
         guard baseCount != nil || self.contains(baseName) else { return baseName }
         
         return sequence(first: baseCount ?? 2) { $0 + 1 }.lazy
-            .map { baseName + " " + String($0) }
+            .map { (count: Int) -> String in baseName + " " + String(count) }
             .first { !self.contains($0) }!
     }
     

@@ -90,7 +90,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var shouldSaveXattr = true
     private var autosaveIdentifier: String
     private var suppressesIANACharsetConflictAlert = false
-    private dynamic var isExecutable = false  // bind in save panel accessory view
+    @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     
     
@@ -102,7 +102,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         let uuid = UUID().uuidString
-        self.autosaveIdentifier = uuid.substring(to: uuid.index(uuid.startIndex, offsetBy: uniqueFileIDLength))
+        self.autosaveIdentifier = String(uuid.prefix(uniqueFileIDLength))
         
         let encoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInNew])
         self.encoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
@@ -116,7 +116,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
         // -> This must be set before `readFromData:ofType:error:` is called.
-        self.readingEncoding = (DocumentController.shared() as! DocumentController).accessorySelectedEncoding
+        self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding
         
         super.init()
         
@@ -167,7 +167,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Document Methods
     
     /// enable Autosave in Place
-    override class func autosavesInPlace() -> Bool {
+    override class var autosavesInPlace: Bool {
         
         return self._autosavesInPlace
     }
@@ -183,7 +183,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// enable asynchronous saving
-    override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
+    override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) -> Bool {
         
         // -> Async-saving may cause an occasional crash. (2017-10 macOS 10.13 SDK)
         return false
@@ -193,7 +193,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// make custom windowControllers
     override func makeWindowControllers() {
         
-        let storyboard = NSStoryboard(name: "DocumentWindow", bundle: nil)
+        let storyboard = NSStoryboard(name: NSStoryboard.Name("DocumentWindow"), bundle: nil)
         let windowController = storyboard.instantiateInitialController() as! NSWindowController
         
         self.addWindowController(windowController)
@@ -216,7 +216,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// return preferred file extension corresponding to the current syntax style
-    override func fileNameExtension(forType typeName: String, saveOperation: NSSaveOperationType) -> String? {
+    override func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
         
         if let pathExtension = self.fileURL?.pathExtension {
             return pathExtension
@@ -372,7 +372,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// save or autosave the document contents to a file
-    override func save(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, completionHandler: @escaping (Error?) -> Void) {
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (Error?) -> Void) {
         
         // trim trailing whitespace if needed
         assert(Thread.isMainThread)
@@ -405,10 +405,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 let fileURL = self.fileURL
                 else { return url }
             
-            let autosaveDirectoryURL = (DocumentController.shared() as! DocumentController).autosaveDirectoryURL
+            let autosaveDirectoryURL = (DocumentController.shared as! DocumentController).autosaveDirectoryURL
             var baseFileName = fileURL.deletingPathExtension().lastPathComponent
             if baseFileName.hasPrefix(".") {  // avoid file to be hidden
-                baseFileName.remove(at: baseFileName.startIndex)
+                baseFileName.removeFirst()
             }
             // append a unique string to avoid overwriting another backup file with the same file name.
             let fileName = baseFileName + " (" + self.autosaveIdentifier + ")"
@@ -458,7 +458,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// write new data to file (invoked in file saving proccess)
-    override func write(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws {
+    override func write(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws {
         
         // [caution] This method may be called from a background thread due to async-saving.
         
@@ -484,7 +484,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// customize document's file attributes
-    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
+    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
         
         // [caution] This method may be called from a background thread due to async-saving.
         
@@ -547,25 +547,25 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // bind allowedFileTypes flag with savePanel
             // -> So that initial filename selection excludes file extension.
             self.allowedFileTypes = [pathExtension]
-            savePanel.bind(#keyPath(NSSavePanel.allowedFileTypes), to: self, withKeyPath: #keyPath(allowedFileTypes))
+            savePanel.bind(NSBindingName(#keyPath(NSSavePanel.allowedFileTypes)), to: self, withKeyPath: #keyPath(allowedFileTypes))
             
             // disable and unbind `allowedFileTypes` immediately in the next runloop to allow set other extensions
             DispatchQueue.main.async { [weak self] in
                 self?.allowedFileTypes = nil
-                savePanel.unbind(#keyPath(NSSavePanel.allowedFileTypes))
+                savePanel.unbind(NSBindingName(#keyPath(NSSavePanel.allowedFileTypes)))
             }
         }
         
         // set accessory view
         if self.savePanelAccessoryView == nil {
-            Bundle.main.loadNibNamed("SaveDocumentAccessory", owner: self, topLevelObjects: nil)
+            Bundle.main.loadNibNamed(NSNib.Name("SaveDocumentAccessory"), owner: self, topLevelObjects: nil)
         }
         savePanel.accessoryView = self.savePanelAccessoryView
         
         return super.prepareSavePanel(savePanel)
     }
     
-    private dynamic var allowedFileTypes: [String]?
+    @objc private dynamic var allowedFileTypes: [String]?
     
     
     /// display dialogs about save before closing document
@@ -595,7 +595,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// setup print setting including print panel
-    override func printOperation(withSettings printSettings: [String: Any]) throws -> NSPrintOperation {
+    override func printOperation(withSettings printSettings: [NSPrintInfo.AttributeKey: Any]) throws -> NSPrintOperation {
         
         let viewController = self.viewController!
         
@@ -648,7 +648,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             printInfo.rightMargin = PrintTextView.horizontalPrintMargin
             printInfo.topMargin = PrintTextView.verticalPrintMargin
             printInfo.bottomMargin = PrintTextView.verticalPrintMargin
-            printInfo.dictionary()[NSPrintHeaderAndFooter] = true
+            printInfo.dictionary()[NSPrintInfo.AttributeKey.headerAndFooter] = true
             
             return printInfo
         }
@@ -732,14 +732,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         switch action {
         case #selector(changeEncoding(_:)):
             let encodingTag = self.hasUTF8BOM ? -Int(self.encoding.rawValue) : Int(self.encoding.rawValue)
-            menuItem.state = (menuItem.tag == encodingTag) ? NSOnState : NSOffState
+            menuItem.state = (menuItem.tag == encodingTag) ? .on : .off
             
         case #selector(changeLineEnding(_:)):
-            menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? NSOnState : NSOffState
+            menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? .on : .off
             
         case #selector(changeSyntaxStyle(_:)):
             let name = self.syntaxStyle.styleName
-            menuItem.state = (menuItem.title == name) ? NSOnState : NSOffState
+            menuItem.state = (menuItem.title == name) ? .on : .off
             
         default: break
         }
@@ -819,7 +819,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try self.reinterpret(encoding: encoding)
             
         } catch {
-            NSBeep()
+            NSSound.beep()
             self.presentErrorAsSheet(error)
         }
     }
@@ -896,7 +896,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// dummy method for undoManager that can recognize only ObjC-compatible methods...
-    func objcChangeEncoding(to encoding: UInt, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) {
+    @objc func objcChangeEncoding(to encoding: UInt, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) {
         
         self.changeEncoding(to: String.Encoding(rawValue: encoding), withUTF8BOM: withUTF8BOM, askLossy: askLossy, lossy: lossy)
     }
@@ -926,7 +926,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// dummy method for undoManager that can recognize only ObjC-compatible methods...
-    func objcChangeLineEnding(to lineEnding: String) {
+    @objc func objcChangeLineEnding(to lineEnding: String) {
         
         self.changeLineEnding(to: LineEnding(rawValue: lineEnding.characters.first!)!)
     }
@@ -1032,12 +1032,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         
         let documentWindow = self.windowForSheet!
-        alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSApplication.ModalResponse) in
             switch returnCode {
-            case NSAlertFirstButtonReturn:  // = Convert
+            case .alertFirstButtonReturn:  // = Convert
                 self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
                 
-            case NSAlertSecondButtonReturn:  // = Reinterpret
+            case .alertSecondButtonReturn:  // = Reinterpret
                 // ask user if document is edited
                 if self.isDocumentEdited, let fileURL = self.fileURL {
                     let alert = NSAlert()
@@ -1049,7 +1049,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
                     let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
                     
-                    guard returnCode != NSAlertFirstButtonReturn else {  // = Cancel
+                    guard returnCode != .alertSecondButtonReturn else {  // = Cancel
                         // reset toolbar selection for in case if the operation was invoked from the toolbar popup
                         NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
                         return
@@ -1059,7 +1059,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 // reinterpret
                 self.reinterpretAndShowError(encoding: encoding)
                 
-            case NSAlertThirdButtonReturn:  // = Cancel
+            case .alertThirdButtonReturn:  // = Cancel
                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
                 NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
                 
@@ -1175,12 +1175,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 let result = alert.runModal(for: self.windowForSheet!)
                 
                 // do not show the alert in this document again
-                if alert.suppressionButton?.state == NSOnState {
+                if alert.suppressionButton?.state == .on {
                     self.suppressesIANACharsetConflictAlert = true
                 }
                 
                 switch result {
-                case NSAlertSecondButtonReturn:  // == Cancel
+                case .alertSecondButtonReturn:  // == Cancel
                     completionHandler(false)
                     return
                 default: break  // == Continue Saving
@@ -1249,9 +1249,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.alertStyle = .critical
         }
         
-        alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSApplication.ModalResponse) in
             
-            if returnCode == NSAlertSecondButtonReturn {  // == Revert
+            if returnCode == .alertSecondButtonReturn {  // == Revert
                 self.revertWithoutAsking()
             }
             

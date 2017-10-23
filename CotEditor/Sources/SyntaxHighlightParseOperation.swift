@@ -424,11 +424,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                 let syntaxType = self.pairedQuoteTypes[kind] ?? SyntaxType.comments
                 let range = NSRange(location: startLocation, length: endLocation - startLocation)
                 
-                if highlights[syntaxType] != nil {
-                    highlights[syntaxType]!.append(range)
-                } else {
-                    highlights[syntaxType] = [range]
-                }
+                highlights[syntaxType, default: []].append(range)
                 
                 searchingKind = nil
                 seekLocation = endLocation
@@ -440,11 +436,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             let syntaxType = self.pairedQuoteTypes[searchingKind] ?? SyntaxType.comments
             let range = NSRange(location: startLocation, length: self.parseRange.upperBound - startLocation)
             
-            if highlights[syntaxType] != nil {
-                highlights[syntaxType]!.append(range)
-            } else {
-                highlights[syntaxType] = [range]
-            }
+            highlights[syntaxType, default: []].append(range)
         }
         
         return highlights
@@ -533,11 +525,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         }
         let commentAndQuoteRanges = self.extractCommentsWithQuotes()
         for (key, value) in commentAndQuoteRanges {
-            if highlights[key] != nil {
-                highlights[key]!.append(contentsOf: value)
-            } else {
-                highlights[key] = value
-            }
+            highlights[key, default: []].append(contentsOf: value)
         }
         
         guard !self.isCancelled else { return [:] }

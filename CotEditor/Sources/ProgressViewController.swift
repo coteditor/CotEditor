@@ -42,8 +42,8 @@ final class ProgressViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private dynamic let progress: Progress
-    private dynamic let message: String
+    @objc private dynamic let progress: Progress
+    @objc private dynamic let message: String
     
     @IBOutlet private weak var button: NSButton?
     
@@ -57,7 +57,7 @@ final class ProgressViewController: NSViewController {
         self.progress = progress
         self.message = message
         
-        super.init(nibName: nil, bundle: nil)!
+        super.init(nibName: nil, bundle: nil)
     }
     
     
@@ -67,9 +67,9 @@ final class ProgressViewController: NSViewController {
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "ProgressView"
+        return NSNib.Name("ProgressView")
     }
     
     

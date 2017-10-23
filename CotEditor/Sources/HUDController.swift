@@ -41,7 +41,10 @@ enum HUDSymbol {
 }
 
 
-private let HUDIdentifier = "HUD"
+private extension NSUserInterfaceItemIdentifier {
+    
+    static let HUD = NSUserInterfaceItemIdentifier("HUD")
+}
 
 
 final class HUDController: NSViewController {
@@ -57,7 +60,7 @@ final class HUDController: NSViewController {
     private let defaultDisplayingInterval: TimeInterval = 0.1
     private let fadeDuration: TimeInterval = 0.5
     
-    private dynamic let symbolImage: NSImage
+    @objc private dynamic let symbolImage: NSImage
     
     @IBOutlet private weak var symbolView: NSImageView?
     
@@ -80,9 +83,9 @@ final class HUDController: NSViewController {
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "HUDView"
+        return NSNib.Name("HUDView")
     }
     
     
@@ -94,7 +97,7 @@ final class HUDController: NSViewController {
         
         super.viewDidLoad()
         
-        self.view.identifier = HUDIdentifier
+        self.view.identifier = .HUD
         self.view.layer?.cornerRadius = self.cornerRadius
         self.view.layer?.opacity = 0.0
         
@@ -112,7 +115,7 @@ final class HUDController: NSViewController {
     func show(in clientView: NSView) {
         
         // remove previous HUD
-        for subview in clientView.subviews where subview.identifier == HUDIdentifier {
+        for subview in clientView.subviews where subview.identifier == .HUD {
             subview.fadeOut(duration: self.fadeDuration / 2.0, delay: 0)  // fade quickly
         }
         

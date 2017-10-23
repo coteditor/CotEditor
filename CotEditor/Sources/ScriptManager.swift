@@ -206,7 +206,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         do {
             // change behavior if modifier key is pressed
-            switch NSEvent.modifierFlags() {
+            switch NSEvent.modifierFlags {
             case [.option]:
                 try self.editScript(at: script.descriptor.url)
                 
@@ -230,7 +230,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// open Script Menu folder in Finder
     @IBAction func openScriptFolder(_ sender: Any?) {
         
-        NSWorkspace.shared().activateFileViewerSelecting([self.scriptsDirectoryURL])
+        NSWorkspace.shared.activateFileViewerSelecting([self.scriptsDirectoryURL])
     }
     
     
@@ -337,7 +337,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - throws: ScriptFileError
     private func editScript(at url: URL) throws {
         
-        guard NSWorkspace.shared().open(url) else {
+        guard NSWorkspace.shared.open(url) else {
             // display alert if cannot open/select the script file
             throw ScriptFileError(kind: .open, url: url)
         }
@@ -352,7 +352,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             throw ScriptFileError(kind: .existance, url: url)
         }
         
-        NSWorkspace.shared().activateFileViewerSelecting([url])
+        NSWorkspace.shared.activateFileViewerSelecting([url])
     }
     
 }

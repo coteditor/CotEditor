@@ -46,16 +46,18 @@ final class PreferencesWindowController: NSWindowController {
         "KeyBindingsPane",
         "PrintPane",
         "IntegrationPane",
-        ].map { (name: String) -> NSViewController in NSStoryboard(name: name, bundle: nil).instantiateInitialController() as! NSViewController }
+        ]
+        .map { NSStoryboard.Name($0) }
+        .map { NSStoryboard(name: $0, bundle: nil).instantiateInitialController() as! NSViewController }
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override var windowNibName: String? {
+    override var windowNibName: NSNib.Name? {
         
-        return "PreferencesWindow"
+        return NSNib.Name("PreferencesWindow")
     }
     
     

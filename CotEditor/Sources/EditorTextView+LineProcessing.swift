@@ -41,7 +41,7 @@ extension EditorTextView {
         
         // cannot perform Move Line Up if one of the selections is already in the first line
         guard !lineRanges.isEmpty, lineRanges.first?.location != 0 else {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
@@ -53,12 +53,11 @@ extension EditorTextView {
         }
         
         var newSelectedRanges = [NSRange]()
+        let string = textStorage.string as NSString
         
         // swap lines
         textStorage.beginEditing()
         for lineRange in lineRanges {
-            let string = textStorage.string as NSString
-            
             let upperLineRange = string.lineRange(at: lineRange.location - 1)
             var lineString = string.substring(with: lineRange)
             var upperLineString = string.substring(with: upperLineRange)
@@ -108,7 +107,7 @@ extension EditorTextView {
         
         // cannot perform Move Line Down if one of the selections is already in the last line
         if lineRanges.last?.upperBound == textStorage.length {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
@@ -120,12 +119,11 @@ extension EditorTextView {
         }
         
         var newSelectedRanges = [NSRange]()
+        let string = textStorage.string as NSString
         
         // swap lines
         textStorage.beginEditing()
         for lineRange in lineRanges.reversed() {
-            let string = textStorage.string as NSString
-            
             var lowerLineRange = string.lineRange(at: lineRange.upperBound)
             var lineString = string.substring(with: lineRange)
             var lowerLineString = string.substring(with: lowerLineRange)
@@ -169,7 +167,7 @@ extension EditorTextView {
     /// sort selected lines (only in the first selection) ascending
     @IBAction func sortLinesAscending(_ sender: Any?) {
         
-        guard let string = self.string as NSString? else { return }
+        let string = self.string as NSString
         
         // process whole document if no text selected
         if self.selectedRange.length == 0 {
@@ -198,7 +196,7 @@ extension EditorTextView {
     /// reverse selected lines (only in the first selection)
     @IBAction func reverseLines(_ sender: Any?) {
         
-        guard let string = self.string as NSString? else { return }
+        let string = self.string as NSString
         
         // process whole document if no text selected
         if self.selectedRange.length == 0 {
@@ -225,7 +223,7 @@ extension EditorTextView {
     /// delete duplicate lines in selection
     @IBAction func deleteDuplicateLine(_ sender: Any?) {
         
-        guard let string = self.string as NSString? else { return }
+        let string = self.string as NSString
         
         // process whole document if no text selected
         if self.selectedRange.length == 0 {
@@ -268,11 +266,10 @@ extension EditorTextView {
     /// duplicate selected lines below
     @IBAction func duplicateLine(_ sender: Any?) {
         
-        guard let string = self.string as NSString? else { return }
-        
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()
         
+        let string = self.string as NSString
         let selectedRanges = self.selectedRanges as! [NSRange]
         
         // get lines to process
@@ -327,8 +324,7 @@ private extension NSTextView {
     /// extract line by line line ranges which selected ranges include
     var selectedLineRanges: [NSRange] {
         
-        guard let string = self.string as NSString? else { return [] }
-        
+        let string = self.string as NSString
         var lineRanges = OrderedSet<NSRange>()
         
         // get line ranges to process

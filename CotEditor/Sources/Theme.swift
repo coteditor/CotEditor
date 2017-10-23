@@ -59,7 +59,7 @@ struct Theme {
     
     // MARK: Private Properties
     
-    private static let invalidColor = NSColor.gray.usingColorSpaceName(NSCalibratedRGBColorSpace)!
+    private static let invalidColor = NSColor.gray.usingColorSpaceName(.calibratedRGB)!
     
     private let syntaxColors: [SyntaxType: NSColor]
     private let usesSystemSelectionColor: Bool

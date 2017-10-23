@@ -175,7 +175,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     /// set action on swiping style name
     @available(macOS 10.11, *)
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
         
@@ -235,9 +235,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         alert.addButton(withTitle: NSLocalizedString("Revert to “Auto-Detect”", comment: ""))
         alert.addButton(withTitle: String(format: NSLocalizedString("Change to “%@”", comment: ""), newTitle))
         
-        alert.beginSheetModal(for: self.view.window!) { (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: self.view.window!) { (returnCode: NSApplication.ModalResponse) in
             
-            guard returnCode == NSAlertFirstButtonReturn else { return }
+            guard returnCode == .alertFirstButtonReturn else { return }
             
             UserDefaults.standard[.encodingInOpen] = String.Encoding.autoDetection.rawValue
         }
@@ -300,8 +300,8 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         savePanel.nameFieldStringValue = styleName
         savePanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension]
         
-        savePanel.beginSheetModal(for: self.view.window!) { (result: Int) in
-            guard result == NSFileHandlingPanelOKButton else { return }
+        savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
+            guard result == .OK else { return }
             
             try? SyntaxManager.shared.exportSetting(name: styleName, to: savePanel.url!)
         }
@@ -318,8 +318,8 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension, "plist"]
         
-        openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: Int) in
-            guard result == NSFileHandlingPanelOKButton else { return }
+        openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: NSApplication.ModalResponse) in
+            guard result == .OK else { return }
             
             self?.importSyntaxStyle(fileURL: openPanel.url!)
         }
@@ -333,7 +333,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         guard let url = SyntaxManager.shared.urlForUserSetting(name: styleName) else { return }
         
-        NSWorkspace.shared().activateFileViewerSelecting([url])
+        NSWorkspace.shared.activateFileViewerSelecting([url])
     }
     
     
@@ -430,7 +430,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// return syntax style name which is currently selected in the list table
-    private dynamic var selectedStyleName: String {
+    @objc private dynamic var selectedStyleName: String {
         
         guard let styleInfo = self.stylesController?.selectedObjects.first as? [String: Any] else {
             return UserDefaults.standard[.syntaxStyle]!
@@ -466,9 +466,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { [weak self] (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: window) { [weak self] (returnCode: NSApplication.ModalResponse) in
             
-            guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
+            guard returnCode == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the style name
                 if #available(macOS 10.11, *) {
                     self?.syntaxTableView?.rowActionsVisible = false
@@ -481,7 +481,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
                 
             } catch {
                 alert.window.orderOut(nil)
-                NSBeep()
+                NSSound.beep()
                 NSAlert(error: error).beginSheetModal(for: window)
                 return
             }

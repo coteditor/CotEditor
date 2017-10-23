@@ -35,7 +35,7 @@ final class FindPanelController: NSWindowController {
         
         super.windowDidLoad()
         
-        self.windowFrameAutosaveName = "findPanel"
+        self.windowFrameAutosaveName = NSWindow.FrameAutosaveName("findPanel")
     }
     
     

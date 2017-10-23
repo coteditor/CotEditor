@@ -32,8 +32,8 @@ final class WindowPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private dynamic var editorOpaque: Bool = (UserDefaults.standard[.windowAlpha] == 1.0)
-    private dynamic var supportsWindowTabbing = (NSApp.delegate as! AppDelegate).supportsWindowTabbing
+    @objc private dynamic var editorOpaque: Bool = (UserDefaults.standard[.windowAlpha] == 1.0)
+    @objc private dynamic var supportsWindowTabbing = (NSApp.delegate as! AppDelegate).supportsWindowTabbing
     
     
     

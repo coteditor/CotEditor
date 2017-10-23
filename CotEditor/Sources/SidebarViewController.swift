@@ -79,7 +79,7 @@ final class SidebarViewController: NSTabViewController {
         
         // bind segmentedControl manually  (2016-09 on macOS 10.12)
         if let segmentedControl = (self.tabView as? InspectorTabView)?.segmentedControl {
-            segmentedControl.bind(NSSelectedIndexBinding, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
+            segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
         }
     }
     

@@ -348,6 +348,8 @@
 		2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
+		2A9BEE0B1EEBCBDD0048801D /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BEE0A1EEBCBDD0048801D /* NSAppKitVersion.swift */; };
+		2A9BEE0C1EEBCBDD0048801D /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BEE0A1EEBCBDD0048801D /* NSAppKitVersion.swift */; };
 		2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C71D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */; };
@@ -536,8 +538,6 @@
 		2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */; };
 		2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */; };
 		2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */; };
-		2AF134481F6E82AA00A85D40 /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF134471F6E82AA00A85D40 /* NSAppKitVersion.swift */; };
-		2AF134491F6E82AA00A85D40 /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF134471F6E82AA00A85D40 /* NSAppKitVersion.swift */; };
 		2AF45E1E1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */; };
 		2AF45E1F1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */; };
 		2AF45E221E6C17700030CD60 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E211E6C17700030CD60 /* OperationQueue.swift */; };
@@ -925,6 +925,7 @@
 		2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPaneController.swift; sourceTree = "<group>"; };
 		2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropPaneController.swift; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = ../cot/cot; sourceTree = SOURCE_ROOT; };
+		2A9BEE0A1EEBCBDD0048801D /* NSAppKitVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppKitVersion.swift; sourceTree = "<group>"; };
 		2A9BF3B91D37EB0900E3D3E2 /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		2A9BF3C21D3803B600E3D3E2 /* unicode */ = {isa = PBXFileReference; lastKnownFileType = folder; path = unicode; sourceTree = "<group>"; };
 		2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Transformation.swift"; sourceTree = "<group>"; };
@@ -1095,7 +1096,6 @@
 		2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourCharCode.swift; sourceTree = "<group>"; };
 		2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourCharCodeTests.swift; sourceTree = "<group>"; };
 		2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+ScriptingSupport.swift"; sourceTree = "<group>"; };
-		2AF134471F6E82AA00A85D40 /* NSAppKitVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppKitVersion.swift; sourceTree = "<group>"; };
 		2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorInfoCountOperation.swift; sourceTree = "<group>"; };
 		2AF45E211E6C17700030CD60 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
 		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
@@ -1374,7 +1374,7 @@
 		2A359E001DAEA0EE00FEF7AA /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
-				2AF134471F6E82AA00A85D40 /* NSAppKitVersion.swift */,
+				2A9BEE0A1EEBCBDD0048801D /* NSAppKitVersion.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2A71BC7D1DDC70A80085AE1C /* NSImage+Template.swift */,
@@ -2260,7 +2260,6 @@
 				2AED46711E425CD200751C45 /* TextFind.swift in Sources */,
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
-				2AF134491F6E82AA00A85D40 /* NSAppKitVersion.swift in Sources */,
 				2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */,
 				2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
@@ -2375,6 +2374,7 @@
 				2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A7725651D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */,
 				2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
+				2A9BEE0C1EEBCBDD0048801D /* NSAppKitVersion.swift in Sources */,
 				2AA375441D403F100080C27C /* String+Encoding.swift in Sources */,
 				2A6FD9DE1D392EFF00A59784 /* ATSTypesetter.swift in Sources */,
 				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
@@ -2472,6 +2472,7 @@
 				2A9C370B1D66E99400774BA4 /* BracePair.swift in Sources */,
 				2A78BFAA1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
 				2A5D131F1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
+				2A9BEE0B1EEBCBDD0048801D /* NSAppKitVersion.swift in Sources */,
 				2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2AF073EB1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,
@@ -2521,7 +2522,6 @@
 				2AFB5AE81D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				2A4CB9921D79F38A000D6ADA /* DocumentToolbar.swift in Sources */,
-				2AF134481F6E82AA00A85D40 /* NSAppKitVersion.swift in Sources */,
 				2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
@@ -3400,7 +3400,7 @@
 				SDKROOT = macosx;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -3464,7 +3464,7 @@
 				SDKROOT = macosx;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

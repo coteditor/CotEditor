@@ -32,14 +32,14 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     // MARK: Private Properties
     
-    private dynamic var encodings: [NSNumber] {
+    @objc private dynamic var encodings: [NSNumber] {
         didSet {
             // validate restorebility
             self.canRestore = (encodings != self.defaultEncodings)
         }
     }
     private let defaultEncodings: [NSNumber]
-    private dynamic var canRestore: Bool  // enability of "Restore Default" button
+    @objc private dynamic var canRestore: Bool  // enability of "Restore Default" button
     
     @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var deleteSeparatorButton: NSButton?
@@ -49,9 +49,9 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     // MARK: -
     // MARK: Lifecycle
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         
-        self.defaultEncodings = NSUserDefaultsController.shared().initialValues?[DefaultKeys.encodingList.rawValue] as! [NSNumber]
+        self.defaultEncodings = NSUserDefaultsController.shared.initialValues?[DefaultKeys.encodingList.rawValue] as! [NSNumber]
         self.encodings = UserDefaults.standard[.encodingList]
         self.canRestore = (self.encodings != self.defaultEncodings)
         
@@ -65,9 +65,9 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "EncodingListView"
+        return NSNib.Name("EncodingListView")
     }
     
     
@@ -93,7 +93,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         
         let ianaName = (CFStringConvertEncodingToIANACharSetName(cfEncoding) as String?) ?? "-"
         let attrIanaName = NSAttributedString(string: " : " + ianaName,
-                                              attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor])
+                                              attributes: [.foregroundColor: NSColor.disabledControlTextColor])
         
         textField.attributedStringValue = attrEncodingName + attrIanaName
     }
@@ -111,7 +111,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     @available(macOS 10.11, *)
     /// set action on swiping row
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
         

@@ -46,9 +46,9 @@ final class IntegrationPaneController: NSViewController {
         return applicationDirURL.appendingPathComponent(appName).appendingPathExtension("app")
     }()
     
-    private dynamic var linkURL: URL!
-    private dynamic var installed = false
-    private dynamic var warning: String?
+    @objc private dynamic var linkURL: URL!
+    @objc private dynamic var installed = false
+    @objc private dynamic var warning: String?
     
     
     

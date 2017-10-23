@@ -29,34 +29,10 @@ import Foundation
 
 extension String {
     
-    /// convert NSRange to Range<Index>
-    func range(from nsRange: NSRange) -> Range<String.Index>? {
-        
-        guard let start16 = utf16.index(utf16.startIndex, offsetBy: nsRange.location, limitedBy: utf16.endIndex),
-            let end16 = utf16.index(start16, offsetBy: nsRange.length, limitedBy: utf16.endIndex),
-            let start = String.Index(start16, within: self),
-            let end = String.Index(end16, within: self)
-            else { return nil }
-        
-        return start ..< end
-    }
-    
-    
-    /// convert Range<Index> to NSRange
-    func nsRange(from range: Range<String.Index>) -> NSRange {
-        
-        let start = range.lowerBound.samePosition(in: self.utf16)
-        let end = range.upperBound.samePosition(in: self.utf16)
-        
-        return NSRange(location: self.utf16.distance(from: self.utf16.startIndex, to: start),
-                       length: self.utf16.distance(from: start, to: end))
-    }
-    
-    
     /// whole range in NSRange
     var nsRange: NSRange {
         
-        return NSRange(location: 0, length: self.utf16.count)
+        return NSRange(self.startIndex..<self.endIndex, in: self)
     }
     
 }
@@ -66,40 +42,6 @@ extension String {
 extension NSRange {
     
     static let notFound = NSRange(location: NSNotFound, length: 0)
-    
-    
-    /// syntax sugar of NSMaxRange
-    var upperBound: Int {
-        
-        return NSMaxRange(self)
-    }
-    
-    
-    func contains(_ index: Int) -> Bool {
-        
-        return NSLocationInRange(index, self)
-    }
-    
-    
-    func union(_ range: NSRange) -> NSRange {
-        
-        return NSUnionRange(self, range)
-    }
-    
-    
-    mutating func formUnion(_ range: NSRange) {
-        
-        self = NSUnionRange(self, range)
-    }
-    
-    
-    func intersection(_ range: NSRange) -> NSRange? {
-        
-        let result = NSIntersectionRange(self, range)
-        
-        return result.length == 0 ? nil : result
-    }
-    
 }
 
 
@@ -117,7 +59,6 @@ extension NSString {
         
         return self.lineRange(for: NSRange(location: location, length: 0))
     }
-    
     
     
     /// line range adding ability to exclude last line ending character if exists

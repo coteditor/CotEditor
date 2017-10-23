@@ -65,7 +65,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     
     /// set action on swiping a table row
     @available(macOS 10.11, *)
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
         guard let arrayController = self.arrayController else { return [] }
@@ -101,7 +101,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
         guard columnIndex != -1 else { return }
         
         let identifier = tableView.tableColumns[columnIndex].identifier
-        let isChecked = checkbox.state == NSOnState
+        let isChecked = checkbox.state == .on
         
         tableView.enumerateAvailableRowViews { (rowView: NSTableRowView, row: Int) in
             guard
@@ -109,7 +109,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
                 let view = rowView.view(atColumn: columnIndex) as? NSTableCellView
                 else { return }
             
-            (view.objectValue as AnyObject?)?.setValue(NSNumber(value: isChecked), forKey: identifier)
+            (view.objectValue as AnyObject?)?.setValue(NSNumber(value: isChecked), forKey: identifier.rawValue)
         }
     }
     

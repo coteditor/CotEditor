@@ -27,17 +27,19 @@
 
 import Cocoa
 
-private extension NSTouchBarCustomizationIdentifier {
+@available(macOS 10.12.2, *)
+private extension NSTouchBar.CustomizationIdentifier {
     
-    static let textView = NSTouchBarCustomizationIdentifier("com.coteditor.CotEditor.touchBar.textView")
+    static let textView = NSTouchBar.CustomizationIdentifier("com.coteditor.CotEditor.touchBar.textView")
 }
 
 
-extension NSTouchBarItemIdentifier {
+@available(macOS 10.12.2, *)
+extension NSTouchBarItem.Identifier {
     
-    static let shift = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.shift")
-    static let comment = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.comment")
-    static let textSize = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.textSize")
+    static let shift = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.shift")
+    static let comment = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.comment")
+    static let textSize = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.textSize")
 }
 
 
@@ -59,23 +61,23 @@ extension EditorTextView {
     }
     
     
-    override func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
+    override func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
-        case NSTouchBarItemIdentifier.shift:
+        case .shift:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Shift", comment: "touch bar item")
             item.view = NSSegmentedControl(images: [#imageLiteral(resourceName: "ShiftLeftTemplate"), #imageLiteral(resourceName: "ShiftRightTemplate")], trackingMode: .momentary,
                                            target: self, action: #selector(shift(_:)))
             return item
             
-        case NSTouchBarItemIdentifier.comment:
+        case .comment:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Comment", comment: "touch bar item")
             item.view = NSButton(image: #imageLiteral(resourceName: "CommentTemplate"), target: self, action: #selector(toggleComment(_:)))
             return item
             
-        case NSTouchBarItemIdentifier.textSize:
+        case .textSize:
             let item = NSPopoverTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Text Size", comment: "touch bar item")
             item.collapsedRepresentationImage = #imageLiteral(resourceName: "TextSizeTemplate")

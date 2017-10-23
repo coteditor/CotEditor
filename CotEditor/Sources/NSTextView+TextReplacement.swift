@@ -107,10 +107,8 @@ extension NSTextView {
         
         assert(Thread.isMainThread)
         
-        guard let string = self.string else { return }
-        
         let regex = try! NSRegularExpression(pattern: "[ \\t]+$", options: .anchorsMatchLines)
-        let ranges = regex.matches(in: string, range: string.nsRange).map { $0.range }
+        let ranges = regex.matches(in: self.string, range: self.string.nsRange).map { $0.range }
         
         // exclude editing line if needed
         let replacementRanges: [NSRange] = {

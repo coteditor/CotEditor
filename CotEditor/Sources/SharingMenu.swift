@@ -27,25 +27,10 @@
 
 import Cocoa
 
-// undefined service names
-private enum SharingServiceType {
+private extension NSSharingService.Name {
     
-    case addToNotes
-    case addToRemainder
-    case postOnTwitter
-    case composeMessage
-    
-    
-    var name: String {
-        
-        switch self {
-        case .addToNotes: return "com.apple.Notes.SharingExtension"
-        case .addToRemainder: return "com.apple.reminders.RemindersShareExtension"
-        case .postOnTwitter: return NSSharingServiceNamePostOnTwitter
-        case .composeMessage: return NSSharingServiceNameComposeMessage
-        }
-    }
-    
+    static let addToNotes = NSSharingService.Name("com.apple.Notes.SharingExtension")
+    static let addToRemainder = NSSharingService.Name("com.apple.reminders.RemindersShareExtension")
 }
 
 
@@ -75,7 +60,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
         
         self.removeAllItems()
         
-        guard let document = NSDocumentController.shared().currentDocument as? Document else {
+        guard let document = NSDocumentController.shared.currentDocument as? Document else {
             let item = NSMenuItem(title: NSLocalizedString("No Document", comment: ""), action: nil, keyEquivalent: "")
             item.isEnabled = false
             self.addItem(item)
@@ -117,7 +102,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
     // MARK: Private Methods
     
     /// append sharing menu items
-    private func addSharingItems(for item: Any, subject: String, label: String, excludingSercives excludingServiceTypes: [SharingServiceType]) {
+    private func addSharingItems(for item: Any, subject: String, label: String, excludingSercives excludingServiceTypes: [NSSharingService.Name]) {
         
         // heading (label) item
         let labelItem = NSMenuItem(title: label, action: nil, keyEquivalent: "")
@@ -125,7 +110,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
         self.addItem(labelItem)
         
         // create services to skip
-        let excludingServices = excludingServiceTypes.flatMap { NSSharingService(named: $0.name) }
+        let excludingServices = excludingServiceTypes.flatMap { NSSharingService(named: $0) }
         
         // add menu items dynamically
         for service in NSSharingService.sharingServices(forItems: [item]) {

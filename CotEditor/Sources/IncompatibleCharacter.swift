@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -72,13 +72,13 @@ extension String {
         guard
             let data = self.data(using: encoding, allowLossyConversion: true),
             let convertedString = String(data: data, encoding: encoding),
-            convertedString.characters.count == self.characters.count else { return nil }
+            convertedString.count == self.count else { return nil }
         
         // list-up characters to be converted/deleted
         var incompatibles = [IncompatibleCharacter]()
         let isInvalidYenEncoding = encoding.canConvertYenSign
         
-        for (index, (character, convertedCharacter)) in zip(self.characters, convertedString.characters).enumerated() {
+        for (index, (character, convertedCharacter)) in zip(self, convertedString).enumerated() {
             
             guard character != convertedCharacter else { continue }
             

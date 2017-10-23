@@ -205,7 +205,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
                 try FileManager.default.removeItem(at: fileURL)
             }
         } else {
-            let data = try KeyBindingSerialization.data(from: diff)
+            let data = try KeyBindingSerialization.data(from: diff.sorted())
             try data.write(to: fileURL, options: .atomic)
         }
         

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,16 +33,16 @@ final class SyntaxValidationViewController: NSViewController {
     
     private(set) var didValidate = false
     
-    private dynamic var result: String?
+    @objc private dynamic var result: String?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "SyntaxValidationView"
+        return NSNib.Name("SyntaxValidationView")
     }
     
     

@@ -35,7 +35,7 @@ final class ItalicButton: NSButton {
         
         guard let font = self.font else { return }
         
-        self.font = NSFontManager.shared().convert(font, toHaveTrait: .italicFontMask)
+        self.font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
     }
     
 }

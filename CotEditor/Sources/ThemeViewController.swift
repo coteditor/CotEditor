@@ -41,7 +41,7 @@ final class ThemeViewController: NSViewController {
     
     // MARK: Public Properties
     
-    dynamic var theme: ThemeDictionary? {
+    @objc dynamic var theme: ThemeDictionary? {
         willSet {
             // remove current observing (in case when the theme is restored)
             self.endThemeObserving()
@@ -58,7 +58,7 @@ final class ThemeViewController: NSViewController {
             }
         }
     }
-    dynamic var isBundled = false
+    @objc dynamic var isBundled = false
     
     weak var delegate: ThemeViewControllerDelegate?
     
@@ -126,10 +126,10 @@ final class ThemeViewController: NSViewController {
     /// apply system highlight color to color well
     @IBAction func applySystemSelectionColor(_ button: NSButton) {
         
-        guard button.state == NSOnState else { return }
+        guard button.state == .on else { return }
         
         let color = NSColor.selectedTextBackgroundColor
-        let colorCode = color.usingColorSpaceName(NSCalibratedRGBColorSpace)?.colorCode(type: .hex)
+        let colorCode = color.usingColorSpaceName(.calibratedRGB)?.colorCode(type: .hex)
         
         self.theme?[ThemeKey.selection.rawValue]?[ThemeKey.Sub.color.rawValue] = colorCode
     }

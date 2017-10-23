@@ -44,10 +44,9 @@ extension Editable {
     /// line ending applied current selection
     var selectedString: String {
         
-        guard let textView = self.textView,
-            let string = textView.string else { return "" }
+        guard let textView = self.textView else { return "" }
         
-        let substring = (string as NSString).substring(with: textView.selectedRange)
+        let substring = (textView.string as NSString).substring(with: textView.selectedRange)
         
         return substring.replacingLineEndings(with: self.lineEnding)
     }
@@ -57,21 +56,15 @@ extension Editable {
     var selectedRange: NSRange {
         
         get {
-            guard
-                let textView = self.textView,
-                let string = textView.string
-                else { return .notFound }
+            guard let textView = self.textView else { return .notFound }
             
-            return string.convert(from: .LF, to: self.lineEnding, range: textView.selectedRange)
+            return textView.string.convert(from: .LF, to: self.lineEnding, range: textView.selectedRange)
         }
         
         set {
-            guard
-                let textView = self.textView,
-                let string = textView.string
-                else { return }
+            guard let textView = self.textView else { return }
             
-            textView.selectedRange = string.convert(from: self.lineEnding, to: .LF, range: newValue)
+            textView.selectedRange = textView.string.convert(from: self.lineEnding, to: .LF, range: newValue)
         }
     }
     
@@ -146,7 +139,7 @@ private extension NSTextView {
     /// swap whole current string with given string and select inserted range
     func replaceAllString(with string: String) {
         
-        let replacementRange = self.string?.nsRange ?? NSRange()
+        let replacementRange = self.string.nsRange
         
         guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
         
@@ -162,7 +155,7 @@ private extension NSTextView {
     /// append string at the end of the whole string and select inserted range
     func append(string: String) {
         
-        let replacementRange = NSRange(location: self.string?.utf16.count ?? 0, length: 0)
+        let replacementRange = NSRange(location: self.string.utf16.count, length: 0)
         
         guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
         

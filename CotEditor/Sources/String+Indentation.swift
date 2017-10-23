@@ -121,10 +121,10 @@ extension String {
         
         guard !indentRange.isEmpty else { return 0 }
         
-        let indent = self.substring(with: indentRange)
+        let indent = self[indentRange]
         let numberOfTabs = indent.components(separatedBy: "\t").count - 1
         
-        return numberOfTabs + ((indent.characters.count - numberOfTabs) / tabWidth)
+        return numberOfTabs + ((indent.count - numberOfTabs) / tabWidth)
     }
     
     
@@ -137,7 +137,7 @@ extension String {
         let column = self.distance(from: lineRange.lowerBound, to: index)
         
         // count tab width
-        let beforeInsertion = self.substring(with: lineRange.lowerBound..<index)
+        let beforeInsertion = self[lineRange.lowerBound..<index]
         let numberOfTabs = beforeInsertion.components(separatedBy: "\t").count - 1
         
         return column + numberOfTabs * (tabWidth - 1)

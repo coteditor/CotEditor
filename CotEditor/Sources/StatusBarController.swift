@@ -32,9 +32,9 @@ final class StatusBarController: NSViewController {
     // MARK: Private Properties
     
     private let byteCountFormatter = ByteCountFormatter()
-    private dynamic var editorStatus: NSAttributedString?
-    private dynamic var documentStatus: NSAttributedString?
-    private dynamic var showsReadOnly = false
+    @objc private dynamic var editorStatus: NSAttributedString?
+    @objc private dynamic var documentStatus: NSAttributedString?
+    @objc private dynamic var showsReadOnly = false
     
     
     
@@ -186,7 +186,7 @@ final class StatusBarController: NSViewController {
         // truncate tail
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byTruncatingTail
-        status.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: status.string.nsRange)
+        status.addAttribute(.paragraphStyle, value: paragraphStyle, range: status.string.nsRange)
         
         self.editorStatus = status
     }
@@ -235,7 +235,7 @@ private extension NSMutableAttributedString {
             let localizedLabel = String(format: NSLocalizedString("%@: ", comment: ""),
                                         NSLocalizedString(label, comment: ""))
             let attrLabel = NSAttributedString(string: localizedLabel,
-                                               attributes: [NSForegroundColorAttributeName: NSColor(white: 0.4, alpha: 1)])
+                                               attributes: [.foregroundColor: NSColor(white: 0.4, alpha: 1)])
             self.append(attrLabel)
         }
         
@@ -244,7 +244,7 @@ private extension NSMutableAttributedString {
                 return NSAttributedString(string: value)
             } else {
                 return NSAttributedString(string: "-",
-                                          attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor])
+                                          attributes: [.foregroundColor: NSColor.disabledControlTextColor])
             }
         }()
         
