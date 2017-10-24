@@ -11,6 +11,15 @@ develp
 
 
 
+3.2.4
+--------------------------
+
+### Fixes
+
+- Fix an issue where the second value of the printed time in the console was not sexagesimal.
+
+
+
 3.2.3 (205)
 --------------------------
 
