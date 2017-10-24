@@ -14,6 +14,11 @@ develp
 3.2.4
 --------------------------
 
+### Improvements
+
+- Stop hiding the console when CotEditor is deactive.
+
+
 ### Fixes
 
 - Fix an issue where the second value of the printed time in the console was not sexagesimal.
