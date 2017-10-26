@@ -53,7 +53,7 @@
 "uXf-pD-u6A.toolTip" = "Dokumentinformationen einblenden";  /* Show document information */
 
 /* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
-"xle-wq-mIH.label" = "Inkompatible Zeichen";  /* Incompatible Characters */
+"xle-wq-mIH.label" = "Inkompatiblen";  /* Incompatibles */
 "xle-wq-mIH.paletteLabel" = "Inkompatible Zeichen einblenden";  /* Show Incompatible Characters */
 "xle-wq-mIH.toolTip" = "Inkompatible Zeichen für den ausgewählte Codierung einblenden";  /* Show incompatible characters for selected encoding */
 

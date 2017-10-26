@@ -18,6 +18,7 @@ develp
 
 - Stop hiding the console when CotEditor is deactive.
 - Make the Key-Bindings of “Bigger” and “Smaller” actions in Font menu customizable.
+- Rename “Incompatible Characters” toolbar item to “Incompatibles”.
 
 
 ### Fixes
