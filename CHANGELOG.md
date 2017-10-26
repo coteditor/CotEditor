@@ -17,6 +17,7 @@ develp
 ### Improvements
 
 - Stop hiding the console when CotEditor is deactive.
+- Make the Key-Bindings of “Bigger” and “Smaller” actions in Font menu customizable.
 
 
 ### Fixes
