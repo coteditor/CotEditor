@@ -141,7 +141,7 @@ final class DocumentAnalyzer: NSObject {
         self.info.charsetName = document.encoding.ianaCharSetName
         self.info.lineEndings = document.lineEnding.name
         
-        NotificationCenter.default.post(name: .AnalyzerDidUpdateModeInfo, object: self.info)
+        NotificationCenter.default.post(name: .AnalyzerDidUpdateModeInfo, object: self)
     }
     
     
