@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where “Reset to Default” action in Font menu was ignored.
 - Fix an issue where the second value of the printed time in the console was not sexagesimal.
 
 
