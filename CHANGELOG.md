@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-develp
+develop
 --------------------------
 
 ### Improvements
