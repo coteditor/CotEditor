@@ -1,6 +1,6 @@
 /*
  
- ShellScript.swift
+ UnixScript.swift
  
  CotEditor
  https://coteditor.com
@@ -28,7 +28,7 @@
 
 import Cocoa
 
-final class ShellScript: Script {
+final class UnixScript: Script {
     
     // MARK: Script Properties
     
@@ -144,7 +144,7 @@ final class ShellScript: Script {
                     else { return }
                 
                 do {
-                    try ShellScript.applyOutput(output, editor: document, type: outputType)
+                    try UnixScript.applyOutput(output, editor: document, type: outputType)
                 } catch {
                     writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 }

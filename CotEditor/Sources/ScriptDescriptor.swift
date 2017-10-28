@@ -48,16 +48,16 @@ enum ScriptingEventType: String {
 enum ScriptingFileType {
     
     case appleScript
-    case shellScript
+    case unixScript
     
-    static let all: [ScriptingFileType] = [.appleScript, .shellScript]
+    static let all: [ScriptingFileType] = [.appleScript, .unixScript]
     
     
     var extensions: [String] {
         
         switch self {
         case .appleScript: return ["applescript", "scpt", "scptd"]
-        case .shellScript: return ["sh", "pl", "php", "rb", "py", "js", "swift"]
+        case .unixScript: return ["sh", "pl", "php", "rb", "py", "js", "swift"]
         }
     }
     
@@ -164,7 +164,7 @@ struct ScriptDescriptor {
             case .unrestricted: return AppleScript(descriptor: self)
             case .persistent: return PersistentOSAScript(descriptor: self)
             }
-        case .shellScript: return ShellScript(with: self)
+        case .unixScript: return UnixScript(with: self)
         }
     }
     
