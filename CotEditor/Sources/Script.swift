@@ -75,7 +75,7 @@ final class AppleScript: Script {
     // MARK: -
     // MARK: Lifecycle
     
-    init(with descriptor: ScriptDescriptor) {
+    init(descriptor: ScriptDescriptor) {
         self.descriptor = descriptor
     }
     
@@ -134,7 +134,7 @@ final class PersistentOSAScript: Script {
     // MARK: -
     // MARK: Lifecycle
     
-    init?(with descriptor: ScriptDescriptor) {
+    init?(descriptor: ScriptDescriptor) {
         
         guard let script = OSAScript(contentsOf: descriptor.url, error: nil) else { return nil }
         

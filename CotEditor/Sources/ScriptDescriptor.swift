@@ -161,8 +161,8 @@ struct ScriptDescriptor {
         switch type {
         case .appleScript:
             switch self.executionModel {
-            case .unrestricted: return AppleScript(with: self)
-            case .persistent: return PersistentOSAScript(with: self)
+            case .unrestricted: return AppleScript(descriptor: self)
+            case .persistent: return PersistentOSAScript(descriptor: self)
             }
         case .shellScript: return ShellScript(with: self)
         }
