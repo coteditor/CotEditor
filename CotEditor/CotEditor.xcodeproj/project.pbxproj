@@ -360,6 +360,8 @@
 		2A9C370B1D66E99400774BA4 /* BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* BracePair.swift */; };
 		2A9C370C1D66E99400774BA4 /* BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* BracePair.swift */; };
 		2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */; };
+		2AA14CF81FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */; };
+		2AA14CF91FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */; };
 		2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */; };
 		2AA2E0131BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
 		2AA2E0141BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
@@ -946,6 +948,7 @@
 		2AA0AC6D1A2877310063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EncodingListView.strings"; sourceTree = "<group>"; };
 		2AA0AC6E1A28773C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxMappingConflictView.strings"; sourceTree = "<group>"; };
 		2AA0AC6F1A28774D0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxEditView.strings"; sourceTree = "<group>"; };
+		2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptDescriptor.swift; sourceTree = "<group>"; };
 		2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterInfoTests.swift; sourceTree = "<group>"; };
 		2AA2E0121BFE12620087BDD6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Unicode.strings; sourceTree = "<group>"; };
 		2AA2E0151BFE14310087BDD6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Unicode.strings"; sourceTree = "<group>"; };
@@ -1443,6 +1446,7 @@
 				2A42825418FCC23400386899 /* Document Window */,
 				2ACC65261C97FDB8000574DC /* Theme */,
 				2A89847C1C3CE1CE006290FF /* Syntax */,
+				2AA14CFA1FA47E9000EAF586 /* Script */,
 				2A0E160B18E7240C00AAD872 /* Print */,
 				2A476CAF1D09CA640088E37A /* Models */,
 				2A15832C18E3A29A00601026 /* Views */,
@@ -1601,7 +1605,6 @@
 				2A9C370A1D66E99400774BA4 /* BracePair.swift */,
 				2AEC48321E641E4F00FB0F89 /* Snippet.swift */,
 				2A4682B11D2F6B580005410E /* FIleDropComposer.swift */,
-				2AA7E97C1DBAAC950083B7ED /* Script.swift */,
 				2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */,
 				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
 			);
@@ -1686,6 +1689,15 @@
 				2A9BF3C21D3803B600E3D3E2 /* unicode */,
 			);
 			path = ICU;
+			sourceTree = "<group>";
+		};
+		2AA14CFA1FA47E9000EAF586 /* Script */ = {
+			isa = PBXGroup;
+			children = (
+				2AA7E97C1DBAAC950083B7ED /* Script.swift */,
+				2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */,
+			);
+			name = Script;
 			sourceTree = "<group>";
 		};
 		2AA2E00D1BFDD3AE0087BDD6 /* Character */ = {
@@ -2309,6 +2321,7 @@
 				2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2AE52F191D17468B00D60A32 /* EditorSplitView.swift in Sources */,
 				2AA761361D45634400031AAF /* String+Counting.swift in Sources */,
+				2AA14CF91FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */,
 				2A78BFAE1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
 				2A5D13301D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */,
 				2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */,
@@ -2495,6 +2508,7 @@
 				2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2AE12E071E7DDF0700681F72 /* CustomSurroundStringViewController.swift in Sources */,
 				2A5D13101D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
+				2AA14CF81FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */,
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2AD69B881D3E4FCD00FBD998 /* Editable.swift in Sources */,
 				2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
