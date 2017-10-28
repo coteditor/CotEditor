@@ -362,6 +362,12 @@
 		2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */; };
 		2AA14CF81FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */; };
 		2AA14CF91FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */; };
+		2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CFB1FA4983500EAF586 /* AppleScript.swift */; };
+		2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CFB1FA4983500EAF586 /* AppleScript.swift */; };
+		2AA14CFF1FA498E900EAF586 /* ShellScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CFE1FA498E900EAF586 /* ShellScript.swift */; };
+		2AA14D001FA498E900EAF586 /* ShellScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CFE1FA498E900EAF586 /* ShellScript.swift */; };
+		2AA14D021FA4999200EAF586 /* PersistentOSAScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */; };
+		2AA14D031FA4999200EAF586 /* PersistentOSAScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */; };
 		2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */; };
 		2AA2E0131BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
 		2AA2E0141BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
@@ -949,6 +955,9 @@
 		2AA0AC6E1A28773C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxMappingConflictView.strings"; sourceTree = "<group>"; };
 		2AA0AC6F1A28774D0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxEditView.strings"; sourceTree = "<group>"; };
 		2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptDescriptor.swift; sourceTree = "<group>"; };
+		2AA14CFB1FA4983500EAF586 /* AppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScript.swift; sourceTree = "<group>"; };
+		2AA14CFE1FA498E900EAF586 /* ShellScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellScript.swift; sourceTree = "<group>"; };
+		2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentOSAScript.swift; sourceTree = "<group>"; };
 		2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterInfoTests.swift; sourceTree = "<group>"; };
 		2AA2E0121BFE12620087BDD6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Unicode.strings; sourceTree = "<group>"; };
 		2AA2E0151BFE14310087BDD6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Unicode.strings"; sourceTree = "<group>"; };
@@ -1694,8 +1703,11 @@
 		2AA14CFA1FA47E9000EAF586 /* Script */ = {
 			isa = PBXGroup;
 			children = (
-				2AA7E97C1DBAAC950083B7ED /* Script.swift */,
 				2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */,
+				2AA7E97C1DBAAC950083B7ED /* Script.swift */,
+				2AA14CFB1FA4983500EAF586 /* AppleScript.swift */,
+				2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */,
+				2AA14CFE1FA498E900EAF586 /* ShellScript.swift */,
 			);
 			name = Script;
 			sourceTree = "<group>";
@@ -2285,6 +2297,7 @@
 				2A48103F1D4D210300F7D34C /* Crypto.swift in Sources */,
 				2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,
 				2AF073F51D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
+				2AA14D031FA4999200EAF586 /* PersistentOSAScript.swift in Sources */,
 				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
@@ -2345,12 +2358,14 @@
 				2AA375481D40BDCB0080C27C /* LineEnding.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2AF999DD1DA94F2700B36D79 /* AsynchronousOperation.swift in Sources */,
+				2AA14D001FA498E900EAF586 /* ShellScript.swift in Sources */,
 				2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
 				2ABF0DC81D7D33880049B151 /* SmallToolbarItem.swift in Sources */,
 				2A2792961D1DBDAC00F3FC5D /* Constants.swift in Sources */,
 				2A73B5B71D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2AAD61F11D2B0856008FE772 /* String+Range.swift in Sources */,
+				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2AF073EC1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
 				2A5D13231D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */,
 				2A12C8001D1843B50069C60B /* SeparatorTextFieldCell.swift in Sources */,
@@ -2494,6 +2509,7 @@
 				2A2792951D1DBDAC00F3FC5D /* Constants.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2A9082E91D32539A00228F50 /* EditorTextView+Scaling.swift in Sources */,
+				2AA14D021FA4999200EAF586 /* PersistentOSAScript.swift in Sources */,
 				2A5DCE891D18FFDB00D5D74C /* EncodingListViewController.swift in Sources */,
 				2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
 				2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
@@ -2533,6 +2549,7 @@
 				2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
 				2A6FD9EA1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
 				2A479C821D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
+				2AA14CFF1FA498E900EAF586 /* ShellScript.swift in Sources */,
 				2AFB5AE81D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				2A4CB9921D79F38A000D6ADA /* DocumentToolbar.swift in Sources */,
@@ -2562,6 +2579,7 @@
 				2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2AA45A4E1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */,
 				2ACDC09D1D172EF7009B72D6 /* WrappingTextField.swift in Sources */,
+				2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */,
 				2AA761351D45634400031AAF /* String+Counting.swift in Sources */,
 				2A5ADE881D216D4900F6CE26 /* NSColor.swift in Sources */,
