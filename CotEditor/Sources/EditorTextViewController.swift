@@ -300,7 +300,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard
             UserDefaults.standard[.highlightBraces],
-            !textView.string.isEmpty
+            !textView.string.isEmpty,
+            textView.selectedRange.length == 0
             else { return }
         
         let string = textView.string
