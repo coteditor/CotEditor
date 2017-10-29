@@ -439,7 +439,7 @@ final class ShellScript: Script {
                 // write input data chunk by chunk
                 // -> to avoid freeze by a huge input data, whose length is more than 65,536 (2^16).
                 for chunk in data.components(length: 65_536) {
-                    handle.write(data)
+                    handle.write(chunk)
                 }
                 handle.closeFile()
             }
