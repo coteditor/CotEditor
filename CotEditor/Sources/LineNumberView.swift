@@ -120,8 +120,8 @@ final class LineNumberView: NSRulerView {
             let string = textView.string,
             let layoutManager = textView.layoutManager,
             let textContainer = textView.textContainer,
-            let context = NSGraphicsContext.current()?.cgContext,
-            !string.isEmpty else { return }
+            let context = NSGraphicsContext.current()?.cgContext
+            else { return }
         
         let length = (string as NSString).length
         let scale = textView.scale
@@ -466,6 +466,8 @@ private extension Int {
     
     /// number of digits
     var numberOfDigits: Int {
+        
+        guard self > 0 else { return 1 }
         
         return Int(log10(Double(self))) + 1
     }

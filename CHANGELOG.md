@@ -9,6 +9,7 @@ Change Log
 
 - Stop hiding the console when CotEditor is deactive.
 - Make the Key-Bindings of “Bigger” and “Smaller” actions in Font menu customizable.
+- Change to display the first line number even the document is empty.
 - Rename “Incompatible Characters” toolbar item to “Incompatibles”.
 
 
