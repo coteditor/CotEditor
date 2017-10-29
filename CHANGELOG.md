@@ -25,7 +25,7 @@ develp
 
 - Fix an issue where “Reset to Default” action in Font menu was ignored.
 - Fix an issue where the encoding and the line endnings in the status bar were occasionally not displayed.
-- Fix an issue where UNIX scripts could make the application freeze by getting the content of the document with a large size.
+- Fix an issue where the application freezed by getting the content of a large document via the Script menu.
 - Fix an issue where the second value of the printed time in the console was not sexagesimal.
 
 
