@@ -219,9 +219,12 @@ final class SyntaxManager: SettingFileManager {
             self.recentStyleNameSet.remove(name)
             self.recentStyleNameSet.insert(name, at: 0)
         }
-        UserDefaults.standard[.recentStyleNames] = self.recentSettingNames
         
         DispatchQueue.main.async { [weak self] in
+            if let recentSettingNames = self?.recentSettingNames {
+                UserDefaults.standard[.recentStyleNames] = recentSettingNames  // set in the main thread in case
+            }
+            
             NotificationCenter.default.post(name: .SyntaxHistoryDidUpdate, object: self)
         }
         
