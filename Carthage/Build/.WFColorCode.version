@@ -2,8 +2,8 @@
   "commitish" : "b85266d24fd46dfcca69683db07a115b2169246b",
   "Mac" : [
     {
-      "hash" : "e02706fd62d1660beb79c29a03138767e841aab908c83449dd8d75595ed24b34",
-      "name" : "ColorCode"
+      "name" : "ColorCode",
+      "hash" : "fbb34cf1210964a39d40533c62221817e9c927bf521f7fd4bbcad99dddc2ee2f"
     }
   ]
 }

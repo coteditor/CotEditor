@@ -2,8 +2,8 @@
   "commitish" : "3271df33f182c0c77fece29f8bfe76fcda1a3ca0",
   "Mac" : [
     {
-      "hash" : "90fca09e2a3e38e0f56bba07ffec61b92780a0cb8e06eaaf0352f6ff951713f3",
-      "name" : "YAML"
+      "name" : "YAML",
+      "hash" : "3047e34d5f7d5a77bed1e1af5cb93f01850b27ca207edca4330967821d44ee3a"
     }
   ]
 }
