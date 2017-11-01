@@ -550,7 +550,7 @@ private extension String {
     /// String consists with unique characters in the receiver.
     var unique: String {
         
-        return String(Set(self.characters).sorted())
+        return String(Set(self).sorted())
     }
     
 }
