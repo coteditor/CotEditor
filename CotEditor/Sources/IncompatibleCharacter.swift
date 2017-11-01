@@ -72,13 +72,13 @@ extension String {
         guard
             let data = self.data(using: encoding, allowLossyConversion: true),
             let convertedString = String(data: data, encoding: encoding),
-            convertedString.characters.count == self.characters.count else { return nil }
+            convertedString.count == self.count else { return nil }
         
         // list-up characters to be converted/deleted
         var incompatibles = [IncompatibleCharacter]()
         let isInvalidYenEncoding = encoding.canConvertYenSign
         
-        for (index, (character, convertedCharacter)) in zip(self.characters, convertedString.characters).enumerated() {
+        for (index, (character, convertedCharacter)) in zip(self, convertedString).enumerated() {
             
             guard character != convertedCharacter else { continue }
             

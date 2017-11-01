@@ -280,7 +280,7 @@ final class EditorTextView: NSTextView, Themable {
             }() else { return super.insertText(string, replacementRange: replacementRange) }
         
         // swap '¥' with '\' if needed
-        if UserDefaults.standard[.swapYenAndBackSlash], plainString.characters.count == 1 {
+        if UserDefaults.standard[.swapYenAndBackSlash], plainString.count == 1 {
             if plainString == "\\" {
                 return super.insertText("¥", replacementRange: replacementRange)
             } else if plainString == "¥" {
@@ -291,7 +291,7 @@ final class EditorTextView: NSTextView, Themable {
         // balance brackets and quotes
         if self.balancesBrackets && replacementRange.length == 0,
             plainString.unicodeScalars.count == 1,
-            let firstChar = plainString.characters.first,
+            let firstChar = plainString.first,
             let pair = self.matchingBracketPairs.first(where: { $0.begin == firstChar })
         {
             // wrap selection with brackets if some text is selected
@@ -320,7 +320,7 @@ final class EditorTextView: NSTextView, Themable {
         // just move cursor if closed bracket is already typed
         if self.balancesBrackets && replacementRange.length == 0,
             let nextCharacter = self.characterAfterInsertion,
-            let firstCharacter = plainString.characters.first, firstCharacter == Character(nextCharacter),
+            let firstCharacter = plainString.first, firstCharacter == Character(nextCharacter),
             BracePair.braces.contains(where: { $0.end == firstCharacter }),  // ignore "
             self.textStorage?.attribute(AttributeName.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
         {
@@ -1360,7 +1360,7 @@ extension EditorTextView {
         guard proposedCharRange.length == 0 && wordRange.length == 1 else { return wordRange }
         
         let characterIndex = String.UTF16Index(encodedOffset: wordRange.location).samePosition(in: string)!
-        let clickedCharacter = string.characters[characterIndex]
+        let clickedCharacter = string[characterIndex]
         
         // select (syntax-highlighted) quoted text by double-clicking
         if clickedCharacter == "\"" || clickedCharacter == "'" || clickedCharacter == "`" {
@@ -1371,8 +1371,8 @@ extension EditorTextView {
             let firstHighlightIndex = highlightCharacterRange.lowerBound
             let lastHighlightIndex = string.index(before: highlightCharacterRange.upperBound)
             
-            if (firstHighlightIndex == characterIndex && string.characters[firstHighlightIndex] == clickedCharacter) ||  // smart quote
-                (lastHighlightIndex == characterIndex && string.characters[lastHighlightIndex] == clickedCharacter)  // end quote
+            if (firstHighlightIndex == characterIndex && string[firstHighlightIndex] == clickedCharacter) ||  // smart quote
+                (lastHighlightIndex == characterIndex && string[lastHighlightIndex] == clickedCharacter)  // end quote
             {
                 return highlightRange
             }

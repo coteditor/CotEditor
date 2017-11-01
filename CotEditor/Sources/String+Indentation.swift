@@ -64,7 +64,7 @@ extension String {
             
             lineCount += 1
             
-            guard let character = line.characters.first else { return }
+            guard let character = line.first else { return }
             
             // check first character
             switch character {
@@ -124,7 +124,7 @@ extension String {
         let indent = self.substring(with: indentRange)
         let numberOfTabs = indent.components(separatedBy: "\t").count - 1
         
-        return numberOfTabs + ((indent.characters.count - numberOfTabs) / tabWidth)
+        return numberOfTabs + ((indent.count - numberOfTabs) / tabWidth)
     }
     
     
