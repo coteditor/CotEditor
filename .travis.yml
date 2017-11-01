@@ -1,7 +1,7 @@
 # ref. http://docs.travis-ci.com/user/languages/objective-c/
 
 language: objective-c
-osx_image: xcode9
+osx_image: xcode9.1
 
 before_install:
   - gem install xcpretty-travis-formatter
