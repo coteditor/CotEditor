@@ -300,9 +300,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         self.syntaxStyle?.invalidateOutline()
         if let syntaxStyle = self.syntaxStyle, syntaxStyle.canParse {
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
-            let updateRange = textStorage.editedRange
+            let editedRange = textStorage.editedRange
             DispatchQueue.main.async {
-                syntaxStyle.highlight(around: updateRange)
+                syntaxStyle.highlight(around: editedRange)
             }
         }
         
