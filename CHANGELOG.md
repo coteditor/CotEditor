@@ -16,8 +16,8 @@ develop
 
 ### Improvements
 
-- Stop hiding the console when CotEditor is deactive.
-- Make the Key-Bindings of “Bigger” and “Smaller” actions in Font menu customizable.
+- Keep showing the console when CotEditor becomes inactive.
+- Make the Key-Bindings for “Bigger” and “Smaller” actions in Font menu customizable.
 - Change to display the first line number even the document is empty.
 - Rename “Incompatible Characters” toolbar item to “Incompatibles”.
 - Some minor UI improvements and fixes.
@@ -28,9 +28,9 @@ develop
 - [High Sierra] Workaround a system issue where editor views could occasionally not scroll to the end of the document under specific environments on macOS 10.13 High Sierra.
     - [for advanced users] This workaround may affect rendering performance by large size documents, because the workaround disables non-contiguous layout on High Sierra (The non-contiguous layout are still used on lower versions). The workaroud will be removed in the future when the bug origin is resolved. You can forcibly enable non-contiguous layout support on High Sierra by setting the hidden default key `enableNonContiguousLayoutOnHighSierra` to `YES` in Terminal, although this key is actually for debug-use.
 - Fix an issue where “Reset to Default” action in Font menu was ignored.
-- Fix an issue where matching brace was highlighted unwantedly also by text finding.
-- Fix an issue where the encoding and the line endnings in the status bar were occasionally not displayed.
-- Fix an issue where the application freezed by getting the content of a large document via the Script menu.
+- Fix an issue where matching brace was highlighted unwontedly also by text finding.
+- Fix an issue where the encoding and the line endings in the status bar were occasionally not displayed.
+- Fix an issue where the application froze by getting the content of a large document via the Script menu.
 - Fix an issue where the second value of the printed time in the console was not sexagesimal.
 - Improve general stability.
 
