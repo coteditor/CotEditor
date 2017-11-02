@@ -25,6 +25,46 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.2.4</h1>
+	<p>release: <time>2017-11</time></p>
+</header>
+
+
+<section>
+<h3>Improvements</h3>
+
+<ul>
+	<li>Keep showing the console when CotEditor becomes inactive.</li>
+	<li>Make the Key-Bindings for “Bigger” and “Smaller” actions in Font menu customizable.</li>
+	<li>Change to display the first line number even the document is empty.</li>
+	<li>Rename “Incompatible Characters” toolbar item to “Incompatibles”.</li>
+	<li>Some minor UI improvements and fixes.</li>
+</ul>
+</section>
+
+
+<section>
+<h3>Fixes</h3>
+
+<ul>
+	<li><span class="label">High Sierra</span>: Workaround a system issue where editor views could occasionally not scroll to the end of the document under specific environments on macOS 10.13 High Sierra.
+	<ul>
+		<li><strong>for advanced users</strong>: This workaround may affect rendering performance by large size documents, because the workaround disables non-contiguous layout on High Sierra (The non-contiguous layout are still used on lower versions). The workaroud will be removed in the future when the bug origin is resolved. You can forcibly enable non-contiguous layout support on High Sierra by setting the hidden default key <code>enableNonContiguousLayoutOnHighSierra</code> to <code>YES</code> in Terminal, although this key is actually for debug-use.</li>
+	</ul></li>
+	<li>Fix an issue where “Reset to Default” action in Font menu was ignored.</li>
+	<li>Fix an issue where matching brace was highlighted unwontedly also by text finding.</li>
+	<li>Fix an issue where the encoding and the line endings in the status bar were occasionally not displayed.</li>
+	<li>Fix an issue where the application froze by getting the content of a large document via the Script menu.</li>
+	<li>Fix an issue where the second value of the printed time in the console was not sexagesimal.</li>
+	<li>Improve general stability.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.2.3</h1>
 	<p>release: <time>2017-10-22</time></p>
 </header>

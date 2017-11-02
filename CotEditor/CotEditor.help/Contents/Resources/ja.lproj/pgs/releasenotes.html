@@ -25,6 +25,45 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.2.4</h1>
+	<p>リリース: <time>2017-11</time></p>
+</header>
+
+
+<section>
+<h2>改良</h2>
+
+<ul>
+	<li>CotEditor がアクティブではない時も、コンソールを表示するように変更</li>
+	<li>フォントメニュー内の“大きく”と“小さく”アクションのキーバインドをカスタマイズ可能に</li>
+	<li>書類が空の時も行番号ビューの1行目を表示するように変更</li>
+	<li>ほか、軽微な UI の改良と修正</li>
+</ul>
+</section>
+
+
+<section>
+<h3>修正</h3>
+
+<ul>
+	<li><span class="label">High Sierra</span>: エディタが書類の末尾までスクロールできないことがあった High Sierra でのシステムの不具合を回避
+	<ul>
+		<li><strong>上級ユーザ向け</strong>: この回避策はnon-contiguous layoutを無効にするため、大きなサイズの書類のレンダリングパフォーマンスに影響を及ぼす可能性があります（macOS 10.12 以下のOSでは引き続きnon-contiguous layoutが有効です）。根源となるシステムのバグが解消され次第、この回避策は削除されます。必要がある場合はデバッグ用の隠し設定キー<code>enableNonContiguousLayoutOnHighSierra</code>を<code>YES</code>にすることで、強制的にnon-contiguous layoutを有効にすることもできます。</li>
+	</ul></li>
+	<li>フォントメニューの“デフォルトに戻す”アクションが効かないことがあった不具合を修正</li>
+	<li>テキスト検索時にも対応するカッコがハイライトされた不具合を修正</li>
+	<li>ステータスバーの改行コードとエンコーディングが表示されないことがあった不具合を修正</li>
+	<li>スクリプトでサイズの大きな書類の内容を取得した時にアプリケーションがフリーズした不具合を修正</li>
+	<li>コンソールの表示時間の秒が60進法ではなく10進法になっていた不具合を修正</li>
+	<li>全般的な安定性を向上</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.2.3</h1>
 	<p>リリース: <time>2017-10-22</time></p>
 </header>
