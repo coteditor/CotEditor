@@ -5,19 +5,19 @@
 	<key>BuildMachineOSBuild</key>
 	<string>17B48</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
+	<string>en</string>
 	<key>CFBundleExecutable</key>
-	<string>Autoupdate</string>
-	<key>CFBundleIconFile</key>
-	<string>AppIcon.icns</string>
+	<string>Updater</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.sparkle-project.Sparkle.Autoupdate</string>
+	<string>org.sparkle-project.Sparkle.Updater</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Updater</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.18.1 1826-gbb54d30e</string>
+	<string>1.18.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -40,14 +40,10 @@
 	<string>0910</string>
 	<key>DTXcodeBuild</key>
 	<string>9B55</string>
-	<key>LSBackgroundOnly</key>
-	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.7</string>
+	<string>10.13</string>
 	<key>LSUIElement</key>
 	<string>1</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
