@@ -174,7 +174,6 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     /// set action on swiping style name
-    @available(macOS 10.11, *)
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
@@ -470,9 +469,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
             
             guard returnCode == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the style name
-                if #available(macOS 10.11, *) {
-                    self?.syntaxTableView?.rowActionsVisible = false
-                }
+                self?.syntaxTableView?.rowActionsVisible = false
                 return
             }
             

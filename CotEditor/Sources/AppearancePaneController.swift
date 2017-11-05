@@ -281,7 +281,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// set action on swiping theme name
-    @available(macOS 10.11, *)
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
@@ -504,9 +503,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             
             guard returnCode == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                if #available(macOS 10.11, *) {
-                    self?.themeTableView?.rowActionsVisible = false
-                }
+                self?.themeTableView?.rowActionsVisible = false
                 return
             }
             

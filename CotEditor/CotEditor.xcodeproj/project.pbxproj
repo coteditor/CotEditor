@@ -348,8 +348,6 @@
 		2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
-		2A9BEE0B1EEBCBDD0048801D /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BEE0A1EEBCBDD0048801D /* NSAppKitVersion.swift */; };
-		2A9BEE0C1EEBCBDD0048801D /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BEE0A1EEBCBDD0048801D /* NSAppKitVersion.swift */; };
 		2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C71D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */; };
@@ -936,7 +934,6 @@
 		2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPaneController.swift; sourceTree = "<group>"; };
 		2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropPaneController.swift; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = ../cot/cot; sourceTree = SOURCE_ROOT; };
-		2A9BEE0A1EEBCBDD0048801D /* NSAppKitVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppKitVersion.swift; sourceTree = "<group>"; };
 		2A9BF3B91D37EB0900E3D3E2 /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		2A9BF3C21D3803B600E3D3E2 /* unicode */ = {isa = PBXFileReference; lastKnownFileType = folder; path = unicode; sourceTree = "<group>"; };
 		2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Transformation.swift"; sourceTree = "<group>"; };
@@ -1391,7 +1388,6 @@
 		2A359E001DAEA0EE00FEF7AA /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
-				2A9BEE0A1EEBCBDD0048801D /* NSAppKitVersion.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2A71BC7D1DDC70A80085AE1C /* NSImage+Template.swift */,
@@ -2410,7 +2406,6 @@
 				2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A7725651D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */,
 				2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
-				2A9BEE0C1EEBCBDD0048801D /* NSAppKitVersion.swift in Sources */,
 				2AA375441D403F100080C27C /* String+Encoding.swift in Sources */,
 				2A6FD9DE1D392EFF00A59784 /* ATSTypesetter.swift in Sources */,
 				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
@@ -2509,7 +2504,6 @@
 				2A9C370B1D66E99400774BA4 /* BracePair.swift in Sources */,
 				2A78BFAA1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
 				2A5D131F1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
-				2A9BEE0B1EEBCBDD0048801D /* NSAppKitVersion.swift in Sources */,
 				2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2AF073EB1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,

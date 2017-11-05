@@ -52,11 +52,6 @@ final class SplitViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        // workaround for OS X Yosemite (on macOS 10.12 SDK)
-        if NSAppKitVersion.current < .macOS10_11 {
-            self.splitView.delegate = self
-        }
-        
         self.splitView.isVertical = UserDefaults.standard[.splitViewVertical]
         self.invalidateOpenSplitEditorButtons()
         

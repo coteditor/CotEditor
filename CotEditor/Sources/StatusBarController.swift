@@ -62,10 +62,6 @@ final class StatusBarController: NSViewController {
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
         
-        // -> needs additional constraint for Yosemite (2016-09 on macOS 10.12 SDK).
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .height, relatedBy: .lessThanOrEqual,
-                                                   toItem: nil, attribute: .height, multiplier: 1.0, constant: 19))
-        
         self.byteCountFormatter.isAdaptive = false
         
         // observe change of defaults

@@ -436,16 +436,11 @@ private enum LineNumberFont {
     /// system font for fallback
     private var systemFont: NSFont {
         
-        if #available(macOS 10.11, *) {
-            return .monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
-        } else {
-            return .paletteFont(ofSize: 0)
-        }
+        return .monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
     }
     
     
-    /// font weight for system font
-    @available(macOS 10.11, *)
+    /// font weight for system fonts
     private var weight: NSFont.Weight {
         
         switch self {

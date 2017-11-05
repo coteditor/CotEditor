@@ -64,7 +64,6 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     
     
     /// set action on swiping a table row
-    @available(macOS 10.11, *)
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
