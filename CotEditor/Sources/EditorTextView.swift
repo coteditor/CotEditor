@@ -105,6 +105,18 @@ final class EditorTextView: NSTextView, Themable {
         ]
     
     
+    /// check if the current environment is safe for non-contiguous layout
+    let canUseNonContiguousLayout: Bool = {
+        
+        // -> Workaround a bug where NSScrollView cannot scroll to the end of the content (2017-11 macOS 10.13.1)
+        
+        // no problem on macOS 10.12 or lower...
+        guard #available(macOS 10.13, *) else { return true }
+        
+        return UserDefaults.standard.bool(forKey: "enableNonContiguousLayoutOnHighSierra")
+    }()
+    
+    
     
     // MARK: -
     // MARK: Lifecycle
@@ -133,7 +145,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
-        layoutManager.allowsNonContiguousLayout = true
+        layoutManager.allowsNonContiguousLayout = self.canUseNonContiguousLayout
         self.textContainer!.replaceLayoutManager(layoutManager)
         
         // set layout values
@@ -280,7 +292,7 @@ final class EditorTextView: NSTextView, Themable {
             }() else { return super.insertText(string, replacementRange: replacementRange) }
         
         // swap '¥' with '\' if needed
-        if UserDefaults.standard[.swapYenAndBackSlash], plainString.characters.count == 1 {
+        if UserDefaults.standard[.swapYenAndBackSlash], plainString.count == 1 {
             if plainString == "\\" {
                 return super.insertText("¥", replacementRange: replacementRange)
             } else if plainString == "¥" {
@@ -291,7 +303,7 @@ final class EditorTextView: NSTextView, Themable {
         // balance brackets and quotes
         if self.balancesBrackets && replacementRange.length == 0,
             plainString.unicodeScalars.count == 1,
-            let firstChar = plainString.characters.first,
+            let firstChar = plainString.first,
             let pair = self.matchingBracketPairs.first(where: { $0.begin == firstChar })
         {
             // wrap selection with brackets if some text is selected
@@ -320,7 +332,7 @@ final class EditorTextView: NSTextView, Themable {
         // just move cursor if closed bracket is already typed
         if self.balancesBrackets && replacementRange.length == 0,
             let nextCharacter = self.characterAfterInsertion,
-            let firstCharacter = plainString.characters.first, firstCharacter == Character(nextCharacter),
+            let firstCharacter = plainString.first, firstCharacter == Character(nextCharacter),
             BracePair.braces.contains(where: { $0.end == firstCharacter }),  // ignore "
             self.textStorage?.attribute(AttributeName.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
         {
@@ -646,7 +658,9 @@ final class EditorTextView: NSTextView, Themable {
         
         // enable non-contiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
         //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
-        self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
+        if self.canUseNonContiguousLayout {
+            self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
+        }
     }
     
     
@@ -1360,7 +1374,7 @@ extension EditorTextView {
         guard proposedCharRange.length == 0 && wordRange.length == 1 else { return wordRange }
         
         let characterIndex = String.UTF16Index(encodedOffset: wordRange.location).samePosition(in: string)!
-        let clickedCharacter = string.characters[characterIndex]
+        let clickedCharacter = string[characterIndex]
         
         // select (syntax-highlighted) quoted text by double-clicking
         if clickedCharacter == "\"" || clickedCharacter == "'" || clickedCharacter == "`" {
@@ -1371,8 +1385,8 @@ extension EditorTextView {
             let firstHighlightIndex = highlightCharacterRange.lowerBound
             let lastHighlightIndex = string.index(before: highlightCharacterRange.upperBound)
             
-            if (firstHighlightIndex == characterIndex && string.characters[firstHighlightIndex] == clickedCharacter) ||  // smart quote
-                (lastHighlightIndex == characterIndex && string.characters[lastHighlightIndex] == clickedCharacter)  // end quote
+            if (firstHighlightIndex == characterIndex && string[firstHighlightIndex] == clickedCharacter) ||  // smart quote
+                (lastHighlightIndex == characterIndex && string[lastHighlightIndex] == clickedCharacter)  // end quote
             {
                 return highlightRange
             }

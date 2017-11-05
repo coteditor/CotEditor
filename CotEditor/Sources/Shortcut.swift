@@ -144,7 +144,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
         
         let keys = ModifierKey.all.filter { self.modifierMask.contains($0.mask) }
         
-        return self.keyEquivalent.characters.count == 1 && !keys.isEmpty
+        return self.keyEquivalent.count == 1 && !keys.isEmpty
     }
     
     

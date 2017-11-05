@@ -199,7 +199,7 @@ private extension String {
         let target = self.substring(with: range)
         
         let newString = delimiter + spacer + target.replacingOccurrences(of: "\n", with: "\n" + delimiter + spacer)
-        let cursorOffset = newString.characters.count - target.characters.count
+        let cursorOffset = newString.count - target.count
         
         let newSelectedRange = self.seletedRange(range: range, selectedRange: selectedRange, newString: newString, offset: cursorOffset)
         
@@ -213,7 +213,7 @@ private extension String {
         let target = self.substring(with: range)
         
         let newString = delimiters.begin + spacer + target + spacer + delimiters.end
-        let cursorOffset = delimiters.begin.characters.count + spacer.characters.count
+        let cursorOffset = delimiters.begin.count + spacer.count
         
         let newSelectedRange = self.seletedRange(range: range, selectedRange: selectedRange, newString: newString, offset: cursorOffset)
         
@@ -230,15 +230,15 @@ private extension String {
         let newLines: [String] = lines.map { line in
             guard line.hasPrefix(delimiter) else { return line }
             
-            let newLine = line.substring(from: line.index(line.startIndex, offsetBy: delimiter.characters.count))
+            let newLine = line.substring(from: line.index(line.startIndex, offsetBy: delimiter.count))
             
             guard !spacer.isEmpty, newLine.hasPrefix(spacer) else { return newLine }
             
-            return newLine.substring(from: newLine.index(newLine.startIndex, offsetBy: spacer.characters.count))
+            return newLine.substring(from: newLine.index(newLine.startIndex, offsetBy: spacer.count))
         }
         
         let newString = newLines.joined(separator: "\n")
-        let cursorOffset = -(target.characters.count - newString.characters.count)
+        let cursorOffset = -(target.count - newString.count)
         
         guard cursorOffset != 0 else { return nil }
         
@@ -255,16 +255,16 @@ private extension String {
         
         guard target.hasPrefix(delimiters.begin) && target.hasSuffix(delimiters.end) else { return nil }
         
-        let trimFrom = target.index(target.startIndex, offsetBy: delimiters.begin.characters.count)
-        let trimTo = target.index(target.endIndex, offsetBy: -delimiters.end.characters.count)
+        let trimFrom = target.index(target.startIndex, offsetBy: delimiters.begin.count)
+        let trimTo = target.index(target.endIndex, offsetBy: -delimiters.end.count)
         var newString = target.substring(with: trimFrom..<trimTo)
-        var cursorOffset = -delimiters.begin.characters.count
+        var cursorOffset = -delimiters.begin.count
         
         if !spacer.isEmpty && newString.hasPrefix(spacer) && newString.hasSuffix(spacer) {
-            let trimFrom = newString.index(newString.startIndex, offsetBy: spacer.characters.count)
-            let trimTo = newString.index(newString.endIndex, offsetBy: -spacer.characters.count)
+            let trimFrom = newString.index(newString.startIndex, offsetBy: spacer.count)
+            let trimTo = newString.index(newString.endIndex, offsetBy: -spacer.count)
             newString = newString.substring(with: trimFrom..<trimTo)
-            cursorOffset -= spacer.characters.count
+            cursorOffset -= spacer.count
         }
         
         let newSelectedRange = self.seletedRange(range: range, selectedRange: selectedRange, newString: newString, offset: cursorOffset)

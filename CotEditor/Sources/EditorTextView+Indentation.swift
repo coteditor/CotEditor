@@ -96,7 +96,7 @@ extension EditorTextView {
             
             // count tab/spaces to delete
             var isDeletingSpace = false
-            for character in line.characters {
+            for character in line {
                 if character == "\t" && !isDeletingSpace {
                     newLine.remove(at: newLine.startIndex)
                     numberOfDeleted += 1

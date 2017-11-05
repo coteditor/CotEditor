@@ -52,7 +52,7 @@ extension String {
             
             index = self.index(before: index)
             
-            switch self.characters[index] {
+            switch self[index] {
             case pair.begin:
                 if skippedBraceCount == 0 {
                     return index
@@ -81,7 +81,7 @@ extension String {
             
             guard index != self.endIndex else { return nil }
             
-            switch self.characters[index] {
+            switch self[index] {
             case pair.end:
                 if skippedBraceCount == 0 {
                     return index

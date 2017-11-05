@@ -190,7 +190,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                     
                     // adjust position to draw
                     var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
-                    let digit = numberString.characters.count
+                    let digit = numberString.count
                     if isVerticalText {
                         numberString = (lineNumber == 1 || lineNumber % 5 == 0) ? numberString : "·"  // draw real number only in every 5 times
                         

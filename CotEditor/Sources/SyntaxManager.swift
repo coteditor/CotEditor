@@ -219,9 +219,12 @@ final class SyntaxManager: SettingFileManager {
             self.recentStyleNameSet.remove(name)
             self.recentStyleNameSet.insert(name, at: 0)
         }
-        UserDefaults.standard[.recentStyleNames] = self.recentSettingNames
         
         DispatchQueue.main.async { [weak self] in
+            if let recentSettingNames = self?.recentSettingNames {
+                UserDefaults.standard[.recentStyleNames] = recentSettingNames  // set in the main thread in case
+            }
+            
             NotificationCenter.default.post(name: .SyntaxHistoryDidUpdate, object: self)
         }
         
@@ -238,7 +241,7 @@ final class SyntaxManager: SettingFileManager {
         }
         
         // load from cache
-        if let style = self.cachedSettingDictionaries[name] {
+        if let style = self.propertyAccessQueue.sync(execute: { self.cachedSettingDictionaries[name] }) {
             return style
         }
         
@@ -249,7 +252,9 @@ final class SyntaxManager: SettingFileManager {
             else { return nil }
         
         // store newly loaded style
-        self.cachedSettingDictionaries[name] = style
+        self.propertyAccessQueue.sync {
+            self.cachedSettingDictionaries[name] = style
+        }
         
         return style
     }
@@ -281,7 +286,9 @@ final class SyntaxManager: SettingFileManager {
         try super.removeSetting(name: name)
         
         // update internal cache
-        self.cachedSettingDictionaries[name] = nil
+        self.propertyAccessQueue.sync {
+            self.cachedSettingDictionaries[name] = nil
+        }
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: BundledStyleName.none)
@@ -295,7 +302,10 @@ final class SyntaxManager: SettingFileManager {
         try super.restoreSetting(name: name)
         
         // update internal cache
-        self.cachedSettingDictionaries[name] = self.bundledSettingDictionary(name: name)
+        let dictionary = self.bundledSettingDictionary(name: name)
+        self.propertyAccessQueue.sync {
+            self.cachedSettingDictionaries[name] = dictionary
+        }
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
@@ -340,7 +350,9 @@ final class SyntaxManager: SettingFileManager {
         if self.isEqualToBundledSetting(settingDictionary, name: name) {
             if saveURL.isReachable {
                 try FileManager.default.removeItem(at: saveURL)
-                self.cachedSettingDictionaries[name] = nil
+                self.propertyAccessQueue.sync {
+                    self.cachedSettingDictionaries[name] = nil
+                }
             }
         } else {
             // save file to user domain
@@ -453,7 +465,9 @@ final class SyntaxManager: SettingFileManager {
                 }
                 
                 // cache style since it's already loaded
-                self.cachedSettingDictionaries[styleName] = style
+                self.propertyAccessQueue.sync {
+                    self.cachedSettingDictionaries[styleName] = style
+                }
             }
         }
         self.map = map

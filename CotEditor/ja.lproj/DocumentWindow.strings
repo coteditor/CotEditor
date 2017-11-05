@@ -53,7 +53,7 @@
 "uXf-pD-u6A.toolTip" = "書類情報を表示";  /* Show document information */
 
 /* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
-"xle-wq-mIH.label" = "非互換文字";  /* Incompatible Characters */
+"xle-wq-mIH.label" = "非互換文字";  /* Incompatibles */
 "xle-wq-mIH.paletteLabel" = "非互換文字を表示";  /* Show Incompatible Characters */
 "xle-wq-mIH.toolTip" = "エンコーディングと非互換の文字を表示";  /* Show incompatible characters with selected encoding */
 

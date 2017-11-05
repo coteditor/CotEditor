@@ -435,8 +435,14 @@ final class ShellScript: Script {
         
         // set input data if available
         if let data = input?.data(using: .utf8) {
-            inPipe.fileHandleForWriting.write(data)
-            inPipe.fileHandleForWriting.closeFile()
+            inPipe.fileHandleForWriting.writeabilityHandler = { (handle: FileHandle) in
+                // write input data chunk by chunk
+                // -> to avoid freeze by a huge input data, whose length is more than 65,536 (2^16).
+                for chunk in data.components(length: 65_536) {
+                    handle.write(chunk)
+                }
+                handle.closeFile()
+            }
         }
         
         let scriptName = self.descriptor.name

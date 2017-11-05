@@ -52,7 +52,7 @@ final class ConsolePanelController: NSWindowController {
     
     private let dateFormatter: DateFormatter = {
        let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-dd HH:MM:SS"
+        formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
         return formatter
     }()
     

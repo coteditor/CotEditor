@@ -299,6 +299,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard
             UserDefaults.standard[.highlightBraces],
+            textView.selectedRange.length == 0,
             let string = textView.string, !string.isEmpty
             else { return }
         
@@ -312,7 +313,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // check the character just before the cursor
         let lastIndex = string.index(before: cursorIndex)
-        let lastCharacter = string.characters[lastIndex]
+        let lastCharacter = string[lastIndex]
         
         let bracePairs: [BracePair] = UserDefaults.standard[.highlightLtGt] ? (BracePair.braces + [.ltgt]) : BracePair.braces
         

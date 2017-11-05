@@ -295,7 +295,7 @@ final class LayoutManager: NSLayoutManager {
     override func textStorage(_ str: NSTextStorage, edited editedMask: NSTextStorageEditedOptions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
         
         // invalidate wrapping line indent in editRange if needed
-        if editedMask & NSTextStorageEditedOptions(1) != 0 || delta < 0 {  // Hey Swift 3, where has NSTextStorageEditedCharacters gone...
+        if editedMask & NSTextStorageEditedOptions(2) != 0 || delta < 0 {  // Hey Swift 3, where has NSTextStorageEditedCharacters gone...
             self.invalidateIndent(in: newCharRange)
         }
         

@@ -266,7 +266,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
         
         for string in history {
-            let title = (string.characters.count < 64) ? string : (String(string.characters.prefix(64)) + "…")
+            let title = (string.count < 64) ? string : (String(string.prefix(64)) + "…")
             let item = NSMenuItem(title: title, action: action, keyEquivalent: "")
             item.representedObject = string
             item.toolTip = string

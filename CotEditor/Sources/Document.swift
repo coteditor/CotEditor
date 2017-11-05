@@ -928,7 +928,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// dummy method for undoManager that can recognize only ObjC-compatible methods...
     func objcChangeLineEnding(to lineEnding: String) {
         
-        self.changeLineEnding(to: LineEnding(rawValue: lineEnding.characters.first!)!)
+        self.changeLineEnding(to: LineEnding(rawValue: lineEnding.first!)!)
     }
     
     

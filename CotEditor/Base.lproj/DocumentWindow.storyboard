@@ -79,7 +79,7 @@
                                         <action selector="getInfo:" target="klO-m3-n5X" id="hAx-X6-Mra"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D8B8253F-8F6E-4371-B384-927861F6E143" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatible Characters" paletteLabel="Show Incompatible Characters" toolTip="Show incompatible characters with current encoding" tag="5" image="IncompatibleChars" id="xle-wq-mIH" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="D8B8253F-8F6E-4371-B384-927861F6E143" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatibles" paletteLabel="Show Incompatible Characters" toolTip="Show incompatible characters with current encoding" tag="5" image="IncompatibleChars" id="xle-wq-mIH" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleIncompatibleCharList:" target="klO-m3-n5X" id="KOI-wf-RAx"/>
                                     </connections>

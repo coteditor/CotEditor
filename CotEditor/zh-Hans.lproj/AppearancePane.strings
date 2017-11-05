@@ -46,7 +46,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
 "oAZ-6U-Ba8.title" = "不可见字符：";
-/* Class = "NSButtonCell"; title = "Show invisible Characters"; ObjectID = "gqy-Io-eUU"; */
+/* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
 "gqy-Io-eUU.title" = "显示不可见文字";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
 "gcF-OM-SV0.title" = "空格";

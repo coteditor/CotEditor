@@ -54,7 +54,7 @@
 "uXf-pD-u6A.toolTip" = "Mostra informazioni sul documento";  /* Show document information */
 
 /* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
-"xle-wq-mIH.label" = "Caratteri incompatibili";  /* Incompatible Characters */
+"xle-wq-mIH.label" = "Caratteri incompatibili";  /* Incompatibles */
 "xle-wq-mIH.paletteLabel" = "Mostra caratteri incompatibili";  /* Show Incompatible Characters */
 "xle-wq-mIH.toolTip" = "Mostra i caratteri incompatibili con la codifica selezionata";  /* Show incompatible characters for selected encoding */
 

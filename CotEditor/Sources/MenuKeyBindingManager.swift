@@ -184,8 +184,6 @@ final class MenuKeyBindingManager: KeyBindingManager {
                  #selector(ThemeHolder.changeTheme),
                  #selector(Document.changeLineEnding(_:)),
                  #selector(DocumentViewController.changeTabWidth),
-                 #selector(EditorTextView.biggerFont),
-                 #selector(EditorTextView.smallerFont),
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),
                  #selector(NSWindow.makeKeyAndOrderFront),

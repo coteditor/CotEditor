@@ -140,7 +140,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                 // extract quotes
                 if !definition.isRegularExpression, definition.beginString == definition.endString,
                     definition.beginString.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
-                    Set(definition.beginString.characters).count == 1,  // consists of the same characters
+                    Set(definition.beginString).count == 1,  // consists of the same characters
                     !quoteTypes.keys.contains(definition.beginString)  // not registered yet
                 {
                     quoteTypes[definition.beginString] = type
