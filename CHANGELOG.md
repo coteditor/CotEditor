@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- Drop support for __OS X 10.10 Yosemite__.
 - Update inner source code to Swift 4.
 
 
