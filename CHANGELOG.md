@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.2.5
+--------------------------
+
+### Fixes
+
+- Fix an issue where the syntax highlighting indicator could display twice.
+
+
+
 3.2.4 (207)
 --------------------------
 
