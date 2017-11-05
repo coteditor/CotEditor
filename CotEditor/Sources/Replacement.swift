@@ -29,12 +29,12 @@ import Foundation
 
 final class Replacement: NSObject {
     
-    dynamic var findString: String
-    dynamic var replacementString: String
-    dynamic var usesRegularExpression: Bool
-    dynamic var ignoresCase: Bool
-    dynamic var enabled = true
-    dynamic var comment: String?
+    @objc dynamic var findString: String
+    @objc dynamic var replacementString: String
+    @objc dynamic var usesRegularExpression: Bool
+    @objc dynamic var ignoresCase: Bool
+    @objc dynamic var enabled = true
+    @objc dynamic var comment: String?
     
     
     init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, comment: String? = nil, enabled: Bool? = true) {
@@ -91,7 +91,7 @@ extension Replacement {
     
     
     /// localized error message
-    dynamic var localizedError: String? {
+    @objc dynamic var localizedError: String? {
         
         do {
             try self.validate()

@@ -31,9 +31,9 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     // MARK: Private Properties
     
-    private dynamic var hasInvalidSetting = false
-    private dynamic var canPerform = true
-    private dynamic var resultMessage: String?
+    @objc private dynamic var hasInvalidSetting = false
+    @objc private dynamic var canPerform = true
+    @objc private dynamic var resultMessage: String?
     
     @IBOutlet private weak var tableView: NSTableView?
     
@@ -57,7 +57,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.representedObject = BatchReplacement(replacements: [Replacement()])
         
         // -> Use obsevation since the delecation is already set to DefinitionTableViewDelegate
-        NotificationCenter.default.addObserver(self, selector: #selector(validateObject), name: .NSTableViewSelectionDidChange, object: self.tableView)
+        NotificationCenter.default.addObserver(self, selector: #selector(validateObject), name: NSTableView.selectionDidChangeNotification, object: self.tableView)
     }
     
     
@@ -75,7 +75,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == "OptionsSegue",
+        if segue.identifier == NSStoryboardSegue.Identifier("OptionsSegue"),
             let destinationController = segue.destinationController as? NSViewController,
             let batchReplacement = self.representedObject as? BatchReplacement
         {
@@ -107,10 +107,9 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         
         guard
             self.canPerform,
-            let textView = TextFinder.shared.client, textView.isEditable,
-            let string = textView.string
+            let textView = TextFinder.shared.client, textView.isEditable
             else {
-                NSBeep()
+                NSSound.beep()
                 return
         }
         
@@ -119,6 +118,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
             return
         }
         
+        let string = textView.string
         let inSelection = UserDefaults.standard[.findInSelection]
         
         textView.isEditable = false
@@ -136,7 +136,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
                 }
                 
                 progress.needsUpdateDescription(count: count)
-             }
+            }
             
             DispatchQueue.main.async {
                 textView.isEditable = true
@@ -149,16 +149,15 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
                 if result.count > 0 {
                     // apply to the text view
                     if let layoutManager = textView.layoutManager {
-                        layoutManager.removeTemporaryAttribute(NSBackgroundColorAttributeName, forCharacterRange: string.nsRange)
+                        layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
                         let color = TextFinder.shared.highlightColor
                         for range in result {
-                            layoutManager.addTemporaryAttribute(NSBackgroundColorAttributeName,
-                                                                value: color, forCharacterRange: range)
+                            layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
                         }
                     }
                     
                 } else {
-                    NSBeep()
+                    NSSound.beep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 
@@ -186,10 +185,9 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         
         guard
             self.canPerform,
-            let textView = TextFinder.shared.client, textView.isEditable,
-            let string = textView.string
+            let textView = TextFinder.shared.client, textView.isEditable
             else {
-                NSBeep()
+                NSSound.beep()
                 return
         }
         
@@ -198,6 +196,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
             return
         }
         
+        let string = textView.string
         let inSelection = UserDefaults.standard[.findInSelection]
         
         textView.isEditable = false
@@ -231,7 +230,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
                                      selectedRanges: result.selectedRanges,
                                      actionName: NSLocalizedString("Batch Replacement", comment: ""))
                 } else {
-                    NSBeep()
+                    NSSound.beep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
                 }
                 

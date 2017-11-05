@@ -54,7 +54,8 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         super.viewDidLoad()
         
         // register droppable types
-        self.tableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
+        let draggedType = NSPasteboard.PasteboardType(kUTTypeFileURL as String)
+        self.tableView?.registerForDraggedTypes([draggedType])
         
         // observe replacement setting list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: .SettingListDidUpdate, object: ReplacementManager.shared)
@@ -184,8 +185,8 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = []
         
-        savePanel.beginSheetModal(for: self.view.window!) { (result: Int) in
-            guard result == NSFileHandlingPanelOKButton else { return }
+        savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
+            guard result == .OK else { return }
             
             try? ReplacementManager.shared.exportSetting(name: settingName, to: savePanel.url!)
         }
@@ -202,8 +203,8 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [ReplacementManager.shared.filePathExtension]
         
-        openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: Int) in
-            guard result == NSFileHandlingPanelOKButton else { return }
+        openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: NSApplication.ModalResponse) in
+            guard result == .OK else { return }
             
             self?.importSetting(fileURL: openPanel.url!)
         }
@@ -218,7 +219,7 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
             let url = ReplacementManager.shared.urlForUserSetting(name: settingName)
             else { return }
         
-        NSWorkspace.shared().activateFileViewerSelecting([url])
+        NSWorkspace.shared.activateFileViewerSelecting([url])
     }
     
     
@@ -233,7 +234,7 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
     // MARK: Private Methods
     
     /// return setting name which is currently selected in the list table
-    fileprivate dynamic var selectedSettingName: String? {
+    @objc fileprivate dynamic var selectedSettingName: String? {
         
         let index = self.tableView?.selectedRow ?? 0
         
@@ -261,16 +262,16 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: window) { (returnCode: NSApplication.ModalResponse) in
             
-            guard returnCode == NSAlertSecondButtonReturn else { return }  // cancelled
+            guard returnCode == .alertSecondButtonReturn else { return }  // cancelled
             
             do {
                 try ReplacementManager.shared.removeSetting(name: name)
                 
             } catch {
                 alert.window.orderOut(nil)
-                NSBeep()
+                NSSound.beep()
                 NSAlert(error: error).beginSheetModal(for: window)
                 return
             }
@@ -331,13 +332,13 @@ extension BatchReplacementListViewController: NSTableViewDataSource {
     
     
     /// validate when dragged items come to tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
         let pboard = info.draggingPasteboard()
         let objects = pboard.readObjects(forClasses: [NSURL.self],
-                                         options: [NSPasteboardURLReadingFileURLsOnlyKey: true,
-                                                   NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.replacement.UTType]])
+                                         options: [.urlReadingFileURLsOnly: true,
+                                                   .urlReadingContentsConformToTypes: [DocumentType.replacement.UTType]])
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
@@ -352,11 +353,11 @@ extension BatchReplacementListViewController: NSTableViewDataSource {
     
     
     /// check acceptability of dragged items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
-                                    searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: true,
-                                                    NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.replacement.UTType]])
+                                    searchOptions: [.urlReadingFileURLsOnly: true,
+                                                    .urlReadingContentsConformToTypes: [DocumentType.replacement.UTType]])
         { [weak self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
             
             guard let fileURL = draggingItem.item as? URL else { return }
@@ -398,8 +399,9 @@ extension BatchReplacementListViewController: NSTextFieldDelegate {
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
         // finish if empty (The original name will be restored automatically)
+        let newName = fieldEditor.string
         guard
-            let newName = fieldEditor.string, !newName.isEmpty,
+            !newName.isEmpty,
             let oldName = self.selectedSettingName
             else { return true }
         

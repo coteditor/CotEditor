@@ -47,7 +47,7 @@ final class BatchReplacement: NSObject {
     
     
     var settings: Settings
-    dynamic var replacements: [Replacement]
+    @objc dynamic var replacements: [Replacement]
     
     
     init(settings: Settings = Settings(), replacements: [Replacement] = []) {
@@ -143,7 +143,7 @@ extension BatchReplacement {
     ///   - count: The number of replaces so far.
     ///   - stop: A reference to a Boolean value. The Block can set the value to true to stop further processing.
     /// - Returns: The result of the replacement.
-    func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ count: Int, _ stop: inout Bool) -> Void) -> Result {
+    func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: @escaping (_ count: Int, _ stop: inout Bool) -> Void) -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
         
@@ -171,7 +171,7 @@ extension BatchReplacement {
             
             // process replacement
             var cancelled = false
-            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (stop) in
+            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (flag, stop) in
                 result.count += 1
                 block(result.count, &stop)
                 cancelled = stop

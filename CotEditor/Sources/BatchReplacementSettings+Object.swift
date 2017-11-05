@@ -32,15 +32,15 @@ extension BatchReplacement.Settings {
     /// KVO-compatible object for BatchReplacement.Settings to set it in a popover with checkboxes
     final class Object: NSObject {
         
-        dynamic var textIsLiteralSearch: Bool
-        dynamic var textIgnoresDiacriticMarks: Bool
-        dynamic var textIgnoresWidth: Bool
+        @objc dynamic var textIsLiteralSearch: Bool
+        @objc dynamic var textIgnoresDiacriticMarks: Bool
+        @objc dynamic var textIgnoresWidth: Bool
         
-        dynamic var regexIsSingleline: Bool
-        dynamic var regexIsMultiline: Bool
-        dynamic var regexUsesUnicodeBoundaries: Bool
+        @objc dynamic var regexIsSingleline: Bool
+        @objc dynamic var regexIsMultiline: Bool
+        @objc dynamic var regexUsesUnicodeBoundaries: Bool
         
-        dynamic var regexUnescapesReplacementString: Bool
+        @objc dynamic var regexUnescapesReplacementString: Bool
         
         
         

@@ -29,7 +29,7 @@ import Cocoa
 
 final class FocusTextField: NSTextField {
     
-    private(set) dynamic var editing = false
+    @objc private(set) dynamic var editing = false
     
     
     override func becomeFirstResponder() -> Bool {
