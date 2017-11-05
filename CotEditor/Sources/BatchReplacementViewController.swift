@@ -120,6 +120,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         
         let string = textView.string
         let inSelection = UserDefaults.standard[.findInSelection]
+        let selectedRanges = textView.selectedRanges as! [NSRange]
         
         textView.isEditable = false
         
@@ -129,7 +130,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            let result = batchReplacement.find(string: string, ranges: textView.selectedRanges as! [NSRange], inSelection: inSelection) { (count, stop) in
+            let result = batchReplacement.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (count, stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
@@ -198,6 +199,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         
         let string = textView.string
         let inSelection = UserDefaults.standard[.findInSelection]
+        let selectedRanges = textView.selectedRanges as! [NSRange]
         
         textView.isEditable = false
         
@@ -207,7 +209,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            let result = batchReplacement.replace(string: string, ranges: textView.selectedRanges as! [NSRange], inSelection: inSelection) { (count, stop) in
+            let result = batchReplacement.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (count, stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
