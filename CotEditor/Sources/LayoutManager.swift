@@ -292,14 +292,14 @@ final class LayoutManager: NSLayoutManager {
     
     
     /// textStorage did update
-    override func textStorage(_ str: NSTextStorage, edited editedMask: Int, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
+    override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
+        
+        super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
         
         // invalidate wrapping line indent in editRange if needed
-        if editedMask & 2 != 0 {  // 1 == .attributes / 2 == .characters
+        if editMask.contains(.editedCharacters) {
             self.invalidateIndent(in: newCharRange)
         }
-        
-        super.textStorage(str, edited: editedMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
     }
     
     
