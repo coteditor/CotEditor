@@ -235,8 +235,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
             0x1b: "⎋",  // = Escape
         ]
         
-        // cast key from Int to UnicodeScalar
-        return table.flatDictionary { (UnicodeScalar($0.key)!, $0.value) }
+        return table.mapKeys { UnicodeScalar($0)! }
     }()
     
 }

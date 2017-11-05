@@ -188,7 +188,7 @@ struct DefaultSettings {
         ]
     
     
-    static let defaults: [String: Any] = DefaultSettings.settings.flatDictionary { ($0.key.rawValue, $0.value) }
+    static let defaults: [String: Any] = DefaultSettings.settings.mapKeys { $0.rawValue }
     
     
     private init() { }

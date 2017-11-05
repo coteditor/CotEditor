@@ -42,4 +42,13 @@ class CollectionTests: XCTestCase {
         XCTAssertEqual([1, 2, 3, 4, 5].countPrefix(while: { $0 > 0 }), 5)
     }
     
+    
+    func testKeyMapping() {
+        
+        let dict = [1: 1, 2: 2, 3: 3]
+        let mapped = dict.mapKeys { String($0 * 10) }
+        
+        XCTAssertEqual(mapped, ["10": 1, "20": 2, "30": 3])
+    }
+    
 }

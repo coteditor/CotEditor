@@ -51,6 +51,26 @@ extension Collection {
 }
 
 
+
+extension Dictionary {
+    
+    /// Return a new dictionary containing the keys transformed by the given closure with the values of this dictionary.
+    ///
+    /// - Parameter transform: A closure that transforms a key. Every transformed key must be unique.
+    /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
+    func mapKeys<T>(transform: (Key) throws -> T) rethrows -> [T: Value] {
+        
+        let keysWithValues = try self.map { (key, value) -> (T, Value) in
+             (try transform(key), value)
+        }
+        
+        return [T: Value](uniqueKeysWithValues: keysWithValues)
+    }
+    
+}
+
+
+
 extension Sequence {
     
     /// Build a dictionary from (key, value) tuple.
