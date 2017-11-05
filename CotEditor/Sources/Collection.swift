@@ -76,13 +76,7 @@ extension Sequence {
     /// Build a dictionary from (key, value) tuple.
     func flatDictionary<K, V>(transform: ((Element) -> (K, V)?)) -> [K: V] {
         
-        var dict = [K: V]()
-        for element in self {
-            guard let tuple = transform(element) else { continue }
-            
-            dict[tuple.0] = tuple.1
-        }
-        return dict
+        return [K: V](self.flatMap(transform), uniquingKeysWith: { $0.1 })
     }
     
 }

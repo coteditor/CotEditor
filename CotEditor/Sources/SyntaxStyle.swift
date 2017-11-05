@@ -130,9 +130,8 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
         // also combine simple word definitions into single regex definition
         var quoteTypes = [String: SyntaxType]()
-        self.highlightDictionary = definitionDictionary.flatDictionary { item in
+        self.highlightDictionary = definitionDictionary.flatDictionary { (type, definitions) in
             
-            let (type, definitions) = item
             var highlightDefinitions = [HighlightDefinition]()
             var words = [String]()
             var caseInsensitiveWords = [String]()
