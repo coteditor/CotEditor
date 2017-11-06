@@ -53,11 +53,12 @@ extension EditorTextView {
         }
         
         var newSelectedRanges = [NSRange]()
-        let string = textStorage.string as NSString
         
         // swap lines
         textStorage.beginEditing()
         for lineRange in lineRanges {
+            let string = textStorage.string as NSString
+            
             let upperLineRange = string.lineRange(at: lineRange.location - 1)
             var lineString = string.substring(with: lineRange)
             var upperLineString = string.substring(with: upperLineRange)
@@ -119,11 +120,12 @@ extension EditorTextView {
         }
         
         var newSelectedRanges = [NSRange]()
-        let string = textStorage.string as NSString
         
         // swap lines
         textStorage.beginEditing()
         for lineRange in lineRanges.reversed() {
+            let string = textStorage.string as NSString
+            
             var lowerLineRange = string.lineRange(at: lineRange.upperBound)
             var lineString = string.substring(with: lineRange)
             var lowerLineString = string.substring(with: lowerLineRange)
