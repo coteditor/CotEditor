@@ -172,9 +172,15 @@ extension BatchReplacement {
             // process replacement
             var cancelled = false
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (flag, stop) in
-                result.count += 1
-                block(result.count, &stop)
-                cancelled = stop
+                
+                switch flag {
+                case .findProgress, .foundCount:
+                    break
+                case .replacementProgress:
+                    result.count += 1
+                    block(result.count, &stop)
+                    cancelled = stop
+                }
             }
             
             // finish if cancelled
