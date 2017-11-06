@@ -41,14 +41,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.textStorage?.delegate = nil
-    }
-    
-    
-    
     // MARK: Split View Controller Methods
     
     override func viewDidLoad() {

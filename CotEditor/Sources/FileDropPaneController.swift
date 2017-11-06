@@ -46,14 +46,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.formatTextView?.delegate = nil
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI
