@@ -876,7 +876,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // register undo
         if let undoManager = self.undoManager {
-            (undoManager.prepare(withInvocationTarget: self) as AnyObject).objcChangeEncoding(to: self.encoding.rawValue, withUTF8BOM: self.hasUTF8BOM, askLossy: false, lossy: lossy)
+            undoManager.registerUndo(withTarget: self) { [currentEncoding = self.encoding, currentHasUTF8BOM = self.hasUTF8BOM] target in
+                target.changeEncoding(to: currentEncoding, withUTF8BOM: currentHasUTF8BOM, askLossy: false, lossy: lossy)
+            }
             undoManager.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
         }
         
@@ -895,13 +897,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// dummy method for undoManager that can recognize only ObjC-compatible methods...
-    @objc func objcChangeEncoding(to encoding: UInt, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) {
-        
-        self.changeEncoding(to: String.Encoding(rawValue: encoding), withUTF8BOM: withUTF8BOM, askLossy: askLossy, lossy: lossy)
-    }
-    
-    
     /// change line endings registering process to the undo manager
     func changeLineEnding(to lineEnding: LineEnding) {
         
@@ -909,7 +904,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // register undo
         if let undoManager = self.undoManager {
-            (undoManager.prepare(withInvocationTarget: self) as AnyObject).objcChangeLineEnding(to: String(self.lineEnding.rawValue))
+            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding] target in
+                target.changeLineEnding(to: currentLineEnding)
+            }
             undoManager.setActionName(String(format: NSLocalizedString("Line Endings to “%@”", comment: ""), lineEnding.name))
         }
         
@@ -922,13 +919,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // update UI
         self.analyzer.invalidateModeInfo()
         self.analyzer.invalidateEditorInfo()
-    }
-    
-    
-    /// dummy method for undoManager that can recognize only ObjC-compatible methods...
-    @objc func objcChangeLineEnding(to lineEnding: String) {
-        
-        self.changeLineEnding(to: LineEnding(rawValue: lineEnding.first!)!)
     }
     
     
