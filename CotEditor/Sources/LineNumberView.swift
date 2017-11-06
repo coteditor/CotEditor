@@ -78,11 +78,6 @@ final class LineNumberView: NSRulerView {
     }
     
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     
     // MARK: Ruler View Methods
     

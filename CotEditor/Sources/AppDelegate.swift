@@ -100,11 +100,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     }
     
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     override func awakeFromNib() {
         
         // store key bindings in MainMenu.xib before menu is modified

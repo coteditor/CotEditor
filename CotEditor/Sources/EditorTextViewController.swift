@@ -84,7 +84,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     deinit {
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.highlightCurrentLine.rawValue)
-        NotificationCenter.default.removeObserver(self)
         
         // detach textStorage safely
         if let layoutManager = self.textView?.layoutManager {

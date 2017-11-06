@@ -77,11 +77,6 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     }
     
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     
     // MARK: Touch Bar Delegate
     

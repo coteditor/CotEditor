@@ -54,8 +54,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue)
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue)
         
-        NotificationCenter.default.removeObserver(self)
-        
         self.findTextView?.delegate = nil
     }
     

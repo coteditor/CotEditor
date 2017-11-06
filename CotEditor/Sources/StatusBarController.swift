@@ -42,8 +42,6 @@ final class StatusBarController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
-        
         for key in type(of: self).observedDefaultKeys {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }

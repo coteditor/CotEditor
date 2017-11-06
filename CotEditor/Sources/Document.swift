@@ -127,11 +127,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     /// store internal document state
     override func encodeRestorableState(with coder: NSCoder) {
         

@@ -37,14 +37,6 @@ final class SplitViewController: NSSplitViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    
     // MARK: Split View Controller Methods
     
     /// setup view

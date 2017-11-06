@@ -56,11 +56,6 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     // MARK: -
     // MARK: Lifecycle
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     override var windowNibName: NSNib.Name? {
         
         return NSNib.Name("UnicodePanel")

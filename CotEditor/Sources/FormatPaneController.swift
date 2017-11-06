@@ -54,14 +54,6 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI

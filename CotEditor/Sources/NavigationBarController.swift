@@ -71,14 +71,6 @@ final class NavigationBarController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI

@@ -44,8 +44,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     // MARK: Lifecycle
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
-        
         self.textStorage?.delegate = nil
     }
     

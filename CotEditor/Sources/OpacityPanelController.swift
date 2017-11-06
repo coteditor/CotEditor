@@ -50,11 +50,6 @@ final class OpacityPanelController: NSWindowController {
     // MARK: -
     // MARK: Lifecycle
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     override var windowNibName: NSNib.Name? {
         
         return NSNib.Name("OpacityPanel")

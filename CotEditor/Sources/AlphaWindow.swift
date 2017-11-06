@@ -77,11 +77,6 @@ final class AlphaWindow: NSWindow {
     }
     
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     
     // MARK: Window Methods
     

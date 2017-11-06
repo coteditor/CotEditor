@@ -117,11 +117,6 @@ final class TextFinder: NSResponder {
     }
     
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     
     // MARK: Responder Methods
     

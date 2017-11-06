@@ -50,14 +50,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI

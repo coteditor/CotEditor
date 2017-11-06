@@ -87,7 +87,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         self.menuBuildingTask?.cancel()
         
         NSFileCoordinator.removeFilePresenter(self)
-        NotificationCenter.default.removeObserver(self)
     }
     
     
