@@ -58,21 +58,6 @@ extension String {
             .joined()
     }
     
-    
-    /// transform Japanese Katakana to Hiragana
-    var katakana: String {
-        
-        return self.applyingTransform(.hiraganaToKatakana, reverse: false) ?? self
-        
-    }
-    
-    
-    /// transform Japanese Hiragana to Katakana
-    var hiragana: String {
-        
-        return self.applyingTransform(.hiraganaToKatakana, reverse: true) ?? self
-    }
-    
 }
 
 

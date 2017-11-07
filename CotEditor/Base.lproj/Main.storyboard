@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -781,13 +782,25 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="HuN-8a-yXL"/>
-                                                    <menuItem title="ASCII to Fullwidth ASCII" id="586">
+                                                    <menuItem title="Half-width to Full-width" id="dVK-1s-xJq">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exchangeFullwidth:" target="Ady-hI-5gd" id="Kzj-vP-XAT"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Full-width to Half-width" id="Skr-vI-7VN">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exchangeHalfwidth:" target="Ady-hI-5gd" id="gsG-iw-ufU"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="ASCII to Full-width ASCII" id="586">
                                                         <attributedString key="attributedTitle"/>
                                                         <connections>
                                                             <action selector="exchangeFullwidthRoman:" target="Ady-hI-5gd" id="0zm-yg-bCm"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Fullwidth ASCII to ASCII" id="588">
+                                                    <menuItem title="Full-width ASCII to ASCII" id="588">
                                                         <attributedString key="attributedTitle"/>
                                                         <connections>
                                                             <action selector="exchangeHalfwidthRoman:" target="Ady-hI-5gd" id="U4C-sa-ALD"/>

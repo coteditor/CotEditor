@@ -5,6 +5,10 @@ Change Log
 develop
 --------------------------
 
+### New Features
+
+- Add new actions “Half-width to Full-width” and  “Full-width to Half-width” to Text > Transformations menu.
+
 ### Improvements
 
 - Drop support for __OS X 10.10 Yosemite__.

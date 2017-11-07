@@ -99,12 +99,10 @@ class StringExtensionsTests: XCTestCase {
     
     func testJapaneseTransform() {
         
-        let testString = "犬 イヌ いぬ Ｉｎｕ Dog"
+        let testString = "犬 イヌ いぬ Ｉｎｕ Dog 123 １２３"
         
-        XCTAssertEqual(testString.fullWidthRoman, "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ")
-        XCTAssertEqual(testString.halfWidthRoman, "犬 イヌ いぬ Inu Dog")
-        XCTAssertEqual(testString.katakana, "犬 イヌ イヌ Ｉｎｕ Dog")
-        XCTAssertEqual(testString.hiragana, "犬 いぬ いぬ Ｉｎｕ Dog")
+        XCTAssertEqual(testString.fullWidthRoman, "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ １２３ １２３")
+        XCTAssertEqual(testString.halfWidthRoman, "犬 イヌ いぬ Inu Dog 123 123")
     }
     
     
