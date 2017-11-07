@@ -62,22 +62,15 @@ extension String {
     /// transform Japanese Katakana to Hiragana
     var katakana: String {
         
-        let string = NSMutableString(string: self)
+        return self.applyingTransform(.hiraganaToKatakana, reverse: false) ?? self
         
-        CFStringTransform(string, nil, kCFStringTransformHiraganaKatakana, false)
-        
-        return string as String
     }
     
     
     /// transform Japanese Hiragana to Katakana
     var hiragana: String {
         
-        let string = NSMutableString(string: self)
-        
-        CFStringTransform(string, nil, kCFStringTransformHiraganaKatakana, true)
-        
-        return string as String
+        return self.applyingTransform(.hiraganaToKatakana, reverse: true) ?? self
     }
     
 }
