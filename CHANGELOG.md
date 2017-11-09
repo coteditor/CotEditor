@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the syntax highlighting indicator could display twice.
+- Improve general stability.
 
 
 
