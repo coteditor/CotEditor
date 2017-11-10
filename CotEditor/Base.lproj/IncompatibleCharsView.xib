@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="IncompatibleCharactersViewController" customModule="CotEditor" customModuleProvider="target">
@@ -30,7 +32,7 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="40" minWidth="20" maxWidth="1000" id="weY-lf-jGz">
+                                    <tableColumn identifier="" editable="NO" width="40" minWidth="20" maxWidth="1000" id="weY-lf-jGz">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Line">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -48,7 +50,7 @@
                                                 <rect key="frame" x="1" y="1" width="40" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7Rw-cV-E40">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Rw-cV-E40">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="128" id="Rx7-jv-O2R">
                                                             <font key="font" metaFont="system"/>
@@ -72,7 +74,7 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="76" minWidth="40" maxWidth="1000" id="Nhb-U5-BOF">
+                                    <tableColumn identifier="" editable="NO" width="76" minWidth="40" maxWidth="1000" id="Nhb-U5-BOF">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Character">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -90,7 +92,7 @@
                                                 <rect key="frame" x="44" y="1" width="76" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="IA3-RP-TRp">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IA3-RP-TRp">
                                                         <rect key="frame" x="0.0" y="0.0" width="76" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="foo" id="4Si-Gc-9F8">
                                                             <font key="font" metaFont="system"/>
@@ -114,7 +116,7 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="69" minWidth="10" maxWidth="1000" id="2AE-nU-rdc">
+                                    <tableColumn identifier="" editable="NO" width="69" minWidth="10" maxWidth="1000" id="2AE-nU-rdc">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Converted">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -132,7 +134,7 @@
                                                 <rect key="frame" x="123" y="1" width="69" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="03T-5L-jx9">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="03T-5L-jx9">
                                                         <rect key="frame" x="0.0" y="0.0" width="69" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="bar" id="seF-wU-ixc">
                                                             <font key="font" metaFont="system"/>
@@ -179,7 +181,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
-                <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iOD-RT-n3c" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
+                <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iOD-RT-n3c">
                     <rect key="frame" x="18" y="362" width="184" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="No incompatible characters were found." id="wsL-BG-Ii8">
                         <font key="font" metaFont="smallSystem"/>
@@ -190,10 +192,10 @@
                         <binding destination="-2" name="hidden" keyPath="characterAvailable" id="OFe-im-HV0"/>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rrr-tD-nLq">
-                    <rect key="frame" x="10" y="424" width="200" height="14"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rrr-tD-nLq">
+                    <rect key="frame" x="10" y="424" width="139" height="14"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Incompatible Characters" id="W1c-aP-XZa">
-                        <font key="font" metaFont="smallSystemBold"/>
+                        <font key="font" metaFont="systemSemibold" size="11"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -208,7 +210,7 @@
                 <constraint firstItem="Rrr-tD-nLq" firstAttribute="leading" secondItem="jLy-9i-VMu" secondAttribute="leading" constant="12" id="M8a-CP-Ev4"/>
                 <constraint firstItem="Rrr-tD-nLq" firstAttribute="top" secondItem="jLy-9i-VMu" secondAttribute="top" constant="8" id="bZ1-jy-Kbz"/>
                 <constraint firstItem="1fA-a5-pHs" firstAttribute="top" secondItem="Rrr-tD-nLq" secondAttribute="bottom" constant="8" symbolic="YES" id="oMS-GT-GHU"/>
-                <constraint firstAttribute="trailing" secondItem="Rrr-tD-nLq" secondAttribute="trailing" constant="12" id="xfT-kC-nbY"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rrr-tD-nLq" secondAttribute="trailing" constant="12" id="xfT-kC-nbY"/>
                 <constraint firstItem="1fA-a5-pHs" firstAttribute="leading" secondItem="jLy-9i-VMu" secondAttribute="leading" constant="12" id="yr3-h4-MVA"/>
             </constraints>
         </view>
