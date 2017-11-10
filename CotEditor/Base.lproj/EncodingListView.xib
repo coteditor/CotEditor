@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="EncodingListViewController" customModule="CotEditor" customModuleProvider="target">
@@ -24,13 +26,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="sEh-f6-spz">
-                                <rect key="frame" x="0.0" y="0.0" width="242" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="242" height="187"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="239" minWidth="40" maxWidth="1000" id="49c-uK-4Wa">
+                                    <tableColumn identifier="" editable="NO" width="239" minWidth="40" maxWidth="1000" id="49c-uK-4Wa">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -81,7 +83,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="wpM-UK-y4B">
                         <autoresizingMask key="autoresizingMask"/>
@@ -145,7 +146,7 @@ DQ
                         <action selector="deleteSeparator:" target="-2" id="1Lu-wq-3Kv"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Ji-oF-2Xz" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4Ji-oF-2Xz">
                     <rect key="frame" x="18" y="294" width="364" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="3394">
                         <font key="font" metaFont="smallSystem"/>
@@ -155,7 +156,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4bX-CV-ACG" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4bX-CV-ACG">
                     <rect key="frame" x="18" y="330" width="364" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Drag encodings to change the order." id="3395">
                         <font key="font" metaFont="system"/>
@@ -177,7 +178,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                         <binding destination="-2" name="enabled" keyPath="canRestore" id="k2k-BZ-7tu"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EvH-HI-yPD">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EvH-HI-yPD">
                     <rect key="frame" x="18" y="61" width="364" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”." id="jXZ-7k-86F">
                         <font key="font" metaFont="smallSystem"/>

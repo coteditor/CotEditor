@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SyntaxValidationViewController" customModule="CotEditor" customModuleProvider="target">
@@ -34,15 +36,13 @@
                         <rect key="frame" x="1" y="1" width="424" height="288"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="bar" incrementalSearchingEnabled="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" id="Wdj-BP-SpZ">
+                            <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="bar" incrementalSearchingEnabled="YES" usesRuler="YES" id="Wdj-BP-SpZ">
                                 <rect key="frame" x="0.0" y="0.0" width="424" height="288"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="minSize" width="424" height="288"/>
                                 <size key="maxSize" width="426" height="10000000"/>
                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="minSize" width="424" height="288"/>
-                                <size key="maxSize" width="426" height="10000000"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="textContainerInset">
                                         <size key="value" width="4" height="6"/>
@@ -73,6 +73,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="R3h-vn-LqF" secondAttribute="trailing" constant="12" id="7hM-Hs-DFA"/>
                 <constraint firstItem="Dua-03-oC0" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="8cy-0p-7Hm"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dua-03-oC0" secondAttribute="trailing" constant="20" symbolic="YES" id="DTc-wl-oKB"/>
                 <constraint firstItem="Dua-03-oC0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="HdG-po-vj9"/>
                 <constraint firstItem="R3h-vn-LqF" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="JPb-Xh-czK"/>
                 <constraint firstAttribute="bottom" secondItem="R3h-vn-LqF" secondAttribute="bottom" constant="12" id="en7-C0-egD"/>

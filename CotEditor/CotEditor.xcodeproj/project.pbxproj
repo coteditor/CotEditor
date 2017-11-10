@@ -472,8 +472,6 @@
 		2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */; };
 		2ACDC09A1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */; };
 		2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */; };
-		2ACDC09D1D172EF7009B72D6 /* WrappingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC09C1D172EF7009B72D6 /* WrappingTextField.swift */; };
-		2ACDC09E1D172EF7009B72D6 /* WrappingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC09C1D172EF7009B72D6 /* WrappingTextField.swift */; };
 		2ACDC0A31D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */; };
 		2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */; };
 		2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
@@ -1033,7 +1031,6 @@
 		2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineMenuButtonCell.swift; sourceTree = "<group>"; };
 		2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingTextFieldCell.swift; sourceTree = "<group>"; };
 		2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntialiasingTextField.swift; sourceTree = "<group>"; };
-		2ACDC09C1D172EF7009B72D6 /* WrappingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrappingTextField.swift; sourceTree = "<group>"; };
 		2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitcherSegmentedCell.swift; sourceTree = "<group>"; };
 		2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabView.swift; sourceTree = "<group>"; };
 		2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachablePopoverViewController.swift; sourceTree = "<group>"; };
@@ -1296,7 +1293,6 @@
 				2AE52F171D17468B00D60A32 /* EditorSplitView.swift */,
 				2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */,
 				2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */,
-				2ACDC09C1D172EF7009B72D6 /* WrappingTextField.swift */,
 				2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */,
 				2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */,
 				2A10D1471E7477D30027192A /* ItalicButton.swift */,
@@ -2456,7 +2452,6 @@
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
-				2ACDC09E1D172EF7009B72D6 /* WrappingTextField.swift in Sources */,
 				2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
@@ -2581,7 +2576,6 @@
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2AA45A4E1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */,
-				2ACDC09D1D172EF7009B72D6 /* WrappingTextField.swift in Sources */,
 				2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */,
 				2AA761351D45634400031AAF /* String+Counting.swift in Sources */,

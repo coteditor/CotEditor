@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -119,7 +120,7 @@
                                                 <rect key="frame" x="61" y="1" width="190" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SxV-uo-Z0U">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SxV-uo-Z0U">
                                                         <rect key="frame" x="0.0" y="0.0" width="190" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="begin" usesSingleLineMode="YES" id="kSc-q8-TSC">
                                                             <font key="font" metaFont="system"/>
@@ -161,7 +162,7 @@
                                                 <rect key="frame" x="254" y="1" width="100" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xfd-UI-asU">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfd-UI-asU">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="end" usesSingleLineMode="YES" id="ike-P3-f5j">
                                                             <font key="font" metaFont="system"/>
@@ -203,7 +204,7 @@
                                                 <rect key="frame" x="357" y="1" width="68" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0iQ-u5-KRq">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0iQ-u5-KRq">
                                                         <rect key="frame" x="0.0" y="0.0" width="68" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="note" usesSingleLineMode="YES" id="CWN-H0-LVV">
                                                             <font key="font" metaFont="system"/>
@@ -275,7 +276,7 @@
                         <binding destination="SKZ-Xe-n9z" name="enabled" keyPath="canRemove" id="7MP-bE-SLh"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fMh-IW-C4T">
+                <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fMh-IW-C4T">
                     <rect key="frame" x="10" y="311" width="108" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Inline comment:" usesSingleLineMode="YES" id="b3O-ZW-iIp">
                         <font key="font" metaFont="systemBold"/>
@@ -283,7 +284,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1xs-RY-0ID">
+                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1xs-RY-0ID">
                     <rect key="frame" x="88" y="284" width="122" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="5i3-Rl-N6f"/>
@@ -301,7 +302,7 @@
                         </binding>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ska-c0-sx2">
+                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ska-c0-sx2">
                     <rect key="frame" x="316" y="283" width="122" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Not defined" drawsBackground="YES" id="4qu-tU-wgL">
                         <font key="font" metaFont="system"/>
@@ -317,7 +318,7 @@
                         <outlet property="nextKeyView" destination="teO-CT-cDt" id="VYv-UL-8VL"/>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="teO-CT-cDt">
+                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teO-CT-cDt">
                     <rect key="frame" x="316" y="251" width="122" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Not defined" drawsBackground="YES" id="lMx-HP-1U1">
                         <font key="font" metaFont="system"/>
@@ -333,7 +334,7 @@
                         <outlet property="nextKeyView" destination="ska-c0-sx2" id="gEr-Ks-fpU"/>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K52-O0-Gy1">
+                <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K52-O0-Gy1">
                     <rect key="frame" x="238" y="311" width="109" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Block comment:" usesSingleLineMode="YES" id="bUT-iW-c0x">
                         <font key="font" metaFont="systemBold"/>
@@ -341,7 +342,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WDn-Vx-yAe">
+                <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WDn-Vx-yAe">
                     <rect key="frame" x="238" y="286" width="72" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Begin with:" usesSingleLineMode="YES" id="xWF-yX-yz5">
                         <font key="font" metaFont="system"/>
@@ -349,7 +350,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SEW-h4-aL1">
+                <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SEW-h4-aL1">
                     <rect key="frame" x="10" y="286" width="72" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Begin with:" usesSingleLineMode="YES" id="508-hG-5PG">
                         <font key="font" metaFont="system"/>
@@ -357,7 +358,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gGr-AE-CgQ">
+                <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gGr-AE-CgQ">
                     <rect key="frame" x="250" y="254" width="60" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="End with:" usesSingleLineMode="YES" id="5bm-Fa-IZj">
                         <font key="font" metaFont="system"/>
@@ -382,6 +383,7 @@
                 <constraint firstItem="teO-CT-cDt" firstAttribute="leading" secondItem="gGr-AE-CgQ" secondAttribute="trailing" constant="8" symbolic="YES" id="2xk-wq-inM"/>
                 <constraint firstItem="K52-O0-Gy1" firstAttribute="top" secondItem="fMh-IW-C4T" secondAttribute="top" id="503-LX-Sfd"/>
                 <constraint firstAttribute="trailing" secondItem="ska-c0-sx2" secondAttribute="trailing" constant="12" id="8YD-vq-nfa"/>
+                <constraint firstAttribute="trailing" secondItem="teO-CT-cDt" secondAttribute="trailing" constant="12" id="CYj-YI-VGQ"/>
                 <constraint firstItem="3Fq-66-Myr" firstAttribute="centerY" secondItem="DyC-OT-P9k" secondAttribute="centerY" id="Cbc-zV-lvD"/>
                 <constraint firstItem="SEW-h4-aL1" firstAttribute="top" secondItem="fMh-IW-C4T" secondAttribute="bottom" constant="8" symbolic="YES" id="Gvy-ZY-vIx"/>
                 <constraint firstItem="teO-CT-cDt" firstAttribute="width" secondItem="1xs-RY-0ID" secondAttribute="width" id="HDa-IB-7TJ"/>
@@ -396,6 +398,7 @@
                 <constraint firstAttribute="bottom" secondItem="g4a-Nb-6yw" secondAttribute="bottom" constant="12" id="diF-KP-Kyw"/>
                 <constraint firstItem="SEW-h4-aL1" firstAttribute="centerY" secondItem="1xs-RY-0ID" secondAttribute="centerY" id="g2u-Dr-HbS"/>
                 <constraint firstItem="3Fq-66-Myr" firstAttribute="height" secondItem="DyC-OT-P9k" secondAttribute="height" id="hYY-XT-46d"/>
+                <constraint firstItem="g4a-Nb-6yw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DyC-OT-P9k" secondAttribute="trailing" constant="12" symbolic="YES" id="hgN-0T-1PV"/>
                 <constraint firstAttribute="trailing" secondItem="g4a-Nb-6yw" secondAttribute="trailing" constant="12" id="i4y-WN-A79"/>
                 <constraint firstItem="teO-CT-cDt" firstAttribute="width" secondItem="ska-c0-sx2" secondAttribute="width" id="iHM-Sl-Pc2"/>
                 <constraint firstItem="fMh-IW-C4T" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="jMG-qC-N5F"/>
@@ -403,11 +406,14 @@
                 <constraint firstItem="fMh-IW-C4T" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="r7f-4v-bQ7"/>
                 <constraint firstItem="ska-c0-sx2" firstAttribute="leading" secondItem="WDn-Vx-yAe" secondAttribute="trailing" constant="8" symbolic="YES" id="rOq-p0-GPS"/>
                 <constraint firstItem="szY-Yp-KrM" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="rvq-3E-HB4"/>
+                <constraint firstItem="gGr-AE-CgQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="uqO-dc-qh7"/>
                 <constraint firstItem="ska-c0-sx2" firstAttribute="centerY" secondItem="WDn-Vx-yAe" secondAttribute="centerY" id="vCH-uF-3PL"/>
                 <constraint firstItem="szY-Yp-KrM" firstAttribute="top" secondItem="teO-CT-cDt" secondAttribute="bottom" constant="30" id="weW-NY-it7"/>
                 <constraint firstItem="WDn-Vx-yAe" firstAttribute="leading" secondItem="1xs-RY-0ID" secondAttribute="trailing" constant="30" id="wiF-At-bsf"/>
                 <constraint firstItem="K52-O0-Gy1" firstAttribute="leading" secondItem="WDn-Vx-yAe" secondAttribute="leading" id="wk7-ET-U9T"/>
                 <constraint firstItem="3Fq-66-Myr" firstAttribute="width" secondItem="DyC-OT-P9k" secondAttribute="width" id="wnp-Cr-D8r"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="K52-O0-Gy1" secondAttribute="trailing" constant="20" symbolic="YES" id="wx5-7V-KRe"/>
+                <constraint firstItem="K52-O0-Gy1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fMh-IW-C4T" secondAttribute="trailing" constant="8" symbolic="YES" id="zWb-DB-8Jq"/>
             </constraints>
             <point key="canvasLocation" x="140" y="187"/>
         </customView>
