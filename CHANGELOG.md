@@ -5,6 +5,11 @@ Change Log
 3.2.5
 --------------------------
 
+### Improvements
+
+- Some minor UI improvements.
+
+
 ### Fixes
 
 - Fix an issue where the syntax highlighting indicator could display twice.
