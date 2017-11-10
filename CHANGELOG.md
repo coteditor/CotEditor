@@ -8,12 +8,12 @@ develop
 ### New Features
 
 - Add new actions “Half-width to Full-width” and  “Full-width to Half-width” to Text > Transformations menu.
-- Some minor UI improvements and fixes.
 
 
 ### Improvements
 
 - Drop support for __OS X 10.10 Yosemite__.
+- Some minor UI improvements and fixes.
 - Update inner source code to Swift 4.
 
 
