@@ -92,7 +92,7 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
 
 // MARK: -
 
-final class OutlineParseOperation: AsynchronousOperation {
+final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
     
     // MARK: Public Properties
     

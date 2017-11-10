@@ -139,7 +139,7 @@ private struct QuoteCommentItem {
 
 // MARK: -
 
-final class SyntaxHighlightParseOperation: AsynchronousOperation {
+final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReporting {
     
     // MARK: Public Properties
     
