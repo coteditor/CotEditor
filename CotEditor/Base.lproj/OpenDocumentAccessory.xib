@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DocumentController" customModule="CotEditor" customModuleProvider="target">
@@ -58,13 +60,13 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="J1J-NI-48C" secondAttribute="bottom" constant="10" id="4hR-6A-WvW"/>
                 <constraint firstItem="oFH-0B-ozp" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="10" id="6El-rr-dkw"/>
-                <constraint firstAttribute="bottom" secondItem="oFH-0B-ozp" secondAttribute="bottom" priority="750" constant="10" id="8DZ-5n-gCC"/>
                 <constraint firstItem="J1J-NI-48C" firstAttribute="top" secondItem="oFH-0B-ozp" secondAttribute="bottom" constant="8" symbolic="YES" id="Hfk-UJ-UA5"/>
                 <constraint firstItem="oFH-0B-ozp" firstAttribute="centerY" secondItem="bt1-Nu-etX" secondAttribute="centerY" id="Hz0-m4-xV3"/>
                 <constraint firstAttribute="trailing" secondItem="oFH-0B-ozp" secondAttribute="trailing" constant="20" symbolic="YES" id="XZN-dU-Gph"/>
                 <constraint firstItem="J1J-NI-48C" firstAttribute="leading" secondItem="oFH-0B-ozp" secondAttribute="leading" id="gMH-9G-l7C"/>
                 <constraint firstItem="oFH-0B-ozp" firstAttribute="leading" secondItem="bt1-Nu-etX" secondAttribute="trailing" constant="8" symbolic="YES" id="kH9-lI-myi"/>
                 <constraint firstItem="bt1-Nu-etX" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="mDY-Ct-zpm"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="J1J-NI-48C" secondAttribute="trailing" constant="20" symbolic="YES" id="sXr-bs-EK6"/>
             </constraints>
             <point key="canvasLocation" x="445.5" y="670.5"/>
         </customView>

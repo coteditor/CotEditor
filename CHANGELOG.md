@@ -8,6 +8,8 @@ develop
 ### New Features
 
 - Add new actions “Half-width to Full-width” and  “Full-width to Half-width” to Text > Transformations menu.
+- Some minor UI improvements and fixes.
+
 
 ### Improvements
 

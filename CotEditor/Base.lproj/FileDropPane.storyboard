@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="UtY-fi-jOg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="UtY-fi-jOg">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -44,7 +45,7 @@
                                     <rect key="frame" x="1" y="1" width="508" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" richText="NO" horizontallyResizable="YES" findStyle="panel" allowsUndo="YES" smartInsertDelete="YES" id="Rdu-bG-bow" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
+                                        <textView importsGraphics="NO" richText="NO" horizontallyResizable="YES" verticallyResizable="YES" findStyle="panel" allowsUndo="YES" smartInsertDelete="YES" id="Rdu-bG-bow" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="508" height="58"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -106,7 +107,7 @@
                                     <binding destination="pUX-ce-iNp" name="enabled" keyPath="canAdd" id="ll8-g7-aU8"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-To-iJP">
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-To-iJP">
                                 <rect key="frame" x="18" y="119" width="108" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Format:" usesSingleLineMode="YES" id="3332">
                                     <font key="font" metaFont="system"/>
@@ -114,7 +115,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nF4-c6-mvy">
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nF4-c6-mvy">
                                 <rect key="frame" x="18" y="351" width="131" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="File Drop Definitions:" usesSingleLineMode="YES" id="3331">
                                     <font key="font" metaFont="system"/>
@@ -152,7 +153,7 @@
                                                             <rect key="frame" x="1" y="1" width="150" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="extensions" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIX-u0-ddX">
+                                                                <textField identifier="extensions" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jIX-u0-ddX">
                                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="png, jpg, gif" usesSingleLineMode="YES" id="caT-Gh-1x2">
                                                                         <font key="font" metaFont="system"/>
@@ -199,7 +200,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="IBU-1D-WII">
-                                                                    <rect key="frame" x="2" y="-2" width="146" height="22"/>
+                                                                    <rect key="frame" x="2" y="-2" width="146" height="21"/>
                                                                     <popUpButtonCell key="cell" type="bevel" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="W3Z-PB-IUJ" id="eh9-Os-Ang">
                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="menu"/>
@@ -250,7 +251,7 @@
                                                             <rect key="frame" x="307" y="1" width="199" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="description" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-15-RQ7">
+                                                                <textField identifier="description" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-15-RQ7">
                                                                     <rect key="frame" x="0.0" y="0.0" width="199" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="25Y-1h-PMq">
                                                                         <font key="font" metaFont="system"/>
@@ -305,6 +306,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Pqq-0d-en4" secondAttribute="trailing" constant="20" symbolic="YES" id="0bO-Xz-zcs"/>
                             <constraint firstItem="457" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="3n8-pg-pUA"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nF4-c6-mvy" secondAttribute="trailing" constant="20" symbolic="YES" id="4iQ-FH-4pQ"/>
                             <constraint firstItem="457" firstAttribute="width" secondItem="458" secondAttribute="width" id="9SU-eP-JlU"/>
                             <constraint firstItem="prG-8I-L0n" firstAttribute="top" secondItem="nF4-c6-mvy" secondAttribute="bottom" constant="6" id="9a1-fJ-2Es"/>
                             <constraint firstItem="458" firstAttribute="leading" secondItem="457" secondAttribute="trailing" constant="-1" id="HtS-Zv-scr"/>
@@ -313,6 +315,7 @@
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="top" secondItem="JWP-To-iJP" secondAttribute="bottom" constant="6" id="bFY-y4-yig"/>
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="g5O-VB-rVd"/>
                             <constraint firstItem="457" firstAttribute="height" secondItem="458" secondAttribute="height" id="hZw-id-Tdg"/>
+                            <constraint firstItem="OK0-xb-bxI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JWP-To-iJP" secondAttribute="trailing" constant="8" symbolic="YES" id="haC-59-G3v"/>
                             <constraint firstAttribute="trailing" secondItem="7WH-D1-7oE" secondAttribute="trailing" constant="20" symbolic="YES" id="hpw-nP-1hg"/>
                             <constraint firstItem="457" firstAttribute="top" secondItem="458" secondAttribute="top" id="jl7-NQ-mf8"/>
                             <constraint firstItem="7WH-D1-7oE" firstAttribute="top" secondItem="Pqq-0d-en4" secondAttribute="bottom" constant="12" symbolic="YES" id="kaS-kD-top"/>

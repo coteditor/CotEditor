@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
@@ -170,6 +172,7 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c11-J5-UXF" secondAttribute="trailing" constant="20" symbolic="YES" id="S28-Zr-aIf"/>
                 <constraint firstItem="ccZ-5g-nEA" firstAttribute="top" secondItem="PLV-vr-cdI" secondAttribute="bottom" constant="4" id="SAq-84-ckj"/>
                 <constraint firstItem="vSw-Kt-7km" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="UIY-3b-nGn"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="s9v-U5-5ZM" secondAttribute="trailing" constant="20" symbolic="YES" id="UuP-c9-5FU"/>
                 <constraint firstItem="fev-mC-rKB" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="Uv6-dh-A6N"/>
                 <constraint firstItem="Lhw-9C-lgB" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="WKp-4g-V9f"/>
                 <constraint firstItem="rmT-GL-9fJ" firstAttribute="top" secondItem="vSw-Kt-7km" secondAttribute="bottom" constant="6" symbolic="YES" id="XEO-se-Rgf"/>
@@ -181,6 +184,7 @@
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vSw-Kt-7km" secondAttribute="trailing" constant="20" symbolic="YES" id="c1d-6J-L4f"/>
                 <constraint firstItem="c11-J5-UXF" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="dR2-ul-Ob0"/>
                 <constraint firstItem="PLV-vr-cdI" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="efM-dE-PSa"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fev-mC-rKB" secondAttribute="trailing" constant="20" symbolic="YES" id="gDP-Oy-Z8z"/>
                 <constraint firstItem="KG4-LQ-sen" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="hdv-AA-XLr"/>
                 <constraint firstItem="Lhw-9C-lgB" firstAttribute="top" secondItem="c11-J5-UXF" secondAttribute="bottom" constant="6" symbolic="YES" id="kfl-4t-EtN"/>
                 <constraint firstItem="A5O-jt-o7T" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="mJB-47-Okl"/>

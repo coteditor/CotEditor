@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +25,7 @@
                                     <action selector="openHelpAnchor:" target="vgQ-KV-Jhz" id="Eye-jd-iqn"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ofS-Q1-0g8">
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofS-Q1-0g8">
                                 <rect key="frame" x="32" y="351" width="128" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Default line endings:" usesSingleLineMode="YES" id="3273">
                                     <font key="font" metaFont="system"/>
@@ -81,7 +82,7 @@
                                     <binding destination="gLI-aU-mOo" name="selectedTag" keyPath="values.encodingInOpen" id="VPw-Ay-O1E"/>
                                 </connections>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LQO-NI-fGx">
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LQO-NI-fGx">
                                 <rect key="frame" x="69" y="265" width="91" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Opening Files:" usesSingleLineMode="YES" id="3277">
                                     <font key="font" metaFont="system"/>
@@ -89,7 +90,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-gk-JM6">
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-gk-JM6">
                                 <rect key="frame" x="22" y="298" width="138" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Default text encoding:" usesSingleLineMode="YES" id="3278">
                                     <font key="font" metaFont="system"/>
@@ -139,7 +140,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn editable="NO" width="275" minWidth="40" maxWidth="1000" id="Tsu-pA-ACl">
+                                                <tableColumn identifier="" editable="NO" width="275" minWidth="40" maxWidth="1000" id="Tsu-pA-ACl">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Style Name">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -171,7 +172,7 @@
                                                                         </binding>
                                                                     </connections>
                                                                 </imageView>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="B3Y-Nj-FSx">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B3Y-Nj-FSx">
                                                                     <rect key="frame" x="12" y="0.0" width="263" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="7hV-jt-xSx">
                                                                         <font key="font" metaFont="system"/>
@@ -221,7 +222,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Koi-2N-36K">
+                            <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Koi-2N-36K">
                                 <rect key="frame" x="33" y="164" width="127" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Default syntax style:" usesSingleLineMode="YES" id="3329">
                                     <font key="font" metaFont="system"/>
@@ -257,8 +258,8 @@
                                     <binding destination="gLI-aU-mOo" name="value" keyPath="values.doSyntaxColoring" id="uZA-8S-liA"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iU4-hA-pof">
-                                <rect key="frame" x="203" y="192" width="131" height="14"/>
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iU4-hA-pof">
+                                <rect key="frame" x="203" y="192" width="132" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="(Including outline menu)" usesSingleLineMode="YES" id="3325">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -364,7 +365,7 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uJi-Od-G4t">
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uJi-Od-G4t">
                                 <rect key="frame" x="18" y="132" width="142" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Installed syntax styles:" usesSingleLineMode="YES" id="vlw-Tc-sLl">
                                     <font key="font" metaFont="system"/>
@@ -382,6 +383,7 @@
                             <constraint firstItem="iU4-hA-pof" firstAttribute="baseline" secondItem="o7z-Td-5qC" secondAttribute="baseline" id="65Q-Jh-ckT"/>
                             <constraint firstItem="b9V-Tx-ggw" firstAttribute="width" secondItem="Lt0-OL-jLy" secondAttribute="width" id="7hK-Ee-zrf"/>
                             <constraint firstItem="1qJ-mx-epO" firstAttribute="leading" secondItem="bJE-E6-Cbo" secondAttribute="leading" id="7sT-mA-gVd"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1qJ-mx-epO" secondAttribute="trailing" constant="20" symbolic="YES" id="8qM-c9-L3O"/>
                             <constraint firstItem="N1E-uH-II1" firstAttribute="leading" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="990-lX-xd3"/>
                             <constraint firstItem="QgD-bI-CJS" firstAttribute="leading" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="Ej8-7o-vZg"/>
                             <constraint firstItem="LQO-NI-fGx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="FAg-pc-5P4"/>
@@ -402,6 +404,7 @@
                             <constraint firstItem="1qJ-mx-epO" firstAttribute="leading" secondItem="F7X-aX-act" secondAttribute="leading" id="XA2-W1-don"/>
                             <constraint firstItem="gNn-jg-1Xr" firstAttribute="leading" secondItem="dI1-Dk-Mce" secondAttribute="trailing" constant="-1" id="YHL-wF-Uki"/>
                             <constraint firstItem="o7z-Td-5qC" firstAttribute="leading" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="bwP-Td-JRE"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jhi-LF-z0j" secondAttribute="trailing" constant="20" symbolic="YES" id="cJK-iZ-zjP"/>
                             <constraint firstItem="F7X-aX-act" firstAttribute="leading" secondItem="uJi-Od-G4t" secondAttribute="trailing" constant="8" symbolic="YES" id="dgP-De-EAl"/>
                             <constraint firstItem="bJE-E6-Cbo" firstAttribute="baseline" secondItem="ofS-Q1-0g8" secondAttribute="baseline" id="eHR-g5-c25"/>
                             <constraint firstItem="Q0c-oI-um3" firstAttribute="top" secondItem="Hma-8v-2gu" secondAttribute="top" id="eZs-Tx-aae"/>
@@ -409,22 +412,26 @@
                             <constraint firstItem="ofS-Q1-0g8" firstAttribute="top" secondItem="8Od-1h-2eW" secondAttribute="top" constant="20" symbolic="YES" id="fE3-xE-wQL"/>
                             <constraint firstItem="QgD-bI-CJS" firstAttribute="top" secondItem="Jhi-LF-z0j" secondAttribute="bottom" constant="16" id="gw7-gR-OYt"/>
                             <constraint firstItem="1qJ-mx-epO" firstAttribute="baseline" secondItem="Koi-2N-36K" secondAttribute="baseline" id="iAf-nM-0Wk"/>
+                            <constraint firstItem="Q0c-oI-um3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gNn-jg-1Xr" secondAttribute="trailing" constant="8" symbolic="YES" id="jNZ-vy-fEZ"/>
                             <constraint firstItem="MwE-73-7AJ" firstAttribute="leading" secondItem="b9V-Tx-ggw" secondAttribute="trailing" constant="12" id="jVP-LZ-aqo"/>
                             <constraint firstItem="b9V-Tx-ggw" firstAttribute="top" secondItem="Lt0-OL-jLy" secondAttribute="bottom" constant="12" id="kbZ-AE-ID2"/>
                             <constraint firstItem="ofS-Q1-0g8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="kig-xs-B0r"/>
                             <constraint firstItem="gNn-jg-1Xr" firstAttribute="top" secondItem="Hma-8v-2gu" secondAttribute="top" id="lrs-Pd-6pL"/>
+                            <constraint firstItem="Qm2-4V-mYI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q0c-oI-um3" secondAttribute="trailing" constant="12" symbolic="YES" id="mN4-kd-HL0"/>
                             <constraint firstAttribute="bottom" secondItem="Hma-8v-2gu" secondAttribute="bottom" constant="20" symbolic="YES" id="oW0-d5-Nmb"/>
                             <constraint firstItem="Q0c-oI-um3" firstAttribute="trailing" secondItem="F7X-aX-act" secondAttribute="trailing" id="oX7-U8-qK2"/>
                             <constraint firstAttribute="trailing" secondItem="Qm2-4V-mYI" secondAttribute="trailing" constant="20" symbolic="YES" id="ool-vv-cxn"/>
                             <constraint firstAttribute="trailing" secondItem="QgD-bI-CJS" secondAttribute="trailing" constant="30" id="ozr-k1-CMC"/>
                             <constraint firstItem="Hma-8v-2gu" firstAttribute="leading" secondItem="F7X-aX-act" secondAttribute="leading" id="pGw-x5-IjP"/>
                             <constraint firstItem="b9V-Tx-ggw" firstAttribute="leading" secondItem="LQO-NI-fGx" secondAttribute="trailing" constant="8" symbolic="YES" id="pQA-JZ-m0W"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MwE-73-7AJ" secondAttribute="trailing" constant="20" symbolic="YES" id="qjZ-lC-qME"/>
                             <constraint firstAttribute="trailing" secondItem="N1E-uH-II1" secondAttribute="trailing" constant="30" id="r8f-De-tjn"/>
                             <constraint firstItem="dI1-Dk-Mce" firstAttribute="leading" secondItem="Hma-8v-2gu" secondAttribute="trailing" constant="-1" id="rUS-FF-QgA"/>
                             <constraint firstItem="cPL-gk-JM6" firstAttribute="trailing" secondItem="LQO-NI-fGx" secondAttribute="trailing" id="rag-gk-CfL"/>
                             <constraint firstItem="Hma-8v-2gu" firstAttribute="top" secondItem="F7X-aX-act" secondAttribute="bottom" constant="8" symbolic="YES" id="rc3-xZ-E2P"/>
                             <constraint firstItem="F7X-aX-act" firstAttribute="top" secondItem="1qJ-mx-epO" secondAttribute="bottom" constant="12" id="sUi-h8-iEB"/>
                             <constraint firstItem="1qJ-mx-epO" firstAttribute="leading" secondItem="Koi-2N-36K" secondAttribute="trailing" constant="8" symbolic="YES" id="tpe-6n-9PX"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iU4-hA-pof" secondAttribute="trailing" constant="20" symbolic="YES" id="tq5-kE-8gb"/>
                             <constraint firstItem="cPL-gk-JM6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="wrv-Bq-JSP"/>
                             <constraint firstItem="iU4-hA-pof" firstAttribute="leading" secondItem="o7z-Td-5qC" secondAttribute="trailing" constant="8" symbolic="YES" id="xyF-ym-FxT"/>
                             <constraint firstItem="cPL-gk-JM6" firstAttribute="trailing" secondItem="ofS-Q1-0g8" secondAttribute="trailing" id="xzn-6r-a4r"/>
