@@ -72,7 +72,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     fileprivate let pairedQuoteTypes: [String: SyntaxType]
     fileprivate let outlineDefinitions: [OutlineDefinition]
     
-    fileprivate var highlightCache: (highlights: [SyntaxType: [NSRange]], hash: String)?  // results cache of the last whole string highlighs
+    fileprivate var highlightCache: (highlights: [SyntaxType: [NSRange]], hash: String)?  // results cache of the last whole string highlights
     
     fileprivate private(set) lazy var outlineUpdateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.parseOutline() }
     
