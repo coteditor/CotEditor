@@ -30,9 +30,9 @@ import Cocoa
 // data model
 final class MappingConflict: NSObject {
     
-    let name: String
-    let primaryStyle: String
-    let doubledStyles: String
+    @objc dynamic let name: String
+    @objc dynamic let primaryStyle: String
+    @objc dynamic let doubledStyles: String
     
     
     required init(name: String, primaryStyle: String, doubledStyles: String) {
