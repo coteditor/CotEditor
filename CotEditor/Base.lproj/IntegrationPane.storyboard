@@ -108,6 +108,7 @@
                         <constraints>
                             <constraint firstItem="rbP-cF-8do" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dua-kZ-3F1" secondAttribute="leading" constant="20" symbolic="YES" id="3Pd-Vp-HAi"/>
                             <constraint firstItem="hel-wg-HgL" firstAttribute="top" secondItem="Lc8-C4-VWY" secondAttribute="bottom" constant="8" id="4G1-91-6Qd"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Os-2K-aO5" secondAttribute="bottom" constant="20" symbolic="YES" id="4pG-Wu-v5o"/>
                             <constraint firstItem="hel-wg-HgL" firstAttribute="leading" secondItem="fK4-Mt-T9M" secondAttribute="leading" id="AYx-Am-x3d"/>
                             <constraint firstItem="4sy-48-Cic" firstAttribute="leading" secondItem="Lc8-C4-VWY" secondAttribute="trailing" constant="8" symbolic="YES" id="C3Y-QG-gVO"/>
                             <constraint firstItem="wsF-Up-svi" firstAttribute="baseline" secondItem="4sy-48-Cic" secondAttribute="baseline" id="EPL-02-HwY"/>

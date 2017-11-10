@@ -279,7 +279,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xDf-ra-dem">
-                                <rect key="frame" x="174" y="495" width="38" height="17"/>
+                                <rect key="frame" x="170" y="495" width="38" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="times" usesSingleLineMode="YES" id="VLD-jj-zzl">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -558,7 +558,7 @@
                             <constraint firstItem="XWT-pS-k8a" firstAttribute="centerY" secondItem="5XW-Ju-Ix5" secondAttribute="centerY" id="xID-q5-4os"/>
                             <constraint firstItem="wT1-jD-6aC" firstAttribute="leading" secondItem="icl-ar-8yG" secondAttribute="trailing" constant="8" symbolic="YES" id="xPA-cz-jVL"/>
                             <constraint firstItem="Y0v-jK-SaN" firstAttribute="leading" secondItem="nqX-jr-n2L" secondAttribute="leading" constant="-20" id="yEO-OK-CTY"/>
-                            <constraint firstItem="xDf-ra-dem" firstAttribute="leading" secondItem="XWT-pS-k8a" secondAttribute="trailing" constant="8" symbolic="YES" id="yHb-8a-cGg"/>
+                            <constraint firstItem="xDf-ra-dem" firstAttribute="leading" secondItem="XWT-pS-k8a" secondAttribute="trailing" constant="4" id="yHb-8a-cGg"/>
                             <constraint firstItem="nqX-jr-n2L" firstAttribute="baseline" secondItem="uyp-Xk-mRF" secondAttribute="baseline" id="zL5-Nj-PuM"/>
                         </constraints>
                     </customView>

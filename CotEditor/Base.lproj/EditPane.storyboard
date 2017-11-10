@@ -186,7 +186,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DhT-LT-Lve">
-                                <rect key="frame" x="268" y="322" width="47" height="17"/>
+                                <rect key="frame" x="264" y="322" width="47" height="17"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="spaces" usesSingleLineMode="YES" id="as9-us-CuG">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -273,7 +273,7 @@
                                 </connections>
                             </stepper>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOl-E4-tE2">
-                                <rect key="frame" x="355" y="187" width="47" height="17"/>
+                                <rect key="frame" x="351" y="187" width="47" height="17"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="spaces" usesSingleLineMode="YES" id="P9V-pV-PAX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -410,8 +410,8 @@
                             <constraint firstItem="t2q-cV-mtM" firstAttribute="leading" secondItem="d0U-hp-rcZ" secondAttribute="leading" id="pc0-US-zrN"/>
                             <constraint firstItem="8I5-Lh-Ofn" firstAttribute="baseline" secondItem="XNI-eS-U8G" secondAttribute="baseline" id="rMN-u5-n9g"/>
                             <constraint firstItem="gY2-yd-rUU" firstAttribute="top" secondItem="55Y-oF-UTC" secondAttribute="bottom" constant="8" id="tZk-Cf-u8k"/>
-                            <constraint firstItem="DhT-LT-Lve" firstAttribute="leading" secondItem="fr0-Ug-Vp1" secondAttribute="trailing" constant="8" symbolic="YES" id="tet-6N-XRd"/>
-                            <constraint firstItem="LOl-E4-tE2" firstAttribute="leading" secondItem="PeI-EQ-t3D" secondAttribute="trailing" constant="8" symbolic="YES" id="tk2-C5-ed2"/>
+                            <constraint firstItem="DhT-LT-Lve" firstAttribute="leading" secondItem="fr0-Ug-Vp1" secondAttribute="trailing" constant="4" id="tet-6N-XRd"/>
+                            <constraint firstItem="LOl-E4-tE2" firstAttribute="leading" secondItem="PeI-EQ-t3D" secondAttribute="trailing" constant="4" id="tk2-C5-ed2"/>
                             <constraint firstItem="nqq-MP-8Cp" firstAttribute="leading" secondItem="BfR-6w-bx7" secondAttribute="leading" id="ucc-Ga-6kr"/>
                             <constraint firstItem="I2h-Jb-whg" firstAttribute="centerY" secondItem="PeI-EQ-t3D" secondAttribute="centerY" id="uvQ-ha-68C"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LUh-bR-BEp" secondAttribute="trailing" constant="20" symbolic="YES" id="vOF-XJ-nEO"/>
