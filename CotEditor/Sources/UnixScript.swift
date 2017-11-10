@@ -39,7 +39,7 @@ final class UnixScript: Script {
     // MARK: -
     // MARK: Lifecycle
     
-    init(with descriptor: ScriptDescriptor) {
+    init(descriptor: ScriptDescriptor) {
         
         self.descriptor = descriptor
     }

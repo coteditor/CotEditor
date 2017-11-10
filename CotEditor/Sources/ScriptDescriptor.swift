@@ -164,7 +164,7 @@ struct ScriptDescriptor {
             case .unrestricted: return AppleScript(descriptor: self)
             case .persistent: return PersistentOSAScript(descriptor: self)
             }
-        case .unixScript: return UnixScript(with: self)
+        case .unixScript: return UnixScript(descriptor: self)
         }
     }
     
