@@ -4,7 +4,7 @@ CotEditor
 
 CotEditor is a lightweight plain-text editor for macOS.
 
-__Requirement__: OS X Yosemite or higher
+__Requirement__: OS X 10.11 El Capitan or higher
 
 __Web Site__: <https://coteditor.com>
 
