@@ -34,7 +34,7 @@ private extension NSSound {
 }
 
 @NSApplicationMain
-final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
+final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Enums
     
@@ -285,23 +285,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     
     
     
-    // MARK: User Interface Validations
-    
-    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-        
-        guard let action = item.action else { return false }
-        
-        switch action {
-        case #selector(showOpacityPanel):
-            return !NSApp.orderedDocuments.isEmpty
-            
-        default:
-            return true
-        }
-    }
-    
-    
-    
     // MARK: Action Messages
     
     /// activate self and perform "New" menu action
@@ -338,13 +321,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     @IBAction func showColorCodePanel(_ sender: Any?) {
         
         ColorCodePanelController.shared.showWindow(sender)
-    }
-    
-    
-    /// show editor opacity panel
-    @IBAction func showOpacityPanel(_ sender: Any?) {
-        
-        OpacityPanelController.shared.showWindow(sender)
     }
     
     

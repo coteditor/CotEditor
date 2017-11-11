@@ -75,6 +75,7 @@ final class OpacityPanelController: NSWindowController {
     
     /// notification about main window change
     @objc private func mainWindowDidChange(_ notification: Notification) {
+        
         if let window = notification.object as? AlphaWindow {
             self.opacity = window.backgroundAlpha
         }
