@@ -35,18 +35,17 @@ enum SettingFileType {
 }
 
 
-extension Notification.Name {
-    
-    /// Posted when the line-up of setting files did update. The sender is a manager.
-    static let SettingListDidUpdate = Notification.Name("SettingListDidUpdate")
-    
-    /// Posted when a setting file is updated.  Information about new/previous setting names are in userInfo. The sender is a manager.
-    static let SettingDidUpdate = Notification.Name("SettingDidUpdate")
-}
-
-
 
 class SettingFileManager: SettingManager {
+    
+    // MARK: Notification Names
+    
+    /// Posted when the line-up of setting files did update. The sender is a manager.
+    static let didUpdateSettingListNotification = Notification.Name("SettingFileManagerDidUpdateSettingList")
+    
+    /// Posted when a setting file is updated. Information about new/previous setting names are in userInfo. The sender is a manager.
+    static let didUpdateSettingNotification = Notification.Name("SettingFileManagerDidUpdateSetting")
+    
     
     /// general notification's userInfo keys
     enum NotificationKey {
@@ -291,14 +290,14 @@ class SettingFileManager: SettingManager {
     /// notify about a line-up update of managed setting files.
     func notifySettingListUpdate() {
         
-        NotificationCenter.default.post(name: .SettingListDidUpdate, object: self)
+        NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingListNotification, object: self)
     }
     
     
     /// notify about change of a managed setting
     func notifySettingUpdate(oldName: String, newName: String) {
         
-        NotificationCenter.default.post(name: .SettingDidUpdate, object: self,
+        NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingNotification, object: self,
                                         userInfo: [SettingFileManager.NotificationKey.old: oldName,
                                                    SettingFileManager.NotificationKey.new: newName])
     }

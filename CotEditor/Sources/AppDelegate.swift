@@ -117,9 +117,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu()
         
         // observe setting list updates
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: .SettingListDidUpdate, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: .SettingListDidUpdate, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: .SettingListDidUpdate, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: SettingFileManager.didUpdateSettingListNotification, object: ThemeManager.shared)
     }
     
     

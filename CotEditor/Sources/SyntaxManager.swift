@@ -29,13 +29,6 @@
 import Foundation
 import YAML
 
-extension Notification.Name {
-    
-    /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
-    static let SyntaxHistoryDidUpdate = Notification.Name("SyntaxHistoryDidUpdate")
-}
-
-
 @objc protocol SyntaxHolder: class {
     
     func changeSyntaxStyle(_ sender: Any?)
@@ -57,6 +50,12 @@ final class SyntaxManager: SettingFileManager {
     
     typealias SettingName = String
     typealias StyleDictionary = [String: Any]
+    
+    
+    // MARK: Notification Names
+    
+    /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
+    static let didUpdateSyntaxHistoryNotification = Notification.Name("SyntaxManagerDidUpdateSyntaxHistory")
     
     
     // MARK: Public Properties
@@ -225,7 +224,7 @@ final class SyntaxManager: SettingFileManager {
                 UserDefaults.standard[.recentStyleNames] = recentSettingNames  // set in the main thread in case
             }
             
-            NotificationCenter.default.post(name: .SyntaxHistoryDidUpdate, object: self)
+            NotificationCenter.default.post(name: SyntaxManager.didUpdateSyntaxHistoryNotification, object: self)
         }
         
         return style

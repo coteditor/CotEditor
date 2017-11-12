@@ -109,18 +109,18 @@ final class StatusBarController: NSViewController {
             
             analyzer.needsUpdateStatusEditorInfo = false
             
-            NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
-            NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateFileInfo, object: analyzer)
-            NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateModeInfo, object: analyzer)
+            NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
+            NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
+            NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateModeInfoNotification, object: analyzer)
         }
         didSet {
             guard let analyzer = documentAnalyzer else { return }
             
             analyzer.needsUpdateStatusEditorInfo = !self.view.isHidden
             
-            NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: .AnalyzerDidUpdateFileInfo, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: .AnalyzerDidUpdateModeInfo, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateModeInfoNotification, object: analyzer)
             
             self.updateEditorStatus()
             self.updateDocumentStatus()

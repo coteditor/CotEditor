@@ -79,13 +79,15 @@ extension NSTextView {
 
 // cf. https://developer.apple.com/library/mac/qa/qa1346/_index.html
 
-extension Notification.Name {
-    
-    static let TextViewDidChangeScale = Notification.Name("TextViewDidChangeScale")
-}
-
-
 extension NSTextView {
+    
+    // MARK: Notification Names
+    
+    static let didChangeScaleNotification = Notification.Name("TextViewDidChangeScale")
+    
+    
+    
+    // MARK: Public Methods
     
     /// current zooming scale
     var scale: CGFloat {
@@ -126,7 +128,7 @@ extension NSTextView {
             
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
-            NotificationCenter.default.post(name: .TextViewDidChangeScale, object: self)
+            NotificationCenter.default.post(name: NSTextView.didChangeScaleNotification, object: self)
         }
     }
     

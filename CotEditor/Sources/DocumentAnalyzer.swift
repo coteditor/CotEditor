@@ -28,15 +28,6 @@
 
 import Cocoa
 
-extension Notification.Name {
-    
-    static let AnalyzerDidUpdateFileInfo = Notification.Name("AnalyzerDidUpdateFileInfo")
-    static let AnalyzerDidUpdateModeInfo = Notification.Name("AnalyzerDidUpdateModeInfo")
-    static let AnalyzerDidUpdateEditorInfo = Notification.Name("AnalyzerDidUpdateEditorInfo")
-}
-
-
-
 final class DocumentInfo: NSObject {
     
     // file info
@@ -69,6 +60,13 @@ final class DocumentInfo: NSObject {
 // MARK: -
 
 final class DocumentAnalyzer: NSObject {
+    
+    // MARK: Notification Names
+    
+    static let didUpdateFileInfoNotification = Notification.Name("DocumentAnalyzerDidUpdateFileInfo")
+    static let didUpdateModeInfoNotification = Notification.Name("DocumentAnalyzerDidUpdateModeInfo")
+    static let didUpdateEditorInfoNotification = Notification.Name("DocumentAnalyzerDidUpdateEditorInfo")
+    
     
     // MARK: Public Properties
     
@@ -128,7 +126,7 @@ final class DocumentAnalyzer: NSObject {
             return attrs?[.immutable] as? Bool ?? false
         }()
         
-        NotificationCenter.default.post(name: .AnalyzerDidUpdateFileInfo, object: self.info)
+        NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateFileInfoNotification, object: self.info)
     }
     
     
@@ -141,7 +139,7 @@ final class DocumentAnalyzer: NSObject {
         self.info.charsetName = document.encoding.ianaCharSetName
         self.info.lineEndings = document.lineEnding.name
         
-        NotificationCenter.default.post(name: .AnalyzerDidUpdateModeInfo, object: self)
+        NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateModeInfoNotification, object: self)
     }
     
     
@@ -202,7 +200,7 @@ final class DocumentAnalyzer: NSObject {
                 info.column = CountFormatter.format(result.column)
                 info.unicode = result.unicode
                 
-                NotificationCenter.default.post(name: .AnalyzerDidUpdateEditorInfo, object: self)
+                NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: self)
             }
         }
         

@@ -58,7 +58,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         self.showsPageGuide = defaults[.showPageGuide]
         
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
-                                               name: .SettingDidUpdate,
+                                               name: SettingFileManager.didUpdateSettingNotification,
                                                object: ThemeManager.shared)
     }
     
@@ -136,7 +136,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             
             // observe syntax/theme change
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
-                                                   name: .DocumentDidChangeSyntaxStyle,
+                                                   name: Document.didChangeSyntaxStyleNotification,
                                                    object: document)
         }
     }

@@ -64,8 +64,8 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         self.syntaxTableView?.doubleAction = #selector(openSyntaxEditSheet)
         self.syntaxTableView?.target = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: .SettingListDidUpdate, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: .SettingListDidUpdate, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
     }
     
     

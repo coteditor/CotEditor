@@ -64,8 +64,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         self.themeNames = ThemeManager.shared.settingNames
         
         // observe theme list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .SettingListDidUpdate, object: ThemeManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: .SettingDidUpdate, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: SettingFileManager.didUpdateSettingListNotification, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: SettingFileManager.didUpdateSettingNotification, object: ThemeManager.shared)
     }
     
     

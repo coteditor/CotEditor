@@ -28,13 +28,6 @@
 
 import Cocoa
 
-extension Notification.Name {
-    
-    static let DocumentDidChangeEncoding = Notification.Name("DocumentDidChangeEncoding")
-    static let DocumentDidChangeLineEnding = Notification.Name("DocumentDidChangeLineEnding")
-    static let DocumentDidChangeSyntaxStyle = Notification.Name("DocumentDidChangeSyntaxStyle")
-}
-
 
 // constants
 
@@ -62,6 +55,13 @@ private enum FileExtendedAttributeName {
 // MARK: -
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
+    
+    // MARK: Notification Names
+    
+    static let didChangeEncodingNotification = Notification.Name("DocumentDidChangeEncoding")
+    static let didChangeLineEndingNotification = Notification.Name("DocumentDidChangeLineEnding")
+    static let didChangeSyntaxStyleNotification = Notification.Name("DocumentDidChangeSyntaxStyle")
+    
     
     // MARK: Readonly Properties
     
@@ -123,7 +123,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.hasUndoManager = true
         
         // observe sytnax style update
-        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: .SettingDidUpdate, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: SettingFileManager.didUpdateSettingNotification, object: SyntaxManager.shared)
     }
     
     
@@ -308,8 +308,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // notify
         DispatchQueue.main.async { [weak self] in
-            NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
-            NotificationCenter.default.post(name: .DocumentDidChangeLineEnding, object: self)
+            NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
+            NotificationCenter.default.post(name: Document.didChangeLineEndingNotification, object: self)
         }
         
         // standardize line endings to LF (File Open)
@@ -840,7 +840,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.readingEncoding = self.encoding
             
             // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-            NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
+            NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
             
             throw ReinterpretationError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding)
         }
@@ -882,7 +882,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.hasUTF8BOM = withUTF8BOM
         
         // notify
-        NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
+        NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
         
         // update UI
         self.incompatibleCharacterScanner.scan()
@@ -909,7 +909,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.lineEnding = lineEnding
         
         // notify
-        NotificationCenter.default.post(name: .DocumentDidChangeLineEnding, object: self)
+        NotificationCenter.default.post(name: Document.didChangeLineEndingNotification, object: self)
         
         // update UI
         self.analyzer.invalidateModeInfo()
@@ -933,7 +933,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.syntaxStyle = syntaxStyle
         
         DispatchQueue.main.async { [weak self] in
-            NotificationCenter.default.post(name: .DocumentDidChangeSyntaxStyle, object: self)
+            NotificationCenter.default.post(name: Document.didChangeSyntaxStyleNotification, object: self)
         }
     }
     
@@ -1036,7 +1036,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     
                     guard returnCode != .alertSecondButtonReturn else {  // = Cancel
                         // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                        NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
+                        NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
                         return
                     }
                 }
@@ -1046,7 +1046,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 
             case .alertThirdButtonReturn:  // = Cancel
                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: self)
+                NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
                 
             default: break
             }
@@ -1431,7 +1431,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 return true
             case 1:  // == Cancel
                 // reset to force reverting toolbar selection
-                NotificationCenter.default.post(name: .DocumentDidChangeEncoding, object: document)
+                NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: document)
                 return false
             default:
                 assertionFailure()

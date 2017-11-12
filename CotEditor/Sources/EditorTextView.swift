@@ -28,12 +28,6 @@
 
 import Cocoa
 
-extension Notification.Name {
-    
-    static let TextViewDidBecomeFirstResponder = Notification.Name("TextViewDidBecomeFirstResponder")
-}
-
-
 private extension NSAttributedStringKey {
     
     static let autoBalancedClosingBracket = NSAttributedStringKey("autoBalancedClosingBracket")
@@ -47,6 +41,11 @@ private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 // MARK: -
 
 final class EditorTextView: NSTextView, Themable {
+    
+    // MARK: Notification Names
+    
+    static let didBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponder")
+    
     
     // MARK: Public Properties
     
@@ -211,7 +210,7 @@ final class EditorTextView: NSTextView, Themable {
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
-        NotificationCenter.default.post(name: .TextViewDidBecomeFirstResponder, object: self)
+        NotificationCenter.default.post(name: EditorTextView.didBecomeFirstResponderNotification, object: self)
         
         return super.becomeFirstResponder()
     }
@@ -233,7 +232,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // observe window opacity flag
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: .WindowDidChangeOpacity,
+                                               name: AlphaWindow.didChangeOpacityNotification,
                                                object: window)
         
         // observe scorolling and resizing to fix drawing area on non-opaque view

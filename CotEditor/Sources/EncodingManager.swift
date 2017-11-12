@@ -71,7 +71,7 @@ final class EncodingManager: NSObject {
         
         if keyPath == DefaultKeys.encodingList.rawValue {
             DispatchQueue.main.async { [weak self] in
-                NotificationCenter.default.post(name: .SettingListDidUpdate, object: self)
+                NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingListNotification, object: self)
             }
         }
     }

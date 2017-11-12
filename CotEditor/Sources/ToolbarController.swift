@@ -71,9 +71,9 @@ final class ToolbarController: NSObject {
         willSet {
             guard let document = document else { return }
             
-            NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeEncoding, object: document)
-            NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeLineEnding, object: document)
-            NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeSyntaxStyle, object: document)
+            NotificationCenter.default.removeObserver(self, name: Document.didChangeEncodingNotification, object: document)
+            NotificationCenter.default.removeObserver(self, name: Document.didChangeLineEndingNotification, object: document)
+            NotificationCenter.default.removeObserver(self, name: Document.didChangeSyntaxStyleNotification, object: document)
             self.fileURLObserver = nil
         }
         
@@ -87,9 +87,9 @@ final class ToolbarController: NSObject {
             self.toolbar?.validateVisibleItems()
             
             // observe document status change
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection), name: .DocumentDidChangeEncoding, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection), name: .DocumentDidChangeLineEnding, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection), name: .DocumentDidChangeSyntaxStyle, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection), name: Document.didChangeEncodingNotification, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection), name: Document.didChangeLineEndingNotification, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection), name: Document.didChangeSyntaxStyleNotification, object: document)
             self.fileURLObserver = document.observe(\.fileURL) { [unowned self] (_, _) in
                 self.invalidateShareButton()
             }
@@ -121,9 +121,9 @@ final class ToolbarController: NSObject {
         self.buildSyntaxPopupButton()
         
         // observe popup menu line-up change
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: .SettingListDidUpdate, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SettingListDidUpdate, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxHistoryDidUpdate, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SyntaxManager.didUpdateSyntaxHistoryNotification, object: SyntaxManager.shared)
     }
     
     
