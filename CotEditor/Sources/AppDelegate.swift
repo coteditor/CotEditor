@@ -126,11 +126,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Application Delegate
     
-    #if APPSTORE
-    #else
+    #if !APPSTORE
     /// setup Sparkle framework
     func applicationWillFinishLaunching(_ notification: Notification) {
-        
+    
         UpdaterManager.shared.setup()
     }
     #endif
@@ -158,18 +157,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// store last version before termination
     func applicationWillTerminate(_ notification: Notification) {
         
-        // store latest version
-        //   -> The bundle version (build number) format was changed on CotEditor 2.2.0. due to the iTunes Connect versioning rule.
-        //       < 2.2.0 : The Semantic Versioning
-        //      >= 2.2.0 : Single Integer
+        // store the latest version
+        //   -> The bundle version (build number) must be Int.
         let thisVersion = AppInfo.bundleVersion
         let isLatest: Bool = {
-            guard let lastVersion = UserDefaults.standard[.lastVersion] else { return true }
+            guard
+                let lastVersionString = UserDefaults.standard[.lastVersion],
+                let lastVersion = Int(lastVersionString)
+                else { return true }
             
-            // if isDigit -> probably semver (semver must be older than 2.2.0)
-            let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) == nil)
-            
-            return !isDigit || Int(thisVersion)! >= Int(lastVersion)!
+            return Int(thisVersion)! >= lastVersion
         }()
         if isLatest {
             UserDefaults.standard[.lastVersion] = thisVersion
