@@ -98,18 +98,12 @@ final class EncodingManager: NSObject {
     
     
     /// returns corresponding NSStringEncoding from a encoding name
-    class func encoding(fromName encodingName: String) -> String.Encoding? {
+    class func encoding(name encodingName: String) -> String.Encoding? {
         
-        for cfEncoding in DefaultSettings.encodings {
-            guard cfEncoding != kCFStringEncodingInvalidId else { continue }  // = separator
-            
-            let encoding = String.Encoding(cfEncoding: cfEncoding)
-            if encodingName == String.localizedName(of: encoding) {
-                return encoding
-            }
-        }
-        
-        return nil
+        return DefaultSettings.encodings.lazy
+            .filter { $0 != kCFStringEncodingInvalidId }  // = separator
+            .map { String.Encoding(cfEncoding: $0) }
+            .first { encodingName == String.localizedName(of: $0) }
     }
     
     
