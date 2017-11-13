@@ -55,9 +55,9 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     
     /// reset previous search result
-    override func viewWillAppear() {
+    override func viewDidDisappear() {
         
-        super.viewWillAppear()
+        super.viewDidDisappear()
         
         self.resultMessage = nil
     }
@@ -91,8 +91,8 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     // MARK: Action Messages
     
-    ///
-    @IBAction func highlight(_ sender: AnyObject?) {
+    /// highlight all matches in the target textView
+    @IBAction func highlight(_ sender: Any?) {
         
         self.endEditing()
         self.validateObject()
@@ -104,7 +104,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
             else {
                 NSSound.beep()
                 return
-        }
+            }
         
         guard let batchReplacement = self.representedObject as? BatchReplacement else {
             assertionFailure("No batchReplacement object is set.")
@@ -183,7 +183,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
             else {
                 NSSound.beep()
                 return
-        }
+            }
         
         guard let batchReplacement = self.representedObject as? BatchReplacement else {
             assertionFailure("No batchReplacement object is set.")
