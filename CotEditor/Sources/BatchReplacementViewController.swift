@@ -40,13 +40,6 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

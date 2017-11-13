@@ -39,14 +39,6 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -58,7 +50,7 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         self.tableView?.registerForDraggedTypes([draggedType])
         
         // observe replacement setting list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: .SettingListDidUpdate, object: ReplacementManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: SettingFileManager.didUpdateSettingListNotification, object: ReplacementManager.shared)
     }
     
     
