@@ -36,6 +36,7 @@ struct DefaultSettings {
         .windowTabbing: -1,  // = Respect System Setting
         .enablesAutosaveInPlace: true,
         .trimsTrailingWhitespaceOnSave: false,
+        .trimsWhitespaceOnlyLines: false,
         .documentConflictOption: DocumentConflictOption.revert.rawValue,
         .syncFindPboard: false,
         .countLineEndingAsChar: true,
