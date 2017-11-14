@@ -169,5 +169,49 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("\u{1f71}".precomposedStringWithHFSPlusMapping, "\u{1f71}")  // test single char
         XCTAssertEqual("\u{1f71}".decomposedStringWithHFSPlusMapping, "\u{03b1}\u{0301}")
     }
+    
+    
+    func testWhitespaceTriming() {
+        
+        let string = """
+            
+            abc def
+                \t
+            white space -> \t
+            abc
+            """
+        
+        let trimmed = string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: false))
+        let expectedTrimmed = """
+            
+            abc def
+            
+            white space ->
+            abc
+            """
+        XCTAssertEqual(trimmed, expectedTrimmed)
+        
+        let trimmedIgnoringEmptyLines = string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: true))
+        let expectedTrimmedIgnoringEmptyLines =  """
+            
+            abc def
+                \t
+            white space ->
+            abc
+            """
+        XCTAssertEqual(trimmedIgnoringEmptyLines, expectedTrimmedIgnoringEmptyLines)
+    }
 
+}
+
+
+
+private extension String {
+    
+    func trim(ranges: [NSRange]) -> String {
+        
+        return ranges.reversed()
+            .map { Range($0, in: self)! }
+            .reduce(self) { $0.replacingCharacters(in: $1, with: "") }
+    }
 }

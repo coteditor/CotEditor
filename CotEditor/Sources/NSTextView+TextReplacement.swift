@@ -126,7 +126,7 @@ extension NSTextView {
 
 
 
-private extension String {
+extension String {
 
     func rangesOfTrailingWhitespace(ignoresEmptyLines: Bool) -> [NSRange] {
         
