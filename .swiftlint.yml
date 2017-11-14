@@ -20,7 +20,10 @@ opt_in_rules:
   - pattern_matching_keywords
   - private_outlet
   - quick_discouraged_call
+  - quick_discouraged_focused_test
+  - quick_discouraged_pending_test
   - redundant_nil_coalescing
+  - sorted_first_last
   - vertical_parameter_alignment_on_call
 
 disabled_rules:
