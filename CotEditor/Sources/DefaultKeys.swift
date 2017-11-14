@@ -35,6 +35,7 @@ extension DefaultKeys {
     static let windowTabbing = DefaultKey<Int>("windowTabbing")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let trimsTrailingWhitespaceOnSave = DefaultKey<Bool>("trimsTrailingWhitespaceOnSave")
+    static let trimsWhitespaceOnlyLines = DefaultKey<Bool>("trimsWhitespaceOnlyLines")
     static let documentConflictOption = DefaultKey<Int>("documentConflictOption")
     static let syncFindPboard = DefaultKey<Bool>("syncFindPboard")
     static let countLineEndingAsChar = DefaultKey<Bool>("countLineEndingAsChar")

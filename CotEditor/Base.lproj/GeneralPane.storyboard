@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="JG1-NR-KT5" customClass="GeneralPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="T5J-Ml-0Oc">
-                        <rect key="frame" x="0.0" y="0.0" width="550" height="552"/>
+                        <rect key="frame" x="0.0" y="0.0" width="550" height="578"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="MCa-cI-XK7">
-                                <rect key="frame" x="167" y="255" width="252" height="18"/>
+                                <rect key="frame" x="167" y="259" width="252" height="18"/>
                                 <buttonCell key="cell" type="check" title="Share find text with other applications" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3307">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -25,7 +25,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="nfo-ng-N5P">
-                                <rect key="frame" x="167" y="235" width="267" height="18"/>
+                                <rect key="frame" x="167" y="239" width="267" height="18"/>
                                 <buttonCell key="cell" type="check" title="Count each line ending as one character" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="oN2-0G-iXz">
-                                <rect key="frame" x="167" y="458" width="212" height="18"/>
+                                <rect key="frame" x="167" y="484" width="212" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable Auto Save with Versions" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SGo-FL-Pax">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -46,7 +46,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fN-8C5">
-                                <rect key="frame" x="167" y="113" width="217" height="18"/>
+                                <rect key="frame" x="167" y="117" width="217" height="18"/>
                                 <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -61,7 +61,7 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSi-dW-Eg4">
-                                <rect key="frame" x="53" y="114" width="110" height="17"/>
+                                <rect key="frame" x="53" y="118" width="110" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Software Update:" usesSingleLineMode="YES" id="geU-63-sAC">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -76,7 +76,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="goq-md-y5e">
-                                <rect key="frame" x="61" y="459" width="102" height="17"/>
+                                <rect key="frame" x="61" y="485" width="102" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Document save:" usesSingleLineMode="YES" id="Ki4-3Y-AZL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -84,7 +84,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Af4-HM-9hW">
-                                <rect key="frame" x="87" y="256" width="76" height="17"/>
+                                <rect key="frame" x="87" y="260" width="76" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Application:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -92,7 +92,7 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="n3l-C4-aVy">
-                                <rect key="frame" x="167" y="213" width="162" height="18"/>
+                                <rect key="frame" x="167" y="217" width="162" height="18"/>
                                 <buttonCell key="cell" type="check" title="Link URLs in document" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="tPy-Ox-YpP">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -102,7 +102,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="HN3-DF-LVf">
-                                <rect key="frame" x="167" y="169" width="271" height="18"/>
+                                <rect key="frame" x="167" y="173" width="271" height="18"/>
                                 <buttonCell key="cell" type="check" title="Highlight matching braces “( )” “[ ]” “{ }”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RrC-LL-hid">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -112,7 +112,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="zOA-Uj-rjv">
-                                <rect key="frame" x="187" y="147" width="114" height="18"/>
+                                <rect key="frame" x="187" y="151" width="114" height="18"/>
                                 <buttonCell key="cell" type="check" title="Highlight “&lt; &gt;”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="al9-WE-Rqy">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -123,7 +123,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C4l-rJ-eqF">
-                                <rect key="frame" x="18" y="355" width="316" height="17"/>
+                                <rect key="frame" x="18" y="359" width="316" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="When document is modified by another application:" usesSingleLineMode="YES" id="x4n-2n-I3p">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -131,7 +131,7 @@
                                 </textFieldCell>
                             </textField>
                             <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-WB-SQP">
-                                <rect key="frame" x="167" y="91" width="255" height="18"/>
+                                <rect key="frame" x="167" y="95" width="255" height="18"/>
                                 <buttonCell key="cell" type="check" title="Update to pre-releases when available" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4aT-ka-sbv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -147,7 +147,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XmK-Ev-21D">
-                                <rect key="frame" x="185" y="414" width="347" height="42"/>
+                                <rect key="frame" x="185" y="440" width="347" height="42"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="sOa-Ea-zt9">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">A system feature that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash.</string>
@@ -156,7 +156,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyM-Pb-Ay4">
-                                <rect key="frame" x="185" y="61" width="347" height="28"/>
+                                <rect key="frame" x="185" y="65" width="347" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Regardless of this setting, new pre-releases are always included while using a pre-release." id="chR-VY-cuI">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -171,7 +171,7 @@
                                 </connections>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="kcH-nv-zZT">
-                                <rect key="frame" x="167" y="191" width="185" height="18"/>
+                                <rect key="frame" x="167" y="195" width="185" height="18"/>
                                 <buttonCell key="cell" type="check" title="Check spelling as you type" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3300">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -181,7 +181,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="dMI-pZ-Grf">
-                                <rect key="frame" x="167" y="492" width="217" height="18"/>
+                                <rect key="frame" x="167" y="518" width="217" height="18"/>
                                 <buttonCell key="cell" type="check" title="When CotEditor becomes active" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3299">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -191,7 +191,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="zIy-Hf-HyU">
-                                <rect key="frame" x="167" y="514" width="84" height="18"/>
+                                <rect key="frame" x="167" y="540" width="84" height="18"/>
                                 <buttonCell key="cell" type="check" title="On launch" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3298">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -201,7 +201,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihY-NN-wRt">
-                                <rect key="frame" x="18" y="515" width="145" height="17"/>
+                                <rect key="frame" x="18" y="541" width="145" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="I4S-uk-TpJ"/>
                                 </constraints>
@@ -222,7 +222,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="mjX-zy-HeG">
-                                <rect key="frame" x="167" y="390" width="216" height="18"/>
+                                <rect key="frame" x="167" y="416" width="216" height="18"/>
                                 <buttonCell key="cell" type="check" title="Trim trailing whitespace on save" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="noP-hx-YeQ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -232,7 +232,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="W8P-Bl-UB5">
-                                <rect key="frame" x="168" y="332" width="169" height="18"/>
+                                <rect key="frame" x="168" y="336" width="169" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Keep CotEditor’s edition" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sBH-MX-cTd">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -242,7 +242,7 @@
                                 </connections>
                             </button>
                             <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="hRD-W3-d0g">
-                                <rect key="frame" x="168" y="311" width="136" height="18"/>
+                                <rect key="frame" x="168" y="315" width="136" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Ask how to resolve" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="IkZ-EO-BSv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -252,13 +252,24 @@
                                 </connections>
                             </button>
                             <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="KT6-dp-FQ3">
-                                <rect key="frame" x="168" y="290" width="184" height="18"/>
+                                <rect key="frame" x="168" y="294" width="184" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Update to modified edition" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="rpa-Di-f4s">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="updateDocumentConflictSetting:" target="JG1-NR-KT5" id="OCT-Kn-B8l"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oj1-KV-koj">
+                                <rect key="frame" x="187" y="394" width="213" height="18"/>
+                                <buttonCell key="cell" type="check" title="Including whitespace-only lines" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Tma-Oh-F7v">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="ttU-LH-46v" name="enabled" keyPath="values.trimsTrailingWhitespaceOnSave" id="eji-Fw-Yf0"/>
+                                    <binding destination="ttU-LH-46v" name="value" keyPath="values.trimsWhitespaceOnlyLines" id="Eg5-Bv-tF1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -282,11 +293,11 @@
                             <constraint firstItem="HN3-DF-LVf" firstAttribute="leading" secondItem="MCa-cI-XK7" secondAttribute="leading" id="BUx-VN-QT2"/>
                             <constraint firstItem="ihY-NN-wRt" firstAttribute="leading" secondItem="T5J-Ml-0Oc" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="D3n-1h-7Dj"/>
                             <constraint firstItem="hRD-W3-d0g" firstAttribute="top" secondItem="W8P-Bl-UB5" secondAttribute="bottom" constant="5" id="Ed7-Gb-eh9"/>
-                            <constraint firstItem="C4l-rJ-eqF" firstAttribute="top" secondItem="mjX-zy-HeG" secondAttribute="bottom" constant="20" id="Evv-Si-ZFa"/>
                             <constraint firstItem="MCa-cI-XK7" firstAttribute="leading" secondItem="Af4-HM-9hW" secondAttribute="trailing" constant="8" symbolic="YES" id="G1b-HR-6gy"/>
                             <constraint firstItem="eh0-fN-8C5" firstAttribute="leading" secondItem="lSi-dW-Eg4" secondAttribute="trailing" constant="8" symbolic="YES" id="HRf-Cf-rx5"/>
                             <constraint firstItem="zOA-Uj-rjv" firstAttribute="top" secondItem="HN3-DF-LVf" secondAttribute="bottom" constant="8" id="I9t-1J-WVd"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FJU-WB-SQP" secondAttribute="trailing" constant="20" symbolic="YES" id="JGQ-xL-30P"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oj1-KV-koj" secondAttribute="trailing" constant="20" symbolic="YES" id="JlP-qZ-q0c"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mjX-zy-HeG" secondAttribute="trailing" constant="20" symbolic="YES" id="LNs-bQ-l45"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kcH-nv-zZT" secondAttribute="trailing" constant="20" symbolic="YES" id="MWo-H0-yyW"/>
                             <constraint firstItem="nfo-ng-N5P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T5J-Ml-0Oc" secondAttribute="leading" constant="20" symbolic="YES" id="Nnr-Ui-zsC"/>
@@ -300,8 +311,10 @@
                             <constraint firstItem="FJU-WB-SQP" firstAttribute="top" secondItem="eh0-fN-8C5" secondAttribute="bottom" constant="8" id="U6t-ZQ-f0l"/>
                             <constraint firstItem="FJU-WB-SQP" firstAttribute="leading" secondItem="eh0-fN-8C5" secondAttribute="leading" id="UkF-hL-5jd"/>
                             <constraint firstItem="KT6-dp-FQ3" firstAttribute="leading" secondItem="W8P-Bl-UB5" secondAttribute="leading" id="W9n-Tl-M6A"/>
+                            <constraint firstItem="C4l-rJ-eqF" firstAttribute="top" secondItem="oj1-KV-koj" secondAttribute="bottom" constant="20" id="a50-4n-8YO"/>
                             <constraint firstItem="C4l-rJ-eqF" firstAttribute="leading" secondItem="T5J-Ml-0Oc" secondAttribute="leading" constant="20" symbolic="YES" id="aD8-IL-lFj"/>
                             <constraint firstItem="n3l-C4-aVy" firstAttribute="top" secondItem="nfo-ng-N5P" secondAttribute="bottom" constant="8" id="ars-9B-hG5"/>
+                            <constraint firstItem="oj1-KV-koj" firstAttribute="leading" secondItem="mjX-zy-HeG" secondAttribute="leading" constant="20" id="c4h-OW-KaU"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oN2-0G-iXz" secondAttribute="trailing" constant="20" symbolic="YES" id="dpy-1U-ul7"/>
                             <constraint firstAttribute="trailing" secondItem="XmK-Ev-21D" secondAttribute="trailing" constant="20" symbolic="YES" id="e3e-gl-q3y"/>
                             <constraint firstItem="dyM-Pb-Ay4" firstAttribute="leading" secondItem="FJU-WB-SQP" secondAttribute="leading" constant="18" id="fEP-jN-mZw"/>
@@ -318,10 +331,12 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="W8P-Bl-UB5" secondAttribute="trailing" constant="20" symbolic="YES" id="kuo-pu-C1H"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="C4l-rJ-eqF" secondAttribute="trailing" constant="20" symbolic="YES" id="lO2-rj-M0w"/>
                             <constraint firstItem="zIy-Hf-HyU" firstAttribute="baseline" secondItem="ihY-NN-wRt" secondAttribute="baseline" id="lu0-or-5zA"/>
+                            <constraint firstItem="oj1-KV-koj" firstAttribute="top" secondItem="mjX-zy-HeG" secondAttribute="bottom" constant="8" id="n66-uL-mc3"/>
                             <constraint firstItem="hRD-W3-d0g" firstAttribute="leading" secondItem="W8P-Bl-UB5" secondAttribute="leading" id="nkv-ni-nPP"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zIy-Hf-HyU" secondAttribute="trailing" constant="20" symbolic="YES" id="ovI-2F-hte"/>
                             <constraint firstItem="XmK-Ev-21D" firstAttribute="top" secondItem="oN2-0G-iXz" secondAttribute="bottom" constant="4" id="piM-LJ-WWr"/>
                             <constraint firstItem="dMI-pZ-Grf" firstAttribute="leading" secondItem="ihY-NN-wRt" secondAttribute="trailing" constant="8" symbolic="YES" id="pyN-NB-sfh"/>
+                            <constraint firstItem="Dby-UY-iuz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T5J-Ml-0Oc" secondAttribute="leading" constant="20" symbolic="YES" id="qbk-mM-4QY"/>
                             <constraint firstItem="W8P-Bl-UB5" firstAttribute="leading" secondItem="zIy-Hf-HyU" secondAttribute="leading" id="tC5-a8-pQy"/>
                             <constraint firstItem="MCa-cI-XK7" firstAttribute="top" secondItem="KT6-dp-FQ3" secondAttribute="bottom" constant="20" id="tqj-Je-9H5"/>
                             <constraint firstItem="nfo-ng-N5P" firstAttribute="top" secondItem="MCa-cI-XK7" secondAttribute="bottom" constant="6" symbolic="YES" id="uHG-2O-DRz"/>

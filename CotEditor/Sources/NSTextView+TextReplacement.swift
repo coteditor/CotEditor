@@ -100,12 +100,11 @@ extension NSTextView {
     
     
     /// trim all trailing whitespace with/without keeeping editing point
-    func trimTrailingWhitespace(keepingEditingPoint: Bool = false) {
+    func trimTrailingWhitespace(ignoresEmptyLines: Bool, keepingEditingPoint: Bool = false) {
         
         assert(Thread.isMainThread)
-        
-        let regex = try! NSRegularExpression(pattern: "[ \\t]+$", options: .anchorsMatchLines)
-        let ranges = regex.matches(in: self.string, range: self.string.nsRange).map { $0.range }
+
+        let ranges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
         
         // exclude editing line if needed
         let replacementRanges: [NSRange] = {
@@ -115,10 +114,26 @@ extension NSTextView {
             return ranges.filter { $0.upperBound != cursorLocation && !$0.contains(cursorLocation) }
         }()
         
+        guard !replacementRanges.isEmpty else { return }
+        
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
                      actionName: NSLocalizedString("Trim Trailing Whitespace", comment: ""))
+    }
+    
+}
+
+
+
+extension String {
+
+    func rangesOfTrailingWhitespace(ignoresEmptyLines: Bool) -> [NSRange] {
+        
+        let pattern = ignoresEmptyLines ? "(?<!^|[ \\t])[ \\t]+$" : "[ \\t]+$"
+        let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
+        
+        return regex.matches(in: self, range: self.nsRange).map { $0.range }
     }
     
 }

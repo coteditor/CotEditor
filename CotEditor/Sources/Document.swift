@@ -372,6 +372,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // trim trailing whitespace if needed
         assert(Thread.isMainThread)
         if UserDefaults.standard[.trimsTrailingWhitespaceOnSave] {
+            let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
             let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
             
             for layoutManager in self.textStorage.layoutManagers {
@@ -380,7 +381,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     let window = textView.window else { continue }
                 
                 if !keepsEditingPoint || layoutManager.layoutManagerOwnsFirstResponder(in: window) {
-                    textView.trimTrailingWhitespace(keepingEditingPoint: keepsEditingPoint)
+                    textView.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines, keepingEditingPoint: keepsEditingPoint)
                     break  // trimming once is enough
                 }
             }
