@@ -312,7 +312,9 @@ extension EditorTextView {
     /// trim all trailing whitespace
     @IBAction func trimTrailingWhitespace(_ sender: Any?) {
         
-        self.trimTrailingWhitespace()
+        let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
+        
+        self.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines)
     }
     
 }
