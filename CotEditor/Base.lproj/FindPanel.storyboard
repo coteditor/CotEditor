@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,6 +14,9 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
                         <rect key="contentRect" x="425" y="461" width="460" height="197"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="2Yd-sK-nho" id="Za5-Cf-pKn"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="YRm-Np-TJD" kind="relationship" relationship="window.shadowedContentViewController" id="YKf-sy-HA5"/>
@@ -34,10 +38,14 @@
                     <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="jKV-b0-yX6" customClass="FindPanelSplitView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="197"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="YRm-Np-TJD" id="mVk-2J-Mww"/>
+                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="fieldSplitViewItem" destination="fLf-rT-Hpl" id="Ysg-ma-MQV"/>
                         <outlet property="resultSplitViewItem" destination="QW9-eM-ZIB" id="vT0-nW-yHp"/>
+                        <outlet property="splitView" destination="jKV-b0-yX6" id="M8N-9P-AVt"/>
                         <segue destination="fdE-8e-ywb" kind="relationship" relationship="splitItems" id="JbM-yi-0lo"/>
                         <segue destination="2MH-SD-abc" kind="relationship" relationship="splitItems" id="Nvl-ZW-Th5"/>
                         <segue destination="gbq-TJ-lot" kind="relationship" relationship="splitItems" id="LIf-yS-NOX"/>
@@ -63,7 +71,7 @@
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView toolTip="Type the text to search for." importsGraphics="NO" richText="NO" allowsUndo="YES" allowsNonContiguousLayout="YES" id="hxw-DS-gxQ" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
+                                        <textView toolTip="Type the text to search for." importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" allowsNonContiguousLayout="YES" id="hxw-DS-gxQ" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,7 +115,7 @@
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView toolTip="Type the text to replace the found text." importsGraphics="NO" richText="NO" allowsUndo="YES" allowsNonContiguousLayout="YES" id="qiQ-tb-XCa" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
+                                        <textView toolTip="Type the text to replace the found text." importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" allowsNonContiguousLayout="YES" id="qiQ-tb-XCa" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -172,7 +180,7 @@
                             <button toolTip="Set advanced options" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ESq-ws-6H3">
                                 <rect key="frame" x="407" y="-1" width="38" height="28"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="28" id="YHA-bW-KOd"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="YHA-bW-KOd"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nWb-Mt-Pka">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -284,9 +292,11 @@
                             <constraint firstItem="3ZH-bg-rl5" firstAttribute="leading" secondItem="8gM-hc-HhV" secondAttribute="leading" constant="-3" id="L5a-x0-VYK"/>
                             <constraint firstItem="AIf-o5-KHg" firstAttribute="leading" secondItem="D8F-V7-fpC" secondAttribute="leading" constant="20" symbolic="YES" id="MYl-DK-DG4"/>
                             <constraint firstItem="8My-G5-daT" firstAttribute="leading" secondItem="D8F-V7-fpC" secondAttribute="leading" constant="20" symbolic="YES" id="Ofl-kG-Dd7"/>
+                            <constraint firstItem="SSP-y6-YxI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hw7-zz-RG8" secondAttribute="trailing" constant="8" symbolic="YES" id="RjK-9l-DGD"/>
                             <constraint firstItem="Kkq-6q-C63" firstAttribute="top" secondItem="8gM-hc-HhV" secondAttribute="top" constant="5" id="S0M-8m-gfu"/>
                             <constraint firstItem="ESq-ws-6H3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tu7-IT-dA3" secondAttribute="trailing" constant="8" symbolic="YES" id="XM6-Xe-TDn"/>
                             <constraint firstAttribute="bottom" secondItem="8My-G5-daT" secondAttribute="bottom" constant="8" id="cne-jz-fOa"/>
+                            <constraint firstItem="Kkq-6q-C63" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3ZH-bg-rl5" secondAttribute="trailing" constant="8" symbolic="YES" id="f6c-m6-D1S"/>
                             <constraint firstItem="SSP-y6-YxI" firstAttribute="top" secondItem="AIf-o5-KHg" secondAttribute="top" constant="5" id="fXY-zD-DrT"/>
                             <constraint firstItem="8gM-hc-HhV" firstAttribute="leading" secondItem="D8F-V7-fpC" secondAttribute="leading" constant="20" symbolic="YES" id="gQn-Hn-4no"/>
                             <constraint firstItem="tu7-IT-dA3" firstAttribute="top" secondItem="AIf-o5-KHg" secondAttribute="bottom" constant="8" symbolic="YES" id="irk-l9-9DA"/>
@@ -517,7 +527,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vX8-lQ-g9B">
-                                <rect key="frame" x="282" y="13" width="89" height="32"/>
+                                <rect key="frame" x="283" y="13" width="89" height="32"/>
                                 <buttonCell key="cell" type="push" title="Replace" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W4Z-S2-wvv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -527,7 +537,7 @@
                                 </connections>
                             </button>
                             <segmentedControl verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="v89-ki-GCc">
-                                <rect key="frame" x="371" y="18" width="71" height="24"/>
+                                <rect key="frame" x="372" y="18" width="70" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="u6p-Hz-aK5">
                                     <font key="font" metaFont="system"/>
                                     <segments>
