@@ -15,13 +15,13 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView verticalCompressionResistancePriority="250" id="196" userLabel="Print Accessory View">
-            <rect key="frame" x="0.0" y="0.0" width="430" height="301"/>
+            <rect key="frame" x="0.0" y="0.0" width="380" height="301"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="585">
                     <rect key="frame" x="114" y="261" width="215" height="26"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="210" id="ywH-Ua-doT"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="ywH-Ua-doT"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" id="722">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -39,9 +39,6 @@
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="424">
                     <rect key="frame" x="114" y="199" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="04O-p7-HaW"/>
-                    </constraints>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="719">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -67,9 +64,6 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="416">
                     <rect key="frame" x="114" y="230" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="e5i-sG-u4f"/>
-                    </constraints>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="717">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -94,9 +88,9 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
-                    <rect key="frame" x="114" y="138" width="215" height="26"/>
+                    <rect key="frame" x="114" y="138" width="165" height="26"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="210" id="EKF-Mv-PUx"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="EKF-Mv-PUx"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="202" id="704">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -139,7 +133,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
-                    <rect key="frame" x="114" y="107" width="215" height="26"/>
+                    <rect key="frame" x="114" y="107" width="165" height="26"/>
                     <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="310" id="709">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -171,7 +165,7 @@
                     </textFieldCell>
                 </textField>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
-                    <rect key="frame" x="332" y="139" width="78" height="24"/>
+                    <rect key="frame" x="282" y="139" width="78" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -196,7 +190,7 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-dQ-geo">
-                    <rect key="frame" x="332" y="49" width="78" height="24"/>
+                    <rect key="frame" x="282" y="49" width="78" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Aru-Gd-J0D">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -221,7 +215,7 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
-                    <rect key="frame" x="332" y="108" width="78" height="24"/>
+                    <rect key="frame" x="282" y="108" width="78" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="I4t-kQ-lvq">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -246,7 +240,7 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T8-80-2uO">
-                    <rect key="frame" x="332" y="18" width="78" height="24"/>
+                    <rect key="frame" x="282" y="18" width="78" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="xAm-2i-Sw1">
                         <font key="font" metaFont="system"/>
                         <segments>
@@ -279,10 +273,7 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="321">
-                    <rect key="frame" x="114" y="17" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="rIT-s2-gwW"/>
-                    </constraints>
+                    <rect key="frame" x="114" y="17" width="165" height="26"/>
                     <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -324,10 +315,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="313">
-                    <rect key="frame" x="114" y="48" width="215" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="210" id="abT-dP-x7p"/>
-                    </constraints>
+                    <rect key="frame" x="114" y="48" width="165" height="26"/>
                     <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="318" id="714">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -362,6 +350,7 @@
             <constraints>
                 <constraint firstItem="423" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="6fw-3B-Mqw"/>
                 <constraint firstItem="423" firstAttribute="trailing" secondItem="257" secondAttribute="trailing" id="74O-xm-e3g"/>
+                <constraint firstItem="416" firstAttribute="width" secondItem="585" secondAttribute="width" id="7ET-E9-d8d"/>
                 <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="257" secondAttribute="centerY" id="8r2-bi-5x5"/>
                 <constraint firstItem="303" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="9mq-sZ-rxb"/>
                 <constraint firstItem="8wl-aM-d8K" firstAttribute="leading" secondItem="305" secondAttribute="trailing" constant="8" symbolic="YES" id="Bgj-U2-cfW"/>
@@ -370,6 +359,7 @@
                 <constraint firstItem="256" firstAttribute="centerY" secondItem="ErI-yf-OgH" secondAttribute="centerY" id="EhF-cG-9vr"/>
                 <constraint firstItem="424" firstAttribute="centerY" secondItem="423" secondAttribute="centerY" id="Gjg-se-imD"/>
                 <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="305" secondAttribute="centerY" id="H1z-kp-hhI"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="424" secondAttribute="trailing" constant="20" symbolic="YES" id="JhO-dp-yws"/>
                 <constraint firstItem="321" firstAttribute="leading" secondItem="296" secondAttribute="trailing" constant="8" symbolic="YES" id="Kl0-Q7-Dgr"/>
                 <constraint firstItem="313" firstAttribute="centerY" secondItem="ff5-dQ-geo" secondAttribute="centerY" id="M3y-5l-LG0"/>
                 <constraint firstItem="415" firstAttribute="leading" secondItem="196" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="MKj-9x-PWP"/>
@@ -387,6 +377,7 @@
                 <constraint firstItem="256" firstAttribute="centerY" secondItem="198" secondAttribute="centerY" id="bC2-7Q-elr"/>
                 <constraint firstItem="295" firstAttribute="top" secondItem="304" secondAttribute="bottom" constant="8" symbolic="YES" id="cAH-jN-Wut"/>
                 <constraint firstItem="423" firstAttribute="trailing" secondItem="256" secondAttribute="trailing" id="chF-nn-ONk"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="585" secondAttribute="trailing" constant="20" symbolic="YES" id="cou-8o-GRH"/>
                 <constraint firstItem="304" firstAttribute="leading" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="czP-K5-gp3"/>
                 <constraint firstItem="423" firstAttribute="trailing" secondItem="296" secondAttribute="trailing" id="dhp-97-cJj"/>
                 <constraint firstItem="321" firstAttribute="centerY" secondItem="296" secondAttribute="centerY" id="gR7-c1-6QC"/>
@@ -398,10 +389,12 @@
                 <constraint firstItem="305" firstAttribute="width" secondItem="321" secondAttribute="width" id="lAU-Bw-y2p"/>
                 <constraint firstItem="416" firstAttribute="centerY" secondItem="415" secondAttribute="centerY" id="lib-zJ-PEP"/>
                 <constraint firstItem="424" firstAttribute="top" secondItem="416" secondAttribute="bottom" constant="10" symbolic="YES" id="lt4-8d-Sh6"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="416" secondAttribute="trailing" constant="20" symbolic="YES" id="noV-0s-xjE"/>
                 <constraint firstItem="4T8-80-2uO" firstAttribute="leading" secondItem="321" secondAttribute="trailing" constant="8" symbolic="YES" id="npU-6v-EAd"/>
                 <constraint firstItem="257" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="196" secondAttribute="leading" constant="20" symbolic="YES" id="oxu-gP-l8x"/>
                 <constraint firstItem="305" firstAttribute="leading" secondItem="257" secondAttribute="trailing" constant="8" symbolic="YES" id="paP-eP-SpA"/>
                 <constraint firstItem="423" firstAttribute="trailing" secondItem="295" secondAttribute="trailing" id="qHL-sU-OX9"/>
+                <constraint firstItem="424" firstAttribute="width" secondItem="585" secondAttribute="width" id="qIH-Uq-DV0"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="303" secondAttribute="trailing" constant="20" symbolic="YES" id="qyk-Le-gXL"/>
                 <constraint firstItem="416" firstAttribute="top" secondItem="585" secondAttribute="bottom" constant="10" symbolic="YES" id="r8v-Hv-s0z"/>
                 <constraint firstItem="424" firstAttribute="leading" secondItem="423" secondAttribute="trailing" constant="8" symbolic="YES" id="s6G-Mv-FJW"/>
