@@ -163,7 +163,7 @@
                                 <rect key="frame" x="20" y="23" width="24" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="U6N-28-bzY"/>
-                                    <constraint firstAttribute="width" constant="24" id="tOH-dt-pv7"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="tOH-dt-pv7"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5JO-2k-t8K">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -318,7 +318,7 @@
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="REw-fm-8pq">
                                 <rect key="frame" x="185" y="403" width="55" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="vz6-IP-Ktk"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="vz6-IP-Ktk"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="h49-8N-kkT">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>

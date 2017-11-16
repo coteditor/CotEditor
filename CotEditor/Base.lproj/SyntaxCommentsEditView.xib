@@ -254,7 +254,7 @@
                     <rect key="frame" x="12" y="11" width="24" height="23"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="PXE-Ru-qA8"/>
-                        <constraint firstAttribute="width" constant="24" id="eu3-K4-S2c"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="eu3-K4-S2c"/>
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="ZKh-Sr-Q7t">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

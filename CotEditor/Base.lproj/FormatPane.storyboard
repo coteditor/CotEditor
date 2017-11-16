@@ -36,7 +36,7 @@
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bJE-E6-Cbo">
                                 <rect key="frame" x="164" y="345" width="225" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="hbg-GK-r7p"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="hbg-GK-r7p"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="0uG-Is-WCI">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -101,7 +101,7 @@
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lt0-OL-jLy">
                                 <rect key="frame" x="164" y="292" width="225" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="Iyz-Mm-eTf"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="Iyz-Mm-eTf"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="pzk-U3-eHv">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -278,7 +278,7 @@
                                     <constraint firstAttribute="height" constant="21" id="DEJ-aJ-bjy"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="21" id="IfU-bF-i2K"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="YYg-L7-zei"/>
-                                    <constraint firstAttribute="width" constant="24" id="lWo-I8-cIT"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="lWo-I8-cIT"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LTP-h9-DRR">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -412,6 +412,7 @@
                             <constraint firstItem="ofS-Q1-0g8" firstAttribute="top" secondItem="8Od-1h-2eW" secondAttribute="top" constant="20" symbolic="YES" id="fE3-xE-wQL"/>
                             <constraint firstItem="QgD-bI-CJS" firstAttribute="top" secondItem="Jhi-LF-z0j" secondAttribute="bottom" constant="16" id="gw7-gR-OYt"/>
                             <constraint firstItem="1qJ-mx-epO" firstAttribute="baseline" secondItem="Koi-2N-36K" secondAttribute="baseline" id="iAf-nM-0Wk"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bJE-E6-Cbo" secondAttribute="trailing" constant="20" symbolic="YES" id="iCo-xO-bxl"/>
                             <constraint firstItem="Q0c-oI-um3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gNn-jg-1Xr" secondAttribute="trailing" constant="8" symbolic="YES" id="jNZ-vy-fEZ"/>
                             <constraint firstItem="MwE-73-7AJ" firstAttribute="leading" secondItem="b9V-Tx-ggw" secondAttribute="trailing" constant="12" id="jVP-LZ-aqo"/>
                             <constraint firstItem="b9V-Tx-ggw" firstAttribute="top" secondItem="Lt0-OL-jLy" secondAttribute="bottom" constant="12" id="kbZ-AE-ID2"/>
@@ -433,6 +434,7 @@
                             <constraint firstItem="1qJ-mx-epO" firstAttribute="leading" secondItem="Koi-2N-36K" secondAttribute="trailing" constant="8" symbolic="YES" id="tpe-6n-9PX"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iU4-hA-pof" secondAttribute="trailing" constant="20" symbolic="YES" id="tq5-kE-8gb"/>
                             <constraint firstItem="cPL-gk-JM6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="wrv-Bq-JSP"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lt0-OL-jLy" secondAttribute="trailing" constant="20" symbolic="YES" id="xfg-ws-B5K"/>
                             <constraint firstItem="iU4-hA-pof" firstAttribute="leading" secondItem="o7z-Td-5qC" secondAttribute="trailing" constant="8" symbolic="YES" id="xyF-ym-FxT"/>
                             <constraint firstItem="cPL-gk-JM6" firstAttribute="trailing" secondItem="ofS-Q1-0g8" secondAttribute="trailing" id="xzn-6r-a4r"/>
                             <constraint firstItem="LQO-NI-fGx" firstAttribute="baseline" secondItem="MwE-73-7AJ" secondAttribute="baseline" id="yFV-ob-UGz"/>

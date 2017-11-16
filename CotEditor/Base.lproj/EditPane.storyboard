@@ -363,6 +363,7 @@
                             <constraint firstItem="nqq-MP-8Cp" firstAttribute="leading" secondItem="Jwj-BA-jAE" secondAttribute="leading" id="Jdk-96-DPF"/>
                             <constraint firstAttribute="bottom" secondItem="Ks6-yt-k9q" secondAttribute="bottom" constant="20" symbolic="YES" id="KCu-p6-Obd"/>
                             <constraint firstItem="PeI-EQ-t3D" firstAttribute="leading" secondItem="I2h-Jb-whg" secondAttribute="trailing" constant="4" id="KkX-7s-Nf6"/>
+                            <constraint firstItem="Ks6-yt-k9q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4sX-tH-txQ" secondAttribute="leading" constant="20" symbolic="YES" id="M76-rT-kee"/>
                             <constraint firstItem="BfR-6w-bx7" firstAttribute="top" secondItem="Jwj-BA-jAE" secondAttribute="bottom" constant="8" id="MD4-vO-3yb"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DhT-LT-Lve" secondAttribute="trailing" constant="20" symbolic="YES" id="MqX-pt-ev4"/>
                             <constraint firstItem="d0U-hp-rcZ" firstAttribute="leading" secondItem="EiF-pk-Dua" secondAttribute="trailing" constant="8" symbolic="YES" id="Ngz-nX-0if"/>

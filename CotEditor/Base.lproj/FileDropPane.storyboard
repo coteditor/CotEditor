@@ -85,7 +85,7 @@
                                 <rect key="frame" x="43" y="155" width="24" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="VRI-cn-q8N"/>
-                                    <constraint firstAttribute="width" constant="24" id="pAf-0I-IYk"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="pAf-0I-IYk"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="scB-a1-1Mh">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -310,6 +310,8 @@
                             <constraint firstItem="457" firstAttribute="width" secondItem="458" secondAttribute="width" id="9SU-eP-JlU"/>
                             <constraint firstItem="prG-8I-L0n" firstAttribute="top" secondItem="nF4-c6-mvy" secondAttribute="bottom" constant="6" id="9a1-fJ-2Es"/>
                             <constraint firstItem="458" firstAttribute="leading" secondItem="457" secondAttribute="trailing" constant="-1" id="HtS-Zv-scr"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="458" secondAttribute="trailing" constant="20" symbolic="YES" id="JRp-Nk-etR"/>
+                            <constraint firstItem="7WH-D1-7oE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="QBC-Iv-C2I"/>
                             <constraint firstItem="JWP-To-iJP" firstAttribute="top" secondItem="457" secondAttribute="bottom" constant="20" id="SBW-c3-QxV"/>
                             <constraint firstItem="457" firstAttribute="top" secondItem="prG-8I-L0n" secondAttribute="bottom" constant="8" symbolic="YES" id="T6v-in-Xxr"/>
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="top" secondItem="JWP-To-iJP" secondAttribute="bottom" constant="6" id="bFY-y4-yig"/>
