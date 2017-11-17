@@ -33,7 +33,7 @@
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Unix / macOS"; ObjectID = "YT7-vd-3ih"; */
 "YT7-vd-3ih.ibShadowedToolTip" = "Unix / macOS";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.ibShadowedToolTip" = "クラシック Mac OS";
+"J48-tF-WBo.ibShadowedToolTip" = "クラシックMac OS";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
 "Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
 

@@ -30,7 +30,7 @@
 /* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "15"; */
 "15.title" = "macOS / Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
-"14.title" = "クラシック Mac OS (CR)";
+"14.title" = "クラシックMac OS (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CR/LF)"; ObjectID = "12"; */
 "12.title" = "Windows (CR/LF)";
 
@@ -88,4 +88,4 @@
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
 "Qwp-u8-Urf.title" = "書き出し...";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
-"AkE-0P-0FC.title" = "Finder で表示";
+"AkE-0P-0FC.title" = "Finderで表示";

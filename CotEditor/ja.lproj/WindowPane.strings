@@ -38,7 +38,7 @@
 "o1f-vR-aFm.title" = "手動";  // The same as the popup menu selection in the System Preferences > "Dock"
 
 /* Class = "NSTextFieldCell"; title = "(Only on Sierra and later)"; ObjectID = "AaA-Nm-2CL"; */
-"AaA-Nm-2CL.title" = "（Sierra 以降のみ）";
+"AaA-Nm-2CL.title" = "（Sierra以降のみ）";
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */

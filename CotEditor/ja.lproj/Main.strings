@@ -42,7 +42,7 @@
 "57.title" = "CotEditor";
 
 /* Class = "NSMenuItem"; title = "About CotEditor"; ObjectID = "58"; */
-"58.title" = "CotEditor について";
+"58.title" = "CotEditorについて";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
 "129.title" = "環境設定...";
@@ -53,14 +53,14 @@
 "131.title" = "サービス";
 
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
-"134.title" = "CotEditor を隠す";
+"134.title" = "CotEditorを隠す";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
 "145.title" = "ほかを隠す";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
 "150.title" = "すべてを表示";
 
 /* Class = "NSMenuItem"; title = "Quit CotEditor"; ObjectID = "136"; */
-"136.title" = "CotEditor を終了";
+"136.title" = "CotEditorを終了";
 
 
 
@@ -143,7 +143,7 @@
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "半角円マークを入力";
 /* Class = "NSMenuItem"; title = "Input Char in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "文字を Unicode 16 進数で入力...";
+"tWx-pj-3PL.title" = "文字をUnicode 16進数で入力...";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "スペルと文法";
@@ -241,7 +241,7 @@
 /* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "295"; */
 "295.title" = "macOS / Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "297"; */
-"297.title" = "クラシック Mac OS (CR)";
+"297.title" = "クラシックMac OS (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CR/LF)"; ObjectID = "298"; */
 "298.title" = "Windows (CR/LF)";
 
@@ -394,9 +394,9 @@
 "594.title" = "カタカナをひらがなにする";
 
 /* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
-"600.title" = "Unicode 正規化";
+"600.title" = "Unicode正規化";
 /* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
-"599.title" = "Unicode 正規化";
+"599.title" = "Unicode正規化";
 
 /* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
 "601.title" = "NFD";
@@ -409,14 +409,14 @@
 /* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
 "zuR-3K-9fs.title" = "NFKC Casefold";
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "修正 NFD (HFS+)";
+"NU7-EI-1Ct.title" = "修正NFD (HFS+)";
 /* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.title" = "修正 NFC (HFS+)";
+"n6C-Km-BM9.title" = "修正NFC (HFS+)";
 
 /* Class = "NSMenuItem"; title = "Insert IANA Charset Name"; ObjectID = "663"; */
-"663.title" = "IANA エンコーディング名を挿入";
+"663.title" = "IANAエンコーディング名を挿入";
 /* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
-"663.ibShadowedToolTip" = "エンコーディング名をIANA 文字コード名として挿入";
+"663.ibShadowedToolTip" = "エンコーディング名をIANA文字コード名として挿入";
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "文字情報を表示";
@@ -515,21 +515,21 @@
 "106.title" = "ヘルプ";
 
 /* Class = "NSMenuItem"; title = "CotEditor Help"; ObjectID = "111"; */
-"111.title" = "CotEditor ヘルプ";
+"111.title" = "CotEditorヘルプ";
 
 /* Class = "NSMenuItem"; title = "CotEditor Scripting Manual"; ObjectID = "M1N-Fg-Bo4"; */
-"M1N-Fg-Bo4.title" = "CotEditor スクリプトマニュアル";
+"M1N-Fg-Bo4.title" = "CotEditorスクリプトマニュアル";
 /* Class = "NSMenu"; title = "CotEditor Scripting Manual"; ObjectID = "OLa-Mb-rXS"; */
-"OLa-Mb-rXS.title" = "CotEditor スクリプトマニュアル";
+"OLa-Mb-rXS.title" = "CotEditorスクリプトマニュアル";
 /* Class = "NSMenuItem"; title = "About Scripting"; ObjectID = "u2o-8v-WPL"; */
 "u2o-8v-WPL.title" = "スクリプトについて";
 /* Class = "NSMenuItem"; title = "AppleScript Dictionary"; ObjectID = "620"; */
-"620.title" = "AppleScript 辞書";
+"620.title" = "AppleScript辞書";
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "リリースノート";
 /* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor の新機能";
+"DCW-Ij-540.title" = "CotEditorの新機能";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "謝辞";
 
@@ -538,4 +538,4 @@
 /* Class = "NSMenuItem"; title = "Report Bug"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "不具合を報告";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
-"g34-YV-E6o.title" = "CotEditor Web サイト";
+"g34-YV-E6o.title" = "CotEditor Webサイト";

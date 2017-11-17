@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@
 "Xh9-Al-Lgr.title" = "空白文字";  // "whitespace character"
 "nh9-3w-PRK.title" = "非空白文字";  // "non whitespace character"
 "U6Y-db-fiT.title" = "10進数字";  // "decimal number"
-"Ufv-VB-C8Z.title" = "A から Z の中の任意の1文字";  // "any character in range A to Z"
-"11L-Hs-8G7.title" = "A から Z 以外の任意の1文字";  // "any character not in range A to Z"
+"Ufv-VB-C8Z.title" = "AからZの中の任意の1文字";  // "any character in range A to Z"
+"11L-Hs-8G7.title" = "AからZ以外の任意の1文字";  // "any character not in range A to Z"
 
 
 
@@ -56,13 +56,13 @@
 
 "nVK-6t-0P3.title" = "量指定子";  // "Quantifier"
 
-"w4Q-Z2-YET.title" = "1 回または 0 回";  // "1 or 0 times"
-"2wE-GY-9nf.title" = "0 回以上";  // "0 or more times"
-"Woe-Vu-PcP.title" = "1 回以上";  // "1 or more times"
-"H6L-Hz-GQ7.title" = "n 回以上 m 回以下";  // "at least n but not more than m times"
-"MFd-BY-MC4.title" = "n 回以上";  // "at least n times"
-"ga2-ht-6SL.title" = "0 回以上 n 回以下";  // "at least 0 but not more than n times"
-"akB-l0-a4P.title" = "n 回";  // "n times"
+"w4Q-Z2-YET.title" = "1回または0回";  // "1 or 0 times"
+"2wE-GY-9nf.title" = "0回以上";  // "0 or more times"
+"Woe-Vu-PcP.title" = "1回以上";  // "1 or more times"
+"H6L-Hz-GQ7.title" = "n回以上m回以下";  // "at least n but not more than m times"
+"MFd-BY-MC4.title" = "n回以上";  // "at least n times"
+"ga2-ht-6SL.title" = "0回以上n回以下";  // "at least 0 but not more than n times"
+"akB-l0-a4P.title" = "n回";  // "n times"
 
 
 

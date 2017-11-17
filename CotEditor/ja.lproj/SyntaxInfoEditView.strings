@@ -31,7 +31,7 @@
 /* Class = "NSTextFieldCell"; title = "Last modified:"; ObjectID = "wrI-z3-8T0"; */
 "wrI-z3-8T0.title" = "最終更新日:";
 /* Class = "NSTextFieldCell"; title = "Distribution URL:"; ObjectID = "vOw-3n-nuT"; */
-"vOw-3n-nuT.title" = "配付 URL:";
+"vOw-3n-nuT.title" = "配付URL:";
 /* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "aL3-Pf-XDB"; */
 "aL3-Pf-XDB.title" = "作者:";
 /* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "qBg-TV-NzD"; */
@@ -40,4 +40,4 @@
 "4bM-8L-klg.title" = "説明:";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "KlI-NS-4x6"; */
-"KlI-NS-4x6.ibShadowedToolTip" = "URL にジャンプ";
+"KlI-NS-4x6.ibShadowedToolTip" = "URLにジャンプ";

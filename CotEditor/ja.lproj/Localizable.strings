@@ -34,7 +34,7 @@
 
 // Main menu item titles
 "Check for Updates…" = "アップデートを確認...";
-"What’s New in CotEditor %@" = "CotEditor %@ の新機能";  // %@ is version number
+"What’s New in CotEditor %@" = "CotEditor %@の新機能";  // %@ is version number
 
 
 // Share menu
@@ -50,7 +50,7 @@
 "Re-Color All" = "再カラーリング";
 
 // Importing theme
-"“%@” is a CotEditor theme file." = "“%@”は CotEditor テーマファイルです。";
+"“%@” is a CotEditor theme file." = "“%@”はCotEditorテーマファイルです。";
 "Do you want to install this theme?" = "テーマをインストールしますか？";
 "Install" = "インストール";
 "Open as Text File" = "テキストファイルとして開く";
@@ -67,10 +67,10 @@
 "Replace All" = "すべて置換";
 "Highlight" = "ハイライト";
 "Searching in text…" = "テキストを検索しています...";
-"%@ string found." = "%@ 件見つかりました。";
-"%@ strings found." = "%@ 件見つかりました。";
-"%@ string replaced." = "%@ 件置換しました。";
-"%@ strings replaced." = "%@ 件置換しました。";
+"%@ string found." = "%@件見つかりました。";
+"%@ strings found." = "%@件見つかりました。";
+"%@ string replaced." = "%@件置換しました。";
+"%@ strings replaced." = "%@件置換しました。";
 "Invalid regular expression" = "無効な正規表現です。";
 "Empty find string" = "検索文字列が空です。";
 "Input text to find." = "検索するテキストを入力してください。";
@@ -80,16 +80,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次のマッチを検索";
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
 "Not Found" = "見つかりません";
-"%@ found" = "%@ 件見つかりました";  // %@ is number of founds
+"%@ found" = "%@件見つかりました";  // %@ is number of founds
 "Not Replaced" = "見つかりません";
-"%@ replaced" = "%@ 件置換しました";  // %@ is number of replaced
+"%@ replaced" = "%@件置換しました";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
-"Found one string in “%@”." = "“%@”内に 1 件見つかりました。";
-"Found %@ strings in “%@”." = "“%2$@”内に %1$@ 件見つかりました。";
+"Found one string in “%@”." = "“%@”内に1件見つかりました。";
+"Found %@ strings in “%@”." = "“%2$@”内に%1$@件見つかりました。";
 
 
 
@@ -102,7 +102,7 @@
 "The file is %@.\n\nDo you really want to open the file?" = "このファイルは%@です。\n\n本当にファイルを開きますか？";
 
 // Large file alert
-"The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが %@ あります。";
+"The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが%@あります。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか？";
 "Open" = "開く";
 
@@ -126,7 +126,7 @@
 "Show Incompatible Characters" = "非互換文字を表示";
 
 // Incompatible IANA charset name alert
-"The encoding is “%@”, but the IANA charset name in text is “%@”." = "エンコーディングは“%@”ですが、IANA 文字セット名は“%@”です。";
+"The encoding is “%@”, but the IANA charset name in text is “%@”." = "エンコーディングは“%@”ですが、IANA文字セット名は“%@”です。";
 "Do you want to continue processing?" = "保存作業を続けますか？";
 "Do not show this warning for this document again" = "今後この書類ではこの警告を表示しない";
 "Continue Saving" = "保存を続行";
@@ -147,10 +147,10 @@
 "Change Encoding" = "エンコーディングを変更";
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditor で加えた編集もまだ保存されていません。";
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
 "The file has been modified by another application." = "ファイルは別のアプリケーションによって変更されました。";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditor での編集内容を保持しますか、それとも変更された内容に更新しますか？";
-"Keep CotEditor’s Edition" = "CotEditor の編集内容を保持";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか？";
+"Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
 
 
@@ -235,8 +235,8 @@
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 "NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "修正 NFC";
-"Modified NFD" = "修正 NFD";
+"Modified NFC" = "修正NFC";
+"Modified NFD" = "修正NFD";
 "Inspect Character" = "文字情報を表示";
 "Move Line" = "行を移動";
 "Sort Lines" = "行をソート";
@@ -334,7 +334,7 @@
 // General pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
-"Do you want to restart CotEditor now?" = "CotEditor を今すぐ再起動しますか？";
+"Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか？";
 "Restart Now" = "今すぐ再起動";
 "Later" = "あとで";
 
@@ -344,7 +344,7 @@
 "Rename “%@”" = "“%@”を名称変更";
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
-"Reveal “%@” in Finder" = "“%@”を Finder で表示";
+"Reveal “%@” in Finder" = "“%@”をFinderで表示";
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか？";
 "This action cannot be undone." = "この操作は取り消せません。";
@@ -364,7 +364,7 @@
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "“%@”を複製...";
 "Export “%@”…" = "“%@”を書き出し...";
-"Reveal “%@” in Finder" = "“%@”を Finder で表示";
+"Reveal “%@” in Finder" = "“%@”をFinderで表示";
 
 
 // File Drop pane
@@ -379,8 +379,8 @@
 
 // Integration pane
 // Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の 'cot' シンボリックリンクはこの CotEditor 以外に向けられています。";
-"The current 'cot' symbolic link may target on an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の'cot'シンボリックリンクはこのCotEditor以外に向けられています。";
+"The current 'cot' symbolic link may target on an invalid path." = "現在の'cot'シンボリックリンクは無効なパスに向けられています。";
 
 
 
@@ -405,7 +405,7 @@
 // Syntax style validation results
 "No error was found." = "エラーはありませんでした。";
 "An error was found!" = "エラーがありました！";
-"%i errors were found!" = "%i 個のエラーがありました！";
+"%i errors were found!" = "%i個のエラーがありました！";
 
 
 
@@ -471,7 +471,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %@" = "テキストを挿入 %@";
+"Insert Text %@" = "テキストを挿入%@";
 
 // Keyboard key name
 "Space" = "スペース";
@@ -491,7 +491,7 @@
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "スクリプトをエディタで開くには、“Option + クリック”してください。";
+"“Option + click” to open script in editor." = "スクリプトをエディタで開くには、“Option+クリック”してください。";
 
 
 
@@ -535,4 +535,4 @@
 
 /* String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
-"%@ with BOM" = "%@BOM 付き";
+"%@ with BOM" = "%@BOM付き";

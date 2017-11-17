@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -85,4 +85,4 @@
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
 "786-4C-69e.ibShadowedIsNilPlaceholder" = "未選択";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to show Unicode information."; ObjectID = "2ZU-Mi-aJz"; */
-"2ZU-Mi-aJz.ibShadowedToolTip" = "Unicode 情報を表示するには、文字を1つだけ選択してください。";
+"2ZU-Mi-aJz.ibShadowedToolTip" = "Unicode情報を表示するには、文字を1つだけ選択してください。";

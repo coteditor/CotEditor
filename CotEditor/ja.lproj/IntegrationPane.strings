@@ -35,4 +35,4 @@
 "e2G-16-MxZ.ibShadowedDisplayPattern" = "%{value1}@ にインストール済み";
 
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
-"c48-xK-Ag1.title" = "cot コマンドラインツールは、コマンドラインからの CotEditor 起動やファイルオープンを可能にします。";
+"c48-xK-Ag1.title" = "cot コマンドラインツールは、コマンドラインからのCotEditor起動やファイルオープンを可能にします。";
