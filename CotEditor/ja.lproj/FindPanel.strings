@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 CotEditor Project
+ © 2015-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@
 "oC1-bN-UeN.ibShadowedToolTip" = "検索結果を閉じる";
 
 /* Class = "BindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
-"2MH-SD-x1y.ibShadowedDisplayPattern" = "検索文字列： %{value1}@";
+"2MH-SD-x1y.ibShadowedDisplayPattern" = "検索文字列: %{value1}@";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
 "CPd-0W-bKv.headerCell.title" = "行";

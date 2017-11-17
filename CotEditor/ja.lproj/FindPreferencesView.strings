@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 CotEditor Project
+ © 2015-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@
 /* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "OUc-5d-N7I"; */
 "OUc-5d-N7I.title" = "発音区別記号を無視";
 /* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
-"YYY-qb-T00.ibShadowedToolTip" = "文字の発音記号を無視して検索（例:  ö = o）";
+"YYY-qb-T00.ibShadowedToolTip" = "文字の発音記号を無視して検索（例: ö = o）";
 
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "Jug-Dk-JMZ"; */
 "Jug-Dk-JMZ.title" = "全角／半角を無視";

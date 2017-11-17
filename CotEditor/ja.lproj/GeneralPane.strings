@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "新規書類を開く：";
+"zDW-aW-9G8.title" = "新規書類を開く:";
 
 /* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
 "3298.title" = "起動したとき";
@@ -35,7 +35,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
-"Ki4-3Y-AZL.title" = "書類の保存：";
+"Ki4-3Y-AZL.title" = "書類の保存:";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "オートセーブとバージョンを有効にする";
@@ -48,7 +48,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって変更されたとき：";
+"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって変更されたとき:";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
 "sBH-MX-cTd.title" = "CotEditor の編集内容を保持";
@@ -59,7 +59,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "アプリケーション：";
+"lzy-Ei-xlT.title" = "アプリケーション:";
 
 /* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
 "3307.title" = "検索文字列をほかのアプリケーションと共有";
@@ -76,7 +76,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
-"geU-63-sAC.title" = "ソフトウェアアップデート：";
+"geU-63-sAC.title" = "ソフトウェアアップデート:";
 
 /* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
 "3423.title" = "自動的にアップデートを確認";

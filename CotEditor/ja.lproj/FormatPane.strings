@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
-"3273.title" = "改行コード：";
+"3273.title" = "改行コード:";
 /* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "15"; */
 "15.title" = "macOS / Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
@@ -36,10 +36,10 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
-"3278.title" = "エンコーディング：";
+"3278.title" = "エンコーディング:";
 
 /* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
-"3277.title" = "ファイルを開くとき：";
+"3277.title" = "ファイルを開くとき:";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "リストを編集...";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
@@ -52,10 +52,10 @@
 "3325.title" = "（アウトラインを含む）";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
-"3329.title" = "デフォルトスタイル：";
+"3329.title" = "デフォルトスタイル:";
 
 /* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "インストール済みスタイル：";
+"vlw-Tc-sLl.title" = "インストール済みスタイル:";
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
 "cbJ-XK-bnG.ibShadowedToolTip" = "このスタイルはカスタマイズされています。";

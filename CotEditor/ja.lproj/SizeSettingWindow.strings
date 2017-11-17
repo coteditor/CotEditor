@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,9 +32,9 @@
 "3399.title" = "このウインドウのサイズを調整してください。このウインドウサイズがデフォルトとして使用されます。";
 
 /* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
-"3402.title" = "幅：";
+"3402.title" = "幅:";
 /* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
-"3403.title" = "高さ：";
+"3403.title" = "高さ:";
 
 /* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
 "3397.title" = "デフォルトに設定";

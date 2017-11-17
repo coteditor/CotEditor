@@ -177,7 +177,7 @@
 
 /* MARK: PrintTextView */
 // header/footer
-"Printed on %@" = "プリント：%@";  // %@ is date
+"Printed on %@" = "プリント: %@";  // %@ is date
 
 
 
@@ -285,7 +285,7 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@：";
+"%@: " = "%@: ";
 "Lines" = "行数";
 "Characters" = "文字数";
 "Length" = "文字長";
@@ -446,7 +446,7 @@
 "Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
 
 // Export syntax style file savePanel label
-"Export As:" = "書き出し：";
+"Export As:" = "書き出し:";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始文字と終了文字の両方を必要とします。";
@@ -454,7 +454,7 @@
 "End string" = "終了文字列";
 "Regular expression" = "正規表現";
 "multiple registered." = "重複して登録されています。";
-"Regex Error: " = "正規表現エラー：";
+"Regex Error: " = "正規表現エラー:";
 
 
 

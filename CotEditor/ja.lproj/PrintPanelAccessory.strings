@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,14 +26,14 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "eXI-55-yQO"; */
-"eXI-55-yQO.title" = "カラー：";
+"eXI-55-yQO.title" = "カラー:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
 "590.title" = "白黒";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
 "589.title" = "書類の設定と同じ";
 
 /* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
-"716.title" = "行番号：";
+"716.title" = "行番号:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
 "420.title" = "プリントしない";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
@@ -42,7 +42,7 @@
 "418.title" = "プリント";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "不可視文字：";
+"718.title" = "不可視文字:";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
 "427.title" = "書類の設定と同じ";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
@@ -55,7 +55,7 @@
 "708.title" = "ヘッダをプリント";
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
-"706.title" = "主ヘッダ：";
+"706.title" = "主ヘッダ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "なし";
@@ -77,7 +77,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
-"707.title" = "副ヘッダ：";
+"707.title" = "副ヘッダ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "なし";
@@ -103,7 +103,7 @@
 "713.title" = "フッタをプリント";
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
-"711.title" = "主フッタ：";
+"711.title" = "主フッタ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "なし";
@@ -125,7 +125,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
-"712.title" = "副フッタ：";
+"712.title" = "副フッタ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "なし";
