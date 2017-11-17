@@ -1,5 +1,5 @@
 
-以下のテンプレートに記入して [GitHub Issues](https://github.com/coteditor/CotEditor/issues) に投稿するか <coteditor.github@gmail.com> にメールをしてください。送られたメールの内容は Issue ページで公開される可能があります。文は英語か日本語、どちらかでお書きください。
+以下のテンプレートに記入して[GitHub Issues](https://github.com/coteditor/CotEditor/issues)に投稿するか<coteditor.github@gmail.com>にメールをしてください。送られたメールの内容はIssueページで公開される可能があります。本文は英語か日本語、どちらかでお書きください。
 
 -----------------------------------------------
 
