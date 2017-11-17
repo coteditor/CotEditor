@@ -379,9 +379,9 @@
 "LC4-lg-eO0.title" = "首字母大写";
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
-"586.title" = "Half-width to Full-width";  // FIXME: added
+"dVK-1s-xJq.title" = "Half-width to Full-width";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
-"588.title" = "Full-width to Half-width";  // FIXME: added
+"Skr-vI-7VN.title" = "Full-width to Half-width";  // FIXME: added
 /* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
 "586.title" = "ASCII 到全宽 ASCII";
 /* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */

@@ -75,7 +75,7 @@
 "Lhw-9C-lgB.ibShadowedToolTip" = "^と$がそれぞれ行頭と行末にもマッチ（複数行モード）";
 
 /* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "5oj-ch-YiX"; */
-"5oj-ch-YiX.title" = "Unicode 単語境界を使用";
+"5oj-ch-YiX.title" = "Unicode単語境界を使用";
 /* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "VMh-Tq-bq0"; */
 "VMh-Tq-bq0.ibShadowedToolTip" = "単語の区切りにUnicode TR#29定義を使用";
 

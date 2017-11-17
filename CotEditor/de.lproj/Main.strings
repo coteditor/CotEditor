@@ -378,9 +378,9 @@
 "LC4-lg-eO0.title" = "Großschreiben";
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
-"586.title" = "Halbbreiten zu Vollbreiten";
+"dVK-1s-xJq.title" = "Halbbreiten zu Vollbreiten";
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
-"588.title" = "Vollbreiten zu Halbbreiten";
+"Skr-vI-7VN.title" = "Vollbreiten zu Halbbreiten";
 /* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
 "586.title" = "ASCII zu Vollbreiten-ASCII";
 /* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */
