@@ -101,7 +101,7 @@ final class IntegrationPaneController: NSViewController {
             self.warning = NSLocalizedString("The current 'cot' symbolic link doesn’t target the running CotEditor.", comment: "")
         } else {
             // link destination is unreachable
-            self.warning = NSLocalizedString("The current 'cot' symbolic link may target on an invalid path.", comment: "")
+            self.warning = NSLocalizedString("The current 'cot' symbolic link may target an invalid path.", comment: "")
         }
         
         return true
