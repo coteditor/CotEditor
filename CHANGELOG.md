@@ -32,6 +32,7 @@ develop
 
 - Fix an issue where the syntax highlighting indicator could display twice.
 - Fix an issue where the separator was selected meanlessly in the Window pane if the window tabbing setting was set to “Manually”.
+- Fix some missing localized strings.
 - Improve general stability.
 
 

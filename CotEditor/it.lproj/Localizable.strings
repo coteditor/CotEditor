@@ -379,8 +379,8 @@
 
 // Integration pane
 // Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target on the running CotEditor." = "Il link simbolico 'cot' attuale non punta al CotEditor in esecuzione.";
-"The current 'cot' symbolic link may target on an invalid path." = "Il link simbolico 'cot' attuale potrebbe puntare ad un percorso non valido.";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Il link simbolico 'cot' attuale non punta al CotEditor in esecuzione.";
+"The current 'cot' symbolic link may target an invalid path." = "Il link simbolico 'cot' attuale potrebbe puntare ad un percorso non valido.";
 
 
 
