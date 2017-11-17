@@ -51,7 +51,7 @@
 
 // Importing theme
 "“%@” is a CotEditor theme file." = "“%@”はCotEditorテーマファイルです。";
-"Do you want to install this theme?" = "テーマをインストールしますか？";
+"Do you want to install this theme?" = "テーマをインストールしますか?";
 "Install" = "インストール";
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
@@ -99,11 +99,11 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "ファイル“%@”はテキストデータではないようです。";
-"The file is %@.\n\nDo you really want to open the file?" = "このファイルは%@です。\n\n本当にファイルを開きますか？";
+"The file is %@.\n\nDo you really want to open the file?" = "このファイルは%@です。\n\n本当にファイルを開きますか?";
 
 // Large file alert
 "The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが%@あります。";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか？";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?";
 "Open" = "開く";
 
 
@@ -115,25 +115,25 @@
 
 // Convert or reinterpret encoding alert
 "File encoding" = "エンコーディング";
-"Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って変換または再解釈しますか？";
+"Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って変換または再解釈しますか?";
 "Convert" = "変換";
 "Reinterpret" = "再解釈";
 
 // Lossy encoding alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
-"Do you want to continue processing?" = "保存作業を続けますか？";
+"Do you want to continue processing?" = "保存作業を続けますか?";
 "Save Available Strings" = "有効な文字列を保存";
 "Show Incompatible Characters" = "非互換文字を表示";
 
 // Incompatible IANA charset name alert
 "The encoding is “%@”, but the IANA charset name in text is “%@”." = "エンコーディングは“%@”ですが、IANA文字セット名は“%@”です。";
-"Do you want to continue processing?" = "保存作業を続けますか？";
+"Do you want to continue processing?" = "保存作業を続けますか?";
 "Do not show this warning for this document again" = "今後この書類ではこの警告を表示しない";
 "Continue Saving" = "保存を続行";
 
 // Encoding change with unsaved changes alert
 "The file “%@” has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
-"Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコーディングをリセットしてもよろしいですか？";
+"Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコーディングをリセットしてもよろしいですか?";
 "Discard Changes" = "変更内容を破棄";
 
 // Reinterpretation failed alert
@@ -143,13 +143,13 @@
 
 // incompatible characters alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
-"Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか？";
+"Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか?";
 "Change Encoding" = "エンコーディングを変更";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
 "The file has been modified by another application." = "ファイルは別のアプリケーションによって変更されました。";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか？";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?";
 "Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
 
@@ -298,7 +298,7 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"<Outline Menu>" = "<アウトラインメニュー>";
+"<Outline Menu>" = "＜アウトラインメニュー＞";
 "Jump to previous outline item" = "前の項目へ";
 "Jump to next outline item" = "次の項目へ";
 
@@ -334,7 +334,7 @@
 // General pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
-"Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか？";
+"Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか?";
 "Restart Now" = "今すぐ再起動";
 "Later" = "あとで";
 
@@ -346,7 +346,7 @@
 "Restore “%@”" = "“%@”を元に戻す";
 "Reveal “%@” in Finder" = "“%@”をFinderで表示";
 // Theme deletion alert
-"Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか？";
+"Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか?";
 "This action cannot be undone." = "この操作は取り消せません。";
 
 // Swipe to delete (also used in the Format pane)
@@ -356,7 +356,7 @@
 
 // Format pane
 // Encoding menu alert
-"Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか？";
+"Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか?";
 "The default “Auto-Detect” is recommended for most cases." = "ほとんどの場合、デフォルトの“自動認識”が推奨されます。";
 "Change to “%@”" = "“%@”へ変更";
 "Revert to “Auto-Detect”" = "“自動認識”へ戻す";
@@ -369,7 +369,7 @@
 
 // File Drop pane
 // File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか？";
+"Are you sure you want to delete the file drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか?";
 "Deleted setting can’t be restored." = "削除した設定は元に戻せません。";
 
 
@@ -434,7 +434,7 @@
 "copy" = "コピー";
 
 // Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか？";
+"Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか?";
 "Deleted style can’t be restored." = "この操作は取り消せません。";
 "Delete" = "削除";
 "Replace" = "置換";
@@ -443,7 +443,7 @@
 "Import" = "読み込み";
 // Importing same name style alert
 "A new style named “%@” will be installed, but a custom style with the same name already exists." = "新しいスタイル“%@”のインストールを試みましたが、同名のカスタムスタイルがすでに存在しています。";
-"Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
+"Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか?\n置き換えたスタイルは元に戻せません。";
 
 // Export syntax style file savePanel label
 "Export As:" = "書き出し:";
@@ -465,7 +465,7 @@
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか?\n削除したテーマは元に戻せません。";
 
 
 
