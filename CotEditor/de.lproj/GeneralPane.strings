@@ -69,9 +69,9 @@
 "tPy-Ox-YpP.title" = "URLs im Dokument verlinken";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "Rechtschreibung während der Eingabe prüfen";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
+/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "Übereinstimmende Klammern „()“ „[]“ „{}“ hervorheben";
-/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
+/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "„<>“ hervorheben";
 
 

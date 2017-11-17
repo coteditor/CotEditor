@@ -102,8 +102,8 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="HN3-DF-LVf">
-                                <rect key="frame" x="167" y="173" width="271" height="18"/>
-                                <buttonCell key="cell" type="check" title="Highlight matching braces “( )” “[ ]” “{ }”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RrC-LL-hid">
+                                <rect key="frame" x="167" y="173" width="260" height="18"/>
+                                <buttonCell key="cell" type="check" title="Highlight matching braces “()” “[]” “{}”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RrC-LL-hid">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -112,8 +112,8 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="zOA-Uj-rjv">
-                                <rect key="frame" x="187" y="151" width="114" height="18"/>
-                                <buttonCell key="cell" type="check" title="Highlight “&lt; &gt;”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="al9-WE-Rqy">
+                                <rect key="frame" x="187" y="151" width="110" height="18"/>
+                                <buttonCell key="cell" type="check" title="Highlight “&lt;&gt;”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="al9-WE-Rqy">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

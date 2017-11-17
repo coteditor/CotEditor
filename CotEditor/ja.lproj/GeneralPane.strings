@@ -69,10 +69,10 @@
 "tPy-Ox-YpP.title" = "書類中のURLをリンク";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "入力中に自動スペルチェック";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
-"RrC-LL-hid.title" = "対応する括弧“( )” “[ ]” “{ }”をハイライト表示";
-/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
-"al9-WE-Rqy.title" = "“< >”をハイライト表示";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
+"RrC-LL-hid.title" = "対応する括弧“()” “[]” “{}”をハイライト表示";
+/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
+"al9-WE-Rqy.title" = "“<>”をハイライト表示";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
