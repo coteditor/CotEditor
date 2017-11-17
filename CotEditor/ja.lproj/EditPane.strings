@@ -38,7 +38,7 @@
 /* Class = "NSButtonCell"; title = "Quotes"; ObjectID = "Abx-fM-gyc"; */
 "Abx-fM-gyc.title" = "引用符";
 /* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
-"nr1-0X-aBY.title" = "ダッシュ記号";
+"nr1-0X-aBY.title" = "ダッシュ";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
