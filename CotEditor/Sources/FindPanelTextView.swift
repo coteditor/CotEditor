@@ -34,6 +34,8 @@ final class FindPanelTextView: NSTextView {
     
     @IBInspectable var performsActionOnEnter: Bool = false
     
+    @objc dynamic var isEmpty: Bool = true
+    
     
     
     // MARK: -
@@ -90,6 +92,15 @@ final class FindPanelTextView: NSTextView {
     }
     
     
+    /// update value state
+    override func didChangeText() {
+        
+        super.didChangeText()
+        
+        self.isEmpty = self.string.isEmpty
+    }
+    
+    
     /// perform Find Next with return
     override func insertNewline(_ sender: Any?) {
         
@@ -130,6 +141,20 @@ final class FindPanelTextView: NSTextView {
         }
         
         super.insertText(str, replacementRange: replacementRange)
+    }
+    
+    
+    
+    // MARK: Actions
+    
+    /// clear current text
+    @IBAction func clear(_ sender: Any?) {
+        
+        guard self.shouldChangeText(in: self.string.nsRange, replacementString: "") else { return }
+        
+        self.string = ""
+        
+        self.didChangeText()
     }
     
 }

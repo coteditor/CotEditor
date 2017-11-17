@@ -14,6 +14,7 @@ develop
 ### Improvements
 
 - Drop support for __OS X 10.10 Yosemite__.
+- Add clear button to input fields in the find panel.
 - Scroll console view after getting a new message to make it visible.
 - Some minor UI improvements and fixes.
 - Update Japanese localization to conform with the modern macOS localization rules.
