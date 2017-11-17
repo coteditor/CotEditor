@@ -85,17 +85,17 @@
 /* Class = "NSToolbarItem"; ObjectID = "fW9-Xn-I9b"; */
 "fW9-Xn-I9b.label" = "コメント";  /* Comment */
 "fW9-Xn-I9b.paletteLabel" = "コメントを切替";  /* Toggle Comment */
-"fW9-Xn-I9b.toolTip" = "選択範囲をコメントアウト／コメント解除";  /* Comment-out or uncomment selection */
+"fW9-Xn-I9b.toolTip" = "選択範囲をコメントアウト/コメント解除";  /* Comment-out or uncomment selection */
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "不可視文字";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "不可視文字を表示／隠す";  /* Show / Hide Invisibles */
-"xbD-Up-YfQ.toolTip" = "テキスト中の不可視文字を表示／隠す";  /* Show or hide invisible characters in text */
+"xbD-Up-YfQ.paletteLabel" = "不可視文字を表示/隠す";  /* Show / Hide Invisibles */
+"xbD-Up-YfQ.toolTip" = "テキスト中の不可視文字を表示/隠す";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "ページガイド";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "ページガイドを表示／隠す";  /* Show / Hide Page Guide */
-"GS6-aA-mgz.toolTip" = "ページガイドを表示／隠す";  /* Show or hide page guide line */
+"GS6-aA-mgz.paletteLabel" = "ページガイドを表示/隠す";  /* Show / Hide Page Guide */
+"GS6-aA-mgz.toolTip" = "ページガイドを表示/隠す";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
 "mGD-5P-MDq.label" = "行を折り返す";  /* Wrap Lines */
@@ -103,9 +103,9 @@
 "mGD-5P-MDq.toolTip" = "行の折り返しを切替";  /* Toggle wrap lines */
 
 /* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
-"1cW-FV-40L.label" = "縦書き／横書き";  /* Orientation */
-"1cW-FV-40L.paletteLabel" = "縦書き／横書きを切替";  /* Toggle Text Orientation */
-"1cW-FV-40L.toolTip" = "縦書き／横書きを切替";  /* Toggle text orientation */
+"1cW-FV-40L.label" = "縦書き/横書き";  /* Orientation */
+"1cW-FV-40L.paletteLabel" = "縦書き/横書きを切替";  /* Toggle Text Orientation */
+"1cW-FV-40L.toolTip" = "縦書き/横書きを切替";  /* Toggle text orientation */
 
 /* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "タブを展開";  /* Expand Tabs */

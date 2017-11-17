@@ -167,7 +167,7 @@
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "gqI-2M-XIx"; */
 "gqI-2M-XIx.title" = "自動変換を表示";
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */
-"QKD-ue-EQp.title" = "スマートコピー／ペースト";
+"QKD-ue-EQp.title" = "スマートコピー/ペースト";
 /* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "sza-9T-f4h"; */
 "sza-9T-f4h.title" = "スマート引用符";
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "cIp-rb-QPk"; */
@@ -482,7 +482,7 @@
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
 "23.title" = "しまう";
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
-"203.title" = "拡大／縮小";
+"203.title" = "拡大/縮小";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "すべてを手前に移動";

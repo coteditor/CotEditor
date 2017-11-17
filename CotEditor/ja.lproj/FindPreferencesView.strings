@@ -53,9 +53,9 @@
 "YYY-qb-T00.ibShadowedToolTip" = "文字の発音記号を無視して検索（例: ö = o）";
 
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "Jug-Dk-JMZ"; */
-"Jug-Dk-JMZ.title" = "全角／半角を無視";
+"Jug-Dk-JMZ.title" = "全角/半角を無視";
 /* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (e.g., ａ = a)."; ObjectID = "A5O-jt-o7T"; */
-"A5O-jt-o7T.ibShadowedToolTip" = "文字の全角／半角を無視して検索（例: ａ = a）";
+"A5O-jt-o7T.ibShadowedToolTip" = "文字の全角/半角を無視して検索（例: ａ = a）";
 
 
 // Regular Expression
@@ -70,7 +70,7 @@
 "c11-J5-UXF.ibShadowedToolTip" = ".が改行記号を含むすべての文字にマッチ（単一行モード）";
 
 /* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "YXU-NA-BZb"; */
-"YXU-NA-BZb.title" = "アンカーが行頭／行末にマッチ";
+"YXU-NA-BZb.title" = "アンカーが行頭/行末にマッチ";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "Lhw-9C-lgB"; */
 "Lhw-9C-lgB.ibShadowedToolTip" = "^と$がそれぞれ行頭と行末にもマッチ（複数行モード）";
 
