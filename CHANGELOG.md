@@ -14,6 +14,7 @@ develop
 ### Improvements
 
 - Drop support for __OS X 10.10 Yosemite__.
+- Scroll console view after getting a new message to make it visible.
 - Some minor UI improvements and fixes.
 - Update inner source code to Swift 4.
 

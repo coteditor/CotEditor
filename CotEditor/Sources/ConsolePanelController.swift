@@ -91,6 +91,7 @@ final class ConsolePanelController: NSWindowController {
     /// append given message to the console
     func append(message: String, title: String?) {
         
+        let lastLocation = self.textView?.textStorage?.length ?? 0
         let date = self.dateFormatter.string(from: Date())
         var attrString = NSAttributedString(string: "[" + date + "]")
         
@@ -106,6 +107,9 @@ final class ConsolePanelController: NSWindowController {
         attrString += attrMessage
         
         self.textView?.textStorage?.append(attrString)
+        
+        // scroll to make message visible
+        self.textView?.scrollRangeToVisible(NSRange(location: lastLocation, length: attrString.length))
     }
     
     
