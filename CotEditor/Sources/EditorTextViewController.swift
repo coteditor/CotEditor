@@ -343,9 +343,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // [note] Don't invoke this method too often but with a currentLineUpdateTimer because this is a heavy task.
         
-        guard UserDefaults.standard[.highlightCurrentLine] else { return }
-        
         guard
+            UserDefaults.standard[.highlightCurrentLine],
             let textView = self.textView,
             let textContainer = textView.textContainer
              else { return }
