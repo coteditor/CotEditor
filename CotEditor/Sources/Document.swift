@@ -805,22 +805,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    
-    // string encoding
-    
-    /// reinterpret file with the desired encoding and show error dialog if failed
-    func reinterpretAndShowError(encoding: String.Encoding) {
-        
-        do {
-            try self.reinterpret(encoding: encoding)
-            
-        } catch {
-            NSSound.beep()
-            self.presentErrorAsSheet(error)
-        }
-    }
-    
-    
     /// reinterpret file with the desired encoding
     func reinterpret(encoding: String.Encoding) throws {
         
@@ -994,7 +978,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change document file encoding
     @IBAction func changeEncoding(_ sender: AnyObject?) {
         
-        guard let tag = sender?.tag, let encodingName = sender?.title else { return }
+        guard
+            let tag = sender?.tag,
+            let encodingName = sender?.title else { return }
         
         let encoding = String.Encoding(rawValue: UInt(abs(tag)))
         let withUTF8BOM = (tag == -Int(String.Encoding.utf8.rawValue))
@@ -1043,7 +1029,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
                 
                 // reinterpret
-                self.reinterpretAndShowError(encoding: encoding)
+                do {
+                    try self.reinterpret(encoding: encoding)
+                } catch {
+                    NSSound.beep()
+                    self.presentErrorAsSheet(error)
+                }
                 
             case .alertThirdButtonReturn:  // = Cancel
                 // reset toolbar selection for in case if the operation was invoked from the toolbar popup
