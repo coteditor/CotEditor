@@ -70,6 +70,7 @@ final class SyntaxTermsEditViewController: NSViewController {
     
     /// setup binding with desired key
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.termsController!.bind(.contentArray,
