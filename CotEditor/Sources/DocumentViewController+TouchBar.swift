@@ -85,7 +85,7 @@ extension DocumentViewController: NSTouchBarDelegate {
             guard let document = self.document else { return nil }
             let item = NSSharingServicePickerTouchBarItem(identifier: identifier)
             item.delegate = document
-            item.bind(NSBindingName("enabled"), to: document, withKeyPath: #keyPath(NSDocument.fileURL),
+            item.bind(.enabled, to: document, withKeyPath: #keyPath(NSDocument.fileURL),
                       options: [.valueTransformerName: NSValueTransformerName.isNotNilTransformerName])
             return item
             
