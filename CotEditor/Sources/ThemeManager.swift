@@ -237,7 +237,7 @@ final class ThemeManager: SettingFileManager {
         let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
         
         guard let themeDictionry = json as? ThemeDictionary else {
-            throw CocoaError(.fileReadCorruptFile)
+            throw CocoaError.error(.fileReadCorruptFile, url: fileURL)
         }
         
         return themeDictionry

@@ -413,7 +413,7 @@ final class SyntaxManager: SettingFileManager {
         let yaml = try YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves)
         
         guard let styleDictionary = yaml as? StyleDictionary else {
-            throw CocoaError(.fileReadCorruptFile)
+            throw CocoaError.error(.fileReadCorruptFile, url: fileURL)
         }
         
         return styleDictionary

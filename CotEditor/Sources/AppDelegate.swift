@@ -214,7 +214,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 if let error = error {
                     NSApp.presentError(error)
                     
-                    let cancelled = (error as? CocoaError)?.errorCode == CocoaError.userCancelled.rawValue
+                    let cancelled = (error as? CocoaError)?.code == .userCancelled
                     NSApp.reply(toOpenOrPrint: cancelled ? .cancel : .failure)
                 }
                 

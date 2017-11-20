@@ -352,9 +352,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // get data from string to save
         guard var data = string.data(using: encoding, allowLossyConversion: true) else {
-            throw NSError(domain: CocoaError.errorDomain,
-                          code: CocoaError.fileWriteInapplicableStringEncoding.rawValue,
-                          userInfo: [NSStringEncodingErrorKey: encoding.rawValue])
+            throw CocoaError.error(.fileWriteInapplicableStringEncoding,
+                                   userInfo: [NSStringEncodingErrorKey: encoding.rawValue])
         }
         
         // add UTF-8 BOM if needed
