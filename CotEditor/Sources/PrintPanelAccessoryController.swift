@@ -77,7 +77,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     }
     
     
-    /// printInfo did set (new print sheet wil be displayed)
+    /// printInfo did set (new print sheet will be displayed)
     override var representedObject: Any? {
         
         didSet {
