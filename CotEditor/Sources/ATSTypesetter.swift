@@ -90,7 +90,7 @@ final class ATSTypesetter: NSATSTypesetter {
         
         // -> Getting index fails when the code point is a part of surrogate pair.
         guard
-            charIndex == 0,
+            charIndex > 0,
             let string = self.attributedString?.string,
             let index = String.UTF16Index(encodedOffset: charIndex).samePosition(in: string)
             else { return true }
@@ -107,7 +107,7 @@ final class ATSTypesetter: NSATSTypesetter {
             }
         }
         
-        return false  // didn't hit to line-break (= first line)
+        return false  // didn't hit any line-break (= first line)
     }
     
 }

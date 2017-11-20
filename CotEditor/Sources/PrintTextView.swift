@@ -115,10 +115,17 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     }
     
     
-    /// draw
-    override func draw(_ dirtyRect: NSRect) {
+    /// prepare for drawing
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
         
         self.loadPrintSettings()
+    }
+    
+    
+    /// draw
+    override func draw(_ dirtyRect: NSRect) {
         
         // store graphics state to keep line number area drawable
         //   -> Otherwise, line numbers can be cropped. (2016-03 by 1024jp)
