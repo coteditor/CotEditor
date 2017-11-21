@@ -28,7 +28,7 @@
 import Cocoa
 
 /// outilneView column identifier
-extension NSUserInterfaceItemIdentifier {
+private extension NSUserInterfaceItemIdentifier {
     
     static let title = NSUserInterfaceItemIdentifier("title")
     static let keySpecChars = NSUserInterfaceItemIdentifier("keyBindingKey")
