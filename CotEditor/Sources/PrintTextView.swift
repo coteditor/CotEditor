@@ -255,13 +255,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     }
     
     
-    /// flip Y axis
-    override var isFlipped: Bool {
-        
-        return true
-    }
-    
-    
     /// view's opacity
     override var isOpaque: Bool {
         
