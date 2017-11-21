@@ -350,6 +350,9 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
             self.saveSettings()
         }
     }
+    
+    
+    
     // MARK: Private Methods
     
     /// set snippets to arrayController
