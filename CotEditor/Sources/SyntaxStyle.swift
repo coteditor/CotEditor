@@ -382,7 +382,7 @@ extension SyntaxStyle {
             
             // expand highlight area if the character just before/after the highlighting area is the same color
             if let layoutManager = textStorage.layoutManagers.first {
-                var start = highlightRange.location
+                var start = highlightRange.lowerBound
                 var end = highlightRange.upperBound
                 var effectiveRange = NSRange.notFound
                 
@@ -393,7 +393,7 @@ extension SyntaxStyle {
                                                         atCharacterIndex: start,
                                                         longestEffectiveRange: &effectiveRange,
                                                         in: wholeRange) != nil {
-                        start = effectiveRange.location
+                        start = effectiveRange.lowerBound
                     }
                 }
                 if layoutManager.temporaryAttribute(.foregroundColor,
