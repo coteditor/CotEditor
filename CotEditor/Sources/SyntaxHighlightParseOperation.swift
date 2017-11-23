@@ -452,12 +452,11 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             guard let definitions = self.definitions[syntaxType] else { continue }
             
             // update indicator sheet message
-            self.progress.becomeCurrent(withPendingUnitCount: 1)
             DispatchQueue.main.async { [weak progress = self.progress] in
                 progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             }
             
-            let childProgress = Progress(totalUnitCount: Int64(definitions.count))
+            let childProgress = Progress(totalUnitCount: Int64(definitions.count), parent: self.progress, pendingUnitCount: 1)
             
             var ranges = [NSRange]()
             let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
@@ -513,7 +512,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                 guard let childProgress = childProgress else { return }
                 childProgress.completedUnitCount = childProgress.totalUnitCount
             }
-            self.progress.resignCurrent()
         }
         
         guard !self.isCancelled else { return [:] }
