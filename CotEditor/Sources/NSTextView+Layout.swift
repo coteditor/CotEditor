@@ -105,7 +105,7 @@ extension NSTextView {
             let scale: CGFloat = {
                 guard let scrollView = self.enclosingScrollView else { return newValue }
                 
-                return newValue.within(min: scrollView.minMagnification, max: scrollView.maxMagnification)
+                return newValue.clamped(min: scrollView.minMagnification, max: scrollView.maxMagnification)
             }()
             
             // scale

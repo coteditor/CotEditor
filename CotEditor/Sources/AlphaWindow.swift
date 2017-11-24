@@ -39,7 +39,7 @@ final class AlphaWindow: NSWindow {
     var backgroundAlpha: CGFloat = 1.0 {
         
         didSet {
-            backgroundAlpha = backgroundAlpha.within(min: 0.2, max: 1.0)
+            backgroundAlpha = backgroundAlpha.clamped(min: 0.2, max: 1.0)
             self.backgroundColor = self.backgroundColor.withAlphaComponent(backgroundAlpha)
             self.isOpaque = (backgroundAlpha == 1.0)
             self.invalidateShadow()
