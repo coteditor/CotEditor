@@ -307,7 +307,7 @@
 /* Class = "NSMenu"; title = "Comment"; ObjectID = "yph-qH-qNE"; */
 "yph-qH-qNE.title" = "コメント";
 /* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "コメント状態をトグル";
+"LLy-Yx-tXI.title" = "コメント状態を変更";
 /* Class = "NSMenuItem"; title = "Inline Comment"; ObjectID = "F6P-7N-LSf"; */
 "F6P-7N-LSf.title" = "インラインコメントアウト";
 /* Class = "NSMenuItem"; title = "Block Comment"; ObjectID = "U5v-4k-2tq"; */
