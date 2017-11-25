@@ -487,12 +487,8 @@
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "すべてを手前に移動";
 
-/* Class = "NSMenuItem"; title = "Panels"; ObjectID = "649"; */
-"649.title" = "パネル";
-/* Class = "NSMenu"; title = "Panels"; ObjectID = "650"; */
-"650.title" = "パネル";
-/* Class = "NSMenuItem"; title = "Console Panel"; ObjectID = "653"; */
-"653.title" = "コンソールパネル";
+/* Class = "NSMenuItem"; title = "Console"; ObjectID = "653"; */
+"653.title" = "コンソール";
 /* Class = "NSMenuItem"; title = "Color Code Panel"; ObjectID = "651"; */
 "651.title" = "カラーコードパネル";
 

@@ -488,12 +488,8 @@
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "Porta tutto in primo piano";
 
-/* Class = "NSMenuItem"; title = "Panels"; ObjectID = "649"; */
-"649.title" = "Pannelli";
-/* Class = "NSMenu"; title = "Panels"; ObjectID = "650"; */
-"650.title" = "Pannelli";
-/* Class = "NSMenuItem"; title = "Console Panel"; ObjectID = "653"; */
-"653.title" = "Pannello console";
+/* Class = "NSMenuItem"; title = "Console"; ObjectID = "653"; */
+"653.title" = "Console";
 /* Class = "NSMenuItem"; title = "Color Code Panel"; ObjectID = "651"; */
 "651.title" = "Pannello Codici colore";
 
