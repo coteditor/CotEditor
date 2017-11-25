@@ -256,15 +256,15 @@
 
 /* MARK: DocumentViewController */
 // Menu items
-"Hide Line Numbers" = "行番号を隠す";
+"Hide Line Numbers" = "行番号を非表示";
 "Show Line Numbers" = "行番号を表示";
-"Hide Status Bar" = "ステータスバーを隠す";
+"Hide Status Bar" = "ステータスバーを非表示";
 "Show Status Bar" = "ステータスバーを表示";
-"Hide Navigation Bar" = "ナビゲーションバーを隠す";
+"Hide Navigation Bar" = "ナビゲーションバーを非表示";
 "Show Navigation Bar" = "ナビゲーションバーを表示";
-"Hide Invisible Characters" = "不可視文字を隠す";
+"Hide Invisible Characters" = "不可視文字を非表示";
 "Show Invisible Characters" = "不可視文字を表示";
-"Hide Page Guide" = "ページガイドを隠す";
+"Hide Page Guide" = "ページガイドを非表示";
 "Show Page Guide" = "ページガイドを表示";
 "Unwrap Lines" = "行を折り返さない";
 "Wrap Lines" = "行を折り返す";
@@ -272,7 +272,7 @@
 "Use Horizontal Orientation" = "横書きで表示";
 
 // Tooltip for "Show Invisible Characters" menu item
-"Show or hide invisible characters in document" = "書類中の不可視文字を表示/隠す";
+"Show or hide invisible characters in document" = "書類中の不可視文字を表示/非表示";
 "To show invisible characters, set them in Preferences" = "不可視文字を表示させるには、環境設定を変更してください";
 
 
