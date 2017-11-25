@@ -401,12 +401,20 @@
 
 /* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
 "601.title" = "NFD";
+/* Class = "NSMenuItem"; title = "Canonical Decomposition"; ObjectID = "601"; */
+"601.ibShadowedToolTip" = "Decomposizione canonica";
 /* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
 "602.title" = "NFC";
+/* Class = "NSMenuItem"; title = "Canonical Decomposition, followed by Canonical Composition"; ObjectID = "602"; */
+"602.ibShadowedToolTip" = "Decomposizione canonica, seguita dalla composizione canonica";
 /* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
 "603.title" = "NFKD";
+/* Class = "NSMenuItem"; title = "Compatibility Decomposition"; ObjectID = "603"; */
+"603.ibShadowedToolTip" = "Decomposizione compatibile";
 /* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
 "598.title" = "NFKC";
+/* Class = "NSMenuItem"; title = "Compatibility Decomposition, followed by Canonical Composition"; ObjectID = "598"; */
+"598.ibShadowedToolTip" = "Decomposizione compatibile, seguita dalla composizione canonica";
 /* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
 "zuR-3K-9fs.title" = "NFKC Casefold";
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */

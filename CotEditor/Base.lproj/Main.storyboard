@@ -828,26 +828,27 @@ CA
                                         <menuItem title="Unicode Normalizations" id="599">
                                             <menu key="submenu" title="Unicode Normalizations" id="600">
                                                 <items>
-                                                    <menuItem title="NFD" id="601">
+                                                    <menuItem title="NFD" toolTip="Canonical Decomposition" id="601">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFD:" target="Ady-hI-5gd" id="1bP-fy-Ixy"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="NFC" tag="1" id="602">
+                                                    <menuItem title="NFC" tag="1" toolTip="Canonical Decomposition, followed by Canonical Composition" id="602">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFC:" target="Ady-hI-5gd" id="pmf-yf-jYo"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="NFKD" tag="2" id="603">
+                                                    <menuItem title="NFKD" tag="2" toolTip="Compatibility Decomposition" id="603">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFKD:" target="Ady-hI-5gd" id="O9c-JY-XaD"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="NFKC" tag="3" id="598">
+                                                    <menuItem title="NFKC" tag="3" toolTip="Compatibility Decomposition, followed by Canonical Composition" id="598">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFKC:" target="Ady-hI-5gd" id="ltN-cG-DDT"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="OlS-1E-EU6"/>
                                                     <menuItem title="NFKC Casefold" tag="4" id="zuR-3K-9fs">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFKCCF:" target="Ady-hI-5gd" id="iSp-un-Dje"/>
