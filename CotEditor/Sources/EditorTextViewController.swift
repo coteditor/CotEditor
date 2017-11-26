@@ -356,7 +356,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard var rect = textView.boundingRect(for: lineRange) else { return }
         
-        rect.size.width = textContainer.containerSize.width - 2 * textContainer.lineFragmentPadding
+        rect.size.width = textContainer.size.width - 2 * textContainer.lineFragmentPadding
         
         guard textView.lineHighlightRect != rect else { return }
         

@@ -183,7 +183,7 @@ extension NSTextView {
         get {
             guard let container = self.textContainer else { return false }
             
-            return (container.containerSize.width != CGFloat.greatestFiniteMagnitude)
+            return (container.size.width != .greatestFiniteMagnitude)
         }
         
         set (wrapsLines) {
@@ -196,11 +196,11 @@ extension NSTextView {
             textContainer.widthTracksTextView = wrapsLines
             if wrapsLines {
                 let contentSize = scrollView.contentSize
-                textContainer.containerSize = NSSize(width: (contentSize.width / self.scale).rounded(),
-                                                     height: CGFloat.greatestFiniteMagnitude)
+                textContainer.size = NSSize(width: (contentSize.width / self.scale).rounded(),
+                                            height: .greatestFiniteMagnitude)
                 self.setConstrainedFrameSize(contentSize)
             } else {
-                textContainer.containerSize = .infinite
+                textContainer.size = .infinite
             }
             self.autoresizingMask = wrapsLines ? (isVertical ? .height : .width) : .none
             if isVertical {
