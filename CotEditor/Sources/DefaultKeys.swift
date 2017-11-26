@@ -34,6 +34,7 @@ extension DefaultKeys {
     static let reopenBlankWindow = DefaultKey<Bool>("reopenBlankWindow")
     static let windowTabbing = DefaultKey<Int>("windowTabbing")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
+    static let quitAlwaysKeepsWindows = DefaultKey<Bool>("NSQuitAlwaysKeepsWindows")
     static let trimsTrailingWhitespaceOnSave = DefaultKey<Bool>("trimsTrailingWhitespaceOnSave")
     static let trimsWhitespaceOnlyLines = DefaultKey<Bool>("trimsWhitespaceOnlyLines")
     static let documentConflictOption = DefaultKey<Int>("documentConflictOption")

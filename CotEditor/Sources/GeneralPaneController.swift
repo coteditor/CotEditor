@@ -94,11 +94,31 @@ final class GeneralPaneController: NSViewController {
     /// "Enable Auto Save and Versions" checkbox was clicked
     @IBAction func updateAutosaveSetting(_ sender: Any?) {
         
-        let currentSetting = Document.autosavesInPlace
-        let newSetting = UserDefaults.standard[.enablesAutosaveInPlace]
-        
         // do nothing if the setting returned to the current one.
-        guard currentSetting != newSetting else { return }
+        guard UserDefaults.standard[.enablesAutosaveInPlace] != Document.autosavesInPlace else { return }
+        
+        self.askRelaunch(for: .enablesAutosaveInPlace)
+    }
+    
+    
+    /// "Restore last windows on launch" checkbox was clicked
+    @IBAction func updateWindowRestorationSetting(_ sender: Any?) {
+        
+        self.askRelaunch(for: .quitAlwaysKeepsWindows)
+    }
+    
+    
+    /// A radio button of documentConflictOption was clicked
+    @IBAction func updateDocumentConflictSetting(_ sender: NSControl) {
+        
+        UserDefaults.standard[.documentConflictOption] = sender.tag
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private func askRelaunch(for defaultKey: DefaultKey<Bool>) {
         
         let alert = NSAlert()
         alert.messageText = NSLocalizedString("The change will be applied first at the next launch.", comment: "")
@@ -112,23 +132,14 @@ final class GeneralPaneController: NSViewController {
             switch returnCode {
             case .alertFirstButtonReturn:  // = Restart Now
                 NSApp.relaunch(delay: 2.0)
-                
             case .alertSecondButtonReturn:  // = Later
                 break  // do nothing
-                
             case .alertThirdButtonReturn:  // = Cancel
-                UserDefaults.standard[.enablesAutosaveInPlace] = !newSetting
-                
-            default: break
+                UserDefaults.standard[defaultKey] = !UserDefaults.standard[defaultKey]  // revert state
+            default:
+                preconditionFailure()
             }
         }
-    }
-    
-    
-    /// A radio button of documentConflictOption was clicked
-    @IBAction func updateDocumentConflictSetting(_ sender: NSControl) {
-        
-        UserDefaults.standard[.documentConflictOption] = sender.tag
     }
     
 }
