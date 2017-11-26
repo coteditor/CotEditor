@@ -8,7 +8,7 @@ develop
 ### New Features
 
 - Add new actions “Half-width to Full-width” and  “Full-width to Half-width” to Text > Transformations menu.
-- Add new setting option “including whitespace-only lines” for  “trim trailing whitespace” action in General pane.
+- Add new setting option “including whitespace-only lines” for “trim trailing whitespace” action in General pane.
 
 
 ### Improvements
@@ -691,7 +691,7 @@ develop
 - Improve scrolling with line number view drag.
 - Better syntax highlighting while editing.
 - Enable activate “Show Invisibles” action even if all of the invisible characters were set as not shown when the document was opened.
-- Update build environment to macOS Sierra +  Xcode 8 (SDK macOS 10.12).
+- Update build environment to macOS Sierra + Xcode 8 (SDK macOS 10.12).
 
 
 ### Fixes
@@ -1435,7 +1435,7 @@ develop
 - Adjust highlight color for find panel.
 - Tweak some message terms.
 - Update documents.
-- Update build environment to OS X El Capitan +  Xcode 7 (SDK 10.11).
+- Update build environment to OS X El Capitan + Xcode 7 (SDK 10.11).
 - [non-AppStore ver.] Update Sparkle framework to version 1.11.0.
 - [beta][non-AppStore ver.] Change to not check pre-release versions on default.
     - New pre-releases are always subject to the update check no matter the user setting if the current running CotEditor is a pre-release version.
