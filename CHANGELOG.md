@@ -7,7 +7,7 @@ develop
 
 ### New Features
 
-- Add new actions “Half-width to Full-width” and  “Full-width to Half-width” to Text > Transformations menu.
+- Add new actions “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “including whitespace-only lines” for “trim trailing whitespace” action in General pane.
 
 
@@ -498,7 +498,7 @@ develop
 
 - Add “Complete” action to “Edit” menu.
 - On macOS Sierra, the default shortcut for completion action was changed to `⌥⎋`.
-- Move action items in the menu “Edit” > “Transformations” to “Text” >  “Transformations”.
+- Move action items in the menu “Edit” > “Transformations” to “Text” > “Transformations”.
 - Transform word contains the cursor if nothing is selected on transformation or Unicode normalization actions.
 
 
@@ -720,7 +720,7 @@ develop
 ### New Features
 
 - Add newly rewritten syntax styles for “C” and “C++”.
-    - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
+    - From this change, previous “C, C++, Objective-C” syntax style is deleted.
 - Add syntax styles for “MATLAB” and “Verilog”.
 
 
@@ -729,7 +729,7 @@ develop
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub flavored Markdown.
     - Support emphasis with triple `*` and `_`.
-- Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.
+- Focus back on the find panel after performing “Find All”, “Replace All” and “Highlight”.
 - Change to use the body text color for line numbers on printing that was previously always black.
 - Improve scroll behavior with arrow keys.
 - Improve compatibility with macOS Sierra beta.
