@@ -35,6 +35,7 @@ struct DefaultSettings {
         .reopenBlankWindow: true,
         .windowTabbing: -1,  // = Respect System Setting
         .enablesAutosaveInPlace: true,
+        .quitAlwaysKeepsWindows: false,
         .trimsTrailingWhitespaceOnSave: false,
         .trimsWhitespaceOnlyLines: false,
         .documentConflictOption: DocumentConflictOption.revert.rawValue,

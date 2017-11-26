@@ -41,6 +41,8 @@
 "SGo-FL-Pax.title" = "Automatische Sicherung mit Versionen aktivieren";
 /* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "Eine Systemfunktion, die Ihre Dateien während der Bearbeitung automatisch überschreibt. Auch wenn sie nicht aktiviert ist, erstellt CotEditor verdeckt Backups für den Fall eines unerwarteten Absturzes.";
+/* Class = "NSButtonCell"; title = "Reopen windows from last session on launch"; ObjectID = "jK0-pT-HTR"; */
+"jK0-pT-HTR.title" = "Fenster der letzten Sitzung beim Start erneut öffnen";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Leerzeichen am Zeilenende beim Speichern entfernen";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
