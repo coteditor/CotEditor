@@ -125,12 +125,10 @@ final class GeneralPaneController: NSViewController {
     }
     
     
-    ///
-    @IBAction func updateDocumentConflictSetting(_ sender: AnyObject?) {
+    /// A radio button of documentConflictOption was clicked
+    @IBAction func updateDocumentConflictSetting(_ sender: NSControl) {
         
-        guard let tag = sender?.tag else { return }
-        
-        UserDefaults.standard[.documentConflictOption] = tag
+        UserDefaults.standard[.documentConflictOption] = sender.tag
     }
     
 }
