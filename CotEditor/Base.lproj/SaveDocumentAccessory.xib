@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11163.2" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11163.2"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="CotEditor" customModuleProvider="target">
@@ -28,9 +30,10 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="MYJ-5I-MJB" secondAttribute="bottom" constant="10" id="Aa6-XJ-bZ7"/>
+                <constraint firstItem="MYJ-5I-MJB" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="lpX-ev-vAj"/>
                 <constraint firstItem="MYJ-5I-MJB" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="10" id="nfC-KA-Ydc"/>
-                <constraint firstAttribute="trailing" secondItem="MYJ-5I-MJB" secondAttribute="trailing" constant="20" symbolic="YES" id="vT5-kx-hsa"/>
-                <constraint firstItem="MYJ-5I-MJB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="wUp-C6-D78"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MYJ-5I-MJB" secondAttribute="trailing" constant="20" symbolic="YES" id="vT5-kx-hsa"/>
+                <constraint firstItem="MYJ-5I-MJB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="wUp-C6-D78"/>
             </constraints>
             <point key="canvasLocation" x="452" y="394"/>
         </customView>
