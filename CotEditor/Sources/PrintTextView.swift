@@ -272,7 +272,16 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// return whether do paganation by itself
     override func knowsPageRange(_ range: NSRangePointer) -> Bool {
         
-        self.setupPrintSize()
+        // resize frame
+        self.frame.size = self.printSize
+        self.sizeToFit()
+        let usedSize = self.layoutManager!.usedRect(for: self.textContainer!).size
+        switch self.layoutOrientation {
+        case .horizontal:
+            self.frame.size = usedSize
+        case .vertical:
+            self.frame.size = usedSize.rotated
+        }
         
         return super.knowsPageRange(range)  // = false
     }
@@ -480,25 +489,22 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     }
     
     
-    /// update text view size considering text orientation
-    private func setupPrintSize() {
+    /// view size for print considering text orientation
+    private var printSize: NSSize {
         
-        guard let printInfo = NSPrintOperation.current?.printInfo else { return }
+        guard let printInfo = NSPrintOperation.current?.printInfo else { return .zero }
         
-        var frameSize = printInfo.paperSize
+        var size = printInfo.paperSize
         switch self.layoutOrientation {
         case .horizontal:
-            frameSize.width -= printInfo.leftMargin + printInfo.rightMargin
-            frameSize.width /= printInfo.scalingFactor
+            size.width -= printInfo.leftMargin + printInfo.rightMargin
+            size.width /= printInfo.scalingFactor
         case .vertical:
-            frameSize.height -= printInfo.leftMargin + printInfo.rightMargin
-            frameSize.height /= printInfo.scalingFactor
+            size.height -= printInfo.leftMargin + printInfo.rightMargin
+            size.height /= printInfo.scalingFactor
         }
         
-        // resize frame
-        self.frame.size = frameSize
-        self.sizeToFit()
-        self.frame = self.layoutManager!.usedRect(for: self.textContainer!)
+        return size
     }
     
 }

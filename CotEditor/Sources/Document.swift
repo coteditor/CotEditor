@@ -40,6 +40,7 @@ private enum SerializationKey {
     static let readingEncoding = "readingEncoding"
     static let syntaxStyle = "syntaxStyle"
     static let autosaveIdentifier = "autosaveIdentifier"
+    static let isVerticalText = "isVerticalText"
 }
 
 // file extended attributes
@@ -61,6 +62,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     static let didChangeEncodingNotification = Notification.Name("DocumentDidChangeEncoding")
     static let didChangeLineEndingNotification = Notification.Name("DocumentDidChangeLineEnding")
     static let didChangeSyntaxStyleNotification = Notification.Name("DocumentDidChangeSyntaxStyle")
+
+    
+    
+    // MARK: Public Properties
+    
+    var isVerticalText = false
     
     
     // MARK: Readonly Properties
@@ -85,7 +92,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var readingEncoding: String.Encoding  // encoding to read document file
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
-    private var isVerticalText = false
     private var odbEventSender: ODBEventSender?
     private var shouldSaveXattr = true
     private var autosaveIdentifier: String
@@ -112,6 +118,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .LF
         self.syntaxStyle = SyntaxManager.shared.style(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         self.syntaxStyle.textStorage = self.textStorage
+        self.isVerticalText = UserDefaults.standard[.layoutTextVertical]
         
         // set encoding to read file
         // -> The value is either user setting or selection of open panel.
@@ -133,6 +140,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         coder.encode(Int(self.encoding.rawValue), forKey: SerializationKey.readingEncoding)
         coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
         coder.encode(self.syntaxStyle.styleName, forKey: SerializationKey.syntaxStyle)
+        coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         
         super.encodeRestorableState(with: coder)
     }
@@ -154,6 +162,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         if let styleName = coder.decodeObject(forKey: SerializationKey.syntaxStyle) as? String {
             self.setSyntaxStyle(name: styleName)
+        }
+        if coder.containsValue(forKey: SerializationKey.isVerticalText) {
+            self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
         }
     }
     
@@ -247,9 +258,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         document.lineEnding = self.lineEnding
         document.encoding = self.encoding
         document.hasUTF8BOM = self.hasUTF8BOM
-        
-        // apply text orientation
-        document.viewController?.verticalLayoutOrientation = self.viewController?.verticalLayoutOrientation ?? self.isVerticalText
+        document.isVerticalText = self.isVerticalText
         
         return document
     }
@@ -459,7 +468,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // store current state here, since the main thread will already be unblocked after `data(ofType:)`
         let encoding = self.encoding
-        self.isVerticalText = self.viewController?.verticalLayoutOrientation ?? false
         
         try super.write(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         

@@ -24,7 +24,7 @@ develop
 
 
 
-3.2.5
+3.2.5 (208)
 --------------------------
 
 ### Improvements
@@ -34,8 +34,10 @@ develop
 
 ### Fixes
 
+- Fix an issue where a vertical orientation document broke the layout on printing.
 - Fix an issue where the syntax highlighting indicator could display twice.
 - Fix an issue where the separator was selected meaninglessly in the Window pane if the window tabbing setting was set to “Manually”.
+- Fix an issue where editor's text orientation was not cascaded to the print operation when the window was restored from the last session.
 - Fix the line-wrapping behavior when a line contains a long unbreakable word.
 - Fix some missing localized strings.
 - Improve general stability.

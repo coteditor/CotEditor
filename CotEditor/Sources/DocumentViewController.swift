@@ -54,7 +54,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         self.showsLineNumber = defaults[.showLineNumbers]
         self.showsNavigationBar = defaults[.showNavigationBar]
         self.wrapsLines = defaults[.wrapLines]
-        self.verticalLayoutOrientation = defaults[.layoutTextVertical]
         self.showsPageGuide = defaults[.showPageGuide]
         
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
@@ -71,7 +70,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
                 #keyPath(showsLineNumber),
                 #keyPath(showsPageGuide),
                 #keyPath(showsInvisibles),
-                #keyPath(verticalLayoutOrientation)]
+        ]
     }
     
     
@@ -449,10 +448,15 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// if text orientation is vertical
-    @objc var verticalLayoutOrientation = false {
+    @objc var verticalLayoutOrientation: Bool {
         
-        didSet {
-            let orientation: NSLayoutManager.TextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
+        get {
+            return self.document?.isVerticalText ?? false
+        }
+        set {
+            self.document?.isVerticalText = newValue
+            
+            let orientation: NSLayoutManager.TextLayoutOrientation = newValue ? .vertical : .horizontal
             
             for viewController in self.editorViewControllers {
                 viewController.textView?.setLayoutOrientation(orientation)
