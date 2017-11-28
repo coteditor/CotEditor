@@ -18,6 +18,17 @@
 			name = "Update Help Index";
 			productName = "Update Help Index";
 		};
+		2A9246E71FCD2004008DBC30 /* Build Sparkle XPCs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2A9246EA1FCD200A008DBC30 /* Build configuration list for PBXAggregateTarget "Build Sparkle XPCs" */;
+			buildPhases = (
+				2A9246EB1FCD2012008DBC30 /* Build Sparkle XPCs */,
+			);
+			dependencies = (
+			);
+			name = "Build Sparkle XPCs";
+			productName = "Sparkle XPCs";
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -344,6 +355,9 @@
 		2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */; };
 		2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */; };
 		2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */; };
+		2A9246FE1FCD2D07008DBC30 /* org.sparkle-project.InstallerConnection.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 2A9246FD1FCD2CF0008DBC30 /* org.sparkle-project.InstallerConnection.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2A9246FF1FCD2D07008DBC30 /* org.sparkle-project.InstallerLauncher.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 2A9246FB1FCD2CF0008DBC30 /* org.sparkle-project.InstallerLauncher.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2A9247001FCD2D07008DBC30 /* org.sparkle-project.InstallerStatus.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 2A9246FA1FCD2CF0008DBC30 /* org.sparkle-project.InstallerStatus.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
@@ -573,6 +587,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2A9246F51FCD21E6008DBC30 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				2A9246FE1FCD2D07008DBC30 /* org.sparkle-project.InstallerConnection.xpc in Embed XPC Services */,
+				2A9246FF1FCD2D07008DBC30 /* org.sparkle-project.InstallerLauncher.xpc in Embed XPC Services */,
+				2A9247001FCD2D07008DBC30 /* org.sparkle-project.InstallerStatus.xpc in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -928,6 +955,10 @@
 		2A91C31A1D1BFE47007CF8BE /* AppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPaneController.swift; sourceTree = "<group>"; };
 		2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropPaneController.swift; sourceTree = "<group>"; };
+		2A9246FA1FCD2CF0008DBC30 /* org.sparkle-project.InstallerStatus.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerStatus.xpc"; sourceTree = "<group>"; };
+		2A9246FB1FCD2CF0008DBC30 /* org.sparkle-project.InstallerLauncher.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerLauncher.xpc"; sourceTree = "<group>"; };
+		2A9246FD1FCD2CF0008DBC30 /* org.sparkle-project.InstallerConnection.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerConnection.xpc"; sourceTree = "<group>"; };
+		2A9247061FCD499D008DBC30 /* codesign_xpc */ = {isa = PBXFileReference; lastKnownFileType = text; path = codesign_xpc; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = ../cot/cot; sourceTree = SOURCE_ROOT; };
 		2A9BF3B91D37EB0900E3D3E2 /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		2A9BF3C21D3803B600E3D3E2 /* unicode */ = {isa = PBXFileReference; lastKnownFileType = folder; path = unicode; sourceTree = "<group>"; };
@@ -1684,6 +1715,18 @@
 			name = "Other View Controllers";
 			sourceTree = "<group>";
 		};
+		2A9246F01FCD20EF008DBC30 /* XPC */ = {
+			isa = PBXGroup;
+			children = (
+				2A9247061FCD499D008DBC30 /* codesign_xpc */,
+				2A9246FD1FCD2CF0008DBC30 /* org.sparkle-project.InstallerConnection.xpc */,
+				2A9246FB1FCD2CF0008DBC30 /* org.sparkle-project.InstallerLauncher.xpc */,
+				2A9246FA1FCD2CF0008DBC30 /* org.sparkle-project.InstallerStatus.xpc */,
+			);
+			name = XPC;
+			path = ../Carthage/Build/Mac;
+			sourceTree = "<group>";
+		};
 		2A9BF3B71D37EAFA00E3D3E2 /* ICU */ = {
 			isa = PBXGroup;
 			children = (
@@ -1915,6 +1958,7 @@
 				2A4810391D4D1ADF00F7D34C /* ColorCode.framework */,
 				2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */,
 				2A594C9E1D4BAF100076FEDC /* Sparkle.framework */,
+				2A9246F01FCD20EF008DBC30 /* XPC */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1973,6 +2017,8 @@
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				2ACD68221D6B0F0100496B47 /* Embed Frameworks */,
+				2A9246F51FCD21E6008DBC30 /* Embed XPC Services */,
+				2A9247051FCD471B008DBC30 /* Codesign XPC Services */,
 				2ACD68151D6B0DCF00496B47 /* Copy dSYM Files */,
 			);
 			buildRules = (
@@ -2002,6 +2048,10 @@
 					};
 					2A6F0D4E1B5500E100C2D03C = {
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					2A9246E71FCD2004008DBC30 = {
+						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 					};
 					2AC71DDE1BF0BDBC002E1434 = {
@@ -2041,6 +2091,7 @@
 				2A6F0D4E1B5500E100C2D03C /* CotEditor -AppStore */,
 				2AC71DDE1BF0BDBC002E1434 /* Tests */,
 				2A3E847D1D07296200070A54 /* Update Help Index */,
+				2A9246E71FCD2004008DBC30 /* Build Sparkle XPCs */,
 			);
 		};
 /* End PBXProject section */
@@ -2225,6 +2276,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ruby makeSyntaxMap.rb";
+		};
+		2A9246EB1FCD2012008DBC30 /* Build Sparkle XPCs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Sparkle XPCs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../Carthage\n\n// build XPCs\nschemes=(\n    'SparkleInstallerLauncher'\n    'SparkleInstallerConnection'\n    'SparkleInstallerStatus'\n)\nfor scheme in ${schemes[@]}; do\n    xcodebuild build -project Checkouts/Sparkle/Sparkle.xcodeproj -scheme $scheme -derivedDataPath DerivedData -configuration Release\ndone\n\n# copy results to Carthage/Build directory\n#    -> So that, we can usually skip build process.\nfor file in './DerivedData/Build/Products/Release/*.xpc'; do\n    cp -r ${file} Build/Mac/\ndone\ncp Checkouts/Sparkle/bin/codesign_xpc Build/Mac/";
+		};
+		2A9247051FCD471B008DBC30 /* Codesign XPC Services */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Codesign XPC Services";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# check if codesigned\nif [ -z \"$CODE_SIGN_IDENTITY\" ] ; then\n    if [ \"$CONFIGURATION\" = \"Release\" ] ; then\n    echo \"CODE_SIGN_IDENTITY needs to be non-empty for codesigning XPCs!\"\n        exit 1\n    else\n    exit 0  # Codesigning is optional for non-release builds.\n    fi\nfi\n\n./../Carthage/Build/Mac/codesign_xpc \"${EXPANDED_CODE_SIGN_IDENTITY_NAME}\" ${BUILT_PRODUCTS_DIR}/${XPCSERVICES_FOLDER_PATH}/*.xpc";
 		};
 		2ACC21B81E5445BA0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3309,6 +3388,20 @@
 			};
 			name = Release;
 		};
+		2A9246E81FCD2005008DBC30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2A9246E91FCD2005008DBC30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		2AC71DE61BF0BDBC002E1434 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3509,6 +3602,15 @@
 			buildConfigurations = (
 				2A6F0E051B5500E100C2D03C /* Debug */,
 				2A6F0E061B5500E100C2D03C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A9246EA1FCD200A008DBC30 /* Build configuration list for PBXAggregateTarget "Build Sparkle XPCs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A9246E81FCD2005008DBC30 /* Debug */,
+				2A9246E91FCD2005008DBC30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

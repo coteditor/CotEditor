@@ -1028,8 +1028,6 @@
 	<true/>
 	<key>OSAScriptingDefinition</key>
 	<string>${PRODUCT_NAME}.sdef</string>
-	<key>SUAllowsAutomaticUpdates</key>
-	<false/>
 	<key>SUEnableJavaScript</key>
 	<true/>
 	<key>SUPublicDSAKeyFile</key>

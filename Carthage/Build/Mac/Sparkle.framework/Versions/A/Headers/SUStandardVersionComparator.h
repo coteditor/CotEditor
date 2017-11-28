@@ -30,14 +30,14 @@ SU_EXPORT @interface SUStandardVersionComparator : NSObject <SUVersionComparison
 
 /*!
     Initializes a new instance of the standard version comparator.
- */
+*/
 - (instancetype)init;
 
 /*!
     Returns a singleton instance of the comparator.
- 
+
     It is usually preferred to alloc/init new a comparator instead.
-*/
+ */
 + (SUStandardVersionComparator *)defaultComparator;
 
 /*!

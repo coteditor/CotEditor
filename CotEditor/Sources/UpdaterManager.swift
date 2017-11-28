@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ private enum AppCastURL {
     
     
     /// URL for app cast
-    var URL: String {
+    var url: String {
         
         return AppCastURL.host + self.filename
     }
@@ -59,12 +59,16 @@ private enum AppCastURL {
 
 // MARK: -
 
-final class UpdaterManager: NSObject, SUUpdaterDelegate {
+final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     // MARK: Public Properties
     
     static let shared = UpdaterManager()
     
+    
+    // MARK: Private Properties
+    
+    private lazy var controller = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
     
     
     // MARK: -
@@ -76,28 +80,23 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     }
     
     
-    deinit {
-        SUUpdater.shared().delegate = nil
-    }
-    
-    
     
     // MARK: Public Methods
     
     /// setup Sparkle
     func setup() {
         
-        guard let updater = SUUpdater.shared() else { return }
-        
-        // set delegate
-        updater.delegate = self
+        guard let updater = self.controller.updater else {
+            assertionFailure("no SPUUpdater instance could obtain")
+            return
+        }
         
         // insert "Check for Updates…" menu item
         guard let applicationMenu = MainMenu.application.menu else {
             preconditionFailure("no menu can be found to attach update menu item.")
         }
         let menuItem = NSMenuItem(title: NSLocalizedString("Check for Updates…", comment: ""),
-                                  action: #selector(SUUpdater.checkForUpdates),
+                                  action: #selector(SPUUpdater.checkForUpdates),
                                   keyEquivalent: "")
         menuItem.target = updater
         applicationMenu.insertItem(menuItem, at: 1)
@@ -111,14 +110,14 @@ final class UpdaterManager: NSObject, SUUpdaterDelegate {
     // MARK: Sparkle Updater Delegate
     
     /// return AppCast file URL dinamically
-    func feedURLString(for updater: SUUpdater) -> String? {
+    func feedURLString(for updater: SPUUpdater) -> String? {
         
         // force checking beta if the currently runnning one is a beta.
         let checksBeta: Bool = AppInfo.isPrerelease ? true : UserDefaults.standard[.checksUpdatesForBeta]
         
         let appCast: AppCastURL = checksBeta ? .beta : .stable
         
-        return appCast.URL
+        return appCast.url
     }
     
 }
