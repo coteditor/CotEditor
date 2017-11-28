@@ -2303,7 +2303,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./../Carthage/Build/Mac/codesign_xpc \"${EXPANDED_CODE_SIGN_IDENTITY_NAME}\" ${BUILT_PRODUCTS_DIR}/${XPCSERVICES_FOLDER_PATH}/*.xpc";
+			shellScript = "# check if codesigned\nif [ -z \"$CODE_SIGN_IDENTITY\" ] ; then\n    if [ \"$CONFIGURATION\" = \"Release\" ] ; then\n    echo \"CODE_SIGN_IDENTITY needs to be non-empty for codesigning XPCs!\"\n        exit 1\n    else\n    exit 0  # Codesigning is optional for non-release builds.\n    fi\nfi\n\n./../Carthage/Build/Mac/codesign_xpc \"${EXPANDED_CODE_SIGN_IDENTITY_NAME}\" ${BUILT_PRODUCTS_DIR}/${XPCSERVICES_FOLDER_PATH}/*.xpc";
 		};
 		2ACC21B81E5445BA0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
