@@ -95,7 +95,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// whether key bindings are not customized
     override var usesDefaultKeyBindings: Bool {
         
-        let usesDefaultSnippets = self.snippets(defaults: false) == self.defaultSnippets
+        let usesDefaultSnippets = self.snippets() == self.defaultSnippets
         
         return usesDefaultSnippets && super.usesDefaultKeyBindings
     }
@@ -127,7 +127,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         guard let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }) else { return nil }
         
-        let snippets = self.snippets(defaults: false)
+        let snippets = self.snippets()
         
         guard
             let index = type(of: self).snippetIndex(for: keyBinding.action),
@@ -142,7 +142,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     /// return snippet texts to insert with key binding
     /// param: usesFactoryDefaults   YES for default setting and NO for the current setting
-    func snippets(defaults usesDefaults: Bool) -> [String] {
+    func snippets(defaults usesDefaults: Bool = false) -> [String] {
         
         if usesDefaults {
             return self.defaultSnippets

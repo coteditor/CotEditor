@@ -286,7 +286,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         super.viewDidLoad()
         
         self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
-        self.setup(snippets: SnippetKeyBindingManager.shared.snippets(defaults: false))
+        self.setup(snippets: SnippetKeyBindingManager.shared.snippets())
         
         // setup variable menu
         self.variableInsertionMenu!.menu!.addItems(for: Snippet.Variable.all, target: self.formatTextView)
