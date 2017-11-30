@@ -79,8 +79,9 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
+        let count = self.snippets(defaults: usesDefaults).count
         
-        return (0...30).map { index in
+        return (0..<count).map { index in
             let title = String(format: NSLocalizedString("Insert Text %li", comment: ""), index)
             let action = type(of: self).action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
