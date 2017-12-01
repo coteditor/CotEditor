@@ -28,44 +28,6 @@
 
 import Cocoa
 
-struct KeyBinding: Hashable, Comparable, CustomStringConvertible {
-    
-    let action: Selector
-    let shortcut: Shortcut?
-    
-    
-    var description: String {
-        if let shortcut = self.shortcut {
-        return "<KeyBinding: \(self.action) - \(shortcut)>"
-        } else {
-            return "<KeyBinding: \(self.action)>"
-        }
-    }
-    
-    
-    var hashValue: Int {
-        
-        return (self.shortcut?.hashValue ?? -1) ^ self.action.hashValue
-    }
-    
-    
-    static func == (lhs: KeyBinding, rhs: KeyBinding) -> Bool {
-        
-        return lhs.shortcut == rhs.shortcut && lhs.action == rhs.action
-    }
-    
-    
-    static func < (lhs: KeyBinding, rhs: KeyBinding) -> Bool {
-        
-        return lhs.action.description < rhs.action.description
-    }
-    
-}
-
-
-
-// MARK: Error
-
 struct InvalidKeySpecCharactersError: LocalizedError {
     
     enum ErrorKind {
