@@ -92,21 +92,21 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// return number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
-        return self.children(ofItem: item)?.count ?? 0
+        return self.children(of: item)?.count ?? 0
     }
     
     
     /// return if item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
-        return (self.children(ofItem: item) != nil)
+        return (self.children(of: item) != nil)
     }
     
     
     /// return child items
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
-        return self.children(ofItem: item)![index]
+        return self.children(of: item)![index]
     }
     
     
@@ -241,7 +241,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     /// return child items of passed-in item
-    private func children(ofItem item: Any?) -> [NSTreeNode]? {
+    private func children(of item: Any?) -> [NSTreeNode]? {
     
         guard let node = item as? NSTreeNode else { return self.outlineTree }
         
