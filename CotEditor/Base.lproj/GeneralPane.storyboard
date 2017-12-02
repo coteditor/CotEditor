@@ -280,11 +280,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="updateWindowRestorationSetting:" target="JG1-NR-KT5" id="wFT-hT-Aiq"/>
-                                    <binding destination="ttU-LH-46v" name="value" keyPath="values.NSQuitAlwaysKeepsWindows" id="GXH-hS-ZnJ">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="ttU-LH-46v" name="value" keyPath="values.NSQuitAlwaysKeepsWindows" id="b0b-6h-dGr"/>
                                 </connections>
                             </button>
                         </subviews>
