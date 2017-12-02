@@ -95,8 +95,8 @@
 		2A1CD5551DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
-		2A231A251E7B4EDC00C2A909 /* BatchReplacement+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* BatchReplacement+JSON.swift */; };
-		2A231A261E7B4EDC00C2A909 /* BatchReplacement+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* BatchReplacement+JSON.swift */; };
+		2A231A251E7B4EDC00C2A909 /* BatchReplacement+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */; };
+		2A231A261E7B4EDC00C2A909 /* BatchReplacement+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */; };
 		2A231A281E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */; };
 		2A231A291E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */; };
 		2A231A2D1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */; };
@@ -609,10 +609,10 @@
 		2AED70EF1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */; };
 		2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */; };
 		2AEDB4201D462EAB0020AD15 /* String+Sandboxing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */; };
-		2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */; };
-		2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */; };
 		2AEE84AA1E7FEFAA00BA7982 /* FocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84A91E7FEFAA00BA7982 /* FocusTextField.swift */; };
 		2AEE84AB1E7FEFAA00BA7982 /* FocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84A91E7FEFAA00BA7982 /* FocusTextField.swift */; };
+		2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */; };
+		2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */; };
 		2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E21D33C3AB00770BA6 /* Theme.swift */; };
 		2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E21D33C3AB00770BA6 /* Theme.swift */; };
 		2AF073E61D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E51D33CB6F00770BA6 /* ThemeDictionary.swift */; };
@@ -820,7 +820,7 @@
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
-		2A231A241E7B4EDC00C2A909 /* BatchReplacement+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BatchReplacement+JSON.swift"; sourceTree = "<group>"; };
+		2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BatchReplacement+Codable.swift"; sourceTree = "<group>"; };
 		2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BatchReplacementSettings+Object.swift"; sourceTree = "<group>"; };
 		2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindProgress.swift; sourceTree = "<group>"; };
 		2A231A351E7C30F000C2A909 /* BatchReplacementSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchReplacementSplitViewController.swift; sourceTree = "<group>"; };
@@ -1257,8 +1257,8 @@
 		2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Sandboxing.swift"; sourceTree = "<group>"; };
 		2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Authopen.swift"; sourceTree = "<group>"; };
-		2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteToConsoleCommand.swift; sourceTree = "<group>"; };
 		2AEE84A91E7FEFAA00BA7982 /* FocusTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusTextField.swift; sourceTree = "<group>"; };
+		2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteToConsoleCommand.swift; sourceTree = "<group>"; };
 		2AF073E21D33C3AB00770BA6 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2AF073E51D33CB6F00770BA6 /* ThemeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeDictionary.swift; sourceTree = "<group>"; };
 		2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryKey.swift; sourceTree = "<group>"; };
@@ -1563,7 +1563,7 @@
 			children = (
 				2A3581941E597B3300762AA5 /* Replacement.swift */,
 				2A3581971E597ECE00762AA5 /* BatchReplacement.swift */,
-				2A231A241E7B4EDC00C2A909 /* BatchReplacement+JSON.swift */,
+				2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2708,7 +2708,7 @@
 				2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */,
-				2A231A261E7B4EDC00C2A909 /* BatchReplacement+JSON.swift in Sources */,
+				2A231A261E7B4EDC00C2A909 /* BatchReplacement+Codable.swift in Sources */,
 				2A3D63F51E75A33000F538E1 /* Equatable.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A5D13201D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
@@ -2974,7 +2974,7 @@
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */,
 				2A231A361E7C30F000C2A909 /* BatchReplacementSplitViewController.swift in Sources */,
-				2A231A251E7B4EDC00C2A909 /* BatchReplacement+JSON.swift in Sources */,
+				2A231A251E7B4EDC00C2A909 /* BatchReplacement+Codable.swift in Sources */,
 				2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A4CCBB41D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */,
 				2A18560B1D47FA37008FA79E /* TextFinder.swift in Sources */,

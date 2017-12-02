@@ -27,7 +27,7 @@
 
 import Foundation
 
-final class BatchReplacement: NSObject {
+final class BatchReplacement: NSObject, Codable {
     
     struct Settings {
         
