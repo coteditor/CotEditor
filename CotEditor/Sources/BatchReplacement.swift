@@ -88,9 +88,9 @@ extension BatchReplacement {
     ///   - string: The string to find in.
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether find only in selection.
-    ///   - block: The Block enumerates the matches.
+    ///   - block: The block enumerates the matches.
     ///   - count: The number of replaces so far.
-    ///   - stop: A reference to a Boolean value. The Block can set the value to true to stop further processing.
+    ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
     /// - Returns: The found ranges.
     func find(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ count: Int, _ stop: inout Bool) -> Void) -> [NSRange] {
         
@@ -139,9 +139,9 @@ extension BatchReplacement {
     ///   - string: The string to replace.
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether replace only in selection.
-    ///   - block: The Block enumerates the matches.
+    ///   - block: The block enumerates the matches.
     ///   - count: The number of replaces so far.
-    ///   - stop: A reference to a Boolean value. The Block can set the value to true to stop further processing.
+    ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
     /// - Returns: The result of the replacement.
     func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: @escaping (_ count: Int, _ stop: inout Bool) -> Void) -> Result {
         
