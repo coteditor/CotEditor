@@ -27,7 +27,7 @@
 
 import Foundation
 
-struct KeyBinding {
+struct KeyBinding: Codable {
     
     let action: Selector
     let shortcut: Shortcut?

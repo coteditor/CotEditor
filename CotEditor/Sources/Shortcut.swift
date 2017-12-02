@@ -81,6 +81,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
     let modifierMask: NSEvent.ModifierFlags
     let keyEquivalent: String
     
+    
     static let none = Shortcut(modifierMask: [], keyEquivalent: "")
     
     
@@ -237,5 +238,25 @@ struct Shortcut: Hashable, CustomStringConvertible {
         
         return table.mapKeys { UnicodeScalar($0)! }
     }()
+    
+}
+
+
+extension Shortcut: Codable {
+    
+    init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        
+        self.init(keySpecChars: try container.decode(String.self))
+    }
+    
+    
+    func encode(to encoder: Encoder) throws {
+        
+        var value = encoder.singleValueContainer()
+        
+        try value.encode(self.keySpecChars)
+    }
     
 }

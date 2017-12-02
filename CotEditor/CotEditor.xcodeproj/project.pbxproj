@@ -47,6 +47,8 @@
 		2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */; };
 		2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F61FD19237002AB5AE /* KeyBinding.swift */; };
 		2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F61FD19237002AB5AE /* KeyBinding.swift */; };
+		2A10C5FA1FD25D04002AB5AE /* Selector+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */; };
+		2A10C5FB1FD25D04002AB5AE /* Selector+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */; };
 		2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
 		2A10D1011E7088B00027192A /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
 		2A10D10A1E708CDF0027192A /* KeyBindingsPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */; };
@@ -685,6 +687,7 @@
 		2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenTextView.swift; sourceTree = "<group>"; };
 		2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		2A10C5F61FD19237002AB5AE /* KeyBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBinding.swift; sourceTree = "<group>"; };
+		2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Selector+Codable.swift"; sourceTree = "<group>"; };
 		2A10D0F91E7085250027192A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/GeneralPane.strings; sourceTree = "<group>"; };
 		2A10D0FA1E7085270027192A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralPane.strings"; sourceTree = "<group>"; };
 		2A10D0FB1E7085290027192A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GeneralPane.strings; sourceTree = "<group>"; };
@@ -1432,8 +1435,8 @@
 			isa = PBXGroup;
 			children = (
 				2A885E321D5C3A1B00288723 /* Comparable.swift */,
-				2A3D63F31E75A33000F538E1 /* Equatable.swift */,
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
+				2A3D63F31E75A33000F538E1 /* Equatable.swift */,
 				2A5ADE831D2168FC00F6CE26 /* Collection.swift */,
 				2AE12DFA1E7DB47000681F72 /* Collection+String.swift */,
 				2AA14D041FA594A800EAF586 /* Data.swift */,
@@ -1453,6 +1456,7 @@
 				2AF45E211E6C17700030CD60 /* OperationQueue.swift */,
 				2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */,
 				2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */,
+				2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */,
 				2A48103D1D4D210300F7D34C /* Crypto.swift */,
 			);
 			name = Foundation;
@@ -2431,6 +2435,7 @@
 				2A7646EC1D49035500350674 /* SettingFileManager.swift in Sources */,
 				2A1CD5551DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */,
 				2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
+				2A10C5FB1FD25D04002AB5AE /* Selector+Codable.swift in Sources */,
 				2AE52F201D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				2AA375481D40BDCB0080C27C /* LineEnding.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
@@ -2606,6 +2611,7 @@
 				2AD69B881D3E4FCD00FBD998 /* Editable.swift in Sources */,
 				2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
+				2A10C5FA1FD25D04002AB5AE /* Selector+Codable.swift in Sources */,
 				2AF073E61D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */,
 				2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */,
 				2AA375451D403F110080C27C /* String+Encoding.swift in Sources */,

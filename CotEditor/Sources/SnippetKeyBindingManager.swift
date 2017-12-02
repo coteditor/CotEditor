@@ -215,22 +215,17 @@ private extension SnippetKeyBindingManager {
         guard
             legacySettingsURL.isReachable,
             let legacyData = try? Data(contentsOf: legacySettingsURL),
-            let keyBindings = try? KeyBindingSerialization.keyBindings(migratingFrom: legacyData),
-            let data = try? KeyBindingSerialization.data(from: keyBindings)
+            let keyBindings = try? self.keyBindings(migratingFrom: legacyData),
+            let data = try? PropertyListEncoder().encode(keyBindings.sorted())
             else { return }
         
         // save new format file
         try? data.write(to: self.keyBindingSettingFileURL, options: .atomic)
     }
     
-}
-
-
-
-private extension KeyBindingSerialization {
     
     /// load legacy format (<= CotEditor 2) key bindings setting
-    static func keyBindings(migratingFrom data: Data) throws -> [KeyBinding] {
+    private func keyBindings(migratingFrom data: Data) throws -> [KeyBinding] {
         
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
         
