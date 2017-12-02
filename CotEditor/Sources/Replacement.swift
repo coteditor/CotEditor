@@ -33,11 +33,11 @@ final class Replacement: NSObject {
     @objc dynamic var replacementString: String
     @objc dynamic var usesRegularExpression: Bool
     @objc dynamic var ignoresCase: Bool
-    @objc dynamic var enabled = true
+    @objc dynamic var isEnabled = true
     @objc dynamic var comment: String?
     
     
-    init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, comment: String? = nil, enabled: Bool? = true) {
+    init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, comment: String? = nil, isEnabled: Bool? = true) {
         
         self.findString = findString
         self.replacementString = replacementString
@@ -45,8 +45,8 @@ final class Replacement: NSObject {
         self.usesRegularExpression = usesRegularExpression
         self.comment = comment
         
-        if let enabled = enabled {
-            self.enabled = enabled
+        if let isEnabled = isEnabled {
+            self.isEnabled = isEnabled
         }
     }
     
@@ -72,7 +72,7 @@ extension Replacement {
             lhs.usesRegularExpression == rhs.usesRegularExpression &&
             lhs.ignoresCase == rhs.ignoresCase &&
             lhs.comment == rhs.comment &&
-            lhs.enabled == rhs.enabled
+            lhs.isEnabled == rhs.isEnabled
     }
     
 }

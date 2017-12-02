@@ -99,7 +99,7 @@ extension BatchReplacement {
         guard !string.isEmpty else { return result }
         
         for replacement in self.replacements {
-            guard replacement.enabled else { continue }
+            guard replacement.isEnabled else { continue }
             
             let settings = TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
                                              isWrap: false,
@@ -150,7 +150,7 @@ extension BatchReplacement {
         guard !string.isEmpty else { return result }
         
         for replacement in self.replacements {
-            guard replacement.enabled else { continue }
+            guard replacement.isEnabled else { continue }
             
             let settings = TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
                                              isWrap: false,

@@ -72,7 +72,7 @@ extension Replacement: Codable {
         case replacementString
         case usesRegularExpression
         case ignoresCase
-        case enabled
+        case isEnabled
         case description
     }
     
@@ -86,7 +86,7 @@ extension Replacement: Codable {
                   usesRegularExpression: try container.decodeIfPresent(Bool.self, forKey: .usesRegularExpression) ?? false,
                   ignoresCase: try container.decodeIfPresent(Bool.self, forKey: .ignoresCase) ?? false,
                   comment: try container.decodeIfPresent(String.self, forKey: .description),
-                  enabled: try container.decodeIfPresent(Bool.self, forKey: .enabled)
+                  isEnabled: try container.decodeIfPresent(Bool.self, forKey: .isEnabled)
             )
     }
     
@@ -104,8 +104,8 @@ extension Replacement: Codable {
         if self.ignoresCase {
             try container.encode(true, forKey: .ignoresCase)
         }
-        if !self.enabled {
-            try container.encode(false, forKey: .enabled)
+        if !self.isEnabled {
+            try container.encode(false, forKey: .isEnabled)
         }
         if let comment = self.comment {
             try container.encode(comment, forKey: .description)
