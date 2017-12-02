@@ -18,6 +18,7 @@ develop
 - Add clear button to input fields in the find panel.
 - Scroll console view after getting a new message to make it visible.
 - Add tooltips to Unicode normalization forms in Text menu.
+- Tweak acknowledgements window design.
 - Some minor UI improvements and fixes.
 - Update Japanese localization to conform with the modern macOS localization rules.
 - Update inner source code to Swift 4.

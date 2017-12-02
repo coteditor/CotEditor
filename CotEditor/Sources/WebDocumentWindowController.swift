@@ -71,6 +71,8 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
         
         super.windowDidLoad()
         
+        self.window?.backgroundColor = .white
+        
         // set webView programmically
         let webView = WKWebView(frame: .zero)
         self.webView = webView
