@@ -49,7 +49,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="enabled" editable="NO" width="20" minWidth="20" maxWidth="20" headerToolTip="Enable Setting" id="KTe-1r-oHM">
+                                                <tableColumn identifier="isEnabled" editable="NO" width="20" minWidth="20" maxWidth="20" headerToolTip="Enable Setting" id="KTe-1r-oHM">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -74,7 +74,7 @@
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <action selector="didCheckboxClicked:" target="ypL-2F-xTV" id="3rD-MR-fUM"/>
-                                                                        <binding destination="CUv-XJ-HRY" name="value" keyPath="objectValue.enabled" id="GHz-Tl-SjT"/>
+                                                                        <binding destination="CUv-XJ-HRY" name="value" keyPath="objectValue.isEnabled" id="V0B-ie-vbl"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -197,7 +197,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" editable="NO" width="28" minWidth="28" maxWidth="28" headerToolTip="Ignore Cases" id="d3o-yf-jB4">
+                                                <tableColumn identifier="ignoresCase" editable="NO" width="28" minWidth="28" maxWidth="28" headerToolTip="Ignore Cases" id="d3o-yf-jB4">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -236,7 +236,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" editable="NO" width="28" minWidth="28" maxWidth="28" headerToolTip="Regular Expression" id="VtR-Qz-MBf">
+                                                <tableColumn identifier="usesRegularExpression" editable="NO" width="28" minWidth="28" maxWidth="28" headerToolTip="Regular Expression" id="VtR-Qz-MBf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
