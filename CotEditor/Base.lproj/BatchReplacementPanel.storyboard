@@ -403,6 +403,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="batchReplace:" target="uzB-9o-Idl" id="bSd-p5-2X1"/>
+                                    <binding destination="uzB-9o-Idl" name="enabled" keyPath="canPerform" id="Cqy-1T-Q8l"/>
                                 </connections>
                             </button>
                             <button toolTip="Select to replace text only in selection." translatesAutoresizingMaskIntoConstraints="NO" id="pfM-xk-MrN">
@@ -474,6 +475,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="highlight:" target="uzB-9o-Idl" id="cLP-X8-4hu"/>
+                                    <binding destination="uzB-9o-Idl" name="enabled" keyPath="canPerform" id="a8z-z3-upG"/>
                                 </connections>
                             </button>
                         </subviews>
