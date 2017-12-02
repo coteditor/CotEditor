@@ -1564,6 +1564,7 @@
 				2A3581941E597B3300762AA5 /* Replacement.swift */,
 				2A3581971E597ECE00762AA5 /* BatchReplacement.swift */,
 				2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */,
+				2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1574,7 +1575,6 @@
 				2A231A351E7C30F000C2A909 /* BatchReplacementSplitViewController.swift */,
 				2A231A381E7C31F400C2A909 /* BatchReplacementListViewController.swift */,
 				2ACC5E401E7B08D300109ABC /* BatchReplacementViewController.swift */,
-				2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
