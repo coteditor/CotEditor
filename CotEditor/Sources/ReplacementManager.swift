@@ -104,8 +104,11 @@ final class ReplacementManager: SettingFileManager {
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
         
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted]
+        
+        let data = try encoder.encode(replacement)
         let fileURL = self.preparedURLForUserSetting(name: settingName)
-        let data = try JSONEncoder().encode(replacement)
         
         try data.write(to: fileURL, options: .atomic)
         
