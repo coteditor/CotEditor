@@ -465,7 +465,7 @@
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
 "A new batch replacement setting named “%@” will be installed, but a setting with the same name already exists." = "Eine neue Einstellung des Batch-Ersatzes mit dem Namen „%@“ wird installiert, doch eine Einstellung mit dem selben Namen existiert bereits.";
-"Do you want to replace it?\nReplaced setting can’t be restored." = "Möchten Sie sie ersetzen?\nErsetzte Einstellung kann nicht wiederhergestellt werden.";
+"Do you want to replace it?\nReplaced setting can’t be restored." = "Möchtest du sie ersetzen?\nErsetzte Einstellung kann nicht wiederhergestellt werden.";
 
 
 
