@@ -254,9 +254,9 @@ extension Shortcut: Codable {
     
     func encode(to encoder: Encoder) throws {
         
-        var value = encoder.singleValueContainer()
+        var container = encoder.singleValueContainer()
         
-        try value.encode(self.keySpecChars)
+        try container.encode(self.keySpecChars)
     }
     
 }

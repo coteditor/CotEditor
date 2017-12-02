@@ -39,9 +39,9 @@ extension Selector: Codable {
     
     public func encode(to encoder: Encoder) throws {
         
-        var value = encoder.singleValueContainer()
+        var container = encoder.singleValueContainer()
         
-        try value.encode(NSStringFromSelector(self))
+        try container.encode(NSStringFromSelector(self))
     }
     
 }
