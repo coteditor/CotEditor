@@ -29,7 +29,7 @@ import Foundation
 
 extension BatchReplacement.Settings: Codable {
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         
         case textualOptions
         case regexOptions
@@ -66,7 +66,7 @@ extension BatchReplacement.Settings: Codable {
 
 extension Replacement: Codable {
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         
         case findString
         case replacementString
