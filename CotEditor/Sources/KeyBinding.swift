@@ -63,6 +63,7 @@ extension KeyBinding: Comparable {
 extension KeyBinding: CustomStringConvertible {
     
     var description: String {
+        
         if let shortcut = self.shortcut {
             return "<KeyBinding: \(self.action) - \(shortcut)>"
         } else {
