@@ -106,6 +106,9 @@ final class ReplacementManager: SettingFileManager {
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted]
+        if #available(macOS 10.13, *) {
+            encoder.outputFormatting.formUnion(.sortedKeys)
+        }
         
         let data = try encoder.encode(replacement)
         let fileURL = self.preparedURLForUserSetting(name: settingName)
