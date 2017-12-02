@@ -111,7 +111,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
             return
         }
         
-        let string = textView.string
+        let string = textView.string.immutable
         let inSelection = UserDefaults.standard[.findInSelection]
         let selectedRanges = textView.selectedRanges as! [NSRange]
         
@@ -190,7 +190,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
             return
         }
         
-        let string = textView.string
+        let string = textView.string.immutable
         let inSelection = UserDefaults.standard[.findInSelection]
         let selectedRanges = textView.selectedRanges as! [NSRange]
         
