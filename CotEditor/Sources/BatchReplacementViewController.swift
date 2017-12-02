@@ -70,7 +70,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         
         if segue.identifier == NSStoryboardSegue.Identifier("OptionsSegue"),
             let destinationController = segue.destinationController as? NSViewController,
-            let batchReplacement = self.representedObject as? BatchReplacement
+            let batchReplacement = self.batchReplacement
         {
             destinationController.representedObject = BatchReplacement.Settings.Object(settings: batchReplacement.settings)
         }
@@ -83,7 +83,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         super.dismissViewController(viewController)
         
         if let object = viewController.representedObject as? BatchReplacement.Settings.Object {
-            (self.representedObject as? BatchReplacement)?.settings = object.settings
+            self.batchReplacement?.settings = object.settings
         }
     }
     
@@ -106,7 +106,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
                 return
             }
         
-        guard let batchReplacement = self.representedObject as? BatchReplacement else {
+        guard let batchReplacement = self.batchReplacement else {
             assertionFailure("No batchReplacement object is set.")
             return
         }
@@ -185,7 +185,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
                 return
             }
         
-        guard let batchReplacement = self.representedObject as? BatchReplacement else {
+        guard let batchReplacement = self.batchReplacement else {
             assertionFailure("No batchReplacement object is set.")
             return
         }
@@ -247,9 +247,16 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     // MARK: Private Methods
     
+    /// represented batch replacement object
+    private var batchReplacement: BatchReplacement? {
+        
+        return self.representedObject as? BatchReplacement
+    }
+    
+    
     @objc private func validateObject() {
         
-        guard let batchReplacement = self.representedObject as? BatchReplacement else { return }
+        guard let batchReplacement = self.batchReplacement else { return }
         
         self.hasInvalidSetting = batchReplacement.replacements.contains { $0.localizedError != nil }
         self.canPerform = batchReplacement.replacements.contains { $0.localizedError == nil }

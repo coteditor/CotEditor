@@ -49,6 +49,8 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         let draggedType = NSPasteboard.PasteboardType(kUTTypeFileURL as String)
         self.tableView?.registerForDraggedTypes([draggedType])
         
+        self.settingNames = ReplacementManager.shared.settingNames
+        
         // observe replacement setting list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: SettingFileManager.didUpdateSettingListNotification, object: ReplacementManager.shared)
     }
@@ -226,7 +228,7 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
     // MARK: Private Methods
     
     /// return setting name which is currently selected in the list table
-    @objc fileprivate dynamic var selectedSettingName: String? {
+    fileprivate var selectedSettingName: String? {
         
         let index = self.tableView?.selectedRow ?? 0
         
@@ -312,14 +314,14 @@ extension BatchReplacementListViewController: NSTableViewDataSource {
     /// number of settings
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        return ReplacementManager.shared.settings.count
+        return self.settingNames.count
     }
     
     
     /// content of table cell
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        return self.settingNames[safe: row]
+        return self.settingNames[row]
     }
     
     
