@@ -21,6 +21,7 @@ develop
 - Add tooltips to Unicode normalization forms in Text menu.
 - Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.
 - Restore the last viewed preference pane.
+- Add an input field for window opacity setting.
 - Tweak acknowledgements window design.
 - Some minor UI improvements and fixes.
 - Update Japanese localization to conform with the modern macOS localization rules.
