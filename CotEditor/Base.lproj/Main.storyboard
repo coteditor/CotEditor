@@ -505,7 +505,8 @@ Gw
                             <menuItem title="View" id="322">
                                 <menu key="submenu" title="View" id="324">
                                     <items>
-                                        <menuItem title="Hide Toolbar" id="612">
+                                        <menuItem title="Hide Toolbar" keyEquivalent="t" id="612">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="GPs-2m-wXS"/>
                                             </connections>
