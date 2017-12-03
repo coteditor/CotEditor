@@ -350,100 +350,6 @@ Gw
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" id="322">
-                                <menu key="submenu" title="View" id="324">
-                                    <items>
-                                        <menuItem title="Hide Toolbar" id="612">
-                                            <connections>
-                                                <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="GPs-2m-wXS"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Customize Toolbar…" id="613">
-                                            <connections>
-                                                <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="TD8-6D-Wfe"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
-                                        <menuItem title="Show Navigation Bar" id="681">
-                                            <connections>
-                                                <action selector="toggleNavigationBar:" target="Ady-hI-5gd" id="iX7-bD-yP3"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Line Numbers" id="323">
-                                            <connections>
-                                                <action selector="toggleLineNumber:" target="Ady-hI-5gd" id="0ux-pU-v0B"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Status Bar" id="325">
-                                            <connections>
-                                                <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="366">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Show Page Guide" id="749">
-                                            <connections>
-                                                <action selector="togglePageGuide:" target="Ady-hI-5gd" id="PpX-vI-RUr"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="792">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Split Editor" id="793">
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Focus on Next Split Editor" keyEquivalent="" id="794">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="focusNextSplitTextView:" target="Ady-hI-5gd" id="y2Q-eU-ZVD"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Focus on Previous Split Editor" keyEquivalent="" id="795">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="focusPrevSplitTextView:" target="Ady-hI-5gd" id="DNq-8M-naF"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Stack Editors Vertically" id="u46-te-4c4">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Close Split Editor" id="796">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="748">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Set Editor’s Opacity…" id="367">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOpacityPanel:" target="Ady-hI-5gd" id="Mop-i1-1f6"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="611">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="2da-fK-Nkg">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="FZv-xC-fG9"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Format" id="247">
                                 <menu key="submenu" title="Format" id="246">
                                     <items>
@@ -591,6 +497,100 @@ DQ
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleLayoutOrientation:" target="Ady-hI-5gd" id="WAe-DI-LSN"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="View" id="322">
+                                <menu key="submenu" title="View" id="324">
+                                    <items>
+                                        <menuItem title="Hide Toolbar" id="612">
+                                            <connections>
+                                                <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="GPs-2m-wXS"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Customize Toolbar…" id="613">
+                                            <connections>
+                                                <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="TD8-6D-Wfe"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
+                                        <menuItem title="Show Navigation Bar" id="681">
+                                            <connections>
+                                                <action selector="toggleNavigationBar:" target="Ady-hI-5gd" id="iX7-bD-yP3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Line Numbers" id="323">
+                                            <connections>
+                                                <action selector="toggleLineNumber:" target="Ady-hI-5gd" id="0ux-pU-v0B"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Status Bar" id="325">
+                                            <connections>
+                                                <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="366">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Show Page Guide" id="749">
+                                            <connections>
+                                                <action selector="togglePageGuide:" target="Ady-hI-5gd" id="PpX-vI-RUr"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="792">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Split Editor" id="793">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Focus on Next Split Editor" keyEquivalent="" id="794">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="focusNextSplitTextView:" target="Ady-hI-5gd" id="y2Q-eU-ZVD"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Focus on Previous Split Editor" keyEquivalent="" id="795">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="focusPrevSplitTextView:" target="Ady-hI-5gd" id="DNq-8M-naF"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Stack Editors Vertically" id="u46-te-4c4">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Close Split Editor" id="796">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="748">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Set Editor’s Opacity…" id="367">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showOpacityPanel:" target="Ady-hI-5gd" id="Mop-i1-1f6"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="611">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="2da-fK-Nkg">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="FZv-xC-fG9"/>
                                             </connections>
                                         </menuItem>
                                     </items>
