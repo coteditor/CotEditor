@@ -196,7 +196,7 @@ final class StatusBarController: NSViewController {
         let status = NSMutableAttributedString()
         
         if defaults[.showStatusBarEncoding] {
-            status.appendFormattedState(value: info.charsetName, label: nil)
+            status.appendFormattedState(value: info.encoding, label: nil)
         }
         if defaults[.showStatusBarLineEndings] {
             status.appendFormattedState(value: info.lineEndings, label: nil)
