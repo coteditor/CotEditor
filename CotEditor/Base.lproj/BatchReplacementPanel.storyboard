@@ -785,7 +785,7 @@
             <objects>
                 <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" customClass="BatchReplacementSplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem holdingPriority="251" id="t6n-9g-dQO"/>
+                        <splitViewItem collapsed="YES" holdingPriority="251" id="t6n-9g-dQO"/>
                         <splitViewItem id="RVu-VR-TJq"/>
                     </splitViewItems>
                     <splitView key="splitView" misplaced="YES" dividerStyle="thin" vertical="YES" id="IVS-tk-SwU">
