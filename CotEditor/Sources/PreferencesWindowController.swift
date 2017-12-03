@@ -69,10 +69,15 @@ final class PreferencesWindowController: NSWindowController {
         
         super.windowDidLoad()
         
-        guard let leftmostItem = self.window?.toolbar?.items.first else { return }
+        let lastItemIdentifier = NSToolbarItem.Identifier(UserDefaults.standard[.lastPreferencesPaneIdentifier] ?? "")
         
-        self.window?.toolbar?.selectedItemIdentifier = leftmostItem.itemIdentifier
-        self.switchView(leftmostItem)
+        guard
+            let items = self.window?.toolbar?.items,
+            let item = items.first(where: { $0.itemIdentifier == lastItemIdentifier }) ?? items.first
+            else { return }
+        
+        self.window?.toolbar?.selectedItemIdentifier = item.itemIdentifier
+        self.switchView(item)
         self.window?.center()
     }
     
@@ -102,6 +107,9 @@ final class PreferencesWindowController: NSWindowController {
         
         // add new view to the main view
         window.contentViewController = newController
+        
+        // save selected item for next open
+        UserDefaults.standard[.lastPreferencesPaneIdentifier] = toolbarItem.itemIdentifier.rawValue
     }
     
 }
