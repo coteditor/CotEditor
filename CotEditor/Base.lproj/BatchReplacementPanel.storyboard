@@ -66,7 +66,7 @@
                                                             <rect key="frame" x="1" y="1" width="20" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <button identifier="enabled" toolTip="Select to enable this replacement definition." translatesAutoresizingMaskIntoConstraints="NO" id="PuQ-No-wC1">
+                                                                <button identifier="isEnabled" toolTip="Select to enable this replacement definition." translatesAutoresizingMaskIntoConstraints="NO" id="PuQ-No-wC1">
                                                                     <rect key="frame" x="-1" y="-3" width="21" height="23"/>
                                                                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" state="on" inset="2" id="P46-am-sIg">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -112,7 +112,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="Rqz-SK-mda" name="enabled" keyPath="objectValue.enabled" id="iT6-kw-l5B"/>
+                                                                        <binding destination="Rqz-SK-mda" name="enabled" keyPath="objectValue.isEnabled" id="GWu-ze-FXR"/>
                                                                         <binding destination="Rqz-SK-mda" name="value" keyPath="objectValue.findString" id="UeY-0m-ETr"/>
                                                                     </connections>
                                                                 </textField>
@@ -180,7 +180,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="M9b-zX-U8A" name="enabled" keyPath="objectValue.enabled" id="eMP-L1-w4y"/>
+                                                                        <binding destination="M9b-zX-U8A" name="enabled" keyPath="objectValue.isEnabled" id="wuy-Nd-9wZ"/>
                                                                         <binding destination="M9b-zX-U8A" name="value" keyPath="objectValue.replacementString" id="ouq-FY-4Y1"/>
                                                                     </connections>
                                                                 </textField>
@@ -222,7 +222,7 @@
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <action selector="didCheckboxClicked:" target="ypL-2F-xTV" id="oEy-Zq-AMV"/>
-                                                                        <binding destination="E0A-sg-252" name="enabled" keyPath="objectValue.enabled" id="6Q8-jz-ssu"/>
+                                                                        <binding destination="E0A-sg-252" name="enabled" keyPath="objectValue.isEnabled" id="1of-5m-Zfx"/>
                                                                         <binding destination="E0A-sg-252" name="value" keyPath="objectValue.ignoresCase" id="aEg-Wj-0IC"/>
                                                                     </connections>
                                                                 </button>
@@ -261,7 +261,7 @@
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <action selector="didCheckboxClicked:" target="ypL-2F-xTV" id="lAZ-Lx-iie"/>
-                                                                        <binding destination="gVj-CA-2D0" name="enabled" keyPath="objectValue.enabled" id="hoM-A3-FFc"/>
+                                                                        <binding destination="gVj-CA-2D0" name="enabled" keyPath="objectValue.isEnabled" id="Qtw-re-Ijy"/>
                                                                         <binding destination="gVj-CA-2D0" name="value" keyPath="objectValue.usesRegularExpression" id="FzQ-8G-hMr"/>
                                                                     </connections>
                                                                 </button>
@@ -300,8 +300,8 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
+                                                                        <binding destination="rOM-3j-LP8" name="enabled" keyPath="objectValue.isEnabled" id="ftt-x0-Pt9"/>
                                                                         <binding destination="rOM-3j-LP8" name="value" keyPath="objectValue.comment" id="waK-af-LXI"/>
-                                                                        <binding destination="rOM-3j-LP8" name="enabled" keyPath="objectValue.enabled" id="AVW-ZO-0l8"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
