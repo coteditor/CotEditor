@@ -31,6 +31,10 @@ develop
     - This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.
 
 
+### Fixes
+- Fix an issue where items in the Script menu were not sorted by prefix numbers.
+
+
 
 3.2.5 (208)
 --------------------------
