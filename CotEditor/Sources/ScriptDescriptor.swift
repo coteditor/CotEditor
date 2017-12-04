@@ -27,24 +27,6 @@
 
 import Foundation
 
-enum ScriptingEventType: String {
-    
-    case documentOpened = "document opened"
-    case documentSaved = "document saved"
-    
-    
-    var eventID: AEEventID {
-        
-        switch self {
-        case .documentOpened: return AEEventID(code: "edod")
-        case .documentSaved: return AEEventID(code: "edsd")
-        }
-    }
-    
-}
-
-
-
 enum ScriptingFileType {
     
     case appleScript
@@ -65,10 +47,53 @@ enum ScriptingFileType {
 
 
 
-enum ScriptingExecutionModel: String {
+enum ScriptingExecutionModel: String, Decodable {
     
     case unrestricted
     case persistent
+}
+
+
+
+enum ScriptingEventType: String, Decodable {
+    
+    case documentOpened = "document opened"
+    case documentSaved = "document saved"
+    
+    
+    var eventID: AEEventID {
+        
+        switch self {
+        case .documentOpened: return AEEventID(code: "edod")
+        case .documentSaved: return AEEventID(code: "edsd")
+        }
+    }
+    
+}
+
+
+
+struct ScriptInfo: Decodable {
+    
+    var executionModel: ScriptingExecutionModel?
+    var eventType: [ScriptingEventType]?
+    
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case executionModel = "CotEditorExecutionModel"
+        case eventType = "CotEditorHandlers"
+    }
+    
+    
+    /// Load from Info.plist in script bundle.
+    init(scriptBundle bundleURL: URL) throws {
+        
+        let plistURL = bundleURL.appendingPathComponent("Contents/Info.plist")
+        let data = try Data(contentsOf: plistURL)
+        
+        self = try PropertyListDecoder().decode(ScriptInfo.self, from: data)
+    }
     
 }
 
@@ -129,21 +154,10 @@ struct ScriptDescriptor {
         
         self.name = name
         
-        // Extract from Info.plist
-        
-        let info = NSDictionary(contentsOf: url.appendingPathComponent("Contents/Info.plist"))
-        
-        if let name = info?["CotEditorExecutionModel"] as? String {
-            self.executionModel = ScriptingExecutionModel(rawValue: name) ?? .unrestricted
-        } else {
-            self.executionModel = .unrestricted
-        }
-        
-        if let names = info?["CotEditorHandlers"] as? [String] {
-            self.eventTypes = names.flatMap { ScriptingEventType(rawValue: $0) }
-        } else {
-            self.eventTypes = []
-        }
+        // load some settings Info.plist if exists
+        let info = try? ScriptInfo(scriptBundle: url)
+        self.executionModel = info?.executionModel ?? .unrestricted
+        self.eventTypes = info?.eventType ?? []
     }
     
     
