@@ -2,6 +2,14 @@
 Change Log
 ==========================
 
+3.2.6
+--------------------------
+
+### Fixes
+- Fix an issue where items in the Script menu were not sorted by prefix numbers.
+
+
+
 3.2.5 (208)
 --------------------------
 
