@@ -27,6 +27,7 @@ develop
 - Some minor UI improvements and fixes.
 - Update Japanese localization to conform with the modern macOS localization rules.
 - Update inner source code to Swift 4.
+- Update build environment to Xcode 9.2 (SDK macOS 10.13.2).
 - [non-AppStore ver.] Now, the application updater (Sparkle) can download and update CotEditor automatically, as like before CotEditor was Sandboxed.
     - This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.
 
