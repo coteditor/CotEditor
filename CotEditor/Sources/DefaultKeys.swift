@@ -117,7 +117,7 @@ extension DefaultKeys {
     static let syntaxStyle = DefaultKey<String>("defaultColoringStyleName")
     
     // File Drop
-    static let fileDropArray = DefaultKey<[Any]>("fileDropArray")
+    static let fileDropArray = DefaultKey<[[String: String]]>("fileDropArray")
     
     // Key Bindings
     static let insertCustomTextArray = DefaultKey<[String]>("insertCustomTextArray")
