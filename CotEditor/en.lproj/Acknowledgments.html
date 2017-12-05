@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Acknowledgments</title>
     <style>
-        *     { margin: 0 }
+        *     { margin: 0; padding: 0 }
         body  { font:12px/1.4 -apple-system, sans-serif; padding: 8px 16px }
         h1    { font-size: 18px; margin: 10px 0 }
         h2    { font-size: 14px; margin: 0 0 0.2em }
@@ -15,15 +15,16 @@
         ul li { margin: 0 0 0.4em; list-style-type: circle }
         
         a:link,
-        a:visited      { color: hsl(90,45%,45%) }
-        a:not([href])  { color: #888 }
-        a:hover        { text-decoration: none }
+        a:visited       { color: hsl(90,45%,45%) }
+        a:not([href])   { color: #888 }
+        a:hover         { text-decoration: none }
         
-        section        { margin: 2em 0 3em; }
-        blockquote pre { font: 90%/1.3 -apple-system, sans-serif; color: #777;
-                         margin: 1em 0.5em; white-space: pre-wrap;
-                         border-left: 3px solid #eee; padding-left: 1em }
-        h3 span        { font-size: 90%; font-weight: normal; color: #777 }
+        section         { margin: 2em 0 1em; }
+        section+section { margin-top: 3em }
+        blockquote pre  { font: 90%/1.3 -apple-system, sans-serif; color: #777;
+                          margin: 1em 0.5em; white-space: pre-wrap;
+                          border-left: 3px solid #eee; padding-left: 1em }
+        h3 span         { font-size: 90%; font-weight: normal; color: #777 }
         
         #Libraries    h3::before { content: '📦 ' }
         #InfoSource   h2::before { content: '📚 ' }
@@ -50,7 +51,7 @@
 © 2011-2014 Kornel Lesiński
 © 2015-2017 Mayur Pawashe
 © 2014 C.W. Betts
-© 2014 Petroules Corporation, Sparkle Project contributors
+© 2014 Petroules Corporation
 © 2014 Big Nerd Ranch
 All rights reserved.
 
