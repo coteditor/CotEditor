@@ -109,9 +109,9 @@ extension UserDefaults {
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
-    subscript(key: DefaultKey<[NSNumber]>) -> [NSNumber] {
+    subscript<T>(key: DefaultKey<[T]>) -> [T] {
         
-        get { return self.array(forKey: key.rawValue) as? [NSNumber] ?? [] }
+        get { return self.array(forKey: key.rawValue) as? [T] ?? [] }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     

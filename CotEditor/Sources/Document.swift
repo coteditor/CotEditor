@@ -1105,7 +1105,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // detect encoding from data
-        let encodingList = UserDefaults.standard[.encodingList].map { $0.uint32Value }
+        let encodingList = UserDefaults.standard[.encodingList]
         var usedEncoding: String.Encoding?
         let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
         
@@ -1133,7 +1133,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
                                                upTo: maxEncodingScanLength,
-                                               suggestedCFEncodings: suggestedCFEncodings.map { $0.uint32Value })
+                                               suggestedCFEncodings: suggestedCFEncodings)
     }
     
     
