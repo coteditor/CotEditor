@@ -63,6 +63,13 @@ final class DefaultKey<T>: DefaultKeys { }
 
 extension UserDefaults {
     
+    /// restore default value to factory default
+    func restore<T>(key: DefaultKey<T>) {
+        
+        self.removeObject(forKey: key.rawValue)
+    }
+    
+    
     subscript(key: DefaultKey<Bool>) -> Bool {
         
         get { return self.bool(forKey: key.rawValue) }
@@ -112,12 +119,6 @@ extension UserDefaults {
     subscript<T>(key: DefaultKey<[T]>) -> [T] {
         
         get { return self.array(forKey: key.rawValue) as? [T] ?? [] }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    subscript(key: DefaultKey<[Any]>) -> [Any]? {
-        
-        get { return self.array(forKey: key.rawValue) }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     

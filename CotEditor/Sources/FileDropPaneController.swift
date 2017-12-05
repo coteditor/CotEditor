@@ -207,7 +207,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         let defaultSetting = DefaultSettings.defaults[DefaultKeys.fileDropArray.rawValue] as! [[String: String]]
         if defaultSetting.count == sanitized.count,
             !zip(defaultSetting, sanitized).contains(where: { $0 != $1 }) {
-            UserDefaults.standard[.fileDropArray] = nil
+            UserDefaults.standard.restore(key: .fileDropArray)
             return
         }
         
