@@ -17,7 +17,7 @@ develop
 - Drop support for __OS X 10.10 Yosemite__.
 - Add clear button to input fields in the find panel.
 - Scroll console view after getting a new message to make it visible.
-- Swap position of “Edit” and “Format” menu to conform to Apple's HIG.
+- Swap position of “View” with “Format” menu to conform to Apple's HIG.
 - Display full encoding name in the status bar instead of the IANA charset name.
 - Add tooltips to Unicode normalization forms in Text menu.
 - Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.
