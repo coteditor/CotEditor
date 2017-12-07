@@ -1,9 +1,9 @@
 {
-  "commitish" : "30ab76da037a0e4d24827bf1ce599717ffff336c",
+  "commitish" : "8b47c5db7183a406dcc4e1a2dccea3608d2b5312",
   "Mac" : [
     {
       "name" : "Sparkle",
-      "hash" : "434e2fa0b977a2071ce360359a2534af6e477cea07108867d5e527e98474ddf5"
+      "hash" : "cafe6bdfdb1207de14b9d352cbad9800a976b4d3a12cd21d436462fd61f26148"
     }
   ]
 }
