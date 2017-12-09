@@ -6,6 +6,8 @@ Change Log
 --------------------------
 
 ### Fixes
+
+- Fix an issue where backslaches in replacement strings were not unescaped correctly.
 - Fix an issue where items in the Script menu were not sorted by prefix numbers.
 - Fix a possible crash on handling documents with an invalid shebang.
 - Fix Japanese localization.

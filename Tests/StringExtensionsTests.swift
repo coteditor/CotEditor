@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,9 +43,9 @@ class StringExtensionsTests: XCTestCase {
     
     func testUnescaping() {
         
-        XCTAssertEqual("foo\\\\\\nbar".unescaped, "foo\\\nbar")
-        XCTAssertEqual("\\foo\\\\\\0bar\\".unescaped, "foo\\\u{0}bar")
-        XCTAssertEqual("\\\\\\\\foo".unescaped, "\\\\foo")
+        XCTAssertEqual("foo\\\\\\nbar".unescaped, "foo\\\\\nbar")
+        XCTAssertEqual("\\foo\\\\\\0bar\\".unescaped, "\\foo\\\\\u{0}bar\\")
+        XCTAssertEqual("\\\\\\\\foo".unescaped, "\\\\\\\\foo")
     }
     
     
