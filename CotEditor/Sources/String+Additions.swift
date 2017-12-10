@@ -53,7 +53,7 @@ extension String {
             .mapValues { try! NSRegularExpression(pattern: "(?<!\\\\)(?:\\\\\\\\)*(\\\\" + $0 + ")") }
             .reduce(self) { (string, entity) in
                 entity.value.matches(in: string, range: string.nsRange)
-                    .map { $0.rangeAt(1) }
+                    .map { $0.range(at: 1) }
                     .reversed()
                     .reduce(string) { ($0 as NSString).replacingCharacters(in: $1, with: entity.key) }
             }
