@@ -564,7 +564,7 @@ private extension String {
         
         // use first arg if the path targets env
         if interpreter == "env" {
-            return components[1]
+            return components[safe: 1]
         }
         
         return interpreter
