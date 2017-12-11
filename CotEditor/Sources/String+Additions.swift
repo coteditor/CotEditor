@@ -41,20 +41,22 @@ extension String {
         
         // -> According to the following sentence in the Swift 3 documentation, these are the all combinations with backslash.
         //    > The escaped special characters \0 (null character), \\ (backslash), \t (horizontal tab), \n (line feed), \r (carriage return), \" (double quote) and \' (single quote)
-        let entities = ["\0": "\\0",
-                        "\t": "\\t",
-                        "\n": "\\n",
-                        "\r": "\\r",
-                        "\"": "\\\"",
-                        "\'": "\\'",
+        let entities = ["\0": "0",
+                        "\t": "t",
+                        "\n": "n",
+                        "\r": "r",
+                        "\"": "\"",
+                        "\'": "'",
                         ]
         
         return entities
+            .mapValues { try! NSRegularExpression(pattern: "(?<!\\\\)(?:\\\\\\\\)*(\\\\" + $0 + ")") }
             .reduce(self) { (string, entity) in
-                string.replacingOccurrences(of: entity.value, with: entity.key)
+                entity.value.matches(in: string, range: string.nsRange)
+                    .map { $0.rangeAt(1) }
+                    .reversed()
+                    .reduce(string) { ($0 as NSString).replacingCharacters(in: $1, with: entity.key) }
             }
-            .replacingOccurrences(of: "\\\\(?!\\\\)", with: "", options: .regularExpression)  // remove all single backslash
-            .replacingOccurrences(of: "\\\\", with: "\\")
     }
     
     

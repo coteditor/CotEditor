@@ -2,6 +2,18 @@
 Change Log
 ==========================
 
+3.2.6 (210)
+--------------------------
+
+### Fixes
+
+- Fix an issue where backslashes in replacement strings were not unescaped correctly.
+- Fix an issue where items in the Script menu were not sorted by prefix numbers.
+- Fix a possible crash on handling documents with an invalid shebang.
+- Fix Japanese localization.
+
+
+
 3.2.5 (208)
 --------------------------
 
