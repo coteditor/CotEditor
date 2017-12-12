@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.2.7
+--------------------------
+
+### Fixes
+
+- Fix an issue where the find panel was over expanded when performing “Find All” with a long find string.
+
+
+
 3.2.6 (210)
 --------------------------
 
