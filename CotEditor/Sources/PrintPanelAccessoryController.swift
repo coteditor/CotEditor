@@ -27,24 +27,23 @@
 
 import Cocoa
 
-/// print setting keys
-enum PrintSettingKey: String {
+extension NSPrintInfo.AttributeKey {
     
-    case theme = "CEThemeName"
-    case lineNumber = "CEPrintLineNumber"
-    case invisibles = "CEPrintInvisibles"
-    case printsHeader = "CEPrintHeader"
-    case primaryHeaderContent = "CEPrimaryHeaderContent"
-    case secondaryHeaderContent = "CESecondaryHeaderContent"
-    case primaryHeaderAlignment = "CEPrimaryHeaderAlignment"
-    case secondaryHeaderAlignment = "CESecondaryHeaderAlignment"
-    case printsFooter = "CEPrintFooter"
-    case primaryFooterContent = "CEPrimaryFooterContent"
-    case secondaryFooterContent = "CESecondaryFooterContent"
-    case primaryFooterAlignment = "CEPrimaryFooterAlignment"
-    case secondaryFooterAlignment = "CESecondaryFooterAlignment"
-    
+    static let theme = NSPrintInfo.AttributeKey(rawValue: "CEThemeName")
+    static let lineNumber = NSPrintInfo.AttributeKey(rawValue: "CEPrintLineNumber")
+    static let invisibles = NSPrintInfo.AttributeKey(rawValue: "CEPrintInvisibles")
+    static let printsHeader = NSPrintInfo.AttributeKey(rawValue: "CEPrintHeader")
+    static let primaryHeaderContent = NSPrintInfo.AttributeKey(rawValue: "CEPrimaryHeaderContent")
+    static let secondaryHeaderContent = NSPrintInfo.AttributeKey(rawValue: "CESecondaryHeaderContent")
+    static let primaryHeaderAlignment = NSPrintInfo.AttributeKey(rawValue: "CEPrimaryHeaderAlignment")
+    static let secondaryHeaderAlignment = NSPrintInfo.AttributeKey(rawValue: "CESecondaryHeaderAlignment")
+    static let printsFooter = NSPrintInfo.AttributeKey(rawValue: "CEPrintFooter")
+    static let primaryFooterContent = NSPrintInfo.AttributeKey(rawValue: "CEPrimaryFooterContent")
+    static let secondaryFooterContent = NSPrintInfo.AttributeKey(rawValue: "CESecondaryFooterContent")
+    static let primaryFooterAlignment = NSPrintInfo.AttributeKey(rawValue: "CEPrimaryFooterAlignment")
+    static let secondaryFooterAlignment = NSPrintInfo.AttributeKey(rawValue: "CESecondaryFooterAlignment")
 }
+
 
 struct ThemeName {
     
@@ -207,23 +206,16 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     /// KVO compatible setter for Cocoa print setting
-    private func setSettingValue(_ value: Any?, forKey key: PrintSettingKey) {
+    private func setSettingValue(_ value: Any?, forKey key: NSPrintInfo.AttributeKey) {
         
-        self.setValue(value, forKeyPath: self.settingPath(forKey: key))
+        self.printInfo?.dictionary().setValue(value, forKey: key.rawValue)
     }
     
     
     /// KVO compatible getter for Cocoa print setting
-    private func settingValue(forKey key: PrintSettingKey) -> Any? {
+    private func settingValue(forKey key: NSPrintInfo.AttributeKey) -> Any? {
         
-        return self.value(forKeyPath: self.settingPath(forKey: key))
-    }
-    
-    
-    /// return keyPath to the given setting key
-    private func settingPath(forKey key: PrintSettingKey) -> String {
-        
-        return "representedObject.dictionary." + key.rawValue
+        return self.printInfo?.dictionary().value(forKey: key.rawValue)
     }
     
     

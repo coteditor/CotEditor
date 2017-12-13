@@ -222,13 +222,13 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// return page header attributed string
     override var pageHeader: NSAttributedString {
         
-        guard let settings = NSPrintOperation.current?.printInfo.dictionary(),
-            (settings[PrintSettingKey.printsHeader.rawValue] as? Bool) ?? false else { return NSAttributedString() }
+        guard let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
+            (settings[.printsHeader] as? Bool) ?? false else { return NSAttributedString() }
         
-        let primaryInfoType = PrintInfoType(settings[PrintSettingKey.primaryHeaderContent.rawValue] as? Int)
-        let primaryAlignment = AlignmentType(settings[PrintSettingKey.primaryHeaderAlignment.rawValue] as? Int)
-        let secondaryInfoType = PrintInfoType(settings[PrintSettingKey.secondaryHeaderContent.rawValue] as? Int)
-        let secondaryAlignment = AlignmentType(settings[PrintSettingKey.secondaryHeaderAlignment.rawValue] as? Int)
+        let primaryInfoType = PrintInfoType(settings[.primaryHeaderContent] as? Int)
+        let primaryAlignment = AlignmentType(settings[.primaryHeaderAlignment] as? Int)
+        let secondaryInfoType = PrintInfoType(settings[.secondaryHeaderContent] as? Int)
+        let secondaryAlignment = AlignmentType(settings[.secondaryHeaderAlignment] as? Int)
         
         return self.headerFooter(primaryString: self.printInfoString(type: primaryInfoType),
                                  primaryAlignment: primaryAlignment,
@@ -240,13 +240,13 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// return page footer attributed string
     override var pageFooter: NSAttributedString {
         
-        guard let settings = NSPrintOperation.current?.printInfo.dictionary(),
-            (settings[PrintSettingKey.printsFooter.rawValue] as? Bool) ?? false else { return NSAttributedString() }
+        guard let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
+            (settings[.printsFooter] as? Bool) ?? false else { return NSAttributedString() }
         
-        let primaryInfoType = PrintInfoType(settings[PrintSettingKey.primaryFooterContent.rawValue] as? Int)
-        let primaryAlignment = AlignmentType(settings[PrintSettingKey.primaryFooterAlignment.rawValue] as? Int)
-        let secondaryInfoType = PrintInfoType(settings[PrintSettingKey.secondaryFooterContent.rawValue] as? Int)
-        let secondaryAlignment = AlignmentType(settings[PrintSettingKey.secondaryFooterAlignment.rawValue] as? Int)
+        let primaryInfoType = PrintInfoType(settings[.primaryFooterContent] as? Int)
+        let primaryAlignment = AlignmentType(settings[.primaryFooterAlignment] as? Int)
+        let secondaryInfoType = PrintInfoType(settings[.secondaryFooterContent] as? Int)
+        let secondaryAlignment = AlignmentType(settings[.secondaryFooterAlignment] as? Int)
         
         return self.headerFooter(primaryString: self.printInfoString(type: primaryInfoType),
                                  primaryAlignment: primaryAlignment,
@@ -329,14 +329,14 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private func loadPrintSettings() {
         
         guard
-            let settings = NSPrintOperation.current?.printInfo.dictionary(),
+            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
             let layoutManager = self.layoutManager as? LayoutManager,
             let textStorage = self.textStorage else { return }
         
         // check whether print line numbers
         self.printsLineNumber = {
             guard
-                let index = settings[PrintSettingKey.lineNumber.rawValue] as? Int,
+                let index = settings[.lineNumber] as? Int,
                 let mode = PrintLineNmuberMode(rawValue: index) else { return false }
             switch mode {
             case .no:
@@ -354,7 +354,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         // check whether print invisibles
         layoutManager.showsInvisibles = {
             guard
-                let index = settings[PrintSettingKey.invisibles.rawValue] as? Int,
+                let index = settings[.invisibles] as? Int,
                 let mode = PrintInvisiblesMode(rawValue: index) else { return false }
             switch mode {
             case .no:
@@ -367,7 +367,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         }()
         
         // setup syntax highlighting with theme
-        let themeName = (settings[PrintSettingKey.theme.rawValue] as? String) ?? ThemeName.blackAndWhite
+        let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
         if themeName == ThemeName.blackAndWhite {
             layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: textStorage.string.nsRange)
             self.textColor = .textColor
