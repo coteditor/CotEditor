@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -504,9 +504,9 @@
                                     <binding destination="2MH-SD-abc" name="value" keyPath="resultMessage" id="LjY-os-9o7"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="t8U-kV-AgP">
-                                <rect key="frame" x="18" y="137" width="100" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" sendsActionOnEndEditing="YES" title="Find string: Clarus" placeholderString="" usesSingleLineMode="YES" id="t1S-wd-olE">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="t8U-kV-AgP">
+                                <rect key="frame" x="18" y="137" width="424" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="charWrapping" selectable="YES" sendsActionOnEndEditing="YES" title="Find string: Clarus" placeholderString="" id="t1S-wd-olE">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -531,7 +531,7 @@
                             <constraint firstItem="t8U-kV-AgP" firstAttribute="leading" secondItem="XqS-F4-g0U" secondAttribute="leading" constant="20" symbolic="YES" id="qo0-yR-K0Z"/>
                             <constraint firstItem="t8U-kV-AgP" firstAttribute="top" secondItem="nBv-lc-1x1" secondAttribute="bottom" constant="4" id="s65-sB-JJ5"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nBv-lc-1x1" secondAttribute="trailing" constant="20" symbolic="YES" id="usi-44-pCl"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="t8U-kV-AgP" secondAttribute="trailing" constant="20" symbolic="YES" id="ySk-vQ-dLV"/>
+                            <constraint firstAttribute="trailing" secondItem="t8U-kV-AgP" secondAttribute="trailing" constant="20" symbolic="YES" id="ySk-vQ-dLV"/>
                             <constraint firstItem="oC1-bN-UeN" firstAttribute="top" secondItem="XqS-F4-g0U" secondAttribute="top" constant="8" id="yie-t9-cqD"/>
                         </constraints>
                     </view>
@@ -622,7 +622,7 @@
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSGoLeftTemplate" width="9" height="12"/>
         <image name="NSGoRightTemplate" width="9" height="12"/>
-        <image name="NSStopProgressFreestandingTemplate" width="11" height="11"/>
+        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
         <image name="ReplaceTemplate" width="20" height="13"/>
     </resources>
 </document>
