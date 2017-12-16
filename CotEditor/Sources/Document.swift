@@ -41,6 +41,7 @@ private enum SerializationKey {
     static let syntaxStyle = "syntaxStyle"
     static let autosaveIdentifier = "autosaveIdentifier"
     static let isVerticalText = "isVerticalText"
+    static let isTransient = "isTransient"
 }
 
 // file extended attributes
@@ -142,6 +143,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
         coder.encode(self.syntaxStyle.styleName, forKey: SerializationKey.syntaxStyle)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
+        coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
         
         super.encodeRestorableState(with: coder)
     }
@@ -166,6 +168,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         if coder.containsValue(forKey: SerializationKey.isVerticalText) {
             self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
+        }
+        if coder.containsValue(forKey: SerializationKey.isTransient) {
+            self.isTransient = coder.decodeBool(forKey: SerializationKey.isTransient)
         }
     }
     
