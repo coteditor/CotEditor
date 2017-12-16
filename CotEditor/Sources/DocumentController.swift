@@ -41,6 +41,9 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Private Properties
     
+    private let transientDocumentLock = NSLock()
+    private var deferredDocuments = [NSDocument]()
+    
     @objc private dynamic var showsHiddenFiles = false  // binding
     
     @IBOutlet private var openPanelAccessoryView: NSView?
@@ -77,19 +80,75 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    /// listen document open event of the ODB editor protocol
+    ///
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
         
+        // listen document open event of the ODB editor protocol
         // -> Need to fetch AppleEvent at this moment.
         let openEvent = NSAppleEventManager.shared().currentAppleEvent
         
-        super.openDocument(withContentsOf: url, display: displayDocument) { (document, documentWasAlreadyOpen, error) in
+        // obtain transient document if exists
+        self.transientDocumentLock.lock()
+        let transientDocument = self.transientDocumentToReplace
+        if let transientDocument = transientDocument {
+            transientDocument.isTransient = false
+            self.deferredDocuments = []
+        }
+        self.transientDocumentLock.unlock()
+        
+        super.openDocument(withContentsOf: url, display: false) { (document, documentWasAlreadyOpen, error) in
+            
+            assert(Thread.isMainThread)
+            
+            if let transientDocument = transientDocument, let document = document as? Document {
+                self.replaceTransientDocument(transientDocument, with: document)
+                if displayDocument {
+                    document.makeWindowControllers()
+                    document.showWindows()
+                }
+                
+                // display all deferred documents since the transient document has been replaced
+                for deferredDocument in self.deferredDocuments {
+                    deferredDocument.makeWindowControllers()
+                    deferredDocument.showWindows()
+                }
+                self.deferredDocuments = []
+                
+            } else if displayDocument, let document = document {
+                if self.deferredDocuments.isEmpty {
+                    // display the document immediately, because the transient document has been replaced.
+                    document.makeWindowControllers()
+                    document.showWindows()
+                } else {
+                    // defer displaying this document, because the transient document has not yet been replaced.
+                    self.deferredDocuments.append(document)
+                }
+            }
+            
             completionHandler(document, documentWasAlreadyOpen, error)
             
             if let openEvent = openEvent {
                 (document as? AdditionalDocumentPreparing)?.registerDocumnentOpenEvent(openEvent)
             }
         }
+    }
+    
+    
+    /// open untitled document
+    override func openUntitledDocumentAndDisplay(_ displayDocument: Bool) throws -> NSDocument {
+        
+        let document = try super.openUntitledDocumentAndDisplay(displayDocument)
+        
+        // make document transient when it is an open or reopen event
+        if self.documents.count == 1,
+            let event = NSAppleEventManager.shared().currentAppleEvent,
+            event.eventClass == kCoreEventClass,
+            (event.eventID == kAEReopenApplication || event.eventID == kAEOpenApplication)
+        {
+                (document as? Document)?.isTransient = true
+        }
+        
+        return document
     }
     
     
@@ -119,6 +178,21 @@ final class DocumentController: NSDocumentController {
         self.resetAccessorySelectedEncoding()
         
         return document
+    }
+    
+    
+    /// add document to documentController's list
+    override func addDocument(_ document: NSDocument) {
+        
+        // clear the first document's transient status when a second document is added
+        // -> This happens when the user selects "New" when a transient document already exists.
+        if self.documents.count == 1,
+            let firstDocument = self.documents.first as? Document,
+            firstDocument.isTransient {
+            firstDocument.isTransient = false
+        }
+        
+        super.addDocument(document)
     }
     
     
@@ -239,7 +313,41 @@ final class DocumentController: NSDocumentController {
     }
     
     
+    
     // MARK: Private Methods
+    
+    /// transient document to be replaced or nil
+    var transientDocumentToReplace: Document? {
+        
+        guard
+            self.documents.count == 1,
+            let document = self.documents.first as? Document,
+            document.isTransient,
+            document.windowForSheet?.attachedSheet == nil
+            else { return nil }
+        
+        return document
+    }
+    
+    
+    /// replace view controllers in documents
+    private func replaceTransientDocument(_ transientDocument: Document, with document: Document) {
+        
+        assert(Thread.isMainThread)
+        
+        for controller in transientDocument.windowControllers {
+            document.addWindowController(controller)
+            transientDocument.removeWindowController(controller)
+        }
+        transientDocument.close()
+        
+        // notify accessibility clients about the value replacement of the transient document with opened document
+        document.textStorage.layoutManagers
+            .flatMap { $0.textContainers }
+            .flatMap { $0.textView }
+            .forEach { NSAccessibilityPostNotification($0, .valueChanged) }
+    }
+    
     
     /// update encoding menu in the open panel
     private func buildEncodingPopupButton() {

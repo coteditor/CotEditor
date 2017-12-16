@@ -41,6 +41,7 @@ private enum SerializationKey {
     static let syntaxStyle = "syntaxStyle"
     static let autosaveIdentifier = "autosaveIdentifier"
     static let isVerticalText = "isVerticalText"
+    static let isTransient = "isTransient"
 }
 
 // file extended attributes
@@ -68,6 +69,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Public Properties
     
     var isVerticalText = false
+    var isTransient = false  // untitled & empty document that was created automatically
     
     
     // MARK: Readonly Properties
@@ -141,6 +143,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
         coder.encode(self.syntaxStyle.styleName, forKey: SerializationKey.syntaxStyle)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
+        coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
         
         super.encodeRestorableState(with: coder)
     }
@@ -165,6 +168,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         if coder.containsValue(forKey: SerializationKey.isVerticalText) {
             self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
+        }
+        if coder.containsValue(forKey: SerializationKey.isTransient) {
+            self.isTransient = coder.decodeBool(forKey: SerializationKey.isTransient)
         }
     }
     
@@ -199,12 +205,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// make custom windowControllers
     override func makeWindowControllers() {
         
+        defer {
+            self.applyContentToWindow()
+        }
+        
+        // a transient document has already one
+        guard self.windowControllers.isEmpty else { return }
+        
         let storyboard = NSStoryboard(name: NSStoryboard.Name("DocumentWindow"), bundle: nil)
         let windowController = storyboard.instantiateInitialController() as! NSWindowController
         
         self.addWindowController(windowController)
-        
-        self.applyContentToWindow()
     }
     
     
@@ -659,6 +670,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         set {
             super.printInfo = newValue
         }
+    }
+    
+    
+    /// document was updated
+    override func updateChangeCount(_ change: NSDocument.ChangeType) {
+        
+        self.isTransient = false
+        
+        super.updateChangeCount(change)
     }
     
     
