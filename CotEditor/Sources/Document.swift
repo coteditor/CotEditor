@@ -68,6 +68,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Public Properties
     
     var isVerticalText = false
+    var isTransient = false  // untitled & empty document that was created automatically
     
     
     // MARK: Readonly Properties
@@ -199,12 +200,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// make custom windowControllers
     override func makeWindowControllers() {
         
+        defer {
+            self.applyContentToWindow()
+        }
+        
+        // a transient document has already one
+        guard self.windowControllers.isEmpty else { return }
+        
         let storyboard = NSStoryboard(name: NSStoryboard.Name("DocumentWindow"), bundle: nil)
         let windowController = storyboard.instantiateInitialController() as! NSWindowController
         
         self.addWindowController(windowController)
-        
-        self.applyContentToWindow()
     }
     
     
@@ -659,6 +665,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         set {
             super.printInfo = newValue
         }
+    }
+    
+    
+    /// document was updated
+    override func updateChangeCount(_ change: NSDocument.ChangeType) {
+        
+        self.isTransient = false
+        
+        super.updateChangeCount(change)
     }
     
     

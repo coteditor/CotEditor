@@ -15,6 +15,7 @@ develop
 ### Improvements
 
 - Drop support for __OS X 10.10 Yosemite__.
+- Open document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
 - Add clear button to input fields in the find panel.
 - Scroll console view after getting a new message to make it visible.
 - Swap position of “View” with “Format” menu to conform to Apple's HIG.
