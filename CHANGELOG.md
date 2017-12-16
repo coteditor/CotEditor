@@ -5,6 +5,11 @@ Change Log
 3.2.7
 --------------------------
 
+### Improvements
+
+- Spread background drawing over paper width on printing.
+
+
 ### Fixes
 
 - Fix an issue where the find panel was over expanded when performing “Find All” with a long find string.
