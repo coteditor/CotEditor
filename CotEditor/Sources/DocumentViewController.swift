@@ -107,7 +107,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             document.textStorage.delegate = self
             document.syntaxStyle.delegate = self
             
-            let editorViewController = self.createEditor(baseViewController: nil)
+            // -> use existing one if added document is replacement of a transient document
+            let editorViewController = self.editorViewControllers.first ?? self.createEditorViewController()
+            self.setup(editorViewController: editorViewController, baseViewController: nil)
             
             // start parcing syntax highlights and outline menu
             if document.syntaxStyle.canParse {
@@ -612,7 +614,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
-        let newEditorViewController = self.createEditor(baseViewController: currentEditorViewController)
+        let newEditorViewController = self.createEditorViewController(relativeTo: currentEditorViewController)
+        self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
         newEditorViewController.navigationBarController?.outlineItems = self.syntaxStyle?.outlineItems ?? []
         self.invalidateSyntaxHighlight()
@@ -680,15 +683,22 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     }
     
     
-    /// create and set-up new (split) editor view
-    private func createEditor(baseViewController: EditorViewController?) -> EditorViewController {
+    /// create new (split) editor view
+    private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController? = nil) -> EditorViewController {
         
         let storyboard = NSStoryboard(name: NSStoryboard.Name("EditorView"), bundle: nil)
         let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
-        editorViewController.textStorage = self.textStorage
         
-        // instert new editorView just below the editorView that the pressed button belongs to or has focus
-        self.splitViewController?.addSubview(for: editorViewController, relativeTo: baseViewController)
+        self.splitViewController?.addSubview(for: editorViewController, relativeTo: otherEditorViewController)
+        
+        return editorViewController
+    }
+    
+    
+    /// create and set-up new (split) editor view
+    private func setup(editorViewController: EditorViewController, baseViewController: EditorViewController?) {
+        
+        editorViewController.textStorage = self.textStorage
         
         editorViewController.textView?.wrapsLines = self.wrapsLines
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
@@ -712,8 +722,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
                                                name: NSTextView.didChangeSelectionNotification,
                                                object: editorViewController.textView)
-        
-        return editorViewController
     }
     
     
