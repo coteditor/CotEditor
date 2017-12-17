@@ -80,7 +80,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    ///
+    /// open document
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
         
         // listen document open event of the ODB editor protocol
@@ -330,7 +330,7 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// replace view controllers in documents
+    /// replace window controllers in documents
     private func replaceTransientDocument(_ transientDocument: Document, with document: Document) {
         
         assert(Thread.isMainThread)
