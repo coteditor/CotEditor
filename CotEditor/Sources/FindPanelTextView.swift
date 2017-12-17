@@ -118,6 +118,13 @@ final class FindPanelTextView: NSTextView {
     }
     
     
+    /// jump to the previous responder with tab key (standard NSTextField behavior)
+    override func insertBacktab(_ sender: Any?) {
+        
+        self.window?.makeFirstResponder(self.previousKeyView)
+    }
+    
+    
     /// swap '¥' with '\' if needed
     override func insertText(_ string: Any, replacementRange: NSRange) {
         

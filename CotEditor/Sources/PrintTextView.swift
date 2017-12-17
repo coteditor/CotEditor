@@ -275,12 +275,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         // resize frame
         self.frame.size = self.printSize
         self.sizeToFit()
-        let usedSize = self.layoutManager!.usedRect(for: self.textContainer!).size
+        let usedHeight = self.layoutManager!.usedRect(for: self.textContainer!).height
         switch self.layoutOrientation {
         case .horizontal:
-            self.frame.size = usedSize
+            self.frame.size.height = usedHeight
         case .vertical:
-            self.frame.size = usedSize.rotated
+            self.frame.size.width = usedHeight
         }
         
         return super.knowsPageRange(range)  // = false
