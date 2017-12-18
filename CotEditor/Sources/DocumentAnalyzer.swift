@@ -128,7 +128,7 @@ final class DocumentAnalyzer: NSObject {
             return attrs?[.immutable] as? Bool ?? false
         }()
         
-        NotificationCenter.default.post(name: .AnalyzerDidUpdateFileInfo, object: self.info)
+        NotificationCenter.default.post(name: .AnalyzerDidUpdateFileInfo, object: self)
     }
     
     
