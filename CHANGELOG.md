@@ -45,6 +45,7 @@ develop
 ### Fixes
 
 - Fix an issue where the find panel was over expanded when performing “Find All” with a long find string.
+- Fix an issue where the file size in the status bar was not updated after saving.
 - Fix an issue where the find panel didn't select previous field with Shift + Tab keys
 
 
