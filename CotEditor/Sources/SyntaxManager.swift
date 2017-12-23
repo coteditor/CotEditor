@@ -120,10 +120,10 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// path extension for user setting file
-    override var filePathExtension: String {
+    /// path extensions for user setting file
+    override var filePathExtensions: [String] {
         
-        return "yaml"
+        return ["yaml", "yml"]
     }
     
     
@@ -443,17 +443,13 @@ final class SyntaxManager: SettingFileManager {
     private func loadUserStyles() {
         
         // load user styles if exists
-        if let urls = try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
-                                                                   includingPropertiesForKeys: nil,
-                                                                   options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
-            let userStyles: [SyntaxManager.SettingName: StyleDictionary] = urls
-                .filter { [self.filePathExtension, "yml"].contains($0.pathExtension) }
-                .flatDictionary { url in
-                    guard let style = try? self.settingDictionary(fileURL: url) else { return nil }
-                    let styleName = self.settingName(from: url)
-                    
-                    return (styleName, style)
-                }
+        if let urls = self.userSettingFileURLs {
+            let userStyles: [SyntaxManager.SettingName: StyleDictionary] = urls.flatDictionary { url in
+                guard let style = try? self.settingDictionary(fileURL: url) else { return nil }
+                let styleName = self.settingName(from: url)
+                
+                return (styleName, style)
+            }
             
             // create file mapping data
             let mappingKeys = [SyntaxKey.extensions, SyntaxKey.filenames, SyntaxKey.interpreters].map { $0.rawValue }

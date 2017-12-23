@@ -59,8 +59,8 @@ class SettingFileManager: SettingManager {
     // MARK: -
     // MARK: Abstract Methods
     
-    /// path extension for user setting file
-    var filePathExtension: String { preconditionFailure() }
+    /// path extensions for user setting file
+    var filePathExtensions: [String] { preconditionFailure() }
     
     /// setting file type
     var settingFileType: SettingFileType { preconditionFailure() }
@@ -78,6 +78,23 @@ class SettingFileManager: SettingManager {
     
     
     // MARK: Public Methods
+    
+    /// default path extension for user setting file
+    var filePathExtension: String {
+        
+        return self.filePathExtensions.first!
+    }
+    
+    
+    /// file urls for user settings
+    var userSettingFileURLs: [URL]? {
+        
+        return (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
+                                                             includingPropertiesForKeys: nil,
+                                                             options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
+            .filter { self.filePathExtensions.contains($0.pathExtension) }
+    }
+    
     
     /// create setting name from a URL (don't care if it exists)
     func settingName(from fileURL: URL) -> String {

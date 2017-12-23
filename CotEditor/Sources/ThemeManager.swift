@@ -82,10 +82,10 @@ final class ThemeManager: SettingFileManager {
     }
     
     
-    /// path extension for user setting file
-    override var filePathExtension: String {
+    /// path extensions for user setting file
+    override var filePathExtensions: [String] {
         
-        return DocumentType.theme.extensions[0]
+        return DocumentType.theme.extensions
     }
     
     
@@ -250,13 +250,8 @@ final class ThemeManager: SettingFileManager {
         var themeNameSet = OrderedSet(self.bundledThemeNames)
         
         // load user themes if exists
-        if let fileURLs = try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
-                                                                       includingPropertiesForKeys: nil,
-                                                                       options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
-            let userThemeNames = fileURLs
-                .filter { $0.pathExtension == self.filePathExtension }
-                .map { self.settingName(from: $0) }
-            
+        if let urls = self.userSettingFileURLs {
+            let userThemeNames = urls.map { self.settingName(from: $0) }
             themeNameSet.append(contentsOf: userThemeNames)
         }
         
