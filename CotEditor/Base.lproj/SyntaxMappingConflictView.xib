@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SyntaxMappingConflictsViewController" customModule="CotEditor" customModuleProvider="target">
@@ -77,7 +79,7 @@ DQ
                                 <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="82" minWidth="40" maxWidth="1000" id="qkj-mf-TAf">
+                                    <tableColumn identifier="" editable="NO" width="82" minWidth="40" maxWidth="1000" id="qkj-mf-TAf">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extension">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -119,7 +121,7 @@ DQ
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="100" minWidth="40" maxWidth="1000" id="oen-KK-QCa">
+                                    <tableColumn identifier="" editable="NO" width="100" minWidth="40" maxWidth="1000" id="oen-KK-QCa">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Used Style">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -161,7 +163,7 @@ DQ
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="161" minWidth="40" maxWidth="1000" id="zSH-kc-yV3">
+                                    <tableColumn identifier="" editable="NO" width="161" minWidth="40" maxWidth="1000" id="zSH-kc-yV3">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Duplicated Styles">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -237,7 +239,7 @@ DQ
                                 <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="82" minWidth="40" maxWidth="1000" id="YGO-sx-UT0">
+                                    <tableColumn identifier="" editable="NO" width="82" minWidth="40" maxWidth="1000" id="YGO-sx-UT0">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Filename">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -279,7 +281,7 @@ DQ
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="100" minWidth="40" maxWidth="1000" id="cz8-8b-5qL">
+                                    <tableColumn identifier="" editable="NO" width="100" minWidth="40" maxWidth="1000" id="cz8-8b-5qL">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Used Style">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -321,7 +323,7 @@ DQ
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn editable="NO" width="161" minWidth="40" maxWidth="1000" id="nge-9Z-A9D">
+                                    <tableColumn identifier="" editable="NO" width="161" minWidth="40" maxWidth="1000" id="nge-9Z-A9D">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Duplicated Styles">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -347,7 +349,7 @@ DQ
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <binding destination="A0Q-cO-c1I" name="value" keyPath="objectValue.doubledStyle" id="eVD-he-1og"/>
+                                                            <binding destination="A0Q-cO-c1I" name="value" keyPath="objectValue.doubledStyles" id="Gs8-yR-WVB"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
