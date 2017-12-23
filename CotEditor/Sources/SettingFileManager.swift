@@ -130,7 +130,6 @@ class SettingFileManager: SettingManager {
     }
     
     
-    /// return setting name appending localized " Copy" + number suffix without extension
     /// return setting name appending number suffix without extension
     func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
         

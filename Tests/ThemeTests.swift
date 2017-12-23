@@ -95,7 +95,7 @@ class ThemeTests: XCTestCase {
         let themeDirectoryURL = self.bundle?.url(forResource: themeDirectoryName, withExtension: nil)!
         let enumerator = FileManager.default.enumerator(at: themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])!
         
-        for url in enumerator.allObjects as! [URL] {
+        for case let url as URL in enumerator {
             guard DocumentType.theme.extensions.contains(url.pathExtension) else { continue }
             
             let theme = self.loadThemeWithURL(url)

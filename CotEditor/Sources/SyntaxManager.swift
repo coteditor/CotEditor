@@ -442,37 +442,36 @@ final class SyntaxManager: SettingFileManager {
     /// load style files in user domain and re-build chache and mapping table
     private func loadUserStyles() {
         
-        var map = self.bundledMap
-        
         // load user styles if exists
-        if let enumerator = FileManager.default.enumerator(at: self.userSettingDirectoryURL,
-                                                           includingPropertiesForKeys: nil,
-                                                           options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
-            for case let url as URL in enumerator {
-                guard [self.filePathExtension, "yml"].contains(url.pathExtension) else { continue }
-                guard let style = try? self.settingDictionary(fileURL: url) else { continue }
-                
-                let styleName = self.settingName(from: url)
-                let keys: [SyntaxKey] = [.extensions, .filenames, .interpreters]
-                
-                map[styleName] = keys.flatDictionary { [style = style] (key) in
-                    // collect values which has "keyString" key in key section in style dictionary
-                    let dictionaries = (style[key.rawValue] as? [[String: String]]) ?? []
-                    let keyStrings = dictionaries.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] }
+        if let urls = try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
+                                                                   includingPropertiesForKeys: nil,
+                                                                   options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
+            let userStyles: [SyntaxManager.SettingName: StyleDictionary] = urls
+                .filter { [self.filePathExtension, "yml"].contains($0.pathExtension) }
+                .flatDictionary { url in
+                    guard let style = try? self.settingDictionary(fileURL: url) else { return nil }
+                    let styleName = self.settingName(from: url)
                     
-                    return (key.rawValue, keyStrings)
+                    return (styleName, style)
                 }
-                
-                // cache style since it's already loaded
-                self.propertyAccessQueue.sync {
-                    self.cachedSettingDictionaries[styleName] = style
-                }
+            
+            // create file mapping data
+            let mappingKeys = [SyntaxKey.extensions, SyntaxKey.filenames, SyntaxKey.interpreters].map { $0.rawValue }
+            let userMap = userStyles.mapValues { style -> [String: [String]] in
+                style.filter { mappingKeys.contains($0.key) }
+                    .mapValues { $0 as? [[String: String]] ?? [] }
+                    .mapValues { $0.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
+            }
+            self.map = self.bundledMap.merging(userMap) { (_, new) in new }
+            
+            // cache style since loaded
+            self.propertyAccessQueue.sync {
+                self.cachedSettingDictionaries.merge(userStyles) { (_, new) in new }
             }
         }
-        self.map = map
         
         // sort styles alphabetically
-        self.styleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        self.styleNames = self.map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // remove deleted styles
         // -> don't care about style name change just for laziness
