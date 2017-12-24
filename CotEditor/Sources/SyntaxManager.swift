@@ -366,7 +366,7 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// conflicted maps
-    var mappingConflicts: [SyntaxKey : [String : [SyntaxManager.SettingName]]] {
+    var mappingConflicts: [SyntaxKey: [String: [SyntaxManager.SettingName]]] {
         
         return self.mappingTables.mapValues { $0.filter { $0.value.count > 1 } }
     }
