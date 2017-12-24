@@ -28,15 +28,21 @@
 
 import Cocoa
 
+extension FileAttributeKey {
+    
+    static let extendedAttributes = FileAttributeKey("NSFileExtendedAttributes")
+}
 
-// constants
 
-private let uniqueFileIDLength = 13
+private struct FileExtendedAttributeName {
+    
+    static let encoding = "com.apple.TextEncoding"
+    static let verticalText = "com.coteditor.VerticalText"
+}
 
-/// Maximal length to scan encoding declaration
-private let maxEncodingScanLength = 2000
 
-private enum SerializationKey {
+private struct SerializationKey {
+    
     static let readingEncoding = "readingEncoding"
     static let syntaxStyle = "syntaxStyle"
     static let autosaveIdentifier = "autosaveIdentifier"
@@ -44,13 +50,11 @@ private enum SerializationKey {
     static let isTransient = "isTransient"
 }
 
-// file extended attributes
-private let NSFileExtendedAttributes = FileAttributeKey("NSFileExtendedAttributes")
 
-private enum FileExtendedAttributeName {
-    static let Encoding = "com.apple.TextEncoding"
-    static let VerticalText = "com.coteditor.VerticalText"
-}
+private let uniqueFileIDLength = 13
+
+/// Maximal length to scan encoding declaration
+private let maxEncodingScanLength = 2000
 
 
 
@@ -181,10 +185,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// enable Autosave in Place
     override class var autosavesInPlace: Bool {
         
-        return self._autosavesInPlace
+        // avoid changing the value while the application is running
+        struct InitialValue { static let autosavesInPlace = UserDefaults.standard[.enablesAutosaveInPlace] }
+        
+        return InitialValue.autosavesInPlace
     }
-    // avoid changing the value while the application is running
-    private static let _autosavesInPlace = UserDefaults.standard[.enablesAutosaveInPlace]
     
     
     /// can read document on a background thread?
@@ -282,6 +287,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let data = try Data(contentsOf: url)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+        let extendedAttributes = attributes[.extendedAttributes] as? [String: Any]
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = data
@@ -296,13 +302,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // try reading the `com.apple.TextEncoding` extended attribute
-        let xattrEncoding: String.Encoding? = {
-            let extendedAttributes = attributes[NSFileExtendedAttributes] as? [String: Any]
-            let xattrEncodingData = extendedAttributes?[FileExtendedAttributeName.Encoding] as? Data
-            
-            return xattrEncodingData?.decodingXattrEncoding
-        }()
+        let xattrEncoding = (extendedAttributes?[FileExtendedAttributeName.encoding] as? Data)?.decodingXattrEncoding
         self.shouldSaveXattr = (xattrEncoding != nil)
+        
+        // check file metadata for text orientation
+        if UserDefaults.standard[.savesTextOrientation] && (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil) {
+            // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwantedly.
+            self.isVerticalText = true
+        }
         
         // decode Data to String
         let content: String
@@ -505,17 +512,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         // set extended file attributes
-        var extendedAttributes: [String: Any] = (attributes[NSFileExtendedAttributes.rawValue] as? [String: Any]) ?? [:]
+        var extendedAttributes: [String: Any] = (attributes[FileAttributeKey.extendedAttributes.rawValue] as? [String: Any]) ?? [:]
         // save encoding to the extended file attributes (com.apple.TextEncoding)
         if saveOperation == .autosaveElsewhereOperation || self.shouldSaveXattr {
-            extendedAttributes[FileExtendedAttributeName.Encoding] = self.encoding.xattrEncodingData
+            extendedAttributes[FileExtendedAttributeName.encoding] = self.encoding.xattrEncodingData
         }
         // save text orientation state to the extended file attributes (com.coteditor.VerticalText)
         if UserDefaults.standard[.savesTextOrientation] {
-            extendedAttributes[FileExtendedAttributeName.VerticalText] = self.isVerticalText ? Data(bytes: [1]) : nil
+            extendedAttributes[FileExtendedAttributeName.verticalText] = self.isVerticalText ? Data(bytes: [1]) : nil
         }
-        if attributes[NSFileExtendedAttributes.rawValue] != nil || !extendedAttributes.isEmpty {
-            attributes[NSFileExtendedAttributes.rawValue] = extendedAttributes
+        if attributes[FileAttributeKey.extendedAttributes.rawValue] != nil || !extendedAttributes.isEmpty {
+            attributes[FileAttributeKey.extendedAttributes.rawValue] = extendedAttributes
         }
         
         // give the execute permission if user requested
@@ -776,12 +783,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         // This method won't be invoked on Resume. (2015-01-26)
-        
-        // check file meta data for text orientation
-        assert(self.fileAttributes != nil)
-        if UserDefaults.standard[.savesTextOrientation] {
-            self.isVerticalText = ((self.fileAttributes?[NSFileExtendedAttributes] as? [String: Any])?[FileExtendedAttributeName.VerticalText] != nil)
-        }
         
         ScriptManager.shared.dispatchEvent(documentOpened: self)
     }

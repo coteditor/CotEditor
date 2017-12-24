@@ -170,9 +170,7 @@ final class DocumentController: NSDocumentController {
         // make document
         let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
         
-        if let delegate = document as? AdditionalDocumentPreparing {
-            delegate.didMakeDocumentForExisitingFile(url: url)
-        }
+        (document as? AdditionalDocumentPreparing)?.didMakeDocumentForExisitingFile(url: url)
         
         // reset encoding menu
         self.resetAccessorySelectedEncoding()
@@ -267,7 +265,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Action Messages
     
-    /// reset selection of the encoding menu
+    /// open open panel by showing hidden files
     @IBAction func openHiddenDocument(_ sender: Any?) {
         
         self.showsHiddenFiles = true
