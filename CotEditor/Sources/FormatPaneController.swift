@@ -114,7 +114,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         // append target setting name to menu titles
         switch action {
         case #selector(openSyntaxMappingConflictSheet(_:)):
-            return SyntaxManager.shared.existsMappingConflict
+            return !SyntaxManager.shared.mappingConflicts.isEmpty
             
         case #selector(openSyntaxEditSheet(_:)) where SyntaxEditSheetMode(rawValue: menuItem.tag) == .copy:
             if let name = representedSettingName, !isContextualMenu {

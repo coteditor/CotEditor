@@ -62,8 +62,10 @@ final class SyntaxMappingConflictsViewController: NSViewController {
     
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         
-        extensionConflicts = type(of: self).parseConflictDict(conflictDict: SyntaxManager.shared.extensionConflicts)
-        filenameConflicts = type(of: self).parseConflictDict(conflictDict: SyntaxManager.shared.filenameConflicts)
+        let conflictDicts = SyntaxManager.shared.mappingConflicts
+        
+        self.extensionConflicts = type(of: self).parseConflictDict(conflictDict: conflictDicts[.extensions]!)
+        self.filenameConflicts = type(of: self).parseConflictDict(conflictDict: conflictDicts[.filenames]!)
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
