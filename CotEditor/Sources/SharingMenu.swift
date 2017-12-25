@@ -27,20 +27,6 @@
 
 import Cocoa
 
-private extension NSSharingService.Name {
-    
-    static let addToNotes = NSSharingService.Name("com.apple.Notes.SharingExtension")
-    static let addToRemainder = NSSharingService.Name("com.apple.reminders.RemindersShareExtension")
-}
-
-
-private struct SharingServiceContainer {
-    
-    let service: NSSharingService
-    let items: [Any]
-}
-
-
 final class SharingMenu: NSMenu, NSMenuDelegate {
     
     // MARK: Protocol
@@ -60,72 +46,46 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
         
         self.removeAllItems()
         
-        guard let document = NSDocumentController.shared.currentDocument as? Document else {
-            let item = NSMenuItem(title: NSLocalizedString("No Document", comment: ""), action: nil, keyEquivalent: "")
-            item.isEnabled = false
-            self.addItem(item)
-            return
-        }
+        guard
+            let document = NSDocumentController.shared.currentDocument,
+            let fileURL = document.fileURL
+            else {
+                let item = NSMenuItem(title: NSLocalizedString("No Document", comment: ""), action: nil, keyEquivalent: "")
+                item.isEnabled = false
+                self.addItem(item)
+                return
+            }
         
-        // file
-        if let fileURL = document.fileURL {
-            self.addSharingItems(for: fileURL,
-                                 document: document,
-                                 label: NSLocalizedString("File", comment: ""),
-                                 excludingSercives: [.addToNotes])
-            self.addItem(.separator())
+        // add menu items dynamically
+        for service in NSSharingService.sharingServices(forItems: [fileURL]) {
+            service.subject = document.displayName
+            service.delegate = document
+            
+            let menuItem = NSMenuItem(title: service.menuItemTitle, action: #selector(NSDocument.shareFromService), keyEquivalent: "")
+            menuItem.target = document
+            menuItem.image = service.image
+            menuItem.representedObject = service
+            
+            self.addItem(menuItem)
         }
-        
-        // text
-        self.addSharingItems(for: document.string,
-                             document: document,
-                             label: NSLocalizedString("Text", comment: ""),
-                             excludingSercives: [.postOnTwitter,
-                                                 .composeMessage,
-                                                 .addToRemainder])
     }
     
-    
+}
+
+
+extension NSDocument {
     
     // MARK: Action Messages
     
     /// perform share
     @IBAction func shareFromService(_ sender: NSMenuItem?) {
         
-        guard let container = sender?.representedObject as? SharingServiceContainer else { return }
+        guard
+            let service = sender?.representedObject as? NSSharingService,
+            let item = self.fileURL
+            else { return }
         
-        container.service.perform(withItems: container.items)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// append sharing menu items
-    private func addSharingItems(for item: Any, document: NSDocument, label: String, excludingSercives excludingServiceTypes: [NSSharingService.Name]) {
-        
-        // heading (label) item
-        let labelItem = NSMenuItem(title: label, action: nil, keyEquivalent: "")
-        labelItem.isEnabled = false
-        self.addItem(labelItem)
-        
-        // create services to skip
-        let excludingServices = excludingServiceTypes.flatMap { NSSharingService(named: $0) }
-        
-        // add menu items dynamically
-        for service in NSSharingService.sharingServices(forItems: [item]) {
-            guard !excludingServices.contains(service) else { continue }
-            
-            service.subject = document.displayName
-            service.delegate = document
-            
-            let menuItem = NSMenuItem(title: service.title, action: #selector(shareFromService), keyEquivalent: "")
-            menuItem.target = self
-            menuItem.image = service.image
-            menuItem.representedObject = SharingServiceContainer(service: service, items: [item])
-            
-            self.addItem(menuItem)
-        }
+        service.perform(withItems: [item])
     }
     
 }
