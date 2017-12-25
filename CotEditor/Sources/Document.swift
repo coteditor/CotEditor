@@ -976,22 +976,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// show Share Service menu
-    @IBAction func share(_ sender: Any?) {
-        
-        guard let view = sender as? NSView else { return }
-        
-        let items: [URL] = {
-            guard let url = self.fileURL else { return [] }
-            
-            return [url]
-        }()
-        let sharingServicePicker = NSSharingServicePicker(items: items)
-        
-        sharingServicePicker.show(relativeTo: view.bounds, of: view, preferredEdge: .minY)
-    }
-    
-    
     /// change line ending with sender's tag
     @IBAction func changeLineEnding(_ sender: AnyObject?) {
         

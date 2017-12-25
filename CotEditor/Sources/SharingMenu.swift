@@ -70,7 +70,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
         // file
         if let fileURL = document.fileURL {
             self.addSharingItems(for: fileURL,
-                                 subject: document.displayName,
+                                 document: document,
                                  label: NSLocalizedString("File", comment: ""),
                                  excludingSercives: [.addToNotes])
             self.addItem(.separator())
@@ -78,7 +78,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
         
         // text
         self.addSharingItems(for: document.string,
-                             subject: document.displayName,
+                             document: document,
                              label: NSLocalizedString("Text", comment: ""),
                              excludingSercives: [.postOnTwitter,
                                                  .composeMessage,
@@ -102,7 +102,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
     // MARK: Private Methods
     
     /// append sharing menu items
-    private func addSharingItems(for item: Any, subject: String, label: String, excludingSercives excludingServiceTypes: [NSSharingService.Name]) {
+    private func addSharingItems(for item: Any, document: NSDocument, label: String, excludingSercives excludingServiceTypes: [NSSharingService.Name]) {
         
         // heading (label) item
         let labelItem = NSMenuItem(title: label, action: nil, keyEquivalent: "")
@@ -116,7 +116,8 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
         for service in NSSharingService.sharingServices(forItems: [item]) {
             guard !excludingServices.contains(service) else { continue }
             
-            service.subject = subject
+            service.subject = document.displayName
+            service.delegate = document
             
             let menuItem = NSMenuItem(title: service.title, action: #selector(shareFromService), keyEquivalent: "")
             menuItem.target = self
