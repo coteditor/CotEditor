@@ -82,9 +82,9 @@ final class EditorViewController: NSSplitViewController {
     
     
     /// validate actions
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = menuItem.action else { return false }
+        guard let action = item.action else { return false }
         
         switch action {
         case #selector(selectPrevItemOfOutlineMenu):
@@ -96,7 +96,7 @@ final class EditorViewController: NSSplitViewController {
         default: break
         }
         
-        return true
+        return super.validateUserInterfaceItem(item)
     }
     
     

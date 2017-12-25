@@ -69,14 +69,16 @@ final class SplitViewController: NSSplitViewController {
     
     
     /// apply current state to related menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = menuItem.action else { return false }
+        guard let action = item.action else { return false }
         
         switch action {
         case #selector(toggleSplitOrientation):
-            let title = self.splitView.isVertical ? "Stack Editors Horizontally" : "Stack Editors Vertically"
-            menuItem.title = NSLocalizedString(title, comment: "")
+            if let item = item as? NSMenuItem {
+                let title = self.splitView.isVertical ? "Stack Editors Horizontally" : "Stack Editors Vertically"
+                item.title = NSLocalizedString(title, comment: "")
+            }
             return self.splitViewItems.count > 1
             
         case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
@@ -85,7 +87,7 @@ final class SplitViewController: NSSplitViewController {
         default: break
         }
         
-        return true
+        return super.validateUserInterfaceItem(item)
     }
     
     

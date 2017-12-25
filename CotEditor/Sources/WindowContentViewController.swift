@@ -101,7 +101,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     
     /// disable toggling sidebar in the tab overview mode
-    override func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         guard let action = item.action else { return false }
         
@@ -117,7 +117,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         default: break
         }
         
-        return super.validateToolbarItem(item)
+        return super.validateUserInterfaceItem(item)
     }
     
     
