@@ -68,7 +68,7 @@ final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
         for service in NSSharingService.sharingServices(forItems: [document]) {
             service.subject = document.displayName
             
-            let menuItem = NSMenuItem(title: service.menuItemTitle, action: #selector(NSDocument.shareFromService), keyEquivalent: "")
+            let menuItem = NSMenuItem(title: service.menuItemTitle, action: #selector(NSDocument.share), keyEquivalent: "")
             menuItem.target = document
             menuItem.image = service.image
             menuItem.representedObject = service
@@ -82,10 +82,10 @@ final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
 
 extension NSDocument {
     
-    // MARK: Action Messages
+    // MARK: Actions
     
     /// perform share
-    @IBAction func shareFromService(_ sender: NSMenuItem?) {
+    @IBAction func share(_ sender: NSMenuItem?) {
         
         guard let service = sender?.representedObject as? NSSharingService else { return }
         

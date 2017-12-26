@@ -27,8 +27,8 @@ import AppKit
 
 extension NSDocument {
     
-    /// show Share Service menu (invoked by a button in a toolbar item)
-    @IBAction func share(_ sender: Any?) {
+    /// show Share Service menu (invoked by a toolbar item)
+    @IBAction func showShareMenu(_ sender: Any?) {
         
         guard let view = sender as? NSView else { return }
         
