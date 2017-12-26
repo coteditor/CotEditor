@@ -28,37 +28,13 @@ import AppKit
 extension NSDocument {
     
     /// show Share Service menu (invoked by a toolbar item)
-    @IBAction func share(_ sender: Any?) {
+    @IBAction func showShareMenu(_ sender: Any?) {
         
         guard let view = sender as? NSView else { return }
         
-        let items: [URL] = [self.fileURL].flatMap { $0 }
-        let sharingServicePicker = NSSharingServicePicker(items: items)
+        let sharingServicePicker = NSSharingServicePicker(items: [self])
         
-        sharingServicePicker.delegate = self
         sharingServicePicker.show(relativeTo: view.bounds, of: view, preferredEdge: .minY)
-    }
-    
-}
-
-
-extension NSDocument: NSSharingServiceDelegate {
-    
-    /// tell the window to show sharing view
-    public func sharingService(_ sharingService: NSSharingService, sourceWindowForShareItems items: [Any], sharingContentScope: UnsafeMutablePointer<NSSharingService.SharingContentScope>) -> NSWindow? {
-        
-        return self.windowForSheet
-    }
-    
-}
-
-
-extension NSDocument: NSSharingServicePickerDelegate {
-    
-    /// tell sharing service delegate
-    public func sharingServicePicker(_ sharingServicePicker: NSSharingServicePicker, delegateFor sharingService: NSSharingService) -> NSSharingServiceDelegate? {
-        
-        return self
     }
     
 }

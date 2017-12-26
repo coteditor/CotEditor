@@ -74,13 +74,11 @@ final class ToolbarController: NSObject {
             NotificationCenter.default.removeObserver(self, name: Document.didChangeEncodingNotification, object: document)
             NotificationCenter.default.removeObserver(self, name: Document.didChangeLineEndingNotification, object: document)
             NotificationCenter.default.removeObserver(self, name: Document.didChangeSyntaxStyleNotification, object: document)
-            self.fileURLObserver = nil
         }
         
         didSet {
             guard let document = document else { return }
             
-            self.invalidateShareButton()
             self.invalidateLineEndingSelection()
             self.invalidateEncodingSelection()
             self.invalidateSyntaxStyleSelection()
@@ -90,16 +88,11 @@ final class ToolbarController: NSObject {
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection), name: Document.didChangeEncodingNotification, object: document)
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection), name: Document.didChangeLineEndingNotification, object: document)
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection), name: Document.didChangeSyntaxStyleNotification, object: document)
-            self.fileURLObserver = document.observe(\.fileURL) { [unowned self] (_, _) in
-                self.invalidateShareButton()
-            }
         }
     }
     
     
     // MARK: Private Properties
-    
-    private var fileURLObserver: NSKeyValueObservation?
     
     @IBOutlet private weak var toolbar: NSToolbar?
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
@@ -129,13 +122,6 @@ final class ToolbarController: NSObject {
     
     
     // MARK: Private Methods
-    
-    /// enable Share button only if document is saved
-    private func invalidateShareButton() {
-        
-        self.shareButton?.isEnabled = (self.document?.fileURL != nil)
-    }
-    
     
     /// select item in the encoding popup menu
     @objc private func invalidateLineEndingSelection() {

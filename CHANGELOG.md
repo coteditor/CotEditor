@@ -11,6 +11,11 @@ develop
 - Add new actions “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from last session on launch” in General pane.
 - Add new setting option “including whitespace-only lines” for “trim trailing whitespace” action in General pane.
+- More integrated Share feature:
+    - Share documents with other people through iCloud drive with “Add People” action in the File > Share menu.
+    - Enable sharing a document that have not been saved yet.
+    - Remove the feature shares document content text from File menu (Sharing the document file still exists.).
+    - Other small improvements.
 
 
 ### Improvements
@@ -19,7 +24,6 @@ develop
 - Add clear button to input fields in the find panel.
 - Scroll console view after getting a new message to make it visible.
 - Display sharing window within the target document window.
-- Remove the feature shares document content text from File menu (Sharing the document file still exists.).
 - Swap position of “View” with “Format” menu to conform to Apple's HIG.
 - Display full encoding name in the status bar instead of the IANA charset name.
 - Add tooltips to Unicode normalization forms in Text menu.

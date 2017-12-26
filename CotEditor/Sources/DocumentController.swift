@@ -80,6 +80,13 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
+    /// automatically insert Shre menu (on macOS 10.13 and later)
+    override var allowsAutomaticShareMenu: Bool {
+
+        return true
+    }
+    
+    
     /// open document
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
         
@@ -259,6 +266,26 @@ final class DocumentController: NSDocumentController {
         set {
             self._accessorySelectedEncoding = newValue.rawValue
         }
+    }
+    
+    
+    /// insert hand-made Share menu to the File menu
+    func insertLegacyShareMenu() {
+        
+        let fileMenu = MainMenu.file.menu!
+        
+        // insert at the end of the group of Save/Close
+        var inSaveGroup = false
+        let index = fileMenu.items.enumerated().first { (_, item) in
+            if item.action == #selector(NSWindow.performClose) {
+                inSaveGroup = true
+            }
+            
+            return inSaveGroup && item.isSeparatorItem
+        }?.offset ?? fileMenu.numberOfItems
+        
+        fileMenu.insertItem(ShareMenuItem(), at: index)
+        fileMenu.insertItem(NSMenuItem.separator(), at: index)
     }
     
     

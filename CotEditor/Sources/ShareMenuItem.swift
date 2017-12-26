@@ -1,6 +1,6 @@
 /*
  
- SharingMenu.swift
+ ShareMenuItem.swift
  
  CotEditor
  https://coteditor.com
@@ -27,14 +27,25 @@
 
 import Cocoa
 
-final class SharingMenu: NSMenu, NSMenuDelegate {
+final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
     
-    // MARK: Protocol
+    // MARK: Lifecycle
     
-    /// set delegate to itself
-    override func awakeFromNib() {
+    init() {
         
-        self.delegate = self
+        let title = NSLocalizedString("Share", comment: "")
+        
+        super.init(title: title, action: nil, keyEquivalent: "")
+        
+        self.submenu = NSMenu()
+        self.submenu?.delegate = self
+        self.tag = MainMenu.MenuItemTag.sharingService.rawValue
+    }
+    
+    
+    required init(coder decoder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -44,29 +55,25 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
     /// create share menu dynamically
     func menuWillOpen(_ menu: NSMenu) {
         
-        self.removeAllItems()
+        menu.removeAllItems()
         
-        guard
-            let document = NSDocumentController.shared.currentDocument,
-            let fileURL = document.fileURL
-            else {
+        guard let document = NSDocumentController.shared.currentDocument else {
                 let item = NSMenuItem(title: NSLocalizedString("No Document", comment: ""), action: nil, keyEquivalent: "")
                 item.isEnabled = false
-                self.addItem(item)
+                menu.addItem(item)
                 return
             }
         
         // add menu items dynamically
-        for service in NSSharingService.sharingServices(forItems: [fileURL]) {
+        for service in NSSharingService.sharingServices(forItems: [document]) {
             service.subject = document.displayName
-            service.delegate = document
             
-            let menuItem = NSMenuItem(title: service.menuItemTitle, action: #selector(NSDocument.shareFromService), keyEquivalent: "")
+            let menuItem = NSMenuItem(title: service.menuItemTitle, action: #selector(NSDocument.share), keyEquivalent: "")
             menuItem.target = document
             menuItem.image = service.image
             menuItem.representedObject = service
             
-            self.addItem(menuItem)
+            menu.addItem(menuItem)
         }
     }
     
@@ -75,17 +82,14 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
 
 extension NSDocument {
     
-    // MARK: Action Messages
+    // MARK: Actions
     
     /// perform share
-    @IBAction func shareFromService(_ sender: NSMenuItem?) {
+    @IBAction func share(_ sender: NSMenuItem?) {
         
-        guard
-            let service = sender?.representedObject as? NSSharingService,
-            let item = self.fileURL
-            else { return }
+        guard let service = sender?.representedObject as? NSSharingService else { return }
         
-        service.perform(withItems: [item])
+        service.perform(withItems: [self])
     }
     
 }
