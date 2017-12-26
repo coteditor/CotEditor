@@ -14,7 +14,7 @@ develop
 - More integrated Share feature:
     - Share documents with other people through iCloud drive with “Add People” action in the File > Share menu.
     - Enable sharing a document that have not been saved yet.
-    - Remove the feature shares document content text from File menu (Sharing the document file still exists.).
+    - Remove the feature shares document content text from File menu (You can still share selected text from the context menu.).
     - Other small improvements.
 
 
