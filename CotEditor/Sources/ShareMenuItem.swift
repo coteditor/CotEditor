@@ -1,6 +1,6 @@
 /*
  
- SharingMenu.swift
+ ShareMenuItem.swift
  
  CotEditor
  https://coteditor.com
@@ -27,14 +27,25 @@
 
 import Cocoa
 
-final class SharingMenu: NSMenu, NSMenuDelegate {
+final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
     
-    // MARK: Protocol
+    // MARK: Lifecycle
     
-    /// set delegate to itself
-    override func awakeFromNib() {
+    init() {
         
-        self.delegate = self
+        let title = NSLocalizedString("Share", comment: "")
+        
+        super.init(title: title, action: nil, keyEquivalent: "")
+        
+        self.submenu = NSMenu()
+        self.submenu?.delegate = self
+        self.tag = MainMenu.MenuItemTag.sharingService.rawValue
+    }
+    
+    
+    required init(coder decoder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -44,7 +55,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
     /// create share menu dynamically
     func menuWillOpen(_ menu: NSMenu) {
         
-        self.removeAllItems()
+        menu.removeAllItems()
         
         guard
             let document = NSDocumentController.shared.currentDocument,
@@ -52,7 +63,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
             else {
                 let item = NSMenuItem(title: NSLocalizedString("No Document", comment: ""), action: nil, keyEquivalent: "")
                 item.isEnabled = false
-                self.addItem(item)
+                menu.addItem(item)
                 return
             }
         
@@ -66,7 +77,7 @@ final class SharingMenu: NSMenu, NSMenuDelegate {
             menuItem.image = service.image
             menuItem.representedObject = service
             
-            self.addItem(menuItem)
+            menu.addItem(menuItem)
         }
     }
     

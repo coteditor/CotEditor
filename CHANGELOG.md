@@ -11,6 +11,7 @@ develop
 - Add new actions “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from last session on launch” in General pane.
 - Add new setting option “including whitespace-only lines” for “trim trailing whitespace” action in General pane.
+- Share documents with other people through iCloud drive with “Add People” action in the File > Share menu.
 
 
 ### Improvements

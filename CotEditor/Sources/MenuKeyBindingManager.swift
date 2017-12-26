@@ -286,7 +286,11 @@ final class MenuKeyBindingManager: KeyBindingManager {
             .flatMap { menuItem in
                 if let submenu = menuItem.submenu {
                     let node = NamedTreeNode(name: menuItem.title)
-                    node.mutableChildren.addObjects(from: self.outlineTree(menu: submenu, defaults: usesDefaults))
+                    let subtree = self.outlineTree(menu: submenu, defaults: usesDefaults)
+                    
+                    guard !subtree.isEmpty else { return nil }  // ignore empty submenu
+                    
+                    node.mutableChildren.addObjects(from: subtree)
                     return node
                 }
                 
