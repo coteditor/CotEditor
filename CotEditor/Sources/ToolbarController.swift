@@ -98,7 +98,6 @@ final class ToolbarController: NSObject {
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     @IBOutlet private weak var syntaxPopupButton: NSPopUpButton?
-    @IBOutlet private weak var shareButton: NSButton?
 
     
     
@@ -106,9 +105,6 @@ final class ToolbarController: NSObject {
     // MARK: Object Methods
     
     override func awakeFromNib() {
-        
-        // setup share button
-        self.shareButton?.sendAction(on: .leftMouseDown)
         
         self.buildEncodingPopupButton()
         self.buildSyntaxPopupButton()

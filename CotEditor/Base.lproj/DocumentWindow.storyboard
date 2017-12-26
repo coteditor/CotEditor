@@ -199,7 +199,6 @@
                     <connections>
                         <outlet property="encodingPopupButton" destination="nMw-zO-d1x" id="kTt-9A-udb"/>
                         <outlet property="lineEndingPopupButton" destination="rSf-Ar-e7V" id="3OJ-uo-Y2O"/>
-                        <outlet property="shareButton" destination="qhf-yr-4GF" id="KLH-01-h2d"/>
                         <outlet property="syntaxPopupButton" destination="RTF-Xf-Dgz" id="HSS-DU-DSY"/>
                         <outlet property="toolbar" destination="peS-bo-gb4" id="SXy-gP-BFW"/>
                     </connections>
