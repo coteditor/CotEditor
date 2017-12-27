@@ -30,6 +30,11 @@ import WebKit
 
 final class WebDocumentWindowController: NSWindowController, WKNavigationDelegate {
     
+    // MARK: Public Properties
+    
+    var userStyleSheet: String?
+    
+    
     // MARK: Private Properties
     
     private let fileURL: URL
@@ -98,6 +103,27 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
             else { return decisionHandler(.allow) }
         
         decisionHandler(.cancel)
+    }
+    
+    
+    /// document was loaded
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        if let style = self.userStyleSheet {
+            self.apply(styleSheet: style)
+        }
+    }
+    
+    
+    
+    // MARK: Private Method
+    
+    /// apply user style sheet to current page
+    private func apply(styleSheet: String) {
+        
+        let js = "var style = document.createElement('style'); style.innerHTML = '\(styleSheet)'; document.head.appendChild(style);"
+        
+        self.webView?.evaluateJavaScript(js, completionHandler: nil)
     }
 
 }

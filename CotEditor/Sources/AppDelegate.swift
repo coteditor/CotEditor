@@ -329,6 +329,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// show acknowlegements
     @IBAction func showAcknowledgments(_ sender: Any?) {
         
+        #if APPSTORE
+            self.acknowledgmentsWindowController.userStyleSheet = ".non-appstore { display: none }"
+        #endif
         self.acknowledgmentsWindowController.showWindow(sender)
     }
     
