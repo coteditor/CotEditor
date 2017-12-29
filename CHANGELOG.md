@@ -39,7 +39,7 @@ develop
 
 
 
-3.2.7
+3.2.7 (212)
 --------------------------
 
 ### Improvements
@@ -51,8 +51,8 @@ develop
 
 - Fix an issue where the find panel was over expanded when performing “Find All” with a long find string.
 - Fix an issue where the file size in the status bar was not updated after saving.
-- Fix an issue where the find panel didn't select previous field with Shift + Tab keys
-- Fix an issue where the application freezed by opening the File Mapping Confilicts list when filename conflict exists.
+- Fix an issue where the find panel didn't select the previous field with Shift + Tab keys.
+- Fix an issue where the application frozen by opening the File Mapping Conflicts list when filename conflict exists.
 
 
 
