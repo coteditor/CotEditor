@@ -14,38 +14,38 @@
 
 <body>
 <nav><ul>
-	<li><a href="../CotEditorHelp.html">CotEditor ヘルプ</a></li>
+	<li><a href="../CotEditorHelp.html">CotEditorヘルプ</a></li>
 </ul></nav>
 
 
 <a name="about_script_hook"></a>
 <h1>スクリプトフックの追加</h1>
 
-<p>スクリプトフックは、特定のイベント発生時にスクリプトを起動する機能です。CotEditor は、次に挙げるイベントでのフックをサポートしています。</p>
+<p>スクリプトフックは、特定のイベント発生時にスクリプトを起動する機能です。CotEditorは、次に挙げるイベントでのフックをサポートしています。</p>
 
 <ul>
-	<li><code>document opened</code> : ファイルを開く操作を行い、テキストが読み込まれた直後</li>
-	<li><code>document saved</code> : ファイルを保存する操作を行い、テキストが書き込まれた直後</li>
+	<li><code>document opened</code>: ファイルを開く操作を行い、テキストが読み込まれた直後</li>
+	<li><code>document saved</code>: ファイルを保存する操作を行い、テキストが書き込まれた直後</li>
 </ul>
 
-<p>イベントの詳細な仕様については、AppleScript 辞書の CotEditor Event Handler suite 項を参照してください。</p>
+<p>イベントの詳細な仕様については、AppleScript辞書のCotEditor Event Handler suite項を参照してください。</p>
 
-<p>このページでは CotEditor スクリプトをスクリプトフックへ対応させる方法について説明します。</p>
+<p>このページではCotEditorスクリプトをスクリプトフックへ対応させる方法について説明します。</p>
 
 <h2>概要</h2>
 
 <p>フックに対応したスクリプトを作成する場合、以下の制約を満足する必要があります。</p>
 
 <ul>
-	<li>AppleScript または JavaScript for Automation (JXA) による記述</li>
-	<li>スクリプト バンドル 形式 (`.scptd`) で格納</li>
+	<li>AppleScriptまたはJavaScript for Automation (JXA)による記述</li>
+	<li>スクリプトバンドル形式 (`.scptd`) で格納</li>
 </ul>
 
 <p>以上に加えて、フックしたいイベントをメタデータファイルにて明示し、イベントハンドラを記述する必要があります。</p>
 
 <h2>スクリプトバンドルの構造</h2>
 
-<p>スクリプト バンドルは、以下に示す構造を持つディレクトリ構造です。</p>
+<p>スクリプトバンドルは、以下に示す構造を持つディレクトリ構造です。</p>
 
 <pre>
 HookingScript.scptd
@@ -60,7 +60,7 @@ HookingScript.scptd
             └── TXT.rtf
 </pre>
 
-<p>この形式には、macOSに標準で添付されているスクリプト エディタを用いることにより、簡単に書き出すことができます。</p>
+<p>この形式には、macOSに標準で添付されているスクリプトエディタを用いることにより、簡単に書き出すことができます。</p>
 
 <p>CotEditorのスクリプトフックに対応させるためには、まず、`Info.plist`にフックしたいイベントの一覧を記載する必要があります。
 `plist`ファイルはプロパティリストと呼ばれ、その内容は以下に示すようなXML形式で記述されたバンドルのメタデータです。</p>
@@ -129,9 +129,9 @@ HookingScript.scptd
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="../pgs/about_scripting.html">CotEditor スクリプト</a></li>
+	<li><a href="../pgs/about_scripting.html">CotEditorスクリプト</a></li>
 	<li><a href="../pgs/howto_customize_scriptmenu.html">スクリプトメニューをカスタマイズする</a></li>
-	<li><a href="../pgs/about_applescript.html">AppleScript との連携</a></li>
+	<li><a href="../pgs/about_applescript.html">AppleScriptとの連携</a></li>
 </ul>
 </section>
 
