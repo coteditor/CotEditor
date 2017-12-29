@@ -41,7 +41,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     // MARK: Private Properties
     
-    private var textView: NSTextView
+    private let textView: NSTextView
     
     
     
