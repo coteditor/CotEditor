@@ -219,7 +219,7 @@
 // Undo action names
 "Replace Text" = "Sostituisci testo";
 "Insert Text" = "Inserisci testo";
-"Insert Custom Text" = "Inserisci testo personalizzato";
+"Insert Snippet" = "Inserisci snippet";
 "Shift Right" = "Scorri a destra";
 "Shift Left" = "Scorri a sinistra";
 "Convert Indentation" = "Converti rientro";

@@ -218,7 +218,7 @@
 // Undo action names
 "Replace Text" = "Text ersetzen";
 "Insert Text" = "Text hinzufügen";
-"Insert Custom Text" = "Benutzerdefinierten Text hinzufügen";
+"Insert Snippet" = "Snippet hinzufügen";
 "Shift Right" = "Einrücken";
 "Shift Left" = "Ausrücken";
 "Convert Indentation" = "Einzug konvertieren";

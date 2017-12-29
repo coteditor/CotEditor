@@ -219,7 +219,7 @@
 // Undo action names
 "Replace Text" = "替换文本";
 "Insert Text" = "插入文本";
-"Insert Custom Text" = "插入自定义文本";
+"Insert Snippet" = "插入片段";
 "Shift Right" = "右移";
 "Shift Left" = "左移";
 "Convert Indentation" = "转换缩进";

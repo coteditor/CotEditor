@@ -252,16 +252,8 @@ final class EditorTextView: NSTextView, Themable {
             let snippet = SnippetKeyBindingManager.shared.snippet(keyEquivalent: event.charactersIgnoringModifiers,
                                                                   modifierMask: event.modifierFlags)
         {
-            let range = self.rangeForUserTextChange
-            if self.shouldChangeText(in: range, replacementString: snippet.string) {
-                self.replaceCharacters(in: range, with: snippet.string)
-                self.didChangeText()
-                if let selection = snippet.selection {
-                    self.selectedRange = NSRange(location: range.location + selection.location, length: selection.length)
-                }
-                self.undoManager?.setActionName(NSLocalizedString("Insert Custom Text", comment: "action name"))
-                self.centerSelectionInVisibleArea(self)
-            }
+            self.insert(snippet: snippet)
+            self.centerSelectionInVisibleArea(self)
             return
         }
         

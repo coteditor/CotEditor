@@ -219,7 +219,7 @@
 // Undo action names
 "Replace Text" = "テキストを置換";
 "Insert Text" = "テキストを挿入";
-"Insert Custom Text" = "カスタムテキストを挿入";
+"Insert Snippet" = "スニペットを挿入";
 "Shift Right" = "右へシフト";
 "Shift Left" = "左へシフト";
 "Convert Indentation" = "インデントを変換";
