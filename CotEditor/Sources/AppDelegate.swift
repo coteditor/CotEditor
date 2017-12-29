@@ -33,6 +33,7 @@ private extension NSSound {
     static let glass = NSSound(named: NSSound.Name("Glass"))
 }
 
+
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -302,6 +303,26 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSApp.activate(ignoringOtherApps: true)
         NSDocumentController.shared.openDocument(sender)
+    }
+    
+    
+    /// show standard about panel
+    @IBAction func showAboutPanel(_ sender: Any?) {
+     
+        var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
+        #if APPSTORE
+            // Remove Sparkle from 3rd party code list
+            if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
+                let attrString = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil),
+                let range = attrString.string.range(of: "Sparkle.*\\n", options: .regularExpression)
+            {
+                attrString.replaceCharacters(in: NSRange(range, in: attrString.string), with: "")
+                let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
+                options[creditsKey] = attrString
+            }
+        #endif
+        
+        NSApplication.shared.orderFrontStandardAboutPanel(options: options)
     }
     
     
