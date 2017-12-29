@@ -2,6 +2,23 @@
 Change Log
 ==========================
 
+3.2.7 (212)
+--------------------------
+
+### Improvements
+
+- Spread background drawing over paper width on printing.
+
+
+### Fixes
+
+- Fix an issue where the find panel was over expanded when performing “Find All” with a long find string.
+- Fix an issue where the file size in the status bar was not updated after saving.
+- Fix an issue where the find panel didn't select the previous field with Shift + Tab keys.
+- Fix an issue where the application frozen by opening the File Mapping Conflicts list when filename conflict exists.
+
+
+
 3.2.6 (210)
 --------------------------
 
