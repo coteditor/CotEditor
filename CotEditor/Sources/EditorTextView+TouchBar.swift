@@ -95,18 +95,38 @@ extension EditorTextView {
 
 
 @available(macOS 10.12.2, *)
+extension EditorTextView {
+    
+    // MARK: NSCandidateListTouchBarItemDelegate
+    
+    /// tell the delegate that a user has stopped touching candidates in the candidate list item.
+    override func candidateListTouchBarItem(_ anItem: NSCandidateListTouchBarItem<AnyObject>, endSelectingCandidateAt index: Int) {
+        
+        // insert candidate by ourselves to workaround the unwanted behavior about insertion point with a word that starts with a symbol character: e.g. "__init__" in Python (2017-12 macOS 10.13)
+        let range = self.rangeForUserCompletion
+        
+        guard
+            let candidate = anItem.candidates[index] as? String,
+            self.shouldChangeText(in: range, replacementString: candidate)
+            else { return super.candidateListTouchBarItem(anItem, endSelectingCandidateAt: index) }
+        
+        self.replaceCharacters(in: range, with: candidate)
+        self.didChangeText()
+    }
+    
+}
+    
+
+@available(macOS 10.12.2, *)
 extension EditorTextViewController {
+    
+    // MARK: NSTextViewDelegate
     
     /// suggest candidates for automatic text completion
     func textView(_ textView: NSTextView, candidatesForSelectedRange selectedRange: NSRange) -> [Any]? {
         
         var index = 0
-        guard
-            let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index)?
-                .filter({ $0.range(of: "^(\\W|_)", options: .regularExpression) == nil }),
-            !candidates.isEmpty
-            else { return nil }
-        // -> remove words start with non-alphabet to workaround a bug: e.g. "__init__" in Python (2017-10 macOS 10.13)
+        guard let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index), !candidates.isEmpty else { return nil }
         
         return candidates
     }

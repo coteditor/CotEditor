@@ -38,6 +38,11 @@ develop
     - This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.
 
 
+### Fixes
+
+- Fix an issue where the word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly, and, therefore, a workaround was added on CotEditor 3.2.3.
+
+
 
 3.2.7 (212)
 --------------------------
