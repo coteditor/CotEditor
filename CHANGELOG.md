@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where CotEditor occasionally failed sending the standard input to a UNIX script launched from the Script menu.
+- Fix an issue where the editing state dots in the installed style list was not updated after editing syntax style.
 
 
 
