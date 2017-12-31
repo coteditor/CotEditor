@@ -46,9 +46,6 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         
         super.viewDidLoad()
         
-        // set blank
-        self.representedObject = BatchReplacement(replacements: [Replacement()])
-        
         // -> Use observation since the delecation is already set to DefinitionTableViewDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(validateObject), name: NSTableView.selectionDidChangeNotification, object: self.tableView)
     }

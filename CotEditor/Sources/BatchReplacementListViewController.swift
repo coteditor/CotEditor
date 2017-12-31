@@ -51,6 +51,16 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         
         self.settingNames = ReplacementManager.shared.settingNames
         
+        // create blank if empty
+        if self.settingNames.isEmpty {
+            do {
+                try ReplacementManager.shared.createUntitledSetting()
+            } catch {
+                NSAlert(error: error).beginSheetModal(for: self.view.window!)
+            }
+        }
+        self.tableView?.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
+        
         // observe replacement setting list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: SettingFileManager.didUpdateSettingListNotification, object: ReplacementManager.shared)
     }

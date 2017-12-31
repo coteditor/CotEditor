@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -112,8 +112,8 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="Rqz-SK-mda" name="enabled" keyPath="objectValue.isEnabled" id="GWu-ze-FXR"/>
                                                                         <binding destination="Rqz-SK-mda" name="value" keyPath="objectValue.findString" id="UeY-0m-ETr"/>
+                                                                        <binding destination="Rqz-SK-mda" name="enabled" keyPath="objectValue.isEnabled" id="GWu-ze-FXR"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iAj-ma-bo2">
@@ -222,8 +222,8 @@
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <action selector="didCheckboxClicked:" target="ypL-2F-xTV" id="oEy-Zq-AMV"/>
-                                                                        <binding destination="E0A-sg-252" name="enabled" keyPath="objectValue.isEnabled" id="1of-5m-Zfx"/>
                                                                         <binding destination="E0A-sg-252" name="value" keyPath="objectValue.ignoresCase" id="aEg-Wj-0IC"/>
+                                                                        <binding destination="E0A-sg-252" name="enabled" keyPath="objectValue.isEnabled" id="1of-5m-Zfx"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -300,8 +300,8 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="rOM-3j-LP8" name="enabled" keyPath="objectValue.isEnabled" id="ftt-x0-Pt9"/>
                                                                         <binding destination="rOM-3j-LP8" name="value" keyPath="objectValue.comment" id="waK-af-LXI"/>
+                                                                        <binding destination="rOM-3j-LP8" name="enabled" keyPath="objectValue.isEnabled" id="ftt-x0-Pt9"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -518,7 +518,7 @@
                         <outlet property="tableView" destination="gnf-Yi-u37" id="WCJ-yG-4AA"/>
                     </connections>
                 </viewController>
-                <objectController objectClassName="CotEditor.BatchReplacement" id="tvC-n0-WUJ">
+                <objectController objectClassName="CotEditor.BatchReplacement" automaticallyPreparesContent="YES" id="tvC-n0-WUJ">
                     <declaredKeys>
                         <string>settings</string>
                         <string>replacements</string>
@@ -785,7 +785,7 @@
             <objects>
                 <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" customClass="BatchReplacementSplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem collapsed="YES" holdingPriority="251" id="t6n-9g-dQO"/>
+                        <splitViewItem holdingPriority="251" id="t6n-9g-dQO"/>
                         <splitViewItem id="RVu-VR-TJq"/>
                     </splitViewItems>
                     <splitView key="splitView" misplaced="YES" dividerStyle="thin" vertical="YES" id="IVS-tk-SwU">

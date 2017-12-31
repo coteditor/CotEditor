@@ -46,14 +46,23 @@ final class BatchReplacement: NSObject, Codable {
     
     
     
-    var settings: Settings
     @objc dynamic var replacements: [Replacement]
+    var settings: Settings
     
     
-    init(settings: Settings = Settings(), replacements: [Replacement] = []) {
+    
+    override convenience init() {
         
-        self.settings = settings
+        self.init(replacements: [])
+    }
+    
+    
+    init(replacements: [Replacement], settings: Settings = Settings()) {
+        
         self.replacements = replacements
+        self.settings = settings
+        
+        super.init()
     }
     
 }
