@@ -196,8 +196,7 @@ extension NSTextView {
             textContainer.widthTracksTextView = wrapsLines
             if wrapsLines {
                 let contentSize = scrollView.contentSize
-                textContainer.size = NSSize(width: (contentSize.width / self.scale).rounded(),
-                                            height: .greatestFiniteMagnitude)
+                textContainer.size.width = (contentSize.width / self.scale).rounded()
                 self.setConstrainedFrameSize(contentSize)
             } else {
                 textContainer.size = .infinite
