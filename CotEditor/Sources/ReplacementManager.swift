@@ -58,10 +58,10 @@ final class ReplacementManager: SettingFileManager {
     }
     
     
-    /// path extension for user setting file
-    override var filePathExtension: String {
+    /// path extensions for user setting file
+    override var filePathExtensions: [String] {
         
-        return DocumentType.replacement.extensions[0]
+        return DocumentType.replacement.extensions
     }
     
     
@@ -142,20 +142,16 @@ final class ReplacementManager: SettingFileManager {
         let decoder = JSONDecoder()
         
         // load settings if exists
-        let userDirURL = self.userSettingDirectoryURL
-        self.settings = (try? FileManager.default.contentsOfDirectory(at: userDirURL, includingPropertiesForKeys: nil,
-                                                                      options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
-            .filter { $0.pathExtension == self.filePathExtension }
-            .flatDictionary { (url) in
-                guard
-                    let data = try? Data(contentsOf: url),
-                    let setting = try? decoder.decode(BatchReplacement.self, from: data)
-                    else { return nil }
-                
-                let name = self.settingName(from: url)
-                
-                return (name, setting)
-            } ?? [:]
+        self.settings = self.userSettingFileURLs?.flatDictionary { (url) in
+            guard
+                let data = try? Data(contentsOf: url),
+                let setting = try? decoder.decode(BatchReplacement.self, from: data)
+                else { return nil }
+            
+            let name = self.settingName(from: url)
+            
+            return (name, setting)
+        } ?? [:]
     }
     
 }
