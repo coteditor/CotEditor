@@ -27,7 +27,16 @@
 
 import Cocoa
 
+protocol BatchReplacementViewControllerDelegate: class {
+    
+    func didUpdate(batchReplacement: BatchReplacement)
+}
+
+
 final class BatchReplacementViewController: NSViewController, BatchReplacementPanelViewControlling {
+    
+    weak var delegate: BatchReplacementViewControllerDelegate?
+    
     
     // MARK: Private Properties
     

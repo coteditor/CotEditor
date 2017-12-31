@@ -45,6 +45,8 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         
         super.viewDidLoad()
         
+        self.mainViewController?.delegate = self
+        
         // register droppable types
         let draggedType = NSPasteboard.PasteboardType(kUTTypeFileURL as String)
         self.tableView?.registerForDraggedTypes([draggedType])
@@ -311,6 +313,36 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
         {
             self.tableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }
+    }
+    
+    
+    /// save current setting
+    private func saveSetting() {
+        
+        guard
+            let name = self.selectedSettingName,
+            let batchReplacement = self.mainViewController?.representedObject as? BatchReplacement
+            else { return }
+        
+        do {
+            try ReplacementManager.shared.save(replacement: batchReplacement, name: name)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+}
+
+
+
+// MARK: - BatchReplacementViewController Delegate
+
+extension BatchReplacementListViewController: BatchReplacementViewControllerDelegate {
+    
+    /// current batch replacement being edited in the main view did update
+    func didUpdate(batchReplacement: BatchReplacement) {
+        
+        self.saveSetting()
     }
     
 }
