@@ -66,6 +66,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: SettingFileManager.didUpdateSettingNotification, object: SyntaxManager.shared)
     }
     
     
