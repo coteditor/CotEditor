@@ -211,8 +211,10 @@ extension NSTextView {
             }
             self.sizeToFit()
             
-            if let visibleRange = visibleRange {
-                self.scrollRangeToVisible(visibleRange)
+            if let visibleRange = visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {
+                visibleRect.size.width = 0
+                visibleRect = visibleRect.offset(by: -self.textContainerOrigin)
+                self.scrollToVisible(visibleRect)
             }
         }
     }
