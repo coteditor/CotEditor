@@ -31,7 +31,7 @@
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
 "QX9-BI-SIL.title" = "前回のウインドウを復帰";
 /* Class = "NSButtonCell"; title = "Create a new document if nothing else is open"; ObjectID = "3298"; */
-"3298.title" = "何も開かれてなければ新規書類を作成";
+"3298.title" = "何も開かれていなければ新規書類を作成";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
