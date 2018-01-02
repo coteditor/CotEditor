@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="6FT-QA-TTg" customClass="EditPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="4sX-tH-txQ" userLabel="Edit Pane">
-                        <rect key="frame" x="0.0" y="0.0" width="550" height="508"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="550" height="513"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="D3Q-hS-szA">
-                                <rect key="frame" x="115" y="426" width="156" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D3Q-hS-szA">
+                                <rect key="frame" x="115" y="431" width="156" height="18"/>
                                 <buttonCell key="cell" type="check" title="Swap “¥” and “\” keys" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -24,8 +24,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.swapYenAndBackSlashKey" id="m8U-xi-vnK"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="6Dj-HL-UJe">
-                                <rect key="frame" x="115" y="448" width="317" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Dj-HL-UJe">
+                                <rect key="frame" x="115" y="453" width="317" height="18"/>
                                 <buttonCell key="cell" type="check" title="Automatically insert closing brackets and quotes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="GRh-V2-hmW">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -34,8 +34,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.balancesBrackets" id="vQc-iA-vJd"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="nqq-MP-8Cp">
-                                <rect key="frame" x="115" y="470" width="129" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqq-MP-8Cp">
+                                <rect key="frame" x="115" y="475" width="129" height="18"/>
                                 <buttonCell key="cell" type="check" title="Smart copy/paste" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -45,7 +45,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XNI-eS-U8G">
-                                <rect key="frame" x="115" y="151" width="153" height="17"/>
+                                <rect key="frame" x="115" y="156" width="153" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Completion list includes:" usesSingleLineMode="YES" id="dLj-Kh-KtX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -53,7 +53,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7o-7Q-Iec">
-                                <rect key="frame" x="30" y="471" width="81" height="17"/>
+                                <rect key="frame" x="30" y="476" width="81" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Substitution:" usesSingleLineMode="YES" id="SqI-BC-ar9">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -61,7 +61,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCw-Sh-dDO">
-                                <rect key="frame" x="34" y="368" width="77" height="17"/>
+                                <rect key="frame" x="34" y="373" width="77" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Indentation:" usesSingleLineMode="YES" id="9bX-ei-1x8">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -69,7 +69,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6o6-2H-ikQ">
-                                <rect key="frame" x="115" y="322" width="84" height="17"/>
+                                <rect key="frame" x="115" y="327" width="84" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Indent width:" usesSingleLineMode="YES" id="3287">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -77,7 +77,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5U-m9-FvG">
-                                <rect key="frame" x="205" y="319" width="40" height="22"/>
+                                <rect key="frame" x="205" y="324" width="40" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="2EE-jD-d5t"/>
                                 </constraints>
@@ -97,8 +97,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.tabWidth" id="of5-C6-LVu"/>
                                 </connections>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="BfR-6w-bx7">
-                                <rect key="frame" x="115" y="345" width="160" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BfR-6w-bx7">
+                                <rect key="frame" x="115" y="350" width="160" height="18"/>
                                 <buttonCell key="cell" type="check" title="Expand tabs to spaces" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3283">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -108,14 +108,14 @@
                                 </connections>
                             </button>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fr0-Ug-Vp1">
-                                <rect key="frame" x="246" y="316" width="19" height="27"/>
+                                <rect key="frame" x="246" y="321" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99" doubleValue="1" id="W2Q-vb-HQ5"/>
                                 <connections>
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.tabWidth" id="gzU-DM-P9h"/>
                                 </connections>
                             </stepper>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Jwj-BA-jAE">
-                                <rect key="frame" x="115" y="367" width="92" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jwj-BA-jAE">
+                                <rect key="frame" x="115" y="372" width="92" height="18"/>
                                 <buttonCell key="cell" type="check" title="Auto indent" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -124,8 +124,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.autoIndent" id="bgG-ac-GxE"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="d0U-hp-rcZ">
-                                <rect key="frame" x="115" y="208" width="112" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d0U-hp-rcZ">
+                                <rect key="frame" x="115" y="213" width="112" height="18"/>
                                 <buttonCell key="cell" type="check" title="Soft wrap lines" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3274">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -134,8 +134,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.wrapLines" id="M27-lA-dt6"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="t2q-cV-mtM">
-                                <rect key="frame" x="115" y="186" width="171" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t2q-cV-mtM">
+                                <rect key="frame" x="115" y="191" width="171" height="18"/>
                                 <buttonCell key="cell" type="check" title="Indent wrapped lines by:" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mCq-92-2sT">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -145,7 +145,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EiF-pk-Dua">
-                                <rect key="frame" x="18" y="209" width="93" height="17"/>
+                                <rect key="frame" x="18" y="214" width="93" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="W0C-tr-fa4"/>
                                 </constraints>
@@ -155,8 +155,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="WL7-y8-umX">
-                                <rect key="frame" x="135" y="127" width="140" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WL7-y8-umX">
+                                <rect key="frame" x="135" y="132" width="140" height="18"/>
                                 <buttonCell key="cell" type="check" title="Words in document" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="EJZ-N6-54G">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -166,8 +166,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.completesDocumentWords" id="nWa-9S-RY4"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="55Y-oF-UTC">
-                                <rect key="frame" x="135" y="105" width="200" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="55Y-oF-UTC">
+                                <rect key="frame" x="135" y="110" width="200" height="18"/>
                                 <buttonCell key="cell" type="check" title="Words defined in syntax style" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1v9-7i-9RL">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -178,7 +178,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8I5-Lh-Ofn">
-                                <rect key="frame" x="33" y="151" width="78" height="17"/>
+                                <rect key="frame" x="33" y="156" width="78" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Completion:" usesSingleLineMode="YES" id="gDN-SU-sZH">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -186,7 +186,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DhT-LT-Lve">
-                                <rect key="frame" x="264" y="322" width="47" height="17"/>
+                                <rect key="frame" x="264" y="327" width="47" height="17"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="spaces" usesSingleLineMode="YES" id="as9-us-CuG">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -194,15 +194,15 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8WW-uf-bLm">
-                                <rect key="frame" x="44" y="265" width="67" height="17"/>
+                                <rect key="frame" x="44" y="270" width="67" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Comment:" usesSingleLineMode="YES" id="EDl-AJ-1dK">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="X2i-kL-uLT">
-                                <rect key="frame" x="115" y="264" width="253" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X2i-kL-uLT">
+                                <rect key="frame" x="115" y="269" width="253" height="18"/>
                                 <buttonCell key="cell" type="check" title="Append a space to comment delimiter" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6Dw-5M-Gv0">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -211,8 +211,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.appendsCommentSpacer" id="GWR-if-qk3"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="DcM-VC-C52">
-                                <rect key="frame" x="115" y="242" width="155" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DcM-VC-C52">
+                                <rect key="frame" x="115" y="247" width="155" height="18"/>
                                 <buttonCell key="cell" type="check" title="Always from line head" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Byi-E9-owf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -221,8 +221,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.commentsAtLineHead" id="tB3-eh-9R4"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="gY2-yd-rUU">
-                                <rect key="frame" x="135" y="83" width="118" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gY2-yd-rUU">
+                                <rect key="frame" x="135" y="88" width="118" height="18"/>
                                 <buttonCell key="cell" type="check" title="Standard words" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="c5j-0N-f2R">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -232,8 +232,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.completesStandardWords" id="UKJ-yc-0dY"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="wCX-eB-XQx">
-                                <rect key="frame" x="115" y="61" width="227" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wCX-eB-XQx">
+                                <rect key="frame" x="115" y="66" width="227" height="18"/>
                                 <buttonCell key="cell" type="check" title="Suggest completions while typing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="J1B-wA-rdr">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -243,7 +243,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2h-Jb-whg">
-                                <rect key="frame" x="292" y="184" width="40" height="22"/>
+                                <rect key="frame" x="292" y="189" width="40" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="WxU-c4-7Ko"/>
                                 </constraints>
@@ -265,7 +265,7 @@
                                 </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PeI-EQ-t3D">
-                                <rect key="frame" x="333" y="181" width="19" height="27"/>
+                                <rect key="frame" x="333" y="186" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="99" doubleValue="1" id="6ko-38-tQ2"/>
                                 <connections>
                                     <binding destination="TDG-Hm-YNe" name="enabled" keyPath="values.enableHangingIndent" id="qD8-zx-r7S"/>
@@ -273,15 +273,15 @@
                                 </connections>
                             </stepper>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOl-E4-tE2">
-                                <rect key="frame" x="351" y="187" width="47" height="17"/>
+                                <rect key="frame" x="351" y="192" width="47" height="17"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="spaces" usesSingleLineMode="YES" id="P9V-pV-PAX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="LUh-bR-BEp">
-                                <rect key="frame" x="115" y="298" width="273" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LUh-bR-BEp">
+                                <rect key="frame" x="115" y="303" width="273" height="18"/>
                                 <buttonCell key="cell" type="check" title="Detect indent style on document opening" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Cte-hW-0M3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -291,7 +291,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vs4-ce-gbZ">
-                                <rect key="frame" x="115" y="403" width="41" height="17"/>
+                                <rect key="frame" x="115" y="408" width="41" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Smart" id="6I3-dM-2QV">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -308,8 +308,8 @@
                                     <action selector="openHelpAnchor:" target="F6O-dU-PkM" id="OaT-eu-1UD"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="N1n-gE-ApS">
-                                <rect key="frame" x="230" y="402" width="67" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N1n-gE-ApS">
+                                <rect key="frame" x="230" y="407" width="67" height="18"/>
                                 <buttonCell key="cell" type="check" title="Dashes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nr1-0X-aBY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -318,8 +318,8 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.enableSmartDashes" id="SIR-DC-aa1"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="a9Q-Qg-ppv">
-                                <rect key="frame" x="160" y="402" width="66" height="18"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a9Q-Qg-ppv">
+                                <rect key="frame" x="160" y="407" width="66" height="18"/>
                                 <buttonCell key="cell" type="check" title="Quotes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Abx-fM-gyc">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -329,12 +329,15 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DcX-sg-7bi">
-                                <rect key="frame" x="115" y="41" width="417" height="14"/>
+                                <rect key="frame" x="115" y="46" width="417" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="⚠️ Select at least one item to enable completion." id="dmb-pc-4M5">
                                     <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="6FT-QA-TTg" name="hidden" keyPath="isValidCompletion" id="TTK-bp-5Ql"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
@@ -380,6 +383,7 @@
                             <constraint firstItem="wCX-eB-XQx" firstAttribute="leading" secondItem="nqq-MP-8Cp" secondAttribute="leading" id="TH3-BM-VXj"/>
                             <constraint firstItem="t2q-cV-mtM" firstAttribute="baseline" secondItem="I2h-Jb-whg" secondAttribute="baseline" id="Tds-cG-TXl"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jwj-BA-jAE" secondAttribute="trailing" constant="20" symbolic="YES" id="TvJ-6i-Oqn"/>
+                            <constraint firstItem="Ks6-yt-k9q" firstAttribute="top" secondItem="DcX-sg-7bi" secondAttribute="bottom" constant="5" id="Tw1-i9-iSr"/>
                             <constraint firstItem="8WW-uf-bLm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4sX-tH-txQ" secondAttribute="leading" constant="20" symbolic="YES" id="UbD-MV-b93"/>
                             <constraint firstItem="D3Q-hS-szA" firstAttribute="top" secondItem="6Dj-HL-UJe" secondAttribute="bottom" constant="8" id="Vja-Qz-2YM"/>
                             <constraint firstItem="nqq-MP-8Cp" firstAttribute="leading" secondItem="e7o-7Q-Iec" secondAttribute="trailing" constant="8" symbolic="YES" id="VtF-Ya-Bts"/>
