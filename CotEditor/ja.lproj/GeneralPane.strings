@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@
 "SGo-FL-Pax.title" = "オートセーブとバージョンを有効にする";
 /* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "書類の編集中に自動でファイルを上書きするmacOSの機能です。この機能を無効にした場合も、CotEditorは予期しないクラッシュに備えて裏でバックアップを作成します。";
-/* Class = "NSButtonCell"; title = "Reopen windows from last session on launch"; ObjectID = "jK0-pT-HTR"; */
-"jK0-pT-HTR.title" = "起動時に前回のウインドウを復帰";
+/* Class = "NSButtonCell"; title = "Reopen windows from last session on launch"; ObjectID = "QX9-BI-SIL"; */
+"QX9-BI-SIL.title" = "起動時に前回のウインドウを復帰";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "保存時に行末の空白を削除";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
