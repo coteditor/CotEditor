@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,11 +31,6 @@ final class GeneralPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    @objc private dynamic var hasUpdater = false
-    @objc private dynamic var prerelease = false
-    
-    @IBOutlet private weak var updaterConstraint: NSLayoutConstraint?
-    
     @IBOutlet private weak var ignoreConflictButton: NSButton?
     @IBOutlet private weak var notifyConflictButton: NSButton?
     @IBOutlet private weak var revertConflictButton: NSButton?
@@ -50,23 +45,17 @@ final class GeneralPaneController: NSViewController {
         
         super.viewDidLoad()
         
-        // remove updater option on AppStore ver.
+        // remove updater options on AppStore ver.
         #if APPSTORE
-            // cut down height for updater checkbox
-            self.view.frame.size.height -= 96
-            
-            // cut down x-position of visible labels
-            self.view.removeConstraint(self.updaterConstraint!)
-        #else
-            self.hasUpdater = true
-            
-            if AppInfo.isPrerelease {
-                self.prerelease = true
-            } else {
-                // cut down height for pre-release note
-                self.view.frame.size.height -= 32
+            for subview in self.view.subviews where subview.tag < 0 {
+                subview.removeFromSuperview()
             }
         #endif
+        if !AppInfo.isPrerelease {
+            for subview in self.view.subviews where subview.tag == -2 {
+                subview.removeFromSuperview()
+            }
+        }
     }
     
     
