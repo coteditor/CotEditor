@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,11 +30,9 @@ import Foundation
 extension DefaultKeys {
     
     // General
-    static let createNewAtStartup = DefaultKey<Bool>("createNewAtStartup")
-    static let reopenBlankWindow = DefaultKey<Bool>("reopenBlankWindow")
-    static let windowTabbing = DefaultKey<Int>("windowTabbing")
-    static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let quitAlwaysKeepsWindows = DefaultKey<Bool>("NSQuitAlwaysKeepsWindows")
+    static let createNewAtStartup = DefaultKey<Bool>("createNewAtStartup")
+    static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let trimsTrailingWhitespaceOnSave = DefaultKey<Bool>("trimsTrailingWhitespaceOnSave")
     static let trimsWhitespaceOnlyLines = DefaultKey<Bool>("trimsWhitespaceOnlyLines")
     static let documentConflictOption = DefaultKey<Int>("documentConflictOption")
@@ -47,6 +45,7 @@ extension DefaultKeys {
     static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Window
+    static let windowTabbing = DefaultKey<Int>("windowTabbing")
     static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
     static let showDocumentInspector = DefaultKey<Bool>("showDocumentInspector")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")

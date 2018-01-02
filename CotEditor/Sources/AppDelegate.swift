@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2013-2017 1024jp
+ © 2013-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -56,7 +56,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Private Properties
     
-    private var didFinishLaunching = false
     private lazy var acknowledgmentsWindowController = WebDocumentWindowController(documentName: "Acknowledgments")!
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
@@ -154,9 +153,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if #available(macOS 10.12.2, *) {
             NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         }
-        
-        // raise didFinishLaunching flag
-        self.didFinishLaunching = true
     }
     
     
@@ -183,11 +179,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// creates a new blank document
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
-        if self.didFinishLaunching {
-            return UserDefaults.standard[.reopenBlankWindow]
-        } else {
-            return UserDefaults.standard[.createNewAtStartup]
-        }
+        return UserDefaults.standard[.createNewAtStartup]
     }
     
     

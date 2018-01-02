@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,11 +31,9 @@ import AppKit.NSFont
 struct DefaultSettings {
     
     private static let settings: [DefaultKeys: Any] = [
-        .createNewAtStartup: true,
-        .reopenBlankWindow: true,
-        .windowTabbing: -1,  // = Respect System Setting
-        .enablesAutosaveInPlace: true,
         .quitAlwaysKeepsWindows: true,
+        .createNewAtStartup: true,
+        .enablesAutosaveInPlace: true,
         .trimsTrailingWhitespaceOnSave: false,
         .trimsWhitespaceOnlyLines: false,
         .documentConflictOption: DocumentConflictOption.revert.rawValue,
@@ -47,6 +45,7 @@ struct DefaultSettings {
         .highlightLtGt: false,
         .checksUpdatesForBeta: false,
         
+        .windowTabbing: -1,  // = Respect System Setting
         .showNavigationBar: true,
         .showDocumentInspector: false,
         .showStatusBar: true,

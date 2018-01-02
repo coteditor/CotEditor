@@ -25,13 +25,13 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "新規書類を開く:";
+/* Class = "NSTextFieldCell"; title = "On launch:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "起動したとき:";
 
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "起動したとき";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "CotEditorがアクティブになるとき";
+/* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
+"QX9-BI-SIL.title" = "前回のウインドウを復帰";
+/* Class = "NSButtonCell"; title = "Create a new document if nothing else is open"; ObjectID = "3298"; */
+"3298.title" = "何も開かれてなければ新規書類を作成";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
@@ -41,8 +41,6 @@
 "SGo-FL-Pax.title" = "オートセーブとバージョンを有効にする";
 /* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "書類の編集中に自動でファイルを上書きするmacOSの機能です。この機能を無効にした場合も、CotEditorは予期しないクラッシュに備えて裏でバックアップを作成します。";
-/* Class = "NSButtonCell"; title = "Reopen windows from last session on launch"; ObjectID = "QX9-BI-SIL"; */
-"QX9-BI-SIL.title" = "起動時に前回のウインドウを復帰";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "保存時に行末の空白を削除";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
@@ -87,4 +85,4 @@
 "4aT-ka-sbv.title" = "プレリリース版を対象に含める";
 
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
-"chR-VY-cuI.title" = "この設定に関わらず、プレリリース版の使用中は必ず新しい\nプレリリースもアップデート対象に含まれます。";
+"chR-VY-cuI.title" = "この設定に関わらず、プレリリース版の使用中は必ず新しいプレリリースもアップデート対象に含まれます。";
