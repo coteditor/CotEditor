@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -116,7 +116,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "拼写检查";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "拼写检查";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "显示拼写和语法面板";  /* Show spelling and grammar panel */
+"Ply-Nr-aOE.toolTip" = "显示拼写和语法";  /* Show spelling and grammar */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "颜色代码";  /* Color Code */

@@ -141,7 +141,7 @@
                                         <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="AOo-vA-XLq"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8C717A30-BD51-43A3-9F26-961DB811A614" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammar panel" tag="24" image="SpellCheck" id="Ply-Nr-aOE" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="8C717A30-BD51-43A3-9F26-961DB811A614" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammar" tag="24" image="SpellCheck" id="Ply-Nr-aOE" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="showGuessPanel:" target="klO-m3-n5X" id="7jm-Sv-aTP"/>
                                     </connections>

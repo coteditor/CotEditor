@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -115,7 +115,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Rechtschreibprüfung";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "Rechtschreibprüfung";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "Rechtschreibung und Grammatik einblenden";  /* Show spelling and grammar panel */
+"Ply-Nr-aOE.toolTip" = "Rechtschreibung und Grammatik einblenden";  /* Show spelling and grammar */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "Farbcode";  /* Color Code */
