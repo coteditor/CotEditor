@@ -23,7 +23,7 @@ develop
 
 - Drop support for __OS X 10.10 Yosemite__.
 - Add clear button to input fields in the find panel.
-- Gather the “open a new document” “on launch” and “when CotEditor becomes active” options into a single “create a new document if nothing else is open”  option.
+- Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.
 - Scroll console view after getting a new message to make it visible.
 - Display sharing window within the target document window.
 - Swap position of “View” with “Format” menu to conform to Apple's HIG.
