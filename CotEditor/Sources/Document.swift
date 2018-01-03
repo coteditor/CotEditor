@@ -468,7 +468,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
             }
             
-            if saveOperation != .autosaveElsewhereOperation {
+            if saveOperation != .autosaveElsewhereOperation, saveOperation != .autosaveAsOperation {
                 // update file information
                 self.analyzer.invalidateFileInfo()
                 
