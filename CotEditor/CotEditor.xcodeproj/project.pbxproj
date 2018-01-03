@@ -2065,6 +2065,11 @@
 					2A6F0D4E1B5500E100C2D03C = {
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					2A9246E71FCD2004008DBC30 = {
 						CreatedOnToolsVersion = 9.1;
@@ -2081,6 +2086,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};

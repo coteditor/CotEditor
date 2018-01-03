@@ -32,7 +32,7 @@ struct DefaultSettings {
     
     private static let settings: [DefaultKeys: Any] = [
         .quitAlwaysKeepsWindows: true,
-        .createNewAtStartup: true,
+        .noDocumentOnLaunchBehavior: NoDocumentOnLaunchBehavior.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,
         .trimsTrailingWhitespaceOnSave: false,
         .trimsWhitespaceOnlyLines: false,

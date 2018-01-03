@@ -7,6 +7,7 @@ develop
 
 ### New Features
 
+- iCloud document.
 - Open document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
 - Add new actions “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from last session on launch” in General pane.
@@ -22,7 +23,7 @@ develop
 
 - Drop support for __OS X 10.10 Yosemite__.
 - Add clear button to input fields in the find panel.
-- Gather the “open a new document” “on launch” and “when CotEditor becomes active” options into a single “create a new document if nothing else is open”  option.
+- Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.
 - Scroll console view after getting a new message to make it visible.
 - Display sharing window within the target document window.
 - Swap position of “View” with “Format” menu to conform to Apple's HIG.
