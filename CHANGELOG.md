@@ -7,6 +7,7 @@ develop
 
 ### New Features
 
+- iCloud document.
 - Open document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
 - Add new actions “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from last session on launch” in General pane.
