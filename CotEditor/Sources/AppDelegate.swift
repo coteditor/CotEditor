@@ -334,13 +334,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// show color code editor panel
-    @IBAction func showColorCodePanel(_ sender: Any?) {
-        
-        ColorCodePanelController.shared.showWindow(sender)
-    }
-    
-    
     /// show acknowlegements
     @IBAction func showAcknowledgments(_ sender: Any?) {
         

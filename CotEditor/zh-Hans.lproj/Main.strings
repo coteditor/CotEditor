@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -502,8 +502,6 @@
 
 /* Class = "NSMenuItem"; title = "Console"; ObjectID = "653"; */
 "653.title" = "控制台";
-/* Class = "NSMenuItem"; title = "Color Code Panel"; ObjectID = "651"; */
-"651.title" = "颜色代码面板";
 
 
 

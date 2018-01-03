@@ -30,6 +30,7 @@ develop
 - Display full encoding name in the status bar instead of the IANA charset name.
 - Add tooltips to Unicode normalization forms in Text menu.
 - Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.
+- Remove “Color Code Panel” action in “Window” menu (use “Edit Color Code...” action in “Text” menu instead).
 - Restore the last viewed preference pane.
 - Add an input field for window opacity setting.
 - Adjust scroll after toggling line wrap.

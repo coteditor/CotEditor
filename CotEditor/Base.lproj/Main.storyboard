@@ -1025,11 +1025,6 @@ CA
                                                 <action selector="showConsolePanel:" target="Ady-hI-5gd" id="80V-8S-iOQ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Color Code Panel" keyEquivalent="2" id="651">
-                                            <connections>
-                                                <action selector="showColorCodePanel:" target="Ady-hI-5gd" id="F61-vc-aOj"/>
-                                            </connections>
-                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
