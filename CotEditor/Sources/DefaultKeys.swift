@@ -31,7 +31,7 @@ extension DefaultKeys {
     
     // General
     static let quitAlwaysKeepsWindows = DefaultKey<Bool>("NSQuitAlwaysKeepsWindows")
-    static let createNewAtStartup = DefaultKey<Bool>("createNewAtStartup")
+    static let noDocumentOnLaunchBehavior = DefaultKey<Int>("noDocumentOnLaunchBehavior")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let trimsTrailingWhitespaceOnSave = DefaultKey<Bool>("trimsTrailingWhitespaceOnSave")
     static let trimsWhitespaceOnlyLines = DefaultKey<Bool>("trimsWhitespaceOnlyLines")

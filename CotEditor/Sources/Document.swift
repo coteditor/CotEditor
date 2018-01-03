@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -189,6 +189,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         struct InitialValue { static let autosavesInPlace = UserDefaults.standard[.enablesAutosaveInPlace] }
         
         return InitialValue.autosavesInPlace
+    }
+    
+    
+    /// whether shows the iCloud open panel on launch
+    override class var usesUbiquitousStorage: Bool {
+        
+        let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
+        
+        return behavior == .openPanel
     }
     
     

@@ -31,8 +31,15 @@
 
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
 "QX9-BI-SIL.title" = "Reopen windows from last session";  // FIXME: added
-/* Class = "NSButtonCell"; title = "Create a new document if nothing else is open"; ObjectID = "3298"; */
-"3298.title" = "Create a new document if nothing else is open";  // FIXME: added
+/* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
+"wmw-xg-bSt.title" = "When nothing else is open:";  // FIXME: added
+
+/* Class = "NSMenuItem"; title = "Create a New Document"; ObjectID = "i4c-DG-ADS"; */
+"i4c-DG-ADS.title" = "Create a New Document";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
+"hIX-mh-cG4.title" = "Show Open Dialog";  // FIXME: added
+/* Class = "NSMenuItem"; title = "No Action"; ObjectID = "KgD-GV-alV"; */
+"KgD-GV-alV.title" = "无操作";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
