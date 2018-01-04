@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,23 +16,23 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <view id="woN-Zr-vcc">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="367"/>
+            <rect key="frame" x="0.0" y="0.0" width="440" height="367"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LP8-0O-9z3">
-                    <rect key="frame" x="20" y="97" width="244" height="189"/>
+                    <rect key="frame" x="20" y="97" width="284" height="189"/>
                     <clipView key="contentView" id="0qH-ED-MMi">
-                        <rect key="frame" x="1" y="1" width="242" height="187"/>
+                        <rect key="frame" x="1" y="1" width="282" height="187"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="sEh-f6-spz">
-                                <rect key="frame" x="0.0" y="0.0" width="242" height="187"/>
+                                <rect key="frame" x="0.0" y="0.0" width="282" height="187"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="" editable="NO" width="239" minWidth="40" maxWidth="1000" id="49c-uK-4Wa">
+                                    <tableColumn identifier="" editable="NO" width="279" minWidth="40" maxWidth="1000" id="49c-uK-4Wa">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -46,11 +46,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView id="f9Q-hI-GOS" customClass="EncodingTableCellView" customModule="CotEditor" customModuleProvider="target">
-                                                <rect key="frame" x="1" y="1" width="239" height="17"/>
+                                                <rect key="frame" x="1" y="1" width="279" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="A53-Gb-bA3">
-                                                        <rect key="frame" x="4" y="0.0" width="231" height="17"/>
+                                                        <rect key="frame" x="4" y="0.0" width="271" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="Yzo-ia-Vea" customClass="SeparatorTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -92,7 +92,7 @@
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aiv-GS-dcz">
-                    <rect key="frame" x="186" y="13" width="100" height="32"/>
+                    <rect key="frame" x="226" y="13" width="100" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="gZx-T8-VBs"/>
                     </constraints>
@@ -108,7 +108,7 @@ Gw
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="eZH-EP-XJr">
-                    <rect key="frame" x="286" y="13" width="100" height="32"/>
+                    <rect key="frame" x="326" y="13" width="100" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="WRu-xh-GUj"/>
                     </constraints>
@@ -124,7 +124,7 @@ DQ
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uwq-dp-HCe">
-                    <rect key="frame" x="267" y="262" width="118" height="28"/>
+                    <rect key="frame" x="307" y="262" width="118" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="108" id="UBd-i0-3Pw"/>
                     </constraints>
@@ -137,7 +137,7 @@ DQ
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5od-lM-Mgb">
-                    <rect key="frame" x="267" y="234" width="118" height="28"/>
+                    <rect key="frame" x="307" y="234" width="118" height="28"/>
                     <buttonCell key="cell" type="push" title="Delete Separator" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3393">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
@@ -147,7 +147,7 @@ DQ
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4Ji-oF-2Xz">
-                    <rect key="frame" x="18" y="294" width="364" height="28"/>
+                    <rect key="frame" x="18" y="294" width="404" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="3394">
                         <font key="font" metaFont="smallSystem"/>
                         <string key="title">This list is for Auto-Detect and the file encoding menu.
@@ -157,7 +157,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4bX-CV-ACG">
-                    <rect key="frame" x="18" y="330" width="364" height="17"/>
+                    <rect key="frame" x="18" y="330" width="404" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Drag encodings to change the order." id="3395">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -179,7 +179,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EvH-HI-yPD">
-                    <rect key="frame" x="18" y="61" width="364" height="28"/>
+                    <rect key="frame" x="18" y="61" width="404" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”." id="jXZ-7k-86F">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
