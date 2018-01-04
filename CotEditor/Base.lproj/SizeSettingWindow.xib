@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,7 @@
         <window title="Sample Window for Size" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="Sample Window">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <rect key="contentRect" x="192" y="280" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="400" height="200"/>
             <view key="contentView" id="126">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
@@ -69,9 +69,9 @@ The size of this window will be set as default.</string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="138">
-                                <rect key="frame" x="68" y="261" width="80" height="19"/>
+                                <rect key="frame" x="68" y="261" width="48" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="dMw-Jt-sFh"/>
+                                    <constraint firstAttribute="width" constant="48" id="dMw-Jt-sFh"/>
                                 </constraints>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="3401">
                                     <font key="font" metaFont="smallSystem"/>
@@ -95,7 +95,7 @@ The size of this window will be set as default.</string>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="141">
-                                <rect key="frame" x="154" y="264" width="48" height="17"/>
+                                <rect key="frame" x="153" y="264" width="48" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Height:" usesSingleLineMode="YES" id="3403">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -103,9 +103,9 @@ The size of this window will be set as default.</string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="136">
-                                <rect key="frame" x="208" y="261" width="80" height="19"/>
+                                <rect key="frame" x="207" y="261" width="48" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="xWN-LC-Lew"/>
+                                    <constraint firstAttribute="width" constant="48" id="xWN-LC-Lew"/>
                                 </constraints>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="3400">
                                     <font key="font" metaFont="smallSystem"/>
@@ -122,22 +122,43 @@ The size of this window will be set as default.</string>
                                     <binding destination="3I1-SB-fO2" name="value" keyPath="values.windowHeight" id="nHs-9J-wde"/>
                                 </connections>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Sn1-JV-oZX">
+                                <rect key="frame" x="118" y="264" width="19" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="px" id="ZN3-bX-0jB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EdY-Al-FCM">
+                                <rect key="frame" x="257" y="264" width="19" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="px" id="Uqw-EO-Xn7">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="138" firstAttribute="leading" secondItem="140" secondAttribute="trailing" constant="8" symbolic="YES" id="71H-ql-5Jq"/>
+                            <constraint firstItem="Sn1-JV-oZX" firstAttribute="leading" secondItem="138" secondAttribute="trailing" constant="4" id="7cb-0M-aL4"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EdY-Al-FCM" secondAttribute="trailing" constant="20" symbolic="YES" id="G7S-Ib-NWC"/>
                             <constraint firstItem="129" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3o6-jY-PMo" secondAttribute="leading" constant="20" symbolic="YES" id="GJI-gm-dcN"/>
                             <constraint firstAttribute="bottom" secondItem="129" secondAttribute="bottom" constant="20" symbolic="YES" id="GQz-jd-iEl"/>
                             <constraint firstAttribute="trailing" secondItem="128" secondAttribute="trailing" constant="20" symbolic="YES" id="Ggz-AU-WyD"/>
                             <constraint firstItem="136" firstAttribute="leading" secondItem="141" secondAttribute="trailing" constant="8" symbolic="YES" id="Iwm-jL-Jnb"/>
                             <constraint firstItem="130" firstAttribute="top" secondItem="3o6-jY-PMo" secondAttribute="top" constant="20" symbolic="YES" id="JEY-dS-7bh"/>
-                            <constraint firstItem="141" firstAttribute="leading" secondItem="138" secondAttribute="trailing" constant="8" symbolic="YES" id="U2U-Tb-Iyl"/>
                             <constraint firstAttribute="bottom" secondItem="128" secondAttribute="bottom" constant="20" symbolic="YES" id="U3S-3E-dni"/>
                             <constraint firstItem="130" firstAttribute="leading" secondItem="3o6-jY-PMo" secondAttribute="leading" constant="20" symbolic="YES" id="UCs-Te-cRB"/>
+                            <constraint firstItem="Sn1-JV-oZX" firstAttribute="baseline" secondItem="138" secondAttribute="baseline" id="Vhe-I9-Vcu"/>
+                            <constraint firstItem="EdY-Al-FCM" firstAttribute="leading" secondItem="136" secondAttribute="trailing" constant="4" id="Ywc-6y-cds"/>
                             <constraint firstAttribute="trailing" secondItem="130" secondAttribute="trailing" constant="20" symbolic="YES" id="aHE-ik-jSR"/>
                             <constraint firstItem="138" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3o6-jY-PMo" secondAttribute="top" constant="80" id="k0w-59-EMY"/>
                             <constraint firstItem="136" firstAttribute="baseline" secondItem="140" secondAttribute="baseline" id="lpc-wM-Lu1"/>
+                            <constraint firstItem="141" firstAttribute="leading" secondItem="Sn1-JV-oZX" secondAttribute="trailing" constant="20" id="rH7-hN-Nb1"/>
                             <constraint firstItem="138" firstAttribute="top" secondItem="130" secondAttribute="bottom" priority="750" constant="20" id="rWd-w6-y5P"/>
                             <constraint firstItem="138" firstAttribute="baseline" secondItem="140" secondAttribute="baseline" id="sfL-fr-7h9"/>
+                            <constraint firstItem="EdY-Al-FCM" firstAttribute="baseline" secondItem="136" secondAttribute="baseline" id="uwG-po-7WW"/>
                             <constraint firstItem="128" firstAttribute="leading" secondItem="129" secondAttribute="trailing" constant="12" symbolic="YES" id="xJl-W8-Kvk"/>
                             <constraint firstItem="140" firstAttribute="leading" secondItem="3o6-jY-PMo" secondAttribute="leading" constant="20" symbolic="YES" id="yOl-Tc-b7m"/>
                             <constraint firstItem="141" firstAttribute="baseline" secondItem="140" secondAttribute="baseline" id="yYm-iG-J58"/>
