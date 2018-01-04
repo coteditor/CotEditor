@@ -114,7 +114,7 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
     required init(definitions: [OutlineDefinition]) {
         
         self.definitions = definitions
-        self.progress = Progress(totalUnitCount: Int64(definitions.count))
+        self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))
         
         super.init()
         
@@ -151,10 +151,6 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
         var outlineItems = [OutlineItem]()
         
         for definition in self.definitions {
-            DispatchQueue.main.async { [weak self] in
-                self?.progress.completedUnitCount += 1
-            }
-            
             definition.regex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange) { (result: NSTextCheckingResult?, flags, stop) in
                 
                 guard !self.isCancelled else {
@@ -201,6 +197,10 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
                 // append outline item
                 outlineItems.append(item)
             }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.progress.completedUnitCount += 1
+            }
         }
         
         guard !self.isCancelled else { return }
@@ -211,6 +211,10 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
         }
         
         self.results = outlineItems
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.progress.completedUnitCount += 1
+        }
     }
     
 }
