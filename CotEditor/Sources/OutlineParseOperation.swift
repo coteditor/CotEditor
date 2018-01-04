@@ -30,7 +30,6 @@ import Foundation
 
 struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
     
-    
     let regex: NSRegularExpression
     let template: String
     let isSeparator: Bool
