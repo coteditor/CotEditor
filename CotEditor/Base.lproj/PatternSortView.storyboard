@@ -78,6 +78,11 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="LBk-n2-xHt" name="enabled" keyPath="selection.natural" id="KkA-CL-CSN">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="LBk-n2-xHt" name="value" keyPath="selection.numeric" id="yVO-JD-XdM"/>
                                 </connections>
                             </button>
@@ -100,13 +105,13 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JRD-Db-XHM">
-                                <rect key="frame" x="98" y="59" width="91" height="18"/>
-                                <buttonCell key="cell" type="check" title="Sort fuzzily" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="x72-Sd-pMB">
+                                <rect key="frame" x="98" y="59" width="94" height="18"/>
+                                <buttonCell key="cell" type="check" title="Sort natural" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="x72-Sd-pMB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.fuzzy" id="Aqt-8T-pm1"/>
+                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.natural" id="NHv-S5-Dxr"/>
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dBa-xL-w0w">
@@ -182,7 +187,7 @@ Gw
                     <declaredKeys>
                         <string>ignoresCase</string>
                         <string>numeric</string>
-                        <string>fuzzy</string>
+                        <string>natural</string>
                     </declaredKeys>
                     <connections>
                         <binding destination="uia-jw-3Md" name="contentObject" keyPath="sortOptions" id="yaI-Pq-5NJ"/>
@@ -208,25 +213,25 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RfX-SH-kDN">
-                                <rect key="frame" x="66" y="8" width="64" height="22"/>
+                                <rect key="frame" x="66" y="8" width="72" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="GY1-jg-Kce"/>
+                                    <constraint firstAttribute="width" constant="72" id="GY1-jg-Kce"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="," drawsBackground="YES" usesSingleLineMode="YES" id="nM6-5J-N8Z">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="," placeholderString="," drawsBackground="YES" usesSingleLineMode="YES" id="nM6-5J-N8Z">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.delimiter" id="ke3-RI-hS1">
+                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.delimiter" id="HcO-gs-AXQ">
                                         <dictionary key="options">
-                                            <string key="NSNullPlaceholder">,</string>
+                                            <string key="NSNullPlaceholder">Entire line</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ikb-3W-LqX">
-                                <rect key="frame" x="144" y="11" width="57" height="17"/>
+                                <rect key="frame" x="152" y="11" width="57" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Position:" id="HE1-PS-8J3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -234,14 +239,14 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0AM-o6-6xl">
-                                <rect key="frame" x="240" y="6" width="19" height="27"/>
+                                <rect key="frame" x="248" y="6" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="1" id="fin-vh-3BV"/>
                                 <connections>
                                     <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="2ml-ZO-Kio"/>
                                 </connections>
                             </stepper>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0pT-9w-gVH">
-                                <rect key="frame" x="207" y="8" width="32" height="22"/>
+                                <rect key="frame" x="215" y="8" width="32" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="AKY-UZ-q58"/>
                                 </constraints>

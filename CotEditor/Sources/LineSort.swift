@@ -58,7 +58,16 @@ extension SortPattern {
             .sorted {
                 switch ($0.key, $1.key) {
                 case let (.some(key0), .some(key1)):
-                    return key0.compare(key1, options: compareOptions) == .orderedAscending
+                    let result: ComparisonResult = {
+                        if options.natural, options.ignoresCase {
+                            return key0.localizedCaseInsensitiveCompare(key1)
+                        } else if options.natural {
+                            return key0.localizedCompare(key1)
+                        } else {
+                            return key0.compare(key1, options: compareOptions)
+                        }
+                    }()
+                    return result == .orderedAscending
                 case (.none, .some):
                     return false
                 default:
@@ -77,7 +86,7 @@ extension SortPattern {
 
 final class CSVSortPattern: NSObject, SortPattern {
     
-    @objc dynamic var delimiter: String? = ","
+    @objc dynamic var delimiter: String = ","
     @objc dynamic var column: Int = 1
     
     let defaultDelimiter = ","
@@ -85,7 +94,7 @@ final class CSVSortPattern: NSObject, SortPattern {
     
     func sortKey(for line: String) -> String? {
         
-        let delimiter = self.delimiter?.unescaped ?? self.defaultDelimiter
+        let delimiter = self.delimiter.isEmpty ? self.defaultDelimiter : self.delimiter.unescaped
         let index = self.column - 1  // column number is 1-based
         
         return line.components(separatedBy: delimiter)[safe: index]?
@@ -149,7 +158,7 @@ final class SortOptions: NSObject {
     
     @objc dynamic var ignoresCase: Bool = true
     @objc dynamic var numeric: Bool = true
-    @objc dynamic var fuzzy: Bool = true
+    @objc dynamic var natural: Bool = true
     
     
     var compareOptions: String.CompareOptions {
@@ -161,9 +170,6 @@ final class SortOptions: NSObject {
         }
         if self.numeric {
             options.formUnion(.numeric)
-        }
-        if self.fuzzy {
-            options.formUnion(.widthInsensitive)
         }
         
         return options
