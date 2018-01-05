@@ -45,7 +45,7 @@ extension SortPattern {
         
         let compareOptions = options.compareOptions
         
-        return string.components(separatedBy: .newlines)
+        var lines = string.components(separatedBy: .newlines)
             .map { (line: String) -> (line: String, key: String?) in
                 var key = self.sortKey(for: line)
                 if compareOptions.contains(.widthInsensitive) {
@@ -74,7 +74,12 @@ extension SortPattern {
                 }
             }
             .map { $0.line }
-            .joined(separator: "\n")
+        
+        if options.decending {
+            lines.reverse()
+        }
+        
+        return lines.joined(separator: "\n")
     }
     
     
@@ -168,6 +173,7 @@ final class SortOptions: NSObject {
     @objc dynamic var numeric: Bool = true
     
     @objc dynamic var localized: Bool = true
+    @objc dynamic var decending: Bool = false
     
     
     var compareOptions: String.CompareOptions {
