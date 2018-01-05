@@ -178,14 +178,14 @@ Gw
                     </view>
                 </viewController>
                 <customObject id="WLR-aL-uPL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController objectClassName="CotEditor.SortOption" automaticallyPreparesContent="YES" id="LBk-n2-xHt">
+                <objectController objectClassName="CotEditor.SortOptions" automaticallyPreparesContent="YES" id="LBk-n2-xHt">
                     <declaredKeys>
                         <string>ignoresCase</string>
                         <string>numeric</string>
                         <string>fuzzy</string>
                     </declaredKeys>
                     <connections>
-                        <binding destination="uia-jw-3Md" name="contentObject" keyPath="sortOption" id="9qG-vz-rT2"/>
+                        <binding destination="uia-jw-3Md" name="contentObject" keyPath="sortOptions" id="yaI-Pq-5NJ"/>
                     </connections>
                 </objectController>
             </objects>

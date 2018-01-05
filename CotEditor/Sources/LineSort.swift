@@ -41,12 +41,14 @@ extension SortPattern {
     ///   - string: The string to sort.
     ///   - options: Compare options for sort.
     /// - Returns: Sorted string.
-    func sort(_ string: String, options: String.CompareOptions = [.forcedOrdering]) -> String {
+    func sort(_ string: String, options: SortOptions = SortOptions()) -> String {
+        
+        let compareOptions = options.compareOptions
         
         return string.components(separatedBy: .newlines)
             .map { (line: String) -> (line: String, key: String?) in
                 var key = self.sortKey(for: line)
-                if options.contains(.widthInsensitive) {
+                if compareOptions.contains(.widthInsensitive) {
                     // ignore also Hiragana/Katakana when .widthInsensitive is selected
                     key = key?.applyingTransform(.hiraganaToKatakana, reverse: false) ?? key
                 }
@@ -55,7 +57,7 @@ extension SortPattern {
             .sorted {
                 switch ($0.key, $1.key) {
                 case let (.some(key0), .some(key1)):
-                    return key0.compare(key1, options: options) == .orderedAscending
+                    return key0.compare(key1, options: compareOptions) == .orderedAscending
                 case (.none, .some):
                     return false
                 default:
@@ -97,7 +99,7 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
     @objc dynamic var searchPattern: String = ""
     @objc dynamic var ignoresCase: Bool = true
     
-    @objc dynamic var sortPattern: String?
+    @objc dynamic var sortPattern: String = ""
     
     
     private var regex: NSRegularExpression?
@@ -114,7 +116,7 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
             let match = regex.firstMatch(in: line, range: line.nsRange)
             else { return nil }
         
-        let sortPattern = self.sortPattern ?? "$0"
+        let sortPattern = self.sortPattern.isEmpty ? "$0" : self.sortPattern
         
         return regex.replacementString(for: match, in: line, offset: 0, template: sortPattern)
     }
@@ -136,7 +138,7 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
 
 // MARK: -
 
-final class SortOption: NSObject {
+final class SortOptions: NSObject {
     
     @objc dynamic var ignoresCase: Bool = true
     @objc dynamic var numeric: Bool = true

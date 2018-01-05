@@ -29,7 +29,7 @@ final class PatternSortViewController: NSViewController {
     
     // MARK: Private Properties
     
-    @objc dynamic private var sortOption = SortOption()
+    @objc dynamic private var sortOptions = SortOptions()
     
     private weak var tabViewController: NSTabViewController?
     
@@ -68,7 +68,7 @@ final class PatternSortViewController: NSViewController {
             let pattern = self.sortPattern
             else { return }
         
-        textView.sortLines(pattern: pattern, options: self.sortOption.compareOptions)
+        textView.sortLines(pattern: pattern, options: self.sortOptions)
         
         self.dismiss(sender)
     }

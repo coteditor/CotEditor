@@ -332,7 +332,7 @@ extension EditorTextView {
 
 extension NSTextView {
     
-    func sortLines(pattern: SortPattern, options: String.CompareOptions) {
+    func sortLines(pattern: SortPattern, options: SortOptions) {
         
         let string = self.string as NSString
         

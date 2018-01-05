@@ -73,8 +73,8 @@ class LineSortTests: XCTestCase {
         let pattern = CSVSortPattern()
         pattern.column = 4
         
-        let option = SortOption()
-        option.fuzzy = true
+        let options = SortOptions()
+        options.fuzzy = true
         
         let result = """
             dog, 🐕, 2, いぬ
@@ -82,7 +82,7 @@ class LineSortTests: XCTestCase {
             cat, 🐈, 1, ねこ
             """
         
-        XCTAssertEqual(pattern.sort(self.lines, options: option.compareOptions), result)
+        XCTAssertEqual(pattern.sort(self.lines, options: options), result)
     }
 
 }
