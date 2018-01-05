@@ -58,9 +58,9 @@ extension SortPattern {
                 switch ($0.key, $1.key) {
                 case let (.some(key0), .some(key1)):
                     let result: ComparisonResult = {
-                        if options.natural, options.ignoresCase {
+                        if options.localized, options.ignoresCase {
                             return key0.localizedCaseInsensitiveCompare(key1)
-                        } else if options.natural {
+                        } else if options.localized {
                             return key0.localizedCompare(key1)
                         } else {
                             return key0.compare(key1, options: compareOptions)
@@ -166,7 +166,8 @@ final class SortOptions: NSObject {
     
     @objc dynamic var ignoresCase: Bool = true
     @objc dynamic var numeric: Bool = true
-    @objc dynamic var natural: Bool = true
+    
+    @objc dynamic var localized: Bool = true
     
     
     var compareOptions: String.CompareOptions {

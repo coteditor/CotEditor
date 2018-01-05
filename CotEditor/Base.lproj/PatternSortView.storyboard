@@ -86,7 +86,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="LBk-n2-xHt" name="enabled" keyPath="selection.natural" id="KkA-CL-CSN">
+                                    <binding destination="LBk-n2-xHt" name="enabled" keyPath="selection.localized" id="lsu-nN-7Vg">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
@@ -113,13 +113,14 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JRD-Db-XHM">
-                                <rect key="frame" x="98" y="59" width="94" height="18"/>
-                                <buttonCell key="cell" type="check" title="Sort natural" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="x72-Sd-pMB">
+                                <rect key="frame" x="98" y="59" width="104" height="18"/>
+                                <buttonCell key="cell" type="check" title="Sort naturally" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="x72-Sd-pMB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.natural" id="NHv-S5-Dxr"/>
+                                    <binding destination="LBk-n2-xHt" name="enabled" keyPath="selection" id="X69-nV-Kns"/>
+                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.localized" id="zJd-zd-ey2"/>
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dBa-xL-w0w">
