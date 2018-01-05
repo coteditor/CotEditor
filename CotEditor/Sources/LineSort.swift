@@ -82,7 +82,7 @@ final class CSVSortPattern: NSObject, SortPattern {
     
     func sortKey(for line: String) -> String? {
         
-        let delimiter = self.delimiter ?? self.defaultDelimiter
+        let delimiter = self.delimiter?.unescaped ?? self.defaultDelimiter
         let index = self.column - 1  // column number is 1-based
         
         return line.components(separatedBy: delimiter)[safe: index]?
