@@ -6,14 +6,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab View Controller-->
+        <!--Sort Pattern Tab View Controller-->
         <scene sceneID="OUd-KX-Axb">
             <objects>
                 <customObject id="SCP-zT-I2z" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="UQP-be-J0h" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="1" tabStyle="unspecified" id="UQP-be-J0h" customClass="SortPatternTabViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="Column" id="Wzd-4F-vUo"/>
-                        <tabViewItem label="Regular Expression" id="wU1-6w-npb"/>
+                        <tabViewItem id="v9L-0S-EVa">
+                            <nil key="label"/>
+                        </tabViewItem>
+                        <tabViewItem id="HXX-IX-vWD">
+                            <nil key="label"/>
+                        </tabViewItem>
+                        <tabViewItem id="jQF-od-tb6">
+                            <nil key="label"/>
+                        </tabViewItem>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" misplaced="YES" drawsBackground="NO" type="noTabsNoBorder" id="cOs-MN-hMm">
@@ -27,8 +34,9 @@
                     </tabView>
                     <connections>
                         <outlet property="tabView" destination="cOs-MN-hMm" id="9oW-8l-4Su"/>
-                        <segue destination="SbM-Fx-692" kind="relationship" relationship="tabItems" id="9cN-Ck-unj"/>
-                        <segue destination="mza-P2-Q5P" kind="relationship" relationship="tabItems" id="Wyw-jG-9RG"/>
+                        <segue destination="nc5-AG-IOi" kind="relationship" relationship="tabItems" id="qEs-wY-VlD"/>
+                        <segue destination="SbM-Fx-692" kind="relationship" relationship="tabItems" id="CMB-5e-NAW"/>
+                        <segue destination="mza-P2-Q5P" kind="relationship" relationship="tabItems" id="6bD-0e-AwX"/>
                     </connections>
                 </tabViewController>
             </objects>
@@ -39,11 +47,11 @@
             <objects>
                 <viewController id="uia-jw-3Md" customClass="PatternSortViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="pgB-9B-CeZ">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="280"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yq3-Cq-5Km">
-                                <rect key="frame" x="286" y="13" width="100" height="32"/>
+                                <rect key="frame" x="326" y="13" width="100" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="sWn-Qf-20l"/>
                                 </constraints>
@@ -59,7 +67,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dGp-tE-DiD">
-                                <rect key="frame" x="186" y="13" width="100" height="32"/>
+                                <rect key="frame" x="226" y="13" width="100" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lw7-xg-639">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -115,13 +123,13 @@ Gw
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dBa-xL-w0w">
-                                <rect key="frame" x="100" y="121" width="300" height="122"/>
+                                <rect key="frame" x="100" y="121" width="340" height="122"/>
                                 <connections>
                                     <segue destination="UQP-be-J0h" kind="embed" id="Jqt-CD-otV"/>
                                 </connections>
                             </containerView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-zl-dSu">
-                                <rect key="frame" x="97" y="242" width="69" height="18"/>
+                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-zl-dSu">
+                                <rect key="frame" x="188" y="242" width="69" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Column" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="pKE-GY-bD6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -130,8 +138,8 @@ Gw
                                     <action selector="changeSortPattern:" target="uia-jw-3Md" id="qNB-Em-TEs"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-xc-HWj">
-                                <rect key="frame" x="175" y="242" width="138" height="18"/>
+                            <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-xc-HWj">
+                                <rect key="frame" x="266" y="242" width="138" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Regular expression" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Ase-N7-QHB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -148,6 +156,16 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sc1-QB-34d">
+                                <rect key="frame" x="97" y="242" width="82" height="18"/>
+                                <buttonCell key="cell" type="radio" title="Entire line" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="roe-rP-gfg">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="changeSortPattern:" target="uia-jw-3Md" id="KUV-OH-SDe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fPh-fe-6Jh" secondAttribute="trailing" constant="20" symbolic="YES" id="09V-Gd-wII"/>
@@ -157,7 +175,9 @@ Gw
                             <constraint firstItem="yq3-Cq-5Km" firstAttribute="top" secondItem="JRD-Db-XHM" secondAttribute="bottom" constant="20" symbolic="YES" id="73x-Eb-Npt"/>
                             <constraint firstItem="fPh-fe-6Jh" firstAttribute="baseline" secondItem="CQO-oZ-nKa" secondAttribute="baseline" id="B33-CY-e9M"/>
                             <constraint firstItem="JRD-Db-XHM" firstAttribute="top" secondItem="AJK-RI-bCK" secondAttribute="bottom" constant="6" symbolic="YES" id="CJP-hE-dWR"/>
+                            <constraint firstItem="dx8-zl-dSu" firstAttribute="leading" secondItem="sc1-QB-34d" secondAttribute="trailing" constant="12" id="DUw-1N-J1j"/>
                             <constraint firstItem="bN6-xc-HWj" firstAttribute="baseline" secondItem="oqP-25-2rA" secondAttribute="baseline" id="FfK-V9-VK6"/>
+                            <constraint firstItem="sc1-QB-34d" firstAttribute="baseline" secondItem="oqP-25-2rA" secondAttribute="baseline" id="Ji1-Z4-WjW"/>
                             <constraint firstItem="oqP-25-2rA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="P3r-yo-0AO"/>
                             <constraint firstAttribute="trailing" secondItem="yq3-Cq-5Km" secondAttribute="trailing" constant="20" symbolic="YES" id="QwA-nH-aQ6"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bN6-xc-HWj" secondAttribute="trailing" constant="20" symbolic="YES" id="Rfz-sK-iRJ"/>
@@ -172,9 +192,9 @@ Gw
                             <constraint firstItem="AJK-RI-bCK" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="pXA-f5-hd1"/>
                             <constraint firstAttribute="bottom" secondItem="dGp-tE-DiD" secondAttribute="bottom" constant="20" symbolic="YES" id="qBd-jG-qYj"/>
                             <constraint firstItem="dGp-tE-DiD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="qPw-2h-4Wq"/>
-                            <constraint firstItem="dx8-zl-dSu" firstAttribute="leading" secondItem="oqP-25-2rA" secondAttribute="trailing" constant="6" symbolic="YES" id="r75-MX-Uzf"/>
                             <constraint firstAttribute="bottom" secondItem="yq3-Cq-5Km" secondAttribute="bottom" constant="20" symbolic="YES" id="rI6-YJ-uQc"/>
                             <constraint firstItem="JRD-Db-XHM" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="rcU-Qw-mwc"/>
+                            <constraint firstItem="sc1-QB-34d" firstAttribute="leading" secondItem="oqP-25-2rA" secondAttribute="trailing" constant="6" symbolic="YES" id="s9N-oW-Pud"/>
                             <constraint firstItem="yq3-Cq-5Km" firstAttribute="leading" secondItem="dGp-tE-DiD" secondAttribute="trailing" constant="12" symbolic="YES" id="sLm-Yi-Qcu"/>
                             <constraint firstItem="dx8-zl-dSu" firstAttribute="baseline" secondItem="oqP-25-2rA" secondAttribute="baseline" id="tgE-xH-6zV"/>
                             <constraint firstItem="CQO-oZ-nKa" firstAttribute="top" secondItem="dBa-xL-w0w" secondAttribute="bottom" constant="4" id="xrr-nf-cag"/>
@@ -196,12 +216,39 @@ Gw
             </objects>
             <point key="canvasLocation" x="541" y="-815"/>
         </scene>
-        <!--Sort Pattern View Controller-->
+        <!--View Controller-->
+        <scene sceneID="exo-wh-J7O">
+            <objects>
+                <viewController id="nc5-AG-IOi" sceneMemberID="viewController">
+                    <view key="view" id="DY7-50-p4d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="12"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="t8x-oD-gNu">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="VgN-5e-yV6"/>
+                                    <constraint firstAttribute="height" constant="12" id="ehe-Af-Vhk"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="t8x-oD-gNu" firstAttribute="leading" secondItem="DY7-50-p4d" secondAttribute="leading" id="QJ3-BP-zcj"/>
+                            <constraint firstAttribute="bottom" secondItem="t8x-oD-gNu" secondAttribute="bottom" id="UIs-co-ar5"/>
+                            <constraint firstItem="t8x-oD-gNu" firstAttribute="top" secondItem="DY7-50-p4d" secondAttribute="top" id="tT0-0O-gIJ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="nEK-Po-Vda" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="840" y="-591.5"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="RfQ-mC-Buh">
             <objects>
-                <viewController storyboardIdentifier="CSVSortPatternViewController" id="SbM-Fx-692" customClass="CSVSortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SbM-Fx-692" sceneMemberID="viewController">
                     <view key="view" id="x8j-Bb-Jbh">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="38"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WfQ-XO-PFW">
@@ -213,9 +260,9 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RfX-SH-kDN">
-                                <rect key="frame" x="66" y="8" width="72" height="22"/>
+                                <rect key="frame" x="66" y="8" width="56" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="72" id="GY1-jg-Kce"/>
+                                    <constraint firstAttribute="width" constant="56" id="GY1-jg-Kce"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="," placeholderString="," drawsBackground="YES" usesSingleLineMode="YES" id="nM6-5J-N8Z">
                                     <font key="font" metaFont="system"/>
@@ -231,7 +278,7 @@ Gw
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ikb-3W-LqX">
-                                <rect key="frame" x="152" y="11" width="57" height="17"/>
+                                <rect key="frame" x="136" y="11" width="57" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Position:" id="HE1-PS-8J3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -239,14 +286,14 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0AM-o6-6xl">
-                                <rect key="frame" x="248" y="6" width="19" height="27"/>
+                                <rect key="frame" x="232" y="6" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="1" id="fin-vh-3BV"/>
                                 <connections>
                                     <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="2ml-ZO-Kio"/>
                                 </connections>
                             </stepper>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0pT-9w-gVH">
-                                <rect key="frame" x="215" y="8" width="32" height="22"/>
+                                <rect key="frame" x="199" y="8" width="32" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="AKY-UZ-q58"/>
                                 </constraints>
@@ -287,14 +334,14 @@ Gw
                     </connections>
                 </objectController>
             </objects>
-            <point key="canvasLocation" x="739" y="-559"/>
+            <point key="canvasLocation" x="840" y="-494"/>
         </scene>
-        <!--Regex Sort Pattern View Controller-->
+        <!--View Controller-->
         <scene sceneID="FSx-00-lyO">
             <objects>
-                <viewController storyboardIdentifier="RegexSortPatternViewController" id="mza-P2-Q5P" customClass="RegexSortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mza-P2-Q5P" sceneMemberID="viewController">
                     <view key="view" id="7vg-Vr-uMI">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="92"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-SI-oKl">
@@ -306,7 +353,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kD8-MY-cO8">
-                                <rect key="frame" x="56" y="62" width="204" height="22"/>
+                                <rect key="frame" x="56" y="62" width="244" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Regular Expression" drawsBackground="YES" usesSingleLineMode="YES" id="Ia7-Mb-FNn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -339,7 +386,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AnP-YQ-bvS">
-                                <rect key="frame" x="56" y="8" width="204" height="22"/>
+                                <rect key="frame" x="56" y="8" width="244" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="$0 (Entire Match)" drawsBackground="YES" usesSingleLineMode="YES" id="jW2-Pc-r02">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -380,7 +427,7 @@ Gw
                     </connections>
                 </objectController>
             </objects>
-            <point key="canvasLocation" x="739" y="-424"/>
+            <point key="canvasLocation" x="840" y="-340"/>
         </scene>
     </scenes>
 </document>

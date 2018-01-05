@@ -96,26 +96,29 @@ final class PatternSortViewController: NSViewController {
 
 
 
-final class CSVSortPatternViewController: NSViewController {
+final class SortPatternTabViewController: NSTabViewController {
     
-    override func viewDidLoad() {
+    override func tabView(_ tabView: NSTabView, willSelect tabViewItem: NSTabViewItem?) {
         
-        super.viewDidLoad()
-        
-        self.representedObject = CSVSortPattern()
-    }
+        super.tabView(tabView, willSelect: tabViewItem)
     
-}
-
-
-
-final class RegexSortPatternViewController: NSViewController {
-    
-    override func viewDidLoad() {
+        // initialize viewController in representedObject
+        guard
+            let item = tabViewItem,
+            let viewController = item.viewController,
+            viewController.representedObject == nil
+            else { return }
         
-        super.viewDidLoad()
-        
-        self.representedObject = RegularExpressionSortPattern()
+        switch tabView.indexOfTabViewItem(item) {
+        case 0:
+            viewController.representedObject = EntireLineSortPattern()
+        case 1:
+            viewController.representedObject = CSVSortPattern()
+        case 2:
+            viewController.representedObject = RegularExpressionSortPattern()
+        default:
+            preconditionFailure()
+        }
     }
     
 }

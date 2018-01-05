@@ -28,7 +28,6 @@ import Foundation
 protocol SortPattern: class {
     
     func sortKey(for line: String) -> String?
-    func validate() throws
 }
 
 
@@ -78,33 +77,42 @@ extension SortPattern {
             .joined(separator: "\n")
     }
     
+    
+    /// validate pattern
+    func validate() throws {
+        
+        // do nothing
+    }
+    
 }
 
 
 
 // MARK: -
 
+final class EntireLineSortPattern: NSObject, SortPattern {
+    
+    func sortKey(for line: String) -> String? {
+        
+        return line
+    }
+}
+
+
+
 final class CSVSortPattern: NSObject, SortPattern {
     
     @objc dynamic var delimiter: String = ","
     @objc dynamic var column: Int = 1
     
-    let defaultDelimiter = ","
-    
     
     func sortKey(for line: String) -> String? {
         
-        let delimiter = self.delimiter.isEmpty ? self.defaultDelimiter : self.delimiter.unescaped
+        let delimiter = self.delimiter.isEmpty ? "," : self.delimiter.unescaped
         let index = self.column - 1  // column number is 1-based
         
         return line.components(separatedBy: delimiter)[safe: index]?
             .trimmingCharacters(in: .whitespaces)
-    }
-    
-    
-    func validate() throws {
-        
-        // do nothing
     }
     
 }
