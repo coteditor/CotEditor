@@ -407,8 +407,6 @@
 		2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */; };
 		2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
 		2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
-		2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */; };
-		2AA4D3781D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */; };
 		2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */; };
@@ -1009,7 +1007,6 @@
 		2AA45A501D2E938500A1A401 /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
 		2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFont+Size.swift"; sourceTree = "<group>"; };
 		2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsViewController.swift; sourceTree = "<group>"; };
-		2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsPaneController.swift; sourceTree = "<group>"; };
 		2AA749C21D3C263300850802 /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ODBEventSender.swift; sourceTree = "<group>"; };
 		2AA761341D45634400031AAF /* String+Counting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Counting.swift"; sourceTree = "<group>"; };
@@ -1264,7 +1261,6 @@
 				2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */,
 				2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */,
 				2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */,
-				2AA4D3761D1AB119001D261D /* KeyBindingsPaneController.swift */,
 				2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */,
 				2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */,
 			);
@@ -2444,7 +2440,6 @@
 				2AEDB4201D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
 				2A0BF8A91DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2AE52F231D175A9400D60A32 /* SizeSettingWindowController.swift in Sources */,
-				2AA4D3781D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				2A6FD9EE1D3A85D700A59784 /* String+NSRange.swift in Sources */,
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
@@ -2722,7 +2717,6 @@
 				2AA375471D40BDCB0080C27C /* LineEnding.swift in Sources */,
 				2ACDC0A31D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2A5ADE841D2168FC00F6CE26 /* Collection.swift in Sources */,
-				2AA4D3771D1AB119001D261D /* KeyBindingsPaneController.swift in Sources */,
 				2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 				2A48103E1D4D210300F7D34C /* Crypto.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,

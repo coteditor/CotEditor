@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jWV-Py-v0Q">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jWV-Py-v0Q">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Key Bindings Pane Controller-->
+        <!--View Controller-->
         <scene sceneID="LYO-ca-9ny">
             <objects>
-                <viewController id="jWV-Py-v0Q" customClass="KeyBindingsPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jWV-Py-v0Q" sceneMemberID="viewController">
                     <view key="view" id="dbj-Tj-xav">
                         <rect key="frame" x="0.0" y="0.0" width="550" height="410"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -24,47 +24,59 @@
                                     <action selector="openHelpAnchor:" target="mHC-qb-p2G" id="EGm-NI-xhD"/>
                                 </connections>
                             </button>
-                            <tabView translatesAutoresizingMaskIntoConstraints="NO" id="Bxq-jn-CEb">
-                                <rect key="frame" x="13" y="43" width="524" height="361"/>
-                                <font key="font" metaFont="system"/>
-                                <tabViewItems>
-                                    <tabViewItem label="Menu Items" identifier="1" id="QZO-GE-ra1">
-                                        <view key="view" id="dKe-Zj-0T7">
-                                            <rect key="frame" x="10" y="33" width="504" height="315"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                    </tabViewItem>
-                                    <tabViewItem label="Snippets" identifier="2" id="VfI-7K-2Nb">
-                                        <view key="view" id="K8f-Zn-VMP">
-                                            <rect key="frame" x="10" y="33" width="504" height="315"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                    </tabViewItem>
-                                </tabViewItems>
-                            </tabView>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="hLU-O5-Y6k">
+                                <rect key="frame" x="20" y="53" width="510" height="347"/>
+                                <connections>
+                                    <segue destination="udD-qO-Gzu" kind="embed" id="gtj-Fu-jRb"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Bxq-jn-CEb" firstAttribute="leading" secondItem="dbj-Tj-xav" secondAttribute="leading" constant="20" symbolic="YES" id="A05-Io-Y8A"/>
                             <constraint firstAttribute="bottom" secondItem="QgL-xK-6YG" secondAttribute="bottom" constant="20" symbolic="YES" id="Efs-9c-K7b"/>
                             <constraint firstAttribute="trailing" secondItem="QgL-xK-6YG" secondAttribute="trailing" constant="20" symbolic="YES" id="IVj-dU-zgm"/>
-                            <constraint firstItem="Bxq-jn-CEb" firstAttribute="top" secondItem="dbj-Tj-xav" secondAttribute="top" constant="12" symbolic="YES" id="OKb-Ff-9CG"/>
                             <constraint firstItem="QgL-xK-6YG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dbj-Tj-xav" secondAttribute="leading" constant="20" symbolic="YES" id="RKC-6G-vbE"/>
-                            <constraint firstItem="QgL-xK-6YG" firstAttribute="top" secondItem="Bxq-jn-CEb" secondAttribute="bottom" constant="12" symbolic="YES" id="neP-1o-M52"/>
-                            <constraint firstAttribute="trailing" secondItem="Bxq-jn-CEb" secondAttribute="trailing" constant="20" symbolic="YES" id="zX4-WP-2w3"/>
+                            <constraint firstAttribute="trailing" secondItem="hLU-O5-Y6k" secondAttribute="trailing" constant="20" symbolic="YES" id="WL7-pc-3yI"/>
+                            <constraint firstItem="hLU-O5-Y6k" firstAttribute="leading" secondItem="dbj-Tj-xav" secondAttribute="leading" constant="20" symbolic="YES" id="ck5-3g-Xm5"/>
+                            <constraint firstItem="hLU-O5-Y6k" firstAttribute="top" secondItem="dbj-Tj-xav" secondAttribute="top" constant="10" id="jMu-Dh-NAt"/>
+                            <constraint firstItem="QgL-xK-6YG" firstAttribute="top" secondItem="hLU-O5-Y6k" secondAttribute="bottom" constant="12" symbolic="YES" id="rzL-v3-EOK"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="tabView" destination="Bxq-jn-CEb" id="ses-Kf-iOo"/>
-                    </connections>
                 </viewController>
                 <customObject id="mHC-qb-p2G" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-523" y="-102"/>
+            <point key="canvasLocation" x="-592" y="-329"/>
         </scene>
-        <!--Key Bindings View Controller-->
+        <!--Tab View Controller-->
+        <scene sceneID="VQq-Co-gkY">
+            <objects>
+                <tabViewController tabStyle="unspecified" id="udD-qO-Gzu" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem id="d8a-at-vyW"/>
+                        <tabViewItem id="r6I-il-eTc"/>
+                    </tabViewItems>
+                    <tabView key="tabView" misplaced="YES" id="nap-1G-AT4">
+                        <rect key="frame" x="0.0" y="0.0" width="510" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="udD-qO-Gzu" id="ahh-fZ-kEB"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="nap-1G-AT4" id="56e-lu-kEf"/>
+                        <segue destination="sBQ-LT-Rwm" kind="relationship" relationship="tabItems" id="1JS-FW-vuc"/>
+                        <segue destination="9kQ-W2-4kw" kind="relationship" relationship="tabItems" id="9Ep-dZ-FZJ"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="Nco-bI-weh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="51" y="-515"/>
+        </scene>
+        <!--Menu Items-->
         <scene sceneID="fv7-Li-pVg">
             <objects>
-                <viewController storyboardIdentifier="MenuKeyBindingsViewController" id="sBQ-LT-Rwm" customClass="KeyBindingsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Menu Items" storyboardIdentifier="MenuKeyBindingsViewController" id="sBQ-LT-Rwm" customClass="KeyBindingsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="DCK-MH-F2c">
                         <rect key="frame" x="0.0" y="0.0" width="504" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -277,10 +289,10 @@
             </objects>
             <point key="canvasLocation" x="51" y="-127"/>
         </scene>
-        <!--Snippet Key Bindings View Controller-->
+        <!--Snippets-->
         <scene sceneID="kiX-WG-Gvf">
             <objects>
-                <viewController storyboardIdentifier="SnippetKeyBindingsViewController" id="9kQ-W2-4kw" customClass="SnippetKeyBindingsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Snippets" storyboardIdentifier="SnippetKeyBindingsViewController" id="9kQ-W2-4kw" customClass="SnippetKeyBindingsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="yh9-JI-r5p">
                         <rect key="frame" x="0.0" y="0.0" width="504" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>

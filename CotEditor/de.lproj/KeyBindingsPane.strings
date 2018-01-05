@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,10 +26,10 @@
  */
 
 
-/* Class = "NSTabViewItem"; label = "Menu Items"; ObjectID = "QZO-GE-ra1"; */
-"QZO-GE-ra1.label" = "Menüeinträge";
-/* Class = "NSTabViewItem"; label = "Snippets"; ObjectID = "VfI-7K-2Nb"; */
-"VfI-7K-2Nb.label" = "Snippets";
+/* Class = "NSViewController"; title = "Menu Items"; ObjectID = "sBQ-LT-Rwm"; */
+"sBQ-LT-Rwm.title" = "Menüeinträge";
+/* Class = "NSViewController"; title = "Snippets"; ObjectID = "9kQ-W2-4kw"; */
+"9kQ-W2-4kw.title" = "Snippets";
 
 
 

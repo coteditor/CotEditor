@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 CotEditor Project
+ © 2016-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@
  */
 
 
-/* Class = "NSTabViewItem"; label = "Menu Items"; ObjectID = "QZO-GE-ra1"; */
-"QZO-GE-ra1.label" = "Elementi del menu";
-/* Class = "NSTabViewItem"; label = "Snippets"; ObjectID = "VfI-7K-2Nb"; */
-"VfI-7K-2Nb.label" = "Snippet";
+/* Class = "NSViewController"; title = "Menu Items"; ObjectID = "sBQ-LT-Rwm"; */
+"sBQ-LT-Rwm.title" = "Elementi del menu";
+/* Class = "NSViewController"; title = "Snippets"; ObjectID = "9kQ-W2-4kw"; */
+"9kQ-W2-4kw.title" = "Snippet";
 
 
 
