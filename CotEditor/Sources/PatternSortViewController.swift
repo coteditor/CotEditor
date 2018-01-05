@@ -27,12 +27,87 @@ import Cocoa
 
 final class PatternSortViewController: NSViewController {
     
+    // MARK: Private Properties
+    
+    @objc dynamic private var sortOption = SortOption()
+    
+    private weak var tabViewController: NSTabViewController?
+    
+    
+    
     // MARK: -
+    // MARK: View Controller Methods
+    
+    /// keep tabViewController
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        
+        guard
+            self.tabViewController == nil,
+            let tabViewController = segue.destinationController as? NSTabViewController
+            else { return }
+        
+        self.tabViewController = tabViewController
+    }
+    
+    
+    
     // MARK: Actions
     
+    /// switch sort key setting (tab) view
+    @IBAction func changeSortPattern(_ sender: NSButton) {
+        
+        self.tabViewController?.selectedTabViewItemIndex = sender.tag
+    }
+    
+    
+    /// perform sort
     @IBAction func ok(_ sender: Any?) {
         
+        guard
+            let textView = self.representedObject as? NSTextView,
+            let pattern = self.sortPattern
+            else { return }
+        
+        textView.sortLines(pattern: pattern, options: self.sortOption.compareOptions)
+        
         self.dismiss(sender)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    // SortPattern currently edited
+    private var sortPattern: SortPattern? {
+        
+        return self.tabViewController?.tabViewItems[self.tabViewController!.selectedTabViewItemIndex]
+            .viewController?.representedObject as? SortPattern
+    }
+    
+}
+
+
+
+final class CSVSortPatternViewController: NSViewController {
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.representedObject = CSVSortPattern()
+    }
+    
+}
+
+
+
+final class RegexSortPatternViewController: NSViewController {
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.representedObject = RegularExpressionSortPattern()
     }
     
 }

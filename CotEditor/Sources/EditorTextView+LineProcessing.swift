@@ -330,6 +330,30 @@ extension EditorTextView {
 }
 
 
+extension NSTextView {
+    
+    func sortLines(pattern: SortPattern, options: String.CompareOptions) {
+        
+        let string = self.string as NSString
+        
+        // process whole document if no text selected
+        if self.selectedRange.length == 0 {
+            self.selectedRange = string.range
+        }
+        
+        let lineRange = string.lineRange(for: self.selectedRange, excludingLastLineEnding: true)
+        
+        guard lineRange.length > 0 else { return }
+        
+        let newString = pattern.sort(string.substring(with: lineRange), options: options)
+        
+        self.replace(with: newString, range: lineRange, selectedRange: lineRange,
+                     actionName: NSLocalizedString("Sort Lines", comment: "action name"))
+    }
+    
+}
+
+
 
 // MARK: Private NSTextView Extension
 
