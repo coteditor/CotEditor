@@ -49,7 +49,6 @@ extension SortPattern {
             .map { (line: String) -> (line: String, key: String?) in
                 var key = self.sortKey(for: line)
                 if compareOptions.contains(.widthInsensitive) {
-                    // ignore also Hiragana/Katakana when .widthInsensitive is selected
                     key = key?.applyingTransform(.hiraganaToKatakana, reverse: false) ?? key
                 }
                 return (line: line, key: key)
