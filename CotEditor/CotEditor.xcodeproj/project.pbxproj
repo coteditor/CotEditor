@@ -83,6 +83,10 @@
 		2A18560C1D47FA37008FA79E /* TextFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18560A1D47FA37008FA79E /* TextFinder.swift */; };
 		2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */; };
 		2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */; };
+		2A1893A41FFF15E000AD244F /* PatternSortView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */; };
+		2A1893A51FFF15E000AD244F /* PatternSortView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */; };
+		2A1893A71FFF16A400AD244F /* PatternSortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A61FFF16A400AD244F /* PatternSortViewController.swift */; };
+		2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A61FFF16A400AD244F /* PatternSortViewController.swift */; };
 		2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */ = {isa = PBXBuildFile; fileRef = 2A18A5BE1C4A746A00BAD817 /* Encodings */; };
 		2A1CD5541DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
 		2A1CD5551DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
@@ -736,6 +740,8 @@
 		2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+TextReplacement.swift"; sourceTree = "<group>"; };
 		2A18560A1D47FA37008FA79E /* TextFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFinder.swift; sourceTree = "<group>"; };
 		2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPanelAccessoryController.swift; sourceTree = "<group>"; };
+		2A1893A31FFF15E000AD244F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PatternSortView.storyboard; sourceTree = "<group>"; };
+		2A1893A61FFF16A400AD244F /* PatternSortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSortViewController.swift; sourceTree = "<group>"; };
 		2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingDetectionTests.swift; sourceTree = "<group>"; };
 		2A18A5BE1C4A746A00BAD817 /* Encodings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Encodings; path = TestFiles/Encodings; sourceTree = "<group>"; };
 		2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAlert+ModalSheet.swift"; sourceTree = "<group>"; };
@@ -1685,6 +1691,7 @@
 			isa = PBXGroup;
 			children = (
 				2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */,
+				2A1893A61FFF16A400AD244F /* PatternSortViewController.swift */,
 				2AE12E061E7DDF0700681F72 /* CustomSurroundStringViewController.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDController.swift */,
 				2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */,
@@ -1794,6 +1801,7 @@
 				2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */,
 				2588E9CC07C4851C0060021D /* ProgressView.xib */,
 				2A6602D91D05D7C8003E8D87 /* GoToLineView.xib */,
+				2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */,
 				2AE12E091E7DDF5100681F72 /* CustomSurroundStringView.storyboard */,
 				2A3A1E741C45219800641CE0 /* HUDView.xib */,
 				2AB4326C1912ADAC00835004 /* CharacterPopover.xib */,
@@ -2178,6 +2186,7 @@
 				2A10D1391E715E5B0027192A /* FormatPane.storyboard in Resources */,
 				2A6F0D831B5500E100C2D03C /* RegexReferenceView.xib in Resources */,
 				2A5DBE5A1B5D2DB700F8CB13 /* SyntaxFileMappingEditView.xib in Resources */,
+				2A1893A51FFF15E000AD244F /* PatternSortView.storyboard in Resources */,
 				2A5DBE5D1B5D2DC000F8CB13 /* SyntaxValidationView.xib in Resources */,
 				2A5DBE5B1B5D2DBA00F8CB13 /* SyntaxCompletionsEditView.xib in Resources */,
 			);
@@ -2239,6 +2248,7 @@
 				2AFFB72818D8C7DE00118477 /* OpenDocumentAccessory.xib in Resources */,
 				2AFFB70718D7BC9300118477 /* OpacityPanel.xib in Resources */,
 				2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */,
+				2A1893A41FFF15E000AD244F /* PatternSortView.storyboard in Resources */,
 				2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */,
 				2A10D1301E7152F30027192A /* EditPane.storyboard in Resources */,
 				2A6602DB1D05D7C8003E8D87 /* GoToLineView.xib in Resources */,
@@ -2551,6 +2561,7 @@
 				2A7646E81D48EAF200350674 /* SettingManager.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
+				2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
 				2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
@@ -2729,6 +2740,7 @@
 				2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2AED70EE1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
+				2A1893A71FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AF073FB1D34587500770BA6 /* CharacterInfo.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
@@ -2958,6 +2970,14 @@
 				2A401FDC1D9AD77000ACE036 /* it */,
 			);
 			name = SizeSettingWindow.xib;
+			sourceTree = "<group>";
+		};
+		2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A1893A31FFF15E000AD244F /* Base */,
+			);
+			name = PatternSortView.storyboard;
 			sourceTree = "<group>";
 		};
 		2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */ = {

@@ -336,6 +336,8 @@
 "J59-OR-kzC.title" = "下へ移動";
 /* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
 "OQl-Uo-yfn.title" = "ソート";
+/* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
+"lNH-Mh-pIE.title" = "条件付きソート";
 /* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
 "xhf-NR-D2Q.title" = "反転";
 /* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -192,6 +192,16 @@ extension EditorTextView {
         
         self.replace(with: newString, range: lineRange, selectedRange: lineRange,
                      actionName: NSLocalizedString("Sort Lines", comment: "action name"))
+    }
+    
+    
+    /// show pattern sort sheet
+    @IBAction func patternSort(_ sender: Any?) {
+        
+        let viewController = NSStoryboard(name: NSStoryboard.Name("PatternSortView"), bundle: nil).instantiateInitialController() as! PatternSortViewController
+        viewController.representedObject = self
+        
+        self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
     }
     
     

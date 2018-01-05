@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pattern Sort View Controller-->
+        <scene sceneID="aXA-Z1-iYn">
+            <objects>
+                <viewController id="uia-jw-3Md" customClass="PatternSortViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="pgB-9B-CeZ">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yq3-Cq-5Km">
+                                <rect key="frame" x="336" y="13" width="100" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="sWn-Qf-20l"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Sort" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ara-FL-nKk">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="ok:" target="uia-jw-3Md" id="wSe-Bm-3xB"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dGp-tE-DiD">
+                                <rect key="frame" x="236" y="13" width="100" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lw7-xg-639">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="uia-jw-3Md" id="Kbs-BM-3kZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="yq3-Cq-5Km" firstAttribute="width" secondItem="dGp-tE-DiD" secondAttribute="width" id="48w-gA-wgC"/>
+                            <constraint firstAttribute="trailing" secondItem="yq3-Cq-5Km" secondAttribute="trailing" constant="20" symbolic="YES" id="QwA-nH-aQ6"/>
+                            <constraint firstAttribute="bottom" secondItem="dGp-tE-DiD" secondAttribute="bottom" constant="20" symbolic="YES" id="qBd-jG-qYj"/>
+                            <constraint firstItem="dGp-tE-DiD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="qPw-2h-4Wq"/>
+                            <constraint firstAttribute="bottom" secondItem="yq3-Cq-5Km" secondAttribute="bottom" constant="20" symbolic="YES" id="rI6-YJ-uQc"/>
+                            <constraint firstItem="yq3-Cq-5Km" firstAttribute="leading" secondItem="dGp-tE-DiD" secondAttribute="trailing" constant="12" symbolic="YES" id="sLm-Yi-Qcu"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="WLR-aL-uPL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="410" y="137"/>
+        </scene>
+    </scenes>
+</document>
