@@ -1,0 +1,70 @@
+//
+//  PatternSortView.strings (Japanese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2018-01-05.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
+"bKb-oj-ekR.title" = "Sort key:";  // FIXME: added
+
+/* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
+"pKE-GY-bD6.title" = "Column";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
+"Ase-N7-QHB.title" = "Regular expression";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
+"roe-rP-gfg.title" = "Entire line";  // FIXME: added
+
+
+/* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
+"eio-Wb-V6q.title" = "Sort option:";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
+"GS5-w5-IIt.title" = "Ignore Case";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Treat numbers as numerical value"; ObjectID = "yXD-KA-8KI"; */
+"yXD-KA-8KI.title" = "Treat numbers as numerical value";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Sort naturally"; ObjectID = "x72-Sd-pMB"; */
+"x72-Sd-pMB.title" = "Sort naturally";  // FIXME: added
+/* Class = "NSButtonCell"; title = "In decending order"; ObjectID = "h1K-Og-3x3"; */
+"h1K-Og-3x3.title" = "In decending order";  // FIXME: added
+
+
+/* Class = "NSTextFieldCell"; title = "Delimiter:"; ObjectID = "CLj-6v-R1R"; */
+"CLj-6v-R1R.title" = "Delimiter:";  // FIXME: added
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "$0 (Entire Match)"; ObjectID = "I8w-ap-F9e"; */
+"I8w-ap-F9e.ibShadowedIsNilPlaceholder" = "$0 (Entire Match)";  // FIXME: added
+/* Class = "NSTextFieldCell"; title = "Position:"; ObjectID = "HE1-PS-8J3"; */
+"HE1-PS-8J3.title" = "Position:";  // FIXME: added
+
+
+/* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
+"d12-uy-VE0.title" = "Pattern:";  // FIXME: added
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Dh1-dP-bGe"; */
+"Dh1-dP-bGe.ibShadowedIsNilPlaceholder" = "Regular Expression";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
+"Lr8-mD-svg.title" = "Ignore case";  // FIXME: added
+/* Class = "NSTextFieldCell"; title = "Use:"; ObjectID = "Ifq-Y8-cCF"; */
+"Ifq-Y8-cCF.title" = "Use:";  // FIXME: added
+
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */
+"Lw7-xg-639.title" = "Cancel";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Sort"; ObjectID = "ara-FL-nKk"; */
+"ara-FL-nKk.title" = "Sort";  // FIXME: added

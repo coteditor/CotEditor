@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -195,6 +195,16 @@ extension EditorTextView {
     }
     
     
+    /// show pattern sort sheet
+    @IBAction func patternSort(_ sender: Any?) {
+        
+        let viewController = NSStoryboard(name: NSStoryboard.Name("PatternSortView"), bundle: nil).instantiateInitialController() as! PatternSortViewController
+        viewController.representedObject = self
+        
+        self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
+    }
+    
+    
     /// reverse selected lines (only in the first selection)
     @IBAction func reverseLines(_ sender: Any?) {
         
@@ -315,6 +325,30 @@ extension EditorTextView {
         let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
         
         self.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines)
+    }
+    
+}
+
+
+extension NSTextView {
+    
+    func sortLines(pattern: SortPattern, options: SortOptions) {
+        
+        let string = self.string as NSString
+        
+        // process whole document if no text selected
+        if self.selectedRange.length == 0 {
+            self.selectedRange = string.range
+        }
+        
+        let lineRange = string.lineRange(for: self.selectedRange, excludingLastLineEnding: true)
+        
+        guard lineRange.length > 0 else { return }
+        
+        let newString = pattern.sort(string.substring(with: lineRange), options: options)
+        
+        self.replace(with: newString, range: lineRange, selectedRange: lineRange,
+                     actionName: NSLocalizedString("Sort Lines", comment: "action name"))
     }
     
 }

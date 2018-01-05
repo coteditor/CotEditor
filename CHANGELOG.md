@@ -9,6 +9,7 @@ develop
 
 - iCloud document.
 - Open document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
+- New feature “Sort by pattern”, which enables sort selected lines by specific column or fully freely using the regular expression.
 - Add new actions “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from last session on launch” in General pane.
 - Add new setting option “including whitespace-only lines” for “trim trailing whitespace” action in General pane.
