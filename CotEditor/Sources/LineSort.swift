@@ -28,6 +28,7 @@ import Foundation
 protocol SortPattern: class {
     
     func sortKey(for line: String) -> String?
+    func validate() throws
 }
 
 
@@ -89,6 +90,12 @@ final class CSVSortPattern: NSObject, SortPattern {
         
         return line.components(separatedBy: delimiter)[safe: index]?
             .trimmingCharacters(in: .whitespaces)
+    }
+    
+    
+    func validate() throws {
+        
+        // do nothing
     }
     
 }

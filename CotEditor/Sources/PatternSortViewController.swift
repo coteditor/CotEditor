@@ -68,6 +68,14 @@ final class PatternSortViewController: NSViewController {
             let pattern = self.sortPattern
             else { return }
         
+        do {
+            try pattern.validate()
+        } catch {
+            NSAlert(error: error).beginSheetModal(for: self.view.window!)
+            NSSound.beep()
+            return
+        }
+        
         textView.sortLines(pattern: pattern, options: self.sortOptions)
         
         self.dismiss(sender)
