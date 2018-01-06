@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -74,9 +74,7 @@ final class TextFinder: NSResponder {
     @objc dynamic var findString = "" {
         
         didSet {
-            if UserDefaults.standard[.syncFindPboard] {
-                NSPasteboard.findString = self.findString
-            }
+            NSPasteboard.findString = self.findString
         }
     }
     @objc dynamic var replacementString = ""
@@ -154,10 +152,8 @@ final class TextFinder: NSResponder {
     /// sync search string on activating application
     @objc private func applicationDidBecomeActive(_ notification: Notification) {
         
-        if UserDefaults.standard[.syncFindPboard] {
-            if let sharedFindString = NSPasteboard.findString {
-                self.findString = sharedFindString
-            }
+        if let sharedFindString = NSPasteboard.findString {
+            self.findString = sharedFindString
         }
     }
     
