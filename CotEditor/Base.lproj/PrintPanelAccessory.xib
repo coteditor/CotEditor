@@ -19,9 +19,9 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="585">
-                    <rect key="frame" x="114" y="261" width="215" height="26"/>
+                    <rect key="frame" x="114" y="261" width="225" height="26"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="ywH-Ua-doT"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="ywH-Ua-doT"/>
                     </constraints>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" id="722">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -38,7 +38,7 @@
                     </connections>
                 </popUpButton>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="424">
-                    <rect key="frame" x="114" y="199" width="215" height="26"/>
+                    <rect key="frame" x="114" y="199" width="225" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="719">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -63,7 +63,7 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="416">
-                    <rect key="frame" x="114" y="230" width="215" height="26"/>
+                    <rect key="frame" x="114" y="230" width="225" height="26"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="717">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
