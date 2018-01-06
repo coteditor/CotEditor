@@ -24,7 +24,7 @@
  limitations under the License.
  
  */
-
+Automatic
 /* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
 "SqI-BC-ar9.title" = "Ersetzung:";
 /* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
@@ -43,7 +43,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Einzug:";
-/* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
+/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
 "3285.title" = "Automatischer Einzug";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "Tabulatoren zu Leerzeichen expandieren";

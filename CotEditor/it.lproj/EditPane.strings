@@ -44,7 +44,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Rientro:";
-/* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
+/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
 "3285.title" = "Rientro automatico";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "Converti le tabulazioni in spazi";

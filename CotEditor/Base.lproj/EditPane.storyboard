@@ -115,8 +115,8 @@
                                 </connections>
                             </stepper>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jwj-BA-jAE">
-                                <rect key="frame" x="115" y="372" width="92" height="18"/>
-                                <buttonCell key="cell" type="check" title="Auto indent" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
+                                <rect key="frame" x="115" y="372" width="125" height="18"/>
+                                <buttonCell key="cell" type="check" title="Automatic indent" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

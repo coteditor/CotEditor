@@ -44,7 +44,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "缩进：";
-/* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
+/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
 "3285.title" = "自动缩进";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "将 tab 转换为空格";
