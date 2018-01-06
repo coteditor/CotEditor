@@ -29,7 +29,7 @@ import XCTest
 class LineSortTests: XCTestCase {
 
     let lines = """
-            dog, 🐕, 2, いぬ
+            dog, 🐕, 2, イヌ
             cat, 🐈, 1, ねこ
             cow, 🐄, 3, ｳｼ
             """
@@ -42,7 +42,7 @@ class LineSortTests: XCTestCase {
         
         let result = """
             cat, 🐈, 1, ねこ
-            dog, 🐕, 2, いぬ
+            dog, 🐕, 2, イヌ
             cow, 🐄, 3, ｳｼ
             """
         
@@ -57,7 +57,7 @@ class LineSortTests: XCTestCase {
         
         let result = """
             cat, 🐈, 1, ねこ
-            dog, 🐕, 2, いぬ
+            dog, 🐕, 2, イヌ
             cow, 🐄, 3, ｳｼ
             """
         
@@ -77,7 +77,7 @@ class LineSortTests: XCTestCase {
         options.localized = true
         
         let result = """
-            dog, 🐕, 2, いぬ
+            dog, 🐕, 2, イヌ
             cow, 🐄, 3, ｳｼ
             cat, 🐈, 1, ねこ
             """
