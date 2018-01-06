@@ -37,4 +37,4 @@
 /* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "Axx-Oq-E9U"; */
 "Axx-Oq-E9U.title" = "インタープリタ";
 /* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "dIj-Z5-J2j"; */
-"dIj-Z5-J2j.title" = "このインタープリタは書類内のシェバンからシンタックスタイルを特定するときに使用されます。";
+"dIj-Z5-J2j.title" = "インタープリタは書類内のシェバンからシンタックスタイルを特定するときに使用されます。";
