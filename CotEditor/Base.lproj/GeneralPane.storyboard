@@ -61,15 +61,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Af4-HM-9hW">
-                                <rect key="frame" x="59" y="230" width="76" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Application:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3l-C4-aVy">
+                            <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="n3l-C4-aVy">
                                 <rect key="frame" x="139" y="207" width="162" height="18"/>
                                 <buttonCell key="cell" type="check" title="Link URLs in document" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="tPy-Ox-YpP">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -79,7 +71,7 @@
                                     <binding destination="ttU-LH-46v" name="value" keyPath="values.autoLinkDetectionKey" id="l16-tt-v6J"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HN3-DF-LVf">
+                            <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="HN3-DF-LVf">
                                 <rect key="frame" x="139" y="163" width="260" height="18"/>
                                 <buttonCell key="cell" type="check" title="Highlight matching braces “()” “[]” “{}”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RrC-LL-hid">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -89,7 +81,7 @@
                                     <binding destination="ttU-LH-46v" name="value" keyPath="values.highlightBraces" id="6VG-tp-K8o"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zOA-Uj-rjv">
+                            <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="zOA-Uj-rjv">
                                 <rect key="frame" x="159" y="141" width="110" height="18"/>
                                 <buttonCell key="cell" type="check" title="Highlight “&lt;&gt;”" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="al9-WE-Rqy">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -251,6 +243,14 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Af4-HM-9hW">
+                                <rect key="frame" x="59" y="230" width="76" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Application:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="HN3-DF-LVf" firstAttribute="top" secondItem="kcH-nv-zZT" secondAttribute="bottom" constant="8" id="0GW-kn-nLG"/>
@@ -264,6 +264,7 @@
                             <constraint firstItem="lSi-dW-Eg4" firstAttribute="trailing" secondItem="ihY-NN-wRt" secondAttribute="trailing" id="6p4-BI-fM4"/>
                             <constraint firstItem="goq-md-y5e" firstAttribute="baseline" secondItem="oN2-0G-iXz" secondAttribute="baseline" id="7Yx-LO-Cv7"/>
                             <constraint firstItem="eh0-fN-8C5" firstAttribute="top" secondItem="zOA-Uj-rjv" secondAttribute="bottom" constant="20" id="8KN-TM-32p"/>
+                            <constraint firstItem="HN3-DF-LVf" firstAttribute="leading" secondItem="Af4-HM-9hW" secondAttribute="trailing" constant="8" symbolic="YES" id="8O4-8U-G1y"/>
                             <constraint firstItem="goq-md-y5e" firstAttribute="trailing" secondItem="Af4-HM-9hW" secondAttribute="trailing" id="8rT-CJ-fs4"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hRD-W3-d0g" secondAttribute="trailing" constant="20" symbolic="YES" id="9ZB-jS-gRZ"/>
                             <constraint firstItem="goq-md-y5e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T5J-Ml-0Oc" secondAttribute="leading" constant="20" symbolic="YES" id="9cr-S6-cZx"/>
@@ -276,6 +277,7 @@
                             <constraint firstItem="zOA-Uj-rjv" firstAttribute="top" secondItem="HN3-DF-LVf" secondAttribute="bottom" constant="8" id="I9t-1J-WVd"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FJU-WB-SQP" secondAttribute="trailing" constant="20" symbolic="YES" id="JGQ-xL-30P"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oj1-KV-koj" secondAttribute="trailing" constant="20" symbolic="YES" id="JlP-qZ-q0c"/>
+                            <constraint firstItem="n3l-C4-aVy" firstAttribute="leading" secondItem="Af4-HM-9hW" secondAttribute="trailing" constant="8" symbolic="YES" id="JvX-rm-WTf"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mjX-zy-HeG" secondAttribute="trailing" constant="20" symbolic="YES" id="LNs-bQ-l45"/>
                             <constraint firstItem="jK0-pT-HTR" firstAttribute="baseline" secondItem="ihY-NN-wRt" secondAttribute="baseline" id="Lf3-iO-Zjc"/>
                             <constraint firstItem="nfo-ng-N5P" firstAttribute="top" secondItem="KT6-dp-FQ3" secondAttribute="bottom" constant="20" id="MH5-Nn-PIg"/>
