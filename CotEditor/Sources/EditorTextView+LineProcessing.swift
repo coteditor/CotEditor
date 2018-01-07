@@ -201,6 +201,13 @@ extension EditorTextView {
         let viewController = NSStoryboard(name: NSStoryboard.Name("PatternSortView"), bundle: nil).instantiateInitialController() as! PatternSortViewController
         viewController.representedObject = self
         
+        // sample the first line
+        let string = self.string
+        let range = Range(self.selectedRange, in: string)!
+        let location = range.isEmpty ? string.startIndex : range.lowerBound
+        let lineRange = string.lineRange(at: location, excludingLastLineEnding: true)
+        viewController.sampleLine = String(string[lineRange])
+        
         self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
     }
     

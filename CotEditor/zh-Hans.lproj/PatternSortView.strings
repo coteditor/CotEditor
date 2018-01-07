@@ -22,6 +22,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+/* Class = "NSTextFieldCell"; title = "Sample:"; ObjectID = "I06-xc-WQt"; */
+"I06-xc-WQt.title" = "Sample:";  // FIXME: added
+
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
 "bKb-oj-ekR.title" = "Sort key:";  // FIXME: added
 

@@ -30,6 +30,7 @@ final class PatternSortViewController: NSViewController {
     // MARK: Private Properties
     
     @objc dynamic private var sortOptions = SortOptions()
+    @objc dynamic var sampleLine: String?
     
     private weak var tabViewController: NSTabViewController?
     
