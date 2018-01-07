@@ -20,11 +20,45 @@
 
 <h1>Sort with specific pattern</h1>
 
-<p></p>
+<p>From “Sort by pattern…” action in the Text &gt; Lines menu, you can sort selected lines specifying the way to compare.</p>
+
+
+<p>The simple “Sort” action in the Text &gt; Lines menu is the same as sorting “entire line” with “ignore case” and “sort naturally” options on.</p>
 
 
 <section>
-<h3>Sort Options</h3>
+<h2>Sort key</h2>
+<p>Specify the part in lines to compare on sort.</p>
+
+<dl>
+	<dt>Column</dt>
+	<dd>Treat lines as CSV (character-separated values) format and use the specific column for comparison. Whitespace around the separator will just be ignored.</dd>
+	<dd><dl>
+		<dt>Delimiter</dt>
+		<dd>The character separating each column. You can use escape sequences such as <code>\t</code> for the tabular character. A comma will be used when this field is blank.</dd>
+		<dt>Position</dt>
+		<dd>The number of the column to use as the sort key. The column count starts at 1.</dd>
+	</dl></dd>
+	
+	<dt>Regular expression</dt>
+	<dd>Specify the part to compare with the regular expression.</dd>
+	<dd><dl>
+		<dt>Pattern</dt>
+		<dd>The regular expression pattern to extract the part to compare.</dd>
+		<dt>Ignore case</dt>
+		<dd>Whether ignore the character case by extracting the regular expression pattern. This option will be used only for the sort key extraction. To set case-insensitive state for the sort phase, set in the sort option bellow.</dd>
+		<dt>Use</dt>
+		<dd>The part in matchs to use as the sort key by specifying in the regular expression manner like <code>$1</code> or <code>$2</code>. the entire match will be used when this filed is blank.</dd>
+	</dl></dd>
+	
+	<dt>Entire line</dt>
+	<dd>Compare entire lines.</dd>
+</dl>
+</section>
+
+
+<section>
+<h2>Sort options</h2>
 <p>Options to control behavior on comparing sort keys.</p>
 
 <table>
