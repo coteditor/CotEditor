@@ -196,6 +196,9 @@ Gw
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="uia-jw-3Md" name="fontName" keyPath="sampleFontName" id="LNA-Vs-29T"/>
+                                </connections>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="AE3-Op-b7T">
                                 <rect key="frame" x="20" y="297" width="400" height="5"/>

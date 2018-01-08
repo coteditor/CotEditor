@@ -207,6 +207,7 @@ extension EditorTextView {
         let location = range.isEmpty ? string.startIndex : range.lowerBound
         let lineRange = string.lineRange(at: location, excludingLastLineEnding: true)
         viewController.sampleLine = String(string[lineRange])
+        viewController.sampleFontName = (self.layoutManager as? LayoutManager)?.textFont?.fontName
         
         self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
     }

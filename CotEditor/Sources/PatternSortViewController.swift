@@ -31,6 +31,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     
     @objc dynamic private var sortOptions = SortOptions()
     @objc dynamic var sampleLine: String?
+    @objc dynamic var sampleFontName: String?
     
     @IBOutlet private var sampleLineField: NSTextField?
     
