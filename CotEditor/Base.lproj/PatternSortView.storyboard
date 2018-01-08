@@ -447,8 +447,9 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="RJw-Wl-J1l"/>
-                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" id="00j-5y-u0d">
+                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCaptureGroup" id="4TL-W4-luq"/>
+                                    <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="cDT-FV-4Vo"/>
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="cDT-FV-4Vo" id="gHr-T5-9H1">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                         </dictionary>
@@ -461,8 +462,9 @@ Gw
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
                                 <connections>
                                     <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="qXg-uN-WUq"/>
-                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" id="dpZ-O7-02Q"/>
-                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="pPi-Kj-rNE"/>
+                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCaptureGroup" id="PUA-eI-efD"/>
+                                    <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="35M-Gp-zFo"/>
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="35M-Gp-zFo" id="NnC-Je-R8x"/>
                                 </connections>
                             </stepper>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-cT-iBU">
@@ -473,7 +475,7 @@ Gw
                                 </buttonCell>
                                 <connections>
                                     <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="nhe-ul-eO1"/>
-                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.usesCapturedGroup" id="vsv-8B-h01"/>
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.usesCaptureGroup" id="Arh-JX-gAV"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-SI-oKl">
