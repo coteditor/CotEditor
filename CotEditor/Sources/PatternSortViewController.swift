@@ -25,11 +25,14 @@
 
 import Cocoa
 
-final class PatternSortViewController: NSViewController {
+final class PatternSortViewController: NSViewController, SortPatternViewControllerDelegate {
     
     // MARK: Private Properties
     
     @objc dynamic private var sortOptions = SortOptions()
+    @objc dynamic var sampleLine: String?
+    
+    @IBOutlet private var sampleLineField: NSTextField?
     
     private weak var tabViewController: NSTabViewController?
     
@@ -47,6 +50,10 @@ final class PatternSortViewController: NSViewController {
             else { return }
         
         self.tabViewController = tabViewController
+        
+        tabViewController.tabViewItems
+            .flatMap { $0.viewController as? SortPatternViewController }
+            .forEach { $0.delegate = self }
     }
     
     
@@ -83,6 +90,31 @@ final class PatternSortViewController: NSViewController {
     
     
     
+    // MARK: Sort Pattern View Controller Delegate
+    
+    /// sort pattern setting did update
+    func didUpdate(sortPattern: SortPattern) {
+        
+        guard
+            let sampleLine = self.sampleLine,
+            let field = self.sampleLineField
+            else { return }
+        
+        
+        let attributedLine = NSMutableAttributedString(string: sampleLine)
+        
+        try? sortPattern.validate()  // invalidate regex
+        
+        if let range = sortPattern.range(for: sampleLine) {
+            let nsRange = NSRange(range, in: sampleLine)
+            attributedLine.addAttribute(.backgroundColor, value: NSColor.selectedTextBackgroundColor, range: nsRange)
+        }
+        
+        field.attributedStringValue = attributedLine
+    }
+    
+    
+    
     // MARK: Private Methods
     
     // SortPattern currently edited
@@ -95,6 +127,8 @@ final class PatternSortViewController: NSViewController {
 }
 
 
+
+// MARK: -
 
 final class SortPatternTabViewController: NSTabViewController {
     
@@ -120,5 +154,47 @@ final class SortPatternTabViewController: NSTabViewController {
             preconditionFailure()
         }
     }
+    
+}
+
+
+
+// MARK: -
+
+protocol SortPatternViewControllerDelegate: class {
+    
+    func didUpdate(sortPattern: SortPattern)
+}
+
+
+final class SortPatternViewController: NSViewController, NSTextFieldDelegate {
+    
+    weak var delegate: SortPatternViewControllerDelegate?
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.valueDidUpdate(self)
+    }
+    
+    
+    /// text field value did change
+    override func controlTextDidChange(_ obj: Notification) {
+        
+        self.valueDidUpdate(self)
+    }
+    
+    
+    
+    /// notify value change to delegate
+    @IBAction func valueDidUpdate(_ sender: Any?) {
+        
+        guard let pattern = self.representedObject as? SortPattern else { return }
+        
+        self.delegate?.didUpdate(sortPattern: pattern)
+    }
+    
     
 }

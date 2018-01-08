@@ -47,7 +47,7 @@
             <objects>
                 <viewController id="uia-jw-3Md" customClass="PatternSortViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="pgB-9B-CeZ">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="334"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="375"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yq3-Cq-5Km">
@@ -118,13 +118,13 @@ Gw
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dBa-xL-w0w">
-                                <rect key="frame" x="100" y="147" width="340" height="150"/>
+                                <rect key="frame" x="100" y="147" width="340" height="119"/>
                                 <connections>
                                     <segue destination="UQP-be-J0h" kind="embed" id="Jqt-CD-otV"/>
                                 </connections>
                             </containerView>
                             <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-zl-dSu">
-                                <rect key="frame" x="97" y="296" width="69" height="18"/>
+                                <rect key="frame" x="97" y="265" width="69" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Column" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="pKE-GY-bD6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -134,7 +134,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-xc-HWj">
-                                <rect key="frame" x="175" y="296" width="138" height="18"/>
+                                <rect key="frame" x="175" y="265" width="138" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Regular expression" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Ase-N7-QHB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -144,7 +144,7 @@ Gw
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="oqP-25-2rA">
-                                <rect key="frame" x="36" y="297" width="58" height="17"/>
+                                <rect key="frame" x="36" y="266" width="58" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sort key:" usesSingleLineMode="YES" id="bKb-oj-ekR">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -162,7 +162,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sc1-QB-34d">
-                                <rect key="frame" x="322" y="296" width="82" height="18"/>
+                                <rect key="frame" x="322" y="265" width="82" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Entire line" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="roe-rP-gfg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -181,12 +181,32 @@ Gw
                                     <action selector="openHelpAnchor:" target="WLR-aL-uPL" id="h7L-Iw-Jhp"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XDJ-2v-jYy">
+                                <rect key="frame" x="18" y="338" width="53" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sample:" id="I06-xc-WQt">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField toolTip="Sample line to check which part in a line will be used for sort comparison." horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-Jf-7Yj">
+                                <rect key="frame" x="20" y="308" width="400" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Dog, 🐕, 1" drawsBackground="YES" usesSingleLineMode="YES" id="UjO-61-yKu">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="AE3-Op-b7T">
+                                <rect key="frame" x="20" y="297" width="400" height="5"/>
+                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fPh-fe-6Jh" secondAttribute="trailing" constant="20" symbolic="YES" id="09V-Gd-wII"/>
+                            <constraint firstItem="oqP-25-2rA" firstAttribute="top" secondItem="AE3-Op-b7T" secondAttribute="bottom" constant="16" id="1DC-va-im0"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Gi8-FU-veh" secondAttribute="trailing" constant="20" symbolic="YES" id="1yr-ex-evK"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AJK-RI-bCK" secondAttribute="trailing" constant="20" symbolic="YES" id="2Oc-ck-2af"/>
-                            <constraint firstItem="oqP-25-2rA" firstAttribute="top" secondItem="pgB-9B-CeZ" secondAttribute="top" constant="20" symbolic="YES" id="3rQ-My-G2i"/>
+                            <constraint firstItem="W2m-Jf-7Yj" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="3T7-mx-ypl"/>
                             <constraint firstItem="yq3-Cq-5Km" firstAttribute="width" secondItem="dGp-tE-DiD" secondAttribute="width" id="48w-gA-wgC"/>
                             <constraint firstItem="yq3-Cq-5Km" firstAttribute="top" secondItem="Gi8-FU-veh" secondAttribute="bottom" constant="20" symbolic="YES" id="596-ag-2I6"/>
                             <constraint firstItem="dx8-zl-dSu" firstAttribute="leading" secondItem="oqP-25-2rA" secondAttribute="trailing" constant="6" symbolic="YES" id="7gw-kk-1h3"/>
@@ -194,14 +214,19 @@ Gw
                             <constraint firstItem="JRD-Db-XHM" firstAttribute="top" secondItem="AJK-RI-bCK" secondAttribute="bottom" constant="8" id="CJP-hE-dWR"/>
                             <constraint firstItem="bN6-xc-HWj" firstAttribute="baseline" secondItem="oqP-25-2rA" secondAttribute="baseline" id="FfK-V9-VK6"/>
                             <constraint firstItem="9k2-WT-LJk" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="GKt-48-gbg"/>
+                            <constraint firstItem="XDJ-2v-jYy" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="HMu-d0-MKe"/>
                             <constraint firstItem="sc1-QB-34d" firstAttribute="leading" secondItem="bN6-xc-HWj" secondAttribute="trailing" constant="12" id="IJK-jK-V44"/>
                             <constraint firstItem="sc1-QB-34d" firstAttribute="baseline" secondItem="oqP-25-2rA" secondAttribute="baseline" id="Ji1-Z4-WjW"/>
                             <constraint firstAttribute="bottom" secondItem="9k2-WT-LJk" secondAttribute="bottom" constant="20" symbolic="YES" id="MQe-H6-p4l"/>
+                            <constraint firstItem="AE3-Op-b7T" firstAttribute="top" secondItem="W2m-Jf-7Yj" secondAttribute="bottom" constant="8" symbolic="YES" id="Mvb-bv-9GU"/>
                             <constraint firstItem="oqP-25-2rA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="P3r-yo-0AO"/>
                             <constraint firstItem="dGp-tE-DiD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9k2-WT-LJk" secondAttribute="trailing" constant="12" symbolic="YES" id="PfD-ix-6oR"/>
                             <constraint firstAttribute="trailing" secondItem="yq3-Cq-5Km" secondAttribute="trailing" constant="20" symbolic="YES" id="QwA-nH-aQ6"/>
                             <constraint firstItem="AJK-RI-bCK" firstAttribute="top" secondItem="fPh-fe-6Jh" secondAttribute="bottom" constant="8" id="VdX-PV-45h"/>
                             <constraint firstItem="Gi8-FU-veh" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="WoW-Om-J3w"/>
+                            <constraint firstItem="W2m-Jf-7Yj" firstAttribute="top" secondItem="XDJ-2v-jYy" secondAttribute="bottom" constant="8" symbolic="YES" id="Y6K-tl-N29"/>
+                            <constraint firstAttribute="trailing" secondItem="W2m-Jf-7Yj" secondAttribute="trailing" constant="20" symbolic="YES" id="YAK-f4-9v6"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XDJ-2v-jYy" secondAttribute="trailing" constant="20" symbolic="YES" id="bvu-Pr-bjY"/>
                             <constraint firstItem="Gi8-FU-veh" firstAttribute="top" secondItem="JRD-Db-XHM" secondAttribute="bottom" constant="8" id="chq-fc-rQY"/>
                             <constraint firstItem="CQO-oZ-nKa" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="d1y-Yd-imT"/>
                             <constraint firstAttribute="trailing" secondItem="dBa-xL-w0w" secondAttribute="trailing" id="dH5-Kc-gkE"/>
@@ -209,18 +234,24 @@ Gw
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JRD-Db-XHM" secondAttribute="trailing" constant="20" symbolic="YES" id="fP1-BY-dhr"/>
                             <constraint firstItem="bN6-xc-HWj" firstAttribute="leading" secondItem="dx8-zl-dSu" secondAttribute="trailing" constant="12" id="fQc-Wt-6vB"/>
                             <constraint firstItem="dBa-xL-w0w" firstAttribute="leading" secondItem="oqP-25-2rA" secondAttribute="trailing" constant="8" symbolic="YES" id="gf2-zF-2Xp"/>
+                            <constraint firstItem="AE3-Op-b7T" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="jGh-Am-GrA"/>
                             <constraint firstItem="CQO-oZ-nKa" firstAttribute="trailing" secondItem="oqP-25-2rA" secondAttribute="trailing" id="jqX-1z-FRe"/>
+                            <constraint firstAttribute="trailing" secondItem="AE3-Op-b7T" secondAttribute="trailing" constant="20" symbolic="YES" id="k4Q-iU-OPi"/>
                             <constraint firstItem="AJK-RI-bCK" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="pXA-f5-hd1"/>
                             <constraint firstAttribute="bottom" secondItem="dGp-tE-DiD" secondAttribute="bottom" constant="20" symbolic="YES" id="qBd-jG-qYj"/>
                             <constraint firstAttribute="bottom" secondItem="yq3-Cq-5Km" secondAttribute="bottom" constant="20" symbolic="YES" id="rI6-YJ-uQc"/>
                             <constraint firstItem="JRD-Db-XHM" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="rcU-Qw-mwc"/>
                             <constraint firstItem="yq3-Cq-5Km" firstAttribute="leading" secondItem="dGp-tE-DiD" secondAttribute="trailing" constant="12" symbolic="YES" id="sLm-Yi-Qcu"/>
+                            <constraint firstItem="XDJ-2v-jYy" firstAttribute="top" secondItem="pgB-9B-CeZ" secondAttribute="top" constant="20" symbolic="YES" id="sRN-eV-qKS"/>
                             <constraint firstItem="dx8-zl-dSu" firstAttribute="baseline" secondItem="oqP-25-2rA" secondAttribute="baseline" id="tgE-xH-6zV"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sc1-QB-34d" secondAttribute="trailing" constant="20" symbolic="YES" id="xHx-rg-otl"/>
                             <constraint firstItem="CQO-oZ-nKa" firstAttribute="top" secondItem="dBa-xL-w0w" secondAttribute="bottom" constant="4" id="xrr-nf-cag"/>
                             <constraint firstItem="dBa-xL-w0w" firstAttribute="top" secondItem="oqP-25-2rA" secondAttribute="bottom" id="y7y-Id-xP7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="sampleLineField" destination="W2m-Jf-7Yj" id="UZ9-0s-jmw"/>
+                    </connections>
                 </viewController>
                 <customObject id="WLR-aL-uPL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <objectController objectClassName="CotEditor.SortOptions" automaticallyPreparesContent="YES" id="LBk-n2-xHt">
@@ -235,12 +266,12 @@ Gw
                     </connections>
                 </objectController>
             </objects>
-            <point key="canvasLocation" x="535" y="-865"/>
+            <point key="canvasLocation" x="535" y="-844.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Sort Pattern View Controller-->
         <scene sceneID="exo-wh-J7O">
             <objects>
-                <viewController id="nc5-AG-IOi" sceneMemberID="viewController">
+                <viewController id="nc5-AG-IOi" customClass="SortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="DY7-50-p4d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="12"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -264,10 +295,10 @@ Gw
             </objects>
             <point key="canvasLocation" x="840" y="-591.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Sort Pattern View Controller-->
         <scene sceneID="RfQ-mC-Buh">
             <objects>
-                <viewController id="SbM-Fx-692" sceneMemberID="viewController">
+                <viewController id="SbM-Fx-692" customClass="SortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="x8j-Bb-Jbh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -291,11 +322,13 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.delimiter" id="UIx-pL-N9R">
+                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.delimiter" id="OTK-ZM-0gt">
                                         <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                             <string key="NSNullPlaceholder">,</string>
                                         </dictionary>
                                     </binding>
+                                    <outlet property="delegate" destination="SbM-Fx-692" id="xL4-Ji-dva"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ikb-3W-LqX">
@@ -310,6 +343,7 @@ Gw
                                 <rect key="frame" x="232" y="6" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="1" id="fin-vh-3BV"/>
                                 <connections>
+                                    <action selector="valueDidUpdate:" target="SbM-Fx-692" id="H9e-7q-e0f"/>
                                     <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="2ml-ZO-Kio"/>
                                 </connections>
                             </stepper>
@@ -328,7 +362,12 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="38J-dB-Hew"/>
+                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="caP-7H-HMG">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                    <outlet property="delegate" destination="SbM-Fx-692" id="Tm4-Ju-B6e"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -357,10 +396,10 @@ Gw
             </objects>
             <point key="canvasLocation" x="840" y="-494"/>
         </scene>
-        <!--View Controller-->
+        <!--Sort Pattern View Controller-->
         <scene sceneID="FSx-00-lyO">
             <objects>
-                <viewController id="mza-P2-Q5P" sceneMemberID="viewController">
+                <viewController id="mza-P2-Q5P" customClass="SortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="7vg-Vr-uMI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -373,11 +412,13 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.searchPattern" id="Dh1-dP-bGe">
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.searchPattern" id="Un0-F8-2q0">
                                         <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                             <string key="NSNullPlaceholder">Regular Expression</string>
                                         </dictionary>
                                     </binding>
+                                    <outlet property="delegate" destination="mza-P2-Q5P" id="cSO-b0-bWX"/>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-kP-FOx">
@@ -387,6 +428,7 @@ Gw
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="2H8-Ji-7t5"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.ignoresCase" id="SqJ-6q-PcH"/>
                                 </connections>
                             </button>
@@ -405,16 +447,24 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" id="ba4-S3-svw"/>
-                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="RJw-Wl-J1l"/>
+                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCaptureGroup" id="4TL-W4-luq"/>
+                                    <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="cDT-FV-4Vo"/>
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="cDT-FV-4Vo" id="gHr-T5-9H1">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                    <outlet property="delegate" destination="mza-P2-Q5P" id="iZU-WD-9qi"/>
                                 </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ooD-sC-3Cd">
                                 <rect key="frame" x="184" y="1" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" id="dpZ-O7-02Q"/>
-                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="pPi-Kj-rNE"/>
+                                    <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="qXg-uN-WUq"/>
+                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCaptureGroup" id="PUA-eI-efD"/>
+                                    <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="35M-Gp-zFo"/>
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="35M-Gp-zFo" id="NnC-Je-R8x"/>
                                 </connections>
                             </stepper>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-cT-iBU">
@@ -424,7 +474,8 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.usesCapturedGroup" id="vsv-8B-h01"/>
+                                    <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="nhe-ul-eO1"/>
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.usesCaptureGroup" id="Arh-JX-gAV"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-SI-oKl">
