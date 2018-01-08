@@ -191,7 +191,7 @@ Gw
                             </textField>
                             <textField toolTip="Sample line to check which part in a line will be used for sort comparison." horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-Jf-7Yj">
                                 <rect key="frame" x="20" y="308" width="400" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Dog, 🐕, 1" drawsBackground="YES" usesSingleLineMode="YES" id="UjO-61-yKu">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Dog, 🐕, 1" drawsBackground="YES" usesSingleLineMode="YES" id="UjO-61-yKu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -447,13 +447,13 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCaptureGroup" id="4TL-W4-luq"/>
-                                    <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="cDT-FV-4Vo"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="cDT-FV-4Vo" id="gHr-T5-9H1">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="cDT-FV-4Vo"/>
+                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCaptureGroup" id="4TL-W4-luq"/>
                                     <outlet property="delegate" destination="mza-P2-Q5P" id="iZU-WD-9qi"/>
                                 </connections>
                             </textField>
@@ -462,9 +462,9 @@ Gw
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
                                 <connections>
                                     <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="qXg-uN-WUq"/>
-                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCaptureGroup" id="PUA-eI-efD"/>
-                                    <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="35M-Gp-zFo"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="35M-Gp-zFo" id="NnC-Je-R8x"/>
+                                    <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="35M-Gp-zFo"/>
+                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCaptureGroup" id="PUA-eI-efD"/>
                                 </connections>
                             </stepper>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-cT-iBU">
