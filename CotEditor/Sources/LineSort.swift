@@ -126,8 +126,8 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
     
     @objc dynamic var searchPattern: String = ""
     @objc dynamic var ignoresCase: Bool = true
-    
-    @objc dynamic var sortPattern: String = ""
+    @objc dynamic var usesCapturedGroup: Bool = false
+    @objc dynamic var group: Int = 1
     
     
     private var regex: NSRegularExpression?
@@ -143,10 +143,16 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
             let regex = self.regex,
             let match = regex.firstMatch(in: line, range: line.nsRange)
             else { return nil }
+
+        let range: Range<String.Index>
+        if self.usesCapturedGroup {
+            guard match.numberOfRanges >= self.group else { return nil }
+            range = Range(match.range(at: self.group), in: line)!
+        } else {
+            range = Range(match.range, in: line)!
+        }
         
-        let sortPattern = self.sortPattern.isEmpty ? "$0" : self.sortPattern
-        
-        return regex.replacementString(for: match, in: line, offset: 0, template: sortPattern)
+        return String(line[range])
     }
     
     

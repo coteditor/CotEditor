@@ -47,8 +47,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Delimiter:"; ObjectID = "CLj-6v-R1R"; */
 "CLj-6v-R1R.title" = "Delimiter:";  // FIXME: added
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "$0 (Entire Match)"; ObjectID = "I8w-ap-F9e"; */
-"I8w-ap-F9e.ibShadowedIsNilPlaceholder" = "$0 (Entire Match)";  // FIXME: added
 /* Class = "NSTextFieldCell"; title = "Position:"; ObjectID = "HE1-PS-8J3"; */
 "HE1-PS-8J3.title" = "Position:";  // FIXME: added
 
@@ -59,8 +57,8 @@
 "Dh1-dP-bGe.ibShadowedIsNilPlaceholder" = "Regular Expression";  // FIXME: added
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
 "Lr8-mD-svg.title" = "Ignore case";  // FIXME: added
-/* Class = "NSTextFieldCell"; title = "Use:"; ObjectID = "Ifq-Y8-cCF"; */
-"Ifq-Y8-cCF.title" = "Use:";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
+"eys-fy-HVq.title" = "Use captured group:";  // FIXME: added
 
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */

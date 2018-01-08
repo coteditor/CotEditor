@@ -48,8 +48,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Delimiter:"; ObjectID = "CLj-6v-R1R"; */
 "CLj-6v-R1R.title" = "区切り文字:";
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "$0 (Entire Match)"; ObjectID = "I8w-ap-F9e"; */
-"I8w-ap-F9e.ibShadowedIsNilPlaceholder" = "$0 (マッチ全体)";
 /* Class = "NSTextFieldCell"; title = "Position:"; ObjectID = "HE1-PS-8J3"; */
 "HE1-PS-8J3.title" = "位置:";
 
@@ -60,8 +58,8 @@
 "Dh1-dP-bGe.ibShadowedIsNilPlaceholder" = "正規表現";
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
 "Lr8-mD-svg.title" = "大文字/小文字を無視";
-/* Class = "NSTextFieldCell"; title = "Use:"; ObjectID = "Ifq-Y8-cCF"; */
-"Ifq-Y8-cCF.title" = "使用:";
+/* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
+"eys-fy-HVq.title" = "捕獲されたグループを使用:";
 
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */

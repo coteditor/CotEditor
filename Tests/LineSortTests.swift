@@ -63,7 +63,8 @@ class LineSortTests: XCTestCase {
         
         XCTAssertEqual(pattern.sort(self.lines), result)
         
-        pattern.sortPattern = "$1"
+        pattern.usesCapturedGroup = true
+        pattern.group = 1
         XCTAssertEqual(pattern.sort(self.lines), result)
     }
     
