@@ -405,16 +405,16 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="RJw-Wl-J1l"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" id="ba4-S3-svw"/>
+                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="RJw-Wl-J1l"/>
                                 </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ooD-sC-3Cd">
                                 <rect key="frame" x="184" y="1" width="19" height="27"/>
-                                <stepperCell key="cell" continuous="YES" alignment="left" increment="0.0" minValue="1" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
+                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="pPi-Kj-rNE"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" id="dpZ-O7-02Q"/>
+                                    <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="pPi-Kj-rNE"/>
                                 </connections>
                             </stepper>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-cT-iBU">
