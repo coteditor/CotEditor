@@ -28,6 +28,8 @@ import Foundation
 protocol SortPattern: class {
     
     func sortKey(for line: String) -> String?
+    func range(for line: String) -> Range<String.Index>?
+    func validate() throws
 }
 
 
@@ -81,13 +83,6 @@ extension SortPattern {
         return lines.joined(separator: "\n")
     }
     
-    
-    /// validate pattern
-    func validate() throws {
-        
-        // do nothing
-    }
-    
 }
 
 
@@ -100,6 +95,15 @@ final class EntireLineSortPattern: NSObject, SortPattern {
         
         return line
     }
+    
+    
+    func range(for line: String) -> Range<String.Index>? {
+        
+        return line.startIndex..<line.endIndex
+    }
+    
+    
+    func validate() throws { }
 }
 
 
@@ -119,6 +123,41 @@ final class CSVSortPattern: NSObject, SortPattern {
             .trimmingCharacters(in: .whitespaces)
     }
     
+    
+    func range(for line: String) -> Range<String.Index>? {
+        
+        let delimiter = self.delimiter.isEmpty ? "," : self.delimiter.unescaped
+        let components = line.components(separatedBy: delimiter)
+        
+        guard components.count >= self.column else { return nil }
+        
+        var start = line.startIndex
+        var end = line.endIndex
+        var range = start..<end
+        for (index, component) in components.enumerated() {
+            guard index != self.column else { break }
+            
+            if index > 0 {
+                start = line.index(end, offsetBy: delimiter.count)
+            }
+            end = line.index(start, offsetBy: component.count)
+            
+            range = start..<end
+            if let trimmedStart = component.index(where: { $0 != " " }) {
+                let offset = component.distance(from: component.startIndex, to: trimmedStart)
+                range = line.index(start, offsetBy: offset)..<range.upperBound
+            }
+            if let trimmedEnd = component.reversed().index(where: { $0 != " " }) {
+                let offset = component.distance(from: component.startIndex, to: trimmedEnd.base)
+                range = range.lowerBound..<line.index(start, offsetBy: offset)
+            }
+        }
+        
+        return range
+    }
+    
+    
+    func validate() throws { }
 }
 
 
@@ -135,6 +174,14 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
     
     func sortKey(for line: String) -> String? {
         
+        guard let range = self.range(for: line) else { return nil }
+        
+        return String(line[range])
+    }
+    
+    
+    func range(for line: String) -> Range<String.Index>? {
+        
         if self.regex == nil {
             try? self.validate()
         }
@@ -143,16 +190,13 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
             let regex = self.regex,
             let match = regex.firstMatch(in: line, range: line.nsRange)
             else { return nil }
-
-        let range: Range<String.Index>
-        if self.usesCapturedGroup {
-            guard match.numberOfRanges >= self.group else { return nil }
-            range = Range(match.range(at: self.group), in: line)!
-        } else {
-            range = Range(match.range, in: line)!
-        }
         
-        return String(line[range])
+        if self.usesCapturedGroup {
+            guard match.numberOfRanges > self.group else { return nil }
+            return Range(match.range(at: self.group), in: line)!
+        } else {
+            return Range(match.range, in: line)!
+        }
     }
     
     

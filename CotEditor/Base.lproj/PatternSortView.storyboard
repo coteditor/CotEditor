@@ -189,16 +189,13 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-Jf-7Yj">
+                            <textField toolTip="Sample line to check which part in a line will be used for sort comparison." horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-Jf-7Yj">
                                 <rect key="frame" x="20" y="308" width="400" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Dog, 🐕, 1" drawsBackground="YES" usesSingleLineMode="YES" id="UjO-61-yKu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
-                                <connections>
-                                    <binding destination="uia-jw-3Md" name="value" keyPath="sampleLine" id="mk6-FR-YNS"/>
-                                </connections>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="AE3-Op-b7T">
                                 <rect key="frame" x="20" y="297" width="400" height="5"/>
@@ -252,6 +249,9 @@ Gw
                             <constraint firstItem="dBa-xL-w0w" firstAttribute="top" secondItem="oqP-25-2rA" secondAttribute="bottom" id="y7y-Id-xP7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="sampleLineField" destination="W2m-Jf-7Yj" id="UZ9-0s-jmw"/>
+                    </connections>
                 </viewController>
                 <customObject id="WLR-aL-uPL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <objectController objectClassName="CotEditor.SortOptions" automaticallyPreparesContent="YES" id="LBk-n2-xHt">
@@ -268,10 +268,10 @@ Gw
             </objects>
             <point key="canvasLocation" x="535" y="-844.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Sort Pattern View Controller-->
         <scene sceneID="exo-wh-J7O">
             <objects>
-                <viewController id="nc5-AG-IOi" sceneMemberID="viewController">
+                <viewController id="nc5-AG-IOi" customClass="SortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="DY7-50-p4d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="12"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -295,10 +295,10 @@ Gw
             </objects>
             <point key="canvasLocation" x="840" y="-591.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Sort Pattern View Controller-->
         <scene sceneID="RfQ-mC-Buh">
             <objects>
-                <viewController id="SbM-Fx-692" sceneMemberID="viewController">
+                <viewController id="SbM-Fx-692" customClass="SortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="x8j-Bb-Jbh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -322,11 +322,13 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.delimiter" id="UIx-pL-N9R">
+                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.delimiter" id="OTK-ZM-0gt">
                                         <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                             <string key="NSNullPlaceholder">,</string>
                                         </dictionary>
                                     </binding>
+                                    <outlet property="delegate" destination="SbM-Fx-692" id="xL4-Ji-dva"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ikb-3W-LqX">
@@ -341,6 +343,7 @@ Gw
                                 <rect key="frame" x="232" y="6" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="1" id="fin-vh-3BV"/>
                                 <connections>
+                                    <action selector="valueDidUpdate:" target="SbM-Fx-692" id="H9e-7q-e0f"/>
                                     <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="2ml-ZO-Kio"/>
                                 </connections>
                             </stepper>
@@ -359,7 +362,12 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="38J-dB-Hew"/>
+                                    <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="caP-7H-HMG">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                    <outlet property="delegate" destination="SbM-Fx-692" id="Tm4-Ju-B6e"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -388,10 +396,10 @@ Gw
             </objects>
             <point key="canvasLocation" x="840" y="-494"/>
         </scene>
-        <!--View Controller-->
+        <!--Sort Pattern View Controller-->
         <scene sceneID="FSx-00-lyO">
             <objects>
-                <viewController id="mza-P2-Q5P" sceneMemberID="viewController">
+                <viewController id="mza-P2-Q5P" customClass="SortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="7vg-Vr-uMI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -404,11 +412,13 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.searchPattern" id="Dh1-dP-bGe">
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.searchPattern" id="Un0-F8-2q0">
                                         <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                             <string key="NSNullPlaceholder">Regular Expression</string>
                                         </dictionary>
                                     </binding>
+                                    <outlet property="delegate" destination="mza-P2-Q5P" id="cSO-b0-bWX"/>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bO8-kP-FOx">
@@ -418,6 +428,7 @@ Gw
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="2H8-Ji-7t5"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.ignoresCase" id="SqJ-6q-PcH"/>
                                 </connections>
                             </button>
@@ -436,14 +447,20 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" id="ba4-S3-svw"/>
                                     <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="RJw-Wl-J1l"/>
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" id="00j-5y-u0d">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                    <outlet property="delegate" destination="mza-P2-Q5P" id="iZU-WD-9qi"/>
                                 </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ooD-sC-3Cd">
                                 <rect key="frame" x="184" y="1" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
                                 <connections>
+                                    <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="qXg-uN-WUq"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" id="dpZ-O7-02Q"/>
                                     <binding destination="bCX-ZR-9aZ" name="enabled" keyPath="selection.usesCapturedGroup" id="pPi-Kj-rNE"/>
                                 </connections>
@@ -455,6 +472,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="nhe-ul-eO1"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.usesCapturedGroup" id="vsv-8B-h01"/>
                                 </connections>
                             </button>

@@ -24,6 +24,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Sample:"; ObjectID = "I06-xc-WQt"; */
 "I06-xc-WQt.title" = "Probe:";
+/* Class = "NSTextField"; ibShadowedToolTip = "Sample line to check which part in a line will be used for sort comparison."; ObjectID = "W2m-Jf-7Yj"; */
+"W2m-Jf-7Yj.ibShadowedToolTip" = "Probe linie zu prüfen, welchen Teil einer Linie für den Vergleich verwendet wird.";
 
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
 "bKb-oj-ekR.title" = "Sortierschlüssel:";
