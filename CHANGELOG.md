@@ -8,16 +8,16 @@ develop
 ### New Features
 
 - iCloud document.
-- Open document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
-- New feature “Sort by pattern”, which enables sort selected lines by specific column or fully freely using the regular expression.
+- Open a document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
+- New feature “Sort by pattern,” which enables sort selected lines by specific column or fully freely using the regular expression.
 - Add new actions “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
-- Add new setting option “Reopen windows from last session on launch” in General pane.
+- Add new setting option “Reopen windows from the last session on launch” in General pane.
 - Add new setting option “including whitespace-only lines” for “trim trailing whitespace” action in General pane.
 - More integrated Share feature:
-    - Share documents with other people through iCloud drive with “Add People” action in the File > Share menu.
-    - Enable sharing a document that have not been saved yet.
-    - Remove the feature shares document content text from File menu (You can still share selected text from the context menu.).
-    - Other small improvements.
+- Share documents with other people through iCloud drive with “Add People” action in the File > Share menu.
+- Enable sharing a document that has not been saved yet.
+- Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu.).
+- Other small improvements.
 
 
 ### Improvements
@@ -31,17 +31,17 @@ develop
 - Display full encoding name in the status bar instead of the IANA charset name.
 - Add tooltips to Unicode normalization forms in Text menu.
 - Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.
-- Remove “Color Code Panel” action in “Window” menu (use “Edit Color Code...” action in “Text” menu instead).
+- Remove “Color Code Panel” action from the “Window” menu (use “Edit Color Code...” action in “Text” menu instead).
 - Remove “share find text with other applications” option.
 - Restore the last viewed preference pane.
 - Add an input field for window opacity setting.
 - Adjust scroll after toggling line wrap.
-- Tweak acknowledgements window design.
+- Tweak acknowledgments window design.
 - Some minor UI improvements and fixes.
 - Update Japanese localization to conform with the modern macOS localization rules.
-- Update inner source code to Swift 4.
+- Update the internal source code to Swift 4.
 - [non-AppStore ver.] Now, the application updater (Sparkle) can download and update CotEditor automatically, as like before CotEditor was Sandboxed.
-    - This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.
+- This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.
 
 
 ### Fixes
