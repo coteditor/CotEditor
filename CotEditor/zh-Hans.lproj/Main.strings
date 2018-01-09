@@ -428,8 +428,8 @@
 /* Class = "NSMenuItem"; title = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
 "n6C-Km-BM9.ibShadowedToolTip" = "Unofficial NFC-based normalization form corresponding to Modified NFD";  // FIXME: added
 
-/* Class = "NSMenuItem"; title = "Insert IANA Charset Name"; ObjectID = "663"; */
-"663.title" = "插入 IANA 字符集名字";
+/* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
+"663.title" = "插入编码名字";
 /* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
 "663.ibShadowedToolTip" = "插入作为 IANA 字符集的编码名字";
 
