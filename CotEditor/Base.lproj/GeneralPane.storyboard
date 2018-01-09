@@ -36,8 +36,8 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fN-8C5">
-                                <rect key="frame" x="139" y="107" width="217" height="18"/>
-                                <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
+                                <rect key="frame" x="139" y="107" width="218" height="18"/>
+                                <buttonCell key="cell" type="check" title="Check for updates automatically" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
