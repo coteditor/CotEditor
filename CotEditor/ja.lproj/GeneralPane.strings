@@ -25,7 +25,7 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "On launch:"; ObjectID = "zDW-aW-9G8"; */
+/* Class = "NSTextFieldCell"; title = "On startup:"; ObjectID = "zDW-aW-9G8"; */
 "zDW-aW-9G8.title" = "起動したとき:";
 
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
