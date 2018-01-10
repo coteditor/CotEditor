@@ -1045,9 +1045,9 @@ CA
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="gQQ-iI-cNI"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="CotEditor Scripting Manual" id="M1N-Fg-Bo4">
+                                        <menuItem title="CotEditor Scripting Guide" id="M1N-Fg-Bo4">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="CotEditor Scripting Manual" id="OLa-Mb-rXS">
+                                            <menu key="submenu" title="CotEditor Scripting Guide" id="OLa-Mb-rXS">
                                                 <items>
                                                     <menuItem title="About Scripting" identifier="about_scripting" id="u2o-8v-WPL">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
@@ -1085,13 +1085,13 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                                        <menuItem title="Create Bug Report…" id="iHn-Ed-A8u">
+                                        <menuItem title="Create Issue Report…" id="iHn-Ed-A8u">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="createBugReport:" target="Voe-Tx-rLC" id="eYU-u3-aNG"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Report Bug" alternate="YES" id="Bk3-xx-uft">
+                                        <menuItem title="Report Issue" alternate="YES" id="Bk3-xx-uft">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                             <connections>
                                                 <action selector="reportBug:" target="Voe-Tx-rLC" id="gsa-av-qLh"/>

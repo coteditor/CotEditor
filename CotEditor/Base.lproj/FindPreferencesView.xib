@@ -122,9 +122,9 @@
                         <binding destination="hNo-st-CW5" name="value" keyPath="values.findsNextAfterReplace" id="e5i-bi-bKv"/>
                     </connections>
                 </button>
-                <button toolTip="Search ignores diacritic marks (e.g., ö = o)." translatesAutoresizingMaskIntoConstraints="NO" id="YYY-qb-T00">
-                    <rect key="frame" x="17" y="151" width="136" height="18"/>
-                    <buttonCell key="cell" type="check" title="Ignore diacritic marks" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="OUc-5d-N7I">
+                <button toolTip="Search ignores diacritical marks (e.g., ö = o)." translatesAutoresizingMaskIntoConstraints="NO" id="YYY-qb-T00">
+                    <rect key="frame" x="17" y="151" width="145" height="18"/>
+                    <buttonCell key="cell" type="check" title="Ignore diacritical marks" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="OUc-5d-N7I">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>

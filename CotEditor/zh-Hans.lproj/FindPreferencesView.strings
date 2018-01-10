@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 CotEditor Project
+ © 2015-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -48,9 +48,9 @@
 /* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "KG4-LQ-sen"; */
 "KG4-LQ-sen.ibShadowedToolTip" = "逐字符相等查找";
 
-/* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "OUc-5d-N7I"; */
+/* Class = "NSButtonCell"; title = "Ignore diacritical marks"; ObjectID = "OUc-5d-N7I"; */
 "OUc-5d-N7I.title" = "忽略变音符号";
-/* Class = "NSButton"; ibShadowedToolTip = "Search Ignore diacritic marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Search Ignore diacritical marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
 "YYY-qb-T00.ibShadowedToolTip" = "忽略变音符号进行查找 (例如 ö = o)。";
 
 /* Class = "NSButtonCell"; title = "Ignores width differences"; ObjectID = "Jug-Dk-JMZ"; */

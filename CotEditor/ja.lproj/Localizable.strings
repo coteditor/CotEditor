@@ -413,7 +413,7 @@
 "“%@” couldn’t be imported." = "“%@”を読み込めませんでした。";
 "No original file for “%@” was found." = "“%@”のオリジナルファイルが見つかりませんでした。";
 
-// Setting file name warnings
+// Setting filename warnings
 "Please choose another name." = "別の名前を指定してください。";
 "Name can’t be empty." = "名前は空にできません。";
 "You can’t use a name that contains “/”." = "名前に“/”を含めることはできません。";

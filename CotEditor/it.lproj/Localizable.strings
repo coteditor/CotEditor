@@ -413,7 +413,7 @@
 "“%@” couldn’t be imported." = "Non è stato possibile importare “%@”.";
 "No original file for “%@” was found." = "Nessun file originale trovato per “%@”.";
 
-// Setting file name warnings
+// Setting filename warnings
 "Please choose another name." = "Si prega di scegliere un altro nome.";
 "Name can’t be empty." = "Il nome non può essere vuoto.";
 "You can’t use a name that contains “/”." = "Il nome non può contenere il simbolo “/”.";
