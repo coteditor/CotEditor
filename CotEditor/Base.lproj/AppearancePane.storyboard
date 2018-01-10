@@ -1286,7 +1286,7 @@
                     </customView>
                 </viewController>
                 <customObject id="Oyw-bQ-ntc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController id="0m3-ka-vdo" userLabel="Meta Data Controller">
+                <objectController id="0m3-ka-vdo" userLabel="Metadata Controller">
                     <connections>
                         <binding destination="I23-rk-sjA" name="contentObject" keyPath="representedObject.metadata" id="H6U-0Q-Q7r"/>
                     </connections>
