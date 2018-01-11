@@ -93,6 +93,8 @@ final class PreferencesWindowController: NSWindowController {
         // detect clicked icon and select the view to switch
         let newController = self.viewControllers[toolbarItem.tag]
         
+        guard newController != window.contentViewController else { return }
+        
         // remove current view from the main view
         window.contentViewController = nil
         
