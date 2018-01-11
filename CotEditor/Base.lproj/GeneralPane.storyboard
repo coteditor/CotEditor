@@ -219,7 +219,7 @@
                                         <items>
                                             <menuItem title="Create a New Document" state="on" tag="1" id="i4c-DG-ADS"/>
                                             <menuItem title="Show Open Dialog" tag="2" id="hIX-mh-cG4"/>
-                                            <menuItem title="No Action" id="KgD-GV-alV"/>
+                                            <menuItem title="Do Nothing" id="KgD-GV-alV"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>

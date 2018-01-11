@@ -38,7 +38,7 @@
 "i4c-DG-ADS.title" = "Create a New Document";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
 "hIX-mh-cG4.title" = "Show Open Dialog";  // FIXME: added
-/* Class = "NSMenuItem"; title = "No Action"; ObjectID = "KgD-GV-alV"; */
+/* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
 "KgD-GV-alV.title" = "无操作";
 
 
