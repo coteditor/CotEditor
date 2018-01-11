@@ -33,7 +33,7 @@
 /* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
 "wmw-xg-bSt.title" = "Wenn nichts geöffnet ist:";
 
-/* Class = "NSMenuItem"; title = "Create a New Document"; ObjectID = "i4c-DG-ADS"; */
+/* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
 "i4c-DG-ADS.title" = "Neues Dokument erstellen";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
 "hIX-mh-cG4.title" = "Dialogfenstern zum Öffnen anzeigen";

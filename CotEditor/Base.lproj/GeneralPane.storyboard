@@ -211,13 +211,13 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sMb-to-ljF">
-                                <rect key="frame" x="310" y="484" width="185" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="Create a New Document" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="i4c-DG-ADS" id="F8J-5l-ztJ">
+                                <rect key="frame" x="310" y="484" width="174" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="Create New Document" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="i4c-DG-ADS" id="F8J-5l-ztJ">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="fR3-H2-Zcj">
                                         <items>
-                                            <menuItem title="Create a New Document" state="on" tag="1" id="i4c-DG-ADS"/>
+                                            <menuItem title="Create New Document" state="on" tag="1" id="i4c-DG-ADS"/>
                                             <menuItem title="Show Open Dialog" tag="2" id="hIX-mh-cG4"/>
                                             <menuItem title="Do Nothing" id="KgD-GV-alV"/>
                                         </items>

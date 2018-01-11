@@ -34,12 +34,12 @@
 /* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
 "wmw-xg-bSt.title" = "When nothing else is open:";  // FIXME: added
 
-/* Class = "NSMenuItem"; title = "Create a New Document"; ObjectID = "i4c-DG-ADS"; */
-"i4c-DG-ADS.title" = "Create a New Document";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
+"i4c-DG-ADS.title" = "Create New Document";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
 "hIX-mh-cG4.title" = "Show Open Dialog";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
-"KgD-GV-alV.title" = "无操作";
+"KgD-GV-alV.title" = "不执行任何操作";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
