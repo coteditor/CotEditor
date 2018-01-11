@@ -118,9 +118,9 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xYB-M8-tSf">
-                                <rect key="frame" x="328" y="122" width="180" height="28"/>
+                                <rect key="frame" x="328" y="122" width="168" height="28"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="iLK-PB-eaR"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="iLK-PB-eaR"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Get from Sample Window…" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3346">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
