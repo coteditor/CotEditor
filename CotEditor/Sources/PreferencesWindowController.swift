@@ -88,12 +88,13 @@ final class PreferencesWindowController: NSWindowController {
     /// switch panes from toolbar
     @IBAction func switchView(_ toolbarItem: NSToolbarItem) {
         
-        guard let window = self.window else { return }
-        
         // detect clicked icon and select the view to switch
         let newController = self.viewControllers[toolbarItem.tag]
         
-        guard newController != window.contentViewController else { return }
+        guard
+            let window = self.window,
+            newController != window.contentViewController
+            else { return }
         
         // remove current view from the main view
         window.contentViewController = nil
