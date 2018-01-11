@@ -37,8 +37,6 @@ extension SortPattern {
     
     /// Sort given lines with the receiver's parttern.
     ///
-    /// When .widthInsensitive is specified in `options`, Hiragana/Katakana difference is also ignored.
-    ///
     /// - Parameters:
     ///   - string: The string to sort.
     ///   - options: Compare options for sort.
@@ -48,29 +46,16 @@ extension SortPattern {
         let compareOptions = options.compareOptions
         
         var lines = string.components(separatedBy: .newlines)
-            .map { (line: String) -> (line: String, key: String?) in
-                var key = self.sortKey(for: line)
-                if compareOptions.contains(.widthInsensitive) {
-                    key = key?.applyingTransform(.hiraganaToKatakana, reverse: false) ?? key
-                }
-                return (line: line, key: key)
+            .map { line -> (line: String, key: String?) in
+                (line: line, key: self.sortKey(for: line))
             }
             .sorted {
                 switch ($0.key, $1.key) {
                 case let (.some(key0), .some(key1)):
-                    let result: ComparisonResult = {
-                        if options.localized, options.ignoresCase {
-                            return key0.localizedCaseInsensitiveCompare(key1)
-                        } else if options.localized {
-                            return key0.localizedCompare(key1)
-                        } else {
-                            return key0.compare(key1, options: compareOptions)
-                        }
-                    }()
-                    return result == .orderedAscending
+                    return key0.compare(key1, options: compareOptions, locale: options.locale) == .orderedAscending
                 case (.none, .some):
                     return false
-                default:
+                case (.some, .none), (.none, .none):
                     return true
                 }
             }
@@ -247,6 +232,12 @@ final class SortOptions: NSObject {
         }
         
         return options
+    }
+    
+    
+    var locale: Locale? {
+        
+        return self.localized ? .current: nil
     }
     
 }
