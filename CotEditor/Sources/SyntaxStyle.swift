@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -117,33 +117,33 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.flatDictionary { (type) -> (SyntaxType, [HighlightDefinition])? in
-            guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return nil }
+        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.reduce(into: [:]) { (dict, type) in
+            guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
             
             let definitions = wordDicts.flatMap { HighlightDefinition(definition: $0) }
             
-            guard !definitions.isEmpty else { return nil }
+            guard !definitions.isEmpty else { return }
             
-            return (type, definitions)
+            dict[type] = definitions
         }
         
         // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
         // also combine simple word definitions into single regex definition
         var quoteTypes = [String: SyntaxType]()
-        self.highlightDictionary = definitionDictionary.flatDictionary { (type, definitions) in
+        self.highlightDictionary = definitionDictionary.reduce(into: [:]) { (dict, item) in
             
             var highlightDefinitions = [HighlightDefinition]()
             var words = [String]()
             var caseInsensitiveWords = [String]()
             
-            for definition in definitions {
+            for definition in item.value {
                 // extract quotes
                 if !definition.isRegularExpression, definition.beginString == definition.endString,
                     definition.beginString.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
                     Set(definition.beginString).count == 1,  // consists of the same characters
                     !quoteTypes.keys.contains(definition.beginString)  // not registered yet
                 {
-                    quoteTypes[definition.beginString] = type
+                    quoteTypes[definition.beginString] = item.key
                     
                     // remove from the normal highlight definition list
                     continue
@@ -170,9 +170,9 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                 highlightDefinitions.append(HighlightDefinition(words: caseInsensitiveWords, ignoreCase: true))
             }
             
-            guard !highlightDefinitions.isEmpty else { return nil }
+            guard !highlightDefinitions.isEmpty else { return }
             
-            return (type, highlightDefinitions)
+            dict[item.key] = highlightDefinitions
         }
         self.pairedQuoteTypes = quoteTypes
         

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -76,16 +76,17 @@ struct Theme {
         
         // unarchive colors
         var isValid = true
-        let colors: [ThemeKey: NSColor] = ThemeKey.colorKeys.flatDictionary { (key) in
+        let colors: [ThemeKey: NSColor] = ThemeKey.colorKeys.reduce(into: [:]) { (dict, key) in
             guard
                 let colorCode = dictionary[key.rawValue]?[ThemeKey.Sub.color.rawValue] as? String,
                 let color = NSColor(colorCode: colorCode)
                 else {
                     isValid = false
-                    return (key, Theme.invalidColor)
+                    dict[key] = Theme.invalidColor
+                    return
             }
             
-            return (key, color)
+            dict[key] = color
         }
         
         // set properties
@@ -99,7 +100,10 @@ struct Theme {
         self.insertionPointColor = colors[.insertionPoint]!
         self.lineHighLightColor = colors[.lineHighlight]!
         
-        self.syntaxColors = ThemeKey.syntaxKeys.flatDictionary { (SyntaxType(rawValue: $0.rawValue)!, colors[$0]!) }  // The syntax key and theme keys must be the same.
+        self.syntaxColors = ThemeKey.syntaxKeys.reduce(into: [:]) { (dict, item) in
+            dict[SyntaxType(rawValue: item.rawValue)!] = colors[item]!  // The syntax key and theme keys must be the same.
+            
+        }
         
         self.usesSystemSelectionColor = dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool ?? false
         self.isDarkTheme = self.backgroundColor.brightnessComponent < self.textColor.brightnessComponent

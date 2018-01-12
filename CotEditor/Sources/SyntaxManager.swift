@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -441,11 +441,11 @@ final class SyntaxManager: SettingFileManager {
         
         // load user styles if exists
         if let urls = self.userSettingFileURLs {
-            let userStyles: [SyntaxManager.SettingName: StyleDictionary] = urls.flatDictionary { url in
-                guard let style = try? self.settingDictionary(fileURL: url) else { return nil }
+            let userStyles: [SyntaxManager.SettingName: StyleDictionary] = urls.reduce(into: [:]) { (dict, url) in
+                guard let style = try? self.settingDictionary(fileURL: url) else { return }
                 let styleName = self.settingName(from: url)
                 
-                return (styleName, style)
+                dict[styleName] = style
             }
             
             // create file mapping data
