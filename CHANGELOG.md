@@ -10,30 +10,30 @@ develop
 - iCloud document.
 - Open a document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
 - New feature “Sort by pattern,” which enables sort selected lines by specific column or fully freely using the regular expression.
-- Add new actions “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
+- Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from the last session on launch” in General pane.
-- Add new setting option “including whitespace-only lines” for “trim trailing whitespace” action in General pane.
+- Add new setting option “including whitespace-only lines” for “trim trailing whitespace” command in General pane.
 - More integrated Share feature:
-- Share documents with other people through iCloud drive with “Add People” action in the File > Share menu.
-- Enable sharing a document that has not been saved yet.
-- Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu.).
-- Other small improvements.
+    - Share documents with other people through iCloud drive with “Add People” command in the File > Share menu.
+    - Enable sharing a document that has not been saved yet.
+    - Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu.).
+    - Other small improvements.
 
 
 ### Improvements
 
 - Drop support for __OS X 10.10 Yosemite__.
-- Add clear button to input fields in the find panel.
+- Add clear button to the input fields in the find panel.
 - Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.
 - Scroll console view after getting a new message to make it visible.
 - Display sharing window within the target document window.
-- Swap position of “View” with “Format” menu to conform to Apple's HIG.
+- Swap position of “View” with “Format” menu to conform to the Apple's Human Interface Guidelines.
 - Display full encoding name in the status bar instead of the IANA charset name.
-- Add tooltips to Unicode normalization forms in Text menu.
+- Add tooltips to the Unicode normalization forms in Text menu.
 - Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.
-- Remove “Color Code Panel” action from the “Window” menu (use “Edit Color Code...” action in “Text” menu instead).
+- Remove “Color Code Panel” command from the “Window” menu (use “Edit Color Code...” command in “Text” menu instead).
 - Remove “share find text with other applications” option.
-- Restore the last viewed preference pane.
+- Restore the last viewed preference pane when Preferences is opened.
 - Add an input field for window opacity setting.
 - Adjust scroll after toggling line wrap.
 - Tweak acknowledgments window design.
@@ -41,7 +41,7 @@ develop
 - Update Japanese localization to conform with the modern macOS localization rules.
 - Update the internal source code to Swift 4.
 - [non-AppStore ver.] Now, the application updater (Sparkle) can download and update CotEditor automatically, as like before CotEditor was Sandboxed.
-- This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.
+    - This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.
 
 
 ### Fixes
