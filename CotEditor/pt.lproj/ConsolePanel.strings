@@ -1,0 +1,9 @@
+
+/* Class = "NSWindow"; title = "Console"; ObjectID = "6"; */
+"6.title" = "Console";
+
+/* Class = "NSToolbarItem"; label = "Clear Log"; ObjectID = "Yei-b2-m1J"; */
+"Yei-b2-m1J.label" = "Limpar Registro";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Clear Log"; ObjectID = "Yei-b2-m1J"; */
+"Yei-b2-m1J.paletteLabel" = "Limpar Registro";

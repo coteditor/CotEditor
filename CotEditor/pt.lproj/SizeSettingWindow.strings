@@ -1,0 +1,18 @@
+
+/* Class = "NSWindow"; title = "Sample Window for Size"; ObjectID = "127"; */
+"127.title" = "Janela de Amostra";
+
+/* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
+"3397.title" = "Definir como Padrão";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3398"; */
+"3398.title" = "Cancelar";
+
+/* Class = "NSTextFieldCell"; title = "Resize this window.\nThe size of this window will be set as default."; ObjectID = "3399"; */
+"3399.title" = "Redimensione esta janela.\nO tamanho desta janela será definido como o padrão.";
+
+/* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
+"3402.title" = "Largura:";
+
+/* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
+"3403.title" = "Altura:";

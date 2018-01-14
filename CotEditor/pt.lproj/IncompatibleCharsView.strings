@@ -1,0 +1,24 @@
+
+/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
+"2AE-nU-rdc.headerCell.title" = "Convertido";
+
+/* Class = "NSTextFieldCell"; title = "foo"; ObjectID = "4Si-Gc-9F8"; */
+"4Si-Gc-9F8.title" = "foo";
+
+/* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
+"Nhb-U5-BOF.headerCell.title" = "Caractere";
+
+/* Class = "NSTextFieldCell"; title = "128"; ObjectID = "Rx7-jv-O2R"; */
+"Rx7-jv-O2R.title" = "128";
+
+/* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
+"W1c-aP-XZa.title" = "Caracteres Incompatíveis";
+
+/* Class = "NSTextFieldCell"; title = "bar"; ObjectID = "seF-wU-ixc"; */
+"seF-wU-ixc.title" = "bar";
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
+"weY-lf-jGz.headerCell.title" = "Linha";
+
+/* Class = "NSTextFieldCell"; title = "No incompatible characters were found."; ObjectID = "wsL-BG-Ii8"; */
+"wsL-BG-Ii8.title" = "Nenhum caractere incompatível encontrado.";

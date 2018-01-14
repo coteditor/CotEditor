@@ -1,0 +1,150 @@
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to show Unicode information."; ObjectID = "2ZU-Mi-aJz"; */
+"2ZU-Mi-aJz.ibShadowedToolTip" = "Selecione um único caractere para mostrar informações Unicode.";
+
+/* Class = "NSTextFieldCell"; title = "LF"; ObjectID = "2pj-4V-Cq2"; */
+"2pj-4V-Cq2.title" = "LF";
+
+/* Class = "NSTextFieldCell"; title = "768 (256)"; ObjectID = "30o-UP-wFB"; */
+"30o-UP-wFB.title" = "768 (256)";
+
+/* Class = "NSTextFieldCell"; title = "7.1 KB (7,128 bytes)"; ObjectID = "4dM-eN-12n"; */
+"4dM-eN-12n.title" = "7,1 KB (7.128 Bytes)";
+
+/* Class = "NSTextFieldCell"; title = "57"; ObjectID = "5J9-kc-YfH"; */
+"5J9-kc-YfH.title" = "57";
+
+/* Class = "NSTextFieldCell"; title = "nakamuxu"; ObjectID = "5kg-yK-Piw"; */
+"5kg-yK-Piw.title" = "nakamuxu";
+
+/* Class = "NSTextFieldCell"; title = "2014-03-19 00:00"; ObjectID = "5rK-Wy-sED"; */
+"5rK-Wy-sED.title" = "19/03/2014 00:00";
+
+/* Class = "NSTextFieldCell"; title = "Document File"; ObjectID = "5tP-OA-Ujw"; */
+"5tP-OA-Ujw.title" = "Arquivo do Documento";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
+"786-4C-69e.ibShadowedIsNilPlaceholder" = "Não selecionado";
+
+/* Class = "NSTextFieldCell"; title = "512"; ObjectID = "7HE-p9-do0"; */
+"7HE-p9-do0.title" = "512";
+
+/* Class = "NSTextFieldCell"; title = "Text Settings"; ObjectID = "8KW-Mc-cRX"; */
+"8KW-Mc-cRX.title" = "Ajustes do Texto";
+
+/* Class = "NSTextFieldCell"; title = "Owner"; ObjectID = "AjV-U0-lC7"; */
+"AjV-U0-lC7.title" = "Proprietário";
+
+/* Class = "NSTextFieldCell"; title = "Encoding"; ObjectID = "B5F-j1-X4E"; */
+"B5F-j1-X4E.title" = "Codificação";
+
+/* Class = "NSTextFieldCell"; title = "Modified"; ObjectID = "BtZ-Pl-H7s"; */
+"BtZ-Pl-H7s.title" = "Modificado";
+
+/* Class = "NSTextFieldCell"; title = "420 (-rw-r--r--)"; ObjectID = "ERg-aL-alw"; */
+"ERg-aL-alw.title" = "420 (-rw-r--r--)";
+
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
+"ERr-yA-dIa.title" = "Localização";
+
+/* Class = "NSTextFieldCell"; title = "Length"; ObjectID = "H0d-Eg-DcW"; */
+"H0d-Eg-DcW.title" = "Comprimento";
+
+/* Class = "NSTextFieldCell"; title = "Character"; ObjectID = "H2Z-jU-biZ"; */
+"H2Z-jU-biZ.title" = "Caractere";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = " - "; ObjectID = "Lff-Cb-hbo"; */
+"Lff-Cb-hbo.ibShadowedIsNilPlaceholder" = " - ";
+
+/* Class = "NSTextFieldCell"; title = "Permission"; ObjectID = "N0Y-nO-k3L"; */
+"N0Y-nO-k3L.title" = "Permissões";
+
+/* Class = "NSTextFieldCell"; title = "64 (32)"; ObjectID = "NTC-QE-4LL"; */
+"NTC-QE-4LL.title" = "64 (32)";
+
+/* Class = "NSTextFieldCell"; title = "2005-03-19 00:00"; ObjectID = "OJb-IB-UFk"; */
+"OJb-IB-UFk.title" = "19/03/2005 00:00";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = " - "; ObjectID = "OkV-p5-aaB"; */
+"OkV-p5-aaB.ibShadowedIsNilPlaceholder" = " - ";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedMultipleValuesPlaceholder = " - "; ObjectID = "OkV-p5-aaB"; */
+"OkV-p5-aaB.ibShadowedMultipleValuesPlaceholder" = " - ";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = " - "; ObjectID = "OkV-p5-aaB"; */
+"OkV-p5-aaB.ibShadowedNoSelectionPlaceholder" = " - ";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedNotApplicablePlaceholder = " - "; ObjectID = "OkV-p5-aaB"; */
+"OkV-p5-aaB.ibShadowedNotApplicablePlaceholder" = " - ";
+
+/* Class = "NSTextFieldCell"; title = "/User/Claus/Desktop/My Script.py"; ObjectID = "REz-XI-omv"; */
+"REz-XI-omv.title" = "/Usuários/Claus/Mesa/Meu Script.py";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = " - "; ObjectID = "RvJ-L0-Oex"; */
+"RvJ-L0-Oex.ibShadowedIsNilPlaceholder" = " - ";
+
+/* Class = "NSTextFieldCell"; title = "Column"; ObjectID = "Wwr-gI-HPc"; */
+"Wwr-gI-HPc.title" = "Coluna";
+
+/* Class = "NSTextFieldCell"; title = "Line Endings"; ObjectID = "XBS-xa-s3p"; */
+"XBS-xa-s3p.title" = "Finais de Linha";
+
+/* Class = "NSTextFieldCell"; title = "0x0058"; ObjectID = "ZpD-IC-SuX"; */
+"ZpD-IC-SuX.title" = "0x0058";
+
+/* Class = "NSTextFieldCell"; title = "28"; ObjectID = "aSv-MX-MIL"; */
+"aSv-MX-MIL.title" = "28";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = " - "; ObjectID = "anC-ze-7ER"; */
+"anC-ze-7ER.ibShadowedIsNilPlaceholder" = " - ";
+
+/* Class = "NSTextFieldCell"; title = "1024 (512)"; ObjectID = "bsW-A8-MCd"; */
+"bsW-A8-MCd.title" = "1024 (512)";
+
+/* Class = "NSTextFieldCell"; title = "8"; ObjectID = "cWY-sE-V7d"; */
+"cWY-sE-V7d.title" = "8";
+
+/* Class = "NSTextFieldCell"; title = "Count"; ObjectID = "cbf-0f-9rd"; */
+"cbf-0f-9rd.title" = "Contagem";
+
+/* Class = "NSTextFieldCell"; title = "Characters"; ObjectID = "e1m-Uo-4UK"; */
+"e1m-Uo-4UK.title" = "Caracteres";
+
+/* Class = "NSTextFieldCell"; title = "Current Line"; ObjectID = "f9g-dQ-g3K"; */
+"f9g-dQ-g3K.title" = "Linha Atual";
+
+/* Class = "NSTextFieldCell"; title = "Created"; ObjectID = "hgp-Cc-KHJ"; */
+"hgp-Cc-KHJ.title" = "Criado";
+
+/* Class = "NSTextFieldCell"; title = "Unicode"; ObjectID = "kna-yU-liB"; */
+"kna-yU-liB.title" = "Unicode";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = " - "; ObjectID = "msl-C0-Ook"; */
+"msl-C0-Ook.ibShadowedIsNilPlaceholder" = " - ";
+
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
+"nXT-Oq-0l6.title" = "Localização";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = " - "; ObjectID = "pba-0b-gWI"; */
+"pba-0b-gWI.ibShadowedIsNilPlaceholder" = " - ";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = " - "; ObjectID = "r35-IJ-rWG"; */
+"r35-IJ-rWG.ibShadowedIsNilPlaceholder" = " - ";
+
+/* Class = "NSTextFieldCell"; title = "Unicode (UTF-8)"; ObjectID = "sme-3R-Xwl"; */
+"sme-3R-Xwl.title" = "Unicode (UTF-8)";
+
+/* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
+"tZ6-05-eKf.title" = "Palavras";
+
+/* Class = "NSTextFieldCell"; title = "File Size"; ObjectID = "uZa-Q9-nHs"; */
+"uZa-Q9-nHs.title" = "Tamanho";
+
+/* Class = "NSTextFieldCell"; title = "Lines"; ObjectID = "yRM-Y0-4Oq"; */
+"yRM-Y0-4Oq.title" = "Linhas";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = " - "; ObjectID = "yZe-U9-ljp"; */
+"yZe-U9-ljp.ibShadowedIsNilPlaceholder" = " - ";
+
+/* Class = "NSTextFieldCell"; title = "Full Path"; ObjectID = "zwU-xo-iZu"; */
+"zwU-xo-iZu.title" = "Caminho Completo";

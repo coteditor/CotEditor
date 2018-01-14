@@ -1,0 +1,36 @@
+
+/* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
+"6bH-jm-mNR.title" = "RGB CSS";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "C4D-sY-kfX"; */
+"C4D-sY-kfX.title" = "OtherViews";
+
+/* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
+"HMC-PY-Ngy.title" = "Inserir";
+
+/* Class = "NSTextFieldCell"; title = "#ffffff"; ObjectID = "MFc-gP-VZL"; */
+"MFc-gP-VZL.title" = "#ffffff";
+
+/* Class = "NSMenuItem"; title = "CSS HSL"; ObjectID = "TnX-U4-Fkz"; */
+"TnX-U4-Fkz.title" = "HSL CSS";
+
+/* Class = "NSMenuItem"; title = "CSS RGBa"; ObjectID = "cxo-sm-Sx5"; */
+"cxo-sm-Sx5.title" = "RGBA CSS";
+
+/* Class = "NSMenuItem"; title = "CSS Keyword"; ObjectID = "dY5-ZH-n6l"; */
+"dY5-ZH-n6l.title" = "Palavra-chave CSS";
+
+/* Class = "NSMenuItem"; title = "CSS HSLa"; ObjectID = "k4U-AQ-5ws"; */
+"k4U-AQ-5ws.title" = "HSLa CSS";
+
+/* Class = "NSMenuItem"; title = "Hex"; ObjectID = "vF1-in-Dlv"; */
+"vF1-in-Dlv.title" = "Hexa";
+
+/* Class = "NSMenuItem"; title = "Hex (short)"; ObjectID = "wEc-KD-y7s"; */
+"wEc-KD-y7s.title" = "Hexa (curto)";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "color code"; ObjectID = "zwB-Z7-P18"; */
+"zwB-Z7-P18.ibShadowedIsNilPlaceholder" = "código de cor";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "no selection"; ObjectID = "zwB-Z7-P18"; */
+"zwB-Z7-P18.ibShadowedNoSelectionPlaceholder" = "nenhuma seleção";

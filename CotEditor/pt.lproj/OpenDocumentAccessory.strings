@@ -1,0 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "Show hidden files"; ObjectID = "qkm-VD-lQC"; */
+"qkm-VD-lQC.title" = "Mostrar arquivos ocultos";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "s3l-Sq-rKS"; */
+"s3l-Sq-rKS.title" = "OtherViews";
+
+/* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "voE-Mi-XZu"; */
+"voE-Mi-XZu.title" = "Codificação:";
+
+/* Class = "NSMenuItem"; title = "Auto-Detect"; ObjectID = "wAj-1O-99p"; */
+"wAj-1O-99p.title" = "Detectar Automaticamente";

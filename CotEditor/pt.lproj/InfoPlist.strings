@@ -1,0 +1,75 @@
+/*
+ 
+ InfoPlist.strings (Portuguese)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2015-01-01.
+ Localized by BR Lingo
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015-2017 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+// Document Types
+"Text document" = "Documento de texto";
+"Plain text" = "Texto simples";
+"CotEditor Theme" = "Tema do CotEditor";
+"BibTeX" = "BibTeX";
+"Configuration" = "Configuração";
+"C header" = "Cabeçalho C";
+"C source" = "Fonte C";
+"C++ source" = "Fonte C++";
+"C++ header" = "Cabeçalho C++";
+"C# source" = "Fonte C#";
+"CoffeeScript" = "CoffeeScript";
+"Cascading Style Sheet" = "CSS";
+"D source" = "Fonte D";
+"Dart script" = "Script Dart";
+"Diff" = "Diff";
+"Document Type Definition" = "Definição de Tipo de Documento (DTD)";
+"Fortran Source" = "Fonte Fortran";
+"Go script" = "Script Go";
+"Haskell script" = "Script Haskell";
+"HTML document" = "Documento HTML";
+"INI" = "INI";
+"Java source" = "Fonte Java";
+"JavaScript" = "JavaScript";
+"JSON" = "JSON";
+"Julia script" = "Script Julia";
+"Lisp script" = "Script Lisp";
+"Lua script" = "Script Lua";
+"Markdown document" = "Documento Markdown";
+"Perl script" = "Script Perl";
+"PHP script" = "Script PHP";
+"Python script" = "Script Python";
+"reStructured Text document" = "Documento reStructuredText";
+"Ruby script" = "Script Ruby";
+"Rust script" = "Script Rust";
+"Scalable Vector Graphics" = "SVG";
+"Scala script" = "Script Scala";
+"Scheme script" = "Script Scheme";
+"Shell script" = "Script de Shell";
+"SQL source" = "Fonte SQL";
+"Swift source" = "Fonte Swift";
+"TeX" = "TeX";
+"Textile document" = "Documento Textile";
+"Tcl source" = "Fonte Tcl";
+"Verilog source" = "Fonte Verilog";
+"XML document" = "Documento XML";
+"YAML" = "YAML";
