@@ -452,8 +452,8 @@
 "Begin string" = "Inizio stringa";
 "End string" = "Fine stringa";
 "Regular expression" = "Espressione regolare";
-"multiple registered." = "Termine registrato più volte.";
-"Regex Error: " = "Errore Regex: ";
+"The same word is registered multiple times." = "Termine registrato più volte.";
+"Regular Expression Error: " = "Errore Regex: ";
 
 
 

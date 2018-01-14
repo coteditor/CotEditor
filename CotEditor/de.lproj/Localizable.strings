@@ -451,8 +451,8 @@
 "Begin string" = "Anfangszeichenkette";
 "End string" = "Endzeichenkette";
 "Regular expression" = "Regulärer Ausdruck";
-"multiple registered." = "Mehrfach registriert.";
-"Regex Error: " = "Regulärer Ausdruck Fehler: ";
+"The same word is registered multiple times." = "Mehrfach registriert.";
+"Regular Expression Error: " = "Regulärer Ausdruck Fehler: ";
 
 
 
