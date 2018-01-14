@@ -36,6 +36,8 @@ develop
 - Restore the last viewed preference pane when Preferences is opened.
 - Add an input field for window opacity setting.
 - Adjust scroll after toggling line wrap.
+- Update Python syntax style:
+    - Fix highlight of string and bytes literals.
 - Tweak acknowledgments window design.
 - Some minor UI improvements and fixes.
 - Update Japanese localization to conform with the modern macOS localization rules.

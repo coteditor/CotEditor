@@ -8,10 +8,10 @@ interpreters:
 - keyString: "python2"
 - keyString: "python3"
 metadata:
-  version: "2.4.0"
-  lastModified: "2017-02-27"
+  version: "2.4.1"
+  lastModified: "2018-01-14"
   distributionURL: "https://coteditor.com"
-  author: "nanasiya"
+  author: "1024jp, nanasiya"
   license: "Same as CotEditor"
   description: "Support both Python2 and Python3 (<= 3.6).\n\nMaintained by 1024jp since 2013."
 outlineMenu:
@@ -462,7 +462,7 @@ strings:
   endString: "'"
 - beginString: "'''"
   endString: "'''"
-- beginString: "\\b(r|u|ur)['\"]"
+- beginString: "\\b(r|u|f|fr|rf|ur|b|br|rb)['\"]"
   ignoreCase: true
   regularExpression: true
 - beginString: "`"
