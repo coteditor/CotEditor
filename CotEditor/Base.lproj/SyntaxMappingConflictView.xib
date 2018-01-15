@@ -69,7 +69,7 @@ DQ
                     <rect key="frame" x="20" y="225" width="360" height="149"/>
                     <clipView key="contentView" id="FvV-B0-ECm">
                         <rect key="frame" x="1" y="0.0" width="358" height="148"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="L5C-W2-xOU" viewBased="YES" id="lbV-tL-3Mz">
                                 <rect key="frame" x="0.0" y="0.0" width="358" height="125"/>
@@ -229,7 +229,7 @@ DQ
                     <rect key="frame" x="20" y="46" width="360" height="120"/>
                     <clipView key="contentView" id="32z-mI-3KR">
                         <rect key="frame" x="1" y="0.0" width="358" height="119"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="D8z-xI-Vwg" viewBased="YES" id="U61-Pd-dD5">
                                 <rect key="frame" x="0.0" y="0.0" width="358" height="96"/>
