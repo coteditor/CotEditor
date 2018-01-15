@@ -1,0 +1,72 @@
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
+"0Du-JI-ZN7.title" = "Restaurar Padrões";
+
+/* Class = "NSTextFieldCell"; title = "Action Name"; ObjectID = "0Uo-2F-m2T"; */
+"0Uo-2F-m2T.title" = "Nome da Ação";
+
+/* Class = "NSTextFieldCell"; title = "'Foo' includes the Command key. Please choose another key."; ObjectID = "4cq-fK-Hff"; */
+"4cq-fK-Hff.title" = "‘Foo’ inclui a tecla Comando. Escolha outra tecla.";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
+"5zd-aF-0zL.title" = "Estes atalhos não devem incluir a tecla Comando.";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
+"CyK-OL-qHa.title" = "Restaurar Padrões";
+
+/* Class = "NSTextFieldCell"; title = "(excluding Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
+"Dl2-3y-7EJ.title" = "(excluindo o menu Script)";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
+"Hue-bU-8wr.title" = "Para alterar um atalho, selecione-o, clique na coluna Teclas e pressione as teclas.";
+
+/* Class = "NSTextFieldCell"; title = "'Foo' doesn’t include Command Key. Please choose another key."; ObjectID = "PAH-9l-L5p"; */
+"PAH-9l-L5p.title" = "‘Foo’ não inclui a tecla Comando. Escolha outra tecla.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
+"PSD-Um-TfH.headerCell.title" = "Teclas";
+
+/* Class = "NSTabViewItem"; label = "Menu Items"; ObjectID = "QZO-GE-ra1"; */
+"QZO-GE-ra1.label" = "Itens de Menus";
+
+/* Class = "NSTextFieldCell"; title = "⌘N"; ObjectID = "T1C-pj-eFu"; */
+"T1C-pj-eFu.title" = "⌘N";
+
+/* Class = "NSTextFieldCell"; title = "Insert Text 0"; ObjectID = "Tyt-Cd-biz"; */
+"Tyt-Cd-biz.title" = "Inserir Texto 0";
+
+/* Class = "NSTabViewItem"; label = "Snippets"; ObjectID = "VfI-7K-2Nb"; */
+"VfI-7K-2Nb.label" = "Fragmentos";
+
+/* Class = "NSTextFieldCell"; title = "⇧↩"; ObjectID = "X9M-VG-4QE"; */
+"X9M-VG-4QE.title" = "⇧↩";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "Y5G-PR-ofT"; */
+"Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Selecione uma Ação";
+
+/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
+"ZYM-tb-Csx.title" = "Atalhos para os itens de menus";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
+"a9m-M2-rgC.title" = "Para alterar um atalho, selecione-o, clique na coluna Teclas e pressione as teclas.";
+
+/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
+"eMZ-Mx-JSK.title" = "Atalhos para a inserção de texto predefinido";
+
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
+"hXU-bV-zlt.headerCell.title" = "Teclas";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
+"jNh-nd-VRd.headerCell.title" = "Ação";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "qGe-Et-FB2"; */
+"qGe-Et-FB2.title" = "Estes atalhos devem incluir a tecla Comando.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
+"sz5-hl-bZK.headerCell.title" = "Ação";
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
+"tuB-9O-QZH.title" = "Formato da inserção:";
+
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
+"wC4-qj-3oD.title" = "Inserir Variável";

@@ -1,0 +1,12 @@
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "IQL-eH-PaH"; */
+"IQL-eH-PaH.ibShadowedIsNilPlaceholder" = "Número da Linha";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "JUX-sh-0Ej"; */
+"JUX-sh-0Ej.title" = "Cancelar";
+
+/* Class = "NSTextFieldCell"; title = "Line:"; ObjectID = "R30-Wf-Rfd"; */
+"R30-Wf-Rfd.title" = "Linha:";
+
+/* Class = "NSButtonCell"; title = "Go"; ObjectID = "cuJ-kD-yiJ"; */
+"cuJ-kD-yiJ.title" = "Ir";

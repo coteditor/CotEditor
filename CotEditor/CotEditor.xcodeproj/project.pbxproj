@@ -1170,6 +1170,52 @@
 		2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultSettings+Encodings.swift"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
+		57ED314A1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
+		57ED314B1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPanel.strings; sourceTree = "<group>"; };
+		57ED314C1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
+		57ED314D1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
+		57ED314E1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
+		57ED314F1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
+		57ED31501FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
+		57ED31511FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EditorView.strings; sourceTree = "<group>"; };
+		57ED31521FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
+		57ED31531FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
+		57ED31541FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
+		57ED31551FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ProgressView.strings; sourceTree = "<group>"; };
+		57ED31561FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/GoToLineView.strings; sourceTree = "<group>"; };
+		57ED31571FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CustomSurroundStringView.strings; sourceTree = "<group>"; };
+		57ED31581FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PreferencesWindow.strings; sourceTree = "<group>"; };
+		57ED31591FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/GeneralPane.strings; sourceTree = "<group>"; };
+		57ED315A1FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/WindowPane.strings; sourceTree = "<group>"; };
+		57ED315B1FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/AppearancePane.strings; sourceTree = "<group>"; };
+		57ED315C1FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EditPane.strings; sourceTree = "<group>"; };
+		57ED315D1FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FormatPane.strings; sourceTree = "<group>"; };
+		57ED315E1FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FileDropPane.strings; sourceTree = "<group>"; };
+		57ED315F1FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/KeyBindingsPane.strings; sourceTree = "<group>"; };
+		57ED31601FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PrintPane.strings; sourceTree = "<group>"; };
+		57ED31611FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
+		57ED31621FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
+		57ED31631FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
+		57ED31641FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
+		57ED31651FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
+		57ED31661FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
+		57ED31671FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
+		57ED31681FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
+		57ED31691FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxValidationView.strings; sourceTree = "<group>"; };
+		57ED316A1FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SizeSettingWindow.strings; sourceTree = "<group>"; };
+		57ED316B1FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxMappingConflictView.strings; sourceTree = "<group>"; };
+		57ED316C1FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EncodingListView.strings; sourceTree = "<group>"; };
+		57ED316D1FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
+		57ED316E1FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/OpacityPanel.strings; sourceTree = "<group>"; };
+		57ED316F1FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
+		57ED31701FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
+		57ED31711FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		57ED31721FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		57ED31731FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
+		57ED31741FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Unicode.strings; sourceTree = "<group>"; };
+		57ED31751FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pt; path = pt.lproj/Credits.html; sourceTree = "<group>"; };
+		57ED31761FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pt; path = pt.lproj/Acknowledgments.html; sourceTree = "<group>"; };
+		57ED31771FFD892A00F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = pt; path = pt.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CotEditor-Info.plist"; sourceTree = "<group>"; };
@@ -2121,6 +2167,7 @@
 				Base,
 				de,
 				it,
+				pt,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
 			projectDirPath = "";
@@ -2833,6 +2880,7 @@
 				2AA0AC621A2876CC0063ED1B /* zh-Hans */,
 				2A6907631B8443AA00D0F3A2 /* de */,
 				2A401FC61D9AD76D00ACE036 /* it */,
+				57ED31581FFD892700F16CAD /* pt */,
 			);
 			name = PreferencesWindow.xib;
 			sourceTree = SOURCE_ROOT;
@@ -2845,6 +2893,7 @@
 				2AA0AC601A28769C0063ED1B /* zh-Hans */,
 				2A6907621B8443AA00D0F3A2 /* de */,
 				2A401FC21D9AD76D00ACE036 /* it */,
+				57ED31551FFD892700F16CAD /* pt */,
 			);
 			name = ProgressView.xib;
 			sourceTree = "<group>";
@@ -2857,6 +2906,7 @@
 				2AA0AC6F1A28774D0063ED1B /* zh-Hans */,
 				2A69076D1B8443AA00D0F3A2 /* de */,
 				2A401FD01D9AD76E00ACE036 /* it */,
+				57ED31621FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxEditView.xib;
 			sourceTree = "<group>";
@@ -2868,6 +2918,7 @@
 				4B7998191A1F1BCD0088D167 /* zh-Hans */,
 				2A69077A1B8443AB00D0F3A2 /* de */,
 				2A401FE71D9AF0A300ACE036 /* it */,
+				57ED31711FFD892900F16CAD /* pt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2880,6 +2931,7 @@
 				2AA0AC5F1A2876930063ED1B /* zh-Hans */,
 				2A6907611B8443AA00D0F3A2 /* de */,
 				2A401FC11D9AD76D00ACE036 /* it */,
+				57ED31541FFD892600F16CAD /* pt */,
 			);
 			name = PrintPanelAccessory.xib;
 			sourceTree = "<group>";
@@ -2892,6 +2944,7 @@
 				2A10D1051E7088B60027192A /* zh-Hans */,
 				2A10D1061E7088B90027192A /* de */,
 				2A10D1071E7088BB0027192A /* it */,
+				57ED315A1FFD892700F16CAD /* pt */,
 			);
 			name = WindowPane.storyboard;
 			sourceTree = "<group>";
@@ -2904,6 +2957,7 @@
 				2A10D10D1E7091D90027192A /* zh-Hans */,
 				2A10D10E1E7091DB0027192A /* de */,
 				2A10D10F1E7091DE0027192A /* it */,
+				57ED315F1FFD892700F16CAD /* pt */,
 			);
 			name = KeyBindingsPane.storyboard;
 			sourceTree = "<group>";
@@ -2916,6 +2970,7 @@
 				2A10D1231E713D0E0027192A /* zh-Hans */,
 				2A10D1241E713D100027192A /* de */,
 				2A10D1251E713D110027192A /* it */,
+				57ED31601FFD892800F16CAD /* pt */,
 			);
 			name = PrintPane.storyboard;
 			sourceTree = "<group>";
@@ -2928,6 +2983,7 @@
 				2A10D12B1E714F720027192A /* zh-Hans */,
 				2A10D12C1E714F730027192A /* de */,
 				2A10D12D1E714F740027192A /* it */,
+				57ED315B1FFD892700F16CAD /* pt */,
 			);
 			name = AppearancePane.storyboard;
 			sourceTree = "<group>";
@@ -2940,6 +2996,7 @@
 				2A10D1331E7154B50027192A /* zh-Hans */,
 				2A10D1341E7154B60027192A /* de */,
 				2A10D1351E7154B70027192A /* it */,
+				57ED315C1FFD892700F16CAD /* pt */,
 			);
 			name = EditPane.storyboard;
 			sourceTree = "<group>";
@@ -2952,6 +3009,7 @@
 				2A10D13B1E71B63B0027192A /* zh-Hans */,
 				2A10D13C1E71B63C0027192A /* de */,
 				2A10D13D1E71B63D0027192A /* it */,
+				57ED315D1FFD892700F16CAD /* pt */,
 			);
 			name = FormatPane.storyboard;
 			sourceTree = "<group>";
@@ -2964,6 +3022,7 @@
 				2AA0AC6D1A2877310063ED1B /* zh-Hans */,
 				2A69076F1B8443AB00D0F3A2 /* de */,
 				2A401FD91D9AD76F00ACE036 /* it */,
+				57ED316C1FFD892900F16CAD /* pt */,
 			);
 			name = EncodingListView.xib;
 			sourceTree = "<group>";
@@ -2976,6 +3035,7 @@
 				2AA0AC6A1A2877130063ED1B /* zh-Hans */,
 				2A6907721B8443AB00D0F3A2 /* de */,
 				2A401FDC1D9AD77000ACE036 /* it */,
+				57ED316A1FFD892800F16CAD /* pt */,
 			);
 			name = SizeSettingWindow.xib;
 			sourceTree = "<group>";
@@ -3000,6 +3060,7 @@
 				2A2D6C1C1A603781002451FF /* zh-Hans */,
 				2A69075B1B8443AA00D0F3A2 /* de */,
 				2A401FB91D9AD76C00ACE036 /* it */,
+				57ED314C1FFD892600F16CAD /* pt */,
 			);
 			name = RegexReferenceView.xib;
 			sourceTree = "<group>";
@@ -3020,6 +3081,7 @@
 				2ACB53951A3DFEA60040F19F /* zh-Hans */,
 				2A4064041B9DA8BE0032AC7F /* de */,
 				2A401FD21D9AD76F00ACE036 /* it */,
+				57ED31641FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxCommentsEditView.xib;
 			sourceTree = "<group>";
@@ -3032,6 +3094,7 @@
 				2ACB539D1A3DFFE30040F19F /* zh-Hans */,
 				2A4064001B9DA7720032AC7F /* de */,
 				2A401FD41D9AD76F00ACE036 /* it */,
+				57ED31661FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxCompletionsEditView.xib;
 			sourceTree = "<group>";
@@ -3044,6 +3107,7 @@
 				2ACB53A51A3E018A0040F19F /* zh-Hans */,
 				2A4063FE1B9DA6A80032AC7F /* de */,
 				2A401FD51D9AD76F00ACE036 /* it */,
+				57ED31671FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxFileMappingEditView.xib;
 			sourceTree = "<group>";
@@ -3056,6 +3120,7 @@
 				2ACB53A91A3E02560040F19F /* zh-Hans */,
 				2A4063FC1B9DA6490032AC7F /* de */,
 				2A401FD61D9AD76F00ACE036 /* it */,
+				57ED31681FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxInfoEditView.xib;
 			sourceTree = "<group>";
@@ -3068,6 +3133,7 @@
 				2ACB538F1A3DFC9E0040F19F /* zh-Hans */,
 				2A4064061B9DAA4E0032AC7F /* de */,
 				2A401FD11D9AD76F00ACE036 /* it */,
+				57ED31631FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxTermsEditView.xib;
 			sourceTree = "<group>";
@@ -3080,6 +3146,7 @@
 				2ACB53A11A3E00F20040F19F /* zh-Hans */,
 				2A4064021B9DA7C60032AC7F /* de */,
 				2A401FD31D9AD76F00ACE036 /* it */,
+				57ED31651FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxOutlineEditView.xib;
 			sourceTree = "<group>";
@@ -3092,6 +3159,7 @@
 				2ACB53991A3DFF700040F19F /* zh-Hans */,
 				2A4063FA1B9DA6080032AC7F /* de */,
 				2A401FD71D9AD76F00ACE036 /* it */,
+				57ED31691FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxValidationView.xib;
 			sourceTree = "<group>";
@@ -3104,6 +3172,7 @@
 				2A3CC1FC1C8B59EE00506DB8 /* zh-Hans */,
 				2A3CC1FE1C8B59F100506DB8 /* de */,
 				2A401FC01D9AD76D00ACE036 /* it */,
+				57ED31531FFD892600F16CAD /* pt */,
 			);
 			name = SaveDocumentAccessory.xib;
 			sourceTree = "<group>";
@@ -3116,6 +3185,7 @@
 				2A436DD61A4253B100275FD4 /* zh-Hans */,
 				2A69075D1B8443AA00D0F3A2 /* de */,
 				2A401FBC1D9AD76D00ACE036 /* it */,
+				57ED314F1FFD892600F16CAD /* pt */,
 			);
 			name = DocumentInspectorView.xib;
 			sourceTree = "<group>";
@@ -3128,6 +3198,7 @@
 				2A436DD81A4254A400275FD4 /* zh-Hans */,
 				2A69075E1B8443AA00D0F3A2 /* de */,
 				2A401FBD1D9AD76D00ACE036 /* it */,
+				57ED31501FFD892600F16CAD /* pt */,
 			);
 			name = IncompatibleCharsView.xib;
 			sourceTree = "<group>";
@@ -3140,6 +3211,7 @@
 				4B79981C1A1F1BCD0088D167 /* zh-Hans */,
 				2A69077E1B8443AB00D0F3A2 /* de */,
 				2A401FE41D9AED8200ACE036 /* it */,
+				57ED31771FFD892A00F16CAD /* pt */,
 			);
 			name = ReportTemplate.md;
 			sourceTree = "<group>";
@@ -3152,6 +3224,7 @@
 				2AA0AC641A2876E20063ED1B /* zh-Hans */,
 				2A6907781B8443AB00D0F3A2 /* de */,
 				2A401FE01D9AD77000ACE036 /* it */,
+				57ED316F1FFD892900F16CAD /* pt */,
 			);
 			name = UnicodePanel.xib;
 			sourceTree = "<group>";
@@ -3164,6 +3237,7 @@
 				2A0D64A21D20FFB3006B4937 /* zh-Hans */,
 				2A0D64A31D20FFB6006B4937 /* de */,
 				2A401FB81D9AD76C00ACE036 /* it */,
+				57ED314B1FFD892600F16CAD /* pt */,
 			);
 			name = FindPanel.storyboard;
 			sourceTree = "<group>";
@@ -3176,6 +3250,7 @@
 				2AA0AC6E1A28773C0063ED1B /* zh-Hans */,
 				2A69076E1B8443AB00D0F3A2 /* de */,
 				2A401FD81D9AD76F00ACE036 /* it */,
+				57ED316B1FFD892900F16CAD /* pt */,
 			);
 			name = SyntaxMappingConflictView.xib;
 			sourceTree = "<group>";
@@ -3187,6 +3262,7 @@
 				2A5E4D7D1A44F4A30072013F /* zh-Hans */,
 				2A69077C1B8443AB00D0F3A2 /* de */,
 				2A401FE51D9AEE4500ACE036 /* it */,
+				57ED31731FFD892900F16CAD /* pt */,
 			);
 			name = ServicesMenu.strings;
 			sourceTree = "<group>";
@@ -3199,6 +3275,7 @@
 				2A5F7CAC1D157509001D83BC /* zh-Hans */,
 				2A5F7CAD1D15750B001D83BC /* de */,
 				2A401FBE1D9AD76D00ACE036 /* it */,
+				57ED31511FFD892600F16CAD /* pt */,
 			);
 			name = EditorView.storyboard;
 			sourceTree = "<group>";
@@ -3211,6 +3288,7 @@
 				2AA0AC651A2876EC0063ED1B /* zh-Hans */,
 				2A6907771B8443AB00D0F3A2 /* de */,
 				2A401FE11D9AD77000ACE036 /* it */,
+				57ED31701FFD892900F16CAD /* pt */,
 			);
 			name = ColorCodePanelAccessory.xib;
 			sourceTree = "<group>";
@@ -3223,6 +3301,7 @@
 				2A6602D31D05BD86003E8D87 /* zh-Hans */,
 				2A6602D41D05BD88003E8D87 /* de */,
 				2A401FBB1D9AD76C00ACE036 /* it */,
+				57ED314E1FFD892600F16CAD /* pt */,
 			);
 			name = DocumentWindow.storyboard;
 			sourceTree = "<group>";
@@ -3235,6 +3314,7 @@
 				2A6602E81D05DF85003E8D87 /* zh-Hans */,
 				2A6602EA1D05DF87003E8D87 /* de */,
 				2A401FC31D9AD76D00ACE036 /* it */,
+				57ED31561FFD892700F16CAD /* pt */,
 			);
 			name = GoToLineView.xib;
 			sourceTree = "<group>";
@@ -3247,6 +3327,7 @@
 				2A7FD3541C54B1B400CE8566 /* zh-Hans */,
 				2A7FD3551C54B87A00CE8566 /* de */,
 				2A401FBA1D9AD76C00ACE036 /* it */,
+				57ED314D1FFD892600F16CAD /* pt */,
 			);
 			name = FindPreferencesView.xib;
 			sourceTree = "<group>";
@@ -3259,6 +3340,7 @@
 				2A80C6611CEE351400AA664D /* de */,
 				2A401FE21D9AD77400ACE036 /* it */,
 				2AF4F57F1DE60B4200703525 /* zh-Hans */,
+				57ED31751FFD892900F16CAD /* pt */,
 			);
 			name = Credits.html;
 			sourceTree = "<group>";
@@ -3269,6 +3351,7 @@
 				2A80C6671CEE540F00AA664D /* en */,
 				2A80C66A1CEE541400AA664D /* ja */,
 				2A80C66B1CEE541600AA664D /* zh-Hans */,
+				57ED31761FFD892900F16CAD /* pt */,
 			);
 			name = Acknowledgments.html;
 			sourceTree = "<group>";
@@ -3289,6 +3372,7 @@
 				2A836F8A1D5734840044E8EC /* zh-Hans */,
 				2A836F8B1D5734870044E8EC /* de */,
 				2A401FB61D9AD76C00ACE036 /* it */,
+				57ED314A1FFD892600F16CAD /* pt */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -3300,6 +3384,7 @@
 				2AA2E0151BFE14310087BDD6 /* zh-Hans */,
 				2AA2E0161BFE14320087BDD6 /* de */,
 				2A401FE81D9AF7CA00ACE036 /* it */,
+				57ED31741FFD892900F16CAD /* pt */,
 			);
 			name = Unicode.strings;
 			sourceTree = "<group>";
@@ -3320,6 +3405,7 @@
 				2A10D0FA1E7085270027192A /* zh-Hans */,
 				2A10D0FB1E7085290027192A /* de */,
 				2A10D0FC1E70852B0027192A /* it */,
+				57ED31591FFD892700F16CAD /* pt */,
 			);
 			name = GeneralPane.storyboard;
 			sourceTree = "<group>";
@@ -3332,6 +3418,7 @@
 				2ADF3C041E6D82E4009125BB /* zh-Hans */,
 				2ADF3C051E6D82E7009125BB /* de */,
 				2ADF3C061E6D82EA009125BB /* it */,
+				57ED315E1FFD892700F16CAD /* pt */,
 			);
 			name = FileDropPane.storyboard;
 			sourceTree = "<group>";
@@ -3344,6 +3431,7 @@
 				2ADF3C151E6D8780009125BB /* zh-Hans */,
 				2ADF3C161E6D8783009125BB /* de */,
 				2ADF3C171E6D8785009125BB /* it */,
+				57ED31611FFD892800F16CAD /* pt */,
 			);
 			name = IntegrationPane.storyboard;
 			sourceTree = "<group>";
@@ -3356,6 +3444,7 @@
 				2AE12E101E7DE9A000681F72 /* zh-Hans */,
 				2AE12E121E7DE9A100681F72 /* de */,
 				2AE12E141E7DE9A200681F72 /* it */,
+				57ED31571FFD892700F16CAD /* pt */,
 			);
 			name = CustomSurroundStringView.storyboard;
 			sourceTree = "<group>";
@@ -3367,6 +3456,7 @@
 				2AF5C3BF1A5510F600C972B5 /* zh-Hans */,
 				2A69077B1B8443AB00D0F3A2 /* de */,
 				2A401FE61D9AEEB700ACE036 /* it */,
+				57ED31721FFD892900F16CAD /* pt */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3379,6 +3469,7 @@
 				2AA0AC681A2877040063ED1B /* zh-Hans */,
 				2A6907741B8443AB00D0F3A2 /* de */,
 				2A401FDF1D9AD77000ACE036 /* it */,
+				57ED316E1FFD892900F16CAD /* pt */,
 			);
 			name = OpacityPanel.xib;
 			sourceTree = "<group>";
@@ -3391,6 +3482,7 @@
 				2AA0AC5C1A2876740063ED1B /* zh-Hans */,
 				2A6907601B8443AA00D0F3A2 /* de */,
 				2A401FBF1D9AD76D00ACE036 /* it */,
+				57ED31521FFD892600F16CAD /* pt */,
 			);
 			name = OpenDocumentAccessory.xib;
 			sourceTree = "<group>";
@@ -3403,6 +3495,7 @@
 				2AA0AC661A2876F40063ED1B /* zh-Hans */,
 				2A6907761B8443AB00D0F3A2 /* de */,
 				2A401FDE1D9AD77000ACE036 /* it */,
+				57ED316D1FFD892900F16CAD /* pt */,
 			);
 			name = ConsolePanel.xib;
 			sourceTree = "<group>";

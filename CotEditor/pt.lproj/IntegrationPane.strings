@@ -1,0 +1,24 @@
+
+/* Class = "NSTextFieldCell"; title = "Installed at /usr/local/bin/cot"; ObjectID = "05a-N1-Hsd"; */
+"05a-N1-Hsd.title" = "Instalada em /usr/local/bin/cot";
+
+/* Class = "NSViewController"; title = "Integration"; ObjectID = "NGa-54-JV0"; */
+"NGa-54-JV0.title" = "Integração";
+
+/* Class = "NSTextFieldCell"; title = "⚠️"; ObjectID = "Rh7-Oj-QlB"; */
+"Rh7-Oj-QlB.title" = "⚠️";
+
+/* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
+"c48-xK-Ag1.title" = "Com a ferramenta ‘cot’, você pode iniciar o CotEditor e abrir arquivos na linha de comando.";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "installed at %{value1}@"; ObjectID = "e2G-16-MxZ"; */
+"e2G-16-MxZ.ibShadowedDisplayPattern" = "instalada em %{value1}@";
+
+/* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
+"kQn-Uu-cqG.title" = "Ferramenta da linha de comando:";
+
+/* Class = "NSButtonCell"; title = "Learn More"; ObjectID = "ltN-wn-m8M"; */
+"ltN-wn-m8M.title" = "Mais Informações";
+
+/* Class = "NSTextFieldCell"; title = "Warning will be displayed here."; ObjectID = "xIr-1B-mk1"; */
+"xIr-1B-mk1.title" = "Um aviso será exibido aqui.";

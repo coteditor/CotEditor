@@ -1,0 +1,9 @@
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "58"; */
+"58.title" = "Cancelar";
+
+/* Class = "NSTextFieldCell"; title = "Please wait for a while."; ObjectID = "04u-QX-U6h"; */
+"04u-QX-U6h.title" = "Aguarde um momento.";
+
+/* Class = "NSTextFieldCell"; title = "Coloring text…"; ObjectID = "Ckd-Ag-fZZ"; */
+"Ckd-Ag-fZZ.title" = "Colorindo texto…";
