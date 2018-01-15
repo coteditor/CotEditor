@@ -57,13 +57,13 @@
 "P1I-gs-RgX.title" = "Ajuste de linhas:";
 
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
-"P9V-pV-PAX.title" = "espaço(s)";
+"P9V-pV-PAX.title" = "espaços";
 
 /* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
 "SqI-BC-ar9.title" = "Substituição:";
 
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
-"as9-us-CuG.title" = "espaço(s)";
+"as9-us-CuG.title" = "espaços";
 
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
 "c5j-0N-f2R.title" = "Palavras padrão";

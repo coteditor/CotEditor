@@ -111,7 +111,7 @@
 "Usu-Br-G0a.ibShadowedToolTip" = "Visite o URL";
 
 /* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
-"VLD-jj-zzl.title" = "vez(es)";
+"VLD-jj-zzl.title" = "vezes";
 
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "WNG-Ai-RdG"; */
 "WNG-Ai-RdG.title" = "Apagar";
