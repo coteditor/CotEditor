@@ -32,7 +32,7 @@
                                 <popUpButtonCell key="cell" type="push" title="Insert Variable" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" selectedItem="541" id="Akg-Ri-30c">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
-                                    <menu key="menu" title="OtherViews" showsStateColumn="NO" id="w2E-24-Qeh">
+                                    <menu key="menu" showsStateColumn="NO" id="w2E-24-Qeh">
                                         <items>
                                             <menuItem title="Insert Variable" hidden="YES" id="541"/>
                                         </items>

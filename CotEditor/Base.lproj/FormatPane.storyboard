@@ -41,7 +41,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="0uG-Is-WCI">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="7AU-kN-4zJ">
+                                    <menu key="menu" id="7AU-kN-4zJ">
                                         <items>
                                             <menuItem title="macOS / Unix (LF)" id="15"/>
                                             <menuItem title="Classic Mac OS (CR)" tag="1" id="14"/>
@@ -71,7 +71,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="7Jm-Ku-uiU">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="1lL-hx-ofE">
+                                    <menu key="menu" id="1lL-hx-ofE">
                                         <items>
                                             <menuItem title=" " id="TiL-29-Cjo"/>
                                         </items>
@@ -106,7 +106,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="pzk-U3-eHv">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="bX9-TD-b7t">
+                                    <menu key="menu" id="bX9-TD-b7t">
                                         <items>
                                             <menuItem title=" " id="DiC-wB-BHi"/>
                                         </items>
@@ -228,7 +228,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="smt-3X-ADr">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="f5Z-Wj-Ths">
+                                    <menu key="menu" id="f5Z-Wj-Ths">
                                         <items>
                                             <menuItem title=" " id="ALs-fV-C5A"/>
                                         </items>
@@ -310,7 +310,7 @@
                                 <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="yBI-dh-jpV">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="AYn-mG-LBH">
+                                    <menu key="menu" id="AYn-mG-LBH">
                                         <items>
                                             <menuItem title="Syntax Action" state="on" image="NSActionTemplate" hidden="YES" id="sRJ-x0-fo7"/>
                                             <menuItem title="Duplicate…" tag="1" id="A7t-Ca-nZi">
@@ -460,7 +460,7 @@
                     </declaredKeys>
                 </arrayController>
                 <userDefaultsController representsSharedInstance="YES" id="gLI-aU-mOo" userLabel="Shared User Defaults Controller"/>
-                <menu title="OtherViews" id="enl-Xp-NM4">
+                <menu id="enl-Xp-NM4">
                     <items>
                         <menuItem title="Edit…" id="371-P0-KPK">
                             <connections>

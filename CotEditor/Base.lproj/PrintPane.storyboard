@@ -30,7 +30,7 @@
                                 <popUpButtonCell key="cell" type="push" title="Same as Document’s Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="1354" id="RcI-6Q-ONB">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" autoenablesItems="NO" id="Fpq-nr-7RN">
+                                    <menu key="menu" autoenablesItems="NO" id="Fpq-nr-7RN">
                                         <items>
                                             <menuItem title="Black and White" id="1353">
                                                 <attributedString key="attributedTitle"/>
@@ -49,7 +49,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="R0d-ln-RzZ">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="szT-0b-MOf">
+                                    <menu key="menu" id="szT-0b-MOf">
                                         <items>
                                             <menuItem title="Don’t Print" id="952"/>
                                             <menuItem title="Same as Document’s Setting" id="953"/>
@@ -74,7 +74,7 @@
                                 <popUpButtonCell key="cell" type="push" title="Same as Document’s Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="947" id="guD-S3-rc0">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="QXA-FM-XhB">
+                                    <menu key="menu" id="QXA-FM-XhB">
                                         <items>
                                             <menuItem title="Don’t Print" id="946"/>
                                             <menuItem title="Same as Document’s Setting" state="on" id="947"/>
@@ -140,7 +140,7 @@
                                 <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="895" id="Sos-1f-I2b">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="RW9-bJ-NPD">
+                                    <menu key="menu" id="RW9-bJ-NPD">
                                         <items>
                                             <menuItem title="None" state="on" id="895"/>
                                             <menuItem isSeparatorItem="YES" id="8eh-Hv-vJ9">
@@ -190,7 +190,7 @@
                                 <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="plk-U5-NGA" id="cUP-ax-qGf">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="Pj9-MO-pKh">
+                                    <menu key="menu" id="Pj9-MO-pKh">
                                         <items>
                                             <menuItem title="None" id="906"/>
                                             <menuItem isSeparatorItem="YES" id="g6g-YF-fyF">
@@ -240,7 +240,7 @@
                                 <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="941" id="tRU-Ql-e0X">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="KMp-3h-V8O">
+                                    <menu key="menu" id="KMp-3h-V8O">
                                         <items>
                                             <menuItem title="None" state="on" id="941"/>
                                             <menuItem isSeparatorItem="YES" id="SnE-gM-Z3z">
@@ -264,7 +264,7 @@
                                 <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="dc6-yt-bjo">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="cgU-bb-y52">
+                                    <menu key="menu" id="cgU-bb-y52">
                                         <items>
                                             <menuItem title="None" state="on" id="927"/>
                                             <menuItem isSeparatorItem="YES" id="3bY-VC-rYe">

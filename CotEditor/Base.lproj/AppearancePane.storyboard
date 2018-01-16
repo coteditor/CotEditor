@@ -196,7 +196,7 @@
                                 <popUpButtonCell key="cell" type="smallSquare" title="Theme Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="LkE-Zl-odd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="HHh-e3-GD4">
+                                    <menu key="menu" id="HHh-e3-GD4">
                                         <items>
                                             <menuItem title="Theme Action" state="on" image="NSActionTemplate" hidden="YES" id="4m4-1Z-aml"/>
                                             <menuItem title="Rename" id="8h0-Xi-AHB">
@@ -323,7 +323,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="h49-8N-kkT">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="bZp-SX-ara">
+                                    <menu key="menu" id="bZp-SX-ara">
                                         <items>
                                             <menuItem title=" " id="zHn-8K-2Sn"/>
                                         </items>
@@ -348,7 +348,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="aNA-M8-4Ta">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="tGq-xE-d9W">
+                                    <menu key="menu" id="tGq-xE-d9W">
                                         <items>
                                             <menuItem title=" " id="Yeg-gd-tHm"/>
                                         </items>
@@ -414,7 +414,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="24l-rZ-Cgd">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
-                                    <menu key="menu" title="OtherViews" id="hJ1-Rg-86H">
+                                    <menu key="menu" id="hJ1-Rg-86H">
                                         <items>
                                             <menuItem title=" " id="NX2-CC-Q6m"/>
                                         </items>
@@ -439,7 +439,7 @@
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="j3x-qJ-uW6">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name="HiraKakuProN-W3"/>
-                                    <menu key="menu" title="OtherViews" id="FlE-m8-CGj">
+                                    <menu key="menu" id="FlE-m8-CGj">
                                         <items>
                                             <menuItem title=" " id="1Gs-Ea-ggU"/>
                                         </items>
