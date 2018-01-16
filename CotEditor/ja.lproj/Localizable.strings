@@ -470,7 +470,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %@" = "テキストを挿入%@";
+"Insert Text %li" = "テキストを挿入%li";
 
 // Keyboard key name
 "Space" = "スペース";

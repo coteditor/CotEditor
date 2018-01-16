@@ -469,7 +469,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %@" = "Text hinzufügen %@";
+"Insert Text %li" = "Text hinzufügen %li";
 
 // Keyboard key name
 "Space" = "Leertaste";

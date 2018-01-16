@@ -28,10 +28,10 @@
 
 // MARK: Dock Menu
 
-/* Class = "NSMenuItem"; title = "New"; ObjectID = "Dq1-kY-xVh"; */
-"Dq1-kY-xVh.title" = "Nuovo";
-/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "d1B-5p-GZQ"; */
-"d1B-5p-GZQ.title" = "Apri…";
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "qTb-gl-0V3"; */
+"qTb-gl-0V3.title" = "Nuovo";
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "I1W-t0-8TD"; */
+"I1W-t0-8TD.title" = "Apri…";
 
 
 

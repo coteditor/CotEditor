@@ -51,6 +51,7 @@ develop
 
 - Fix an issue where the word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly, and, therefore, a workaround was added on CotEditor 3.2.3.
 - Fix an issue where the editing state dots in the installed style list was not updated after editing syntax style.
+- Fix some unlocalized text.
 
 
 

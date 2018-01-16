@@ -470,7 +470,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %@" = "Inserir Texto %@";
+"Insert Text %li" = "Inserir Texto %li";
 
 // Keyboard key name
 "Space" = "Espaço";

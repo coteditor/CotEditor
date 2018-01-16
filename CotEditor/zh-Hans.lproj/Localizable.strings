@@ -470,7 +470,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %@" = "插入文本 %@";
+"Insert Text %li" = "插入文本 %li";
 
 // Keyboard key name
 "Space" = "空格键";
