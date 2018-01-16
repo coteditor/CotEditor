@@ -106,14 +106,3 @@
 "CPd-0W-bKv.headerCell.title" = "Riga";
 /* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
 "PJ8-wp-pdK.headerCell.title" = "Stringa trovata";
-
-/* Class = "NSButtonCell"; title = "Live Update"; ObjectID = "pqE-XD-1Fq"; */
-"pqE-XD-1Fq.title" = "Aggiornamento automatico";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to update find result when document is edited."; ObjectID = "PEV-3w-HeQ"; */
-"PEV-3w-HeQ.ibShadowedToolTip" = "Seleziona per aggiornare i risultati di ricerca quando il documento viene modificato.";
-
-
-// Regex Quick Reference
-
-/* Class = "IBNSViewController"; title = "Quick Reference of Regular Expression"; ObjectID = "uMF-F8-Wjs"; */
-"uMF-F8-Wjs.title" = "Riferimento rapido ad un’espressione regolare";

@@ -27,59 +27,38 @@
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "6"; */
 "6.title" = "Preferências";
 
-/* Class = "NSToolbarItem"; label = "File Drop"; ObjectID = "0c4-Jh-Er6"; */
-"0c4-Jh-Er6.label" = "Arquivos Soltos";
-
-/* Class = "NSToolbarItem"; paletteLabel = "File Drop"; ObjectID = "0c4-Jh-Er6"; */
-"0c4-Jh-Er6.paletteLabel" = "Arquivos Soltos";
-
-/* Class = "NSToolbarItem"; label = "Integration"; ObjectID = "Bn7-e8-FVC"; */
-"Bn7-e8-FVC.label" = "Integração";
-
-/* Class = "NSToolbarItem"; paletteLabel = "Integration"; ObjectID = "Bn7-e8-FVC"; */
-"Bn7-e8-FVC.paletteLabel" = "Integração";
-
 /* Class = "NSToolbarItem"; label = "General"; ObjectID = "HlR-fr-Hwd"; */
 "HlR-fr-Hwd.label" = "Geral";
-
-/* Class = "NSToolbarItem"; paletteLabel = "General"; ObjectID = "HlR-fr-Hwd"; */
 "HlR-fr-Hwd.paletteLabel" = "Geral";
-
-/* Class = "NSToolbarItem"; label = "Format"; ObjectID = "Pxf-UL-fD9"; */
-"Pxf-UL-fD9.label" = "Formato";
-
-/* Class = "NSToolbarItem"; paletteLabel = "Format"; ObjectID = "Pxf-UL-fD9"; */
-"Pxf-UL-fD9.paletteLabel" = "Formato";
-
-/* Class = "NSToolbarItem"; label = "Appearance"; ObjectID = "TSL-LZ-a98"; */
-"TSL-LZ-a98.label" = "Aparência";
-
-/* Class = "NSToolbarItem"; paletteLabel = "Appearance"; ObjectID = "TSL-LZ-a98"; */
-"TSL-LZ-a98.paletteLabel" = "Aparência";
-
-/* Class = "NSToolbarItem"; label = "Key Bindings"; ObjectID = "WSf-8J-dN6"; */
-"WSf-8J-dN6.label" = "Atalhos";
-
-/* Class = "NSToolbarItem"; paletteLabel = "Key Bindings"; ObjectID = "WSf-8J-dN6"; */
-"WSf-8J-dN6.paletteLabel" = "Atalhos";
 
 /* Class = "NSToolbarItem"; label = "Window"; ObjectID = "agm-iM-Y3j"; */
 "agm-iM-Y3j.label" = "Janela";
-
-/* Class = "NSToolbarItem"; paletteLabel = "Window"; ObjectID = "agm-iM-Y3j"; */
 "agm-iM-Y3j.paletteLabel" = "Janela";
+
+/* Class = "NSToolbarItem"; label = "Appearance"; ObjectID = "TSL-LZ-a98"; */
+"TSL-LZ-a98.label" = "Aparência";
+"TSL-LZ-a98.paletteLabel" = "Aparência";
 
 /* Class = "NSToolbarItem"; label = "Edit"; ObjectID = "bYW-oU-kKx"; */
 "bYW-oU-kKx.label" = "Edição";
-
-/* Class = "NSToolbarItem"; paletteLabel = "Edit"; ObjectID = "bYW-oU-kKx"; */
 "bYW-oU-kKx.paletteLabel" = "Edição";
 
-/* Class = "NSTextFieldCell"; title = "No Pane is Selected."; ObjectID = "iXM-53-nYK"; */
-"iXM-53-nYK.title" = "Nenhum Painel Selecionado.";
+/* Class = "NSToolbarItem"; label = "Format"; ObjectID = "Pxf-UL-fD9"; */
+"Pxf-UL-fD9.label" = "Formato";
+"Pxf-UL-fD9.paletteLabel" = "Formato";
+
+/* Class = "NSToolbarItem"; label = "File Drop"; ObjectID = "0c4-Jh-Er6"; */
+"0c4-Jh-Er6.label" = "Arquivos Soltos";
+"0c4-Jh-Er6.paletteLabel" = "Arquivos Soltos";
+
+/* Class = "NSToolbarItem"; label = "Key Bindings"; ObjectID = "WSf-8J-dN6"; */
+"WSf-8J-dN6.label" = "Atalhos";
+"WSf-8J-dN6.paletteLabel" = "Atalhos";
 
 /* Class = "NSToolbarItem"; label = "Print"; ObjectID = "uTl-fL-Jcq"; */
 "uTl-fL-Jcq.label" = "Impressão";
-
-/* Class = "NSToolbarItem"; paletteLabel = "Print"; ObjectID = "uTl-fL-Jcq"; */
 "uTl-fL-Jcq.paletteLabel" = "Impressão";
+
+/* Class = "NSToolbarItem"; label = "Integration"; ObjectID = "Bn7-e8-FVC"; */
+"Bn7-e8-FVC.label" = "Integração";
+"Bn7-e8-FVC.paletteLabel" = "Integração";

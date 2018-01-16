@@ -58,7 +58,3 @@
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "拡張子が選択されていません。";
-
-
-/* Class = "NSViewController"; title = "Glossary"; ObjectID = "La6-Dq-gq6"; */
-"La6-Dq-gq6.title" = "用語説明";

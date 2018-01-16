@@ -24,26 +24,11 @@
 // limitations under the License.
 //
 
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "3kK-Ug-bH8"; */
-"3kK-Ug-bH8.ibShadowedIsNilPlaceholder" = "Código inválido";
-
-/* Class = "NSTextFieldCell"; title = "😀"; ObjectID = "Jmp-rG-pGZ"; */
-"Jmp-rG-pGZ.title" = "😀";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "U+1F600"; ObjectID = "Lk1-2Z-Zx5"; */
-"Lk1-2Z-Zx5.ibShadowedIsNilPlaceholder" = "U+1F600";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "⬚"; ObjectID = "PG0-CO-irt"; */
-"PG0-CO-irt.ibShadowedIsNilPlaceholder" = "⬚";
-
 /* Class = "NSWindow"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
 "Y41-ro-Xeo.title" = "Inserir Unicode";
-
-/* Class = "NSTextFieldCell"; placeholderString = "U+1F600"; ObjectID = "n75-u3-Rt4"; */
-"n75-u3-Rt4.placeholderString" = "U+1F600";
 
 /* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
 "rfS-Rp-Al4.title" = "Inserir";
 
-/* Class = "NSTextFieldCell"; title = "GRINNING FACE"; ObjectID = "uTL-Ct-HCw"; */
-"uTL-Ct-HCw.title" = "ROSTO GARGALHANDO";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "3kK-Ug-bH8"; */
+"3kK-Ug-bH8.ibShadowedIsNilPlaceholder" = "Código inválido";

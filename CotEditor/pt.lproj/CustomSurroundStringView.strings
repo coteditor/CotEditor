@@ -24,17 +24,15 @@
 // limitations under the License.
 //
 
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "9Pu-Ep-7fQ"; */
-"9Pu-Ep-7fQ.title" = "OK";
-
-/* Class = "NSTextFieldCell"; title = "Begin:"; ObjectID = "Gyd-g5-olo"; */
-"Gyd-g5-olo.title" = "Início:";
-
-/* Class = "NSTextFieldCell"; title = "End:"; ObjectID = "I9c-rv-hHo"; */
-"I9c-rv-hHo.title" = "Fim:";
-
 /* Class = "NSTextFieldCell"; title = "Surround With:"; ObjectID = "rgF-DI-5tb"; */
 "rgF-DI-5tb.title" = "Colocar entre:";
 
+/* Class = "NSTextFieldCell"; title = "Begin:"; ObjectID = "Gyd-g5-olo"; */
+"Gyd-g5-olo.title" = "Início:";
+/* Class = "NSTextFieldCell"; title = "End:"; ObjectID = "I9c-rv-hHo"; */
+"I9c-rv-hHo.title" = "Fim:";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "9Pu-Ep-7fQ"; */
+"9Pu-Ep-7fQ.title" = "OK";
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "xm5-Ft-kfG"; */
 "xm5-Ft-kfG.title" = "Cancelar";

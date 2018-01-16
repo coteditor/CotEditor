@@ -24,29 +24,14 @@
 // limitations under the License.
 //
 
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
-"985.title" = "OK";
-
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
-"986.title" = "Cancelar";
-
 /* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
 "987.title" = "Nome do Estilo:";
-
 /* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
 "988.placeholderString" = "Nome do Estilo";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
 "1020.title" = "Restaurar Padrões";
-
-/* Class = "NSTextFieldCell"; title = "Keywords"; ObjectID = "2yS-5b-mse"; */
-"2yS-5b-mse.title" = "Palavras-chave";
-
-/* Class = "NSBox"; title = "Box"; ObjectID = "WhA-dU-Us9"; */
-"WhA-dU-Us9.title" = "Box";
-
-/* Class = "NSTextFieldCell"; title = "message"; ObjectID = "d7M-En-Qx0"; */
-"d7M-En-Qx0.title" = "mensagem";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hXg-gA-Vm1"; */
-"hXg-gA-Vm1.title" = "Text Cell";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
+"986.title" = "Cancelar";
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
+"985.title" = "OK";

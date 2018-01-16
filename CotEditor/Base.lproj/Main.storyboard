@@ -231,7 +231,7 @@ Gw
                                         <menuItem isSeparatorItem="YES" id="630">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Input Backslash" keyEquivalent="¥" toolTip="Opt + ¥" id="631">
+                                        <menuItem title="Input Backslash" keyEquivalent="¥" id="631">
                                             <connections>
                                                 <action selector="inputBackSlash:" target="Ady-hI-5gd" id="PpN-Zj-7Zc"/>
                                             </connections>

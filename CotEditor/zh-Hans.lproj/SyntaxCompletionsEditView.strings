@@ -26,7 +26,6 @@
  
  */
 
-
 /* Class = "NSTextFieldCell"; title = "If no word, the completion list will be generated from coloring settings."; ObjectID = "fJg-PK-TBB"; */
 "fJg-PK-TBB.title" = "如果没有单词，补全列表将由高亮设置生成。";
 

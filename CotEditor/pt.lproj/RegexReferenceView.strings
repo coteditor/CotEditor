@@ -24,152 +24,54 @@
 // limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "any character not in range A to Z"; ObjectID = "11L-Hs-8G7"; */
-"11L-Hs-8G7.title" = "qualquer caractere fora de A a Z";
-
-/* Class = "NSTextFieldCell"; title = "\\b"; ObjectID = "2fg-te-3Sk"; */
-"2fg-te-3Sk.title" = "\\b";
-
-/* Class = "NSTextFieldCell"; title = "0 or more times"; ObjectID = "2wE-GY-9nf"; */
-"2wE-GY-9nf.title" = "0 ou mais vezes";
-
-/* Class = "NSTextFieldCell"; title = "$1"; ObjectID = "37c-Mt-3AX"; */
-"37c-Mt-3AX.title" = "$1";
-
-/* Class = "NSTextFieldCell"; title = "Characters"; ObjectID = "3AR-qs-5m4"; */
-"3AR-qs-5m4.title" = "Caracteres";
-
-/* Class = "NSTextFieldCell"; title = "[A-Z]"; ObjectID = "4cH-fK-4WZ"; */
-"4cH-fK-4WZ.title" = "[A-Z]";
-
-/* Class = "NSTextFieldCell"; title = "\\d"; ObjectID = "5iA-qe-yC9"; */
-"5iA-qe-yC9.title" = "\\d";
-
-/* Class = "NSTextFieldCell"; title = "\\w"; ObjectID = "6O5-G6-jv3"; */
-"6O5-G6-jv3.title" = "\\w";
-
-/* Class = "NSTextFieldCell"; title = "\\n"; ObjectID = "6aw-MN-rcW"; */
-"6aw-MN-rcW.title" = "\\n";
-
-/* Class = "NSTextFieldCell"; title = "look-ahead"; ObjectID = "8Hg-0T-mMw"; */
-"8Hg-0T-mMw.title" = "lookahead";
-
-/* Class = "NSTextFieldCell"; title = "Anchors"; ObjectID = "8WL-Ap-X8c"; */
-"8WL-Ap-X8c.title" = "Âncoras";
-
-/* Class = "NSTextFieldCell"; title = "new line character"; ObjectID = "9KK-2o-0gf"; */
-"9KK-2o-0gf.title" = "caractere de nova linha";
-
-/* Class = "NSTextFieldCell"; title = "{n}"; ObjectID = "C4f-qV-YRk"; */
-"C4f-qV-YRk.title" = "{n}";
-
-/* Class = "NSTextFieldCell"; title = "[^A-Z]"; ObjectID = "CHS-sc-u1o"; */
-"CHS-sc-u1o.title" = "[^A-Z]";
-
-/* Class = "NSTextFieldCell"; title = "Back Reference"; ObjectID = "EwZ-Li-jaY"; */
-"EwZ-Li-jaY.title" = "Referência Inversa";
-
-/* Class = "NSTextFieldCell"; title = "look-behind"; ObjectID = "Fic-V5-VYk"; */
-"Fic-V5-VYk.title" = "lookbehind";
-
-/* Class = "NSTextFieldCell"; title = "at least n but not more than m times"; ObjectID = "H6L-Hz-GQ7"; */
-"H6L-Hz-GQ7.title" = "ao menos n, mas não mais que m vezes";
-
-/* Class = "NSTextFieldCell"; title = "tab character"; ObjectID = "IEP-BD-aIL"; */
-"IEP-BD-aIL.title" = "caractere de tabulação";
-
-/* Class = "NSTextFieldCell"; title = "word character"; ObjectID = "KDl-AT-6pW"; */
-"KDl-AT-6pW.title" = "caractere de palavra";
-
-/* Class = "NSTextFieldCell"; title = "$"; ObjectID = "KRc-Vi-aQX"; */
-"KRc-Vi-aQX.title" = "$";
-
-/* Class = "NSTextFieldCell"; title = "beginning of the line"; ObjectID = "KTm-Ze-veX"; */
-"KTm-Ze-veX.title" = "início da linha";
-
-/* Class = "NSTextFieldCell"; title = "first match"; ObjectID = "LXc-Qv-9sn"; */
-"LXc-Qv-9sn.title" = "primeira ocorrência";
-
-/* Class = "NSTextFieldCell"; title = "at least n times"; ObjectID = "MFd-BY-MC4"; */
-"MFd-BY-MC4.title" = "ao menos n vezes";
-
-/* Class = "NSTextFieldCell"; title = "word boundary"; ObjectID = "PTJ-Gu-IWW"; */
-"PTJ-Gu-IWW.title" = "limite da palavra";
-
 /* Class = "NSTextFieldCell"; title = "Basic Regular Expression Syntax"; ObjectID = "QgQ-JJ-6Nx"; */
 "QgQ-JJ-6Nx.title" = "Sintaxe Básica de Expressões Regulares";
 
-/* Class = "NSTextFieldCell"; title = "Extended Groups"; ObjectID = "RAi-kK-gW5"; */
-"RAi-kK-gW5.title" = "Grupos Ampliados";
 
-/* Class = "NSTextFieldCell"; title = "any character"; ObjectID = "RD2-4i-6hI"; */
-"RD2-4i-6hI.title" = "qualquer caractere";
 
-/* Class = "NSTextFieldCell"; title = "."; ObjectID = "RfO-JV-2MY"; */
-"RfO-JV-2MY.title" = ".";
+/* Note: All of the following elements are NSTextFieldCell. */
 
-/* Class = "NSTextFieldCell"; title = "\\S"; ObjectID = "ST8-6j-BN5"; */
-"ST8-6j-BN5.title" = "\\S";
+"3AR-qs-5m4.title" = "Caracteres";  // "Characters"
 
-/* Class = "NSTextFieldCell"; title = "{n,}"; ObjectID = "TXQ-3i-doh"; */
-"TXQ-3i-doh.title" = "{n,}";
+"RD2-4i-6hI.title" = "qualquer caractere";  // "any character"
+"9KK-2o-0gf.title" = "caractere de nova linha";  // "new line character"
+"IEP-BD-aIL.title" = "caractere de tabulação";  // "tab character"
+"KDl-AT-6pW.title" = "caractere de palavra";  // "word character"
+"Xh9-Al-Lgr.title" = "caractere de espaço em branco";  // "whitespace character"
+"nh9-3w-PRK.title" = "caractere de espaço não em branco";  // "non whitespace character"
+"U6Y-db-fiT.title" = "número decimal";  // "decimal number"
+"Ufv-VB-C8Z.title" = "qualquer caractere entre A e Z";  // "any character in range A to Z"
+"11L-Hs-8G7.title" = "qualquer caractere fora de A a Z";  // "any character not in range A to Z"
 
-/* Class = "NSTextFieldCell"; title = "{n,m}"; ObjectID = "TzS-HE-YVL"; */
-"TzS-HE-YVL.title" = "{n,m}";
 
-/* Class = "NSTextFieldCell"; title = "decimal number"; ObjectID = "U6Y-db-fiT"; */
-"U6Y-db-fiT.title" = "número decimal";
 
-/* Class = "NSTextFieldCell"; title = "+"; ObjectID = "UaK-vo-LEM"; */
-"UaK-vo-LEM.title" = "+";
+"8WL-Ap-X8c.title" = "Âncoras";  // "Anchors"
 
-/* Class = "NSTextFieldCell"; title = "any character in range A to Z"; ObjectID = "Ufv-VB-C8Z"; */
-"Ufv-VB-C8Z.title" = "qualquer caractere entre A e Z";
+"KTm-Ze-veX.title" = "início da linha";  // "beginning of the line"
+"aka-du-qpm.title" = "final da linha";  // "end of the line"
+"PTJ-Gu-IWW.title" = "limite da palavra";  // "word boundary"
 
-/* Class = "NSTextFieldCell"; title = "\\s"; ObjectID = "UwJ-Ce-zUV"; */
-"UwJ-Ce-zUV.title" = "\\s";
 
-/* Class = "NSTextFieldCell"; title = "?"; ObjectID = "WL2-mH-yEb"; */
-"WL2-mH-yEb.title" = "?";
 
-/* Class = "NSTextFieldCell"; title = "1 or more times"; ObjectID = "Woe-Vu-PcP"; */
-"Woe-Vu-PcP.title" = "1 ou mais vezes";
+"nVK-6t-0P3.title" = "Quantificadores";  // "Quantifier"
 
-/* Class = "NSTextFieldCell"; title = "whitespace character"; ObjectID = "Xh9-Al-Lgr"; */
-"Xh9-Al-Lgr.title" = "caractere de espaço em branco";
+"w4Q-Z2-YET.title" = "1 ou 0 vez";  // "1 or 0 times"
+"2wE-GY-9nf.title" = "0 ou mais vezes";  // "0 or more times"
+"Woe-Vu-PcP.title" = "1 ou mais vezes";  // "1 or more times"
+"H6L-Hz-GQ7.title" = "ao menos n, mas não mais que m vezes";  // "at least n but not more than m times"
+"MFd-BY-MC4.title" = "ao menos n vezes";  // "at least n times"
+"ga2-ht-6SL.title" = "ao menos 0, mas não mais que n vezes";  // "at least 0 but not more than n times"
+"akB-l0-a4P.title" = "n vezes";  // "n times"
 
-/* Class = "NSTextFieldCell"; title = "n times"; ObjectID = "akB-l0-a4P"; */
-"akB-l0-a4P.title" = "n vezes";
 
-/* Class = "NSTextFieldCell"; title = "end of the line"; ObjectID = "aka-du-qpm"; */
-"aka-du-qpm.title" = "final da linha";
 
-/* Class = "NSTextFieldCell"; title = "at least 0 but not more than n times"; ObjectID = "ga2-ht-6SL"; */
-"ga2-ht-6SL.title" = "ao menos 0, mas não mais que n vezes";
+"RAi-kK-gW5.title" = "Grupos Ampliados";  // "Extended Groups"
 
-/* Class = "NSTextFieldCell"; title = "\\t"; ObjectID = "hAV-f7-RDN"; */
-"hAV-f7-RDN.title" = "\\t";
+"8Hg-0T-mMw.title" = "lookahead";  // "look-ahead"
+"Fic-V5-VYk.title" = "lookbehind";  // "look-behind"
 
-/* Class = "NSTextFieldCell"; title = "(?=subexp)"; ObjectID = "kZi-bN-knc"; */
-"kZi-bN-knc.title" = "(?=subexp)";
 
-/* Class = "NSTextFieldCell"; title = "{,n}"; ObjectID = "kzW-hP-Q0L"; */
-"kzW-hP-Q0L.title" = "{,n}";
 
-/* Class = "NSTextFieldCell"; title = "^"; ObjectID = "l6b-ip-F9S"; */
-"l6b-ip-F9S.title" = "^";
+"EwZ-Li-jaY.title" = "Referência Inversa";  // "Back Reference"
 
-/* Class = "NSTextFieldCell"; title = "(?<=subexp)"; ObjectID = "mXU-nJ-Sd4"; */
-"mXU-nJ-Sd4.title" = "(?<=subexp)";
-
-/* Class = "NSTextFieldCell"; title = "Quantifier"; ObjectID = "nVK-6t-0P3"; */
-"nVK-6t-0P3.title" = "Quantificadores";
-
-/* Class = "NSTextFieldCell"; title = "non whitespace character"; ObjectID = "nh9-3w-PRK"; */
-"nh9-3w-PRK.title" = "caractere de espaço não em branco";
-
-/* Class = "NSTextFieldCell"; title = "*"; ObjectID = "pGs-9L-hKK"; */
-"pGs-9L-hKK.title" = "*";
-
-/* Class = "NSTextFieldCell"; title = "1 or 0 times"; ObjectID = "w4Q-Z2-YET"; */
-"w4Q-Z2-YET.title" = "1 ou 0 vez";
+"LXc-Qv-9sn.title" = "primeira ocorrência";  // "first match"

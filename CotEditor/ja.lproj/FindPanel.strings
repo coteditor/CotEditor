@@ -106,14 +106,3 @@
 "CPd-0W-bKv.headerCell.title" = "行";
 /* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
 "PJ8-wp-pdK.headerCell.title" = "文字列";
-
-/* Class = "NSButtonCell"; title = "Live Update"; ObjectID = "pqE-XD-1Fq"; */
-"pqE-XD-1Fq.title" = "自動更新";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to update find result when document is edited."; ObjectID = "PEV-3w-HeQ"; */
-"PEV-3w-HeQ.ibShadowedToolTip" = "選択すると、書類が編集されたときにリストを自動で更新";
-
-
-// Regex Quick Reference
-
-/* Class = "IBNSViewController"; title = "Quick Reference of Regular Expression"; ObjectID = "uMF-F8-Wjs"; */
-"uMF-F8-Wjs.title" = "正規表現クイックリファレンス";

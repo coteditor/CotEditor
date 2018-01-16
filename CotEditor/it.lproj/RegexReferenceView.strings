@@ -36,7 +36,7 @@
 "3AR-qs-5m4.title" = "Caratteri";  // "Characters"
 
 "RD2-4i-6hI.title" = "Qualsiasi carattere";  // "any character"
-"9KK-2o-0gf.title" = "Carattere a capo (nuova riga))";  // "new line character"
+"9KK-2o-0gf.title" = "Carattere a capo (nuova riga)";  // "new line character"
 "IEP-BD-aIL.title" = "Carattere Tabulazione";  // "tab character"
 "KDl-AT-6pW.title" = "Carattere parola";  // "word character"
 "Xh9-Al-Lgr.title" = "Carattere spazio bianco";  // "whitespace character"
