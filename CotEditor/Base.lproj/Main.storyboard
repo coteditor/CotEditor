@@ -362,7 +362,7 @@ Gw
                                                             <action selector="changeLineEnding:" target="Ady-hI-5gd" id="9Kc-CI-vbM"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Windows (CR/LF)" tag="2" id="298">
+                                                    <menuItem title="Windows (CRLF)" tag="2" id="298">
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="Ady-hI-5gd" id="qZo-Oc-YV1"/>
                                                         </connections>

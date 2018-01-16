@@ -34,8 +34,8 @@
 "YT7-vd-3ih.title" = "LF";
 /* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
 "J48-tF-WBo.title" = "CR";
-/* Class = "NSMenuItem"; title = "CR / LF"; ObjectID = "Zo1-Cc-YBm"; */
-"Zo1-Cc-YBm.title" = "CR / LF";
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
 
 /* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
 "YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";

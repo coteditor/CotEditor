@@ -30,8 +30,8 @@
 "15.title" = "macOS/Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
 "14.title" = "Mac OS Clássico (CR)";
-/* Class = "NSMenuItem"; title = "Windows (CR/LF)"; ObjectID = "12"; */
-"12.title" = "Windows (CR/LF)";
+/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "12"; */
+"12.title" = "Windows (CRLF)";
 
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "Codificação padrão:";

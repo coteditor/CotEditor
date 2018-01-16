@@ -201,8 +201,8 @@
 "295.title" = "macOS / Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "297"; */
 "297.title" = "Classic Mac OS (CR)";
-/* Class = "NSMenuItem"; title = "Windows (CR/LF)"; ObjectID = "298"; */
-"298.title" = "Windows (CR/LF)";
+/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
+"298.title" = "Windows (CRLF)";
 
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "299"; */
 "299.title" = "文件编码";

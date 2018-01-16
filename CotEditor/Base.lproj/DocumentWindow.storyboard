@@ -39,7 +39,7 @@
                                                             <action selector="changeLineEnding:" target="klO-m3-n5X" id="jwd-mj-L9c"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="CR / LF" tag="2" toolTip="Windows" id="Zo1-Cc-YBm">
+                                                    <menuItem title="CRLF" tag="2" toolTip="Windows" id="Zo1-Cc-YBm">
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="klO-m3-n5X" id="95s-4v-57Y"/>
                                                         </connections>
