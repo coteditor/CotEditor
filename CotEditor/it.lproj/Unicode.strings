@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@
 // Variation selectors
 "Emoji Style" = "Stile Emoji";
 "Text Style" = "Stile Testo";
-" I-II" = "Tono Pelle I-II";
+"Skin Tone I-II" = "Tono Pelle I-II";
 "Skin Tone III" = "Tono Pelle III";
 "Skin Tone IV" = "Tono Pelle IV";
 "Skin Tone V" = "Tono Pelle V";
