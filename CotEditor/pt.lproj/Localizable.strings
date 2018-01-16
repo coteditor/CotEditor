@@ -5,13 +5,12 @@
  CotEditor
  https://coteditor.com
  
- Created by nakamuxu on 2004-12-20.
+ Created by BR Lingo on 2018-01-15.
  Localized by BR Lingo
  
  ------------------------------------------------------------------------------
  
- © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,9 +38,8 @@
 
 
 // Share menu
+"Share" = "Compartilhar";
 "No Document" = "Nenhum Documento";
-"File" = "Arquivo";
-"Text" = "Texto";
 
 
 
@@ -221,7 +219,7 @@
 // Undo action names
 "Replace Text" = "Substituir Texto";
 "Insert Text" = "Inserir Texto";
-"Insert Custom Text" = "Inserir Texto Personalizado";
+"Insert Snippet" = "Inserir Texto Personalizado";  // FIXME: updated
 "Shift Right" = "Deslocar à Direita";
 "Shift Left" = "Deslocar à Esquerda";
 "Convert Indentation" = "Converter Recuo";
@@ -415,7 +413,7 @@
 "“%@” couldn’t be imported." = "“%@” não pôde ser importado.";
 "No original file for “%@” was found." = "O arquivo original de “%@” não foi encontrado.";
 
-// Setting file name warnings
+// Setting filename warnings
 "Please choose another name." = "Escolha outro nome.";
 "Name can’t be empty." = "O nome não pode estar vazio.";
 "You can’t use a name that contains “/”." = "Nomes que contêm “/” não podem ser usados.";
@@ -454,8 +452,8 @@
 "Begin string" = "String inicial";
 "End string" = "String final";
 "Regular expression" = "Expressão regular";
-"multiple registered." = "multiple registered.";
-"Regex Error: " = "Erro de Regex: ";
+"The same word is registered multiple times." = "The same word is registered multiple times.";  // FIXME: updated
+"Regular Expression Error: " = "Erro de Regex: ";  // FIXME: updated
 
 
 
