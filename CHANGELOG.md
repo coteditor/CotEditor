@@ -18,6 +18,7 @@ develop
     - Enable sharing a document that has not been saved yet.
     - Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu.).
     - Other small improvements.
+- Add Portuguese localization (thanks to BR Lingo!).
 
 
 ### Improvements
