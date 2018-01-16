@@ -242,6 +242,16 @@
 
 /* Class = "NSMenuItem"; title = "Wrap Lines"; ObjectID = "286"; */
 "286.title" = "Zeilen umbrechen";
+
+/* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
+"mEh-BD-ZlV.title" = "Richtung beim Schreiben";
+/* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "hxr-2A-KYT"; */
+"hxr-2A-KYT.title" = "Richtung beim Schreiben";
+/* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "7pw-5S-ekC"; */
+"7pw-5S-ekC.title" = "Von links nach rechts";
+/* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "clG-Ph-Iyz"; */
+"clG-Ph-Iyz.title" = "Von rechts nach links";
+
 /* Class = "NSMenuItem"; title = "Use Vertical Orientation"; ObjectID = "bTd-nG-jjc"; */
 "bTd-nG-jjc.title" = "Vertikal Orientierung verwenden";
 

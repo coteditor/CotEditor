@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -199,6 +199,15 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             
         case #selector(toggleAutoTabExpand):
             menuItem.state = self.isAutoTabExpandEnabled ? .on : .off
+            
+            
+        case #selector(makeWritingDirectionLeftToRight):
+            menuItem.state = (self.writingDirection == .leftToRight) ? .on : .off
+            return !self.verticalLayoutOrientation
+            
+        case #selector(makeWritingDirectionRightToLeft):
+            menuItem.state = (self.writingDirection == .rightToLeft) ? .on : .off
+            return !self.verticalLayoutOrientation
             
         case #selector(toggleAntialias):
             menuItem.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
@@ -467,6 +476,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     }
     
     
+    var writingDirection: NSWritingDirection {
+        
+        get {
+            return self.focusedTextView?.baseWritingDirection ?? .leftToRight
+        }
+        set {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.baseWritingDirection = newValue
+            }
+        }
+    }
+    
+    
     /// textView's tab width
     var tabWidth: Int {
         
@@ -541,6 +563,20 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func toggleLayoutOrientation(_ sender: Any?) {
         
         self.verticalLayoutOrientation = !self.verticalLayoutOrientation
+    }
+    
+    
+    /// make entire writing direction LTR
+    @IBAction func makeWritingDirectionLeftToRight(_ sender: Any?) {
+        
+        self.writingDirection = .leftToRight
+    }
+    
+    
+    /// make entire writing direction RTL
+    @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
+        
+        self.writingDirection = .rightToLeft
     }
     
     
@@ -716,6 +752,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             textView.font = baseTextView.font
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
+            textView.baseWritingDirection = baseTextView.baseWritingDirection
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
         }
         

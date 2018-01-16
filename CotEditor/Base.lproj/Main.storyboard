@@ -489,6 +489,25 @@ Gw
                                                 <action selector="toggleLineWrap:" target="Ady-hI-5gd" id="6Yy-Bp-Aq9"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Writing Direction" id="mEh-BD-ZlV">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Writing Direction" id="hxr-2A-KYT">
+                                                <items>
+                                                    <menuItem title="Left to Right" state="on" id="7pw-5S-ekC">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeWritingDirectionLeftToRight:" target="Ady-hI-5gd" id="fgd-0N-MoV"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Right to Left" id="clG-Ph-Iyz">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeWritingDirectionRightToLeft:" target="Ady-hI-5gd" id="a1M-Oj-Kf6"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem title="Use Vertical Orientation" id="bTd-nG-jjc">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>

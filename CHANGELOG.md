@@ -13,6 +13,7 @@ develop
 - Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from the last session on launch” in General pane.
 - Add new setting option “including whitespace-only lines” for “trim trailing whitespace” command in General pane.
+- Introduce “Right to Left” writing direction by changing the direction from Format > Writing Direction menu.
 - More integrated Share feature:
     - Share documents with other people through iCloud drive with “Add People” command in the File > Share menu.
     - Enable sharing a document that has not been saved yet.
