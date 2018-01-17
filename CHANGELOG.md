@@ -19,6 +19,9 @@ develop
     - Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu.).
     - Other small improvements.
 - Add Portuguese localization (thanks to BR Lingo!).
+- Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):
+    - Thai (Windows, DOS)
+    - Thai (ISO 8859-11)
 
 
 ### Improvements
