@@ -86,8 +86,8 @@
                                     <binding destination="qsh-ze-KuJ" name="selectedIndex" keyPath="values.printLineNumIndex" id="ytS-yE-cCc"/>
                                 </connections>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCM-3I-GbW">
-                                <rect key="frame" x="44" y="275" width="90" height="17"/>
+                            <textField allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCM-3I-GbW">
+                                <rect key="frame" x="18" y="275" width="116" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Line numbers:" usesSingleLineMode="YES" id="3380">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -428,7 +428,7 @@
                             <constraint firstItem="zj5-Gl-MJM" firstAttribute="centerY" secondItem="ito-FV-Lxm" secondAttribute="centerY" id="2hQ-EL-4tg"/>
                             <constraint firstItem="8BQ-TU-mOj" firstAttribute="top" secondItem="5Bt-cy-Umw" secondAttribute="bottom" constant="10" symbolic="YES" id="5pf-hS-ERi"/>
                             <constraint firstItem="ZdO-IF-ch7" firstAttribute="baseline" secondItem="zgD-wy-VQk" secondAttribute="baseline" id="68H-Ic-Ors"/>
-                            <constraint firstItem="eCM-3I-GbW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KkP-8S-iZE" secondAttribute="leading" constant="20" symbolic="YES" id="8Wy-wv-IBI"/>
+                            <constraint firstItem="eCM-3I-GbW" firstAttribute="leading" secondItem="KkP-8S-iZE" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="8Wy-wv-IBI"/>
                             <constraint firstItem="YjD-Jc-NEF" firstAttribute="centerY" secondItem="eCM-3I-GbW" secondAttribute="centerY" id="AvE-lw-ebs"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YjD-Jc-NEF" secondAttribute="trailing" constant="20" symbolic="YES" id="CBO-pP-TSq"/>
                             <constraint firstItem="ZdO-IF-ch7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KkP-8S-iZE" secondAttribute="leading" constant="20" symbolic="YES" id="D3e-VW-mQk"/>
@@ -475,7 +475,7 @@
                             <constraint firstItem="RcK-yz-5sk" firstAttribute="trailing" secondItem="opm-wY-WU2" secondAttribute="trailing" id="ixy-QA-HN7"/>
                             <constraint firstItem="Ili-wb-NLt" firstAttribute="leading" secondItem="nPF-cF-nDP" secondAttribute="trailing" constant="8" symbolic="YES" id="jP5-KM-exN"/>
                             <constraint firstItem="MOp-QG-730" firstAttribute="leading" secondItem="KkP-8S-iZE" secondAttribute="leading" constant="30" id="kRO-p5-h5E"/>
-                            <constraint firstItem="ito-FV-Lxm" firstAttribute="leading" secondItem="KkP-8S-iZE" secondAttribute="leading" constant="140" id="lDY-NX-2Hg"/>
+                            <constraint firstItem="ito-FV-Lxm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KkP-8S-iZE" secondAttribute="leading" constant="140" id="lDY-NX-2Hg"/>
                             <constraint firstItem="opm-wY-WU2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KkP-8S-iZE" secondAttribute="leading" constant="20" symbolic="YES" id="lSi-dP-XM8"/>
                             <constraint firstItem="zgD-wy-VQk" firstAttribute="width" secondItem="5Bt-cy-Umw" secondAttribute="width" id="lYt-Ld-oDG"/>
                             <constraint firstItem="w5d-Bo-k2Q" firstAttribute="top" secondItem="KkP-8S-iZE" secondAttribute="top" constant="20" symbolic="YES" id="lds-fq-DOO"/>
