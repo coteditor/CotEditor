@@ -27,7 +27,7 @@
 /* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
 "3273.title" = "Finais de linha padrão:";
 /* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "15"; */
-"15.title" = "macOS/Unix (LF)";
+"15.title" = "macOS / Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
 "14.title" = "Mac OS Clássico (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "12"; */

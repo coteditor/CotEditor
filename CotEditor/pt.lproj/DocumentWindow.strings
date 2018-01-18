@@ -37,7 +37,7 @@
 "Zo1-Cc-YBm.title" = "CRLF";
 
 /* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.ibShadowedToolTip" = "macOS/Unix";
+"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
 "J48-tF-WBo.ibShadowedToolTip" = "Mac OS Clássico";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
