@@ -130,6 +130,9 @@ final class UnixScript: Script {
                     handle.write(chunk)
                 }
                 handle.closeFile()
+                
+                // inPipe must avoid releasing before `writeabilityHandler` is invocated
+                inPipe.fileHandleForWriting.writeabilityHandler = nil
             }
         }
         
