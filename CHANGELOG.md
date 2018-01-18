@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.2.8
+--------------------------
+
+### Fixes
+
+- Fix an issue where CotEditor occasionally failed sending the standard input to a UNIX script launched from the Script menu.
+
+
+
 3.2.7 (212)
 --------------------------
 
