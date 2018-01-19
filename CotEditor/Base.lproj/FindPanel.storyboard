@@ -97,11 +97,12 @@
                                         </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="9IF-SN-YIL"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="JOy-bP-bNy">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="JOy-bP-bNy">
                                     <rect key="frame" x="1" y="29" width="418" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -138,6 +139,7 @@
                                         </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="pGV-vQ-vMo">
                                     <rect key="frame" x="1" y="29" width="418" height="14"/>
@@ -247,37 +249,21 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-6q-C63">
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-6q-C63">
                                 <rect key="frame" x="358" y="107" width="59" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not Found" drawsBackground="YES" usesSingleLineMode="YES" id="Ghf-cy-qgo">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
-                                <connections>
-                                    <binding destination="fdE-8e-ywb" name="value" keyPath="findResultMessage" id="XCX-xt-29G"/>
-                                    <binding destination="fdE-8e-ywb" name="hidden" keyPath="findResultMessage" id="sQe-Kg-hZn">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SSP-y6-YxI">
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SSP-y6-YxI">
                                 <rect key="frame" x="342" y="53" width="75" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not Replaced" drawsBackground="YES" usesSingleLineMode="YES" id="2sg-74-GwO">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
-                                <connections>
-                                    <binding destination="fdE-8e-ywb" name="hidden" keyPath="replacementResultMessage" id="0Q0-eY-eqr">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="fdE-8e-ywb" name="value" keyPath="replacementResultMessage" id="49Q-UT-T2z"/>
-                                </connections>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="ObJ-nS-x0g">
                                 <rect key="frame" x="421" y="107" width="14" height="14"/>
@@ -349,8 +335,10 @@
                     </view>
                     <connections>
                         <outlet property="findHistoryMenu" destination="hj8-ZE-vCT" id="c5A-gt-012"/>
+                        <outlet property="findResultField" destination="Kkq-6q-C63" id="egT-XH-XQa"/>
                         <outlet property="findTextView" destination="hxw-DS-gxQ" id="4Nw-RH-bWa"/>
                         <outlet property="replaceHistoryMenu" destination="vPb-fy-Hh6" id="TQo-Ah-NfI"/>
+                        <outlet property="replacementResultField" destination="SSP-y6-YxI" id="UEW-Qa-UwC"/>
                         <outlet property="replacementTextView" destination="qiQ-tb-XCa" id="TeX-xf-XXK"/>
                     </connections>
                 </viewController>
@@ -622,7 +610,7 @@
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSGoLeftTemplate" width="9" height="12"/>
         <image name="NSGoRightTemplate" width="9" height="12"/>
-        <image name="NSStopProgressFreestandingTemplate" width="11" height="11"/>
+        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
         <image name="ReplaceTemplate" width="20" height="13"/>
     </resources>
 </document>

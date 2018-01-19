@@ -40,6 +40,7 @@ develop
 - Restore the last viewed preference pane when Preferences is opened.
 - Add an input field for window opacity setting.
 - Adjust scroll after toggling line wrap.
+- Add scroll margin to the right side of find panel fields dynamically, so that entire inputs can be seen even when find/replacement result is shown.
 - Update Python syntax style:
     - Fix highlight of string and bytes literals.
 - Tweak acknowledgments window design.

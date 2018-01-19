@@ -33,8 +33,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     @objc private dynamic let textFinder = TextFinder.shared
     
-    @objc private dynamic var findResultMessage: String?  // binding
-    @objc private dynamic var replacementResultMessage: String?  // binding
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
     private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: NSNib.Name("RegexReferenceView"), bundle: nil)
@@ -44,6 +42,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet private var replacementTextView: NSTextView?  // NSTextView cannot be weak
     @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
+    @IBOutlet private weak var findResultField: NSTextField?
+    @IBOutlet private weak var replacementResultField: NSTextField?
     
     
     
@@ -194,10 +194,13 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.clearNumberOfFound()
         
-        self.findResultMessage = {
+        guard let field = self.findResultField else { return }
+        
+        field.isHidden = false
+        field.stringValue = {
             switch numberOfFound {
             case -1:
-                return nil
+                return ""
             case 0:
                 return NSLocalizedString("Not Found", comment: "")
             default:
@@ -205,6 +208,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                               String.localizedStringWithFormat("%li", numberOfFound))
             }
         }()
+        
+        self.findTextView?.enclosingScrollView?.contentView.contentInsets.right = field.frame.width
+        moof(field.frame.width)
         
         // dismiss result either client text or find string did change
         self.currentResultMessageTarget = target.layoutManager
@@ -218,10 +224,13 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.clearNumberOfReplaced()
         
-        self.replacementResultMessage = {
+        guard let field = self.replacementResultField else { return }
+        
+        field.isHidden = false
+        field.stringValue = {
             switch numberOfReplaced {
             case -1:
-                return nil
+                return ""
             case 0:
                 return NSLocalizedString("Not Replaced", comment: "")
             default:
@@ -229,6 +238,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                               String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
+        
+        self.replacementTextView?.enclosingScrollView?.contentView.contentInsets.right = field.frame.width
     }
 
     
@@ -275,7 +286,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// number of found in find string field becomes no more valid
     @objc private func clearNumberOfFound(_ notification: Notification? = nil) {
         
-        self.findResultMessage = nil
+        self.replacementResultField?.isHidden = true
+        self.findResultField?.stringValue = ""
+        self.findTextView?.enclosingScrollView?.contentView.contentInsets.right = 0
         
         // -> specify the object to remove osberver to avoid removing the windowWillClose notification (via delegate) from find panel itself.
         if let target = self.currentResultMessageTarget?.firstTextView {
@@ -288,7 +301,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// number of replaced in replacement string field becomes no more valid
     @objc private func clearNumberOfReplaced(_ notification: Notification? = nil) {
         
-        self.replacementResultMessage = nil
+        self.replacementResultField?.isHidden = true
+        self.replacementResultField?.stringValue = ""
+        self.replacementTextView?.enclosingScrollView?.contentView.contentInsets.right = 0
     }
     
 }
