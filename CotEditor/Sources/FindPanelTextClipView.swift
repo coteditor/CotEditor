@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,7 +31,8 @@ final class FindPanelTextClipView: NSClipView {
     
     // MARK: Private Properties
     
-    private let leftPadding: CGFloat = 28.0
+    private let leadingPadding: CGFloat = 28.0  // for history button
+    private let tailingPadding: CGFloat = 22.0  // for clear buttton
     
     
     
@@ -42,7 +43,7 @@ final class FindPanelTextClipView: NSClipView {
         
         super.init(coder: coder)
         
-        // make sure frame to be initialized (Otherwise input area can be arranged in a wrong place.)
+        // make sure frame to be initialized (Otherwise, input area can be arranged in a wrong place.)
         let frame = self.frame
         self.frame = frame
     }
@@ -51,13 +52,14 @@ final class FindPanelTextClipView: NSClipView {
     
     // MARK: View Methods
     
-    /// add left padding for popup button
+    /// add paddings
     override var frame: NSRect {
         didSet {
-            guard frame.minX < self.leftPadding else { return }  // avoid infinity loop
+            guard frame.minX < self.leadingPadding else { return }  // avoid infinity loop
             
-            frame.origin.x += self.leftPadding
-            frame.size.width -= self.leftPadding
+            frame.origin.x += self.leadingPadding
+            frame.size.width -= self.leadingPadding
+            frame.size.width -= self.tailingPadding
         }
     }
     
