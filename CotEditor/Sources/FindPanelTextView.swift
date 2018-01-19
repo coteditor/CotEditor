@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -98,6 +98,15 @@ final class FindPanelTextView: NSTextView {
         super.didChangeText()
         
         self.isEmpty = self.string.isEmpty
+    }
+    
+    
+    /// string did udpate via binding
+    override var string: String {
+        
+        didSet {
+            self.isEmpty = self.string.isEmpty
+        }
     }
     
     
