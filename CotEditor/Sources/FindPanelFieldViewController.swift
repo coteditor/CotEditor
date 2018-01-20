@@ -297,16 +297,11 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// apply message to UI
     private func applyResult(message: String?, textField: NSTextField, textView: NSTextView) {
     
-        guard let string = message else {
-            textField.isHidden = true
-            textView.enclosingScrollView?.contentView.contentInsets.right = 0
-            return
-        }
+        textField.isHidden = (message != nil)
+        textField.stringValue = message ?? ""
+        textField.sizeToFit()
         
         // add extra scroll margin to the right side of the textView, so that entire input can be reead
-        textField.stringValue = string
-        textField.sizeToFit()
-        textField.isHidden = false
         textView.enclosingScrollView?.contentView.contentInsets.right = textField.frame.width
     }
     
