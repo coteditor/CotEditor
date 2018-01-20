@@ -194,13 +194,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.clearNumberOfFound()
         
-        guard let field = self.findResultField else { return }
-        
-        field.isHidden = false
-        field.stringValue = {
+        let message: String? = {
             switch numberOfFound {
             case -1:
-                return ""
+                return nil
             case 0:
                 return NSLocalizedString("Not Found", comment: "")
             default:
@@ -208,9 +205,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                               String.localizedStringWithFormat("%li", numberOfFound))
             }
         }()
-        
-        self.findTextView?.enclosingScrollView?.contentView.contentInsets.right = field.frame.width
-        moof(field.frame.width)
+        self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
         
         // dismiss result either client text or find string did change
         self.currentResultMessageTarget = target.layoutManager
@@ -224,13 +219,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.clearNumberOfReplaced()
         
-        guard let field = self.replacementResultField else { return }
-        
-        field.isHidden = false
-        field.stringValue = {
+        let message: String? = {
             switch numberOfReplaced {
             case -1:
-                return ""
+                return nil
             case 0:
                 return NSLocalizedString("Not Replaced", comment: "")
             default:
@@ -238,8 +230,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                               String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
-        
-        self.replacementTextView?.enclosingScrollView?.contentView.contentInsets.right = field.frame.width
+        self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)
     }
 
     
@@ -286,9 +277,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// number of found in find string field becomes no more valid
     @objc private func clearNumberOfFound(_ notification: Notification? = nil) {
         
-        self.replacementResultField?.isHidden = true
-        self.findResultField?.stringValue = ""
-        self.findTextView?.enclosingScrollView?.contentView.contentInsets.right = 0
+        self.applyResult(message: nil, textField: self.findResultField!, textView: self.findTextView!)
         
         // -> specify the object to remove osberver to avoid removing the windowWillClose notification (via delegate) from find panel itself.
         if let target = self.currentResultMessageTarget?.firstTextView {
@@ -301,9 +290,24 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// number of replaced in replacement string field becomes no more valid
     @objc private func clearNumberOfReplaced(_ notification: Notification? = nil) {
         
-        self.replacementResultField?.isHidden = true
-        self.replacementResultField?.stringValue = ""
-        self.replacementTextView?.enclosingScrollView?.contentView.contentInsets.right = 0
+        self.applyResult(message: nil, textField: self.replacementResultField!, textView: self.replacementTextView!)
+    }
+    
+    
+    /// apply message to UI
+    private func applyResult(message: String?, textField: NSTextField, textView: NSTextView) {
+    
+        guard let string = message else {
+            textField.isHidden = true
+            textView.enclosingScrollView?.contentView.contentInsets.right = 0
+            return
+        }
+        
+        // add extra scroll margin to the right side of the textView, so that entire input can be reead
+        textField.stringValue = string
+        textField.sizeToFit()
+        textField.isHidden = false
+        textView.enclosingScrollView?.contentView.contentInsets.right = textField.frame.width
     }
     
 }
