@@ -178,10 +178,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             let title = self.wrapsLines ? "Unwrap Lines" : "Wrap Lines"
             menuItem.title = NSLocalizedString(title, comment: "")
             
-        case #selector(toggleLayoutOrientation):
-            let title = self.verticalLayoutOrientation ? "Use Horizontal Orientation" : "Use Vertical Orientation"
-            menuItem.title = NSLocalizedString(title, comment: "")
-            
         case #selector(togglePageGuide):
             let title = self.showsPageGuide ? "Hide Page Guide" : "Show Page Guide"
             menuItem.title = NSLocalizedString(title, comment: "")
@@ -200,6 +196,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         case #selector(toggleAutoTabExpand):
             menuItem.state = self.isAutoTabExpandEnabled ? .on : .off
             
+        case #selector(makeLayoutOrientationHorizontal):
+            menuItem.state = self.verticalLayoutOrientation ? .off : .on
+            
+        case #selector(makeLayoutOrientationVertical):
+            menuItem.state = self.verticalLayoutOrientation ? .on : .off
             
         case #selector(makeWritingDirectionLeftToRight):
             menuItem.state = (self.writingDirection == .leftToRight) ? .on : .off
@@ -563,6 +564,20 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func toggleLayoutOrientation(_ sender: Any?) {
         
         self.verticalLayoutOrientation = !self.verticalLayoutOrientation
+    }
+    
+    
+    /// make text layout orientation horizontal
+    @IBAction func makeLayoutOrientationHorizontal(_ sender: Any?) {
+        
+        self.verticalLayoutOrientation = false
+    }
+    
+    
+    /// make text layout orientation vertical
+    @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
+        
+        self.verticalLayoutOrientation = true
     }
     
     
