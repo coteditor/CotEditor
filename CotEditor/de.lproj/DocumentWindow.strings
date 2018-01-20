@@ -25,6 +25,12 @@
  
  */
 
+/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
+"Kfj-q6-61N.label" = "Dokument-Informationen";
+/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "Inkompatible Zeichen";
+
+
 /* Class = "NSToolbarItem"; ObjectID = "9p6-Sj-QjF"; */
 "9p6-Sj-QjF.label" = "Zeilenenden";  /* Line Endings */
 "9p6-Sj-QjF.paletteLabel" = "Zeilenenden";  /* Line Endings */

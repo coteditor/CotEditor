@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -163,8 +163,10 @@ final class InspectorTabView: NSTabView {
         
         // set tabViewItem values to control buttons
         for (index, item) in self.tabViewItems.enumerated() {
+            let tooltip = NSLocalizedString(item.label, comment: "")
+            
             self.segmentedControl.setImage(item.image, forSegment: index)
-            (self.segmentedControl.cell as! NSSegmentedCell).setToolTip(item.toolTip, forSegment: index)
+            (self.segmentedControl.cell as! NSSegmentedCell).setToolTip(tooltip, forSegment: index)
         }
         
         self.segmentedControl.sizeToFit()

@@ -154,13 +154,6 @@
 
 
 
-/* MARK: Document Window */
-// Sidebar pane switcher tooltips
-"Document Inspector" = "Inspetor do Documento";
-"Incompatible Characters" = "Caracteres Incompatíveis";
-
-
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Invisíveis";

@@ -46,15 +46,6 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("IncompatibleCharsView")
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// update content before display

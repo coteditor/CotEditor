@@ -1,16 +1,16 @@
 /*
  
- IncompatibleCharsView.strings (Simplified Chinese)
+ IncompatibleCharactersView.strings (Italian)
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2014-12-18.
- Localized by onevcat
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2016-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,14 +27,14 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
-"W1c-aP-XZa.title" = "不兼容字符";
+"W1c-aP-XZa.title" = "Caratteri incompatibili";
 
 /* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
-"2AE-nU-rdc.headerCell.title" = "转换后";
+"2AE-nU-rdc.headerCell.title" = "Convertito";
 /* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
-"Nhb-U5-BOF.headerCell.title" = "字符";
+"Nhb-U5-BOF.headerCell.title" = "Carattere";
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
-"weY-lf-jGz.headerCell.title" = "行";
+"weY-lf-jGz.headerCell.title" = "Riga";
 
 /* Class = "NSTextFieldCell"; title = "No incompatible characters were found."; ObjectID = "wsL-BG-Ii8"; */
-"wsL-BG-Ii8.title" = "没有找到不兼容字符";
+"wsL-BG-Ii8.title" = "Nessun carattere incompatibile trovato.";

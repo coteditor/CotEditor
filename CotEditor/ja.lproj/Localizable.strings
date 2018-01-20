@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -151,13 +151,6 @@
 "Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?";
 "Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
-
-
-
-/* MARK: Document Window */
-// Sidebar pane switcher tooltips
-"Document Inspector" = "書類情報";
-"Incompatible Characters" = "非互換文字";
 
 
 

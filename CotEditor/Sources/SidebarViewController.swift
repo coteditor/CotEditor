@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -50,8 +50,8 @@ final class SidebarViewController: NSTabViewController {
     
     // MARK: Private Properties
     
-    private weak var documentInspectorTabViewItem: NSTabViewItem?
-    private weak var incompatibleCharactersTabViewItem: NSTabViewItem?
+    @IBOutlet private weak var documentInspectorTabViewItem: NSTabViewItem?
+    @IBOutlet private weak var incompatibleCharactersTabViewItem: NSTabViewItem?
     
     
     
@@ -62,20 +62,6 @@ final class SidebarViewController: NSTabViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        let documentInspectorTabViewItem = NSTabViewItem(viewController: DocumentInspectorViewController())
-        let incompatibleCharactersTabViewItem = NSTabViewItem(viewController: IncompatibleCharactersViewController())
-        
-        documentInspectorTabViewItem.image = #imageLiteral(resourceName: "DocumentTemplate")
-        incompatibleCharactersTabViewItem.image = #imageLiteral(resourceName: "ConflictsTemplate")
-        documentInspectorTabViewItem.toolTip = NSLocalizedString("Document Inspector", comment: "")
-        incompatibleCharactersTabViewItem.toolTip = NSLocalizedString("Incompatible Characters", comment: "")
-        
-        self.addTabViewItem(documentInspectorTabViewItem)
-        self.addTabViewItem(incompatibleCharactersTabViewItem)
-        
-        self.documentInspectorTabViewItem = documentInspectorTabViewItem
-        self.incompatibleCharactersTabViewItem = incompatibleCharactersTabViewItem
         
         // bind segmentedControl manually  (2016-09 on macOS 10.12)
         if let segmentedControl = (self.tabView as? InspectorTabView)?.segmentedControl {

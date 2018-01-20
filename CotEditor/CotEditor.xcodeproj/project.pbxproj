@@ -138,6 +138,10 @@
 		2A3D63F41E75A33000F538E1 /* Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D63F31E75A33000F538E1 /* Equatable.swift */; };
 		2A3D63F51E75A33000F538E1 /* Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D63F31E75A33000F538E1 /* Equatable.swift */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
+		2A4144B8201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */; };
+		2A4144B9201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */; };
+		2A4144BC201397D70061F653 /* DocumentInspectorView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */; };
+		2A4144BD201397D70061F653 /* DocumentInspectorView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */; };
 		2A41EC1A1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */; };
 		2A41EC1B1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */; };
 		2A42579E1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A42579D1D229A8B0086DAAD /* OutlineParseOperation.swift */; };
@@ -154,8 +158,6 @@
 		2A4257BA1D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* EditorTextView+Accessories.swift */; };
 		2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
 		2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
-		2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
-		2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
 		2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FIleDropComposer.swift */; };
 		2A4682B31D2F6B580005410E /* FIleDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FIleDropComposer.swift */; };
@@ -256,7 +258,6 @@
 		2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
 		2A6F0D611B5500E100C2D03C /* SizeSettingWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831F18E3814200601026 /* SizeSettingWindow.xib */; };
-		2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */; };
 		2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
 		2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditView.xib */; };
 		2A6F0D651B5500E100C2D03C /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* ProgressView.xib */; };
@@ -268,7 +269,6 @@
 		2A6F0D6E1B5500E100C2D03C /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
 		2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */; };
 		2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */; };
-		2A6F0D7B1B5500E100C2D03C /* DocumentInspectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */; };
 		2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A6F0D7E1B5500E100C2D03C /* EncodingListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A15831518E3688300601026 /* EncodingListView.xib */; };
 		2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
@@ -782,8 +782,6 @@
 		2A401FB91D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2A401FBA1D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2A401FBB1D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
-		2A401FBC1D9AD76D00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
-		2A401FBD1D9AD76D00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
 		2A401FBE1D9AD76D00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A401FBF1D9AD76D00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2A401FC01D9AD76D00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
@@ -819,6 +817,18 @@
 		2A4064021B9DA7C60032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
 		2A4064041B9DA8BE0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
 		2A4064061B9DAA4E0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
+		2A4144B7201397150061F653 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IncompatibleCharactersView.storyboard; sourceTree = "<group>"; };
+		2A4144BB201397D70061F653 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DocumentInspectorView.storyboard; sourceTree = "<group>"; };
+		2A4144C02013A90B0061F653 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
+		2A4144C12013A90D0061F653 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentInspectorView.strings"; sourceTree = "<group>"; };
+		2A4144C22013A90F0061F653 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
+		2A4144C32013A9110061F653 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
+		2A4144C42013A9140061F653 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
+		2A4144C62013A9180061F653 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IncompatibleCharactersView.strings; sourceTree = "<group>"; };
+		2A4144C82013A91E0061F653 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IncompatibleCharactersView.strings"; sourceTree = "<group>"; };
+		2A4144CA2013A91F0061F653 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IncompatibleCharactersView.strings; sourceTree = "<group>"; };
+		2A4144CC2013A9230061F653 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/IncompatibleCharactersView.strings; sourceTree = "<group>"; };
+		2A4144CE2013A9250061F653 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/IncompatibleCharactersView.strings; sourceTree = "<group>"; };
 		2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+TouchBar.swift"; sourceTree = "<group>"; };
 		2A42579D1D229A8B0086DAAD /* OutlineParseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineParseOperation.swift; sourceTree = "<group>"; };
 		2A4257A61D22E0660086DAAD /* EncodingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingManager.swift; sourceTree = "<group>"; };
@@ -827,12 +837,6 @@
 		2A4257B51D23153B0086DAAD /* UnicodeInputPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeInputPanelController.swift; sourceTree = "<group>"; };
 		2A4257B81D2392A40086DAAD /* EditorTextView+Accessories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Accessories.swift"; sourceTree = "<group>"; };
 		2A4257BB1D239F850086DAAD /* Invisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invisible.swift; sourceTree = "<group>"; };
-		2A436DCC1A4243D500275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentInspectorView.xib; sourceTree = "<group>"; };
-		2A436DCF1A4249CB00275FD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IncompatibleCharsView.xib; sourceTree = "<group>"; };
-		2A436DD21A42516900275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
-		2A436DD41A42533100275FD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
-		2A436DD61A4253B100275FD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentInspectorView.strings"; sourceTree = "<group>"; };
-		2A436DD81A4254A400275FD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IncompatibleCharsView.strings"; sourceTree = "<group>"; };
 		2A456C431A1EDCFC00395158 /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A456C441A1EDD0400395158 /* ja */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ja; path = ja.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A4682B11D2F6B580005410E /* FIleDropComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIleDropComposer.swift; sourceTree = "<group>"; };
@@ -892,8 +896,6 @@
 		2A6602E81D05DF85003E8D87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
 		2A6602EA1D05DF87003E8D87 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		2A69075B1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
-		2A69075D1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
-		2A69075E1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
 		2A6907601B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2A6907611B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		2A6907621B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProgressView.strings; sourceTree = "<group>"; };
@@ -1175,8 +1177,6 @@
 		57ED314C1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		57ED314D1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		57ED314E1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
-		57ED314F1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
-		57ED31501FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/IncompatibleCharsView.strings; sourceTree = "<group>"; };
 		57ED31511FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EditorView.strings; sourceTree = "<group>"; };
 		57ED31521FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		57ED31531FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
@@ -1695,8 +1695,8 @@
 			isa = PBXGroup;
 			children = (
 				2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */,
-				2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */,
-				2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */,
+				2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */,
+				2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */,
 				2A5F7CA31D152589001D83BC /* EditorView.storyboard */,
 			);
 			name = "Document Window";
@@ -2216,7 +2216,6 @@
 				2A5DBE591B5D2DB400F8CB13 /* SyntaxOutlineEditView.xib in Resources */,
 				2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */,
 				2A6F0D611B5500E100C2D03C /* SizeSettingWindow.xib in Resources */,
-				2A6F0D621B5500E100C2D03C /* IncompatibleCharsView.xib in Resources */,
 				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
 				2A10D1011E7088B00027192A /* WindowPane.storyboard in Resources */,
 				2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */,
@@ -2226,13 +2225,13 @@
 				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
 				2A6F0D6B1B5500E100C2D03C /* OpenDocumentAccessory.xib in Resources */,
 				2A6F0D6C1B5500E100C2D03C /* OpacityPanel.xib in Resources */,
+				2A4144B9201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */,
 				2AE12E0C1E7DDF5100681F72 /* CustomSurroundStringView.storyboard in Resources */,
 				2A6F0D6D1B5500E100C2D03C /* CharacterPopover.xib in Resources */,
 				2A6F0D6E1B5500E100C2D03C /* PrintPanelAccessory.xib in Resources */,
 				2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */,
 				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictView.xib in Resources */,
 				2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */,
-				2A6F0D7B1B5500E100C2D03C /* DocumentInspectorView.xib in Resources */,
 				2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */,
 				2A80C66F1CEE556600AA664D /* WebDocumentWindow.xib in Resources */,
 				2A5DBE5C1B5D2DBD00F8CB13 /* SyntaxInfoEditView.xib in Resources */,
@@ -2243,6 +2242,7 @@
 				2A1893A51FFF15E000AD244F /* PatternSortView.storyboard in Resources */,
 				2A5DBE5D1B5D2DC000F8CB13 /* SyntaxValidationView.xib in Resources */,
 				2A5DBE5B1B5D2DBA00F8CB13 /* SyntaxCompletionsEditView.xib in Resources */,
+				2A4144BD201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2279,10 +2279,11 @@
 				2A6602D01D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */,
 				2A5F7CA51D152589001D83BC /* EditorView.storyboard in Resources */,
 				2A5D13421D1FE34F00D38E6A /* FindPanel.storyboard in Resources */,
+				2A4144BC201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
 				2A15832118E3814200601026 /* SizeSettingWindow.xib in Resources */,
 				2ADF3C121E6D8774009125BB /* IntegrationPane.storyboard in Resources */,
 				2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */,
-				2A436DD01A4249CB00275FD4 /* IncompatibleCharsView.xib in Resources */,
+				2A4144B8201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */,
 				25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */,
 				258EF2FA077FEDD000011E52 /* SyntaxEditView.xib in Resources */,
 				2A3A75AA19E77E87001DAB88 /* SyntaxTermsEditView.xib in Resources */,
@@ -2310,7 +2311,6 @@
 				2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */,
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
 				2A80C66E1CEE556600AA664D /* WebDocumentWindow.xib in Resources */,
-				2A436DCD1A4243D500275FD4 /* DocumentInspectorView.xib in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */,
 				2A15831718E3688300601026 /* EncodingListView.xib in Resources */,
@@ -3177,30 +3177,30 @@
 			name = SaveDocumentAccessory.xib;
 			sourceTree = "<group>";
 		};
-		2A436DCB1A4243D500275FD4 /* DocumentInspectorView.xib */ = {
+		2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A436DCC1A4243D500275FD4 /* Base */,
-				2A436DD21A42516900275FD4 /* ja */,
-				2A436DD61A4253B100275FD4 /* zh-Hans */,
-				2A69075D1B8443AA00D0F3A2 /* de */,
-				2A401FBC1D9AD76D00ACE036 /* it */,
-				57ED314F1FFD892600F16CAD /* pt */,
+				2A4144B7201397150061F653 /* Base */,
+				2A4144C62013A9180061F653 /* ja */,
+				2A4144C82013A91E0061F653 /* zh-Hans */,
+				2A4144CA2013A91F0061F653 /* de */,
+				2A4144CC2013A9230061F653 /* it */,
+				2A4144CE2013A9250061F653 /* pt */,
 			);
-			name = DocumentInspectorView.xib;
+			name = IncompatibleCharactersView.storyboard;
 			sourceTree = "<group>";
 		};
-		2A436DCE1A4249CB00275FD4 /* IncompatibleCharsView.xib */ = {
+		2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A436DCF1A4249CB00275FD4 /* Base */,
-				2A436DD41A42533100275FD4 /* ja */,
-				2A436DD81A4254A400275FD4 /* zh-Hans */,
-				2A69075E1B8443AA00D0F3A2 /* de */,
-				2A401FBD1D9AD76D00ACE036 /* it */,
-				57ED31501FFD892600F16CAD /* pt */,
+				2A4144BB201397D70061F653 /* Base */,
+				2A4144C02013A90B0061F653 /* ja */,
+				2A4144C12013A90D0061F653 /* zh-Hans */,
+				2A4144C22013A90F0061F653 /* de */,
+				2A4144C32013A9110061F653 /* it */,
+				2A4144C42013A9140061F653 /* pt */,
 			);
-			name = IncompatibleCharsView.xib;
+			name = DocumentInspectorView.storyboard;
 			sourceTree = "<group>";
 		};
 		2A456C421A1EDCFC00395158 /* ReportTemplate.md */ = {

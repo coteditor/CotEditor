@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 CotEditor Project
+ © 2016-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -151,13 +151,6 @@
 "Do you want to keep CotEditor’s edition or update to the modified edition?" = "Si desidera mantenere la versione di CotEditor oppure aggiornarla a quella modificata?";
 "Keep CotEditor’s Edition" = "Mantieni la versione di CotEditor";
 "Update" = "Aggiorna";
-
-
-
-/* MARK: Document Window */
-// Sidebar pane switcher tooltips
-"Document Inspector" = "Ispettore del documento";
-"Incompatible Characters" = "Caratteri incompatibili";
 
 
 

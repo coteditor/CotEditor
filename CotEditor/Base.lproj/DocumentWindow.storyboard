@@ -242,6 +242,10 @@
         <scene sceneID="Z70-6I-Rpr">
             <objects>
                 <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="SidebarViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="Document Inspector" image="DocumentTemplate" id="Kfj-q6-61N"/>
+                        <tabViewItem label="Incompatible Characters" image="ConflictsTemplate" id="JZo-ok-Dks"/>
+                    </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="252" y="0.0" width="200" height="300"/>
@@ -253,12 +257,31 @@
                         </connections>
                     </tabView>
                     <connections>
-                        <outlet property="tabView" destination="wzn-c5-29x" id="SNu-Lu-NFO"/>
+                        <outlet property="documentInspectorTabViewItem" destination="Kfj-q6-61N" id="WFA-8N-DmT"/>
+                        <outlet property="incompatibleCharactersTabViewItem" destination="JZo-ok-Dks" id="QRQ-Sy-61p"/>
+                        <segue destination="2Hh-Pq-vvo" kind="relationship" relationship="tabItems" id="dgq-BX-Slv"/>
+                        <segue destination="ry4-rh-ZBT" kind="relationship" relationship="tabItems" id="XUT-Cm-0nR"/>
                     </connections>
                 </tabViewController>
                 <customObject id="u7b-LP-b38" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="845" y="1128"/>
+        </scene>
+        <!--Document Inspector View Controller-->
+        <scene sceneID="eSh-Om-8dn">
+            <objects>
+                <controllerPlaceholder storyboardName="DocumentInspectorView" id="2Hh-Pq-vvo" userLabel="Document Inspector View Controller" sceneMemberID="viewController"/>
+                <customObject id="Eo9-v0-LrD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1178" y="1100"/>
+        </scene>
+        <!--Incompatible Characters View Controller-->
+        <scene sceneID="Wud-vX-9dR">
+            <objects>
+                <controllerPlaceholder storyboardName="IncompatibleCharactersView" id="ry4-rh-ZBT" userLabel="Incompatible Characters View Controller" sceneMemberID="viewController"/>
+                <customObject id="fzj-JB-SfU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1191" y="1157"/>
         </scene>
         <!--Document View Controller-->
         <scene sceneID="og9-Gf-wXr">
@@ -388,6 +411,8 @@
         <image name="AutoTabExpand_On" width="24" height="24"/>
         <image name="BiggerFont" width="24" height="24"/>
         <image name="Comment" width="24" height="24"/>
+        <image name="ConflictsTemplate" width="15" height="15"/>
+        <image name="DocumentTemplate" width="15" height="15"/>
         <image name="EditColorCode" width="24" height="24"/>
         <image name="GetInfo" width="24" height="24"/>
         <image name="IncompatibleChars" width="24" height="24"/>

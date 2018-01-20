@@ -24,6 +24,12 @@
 // limitations under the License.
 //
 
+/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
+"Kfj-q6-61N.label" = "Inspetor do Documento";
+/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "Caracteres Incompatíveis";
+
+
 /* Class = "NSToolbarItem"; label = "Line Endings"; ObjectID = "9p6-Sj-QjF"; */
 "9p6-Sj-QjF.label" = "Finais de Linha";  /* Line Endings */
 "9p6-Sj-QjF.paletteLabel" = "Finais de Linha";  /* Line Endings */

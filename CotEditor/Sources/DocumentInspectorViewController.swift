@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,22 +31,19 @@ final class DocumentInspectorViewController: NSViewController {
         
     // MARK: Private Properties
     
+    @IBOutlet private var dateFormatter: DateFormatter?
+    @IBOutlet private var byteCountFormatter: ByteCountFormatter?
+    @IBOutlet private var filePermissionsFormatter: FilePermissionsFormatter?
+    
+    
     private var analyzer: DocumentAnalyzer? {
         
         return self.representedObject as? DocumentAnalyzer
     }
     
     
+    
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("DocumentInspectorView")
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// let documentAnalyzer autoupdate
