@@ -13,6 +13,7 @@ develop
 - Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from the last session on launch” in General pane.
 - Add new setting option “including whitespace-only lines” for “trim trailing whitespace” command in General pane.
+- Introduce “Right to Left” writing direction by changing the direction from Format > Writing Direction menu.
 - More integrated Share feature:
     - Share documents with other people through iCloud drive with “Add People” command in the File > Share menu.
     - Enable sharing a document that has not been saved yet.
@@ -32,6 +33,7 @@ develop
 - Scroll console view after getting a new message to make it visible.
 - Display sharing window within the target document window.
 - Swap position of “View” with “Format” menu to conform to the Apple's Human Interface Guidelines.
+- Move the menu item changing the text orientation into Format > Writing Direction.
 - Display full encoding name in the status bar instead of the IANA charset name.
 - Add tooltips to the Unicode normalization forms in Text menu.
 - Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.

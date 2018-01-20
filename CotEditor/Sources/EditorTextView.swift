@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -152,6 +152,7 @@ final class EditorTextView: NSTextView, Themable {
         self.textContainerInset = kTextContainerInset
         
         // set NSTextView behaviors
+        self.baseWritingDirection = .leftToRight  // default is fixed in LTR
         self.allowsDocumentBackgroundColorChange = false
         self.allowsUndo = true
         self.isRichText = false
@@ -594,7 +595,10 @@ final class EditorTextView: NSTextView, Themable {
             let column = UserDefaults.standard[.pageGuideColumn]
             let inset = self.textContainerOrigin.x
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
-            let x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
+            var x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
+            if self.baseWritingDirection == .rightToLeft {
+                x = self.frame.width - x
+            }
             
             NSGraphicsContext.saveGraphicsState()
             
@@ -647,6 +651,11 @@ final class EditorTextView: NSTextView, Themable {
         //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
         if self.canUseNonContiguousLayout {
             self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
+        }
+        
+        // reset writing direction
+        if orientation == .vertical {
+            self.baseWritingDirection = .leftToRight
         }
     }
     
@@ -710,6 +719,17 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         return success
+    }
+    
+    
+    override var baseWritingDirection: NSWritingDirection {
+        
+        didSet {
+            // redraw page guide after changing writing direction
+            if self.showsPageGuide {
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            }
+        }
     }
     
     
@@ -1139,6 +1159,8 @@ final class EditorTextView: NSTextView, Themable {
             paragraphStyle.tabStops = []
             paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.advancement(character: " ").width
         }
+        
+        paragraphStyle.baseWritingDirection = self.baseWritingDirection
         
         self.defaultParagraphStyle = paragraphStyle
         

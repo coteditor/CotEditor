@@ -267,8 +267,6 @@
 "Show Page Guide" = "Mostrar Guia da Página";
 "Unwrap Lines" = "Desajustar Linhas";
 "Wrap Lines" = "Ajustar Linhas";
-"Use Vertical Orientation" = "Usar Orientação Vertical";
-"Use Horizontal Orientation" = "Use Orientação Horizontal";
 
 // Tooltip for "Show Invisible Characters" menu item
 "Show or hide invisible characters in document" = "Mostre ou oculte os caracteres invisíveis no documento";

@@ -484,15 +484,47 @@ Gw
                                         <menuItem isSeparatorItem="YES" id="397">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
+                                        <menuItem title="Writing Direction" id="mEh-BD-ZlV">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Writing Direction" id="hxr-2A-KYT">
+                                                <items>
+                                                    <menuItem title="Orientation" enabled="NO" id="6eV-nI-heo">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Horizontal" state="on" indentationLevel="1" id="jQ7-hG-AjA">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeLayoutOrientationHorizontal:" target="Ady-hI-5gd" id="WVo-ax-oWO"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Vertical" indentationLevel="1" id="bTd-nG-jjc">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeLayoutOrientationVertical:" target="Ady-hI-5gd" id="540-j1-Xm4"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="GcI-ed-8Zi"/>
+                                                    <menuItem title="Direction" enabled="NO" id="ICu-yD-nVi">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Left to Right" state="on" indentationLevel="1" id="7pw-5S-ekC">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeWritingDirectionLeftToRight:" target="Ady-hI-5gd" id="fgd-0N-MoV"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Right to Left" indentationLevel="1" id="clG-Ph-Iyz">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeWritingDirectionRightToLeft:" target="Ady-hI-5gd" id="a1M-Oj-Kf6"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem title="Wrap Lines" id="286">
                                             <connections>
                                                 <action selector="toggleLineWrap:" target="Ady-hI-5gd" id="6Yy-Bp-Aq9"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Use Vertical Orientation" id="bTd-nG-jjc">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="toggleLayoutOrientation:" target="Ady-hI-5gd" id="WAe-DI-LSN"/>
                                             </connections>
                                         </menuItem>
                                     </items>

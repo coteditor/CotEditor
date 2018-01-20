@@ -267,8 +267,6 @@
 "Show Page Guide" = "Mostra guida pagina";
 "Unwrap Lines" = "Rimuovi a capo automatico";
 "Wrap Lines" = "A capo automatico";
-"Use Vertical Orientation" = "Usa orientamento verticale";
-"Use Horizontal Orientation" = "Usa orientamento orizzontale";
 
 // Tooltip for "Show Invisible Characters" menu item
 "Show or hide invisible characters in document" = "Mostra o nascondi i caratteri invisibili nel documento";
