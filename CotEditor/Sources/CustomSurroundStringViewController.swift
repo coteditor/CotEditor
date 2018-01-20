@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2017 1024jp
+ © 2017-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -44,6 +44,8 @@ final class CustomSurroundStringViewController: NSViewController {
     
     /// apply
     @IBAction func ok(_ sender: Any?) {
+        
+        self.endEditing()
         
         guard
             let textView = self.representedObject as? NSTextView,
