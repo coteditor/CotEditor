@@ -281,7 +281,6 @@
                         </connections>
                     </splitView>
                     <connections>
-                        <outlet property="splitView" destination="0PU-mC-e2a" id="TWY-Z7-qQn"/>
                         <outlet property="splitViewItem" destination="tZe-bg-feG" id="WmM-B8-IB0"/>
                         <outlet property="statusBarItem" destination="lfq-9K-fZM" id="qBF-wb-f69"/>
                         <segue destination="vcx-nD-eDH" kind="relationship" relationship="splitItems" id="cYB-og-7Al"/>
@@ -296,6 +295,9 @@
         <scene sceneID="37M-iF-P9Z">
             <objects>
                 <splitViewController showSeguePresentationStyle="single" id="vcx-nD-eDH" customClass="SplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem holdingPriority="251" id="gyL-KP-Ao2"/>
+                    </splitViewItems>
                     <splitView key="splitView" dividerStyle="paneSplitter" id="erk-uh-Ad4" customClass="EditorSplitView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -309,7 +311,7 @@
                         </connections>
                     </splitView>
                     <connections>
-                        <outlet property="splitView" destination="erk-uh-Ad4" id="3BL-qE-nyp"/>
+                        <segue destination="o9O-dN-yRS" kind="relationship" relationship="splitItems" id="umm-gh-Z4n"/>
                     </connections>
                 </splitViewController>
                 <customObject id="BD5-7O-H8g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -372,6 +374,14 @@
                 <customObject id="wKh-dn-8NK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="695" y="1467"/>
+        </scene>
+        <!--Editor View Controller-->
+        <scene sceneID="Nwn-QI-YAx">
+            <objects>
+                <controllerPlaceholder storyboardName="EditorView" id="o9O-dN-yRS" userLabel="Editor View Controller" sceneMemberID="viewController"/>
+                <customObject id="OXS-9n-Oj5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="1607"/>
         </scene>
     </scenes>
     <resources>

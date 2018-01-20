@@ -107,8 +107,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             document.textStorage.delegate = self
             document.syntaxStyle.delegate = self
             
-            // -> use existing one if added document is replacement of a transient document
-            let editorViewController = self.editorViewControllers.first ?? self.createEditorViewController()
+            let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
             // start parcing syntax highlights and outline menu
@@ -735,7 +734,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// create new (split) editor view
-    private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController? = nil) -> EditorViewController {
+    private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController) -> EditorViewController {
         
         let storyboard = NSStoryboard(name: NSStoryboard.Name("EditorView"), bundle: nil)
         let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
