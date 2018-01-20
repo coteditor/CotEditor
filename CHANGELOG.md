@@ -17,7 +17,7 @@ develop
 - More integrated Share feature:
     - Share documents with other people through iCloud drive with “Add People” command in the File > Share menu.
     - Enable sharing a document that has not been saved yet.
-    - Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu.).
+    - Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu).
     - Other small improvements.
 - Add Portuguese localization (thanks to BR Lingo!).
 - Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):

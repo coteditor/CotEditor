@@ -25,6 +25,85 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.3.0</h1>
+	<p>release: <time>2018-01</time></p>
+</header>
+
+
+<section>
+<h3>New Features</h3>
+
+<ul>
+	<li>iCloud document.</li>
+	<li>Open a document in the existing Untitled window that was created automatically on an open/reopen event, if exists.</li>
+	<li>New feature “Sort by pattern,” which enables sort selected lines by specific column or fully freely using the regular expression.</li>
+	<li>Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.</li>
+	<li>Add new setting option “Reopen windows from the last session on launch” in General pane.</li>
+	<li>Add new setting option “including whitespace-only lines” for “trim trailing whitespace” command in General pane.</li>
+	<li>Introduce “Right to Left” writing direction by changing the direction from Format > Writing Direction menu.</li>
+	<li>More integrated Share feature:<ul>
+		<li>Share documents with other people through iCloud drive with “Add People” command in the File > Share menu.</li>
+		<li>Enable sharing a document that has not been saved yet.</li>
+		<li>Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu).</li>
+		<li>Other small improvements.</li>
+	</ul></li>
+	<li>Add Portuguese localization (thanks to BR Lingo!).</li>
+	<li>Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):<ul>
+		<li>Thai (Windows, DOS)</li>
+		<li>Thai (ISO 8859-11)</li>
+	</ul></li>
+</ul>
+</section>
+
+
+<section>
+<h3>Improvements</h3>
+
+<ul>
+	<li>Drop support for <strong>OS X 10.10 Yosemite</strong>.</li>
+	<li>Add clear button to the input fields in the find panel.</li>
+	<li>Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.</li>
+	<li>Scroll console view after getting a new message to make it visible.</li>
+	<li>Display sharing window within the target document window.</li>
+	<li>Swap position of “View” with “Format” menu to conform to the Apple's Human Interface Guidelines.</li>
+	<li>Move the menu item changing the text orientation into Format > Writing Direction.</li>
+	<li>Display full encoding name in the status bar instead of the IANA charset name.</li>
+	<li>Add tooltips to the Unicode normalization forms in Text menu.</li>
+	<li>Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.</li>
+	<li>Remove “Color Code Panel” command from the “Window” menu (use “Edit Color Code...” command in “Text” menu instead).</li>
+	<li>Remove “share find text with other applications” option.</li>
+	<li>Restore the last viewed preference pane when Preferences is opened.</li>
+	<li>Add an input field for window opacity setting.</li>
+	<li>Adjust scroll after toggling line wrap.</li>
+	<li>Add scroll margin to the right side of find panel fields dynamically, so that entire inputs can be seen even when find/replacement result is shown.</li>
+	<li>Update Python syntax style:<ul>
+		<li>Fix highlight of string and bytes literals.</li>
+	</ul></li>
+	<li>Tweak acknowledgments window design.</li>
+	<li>Some minor UI improvements and fixes.</li>
+	<li>Update Japanese localization to conform with the modern macOS localization rules.</li>
+	<li>Update the internal source code to Swift 4.</li>
+	<li>[non-AppStore ver.] Now, the application updater (Sparkle) can download and update CotEditor automatically, as like before CotEditor was Sandboxed.<ul>
+		<li>This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.</li>
+	</ul></li>
+</ul>
+</section>
+
+
+<section>
+<h3>Fixes</h3>
+
+<ul>
+	<li>Fix an issue where the word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly, and, therefore, a workaround was added on CotEditor 3.2.3.</li>
+	<li>Fix some unlocalized text.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.2.8</h1>
 	<p>release: <time>2018-01</time></p>
 </header>
