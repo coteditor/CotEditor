@@ -688,6 +688,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A03E699201457570093FDF1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTouchBar+Validation.swift"; sourceTree = "<group>"; };
 		2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTouchBar.swift; sourceTree = "<group>"; };
 		2A0D64A11D20FFB0006B4937 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
@@ -3048,6 +3049,7 @@
 				2AAFA57C1FFFCE2600E15768 /* zh-Hans */,
 				2AAFA57E1FFFCE2800E15768 /* de */,
 				2AAFA5801FFFCE2900E15768 /* it */,
+				2A03E699201457570093FDF1 /* pt */,
 			);
 			name = PatternSortView.storyboard;
 			sourceTree = "<group>";
