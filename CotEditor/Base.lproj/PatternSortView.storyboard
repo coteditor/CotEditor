@@ -47,11 +47,11 @@
             <objects>
                 <viewController id="uia-jw-3Md" customClass="PatternSortViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="pgB-9B-CeZ">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="492" height="375"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yq3-Cq-5Km">
-                                <rect key="frame" x="326" y="13" width="100" height="32"/>
+                                <rect key="frame" x="378" y="13" width="100" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="sWn-Qf-20l"/>
                                 </constraints>
@@ -67,7 +67,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dGp-tE-DiD">
-                                <rect key="frame" x="226" y="13" width="100" height="32"/>
+                                <rect key="frame" x="278" y="13" width="100" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lw7-xg-639">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -77,16 +77,6 @@ Gw
                                 </buttonCell>
                                 <connections>
                                     <action selector="dismissController:" target="uia-jw-3Md" id="B99-cY-jyQ"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AJK-RI-bCK">
-                                <rect key="frame" x="98" y="103" width="215" height="18"/>
-                                <buttonCell key="cell" type="check" title="Treat numbers as numeric value" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yXD-KA-8KI">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.numeric" id="yVO-JD-XdM"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fPh-fe-6Jh">
@@ -108,8 +98,8 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JRD-Db-XHM">
-                                <rect key="frame" x="98" y="81" width="104" height="18"/>
-                                <buttonCell key="cell" type="check" title="Sort naturally" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="x72-Sd-pMB">
+                                <rect key="frame" x="98" y="103" width="168" height="18"/>
+                                <buttonCell key="cell" type="check" title="Respect language rules:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="x72-Sd-pMB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -118,7 +108,7 @@ Gw
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dBa-xL-w0w">
-                                <rect key="frame" x="100" y="147" width="340" height="119"/>
+                                <rect key="frame" x="100" y="147" width="392" height="119"/>
                                 <connections>
                                     <segue destination="UQP-be-J0h" kind="embed" id="Jqt-CD-otV"/>
                                 </connections>
@@ -190,7 +180,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Sample line to check which part in a line will be used for sort comparison." horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-Jf-7Yj">
-                                <rect key="frame" x="20" y="308" width="400" height="22"/>
+                                <rect key="frame" x="20" y="308" width="452" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Dog, 🐕, 1" drawsBackground="YES" usesSingleLineMode="YES" id="UjO-61-yKu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -201,8 +191,18 @@ Gw
                                 </connections>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="AE3-Op-b7T">
-                                <rect key="frame" x="20" y="297" width="400" height="5"/>
+                                <rect key="frame" x="20" y="297" width="452" height="5"/>
                             </box>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AJK-RI-bCK">
+                                <rect key="frame" x="98" y="81" width="215" height="18"/>
+                                <buttonCell key="cell" type="check" title="Treat numbers as numeric value" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yXD-KA-8KI">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.numeric" id="yVO-JD-XdM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fPh-fe-6Jh" secondAttribute="trailing" constant="20" symbolic="YES" id="09V-Gd-wII"/>
@@ -212,9 +212,11 @@ Gw
                             <constraint firstItem="W2m-Jf-7Yj" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="3T7-mx-ypl"/>
                             <constraint firstItem="yq3-Cq-5Km" firstAttribute="width" secondItem="dGp-tE-DiD" secondAttribute="width" id="48w-gA-wgC"/>
                             <constraint firstItem="yq3-Cq-5Km" firstAttribute="top" secondItem="Gi8-FU-veh" secondAttribute="bottom" constant="20" symbolic="YES" id="596-ag-2I6"/>
+                            <constraint firstItem="AJK-RI-bCK" firstAttribute="top" secondItem="JRD-Db-XHM" secondAttribute="bottom" constant="8" id="5bQ-Qf-RhE"/>
                             <constraint firstItem="dx8-zl-dSu" firstAttribute="leading" secondItem="oqP-25-2rA" secondAttribute="trailing" constant="6" symbolic="YES" id="7gw-kk-1h3"/>
                             <constraint firstItem="fPh-fe-6Jh" firstAttribute="baseline" secondItem="CQO-oZ-nKa" secondAttribute="baseline" id="B33-CY-e9M"/>
-                            <constraint firstItem="JRD-Db-XHM" firstAttribute="top" secondItem="AJK-RI-bCK" secondAttribute="bottom" constant="8" id="CJP-hE-dWR"/>
+                            <constraint firstItem="JRD-Db-XHM" firstAttribute="top" secondItem="fPh-fe-6Jh" secondAttribute="bottom" constant="8" id="CEE-j8-FQZ"/>
+                            <constraint firstItem="Gi8-FU-veh" firstAttribute="top" secondItem="AJK-RI-bCK" secondAttribute="bottom" constant="8" id="CR5-hH-vsD"/>
                             <constraint firstItem="bN6-xc-HWj" firstAttribute="baseline" secondItem="oqP-25-2rA" secondAttribute="baseline" id="FfK-V9-VK6"/>
                             <constraint firstItem="9k2-WT-LJk" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="GKt-48-gbg"/>
                             <constraint firstItem="XDJ-2v-jYy" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="HMu-d0-MKe"/>
@@ -225,16 +227,14 @@ Gw
                             <constraint firstItem="oqP-25-2rA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="P3r-yo-0AO"/>
                             <constraint firstItem="dGp-tE-DiD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9k2-WT-LJk" secondAttribute="trailing" constant="12" symbolic="YES" id="PfD-ix-6oR"/>
                             <constraint firstAttribute="trailing" secondItem="yq3-Cq-5Km" secondAttribute="trailing" constant="20" symbolic="YES" id="QwA-nH-aQ6"/>
-                            <constraint firstItem="AJK-RI-bCK" firstAttribute="top" secondItem="fPh-fe-6Jh" secondAttribute="bottom" constant="8" id="VdX-PV-45h"/>
                             <constraint firstItem="Gi8-FU-veh" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="WoW-Om-J3w"/>
                             <constraint firstItem="W2m-Jf-7Yj" firstAttribute="top" secondItem="XDJ-2v-jYy" secondAttribute="bottom" constant="8" symbolic="YES" id="Y6K-tl-N29"/>
                             <constraint firstAttribute="trailing" secondItem="W2m-Jf-7Yj" secondAttribute="trailing" constant="20" symbolic="YES" id="YAK-f4-9v6"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JRD-Db-XHM" secondAttribute="trailing" constant="20" symbolic="YES" id="ZhC-1T-hl8"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XDJ-2v-jYy" secondAttribute="trailing" constant="20" symbolic="YES" id="bvu-Pr-bjY"/>
-                            <constraint firstItem="Gi8-FU-veh" firstAttribute="top" secondItem="JRD-Db-XHM" secondAttribute="bottom" constant="8" id="chq-fc-rQY"/>
                             <constraint firstItem="CQO-oZ-nKa" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="d1y-Yd-imT"/>
                             <constraint firstAttribute="trailing" secondItem="dBa-xL-w0w" secondAttribute="trailing" id="dH5-Kc-gkE"/>
                             <constraint firstItem="fPh-fe-6Jh" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="eT7-i2-vIY"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JRD-Db-XHM" secondAttribute="trailing" constant="20" symbolic="YES" id="fP1-BY-dhr"/>
                             <constraint firstItem="bN6-xc-HWj" firstAttribute="leading" secondItem="dx8-zl-dSu" secondAttribute="trailing" constant="12" id="fQc-Wt-6vB"/>
                             <constraint firstItem="dBa-xL-w0w" firstAttribute="leading" secondItem="oqP-25-2rA" secondAttribute="trailing" constant="8" symbolic="YES" id="gf2-zF-2Xp"/>
                             <constraint firstItem="AE3-Op-b7T" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="jGh-Am-GrA"/>

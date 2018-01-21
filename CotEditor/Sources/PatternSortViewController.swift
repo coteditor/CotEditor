@@ -33,7 +33,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     @objc dynamic var sampleLine: String?
     @objc dynamic var sampleFontName: String?
     
-    @IBOutlet private var sampleLineField: NSTextField?
+    @IBOutlet private weak var sampleLineField: NSTextField?
     
     private weak var tabViewController: NSTabViewController?
     
