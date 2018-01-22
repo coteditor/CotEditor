@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2016 CotEditor Project
+ © 2006-2018 CotEditor Project
 */
 
 
@@ -160,8 +160,8 @@ p.point {
 	background-color: hsl(213, 25%, 96%);
 }
 
-em {
-	font-weight: bold;
+em, strong {
+	font-weight: 600;
 	font-style: normal;
 }
 

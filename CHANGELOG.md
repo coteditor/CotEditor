@@ -40,7 +40,7 @@ develop
 - Remove “Color Code Panel” command from the “Window” menu (use “Edit Color Code...” command in “Text” menu instead).
 - Remove “share find text with other applications” option.
 - Restore the last viewed preference pane when Preferences is opened.
-- Add an input field for window opacity setting.
+- Add an input field for the editor opacity setting.
 - Adjust scroll after toggling line wrap.
 - Add scroll margin to the right side of find panel fields dynamically, so that entire inputs can be seen even when find/replacement result is shown.
 - Update Python syntax style:
