@@ -246,13 +246,13 @@
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "hxr-2A-KYT"; */
 "hxr-2A-KYT.title" = "Direzione scrittura";
 /* Class = "NSMenuItem"; title = "Orientation"; ObjectID = "6eV-nI-heo"; */
-"6eV-nI-heo.title" = "Orientation";  // FIXME: added
+"6eV-nI-heo.title" = "Orientamento";
 /* Class = "NSMenuItem"; title = "Horizontal"; ObjectID = "jQ7-hG-AjA"; */
-"jQ7-hG-AjA.title" = "Horizontal";  // FIXME: added
+"jQ7-hG-AjA.title" = "Orizzontale";
 /* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "bTd-nG-jjc"; */
-"bTd-nG-jjc.title" = "Vertical";  // FIXME: added
+"bTd-nG-jjc.title" = "Verticale";
 /* Class = "NSMenuItem"; title = "Direction"; ObjectID = "ICu-yD-nVi"; */
-"ICu-yD-nVi.title" = "Direction";  // FIXME: added
+"ICu-yD-nVi.title" = "Direzione";
 /* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "7pw-5S-ekC"; */
 "7pw-5S-ekC.title" = "Da sinistra a destra";
 /* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "clG-Ph-Iyz"; */
@@ -353,7 +353,7 @@
 /* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
 "OQl-Uo-yfn.title" = "Ordina";
 /* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
-"lNH-Mh-pIE.title" = "Sort by Pattern…";  // FIXME: added
+"lNH-Mh-pIE.title" = "Ordina per motivo…";
 /* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
 "xhf-NR-D2Q.title" = "Inverti";
 /* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
@@ -394,9 +394,9 @@
 "LC4-lg-eO0.title" = "Usa maiuscole";
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
-"dVK-1s-xJq.title" = "Half-width to Full-width";  // FIXME: added
+"dVK-1s-xJq.title" = "Da mezza ampiezza a tutta ampiezza";
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
-"Skr-vI-7VN.title" = "Full-width to Half-width";  // FIXME: added
+"Skr-vI-7VN.title" = "Da tutta ampiezza a mezza ampiezza";
 /* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
 "586.title" = "Da ASCII ad ASCII a tutta larghezza";
 /* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */
@@ -433,15 +433,15 @@
 /* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
 "zuR-3K-9fs.title" = "NFKC Casefold";
 /* Class = "NSMenuItem"; title = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.ibShadowedToolTip" = "Applying NFKC, CaseFolding, and removal of default-ignorable code points";  // FIXME: added
+"zuR-3K-9fs.ibShadowedToolTip" = "Applicare NFKC, CaseFolding, e rimuovere i punti di codice ignorabili di default";
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
 "NU7-EI-1Ct.title" = "NFD modificato (HFS+)";
 /* Class = "NSMenuItem"; title = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.ibShadowedToolTip" = "Unofficial NFD-based normalization form used in HFS+";  // FIXME: added
+"NU7-EI-1Ct.ibShadowedToolTip" = "Form di normalizzazione non ufficiale basata su NFD, usata in HFS+";
 /* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
 "n6C-Km-BM9.title" = "NFC modificato (HFS+)";
 /* Class = "NSMenuItem"; title = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.ibShadowedToolTip" = "Unofficial NFC-based normalization form corresponding to Modified NFD";  // FIXME: added
+"n6C-Km-BM9.ibShadowedToolTip" = "Form di normalizzazione non ufficiale basata su NFD, corrispondente a NFD Modificato";
 
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "Inserisci nome della codifica";
@@ -558,8 +558,8 @@
 "824.title" = "Ringraziamenti";
 
 /* Class = "NSMenuItem"; title = "Create Issue Report…"; ObjectID = "iHn-Ed-A8u"; */
-"iHn-Ed-A8u.title" = "Crea rapporto segnalazione errori…";  // FIXME: changed "Bug" -> "Issue"
+"iHn-Ed-A8u.title" = "Apri la segnalazione di un problema…";
 /* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
-"Bk3-xx-uft.title" = "Segnala un problema";  // FIXME: changed "Bug" -> "Issue"
+"Bk3-xx-uft.title" = "Segnala un problema";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
 "g34-YV-E6o.title" = "Sito Web di CotEditor";

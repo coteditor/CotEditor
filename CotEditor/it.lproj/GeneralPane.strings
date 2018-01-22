@@ -30,14 +30,14 @@
 "zDW-aW-9G8.title" = "All’avvio:";
 
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
-"QX9-BI-SIL.title" = "Reopen windows from last session";  // FIXME: added
+"QX9-BI-SIL.title" = "Riapri le finestre dall’ultima sessione";
 /* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
-"wmw-xg-bSt.title" = "When nothing else is open:";  // FIXME: added
+"wmw-xg-bSt.title" = "Quando non c’è alcun documento aperto:";
 
 /* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
-"i4c-DG-ADS.title" = "Create New Document";  // FIXME: added
+"i4c-DG-ADS.title" = "Crea un nuovo documento";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
-"hIX-mh-cG4.title" = "Show Open Dialog";  // FIXME: added
+"hIX-mh-cG4.title" = "Mostra la finestra di dialogo Apri";
 /* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
 "KgD-GV-alV.title" = "Nessuna azione";
 
@@ -52,7 +52,7 @@
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Rimuovi gli spazi bianchi a fine riga al salvataggio";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
-"Tma-Oh-F7v.title" = "Including whitespace-only lines";  // FIXME: added
+"Tma-Oh-F7v.title" = "Includere le righe di solo spazio bianco";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
