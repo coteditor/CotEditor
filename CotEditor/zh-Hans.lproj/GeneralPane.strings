@@ -30,14 +30,14 @@
 "zDW-aW-9G8.title" = "启动时：";
 
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
-"QX9-BI-SIL.title" = "Reopen windows from last session";  // FIXME: added
+"QX9-BI-SIL.title" = "重新打开上次会话的窗口";
 /* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
-"wmw-xg-bSt.title" = "When nothing else is open:";  // FIXME: added
+"wmw-xg-bSt.title" = "当无项目可以打开时：";
 
 /* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
-"i4c-DG-ADS.title" = "Create New Document";  // FIXME: added
+"i4c-DG-ADS.title" = "创建新文档";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
-"hIX-mh-cG4.title" = "Show Open Dialog";  // FIXME: added
+"hIX-mh-cG4.title" = "显示打开对话框";
 /* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
 "KgD-GV-alV.title" = "不执行任何操作";
 
@@ -52,7 +52,7 @@
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "保存时移除行尾空白";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
-"Tma-Oh-F7v.title" = "Including whitespace-only lines";  // FIXME: added
+"Tma-Oh-F7v.title" = "包含只有空格的行";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
