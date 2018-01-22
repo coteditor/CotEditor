@@ -10,7 +10,6 @@ develop
 - iCloud document.
 - Open a document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
 - New feature “Sort by pattern,” which enables sort selected lines by specific column or fully freely using the regular expression.
-- Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from the last session on launch” in General pane.
 - Add new setting option “including whitespace-only lines” for “trim trailing whitespace” command in General pane.
 - Introduce “Right to Left” writing direction by changing the direction from Format > Writing Direction menu.
@@ -19,6 +18,7 @@ develop
     - Enable sharing a document that has not been saved yet.
     - Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu).
     - Other small improvements.
+- Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add Portuguese localization (thanks to BR Lingo!).
 - Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):
     - Thai (Windows, DOS)

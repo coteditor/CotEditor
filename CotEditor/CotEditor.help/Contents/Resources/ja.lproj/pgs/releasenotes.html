@@ -34,23 +34,23 @@
 <h2>新機能</h2>
 
 <ul>
-	<li>iCloud document.</li>
-	<li>Open a document in the existing Untitled window that was created automatically on an open/reopen event, if exists.</li>
-	<li>New feature “Sort by pattern,” which enables sort selected lines by specific column or fully freely using the regular expression.</li>
-	<li>Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.</li>
-	<li>Add new setting option “Reopen windows from the last session on launch” in General pane.</li>
-	<li>Add new setting option “including whitespace-only lines” for “trim trailing whitespace” command in General pane.</li>
-	<li>Introduce “Right to Left” writing direction by changing the direction from Format > Writing Direction menu.</li>
-	<li>More integrated Share feature:<ul>
-		<li>Share documents with other people through iCloud drive with “Add People” command in the File > Share menu.</li>
-		<li>Enable sharing a document that has not been saved yet.</li>
-		<li>Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu).</li>
-		<li>Other small improvements.</li>
+	<li>iCloudドキュメントに対応</li>
+	<li>起動時やリオープンイベントで自動的に開かれた空のウインドウがあれば、ユーザが明示的に開いた書類をそのウインドウの中に開くように</li>
+	<li>指定列や正規表現などの特殊な条件で選択した範囲の行をソートできる“条件で並び替え”機能をテキスト &gt; 行メニューに追加</li>
+	<li>新しい設定オプション“前回のウインドウを復帰”を一般ペインに追加</li>
+	<li>新しい設定オプション“空白のみの行を含める”を一般ペインの“保存時に行末の空白を削除”オプションに追加</li>
+	<li>右から左の記法に対応し、フォーマット &gt; 文章の方向メニューを追加</li>
+	<li>さらに統合された共有機能:<ul>
+		<li>共有の“人を追加”に対応し、iCloudドライブから書類を他の人と共有できるように</li>
+		<li>未保存の書類も共有できるできるように</li>
+		<li>ファイル &gt; 共有メニューから書類のテキストを共有する機能を削除（選択範囲のテキストはコンテキストメニューから共有できます）</li>
+		<li>ほか細々とした改良</li>
 	</ul></li>
-	<li>Add Portuguese localization (thanks to BR Lingo!).</li>
-	<li>Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):<ul>
-		<li>Thai (Windows, DOS)</li>
-		<li>Thai (ISO 8859-11)</li>
+	<li>テキスト &gt; 変換に“半角に”と“全角に”コマンドを追加</li>
+	<li>ポルトガル語（ブラジル）ローカライズを追加（BR Lingoに感謝!）</li>
+	<li>以下のファイルエンコーディングをエンコーディングリストに追加（新しいエンコーディングを有効にするには、環境設定 &gt; フォーマット &gt; リスト編集 から一旦設定をデフォルトに戻してください）<ul>
+		<li>タイ語（Windows, DOS）</li>
+		<li>タイ語（ISO 8859-11）</li>
 	</ul></li>
 </ul>
 </section>
@@ -60,31 +60,31 @@
 <h2>改良</h2>
 
 <ul>
-	<li><strong>OS X 10.10 Yosemite</strong>をサポート対象外とする</li>
-	<li>Add clear button to the input fields in the find panel.</li>
-	<li>Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.</li>
-	<li>Scroll console view after getting a new message to make it visible.</li>
-	<li>Display sharing window within the target document window.</li>
-	<li>Swap position of “View” with “Format” menu to conform to the Apple's Human Interface Guidelines.</li>
-	<li>Move the menu item changing the text orientation into Format > Writing Direction.</li>
-	<li>Display full encoding name in the status bar instead of the IANA charset name.</li>
-	<li>Add tooltips to the Unicode normalization forms in Text menu.</li>
-	<li>Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.</li>
-	<li>Remove “Color Code Panel” command from the “Window” menu (use “Edit Color Code...” command in “Text” menu instead).</li>
-	<li>Remove “share find text with other applications” option.</li>
-	<li>Restore the last viewed preference pane when Preferences is opened.</li>
-	<li>Add an input field for window opacity setting.</li>
-	<li>Adjust scroll after toggling line wrap.</li>
-	<li>Add scroll margin to the right side of find panel fields dynamically, so that entire inputs can be seen even when find/replacement result is shown.</li>
-	<li>Update Python syntax style:<ul>
-		<li>Fix highlight of string and bytes literals.</li>
+	<li><strong>OS X 10.10 Yosemite</strong>をサポート対象外に</li>
+	<li>検索パネルの入力フィールドに削除ボタンを追加</li>
+	<li>“新規書類を開く”の設定オプション2つを1つにまとめ、“起動したとき何も開かれていなければ”設定オプションを新設</li>
+	<li>コンソールに出力が追加されたとき、新しいメッセージが見えるように自動でスクロール</li>
+	<li>共有ウインドウを対象となる書類ウインドウの中に表示</li>
+	<li>AppleのHuman Interface Guidelinesに合わせ、表示メニューとフォーマットメニューの位置を交換</li>
+	<li>縦書き/横書きを切り替えるメニュー項目をフォーマット &gt; 文章の方向メニューに移動</li>
+	<li>ステータスバーに表示するエンコーディング名をIANA charset名ではなくフル名称に</li>
+	<li>テキストメニューのUnicode正規化メニュー項目に解説のツールチップを追加</li>
+	<li>“ツールバーを表示/隠す”メニュー項目にショートカット<kbd>Option</kbd>+<kbd>Cmd</kbd>+<kbd>T</kbd>を付与</li>
+	<li>“カラーコードパネル”コマンドをウインドウメニューから削除（代わりにテキストメニューの“カラーコードを編集...”コマンドを使用してください）</li>
+	<li>設定オプション“検索文字列をほかのアプリケーションと共有”を削除</li>
+	<li>環境設定を開いたとき最後に表示したペインを表示するように</li>
+	<li>エディタの不透明度設定に数値入力フィールドを追加</li>
+	<li>行の折り返し設定を変更したあとのスクロール位置をより自然に調整</li>
+	<li>検索パネルの入力欄に検索/置換結果が表示されているときもすべての入力値が見えるように入力欄右側に動的にスクロールマージンを追加</li>
+	<li>Pythonシンタックス定義を更新<ul>
+		<li>文字列およびバイトリテラルのハイライトを修正</li>
 	</ul></li>
-	<li>Tweak acknowledgments window design.</li>
-	<li>Some minor UI improvements and fixes.</li>
-	<li>Update Japanese localization to conform with the modern macOS localization rules.</li>
-	<li>Update the internal source code to Swift 4.</li>
-	<li>[non-AppStore ver.] Now, the application updater (Sparkle) can download and update CotEditor automatically, as like before CotEditor was Sandboxed.<ul>
-		<li>This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.</li>
+	<li>謝辞ウインドウのデザインを改良</li>
+	<li>ユーザインターフェイスに関する微細な改良</li>
+	<li>日本語ローカライズを近年のモダンなmacOSの表現に合わせるために更新</li>
+	<li>内部コードをSwift 4に更新</li>
+	<li><span class="label">非AppStore版のみ</span>: CotEditorがSandbox化される前のように、アプリケーションアップデート機能(Sparkle) が再び自動でCotEditorを更新できるように<ul>
+		<li>この機能は実際にはCotEditor 3.3.0から3.3.1へのアップデートから使用できるようになります。</li>
 	</ul></li>
 </ul>
 </section>
@@ -94,7 +94,7 @@
 <h2>修正</h2>
 
 <ul>
-	<li>Fix an issue where the word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly, and, therefore, a workaround was added on CotEditor 3.2.3.</li>
+	<li>タッチバーの入力補助で記号から始まるキーワードの入力がうまくいかず、そのためCotEditor 3.2.3で迂回策がとられていた不具合を解決</li>
 	<li>ローカライズされていなかったテキストを修正</li>
 </ul>
 </section>
