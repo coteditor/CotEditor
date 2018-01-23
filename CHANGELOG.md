@@ -27,7 +27,7 @@ develop
 
 ### Improvements
 
-- Drop support for __OS X 10.10 Yosemite__.
+- Change the system requirement to __OS X 10.11 El Capitan and later__.
 - Add clear button to the input fields in the find panel.
 - Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.
 - Scroll console view after getting a new message to make it visible.
